@@ -1,11 +1,12 @@
 #library "a_anticheat.acs"
 #include "zcommon.acs"
-#include "acsutils.acs"
+//#include "acsutils.acs"
 
 // [JD] No more cheating.
 script "Anti-Cheat" ENTER CLIENTSIDE // [JD] The script runs on the player's client when they join the game.
 {
-	while (!IsOpenGL()) // [JD] The cheat only works in the Software renderer so there's no reason to run it in OpenGL.
+	//while (!IsOpenGL()) // [JD] The cheat only works in the Software renderer so there's no reason to run it in OpenGL.
+	while (true) // [Trill] Dependence on a huge utility library not even in the file for a single function is silly. This script isn't that resource intensive.
 	{
 		if (!GetCVAR("r_3dfloors")) // [JD] Checks the client's value. If the player has it set to '0' then we force it back on.
 			ConsoleCommand("r_3dfloors 1");
