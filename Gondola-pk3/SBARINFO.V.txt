@@ -464,8 +464,11 @@ IsSelected AlienTrapBoss{Drawbar"02_A_BAR","BAREMPTY",Ammo1,vertical,16,8;}
 //NoodleAmmo
 WeaponAmmo NoodleAmmo{Drawbar"BARAMMO2","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage"NEEDRCON",32,55;}
-IsSelected MagnetMissileBoss{Drawbar"BARAMM14","BAREMPTY",Ammo1,vertical,8,8;
-	DrawBar"BARAMMO1","BAREMPTY",MagnetFlag,vertical,16,8;}
+IsSelected MagnetMissileBoss{Drawbar"BARTOKX","BAREMPTY",Ammo1,vertical,8,8;
+	DrawBar"BARAMMO1","BAREMPTY",MagnetFlag,vertical,16,8;
+	DrawImage"MAGNICON",32,55;
+	InInventory MagFlyIsOut, 1{Drawbar"BARFLS1","NOBAR",MagFlyIsOut,vertical,24,8;}
+	InInventory MagFlyDelay, 1{Drawbar"BARFLS1","NOBAR",MagFlyDelay,vertical,24,8;}}
 IsSelected GeminiLaserBoss{Drawbar"BARAMM15","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory CloneSpawned,1{Drawbar"3C_G_BAR","NOBAR",Ammo1,vertical,16,8;}}
 IsSelected HardKnuckleBoss{Drawbar"BARAMM16","BAREMPTY",Ammo1,vertical,16,8;}
@@ -606,6 +609,7 @@ IsSelected ScorchWheelBoss{Drawbar"BARAMM38","BAREMPTY",Ammo1,vertical,16,8;
 //MM8
 IsSelected TornadoHoldBoss{Drawbar"BARAMM40","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage"TNGUICON",32,55;
+	Drawbar"TNGUBAR","BAREMPTY",Ammo2,vertical,8,8;
 	InInventory TenguFlagH,1{DrawImage"TENJETA",290,8;}}
 IsSelected AstroCrushBoss{Drawbar"BARAMM52","BAREMPTY",Ammo1,vertical,16,8;
 						  DrawImage"ATRRICON",32,55;
@@ -875,10 +879,11 @@ IsSelected DeepDiggerBoss{Drawbar"0V_6_BAR","BAREMPTY",Ammo1,vertical,16,8;
 	Drawbar"0V_G_BAR","0V_G2BAR",Ammo2,vertical,8,8;
 	Drawbar"VG_A_BAR","NOBAR",UranusAnger,vertical,8,8;
 	InInventory UranusCarrying,1{DrawImage"URANGORE",3,73;}}
-IsSelected BreakDashBoss{Drawbar"0V_7_BAR","BAREMPTY",Ammo1,vertical,16,8;
-						 DrawImage"PUTRICON",32,55;
+IsSelected BreakDashBoss{InInventory GetBentDegenerateAmmo,56{Drawbar"0V_7_PAR","BAREMPTY",Ammo1,vertical,16,8;}
+else{Drawbar"0V_7_PAX","BAREMPTY",Ammo1,vertical,16,8;}
+	DrawImage"PUTRICON",32,55;
 	Drawbar"0V_H_BAR","0V_H2BAR",Ammo2,vertical,8,8;
-	InInventory BreakingIntoADashAmmo,784{Drawbar"VH_S_BAR","NOBAR",Ammo2,vertical,8,8;}}
+	InInventory BreakingIntoADashAmmo,485{Drawbar"VH_S_BAR","NOBAR",Ammo2,vertical,8,8;}}
 IsSelected SaltWaterBoss{Drawbar"0V_8_BAR","BAREMPTY",Ammo1,vertical,16,8;
 	Drawbar"0V_I_BAR","BAREMPTY",Ammo2,vertical,8,8;}
 IsSelected NovaBeamBoss{Drawbar"V_I_SUN","BAREMPTY",Ammo1,vertical,16,8;

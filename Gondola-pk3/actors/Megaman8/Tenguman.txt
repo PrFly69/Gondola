@@ -1,11 +1,11 @@
-actor Tenguman : MegaClassBase
+actor Tenguman : ClassBase
 {
 Player.ScoreIcon "C_08A0X"
-player.startitem "MegaHealthBar"
 player.displayname "Tenguman"
 player.soundclass "tengumanc"
 player.startitem "TornadoHoldBoss"
 player.startitem "FeelMyPowerAmmo", 252
+player.startitem "DivineWindAmmo", 400
 player.startitem "TenguHoverItem"
 
 player.forwardmove 0.76, 0.76

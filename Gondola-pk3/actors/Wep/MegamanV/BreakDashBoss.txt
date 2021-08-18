@@ -103,46 +103,31 @@ PLUH B 1 offset(-10,22)
 Goto Ready1
 
 Altfire:
-PLUH D 0 A_JumpIfInventory("BreakDashAirFlag",2,"AltfireClaw")
+PLUH D 0 A_JumpIfInventory("BreakDashAirFlag",2,"AltfireMeow")
 PLUH D 0 A_JumpIfInventory("GetBentDegenerateAmmo",56,"DasherStart")
-goto AltfireClaw
+goto AltfireMeow
 
-AltfireClaw:
-PLUH D 1 offset(32,32)A_PlaySoundEx("weapon/slashclaw","Weapon")
-PLUH D 1 offset(17,44)
-PLUH D 1 offset(2,57)A_GiveInventory("PlutoAlt2_CI")
-PLUH D 1 offset(-11,57)
-PLUH D 1 offset(-17,72)A_GiveInventory("GetBentDegenerateAmmo",2)
-PLUH D 1 offset(-23,88)
-PLUH E 1 offset(62,22)
-PLUH E 1 offset(52,34)
-PLUH E 1 offset(41,46)
-PLUH E 1 offset(35,60)
-PLUH E 1 offset(29,74)
-PLUH E 0 A_Refire("AltfireClaw2")
-PLUH E 1 offset(25,92)
-TNT1 A 2
-goto AltfireClawEnd
-AltfireClaw2:
-PLUH F 1 offset(-32,32)A_PlaySoundEx("weapon/slashclaw","Weapon")
-PLUH F 1 offset(-17,45)
-PLUH F 1 offset(-2,57)A_GiveInventory("PlutoAlt_CI")
-PLUH F 1 offset(11,72)
-PLUH F 1 offset(23,88)A_GiveInventory("GetBentDegenerateAmmo",2)
-PLUH F 1 offset(23,88)
-PLUH G 1 offset(-62,22)
-PLUH G 1 offset(-52,34)
-PLUH G 1 offset(-41,46)
-PLUH G 1 offset(-35,60)
-PLUH G 1 offset(-29,74)
-PLUH G 0 A_Refire("AltfireClaw")
-PLUH G 1 offset(-25,92)
-TNT1 A 2
-goto AltfireClawEnd
-AltfireClawEnd:
-PLUH A 2 offset(-15,86)
-PLUH A 2 offset(-8,68)
-PLUH A 2 offset(-3,50)
+AltfireMeow:
+TNT1 A 0 ACS_ExecuteAlways(512,0,2)
+PLUH A 1 offset(0,20)A_GiveInventory("MeowMeowMix")
+PLUH A 1 offset(0,30)
+PLUH A 1 offset(0,40)
+PLUH A 1 offset(0,50)
+PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
+PLUH AAAA 1 offset(0,50)
+PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
+PLUH AAAA 1 offset(0,50)
+PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
+PLUH AAAA 1 offset(0,50)
+PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
+PLUH AAAA 1 offset(0,50)
+PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
+PLUH AAAA 1 offset(0,50)
+PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
+PLUH A 1 offset(0,40)
+PLUH A 1 offset(0,30)
+PLUH AA 1 offset(0,20)
+PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
 Goto Ready1
 
 DasherStart:
@@ -193,7 +178,7 @@ PLUH B 0 A_SpawnItemEx("ReSolidifier")
 PLUH B 0 SetPlayerProperty(0,0,0)
 PLUH B 2 offset(30,62)
 PLUH B 0 A_GunFlash("Flash.LandStart")
-PLUH B 2 offset(20,52)A_Refire("AltfireClaw")
+PLUH B 2 offset(20,52)
 PLUH B 2 offset(10,42)
 goto Ready1
 
@@ -295,6 +280,16 @@ actor BreakDashAirFlag : Inventory
 {
 inventory.amount 1
 inventory.maxamount 2
+}
+
+actor MeowMeowMix : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteAlways("MEOWMEOWMEOWMEOWMEOWMEOWMEOW",0)
+stop
+}
 }
 
 actor PlutoDashStarter_P : CustomInventory

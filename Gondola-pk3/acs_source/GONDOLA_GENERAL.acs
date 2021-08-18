@@ -606,3 +606,8 @@ switch (mode) {
 		break;
 }
 }
+
+Script "MEOWMEOWMEOWMEOWMEOWMEOWMEOW" (void)
+{
+	LocalAmbientSound("item/tango",128);
+}

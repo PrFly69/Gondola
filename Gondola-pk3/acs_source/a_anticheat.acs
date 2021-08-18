@@ -1,22 +1,15 @@
 #library "a_anticheat.acs"
 #include "zcommon.acs"
-//#include "acsutils.acs"
+#include "acsutils.acs"
 
 // [JD] No more cheating.
 script "Anti-Cheat" ENTER CLIENTSIDE // [JD] The script runs on the player's client when they join the game.
 {
-	//while (!IsOpenGL()) // [JD] The cheat only works in the Software renderer so there's no reason to run it in OpenGL.
-	while (true) // this script should not be eating resources and I'm removing the dumb dependency on acsutils.acs - Trill
+	while (!IsOpenGL()) // [JD] The cheat only works in the Software renderer so there's no reason to run it in OpenGL.
 	{
 		if (!GetCVAR("r_3dfloors")) // [JD] Checks the client's value. If the player has it set to '0' then we force it back on.
 			ConsoleCommand("r_3dfloors 1");
 	
 		Delay (1);
 	}
-}
-
-// No more cheating, but also now on respawn - Trill
-script "Anti-Cheat-R" RESPAWN CLIENTSIDE
-{
-ACS_NamedExecuteAlways("Anti-Cheat",0);
 }

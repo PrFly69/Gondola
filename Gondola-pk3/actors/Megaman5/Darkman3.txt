@@ -3,7 +3,7 @@ actor Darkman3 : LightClassBase
 Player.ScoreIcon "C_05K0X"
 player.displayname "Darkman3"
 player.soundclass "darkman3c"
-player.jumpz 14
+player.jumpz 12
 player.forwardmove 0.77, 0.77
 player.sidemove 0.75, 0.75
 player.startitem "DarkSniperBoss"
