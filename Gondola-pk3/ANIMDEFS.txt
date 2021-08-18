@@ -1,0 +1,42 @@
+//Nitroman Gear Display
+texture NITRONC
+pic NITRON1 tics 4
+pic NITRON2 tics 4
+
+//Sunstar
+texture V_I_SUV
+pic V_I_SUW tics 4
+pic V_I_SUX tics 4
+pic V_I_SUY tics 4
+pic V_I_SUZ tics 4
+
+texture V_I_VUV
+pic V_I_VUW tics 4
+pic V_I_VUX tics 4
+pic V_I_VUY tics 4
+pic V_I_VUZ tics 4
+
+texture GALPORTA
+pic BLKHB0 tics 2
+pic BLKHC0 tics 2
+pic BLKHD0 tics 2
+pic BLKHE0 tics 2
+
+texture 5K_B_BAR
+pic 5K_C_BAR tics 4
+pic 5K_D_BAR tics 4
+pic 5K_E_BAR tics 4
+pic 5K_F_BAR tics 4
+pic 5K_G_BAR tics 4
+pic 5K_H_BAR tics 4
+pic 5K_I_BAR tics 4
+pic TNT1A0 tics 4
+texture 5K_B_VAR
+pic 5K_C_VAR tics 4
+pic 5K_D_VAR tics 4
+pic 5K_E_VAR tics 4
+pic 5K_F_VAR tics 4
+pic 5K_G_VAR tics 4
+pic 5K_H_VAR tics 4
+pic 5K_I_VAR tics 4
+pic TNT1A0 tics 4

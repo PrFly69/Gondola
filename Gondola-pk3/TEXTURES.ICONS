@@ -1,0 +1,1030 @@
+sprite TALKA0, 40, 18
+{
+	XScale 0.5
+	YScale 0.5
+	Offset 0, 12
+	Patch TALKB0, 4, 0
+}
+
+graphic REGGS, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3J0, 0, 0
+}
+
+graphic RCOIL, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPB0, 0, 0
+}
+
+graphic ETANK, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch EBALF0, 0, 0
+}
+
+graphic MTANK, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch EBALG0, 0, 0
+}
+
+graphic WTANK, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch EBALH0, 0, 0
+}
+
+graphic BUBBI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPD0, 0, 0
+}
+
+graphic LEAFI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPF0, 0, 0
+}
+
+graphic NAPAI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPC0, 0, 0
+}
+
+graphic SHADI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPA0, 0, 0
+}
+
+graphic ATOMI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPE0, 0, 0
+}
+
+graphic AIRSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPG0, 0, 0
+}
+
+graphic BOMBSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPH0, 0, 0
+}
+
+graphic MAGNETSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPI0, 0, 0
+}
+
+graphic TOPSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPJ0, 0, 0
+}
+
+graphic NEEDSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPL0, 0, 0
+}
+
+graphic GEMISI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPM0, 0, 0
+}
+
+
+graphic SNAKESI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPK0, 0, 0
+}
+
+graphic FLASHSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPN0, 0, 0
+}
+
+graphic SARMSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPO0, 0, 0
+}
+
+graphic ICESI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPP0, 0, 0
+}
+
+graphic EDDIEB, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch EDDIQ0, 0, 0
+}
+
+graphic EDDIEC, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPQ0, 0, 0
+}
+
+graphic CBUSTI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch CBSTC0, 0, 0
+}
+
+graphic PROTOS, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPU0, 0, 0
+}
+
+graphic THUNSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPR0, 0, 0
+}
+
+graphic METLSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPS0, 0, 0
+}
+
+graphic HARDSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPT0, 0, 0
+}
+
+graphic DRILLSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPV0, 0, 0
+}
+
+graphic BLIZSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPW0, 0, 0
+}
+
+graphic FIRESI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPY0, 0, 0
+}
+
+graphic QUICKSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEAPZ0, 0, 0
+}
+
+graphic ITEM1, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2A0, 0, 0
+}
+
+graphic ITEM2, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2D0, 0, 0
+}
+
+graphic ITEM3, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch ITM3A0, 0, 0
+}
+
+graphic RUSHJ, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2B0, 0, 0
+}
+
+graphic CRASSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2C0, 0, 0
+}
+
+graphic CHARSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2E0, 0, 0
+}
+
+graphic RCUTSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2F0, 0, 0
+}
+
+graphic SPARSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2G0, 0, 0
+}
+
+graphic RINGSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2H0, 0, 0
+}
+
+graphic GYROSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2I0, 0, 0
+}
+
+graphic POWSSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2J0, 0, 0
+}
+
+graphic DUSTSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2K0, 0, 0
+}
+
+graphic PHASSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2L0, 0, 0
+}
+
+graphic WATRSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2M0, 0, 0
+}
+
+graphic CRYSSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2N0, 0, 0
+}
+
+graphic SKLBSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2O0, 0, 0
+}
+
+graphic FLMBSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2P0, 0, 0
+}
+
+graphic PROTUP, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2Q0, 0, 0
+}
+
+graphic BASSUP, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3A0, 0, 0
+}
+
+
+graphic TANGOSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3B0, 0, 0
+}
+
+graphic YAMASI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2R0, 0, 0
+}
+
+graphic DIVESI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2S0, 0, 0
+}
+
+graphic PLANTSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2T0, 0, 0
+}
+
+graphic TOMASI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2U0, 0, 0
+}
+
+graphic WINDSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2V0, 0, 0
+}
+
+graphic KNIGSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2W0, 0, 0
+}
+
+graphic STARSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2X0, 0, 0
+}
+
+graphic RAINSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2Y0, 0, 0
+}
+
+graphic SAKUSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA2Z0, 0, 0
+}
+
+graphic BALLSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3C0, 0, 0
+}
+
+graphic SCRWSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3D0, 0, 0
+}
+
+graphic BRIGHSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3E0, 0, 0
+}
+
+graphic GRAVSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3F0, 0, 0
+}
+
+
+graphic CENTSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3G0, 0, 0
+}
+
+graphic MIRRSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3H0, 0, 0
+}
+
+graphic FCRASI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3O0, 0, 0
+}
+
+
+graphic NCRUSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3J0, 0, 0
+}
+
+graphic WCOISI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3K0, 0, 0
+}
+
+graphic DWRASI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3L0, 0, 0
+}
+
+graphic SWHESI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3M0, 0, 0
+}
+
+graphic JSHISI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3N0, 0, 0
+}
+
+graphic ADAPSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3P0, 0, 0
+}
+
+graphic SCLASI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3Q0, 0, 0
+}
+
+graphic TBOLSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA3R0, 0, 0
+}
+
+graphic TRBLSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch TRBIA0, 0, 0
+}
+
+
+graphic EXITSI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch EXITA0, 0, 0
+}
+
+
+Graphic ICEWAVI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4A0, 0, 0
+}
+
+Graphic FLSHBOMI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4B0, 0, 0
+}
+
+Graphic TORNAHI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4C0, 0, 0
+}
+
+Graphic MEGABALI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4D0, 0, 0
+}
+
+Graphic ASTROI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4E0, 0, 0
+}
+
+Graphic FSWORDI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4F0, 0, 0
+}
+
+Graphic TCLAWI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4G0, 0, 0
+}
+
+Graphic HSNIPERI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4H0, 0, 0
+}
+
+Graphic WATERBI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4I0, 0, 0
+}
+
+Graphic LASERSI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4K0, 0, 0
+}
+
+Graphic ARROWSH, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4L0, 0, 0
+}
+
+Graphic DUOHAND, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch DUOFA0, 0, 0
+}
+
+Graphic TIMMI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch SLOTX0, 0, 0
+}
+
+Graphic TIMMI2, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch SLOTX0, 0, 0
+}
+
+Graphic TIMICON, 30, 30
+{
+	XScale 0.3
+	YScale 0.3
+	Offset 16, 10
+	Patch SLOTX0, 0, 0
+}
+
+Graphic OILLI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA7J0, 0, 0
+}
+
+Graphic BEATI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WEA4O0, 0, 0
+}
+
+graphic BEATBSTI, 30, 30
+{
+    XScale 2.0
+    YScale 2.0
+    Patch WEA3I0, 0, 0
+}
+
+Graphic WIRE, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WADPA0, 0, 0
+}
+
+Graphic WIREG, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch WADPI0, 0, 0
+}
+
+graphic LIGHTNI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch LIBOA0, 0, 0
+}
+
+graphic TENBLI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch TBLAX0, 0, 0
+}
+
+graphic BURNRI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WABUX0, 0, 0
+}
+
+graphic SPREI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch SPREX0, 0, 0
+}
+
+graphic MAGII, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch MCARX0, 0, 0
+}
+
+graphic REMOI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch REMIX0, 0, 0
+}
+
+graphic COPYVI, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch COPYX0, 0, 0
+}
+
+graphic IWALL, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch ICWLX0, 0, 0
+}
+
+graphic REGGS, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch WEA9Z0, 0, 0 // Might want to change the sprite name
+}
+
+graphic RUSHM, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch RUSHN0, 0, 0
+}
+
+Graphic TREBBOO, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch TRBBI0, 0, 0
+}
+
+Graphic NULLICON, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch TNT1A0, 0, 0
+}
+
+Graphic PLUGI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch PBALA0, 0, 0
+}
+
+Graphic TRIDENI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch LTRIA0, 0, 0
+}
+
+Graphic TORNADBI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch TBLOA0, 0, 0
+}
+
+Graphic CONCRETI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch CONCA0, 0, 0
+}
+
+Graphic JEWELI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch JEWEA0, 0, 0
+}
+
+Graphic BLAKHOLI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch BLKHA0, 0, 0
+}
+
+Graphic HORNETI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch HCHSA0, 0, 0
+}
+
+Graphic MAGMAI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch MGM1A0, 0, 0
+}
+
+Graphic SOLARI, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch SOLAA0, 0, 0
+}
+
+Graphic COMMAI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch COMMA0, 0, 0
+}
+
+Graphic WHEELI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch WHEEA0, 0, 0
+}
+
+Graphic WATERI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch WATSA0, 0, 0
+}
+
+Graphic PLUGI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch PBALA0, 0, 0
+}
+
+Graphic CHILLI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch CHILA0, 0, 0
+}
+
+Graphic SOLARI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch SOLAA0, 0, 0
+}
+
+Graphic STRIKI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch STRIA0, 0, 0
+}
+
+Graphic TRIDENI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch LTRIA0, 0, 0
+}
+
+Graphic TORNADBI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch TBLOA0, 0, 0
+}
+
+Graphic TWOOLI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch THWOA0, 0, 0
+}
+
+Graphic BLAWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch TRIPA0, 0, 0
+}
+
+Graphic CONCRETI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch CONCA0, 0, 0
+}
+
+Graphic JEWELI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch JEWEA0, 0, 0
+}
+
+Graphic BLAKHOLI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch BLKHA0, 0, 0
+}
+
+Graphic HORNETI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch HCHSA0, 0, 0
+}
+
+Graphic MAGMAI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch MGM1A0, 0, 0
+}
+
+Graphic GRABBI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch GRBUA0, 0, 0
+}
+
+Graphic BBOMWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch BBOMA0, 0, 0
+}
+
+Graphic SCHSWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch SCHSA0, 0, 0
+}
+
+Graphic PMISWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch PMISA0, 0, 0
+}
+
+Graphic ESPAWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch ESPAA0, 0, 0
+}
+
+Graphic BHOLWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch BHOLA0, 0, 0
+}
+
+Graphic DDIGWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch DDIGA0, 0, 0
+}
+
+Graphic SWATWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch SWATA0, 0, 0
+}
+
+graphic BDASWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch BDASA0, 0, 0
+}
+
+graphic MARMWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch MARMA0, 0, 0
+}
+
+graphic ALPHWI, 30, 30
+{
+XScale 2.0
+YScale 2.0
+Patch DBR1A0, 0, 0
+}
+

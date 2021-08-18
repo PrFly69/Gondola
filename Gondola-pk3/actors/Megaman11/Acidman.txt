@@ -1,0 +1,56 @@
+actor Acidman : MegaClassBase
+{
+Player.ScoreIcon "C_11H0X"
+player.startitem "MegaHealthBar"
+player.displayname "Acidman"
+player.soundclass "acidmanc"
+player.jumpz 12
+player.startitem "AcidBarrierBoss", 1
+player.startitem "AcidBarrierAmmoBoss", 28
+player.startitem "FriendBarrierAmmo", 14
+player.startitem "SelfishBarrierAmmo", 98
+player.startitem "CanTreadWater", 1
+player.startitem "AcidHUDCvar_P", 1
+Player.ForwardMove 0.89, 0.89
+Player.SideMove 0.87, 0.87
+
+
+//player.startitem "RealClassFlag", 130
+
+//player.startitem "CommandoBombWeakness2", 1
+
+States
+{
+Spawn:
+ACIY A 0
+ACIY B 1
+ACIY A 1 A_JumpIf(z-floorz>0,"AcidJumping")
+Goto Spawn+2
+See:
+ACIY BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"AcidJumping")
+Goto Spawn
+Missile:
+TNT1 A 0 A_JumpIf(z-floorz>0,"AcidJumpingShooting")
+ACIY F 5
+ACIY G 4
+goto Spawn
+
+AcidJumping:
+ACIY I 1 A_JumpIf(z-floorz<=0, "Spawn")
+wait
+
+AcidJumpingShooting:
+ACIY JJJJJJJJJ 1 A_JumpIf(z-floorz<=0, "Spawn")
+goto AcidJumping
+
+ClassPain:
+ACIY H 0
+goto PainContinue
+DeathFix:
+ACIY H 0
+goto DeathContinue
+ClassDeath:
+ACIY H 1
+goto MegaDeathEnd
+}
+}

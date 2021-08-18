@@ -1,0 +1,68 @@
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
+
+  Actor Heatman : LightClassBase
+  {
+    Player.ScoreIcon "C_02B0X"
+	Player.DisplayName "heatman"
+	Player.SoundClass "heatmanc"
+	Player.StartItem "AtomicDashBoss"
+	Player.StartItem "AtomicFireBoss"
+	Player.StartItem "ZippoAmmo", 100
+	Player.StartItem "HeatmanDashFlag", 100
+	Player.WeaponSlot 1, "AtomicDashBoss"
+	Player.WeaponSlot 2, "AtomicFireBoss"
+	Player.StartItem "BubbleLeadWeakness2", 1
+	Player.StartItem "BubbleLeadWeakness", 1
+	Player.StartItem "RainFlushWeakness", 1
+	Player.StartItem "WaterWaveWeakness", 1
+	Player.StartItem "WaterBalloonWeakness", 1
+	Player.StartItem "SaltWaterWeakness", 1
+	States
+	{
+		Spawn:
+		HEAM A 0
+		HEAM B 1
+		HEAM A 1
+		HEAM A 0 A_JumpIfInventory("HeatmanFlag",1,"MissileT")
+		Goto Spawn+2
+		
+		See:
+		HEAM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("HeatmanFlag",1,"MissileT")
+		Goto Spawn
+		
+		Missile:
+		HEAM FF 1 A_JumpIfInventory("HeatmanFlag",1,"MissileT")
+		HEAM F 3
+		HEAM G 4
+		Goto Spawn
+		
+		MissileT:
+		HEAM L 1
+		HEAM LLL 1 A_JumpIfInventory("HeatmanFlag",1,"MissileT")
+		Goto Spawn+2
+		
+		Heattackle2:
+		HEAM IJK 3
+		HEAM K 1 A_JumpIfInventory("HeatmanFlag",1,"Heattackle2")
+		Goto See+1
+		
+		ClassPain:
+		HEAM H 0// A_JumpIfInventory("PainFlagA",1,"LiftOff")
+		Goto PainContinue
+		
+		DeathFix:
+		HEAM H 0
+		Goto DeathContinue
+		
+		ClassDeath:
+		HEAM H 1
+		Goto MegaDeathEnd
+		
+		Liftoff:
+		HEAM H 0 A_GiveInventory("PainFlagB")
+		Goto PainContinue
+	}
+  }

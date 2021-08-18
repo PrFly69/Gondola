@@ -1,0 +1,72 @@
+{
+name = "Freeze-Redflash"
+sprite = FRZN
+face = FRE
+class = Freezeman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Turbo-Redflash"
+sprite = TRBO
+face = TUR
+class = Turboman
+dsnoway = MM6LAND
+dsoof = MM6LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Tengu-Redflash"
+sprite = TENM
+face = TEN
+class = Tenguman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Sunstar-Redflash"
+sprite = SUGD
+face = SGD
+class = Sunstar
+dsnoway = MM6LAND
+dsoof = MM6LAND
+dspldeth = GBDEATH
+dspdiehi = GBDEATH
+dsplpain = GBPAIN
+dstaunt = dsnone
+gender = male
+}
+
+//k -redflash
+
+{
+name = "Fuseman-Dimspy"
+sprite = FUSL
+class = Fuseman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+//LONG LIVE THE KING

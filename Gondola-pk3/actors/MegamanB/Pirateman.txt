@@ -1,0 +1,76 @@
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
+
+  Actor Pirateman : SturdyClassBase
+  {
+    Player.ScoreIcon "C_0BD0X"
+	Player.StartItem "SturdyHealthBar"
+	Player.DisplayName "Pirateman"
+	Player.SoundClass "piratemanC"
+	Player.ForwardMove 0.65, 0.65
+	Player.SideMove 0.63, 0.63
+	Player.StartItem "IsAPirate", 1
+	//Player.StartItem "CanSnatch_F"
+	Player.StartItem "RemoteMineBoss"
+	Player.StartItem "JollyRogerAmmo", 30
+	Player.StartItem "WetRogerAmmo", 28
+	Player.StartItem "PirateBubbleItem"
+	Player.StartItem "WaveBurnerWeakness2", 1
+	Player.StartItem "FireStormWeakness", 1
+	Player.StartItem "AtomicFireWeakness", 1
+	Player.StartItem "PharaohShotWeakness", 1
+	Player.StartItem "FlameBlastWeakness", 1
+	Player.StartItem "ScorchWheelWeakness", 1
+	Player.StartItem "FlameSwordWeakness", 1
+	Player.StartItem "WaveBurnerWeakness", 1
+	Player.StartItem "MagmaBazookaWeakness", 1
+	Player.StartItem "SolarBlazeWeakness", 1
+	Player.StartItem "GrabBusterWeakness", 1
+	Player.StartItem "RealClassFlag", 87
+	States
+	{
+		Spawn:
+		PIRA A 0
+		PIRA B 1
+		PIRA A 1 A_JumpIfInventory("PirateBDashFlag",1,"SpinSpinA")
+		Goto Spawn+2
+		
+		See:
+		PIRA BCDE 5
+		Goto Spawn
+		
+		Missile:
+		PIRA FFFFF 1 A_JumpIfInventory("PirateBDashFlag",1,"SpinSpinA")
+		PIRA G 4 
+		Goto Spawn+2
+		
+		SpinSpinA:
+		PRBU R 2
+		PRBU R 1 A_JumpIfInventory("PirateBDashFlag",1,"SpinSpinB")
+		Goto Spawn
+		
+		SpinSpinB:
+		PRBU S 2
+		PRBU S 1 A_JumpIfInventory("PirateBDashFlag",1,"SpinSpinC")
+		Goto Spawn
+		
+		SpinSpinC:
+		PRBU T 2
+		PRBU T 1 A_JumpIfInventory("PirateBDashFlag",1,"SpinSpinA")
+		Goto Spawn
+		
+		ClassPain:
+		PIRA H 0
+		Goto PainContinue
+		
+		DeathFix:
+		PIRA H 0
+		Goto DeathContinue
+		
+		ClassDeath:
+		PIRA H 1
+		Goto MegaDeathEnd
+	}
+  }

@@ -1,0 +1,400 @@
+#library "bot-roboenza"
+#include "zcommon.acs"
+#include "8bdmlib.acs"
+
+#DEFINE MAXEFFECTS 9
+
+int InfectedBots[32];
+str RoboenzaNames[MAXEFFECTS] = {
+"ERROR", // 0
+"\cgType - A", //1 anger/strength
+"\ckType - S", //2 speed
+"\cvType - W", //3 spread
+"\caType - H", //4 hyper
+"\cmType - I", //5 invis
+"\ctType - T", //6 timeslow
+"\cuType - O", //7 pull
+"\chType - F" //8 flight
+};
+str RoboenzaSound = "misc/bot_roboenzainfected";
+
+Script "core_roboenza_start" OPEN
+{
+	SetActivator(1000);
+	Delay(1);
+	
+	if(GetCvar("mm8bdm_chapter")<11){terminate;}
+	
+	int infected = 0;
+	
+	switch(GetLevelInfo(LEVELINFO_LEVELNUM))
+	{
+		case 107:
+		infected = 1;
+		break;
+		
+		case 108:
+		infected = 1;
+		break;
+		
+		case 109:
+		infected = 1;
+		break;
+		
+		case 110:
+		infected = 2;
+		break;
+		
+		case 111:
+		infected = 3;
+		break;
+		
+		case 112:
+		infected = 2;
+		break;
+		
+		case 113:
+		infected = 2;
+		break;
+		
+		case 114:
+		infected = 1;
+		break;
+		
+		case 115:
+		infected = 7;
+		Delay(35*3);
+		while(GetActorProperty(1001, APROP_HEALTH)>0){
+		Delay(5);
+		}
+		break;
+		
+		case 118:
+		infected = 2;
+		break;
+		
+		case 130:
+		infected = 8;
+		break;
+	}
+	
+	if(infected>0){
+		ACS_NamedExecute("core_roboenza_enable", 0, infected);
+	}
+}
+
+function void drawInfectedCount (int count)
+{
+	str countcolour= "\cd";
+		
+	if(count>0){countcolour = "\cg";}else{countcolour = "\cd";}
+	
+	SetFont("SMALLFONT");
+	HudMessageBold(s:countcolour, s:"Infected Robots: \cj", i:count; HUDMSG_PLAIN, 802, CR_WHITE, 0.5, 0.89, 0.0);
+	
+	return;
+}
+
+// This script should be executed from SINGLEP I think
+Script "core_roboenza_enable" (int infected)
+{
+delay(1);
+
+	int PlayerCheck;
+	int infectedCount = 0;
+	
+	drawInfectedCount(0);
+	
+	// Wait for all bots to join
+	if(GetLevelInfo(LEVELINFO_LEVELNUM)!=115){
+		while(PlayerCheck<PlayerCount()){
+		Delay(35);
+		PlayerCheck++;
+		//Log(s:"waiting for plebs");
+		}
+	}
+	else {Delay(35*2);}
+	
+	for(int i = 0; i < infected; i++){
+		if(i == 0 && GetLevelInfo(LEVELINFO_LEVELNUM)==115){continue;}
+		//Log(s:"calling infecter");
+		ACS_NamedExecuteAlways("core_roboenza_infect", 0, i+1, 0);
+		Delay(1);
+		drawInfectedCount(countInfected());
+		Delay(40);
+	}
+
+	while(GetGameModeState()!=GAMESTATE_INRESULTSEQUENCE){
+	Delay(10);
+	
+	infectedCount = countInfected();
+	drawInfectedCount(countInfected());
+
+	if(infectedCount == 0){
+	Delay(35*20);
+	ACS_NamedExecuteAlways("core_roboenza_infect", 0);
+	}
+	}
+	
+	for(int o = 0; o < Playercount(); o++){TakeActorInventory(i + 1000, "Bot_RoboenzaInventory", 99999);}
+}
+
+bool infectedPlayers[32];
+
+function int countInfected(void)
+{
+	int c = 0;
+	
+	for(int i=1; i<Playercount(); i++){
+		if(infectedPlayers[i]){c++;}
+	}
+	return c;
+}
+
+script "core_roboenza_infect" (int player, int type)
+{
+	int infectableBot = findInfectablePlayer(player);
+	
+	if(infectableBot==0){terminate;}
+	
+	if(type == 0){type = random(1, MAXEFFECTS-1);}
+	
+	//Log(s:"type is ", i:type, s:" player number is ", i:infectableBot);
+	infectedPlayers[infectableBot] = type;
+	//Log(s:"Infecting player ", n:infectableBot+1);
+	
+	SetActivator(infectableBot + 1000);
+	Delay(1);
+	
+	ACS_NamedExecuteAlways("core_roboenza_infection", 0);
+}
+
+function int findInfectablePlayer (int player)
+{
+	int lowerp = 1;
+	
+	if(player == 0){player = random(lowerp, PlayerCount()-1);}
+
+	//Log(s:"randomly picked player:", i:player);
+
+	int s = player-1;
+
+	for(int i = 1; i<PlayerCount(); i++){
+		if(GetLevelInfo(LEVELINFO_LEVELNUM)==130 && i == 1){i = 2;}
+		
+		//Log(s:"Checking ", n:i+1+s, s:" for infection.");
+		//Log(i:infectedPlayers[i+s]);
+		
+		if(infectedPlayers[i+s]==0)
+		{
+			if(GetActorProperty(i+s+1000, APROP_HEALTH)>0 || GetLevelInfo(LEVELINFO_LEVELNUM)==130)
+			{
+			return i+s;
+			}
+		}
+		
+		if(i+s>=PlayerCount()-1){s = -i;}
+	}
+	
+	return 0;
+}
+
+script "core_roboenza_infection" (void)
+{
+	int type = infectedPlayers[PlayerNumber()];
+	int tid = ActivatorTID();
+
+	//Log(s:"roboenza type = ", i:type);
+	if(type == 0){terminate;}
+	
+	AmbientSound(RoboenzaSound, 256);
+	SetFont("BIGFONT");
+	HudMessageBold(n:0, s:"\cj contracted Roboenza type: ", s:RoboenzaNames[type], s:"\cj!"; HUDMSG_FADEOUT|HUDMSG_LOG, 800, CR_WHITE, 0.5, 0.2, 3.0, 0.5);
+	
+	GiveActorInventory(tid, "Bot_Roboenza_BaseStrength", 1);
+	GiveActorInventory(tid, "Bot_Roboenza_BaseDefense", 1);
+	
+	giveInfection(type);
+	
+	int infectionMax = random(7*25, 7*30);
+	int infectioncounter;
+	
+	while(true){
+		Delay(5);
+		
+		GiveActorInventory(tid, "Bot_RoboenzaInventory", 1);
+		
+		if(GetActorProperty(ActivatorTID(), APROP_HEALTH)<=0){
+		Delay(1);
+			
+			if(GetLevelInfo(LEVELINFO_LEVELNUM)==130){
+			
+			type = random(1,8);
+			infectedPlayers[PlayerNumber()] = type;
+			}
+			
+			if(CheckActorInventory(tid, "Bot_Roboenza_Cancel")){
+			infectedPlayers[PlayerNumber()] = 0;
+			TakeActorInventory(tid, "Bot_RoboenzaInventory", 9999999);
+			terminate;
+			}
+		
+			if(ACS_NamedExecuteWithResult("core_gettarget",0) == 1000
+			&& GetLevelInfo(LEVELINFO_LEVELNUM)!=130){
+			
+				
+				SetFont("BIGFONT");
+				HudMessageBold(s:"Cured ", n:0, s:"\cj of Roboenza!"; HUDMSG_FADEOUT, 800, CR_WHITE, 0.5, 0.2, 3.0, 0.5);
+				
+				GiveActorInventory(1000, "SmallHealth", 1); 
+				GiveActorInventory(1000, "WeaponEnergy",5);
+				
+				SpawnProjectile(ActivatorTID(), "Bot_RoboenzaFX_Cured", 0, 0, 0, 0, 0);
+				AmbientSound("misc/bot_roboenzacured", 256);
+				
+				infectedPlayers[PlayerNumber()] = 0;
+				
+				for(int i = 0; i < Playercount(); i++){TakeActorInventory(i + 1000, "Bot_RoboenzaInventory", 7*8);}
+				
+				terminate;
+			}
+		
+			infectioncounter = CheckActorInventory(tid, "Bot_RoboenzaInventory");
+				
+			while(GetActorProperty(ActivatorTID(), APROP_HEALTH)<=0){Delay(1);}
+			Delay(1);
+			giveInfection(type);
+			GiveActorInventory(tid, "Bot_RoboenzaInventory", infectioncounter);
+		}
+			
+		if(CheckActorInventory(tid, "Bot_RoboenzaInventory") >= infectionMax){
+		//Log(s:"Infection max reached");
+		infectionMax = random(35*6, 35*7);
+		TakeActorInventory(tid, "Bot_RoboenzaInventory", 9999999);
+			if(GetLevelInfo(LEVELINFO_LEVELNUM)!=130){
+			ACS_NamedExecuteAlways("core_roboenza_infect", 0, 0, random(1, MAXEFFECTS-1));
+			}
+
+		}
+				
+	}
+}
+
+function void giveInfection (int type)
+{
+	str inv;
+
+	switch(type){		
+		case 1: inv = "Bot_Roboenza_StrengthType"; break;
+		case 2: inv = "Bot_Roboenza_SpeedType"; break;
+		case 3: inv = "SpreadRune"; SpawnProjectile(ActivatorTID(), "Bot_RoboenzaFX_SpreadLeft",0,0,0,0,0);SpawnProjectile(ActivatorTID(), "Bot_RoboenzaFX_SpreadRight",0,0,0,0,0);break;
+		case 4: inv = "Bot_Roboenza_HyperType"; break;
+		case 5: inv = "Bot_Roboenza_ShadowType"; SetActorProperty(ActivatorTID(), APROP_RenderStyle, STYLE_Translucent); break;
+		case 6: inv = "Bot_Roboenza_SlowType"; break;
+		case 7: inv = "Bot_Roboenza_GravityType"; break;
+		case 8: inv = "Bot_Roboenza_FlightType"; ACS_NamedExecuteAlways("core_flyplayer", 0, 0, 1); break;
+	}
+	
+	ACS_NamedExecuteAlways("core_roboenza_effect",0,type);
+	
+	GiveInventory(inv, 1);
+	return;
+}
+
+script "core_roboenza_effect" (int type)
+{
+
+int counter = 1.0;
+
+	while(GetActorProperty(ActivatorTID(), APROP_Health)>0){
+		switch(type){
+		Case 1: SpawnSpot("Bot_RoboenzaFX_Rage", ActivatorTID()); break;
+		Case 2: SpawnSpot("Bot_RoboenzaFX_Speed", ActivatorTID()); break;
+		//Case 3: break;
+		Case 4: SpawnSpot("Bot_RoboenzaFX_Hyper", ActivatorTID()); break;
+		
+		Case 5:
+			counter -= 0.05;
+			SetActorProperty(ActivatorTID(), APROP_Alpha, counter);
+			
+			if(counter< -6.0){counter = 3.5;}
+			SpawnSpot("Bot_RoboenzaFX_Shadow", ActivatorTID());
+		break;
+		
+		case 6:
+			counter += 2.0;
+			
+			if(counter > 35.0){
+			
+			counter = 1.0;
+			roboenzaAOE(0);
+			SpawnSpot("Bot_RoboenzaFX_Slow", ActivatorTID());
+			}
+			break;
+		
+		case 7:
+			counter += 1.0;
+			
+			if(counter > 5.0){
+			ACS_ExecuteAlways(247, 0, 6, 512);
+			counter = 1.0;
+			SpawnSpot("Bot_RoboenzaFX_Gravity", ActivatorTID());
+			}
+			break;
+			
+		case 8:
+			counter += 1.0;
+			
+				if(GetActorProperty(0, APROP_HEALTH)>0){
+					if(counter<35.0*4){
+						if(counter%12.0 == 0){
+						SpawnSpot("Bot_RoboenzaFX_Flight", ActivatorTID());
+						}
+						if(GetActorZ(ActivatorTID()) - GetActorFloorZ(ActivatorTID()) < 64.0)
+						{
+						ThrustThingZ(0, 10, 0, 1);
+						}
+					}
+					else
+					{
+						ThrustThingZ(0, 18, 1, 0);
+					}
+					
+					if(counter > 35.0*9){counter = 0;}
+			}
+			//Log(i:GetActorZ(ActivatorTID()) - GetActorFloorZ(ActivatorTID()));
+			break;
+		}
+	Delay(1);
+	}
+}
+
+function void roboenzaAOE (int which)
+{
+	
+	for(int i = 0; i<Playercount(); i++){
+		if(i==PlayerNumber()){continue;}
+			switch(which)
+			{
+				case 0: 
+				if(xyzDistance(ActivatorTID(), i+1000) < 500){
+				GiveActorInventory(i+1000,"Slowed",1);
+				}
+				break;
+				
+				// Posion - Removed
+				case 1: 
+					if(xyzDistance(i+1000, PlayerNumber()+1000)<512 && GetActorProperty(i+1000, APROP_HEALTH)>3){
+					SetActorProperty(i+1000, APROP_HEALTH, GetActorProperty(i+1000, APROP_HEALTH) - 3);
+					}
+				break;
+			}
+	}
+}
+
+script "core_roboenza_dteleport" (int player, int tran)
+{
+	Thing_Move(player + 1000, ActivatorTID(), 0);
+	Thing_SetTranslation(player + 1000, tran);
+	SetActorAngle(player + 1000, GetActorAngle(0));
+}

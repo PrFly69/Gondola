@@ -1,0 +1,125 @@
+#library "VIS"
+#include "zcommon.acs"
+
+#DEFINE MAX_PLAYERS 64
+#DEFINE TEAM_NONE -1
+#DEFINE TEAM_COOP -2
+
+Script "TeamVisuals" OPEN CLIENTSIDE
+{
+while(timer()<35*2){ // Fixes crash when doing map changes online
+	delay(1);
+}
+int conP = ConsolePlayerNumber();
+while(true) {
+	TeamVisualsFunc(conP);
+	delay(1);
+}
+}
+
+function int TeamVisualsFunc(int conP) {
+	int p = conP;
+	if(!PlayerInGame(p)){
+		GiveAllPlayers("AllyVisualFunc",1);
+		return 0;
+		}
+	int team = getPlayerTeam(p);
+	if(team==TEAM_COOP) {
+		GiveAllPlayers("AllyVisualFunc",1);
+	} else if(team!=TEAM_NONE) {
+		GiveTeamPlayers(team,"AllyVisualFunc",1);
+	} else {
+		GiveFFAPlayers(p,"AllyVisualFunc",1);
+	}
+	return 0;
+}
+
+function int getPlayerTeam(int p)
+{
+if (GetCVar("teamplay")==1||GetCVar("teamlms")==1||GetCVar("teampossession")==1
+||GetCVar("teamgame")==1){
+	Return GetPlayerInfo(p,PLAYERINFO_TEAM);
+} else if (GetCVar("cooperative")==1) {
+	Return TEAM_COOP;
+}
+Return TEAM_NONE;
+}
+
+function void GiveAllPlayers(str item, int amount)
+{
+for(int i=0;i<MAX_PLAYERS;i++){GiveActorInventory(1000+i,item,amount); MapMarkerSpawn(i);}
+}
+
+function void GiveTeamPlayers(int team, str allyItem, int amount)
+{
+for(int i=0;i<MAX_PLAYERS;i++) {
+	if(team==GetPlayerInfo(i, PLAYERINFO_TEAM)){GiveActorInventory(1000+i,allyItem,amount); MapMarkerSpawn(i);}
+}
+}
+
+function void GiveFFAPlayers(int p, str allyItem, int amount)
+{
+GiveActorInventory(1000+p,allyItem,amount); MapMarkerSpawn(p);
+}
+
+Script "DeathMapMarker" DEATH CLIENTSIDE
+{
+if(timer()<35*2){terminate;}
+int conP = ConsolePlayerNumber();
+if(getUserCvar(conP,"CCBM_mapmarker")>0){
+	if(!PlayerInGame(conP) || conP == PlayerNumber() || (getPlayerTeam(PlayerNumber()) == getPlayerTeam(conP) && getPlayerTeam(PlayerNumber())!=TEAM_NONE)){
+		switch(getPlayerTeam(PlayerNumber()))
+			{
+			Case 0:
+			SpawnSpot("Death_MapMarker_0",ActivatorTID(),0,0);
+			break;
+			Case 1:
+			SpawnSpot("Death_MapMarker_1",ActivatorTID(),0,0);
+			break;
+			Case 2:
+			SpawnSpot("Death_MapMarker_2",ActivatorTID(),0,0);
+			break;
+			Case 3:
+			SpawnSpot("Death_MapMarker_3",ActivatorTID(),0,0);
+			break;
+			Case TEAM_COOP:
+			Case TEAM_NONE:
+			SpawnSpot("Death_MapMarker_D",ActivatorTID(),0,0);
+			break;
+			}
+		}
+	}
+}
+
+function bool MapMarkerSpawn (int p)
+{
+if(!PlayerInGame(p) || GetActorProperty(p+1000,APROP_Health)<=0){return false;}
+if(getUserCvar(ConsolePlayerNumber(),"CCBM_mapmarker")>0){
+	str className = GetActorClass(p+1000);
+	switch(getPlayerTeam(p))
+		{
+		Case 0:
+		GiveActorInventory(p+1000,"SpawnDirectionalMapMarker0",1);
+		SpawnSpot(StrParam(s:className,s:"_MapMarker_0"),p+1000,0,0);
+		break;
+		Case 1:
+		GiveActorInventory(p+1000,"SpawnDirectionalMapMarker1",1);
+		SpawnSpot(StrParam(s:className,s:"_MapMarker_1"),p+1000,0,0);
+		break;
+		Case 2:
+		GiveActorInventory(p+1000,"SpawnDirectionalMapMarker2",1);
+		SpawnSpot(StrParam(s:className,s:"_MapMarker_2"),p+1000,0,0);
+		break;
+		Case 3:
+		GiveActorInventory(p+1000,"SpawnDirectionalMapMarker3",1);
+		SpawnSpot(StrParam(s:className,s:"_MapMarker_3"),p+1000,0,0);
+		break;
+		Case TEAM_COOP:
+		Case TEAM_NONE:
+		GiveActorInventory(p+1000,"SpawnDirectionalMapMarkerD",1);
+		SpawnSpot(StrParam(s:className,s:"_MapMarker_D"),p+1000,0,0);
+		break;
+		}
+	}
+return false;
+}

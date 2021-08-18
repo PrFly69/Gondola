@@ -1,0 +1,187 @@
+actor ThunderClawWep : BaseMM8BDMWep 11096
+{
+//$Category MM8BDM-Weapons
+//$Title Thunder Claw
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 4
+Inventory.Pickupmessage "$PU_THUNDERCLAW"
+Obituary "$OB_THUNDERCLAW"
+Tag "$TAG_THUNDERCLAW"
+weapon.ammotype "ThunderClawAmmo"
+inventory.icon "TCLAWI"
+States
+{
+Spawn:
+WEA4 G 1 
+loop
+Ready:
+TCLD D 0 ACS_ExecuteAlways(998,0,83)
+TCLD D 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TCLD D 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TCLD D 1 A_Raise
+Loop
+Fire:
+TCLD D 0 A_JumpIfNoAmmo("NoAmmo")
+TCLD D 0 A_PlaySoundEx("weapon/thunderclaw","Weapon")
+TCLD D 0 A_FireCustomMissile("ThunderClaw",0,1,8,0)
+TCLD EF 6
+TCLD D 10
+TCLD D 0 A_Refire
+Goto Ready+1
+NoAmmo:
+TCLD D 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor ThunderClawAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+
+actor ThunderClaw
+{
+PROJECTILE
+//+RIPPER
++FORCEXYBILLBOARD
+damage (40)
+damagetype "ThunderClaw"
+Obituary "$OB_THUNDERCLAW"
+height 8
+radius 8
+Speed 26
+scale 2.5
+states
+{
+Spawn:
+TCLA B 0 
+TCLA B 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA B 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+TCLA B 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA B 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+TCLA B 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA B 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+TCLA B 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA B 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+TCLA C 0 A_Stop
+TCLA B 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA B 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+TCLA C 1 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+stop
+Death:
+TCLA C 0
+stop
+}
+}
+
+Actor ThunderClawReturn : ThunderClaw
+{
+Damage (0)
+//+NOCLIP
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 1 A_FaceTarget
+TNT1 A 0 A_SpawnItemEx("ThunderClawDamager")
+TNT1 A 0 A_JumpIfCloser(64, "Death")
+TNT1 A 1 A_FaceTarget
+TNT1 A 0 A_SpawnItemEx("ThunderClawDamager")
+TNT1 A 0 A_JumpIfCloser(64, "Death")
+TNT1 A 0 A_CustomMissile("ThunderClawReturn", 0, 0, 0, 0)
+stop
+}
+}
+
+Actor ThunderClawReturn2 : ThunderClawReturn
+{
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 1 A_FaceTarget
+TNT1 A 0 A_SpawnItemEx("ThunderClawFX")
+TNT1 A 0 A_JumpIfCloser(64, "Death")
+TNT1 A 1 A_FaceTarget
+TNT1 A 0 A_SpawnItemEx("ThunderClawFX")
+TNT1 A 0 A_JumpIfCloser(64, "Death")
+TNT1 A 0 A_CustomMissile("ThunderClawReturn2", 0, 0, 0, 0)
+stop
+}
+}
+
+actor ThunderClawDamager
+{
+PROJECTILE
++FORCEXYBILLBOARD
+Damage(5)
+damagetype "ThunderClaw"
+Obituary "$OB_THUNDERCLAW"
+Scale 2.5
+States
+{
+Spawn:
+TCLA D 0
+TCLA D 0 A_JumpIfCloser(32, "Death")
+TCLA D 0 A_Jump(256, "Frame1", "Frame2", "Frame3")
+Frame1:
+TCLA DE 1
+stop
+Frame2:
+TCLA EF 1
+stop
+Frame3:
+TCLA FD 1
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor ThunderClawFX
+{
++NOINTERACTION
++CLIENTSIDEONLY
++FORCEXYBILLBOARD
+Damage(0)
+Scale 2.5
+States
+{
+Spawn:
+TCLA D 0
+TCLA D 0 A_JumpIfCloser(32, "Death")
+TCLA D 0 A_Jump(256, "Frame1", "Frame2", "Frame3")
+Frame1:
+TCLA DE 1
+stop
+Frame2:
+TCLA EF 1
+stop
+Frame3:
+TCLA FD 1
+stop
+Death:
+TNT1 A 0
+stop
+}
+}

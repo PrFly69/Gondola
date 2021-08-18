@@ -1,0 +1,269 @@
+#library "PITFIND"
+#include "zcommon.acs"
+
+//str The_First_ARR[2][2]={
+//{"Invalid","Choice"},
+//};
+
+#DEFINE FLOORCOUNT 31//25
+
+//Unknown older textures? Older maps? Custom maps?
+/*
+"BUBBLE23",
+"CHARG46",
+"CHARG48",
+"SHAFALX1",
+//"FROST40",
+"AQWATER",
+
+//RockForce maps
+"CRPTBLCK",
+"VIRBG01",
+//"SHOBG06",
+"CIRBLACK",
+"PGEFALX"
+
+*/
+
+str FLOORS[FLOORCOUNT] = {
+"F_SKY1",
+"BLACK",
+"IWATER",
+"BUBBLE23",
+"HFALL",
+"CHARG46",
+"CHARG48",
+"FIRELAV",
+"SHAFALX1",
+"JLAVA",
+"SWORLAVX",
+//"FROST40",
+"BUBBWTR",
+"CHARTRCK",
+"CHARGRND",
+"SHALAVAX",
+"BLACKR1",
+"WAVWAT",
+"ASTSNDX",
+"WT1LAVAX",
+"MGMLAVX",//
+"AQWATER",
+"4W1WATX",
+"DUOSFLR3",
+"WTWATER",
+
+"COMMSNDX",//Commando
+"SOLALAVX",//Solar
+"NEPWAVX",//Neptune
+
+
+//RockForce maps
+"CRPTBLCK",
+"VIRBG01",
+//"SHOBG06",
+"CIRBLACK",
+"PGEFALX"
+};
+//FREFLR6
+
+script 107 (void)
+{
+	int num = GetLevelInfo(LEVELINFO_LEVELNUM);
+	//log(i:num);
+	//15 Quickman
+	//36 Brightman
+	if(num == 15 || num == 36) {
+		SetResultValue(0);
+		terminate;
+	}
+	str FloorX = GetActorFloorTexture(0);
+	//log(s:FloorX);
+
+	for (int i = 0; i<FLOORCOUNT; i++) {
+		//log(i:StrCmp(FloorX,FLOORS[i]));
+		if (StrCmp(FloorX,FLOORS[i]) == 0) {
+		//if (CheckActorFloorTexture(id, FLOORS[i])==1) {
+			//Log(s:FLOORS[i],s:" is it!");
+			SetResultValue(1);
+			terminate;
+		}
+	}
+	//Log(s:"End Pit Check");
+	SetResultValue(0);
+}
+
+/*
+
+//Perhaps a later time?
+
+#DEFINE MAPPITLIST_TOTAL 90
+
+str MapPitList_Arr[MAPPITLIST_TOTAL][10] = {
+
+{"MM1GUT","F_SKY1"},
+{"MM1BOM","F_SKY1"},
+{"MM1FIR","FIRELAV"},
+
+{"MM2BUB","BUBBWTR"},
+{"MM2AIR","F_SKY1"},
+{"MM2HEA","HFALL"},
+{"MM2MET","BLACK"},
+{"MM2DW2","BLACK"},
+{"MM3SNA","F_SKY1","BLACK"},
+
+{"MM3TOP","F_SKY1"},
+{"MM3NEE","F_SKY1","BLACK"},
+{"MM3HAR","F_SKY1"},
+{"MM3GEM","BLACKR1"},
+{"MM3MAG","F_SKY1"},
+{"MM3SHA","SHALAVAX","SHAWATX1","SHAWATX2","SHAWATX3"},
+
+{"MM4TOA","BLACK"},
+{"MM4DUS","BLACK"},
+{"MM4RIN","F_SKY1"},
+{"MM4BRI","BLACK"},
+{"MM4DC1","BLACK"},
+{"MM4DW1","BLACK","4W1WATX"},
+
+{"MM5CHA","CHARGRND","CHARTRCK"},
+{"MM5STO","BLACK"},
+{"MM5NAP","BLACK"},
+{"MM5WAV","WAVWAT"},
+{"MM5GYR","F_SKY1"},
+{"MM5GRA","BLACK"},
+{"MM5STA","F_SKY1"},
+{"MM5CRY","BLACK"},
+{"MM5DAR","F_SKY1"},
+
+{"MM6BLI","IWATER"},
+{"MM6FLA","FIRELAV"},
+{"MM6WIN","F_SKY1"},
+{"MM6YAM","F_SKY1","BLACK"},
+{"MM6MRX","F_SKY1","BLACK"},
+{"MM6DW1","F_SKY1"},
+
+{"MM7FRE","BLACK"},//,"FREFLR6"
+{"MM7JUN","JLAVA","BLACK"},
+{"MM7BUR","BLACK"},
+{"MM7CLO","F_SKY1"},
+{"MM7SLA","F_SKY1"},
+{"MM7SHA","F_SKY1","BLACK"},
+{"MM7DW1","BLACK"},
+{"MM7DW3","BLACK"},
+{"MM7DW4","W8METL7","BLACK"},
+
+{"MM8TEN","F_SKY1"},
+{"MM8AST","F_SKY1","BLACK","ASTSNDX"},
+{"MM8SWO","F_SKY1","SWORLAVX"},
+{"MM8CLO","F_SKY1","CLNTRP3"},
+{"MM8SEA","BLACK"},
+{"MM8FRO","F_SKY1"},
+{"MM8GRE","BLACK"},
+//{"MM8DUO","DUOSFLR3"},//2 and 1 for some islands
+{"MM8DW1","BLACK"},
+
+{"MMBMUS","IWATER","FIRELAV"},
+{"MMBTEN","F_SKY1"},
+{"MMBAST","F_SKY1"},
+{"MMBDYN","BLACK"},
+{"MMBGRO","BLACK"},
+{"MMBBUR","BLACK"},
+
+{"MMWTBRG","F_SKY1"},
+{"MMWTHSH","BLACK"},
+{"MMWTDW1","WT1LAVAX"},//,"BLACK"
+{"MMWTDW2","F_SKY1","BLACK"},
+
+{"MM9TOR","F_SKY1"},
+{"MM9JEW","BLACK"},
+{"MM9HOR","BLACK"},
+{"MM9MAG","MGMLAVX"},
+{"MM9DW1","F_SKY1"},
+{"MM9FAK","F_SKY1","BLACK"},
+
+{"MM10BLA","F_SKY1"},
+{"MM10COM","COMMSNDX"},
+{"MM10CHI","F_SKY1","BLACK"},
+{"MM10NIT","F_SKY1"},
+{"MM10SOL","SOLALAVX"},
+{"MM10DW2","BLACK"},
+
+//{"MMVVEN","VENWFL2X"},
+{"MMVJUP","F_SKY1"},//,"BLACK"//One pit has black and a hallway uses it as well
+{"MMVNEP","NEPWAVX"},
+
+{"MMCTF02","F_SKY1"},
+{"MMCTF03","FIRELAV"},
+{"MMCTF05","JLAVA","BLACK"},
+{"MMCTF08","WAVWAT"},//for some reason, the bridges are BLACK
+{"MMCTF09","F_SKY1","BLACK"},
+{"MMCTF11","IWATER"},
+{"MMCTF12","FIRELAV"},
+{"MMCTF13","F_SKY1","BLACK"},
+{"MMCTF15","F_SKY1"},
+{"MMCTF18","F_SKY1"},
+{"MMCTF20","BLACK"},
+{"MMCTF21","WTWATER","SHALAVAX","BLACK"},
+{"MMCTF24","F_SKY1"}
+//{"MMCTF25","F_SKY1"},
+
+
+//{"UNKOWN","F_SKY1","BLACK","HSHMETL5"},
+//{"UNKOWN2","F_SKY1","BLACK"},
+//{"UNKOWN3","F_SKY1","BLACK","FIRELAV","SOLALAVX","QBOSBRI1"},
+//{"UNKOWN4","FIRELAV"},
+//{"UNKOWN5","BLACK"},
+//{"UNKOWN6","F_SKY1"},
+
+};
+
+int CurrentMap_Memory = -1;
+int CurrentMap_PitCount = -1;
+
+script "CBM_FloorPitCheck_Open" OPEN
+{
+	str CurrentMap_Str = StrParam(n:PRINTNAME_LEVEL);
+	Log(s:"Current map >> ",s:CurrentMap_Str);
+	Log(s:"CurrentMap_Memory >> ",i:CurrentMap_Memory);
+
+	for(int i = 0; i<MAPPITLIST_TOTAL; i++) {
+		//log(i:StrCmp(CurrentMap_Str,MapPitList_Arr[i][0]));
+		if (StrCmp(CurrentMap_Str,MapPitList_Arr[i][0]) == 0) {
+			//Log(s:FLOORS[i],s:" is it!");
+			CurrentMap_Memory = i;
+			break;
+		}
+	}
+	if(CurrentMap_Memory>-1){
+		Log(s:"Map Array Num = ",i:CurrentMap_Memory);
+		Log(s:MapPitList_Arr[CurrentMap_Memory][0]);
+		for(int j = 1; j<11; j++) {
+			if(StrCmp(MapPitList_Arr[CurrentMap_Memory][j],"Invalid") == 0){
+				CurrentMap_PitCount = j;
+				break;
+			}
+			Log(s:MapPitList_Arr[CurrentMap_Memory][j]);
+		}
+		Log(s:"Map Total pits = ",i:CurrentMap_PitCount-1);
+	}
+}
+
+script "CBM_FloorPitCheck" (void)
+{
+	str FloorX = GetActorFloorTexture(0);
+	Log(s:"\c[Fire]Start Pit Check");
+	log(s:FloorX);
+
+	for (int i = 1; i<CurrentMap_PitCount; i++) {
+		Log(s:"Checking >> ",s:MapPitList_Arr[CurrentMap_Memory][i]);
+		//log(i:StrCmp(FloorX,FLOORS[i]));
+		if (StrCmp(FloorX,MapPitList_Arr[CurrentMap_Memory][i]) == 0) {
+			Log(s:"\c[Teal]Pit Check Winner!");
+			SetResultValue(1);
+			terminate;
+		}
+	}
+	Log(s:"\c[Fire]End Pit Check\n");
+	SetResultValue(0);
+}
+

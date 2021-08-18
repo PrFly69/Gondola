@@ -1,0 +1,605 @@
+#library "autoammo"
+
+#include "zcommon.acs"
+
+#DEFINE MAX_WEAPONS_CLASSES 117
+
+#DEFINE MAX_WEAPONS_CLASSESX 27
+
+#DEFINE MAX_WEAPONS_CLASSES_LARGE 116
+
+#DEFINE MAX_WEAPONS_CLASSES_LARGEX 36
+
+//What do you mean I can't just give the user all of the ammo types? If it works, it works... just look at Unholy! D:
+
+str weapons_ammo_autosmall[MAX_WEAPONS_CLASSES][4] =
+{
+//{"", "", "", 0.25},
+
+//MM0
+{"JetBusterC", "JetFuel", "", 0.25},
+{"MegaBallBoss", "BallsOfSteelAmmo", "", 0.25},
+{"HeroBassBusterBoss", "BassBusterCharge", "", 0.25},
+{"HeroicDuoFistBoss", "DuoMeteorAmmo", "", 0.25},
+{"RollSwingBoss", "RollHyperDashAmmo", "", 0.25},
+{"AutoBoltBoss", "AutoBoltAmmo", "", 0.25},
+{"AutoBoltBoltDistribute", "AutoBoltAmmo", "", 0.25},
+{"SniperJoeBoss", "ContraJoeAmmo", "", 0.25},
+{"ShotokanLightBoss", "SuperComboGauge", "", 0.25},
+{"BBA_Pistol", "BBA_Clip", "", 0.25},
+{"BBA_Shotgun", "BBA_Shell", "", 0.25},
+{"BBA_SuperShotgun", "BBA_Shell", "", 0.25},
+{"BBA_Chaingun", "BBA_Clip", "", 0.25},
+{"BBA_RocketLauncher", "BBA_Rockets", "", 0.25},
+{"BBA_PlasmaRifle", "BBA_Cell", "", 0.25},
+{"BBA_BFG9000", "BBA_Cell", "", 0.25}, //14
+
+
+//MM1
+{"IceSlasherBoss", "IcicleAmmo", "Ice Slasher", 0.25},
+{"FireStormBoss", "BurningJusticeAmmo", "Fire Storm", 0.25},
+{"ThunderBeamBoss", "ElectricAmmo", "Thunder Beam", 0.25},
+{"TimeSlowBoss", "TimeClassAmmo", "Timeman Boss", 0.25},
+{"OilSliderBoss", "ExtraOilAmmo", "Oil Slider", 0.25}, //17
+
+//MM2
+{"AirShooterBoss", "Can'tDefeatAmmo", "Airman Boss", 0.25},
+{"AtomicFireBoss", "HeatmanDashFlag", "Heatman Boss", 0.25},
+{"BubbleLeadBoss", "WaddleWaddleAmmo", "Bubbleman Boss", 0.25},
+{"CrashbombBoss", "ClashAmmo", "", 0.25},
+{"LeafShieldBoss", "IncredibleAmmo", "", 0.25},
+{"MetalBladeBoss", "BuzzsawAmmo", "", 0.25},
+{"QuickBoomerangBoss", "FastAmmo", "", 0.25},
+{"TimeStopperBoss", "TimeAmmo", "", 0.25},
+{"WilyGunBoss", "PlasmaAmmo", "", 0.25},
+{"WilySkullSuitBoss", "PlasmaAmmo", "", 0.25},
+{"WilyCapsuleIceBoss", "PlasmaAmmo", "", 0.25},
+{"AlienTrapBoss", "AlienTrapAmmo", "Alien Boss", 0.25}, //27
+
+//MM3
+{"NeedleCannonBoss", "NoodleAmmo", "", 0.25},
+{"MagnetMissileBoss", "PullCharge", "", 0.25},
+{"GeminiLaserBoss", "CloneAmmo", "", 0.25},
+{"HardKnuckleBoss", "QuakeAmmo", "", 0.25},
+{"SearchSnakeBoss", "SnakeManAmmo", "", 0.25},
+{"ShadowBladeBoss", "CloakAmmo", "", 0.25},
+{"SparkShockBoss", "MightyGodAmmo", "", 0.25},
+{"DocBusterC", "DocVirusAmmo", "", 0.25}, //35
+
+//MM4
+{"DiveMissileBoss", "YouSunkMyAmmo", "", 0.25},
+{"DrillBombBoss", "DrillBombClassAmmo", "", 0.25},
+{"DustCrusherBoss", "CrushEmAmmo", "", 0.25},
+{"FlashStopperBoss", "FlashStopperClassAmmo", "", 0.25},
+{"SkullBarrierBoss", "SkullBarrierClassAmmo", "", 0.25},//40
+
+//MM5
+{"GravityHoldBoss", "ScrewGravityAmmo", "", 0.25},
+{"WaterWaveBoss", "WaterWaveClassAmmo", "", 0.25},
+{"GyroAttackBoss", "GyroFly", "", 0.25},
+{"StarCrashBoss", "SuperStarPowerAmmo", "", 0.25},
+{"ChargeKickBoss", "ChargeManIsEveryWhereAmmo", "", 0.25},
+{"NapalmBombBoss", "NapalmClassAmmo", "", 0.25},
+{"DarkTankBoss", "DarkDashAmmo", "", 0.25},
+{"DarkShieldBoss", "Darkman2ShieldAmmo", "", 0.25},
+{"DarkSniperBoss", "DarkSniperAmmo", "", 0.25},//49
+
+//MM6
+{"BlizzardAttackBoss", "BallAmmo", "", 0.25},
+{"CentaurFlashBoss", "CentaurAmmo", "", 0.25},
+{"FlameBlastBoss", "FlameBossAmmo", "", 0.25},
+{"KnightCrushBoss", "KnightmanAmmo", "", 0.25},
+{"PlantBarrierBoss", "PsychedelicAmmo", "", 0.25},
+{"SilverTomahawkBoss", "TomahawkClassAmmo", "", 0.25},
+{"WindStormBoss", "FlyingKickAmmo", "", 0.25},
+{"YamatoSpearBoss", "YamatoClassAmmo", "", 0.25}, //57
+
+//MM7
+{"DangerWrapBoss", "BursterAmmo", "", 0.25},
+{"FreezeCrackerBoss", "MrFreezeAmmo", "", 0.25},
+{"JunkShieldBoss", "TrunkAmmo", "", 0.25},
+{"NoiseCrushBoss", "NoiseCrushClassAmmo", "", 0.25},
+{"ScorchWheelBoss", "DieselJuiceAmmo", "", 0.25},
+{"ThunderBoltBoss", "RainAmmo", "", 0.25},
+{"WildCoilBoss", "GumAmmo", "", 0.25},
+{"SlashClawBoss", "DashAmmo", "", 0.25}, //65
+
+//MM8
+{"TornadoHoldBoss", "FeelMyPowerAmmo", "", 0.25},
+{"AstroCrushBoss", "AstroAmmoC", "", 0.25},
+{"ThunderClawBoss", "YoGeekyAmmo", "", 0.25},
+{"FlashBombBoss", "FBOMBBOSSAMMO", "", 0.25},
+{"FlameSwordBoss", "OrdersAmmo", "", 0.25},
+{"OriginalDuoBoss", "DuoJusticeAmmo", "", 0.25},
+{"WaterBalloonBoss", "HandsomeAmmo", "", 0.25},
+{"EvilFistC", "EvilRageAmmo", "", 0.25}, //72
+
+//MM9
+{"HornetChaserBoss", "NotTheHornetsAmmo", "", 0.25},
+{"LaserTridentBoss", "SplashingAboutAmmo", "", 0.25},
+{"MagmaBazookaBoss", "MagmaAmmoB", "", 0.25},
+{"PlugBallBoss", "PlugBallAmmoBoss", "", 0.25},
+{"RevolverBusterBoss", "RevolverbusterAmmoBoss", "", 0.25},
+{"TornadoBlowBoss", "TornadoBlowBossAmmo", "", 0.25},
+{"BlackHoleBombBoss", "SpaceTravelAmmo", "", 0.25}, //79
+
+//MMB
+{"LightningBoltBoss", "DynamoElectricity", "", 0.25},
+{"IceWallBoss", "ColdBossAmmo", "", 0.25},
+{"SpreadDrillBoss", "GroundFuryAmmo", "", 0.25},
+{"RemoteMineBoss", "WetRogerAmmo", "", 0.25},
+{"WaveBurnerBoss", "BossBurnerAmmo", "", 0.25},
+{"MagicCardBoss", "SnortSnortAmmo", "", 0.25},
+{"KingAxeBoss", "DinnerAmmo", "", 0.25},
+
+
+//MM10
+{"ChillSpikeBossC", "ChillSpikeBossAmmo", "", 0.25},
+{"CommandoBombBoss", "FullMetalJacketAmmo", "", 0.25},
+{"TripleBladeBoss", "TripleBladeBossAmmo", "", 0.25},
+{"WaterShieldBoss", "PumpSluggerAmmo", "", 0.25},
+{"WheelCutterBoss", "WheelCutterBossAmmo", "", 0.25}, //92
+{"ThunderWoolBoss", "ThunderWoolAmmoB", "", 0.25}, 
+{"SolarBlazeBoss", "SolarSunAmmo", "", 0.25}, 
+{"ReboundStrikeBoss", "ReboundStrikerLimit", "", 0.25},
+
+//MMK
+{"MirrorBusterBoss", "MirrorCharge", "", 0.25},
+{"ScrewCrusherBoss", "ScrewCrushAmmo", "", 0.25},
+{"BalladeCrackerBoss", "BalladeChargeFlag", "", 0.25},
+{"SakugarneBoss", "BackToTheAmmo", "", 0.25},//96
+{"RaThorWrathBoss", "WrathAmmo", "", 0.25},
+
+//MMWT
+{"MonkeyKingBoss", "MonkeyMagicAmmo", "", 0.25},
+{"SandySandBoss", "KappaMikeyAmmo", "", 0.25}, //98
+
+//MMV
+{"BreakDashBoss", "GetBentDegenerateAmmo", "", 0.25},
+{"BubbleBombBoss", "BubbleCrabbyAmmo", "", 0.25},
+{"DeepDiggerBoss", "DeeperDiggerAmmo", "", 0.25},
+{"ElectricShockBoss", "JupiterAmmo", "", 0.25},
+{"GrabBusterBoss", "MercuryBlobFormAmmo", "", 0.25},
+{"PhotonVulcanBoss", "RedPlanetAmmo", "", 0.25},
+{"SaltWaterBoss", "TopNepAmmo", "", 0.25}, //106
+{"BlackHoleBoss", "BlackVortexAmmo", "", 0.25},
+
+//MM11
+{"ScrambleThunderBossC", "FusemanAmmo", "", 0.25}
+};
+
+str weapons_ammo_autosmallx[MAX_WEAPONS_CLASSESX][4] =
+{
+//{"", "", "", 0.25},
+
+//MM2
+{"MetalBladeBoss", "MetalHoverBootsAmmo", "", 0.25},
+
+//MM3
+{"MagnetMissileBoss", "MagnetFlag", "", 0.25},
+{"SearchSnakeBoss", "SnakeCommandAmmo", "", 0.25},
+
+//MM4
+{"DiveMissileBoss", "DiveTackleAmmo", "", 0.25},
+{"DrillBombBoss", "DigLimit", "", 0.25},
+{"FlashStopperBoss", "BrightIdeasAmmo", "", 0.25},
+{"SkullBarrierBoss", "SkullBusterClassAmmo", "", 0.25},
+
+//MM5
+{"WaterWaveBoss", "HookshotStamina", "", 0.25},
+
+//MM6
+{"WindStormBoss", "WindClassAmmo", "", 0.25},
+
+//MM7
+{"FreezeCrackerBoss", "FreezeCrackAmmo", "", 0.25},
+
+//MM8
+{"AstroCrushBoss", "CopyAmmoC", "", 0.25},
+
+//MM9
+{"HornetChaserBoss", "HornetHoverAmmo", "", 0.25},
+{"RevolverBusterBoss", "FakemanDashCounter", "", 0.25},
+{"TornadoBlowBoss", "TornadoHoverAmmo", "", 0.25},
+
+//MMB
+{"IceWallBoss", "RunningFridgeAmmo", "", 0.25},
+{"SpreadDrillBoss", "SandAngerAmmo", "", 0.25},
+{"WaveBurnerBoss", "BossBurnerAmmo2", "", 0.25},
+{"MagicCardBoss", "BossBurnerAmmo2", "", 0.25},
+
+
+//MM10
+{"ChillSpikeBossC", "ChillSlideBossAmmo", "", 0.25},
+{"ThunderWoolBoss", "ArchOfWoolAmmo", "", 0.25}, 
+{"ReboundStrikeBoss", "ReboundStrikerPower", "", 0.25},
+
+//MMK
+
+//MMWT
+{"SandySandBoss", "KappaBarrierAmmo", "", 0.25},
+
+//MMV
+{"BubbleBombBoss", "CrabbyBubbleAmmo", "", 0.25},
+{"DeepDiggerBoss", "UranusStampedeAmmo", "", 0.25},
+{"SaltWaterBoss", "DontDrinkThisAmmo", "", 0.25},
+{"PhotonVulcanBoss", "CandyBarAmmo", "", 0.25},//23
+
+//MM11
+{"ScrambleThunderBossC", "FusemanTracerAmmo", "", 0.25}
+};
+
+script "CCBM_AutoSmallAmmoPickup" (void)
+{
+    For(int i = 0; i < MAX_WEAPONS_CLASSES; i++) {
+        If(CheckInventory(weapons_ammo_autosmall[i][0]) == 1) {
+            if (weapons_ammo_autosmall[i][3] != 0.0) {
+                str MainammoName = weapons_ammo_autosmall[i][1];
+                int MainAmmoMax = GetAmmoCapacity(MainammoName);
+                int MainAmmoMult = FixedMul(weapons_ammo_autosmall[i][3],MainAmmoMax);
+                GiveInventory(MainammoName, MainAmmoMult);
+            }
+        }
+    }
+}
+
+script "CCBM_AutoSmallAmmoPickup2" (void)
+{
+    For(int i = 0; i < MAX_WEAPONS_CLASSESX; i++) {
+        If(CheckInventory(weapons_ammo_autosmallx[i][0]) == 1) {
+            if (weapons_ammo_autosmallx[i][3] != 0.0) {
+                str MainammoName = weapons_ammo_autosmallx[i][1];
+                int MainAmmoMax = GetAmmoCapacity(MainammoName);
+                int MainAmmoMult = FixedMul(weapons_ammo_autosmallx[i][3],MainAmmoMax);
+                GiveInventory(MainammoName, MainAmmoMult);
+            }
+        }
+    }
+}
+
+script "CCBM_AutoSmallAmmoTake" (void)
+{
+    For(int i = 0; i < MAX_WEAPONS_CLASSES; i++) {
+        If(CheckInventory(weapons_ammo_autosmall[i][0]) == 1) {
+            if (weapons_ammo_autosmall[i][3] != 0.0) {
+                str MainammoName = weapons_ammo_autosmall[i][1];
+                int MainAmmoMax = GetAmmoCapacity(MainammoName);
+                int MainAmmoMult = FixedMul(weapons_ammo_autosmall[i][3],MainAmmoMax);
+                TakeInventory(MainammoName, MainAmmoMult);
+            }
+        }
+    }
+}
+
+script "CCBM_AutoSmallAmmoTake2" (void)
+{
+    For(int i = 0; i < MAX_WEAPONS_CLASSESX; i++) {
+        If(CheckInventory(weapons_ammo_autosmallx[i][0]) == 1) {
+            if (weapons_ammo_autosmallx[i][3] != 0.0) {
+                str MainammoName = weapons_ammo_autosmallx[i][1];
+                int MainAmmoMax = GetAmmoCapacity(MainammoName);
+                int MainAmmoMult = FixedMul(weapons_ammo_autosmallx[i][3],MainAmmoMax);
+                TakeInventory(MainammoName, MainAmmoMult);
+            }
+        }
+    }
+}
+
+str weapons_ammo_autolarge[MAX_WEAPONS_CLASSES_LARGE][4] =
+{
+//{"", "", "", 0.7},
+
+//MM0
+{"JetBusterC", "JetFuel", "", 0.7},
+{"MegaBallBoss", "BallsOfSteelAmmo", "", 0.7},
+{"HeroBassBusterBoss", "BassBusterCharge", "", 0.7},
+{"HeroicDuoFistBoss", "DuoMeteorAmmo", "", 0.7},
+{"RollSwingBoss", "RollHyperDashAmmo", "", 0.7},
+{"SniperJoeBoss", "ContraJoeAmmo", "", 0.7},
+{"ShotokanLightBoss", "SuperComboGauge", "", 0.7},
+{"BBA_Pistol", "BBA_Clip", "", 0.7},
+{"BBA_Shotgun", "BBA_Shell", "", 0.7},
+{"BBA_SuperShotgun", "BBA_Shell", "", 0.7},
+{"BBA_Chaingun", "BBA_Clip", "", 0.7},
+{"BBA_RocketLauncher", "BBA_Rockets", "", 0.7},
+{"BBA_PlasmaRifle", "BBA_Cell", "", 0.7},
+{"BBA_BFG9000", "BBA_Cell", "", 0.7}, //14
+
+
+//MM1
+{"IceSlasherBoss", "IcicleAmmo", "Ice Slasher", 0.7},
+{"FireStormBoss", "BurningJusticeAmmo", "Fire Storm", 0.7},
+{"ThunderBeamBoss", "ElectricAmmo", "Thunder Beam", 0.7},
+{"TimeSlowBoss", "TimeClassAmmo", "Timeman Boss", 0.7},
+{"OilSliderBoss", "ExtraOilAmmo", "Oil Slider", 0.7}, //17
+
+//MM2
+{"AirShooterBoss", "Can'tDefeatAmmo", "Airman Boss", 0.7},
+{"AtomicFireBoss", "HeatmanDashFlag", "Heatman Boss", 0.7},
+{"BubbleLeadBoss", "WaddleWaddleAmmo", "Bubbleman Boss", 0.7},
+{"CrashbombBoss", "ClashAmmo", "", 0.7},
+{"LeafShieldBoss", "IncredibleAmmo", "", 0.7},
+{"MetalBladeBoss", "BuzzsawAmmo", "", 0.7},
+{"QuickBoomerangBoss", "FastAmmo", "", 0.7},
+{"TimeStopperBoss", "TimeAmmo", "", 0.7},
+{"WilyGunBoss", "PlasmaAmmo", "", 0.7},
+{"WilySkullSuitBoss", "PlasmaAmmo", "", 0.7},
+{"WilyCapsuleIceBoss", "PlasmaAmmo", "", 0.7},
+{"AlienTrapBoss", "AlienTrapAmmo", "Alien Boss", 0.7}, //27
+
+//MM3
+{"NeedleCannonBoss", "NoodleAmmo", "", 0.7},
+{"MagnetMissileBoss", "PullCharge", "", 0.7},
+{"GeminiLaserBoss", "CloneAmmo", "", 0.7},
+{"HardKnuckleBoss", "QuakeAmmo", "", 0.7},
+{"SearchSnakeBoss", "SnakeManAmmo", "", 0.7},
+{"ShadowBladeBoss", "CloakAmmo", "", 0.7},
+{"SparkShockBoss", "MightyGodAmmo", "", 0.7},
+{"DocBusterC", "DocVirusAmmo", "", 0.7}, //35
+
+//MM4
+{"DiveMissileBoss", "YouSunkMyAmmo", "", 0.7},
+{"DrillBombBoss", "DrillBombClassAmmo", "", 0.7},
+{"DustCrusherBoss", "CrushEmAmmo", "", 0.7},
+{"FlashStopperBoss", "FlashStopperClassAmmo", "", 0.7},
+{"SkullBarrierBoss", "SkullBarrierClassAmmo", "", 0.7},//40
+
+//MM5
+{"GravityHoldBoss", "ScrewGravityAmmo", "", 0.7},
+{"WaterWaveBoss", "WaterWaveClassAmmo", "", 0.7},
+{"GyroAttackBoss", "GyroFly", "", 0.7},
+{"StarCrashBoss", "SuperStarPowerAmmo", "", 0.7},
+{"ChargeKickBoss", "ChargeManIsEveryWhereAmmo", "", 0.7},
+{"NapalmBombBoss", "NapalmClassAmmo", "", 0.7},
+{"DarkTankBoss", "DarkDashAmmo", "", 0.7},
+{"DarkShieldBoss", "Darkman2ShieldAmmo", "", 0.7},
+{"DarkSniperBoss", "DarkSniperAmmo", "", 0.7},//49
+
+//MM6
+{"BlizzardAttackBoss", "BallAmmo", "", 0.7},
+{"CentaurFlashBoss", "CentaurAmmo", "", 0.7},
+{"FlameBlastBoss", "FlameBossAmmo", "", 0.7},
+{"KnightCrushBoss", "KnightmanAmmo", "", 0.7},
+{"PlantBarrierBoss", "PsychedelicAmmo", "", 0.7},
+{"SilverTomahawkBoss", "TomahawkClassAmmo", "", 0.7},
+{"WindStormBoss", "FlyingKickAmmo", "", 0.7},
+{"YamatoSpearBoss", "YamatoClassAmmo", "", 0.7}, //57
+
+//MM7
+{"DangerWrapBoss", "BursterAmmo", "", 0.7},
+{"FreezeCrackerBoss", "MrFreezeAmmo", "", 0.7},
+{"JunkShieldBoss", "TrunkAmmo", "", 0.7},
+{"NoiseCrushBoss", "NoiseCrushClassAmmo", "", 0.7},
+{"ScorchWheelBoss", "DieselJuiceAmmo", "", 0.7},
+{"ThunderBoltBoss", "RainAmmo", "", 0.7},
+{"WildCoilBoss", "GumAmmo", "", 0.7},
+{"SlashClawBoss", "DashAmmo", "", 0.7}, //65
+
+//MM8
+{"TornadoHoldBoss", "FeelMyPowerAmmo", "", 0.7},
+{"AstroCrushBoss", "AstroAmmoC", "", 0.7},
+{"ThunderClawBoss", "YoGeekyAmmo", "", 0.7},
+{"FlashBombBoss", "FBOMBBOSSAMMO", "", 0.7},
+{"FlameSwordBoss", "OrdersAmmo", "", 0.7},
+{"OriginalDuoBoss", "DuoJusticeAmmo", "", 0.7},
+{"WaterBalloonBoss", "HandsomeAmmo", "", 0.7},
+{"EvilFistC", "EvilRageAmmo", "", 0.7}, //72
+
+//MM9
+{"HornetChaserBoss", "NotTheHornetsAmmo", "", 0.7},
+{"LaserTridentBoss", "SplashingAboutAmmo", "", 0.7},
+{"MagmaBazookaBoss", "MagmaAmmoB", "", 0.7},
+{"PlugBallBoss", "PlugBallAmmoBoss", "", 0.7},
+{"RevolverBusterBoss", "RevolverbusterAmmoBoss", "", 0.7},
+{"TornadoBlowBoss", "TornadoBlowBossAmmo", "", 0.7},
+{"BlackHoleBombBoss", "SpaceTravelAmmo", "", 0.7}, //79
+
+//MMB
+{"LightningBoltBoss", "DynamoElectricity", "", 0.7},
+{"IceWallBoss", "ColdBossAmmo", "", 0.7},
+{"SpreadDrillBoss", "GroundFuryAmmo", "", 0.7},
+{"RemoteMineBoss", "WetRogerAmmo", "", 0.7},
+{"WaveBurnerBoss", "BossBurnerAmmo", "", 0.7},
+{"MagicCardBoss", "SnortSnortAmmo", "", 0.7},
+{"KingAxeBoss", "DinnerAmmo", "", 0.7},
+
+
+//MM10
+{"ChillSpikeBossC", "ChillSpikeBossAmmo", "", 0.7},
+{"CommandoBombBoss", "FullMetalJacketAmmo", "", 0.7},
+{"TripleBladeBoss", "TripleBladeBossAmmo", "", 0.7},
+{"WaterShieldBoss", "PumpSluggerAmmo", "", 0.7},
+{"WheelCutterBoss", "WheelCutterBossAmmo", "", 0.7}, //92
+{"ThunderWoolBoss", "ThunderWoolAmmoB", "", 0.7}, 
+{"SolarBlazeBoss", "SolarSunAmmo", "", 0.7}, 
+{"ReboundStrikeBoss", "ReboundStrikerLimit", "", 0.7},
+
+//MMK
+{"MirrorBusterBoss", "MirrorCharge", "", 0.7},
+{"ScrewCrusherBoss", "ScrewCrushAmmo", "", 0.7},
+{"BalladeCrackerBoss", "BalladeChargeFlag", "", 0.7},
+{"SakugarneBoss", "BackToTheAmmo", "", 0.7},//96
+{"RaThorWrathBoss", "WrathAmmo", "", 0.7},
+
+//MMWT
+{"MonkeyKingBoss", "MonkeyMagicAmmo", "", 0.7},
+{"SandySandBoss", "KappaMikeyAmmo", "", 0.7}, //98
+
+//MMV
+{"BreakDashBoss", "GetBentDegenerateAmmo", "", 0.7},
+{"BubbleBombBoss", "BubbleCrabbyAmmo", "", 0.7},
+{"DeepDiggerBoss", "DeeperDiggerAmmo", "", 0.7},
+{"ElectricShockBoss", "JupiterAmmo", "", 0.7},
+{"GrabBusterBoss", "MercuryBlobFormAmmo", "", 0.7},
+{"PhotonVulcanBoss", "RedPlanetAmmo", "", 0.7},
+{"SaltWaterBoss", "TopNepAmmo", "", 0.7}, //106
+{"BlackHoleBoss", "BlackHoleAmmo", "", 0.7},
+
+//MM11
+{"ScrambleThunderBossC", "FusemanAmmo", "", 0.7}
+};
+
+str weapons_ammo_autolargex[MAX_WEAPONS_CLASSES_LARGEX][4] =
+{
+//{"", "", "", 0.7},
+
+//MM0
+{"RollSwingBoss", "RollHealAmmo", "", 0.35},
+{"AutoBoltBoss", "AutoNutsAmmo", "", 0.2},
+{"AutoBoltBoltDistribute", "AutoNutsAmmo", "", 0.2},
+{"SniperJoeBoss", "JoeUpgradeAmmo", "", 0.35},
+
+//MM2
+{"MetalBladeBoss", "MetalHoverBootsAmmo", "", 0.7},
+
+//MM3
+{"MagnetMissileBoss", "MagnetFlag", "", 0.7},
+{"SearchSnakeBoss", "SnakeCommandAmmo", "", 0.7},
+
+//MM4
+{"DiveMissileBoss", "DiveTackleAmmo", "", 0.7},
+{"DrillBombBoss", "DigLimit", "", 0.7},
+{"FlashStopperBoss", "BrightIdeasAmmo", "", 0.7},
+{"SkullBarrierBoss", "SkullBusterClassAmmo", "", 0.7},
+
+//MM5
+{"WaterWaveBoss", "HookshotStamina", "", 0.7},
+
+//MM6
+{"WindStormBoss", "WindClassAmmo", "", 0.7},
+{"PlantBarrierBoss", "PlantmanHealAmmo", "", 0.35},
+
+//MM7
+{"FreezeCrackerBoss", "FreezeCrackAmmo", "", 0.7},
+
+//MM8
+{"AstroCrushBoss", "CopyAmmoC", "", 0.7},
+
+//MM9
+{"HornetChaserBoss", "HornetHoverAmmo", "", 0.7},
+{"RevolverBusterBoss", "FakemanDashCounter", "", 0.7},
+{"LaserTridentBoss", "CrabHealingAmmo", "", 0.35},
+{"TornadoBlowBoss", "TornadoHoverAmmo", "", 0.7},
+
+//MMB
+{"LightningBoltBoss", "DynamoHealAmmo", "", 0.35},
+{"IceWallBoss", "RunningFridgeAmmo", "", 0.7},
+{"SpreadDrillBoss", "SandAngerAmmo", "", 0.7},
+{"WaveBurnerBoss", "BossBurnerAmmo2", "", 0.7},
+{"MagicCardBoss", "BossBurnerAmmo2", "", 0.7},
+
+
+//MM10
+{"ChillSpikeBossC", "ChillSlideBossAmmo", "", 0.7},
+{"ThunderWoolBoss", "ArchOfWoolAmmo", "", 0.7}, 
+{"ReboundStrikeBoss", "ReboundStrikerPower", "", 0.7},
+
+//MMK
+
+//MMWT
+{"SandySandBoss", "KappaBarrierAmmo", "", 0.7},
+{"RaThorWrathBoss", "AztecAmmo", "", 0.5},
+
+//MMV
+{"BubbleBombBoss", "CrabbyBubbleAmmo", "", 0.7},
+{"DeepDiggerBoss", "UranusStampedeAmmo", "", 0.7},
+{"SaltWaterBoss", "DontDrinkThisAmmo", "", 0.7},
+{"GrabBusterBoss", "MercuryClassAmmo", "", 0.35},
+{"PhotonVulcanBoss", "CandyBarAmmo", "", 0.7},//23
+
+//MM11
+{"ScrambleThunderBossC", "FusemanTracerAmmo", "", 0.7}
+};
+
+script "CCBM_AutoLargeAmmoPickup" (void)
+{
+    For(int i = 0; i < MAX_WEAPONS_CLASSES_LARGE; i++) {
+        If(CheckInventory(weapons_ammo_autolarge[i][0]) == 1) {
+            if (weapons_ammo_autolarge[i][3] != 0.0) {
+                str MainammoName = weapons_ammo_autolarge[i][1];
+                int MainAmmoMax = GetAmmoCapacity(MainammoName);
+                int MainAmmoMult = FixedMul(weapons_ammo_autolarge[i][3],MainAmmoMax);
+                GiveInventory(MainammoName, MainAmmoMult);
+            }
+        }
+    }
+}
+
+script "CCBM_AutoLargeAmmoPickup2" (void)
+{
+    For(int i = 0; i < MAX_WEAPONS_CLASSES_LARGEX; i++) {
+        If(CheckInventory(weapons_ammo_autolargex[i][0]) == 1) {
+            if (weapons_ammo_autolargex[i][3] != 0.0) {
+                str MainammoName = weapons_ammo_autolargex[i][1];
+                int MainAmmoMax = GetAmmoCapacity(MainammoName);
+                int MainAmmoMult = FixedMul(weapons_ammo_autolargex[i][3],MainAmmoMax);
+                GiveInventory(MainammoName, MainAmmoMult);
+            }
+        }
+    }
+}
+
+script "CCBM_AutoLargeAmmoTake" (void)
+{
+    For(int i = 0; i < MAX_WEAPONS_CLASSES_LARGE; i++) {
+        If(CheckInventory(weapons_ammo_autolarge[i][0]) == 1) {
+            if (weapons_ammo_autolarge[i][3] != 0.0) {
+                str MainammoName = weapons_ammo_autolarge[i][1];
+                int MainAmmoMax = GetAmmoCapacity(MainammoName);
+                int MainAmmoMult = FixedMul(weapons_ammo_autolarge[i][3],MainAmmoMax);
+                TakeInventory(MainammoName, MainAmmoMult);
+            }
+        }
+    }
+}
+
+script "CCBM_AutoLargeAmmoTake2" (void)
+{
+    For(int i = 0; i < MAX_WEAPONS_CLASSES_LARGEX; i++) {
+        If(CheckInventory(weapons_ammo_autolargex[i][0]) == 1) {
+            if (weapons_ammo_autolargex[i][3] != 0.0) {
+                str MainammoName = weapons_ammo_autolargex[i][1];
+                int MainAmmoMax = GetAmmoCapacity(MainammoName);
+                int MainAmmoMult = FixedMul(weapons_ammo_autolargex[i][3],MainAmmoMax);
+                TakeInventory(MainammoName, MainAmmoMult);
+            }
+        }
+    }
+}
+
+ Script "Auto_ReloadCheck" (void) 
+ {
+	int Button = GetPlayerInput(-1, Input_Buttons);
+	
+	if(Button & (BT_RELOAD))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+ }
+ 
+ Script "Auto_MainFireCheck" (void) 
+ {
+	int Button = GetPlayerInput(-1, Input_Buttons);
+	
+	if(Button & (BT_ATTACK))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+ }
+ 
+// Repaste of script 300 with different name
+script "core_portedbeat" (void)
+{
+GiveInventory("BeatSupportActivated",1);
+Delay(10);
+while(CheckInventory("BeatSupportActivated")!=0)
+	{
+	if(GetPlayerInput(-1,INPUT_BUTTONS) & (BT_ATTACK|BT_ALTATTACK) && CheckInventory("BeatSupportFired") == 0 && CheckInventory("BeatSupportRefresh") == 1)
+		{
+		GiveInventory("BeatSupportFireX",1);
+		TakeInventory("BeatSupportRefresh",1);
+		Delay(5);
+		}
+	Delay(1);
+	}
+}

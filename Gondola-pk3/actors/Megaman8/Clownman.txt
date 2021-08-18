@@ -1,0 +1,65 @@
+actor Clownman : MegaClassBase
+{
+Player.ScoreIcon "C_08D0X"
+player.startitem "MegaHealthBar"
+player.displayname "Clownman"
+player.soundclass "clownmanc"
+player.startitem "ThunderClawBoss"
+//player.startitem "ThunderClawBosT"
+player.startitem "YoGeekyAmmo", 200
+player.forwardmove 0.93, 0.93
+player.sidemove 0.91, 0.91
+player.jumpz 12
+
+player.weaponslot 1, "ThunderClawBoss"
+player.weaponslot 2, "ThunderClawBosT"
+
+player.startitem "TornadoHoldWeakness2", 1
+
+player.startitem "AirShooterWeakness", 1
+player.startitem "WindStormWeakness", 1
+player.startitem "TornadoHoldWeakness", 1
+player.startitem "TornadoBlowWeakness", 1
+player.startitem "BlackHoleWeakness", 1
+
+player.startitem "RealClassFlag", 77
+States
+{
+Spawn:
+CLWN B 0 
+CLWN B 1 A_JumpIfInventory("ClownShockUpPeg",1,"Missile")
+CLWN A 0 A_JumpIf(z-floorz>0,"ClownJumping")
+CLWN A 1 A_JumpIfInventory("ClownShockUpPeg",1,"Missile")
+Goto Spawn+2
+See:
+CLWN B 0 A_JumpIf(z-floorz>0,"ClownJumping")
+CLWN B 5 A_JumpIfInventory("ClownShockUpPeg",1,"Missile")
+CLWN C 0 A_JumpIf(z-floorz>0,"ClownJumping")
+CLWN C 5 A_JumpIfInventory("ClownShockUpPeg",1,"Missile")
+CLWN D 0 A_JumpIf(z-floorz>0,"ClownJumping")
+CLWN D 5 A_JumpIfInventory("ClownShockUpPeg",1,"Missile")
+CLWN E 0 A_JumpIf(z-floorz>0,"ClownJumping")
+CLWN E 5 A_JumpIfInventory("ClownShockUpPeg",1,"Missile")
+Goto Spawn
+Missile:
+CLWN A 0 A_JumpIf(z-floorz>0,"ClownJumpingShooting")
+CLWN F 5
+CLWN G 4 A_JumpIfInventory("ClownShockUpPeg",1,"Missile")
+goto Spawn
+ClownJumping:
+CLWN J 1 A_JumpIf(z-floorz<=0, "Spawn")
+wait
+ClownJumpingShooting:
+CLWN JJJJJJJJJ 1 A_JumpIf(z-floorz<=0, "Spawn")
+wait
+ClassPain:
+CLWN H 0
+goto PainContinue
+DeathFix:
+CLWN H 0
+goto DeathContinue
+ClassDeath:
+CLWN H 1
+goto MegaDeathEnd
+}
+}

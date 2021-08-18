@@ -1,0 +1,1261 @@
+actor ChainBlastBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_11C"
+dropitem "ChainBlastWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Inventory.Pickupmessage "Time to begin the countdown!"
+Obituary "$OB_CHAINBLASTBOSS"
+weapon.ammotype "CatalyzerAmmo"
+weapon.ammotype2 "TorgueTorqueAmmo"
+States
+{
+Spawn:
+C_00 X 1
+loop
+Ready:
+BLAH A 0
+BLAH A 0 ACS_ExecuteAlways(998,0,10971)
+BLAH A 0 A_GunFlash
+goto Ready1
+Ready1:
+BLAH A 0 A_JumpIfInventory("BlastGearActive",1,"Ready2G")
+BLAH A 0 A_JumpIfInventory("CatalyzerAmmo",8,"Ready2")
+BLAH A 0 A_JumpIfInventory("TorgueTorqueAmmo",1,"Ready1R")
+BLAH A 2 A_WeaponReady(WRF_NOFIRE)
+BLAH A 0 A_GiveInventory("CatalyzerAmmo",1)
+loop
+Ready1R:
+BLAH A 0 A_JumpIfInventory("BlastGearActive",1,"Ready2G")
+BLAH A 0 A_JumpIfInventory("CatalyzerAmmo",8,"Ready2")
+BLAH A 2 A_WeaponReady(WRF_NOFIRE|WRF_AllowReload)
+BLAH A 0 A_GiveInventory("CatalyzerAmmo",1)
+BLAH A 0 A_JumpIfInventory("TorgueTorqueAmmo",1,"Ready1R")
+goto Ready1
+Ready2:
+BLAH A 0 A_JumpIfInventory("BlastGearActive",1,"Ready2G")
+BLAH A 0 A_JumpIfInventory("TorgueTorqueAmmo",1,"Ready2R")
+BLAH A 2 A_WeaponReady
+BLAH A 0 A_GiveInventory("CatalyzerAmmo",1)
+loop
+Ready2R:
+BLAH A 0 A_JumpIfInventory("BlastGearActive",1,"Ready2G")
+BLAH A 2 A_WeaponReady(WRF_AllowReload)
+BLAH A 0 A_GiveInventory("CatalyzerAmmo",1)
+BLAH A 0 A_JumpIfInventory("TorgueTorqueAmmo",1,"Ready2R")
+goto Ready2
+
+Ready2G:
+BLAH A 0 A_JumpIfInventory("CatalyzerAmmo",8,"Ready3G")
+BLAH A 3 A_WeaponReady(WRF_NOFIRE)//(WRF_NOPRIMARY)/*(WRF_AllowReload)*/
+BLAH F 3 A_WeaponReady(WRF_NOFIRE)//(WRF_NOPRIMARY)/*(WRF_AllowReload)*/
+BLAH A 0 A_GiveInventory("CatalyzerAmmo",4)
+BLAH A 0 A_JumpIfInventory("BlastGearActive",1,"Ready2G")
+goto Ready1
+Ready3G:
+BLAH A 3 A_WeaponReady/*(WRF_AllowReload)*/
+BLAH F 3 A_WeaponReady/*(WRF_AllowReload)*/
+BLAH A 0 A_GiveInventory("CatalyzerAmmo",4)
+BLAH A 0 A_JumpIfInventory("BlastGearActive",1,"Ready2G")
+goto Ready1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+YD_H A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+YD_H A 1 A_Raise
+Loop
+Fire:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,"Fire2")//AmmoCheck for ammo, also enable noprimary ready2g and enable ready3g
+TNT1 A 0 A_JumpIfInventory("CatalyzerAmmo",8,1)
+goto NoAmmo
+Fire1:
+BLAH B 0 A_PlaySoundEx("weapon/blastmainfire","Weapon")
+BLAH E 0 A_GiveInventory("BlastmanMain_CI",1)
+BLAH E 0 A_TakeInventory("CatalyzerAmmo",8)
+BLAH B 1 Offset(-67, 28)
+BLAH B 1 Offset(-134, 37)
+BLAH C 2 Offset(-121, 13)
+BLAH D 1 Offset(-71, -2)
+BLAH D 1 Offset(-11, -12)
+BLAH E 1 Offset(60, -26)
+BLAH E 1 Offset(129, -36)
+BLAH E 1 Offset(192, -44)
+TNT1 A 13 Offset(60, 90)
+BLAH A 1 Offset(30, 60)
+BLAH A 1 A_WeaponReady(14)
+Goto Ready1
+Fire2AmmoCheck:
+TNT1 A 0 A_JumpIfInventory("CatalyzerAmmo",8,"Fire2")
+goto NoAmmoPG
+Fire2:
+BLAH B 0 A_PlaySoundEx("weapon/blastmainfire","Weapon")
+BLAH E 0 A_GiveInventory("BlastmanGMain_CI",1)
+BLAH E 0 A_TakeInventory("CatalyzerAmmo",8)
+BLAH B 1 Offset(-67, 28)
+BLAH B 2 Offset(-134, 37)
+BLAH C 2 Offset(-121, 13)
+BLAH D 1 Offset(-71, -2)
+BLAH D 1 Offset(-11, -12)
+BLAH E 1 Offset(60, -26)
+BLAH E 1 Offset(129, -36)
+BLAH E 1 Offset(192, -44)
+TNT1 A 17 Offset(60, 90)
+BLAH A 1 Offset(30, 60)
+BLAH A 1 A_WeaponReady(14)
+Goto Ready1
+Altfire:
+TNT1 A 0 A_JumpIfInventory("CatalyzerAmmo",8,1)
+goto NoAmmo
+BLAH D 0 A_PlaySoundEx("weapon/blastfire","Weapon")
+BLAH D 0 A_GiveInventory("BlastAltAnimFlag")
+BLAH D 0 A_GiveInventory("BlastmanAlt1_CI")
+BLAH D 0 A_TakeInventory("CatalyzerAmmo",2)
+BLAH E 1 Offset(13, 10) A_JumpIfInventory("RageRune_ST",1,2)
+BLAH E 1 Offset(13, 10)
+BLAH E 1 Offset(-5, 4)
+BLAH D 0 A_GiveInventory("BlastmanAlt2_CI")
+BLAH D 0 A_TakeInventory("CatalyzerAmmo",2)
+BLAH E 1 Offset(-31, -3) A_JumpIfInventory("RageRune_ST",1,2)
+BLAH E 1 Offset(-31, -3)
+BLAH E 1 Offset(-61, -10)
+BLAH D 0 A_GiveInventory("BlastmanAlt4_CI")
+BLAH D 0 A_TakeInventory("CatalyzerAmmo",2)
+BLAH C 1 Offset(-161, 24) A_JumpIfInventory("RageRune_ST",1,2)
+BLAH C 1 Offset(-175, 58)
+BLAH C 1 Offset(-181, 88)
+BLAH D 0 A_GiveInventory("BlastmanAlt5_CI")
+BLAH D 0 A_TakeInventory("CatalyzerAmmo",2)
+TNT1 A 17 Offset(60, 90)
+BLAH A 1 Offset(30, 60)
+BLAH A 1 A_WeaponReady(14)
+Goto Ready1
+NoAmmo:
+BLAH A 1
+goto Ready1
+
+NoAmmoPG:
+BLAH A 1
+goto Ready2G
+Reload:
+BLAH A 1
+TNT1 A 0 A_JumpIfInventory("TorgueTorqueAmmo",1,"Activate")
+goto Ready1
+Activate:
+TNT1 A 0 A_GiveInventory("BlastGearActive",1)
+goto Ready1
+Cancel:
+TNT1 A 0 A_TakeInventory("TorgueTorqueAmmo",999)
+TNT1 A 0 A_TakeInventory("BlastGearActive",1)
+goto Ready1
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 4 A_JumpIfInventory("BlastGearActive",1,"Flash2")
+loop
+Flash2:
+TNT1 A 0 A_SpawnItemEx("BlastGearFX",0,0,90,0,0,0,0,1)
+Flash2Cont:
+TNT1 A 0 A_PlaySound("gear/blastman",CHAN_BODY,0.7,0,3)
+TNT1 A 6 A_TakeInventory("TorgueTorqueAmmo",3)
+TNT1 A 0 A_JumpIfInventory("TorgueTorqueAmmo",1,"Flash2Cont")
+TNT1 A 0 A_StopSound(CHAN_BODY)
+TNT1 A 10 A_TakeInventory("BlastGearActive",99)
+goto Flash
+NoFlash:
+TNT1 A 0
+stop
+}
+}
+
+actor CatalyzerAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 40
++INVENTORY.IGNORESKILL
+}
+
+actor TorgueTorqueAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 57
++INVENTORY.IGNORESKILL
+}
+
+actor ChainBlastActivator : PowerUp
+{
+powerup.duration 5
+}
+
+actor BlastAltAnimFlag : PowerUp
+{
+powerup.duration 11
+}
+
+actor BlastAltAmmoFlag : PowerUp
+{
+powerup.duration 14
+}
+
+actor BlastDashCooldown : PowerUp
+{
+inventory.amount 1
+inventory.maxamount 198
++INVENTORY.IGNORESKILL
+}
+
+actor BlastDashCooldownHelper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+goto SpawnL
+SpawnL:
+TNT1 A 2 A_TakeFromTarget("BlastDashCooldown",2)
+TNT1 A 1 A_JumpIfInTargetInventory("BlastDashCooldown",1,"SpawnL")
+goto Death
+}
+}
+
+actor BlastGearActive : OnceC {}
+
+Actor BlastGearItem : CustomInventory
+{
+Inventory.Amount 1
+Inventory.MaxAmount 1
+Inventory.Icon "BLSTDT"
+Inventory.PickupMessage "I'm ready to blow!"
+Scale 2.0
++INVBAR
+States
+{
+Spawn:
+FAKR Z 1
+Wait
+Use:
+TNT1 A 0
+BLAH A 0 A_JumpIfInventory("BlastDashCooldown",1,"Dont")
+TNT1 A 0 A_GiveInventory("BlastDashItem_P",1)
+TNT1 A 0 A_GiveInventory("BlastDashCooldown",198)
+TNT1 A 0 A_SpawnItemEx("BlastJumpFX",0,0,-10)
+Fail
+Dont:
+TNT1 A 0
+fail
+}
+}
+
+actor ChainBlastBomb
+{
+var int User_NoDamage;
+translation "192:192=210:210", "202:202=210:210", "199:199=210:210", "250:250=4:4"
+PROJECTILE
+DamageType "ClassPain"
+Obituary "$OB_CHAINBLASTBOSS"
++NOTARGETSWITCH
++DONTREFLECT
++HITTRACER
+damage (8-User_NoDamage)
+Radius 12
+Height 11
+speed 46
+scale 1.9
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+CBST A 3
+CBST BCD 3 A_ScaleVelocity(1.01)
+Spawn2:
+CBST ABCD 3 A_ScaleVelocity(1.01)
+loop
+Death:
+TNT1 A 0 A_SetUserVar(User_NoDamage,8)
+TNT1 A 0 A_JumpIfInTargetInventory("LightTeamFlag",1,"Mine1")
+TNT1 A 0 A_JumpIfInTargetInventory("WilyTeamFlag",1,"Mine2")
+TNT1 A 0 A_JumpIfInTargetInventory("CossackTeamFlag",1,"Mine3")
+TNT1 A 0 A_JumpIfInTargetInventory("KingTeamFlag",1,"Mine4")
+TNT1 A 1 A_SpawnItemEx("ChainBlastMine")
+stop
+Mine1:
+TNT1 A 1 A_SpawnItemEx("ChainBlastMineB")
+stop
+Mine2:
+TNT1 A 1 A_SpawnItemEx("ChainBlastMineR")
+stop
+Mine3:
+TNT1 A 1 A_SpawnItemEx("ChainBlastMineO")
+stop
+Mine4:
+TNT1 A 1 A_SpawnItemEx("ChainBlastMineP")
+stop
+Crash:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerally")==1,"SDeath")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerplayer")==0,"SDeath")
+TNT1 A 0 Thing_ChangeTID(0,0)
+TNT1 A 0 A_SetUserVar(User_NoDamage,8)
+TNT1 A 0 A_GiveToTarget("TorgueTorqueAmmo",19)
+X_2E B 0 A_PlaySound("weapon/BlastHit")
+TNT1 A 0 A_JumpIfInTargetInventory("LightTeamFlag",1,"FX1")
+TNT1 A 0 A_JumpIfInTargetInventory("WilyTeamFlag",1,"FX2")
+TNT1 A 0 A_JumpIfInTargetInventory("CossackTeamFlag",1,"FX3")
+TNT1 A 0 A_JumpIfInTargetInventory("KingTeamFlag",1,"FX4")
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_P",1,AAPTR_TRACER)
+goto CrashLoop
+FX1:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_BP",1,AAPTR_TRACER)
+goto CrashLoop
+FX2:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_RP",1,AAPTR_TRACER)
+goto CrashLoop
+FX3:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_OP",1,AAPTR_TRACER)
+goto CrashLoop
+FX4:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_PP",1,AAPTR_TRACER)
+goto CrashLoop
+CrashLoop:
+TNT1 AAA 1 //A_Warp(AAPTR_TRACER,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"SDeath")
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"StickyBoom",AAPTR_TRACER)
+TNT1 BBB 1 //A_Warp(AAPTR_TRACER,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"StickyBoom",AAPTR_TRACER)
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",1,"SoundSkip")
+TNT1 D 0 A_GiveInventory("BlastBeep_P",1,AAPTR_TRACER)
+TNT1 A 0 A_GiveInventory("WeaponCharge",1)
+CrashLoopCont:
+TNT1 CCC 1 //A_Warp(AAPTR_TRACER,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"SDeath")
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"StickyBoom",AAPTR_TRACER)
+TNT1 DDD 1 //A_Warp(AAPTR_TRACER,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"StickyBoom",AAPTR_TRACER)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",25,"SDeath")
+goto CrashLoop
+SoundSkip:
+TNT1 A 0 A_TakeInventory("WeaponCharge",99)
+goto CrashLoopCont
+
+StickyBoom:
+CBST AAA 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_SetDamageType("BlastBombBig")
+X_2E D 0 A_PlaySound("weapon/coilexplode",0,1,0,0.75)
+TNT1 A 0 A_SpawnItemEx("BlastmanDetExplode",0,0,6,momx,momy,momz,0,9,0)
+TN_B EFGHIJKLMNOPQRS 1
+stop
+SafeDeath:
+X_2E D 0 A_PlaySound("weapon/blastpuff",0,0.5)
+UMFX SR 2
+YMFX Q 2
+XMFX Q 2
+stop
+SDeath:
+CBST A 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+X_2E D 0 A_PlaySound("weapon/blastpuff")
+TNT1 A 0 A_SpawnItemEx("BlastmanPuffExplode",0,0,6,momx,momy,momz,0,9,0)
+TNT1 A 0 A_SetScale(4,4)
+MMFX BCDE 3
+stop
+}
+}
+
+actor ChainBlastBombB : ChainBlastBomb{translation "192:192=205:205", "199:199=74:74", "202:202=205:205"}
+actor ChainBlastBombR : ChainBlastBomb{translation "192:192=171:171", "199:199=41:41", "202:202=171:171"}
+actor ChainBlastBombO : ChainBlastBomb{translation "192:192=104:104", "199:199=128:128", "202:202=104:104"}
+actor ChainBlastBombP : ChainBlastBomb{translation "192:192=229:229", "199:199=232:232", "202:202=229:229"}
+
+actor BlastmanStickyFX_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyFX_helper")
+stop
+}
+}
+
+actor BlastmanStickyFX_BP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyFX_Bhelper")
+stop
+}
+}
+
+actor BlastmanStickyFX_RP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyFX_Rhelper")
+stop
+}
+}
+
+actor BlastmanStickyFX_OP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyFX_Ohelper")
+stop
+}
+}
+
+actor BlastmanStickyFX_PP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyFX_Phelper")
+stop
+}
+}
+
+actor BlastmanStickyFX_Helper : BasicHelper
+{
++CLIENTSIDEONLY
+scale 1.9
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 5 A_JumpIf(CallACS("IsTargetClient")==1,"Death")
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyFX")
+TNT1 A 1
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor BlastmanStickyFX_BHelper : BlastmanStickyFX_Helper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 5 A_JumpIf(CallACS("IsTargetClient")==1,"Death")
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyBFX")
+TNT1 A 1
+stop
+}
+}
+
+actor BlastmanStickyFX_RHelper : BlastmanStickyFX_Helper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 5 A_JumpIf(CallACS("IsTargetClient")==1,"Death")
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyRFX")
+TNT1 A 1
+stop
+}
+}
+
+actor BlastmanStickyFX_OHelper : BlastmanStickyFX_Helper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 5 A_JumpIf(CallACS("IsTargetClient")==1,"Death")
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyOFX")
+TNT1 A 1
+stop
+}
+}
+
+actor BlastmanStickyFX_PHelper : BlastmanStickyFX_Helper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 5 A_JumpIf(CallACS("IsTargetClient")==1,"Death")
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("BlastmanStickyPFX")
+TNT1 A 1
+stop
+}
+}
+
+actor BlastmanStickyFX
+{
+var int User_OffsetZ;
+var int User_OffsetY;
+translation "192:192=210:210", "202:202=210:210", "199:199=210:210", "250:250=4:4"
++NOINTERACTION
++NOEXPLODEFLOOR
++NOTARGETSWITCH
+PROJECTILE
+Radius 12
+Height 11
+scale 1.9
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar(User_OffsetZ,random(10,58))
+TNT1 A 0 A_SetUserVar(User_OffsetY,random(-19,19))
+goto Spawn2
+Spawn2:
+CBST AAA 1 A_Warp(AAPTR_TARGET,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"Death",AAPTR_TARGET)
+CBST BBB 1 A_Warp(AAPTR_TARGET,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"Death",AAPTR_TARGET)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+CBST CCC 1 A_Warp(AAPTR_TARGET,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"Death",AAPTR_TARGET)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+CBST DDD 1 A_Warp(AAPTR_TARGET,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"Death",AAPTR_TARGET)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",25,"Death")
+loop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor BlastmanStickyBFX : BlastmanStickyFX{translation "192:192=205:205", "199:199=74:74", "202:202=205:205"}
+actor BlastmanStickyRFX : BlastmanStickyFX{translation "192:192=171:171", "199:199=41:41", "202:202=171:171"}
+actor BlastmanStickyOFX : BlastmanStickyFX{translation "192:192=104:104", "199:199=128:128", "202:202=104:104"}
+actor BlastmanStickyPFX : BlastmanStickyFX{translation "192:192=229:229", "199:199=232:232", "202:202=229:229"}
+
+
+actor BlastmanDetExplode : BasicExplosion
+{
+Damagetype "BlastBombBig"
+Obituary "$OB_CHAINBLASTBOOM"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_Explode(15,96,0,0,97)
+stop
+}
+}
+
+actor BlastmanPuffExplode : BasicExplosion
+{
+Damagetype "ClassPain"
+Obituary "$OB_CHAINBLASTPUFF"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_Explode(3,56,0,0,26)
+stop
+}
+}
+
+actor ChainBlastBombA : ChainBlastBomb
+{
+States
+{
+Crash:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerally")==1,"SDeath")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerplayer")==0,"SDeath")
+TNT1 A 0 Thing_ChangeTID(0,0)
+TNT1 A 0 A_SetUserVar(User_NoDamage,8)
+TNT1 A 0 A_GiveToTarget("TorgueTorqueAmmo",19)
+X_2E B 0 A_PlaySound("weapon/BlastHit")
+TNT1 A 0 A_JumpIfInTargetInventory("LightTeamFlag",1,"FX1")
+TNT1 A 0 A_JumpIfInTargetInventory("WilyTeamFlag",1,"FX2")
+TNT1 A 0 A_JumpIfInTargetInventory("CossackTeamFlag",1,"FX3")
+TNT1 A 0 A_JumpIfInTargetInventory("KingTeamFlag",1,"FX4")
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_P",1,AAPTR_TRACER)
+goto CrashLoop
+FX1:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_BP",1,AAPTR_TRACER)
+goto CrashLoop
+FX2:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_RP",1,AAPTR_TRACER)
+goto CrashLoop
+FX3:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_OP",1,AAPTR_TRACER)
+goto CrashLoop
+FX4:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_PP",1,AAPTR_TRACER)
+goto CrashLoop
+}
+}
+
+actor ChainBlastBombAB : ChainBlastBombA{translation "192:192=205:205", "199:199=74:74", "202:202=205:205"}
+actor ChainBlastBombAR : ChainBlastBombA{translation "192:192=171:171", "199:199=41:41", "202:202=171:171"}
+actor ChainBlastBombAO : ChainBlastBombA{translation "192:192=104:104", "199:199=128:128", "202:202=104:104"}
+actor ChainBlastBombAP : ChainBlastBombA{translation "192:192=229:229", "199:199=232:232", "202:202=229:229"}
+
+
+actor ChainBlastMine : ChainBlastBomb
+{
+var int User_NoDamage;
+damage (8-User_NoDamage)
+Speed 0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+CBST A 0 A_Jump(175,"Spawn2","Spawn3","Spawn4")
+SpawnC:
+CBST AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
+goto SDeath
+Spawn2:
+CBST BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
+goto SDeath
+Spawn3:
+CBST CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
+goto SDeath
+Spawn4:
+CBST DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
+goto SDeath
+Death:
+TNT1 A 0
+stop
+Crash:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerally")==1,"SDeath")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerplayer")==0,"SDeath")
+TNT1 A 0 Thing_ChangeTID(0,0)
+TNT1 A 0 A_SetUserVar(User_NoDamage,8)
+TNT1 A 0 A_GiveToTarget("TorgueTorqueAmmo",19)
+X_2E B 0 A_PlaySound("weapon/BlastHit")
+TNT1 A 0 A_JumpIfInTargetInventory("LightTeamFlag",1,"FX1")
+TNT1 A 0 A_JumpIfInTargetInventory("WilyTeamFlag",1,"FX2")
+TNT1 A 0 A_JumpIfInTargetInventory("CossackTeamFlag",1,"FX3")
+TNT1 A 0 A_JumpIfInTargetInventory("KingTeamFlag",1,"FX4")
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_P",1,AAPTR_TRACER)
+goto CrashLoop
+FX1:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_BP",1,AAPTR_TRACER)
+goto CrashLoop
+FX2:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_RP",1,AAPTR_TRACER)
+goto CrashLoop
+FX3:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_OP",1,AAPTR_TRACER)
+goto CrashLoop
+FX4:
+TNT1 A 0 A_GiveInventory("BlastmanStickyFX_PP",1,AAPTR_TRACER)
+goto CrashLoop
+
+CrashLoop:
+TNT1 AAA 1 //A_Warp(AAPTR_TRACER,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"SDeath")
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"StickyBoom",AAPTR_TRACER)
+TNT1 BBB 1 //A_Warp(AAPTR_TRACER,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"StickyBoom",AAPTR_TRACER)
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",1,"SoundSkip")
+TNT1 D 0 A_GiveInventory("BlastBeep_P",1,AAPTR_TRACER)
+TNT1 A 0 A_GiveInventory("WeaponCharge",1)
+CrashLoopCont:
+TNT1 CCC 1 //A_Warp(AAPTR_TRACER,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"SDeath")
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"StickyBoom",AAPTR_TRACER)
+TNT1 DDD 1 //A_Warp(AAPTR_TRACER,0,User_OffsetY,User_OffsetZ,0,245)
+TNT1 A 0 A_JumpIfInventory("ChainBlastActivator",1,"StickyBoom",AAPTR_TRACER)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",25,"SDeath")
+goto CrashLoop
+SoundSkip:
+TNT1 A 0 A_TakeInventory("WeaponCharge",99)
+goto CrashLoopCont
+
+StickyBoom:
+CBST AAA 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_SetDamageType("BlastBombBig")
+X_2E D 0 A_PlaySound("weapon/coilexplode",0,1,0,0.75)
+TNT1 A 0 A_SpawnItemEx("BlastmanDetExplode",0,0,6,momx,momy,momz,0,9,0)
+TN_B EFGHIJKLMNOPQRS 1
+stop
+SafeDeath:
+X_2E D 0 A_PlaySound("weapon/blastpuff",0,0.5)
+UMFX SR 2
+YMFX Q 2
+XMFX Q 2
+stop
+SDeath:
+CBST A 1 A_Warp(AAPTR_TRACER,0,0,28,180,0)
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+X_2E D 0 A_PlaySound("weapon/blastpuff")
+TNT1 A 0 A_SpawnItemEx("BlastmanPuffExplode",0,0,6,momx,momy,momz,0,9,0)
+TNT1 A 0 A_SetScale(4,4)
+MMFX BCDE 3
+stop
+}
+}
+
+actor ChainBlastMineB : ChainBlastMine{translation "192:192=205:205", "199:199=74:74", "202:202=205:205"}
+actor ChainBlastMineR : ChainBlastMine{translation "192:192=171:171", "199:199=41:41", "202:202=171:171"}
+actor ChainBlastMineO : ChainBlastMine{translation "192:192=104:104", "199:199=128:128", "202:202=104:104"}
+actor ChainBlastMineP : ChainBlastMine{translation "192:192=229:229", "199:199=232:232", "202:202=229:229"}
+
+actor BlastBeep_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_PlaySound("weapon/BlastAlarm",0,0.6,0,0.8)
+stop
+}
+}
+
+actor BlastBomb
+{
+translation "192:192=210:210", "202:202=210:210", "199:199=210:210", "250:250=4:4"
+PROJECTILE
+-NOGRAVITY
++HITTRACER
+Gravity 0.5
+damagetype "ClassPainLess2"
+Obituary "$OB_BLASTBOMB"
+Damage (2)
+radius 8
+height 8
+Speed 45
+scale 1.5
+States 
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+CBST E 3
+CBST FGH 3 A_ScaleVelocity(1.01)
+Spawn2:
+CBST EFGH 3 A_ScaleVelocity(1.01)
+loop
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 1 A_SpawnItemEx("BlastBombMine",0,0,0,0,0,0,0,1)
+stop
+DeathPlus:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+X_2E D 0 A_PlaySound("misc/mm3explosion",0,0.4)
+TNT1 A 0 A_Explode(5,56,0,0,24)
+TNT1 A 0 A_SetScale(3,3)
+UMFX SR 2
+YMFX Q 2
+XMFX Q 2
+stop
+Crash:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerplayer")==0,"DeathPlus")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerally")==1,"DeathPlus")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"DeathPlus")
+goto Death
+}
+}
+
+actor BlastBombB : BlastBomb{translation "192:192=205:205", "199:199=74:74", "202:202=205:205", "250:250=196:196"}
+actor BlastBombR : BlastBomb{translation "192:192=171:171", "199:199=41:41", "202:202=171:171", "250:250=170:170"}
+actor BlastBombO : BlastBomb{translation "192:192=104:104", "199:199=128:128", "202:202=104:104", "250:250=138:138"}
+actor BlastBombP : BlastBomb{translation "192:192=229:229", "199:199=232:232", "202:202=229:229", "250:250=214:214"}
+
+actor BlasterBomb : BlastBomb {+NOGRAVITY Speed 50}
+
+actor BlasterBombB : BlasterBomb{translation "192:192=205:205", "199:199=74:74", "202:202=205:205", "250:250=196:196"}
+actor BlasterBombR : BlasterBomb{translation "192:192=171:171", "199:199=41:41", "202:202=171:171", "250:250=170:170"}
+actor BlasterBombO : BlasterBomb{translation "192:192=104:104", "199:199=128:128", "202:202=104:104", "250:250=138:138"}
+actor BlasterBombP : BlasterBomb{translation "192:192=229:229", "199:199=232:232", "202:202=229:229", "250:250=214:214"}
+
+actor BlastBombMine : BlastBomb
+{
++NOGRAVITY
+damagetype "ClassPain"
+Speed 0
+States 
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+CBST A 0 A_Jump(175,"Spawn2","Spawn3","Spawn4")
+SpawnC:
+CBST EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+goto Death
+Spawn2:
+CBST FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+goto Death
+Spawn3:
+CBST GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+goto Death
+Spawn4:
+CBST HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+goto Death
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+X_2E D 0 A_PlaySound("misc/mm3explosion",0,0.4)
+TNT1 A 0 A_Explode(5,56,0,0,24)
+TNT1 A 0 A_SetScale(3,3)
+UMFX SR 2
+YMFX Q 2
+XMFX Q 2
+stop
+Crash:
+TNT1 A 0
+goto Death
+}
+}
+
+actor BlastBombBig : BlastBomb
+{
+translation "56:56=84:84", "58:58=42:42" ,"192:192=94:94", "198:198=3:3", "248:248=218:218", "250:250=4:4"
++NOGRAVITY
+//+HITTRACER
+damagetype "BlastBombBig"
+Obituary "$OB_BLASTBOMBX"
+damage (5)
+radius 15
+height 15
+Speed 33
+scale 1.8
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+Spawn2:
+CBST IJKL 4
+loop
+Crash:
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
+TNT1 A 0 A_SetScale(3.6,3.6)
+TNT1 A 0 A_Explode(6,104,0,0,48)
+BBFX A 2 A_PlaySound("misc/mm3explosion",0,0.85)
+TNT1 A 0 A_Explode(5,104,0,0,64)
+BBFX B 2
+TNT1 A 0 A_Explode(2,104,0,0,80)
+BBFX C 2
+TNT1 A 0 A_Explode(2,104,0,0,105)
+BBFX DEFG 2
+stop
+}
+}
+
+actor BlastBombBigB : BlastBombBig{translation "56:56=84:84", "58:58=69:69", "192:192=205:205", "198:198=74:74", "248:248=198:198", "250:250=4:4", "229:229=205:205", "220:220=74:74"}
+actor BlastBombBigR : BlastBombBig{translation "56:56=85:85", "58:58=172:172", "192:192=171:171", "198:198=41:41", "248:248=41:41", "250:250=4:4", "229:229=171:171", "220:220=41:41"}
+actor BlastBombBigO : BlastBombBig{translation "56:56=85:85", "58:58=101:101", "192:192=104:104", "198:198=128:128", "248:248=131:131", "250:250=4:4", "229:229=104:104", "220:220=128:128"}
+actor BlastBombBigP : BlastBombBig{translation "56:56=85:85", "58:58=218:218", "192:192=229:229", "198:198=232:232", "249:249=223:223", "250:250=4:4", "229:229=229:229", "220:220=232:232"}
+
+actor BlastGearFX
+{
++NOTARGETSWITCH
++NOINTERACTION
++NOGRAVITY
+-SOLID
+Scale 2.1
+States
+{
+Spawn:
+POWG BB 1 A_Warp(AAPTR_TARGET,0,0,90,0,5)
+POWG BB 1 A_Warp(AAPTR_TARGET,0,0,90,0,5)
+POWG CC 1 A_Warp(AAPTR_TARGET,0,0,90,0,5)
+POWG CC 1 A_Warp(AAPTR_TARGET,0,0,90,0,5)
+TNT1 A 0 A_JumpIfInTargetInventory("BlastGearActive",1,"Spawn")
+POWG BB 1 A_Warp(AAPTR_TARGET,0,0,90,0,5)
+stop
+StopThis:
+TNT1 A 0
+stop
+}
+}
+
+
+actor BlastmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("ChainBlastBomb",0,0,6,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ChainBlastBombB",0,0,6,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ChainBlastBombR",0,0,6,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ChainBlastBombO",0,0,6,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ChainBlastBombP",0,0,6,0,0,0)
+goto Done
+}
+}
+
+actor BlastmanGMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BlastBombBig",0,0,6,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BlastBombBigB",0,0,6,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BlastBombBigR",0,0,6,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BlastBombBigO",0,0,6,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BlastBombBigP",0,0,6,0,0,0)
+goto Done
+}
+}
+
+actor BlastmanAlt1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,3)
+TNT1 A 0 A_FireCustomMissile("BlastBomb",-10,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBomb",-6,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+FireB:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,3)
+TNT1 A 0 A_FireCustomMissile("BlastBombB",-10,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombB",-6,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+FireR:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,3)
+TNT1 A 0 A_FireCustomMissile("BlastBombR",-10,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombR",-6,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+FireO:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,3)
+TNT1 A 0 A_FireCustomMissile("BlastBombO",-10,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombO",-6,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+FireP:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,3)
+TNT1 A 0 A_FireCustomMissile("BlastBombP",-10,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombP",-6,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("BlastAltAmmoFlag",1)
+goto Done
+}
+}
+
+actor BlastmanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBomb",-3,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBomb",-2,0,0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombB",-3,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombB",-2,0,0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombR",-3,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombR",-2,0,0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombO",-3,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombO",-2,0,0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombP",-3,0,0,0,0,0)
+goto Done
+BlasP:
+TNT1 A 0 A_FireCustomMissile("BlasterBombP",-2,0,0,0,0,0)
+goto Done
+}
+}
+
+actor BlastmanAlt4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBomb",3,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBomb",2,0,0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombB",3,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombB",2,0,0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombR",3,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombR",2,0,0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombO",3,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombO",2,0,0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombP",3,0,0,0,0,0)
+goto Done
+BlasP:
+TNT1 A 0 A_FireCustomMissile("BlasterBombP",2,0,0,0,0,0)
+goto Done
+}
+}
+
+actor BlastmanAlt5_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBomb",10,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBomb",6,0,0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombB",10,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombB",6,0,0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombR",10,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombR",6,0,0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombO",10,0,0,0,0,0)
+goto Done
+TNT1 A 0 A_FireCustomMissile("BlasterBombO",6,0,0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,2)
+TNT1 A 0 A_FireCustomMissile("BlastBombP",10,0,0,0,0,0)
+goto Done
+BlasP:
+TNT1 A 0 A_FireCustomMissile("BlasterBombP",6,0,0,0,0,0)
+goto Done
+}
+}
+
+actor BlastJumpFX
+{
+Translation "192:192=4:4", "198:198=227:227", "202:202=210:210"
+PROJECTILE
+damagetype "DrillBomb"
+Obituary "$OB_DRILLBOMB"
++EXPLODEONWATER
++NOCLIP
++NOINTERACTION
+Damage (0)
+Radius 6
+Height 6
+speed 34
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_PlaySoundEx("classes/drillexplode", "Weapon")
+TN_B EFGHIJKLMNOPQRS 2
+stop
+}
+}
+
+Actor BlastDashItem_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BlastDashCooldownHelper")
+TNT1 A 0 A_JumpIfInventory("BlastGearActive",1,"PickupG")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==3,"PickupRight")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==5,"PickupLeft")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==9,"PickupBack")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==11,"PickupBackRight")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==13,"PickupBackLeft")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==17,"PickupForward")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==19,"PickupForwardRight")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==21,"PickupForwardLeft")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==25,"PickupUp")
+Goto PickupUp2
+PickupG:
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==3,"PickupRightG")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==5,"PickupLeftG")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==9,"PickupBackG")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==11,"PickupBackRightG")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==13,"PickupBackLeftG")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==17,"PickupForwardG")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==19,"PickupForwardRightG")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==21,"PickupForwardLeftG")
+TNT1 A 0 A_JumpIf(CallACS("CCBM_BlastCheckInput")==25,"PickupUpG")
+Goto PickupUpG2
+PickupForward:
+TNT1 A 0 A_ChangeVelocity(25,0,momz+10,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,0,momz+(10*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupRight:
+TNT1 A 0 A_ChangeVelocity(0,-25,momz+10,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(0,-25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(10*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupLeft:
+TNT1 A 0 A_ChangeVelocity(0,25,momz+10,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(0,25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(10*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupBack:
+TNT1 A 0 A_ChangeVelocity(-25,0,momz+10,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(-25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,0,momz+(10*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupUp:
+TNT1 A 0 A_ChangeVelocity(0,0,25,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(0,0,25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,3)
+Stop
+PickupUp2:
+TNT1 A 0 A_ChangeVelocity(0,0,25,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(0,0,25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,3)
+Stop
+PickupForwardRight:
+TNT1 A 0 A_ChangeVelocity(25,-25,momz+10,3)
+Stop
+TNT1 A 0 A_ChangeVelocity((25*ACS_NamedExecuteWithResult("ImpairmentACS")/100),(-25*ACS_NamedExecuteWithResult("ImpairmentACS")/100),momz+(10*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupForwardLeft:
+TNT1 A 0 A_ChangeVelocity(25,25,momz+10,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(10*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupBackRight:
+TNT1 A 0 A_ChangeVelocity(-25,-25,momz+10,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(-25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,-25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(10*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupBackLeft:
+TNT1 A 0 A_ChangeVelocity(-25,25,momz+10,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(-25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,25*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(10*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupForwardG:
+TNT1 A 0 A_ChangeVelocity(30,0,momz+15,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,0,momz+(15*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupRightG:
+TNT1 A 0 A_ChangeVelocity(0,-30,momz+15,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(0,-30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(15*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupLeftG:
+TNT1 A 0 A_ChangeVelocity(0,30,momz+15,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(0,30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(15*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupBackG:
+TNT1 A 0 A_ChangeVelocity(-30,0,momz+15,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(-30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,0,momz+(15*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupUpG:
+TNT1 A 0 A_ChangeVelocity(0,0,30,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(0,0,30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,3)
+Stop
+PickupUpG2:
+TNT1 A 0 A_ChangeVelocity(0,0,30,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(0,0,30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,3)
+Stop
+PickupForwardRightG:
+TNT1 A 0 A_ChangeVelocity(30,-30,momz+15,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,-30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(15*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupForwardLeftG:
+TNT1 A 0 A_ChangeVelocity(30,30,momz+15,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(15*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupBackRightG:
+TNT1 A 0 A_ChangeVelocity(-30,-30,momz+15,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(-30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,-30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(15*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+PickupBackLeftG:
+TNT1 A 0 A_ChangeVelocity(-30,30,momz+15,3)
+Stop
+TNT1 A 0 A_ChangeVelocity(-30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,30*ACS_NamedExecuteWithResult("ImpairmentACS")/100,momz+(15*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+Stop
+}
+}

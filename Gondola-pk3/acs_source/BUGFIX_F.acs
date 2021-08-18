@@ -1,0 +1,449 @@
+#include "zcommon.acs"
+#library "bugfix_f"//F is for fish
+
+#DEFINE C_JAX_SUCKRECODE 422
+#DEFINE C_JAX_SUCKRECODE2 423
+
+#DEFINE TEAM_NONE -1
+#DEFINE MAX_PLAYERS 63 //0-31//0-63
+#DEFINE MAX_PLAYERSX 64
+
+script 147 (int Swap)
+{
+	Switch(Swap) {
+		Case 3:
+			SetActivator(0,AAPTR_FRIENDPLAYER);
+			break;
+		Case 2:
+			SetActivator(0,AAPTR_MASTER);
+			break;
+		Case 1:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+		Case 0:
+			SetActivatorToTarget(0);
+			break;
+	}
+
+	SetResultValue(ActivatorTID());
+}
+
+//Hitscan based suck/blow
+script C_JAX_SUCKRECODE (int distRange, int angleRange, int type)
+{
+	distRange <<= 16;
+	angleRange <<= 8;
+	int owner = ACS_ExecuteWithResult(147, 0);
+	int angle = GetActorAngle(owner);
+	int pitch = pitchAdjust(GetActorPitch(owner));
+	int team = ACS_ExecuteWithResult(143, 0);
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	
+	int xDist;
+	int yDist;
+	int zDist;
+	int angleDist;
+	int pitchDist;
+	int dist;
+	
+	for(int i=incrementSkip(-1,owner-1000); i<MAX_PLAYERSX; i=incrementSkip(i,owner-1000)) {
+		if((team==TEAM_NONE||isDifferentTeams(team,i))&&CheckSight(0,1000+i,0)) {
+			xDist = GetActorX(1000+i) - x;
+			yDist = GetActorY(1000+i) - y;
+			angleDist = vectorangle(xDist,yDist);
+			if(abs(WrapAround(angleDist-angle))<angleRange){
+				dist = fDistanceVal1(angleDist, xDist, yDist);
+				zDist = GetActorZ(1000+i) + 28.0 - z;
+				pitchDist = vectorangle(dist, zDist);
+				if(abs(WrapAround(pitchDist-pitch))<angleRange) {
+					dist = fDistanceVal2(pitchDist, dist, zDist);
+					if(dist<distRange) {
+						switch(type) {
+							case 101://Targeter Type
+								GiveActorInventory(1000+i,"HomingLockGiver",1);
+								break;
+							case 25://Acidman
+								if(CheckActorInventory(1000+i,"AcidBarrierVisualBar") == 0){
+								SetPointer(AAPTR_TRACER,1000+i);
+								GiveInventory("AcidBarrierFind",1);
+								}
+								break;
+							case 20://Dynamo
+								GiveActorInventory(1000+i,"HomingLockGiver",1);
+								break;
+							case 9://MWS Blow
+								GiveActorInventory(1000+i,"TempPitProtect",1);
+								ThrustThing((angle >> 8), 40, 1, 1000+i);
+								break;
+							case 8://HSH Blow Weak
+								GiveActorInventory(1000+i,"TempPitProtect",1);
+								ThrustThing((angle >> 8), 1, 1, 1000+i);
+								break;
+							case 7://HSH Blow Hot
+								GiveActorInventory(1000+i,"TempPitProtect",1);
+								ThrustThing((angle >> 8), 4, 1, 1000+i);
+								break;
+							case 6://HSH Blow
+								GiveActorInventory(1000+i,"TempPitProtect",1);
+								ThrustThing((angle >> 8), 3, 1, 1000+i);
+								break;
+							case 5://HSH Suck Weak
+								GiveActorInventory(1000+i,"TempPitProtect",1);
+								ThrustThing((angle >> 8)+128, 1, 1, 1000+i);
+								break;
+							case 4://HSH Suck Cold
+								GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"IcemanSlowPickup",1);
+								ThrustThing((angle >> 8)+128, 3, 1, 1000+i);
+								break;
+							case 3://HSH Suck
+								GiveActorInventory(1000+i,"TempPitProtect",1);
+								ThrustThing((angle >> 8)+128, 3, 1, 1000+i);
+								break;
+							case 2://Dust Suck
+								GiveActorInventory(1000+i,"TempPitProtect",1);
+								if(ACS_NamedExecuteWithResult("cbm_IsPlayerAlive",i+1000)){
+									GiveActorInventory(owner,"CrushEmAmmo",2);
+								}
+								ThrustThing((angle >> 8)+128, 3, 1, 1000+i);
+								break;
+							case 1://Suck
+								ThrustThing((angle >> 8)+128, 1, 1, 1000+i);
+								break;
+							default://Blow
+								ThrustThing(angle >> 8, 1, 1, 1000+i);
+								break;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+//Hitscan based suck/blow but butchered to be for the same team
+script C_JAX_SUCKRECODE2 (int distRange, int angleRange)
+{
+	distRange <<= 16;
+	angleRange <<= 8;
+	int owner = ACS_ExecuteWithResult(147, 0);
+	int angle = GetActorAngle(owner);
+	int pitch = pitchAdjust(GetActorPitch(owner));
+	int team = ACS_ExecuteWithResult(143, 0);
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	
+	int xDist;
+	int yDist;
+	int zDist;
+	int angleDist;
+	int pitchDist;
+	int dist;
+	
+	for(int i=incrementSkip(-1,owner-1000); i<MAX_PLAYERSX; i=incrementSkip(i,owner-1000)) {
+		if((isSameTeams(team,i))&&CheckSight(0,1000+i,0)) {
+			xDist = GetActorX(1000+i) - x;
+			yDist = GetActorY(1000+i) - y;
+			angleDist = vectorangle(xDist,yDist);
+			if(abs(WrapAround(angleDist-angle))<angleRange){
+				dist = fDistanceVal1(angleDist, xDist, yDist);
+				zDist = GetActorZ(1000+i) + 28.0 - z;
+				pitchDist = vectorangle(dist, zDist);
+				if(abs(WrapAround(pitchDist-pitch))<angleRange) {
+					dist = fDistanceVal2(pitchDist, dist, zDist);
+					if(dist<distRange) {
+								if(CheckActorInventory(1000+i,"AcidBarrierVisualBar") == 0){
+								SetPointer(AAPTR_TRACER,1000+i);
+								GiveInventory("AcidBarrierFind",1);
+								}
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+function bool isSameTeams (int team, int targetNumber)
+{
+	return (team == GetPlayerInfo(targetNumber, PLAYERINFO_TEAM));
+}
+
+script "cbm_legacyDustPull" (int Range, int Power)
+{
+	int owner = ACS_ExecuteWithResult(147,0);
+	int team = ACS_ExecuteWithResult(143,0);
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	int angle = GetActorAngle(0);
+
+	if (team == TEAM_NONE) {
+		for(int i=0; i<MAX_PLAYERS; i++) {
+			if (owner != 1000 + i) {
+				if(push2Val(x,y,z,angle, 1000 +i, Power, Range)) {
+					GiveActorInventory(1000 + i, "TempPitProtect", 1);
+				}
+			}
+		}	
+	}
+	else{
+		for(int j=0; j<MAX_PLAYERS; j++) {
+			if (owner != 1000 + j) {
+				if (isDifferentTeams(team,j)) {
+					if(push2Val(x,y,z,angle, 1000 +j, Power, Range)) {
+						GiveActorInventory(1000 + j, "TempPitProtect", 1);
+					}
+				}
+			}
+		}
+	}
+}
+
+
+script 647 (int p) DISCONNECT
+{
+	Thing_Remove(p+1200);//Gemini Clone
+}
+/*
+script "TestPlayerNum" (int p) DISCONNECT
+{
+	Log(s:"TestPlayerNum DISCONNECT CALLED!");
+	Log(s:"THE PLAYER (",i:p,s:") //////  PlayerIsSpectator = ",i:PlayerIsSpectator(p));
+}
+*/
+function void clearCloneSpawn (void)
+{
+	for(int i=0; i<MAX_PLAYERS; i++) {
+		takeActorInventory(1000 + i, "CloneSpawning", 999);
+	}
+}
+
+// Gemini Clones Spawner
+script 149 (int j)
+{
+	if (j==2) {
+		bool oneFound = false;
+		bool twoMany = false;
+		int cloner;
+		for(int i=0; i<MAX_PLAYERS; i++) {
+			if (CheckActorInventory(1000 + i, "CloneSpawning")>0) {
+				if (!oneFound) {
+					cloner = 1000 + i;
+					oneFound = true;
+				} else {
+					twoMany = true;
+					takeActorInventory(1000 + i, "CloneSpawning", 999);
+					giveActorInventory(1000 + i, "CloneRareBug", 1);
+				}
+			}
+		}
+		if (twoMany) {
+			takeActorInventory(cloner, "CloneSpawning", 999);
+			giveActorInventory(cloner, "CloneRareBug", 1);
+			//SetActorState(0, "Death");
+			//thing_destroy(ActivatorTID(),0);
+			//DamageThing(0);
+			Thing_Remove(0);
+			terminate;
+		}
+		if (oneFound) {
+			Thing_ChangeTID(0, cloner + 200);
+			//SpawnProjectile(activatorTID(), "GemCloneVisual", GetActorAngle(0), 0, 0, 0, cloner+300);
+			giveActorInventory(cloner, "CloneSpawned", 1);
+			takeActorInventory(cloner, "CloneSpawning", 999);
+			terminate;
+		}
+		//SetActorState(0, "Death");
+		//thing_destroy(ActivatorTID(),0);
+		//DamageThing(0);
+		Thing_Remove(0);
+		terminate;
+	}
+	if (j==1) { //This doesn't make a loyal clone
+//		SpawnProjectile(activatorTID(), "GemClone", GetActorAngle(0), 0, 0, 0, activatorTID()+200);
+		Spawn("GemClone", GetActorX(activatorTID()), GetActorY(activatorTID()), GetActorZ(activatorTID()), activatorTID()+200, GetActorAngle(activatorTID()));
+	}
+	TakeInventory("cloneAngle",999);
+	GiveInventory("cloneAngle",GetActorAngle(0) >> 8);
+}
+
+// Reposition sync
+script 150 (void)
+{
+	if (checkInventory("CloneID")==0) {
+		giveInventory("CloneID", (ACS_ExecuteWithResult(147, 0)-999));
+	}
+	int owner = (checkInventory("CloneID") + 999);
+	//log(s:"CloneID: ",i:owner);
+	int cloneHealth = GetActorProperty(0, APROP_HEALTH);
+	//log(s:"CloneHealth: ",i:cloneHealth);
+	//log(s:"I HAVE THE POWAH",i:checkActorInventory(owner, "CloneSpawned"));
+	takeActorInventory(owner, "CloneAmmo", 999);
+	giveActorInventory(owner, "CloneAmmo", cloneHealth);
+	takeActorInventory(owner, "CloneFiring", 999);
+	giveActorInventory(owner, "CloneFiring", checkActorInventory(owner+200, "CloneFiring"));
+	if (cloneHealth>0 && GetActorProperty(owner, APROP_HEALTH)>0 && checkActorInventory(owner, "CloneSpawned")>0) {
+	//if (cloneHealth>0 && GetActorProperty(owner, APROP_HEALTH)>0) {
+		//log(s:"Is Alive");
+		if (checkActorInventory(owner, "cloneStationary")==0) {
+			int cloneAngle = checkActorInventory(owner, "cloneAngle") << 8;
+			//print(i:cloneAngle);
+			//log(s:"CloneAngle: ",i:cloneAngle);
+			int cloneDistanceInv = checkActorInventory(owner, "cloneDistance");
+			int cloneDistanceX = 15.0;
+			cloneDistanceX *= cloneDistanceInv;
+			int cloneDistanceY = FixedMul(cloneDistanceX,sin(cloneAngle));
+			cloneDistanceX = FixedMul(cloneDistanceX,cos(cloneAngle));
+			if(!SetActorPosition(owner+200, GetActorX(owner)+cloneDistanceX, GetActorY(owner)+cloneDistanceY, GetActorZ(owner+200), 0)) {
+				SetActorPosition(owner+200, GetActorX(owner)+cloneDistanceX, GetActorY(owner)+cloneDistanceY, GetActorZ(owner), 0);
+			}
+			if (cloneDistanceInv<=1) {
+				SetActorState(owner+200, "SummonCooldown");
+			}
+		}
+		SetActorAngle(0, GetActorAngle(owner+200));
+		SetActorPosition(0, GetActorX(owner+200), GetActorY(owner+200), GetActorZ(owner+200), 0);
+	} else {
+		if (checkActorInventory(owner, "cloneBug")==0) {
+			//print(s:"Some sort of rare bug has happened, Tell the Devs!");
+			takeActorInventory(owner, "CloneAmmo", cloneHealth/2);
+			takeActorInventory(owner, "cloneSpawned", 999);		
+		}
+		takeActorInventory(owner, "cloneBug", 999);
+		SetActorState(0, "Death2");
+		//thing_destroy(owner+200,0);
+		Thing_Remove(owner+200);
+		//SetActorState(owner+200, "Death");
+		//log(s:"The Clone should be dead");
+	}
+}
+
+// Returns absolute value
+function int abs (int x)
+{
+    if (x < 0)
+	{
+        return -x;
+	}
+    return x;
+}
+
+function int WrapAround(int i)
+{
+	if(i<-0.5) return i+1.0;
+	if(i>0.5) return i-1.0;
+	return i;
+}
+
+
+function int fDistanceVal1(int ang, int x, int y)
+{
+	int len;
+	
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
+	else len = fixeddiv(x, cos(ang));
+
+	//print(f:len);
+	return len;
+}
+
+function int fDistanceVal2(int ang, int len, int z)
+{
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(z, sin(ang));
+	else len = fixeddiv(len, cos(ang));
+
+	//print(f:len);
+	return len;
+}
+
+
+function int pitchAdjust(int i)
+{
+	if(i>0.0) return 1.0-i;
+	return -i;
+}
+
+function int incrementSkip(int i, int skip)
+{
+	i++;
+	if(i==skip) return i+1;
+	return i;
+}
+
+function bool isDifferentTeams (int team, int targetNumber)
+{
+	return (team != GetPlayerInfo(targetNumber, PLAYERINFO_TEAM));
+}
+
+function int NoPushFlagCheck(int Target)
+{
+	if(CheckActorInventory(Target,"GroundInGround")||CheckActorInventory(Target,"GroundInCeiling")||CheckActorInventory(Target,"DrillingFlag2")||CheckActorInventory(Target,"PowerNoPush") >= 1)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+function int sqrt8(int number)
+{
+	if(number <= 3)
+	{
+		if(number > 0)
+		{
+			return 1;
+		}
+		return 0;
+	}
+
+	int oldAns = number >> 1,                     // initial guess
+	    newAns = (oldAns + number / oldAns) >> 1; // first iteration
+
+	// main iterative method
+	while(newAns < oldAns)
+	{
+		oldAns = newAns;
+		newAns = (oldAns + number / oldAns) >> 1;
+	}
+
+	return oldAns;
+}
+
+function int distanceVal (int tid1x, int tid1y, int tid1z, int tid2)
+{
+	int x, y, z, d;
+	x = tid1x - GetActorX(tid2) >> 16; // Convert fixed point to integer
+	y = tid1y - GetActorY(tid2) >> 16;
+	z = tid1z - GetActorZ(tid2) >> 16;
+	d = sqrt8( x*x + y*y + z*z );
+	return d;
+}
+
+
+function bool push2Val (int x, int y, int z, int angle, int pushee, int force, int range)
+{
+	bool pushvalid;
+
+	pushvalid = (range == 0 || distanceVal(x, y, z, pushee) < range);
+	if (pushvalid) {
+		if (force!=0) {
+				int angleMod = 0;
+				if (force<0) {
+					force *= -1;
+					angleMod = 128;
+				}
+			ThrustThing(((angle >> 8) + angleMod), force, 1, pushee);
+		}
+	}
+	return pushvalid;
+}
+
+
+script "cbm_Re_SetThingSpecial" (int Thing0, int Thing1, int Thing2, int Thing3)
+{
+	SetThingSpecial(0,0,Thing0,Thing1,Thing2,Thing3);
+}

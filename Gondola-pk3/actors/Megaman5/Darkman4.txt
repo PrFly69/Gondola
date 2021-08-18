@@ -1,0 +1,39 @@
+actor Darkman4 : SturdyClassBase
+{
+Player.ScoreIcon "C_05L0X"
+player.startitem "SturdyHealthBar"
+player.displayname "darkman4"
+player.soundclass "darkman4c"
+player.startitem "DarkBlasterBoss"
+player.startitem "DarkBlasterAmmo",28
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+States
+{
+Spawn:
+DAR4 A 0 
+DAR4 B 1
+DAR4 A 1
+Goto Spawn+2
+See:
+DAR4 B 6
+DAR4 C 6
+DAR4 D 6
+DAR4 E 6
+Goto Spawn
+Missile:
+DAR4 F 5
+DAR4 G 4
+goto Spawn
+ClassPain:
+DAR4 H 0
+goto PainContinue
+DeathFix:
+DAR4 H 0
+goto DeathContinue
+ClassDeath:
+DAR4 H 1
+goto MegaDeathEnd
+}
+}

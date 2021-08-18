@@ -1,0 +1,96 @@
+actor Blizzardman : ClassBase
+{
+Player.ScoreIcon "C_06A0X"
+player.displayname "blizzardman"
+player.soundclass "blizzardmanc"
+player.startitem "BlizzardAttackBoss"
+player.startitem "BlizzardAttackerBoss"
+player.startitem "BallAmmo", 44
+player.forwardmove 0.9, 0.9
+player.sidemove 0.78, 0.78
+
+player.startitem "FlameBlastWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "FlameSwordWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+
+player.startitem "RealClassFlag", 58
+States
+{
+Spawn:
+BLZZ A 0 
+BLZZ B 1
+BLZZ A 0 A_JumpIfInventory("BlizzardmanFlag",1,"Rolling")
+BLZZ A 1
+Goto Spawn+2
+See:
+BLZZ B 0 A_SpawnItemEx("BlizzardM_WalkFX",0,0,0,0,0,0,0,1)
+BLZZ BCDE 5
+BLZZ A 0 A_JumpIfInventory("BlizzardmanFlag",1,"Rolling")
+Goto Spawn+2
+Missile:
+BLZZ FFFFF 1 A_JumpIfInventory("BlizzardmanFlag",1,"Rolling")
+BLZZ G 4
+goto Spawn+2
+Rolling:
+BLZZ RST 1
+BLZZ R 1 A_JumpIfInventory("BlizzardmanFlag",1,"Rolling")
+goto Spawn+2
+ClassPain:
+BLZZ H 0
+goto PainContinue
+DeathFix:
+BLZZ H 0
+goto DeathContinue
+ClassDeath:
+BLZZ H 1
+goto MegaDeathEnd
+}
+}
+
+actor BlizzardM_WalkFX
+{
++MISSILE
++NOGRAVITY
++THRUACTORS
++DONTBLAST
++NOINTERACTION
++CLIENTSIDEONLY
+damage 0
+Radius 16
+Height 4
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(z-floorz!=0,4)
+TNT1 A 0 A_SpawnItemEx("BlizzardM_WalkFX2",-4,-20,10,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BlizzardM_WalkFX2",-4,0,10,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BlizzardM_WalkFX2",-4,20,10,0,0,0,0,1)
+TNT1 A 0
+stop
+}
+}
+
+actor BlizzardM_WalkFX2 : BlizzardM_WalkFX
+{
+Radius 2
+Height 2
+States
+{
+Spawn:
+QMFX S 0
+QMFX S 0 A_SetScale(ScaleX*(random(0,1)*2-1),ScaleY)
+QMFX ST 3
+QMFX UU 3 A_Fadeout(0.33)
+stop
+}
+}

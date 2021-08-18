@@ -1,0 +1,189 @@
+actor GrabBusterWep : BaseMM8BDMWep
+{
+dropitem "GrabBusterWepCDropped"
+Weapon.AmmoUse 4
+Weapon.AmmoGive 28
+Weapon.SlotNumber 2
+Inventory.Pickupmessage "$PU_GRABBUSTER"
+Obituary "$OB_GRABBUSTER"
+Tag "$TAG_GRABBUSTER"
+weapon.ammotype "GrabBusterAmmo"
+inventory.icon "MVICN_1"
+States
+{
+Spawn:
+CWV1 Z 1
+loop
+Ready:
+GRBU J 0 ACS_ExecuteAlways(998,0,206)
+CWV1 A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+CWV1 A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+CWV1 A 1 A_Raise
+Loop
+Fire:
+CWV1 A 0 A_JumpIfNoAmmo("NoAmmo")
+CWV1 A 0 A_PlaySoundEx("weapon/grabbuster","Weapon")
+CWV1 A 0 A_FireCustomMissile("GrabBuster",0,1,8,0)
+CWV1 CBA 3
+CWV1 A 7
+CWV1 A 0 A_Refire
+Goto Ready+1
+NoAmmo:
+CWV1 A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor GrabBusterAmmoC : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor GrabBuster
+{
+Translation "192:192=104:104","198:198=0:0"
+PROJECTILE
+Damagetype "GrabBusterCopywep"
+Obituary "$OB_GRABBUSTER"
+Damage (15)
+Radius 8
+Height 8
+Speed 30
+Scale 2.5
+States
+{
+Spawn:
+GRBU B 2
+SpawnLoop:
+GRBU CDED 2 A_SpawnItemEx("GrabBusterFX", 0, frandom(-6, 6), frandom(-6, 6))
+loop
+}
+}
+
+actor PainGrabBusterHit
+{
++MISSILE
++NOGRAVITY
++NOINTERACTION
+-SOLID
+Height 2
+Radius 2
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainGrabBusterHit_P",1)
+stop
+}
+}
+actor PainGrabBusterHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("GrabBusterHealthChaser",0,0,0,0,0,0,0,0)
+stop
+}
+}
+
+actor GrabBusterHealthChaser
+{
+Translation "192:192=4:4","198:198=214:214"
+PROJECTILE
++SEEKERMISSILE
++DONTBLAST
++DONTREFLECT
++NOINTERACTION
+renderstyle translucent
+alpha 0.8
+reactiontime 135
+Radius 16
+Height 32
+speed 50
+scale 2.0
+states
+{
+Spawn:
+CWV1 Y 0
+CWV1 Y 0 A_TransferPointer(2,0,2,2)
+CWV1 Y 0 A_RearrangePointers(0,0,2)
+CWV1 Y 0 A_FaceTarget
+CWV1 Y 0 A_SetPitch(30)//momz
+CWV1 Y 0 A_SetAngle(angle+random(150,210))
+CWV1 Y 1 A_ChangeVelocity(30,0,30,2)
+goto SpawnSlow+2
+SpawnSlow:
+CWV1 X 0 A_JumpIf(Args[4]>=9,"SpawnSpeedStart")
+CWV1 X 0 A_JumpIfCloser(48,"Death")//64
+CWV1 X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"No")
+CWV1 X 0 A_SetArg(4,Args[4]+1)
+CWV1 X 0 A_FaceTracer(5,2)
+CWV1 X 1 A_ChangeVelocity(30-3*Args[4],0,sin(pitch)*(30-3*Args[4]),3)//momz*(1-Args[4]*0.05),3)
+CWV1 Y 0 A_FaceTracer(5,2)
+CWV1 Y 1 A_ChangeVelocity(30-3*Args[4],0,sin(pitch)*(30-3*Args[4]),3)
+loop
+SpawnSpeedStart:
+CWV1 X 0 A_JumpIfCloser(48,"Death")
+CWV1 X 0 A_FaceTracer(6,3)
+CWV1 X 1 A_ChangeVelocity(6,0,sin(pitch)*6,3)
+CWV1 Y 0 A_FaceTracer(6,3)
+CWV1 Y 1 A_ChangeVelocity(6,0,sin(pitch)*6,3)
+goto SpawnSpeed
+SpawnSpeed:
+CWV1 X 0 A_JumpIf(Args[3]>=16,"SpawnL_End")
+CWV1 X 0 A_JumpIfCloser(48,"Death")
+CWV1 X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"No")
+CWV1 X 0 A_SetArg(3,Args[3]+1)
+CWV1 X 0 A_FaceTracer(6,3)
+CWV1 X 1 A_ChangeVelocity(3+3*Args[3],0,sin(pitch)*(3+3*Args[3]),3)
+CWV1 Y 0 A_JumpIfCloser(48,"Death")
+CWV1 Y 0 A_FaceTracer(6,3)
+CWV1 Y 1 A_ChangeVelocity(3+3*Args[3],0,sin(pitch)*(3+3*Args[3]),3)
+loop
+SpawnL_End:
+TNT1 A 0 A_SpawnItemEx("GrabBusterSmallHealth",0,0,0,momx*0.25,momy*0.25,momz*0.4,0,9)
+stop
+
+Death:
+TNT1 A 0 A_PlaySoundEx("item/energyup","Weapon")
+TNT1 A 3 A_GiveToTarget("GrabBusterSmallHealth",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+Actor GrabBusterSmallHealth : CustomInventory
+{
+Translation "192:192=4:4","198:198=214:214"
+inventory.pickupmessage "Picked up a tiny health capsule. (10)"
+inventory.PickupSound "item/energyup"
+//-SPECIAL
+//+THRUACTORS
++NOBLOCKMONST
+ReactionTime 42
+Speed 20
+scale 2.0
+States
+{
+Spawn:
+CWV1 XYXY 6
+CWV1 X 0 A_CountDown
+loop
+Pickup:
+//TNT1 A 0 A_JumpIf(Health>0,"Pickup2")
+//fail
+//Pickup2:
+TNT1 A 0 HealThing(10)
+stop
+}
+}

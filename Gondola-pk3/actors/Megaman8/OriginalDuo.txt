@@ -1,0 +1,82 @@
+actor OriginalDuo : SturdyClassBase
+{
+Player.ScoreIcon "C_08J0X"
+player.startitem "SturdyHealthBar"
+player.displayname "OriginalDuo"
+player.soundclass "originalduoc"
+player.startitem "OriginalDuoBoss"
+player.startitem "OriginalDuoMeteorBoss"
+player.startitem "DuoJusticeAmmo", 42
+
+player.weaponslot 1, "OriginalDuoBoss"
+player.weaponslot 2, "OriginalDuoMeteorBoss"
+
+player.forwardmove 0.76, 0.76
+player.sidemove 0.74, 0.74
+States
+{
+Spawn:
+ODUO A 0
+ODUO B 1
+ODUO ALRSRLA 7
+Goto Spawn+2
+See:
+ODUO BCDE 5
+Goto Spawn
+Missile:
+ODUO BB 1 A_JumpIfInventory("ODuoMeteorFlag",1,"MissileRise")
+ODUO F 0 A_JumpIfInventory("ODuoRamFlag",1,"Missile2")
+ODUO F 5
+ODUO B 2
+goto Spawn
+Missile2:
+ODUO B 2
+goto Missile
+CustomState6:
+MissileRise:
+ODUO MMNNOO 1 A_JumpIfInventory("ODuoMeteorGo",1,"MissileMeteor")
+loop
+MissileMeteor:
+ODUO PPQQ 1 A_JumpIfInventory("ODuoMeteorStop",1,"Spawn")
+loop
+
+CustomState1:
+ODUO F 5
+ODUO B 4
+goto Spawn
+
+CustomState2:
+ODUO I 3
+goto Missile
+
+CustomState3:
+ODUO J 3
+goto Missile
+
+CustomState4:
+ODUO B 1
+goto Spawn
+
+CustomState5:
+ODUO F 32
+goto Spawn
+
+Missile2_Pain:
+ODUO H 0 A_SpawnItemEx("DelayPainFX")
+goto Missile2
+MissileRise_Pain:
+ODUO H 0 A_SpawnItemEx("DelayPainFX")
+goto MissileRise+1
+
+ClassPain:
+ODUO H 0 A_JumpIfInventory("ODuoMeteorFlag",1,"MissileRise_Pain")
+ODUO H 0 A_JumpIfInventory("ODuoRamFlag",1,"Missile2_Pain")
+goto PainContinue
+DeathFix:
+ODUO H 0
+goto DeathContinue
+ClassDeath:
+ODUO H 1
+goto MegaDeathEnd
+}
+}

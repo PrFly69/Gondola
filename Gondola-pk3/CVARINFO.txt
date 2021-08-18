@@ -1,0 +1,2 @@
+user bool ccbm_allyhealthbar = true;
+user bool ccbm_mapmarker = true;

@@ -1,0 +1,1229 @@
+actor OilSliderBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_1H"
+dropitem "OilSliderWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 3
+Obituary "$OB_OILSLIDER"
+weapon.ammotype "SkateOrSlideAmmo"
+weapon.ammotype2 "ExtraOilAmmo"
+states
+{
+Spawn:
+C_01 H 1
+loop
+Ready:
+OILA X 0 ACS_ExecuteAlways(998,0,DYE_OILMAN)
+OILA X 0 A_GunFlash("Flash.Wait",1)
+OILA X 0 A_TakeInventory("OilCheck",999)
+OILA X 0 A_GiveInventory("OilmanIsDone",1)
+goto Ready1
+Ready1:
+OILA X 0 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 0 A_JumpIfInventory("PowerRage_ST",1,3)
+OILA X 1 A_WeaponReady
+OILA X 0 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 1 A_WeaponReady
+OILA X 0 A_GiveInventory("ExtraOilAmmo",4)
+loop
+Ready2:
+OILA X 10 A_WeaponReady
+goto Ready1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+OILA X 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+OILA X 1 A_Raise
+Loop
+Fire:
+OILA X 0 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+goto FireH1
+FireH1:
+OILA X 0 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 0 A_JumpIfInventory("SkateOrSlideAmmo",20,"FireH3") 
+OILA X 0 A_JumpIfInventory("SkateOrSlideAmmo",10,"FireH2")
+OILA X 1 A_GiveInventory("SkateOrSlideAmmo_RC",1)
+OILA X 0 A_ReFire("FireH1.a")
+goto Fire1
+FireH1.a:
+OILA X 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 0 A_ReFire("FireH1.b")
+goto Fire1
+FireH1.b:
+OILA X 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 0 A_ReFire("FireH1.c")
+goto Fire1
+FireH1.c:
+OILA X 0 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 0 A_JumpIfInventory("SkateOrSlideAmmo",20,"FireH3") 
+OILA X 0 A_JumpIfInventory("SkateOrSlideAmmo",10,"FireH2")
+OILA X 1 A_GiveInventory("SkateOrSlideAmmo_RC",1)
+OILA X 0 A_ReFire("FireH1.d")
+goto Fire1
+FireH1.d:
+OILA X 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 0 A_ReFire("FireH1.e")
+goto Fire1
+FireH1.e:
+OILA X 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 0 A_ReFire("FireH1.c")
+goto Fire1
+
+FireH2:
+OLHC A 0 A_PlaySoundEx("weapon/oilcharge","Weapon")
+FireH2.a:
+OLHC A 0 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC A 0 A_JumpIfInventory("SkateOrSlideAmmo",20,"FireH3") 
+OLHC A 1 Offset(6,32) A_GiveInventory("SkateOrSlideAmmo_RC",1)
+OLHC A 0 A_ReFire("FireH2.b")
+goto Fire2
+FireH2.b:
+OLHC A 1 Offset(-6,32) A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC A 0 A_ReFire("FireH2.c")
+goto Fire2
+FireH2.c:
+OLHC A 0 Offset(1,32) A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC A 0 A_JumpIfInventory("SkateOrSlideAmmo",20,"FireH3") 
+OLHC A 1 A_GiveInventory("SkateOrSlideAmmo_RC",1)
+OLHC A 0 A_ReFire("FireH2.d")
+goto Fire2
+FireH2.d:
+OLHC A 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC A 0 A_ReFire("FireH2.e")
+goto Fire2
+FireH2.e:
+OLHC A 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC A 0 A_ReFire("FireH2.f")
+goto Fire2
+FireH2.f:
+OLHC A 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC A 0 A_ReFire("FireH2.c")
+goto Fire2
+
+FireH3:
+OLHC C 0 A_PlaySoundEx("weapon/oilcharge2","Weapon")
+FireH3.a:
+OLHC C 1 Offset(6,32) A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC C 0 A_ReFire("FireH3.b")
+goto Fire3
+FireH3.b:
+OLHC C 1 Offset(-6,32) A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC C 0 A_ReFire("FireH3.c")
+goto Fire3
+FireH3.c:
+OLHC C 0 Offset(1,32) A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC C 0 A_JumpIfInventory("IsBot",1,"BotFire3")
+OLHC C 1 A_GiveInventory("SkateOrSlideAmmo_RC",1)
+OLHC C 0 A_ReFire("FireH3.d")
+goto Fire3
+FireH3.d:
+OLHC C 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC C 0 A_ReFire("FireH3.e")
+goto Fire3
+FireH3.e:
+OLHC C 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC C 0 A_ReFire("FireH3.f")
+goto Fire3
+FireH3.f:
+OLHC C 1 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OLHC C 0 A_ReFire("FireH3.c")
+goto Fire3
+
+
+BotFire3:
+OILA ] 0 A_Jump(16,"Fire3")
+OILA ] 0 A_ReFire("FireH3")
+goto Fire3
+
+Fire1:
+OILA X 0 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 0 A_PlaySoundEx("weapon/OilShotX","Weapon")
+//OILA Y 2
+OILA Y 2 OffSet(3,29)
+OILA Y 1 A_GiveInventory("OilmanMain1_CI",1)
+goto FireEnd
+FireEnd:
+OILA Z 2
+OILA Y 2 A_TakeInventory("SkateOrSlideAmmo",999)
+OILA X 6 A_WeaponReady(14)
+OILA X 0 A_Refire("FireH1")
+goto Ready1
+Fire2:
+OILA X 0 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+OILA X 0 A_PlaySoundEx("weapon/OilShotX","Weapon")
+//OILA ZY 1
+OILA Y 1 OffSet(3,29)
+OILA Y 1 OffSet(6,26)
+OILA Z 0 A_PlaySoundEx("weapon/OilShot","Weapon")
+OILA Z 1 A_GiveInventory("OilmanMain2_CI",1)
+OILA ZZ 1
+OILA Z 0 A_PlaySoundEx("weapon/OilShot","Weapon")
+OILA Z 1 A_GiveInventory("OilmanMain2_CI",1)
+OILA YY 1 OffSet(3,29)
+OILA Z 0 A_PlaySoundEx("weapon/OilShot","Weapon")
+OILA Z 0 A_GiveInventory("OilmanMain2_CI",1)
+OILA Z 1 A_WeaponReady(14)
+goto FireEnd
+Fire3:
+OILA Z 0 A_JumpIfInventory("OilCheck",1,"SlideBegin")
+//OILA ZZZZZ 3 A_GiveInventory("OilmanMain3_CI",1)
+OILA Z 0 A_PlaySoundEx("weapon/OilShotX","Weapon")
+OILA Y 0 A_GiveInventory("OilmanMain3_CI",1)
+//OILA ZZY 1
+OLHC B 1 OffSet(3,29)
+OLHC B 1 OffSet(6,26)
+OLHC B 1 OffSet(9,23)
+OILA Z 0 A_PlaySoundEx("weapon/OilShot","Weapon")
+OILA Y 0 A_GiveInventory("OilmanMain3_CI",1)
+OILA ZZY 1
+OILA Z 0 A_PlaySoundEx("weapon/OilShot","Weapon")
+OILA Y 0 A_GiveInventory("OilmanMain3_CI",1)
+OILA YZZ 1 OffSet(6,26)
+OILA Z 0 A_PlaySoundEx("weapon/OilShot","Weapon")
+OILA Y 0 A_GiveInventory("OilmanMain3_CI",1)
+OILA YYZ 1 OffSet(3,29)
+OILA Z 0 A_PlaySoundEx("weapon/OilShot","Weapon")
+OILA Y 0 A_GiveInventory("OilmanMain3_CI",1)
+OILA ZYY 1 A_WeaponReady(14)
+goto FireEnd
+
+SlideBegin:
+OILA X 0 A_JumpIfInventory("OilSledDelay",1,"SlideEndOnGod")
+OILA X 0 A_JumpIfInventory("SkateOrSlideAmmo",1,"SlideEndX")
+
+OILA X 0 A_JumpIfInventory("OilmanJump",1,"OilPogo")
+OILA X 0 SetPlayerProperty(0,1,0)
+
+OILA X 0 A_GiveInventory("OilSledFlag",42)
+OILA X 0 A_GiveInventory("OilmanJump",1)
+OILA X 0 A_GiveInventory("OilBoat",1)
+OILA X 0 A_TakeInventory("OilmanIsDone",9)
+OILA X 0 A_GunFlash("Flash.Slide",0)
+OILA X 0 A_JumpIfInventory("IsBot",1,"BotSlide")
+Goto Slide+1
+
+Slide:
+OILA X 0 A_TakeInventory("OilSledFlag",1)
+OILA X 0 SetPlayerProperty(0,1,0)
+OILA X 0 A_JumpIfInventory("IsUnderWater",1,"UnderWater")
+Goto SlideContinue
+
+UnderWater:
+OILA X 0 A_JumpIf(z-floorz>32,1)
+Goto SlideContinue
+OILA X 0 A_JumpIf(momz<=0,2)
+OILA X 0 ThrustThingZ(0,7,0,1)
+Goto SlideContinue
+OILA X 0 A_GiveInventory("FlyActivate",1)
+OILA X 0 ThrustThingZ(0,5,0,0)
+Goto SlideContinue+1
+
+SlideContinue:
+OILA X 0 A_GiveInventory("FlyDeactivate",1)
+OILA X 0 A_SpawnItemEx("SliderDamagerB",24,0,10,momx,momy,momz,0,8,0)
+OILA X 2 A_WeaponReady(2)
+OILA X 0 A_JumpIfInventory("OilmanFingerSnapF",1,"DoTheSlideFlash.B")
+OILA X 2 A_WeaponReady(2)
+OILA X 0 A_JumpIfInventory("OilmanFingerSnapF",1,"DoTheSlideFlash.B")
+OILA X 0 A_JumpIfInventory("OilSledFlag",1,"Slide")
+Goto SlideEnd
+//
+DoTheSlideFlash.B:
+OILA X 0 A_GunFlash("Flash.SnapSlide",0)
+goto SlideContinue
+
+BotSlide:
+OILA X 0 A_SpawnItemEx("SliderDamagerB",24,0,10,momx,momy,momz,0,8,0)
+OILA X 5
+OILA X 0 A_PlaySoundEx("weapon/OilSlider","Weapon")
+OILA X 0 A_GiveInventory("CutterFlag",1)
+OILA X 0 A_TakeInventory("OilSliderFlag",1)
+OILA X 0 A_JumpIfInventory("Cutterflag",15,1)
+Loop
+OILA X 0 A_TakeInventory("Cutterflag",999)
+OILA X 0 A_Jump(224,"OilPogo")
+Goto SlideEnd
+
+OilPogo:
+OILA X 0 A_GiveInventory("OilPogo_P",1)
+Goto SlideEnd
+
+SlideEndX:
+OILA X 0 A_SpawnItemEx("OilSliderBShot",2,0,2,20,0,0,0,1)
+OILA X 0 A_JumpIfInventory("SkateOrSlideAmmo",20,"SlideEndX2") 
+OILA X 0 A_JumpIfInventory("SkateOrSlideAmmo",10,"SlideEndX1")
+OILA X 1 A_TakeInventory("OilCheck",999)
+goto FireH1
+SlideEndX1:
+OILA Y 1 A_TakeInventory("OilCheck",999)
+goto FireH2
+SlideEndX2:
+OILA A 1 A_TakeInventory("OilCheck",999)
+goto FireH3
+
+
+
+
+SlideEnd:
+OILA X 0 A_GiveInventory("OilStaminaFlag_P",1)
+OILA X 0 SetPlayerProperty(0,0,0)
+OILA X 0 A_GiveInventory("FlyDeactivate",1)
+OILA X 0 A_StopSound(CHAN_WEAPON)
+OILA X 0 A_GiveInventory("OilmanIsDone",1)
+OILA X 0 A_TakeInventory("OilSoundTime",999)
+OILA X 0 A_TakeInventory("OilSledFlag",999)
+OILA X 0 A_TakeInventory("OilCheck",999)
+OILA X 0 A_TakeInventory("OilBoat",999)
+OILA X 0 A_TakeInventory("OilmanJump",999)
+OILA X 0 A_TakeInventory("OilmanFingerSnapF",99)
+OILA X 0 A_GiveInventory("OilSledDelay",70)
+OILA X 0 A_SpawnItemEx("OilSledDelayHelper")
+OILA XXX 2
+goto Ready2
+
+SlideEndOnGod:
+OILA X 1 A_TakeInventory("OilCheck",999)
+goto Ready2
+
+Altfire:
+OILA X 0
+OILA X 0 A_JumpIfInventory("OilCheck",1,"SlideSpill")
+OILA Z 0 A_PlaySoundEx("weapon/oilshot","Weapon")
+OILA Z 0 A_GiveInventory("OilmanAlt1_CI",1)
+OILA X 1 
+OILA Y 2 OffSet(6,26)A_GiveInventory("ExtraOilAmmo",4)
+OILA Z 2 OffSet(3,29)
+OILA Z 1 A_GiveInventory("ExtraOilAmmo",4)
+OILA Y 1 A_WeaponReady(14)
+OILA X 2 A_GiveInventory("ExtraOilAmmo",4)
+goto Ready1
+
+SlideSpill:
+OILA Z 0 A_JumpIfInventory("OilStaminaFlag",1,1)
+goto AFireEndX
+OILA Z 0 A_GiveInventory("OilSledFlag", 3)
+OILA Z 0 A_GiveInventory("FlyDeactivate",1)
+OILA Z 0 A_JumpIfInventory("IsBot",1,"BotSlide")
+OILA Z 0 A_TakeInventory("OilSledFlag",1)
+OILA Z 0 A_TakeInventory("OilStaminaFlag",1)
+OILA Z 0 A_PlaySoundEx("weapon/oilshot","SoundSlot6")
+OILA Z 0 A_GiveInventory("OilmanAlt2_CI",1)
+goto AFireEndX
+
+AFireEndX:
+OILA Z 0 A_SpawnItemEx("SliderDamagerBX",24,0,2,momx,momy,momz,0,8,0)
+OILA Y 2 A_WeaponReady(10)
+OILA Z 0 A_JumpIfInventory("OilmanFingerSnapF",1,"DoTheSlideFlash")
+OILA Z 2 A_WeaponReady(10)
+OILA Z 0 A_JumpIfInventory("OilmanFingerSnapF",1,"DoTheSlideFlash")
+OILA X 0 A_JumpIfInventory("OilSledFlag",1,"SlideX")
+Goto SlideEnd
+
+//
+DoTheSlideFlash:
+OILA X 0 A_GunFlash("Flash.SnapSlide",0)
+goto AFireEndX
+//
+
+SlideX:
+OILA X 0 A_TakeInventory("OilSledFlag",1)
+OILA X 0 A_JumpIfInventory("IsUnderWater",1,"UnderWater")
+OILA X 0 A_GiveInventory("FlyDeactivate",1)
+Goto SlideSpillX
+
+SlideSpillX://This is here to check if you're still holding altfire and deal no damage.
+OILA XX 2 A_WeaponReady(2)
+OILA X 0 A_JumpIfInventory("OilSledFlag",1,"Slide")
+Goto SlideEnd
+
+
+Flash:
+TNT1 A 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("OilmanFingerSnapF",1,"Flash.Snap")
+loop
+
+Flash.Slide:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("ExtraOilAmmo",4)
+TNT1 A 2 A_GiveInventory("OilSledThrust",1)
+TNT1 A 0 A_JumpIfInventory("OilmanJump",1,"Flash.Slide")
+goto Flash
+
+Flash.Snap:
+TNT1 A 0 A_GiveInventory("VivifyDelay4",1)
+TNT1 A 0 A_GiveInventory("MoreOilMOREOIL",1)
+OILA TU 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+OILA V 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+OILA W 0 A_PlaySoundEx("weapon/OilSnap","SoundSlot7")
+OILA W 0 A_GiveInventory("OilmanOther_CI",1)
+OILA W 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+OILA VVVVVUT 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_TakeInventory("OilmanFingerSnapF",9)
+goto Flash
+
+Flash.SnapSlide:
+TNT1 A 0 A_TakeInventory("OilmanFingerSnapF",9)
+TNT1 A 0 A_GiveInventory("MoreOilMOREOIL",1)
+TNT1 A 0 A_GiveInventory("VivifyDelay4",1)
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA T 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA U 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA V 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+OILA W 0 A_PlaySoundEx("weapon/OilSnap","SoundSlot7")
+OILA W 0 A_GiveInventory("OilmanOther_CI",1)
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA W 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA V 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA V 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA V 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA V 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA V 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA U 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+OILA T 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("OilSledThrust",1)
+TNT1 A 0 A_TakeInventory("OilmanFingerSnapF",9)
+goto Flash.Slide
+
+
+}
+}
+
+actor SkateOrSlideAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 20
++INVENTORY.IGNORESKILL
+}
+
+actor ExtraOilAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 112 //224 : 2 = 112
++INVENTORY.IGNORESKILL
+}
+
+actor OilStaminaFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 252
+}
+
+actor OilSledFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 56
+}
+
+actor OilSledAirTime : Inventory
+{
+inventory.amount 1
+inventory.maxamount 5
+}
+
+actor OilSledDelay : Inventory
+{
+inventory.amount 1
+inventory.maxamount 70
+}
+
+actor OilmanJump : OnceC {}
+actor OilmanFingerSnapF : Powerup {powerup.duration 3 inventory.maxamount 1}
+actor MoreOilMOREOIL : Powerup {powerup.duration 35 inventory.maxamount 1}
+actor OilmanIsDone : OnceC {}
+
+actor OilSledDelayHelper : BasicHelper
+{
+reactiontime 71
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_TakeFromTarget("OilSledDelay",1)
+TNT1 A 1 A_Countdown
+loop
+}
+}
+
+actor OilmanItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "OilMIcon"
+inventory.pickupmessage "Hey, you add fire to me, and we're in for some serious trouble! Not a thing'll be left!"
+scale 2.0
++INVBAR
+states
+{
+Spawn:
+OILA ^ 1
+wait
+Use:
+TNT1 A 0 A_JumpIfInventory("MoreOilMOREOIL",1,"No")
+TNT1 A 0 A_JumpIfInventory("ExtraOilAmmo",112,"Use2")
+fail
+Use2:
+//TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
+TNT1 A 0 A_GiveInventory("OilmanFingerSnapF",1)
+fail
+No:
+TNT1 A 0
+fail
+
+}
+}
+
+actor SkateOrSlideAmmo_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("SkateOrSlideAmmo",1)
+TNT1 A 0 A_GiveInventory("ExtraOilAmmo",4)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("SkateOrSlideAmmo",2)
+TNT1 A 0 A_GiveInventory("ExtraOilAmmo",8)
+stop
+}
+}
+actor OilStaminaFlag_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("OilStaminaFlag",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("OilStaminaFlag",2)
+stop
+}
+}
+
+actor OilSledThrust : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
+TNT1 A 0 A_Recoil(-2)
+goto End
+Ground:
+TNT1 A 0 A_Recoil(-4)
+goto End
+End:
+TNT1 A 0 A_JumpIfInventory("OilSoundTime",1,"No")
+TNT1 A 0 A_PlaySoundEx("weapon/OilSlider","Weapon")
+TNT1 A 0 A_GiveInventory("OilSoundTime",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor OilPogo_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_ScaleVelocity(0.75)
+TNT1 A 0 A_JumpIf(z-floorz!=0,"Ground")
+stop
+Ground:
+TNT1 A 0 A_PlaySoundEx("weapon/OilJump","Body")
+TNT1 A 0 ThrustThingZ(0,45,0,0)
+stop
+}
+}
+
+actor OilStaminaFlag_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("OilStaminaFlag",252,"No")
+TNT1 A 0 A_SpawnItemEx("OilStaminaFlag_Helper")
+stop
+No:
+TNT1 A 0
+stop
+
+}
+}
+
+actor OilStaminaFlag_Helper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAA 1 A_JumpIfInTargetInventory("OilmanJump",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 AAAAAAAA 1 A_JumpIfInTargetInventory("OilmanJump",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 AAAAAAAA 1 A_JumpIfInTargetInventory("OilmanJump",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 AAAAAAAA 1 A_JumpIfInTargetInventory("OilmanJump",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 AAAAAAAA 1 A_JumpIfInTargetInventory("OilmanJump",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+goto SpawnGive
+SpawnGive:
+TNT1 A 0 A_JumpIfInTargetInventory("OilmanJump",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("OilStaminaFlag",252,"Death")
+TNT1 A 1 A_GiveToTarget("OilStaminaFlag_RC")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+}
+}
+
+
+actor OilShotB
+{
+Translation "192:192=68:68","198:198=78:78","250:250=218:218","249:249=43:43"
+PROJECTILE
+damagetype "OilSlider"
+Obituary "$OB_OILSLIDER"
+-NOGRAVITY
++THRUSPECIES
+Species "OilThing"
+Damage (12)
+Radius 8
+Height 5
+speed 28
+Scale 2.0
+States
+{
+Spawn:
+X_1H B 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_1H B 0 ThrustThingZ(0,6,0,1)
+X_1H B 5
+wait
+Crash:
+XDeath:
+X_1H B 1
+stop
+Death:
+X_1H B 0 
+X_1H B 0 A_JumpIf(z-floorz<=0,"Death2")
+X_1H B 1 A_GiveInventory("CutterFlag",1)
+X_1H B 0 A_JumpIfInventory("CutterFlag",175,"Xdeath")
+loop
+Death2:
+X_1H B 1 A_SpawnItemEx("OilmanBlob",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor OilShotBB : OilShotB{Translation"192:192=205:205","198:198=74:74","250:250=196:196","249:249=199:199"}
+actor OilShotBR : OilShotB{Translation"192:192=171:171","198:198=41:41","250:250=170:170","249:249=43:43"}
+actor OilShotBO : OilShotB{Translation"192:192=104:104","198:198=128:128","250:250=138:138","249:249=131:131"}
+actor OilShotBP : OilShotB{Translation"192:192=229:229","198:198=232:232","250:250=214:214","249:249=223:223"}
+
+actor OilShot2 : OilShotB{Damage (12) speed 36}
+
+actor OilShot2B : OilShotBB{Damage (12) speed 36}
+actor OilShot2R : OilShotBR{Damage (12) speed 36}
+actor OilShot2O : OilShotBO{Damage (12) speed 36}
+actor OilShot2P : OilShotBP{Damage (12) speed 36}
+
+actor OilShot3 : OilShot2{Damage (12) speed 52}
+
+actor OilShot3B : OilShotBB{Damage (12) speed 52}
+actor OilShot3R : OilShotBR{Damage (12) speed 52}
+actor OilShot3O : OilShotBO{Damage (12) speed 52}
+actor OilShot3P : OilShotBP{Damage (12) speed 52}
+
+actor OilSpill : OilShotB
+{
+Damage (8)
+Radius 12
+Height 8
+speed 28
+States
+{
+Spawn:
+X_1H G 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_1H G 5 A_CheckFloor("Death")
+loop
+Crash:
+XDeath:
+X_1H G 1
+stop
+Death:
+X_1H G 0 
+X_1H G 0 A_JumpIf(z-floorz<=0,"Death2")
+X_1H G 1 A_GiveInventory("CutterFlag",1)
+X_1H G 0 A_JumpIfInventory("CutterFlag",88,"Xdeath")
+loop
+Death2:
+X_1H G 1 A_SpawnItemEx("OilSpillBlob",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor OilSpillB : OilSpill{Translation"192:192=205:205","198:198=74:74","250:250=196:196","249:249=199:199"}
+actor OilSpillR : OilSpill{Translation"192:192=171:171","198:198=41:41","250:250=170:170","249:249=43:43"}
+actor OilSpillO : OilSpill{Translation"192:192=104:104","198:198=128:128","250:250=138:138","249:249=131:131"}
+actor OilSpillP : OilSpill{Translation"192:192=229:229","198:198=232:232","250:250=214:214","249:249=223:223"}
+
+
+actor OilSpillX : OilSpill
+{
++DONTSPLASH
+Damage (4)
+Radius 8
+Height 5
+speed 40
+Scale 2.0
+States
+{
+Death:
+X_1H G 0 
+X_1H G 0 A_JumpIf(z-floorz<=0,"Death2")
+X_1H G 1 A_GiveInventory("CutterFlag",1)
+X_1H G 0 A_JumpIfInventory("CutterFlag",44,"Xdeath")
+loop
+Death2:
+X_1H G 1 A_SpawnItemEx("OilSpillBlobX",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor OilSpillXB : OilSpillX{Translation"192:192=205:205","198:198=74:74","250:250=196:196","249:249=199:199"}
+actor OilSpillXR : OilSpillX{Translation"192:192=171:171","198:198=41:41","250:250=170:170","249:249=43:43"}
+actor OilSpillXO : OilSpillX{Translation"192:192=104:104","198:198=128:128","250:250=138:138","249:249=131:131"}
+actor OilSpillXP : OilSpillX{Translation"192:192=229:229","198:198=232:232","250:250=214:214","249:249=223:223"}
+
+
+Actor OilmanBlob
+{
+damagetype "OilSlider"
+Obituary "$OB_OilmanBlob"
++MISSILE
++NODAMAGETHRUST
++DONTDRAIN
++NOBLOOD
++DONTSPLASH
++NOEXPLODEFLOOR
++NOTARGETSWITCH
+//+DONTTHRUST
++THRUSPECIES
+Species "OilThing"
+painchance 256
+damagefactor "Ignition", 1.0
+mass 99999
+reactiontime 250
+Damage (12)
+Radius 8
+Height 10
+scale 2.5
+states
+{
+Spawn:
+X_1H D 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_1H D 1 
+X_1H D 0 A_ChangeFlag("SHOOTABLE",1)
+Goto Spawn2
+pain.FireTrap:
+pain.FirePillar:
+pain.OilCanister:  Pain.FlameBlastStage:
+Pain.MegaFireBall:
+Pain.FireStorm:Pain.FireSpin:
+pain.AtomicFire1:pain.AtomicFire2:pain.AtomicFire3:  Pain.AtomicfireB:
+pain.PharaohShot1:pain.PharaohShot2:pain.PharaohShot3:
+Pain.Coal:
+pain.FlameBlast: Pain.FlameBlastB:
+pain.ScorchWheel:Pain.ScorchWheelB:
+Pain.FlameSword:Pain.FlameSwordSpark:  Pain.FlameSwordB:Pain.FlameSwordSpark2:Pain.FlameSwordSpark3:
+pain.WaveBurner:
+Pain.MagmaBazooka:
+Pain.SolarBlaze:
+Pain.MagmaBazooka1:Pain.MagmaBazooka2:
+
+Pain.HSHFire:
+Pain.Ignition:
+
+X_1H C 0
+X_1H C 0 A_Jump(256,"SpawnFlame")
+goto SpawnFlame
+SpawnFlame:
+X_1H C 0 A_ChangeFlag("NOPAIN",1)
+X_1H C 1 A_SpawnItemEx("OilmanBlobFlameB",0,0,0,0,0,0,0,1)
+X_1H C 0 A_Jump(256,"Death")
+stop
+Spawn2:
+X_1H G 1 A_Stop
+Goto SlideWait
+SlideWait:
+X_1H C 1 A_JumpIfCloser(40,"Slide")
+X_1H C 0 A_GiveInventory("CutterFlag",1)
+X_1H C 0 A_JumpIf(z-floorz>0,"NewShot")
+X_1H C 0 A_JumpIfInventory("CutterFlag",175,"Death")
+loop
+Slide:
+X_1H C 0
+X_1H C 0 A_JumpIfInTargetInventory("OilCheck",1,"Spawn2")
+TNT1 A 2 A_GiveToTarget("OilCheck",1)
+stop
+NewShot:
+X_1H C 0 A_CheckFlag("BLASTED","NewShotX")
+Goto Death
+NewShotX:
+X_1H C 0 A_SpawnItemEx("OilShotB",0,0,0,momx,momy,momz,0,9)
+Goto Death 
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor OilSpillBlob : OilmanBlob
+{
+Damage (5)
+Radius 12
+Height 10
+states
+{
+Spawn:
+X_1H I 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_1H I 1
+X_1H I 0 A_ChangeFlag("SHOOTABLE",1)
+Goto Spawn2
+SpawnFlame:
+X_1H H 0 A_ChangeFlag("NOPAIN",1)
+X_1H H 1 A_SpawnItemEx("OilSpillFlame",0,0,0,0,0,0,0,1)
+X_1H H 0 A_Jump(256,"Death")
+stop
+Spawn2:
+X_1H H 1 A_Stop
+Goto SlideWait
+SlideWait:
+X_1H H 0 A_GiveInventory("CutterFlag",1)
+X_1H H 1 A_JumpIfCloser(40,"Slide")
+X_1H H 0 A_JumpIf(z-floorz>0,"NewShot")
+X_1H H 0 A_JumpIfInventory("CutterFlag",100,"Death")
+loop
+Slide:
+X_1H H 0
+X_1H H 0 A_JumpIfInTargetInventory("OilCheck",1,"Slide2")
+goto Spawn2
+Slide2:
+X_1H H 1 A_GiveToTarget("OilSledFlag",6)
+goto SlideDone
+SlideDone:
+X_1H H 1 A_GiveInventory("CutterFlag",1)
+X_1H H 0 A_JumpIf(z-floorz>0,"NewShot")
+X_1H H 0 A_JumpIfInventory("CutterFlag",125,"Death")
+loop
+NewShot:
+X_1H H 0 A_CheckFlag("BLASTED","NewShotX")
+Goto Death
+NewShotX:
+X_1H H 0 A_SpawnItemEx("OilSpill",0,0,0,momx,momy,momz,0,9)
+Goto Death 
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor OilSpillBlobX : OilSpillBlob
+{
+Damage (4)
+Radius 8
+Height 5
+Scale 2.0
+States
+{
+Spawn:
+X_1H I 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_1H I 0 A_JumpIfCloser(56,"SlideX")
+X_1H I 1
+X_1H I 0 A_ChangeFlag("SHOOTABLE",1)
+Goto Spawn2
+
+SlideX:
+X_1H I 0
+X_1H I 0 A_JumpIfInTargetInventory("OilCheck",1,"SlideX2")
+X_1H I 1
+X_1H I 0 A_ChangeFlag("SHOOTABLE",1)
+goto Spawn2
+SlideX2:
+X_1H I 1 //A_GiveToTarget("OilSledFlag",3)
+X_1H I 0 A_ChangeFlag("SHOOTABLE",1)
+goto SlideDone
+
+SpawnFlame:
+X_1H H 0 A_ChangeFlag("NOPAIN",1)
+X_1H H 1 A_SpawnItemEx("OilSpillFlameX",0,0,0,0,0,0,0,1)
+X_1H H 0 A_Jump(256,"Death")
+stop
+Slide:
+X_1H H 0
+X_1H H 0 A_JumpIfInTargetInventory("OilCheck",1,"Slide2")
+goto Spawn2
+Slide2:
+X_1H H 1 //A_GiveToTarget("OilSledFlag",3)
+goto SlideDone
+NewShot:
+X_1H H 0 A_CheckFlag("BLASTED","NewShotX")
+Goto Death
+NewShotX:
+X_1H H 0 A_SpawnItemEx("OilSpillX",0,0,0,momx,momy,momz,0,9)
+Goto Death
+}
+}
+
+actor OilmanBlobFlameB
+{
+PROJECTILE
+-NOGRAVITY
++NODAMAGETHRUST
++NOBLOOD
++DOOMBOUNCE
++DONTSPLASH
++FLOORHUGGER
++DONTBLAST
+Damage (20)
+damagetype "OilFlame"
+Obituary "$OB_OILSLIDER2"
++THRUSPECIES
+
++THRUACTORS
+
+Species "OilThing"
+Height 32
+Radius 8
+scale 2.5
+mass 99999
+reactiontime 40
+States
+{
+Spawn:
+X_1H F 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_1H F 2 A_ChangeFlag("DOOMBOUNCE",0)
+X_1H F 0 A_SpawnItemEx("OilmanCBM_PitIgnite",0,0,8)
+TNT1 A 0 A_Explode(4,48,0,0,48)
+X_1H EF 3 A_CountDown
+goto Spawn+4
+Death: 
+TNT1 A 1
+stop
+}
+}
+
+actor OilSpillFlame : OilmanBlobFlameB
+{
+reactiontime 40
+Damage (14)
+Radius 12
+Height 36
+States
+{
+Spawn:
+X_1H J 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_1H J 2 A_ChangeFlag("DOOMBOUNCE",0)
+X_1H J 0 A_SpawnItemEx("OilmanCBM_PitIgnite",0,0,8)
+TNT1 A 0 A_Explode(2,48,0,0,48)
+X_1H JK 3 A_CountDown
+goto Spawn+4
+}
+}
+
+actor OilSpillFlameX : OilSpillFlame
+{
+reactiontime 50
+Damage (12)
+Radius 8
+Height 30
+Scale 2.0
+}
+
+
+actor SliderDamagerB : BasicExplosion
+{
+damagetype "OilSliderX"
+Obituary "$OB_OILSLIDER"
+States
+{
+Spawn:
+TNT1 A 0//98
+TNT1 A 2 A_Explode(8,80,0,0,32)
+stop
+}
+}
+
+actor OilSliderFireProtect : PowerProtection
+{
+Powerup.Duration 8
+DamageFactor "OilFlame", 0.1
+}
+
+actor SliderDamagerBX : SliderDamagerB
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_Explode(2,96,0,0,32)
+stop
+}
+}
+
+
+actor OilmanFingerSnapBoom
+{
+Translation "250:250=218:218", "249:249=43:43"
+PROJECTILE
+damagetype "OilFlame"
+Obituary "$OB_OILFINGERSNAP"
++THRUACTORS
++DONTBLAST
++DONTSPLASH
++DONTREFLECT
+ReactionTime 1
+damage (0)
+Radius 4
+Height 4
+speed 65
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+wait
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("OilmanCBM_PitIgnite")
+TNT1 A 0 A_SpawnItemEx("OilmanFingerSnapBoomFX",0,0,0,0,0,0,0,1)
+TNT1 A 2 A_Explode(2,48,0,0,48)
+stop
+}
+}
+actor OilmanFingerSnapBoomB : OilmanFingerSnapBoom{Translation"250:250=196:196","249:249=199:199"}
+actor OilmanFingerSnapBoomR : OilmanFingerSnapBoom{Translation"250:250=170:170","249:249=43:43"}
+actor OilmanFingerSnapBoomO : OilmanFingerSnapBoom{Translation"250:250=138:138","249:249=131:131"}
+actor OilmanFingerSnapBoomP : OilmanFingerSnapBoom{Translation"250:250=214:214","249:249=223:223"}
+
+actor OilmanFingerSnapBoomFX : BasicClientSide
+{
+States
+{
+Spawn:
+OILA "\]" 2
+stop
+}
+}
+
+actor OilmanCBM_PitIgnite : OilPitIgnite
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("OilPitFlag",1)
+TNT1 A 0 A_Explode(1,196,1,0,196)//100
+TNT1 A 1 A_JumpIf(z-floorz<=16,"Flame")
+stop
+}
+}
+
+
+actor OilSliderBShot
+{
+translation "192:192=78:78"
+PROJECTILE
+damagetype "OilSlider"
+Obituary "$OB_OILSLED"
+-NOGRAVITY
++NOEXPLODEFLOOR
++THRUSPECIES
++DONTREFLECT
++NOCLIP
+Species "OilThing"
+damage (18)
+Radius 12
+Height 16
+speed 20
+scale 2.5
+States
+{
+Spawn:
+X_1H A 0
+X_1H A 0 A_ChangeFlag("NOCLIP",0)
+X_1H A 0 A_PlaySoundEx("weapon/OilSlider","Weapon")
+X_1H AAAAAA 1 ThrustThingZ(0,0,0,1)
+goto Spawn+2
+Death:
+TNT1 A 1 A_StopSound(1)
+stop
+}
+}
+
+actor OilSliderBShotB : OilSliderBShot{translation "192:192=74:74"}
+actor OilSliderBShotR : OilSliderBShot{translation "192:192=41:41"}
+actor OilSliderBShotO : OilSliderBShot{translation "192:192=128:128"}
+actor OilSliderBShotP : OilSliderBShot{translation "192:192=232:232"}
+
+
+
+
+actor OilmanMain1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("OilShotB",0,1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("OilShotBB",0,1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("OilShotBR",0,1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("OilShotBO",0,1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("OilShotBP",0,1,-8,0)
+goto Done
+}
+}
+
+actor OilmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("OilShot2",random(-3,3),1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("OilShot2B",random(-3,3),1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("OilShot2R",random(-3,3),1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("OilShot2O",random(-3,3),1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("OilShot2P",random(-3,3),1,-8,0)
+goto Done
+}
+}
+
+actor OilmanMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("OilShot3",random(-6,6),1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("OilShot3B",random(-6,6),1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("OilShot3R",random(-6,6),1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("OilShot3O",random(-6,6),1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("OilShot3P",random(-6,6),1,-8,0)
+goto Done
+}
+}
+
+
+actor OilmanAlt1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("OilSpill",random(-4,4),1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("OilSpillB",random(-4,4),1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("OilSpillR",random(-4,4),1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("OilSpillO",random(-4,4),1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("OilSpillP",random(-4,4),1,-8,0)
+goto Done
+}
+}
+
+actor OilmanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("OilSpillX",random(-4,4),1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("OilSpillXB",random(-4,4),1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("OilSpillXR",random(-4,4),1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("OilSpillXO",random(-4,4),1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("OilSpillXP",random(-4,4),1,-8,0)
+goto Done
+}
+}
+
+actor OilmanOther_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("OilmanFingerSnapBoom",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("OilmanFingerSnapBoomB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("OilmanFingerSnapBoomR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("OilmanFingerSnapBoomO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("OilmanFingerSnapBoomP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("ExtraOilAmmo",224)
+stop
+}
+}
+

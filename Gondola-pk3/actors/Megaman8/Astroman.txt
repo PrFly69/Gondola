@@ -1,0 +1,67 @@
+actor Astroman : ClassBase
+{
+Player.ScoreIcon "C_08B0X"
+player.displayname "Astroman"
+player.soundclass "astromanc"
+player.startitem "AstroCrushBoss"
+player.startitem "CopyAmmoC", 28
+player.startitem "AstroFlightItem"
+player.startitem "AstroFlight"
+//gravity 0.6
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+player.startitem "HomingSniperWeakness2", 1
+player.startitem "MagicCardWeakness2", 1
+
+player.startitem "MagnetMissileWeakness", 1
+player.startitem "DiveMissileWeakness", 1
+player.startitem "SlashClawWeakness", 1
+player.startitem "HomingSniperWeakness", 1
+player.startitem "MagicCardWeakness", 1
+player.startitem "HornetChaserWeakness", 1
+player.startitem "SparkChaserWeakness", 1
+States
+{
+Spawn:
+ASTM A 0 
+ASTM B 1
+ASTM A 1
+Goto Spawn+2
+See:
+ASTM B 3
+ASTM B 0 A_JumpIfInventory("AstroFlight",1,2)
+ASTM B 0 A_Jump(256,2)
+ASTM C 0 
+ASTM C 3
+ASTM D 3
+ASTM D 0 A_JumpIfInventory("AstroFlight",1,2)
+ASTM D 0 A_Jump(256,2)
+ASTM E 0 
+ASTM E 3
+Goto Spawn
+Missile:
+ASTM FFFFF 1 A_JumpIfInventory("AstroAltFlag",1,"MissileHold")
+ASTM G 4
+goto Spawn
+MissileHold:
+ASTM F 1
+goto Missile+2
+CustomState1:
+ASTM F 1 A_JumpIfInventory("PowerRage_ST",1,"MeteorRager")
+ASTM F 50
+goto Missile+2
+MeteorRager:
+ASTM F 30
+goto Missile+2
+ClassPain:
+ASTM H 0
+goto PainContinue
+DeathFix:
+ASTM H 0
+goto DeathContinue
+ClassDeath:
+ASTM H 1
+goto MegaDeathEnd
+}
+}

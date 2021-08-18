@@ -1,0 +1,99 @@
+actor DrWily : LightClassBase
+{
+Player.ScoreIcon "C_02I0X"
+//player.startitem "GlassHealthBar"
+player.startitem "LightHealthBar"
+player.displayname "DrWily"
+player.soundclass "wilyc"
+player.startitem "WilyGunBoss"
+player.startitem "PlasmaAmmo", 28
+player.startitem "CapsuleAmmo", 21
+player.startitem "WilySkullSuitItem"
+
+player.weaponslot 1, "WilyCapsuleFireBoss"
+player.weaponslot 2, "WilyCapsuleIceBoss"
+
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "BubbleLeadWeakness", 1
+player.startitem "TopSpinWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+//StarCrash/Beat
+player.startitem "SilverTomahawkWeakness", 1
+player.startitem "WildCoilWeakness", 1
+player.startitem "FlashBombWeakness", 1
+player.startitem "MagicCardWeakness", 1
+player.startitem "PlugBallWeakness", 1
+player.startitem "ChillSpikeWeakness", 1
+player.startitem "SaltWaterWeakness", 1//SparkChaser
+
+//player.startitem "RealClassFlag", 9
++NOSKIN
+States
+{
+Spawn:
+W2CP A 0
+W2CP B 1
+W2CP A 1
+W2CP A 210
+W2CP XA 4
+Goto Spawn+4
+See:
+W2CP BCDE 5
+Goto Spawn
+Missile:
+W2CP F 5
+W2CP G 4
+goto Spawn
+ClassPain:
+W2CP H 0
+goto PainContinue
+DeathFix:
+W2CP H 0 A_GiveInventory("SpecialDeathFlag")
+goto DeathContinue
+ClassDeath:
+W2CP H 0
+W2CP H 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
+W2CP H 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
+W2CP H 10
+W2CP H 0 A_SpawnItemEx("WilyGrovelC",0,0,8,0,0,15,0,1)
+goto MegaDeathEnd
+
+ClassDeathR:
+W2CP H 1 ThrustThingZ(0,21,0,1)
+W2CP H 0 A_JumpIf(ceilingz-z<64,"ClassDeathRE")
+W2CP H 0 A_GiveInventory("RiseDeathFlag2",1)
+W2CP H 0 A_JumpIfInventory("RiseDeathFlag2",25,"ClassDeathRE")
+Goto ClassDeathR
+ClassDeathRE:
+W2CP H 0 A_Stop
+W2CP H 0 A_SpawnItemEx("WilyGrovelC",0,0,8,0,0,15,0,1)
+goto MegaDeathEnd
+ClassDeathI:
+W2CP H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
+W2CP H 1 A_PlaySoundEx("CBM/freeze","Voice")
+W2CP HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
+W2CP H 0 A_PlaySoundEx("CBM/icebreak","Body")
+W2CP H 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+W2CP H 0 A_SpawnItemEx("WilyGrovelC",0,0,8,0,0,15,0,1)
+goto DeathWait
+}
+}
+
+actor WilyGrovelC
+{
+-SOLID
+scale 2.5
+States
+{
+Spawn:
+W2CP R 1 A_JumpIf(floorz-z==0,"Beg")
+loop
+Beg:
+W2CP STSTSTSTST 7
+W2CP UVUWUVUWU 5
+TNT1 A 0 A_SpawnItemEx("TFakeDeathFX",0,0,32,0,0,0,random(0,359),1)
+TNT1 A 2 A_PlaySoundEx("misc/devildeath","Weapon")
+TNT1 A 0 //A_SpawnItemEx("???")
+stop
+}
+}

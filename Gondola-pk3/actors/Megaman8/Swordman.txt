@@ -1,0 +1,92 @@
+actor Swordman : ToadClassBase
+{
+Player.ScoreIcon "C_08C0X"
+player.startitem "ToadHealthBar"
+player.displayname "Swordman"
+player.soundclass "swordmanc"
+player.startitem "FlameSwordBoss"
+player.startitem "OrdersAmmo"
+player.startitem "SwordSpinnyAmmo"
+player.forwardmove 0.6, 0.6
+player.sidemove 0.58, 0.58
+//Height 84
+//Radius 30
+//Player.ViewHeight 84
+
+
+player.startitem "WaterBalloonWeakness2", 1
+
+player.startitem "BubbleLeadWeakness", 1
+player.startitem "RainFlushWeakness", 1
+player.startitem "WaterWaveWeakness", 1
+player.startitem "WaterBalloonWeakness", 1
+player.startitem "SaltWaterWeakness", 1
+States
+{
+Spawn:
+SWOM A 0
+SWOM A 0 
+SWOM B 1
+SWOM A -1 //A_JumpIfInventory("FlameFlag",1,1)
+SWOM N 1 
+SWOM M 1
+SWOM M 0 
+Goto Spawn+5
+See:
+SWOM BBBBB 1 
+SWOM CDE 5
+Goto Spawn
+SeeLegs:
+SWOM N 1
+SWOM NNNNOOOOOPPPPPQQQQQ 1 A_JumpIfInventory("NoFlameFlag",1,"See")
+goto Spawn+4
+Missile:
+SWOM FFFFFGGGG 1 
+goto Spawn
+MissileLegs:
+SWOM R 1
+SWOM RRRR 1 
+SWOM SSSS 1 
+goto Spawn+5
+ClassPain:
+SWOM HHH 0 
+goto PainContinue
+CustomState1:
+FHUB VWXY 1 A_PlaySoundEx("weapon/flamesword","Body")
+goto Spawn
+CustomState2:
+FHUB VWXY 2
+FHUB VWXY 3
+goto Spawn
+DeathFix:
+SWOM H 0
+goto DeathContinue
+/*
+ClassDeath:
+SWOL I 0
+SWOL I 0 A_JumpIfInventory("InstagibFlag",1,"MegaDeathEnd")
+SWOL I 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
+SWOL I 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
+SWOL I 19
+goto MegaDeathEnd
+
+ClassDeathR:
+SWOL I 1 ThrustThingZ(0,20,0,1)
+SWOL I 0 A_JumpIf(ceilingz-z<64,"MegaDeathEnd")
+SWOL I 0 A_GiveInventory("RiseDeathFlag2",1)
+SWOL I 0 A_JumpIfInventory("RiseDeathFlag2",30,"MegaDeathEnd")
+Goto ClassDeathR
+ClassDeathI:
+SWOL I 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
+SWOL I 1 A_PlaySoundEx("CBM/freeze","Voice")
+SWOL IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
+SWOL I 0 A_PlaySoundEx("CBM/icebreak","Body")
+SWOL I 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+goto DeathWait
+*/
+
+TimeStopped:
+SWOM H 0
+Goto "Super::TimeStopped"
+}
+}

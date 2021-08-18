@@ -1,0 +1,269 @@
+//lmao
+weapon/saturnglitch SATFUK
+weapon/saturndeath SATFUCK
+
+//Saturn
+weapon/quazarblast QUAZAR
+
+//Astro
+weapon/astroshot ASTSHOT
+
+//Pirate
+weapon/piratereloadstart PIRRELD1
+weapon/piratereload PIRRELD2
+weapon/pirateexplode S_MB_D4
+
+//Clown
+weapon/thunderclawhit CLAWBAP
+weapon/NewClownClaw THUNCLA2
+weapon/NewClownShock NCLOSHO
+weapon/NewClownGrab CLOWNGRB
+weapon/NewClownRelease CLOWNRLS
+weapon/NewClownSwing CLOWNSWN
+weapon/NewClownShockSwing NCLOSWI
+
+//Solar
+weapon/solarcharger SOLMORT
+weapon/solarammobuild SOLAMMO
+weapon/solarammofull SOLFULL
+wep/SolarM_Charge SGOSWRAP
+
+//Fire
+weapon/burnbabyburn FIRERING
+
+//Junk
+weapon/JunkSlider JNKSLIDE
+weapon/JunkM_ShieldLoop JNKSHLDL
+
+//Skull
+weapon/SkullParryShot SKUPRSHT $volume weapon/SkullParryShot 0.75
+
+//Plant
+weapon/PlantBusterShot PLANBUST $volume weapon/PlantBusterShot 0.5
+
+weapon/sparkchaser SPRKCHSR
+weapon/sparkchaser2 SPRKCHS2
+$random weapon/sparkchasertravel  { TERCHSR1 TERCHSR2 TERCHSR3 }
+TERCHSR1 TERCHSR1
+TERCHSR2 TERCHSR2
+TERCHSR3 TERCHSR3
+weapon/terrateleport TERRWARP
+weapon/terramelee TERRKNEE
+weapon/terrameleeko TERRKNED
+weapon/sparkchaseractivate TERRACTI
+
+//Centaur
+weapon/centaurarrowshot CENTAROW $volume weapon/centaurarrowshot 0.5
+
+//Bomb
+weapon/tubthumpin BOMBTHUD
+weapon/minitubthumpin BOMBBOUN
+
+//Hard
+weapon/hknuckle HARDSHOT
+weapon/hknuckletravel HKTRAVEL $volume weapon/hknuckletravel 0.5
+weapon/hknucklehit HARHIT
+weapon/bebeskids BEBE
+
+//Sunstar
+weapon/sunstaroverheat S_MV_J1
+weapon/sunstarcooldown S_MV_J2
+weapon/sunstardyson S_MV_J3
+weapon/sunstarscorch S_MV_J4
+weapon/sunstardysonsee S_MV_J5
+$volume weapon/sunstardysonsee 0.4
+S_MV_J6 S_MV_J6
+S_MV_J7 S_MV_J7
+S_MV_J8 S_MV_J8
+$random weapon/sunstarvent { S_MV_J6 S_MV_J7 S_MV_J8 }
+S_MV_J9 S_MV_J9
+S_MV_JA S_MV_JA
+$random weapon/sunstarvent2 { S_MV_J9 S_MV_JA }
+weapon/sunstarextra S_MV_JB
+
+weapon/blastfire BLASFIRE
+weapon/blastmainfire BLASFIR2
+weapon/blastalarm BLASBEEP
+weapon/blasthit BLASTICK
+weapon/blastfiren BLASFIR3
+weapon/blastpuff BLASPUFF
+gear/blastman BLASGEAR //Pitch shifted DARKSTEP
+
+weapon/DustVacuum1 DUSTVAC1 $limit weapon/DustVacuum1 0
+weapon/DustVacuum2 DUSTVAC2 $limit weapon/DustVacuum2 0
+weapon/DustVacuum3 DUSTVAC3 $limit weapon/DustVacuum3 0
+
+weapon/sparkrecharger SPALT
+
+classes/bladeslice S_M10A5 $limit classes/bladeslice 0
+
+weapon/Phar_Fire1 S_M4_D3 $limit weapon/Phar_Fire1 0
+weapon/Phar_Fire2 S_M4_D4 $limit weapon/Phar_Fire2 0
+weapon/Phar_Fire3 S_M4_D5 $limit weapon/Phar_Fire3 0
+
+//everything else//////////////////////////////////////////////////
+$playersound	cutmanc		male	*pain100	MM2PAIN
+$playersound	cutmanc		male	*pain75		MM2PAIN
+$playersound	cutmanc		male	*pain50		MM2PAIN
+$playersound	cutmanc		male	*pain25		MM2PAIN
+
+$playersound	gutsmanc	male	*pain100	MM2PAIN
+$playersound	gutsmanc	male	*pain75		MM2PAIN
+$playersound	gutsmanc	male	*pain50		MM2PAIN
+$playersound	gutsmanc	male	*pain25		MM2PAIN
+
+$playersound	icemanc		male	*pain100	MM2PAIN
+$playersound	icemanc		male	*pain75		MM2PAIN
+$playersound	icemanc		male	*pain50		MM2PAIN
+$playersound	icemanc		male	*pain25		MM2PAIN
+
+$playersound	firemanc	male	*pain100	MM2PAIN
+$playersound	firemanc	male	*pain75		MM2PAIN
+$playersound	firemanc	male	*pain50		MM2PAIN
+$playersound	firemanc	male	*pain25		MM2PAIN
+
+$playersound	elecmanc	male	*pain100	MM2PAIN
+$playersound	elecmanc	male	*pain75		MM2PAIN
+$playersound	elecmanc	male	*pain50		MM2PAIN
+$playersound	elecmanc	male	*pain25		MM2PAIN
+
+$playersound	bombmanc	male	*pain100	MM2PAIN
+$playersound	bombmanc	male	*pain75		MM2PAIN
+$playersound	bombmanc	male	*pain50		MM2PAIN
+$playersound	bombmanc	male	*pain25		MM2PAIN
+
+$playersound	oilmanc		male	*pain100	MM2PAIN
+$playersound	oilmanc		male	*pain75		MM2PAIN
+$playersound	oilmanc		male	*pain50		MM2PAIN
+$playersound	oilmanc		male	*pain25		MM2PAIN
+
+$playersound	timemanc	male	*pain100	MM2PAIN
+$playersound	timemanc	male	*pain75		MM2PAIN
+$playersound	timemanc	male	*pain50		MM2PAIN
+$playersound	timemanc	male	*pain25		MM2PAIN
+
+$playersound	springmanc	male	*pain100	MM4PAIN
+$playersound	springmanc	male	*pain75		MM4PAIN
+$playersound	springmanc	male	*pain50		MM4PAIN
+$playersound	springmanc	male	*pain25		MM4PAIN
+
+$playersound	groundmanc	male	*land		FATLAND
+$playersound	groundmanc	male	*usefail	FATLAND
+
+//MM6/////////////////////////////////////////////////////////////
+$playersound	blizzardmanc	male	*land		MM6LAND
+
+$playersound	flamemanc	male	*land		MM6LAND
+
+$playersound	knightmanc	male	*land		MM6LAND
+
+$playersound	tomahawkmanc	male	*land		MM6LAND
+
+$playersound	plantmanc	male	*land		MM6LAND
+
+$playersound	windmanc	male	*land		MM6LAND
+
+$playersound	yamatomanc	male	*land		MM6LAND
+
+$playersound	centaurmanc	male	*land		MM6LAND
+
+//MMV/////////////////////////////////////////////////////////////
+//Frostman
+$playersound	frostmanc		male	*land		quake
+$playersound	frostmanc		male	*usefail	quake
+
+//MMV/////////////////////////////////////////////////////////////
+//Terra
+$playersound	terrac		male	*death		GBDEAD
+$playersound	terrac		male	*xdeath		GBDEAD
+$playersound	terrac		male	*gibbed		GBDEAD
+$playersound	terrac		male	*pain100	GBPAIN
+$playersound	terrac		male	*pain75		GBPAIN
+$playersound	terrac		male	*pain50		GBPAIN
+$playersound	terrac		male	*pain25		GBPAIN
+$playersound	terrac		male	*grunt		dsnone
+$playersound	terrac		male	*land		GBLAND
+$playersound	terrac		male	*jump		dsnone
+$playersound	terrac		male	*fist		dsnone
+$playersound	terrac		male	*usefail	GBLAND
+
+//Mars
+$playersound	marsc	male	*land		FATLAND
+$playersound	marsc	male	*usefail	FATLAND
+
+//Saturn
+$playersound	saturnc		male	*land		MM6LAND
+$playersound	saturnc		male	*usefail	MM6LAND
+
+//Uranus
+$playersound	uranusc		male	*land		quake
+$playersound	uranusc		male	*usefail	quake
+
+//Sunstar
+$playersound	sunstarc	male	*death		GBDEAD
+$playersound	sunstarc	male	*xdeath		GBDEAD
+$playersound	sunstarc	male	*gibbed		GBDEAD
+$playersound	sunstarc	male	*pain100	GBPAIN
+$playersound	sunstarc	male	*pain75		GBPAIN
+$playersound	sunstarc	male	*pain50		GBPAIN
+$playersound	sunstarc	male	*pain25		GBPAIN
+$playersound	sunstarc	male	*grunt		dsnone
+$playersound	sunstarc	male	*land		MM6LAND
+$playersound	sunstarc	male	*jump		dsnone
+$playersound	sunstarc	male	*fist		dsnone
+$playersound	sunstarc	male	*usefail	MM6LAND
+
+//MM11/////////////////////////////////////////////////////////////
+//Acid
+$playersound	acidmanc	male	*death		MEGADEAT
+$playersound	acidmanc	male	*xdeath		MEGADEAT
+$playersound	acidmanc	male	*gibbed		MEGADEAT
+$playersound	acidmanc	male	*pain100	MM3PAIN
+$playersound	acidmanc	male	*pain75		MM3PAIN
+$playersound	acidmanc	male	*pain50		MM3PAIN
+$playersound	acidmanc	male	*pain25		MM3PAIN
+$playersound	acidmanc	male	*grunt		dsnone
+$playersound	acidmanc	male	*land		MM6JUMP
+$playersound	acidmanc	male	*jump		dsnone
+$playersound	acidmanc	male	*fist		dsnone
+$playersound	acidmanc	male	*usefail	MM6JUMP
+$playersound    acidmanc    male   *taunt      ACIDTAUN
+$playersound    acidmanc    other   *taunt      ACIDTAU3
+
+weapon/acidfire ACIDFIRE
+weapon/acidbarrier ACIDBARI
+weapon/acidmelt ACIDBURN
+weapon/acidboost ACIDBOOS
+
+//Torch
+$playersound	torchmanc	male	*death		MEGADEAT
+$playersound	torchmanc	male	*xdeath		MEGADEAT
+$playersound	torchmanc	male	*gibbed		MEGADEAT
+$playersound	torchmanc	male	*pain100	MM3PAIN
+$playersound	torchmanc	male	*pain75		MM3PAIN
+$playersound	torchmanc	male	*pain50		MM3PAIN
+$playersound	torchmanc	male	*pain25		MM3PAIN
+$playersound	torchmanc	male	*grunt		dsnone
+$playersound	torchmanc	male	*land		MM6JUMP
+$playersound	torchmanc	male	*jump		dsnone
+$playersound	torchmanc	male	*fist		dsnone
+$playersound	torchmanc	male	*usefail	MM6JUMP
+
+//Blast
+$playersound	blastmanc	male	*death		MEGADEAT
+$playersound	blastmanc	male	*xdeath		MEGADEAT
+$playersound	blastmanc	male	*gibbed		MEGADEAT
+$playersound	blastmanc	male	*pain100	MM3PAIN
+$playersound	blastmanc	male	*pain75		MM3PAIN
+$playersound	blastmanc	male	*pain50		MM3PAIN
+$playersound	blastmanc	male	*pain25		MM3PAIN
+$playersound	blastmanc	male	*grunt		dsnone
+$playersound	blastmanc	male	*land		MM6JUMP
+$playersound	blastmanc	male	*jump		dsnone
+$playersound	blastmanc	male	*fist		dsnone
+$playersound	blastmanc	male	*usefail	MM6JUMP
+
+//Copywep
+weapon/scrambleshot SCTHSHOT
+weapon/scrambletravel SCTHTRAV
+weapon/scrambleboom SCTHBOOM

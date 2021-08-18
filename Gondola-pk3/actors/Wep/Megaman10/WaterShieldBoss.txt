@@ -1,0 +1,1585 @@
+const int PUMP_BUBBLEHP = 45;
+const int PUMP_MAXRADIUS = 258;
+
+actor WaterShieldBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_10B"
+Dropitem "WaterShieldWepCDropped"
+Obituary "%o was washed clean by %k's water stream."
+Inventory.Pickupmessage "(insert dev joke here)"
+weapon.ammotype1 "PumpPressureAmmo"
+weapon.ammotype2 "PumpSluggerAmmo"
+States
+{
+Spawn:
+C_10 B 1
+loop
+Ready:
+PUMH A 0 ACS_ExecuteAlways(998,0,DYE_PUMPMAN)
+PUMH A 0 A_SpawnItemEx("PumpFlashHelper")
+PUMH A 0 A_GunFlash
+PUMH A 0 A_GiveInventory("SpawningMisfire",1)
+goto Ready0
+
+Ready0:
+PUMH A 18 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH A 0 A_JumpIfInventory("ThrewPHandleFlag",1,"Ready0Wait")
+PUMH A 0 A_JumpIfInventory("PumpPressureAmmo",56,"Ready0")
+goto ReadyReload
+
+Ready0Wait:
+PUMH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH A 0 A_JumpIfInventory("ThrewPHandleFlag",1,"Ready0Wait")
+goto Ready0
+
+ReadyReload:
+PUMH J 0 A_GiveInventory("PumpIsReloading",1)
+PUMH J 0 A_JumpIfInventory("PumpPressureAmmo",14,"ReadyReload2")
+PUMH J 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")//WRF_NOPRIMARY is cursed and doesn't work because ???
+PUMH J 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH K 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH K 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH L 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH L 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH M 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH M 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH N 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH N 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH O 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH O 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH E 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH E 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+ReadyReloadLoopA:
+PUMH P 0 A_GiveInventory("PumpResizeShieldSnd_P",1)
+PUMH P 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH P 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH P 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH P 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH P 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH P 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH P 0 A_JumpIfInventory("PumpPressureAmmo",14,"ReadyReloadLoop2A")
+PUMH P 0 A_JumpIfInventory("PowerRage_ST",1,"ReadyReloadLoopB")
+PUMH P 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH P 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH P 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH P 0 A_JumpIfInventory("PumpPressureAmmo",14,"ReadyReloadLoop2A")
+ReadyReloadLoopB:
+PUMH O 0 A_GiveInventory("PumpResizeShieldSnd_P",1)
+PUMH O 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH O 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH O 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH O 0 A_JumpIfInventory("PumpPressureAmmo",14,"ReadyReloadLoop2B")
+PUMH O 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH O 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH O 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH O 0 A_JumpIfInventory("PumpPressureAmmo",14,"ReadyReloadLoop2B")
+PUMH O 0 A_JumpIfInventory("PowerRage_ST",1,"ReadyReloadLoopA")
+PUMH O 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH O 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A"),"Altfire")
+PUMH O 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"Reload")
+PUMH O 0 A_JumpIfInventory("PumpPressureAmmo",14,"ReadyReloadLoop2B")
+Goto ReadyReloadLoopA
+
+ReadyReload2:
+PUMH JKLMNOE 1 A_WeaponReady(WRF_ALLOWRELOAD)
+ReadyReloadLoop2A:
+PUMH P 0 A_GiveInventory("PumpResizeShieldSnd_P",1)
+PUMH P 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH P 1 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH P 0 A_JumpIfInventory("PumpPressureAmmo",56,"ReadyReloadEnd")
+PUMH P 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH P 1 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH P 0 A_JumpIfInventory("PumpPressureAmmo",56,"ReadyReloadEnd")
+PUMH P 0 A_JumpIfInventory("PowerRage_ST",1,"ReadyReloadLoop2B")
+PUMH P 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH P 1 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH P 0 A_JumpIfInventory("PumpPressureAmmo",56,"ReadyReloadEnd")
+ReadyReloadLoop2B:
+PUMH O 0 A_GiveInventory("PumpResizeShieldSnd_P",1)
+PUMH O 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH O 1 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH O 0 A_JumpIfInventory("PumpPressureAmmo",56,"ReadyReloadEnd")
+PUMH O 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH O 1 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH O 0 A_JumpIfInventory("PumpPressureAmmo",56,"ReadyReloadEnd")
+PUMH P 0 A_JumpIfInventory("PowerRage_ST",1,"ReadyReloadLoop2A")
+PUMH O 0 A_GiveInventory("PumpAmmo_RC",1)
+PUMH O 1 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH O 0 A_JumpIfInventory("PumpPressureAmmo",56,"ReadyReloadEnd")
+Goto ReadyReloadLoop2A
+
+ReadyReloadEnd:
+PUMH ONML 1 A_WeaponReady(WRF_ALLOWRELOAD)
+TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH KJ 1 A_WeaponReady(WRF_ALLOWRELOAD)
+PUMH J 0 A_GiveInventory("PumpReloadStop_P",1)
+goto Ready0
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+PUMH B 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+PUMH B 1 A_Raise
+Loop
+
+Fire:
+PUMP B 0 A_JumpIfInventory("PumpPressureAmmo",14,1)
+goto ReadyReload
+PUMH B 2 A_GiveInventory("PumpReloadStop_P",1)
+PUMH C 0 A_PlaySoundEx("wep/PumpShieldBurst","Weapon")
+PUMH C 0 A_SpawnItemEx("PumpMainHelper")
+PUMH CDCDCDCDCD 1 A_GiveInventory("PumpmanMain_CI")
+PUMH BA 2
+PUMH A 16
+Goto Ready0
+
+Altfire:
+PUMH A 0 A_GiveInventory("PumpReloadStop_P",1)
+PUMH A 1 A_JumpIfInventory("PumpWeaponCharge",1,"NoAmmo")
+PUMH JK 1
+TNT1 A 1
+PUMH LMNOE 1
+AltfireHeld:
+PUMH E 1
+PUMH E 0 A_Refire("AltfireHeld")
+AltfireRelease:
+PUMH F 0 A_GiveInventory("ThrewPHandleFlag",1)
+PUMH F 0 ACS_ExecuteAlways(512,0,1,0)
+PUMH FG 1
+PUMH H 0 A_GiveInventory("PumpHandleToss_P",1)
+PUMH HI 1
+TNT1 A 0 A_GiveInventory("PumpWeaponCharge",70)
+TNT1 A 0 A_SpawnItemEx("PumpSluggerHelper")
+TNT1 A 9
+PUMH KJ 1
+goto Ready0
+
+NoAmmo:
+PUMH A 1
+Goto Ready0
+
+Reload:
+PUMH A 1 A_GiveInventory("PumpReloadStop_P",1)
+PUMH A 0 A_JumpIfInventory("ThrewPHandleFlag",1,"NoAmmo")
+PUMH A 0 A_JumpIfInventory("PumpmanShieldFlag",1,"AltRadius")
+PUMH A 0 A_JumpIfInventory("PumpSluggerAmmo",224,"ShieldSetup")
+goto NoAmmo
+
+Flash:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInventory("RollingCutterFlag",1,"Flash.GrabBack")
+loop
+
+Flash.GrabBack:
+PUMP G 0 A_JumpIfInventory("PumpIsReloading",1,"Flash.GrabBack2")
+PUMH GFEEEEEONML 1
+PUMH L 0 A_TakeInventory("RollingCutterFlag",99)
+PUMH L 0 A_TakeInventory("ThrewPHandleFlag",99)
+goto Flash
+
+Flash.GrabBack2:
+TNT1 A 1
+TNT1 A 0 A_TakeInventory("RollingCutterFlag",99)
+TNT1 A 0 A_TakeInventory("ThrewPHandleFlag",99)
+goto Flash
+
+Flash.PumpSet:
+PUMH QRS 1
+PUMH TUVSS 1
+PUMH TXWSS 1
+PUMH TYZSS 1
+
+PUMH TUVSS 1
+PUMH TXWSS 1
+PUMH TYZSS 1
+
+PUMH TUVSS 1
+PUMH S 0 A_Jump(256,"Flash.PumpSetF1", "Flash.PumpSetF2")
+goto Flash.PumpSetF2
+
+Flash.PumpSetF1:
+PUMH TXWSS 1
+PUMH SRQ 1
+goto Flash
+
+Flash.PumpSetF2:
+PUMH TYZSS 1
+PUMH SRQ 1
+goto Flash
+
+ShieldSetup:
+PUMH JK 1
+TNT1 A 1
+PUMH LM 1
+PUMH M 0 A_GunFlash("Flash.PumpSet")
+PUMH NOE 1
+PUMH E 0 A_TakeInventory("PumpNextRadius",999)
+PUMH E 0 A_TakeInventory("PumpBubbleHP1",9999)
+PUMH E 0 A_TakeInventory("PumpBubbleHP2",9999)
+PUMH E 0 A_TakeInventory("PumpBubbleHP3",9999)
+PUMH E 0 A_TakeInventory("PumpBubbleHP4",9999)
+PUMH E 0 A_TakeInventory("PumpBubbleHP5",9999)
+PUMH E 0 A_TakeInventory("PumpBubbleHP6",9999)
+PUMH E 0 A_TakeInventory("PumpBubbleHP7",9999)
+PUMH E 0 A_TakeInventory("PumpBubbleHP8",9999)
+PUMH E 0 A_GiveInventory("AdapterWaitCount",1)
+PUMH E 0 A_GiveInventory("PumpmanShieldFlag",1)
+PUMH E 0 A_GiveInventory("PumpmanReload1_CI",1)
+PUMH E 0 A_GiveInventory("PumpmanReload2_CI",1)
+PUMH E 0 A_GiveInventory("PumpmanReload3_CI",1)
+PUMH E 0 A_GiveInventory("PumpmanReload4_CI",1)
+PUMH E 0 A_GiveInventory("PumpmanReload5_CI",1)
+PUMH E 0 A_GiveInventory("PumpmanReload6_CI",1)
+PUMH E 0 A_GiveInventory("PumpmanReload7_CI",1)
+PUMH E 0 A_GiveInventory("PumpmanReload8_CI",1)
+PUMH E 0 A_PlaySoundEx("wep/PumpShieldSpawn","Weapon")
+
+PUMH P 0 ACS_ExecuteAlways(512,0,2,0)
+PUMH P 0 A_GiveInventory("PumpBubbleHP1",PUMP_BUBBLEHP)
+PUMH P 3
+PUMH O 2
+PUMH O 0 A_GiveInventory("PumpBubbleHP2",PUMP_BUBBLEHP)
+PUMH P 3
+PUMH O 2
+PUMH O 0 A_GiveInventory("PumpBubbleHP3",PUMP_BUBBLEHP)
+PUMH P 3
+PUMH O 2
+PUMH O 0 A_GiveInventory("PumpBubbleHP4",PUMP_BUBBLEHP)
+PUMH P 3
+PUMH O 2
+PUMH O 0 A_GiveInventory("PumpBubbleHP5",PUMP_BUBBLEHP)
+PUMH P 3
+PUMH O 2
+PUMH O 0 A_GiveInventory("PumpBubbleHP6",PUMP_BUBBLEHP)
+PUMH P 3
+PUMH O 2
+PUMH O 0 A_GiveInventory("PumpBubbleHP7",PUMP_BUBBLEHP)
+PUMH P 3
+PUMH O 2
+PUMH O 0 A_GiveInventory("PumpBubbleHP8",PUMP_BUBBLEHP)
+PUMH P 3
+PUMH O 2
+PUMH ONML 1
+TNT1 A 1
+PUMH KJ 1
+PUMH A 0 A_TakeInventory("AdapterWaitCount",9999)
+Goto Ready0
+
+AltRadius:
+PUMH A 0 A_JumpIfInventory("PumpNextRadius",1,"AltRadiusDec")
+AltRadiusInc:
+PUMH A 0 A_GiveInventory("PumpResizeShieldSnd_P",1)
+PUMH A 1 A_GiveInventory("PumpRadiusUp",1)
+PUMH A 0 A_JumpIfInventory("PumpCurrentRadius",PUMP_MAXRADIUS,2)
+PUMH A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 1, "AltRadiusInc")
+PUMH A 0 A_GiveInventory("PumpNextRadius",1)
+Goto AltRadiusEnd
+AltRadiusDec:
+PUMH A 0 A_GiveInventory("PumpResizeShieldSnd_P",1)
+PUMH A 1 A_GiveInventory("PumpRadiusDown",1)
+PUMH A 0 A_JumpIfInventory("PumpCurrentRadius",6,2)
+PUMH A 0 A_TakeInventory("PumpNextRadius",999)
+Goto AltRadiusEnd
+PUMH A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 1, "AltRadiusDec")
+PUMH A 0 A_TakeInventory("PumpNextRadius",999)
+Goto AltRadiusEnd
+AltRadiusEnd:
+PUMH A 1 A_RailWait
+PUMH A 1 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 1, "AltRadiusEnd")
+Goto Ready0
+
+}
+}
+
+actor PumpFlashHelper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+Spawn2:
+TNT1 AAAAAAAAAAA 1 A_JumpIfInTargetInventory("PumpmanShieldFlag",1,"SpawnWait")
+TNT1 A 0 A_GiveToTarget("PumpSluggerAmmo",6)
+loop
+SpawnWait:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("PumpmanShieldFlag",1,"SpawnWait")
+goto Spawn2
+}
+}
+
+actor PumpAmmo_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("PumpPressureAmmo",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("PumpPressureAmmo",2)
+stop
+}
+}
+
+actor PumpSluggerHelper : BasicHelper
+{
+reactiontime 71
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_TakeFromTarget("PumpWeaponCharge",1)
+TNT1 A 1 A_Countdown
+loop
+Death:
+PUMH L 0 A_TakeFromTarget("RollingCutterFlag",99)
+PUMH L 0 A_TakeFromTarget("ThrewPHandleFlag",99)
+stop
+}
+}
+
+actor PumpReloadStop_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("PumpIsReloading",99)
+TNT1 A 0 A_StopSoundEx("Body")
+stop
+}
+}
+
+actor PumpMainHelper : BasicHelper
+{
+reactiontime 14
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_TakeFromTarget("PumpPressureAmmo",1)
+TNT1 A 1 A_Countdown
+loop
+}
+}
+
+actor PumpmanMain_CI : TeamColor_CI
+{
+States
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PumpRayWater",0,0,16,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PumpRayWaterB",0,0,16,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PumpRayWaterR",0,0,16,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PumpRayWaterO",0,0,16,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PumpRayWaterP",0,0,16,0)
+goto Done
+}
+}
+
+actor PumpRayWater
+{
+PROJECTILE
+Translation "192:192=200:200", "198:198=75:75"
+Damagetype "ClassPainLess2"
+Obituary "%o was washed clean by %k's water stream."
++THRUSPECIES
++DONTREFLECT
+species "DumbPumpBubble"
+Gravity 2
+Renderstyle Translucent
+Alpha 0.75
+var int user_power;
+Damage (3 - user_power)
+radius 16
+height 16
+Speed 90
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+PUM4 E 4
+PUM4 E 0 A_ChangeFlag("THRUSPECIES",FALSE)
+PUM4 E 0 A_SetUserVar("user_power",1)
+PUM4 E 4
+PUM4 E 0 A_SetUserVar("user_power",2)
+PUM4 E 1
+PUM4 E 0 A_ChangeFlag("NOGRAVITY",FALSE)
+Spawn2:
+PUM4 E 1
+wait
+
+Death:
+TNT1 A 0 A_JumpIf(z-floorz<16,"Floor")
+TNT1 A 0 A_JumpIf(z-ceilingz==0-18,"Ceiling")
+TNT1 A 0 A_SpawnItemEx("PumpRayWaterEnd",-15,0,0,random(5,15),random(5,15),random(5,15),random(0,360),1)
+stop
+
+Floor:
+TNT1 A 0 A_SpawnItemEx("PumpRayWaterEnd",-15,0,0,random(-15,15),random(-15,15),random(10,15),random(0,360),1)
+stop
+
+Ceiling:
+TNT1 A 0 A_SpawnItemEx("PumpRayWaterEnd",0,0,-15,random(-15,15),random(-15,15),random(-10,-15),0,1)
+stop
+}
+}
+
+actor PumpRayWaterB : PumpRayWater {translation "192:192=205:205", "198:198=74:74"}
+actor PumpRayWaterR : PumpRayWater {translation "192:192=171:171", "198:198=41:41"}
+actor PumpRayWaterO : PumpRayWater {translation "192:192=104:104", "198:198=128:128"}
+actor PumpRayWaterP : PumpRayWater {translation "192:192=229:229", "198:198=232:232"}
+
+actor PumpRayWaterEnd
+{
+Obituary "oof"
+PROJECTILE
+-NOGRAVITY
++NOCLIP
++CLIENTSIDEONLY
+Gravity 1.5
+damagetype "ClassPainLess2"
+Speed 0
+Damage (0)
+radius 16
+height 16
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+PUM4 EDC 4
+stop
+}
+}
+
+actor PumpSluggerAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 224
+}  
+
+actor PumpIsReloading : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor PumpWeaponCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 70
+}
+
+actor PumpPressureAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
+}
+
+actor PumpSluggerInvCheck : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor PumpmanNoHandleF : OnceC{}
+actor PumpmanShieldFlag : OnceC {}
+actor PumpNextRadius : OnceC {}
+
+actor PumpMainTrigger : Powerup
+{
+powerup.duration 8
+}
+
+actor PumpItemTrigger : Powerup
+{
+powerup.duration 8
+}
+actor PumpSizeSoundBuffer : Powerup
+{
+powerup.duration 6
+}
+actor PumpRadiusUp : Powerup
+{
+powerup.duration 2
+}
+actor PumpRadiusDown : PumpRadiusUp {}
+
+actor PumpCurrentRadius : Inventory
+{
+inventory.amount 1
+inventory.maxamount 258
+}
+
+actor ThrewPHandleFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor PumpBubbleHP1 : Inventory
+{
+inventory.amount 1
+inventory.maxamount 500
+}
+
+actor PumpBubbleHP2 : PumpBubbleHP1 {}
+actor PumpBubbleHP3 : PumpBubbleHP1 {}
+actor PumpBubbleHP4 : PumpBubbleHP1 {}
+actor PumpBubbleHP5 : PumpBubbleHP1 {}
+actor PumpBubbleHP6 : PumpBubbleHP1 {}
+actor PumpBubbleHP7 : PumpBubbleHP1 {}
+actor PumpBubbleHP8 : PumpBubbleHP1 {}
+
+actor PumpExplodeItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "WATRPOP"
+inventory.pickupmessage "Insert funny Pumpman message here."
+scale 2.0
++INVBAR
+states
+{
+Spawn:
+PUMH [ 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("PumpItemTrigger",1,"No")
+TNT1 A 0 A_JumpIfInventory("AdapterWaitCount",1,"No")
+TNT1 A 0 A_JumpIfInventory("PumpmanShieldFlag",1,"Trigger")
+goto No
+Trigger:
+TNT1 A 0 A_GiveInventory("PumpItemTrigger",1)
+TNT1 A 0 A_JumpIfInventory("PumpSluggerAmmo",224,"No3")
+TNT1 A 0 A_JumpIfInventory("PumpSluggerAmmo",196,"No2")
+fail
+No:
+TNT1 A 0
+fail
+No2:
+TNT1 A 0 A_TakeInventory("PumpSluggerAmmo",28)
+fail
+No3:
+TNT1 A 0 A_TakeInventory("PumpSluggerAmmo",56)
+fail
+}
+}
+
+actor PumpResizeShieldSnd_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PumpSizeSoundBuffer",1,"No")
+TNT1 A 0 A_PlaySoundEx("wep/PumpShieldSize","Weapon")
+TNT1 A 0 A_GiveInventory("PumpSizeSoundBuffer",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor PumpBubbleHP0_P : CustomInventory
+{
+States
+{
+Pickup2:
+TNT1 A 0 //A_TakeInventory("PumpSluggerAmmo",28)
+TNT1 A 0 A_JumpIfInventory("PumpBubbleHP1",1,"No")
+TNT1 A 0 A_JumpIfInventory("PumpBubbleHP2",1,"No")
+TNT1 A 0 A_JumpIfInventory("PumpBubbleHP3",1,"No")
+TNT1 A 0 A_JumpIfInventory("PumpBubbleHP4",1,"No")
+TNT1 A 0 A_JumpIfInventory("PumpBubbleHP5",1,"No")
+TNT1 A 0 A_JumpIfInventory("PumpBubbleHP6",1,"No")
+TNT1 A 0 A_JumpIfInventory("PumpBubbleHP7",1,"No")
+TNT1 A 0 A_JumpIfInventory("PumpBubbleHP8",1,"No")
+TNT1 A 0 A_TakeInventory("PumpmanShieldFlag",99)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor PumpBubbleHP1_P : PumpBubbleHP0_P
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("PumpBubbleHP1",9999)
+goto Pickup2
+}
+}
+actor PumpBubbleHP2_P:PumpBubbleHP0_P{States{Pickup:
+TNT1 A 0 A_TakeInventory("PumpBubbleHP2",9999)goto Pickup2}}
+actor PumpBubbleHP3_P:PumpBubbleHP0_P{States{Pickup:
+TNT1 A 0 A_TakeInventory("PumpBubbleHP3",9999)goto Pickup2}}
+actor PumpBubbleHP4_P:PumpBubbleHP0_P{States{Pickup:
+TNT1 A 0 A_TakeInventory("PumpBubbleHP4",9999)goto Pickup2}}
+actor PumpBubbleHP5_P:PumpBubbleHP0_P{States{Pickup:
+TNT1 A 0 A_TakeInventory("PumpBubbleHP5",9999)goto Pickup2}}
+actor PumpBubbleHP6_P:PumpBubbleHP0_P{States{Pickup:
+TNT1 A 0 A_TakeInventory("PumpBubbleHP6",9999)goto Pickup2}}
+actor PumpBubbleHP7_P:PumpBubbleHP0_P{States{Pickup:
+TNT1 A 0 A_TakeInventory("PumpBubbleHP7",9999)goto Pickup2}}
+actor PumpBubbleHP8_P:PumpBubbleHP0_P{States{Pickup:
+TNT1 A 0 A_TakeInventory("PumpBubbleHP8",9999)goto Pickup2}}
+
+actor PumpExplodeItemSound : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("VivifyDelay3",1,"No")
+TNT1 A 0 A_GiveInventory("VivifyDelay3",1)
+TNT1 A 0 A_SpawnItemEX("PumpExplodeSound")
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+actor PumpExplodeSound : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("wep/PumpShieldBurst","Body")
+TNT1 A 10 A_PlaySoundEx("wep/PumpShieldBurst","Weapon")
+stop
+}
+}
+
+actor PumpHandleToss_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("PumpmanNoHandleF",1)
+//TNT1 A 0 A_GiveInventory("PumpMainTrigger",1)
+TNT1 A 0 A_TakeInventory("CutterFlag",999)
+TNT1 A 0 A_TakeInventory("RollingCutterFlag",999)
+TNT1 A 0 A_SpawnItemEx("PumpHandle",cos(-pitch)*0,0,29+sin(-pitch)*0,cos(-pitch)*1,0,sin(-pitch)*1,0,33)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"Pickup_S")
+stop
+Pickup_S:
+TNT1 A 0 A_SpawnItemEx("PumpHandleSpread",cos(-pitch)*0,0,29+sin(-pitch)*0,cos(-pitch)*45,0,sin(-pitch)*45,15,33)
+TNT1 A 0 A_SpawnItemEx("PumpHandleSpread",cos(-pitch)*0,0,29+sin(-pitch)*0,cos(-pitch)*45,0,sin(-pitch)*45,-15,33)
+stop
+}
+}
+
+
+actor PumpHandle
+{
+Translation "192:192=200:200","198:198=75:75"
+PROJECTILE
+Obituary "$OB_PUMPHANDLE"
+damagetype "PumpTheHandle"
++NOTARGETSWITCH
++SKYEXPLODE
++THRUSPECIES
++DONTREFLECT
+species "DumbPumpBubble"
+damage (25)
+Radius 10
+Height 14
+scale 2.5
+speed 1//45
+reactiontime 20
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+PUM4 W 0 Thing_ChangeTID(0,8000+ACS_ExecuteWithResult(257,0))
+PUM4 W 0 A_ScaleVelocity(80)
+PUM4 W 0 A_PlaySound("wep/PumpSlugger","Weapon",1.0,true)
+Spawn2:
+PUM4 W 1 A_JumpIfInTargetInventory("PumpSluggerInvCheck",1,"Death")
+PUM4 W 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+PUM4 W 0 A_ScaleVelocity(0.9)
+PUM4 W 0 A_CountDown
+PUM4 W 1 A_JumpIfInTargetInventory("PumpSluggerInvCheck",1,"Death")
+PUM4 W 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+PUM4 W 0 A_ScaleVelocity(0.9)
+PUM4 W 0 A_CountDown
+Spawn2.a:
+PUM4 X 1 A_JumpIfInTargetInventory("PumpSluggerInvCheck",1,"Death")
+PUM4 X 0 A_ChangeFlag("THRUSPECIES",FALSE)
+PUM4 X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+PUM4 X 0 A_ScaleVelocity(0.9)
+PUM4 X 0 A_CountDown
+PUM4 X 1 A_JumpIfInTargetInventory("PumpSluggerInvCheck",1,"Death")
+PUM4 X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+PUM4 X 0 A_ScaleVelocity(0.9)
+PUM4 X 0 A_CountDown
+Spawn2.b:
+PUM4 Y 1 A_JumpIfInTargetInventory("PumpSluggerInvCheck",1,"Death")
+PUM4 Y 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+PUM4 Y 0 A_ScaleVelocity(0.9)
+PUM4 Y 0 A_CountDown
+PUM4 Y 1 A_JumpIfInTargetInventory("PumpSluggerInvCheck",1,"Death")
+PUM4 Y 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+PUM4 Y 0 A_ScaleVelocity(0.9)
+PUM4 Y 0 A_CountDown
+Spawn2.c:
+PUM4 Z 1 A_JumpIfInTargetInventory("PumpSluggerInvCheck",1,"Death")
+PUM4 Z 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+PUM4 Z 0 A_ScaleVelocity(0.9)
+PUM4 Z 0 A_CountDown
+PUM4 Z 1 A_JumpIfInTargetInventory("PumpSluggerInvCheck",1,"Death")
+PUM4 Z 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+PUM4 Z 0 A_ScaleVelocity(0.9)
+PUM4 Z 0 A_CountDown
+goto Spawn2
+
+Death:
+PUM4 W 0 //A_PlaySoundEx("wep/PumpSluggerHit","Weapon",1.0,false)
+Crash:
+XDeath:
+PUM4 W 0 A_PlaySound("wep/PumpSlugger","Weapon",0.0,false)
+PUM4 W 0 A_SpawnItemEx("PumpHandleReturn",0,0,0,0,0,0,0,4096+1,0,tid)//SXF_CLEARCALLERTID
+TNT1 A 1 A_Stop
+stop
+Death2:
+TNT1 A 0
+stop
+}
+}
+
+actor PumpHandleReturn : PumpHandle
+{
++NOINTERACTION
++SEEKERMISSILE
+ReactionTime 87//about 30 seconds
+damage (0)
+speed 50
+States
+{
+Spawn:
+PUM4 W 0
+PUM4 W 0 A_RearrangePointers(0,0,2)
+PUM4 W 0 A_FaceTarget
+PUM4 W 0 A_PlaySound("wep/PumpSlugger","Weapon",1.0,true)
+goto Spawn2
+Spawn2:
+PUM4 W 0 A_TakeFromTarget("CutterFlag",999)
+PUM4 W 0 A_JumpIfCloser(58,"Death")
+PUM4 WW 0 A_SeekerMissile(90,90,2)
+PUM4 W 1 A_SpawnItemEx("PumpHandleRDamager",0,0,0,momx,momy,momz,0,8)
+PUM4 W 0 A_JumpIfCloser(58,"Death")
+PUM4 W 1 A_SpawnItemEx("PumpHandleRDamager",0,0,0,momx,momy,momz,0,8)
+
+PUM4 X 0 A_JumpIfCloser(58,"Death")
+PUM4 XX 0 A_SeekerMissile(90,90,2)
+PUM4 X 1 A_SpawnItemEx("PumpHandleRDamager",0,0,0,momx,momy,momz,0,8)
+PUM4 X 0 A_JumpIfCloser(58,"Death")
+PUM4 X 1 A_SpawnItemEx("PumpHandleRDamager",0,0,0,momx,momy,momz,0,8)
+
+PUM4 Y 0 A_TakeFromTarget("CutterFlag",999)
+PUM4 Y 0 A_JumpIfCloser(58,"Death")
+PUM4 YY 0 A_SeekerMissile(90,90,2)
+PUM4 Y 1 A_SpawnItemEx("PumpHandleRDamager",0,0,0,momx,momy,momz,0,8)
+PUM4 Y 0 A_JumpIfCloser(58,"Death")
+PUM4 Y 1 A_SpawnItemEx("PumpHandleRDamager",0,0,0,momx,momy,momz,0,8)
+
+PUM4 Z 0 A_JumpIfCloser(58,"Death")
+PUM4 ZZ 0 A_SeekerMissile(90,90,2)
+PUM4 Z 1 A_SpawnItemEx("PumpHandleRDamager",0,0,0,momx,momy,momz,0,8)
+PUM4 Z 0 A_JumpIfCloser(58,"Death")
+PUM4 Z 1 A_SpawnItemEx("PumpHandleRDamager",0,0,0,momx,momy,momz,0,8)
+PUM4 Z 0 A_JumpIfCloser(58,"Death")
+PUM4 Z 0 A_CountDown
+PUM4 Z 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+loop
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/CutterCatch","Weapon")
+TNT1 A 1 A_GivetoTarget("RollingCutterFlag",1)
+stop
+}
+}
+
+actor PumpHandleSpread : PumpHandle
+{
+reactiontime 30
+Speed 45
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+PUM4 W 0 A_PlaySound("wep/PumpSlugger","Weapon",1.0,true)
+SpawnL:
+PUM4 W 0
+PUM4 WXYZ 3
+PUM4 W 0 A_CountDown
+PUM4 W 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+loop
+Death:
+TNT1 A 0 //
+Crash:
+XDeath:
+TNT1 A 0 A_PlaySound("wep/PumpSlugger","Weapon",0.0,false)
+TNT1 A 0 A_SpawnItemEx("PumpHandleReturnSpread",0,0,0,0,0,0,0,1)
+TNT1 A 1 A_Stop
+stop
+Death2:
+TNT1 A 0
+stop
+}
+}
+
+actor PumpHandleReturnSpread : PumpHandleSpread
+{
++NOINTERACTION
++SEEKERMISSILE
+ReactionTime 87
+damage (0)
+States
+{
+Spawn:
+PUM4 W 0
+PUM4 W 0 A_RearrangePointers(0,0,2)
+PUM4 W 0 A_FaceTarget
+PUM4 W 0 A_PlaySound("wep/PumpSlugger","Weapon",1.0,true)
+goto Spawn2
+Spawn2:
+PUM4 W 0 A_JumpIfCloser(58,"Death")
+PUM4 WW 0 A_SeekerMissile(90,90,2)
+PUM4 W 1 A_GiveInventory("PumpHandleR_P",1)
+PUM4 W 0 A_JumpIfCloser(58,"Death")
+PUM4 W 1 A_GiveInventory("PumpHandleR_P",1)
+PUM4 W 0 A_JumpIfCloser(58,"Death")
+PUM4 W 1 A_GiveInventory("PumpHandleR_P",1)
+
+PUM4 X 0 A_JumpIfCloser(58,"Death")
+PUM4 XX 0 A_SeekerMissile(90,90,2)
+PUM4 X 1 A_GiveInventory("PumpHandleR_P",1)
+PUM4 X 0 A_JumpIfCloser(58,"Death")
+PUM4 X 1 A_GiveInventory("PumpHandleR_P",1)
+PUM4 X 0 A_JumpIfCloser(58,"Death")
+PUM4 X 1 A_GiveInventory("PumpHandleR_P",1)
+
+PUM4 Y 0 A_JumpIfCloser(58,"Death")
+PUM4 YY 0 A_SeekerMissile(90,90,2)
+PUM4 Y 1 A_GiveInventory("PumpHandleR_P",1)
+PUM4 Y 0 A_JumpIfCloser(58,"Death")
+PUM4 Y 1 A_GiveInventory("PumpHandleR_P",1)
+PUM4 Y 0 A_JumpIfCloser(58,"Death")
+PUM4 Y 1 A_GiveInventory("PumpHandleR_P",1)
+
+PUM4 Z 0 A_JumpIfCloser(58,"Death")
+PUM4 ZZ 0 A_SeekerMissile(90,90,2)
+PUM4 Z 1 A_GiveInventory("PumpHandleR_P",1)
+PUM4 Z 0 A_JumpIfCloser(58,"Death")
+PUM4 Z 1 A_GiveInventory("PumpHandleR_P",1)
+PUM4 Z 0 A_JumpIfCloser(58,"Death")
+PUM4 Z 1 A_GiveInventory("PumpHandleR_P",1)
+PUM4 Z 0 A_CountDown
+PUM4 Z 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+loop
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/CutterCatch","Weapon")
+TNT1 A 1
+stop
+}
+}
+actor PumpHandleR_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("PumpHandleRDamager",0,0,0,momx,momy,momz,0,8)
+stop
+}
+}
+
+actor PumpHandleRDamager
+{
+PROJECTILE
+damagetype "ClassPainLess2"
+Obituary "$OB_PUMPHANDLE"
++RIPPER
++DONTBLAST
++THRUSPECIES
+species "DumbPumpBubble"
+damage (4)
+radius 16
+height 16
+States
+{
+Spawn:
+TNT1 A 2
+stop
+}
+}
+
+actor PumpShieldBubbleBoom : BasicExplosion
+{
+Obituary "$OB_PUMPBUBBLE"
+damagetype "PumpShield"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(5,20,0,0,20)
+TNT1 A 2
+stop
+}
+}
+
+actor PumpShieldProtect : PowerProtection
+{
+Powerup.Duration 9
+damagefactor "PumpShield", 0.0
+}
+
+actor PumpShieldBubbleB1
+{
+var int user_radius;
+var int user_owner;
+Obituary "$OB_PUMPBUBBLE"
+damagetype "PumpShield"
++MISSILE
+
++NOBLOOD
++NOGRAVITY
++NOCLIP
++DONTSPLASH
++DONTBLAST
++NOTARGETSWITCH
++FORCEXYBILLBOARD
++EXPLODEONDEATH
++DONTREFLECT
++DONTDRAIN
+//+DONTRIP
++THRUSPECIES
+species "DumbPumpBubble"
+damagefactor "PumpHandle",0.0
+damagefactor "WaterShield",0.0
+damagefactor "WaterShielder",0.0
+damagefactor "PumpShield",0.0
+damagefactor "Telefrag",0.0
+
+damageFactor "IceWallC", 0.125
+damageFactor "ConcreteShoulder", 0.04
+
+painchance 256
+painchance "PumpHandle", 0
+painchance "WaterShield", 0
+painchance "WaterShielder", 0
+painchance "PumpShield", 0
+painchance "Telefrag", 0
+
+
+//PainThreshold 1
+//RadiusDamageFactor 0.0
+
+painsound "wep/PumpShieldBlock"
+deathsound "wep/PumpShieldPop"
+renderstyle translucent
+alpha 0.75
+health 9015
+//reactiontime 1
+damage (0)
+height 32
+radius 32
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+TNT1 A 0 A_Warp(2,16,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)//WARPF_INTERPOLATE|WARPF_USECALLERANGLE|WARPF_NOCHECKPOSITION
+TNT1 A 1 A_JumpIfInTargetInventory("PumpBubbleHP1",1,"Appear")
+loop
+Appear:
+PUM4 S 0 A_SetUserVar("user_owner",ACS_ExecuteWithResult(257,0))
+PUM4 S 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 S 1 A_Warp(2,32,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+PUM4 S 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 S 1 A_Warp(2,48,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+PUM4 S 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 S 1 A_Warp(2,64,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+PUM4 S 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 S 1 A_Warp(2,80,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+SpriteSet:
+PUM4 E 0
+PUM4 "#" 0 A_ChangeFlag("SHOOTABLE",1)
+Appear1:
+PUM4 "#" 0 A_TakeInventory("AdapterWaitCount",999)
+Appear2:
+PUM4 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 "#" 0 A_JumpIfInTargetInventory("PumpItemTrigger",1,"Burst")
+PUM4 "#" 0 A_Warp(2,96 + user_radius,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1) + (0.008*(CallACS("cbm_CheckForRage",2)+1) * user_radius),28)
+PUM4 "#" 0 A_Explode(5,20,0,0,20)//A_SpawnItemEx("PumpShieldBubbleBoom",0,0,0,0,0,0,0,1024)
+PUM4 "#" 1
+PUM4 "#" 0 A_JumpIfInTargetInventory("PumpMainTrigger",1,"AppearTracer1")
+PUM4 "#" 0 A_JumpIfInTargetInventory("PumpRadiusUp",1,"Up")
+PUM4 "#" 0 A_JumpIfInTargetInventory("PumpRadiusDown",1,"Down")
+loop
+AppearTracer1:
+PUM4 "#" 0 A_GiveInventory("AdapterWaitCount",1)
+AppearTracer2:
+PUM4 "#" 0 ACS_ExecuteAlways(C_SET_POINTER,0,AAPTR_TRACER,8000+user_owner)
+PUM4 "#" 0 A_JumpIfInTargetInventory("PumpItemTrigger",1,"Burst")
+PUM4 "#" 0 A_Warp(AAPTR_TRACER,96 + user_radius,0,-5,0.8*(CallACS("cbm_CheckForRage",2)+1) + (0.008*(CallACS("cbm_CheckForRage",2)+1) * user_radius),28,"ContinueLikeThis")
+goto Appear1
+ContinueLikeThis:
+PUM4 "#" 0 A_Explode(5,20,0,0,20)
+PUM4 "#" 1
+goto AppearTracer2
+Up:
+PUM4 "#" 0 A_SetUserVar("user_radius",user_radius+6)
+Goto RadiusUpdate
+Down:
+PUM4 "#" 0 A_SetUserVar("user_radius",user_radius-6)
+Goto RadiusUpdate
+RadiusUpdate:
+PUM4 "#" 0 A_TakeFromTarget("PumpCurrentRadius",999)
+PUM4 "#" 0 A_GiveToTarget("PumpCurrentRadius",user_radius)
+Goto Appear2
+Pain:
+PUM4 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 "#" 0 A_Pain
+PUM4 "#" 0 A_TakeFromTarget("PumpBubbleHP1",999)
+PUM4 "#" 0 A_GiveToTarget("PumpBubbleHP1",health-9000)
+goto SpriteCheck
+FakeDeath:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP1_P",1)
+goto Death
+XDeath:
+Death:
+Crash:
+PUM4 B 0 A_Scream
+PUM4 B 0 A_ChangeFlag("NOINTERACTION",1)
+PUM4 B 2 A_TakeFromTarget("PumpSluggerAmmo",28)
+stop
+SpriteCheck:
+PUM4 "#" 0 A_JumpIf(health>=9010,"FullHP")
+PUM4 "#" 0 A_JumpIf(health>=9005,"MediumHP")
+PUM4 "#" 0 A_JumpIf(health<=9000,"FakeDeath")
+//PUM4 "#" 0 A_JumpIf(health>=1,"LowHP")
+LowHP:
+PUM4 C 0
+goto AppearCheck
+MediumHP:
+PUM4 D 0
+goto AppearCheck
+FullHP:
+PUM4 E 0
+goto AppearCheck
+AppearCheck:
+PUM4 "#" 0 A_JumpIfInventory("AdapterWaitCount",1,"AppearTracer2")
+goto Appear2+2
+Die:
+PUM4 B 0 A_Scream
+PUM4 B 0 A_ChangeFlag("NOINTERACTION",1)
+PUM4 B 0 A_TakeFromTarget("PumpBubbleHP1",9999)
+PUM4 B 0 A_TakeFromTarget("PumpBubbleHP2",9999)
+PUM4 B 0 A_TakeFromTarget("PumpBubbleHP3",9999)
+PUM4 B 0 A_TakeFromTarget("PumpBubbleHP4",9999)
+PUM4 B 0 A_TakeFromTarget("PumpBubbleHP5",9999)
+PUM4 B 0 A_TakeFromTarget("PumpBubbleHP6",9999)
+PUM4 B 0 A_TakeFromTarget("PumpBubbleHP7",9999)
+PUM4 B 0 A_TakeFromTarget("PumpBubbleHP8",9999)
+PUM4 B 0 A_TakeFromTarget("PumpmanShieldFlag",99)
+PUM4 B 0 A_TakeFromTarget("PumpSluggerAmmo",28)
+PUM4 B 2
+stop
+Burst:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP1_P",1)
+goto BurstCheck
+BurstCheck:
+PUM4 B 0 A_Warp(AAPTR_TRACER,96 + user_radius,0,-5,0,28,"BurstTracerCheck")
+PUM4 B 0 A_GiveInventory("PumpExplodeItemSound",1,AAPTR_TARGET)
+goto BurstCheck2
+BurstTracerCheck:
+PUM4 B 0 A_GiveInventory("PumpExplodeItemSound",1,AAPTR_TRACER)
+goto BurstCheck2
+BurstCheck2:
+PUM4 B 0 A_JumpIf(health>=9030,"FullHPThrow")
+PUM4 B 0 A_JumpIf(health>=9015,"MediumHPThrow")
+//PUM4 B 0 A_JumpIf(health>=1,"LowHPThrow")
+LowHPThrow:
+PUM4 B 0 A_SpawnItemEx("PumpShieldBubbleThrown",0,0,0,25 - (user_radius / 10.24),-5 - (user_radius / 10.24),0,45*0,1025)
+TNT1 A 0 A_JumpIfInTargetInventory("PowerSpread_ST",1,"LowHPThrow_S")
+stop
+LowHPThrow_S:
+PUM4 B 0 A_SpawnItemEx("PumpShieldBubbleThrown",0,0,0,25-(user_radius/10.24),-5-(user_radius/10.24),0,15,1025)
+PUM4 B 0 A_SpawnItemEx("PumpShieldBubbleThrown",0,0,0,25-(user_radius/10.24),-5-(user_radius/10.24),0,-15,1025)
+stop
+MediumHPThrow:
+PUM4 B 0 A_SpawnItemEx("PumpShieldBubbleThrownM",0,0,0,25 - (user_radius / 10.24),-5 - (user_radius / 10.24),0,45*0,1025)
+TNT1 A 0 A_JumpIfInTargetInventory("PowerSpread_ST",1,"MediumHPThrow_S")
+stop
+MediumHPThrow_S:
+PUM4 B 0 A_SpawnItemEx("PumpShieldBubbleThrownM",0,0,0,25-(user_radius/10.24),-5-(user_radius/10.24),0,15,1025)
+PUM4 B 0 A_SpawnItemEx("PumpShieldBubbleThrownM",0,0,0,25-(user_radius/10.24),-5-(user_radius/10.24),0,-15,1025)
+stop
+FullHPThrow:
+PUM4 B 0 A_SpawnItemEx("PumpShieldBubbleThrownF",0,0,0,25 - (user_radius / 10.24),-5 - (user_radius / 10.24),0,45*0,1025)
+TNT1 A 0 A_JumpIfInTargetInventory("PowerSpread_ST",1,"FullHPThrow_S")
+stop
+FullHPThrow_S:
+PUM4 B 0 A_SpawnItemEx("PumpShieldBubbleThrownF",0,0,0,25-(user_radius/10.24),-5-(user_radius/10.24),0,15,1025)
+PUM4 B 0 A_SpawnItemEx("PumpShieldBubbleThrownF",0,0,0,25-(user_radius/10.24),-5-(user_radius/10.24),0,-15,1025)
+stop
+}
+}
+actor PumpShieldBubbleB1B : PumpShieldBubbleB1 {DesignatedTeam 0}
+actor PumpShieldBubbleB1R : PumpShieldBubbleB1 {DesignatedTeam 1}
+actor PumpShieldBubbleB1O : PumpShieldBubbleB1 {DesignatedTeam 2}
+actor PumpShieldBubbleB1P : PumpShieldBubbleB1 {DesignatedTeam 3}
+
+actor PumpShieldBubbleB2 : PumpShieldBubbleB1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+TNT1 A 0 A_Warp(2,16,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+TNT1 A 1 A_JumpIfInTargetInventory("PumpBubbleHP2",1,"Appear")
+loop
+Pain:
+PUM4 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 "#" 0 A_Pain
+PUM4 "#" 0 A_TakeFromTarget("PumpBubbleHP2",999)
+PUM4 "#" 0 A_GiveToTarget("PumpBubbleHP2",health-9000)
+goto SpriteCheck
+FakeDeath:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP2_P",1)
+goto Death
+Burst:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP2_P",1)
+goto BurstCheck
+}
+}
+actor PumpShieldBubbleB2B : PumpShieldBubbleB2 {DesignatedTeam 0}
+actor PumpShieldBubbleB2R : PumpShieldBubbleB2 {DesignatedTeam 1}
+actor PumpShieldBubbleB2O : PumpShieldBubbleB2 {DesignatedTeam 2}
+actor PumpShieldBubbleB2P : PumpShieldBubbleB2 {DesignatedTeam 3}
+
+actor PumpShieldBubbleB3 : PumpShieldBubbleB1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+TNT1 A 0 A_Warp(2,16,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+TNT1 A 1 A_JumpIfInTargetInventory("PumpBubbleHP3",1,"Appear")
+loop
+Pain:
+PUM4 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 "#" 0 A_Pain
+PUM4 "#" 0 A_TakeFromTarget("PumpBubbleHP3",999)
+PUM4 "#" 0 A_GiveToTarget("PumpBubbleHP3",health-9000)
+goto SpriteCheck
+FakeDeath:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP3_P",1)
+goto Death
+Burst:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP3_P",1)
+goto BurstCheck
+}
+}
+actor PumpShieldBubbleB3B : PumpShieldBubbleB3 {DesignatedTeam 0}
+actor PumpShieldBubbleB3R : PumpShieldBubbleB3 {DesignatedTeam 1}
+actor PumpShieldBubbleB3O : PumpShieldBubbleB3 {DesignatedTeam 2}
+actor PumpShieldBubbleB3P : PumpShieldBubbleB3 {DesignatedTeam 3}
+
+actor PumpShieldBubbleB4 : PumpShieldBubbleB1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+TNT1 A 0 A_Warp(2,16,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+TNT1 A 1 A_JumpIfInTargetInventory("PumpBubbleHP4",1,"Appear")
+loop
+Pain:
+PUM4 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 "#" 0 A_Pain
+PUM4 "#" 0 A_TakeFromTarget("PumpBubbleHP4",999)
+PUM4 "#" 0 A_GiveToTarget("PumpBubbleHP4",health-9000)
+goto SpriteCheck
+FakeDeath:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP4_P",1)
+goto Death
+Burst:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP4_P",1)
+goto BurstCheck
+}
+}
+actor PumpShieldBubbleB4B : PumpShieldBubbleB4 {DesignatedTeam 0}
+actor PumpShieldBubbleB4R : PumpShieldBubbleB4 {DesignatedTeam 1}
+actor PumpShieldBubbleB4O : PumpShieldBubbleB4 {DesignatedTeam 2}
+actor PumpShieldBubbleB4P : PumpShieldBubbleB4 {DesignatedTeam 3}
+
+actor PumpShieldBubbleB5 : PumpShieldBubbleB1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+TNT1 A 0 A_Warp(2,16,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+TNT1 A 1 A_JumpIfInTargetInventory("PumpBubbleHP5",1,"Appear")
+loop
+Pain:
+PUM4 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 "#" 0 A_Pain
+PUM4 "#" 0 A_TakeFromTarget("PumpBubbleHP5",999)
+PUM4 "#" 0 A_GiveToTarget("PumpBubbleHP5",health-9000)
+goto SpriteCheck
+FakeDeath:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP5_P",1)
+goto Death
+Burst:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP5_P",1)
+goto BurstCheck
+}
+}
+actor PumpShieldBubbleB5B : PumpShieldBubbleB5 {DesignatedTeam 0}
+actor PumpShieldBubbleB5R : PumpShieldBubbleB5 {DesignatedTeam 1}
+actor PumpShieldBubbleB5O : PumpShieldBubbleB5 {DesignatedTeam 2}
+actor PumpShieldBubbleB5P : PumpShieldBubbleB5 {DesignatedTeam 3}
+
+actor PumpShieldBubbleB6 : PumpShieldBubbleB1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+TNT1 A 0 A_Warp(2,16,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+TNT1 A 1 A_JumpIfInTargetInventory("PumpBubbleHP6",1,"Appear")
+loop
+Pain:
+PUM4 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 "#" 0 A_Pain
+PUM4 "#" 0 A_TakeFromTarget("PumpBubbleHP6",999)
+PUM4 "#" 0 A_GiveToTarget("PumpBubbleHP6",health-9000)
+goto SpriteCheck
+FakeDeath:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP6_P",1)
+goto Death
+Burst:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP6_P",1)
+goto BurstCheck
+}
+}
+actor PumpShieldBubbleB6B : PumpShieldBubbleB6 {DesignatedTeam 0}
+actor PumpShieldBubbleB6R : PumpShieldBubbleB6 {DesignatedTeam 1}
+actor PumpShieldBubbleB6O : PumpShieldBubbleB6 {DesignatedTeam 2}
+actor PumpShieldBubbleB6P : PumpShieldBubbleB6 {DesignatedTeam 3}
+
+actor PumpShieldBubbleB7 : PumpShieldBubbleB1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+TNT1 A 0 A_Warp(2,16,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+TNT1 A 1 A_JumpIfInTargetInventory("PumpBubbleHP7",1,"Appear")
+loop
+Pain:
+PUM4 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 "#" 0 A_Pain
+PUM4 "#" 0 A_TakeFromTarget("PumpBubbleHP7",999)
+PUM4 "#" 0 A_GiveToTarget("PumpBubbleHP7",health-9000)
+goto SpriteCheck
+FakeDeath:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP7_P",1)
+goto Death
+Burst:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP7_P",1)
+goto BurstCheck
+}
+}
+actor PumpShieldBubbleB7B : PumpShieldBubbleB7 {DesignatedTeam 0}
+actor PumpShieldBubbleB7R : PumpShieldBubbleB7 {DesignatedTeam 1}
+actor PumpShieldBubbleB7O : PumpShieldBubbleB7 {DesignatedTeam 2}
+actor PumpShieldBubbleB7P : PumpShieldBubbleB7 {DesignatedTeam 3}
+
+actor PumpShieldBubbleB8 : PumpShieldBubbleB1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+TNT1 A 0 A_Warp(2,16,0,24,0.8*(CallACS("cbm_CheckForRage",2)+1),28)
+TNT1 A 1 A_JumpIfInTargetInventory("PumpBubbleHP8",1,"Appear")
+loop
+Pain:
+PUM4 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Die")
+PUM4 "#" 0 A_Pain
+PUM4 "#" 0 A_TakeFromTarget("PumpBubbleHP8",999)
+PUM4 "#" 0 A_GiveToTarget("PumpBubbleHP8",health-9000)
+goto SpriteCheck
+FakeDeath:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP8_P",1)
+goto Death
+Burst:
+PUM4 B 0 A_GiveToTarget("PumpBubbleHP8_P",1)
+goto BurstCheck
+}
+}
+actor PumpShieldBubbleB8B : PumpShieldBubbleB8 {DesignatedTeam 0}
+actor PumpShieldBubbleB8R : PumpShieldBubbleB8 {DesignatedTeam 1}
+actor PumpShieldBubbleB8O : PumpShieldBubbleB8 {DesignatedTeam 2}
+actor PumpShieldBubbleB8P : PumpShieldBubbleB8 {DesignatedTeam 3}
+
+actor PumpShieldBubbleThrown
+{
+PROJECTILE
+Obituary "$OB_PUMPBUBBLE"
+damagetype "WaterShield"
++FORCEXYBILLBOARD
++THRUSPECIES
+species "DumbPumpBubble"
+renderstyle translucent
+alpha 0.75
+damage (13)
+radius 32
+height 20
+scale 2.5
+states
+{
+Spawn:
+PUM4 C 0
+PUM4 C 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Flying
+Flying:
+PUM4 "#" 1 A_ChangeVelocity(0,2.5,0,1)
+loop
+Death:
+PUM4 B 2
+stop
+}
+}
+
+actor PumpShieldBubbleThrownM : PumpShieldBubbleThrown
+{
+damage (16)
+States
+{
+Spawn:
+PUM4 D 0
+PUM4 D 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Flying
+}
+}
+
+actor PumpShieldBubbleThrownF : PumpShieldBubbleThrown
+{
+damage (19)
+States
+{
+Spawn:
+PUM4 E 0
+PUM4 E 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Flying
+}
+}
+
+actor PumpmanReload1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB1",0,0,0,0,0,0,0,33)
+goto Done
+FireB:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB1B",0,0,0,0,0,0,0,33)
+goto Done
+FireR:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB1R",0,0,0,0,0,0,0,33)
+goto Done
+FireO:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB1O",0,0,0,0,0,0,0,33)
+goto Done
+FireP:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB1P",0,0,0,0,0,0,0,33)
+goto Done
+}
+}
+
+actor PumpmanReload2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB2",0,0,0,0,0,0,45,33)
+goto Done
+FireB:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB2B",0,0,0,0,0,0,45,33)
+goto Done
+FireR:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB2R",0,0,0,0,0,0,45,33)
+goto Done
+FireO:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB2O",0,0,0,0,0,0,45,33)
+goto Done
+FireP:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB2P",0,0,0,0,0,0,45,33)
+goto Done
+}
+}
+
+actor PumpmanReload3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB3",0,0,0,0,0,0,90,33)
+goto Done
+FireB:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB3B",0,0,0,0,0,0,90,33)
+goto Done
+FireR:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB3R",0,0,0,0,0,0,90,33)
+goto Done
+FireO:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB3O",0,0,0,0,0,0,90,33)
+goto Done
+FireP:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB3P",0,0,0,0,0,0,90,33)
+goto Done
+}
+}
+
+actor PumpmanReload4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB4",0,0,0,0,0,0,135,33)
+goto Done
+FireB:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB4B",0,0,0,0,0,0,135,33)
+goto Done
+FireR:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB4R",0,0,0,0,0,0,135,33)
+goto Done
+FireO:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB4O",0,0,0,0,0,0,135,33)
+goto Done
+FireP:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB4P",0,0,0,0,0,0,135,33)
+goto Done
+}
+}
+
+actor PumpmanReload5_CI : TeamColor_CI
+{
+states
+{
+FireX:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB5",0,0,0,0,0,0,180,33)
+goto Done
+FireB:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB5B",0,0,0,0,0,0,180,33)
+goto Done
+FireR:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB5R",0,0,0,0,0,0,180,33)
+goto Done
+FireO:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB5O",0,0,0,0,0,0,180,33)
+goto Done
+FireP:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB5P",0,0,0,0,0,0,180,33)
+goto Done
+}
+}
+
+actor PumpmanReload6_CI : TeamColor_CI
+{
+states
+{
+FireX:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB6",0,0,0,0,0,0,225,33)
+goto Done
+FireB:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB6B",0,0,0,0,0,0,225,33)
+goto Done
+FireR:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB6R",0,0,0,0,0,0,225,33)
+goto Done
+FireO:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB6O",0,0,0,0,0,0,225,33)
+goto Done
+FireP:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB6P",0,0,0,0,0,0,225,33)
+goto Done
+}
+}
+
+actor PumpmanReload7_CI : TeamColor_CI
+{
+states
+{
+FireX:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB7",0,0,0,0,0,0,270,33)
+goto Done
+FireB:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB7B",0,0,0,0,0,0,270,33)
+goto Done
+FireR:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB7R",0,0,0,0,0,0,270,33)
+goto Done
+FireO:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB7O",0,0,0,0,0,0,270,33)
+goto Done
+FireP:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB7P",0,0,0,0,0,0,270,33)
+goto Done
+}
+}
+
+actor PumpmanReload8_CI : TeamColor_CI
+{
+states
+{
+FireX:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB8",0,0,0,0,0,0,315,33)
+goto Done
+FireB:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB8B",0,0,0,0,0,0,315,33)
+goto Done
+FireR:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB8R",0,0,0,0,0,0,315,33)
+goto Done
+FireO:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB8O",0,0,0,0,0,0,315,33)
+goto Done
+FireP:
+PUMH F 0 A_SpawnItemEX("PumpShieldBubbleB8P",0,0,0,0,0,0,315,33)
+goto Done
+}
+}

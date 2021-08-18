@@ -1,0 +1,1955 @@
+actor BBAMegaman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=160:160", "198:198=198:198"
+States
+{
+Spawn:
+_MM1 B 2
+stop
+}
+}
+actor BBAMegaman_MapMarker_0 : BBAMegaman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor BBAMegaman_MapMarker_1 : BBAMegaman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor BBAMegaman_MapMarker_2 : BBAMegaman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor BBAMegaman_MapMarker_3 : BBAMegaman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor MegamanC_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=192:192", "198:198=198:198"
+States
+{
+Spawn:
+_MM1 C 2
+stop
+}
+}
+actor MegamanC_MapMarker_0 : MegamanC_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor MegamanC_MapMarker_1 : MegamanC_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor MegamanC_MapMarker_2 : MegamanC_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor MegamanC_MapMarker_3 : MegamanC_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor ProtomanHero_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=87:87", "198:198=42:42"
+States
+{
+Spawn:
+_MM1 D 2
+stop
+}
+}
+actor ProtomanHero_MapMarker_0 : ProtomanHero_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor ProtomanHero_MapMarker_1 : ProtomanHero_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor ProtomanHero_MapMarker_2 : ProtomanHero_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor ProtomanHero_MapMarker_3 : ProtomanHero_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor BassHero_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=217:217", "198:198=95:95"
+States
+{
+Spawn:
+_MM1 E 2
+stop
+}
+}
+actor BassHero_MapMarker_0 : BassHero_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor BassHero_MapMarker_1 : BassHero_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor BassHero_MapMarker_2 : BassHero_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor BassHero_MapMarker_3 : BassHero_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor RollClass_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=217:217", "198:198=217:217"
+States
+{
+Spawn:
+_MM1 F 2
+stop
+}
+}
+actor RollClass_MapMarker_0 : RollClass_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor RollClass_MapMarker_1 : RollClass_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor RollClass_MapMarker_2 : RollClass_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor RollClass_MapMarker_3 : RollClass_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor LightRyu_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=4:4"
+States
+{
+Spawn:
+_MM1 G 2
+stop
+}
+}
+actor LightRyu_MapMarker_0 : LightRyu_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor LightRyu_MapMarker_1 : LightRyu_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor LightRyu_MapMarker_2 : LightRyu_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor LightRyu_MapMarker_3 : LightRyu_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor DuoHero_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=220:220", "198:198=195:195"
+States
+{
+Spawn:
+_MM1 H 2
+stop
+}
+}
+actor DuoHero_MapMarker_0 : DuoHero_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor DuoHero_MapMarker_1 : DuoHero_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor DuoHero_MapMarker_2 : DuoHero_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor DuoHero_MapMarker_3 : DuoHero_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor DrWily_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=4:4"
+States
+{
+Spawn:
+_MM1 I 2
+stop
+}
+}
+actor DrWily_MapMarker_0 : DrWily_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor DrWily_MapMarker_1 : DrWily_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor DrWily_MapMarker_2 : DrWily_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor DrWily_MapMarker_3 : DrWily_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Gutsman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=41:41", "198:198=216:216"
+States
+{
+Spawn:
+_MM1 J 2
+stop
+}
+}
+actor Gutsman_MapMarker_0 : Gutsman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Gutsman_MapMarker_1 : Gutsman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Gutsman_MapMarker_2 : Gutsman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Gutsman_MapMarker_3 : Gutsman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Iceman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=197:197"
+States
+{
+Spawn:
+_MM1 K 2
+stop
+}
+}
+actor Iceman_MapMarker_0 : Iceman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Iceman_MapMarker_1 : Iceman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Iceman_MapMarker_2 : Iceman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Iceman_MapMarker_3 : Iceman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Timeman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=65:65", "198:198=61:61"
+States
+{
+Spawn:
+_MM1 L 2
+stop
+}
+}
+actor Timeman_MapMarker_0 : Timeman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Timeman_MapMarker_1 : Timeman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Timeman_MapMarker_2 : Timeman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Timeman_MapMarker_3 : Timeman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Oilman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=68:68", "198:198=78:78"
+States
+{
+Spawn:
+_MM1 M 2
+stop
+}
+}
+actor Oilman_MapMarker_0 : Oilman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Oilman_MapMarker_1 : Oilman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Oilman_MapMarker_2 : Oilman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Oilman_MapMarker_3 : Oilman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Elecman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=41:41"
+States
+{
+Spawn:
+_MM1 N 2
+stop
+}
+}
+actor Elecman_MapMarker_0 : Elecman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Elecman_MapMarker_1 : Elecman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Elecman_MapMarker_2 : Elecman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Elecman_MapMarker_3 : Elecman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Fireman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=41:41"
+States
+{
+Spawn:
+_MM1 O 2
+stop
+}
+}
+actor Fireman_MapMarker_0 : Fireman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Fireman_MapMarker_1 : Fireman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Fireman_MapMarker_2 : Fireman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Fireman_MapMarker_3 : Fireman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Cutman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=41:41"
+States
+{
+Spawn:
+_MM1 P 2
+stop
+}
+}
+actor Cutman_MapMarker_0 : Cutman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Cutman_MapMarker_1 : Cutman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Cutman_MapMarker_2 : Cutman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Cutman_MapMarker_3 : Cutman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Bombman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=41:41"
+States
+{
+Spawn:
+_MM1 Q 2
+stop
+}
+}
+actor Bombman_MapMarker_0 : Bombman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Bombman_MapMarker_1 : Bombman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Bombman_MapMarker_2 : Bombman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Bombman_MapMarker_3 : Bombman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Metalman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=41:41"
+States
+{
+Spawn:
+_MM1 R 2
+stop
+}
+}
+actor Metalman_MapMarker_0 : Metalman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Metalman_MapMarker_1 : Metalman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Metalman_MapMarker_2 : Metalman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Metalman_MapMarker_3 : Metalman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Airman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=75:75"
+States
+{
+Spawn:
+_MM1 S 2
+stop
+}
+}
+actor Airman_MapMarker_0 : Airman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Airman_MapMarker_1 : Airman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Airman_MapMarker_2 : Airman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Airman_MapMarker_3 : Airman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Bubbleman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=110:110"
+States
+{
+Spawn:
+_MM1 T 2
+stop
+}
+}
+actor Bubbleman_MapMarker_0 : Bubbleman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Bubbleman_MapMarker_1 : Bubbleman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Bubbleman_MapMarker_2 : Bubbleman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Bubbleman_MapMarker_3 : Bubbleman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Quickman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=41:41"
+States
+{
+Spawn:
+_MM1 U 2
+stop
+}
+}
+actor Quickman_MapMarker_0 : Quickman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Quickman_MapMarker_1 : Quickman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Quickman_MapMarker_2 : Quickman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Quickman_MapMarker_3 : Quickman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Crashman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=227:227"
+States
+{
+Spawn:
+_MM1 V 2
+stop
+}
+}
+actor Crashman_MapMarker_0 : Crashman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Crashman_MapMarker_1 : Crashman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Crashman_MapMarker_2 : Crashman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Crashman_MapMarker_3 : Crashman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Flashman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=75:75"
+States
+{
+Spawn:
+_MM1 W 2
+stop
+}
+}
+actor Flashman_MapMarker_0 : Flashman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Flashman_MapMarker_1 : Flashman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Flashman_MapMarker_2 : Flashman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Flashman_MapMarker_3 : Flashman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Heatman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=41:41"
+States
+{
+Spawn:
+_MM1 X 2
+stop
+}
+}
+actor Heatman_MapMarker_0 : Heatman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Heatman_MapMarker_1 : Heatman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Heatman_MapMarker_2 : Heatman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Heatman_MapMarker_3 : Heatman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Woodman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=211:211", "198:198=220:220"
+States
+{
+Spawn:
+_MM1 Y 2
+stop
+}
+}
+actor Woodman_MapMarker_0 : Woodman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Woodman_MapMarker_1 : Woodman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Woodman_MapMarker_2 : Woodman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Woodman_MapMarker_3 : Woodman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Needleman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=192:192", "198:198=198:198"
+States
+{
+Spawn:
+_MM1 Z 2
+stop
+}
+}
+actor Needleman_MapMarker_0 : Needleman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Needleman_MapMarker_1 : Needleman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Needleman_MapMarker_2 : Needleman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Needleman_MapMarker_3 : Needleman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Magnetman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=41:41"
+States
+{
+Spawn:
+_MM2 A 2
+stop
+}
+}
+actor Magnetman_MapMarker_0 : Magnetman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Magnetman_MapMarker_1 : Magnetman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Magnetman_MapMarker_2 : Magnetman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Magnetman_MapMarker_3 : Magnetman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Geminiman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=197:197"
+States
+{
+Spawn:
+_MM2 B 2
+stop
+}
+}
+actor Geminiman_MapMarker_0 : Geminiman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Geminiman_MapMarker_1 : Geminiman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Geminiman_MapMarker_2 : Geminiman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Geminiman_MapMarker_3 : Geminiman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Hardman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=87:87", "198:198=195:195"
+States
+{
+Spawn:
+_MM2 C 2
+stop
+}
+}
+actor Hardman_MapMarker_0 : Hardman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Hardman_MapMarker_1 : Hardman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Hardman_MapMarker_2 : Hardman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Hardman_MapMarker_3 : Hardman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Topman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=225:225"
+States
+{
+Spawn:
+_MM2 D 2
+stop
+}
+}
+actor Topman_MapMarker_0 : Topman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Topman_MapMarker_1 : Topman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Topman_MapMarker_2 : Topman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Topman_MapMarker_3 : Topman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Snakeman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=104:104"
+States
+{
+Spawn:
+_MM2 E 2
+stop
+}
+}
+actor Snakeman_MapMarker_0 : Snakeman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Snakeman_MapMarker_1 : Snakeman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Snakeman_MapMarker_2 : Snakeman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Snakeman_MapMarker_3 : Snakeman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Sparkman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=225:225"
+States
+{
+Spawn:
+_MM2 F 2
+stop
+}
+}
+actor Sparkman_MapMarker_0 : Sparkman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Sparkman_MapMarker_1 : Sparkman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Sparkman_MapMarker_2 : Sparkman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Sparkman_MapMarker_3 : Sparkman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Shadowman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=198:198"
+States
+{
+Spawn:
+_MM2 G 2
+stop
+}
+}
+actor Shadowman_MapMarker_0 : Shadowman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Shadowman_MapMarker_1 : Shadowman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Shadowman_MapMarker_2 : Shadowman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Shadowman_MapMarker_3 : Shadowman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor DocRobot_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=217:217", "198:198=174:174"
+States
+{
+Spawn:
+_MM2 H 2
+stop
+}
+}
+actor DocRobot_MapMarker_0 : DocRobot_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor DocRobot_MapMarker_1 : DocRobot_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor DocRobot_MapMarker_2 : DocRobot_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor DocRobot_MapMarker_3 : DocRobot_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Toadman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=215:215", "198:198=104:104"
+States
+{
+Spawn:
+_MM2 I 2
+stop
+}
+}
+actor Toadman_MapMarker_0 : Toadman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Toadman_MapMarker_1 : Toadman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Toadman_MapMarker_2 : Toadman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Toadman_MapMarker_3 : Toadman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Pharaohman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=110:110", "198:198=216:216"
+States
+{
+Spawn:
+_MM2 K 2
+stop
+}
+}
+actor Pharaohman_MapMarker_0 : Pharaohman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Pharaohman_MapMarker_1 : Pharaohman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Pharaohman_MapMarker_2 : Pharaohman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Pharaohman_MapMarker_3 : Pharaohman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Drillman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=87:87", "198:198=227:227"
+States
+{
+Spawn:
+_MM2 J 2
+stop
+}
+}
+actor Drillman_MapMarker_0 : Drillman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Drillman_MapMarker_1 : Drillman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Drillman_MapMarker_2 : Drillman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Drillman_MapMarker_3 : Drillman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Dustman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=87:87"
+States
+{
+Spawn:
+_MM2 L 2
+stop
+}
+}
+actor Dustman_MapMarker_0 : Dustman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Dustman_MapMarker_1 : Dustman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Dustman_MapMarker_2 : Dustman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Dustman_MapMarker_3 : Dustman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Diveman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=194:194"
+States
+{
+Spawn:
+_MM2 M 2
+stop
+}
+}
+actor Diveman_MapMarker_0 : Diveman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Diveman_MapMarker_1 : Diveman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Diveman_MapMarker_2 : Diveman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Diveman_MapMarker_3 : Diveman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Brightman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=225:225"
+States
+{
+Spawn:
+_MM2 N 2
+stop
+}
+}
+actor Brightman_MapMarker_0 : Brightman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Brightman_MapMarker_1 : Brightman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Brightman_MapMarker_2 : Brightman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Brightman_MapMarker_3 : Brightman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Ringman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=227:227"
+States
+{
+Spawn:
+_MM2 O 2
+stop
+}
+}
+actor Ringman_MapMarker_0 : Ringman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Ringman_MapMarker_1 : Ringman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Ringman_MapMarker_2 : Ringman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Ringman_MapMarker_3 : Ringman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Skullman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=87:87"
+States
+{
+Spawn:
+_MM2 P 2
+stop
+}
+}
+actor Skullman_MapMarker_0 : Skullman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Skullman_MapMarker_1 : Skullman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Skullman_MapMarker_2 : Skullman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Skullman_MapMarker_3 : Skullman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Gravityman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=197:197", "198:198=41:41"
+States
+{
+Spawn:
+_MM2 Q 2
+stop
+}
+}
+actor Gravityman_MapMarker_0 : Gravityman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Gravityman_MapMarker_1 : Gravityman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Gravityman_MapMarker_2 : Gravityman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Gravityman_MapMarker_3 : Gravityman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Waveman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=198:198"
+States
+{
+Spawn:
+_MM2 R 2
+stop
+}
+}
+actor Waveman_MapMarker_0 : Waveman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Waveman_MapMarker_1 : Waveman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Waveman_MapMarker_2 : Waveman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Waveman_MapMarker_3 : Waveman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Stoneman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=215:215", "198:198=216:216"
+States
+{
+Spawn:
+_MM2 S 2
+stop
+}
+}
+actor Stoneman_MapMarker_0 : Stoneman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Stoneman_MapMarker_1 : Stoneman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Stoneman_MapMarker_2 : Stoneman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Stoneman_MapMarker_3 : Stoneman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Gyroman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=104:104"
+States
+{
+Spawn:
+_MM2 T 2
+stop
+}
+}
+actor Gyroman_MapMarker_0 : Gyroman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Gyroman_MapMarker_1 : Gyroman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Gyroman_MapMarker_2 : Gyroman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Gyroman_MapMarker_3 : Gyroman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Starman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=217:217", "198:198=222:222"
+States
+{
+Spawn:
+_MM2 U 2
+stop
+}
+}
+actor Starman_MapMarker_0 : Starman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Starman_MapMarker_1 : Starman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Starman_MapMarker_2 : Starman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Starman_MapMarker_3 : Starman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Chargeman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=225:225"
+States
+{
+Spawn:
+_MM2 V 2
+stop
+}
+}
+actor Chargeman_MapMarker_0 : Chargeman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Chargeman_MapMarker_1 : Chargeman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Chargeman_MapMarker_2 : Chargeman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Chargeman_MapMarker_3 : Chargeman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Napalmman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "92:192=216:216", "198:198=75:75"
+States
+{
+Spawn:
+_MM2 W 2
+stop
+}
+}
+actor Napalmman_MapMarker_0 : Napalmman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Napalmman_MapMarker_1 : Napalmman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Napalmman_MapMarker_2 : Napalmman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Napalmman_MapMarker_3 : Napalmman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Crystalman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=193:193", "198:198=128:128"
+States
+{
+Spawn:
+_MM2 X 2
+stop
+}
+}
+actor Crystalman_MapMarker_0 : Crystalman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Crystalman_MapMarker_1 : Crystalman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Crystalman_MapMarker_2 : Crystalman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Crystalman_MapMarker_3 : Crystalman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Darkman1_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=110:110"
+States
+{
+Spawn:
+_MM2 Y 2
+stop
+}
+}
+actor Darkman1_MapMarker_0 : Darkman1_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Darkman1_MapMarker_1 : Darkman1_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Darkman1_MapMarker_2 : Darkman1_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Darkman1_MapMarker_3 : Darkman1_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Darkman2_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=93:93"
+States
+{
+Spawn:
+_MM2 Z 2
+stop
+}
+}
+actor Darkman2_MapMarker_0 : Darkman2_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Darkman2_MapMarker_1 : Darkman2_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Darkman2_MapMarker_2 : Darkman2_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Darkman2_MapMarker_3 : Darkman2_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Darkman3_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=65:65", "198:198=60:60"
+States
+{
+Spawn:
+_MM3 A 2
+stop
+}
+}
+actor Darkman3_MapMarker_0 : Darkman3_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Darkman3_MapMarker_1 : Darkman3_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Darkman3_MapMarker_2 : Darkman3_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Darkman3_MapMarker_3 : Darkman3_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Darkman4_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=87:87", "198:198=227:227"
+States
+{
+Spawn:
+_MM3 B 2
+stop
+}
+}
+actor Darkman4_MapMarker_0 : Darkman4_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Darkman4_MapMarker_1 : Darkman4_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Darkman4_MapMarker_2 : Darkman4_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Darkman4_MapMarker_3 : Darkman4_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Terra_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=117:226", "198:198=226:226"
+States
+{
+Spawn:
+_MM3 C 2
+stop
+}
+}
+actor Terra_MapMarker_0 : Terra_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Terra_MapMarker_1 : Terra_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Terra_MapMarker_2 : Terra_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Terra_MapMarker_3 : Terra_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Mercury_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=104:104", "198:198=110:110"
+States
+{
+Spawn:
+_MM3 D 2
+stop
+}
+}
+actor Mercury_MapMarker_0 : Mercury_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Mercury_MapMarker_1 : Mercury_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Mercury_MapMarker_2 : Mercury_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Mercury_MapMarker_3 : Mercury_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Venus_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=210:210", "198:198=218:218"
+States
+{
+Spawn:
+_MM3 E 2
+stop
+}
+}
+actor Venus_MapMarker_0 : Venus_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Venus_MapMarker_1 : Venus_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Venus_MapMarker_2 : Venus_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Venus_MapMarker_3 : Venus_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Mars_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=42:42"
+States
+{
+Spawn:
+_MM3 F 2
+stop
+}
+}
+actor Mars_MapMarker_0 : Mars_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Mars_MapMarker_1 : Mars_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Mars_MapMarker_2 : Mars_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Mars_MapMarker_3 : Mars_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Jupiter_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=196:196", "198:198=128:128"
+States
+{
+Spawn:
+_MM3 G 2
+stop
+}
+}
+actor Jupiter_MapMarker_0 : Jupiter_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Jupiter_MapMarker_1 : Jupiter_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Jupiter_MapMarker_2 : Jupiter_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Jupiter_MapMarker_3 : Jupiter_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Saturn_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=215:215", "198:198=223:223"
+States
+{
+Spawn:
+_MM3 H 2
+stop
+}
+}
+actor Saturn_MapMarker_0 : Saturn_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Saturn_MapMarker_1 : Saturn_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Saturn_MapMarker_2 : Saturn_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Saturn_MapMarker_3 : Saturn_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Uranus_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=42:42"
+States
+{
+Spawn:
+_MM3 I 2
+stop
+}
+}
+actor Uranus_MapMarker_0 : Uranus_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Uranus_MapMarker_1 : Uranus_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Uranus_MapMarker_2 : Uranus_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Uranus_MapMarker_3 : Uranus_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Pluto_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=65:65", "198:198=60:60"
+States
+{
+Spawn:
+_MM3 J 2
+stop
+}
+}
+actor Pluto_MapMarker_0 : Pluto_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Pluto_MapMarker_1 : Pluto_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Pluto_MapMarker_2 : Pluto_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Pluto_MapMarker_3 : Pluto_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Neptune_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=[248,56,0]:[248,56,0]", "198:198=198:198"
+States
+{
+Spawn:
+_MM3 K 2
+stop
+}
+}
+actor Neptune_MapMarker_0 : Neptune_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Neptune_MapMarker_1 : Neptune_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Neptune_MapMarker_2 : Neptune_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Neptune_MapMarker_3 : Neptune_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Sunstar_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=242:242"
+States
+{
+Spawn:
+_MM3 L 2
+stop
+}
+}
+actor Sunstar_MapMarker_0 : Sunstar_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Sunstar_MapMarker_1 : Sunstar_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Sunstar_MapMarker_2 : Sunstar_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Sunstar_MapMarker_3 : Sunstar_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Blizzardman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=193:193"
+States
+{
+Spawn:
+_MM3 M 2
+stop
+}
+}
+actor Blizzardman_MapMarker_0 : Blizzardman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Blizzardman_MapMarker_1 : Blizzardman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Blizzardman_MapMarker_2 : Blizzardman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Blizzardman_MapMarker_3 : Blizzardman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Centaurman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=104:104"
+States
+{
+Spawn:
+_MM3 N 2
+stop
+}
+}
+actor Centaurman_MapMarker_0 : Centaurman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Centaurman_MapMarker_1 : Centaurman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Centaurman_MapMarker_2 : Centaurman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Centaurman_MapMarker_3 : Centaurman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Flameman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=227:227"
+States
+{
+Spawn:
+_MM3 O 2
+stop
+}
+}
+actor Flameman_MapMarker_0 : Flameman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Flameman_MapMarker_1 : Flameman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Flameman_MapMarker_2 : Flameman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Flameman_MapMarker_3 : Flameman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Knightman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=75:75"
+States
+{
+Spawn:
+_MM3 P 2
+stop
+}
+}
+actor Knightman_MapMarker_0 : Knightman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Knightman_MapMarker_1 : Knightman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Knightman_MapMarker_2 : Knightman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Knightman_MapMarker_3 : Knightman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Plantman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=41:41"
+States
+{
+Spawn:
+_MM3 Q 2
+stop
+}
+}
+actor Plantman_MapMarker_0 : Plantman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Plantman_MapMarker_1 : Plantman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Plantman_MapMarker_2 : Plantman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Plantman_MapMarker_3 : Plantman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Tomahawkman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=41:41", "198:198=74:74"
+States
+{
+Spawn:
+_MM3 R 2
+stop
+}
+}
+actor Tomahawkman_MapMarker_0 : Tomahawkman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Tomahawkman_MapMarker_1 : Tomahawkman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Tomahawkman_MapMarker_2 : Tomahawkman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Tomahawkman_MapMarker_3 : Tomahawkman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Windman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=225:225"
+States
+{
+Spawn:
+_MM3 S 2
+stop
+}
+}
+actor Windman_MapMarker_0 : Windman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Windman_MapMarker_1 : Windman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Windman_MapMarker_2 : Windman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Windman_MapMarker_3 : Windman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Yamatoman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=60:60"
+States
+{
+Spawn:
+_MM3 T 2
+stop
+}
+}
+actor Yamatoman_MapMarker_0 : Yamatoman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Yamatoman_MapMarker_1 : Yamatoman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Yamatoman_MapMarker_2 : Yamatoman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Yamatoman_MapMarker_3 : Yamatoman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Freezeman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=69:69"
+States
+{
+Spawn:
+_MM3 U 2
+stop
+}
+}
+actor Freezeman_MapMarker_0 : Freezeman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Freezeman_MapMarker_1 : Freezeman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Freezeman_MapMarker_2 : Freezeman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Freezeman_MapMarker_3 : Freezeman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Junkman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=94:94"
+States
+{
+Spawn:
+_MM3 V 2
+stop
+}
+}
+actor Junkman_MapMarker_0 : Junkman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Junkman_MapMarker_1 : Junkman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Junkman_MapMarker_2 : Junkman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Junkman_MapMarker_3 : Junkman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Burstman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=218:218", "198:198=73:73"
+States
+{
+Spawn:
+_MM3 W 2
+stop
+}
+}
+actor Burstman_MapMarker_0 : Burstman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Burstman_MapMarker_1 : Burstman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Burstman_MapMarker_2 : Burstman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Burstman_MapMarker_3 : Burstman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Cloudman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=218:218"
+States
+{
+Spawn:
+_MM3 X 2
+stop
+}
+}
+actor Cloudman_MapMarker_0 : Cloudman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Cloudman_MapMarker_1 : Cloudman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Cloudman_MapMarker_2 : Cloudman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Cloudman_MapMarker_3 : Cloudman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Springman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=40:40"
+States
+{
+Spawn:
+_MM3 Y 2
+stop
+}
+}
+actor Springman_MapMarker_0 : Springman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Springman_MapMarker_1 : Springman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Springman_MapMarker_2 : Springman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Springman_MapMarker_3 : Springman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Slashman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=[255, 120, 48]:[255, 120, 48]", "198:198=[176,16,48]:[176,16,48]"
+States
+{
+Spawn:
+_MM3 Z 2
+stop
+}
+}
+actor Slashman_MapMarker_0 : Slashman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Slashman_MapMarker_1 : Slashman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Slashman_MapMarker_2 : Slashman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Slashman_MapMarker_3 : Slashman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Shademan_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=61:61"
+States
+{
+Spawn:
+_MM4 A 2
+stop
+}
+}
+actor Shademan_MapMarker_0 : Shademan_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Shademan_MapMarker_1 : Shademan_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Shademan_MapMarker_2 : Shademan_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Shademan_MapMarker_3 : Shademan_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Turboman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=73:73"
+States
+{
+Spawn:
+_MM4 B 2
+stop
+}
+}
+actor Turboman_MapMarker_0 : Turboman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Turboman_MapMarker_1 : Turboman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Turboman_MapMarker_2 : Turboman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Turboman_MapMarker_3 : Turboman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Tenguman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=42:42"
+States
+{
+Spawn:
+_MM4 C 2
+stop
+}
+}
+actor Tenguman_MapMarker_0 : Tenguman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Tenguman_MapMarker_1 : Tenguman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Tenguman_MapMarker_2 : Tenguman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Tenguman_MapMarker_3 : Tenguman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Astroman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=128:128"
+States
+{
+Spawn:
+_MM4 D 2
+stop
+}
+}
+actor Astroman_MapMarker_0 : Astroman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Astroman_MapMarker_1 : Astroman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Astroman_MapMarker_2 : Astroman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Astroman_MapMarker_3 : Astroman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Swordman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=219:219", "198:198=43:43"
+States
+{
+Spawn:
+_MM4 E 2
+stop
+}
+}
+actor Swordman_MapMarker_0 : Swordman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Swordman_MapMarker_1 : Swordman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Swordman_MapMarker_2 : Swordman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Swordman_MapMarker_3 : Swordman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Clownman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=228:228", "198:198=61:61"
+States
+{
+Spawn:
+_MM4 F 2
+stop
+}
+}
+actor Clownman_MapMarker_0 : Clownman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Clownman_MapMarker_1 : Clownman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Clownman_MapMarker_2 : Clownman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Clownman_MapMarker_3 : Clownman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Searchman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=105:105", "198:198=230:230"
+States
+{
+Spawn:
+_MM4 G 2
+stop
+}
+}
+actor Searchman_MapMarker_0 : Searchman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Searchman_MapMarker_1 : Searchman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Searchman_MapMarker_2 : Searchman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Searchman_MapMarker_3 : Searchman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Frostman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=70:70"
+States
+{
+Spawn:
+_MM4 H 2
+stop
+}
+}
+actor Frostman_MapMarker_0 : Frostman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Frostman_MapMarker_1 : Frostman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Frostman_MapMarker_2 : Frostman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Frostman_MapMarker_3 : Frostman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Grenademan_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=194:194"
+States
+{
+Spawn:
+_MM4 I 2
+stop
+}
+}
+actor Grenademan_MapMarker_0 : Grenademan_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Grenademan_MapMarker_1 : Grenademan_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Grenademan_MapMarker_2 : Grenademan_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Grenademan_MapMarker_3 : Grenademan_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Aquaman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=198:198"
+States
+{
+Spawn:
+_MM4 J 2
+stop
+}
+}
+actor Aquaman_MapMarker_0 : Aquaman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Aquaman_MapMarker_1 : Aquaman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Aquaman_MapMarker_2 : Aquaman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Aquaman_MapMarker_3 : Aquaman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Dynamoman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=217:217", "198:198=110:110"
+States
+{
+Spawn:
+_MM4 K 2
+stop
+}
+}
+actor Dynamoman_MapMarker_0 : Dynamoman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Dynamoman_MapMarker_1 : Dynamoman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Dynamoman_MapMarker_2 : Dynamoman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Dynamoman_MapMarker_3 : Dynamoman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Coldman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=96:96", "198:198=116:116"
+States
+{
+Spawn:
+_MM4 L 2
+stop
+}
+}
+actor Coldman_MapMarker_0 : Coldman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Coldman_MapMarker_1 : Coldman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Coldman_MapMarker_2 : Coldman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Coldman_MapMarker_3 : Coldman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Groundman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=167:167"
+States
+{
+Spawn:
+_MM4 M 2
+stop
+}
+}
+actor Groundman_MapMarker_0 : Groundman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Groundman_MapMarker_1 : Groundman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Groundman_MapMarker_2 : Groundman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Groundman_MapMarker_3 : Groundman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Pirateman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "198:198=41:41", "192:192=218:218"
+States
+{
+Spawn:
+_MM4 N 2
+stop
+}
+}
+actor Pirateman_MapMarker_0 : Pirateman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Pirateman_MapMarker_1 : Pirateman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Pirateman_MapMarker_2 : Pirateman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Pirateman_MapMarker_3 : Pirateman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Burnerman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=176:176"
+States
+{
+Spawn:
+_MM4 O 2
+stop
+}
+}
+actor Burnerman_MapMarker_0 : Burnerman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Burnerman_MapMarker_1 : Burnerman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Burnerman_MapMarker_2 : Burnerman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Burnerman_MapMarker_3 : Burnerman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Magicman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=3:3"
+States
+{
+Spawn:
+_MM4 P 2
+stop
+}
+}
+actor Magicman_MapMarker_0 : Magicman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Magicman_MapMarker_1 : Magicman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Magicman_MapMarker_2 : Magicman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Magicman_MapMarker_3 : Magicman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Magmaman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=[208,32,32]:[208,32,32]"
+States
+{
+Spawn:
+_MM4 Q 2
+stop
+}
+}
+actor Magmaman_MapMarker_0 : Magmaman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Magmaman_MapMarker_1 : Magmaman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Magmaman_MapMarker_2 : Magmaman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Magmaman_MapMarker_3 : Magmaman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Galaxyman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=84:84"
+States
+{
+Spawn:
+_MM4 R 2
+stop
+}
+}
+actor Galaxyman_MapMarker_0 : Galaxyman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Galaxyman_MapMarker_1 : Galaxyman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Galaxyman_MapMarker_2 : Galaxyman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Galaxyman_MapMarker_3 : Galaxyman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Concreteman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=216:216"
+States
+{
+Spawn:
+_MM4 S 2
+stop
+}
+}
+actor Concreteman_MapMarker_0 : Concreteman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Concreteman_MapMarker_1 : Concreteman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Concreteman_MapMarker_2 : Concreteman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Concreteman_MapMarker_3 : Concreteman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Tornadoman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=248:248", "198:198=128:128"
+States
+{
+Spawn:
+_MM4 T 2
+stop
+}
+}
+actor Tornadoman_MapMarker_0 : Tornadoman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Tornadoman_MapMarker_1 : Tornadoman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Tornadoman_MapMarker_2 : Tornadoman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Tornadoman_MapMarker_3 : Tornadoman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Splashwoman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=202:202", "198:198=74:74"
+States
+{
+Spawn:
+_MM4 U 2
+stop
+}
+}
+actor Splashwoman_MapMarker_0 : Splashwoman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Splashwoman_MapMarker_1 : Splashwoman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Splashwoman_MapMarker_2 : Splashwoman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Splashwoman_MapMarker_3 : Splashwoman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Plugman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=36:36", "198:198=251:251"
+States
+{
+Spawn:
+_MM4 V 2
+stop
+}
+}
+actor Plugman_MapMarker_0 : Plugman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Plugman_MapMarker_1 : Plugman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Plugman_MapMarker_2 : Plugman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Plugman_MapMarker_3 : Plugman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Jewelman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=36:36"
+States
+{
+Spawn:
+_MM4 W 2
+stop
+}
+}
+actor Jewelman_MapMarker_0 : Jewelman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Jewelman_MapMarker_1 : Jewelman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Jewelman_MapMarker_2 : Jewelman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Jewelman_MapMarker_3 : Jewelman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Hornetman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=248:248", "198:198=220:220"
+States
+{
+Spawn:
+_MM4 X 2
+stop
+}
+}
+actor Hornetman_MapMarker_0 : Hornetman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Hornetman_MapMarker_1 : Hornetman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Hornetman_MapMarker_2 : Hornetman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Hornetman_MapMarker_3 : Hornetman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Fakeman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=71:71", "198:198=73:73"
+States
+{
+Spawn:
+_MM4 Y 2
+stop
+}
+}
+actor Fakeman_MapMarker_0 : Fakeman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Fakeman_MapMarker_1 : Fakeman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Fakeman_MapMarker_2 : Fakeman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Fakeman_MapMarker_3 : Fakeman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Blademan_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=248:248", "198:198=251:251"
+States
+{
+Spawn:
+_MM4 Z 2
+stop
+}
+}
+actor Blademan_MapMarker_0 : Blademan_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Blademan_MapMarker_1 : Blademan_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Blademan_MapMarker_2 : Blademan_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Blademan_MapMarker_3 : Blademan_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Pumpman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=200:200", "198:198=75:75"
+States
+{
+Spawn:
+_MM5 A 2
+stop
+}
+}
+actor Pumpman_MapMarker_0 : Pumpman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Pumpman_MapMarker_1 : Pumpman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Pumpman_MapMarker_2 : Pumpman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Pumpman_MapMarker_3 : Pumpman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Commandoman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=208:208", "198:198=129:129"
+States
+{
+Spawn:
+_MM5 B 2
+stop
+}
+}
+actor Commandoman_MapMarker_0 : Commandoman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Commandoman_MapMarker_1 : Commandoman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Commandoman_MapMarker_2 : Commandoman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Commandoman_MapMarker_3 : Commandoman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Sheepman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=36:36"
+States
+{
+Spawn:
+_MM5 C 2
+stop
+}
+}
+actor Sheepman_MapMarker_0 : Sheepman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Sheepman_MapMarker_1 : Sheepman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Sheepman_MapMarker_2 : Sheepman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Sheepman_MapMarker_3 : Sheepman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Chillman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=208:208", "198:198=71:71"
+States
+{
+Spawn:
+_MM5 D 2
+stop
+}
+}
+actor Chillman_MapMarker_0 : Chillman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Chillman_MapMarker_1 : Chillman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Chillman_MapMarker_2 : Chillman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Chillman_MapMarker_3 : Chillman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Strikeman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=217:217", "198:198=42:42"
+States
+{
+Spawn:
+_MM5 E 2
+stop
+}
+}
+actor Strikeman_MapMarker_0 : Strikeman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Strikeman_MapMarker_1 : Strikeman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Strikeman_MapMarker_2 : Strikeman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Strikeman_MapMarker_3 : Strikeman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Nitroman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=41:41"
+States
+{
+Spawn:
+_MM5 F 2
+stop
+}
+}
+actor Nitroman_MapMarker_0 : Nitroman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Nitroman_MapMarker_1 : Nitroman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Nitroman_MapMarker_2 : Nitroman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Nitroman_MapMarker_3 : Nitroman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Solarman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=248:248", "198:198=222:222"
+States
+{
+Spawn:
+_MM5 G 2
+stop
+}
+}
+actor Solarman_MapMarker_0 : Solarman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Solarman_MapMarker_1 : Solarman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Solarman_MapMarker_2 : Solarman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Solarman_MapMarker_3 : Solarman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor RockClass_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=0:0", "198:198=0:0"
+States
+{
+Spawn:
+_MM5 H 2
+stop
+}
+}
+actor RockClass_MapMarker_0 : RockClass_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor RockClass_MapMarker_1 : RockClass_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor RockClass_MapMarker_2 : RockClass_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor RockClass_MapMarker_3 : RockClass_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Auto_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=208:208", "198:198=128:128"
+States
+{
+Spawn:
+_MM5 I 2
+stop
+}
+}
+actor Auto_MapMarker_0 : Auto_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Auto_MapMarker_1 : Auto_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Auto_MapMarker_2 : Auto_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Auto_MapMarker_3 : Auto_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Breakman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=90:90", "198:198=179:179"
+States
+{
+Spawn:
+_MM5 K 2
+stop
+}
+}
+actor Breakman_MapMarker_0 : Breakman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Breakman_MapMarker_1 : Breakman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Breakman_MapMarker_2 : Breakman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Breakman_MapMarker_3 : Breakman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor SniperJoe_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=108:108"
+States
+{
+Spawn:
+_MM5 J 2
+stop
+}
+}
+actor SniperJoe_MapMarker_0 : SniperJoe_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor SniperJoe_MapMarker_1 : SniperJoe_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor SniperJoe_MapMarker_2 : SniperJoe_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor SniperJoe_MapMarker_3 : SniperJoe_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Alien_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=104:104", "198:198=110:110"
+States
+{
+Spawn:
+_MM5 L 2
+stop
+}
+}
+actor Alien_MapMarker_0 : Alien_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Alien_MapMarker_1 : Alien_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Alien_MapMarker_2 : Alien_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Alien_MapMarker_3 : Alien_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Trio_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=41:41", "198:198=249:249"
+States
+{
+Spawn:
+_MM5 M 2
+stop
+}
+}
+actor Trio_MapMarker_0 : Trio_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Trio_MapMarker_1 : Trio_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Trio_MapMarker_2 : Trio_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Trio_MapMarker_3 : Trio_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor OriginalDuo_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=192:192"
+States
+{
+Spawn:
+_MM5 N 2
+stop
+}
+}
+actor OriginalDuo_MapMarker_0 : OriginalDuo_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor OriginalDuo_MapMarker_1 : OriginalDuo_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor OriginalDuo_MapMarker_2 : OriginalDuo_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor OriginalDuo_MapMarker_3 : OriginalDuo_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor KingClass_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=215:215", "198:198=220:220"
+States
+{
+Spawn:
+_MM5 O 2
+stop
+}
+}
+actor KingClass_MapMarker_0 : KingClass_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor KingClass_MapMarker_1 : KingClass_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor KingClass_MapMarker_2 : KingClass_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor KingClass_MapMarker_3 : KingClass_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Ballade_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=228:228", "198:198=62:62"
+States
+{
+Spawn:
+_MM5 P 2
+stop
+}
+}
+actor Ballade_MapMarker_0 : Ballade_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Ballade_MapMarker_1 : Ballade_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Ballade_MapMarker_2 : Ballade_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Ballade_MapMarker_3 : Ballade_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Blastman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=227:227", "198:198=198:198"
+States
+{
+Spawn:
+_MM5 Q 2
+stop
+}
+}
+actor Blastman_MapMarker_0 : Blastman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Blastman_MapMarker_1 : Blastman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Blastman_MapMarker_2 : Blastman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Blastman_MapMarker_3 : Blastman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor BusterRodG_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=218:218", "198:198=221:221"
+States
+{
+Spawn:
+_MM5 R 2
+stop
+}
+}
+actor BusterRodG_MapMarker_0 : BusterRodG_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor BusterRodG_MapMarker_1 : BusterRodG_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor BusterRodG_MapMarker_2 : BusterRodG_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor BusterRodG_MapMarker_3 : BusterRodG_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Enker_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=76:76"
+States
+{
+Spawn:
+_MM5 S 2
+stop
+}
+}
+actor Enker_MapMarker_0 : Enker_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Enker_MapMarker_1 : Enker_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Enker_MapMarker_2 : Enker_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Enker_MapMarker_3 : Enker_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Fuseman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=229:229", "198:198=207:207"
+States
+{
+Spawn:
+_MM5 T 2
+stop
+}
+}
+actor Fuseman_MapMarker_0 : Fuseman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Fuseman_MapMarker_1 : Fuseman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Fuseman_MapMarker_2 : Fuseman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Fuseman_MapMarker_3 : Fuseman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor MegaWaterS_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=218:218", "198:198=116:116"
+States
+{
+Spawn:
+_MM5 U 2
+stop
+}
+}
+actor MegaWaterS_MapMarker_0 : MegaWaterS_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor MegaWaterS_MapMarker_1 : MegaWaterS_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor MegaWaterS_MapMarker_2 : MegaWaterS_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor MegaWaterS_MapMarker_3 : MegaWaterS_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor HyperStormH_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=218:218", "198:198=76:76"
+States
+{
+Spawn:
+_MM5 V 2
+stop
+}
+}
+actor HyperStormH_MapMarker_0 : HyperStormH_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor HyperStormH_MapMarker_1 : HyperStormH_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor HyperStormH_MapMarker_2 : HyperStormH_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor HyperStormH_MapMarker_3 : HyperStormH_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Punk_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=4:4", "198:198=42:42"
+States
+{
+Spawn:
+_MM5 W 2
+stop
+}
+}
+actor Punk_MapMarker_0 : Punk_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Punk_MapMarker_1 : Punk_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Punk_MapMarker_2 : Punk_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Punk_MapMarker_3 : Punk_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Quint_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=138:138", "198:198=130:130"
+States
+{
+Spawn:
+_MM5 X 2
+stop
+}
+}
+actor Quint_MapMarker_0 : Quint_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Quint_MapMarker_1 : Quint_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Quint_MapMarker_2 : Quint_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Quint_MapMarker_3 : Quint_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Rathor_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=248:248", "198:198=3:3"
+States
+{
+Spawn:
+_MM5 Y 2
+stop
+}
+}
+actor Rathor_MapMarker_0 : Rathor_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Rathor_MapMarker_1 : Rathor_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Rathor_MapMarker_2 : Rathor_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Rathor_MapMarker_3 : Rathor_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Tundraman_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=196:196", "198:198=58:58"
+States
+{
+Spawn:
+_MM5 Z 2
+stop
+}
+}
+actor Tundraman_MapMarker_0 : Tundraman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Tundraman_MapMarker_1 : Tundraman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Tundraman_MapMarker_2 : Tundraman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Tundraman_MapMarker_3 : Tundraman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Acidman_MapMarker_D : MapMarker
+{
+height 0
+radius 0
+translation "192:192=104:104", "198:198=117:117"
++CLIENTSIDEONLY
++NOINTERACTION
++NOGRAVITY
+-SOLID
+States
+{
+Spawn:
+_MM6 A 2
+stop
+}
+}
+actor Acidman_MapMarker_0 : Acidman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Acidman_MapMarker_1 : Acidman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Acidman_MapMarker_2 : Acidman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Acidman_MapMarker_3 : Acidman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}

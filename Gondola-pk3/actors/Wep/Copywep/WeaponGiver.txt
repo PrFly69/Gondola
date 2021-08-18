@@ -1,0 +1,2079 @@
+//_Wep : CMM or whoever's original weapon.
+//_WepC : The sliding enabled version of the weapon.
+//_WepCGiver : Replaces the Weps placed on the map so only those that can copy weapons and don't have the weapon can grab them.
+//_WepCDropped : The weapons the players drop; can refill ammo.
+
+//These replace all the core weapons with pickup replacements to correctly give the WepC version.
+//These can't be grabbed if you already have the WepC version.
+
+actor WepCGiver : CustomInventory
+{
+inventory.pickupmessage "Power up! Mega Buster!"
+inventory.pickupsound "weapon/weaponup"
+inventory.amount 1
+inventory.maxamount 1
+inventory.respawntics 5
+scale 2.0
+States
+{
+Spawn:
+TNT1 A 1
+loop
+Pickup:
+DUST B 0 A_JumpIfInventory("CanCopyWeapons",1,"Pickup2")
+DUST B 0 A_JumpIfInventory("RockFlag",1,"Rock_P")
+fail
+Pickup2:
+DUST B 0 A_JumpIfInventory("MegaBusterC",1,"No")
+DUST B 0 A_GiveInventory("MegaBusterC",1)
+stop
+Rock_P:
+goto Rock_P0
+Rock_P0:
+DUST B 0 A_JumpIfInventory("MegaBallBoss",1,"No")
+DUST B 0 A_GiveInventory("MegaBallBoss",1)
+goto Rock_PS
+Rock_P1:
+DUST B 0 A_JumpIfInventory("MegaCutBallBoss",1,"No")
+DUST B 0 A_GiveInventory("MegaCutBallBoss",1)
+goto Rock_PS
+Rock_P2:
+DUST B 0 A_JumpIfInventory("MegaGutsBallBoss",1,"No")
+DUST B 0 A_GiveInventory("MegaGutsBallBoss",1)
+goto Rock_PS
+Rock_P3:
+DUST B 0 A_JumpIfInventory("MegaIceBallBoss",1,"No")
+DUST B 0 A_GiveInventory("MegaIceBallBoss",1)
+goto Rock_PS
+Rock_P4:
+DUST B 0 A_JumpIfInventory("MegaBombBallBoss",1,"No")
+DUST B 0 A_GiveInventory("MegaBombBallBoss",1)
+goto Rock_PS
+Rock_P5:
+DUST B 0 A_JumpIfInventory("MegaFireBallBoss",1,"No")
+DUST B 0 A_GiveInventory("MegaFireBallBoss",1)
+goto Rock_PS
+Rock_P6:
+DUST B 0 A_JumpIfInventory("MegaElecBallBoss",1,"No")
+DUST B 0 A_GiveInventory("MegaElecBallBoss",1)
+goto Rock_PS
+Rock_P7:
+DUST B 0 A_JumpIfInventory("MegaTimeBallBoss",1,"No")
+DUST B 0 A_GiveInventory("MegaTimeBallBoss",1)
+goto Rock_PS
+Rock_P8:
+DUST B 0 A_JumpIfInventory("MegaOilBallBoss",1,"No")
+DUST B 0 A_GiveInventory("MegaOilBallBoss",1)
+goto Rock_PS
+Rock_PS:
+DUST B 0 A_JumpIfInventory("RockFlag",1,"Rock_PSnd")
+stop
+Rock_PSnd:
+DUST B 0
+stop
+
+
+No:
+DUST B 0 
+fail
+}
+}
+
+//MM1//MM1//MM1//MM1//MM1//MM1
+//MM1//MM1//MM1//MM1//MM1//MM1
+actor RollingCutterWepCGiver : WepCGiver replaces RollingCutterWep
+{
+Inventory.Pickupmessage "$PU_ROLLINGCUTTER"
+States
+{
+Spawn:
+WEA2 F 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("RollingCutterWepC",1,"No")
+DUST B 0 A_GiveInventory("RollingCutterWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor SuperArmWepCGiver : WepCGiver replaces SuperArmWep
+{
+Inventory.Pickupmessage "$PU_SUPERARM"
+States
+{
+Spawn:
+WEAP O 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SuperArmWepC",1,"No")
+DUST B 0 A_GiveInventory("SuperArmWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor HyperBombWepCGiver : WepCGiver replaces HyperBombWep
+{
+Inventory.Pickupmessage "$PU_HYPERBOMB"
+States
+{
+Spawn:
+WEAP H 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("HyperBombWepC",1,"No")
+DUST B 0 A_GiveInventory("HyperBombWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor FireStormWepCGiver : WepCGiver replaces FireStormWep
+{
+Inventory.Pickupmessage "$PU_FIRESTORM"
+States
+{
+Spawn:
+WEAP Y 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("FireStormWepC",1,"No")
+DUST B 0 A_GiveInventory("FireStormWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor IceSlasherWepCGiver : WepCGiver replaces IceSlasherWep
+{
+Inventory.Pickupmessage "$PU_ICESLASHER"
+States
+{
+Spawn:
+WEAP P 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("IceSlasherWepC",1,"No")
+DUST B 0 A_GiveInventory("IceSlasherWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor ThunderBeamWepCGiver : WepCGiver replaces ThunderBeamWep
+{
+Inventory.Pickupmessage "$PU_THUNDERBEAM"
+States
+{
+Spawn:
+WEAP R 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ThunderBeamWepC",1,"No")
+DUST B 0 A_GiveInventory("ThunderBeamWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor TimeSlowWepCGiver : WepCGiver replaces TimeSlowWep
+{
+Inventory.Pickupmessage "$PU_TIMESLOW"
+States
+{
+Spawn:
+SLOT X 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("TimeSlowWepC",1,"No")
+DUST B 0 A_GiveInventory("TimeSlowWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor OilSliderWepCGiver : WepCGiver replaces OilSliderWep
+{
+Inventory.Pickupmessage "$PU_OILSLIDER"
+States
+{
+Spawn:
+WEA7 J 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("OilSliderWepC",1,"No")
+DUST B 0 A_GiveInventory("OilSliderWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+//MM2//MM2//MM2//MM2//MM2//MM2
+//MM2//MM2//MM2//MM2//MM2//MM2
+actor AirShooterWepCGiver : WepCGiver replaces AirShooterWep
+{
+Inventory.Pickupmessage "$PU_AIRSHOOTER"
+States
+{
+Spawn:
+WEAP G 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("AirShooterWepC",1,"No")
+DUST B 0 A_GiveInventory("AirShooterWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor AtomicFireWepCGiver : WepCGiver replaces AtomicFireWep
+{
+Inventory.Pickupmessage "$PU_ATOMICFIRE"
+States
+{
+Spawn:
+WEAP E 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("AtomicFireWepC",1,"No")
+DUST B 0 A_GiveInventory("AtomicFireWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor BubbleLeadWepCGiver : WepCGiver replaces BubbleLeadWep
+{
+Inventory.Pickupmessage "$PU_BUBBLELEAD"
+States
+{
+Spawn:
+WEAP D 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("BubbleLeadWepC",1,"No")
+DUST B 0 A_GiveInventory("BubbleLeadWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor CrashBombWepCGiver : WepCGiver replaces CrashBombWep
+{
+Inventory.Pickupmessage "$PU_CRASHBOMB"
+States
+{
+Spawn:
+WEA2 C 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("CrashBombWepC",1,"No")
+DUST B 0 A_GiveInventory("CrashBombWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor LeafShieldWepCGiver : WepCGiver replaces LeafShieldWep
+{
+Inventory.Pickupmessage "$PU_LEAFSHIELD"
+States
+{
+Spawn:
+WEAP F 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("LeafShieldWepC",1,"No")
+DUST B 0 A_GiveInventory("LeafShieldWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor MetalBladeWepCGiver : WepCGiver replaces MetalBladeWep
+{
+Inventory.Pickupmessage "$PU_METALBLADE"
+States
+{
+Spawn:
+WEAP S 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("MetalBladeWepC",1,"No")
+DUST B 0 A_GiveInventory("MetalBladeWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor QuickBoomerangWepCGiver : WepCGiver replaces QuickBoomerangWep
+{
+Inventory.Pickupmessage "$PU_QUICKBOOMERANG"
+States
+{
+Spawn:
+WEAP Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("QuickBoomerangWepC",1,"No")
+DUST B 0 A_GiveInventory("QuickBoomerangWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor TimeStopperWepCGiver : WepCGiver replaces TimeStopperWep
+{
+Inventory.Pickupmessage "$PU_TIMESTOPPER"
+States
+{
+Spawn:
+WEAP N 1
+Loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("TimeStopperWepC",1,"No")
+DUST B 0 A_GiveInventory("TimeStopperWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+//MM3//MM3//MM3//MM3//MM3//MM3
+//MM3//MM3//MM3//MM3//MM3//MM3
+actor GeminiLaserWepCGiver : WepCGiver replaces GeminiLaserWep
+{
+Inventory.Pickupmessage "$PU_GEMINILASER"
+States
+{
+Spawn:
+WEAP M 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("GeminiLaserWepC",1,"No")
+DUST B 0 A_GiveInventory("GeminiLaserWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor HardKnuckleWepCGiver : WepCGiver replaces HardKnuckleWep
+{
+Inventory.Pickupmessage "$PU_HARDKNUCKLE"
+States
+{
+Spawn:
+WEAP T 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("HardKnuckleWepC",1,"No")
+DUST B 0 A_GiveInventory("HardKnuckleWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor MagnetMissileWepCGiver : WepCGiver replaces MagnetMissileWep
+{
+Inventory.Pickupmessage "$PU_MAGNETMISSILE"
+States
+{
+Spawn:
+WEAP I 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("MagnetMissileWepC",1,"No")
+DUST B 0 A_GiveInventory("MagnetMissileWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor NeedleCannonWepCGiver : WepCGiver replaces NeedleCannonWep
+{
+Inventory.Pickupmessage "$PU_NEEDLECANNON"
+States
+{
+Spawn:
+WEAP L 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("NeedleCannonWepC",1,"No")
+DUST B 0 A_GiveInventory("NeedleCannonWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor SearchSnakeWepCGiver : WepCGiver replaces SearchSnakeWep
+{
+Inventory.Pickupmessage "$PU_SEARCHSNAKE"
+States
+{
+Spawn:
+WEAP K 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SearchSnakeWepC",1,"No")
+DUST B 0 A_GiveInventory("SearchSnakeWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor ShadowBladeWepCGiver : WepCGiver replaces ShadowBladeWep
+{
+Inventory.Pickupmessage "$PU_SHADOWBLADE"
+States
+{
+Spawn:
+WEAP A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ShadowBladeWepC",1,"No")
+DUST B 0 A_GiveInventory("ShadowBladeWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor SparkShockWepCGiver : WepCGiver replaces SparkShockWep
+{
+Inventory.Pickupmessage "$PU_SPARKSHOCK"
+States
+{
+Spawn:
+WEA2 G 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SparkShockWepC",1,"No")
+DUST B 0 A_GiveInventory("SparkShockWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor TopSpinWepCGiver : WepCGiver replaces TopSpinWep
+{
+Inventory.Pickupmessage "$PU_TOPSPIN"
+States
+{
+Spawn:
+WEAP J 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("TopSpinWepC",1,"No")
+DUST B 0 A_GiveInventory("TopSpinWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+//MM4//MM4//MM4//MM4//MM4//MM4
+//MM4//MM4//MM4//MM4//MM4//MM4
+actor DiveMissileWepCGiver : WepCGiver replaces DiveMissileWep
+{
+Inventory.Pickupmessage "$PU_DIVEMISSILE"
+States
+{
+Spawn:
+WEA2 S 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("DiveMissileWepC",1,"No")
+DUST B 0 A_GiveInventory("DiveMissileWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor DrillBombWepCGiver : WepCGiver replaces DrillBombWep
+{
+Inventory.Pickupmessage "$PU_DRILLBOMB"
+States
+{
+Spawn:
+WEAP V 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("DrillBombWepC",1,"No")
+DUST B 0 A_GiveInventory("DrillBombWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor DustCrusherWepCGiver : WepCGiver replaces DustCrusherWep
+{
+Inventory.Pickupmessage "$PU_DUSTCRUSHER"
+States
+{
+Spawn:
+WEA2 K 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("DustCrusherWepC",1,"No")
+DUST B 0 A_GiveInventory("DustCrusherWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor FlashStopperWepCGiver : WepCGiver replaces FlashStopperWep
+{
+Inventory.Pickupmessage "$PU_FLASHSTOPPER"
+States
+{
+Spawn:
+WEA3 E 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("FlashStopperWepC",1,"No")
+DUST B 0 A_GiveInventory("FlashStopperWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor PharaohShotWepCGiver : WepCGiver replaces PharaohShotWep
+{
+Inventory.Pickupmessage "$PU_PHARAOHSHOT"
+States
+{
+Spawn:
+WEA2 L 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("PharaohShotWepC",1,"No")
+DUST B 0 A_GiveInventory("PharaohShotWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor RainFlushWepCGiver : WepCGiver replaces RainFlushWep
+{
+Inventory.Pickupmessage "$PU_RAINFLUSH"
+States
+{
+Spawn:
+WEA2 Y 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("RainFlushWepC",1,"No")
+DUST B 0 A_GiveInventory("RainFlushWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor RingBoomerangWepCGiver : WepCGiver replaces RingBoomerangWep
+{
+Inventory.Pickupmessage "$PU_RINGBOOMERANG"
+States
+{
+Spawn:
+WEA2 H 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("RingBoomerangWepC",1,"No")
+DUST B 0 A_GiveInventory("RingBoomerangWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor SkullBarrierWepCGiver : WepCGiver replaces SkullBarrierWep
+{
+Inventory.Pickupmessage "$PU_SKULLBARRIER"
+States
+{
+Spawn:
+WEA2 O 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SkullBarrierWepC",1,"No")
+DUST B 0 A_GiveInventory("SkullBarrierWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+//MM5//MM5//MM5//MM5//MM5//MM5
+//MM5//MM5//MM5//MM5//MM5//MM5
+actor ChargeKickWepCGiver : WepCGiver replaces ChargeKickWep
+{
+Inventory.Pickupmessage "$PU_CHARGEKICK"
+States
+{
+Spawn:
+WEA2 E 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ChargeKickWepC",1,"No")
+DUST B 0 A_GiveInventory("ChargeKickWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor CrystalEyeWepCGiver : WepCGiver replaces CrystalEyeWep
+{
+Inventory.Pickupmessage "$PU_CRYSTALEYE"
+States
+{
+Spawn:
+WEA2 N 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("CrystalEyeWepC",1,"No")
+DUST B 0 A_GiveInventory("CrystalEyeWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor GravityHoldWepCGiver : WepCGiver replaces GravityHoldWep
+{
+Inventory.Pickupmessage "$PU_GRAVITYHOLD"
+States
+{
+Spawn:
+WEA3 F 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("GravityHoldWepC",1,"No")
+DUST B 0 A_GiveInventory("GravityHoldWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor GyroAttackWepCGiver : WepCGiver replaces GyroAttackWep
+{
+Inventory.Pickupmessage "$PU_GYROATTACK"
+States
+{
+Spawn:
+WEA2 I 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("GyroAttackWepC",1,"No")
+DUST B 0 A_GiveInventory("GyroAttackWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor NapalmBombWepCGiver : WepCGiver replaces NapalmBombWep
+{
+Inventory.Pickupmessage "$PU_NAPALMBOMB"
+States
+{
+Spawn:
+WEAP C 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("NapalmBombWepC",1,"No")
+DUST B 0 A_GiveInventory("NapalmBombWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor PowerStoneWepCGiver : WepCGiver replaces PowerStoneWep
+{
+Inventory.Pickupmessage "$PU_POWERSTONE"
+States
+{
+Spawn:
+WEA2 J 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("PowerStoneWepC",1,"No")
+DUST B 0 A_GiveInventory("PowerStoneWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor StarCrashWepCGiver : WepCGiver replaces StarCrashWep
+{
+Inventory.Pickupmessage "$PU_STARCRASH"
+States
+{
+Spawn:
+WEA2 X 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("StarCrashWepC",1,"No")
+DUST B 0 A_GiveInventory("StarCrashWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor WaterWaveWepCGiver : WepCGiver replaces WaterWaveWep
+{
+Inventory.Pickupmessage "$PU_WATERWAVE"
+States
+{
+Spawn:
+WEA2 M 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("WaterWaveWepC",1,"No")
+DUST B 0 A_GiveInventory("WaterWaveWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+//MM6//MM6//MM6//MM6//MM6//MM6
+//MM6//MM6//MM6//MM6//MM6//MM6
+actor BlizzardAttackWepCGiver : WepCGiver replaces BlizzardAttackWep
+{
+Inventory.Pickupmessage "$PU_BLIZZARDATTACK"
+States
+{
+Spawn:
+WEAP W 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("BlizzardAttackWepC",1,"No")
+DUST B 0 A_GiveInventory("BlizzardAttackWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor CentaurFlashWepCGiver : WepCGiver replaces CentaurFlashWep
+{
+Inventory.Pickupmessage "$PU_CENTAURFLASH"
+States
+{
+Spawn:
+WEA3 G 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("CentaurFlashWepC",1,"No")
+DUST B 0 A_GiveInventory("CentaurFlashWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor FlameBlastWepCGiver : WepCGiver replaces FlameBlastWep
+{
+Inventory.Pickupmessage "$PU_FLAMEBLAST"
+States
+{
+Spawn:
+WEA2 P 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("FlameBlastWepC",1,"No")
+DUST B 0 A_GiveInventory("FlameBlastWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor KnightCrushWepCGiver : WepCGiver replaces KnightCrushWep
+{
+Inventory.Pickupmessage "$PU_KNIGHTCRUSH"
+States
+{
+Spawn:
+WEA2 W 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("KnightCrushWepC",1,"No")
+DUST B 0 A_GiveInventory("KnightCrushWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor PlantBarrierWepCGiver : WepCGiver replaces PlantBarrierWep
+{
+Inventory.Pickupmessage "$PU_PLANTBARRIER"
+States
+{
+Spawn:
+WEA2 T 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("PlantBarrierWepC",1,"No")
+DUST B 0 A_GiveInventory("PlantBarrierWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor SilverTomahawkWepCGiver : WepCGiver replaces SilverTomahawkWep
+{
+Inventory.Pickupmessage "$PU_SILVERTOMAHAWK"
+States
+{
+Spawn:
+WEA2 U 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SilverTomahawkWepC",1,"No")
+DUST B 0 A_GiveInventory("SilverTomahawkWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor WindStormWepCGiver : WepCGiver replaces WindStormWep
+{
+Inventory.Pickupmessage "$PU_WINDSTORM"
+States
+{
+Spawn:
+WEA2 V 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("WindStormWepC",1,"No")
+DUST B 0 A_GiveInventory("WindStormWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor YamatoSpearWepCGiver : WepCGiver replaces YamatoSpearWep
+{
+Inventory.Pickupmessage "$PU_YAMATOSPEAR"
+States
+{
+Spawn:
+WEA2 R 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("YamatoSpearWepC",1,"No")
+DUST B 0 A_GiveInventory("YamatoSpearWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+//MM7//MM7//MM7//MM7//MM7//MM7
+//MM7//MM7//MM7//MM7//MM7//MM7
+actor FreezeCrackerWepCGiver : WepCGiver replaces FreezeCrackerWep
+{
+Inventory.Pickupmessage "$PU_FREEZECRACKER"
+States
+{
+Spawn:
+WEA3 O 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("FreezeCrackerWepC",1,"No")
+DUST B 0 A_GiveInventory("FreezeCrackerWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor DangerWrapWepCGiver : WepCGiver replaces DangerWrapWep
+{
+Inventory.Pickupmessage "$PU_DANGERWRAP"
+States
+{
+Spawn:
+WEA3 L 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("DangerWrapWepC",1,"No")
+DUST B 0 A_GiveInventory("DangerWrapWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor JunkShieldWepCGiver : WepCGiver replaces JunkShieldWep
+{
+Inventory.Pickupmessage "$PU_JUNKSHIELD"
+States
+{
+Spawn:
+WEA3 N 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("JunkShieldWepC",1,"No")
+DUST B 0 A_GiveInventory("JunkShieldWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor NoiseCrushWepCGiver : WepCGiver replaces NoiseCrushWep
+{
+Inventory.Pickupmessage "$PU_NOISECRUSH"
+States
+{
+Spawn:
+WEA3 J 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("NoiseCrushWepC",1,"No")
+DUST B 0 A_GiveInventory("NoiseCrushWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor ScorchWheelWepCGiver : WepCGiver replaces ScorchWheelWep
+{
+Inventory.Pickupmessage "$PU_SCORCHWHEEL"
+States
+{
+Spawn:
+WEA3 M 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ScorchWheelWepC",1,"No")
+DUST B 0 A_GiveInventory("ScorchWheelWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor ThunderBoltWepCGiver : WepCGiver replaces ThunderBoltWep
+{
+Inventory.Pickupmessage "$PU_THUNDERBOLT"
+States
+{
+Spawn:
+WEA3 R 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ThunderBoltWepC",1,"No")
+DUST B 0 A_GiveInventory("ThunderBoltWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor WildCoilWepCGiver : WepCGiver replaces WildCoilWep
+{
+Inventory.Pickupmessage "$PU_WILDCOIL"
+States
+{
+Spawn:
+WEA3 K 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("WildCoilWepC",1,"No")
+DUST B 0 A_GiveInventory("WildCoilWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor SlashClawWepCGiver : WepCGiver replaces SlashClawWep
+{
+Inventory.Pickupmessage "$PU_SLASHCLAW"
+States
+{
+Spawn:
+WEA3 Q 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SlashClawWepC",1,"No")
+DUST B 0 A_GiveInventory("SlashClawWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+//MM8//MM8//MM8//MM8//MM8//MM8
+//MM8//MM8//MM8//MM8//MM8//MM8
+actor MegaBallWepCGiver : WepCGiver replaces MegaBallWep
+{
+Inventory.Pickupmessage "$PU_MEGABALL"
+States
+{
+Spawn:
+WEA4 D 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("MegaBallWepC",1,"No")
+DUST B 0 A_GiveInventory("MegaBallWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor AstroCrushWepCGiver : WepCGiver replaces AstroCrushWep
+{
+Inventory.Pickupmessage "$PU_ASTROCRUSH"
+States
+{
+Spawn:
+WEA4 E 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("AstroCrushWepC",1,"No")
+DUST B 0 A_GiveInventory("AstroCrushWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor FlameSwordWepCGiver : WepCGiver replaces FlameSwordWep
+{
+Inventory.Pickupmessage "$PU_FLAMESWORD"
+States
+{
+Spawn:
+WEA4 F 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("FlameSwordWepC",1,"No")
+DUST B 0 A_GiveInventory("FlameSwordWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor FlashBombWepCGiver : WepCGiver replaces FlashBombWep
+{
+Inventory.Pickupmessage "$PU_FLASHBOMB"
+States
+{
+Spawn:
+WEA4 B 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("FlashBombWepC",1,"No")
+DUST B 0 A_GiveInventory("FlashBombWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor HomingSniperWepCGiver : WepCGiver replaces HomingSniperWep
+{
+Inventory.Pickupmessage "$PU_HOMINGSNIPER"
+States
+{
+Spawn:
+WEA4 H 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("HomingSniperWepC",1,"No")
+DUST B 0 A_GiveInventory("HomingSniperWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor IceWaveWepCGiver : WepCGiver replaces IceWaveWep
+{
+Inventory.Pickupmessage "$PU_ICEWAVE"
+States
+{
+Spawn:
+WEA4 A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("IceWaveWepC",1,"No")
+DUST B 0 A_GiveInventory("IceWaveWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor ThunderClawWepCGiver : WepCGiver replaces ThunderClawWep
+{
+Inventory.Pickupmessage "$PU_THUNDERCLAW"
+States
+{
+Spawn:
+WEA4 G 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ThunderClawWepC",1,"No")
+DUST B 0 A_GiveInventory("ThunderClawWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor TornadoHoldWepCGiver : WepCGiver replaces TornadoHoldWep
+{
+Inventory.Pickupmessage "$PU_TORNADOHOLD"
+States
+{
+Spawn:
+WEA4 C 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("TornadoHoldWepC",1,"No")
+DUST B 0 A_GiveInventory("TornadoHoldWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor WaterBalloonWepCGiver : WepCGiver replaces WaterBalloonWep
+{
+Inventory.Pickupmessage "$PU_WATERBALLOON"
+States
+{
+Spawn:
+WEA4 I 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("WaterBalloonWepC",1,"No")
+DUST B 0 A_GiveInventory("WaterBalloonWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+//MMB//MMB//MMB//MMB//MMB//MMB
+//MMB//MMB//MMB//MMB//MMB//MMB
+actor TenguBladeWepCGiver : WepCGiver replaces TenguBladeWep
+{
+Inventory.Pickupmessage "$PU_TENGUBLADE"
+States
+{
+Spawn:
+TBLA X 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("TenguBladeWepC",1,"No")
+DUST B 0 A_GiveInventory("TenguBladeWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor WaveBurnerWepCGiver : WepCGiver replaces WaveBurnerWep
+{
+Inventory.Pickupmessage "$PU_WAVEBURNER"
+States
+{
+Spawn:
+WABU X 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("WaveBurnerWepC",1,"No")
+DUST B 0 A_GiveInventory("WaveBurnerWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor SpreadDrillWepCGiver : WepCGiver replaces SpreadDrillWep
+{
+Inventory.Pickupmessage "$PU_SPREADDRILL"
+States
+{
+Spawn:
+SPRE X 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SpreadDrillWepC",1,"No")
+DUST B 0 A_GiveInventory("SpreadDrillWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor CopyVisionWepCGiver : WepCGiver replaces CopyVisionWep
+{
+Inventory.Pickupmessage "$PU_COPYVISION"
+States
+{
+Spawn:
+COPY X 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("CopyVisionWepC",1,"No")
+DUST B 0 A_GiveInventory("CopyVisionWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor MagicCardWepCGiver : WepCGiver replaces MagicCardWep
+{
+Inventory.Pickupmessage "$PU_MAGICCARD"
+States
+{
+Spawn:
+MCAR X 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("MagicCardWepC",1,"No")
+DUST B 0 A_GiveInventory("MagicCardWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor RemoteMineWepCGiver : WepCGiver replaces RemoteMineWep
+{
+Inventory.Pickupmessage "$PU_REMOTEMINE"
+States
+{
+Spawn:
+REMI X 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("RemoteMineWepC",1,"No")
+DUST B 0 A_GiveInventory("RemoteMineWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor IceWallWepCGiver : WepCGiver replaces IceWallWep
+{
+Inventory.Pickupmessage "$PU_ICEWALL"
+States
+{
+Spawn:
+ICWL X 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("IceWallWepC",1,"No")
+DUST B 0 A_GiveInventory("IceWallWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor LightningBoltWepCGiver : WepCGiver replaces LightningBoltWep
+{
+Inventory.Pickupmessage "$PU_LIGHTNINGBOLT"
+States
+{
+Spawn:
+LIBO A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("LightningBoltWepC",1,"No")
+DUST B 0 A_GiveInventory("LightningBoltWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+//MM9//MM9//MM9//MM9//MM9//MM9
+//MM9//MM9//MM9//MM9//MM9//MM9
+actor ConcreteShotWepCGiver : WepCGiver replaces ConcreteShotWep
+{
+inventory.pickupmessage "$PU_CONCRETESHOT"
+States
+{
+Spawn:
+CONC A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ConcreteShotWepC",1,"No")
+TNT1 A 0 A_GiveInventory("ConcreteShotWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor TornadoBlowWepCGiver : WepCGiver replaces TornadoBlowWep
+{
+inventory.pickupmessage "$PU_TORNADOBLOW"
+States
+{
+Spawn:
+TBLO A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("TornadoBlowWepC",1,"No")
+TNT1 A 0 A_GiveInventory("TornadoBlowWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor LaserTridentWepCGiver : WepCGiver replaces LaserTridentWep
+{
+inventory.pickupmessage "$PU_LASERTRIDENT"
+States
+{
+Spawn:
+LTRI A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("LaserTridentWepC",1,"No")
+TNT1 A 0 A_GiveInventory("LaserTridentWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor PlugBallWepCGiver : WepCGiver replaces PlugBallWep
+{
+inventory.pickupmessage "$PU_PLUGBALL"
+States
+{
+Spawn:
+PBAL A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("PlugBallWepC",1,"No")
+TNT1 A 0 A_GiveInventory("PlugBallWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor HornetChaserWepCGiver : WepCGiver replaces HornetChaserWep
+{
+inventory.pickupmessage "$PU_HORNETCHASER"
+States
+{
+Spawn:
+HCHS A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("HornetChaserWepC",1,"No")
+TNT1 A 0 A_GiveInventory("HornetChaserWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor MagmaBazookaWepCGiver : WepCGiver replaces MagmaBazookaWep
+{
+inventory.pickupmessage "$PU_MAGMABAZOOKA"
+States
+{
+Spawn:
+MGM1 A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("MagmaBazookaWepC",1,"No")
+TNT1 A 0 A_GiveInventory("MagmaBazookaWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor BlackHoleBombWepCGiver : WepCGiver replaces BlackHoleBombWep
+{
+inventory.pickupmessage "$PU_BLACKHOLEBOMB"
+States
+{
+Spawn:
+BLKH A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("BlackHoleBombWepC",1,"No")
+TNT1 A 0 A_GiveInventory("BlackHoleBombWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor JewelSatelliteWepCGiver : WepCGiver replaces JewelSatelliteWep
+{
+inventory.pickupmessage "$PU_JEWELSATELLITE"
+States
+{
+Spawn:
+JEWE A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("JewelSatelliteWepC",1,"No")
+TNT1 A 0 A_GiveInventory("JewelSatelliteWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+//MM10//MM10//MM10//MM10//MM10
+//MM10//MM10//MM10//MM10//MM10
+actor ThunderWoolWepCGiver : WepCGiver replaces ThunderWoolWep
+{
+inventory.pickupmessage "Power up! Thunder Wool!"
+States
+{
+Spawn:
+THWO A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ThunderWoolWepC",1,"No")
+TNT1 A 0 A_GiveInventory("ThunderWoolWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor ReboundStrikerWepCGiver : WepCGiver replaces ReboundStrikerWep
+{
+inventory.pickupmessage "Power up! Rebound Striker!"
+States
+{
+Spawn:
+STRI A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ReboundStrikerWepC",1,"No")
+TNT1 A 0 A_GiveInventory("ReboundStrikerWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor TripleBladeWepCGiver : WepCGiver replaces TripleBladeWep
+{
+inventory.pickupmessage "$PU_TRIPLEBLADE"
+States
+{
+Spawn:
+CWA1 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("TripleBladeWepC",1,"No")
+TNT1 A 0 A_GiveInventory("TripleBladeWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+actor WaterShieldWepCGiver : WepCGiver replaces WaterShieldWep
+{
+inventory.pickupmessage "$PU_WATERSHIELD"
+States
+{
+Spawn:
+CWA2 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("WaterShieldWepC",1,"No")
+TNT1 A 0 A_GiveInventory("WaterShieldWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+actor CommandoBombWepCGiver : WepCGiver replaces CommandoBombWep
+{
+inventory.pickupmessage "$PU_COMMANDOBOMB"
+States
+{
+Spawn:
+CWA3 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("CommandoBombWepC",1,"No")
+TNT1 A 0 A_GiveInventory("CommandoBombWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+actor ChillSpikeWepCGiver : WepCGiver replaces ChillSpikeWep
+{
+inventory.pickupmessage "$PU_CHILLSPIKE"
+States
+{
+Spawn:
+CWA4 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ChillSpikeWepC",1,"No")
+TNT1 A 0 A_GiveInventory("ChillSpikeWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+/*actor ThunderWoolWepCGiver : WepCGiver replaces ThunderWoolWep
+{
+inventory.pickupmessage "$PU_THUNDERWOOL"
+States
+{
+Spawn:
+CWA5 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ThunderWoolWepC",1,"No")
+TNT1 A 0 A_GiveInventory("ThunderWoolWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+actor ReboundStrikerWepCGiver : WepCGiver replaces ReboundStrikerWep
+{
+inventory.pickupmessage "$PU_REBOUNDSTRIKER"
+States
+{
+Spawn:
+CWA6 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ReboundStrikerWepC",1,"No")
+TNT1 A 0 A_GiveInventory("ReboundStrikerWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}*/
+actor WheelCutterWepCGiver : WepCGiver replaces WheelCutterWep
+{
+inventory.pickupmessage "$PU_WHEELCUTTER"
+States
+{
+Spawn:
+CWA7 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("WheelCutterWepC",1,"No")
+TNT1 A 0 A_GiveInventory("WheelCutterWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+actor SolarBlazeWepCGiver : WepCGiver replaces SolarBlazeWep
+{
+inventory.pickupmessage "$PU_SOLARBLAZE"
+States
+{
+Spawn:
+SOLA A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SolarBlazeWepC",1,"No")
+TNT1 A 0 A_GiveInventory("SolarBlazeWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+//MMV//MMV//MMV//MMV//MMV//MMV
+//MMV//MMV//MMV//MMV//MMV//MMV
+actor SparkChaserWepCGiver : WepCGiver replaces SparkChaserWep
+{
+Inventory.Pickupmessage "$PU_SPARKCHASER"
+States
+{
+Spawn:
+SCHS A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SparkChaserWepC",1,"No")
+DUST B 0 A_GiveInventory("SparkChaserWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+actor GrabBusterWepCGiver : WepCGiver replaces GrabBusterWep
+{
+Inventory.Pickupmessage "$PU_GRABBUSTER"
+States
+{
+Spawn:
+CWV1 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("GrabBusterWepC",1,"No")
+DUST B 0 A_GiveInventory("GrabBusterWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+actor BubbleBombWepCGiver : WepCGiver replaces BubbleBombWep
+{
+Inventory.Pickupmessage "$PU_BUBBLEBOMB"
+States
+{
+Spawn:
+CWV2 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("BubbleBombWepC",1,"No")
+DUST B 0 A_GiveInventory("BubbleBombWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+actor PhotonMissileWepCGiver : WepCGiver replaces PhotonMissileWep
+{
+Inventory.Pickupmessage "$PU_PHOTONMISSILE"
+States
+{
+Spawn:
+CWV3 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("PhotonMissileWepC",1,"No")
+DUST B 0 A_GiveInventory("PhotonMissileWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+actor ElectricShockWepCGiver : WepCGiver replaces ElectricShockWep
+{
+Inventory.Pickupmessage "$PU_ELECTRICSHOCK"
+States
+{
+Spawn:
+CWV4 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ElectricShockWepC",1,"No")
+DUST B 0 A_GiveInventory("ElectricShockWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+actor BlackHoleWepCGiver : WepCGiver replaces BlackHoleWep
+{
+Inventory.Pickupmessage "Power up! Black Hole!"
+States
+{
+Spawn:
+BHOL A 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("BlackHoleWepC",1,"No")
+DUST B 0 A_GiveInventory("BlackHoleWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+actor DeepDiggerWepCGiver : WepCGiver replaces DeepDiggerWep
+{
+Inventory.Pickupmessage "$PU_DEEPDIGGER"
+States
+{
+Spawn:
+CWV6 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("DeepDiggerWepC",1,"No")
+DUST B 0 A_GiveInventory("DeepDiggerWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+actor BreakDashWepCGiver : WepCGiver replaces BreakDashWep
+{
+Inventory.Pickupmessage "$PU_BREAKDASH"
+States
+{
+Spawn:
+CWV7 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("BreakDashWepC",1,"No")
+DUST B 0 A_GiveInventory("BreakDashWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+actor SaltWaterWepCGiver : WepCGiver replaces SaltWaterWep
+{
+Inventory.Pickupmessage "$PU_SALTWATER"
+States
+{
+Spawn:
+CWV8 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SaltWaterWepC",1,"No")
+DUST B 0 A_GiveInventory("SaltWaterWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+//MMK//MMK//MMK//MMK//MMK//MMK
+//MMK//MMK//MMK//MMK//MMK//MMK
+actor BalladeCrackerWepCGiver : WepCGiver replaces BalladeCrackerWep
+{
+Inventory.Pickupmessage "$PU_BALLADECRACKER"
+States
+{
+Spawn:
+WEA3 C 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("BalladeCrackerWepC",1,"No")
+DUST B 0 A_GiveInventory("BalladeCrackerWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor MirrorBusterWepCGiver : WepCGiver replaces MirrorBusterWep
+{
+Inventory.Pickupmessage "$PU_MIRRORBUSTER"
+States
+{
+Spawn:
+WEA3 H 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("MirrorBusterWepC",1,"No")
+DUST B 0 A_GiveInventory("MirrorBusterWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor SakugarneWepCGiver : WepCGiver replaces SakugarneWep
+{
+Inventory.Pickupmessage "$PU_SAKUGARNE"
+States
+{
+Spawn:
+WEA2 Z 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SakugarneWepC",1,"No")
+DUST B 0 A_GiveInventory("SakugarneWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor ScrewCrusherWepCGiver : WepCGiver replaces ScrewCrusherWep
+{
+Inventory.Pickupmessage "$PU_SCREWCRUSHER"
+States
+{
+Spawn:
+WEA3 D 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("ScrewCrusherWepC",1,"No")
+DUST B 0 A_GiveInventory("ScrewCrusherWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+//CBM//CBM//CBM//CBM//CBM//CBM
+//CBM//CBM//CBM//CBM//CBM//CBM
+
+actor RisingFistWepCGiver : WepCGiver replaces RisingFistWep
+{
+inventory.pickupmessage "$PU_RISINGFIST"
+States
+{
+Spawn:
+XWI0 B 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("RisingFistWepC",1,"No")
+DUST B 0 A_GiveInventory("RisingFistWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor WaveBusterWepCGiver : WepCGiver replaces WaveBusterWep
+{
+inventory.pickupmessage "$PU_WAVEBUSTER"
+States
+{
+Spawn:
+XWI0 C 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("WaveBusterWepC",1,"No")
+DUST B 0 A_GiveInventory("WaveBusterWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor TimeBenderWepCGiver : WepCGiver replaces TimeBenderWep
+{
+inventory.pickupmessage "$PU_TIMEBENDER"
+States
+{
+Spawn:
+XWI0 E 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("TimeBenderWepC",1,"No")
+DUST B 0 A_GiveInventory("TimeBenderWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor BoobeamBarrierWepCGiver : WepCGiver replaces BoobeamBarrierWep
+{
+inventory.pickupmessage "$PU_BOOBEAMBARRIER"
+States
+{
+Spawn:
+XWI0 F 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("BoobeamBarrierWepC",1,"No")
+DUST B 0 A_GiveInventory("BoobeamBarrierWepC",1)
+stop
+Rock_P:goto Rock_P7
+}
+}
+
+actor TopTwistWepCGiver : WepCGiver replaces TopTwistWep
+{
+inventory.pickupmessage "$PU_TOPTWIST"
+States
+{
+Spawn:
+XWI0 G 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("TopTwistWepC",1,"No")
+DUST B 0 A_GiveInventory("TopTwistWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor DocScannerWepCGiver : WepCGiver replaces DocScannerWep
+{
+inventory.pickupmessage "$PU_DOCSCANNER"
+States
+{
+Spawn:
+XWI0 H 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("DocScannerWepC",1,"No")
+DUST B 0 A_GiveInventory("DocScannerWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor FlashBulbWepCGiver : WepCGiver replaces FlashBulbWep
+{
+inventory.pickupmessage "$PU_FLASHBULB"
+States
+{
+Spawn:
+XWI0 I 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("FlashBulbWepC",1,"No")
+DUST B 0 A_GiveInventory("FlashBulbWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
+actor DiveSonarWepCGiver : WepCGiver replaces DiveSonarWep
+{
+inventory.pickupmessage "$PU_DIVESONAR"
+States
+{
+Spawn:
+XWI0 J 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("DiveSonarWepC",1,"No")
+DUST B 0 A_GiveInventory("DiveSonarWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor SkullSniperWepCGiver : WepCGiver replaces SkullSniperWep
+{
+inventory.pickupmessage "$PU_SKULLSNIPER"
+States
+{
+Spawn:
+XWI0 K 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("SkullSniperWepC",1,"No")
+DUST B 0 A_GiveInventory("SkullSniperWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor GravitySphereWepCGiver : WepCGiver replaces GravitySphereWep
+{
+inventory.pickupmessage "$PU_GRAVITYSPHERE"
+States
+{
+Spawn:
+XWI0 L 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("GravitySphereWepC",1,"No")
+DUST B 0 A_GiveInventory("GravitySphereWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor DarkShieldWepCGiver : WepCGiver replaces DarkShieldWep
+{
+inventory.pickupmessage "$PU_DARKSHIELD"
+States
+{
+Spawn:
+XWI0 M 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("DarkShieldWepC",1,"No")
+DUST B 0 A_GiveInventory("DarkShieldWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor CentaurArrowWepCGiver : WepCGiver replaces CentaurArrowWep
+{
+inventory.pickupmessage "$PU_CENTAURARROW"
+States
+{
+Spawn:
+XWI0 N 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("CentaurArrowWepC",1,"No")
+DUST B 0 A_GiveInventory("CentaurArrowWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor PlantTrapperWepCGiver : WepCGiver replaces PlantTrapperWep
+{
+inventory.pickupmessage "$PU_PLANTTRAPPER"
+States
+{
+Spawn:
+XWI0 O 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("PlantTrapperWepC",1,"No")
+DUST B 0 A_GiveInventory("PlantTrapperWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor DynamoTendrilWepCGiver : WepCGiver replaces DynamoTendrilWep
+{
+inventory.pickupmessage "$PU_DYNAMOTENDRIL"
+States
+{
+Spawn:
+XWI0 P 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("DynamoTendrilWepC",1,"No")
+DUST B 0 A_GiveInventory("DynamoTendrilWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor RainbowGalaxyCGiver : WepCGiver replaces RainbowGalaxyWep
+{
+inventory.pickupmessage "$PU_RAINBOWGALAXY"
+States
+{
+Spawn:
+XWI0 Q 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("RainbowGalaxyWepC",1,"No")
+DUST B 0 A_GiveInventory("RainbowGalaxyWepC",1)
+stop
+Rock_P:goto Rock_P8
+}
+}
+
+actor FakeRepeaterWepCGiver : WepCGiver replaces FakeRepeaterWep
+{
+inventory.pickupmessage "$PU_FAKEREPEATER"
+States
+{
+Spawn:
+XWI0 R 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("FakeRepeaterWepC",1,"No")
+DUST B 0 A_GiveInventory("FakeRepeaterWepC",1)
+stop
+Rock_P:goto Rock_P1
+}
+}
+
+actor BusterRodGWepCGiver : WepCGiver replaces BusterRodGWep
+{
+inventory.pickupmessage "$PU_BUSTERRODPOLE"
+States
+{
+Spawn:
+XWI0 S 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("BusterRodGWepC",1,"No")
+DUST B 0 A_GiveInventory("BusterRodGWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+actor MegaWaterSWepCGiver : WepCGiver replaces MegaWaterSWep
+{
+inventory.pickupmessage "$PU_MEGAWATERBARRIER"
+States
+{
+Spawn:
+XWI0 T 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("MegaWaterSWepC",1,"No")
+DUST B 0 A_GiveInventory("MegaWaterSWepC",1)
+stop
+Rock_P:goto Rock_P3
+}
+}
+
+actor HyperStormHWepCGiver : WepCGiver replaces HyperStormHWep
+{
+inventory.pickupmessage "$PU_HYPERSTORMBLASTER"
+States
+{
+Spawn:
+XWI0 U 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("HyperStormHWepC",1,"No")
+DUST B 0 A_GiveInventory("HyperStormHWepC",1)
+stop
+Rock_P:goto Rock_P5
+}
+}
+
+
+/*
+actor WepCGiver : WepCGiver replaces Wep
+{
+inventory.pickupmessage "Power up! !"
+States
+{
+Spawn:
+WEAP O 1
+loop
+Pickup2:
+DUST B 0 A_JumpIfInventory("WepC",1,"No")
+DUST B 0 A_GiveInventory("WepC",1)
+stop
+}
+}
+*/

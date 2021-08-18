@@ -1,0 +1,544 @@
+//Terra - From Mega Man V
+//Coded by Ecl1p5e, Assistant Developer and Lead Animator, Competitive Class Based Modification
+//Skin by Redflash
+//HUD Sprites by A.M Roulette
+//Original Concept by Pr. Gibus
+//gibus here time to mess with this :D
+
+actor SparkChaserBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_VA"
+dropitem "SparkChaserWepCDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 3
+Weapon.SlotNumber 1
+Obituary "$OB_TERRAMELEE"
+Inventory.Pickupmessage "Raditz."
+weapon.ammotype "ShonenAmmo"
+weapon.ammotype2 "ShojoAmmo"
+States
+{
+Spawn:
+C_00 C 1
+loop
+
+Ready:
+TERH A 0 ACS_ExecuteAlways(998,0,DYE_TERRA)
+TERH A 0 A_GunFlash
+TERH A 0 A_JumpIfInventory("SparkChaserChecker",1,"Ready2")
+TERH A 0 A_TakeInventory("SparkChaserFlag",999)
+TNT1 A 0 A_GiveInventory("ShonenAmmo",5)
+TERH A 0 A_TakeInventory("TerraMustMelee",99)
+TERH A 2 A_WeaponReady(WRF_ALLOWRELOAD)
+Goto Ready+2
+
+Ready2:
+TERH A 0 A_TakeInventory("TerraMustMelee",99)
+TERH A 2 A_WeaponReady(WRF_ALLOWRELOAD)
+Goto Ready+2
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TERH A 1 A_Lower
+Loop
+
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TERH A 1 A_Raise
+Loop
+
+Fire:
+TERH A 0 A_JumpIfInventory("SparkChaserChecker",1,"FireLaser")
+TERH A 0 A_JumpIfInventory("ShonenAmmo",100,2)
+TERH A 0 A_GiveInventory("TerraNoAmmoFlag",1)
+Goto NoAmmo
+TERH A 0 A_TakeInventory("TerraNoAmmoFlag",1)
+TERH A 0 A_TakeInventory("ShonenAmmo",100)
+TERH A 0 A_TakeInventory("TerraRegenCounter",99)
+TERH A 0 A_PlaySoundEx("weapon/sparkchaser","Weapon")
+TERH B 1 OffSet(14,22) A_GiveInventory("TerraMain1_CI",1)
+TERH B 1
+TERH C 1
+TERH BAA 1 A_WeaponReady(14)
+TERH A 5
+Goto Ready2
+FireLaser:
+TERH C 0
+TERH A 1 Offset(0,-5)
+TERH A 1 Offset(-5,-10)
+TERH A 1 Offset(-10,-20)A_GiveInventory("SparkChaserFlag",999)
+TERH A 0 A_GiveInventory("SparkChaserFlag",1)
+TERH A 0 A_TakeInventory("SparkChaserFlag",999)
+TERH A 1 Offset(-15,-30)
+TERH A 1 Offset(-10,-20)
+TERH A 1 Offset(-5,-10)
+TERH A 5 Offset(0,-5)A_WeaponReady(14)
+Goto Ready+2
+
+Altfire:
+TERH A 0 A_JumpIfInventory("ShojoAmmo",1,2)
+TERH A 0 A_GiveInventory("TerraNoAmmoFlag",1)
+Goto NoAmmo
+TERH A 0 A_TakeInventory("TerraNoAmmoFlag",1)
+TERH A 0 A_GiveInventory("TerraAltfireFlag",1)
+TERH B 2 offset(10,24)
+TERH B 2 OffSet(14,22)
+Altfire_Sparks:
+TERH A 0 A_JumpIfInventory("ShojoAmmo",1,1)
+Goto Altfire_End
+TERH A 0 A_PlaySoundEx("weapon/sparkchaser2","Weapon")
+TERH A 0 A_TakeInventory("ShojoAmmo",2)
+Altfire_Sparks_3:
+//TERH A 0 A_TakeInventory("TerraAltAnimOnce0",1)
+TERH A 0 A_JumpIfInventory("ShojoAmmo",42,1)
+Goto Altfire_Sparks_2
+TERH A 0 A_JumpIfInventory("TerraAltAnimOnce3",1,"Sparks_Level3")
+TERH A 0 A_JumpIfInventory("ShojoAmmo",42,"Sparks_Level3_X")
+Altfire_Sparks_2:
+TERH A 0 A_TakeInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_JumpIfInventory("ShojoAmmo",28,1)
+Goto Altfire_Sparks_1
+TERH A 0 A_JumpIfInventory("TerraAltAnimOnce2",1,"Sparks_Level2")
+TERH A 0 A_JumpIfInventory("ShojoAmmo",28,"Sparks_Level2_X")
+Altfire_Sparks_1:
+TERH A 0 A_TakeInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce2",1)
+TERH A 0 A_JumpIfInventory("ShojoAmmo",14,1)
+Goto Altfire_Sparks_0
+TERH A 0 A_JumpIfInventory("TerraAltAnimOnce1",1,"Sparks_Level1")
+TERH A 0 A_JumpIfInventory("ShojoAmmo",14,"Sparks_Level1_X")
+Altfire_Sparks_0:
+TERH A 0 A_TakeInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce2",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce1",1)
+TERH A 0 A_JumpIfInventory("TerraAltAnimOnce0",1,"Sparks_Level0")
+Sparks_Level0_X:
+TERH AAAAAAAAAA 0 A_GiveInventory("TerraAltAnimOnce0",1)
+TERH A 0 A_GiveInventory("SheepSwitchChecker",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+//TERH A 0 A_PrintBold("Level 0 X", 2)
+Sparks_Level0:
+TERH A 0 A_JumpIfInventory("TerraAltAnim",1,2)
+TERH C 0 A_GiveInventory("TerraAlt1Fx_CI")
+TERH C 1 offset(14,22)A_GiveInventory("TerraAlt1_CI")
+TERH C 1 offset(11,25)
+TERH C 1 offset(14,28)
+TERH C 1 offset(17,22)
+TERH A 0 A_GiveInventory("TerraAltAnim",1)
+TERH A 0 A_ReFire("Altfire_Sparks")
+Goto Altfire_End
+Sparks_Level1_X:
+TERH AAAAAAAAAA 0 A_GiveInventory("TerraAltAnimOnce1",1)
+TERH A 0 A_GiveInventory("SheepSwitchChecker",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+//TERH A 0 A_PrintBold("Level 1 X", 2)
+Sparks_Level1:
+TERH A 0 A_JumpIfInventory("TerraAltAnim",1,2)
+TERH C 0 A_GiveInventory("TerraAlt2Fx_CI")
+TERH C 1 offset(14,22)A_GiveInventory("TerraAlt2_CI")
+TERH C 1 offset(11,25)
+TERH C 1 offset(14,28)
+TERH C 1 offset(17,22)
+TERH A 0 A_GiveInventory("TerraAltAnim",1)
+TERH A 0 A_ReFire("Altfire_Sparks")
+Goto Altfire_End
+Sparks_Level2_X:
+TERH AAAAAAAAAA 0 A_GiveInventory("TerraAltAnimOnce2",1)
+TERH A 0 A_GiveInventory("SheepSwitchChecker",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+//TERH A 0 A_PrintBold("Level 2 X", 2)
+Sparks_Level2:
+TERH A 0 A_JumpIfInventory("TerraAltAnim",1,2)
+TERH C 0 A_GiveInventory("TerraAlt3Fx_CI")
+TERH C 1 offset(14,22)A_GiveInventory("TerraAlt3_CI")
+TERH C 1 offset(11,25)
+TERH C 1 offset(14,28)
+TERH C 1 offset(17,22)
+TERH A 0 A_GiveInventory("TerraAltAnim",1)
+TERH A 0 A_ReFire("Altfire_Sparks")
+Goto Altfire_End
+Sparks_Level3_X:
+TERH AAAAAAAAAA 0 A_GiveInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_GiveInventory("SheepSwitchChecker",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+//TERH A 0 A_PrintBold("Level 3 X", 2)
+Sparks_Level3:
+TERH A 0 A_JumpIfInventory("TerraAltAnim",1,2)
+TERH C 0 A_GiveInventory("TerraAlt4Fx_CI")
+TERH C 1 offset(14,22)A_GiveInventory("TerraAlt4_CI")
+TERH C 1 offset(11,25)
+TERH C 1 offset(14,28)
+TERH C 1 offset(17,22)
+TERH A 0 A_GiveInventory("TerraAltAnim",1)
+TERH A 0 A_ReFire("Altfire_Sparks")
+Goto Altfire_End
+Altfire_End:
+TERH A 0 A_ClearRefire
+TERH A 0 A_TakeInventory("TerraAltfireFlag",1)
+TERH A 0 A_TakeInventory("TerraAltAnim",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce3",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce2",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce1",1)
+TERH A 0 A_TakeInventory("TerraAltAnimOnce0",1)
+TERH A 0 A_GiveInventory("SheepHoldChecker")
+TERH B 2 OffSet(14,22)
+TERH B 2 offset(10,24)
+Goto Ready+2
+
+Reload:
+TERH A 0 A_JumpIfInventory("TerraKneeTimer",1,1)
+Goto Reload+4
+TERH A 0 A_GiveInventory("TerraNoAmmoFlag",1)
+Goto NoAmmo
+TERH A 0 A_TakeInventory("TerraNoAmmoFlag",1)
+TERH A 0 ACS_ExecuteAlways(512,0,2)
+TERH A 0 A_PlaySoundEx("weapon/terrateleport","SoundSlot6")
+TERH A 0 ACS_ExecuteAlways(512,0,2)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+TERH E 1 A_ChangeVelocity(Cos(pitch)*25, 0, -sin(pitch)*25,1)
+TERH A 0 A_SpawnItemEx("TerraMeleeChecker",3,0,0,momx,momy,momz,0,8)
+TERH A 0 A_JumpIfInventory("TerraMustMelee",1,"Release")
+Goto Release
+Release:
+TERH B 0 A_PlaySoundEx("Weapon/pharaohpunchswing","Weapon")
+TERH B 0 A_GiveInventory("TerraReload_CI",1)
+TERH B 0 A_GiveInventory("TerraKneeTimer",61)
+TERH B 0 A_GunFlash("Flash_Knee")
+TERH B 0 A_ChangeVelocity(16,0,0,3)
+TERH EEDDDDD 1 //A_Stop
+TERH E 2 A_WeaponReady(14)
+TERH A 0 A_ClearRefire
+Goto Ready+2
+
+NoAmmo:
+TERH A 0 A_JumpIfInventory("TerraNoAmmoFlag",1,1)
+TERH A 4
+Goto Ready+2
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("TerraAltfireFlag",1,2)
+TNT1 A 0 A_GiveInventory("ShojoAmmo",1)
+TNT1 A 0 A_TakeInventory("TerraKneeTimer",2)
+TNT1 A 4
+loop
+
+Flash_Knee:
+//TERH FGHHHIIJ 1
+TERH FFGHHHHGIJ 1
+Goto Flash
+}
+}
+
+actor ShonenAmmo : Ammo
+{
+inventory.amount 5
+inventory.maxamount 500
++INVENTORY.IGNORESKILL
+}
+
+actor ShojoAmmo : Ammo
+{
+inventory.amount 56
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor TerraKneeTimer : Ammo
+{
+inventory.amount 0
+inventory.maxamount 61
++INVENTORY.IGNORESKILL
+}
+
+actor TerraRegenCounter : Ammo
+{
+inventory.amount 0
+inventory.maxamount 30
++INVENTORY.IGNORESKILL
+}
+
+actor SparkLaserTimer : Ammo
+{
+inventory.amount 0
+inventory.maxamount 80
++INVENTORY.IGNORESKILL
+}
+
+actor SparkChaserFlag : OnceC{}
+
+actor TerraMustMelee : OnceC{}
+
+actor TerraNoAmmoFlag : OnceC{}
+
+actor TerraAltfireFlag : OnceC{}
+
+actor TerraAltAnim : OnceC{}
+
+actor TerraAltAnimOnce0 : OnceC{}
+
+actor TerraAltAnimOnce1 : OnceC{}
+
+actor TerraAltAnimOnce2 : OnceC{}
+
+actor TerraAltAnimOnce3 : OnceC{}
+
+actor SheepSwitchChecker : Powerup
+{
+Powerup.Duration 1
+}
+
+actor SparkChaserChecker : Powerup
+{
+Powerup.Duration 5
+}
+
+actor SparkChaserTerraProtectC : PowerProtection
+{
+Powerup.Duration 25
+DamageFactor "SparkChaserTerra", 0.0
+}
+
+actor SparkChaserSoundCounter : Ammo
+{
+inventory.amount 0
+inventory.maxamount 12
++INVENTORY.IGNORESKILL
+}
+
+
+
+actor TerraMain1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaser",0,0,-4,5)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaserB",0,0,-4,5)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaserR",0,0,-4,5)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaserO",0,0,-4,5)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TerraClassSparkChaserP",0,0,-4,5)
+goto Done
+}
+}
+
+actor TerraAlt1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAlt",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
+FireB:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltB",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
+FireR:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltR",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
+FireO:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltO",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
+FireP:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltP",frandom(-8,8),0,-6,4,0,frandom(-4.5,4.5))
+goto Done
+}
+}
+
+actor TerraAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAlt",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
+FireB:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltB",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
+FireR:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltR",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
+FireO:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltO",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
+FireP:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltP",frandom(-6,6),0,-6,4,0,frandom(-3.5,3.5))
+goto Done
+}
+}
+
+actor TerraAlt3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAlt",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+FireB:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltB",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+FireR:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltR",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+FireO:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltO",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+FireP:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltP",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+}
+}
+
+actor TerraAlt4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAlt",frandom(-2,2),0,-6,4,0,frandom(-1.5,1.5))
+goto Done
+FireB:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltB",frandom(-2,2),0,-6,4,0,frandom(-1.5,1.5))
+goto Done
+FireR:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltR",frandom(-2,2),0,-6,4,0,frandom(-1.5,1.5))
+goto Done
+FireO:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltO",frandom(-2,2),0,-6,4,0,frandom(-1.5,1.5))
+goto Done
+FireP:
+RBUH A 0 A_FireCustomMissile("TerraClassSparkChaserAltP",frandom(-4,4),0,-6,4,0,frandom(-2.5,2.5))
+goto Done
+}
+}
+
+actor TerraAlt1Fx_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1B",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1R",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1O",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing1P",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+}
+}
+
+actor TerraAlt2Fx_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2B",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2R",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2O",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing2P",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+}
+}
+
+actor TerraAlt3Fx_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3B",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3R",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3O",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing3P",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+}
+}
+
+actor TerraAlt4Fx_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4B",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4R",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4O",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("TerraHoldRing4P",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+}
+}
+
+actor TerraReload_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TerraMelee",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TerraMeleeB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TerraMeleeR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TerraMeleeO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TerraMeleeP",0,0,0,0)
+goto Done
+}
+}

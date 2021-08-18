@@ -1,0 +1,53 @@
+actor MegaWaterS : ClassBase
+{
+Player.ScoreIcon "C_WTB0X"
+player.displayname "MegaWaterS"
+player.soundclass "megawatersc"
+player.startitem "SandySandBoss"
+player.startitem "SandySanderBoss"
+player.startitem "KappaMikeyAmmo", 15
+player.startitem "MWS_ShieldItem"
+
+//player.startitem "BusterRodGWeakness", 1
+//player.startitem "MegaWaterSWeakness", 1
+//player.startitem "HyperStormHWeakness", 1
+
+States
+{
+Spawn:
+MWSZ A 0
+MWSZ B 1
+MWSZ A 1
+MWSZ A 1 A_JumpIf(z-floorz>0,"MWSJumping")
+Goto Spawn+2
+See:
+MWSZ BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"MWSJumping")
+Goto Spawn
+Missile:
+MWSZ F 0 A_JumpIfInventory("VivifyDelay6",1,"Missile3")
+MWSZ F 0 A_JumpIfInventory("VivifyDelay10",1,"Missile2")
+MWSZ F 5
+MWSZ G 4
+goto Spawn
+Missile2:
+MWSZ FG 11
+goto Spawn
+Missile3:
+MWSZ WXWXWXWX 2
+goto Spawn
+
+MWSJumping:
+MWSZ I 1 A_JumpIf(z-floorz<=0, "Spawn")
+wait
+
+ClassPain:
+MWSZ H 0
+goto PainContinue
+DeathFix:
+MWSZ H 0
+goto DeathContinue
+ClassDeath:
+MWSZ H 1
+goto MegaDeathEnd
+}
+}

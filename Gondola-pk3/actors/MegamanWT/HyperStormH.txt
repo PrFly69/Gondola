@@ -1,0 +1,113 @@
+actor HyperStormH : HardClassBase
+{
+Player.ScoreIcon "C_WTC0X"
+player.startitem "HardHealthBar"
+player.displayname "HyperStormH"
+player.soundclass "hyperstormhc"
+player.forwardmove 0.50, 0.50
+player.sidemove 0.48, 0.48
+player.startitem "PigsyBoss"
+player.startitem "PiggyBoss"
+player.startitem "SemiStunArmor"
+//Height 84
+//Radius 48
+//Player.ViewHeight 56
+//projectilepassheight 100
+//projectilepassradius
+
+player.weaponslot 1, "PigsyBoss"
+player.weaponslot 2, "PiggyBoss"
+
+//player.startitem "BusterRodGWeakness", 1
+//player.startitem "MegaWaterSWeakness", 1
+//player.startitem "HyperStormHWeakness", 1
+
+States
+{
+Spawn:
+HSHZ A 0
+HSHZ B 1
+HSHZ A 1 A_JumpIfInventory("HSHDashFlagX",1,"ARunX")
+HSHZ A 1 A_JumpIf(z-floorz>0,"HSHJumping")
+Goto Spawn+2
+See:
+HSHZ BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"HSHJumping")
+Goto Spawn
+
+Missile:
+HSHZ F 0 A_JumpIfInventory("HSHDashFlag",5,"ARunF")
+HSHZ F 0 A_JumpIfInventory("HSHDashFlag",4,"ARunE")
+HSHZ F 0 A_JumpIfInventory("HSHDashFlag",3,"ARunD")
+HSHZ F 0 A_JumpIfInventory("HSHDashFlag",2,"ARunC")
+HSHZ F 0 A_JumpIfInventory("HSHDashFlag",1,"ARunB")
+HSHZ F 0
+HSHZ FFFFF 1 A_JumpIfInventory("HSHDashFlagX",1,"ARunX")
+HSHZ G 4
+goto Spawn
+
+ARunX:
+HSHZ BBBBB 1
+HSHZ B 1 A_JumpIfInventory("HSHDashFlagX",1,1)
+Goto Spawn+2
+HSHZ CCCCC 1
+HSHZ C 1 A_JumpIfInventory("HSHDashFlagX",1,1)
+Goto Spawn+2
+HSHZ DDDDD 1
+HSHZ D 1 A_JumpIfInventory("HSHDashFlagX",1,1)
+Goto Spawn+2
+HSHZ EEEEE 1
+HSHZ E 1 A_JumpIfInventory("HSHDashFlagX",1,"ARunX")
+Goto Spawn+2
+
+ARunB:
+HSHZ B 2
+Goto Spawn
+ARunC:
+HSHZ C 2
+Goto Spawn
+ARunD:
+HSHZ D 2
+Goto Spawn
+ARunE:
+HSHZ E 2
+Goto Spawn
+ARunF:
+HSHZ E 2 A_TakeInventory("HSHDashFlag",5)
+Goto Spawn
+
+HSHJumpLand:
+HSHZ A 0 A_GiveInventory("HSHLand_CI",1)
+goto Spawn
+
+HSHJumping:
+HSHZ I 1 A_JumpIf(z-floorz<=0, "HSHJumpLand")
+wait
+
+ClassPain:
+HSHZ H 0
+goto PainContinue
+DeathFix:
+HSHZ H 0
+goto DeathContinue
+ClassDeath:
+HSHZ H 1
+goto MegaDeathEnd
+
+}
+}
+
+actor BassDashDustLarger : BassDashDust
+{
+Scale 2.5
+}
+
+actor HSHLand_CI : TeamColor_CI
+{
+States
+{
+FireX: FireB: FireR: FireO: FireP:
+TNT1 A 0 A_SpawnItemEx("BassDashDustLarger")
+//TNT1 A 0 A_Quake(2,9,0,8,"")
+goto Done
+}
+}

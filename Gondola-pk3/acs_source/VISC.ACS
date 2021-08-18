@@ -1,0 +1,74 @@
+#library "VISC"
+#include "zcommon.acs"
+
+function bool AllyHealthBarCvarClient(void)
+{
+	return (getUserCvar(ConsolePlayerNumber(),"CCBM_allyhealthbar")>0);
+}
+
+Script "AllyHealthBar_Check" (void) CLIENTSIDE
+{
+SetResultValue(AllyHealthBarCvarClient());
+}
+
+Script "GetTargetHealth" (void) CLIENTSIDE
+{
+SetActivatorToTarget(0);
+SetResultValue(GetActorProperty(0,APROP_Health));
+}
+
+Script "GetTargetHealthPercent" (void) CLIENTSIDE
+{
+SetActivatorToTarget(0);
+SetResultValue(HealthPercent());
+}
+
+function int HealthPercent(void) {
+	int health = GetActorProperty(0,APROP_Health);
+	int maxHealth = GetActorProperty(0,APROP_SpawnHealth);
+	if(maxHealth==0) maxHealth = 100;
+	return (100*health/maxHealth);
+}
+
+#DEFINE MAX_SCREW_USERS 6 
+str screw_users[MAX_SCREW_USERS][2] = 
+{
+{"Plantman", "PlantmanHealAmmo"},
+{"RollClass", "RollHealAmmo"},
+{"Dynamoman", "DynamoHealAmmo"},
+{"Splashwoman", "CrabHealingAmmo"},
+{"Auto", "AutoNutsAmmo"},
+{"Sparkman", "SparkHealAmmo"}
+};
+
+Script "ScrewUser_Check" (void) CLIENTSIDE
+{
+SetActivatorToTarget(0);
+int result = 0;
+str className = GetActorClass(0);
+for(int i = 0; i < MAX_SCREW_USERS; i++){
+	if(StrIcmp(screw_users[i][0],className)==0){
+		result = 1;
+		}
+	}
+SetResultValue(result);
+}
+
+Script "GetTargetScrewPercent" (void) CLIENTSIDE
+{
+SetActivatorToTarget(0);
+SetResultValue(ScrewPercent());
+}
+
+function int ScrewPercent(void) {
+	int index = -1;
+	str className = GetActorClass(0);
+	for(int i = 0; i < MAX_SCREW_USERS; i++){
+		if(StrIcmp(screw_users[i][0],className)==0){
+			index = i;
+			}
+		}
+	int screws = CheckInventory(screw_users[index][1]);
+	int maxScrews = GetAmmoCapacity(screw_users[index][1]);
+	return (100*screws/maxScrews);
+}

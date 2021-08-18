@@ -1,0 +1,161 @@
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
+
+  Actor Fakeman : ClassBase
+  {
+    Player.ScoreIcon "C_09I0X"
+	Player.DisplayName "Fakeman"
+	Player.SoundClass "fakemanc"
+	Player.StartItem "RevolverBusterBoss"
+	Player.StartItem "RevolverbusterAmmoBoss", 8
+	Player.StartItem "FakemanDashCounter", 53
+	Player.StartItem "FakemanDashItem"
+	Player.StartItem "IsTheLaw"
+	//Player.StartItem "CanSnatch_F"
+	Player.ForwardMove 0.9, 0.9
+	Player.SideMove 0.88, 0.88
+	States
+	{
+		Spawn:
+		FAKM A 0
+		FAKM B 1
+		FAKM AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPPPQQQ 1 A_JumpIf(velz!=0,"FakeJumping")
+		Goto Spawn+102
+
+		See:
+		FAKM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(velz!=0,"FakeJumping")
+		Goto Spawn
+
+		FakeJumping:
+		FAKM S 0 A_JumpIfInventory("FakemanFiring",1,"FakeJumpingShot")
+		FAKM S 1 A_JumpIf(velz==0, "Spawn")
+		Loop
+
+		FakeJumpingShot:
+		FAKM OO 1 A_JumpIf(velz==0,"Missile")
+
+		FakeJumpingShot.a:
+		FAKM RR 1 A_JumpIf(velz==0,"Missile.a")
+
+		FakeJumpingShot.b:
+		FAKM OO 1 A_JumpIf(velz==0,"Missile.b")
+
+		FakeJumpingShot.c:
+		FAKM RR 1 A_JumpIf(velz==0,"Missile.c")
+		Goto FakeJumping
+
+		Missile:
+		FAKM FF 1 A_JumpIf(velz!=0,"FakeJumpingShot")
+
+		Missile.a:
+		FAKM GG 1 A_JumpIf(velz!=0,"FakeJumpingShot.a")
+
+		Missile.b:
+		FAKM FF 1 A_JumpIf(velz!=0,"FakeJumpingShot.b")
+
+		Missile.c:
+		FAKM GG 1 A_JumpIf(velz!=0,"FakeJumpingShot.c")
+		Goto Spawn
+
+		ClassPain:
+		FAKM H 0
+		goto PainContinue
+
+		DeathFix:
+		FAKM H 0 A_JumpIfInventory("NoJumpCancel",1,1)
+		Goto DeathContinue
+		FAKM H 0 A_GiveInventory("SpecialDeathFlag")
+		Goto DeathContinue
+
+		ClassDeath:
+		FAKM H 0
+		FAKM Z 0 A_JumpIfInventory("InstagibFlag",1,"MegaDeathEnd")
+		FAKM Z 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
+		FAKM Z 0 A_PlaySoundEx("*pain100","Voice")
+		FAKM Z 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
+		FAKM Z 1 A_SpawnItemEx("FakemanBoomGibs",0,0,0,momx*2,momy*2,momz*2+5,0,9,0)
+		Goto DeathWait
+
+		ClassDeathI:
+		FAKM Z 1 A_SpawnItemEx("FakemanIceGibs",0,0,0,momx,momy,momz+5,0,8,0)
+		Goto DeathWait
+
+		ClassDeathR:
+		FAKM Z 1 A_SpawnItemEx("FakemanRiseGibs",0,0,0,momx*0.5,momy*0.5,momz+5,0,9,0)
+		FAKM Z 0 A_Stop
+		Goto DeathWait
+	}
+  }
+
+
+  Actor FakemanBoomGibs
+  {
+    +MISSILE
+	+THRUACTORS
+	+NOBLOCKMAP
+	-SOLID
+	+DOOMBOUNCE
+	BounceCount 3
+	Gravity 0.8
+	Damage(0)
+	Radius 16
+	Height 56
+	Scale 2.5
+	States
+	{
+		Spawn:
+		FAKM TUVW 4
+		Loop
+
+		Death:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+		TNT1 A 0 A_PlaySoundEx("misc/devildeath","Body")
+		TNT1 A 4 A_SpawnItemEx("TFakeDeathFX",0,0,32,0,0,0,0,1)
+		Stop
+	}
+  }
+
+
+  Actor FakemanRiseGibs : FakemanBoomGibs
+  {
+    -DOOMBOUNCE
+	+NOGRAVITY
+	+SKYEXPLODE
+	ReactionTime 7
+	States
+	{
+		Spawn:
+		FAKM TTTU 1 ThrustThingZ(0,4,0,1)
+		FAKM U 0 A_CountDown
+		FAKM UUVV 1 ThrustThingZ(0,4,0,1)
+		FAKM V 0 A_CountDown
+		FAKM VWWW 1 ThrustThingZ(0,4,0,1)
+		FAKM T 0 A_CountDown
+		Loop
+	}
+  }
+
+
+  Actor FakemanIceGibs : FakemanBoomGibs
+  {
+    -DOOMBOUNCE
+	Translation "192:192=4:4", "198:198=201:201", "3:8=72:72", "243:247=72:72", "208:215=4:4", "202:202=4:4", "199:199=201:201", "204:204=4:4", "195:195=201:201"
+	States
+	{
+		Spawn:
+		FAKM V 0
+		FAKM V 0 A_PlaySoundEx("CBM/freeze","Body")
+		FAKM V 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
+		Wait
+
+		Death:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+		TNT1 A 0 A_PlaySoundEx("CBM/icebreak","Body")
+		TNT1 A 4 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+		Stop
+	}
+  }

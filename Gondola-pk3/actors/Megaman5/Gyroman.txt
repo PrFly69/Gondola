@@ -1,0 +1,71 @@
+actor Gyroman : LightClassBase
+{
+Player.ScoreIcon "C_05D0X"
+player.startitem "LightHealthBar"
+player.displayname "gyroman"
+player.soundclass "gyromanc"
+player.startitem "GyroAttackBoss"
+player.startitem "GyroFly", 56
+player.startitem "GyroBoomerangAmmo", 28
+player.startitem "GyroCallbackItem"
+player.forwardmove 0.87, 0.87
+player.sidemove 0.85, 0.85
+
+player.startitem "GravityHoldWeakness2", 1
+
+player.startitem "LeafShieldWeakness", 1
+//player.startitem "FlashStopperWeakness", 1
+player.startitem "GravityHoldWeakness", 1
+player.startitem "PlantBarrierWeakness", 1
+States
+{
+Spawn:
+GYRM A 0 A_JumpIfInventory("GyroTrigger",0,"Flight")
+GYRM B 1
+GYRM A 1
+Goto Spawn+2
+See:
+GYRM A 0 A_JumpIfInventory("GyroTrigger",1,"Flight")
+GYRM BCDE 5
+Goto Spawn
+Missile:
+GYRM F 0 A_JumpIfInventory("GyroTriggerX",8,"ARunF")
+GYRM F 0 A_JumpIfInventory("GyroTriggerX",7,"ARunE")
+GYRM F 0 A_JumpIfInventory("GyroTriggerX",5,"ARunD")
+GYRM F 0 A_JumpIfInventory("GyroTriggerX",3,"ARunC")
+GYRM F 0 A_JumpIfInventory("GyroTriggerX",1,"ARunB")
+GYRM F 5
+GYRM G 4
+GYRM G 1 A_JumpIfInventory("GyroTrigger",1,"Flight")
+goto Spawn+2
+Flight:
+GYRM BCDE 3
+GYRM B 1 A_JumpIfInventory("GyroTrigger",1,"Flight")
+goto Missile+5
+ARunB:
+GYRM B 2
+Goto Flight//Missile+5
+ARunC:
+GYRM C 2
+Goto Flight//Missile+5
+ARunD:
+GYRM D 2
+Goto Flight//Missile+5
+ARunE:
+GYRM E 2
+Goto Flight//Missile+5
+ARunF:
+GYRM E 2 A_TakeInventory("GyroTriggerX",99)
+Goto Flight//Missile+5
+
+ClassPain:
+GYRM H 0
+goto PainContinue
+DeathFix:
+GYRM H 0
+goto DeathContinue
+ClassDeath:
+GYRM H 1
+goto MegaDeathEnd
+}
+}

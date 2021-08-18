@@ -1,0 +1,12 @@
+#library "MAP"
+#include "zcommon.acs"
+
+script "MapReveal" ENTER
+{
+GiveInventory("MapRevealer",1);
+}
+
+script "MapRevealRespawn" RESPAWN
+{
+GiveInventory("MapRevealer",1);
+}

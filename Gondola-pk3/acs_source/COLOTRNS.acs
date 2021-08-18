@@ -1,0 +1,246 @@
+// [Celebi] This is a copy of MM8BDM v6a COLOTRNS
+// Any area with the following line
+//$CBM
+// Means that area is edited for CBM
+
+#library "colotrans"
+#include "zcommon.acs"
+//#include "8bdmlib.acs"//$CBM [Celebi] See bottom
+
+BOOL IsTeamGame = 0;//$CBM [Celebi] From 8BDMLIB
+int ServerMAX = 32;//$CBM [Celebi] From 8BDMLIB
+
+// [Mike] Player Translations
+int PlayerTranslation[64];
+
+script "colotrns_open" OPEN
+{
+	ServerMAX = GetMaxPlayers();
+	IsTeamGame = ACS_ExecuteWithResult(975, 1);
+}
+
+script "core_synccolors" (void)
+{
+    //PlayerTranslation[PlayerNumber()] = 0;//$CBM
+
+    //Syncs Player colors
+    for(int i=0; i<ServerMAX; i++)
+    {
+        If(PlayerInGame(i) && CheckActorInventory(i + 1000,"NoTeamTranslation")==0)
+        {
+            Switch(GetPlayerInfo(i, PLAYERINFO_TEAM))
+            {
+			Case 0:
+				If(CheckInventory("ThunderClawBoss") == 1)
+				{
+				Thing_SetTranslation(i+1000, 11975);//$CBM
+				break;
+				}
+				Thing_SetTranslation(i+1000, 20600);//$CBM
+				break;
+			Case 1:
+				If(CheckInventory("ThunderClawBoss") == 1)
+				{
+				Thing_SetTranslation(i+1000, 11976);//$CBM
+				break;
+				}
+				Thing_SetTranslation(i+1000, 20610);//$CBM
+				break;
+			Case 2:
+				If(CheckInventory("ThunderClawBoss") == 1)
+				{
+				Thing_SetTranslation(i+1000, 11977);//$CBM
+				break;
+				}
+				Thing_SetTranslation(i+1000, 20620);//$CBM
+				break;
+			Case 3:
+				If(CheckInventory("ThunderClawBoss") == 1)
+				{
+				Thing_SetTranslation(i+1000, 11978);//$CBM
+				break;
+				}
+				Thing_SetTranslation(i+1000, 20630);//$CBM
+				break;
+			default:
+				SetActivator(i+1000);
+				Thing_SetTranslation(i+1000, -1);
+				break;
+            }
+        }
+    }
+}
+
+// Player Color (alternate, no sound)
+//
+script 991 (int weap)
+{
+	ACS_ExecuteAlways(998, 0, weap, 1);
+}
+
+//Color Translation script
+script 998 (int weap, int nosound) //$CBM
+{
+	if(nosound==0 && CheckInventory("NoWeaponSwitchSound")==0)
+	{
+		LocalAmbientSound("menu/cursor",127); // Play weapon switch noise
+	}
+
+	if(CheckInventory("NoWeaponTranslation")>0){
+	terminate;
+	}
+	
+	If(IsTeamGame==1 && nosound<=9 && CheckInventory("NoTeamTranslation")==0)//$CBM
+		{
+		Switch(PlayerTeam())
+			{
+			Case 0:
+				Switch(nosound)
+					{
+					default:
+					weap = 20600;//Team color
+					break;
+					Case 3:
+					weap = 10603;//Darkened color
+					break;
+					Case 5:
+					weap = 10605;//Team charge 1
+					break;
+					Case 6:
+					weap = 10606;//Team charge 2
+					break;
+					Case 7:
+					weap = 10607;//Team charge 3
+					break;
+					}
+				break;
+			Case 1:
+				Switch(nosound)
+					{
+					default:
+					weap = 20610;
+					break;
+					Case 3:
+					weap = 10613;
+					break;
+					Case 5:
+					weap = 10615;
+					break;
+					Case 6:
+					weap = 10616;
+					break;
+					Case 7:
+					weap = 10617;
+					break;
+					}
+				break;
+			Case 2:
+				Switch(nosound)
+					{
+					default:
+					weap = 20620;
+					break;
+					Case 3:
+					weap = 10623;
+					break;
+					Case 5:
+					weap = 10625;
+					break;
+					Case 6:
+					weap = 10626;
+					break;
+					Case 7:
+					weap = 10627;
+					break;
+					}
+				break;
+			Case 3:
+				Switch(nosound)
+					{
+					default:
+					weap = 20630;
+					break;
+					Case 3:
+					weap = 10633;
+					break;
+					Case 5:
+					weap = 10635;
+					break;
+					Case 6:
+					weap = 10636;
+					break;
+					Case 7:
+					weap = 10637;
+					break;
+					}
+				break;
+			}
+		}
+
+	else if(nosound<=1) {
+		if(CheckInventory("DocBusterBoss")) {
+			weap = 10768;
+			//ACS_NamedExecuteAlways("cbm_DocStatsModifier",0);
+		}
+		else if(CheckInventory("EvilFistBoss")) {
+			weap = 10869;
+		}
+	}//Log(i:weap,s:" for player ",i:PlayerNumber());
+	Thing_SetTranslation(0, weap);
+	PlayerTranslation[PlayerNumber()] = weap;
+}
+
+// Copy the translation of the target. Used by teleport FX. Probably limited use since SXF_TRANSFERTRANSLATION exists.
+Script "core_copytranslation" (void)
+{
+	SetActivatorToTarget(0);
+	SetResultValue(PlayerTranslation[ActivatorTID()-1000]);
+}
+
+//$CBM
+//[Celebi] Only the below from 8BDMLIB is needed.
+
+function int GetMaxPlayers(void)
+{
+	int ret = GetCVAR("sv_MaxClients");
+	if(PlayerCount()>ret)
+		ret = PlayerCount();
+	return ret;
+}
+
+script "GayClownColors" (int weap, int nosound) //$CBM
+{
+	if(nosound==0 && CheckInventory("NoWeaponSwitchSound")==0)
+	{
+		LocalAmbientSound("menu/cursor",127); // Play weapon switch noise
+	}
+
+	if(CheckInventory("NoWeaponTranslation")>0){
+	terminate;
+	}
+	
+	If(IsTeamGame==1 && nosound<=9 && CheckInventory("NoTeamTranslation")==0)//$CBM
+		{
+		Switch(PlayerTeam())
+			{
+			Case 0:
+	Thing_SetTranslation(0, 11975);
+	PlayerTranslation[PlayerNumber()] = 11975;
+					terminate;
+			Case 1:
+	Thing_SetTranslation(0, 11976);
+	PlayerTranslation[PlayerNumber()] = 11976;
+					terminate;
+			Case 2:
+	Thing_SetTranslation(0, 11977);
+	PlayerTranslation[PlayerNumber()] = 11977;
+					terminate;
+			Case 3:
+	Thing_SetTranslation(0, 11978);
+	PlayerTranslation[PlayerNumber()] = 11978;
+					terminate;
+			}
+		}
+	Thing_SetTranslation(0, weap);
+	PlayerTranslation[PlayerNumber()] = weap;
+}

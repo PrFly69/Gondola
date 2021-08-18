@@ -1,0 +1,420 @@
+actor ThunderBeamBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_1F"
+dropitem "ThunderBeamWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Obituary "$OB_THUNDERBEAM"
+weapon.ammotype "ElectricAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_01 F 1
+loop
+Ready:
+ELEH A 0 ACS_ExecuteAlways(998,0,DYE_ELECMAN)
+ELEH A 0 A_JumpIfInventory("ElectricAmmo",2,"Ready2")
+ELEH A 2 A_WeaponReady(WRF_NOFIRE)
+goto Recharge+1
+Recharge:
+ELEH A 0 A_JumpIfInventory("ElectricAmmo",2,"Recharge2")
+ELEH A 4 A_WeaponReady(WRF_NOFIRE)
+ELEH A 0 A_GiveInventory("ElectricAmmo",1)
+loop
+
+Ready2:
+ELEH A 0 A_JumpIfInventory("ElectricAmmo",14,"Ready3")
+ELEH A 2 A_WeaponReady(WRF_NOSECONDARY)
+goto Recharge2+1
+Recharge2:
+ELEH A 0 A_JumpIfInventory("ElectricAmmo",14,"Recharge3")
+ELEH A 4 A_WeaponReady(WRF_NOSECONDARY)
+ELEH A 0 A_GiveInventory("ElectricAmmo",1)
+loop
+
+Ready3:
+ELEH A 2 A_WeaponReady
+Recharge3:
+ELEH A 4 A_WeaponReady
+ELEH A 0 A_GiveInventory("ElectricAmmo",1)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+ELEH A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+ELEH A 1 A_Raise
+Loop
+Fire:
+ELEH A 0 A_JumpIfNoAmmo("NoAmmo")
+ELEH B 2 //Offset(0,-10)
+ELEH F 2 //Offset(0,-15)
+ELEH C 1 //Offset(0,-20)
+ELEH I 2 //Offset(0,-25)
+ELEH J 2 //Offset(0,-25)
+ELEH C 1 //Offset(0,10)
+ELEH F 1 //Offset(0,20)
+ELEA C 0 A_PlaySoundEx("weapon/thunderbeam","Weapon")
+ELEA C 0 A_GiveInventory("ElecmanMain_CI",1)
+ELEH D 13 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+Goto Ready+1
+
+Altfire:
+ELEH A 0 A_JumpIfInventory("ElectricAmmo",14,"TeleportE")
+Goto Ready+1
+TeleportE:
+ELEA E 0 A_GiveInventory("VivifyDelay6",1)
+ELEA E 0 A_ReFire(1)
+ELEA E 0 A_SpawnItemEx("ThunderExtendHelper")
+ELEH KLM 1 A_SpawnItemEx("ElecmanTeleportDamage",0,0,28,momx,momy,momz,0,8)
+TNT1 A 7 A_SpawnItemEx("ElecmanTeleportDamage",0,0,28,momx,momy,momz,0,8)
+ELEA C 0 A_PlaySoundEx("weapon/ElecTeleport","Weapon")
+ELEA C 0 //A_Stop
+ELEA C 0 A_SpawnItemEx("ElecTeleFXHelper",0,0,0,0,0,0,0,1)
+ELEA C 0 A_TakeInventory("UnSolid",1)
+ELEA C 0 A_ChangeFlag("SOLID",0)
+ELEA C 0 A_ChangeFlag("FLOORHUGGER",1)
+ELEA C 0 A_ChangeVelocity(450,0,momz,3)
+ELEA C 0 A_TakeInventory("ElectricAmmo",14)
+TNT1 A 1 A_SetTranslucent(0.0,0)
+ELEA C 0 A_ChangeVelocity(16,0,momz,3)
+ELEA C 0 //A_ScaleVelocity(0.03)//A_Stop
+ELEA C 0 A_ChangeFlag("FLOORHUGGER",0)
+ELEA C 0 A_SpawnItemEx("ReSolidifier")
+ELEA C 0 ThrustThingZ(0,1,0,1)
+ELEA CCC 0 A_SetTranslucent(1.0,0)
+ELEA C 0 A_SpawnItemEx("ElecmanTeleportDamage2",0,0,28,momx,momy,momz,0,8)
+TNT1 A 1 A_SetTranslucent(1.0,0)
+ELEH MLKK 1
+ELEH A 1
+Goto Ready+1
+NoAmmo:
+ELEH A 0
+//ELEH A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor ElectricAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor ElecmanThunderCheckX
+{
+PROJECTILE
++DONTBLAST
+Obituary "$OB_THUNDERZAP"
+damagetype "ThunderBeam"
+Radius 1
+Height 20
+scale 2.5
+damage (0)
+speed 40
+States
+{
+Spawn:
+TNT1 A 1
+loop
+Crash:
+TNT1 A 1 A_SpawnItemEx("ElecmanThunderX",0,0,128)
+TNT1 A 0 A_PlaySoundEx("weapon/lightningfall","weapon")
+stop
+}
+}
+
+actor ElecmanThunderX
+{
+PROJECTILE
+scale 2.5
++DONTBLAST
+-NOGRAVITY
+Obituary "$OB_THUNDERZAP"
+damagetype "ThunderBeam"
+Speed 40
+Radius 6
+Height 20
+Damage (1)
+States
+{
+Spawn:
+CLOD A 1 A_PlaySoundEx("weapon/thunderbolt","Weapon")
+CLOD ABCDEFABCDEFABCDEFABCDEFABCDEF 1 A_SpawnItemEx("CloudDownerFX_A")
+stop
+}
+}
+
+actor ElecmanThunderDamageX : BasicExplosion
+{
+Obituary "$OB_THUNDERZAP"
+damagetype "ThunderBeam"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(45,450,0)
+stop
+}
+}
+
+actor ElecmanTeleportDamage : BasicExplosion
+{
+Obituary "$OB_THUNDERZAP"
+damagetype "ThunderBeam"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(4,80,0,0,80)
+stop
+}
+}
+
+actor ElecmanTeleportDamage2 : ElecmanTeleportDamage
+{
+Obituary "$OB_THUNDERZAP"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(15,96,0,0,96)
+stop
+}
+}
+
+actor ThunderManBeam : ThunderBeam
+{
+Translation "202:202=4:4","199:199=215:215"
+var int user_P;
+Damage(15)
+Height 12
+damagetype "ClassPainLess2"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnL:
+ELEA TUVWXYZ 3
+loop
+}
+}
+
+actor ThunderManBeamB : ThunderManBeam{translation "202:202=205:205","199:199=74:74"}
+actor ThunderManBeamR : ThunderManBeam{translation "202:202=171:171","199:199=41:41"}
+actor ThunderManBeamO : ThunderManBeam{translation "202:202=104:104","199:199=128:128"}
+actor ThunderManBeamP : ThunderManBeam{translation "202:202=229:229","199:199=232:232"}
+
+actor ThunderExtendHelper : BasicHelper
+{
+ReactionTime 4
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_GiveToTarget("ThunderExtendItemI",1)
+TNT1 A 1 A_GiveToTarget("ThunderExtendItemJ",1)
+TNT1 A 0 A_CountDown
+loop
+}
+}
+
+actor ThunderExtendItemI : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("ThunderShieldI",0,0,32,0,0,0,0,1)
+stop
+}
+}
+actor ThunderExtendItemJ : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("ThunderShieldJ",0,0,32,0,0,0,0,1)
+stop
+}
+}
+
+actor ThunderExtend : LightningExtend
+{
+//height 32
+//radius 16
+height 12
+radius 10
+states
+{
+Spawn:
+ELEA F 0 
+ELEA F 0 A_JumpIf(ceilingz-z <= 12, "Death")
+ELEA F 0 A_SpawnItemEx("ThunderExtend",0,0,60,0,0,0,0,1)
+ELEA FGHFGHFGHFGH 2
+stop
+}
+}
+
+actor ThunderShieldI
+{
++CLIENTSIDEONLY
++NOINTERACTION
++NOGRAVITY
+Radius 1
+Height 1
+Scale 2.5
+States
+{
+Spawn:
+ELEA I 0
+ELEA I 1
+stop
+}
+}
+
+actor ThunderShieldJ : ThunderShieldI
+{
+States
+{
+Spawn:
+ELEA J 0
+ELEA J 1
+stop
+}
+}
+
+actor ElecTeleFX
+{
+PROJECTILE
++RIPPER
++THRUACTORS
++DONTBLAST
++NOTIMEFREEZE
++CLIENTSIDEONLY
++FLOORHUGGER
++NOGRAVITY
+Height 4
+Radius 4
+scale 2.5
+Damage (0)
+ReactionTime 5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+goto RNG
+RNG:
+TNT1 A 0 A_CountDown
+TNT1 A 0 A_FadeOut(0.05)
+TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9)
+ELEA K 1
+goto RNG
+ELEA L 1
+goto RNG
+ELEA M 1
+goto RNG
+ELEA N 1
+goto RNG
+ELEA O 1
+goto RNG
+ELEA P 1
+goto RNG
+ELEA Q 1
+goto RNG
+ELEA R 1
+goto RNG
+ELEA S 1
+goto RNG
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor ElecTeleFX0 : ElecTeleFX { speed 0   ReactionTime 20}
+actor ElecTeleFX1 : ElecTeleFX { speed 20  ReactionTime 21}
+actor ElecTeleFX2 : ElecTeleFX { speed 40  ReactionTime 22}
+actor ElecTeleFX3 : ElecTeleFX { speed 60  ReactionTime 23}
+actor ElecTeleFX4 : ElecTeleFX { speed 75  ReactionTime 24}
+actor ElecTeleFX5 : ElecTeleFX { speed 95  ReactionTime 25}
+actor ElecTeleFX6 : ElecTeleFX { speed 120 ReactionTime 26}
+actor ElecTeleFX7 : ElecTeleFX { speed 140 ReactionTime 27}
+actor ElecTeleFX8 : ElecTeleFX { speed 160 ReactionTime 28}
+actor ElecTeleFX9 : ElecTeleFX { speed 180 ReactionTime 29}
+actor ElecTeleFX10: ElecTeleFX { speed 200 ReactionTime 30}
+
+actor ElecTeleFXEND : ElecTeleFX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+goto Death
+Death:
+TNT1 A 1 A_SpawnItemEx("ThunderExtend",0,0,60,0,0,0,0,1)
+stop
+}
+}
+
+actor ElecTeleFXHelper : BasicHelper
+{
+Translation "202:202=4:4","199:199=215:215"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX0",0,0,32,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX1",0,0,32,20,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX2",0,0,32,40,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX3",0,0,32,60,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX4",0,0,32,80,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX5",0,0,32,100,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX6",0,0,32,120,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX7",0,0,32,140,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX8",0,0,32,160,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX9",0,0,32,180,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFX10",0,0,32,200,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("ElecTeleFXEND",0,0,32,200,0,0,0,1)
+stop
+}
+}
+
+actor ElecmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("ThunderManBeam",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeam",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeam",-90,0,24,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamB",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamB",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamB",-90,0,24,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamR",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamR",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamR",-90,0,24,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamO",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamO",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamO",-90,0,24,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamP",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamP",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManBeamP",-90,0,24,0)
+goto Done
+}
+}

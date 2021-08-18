@@ -1,0 +1,1656 @@
+actor BasicHitBase
+{
+Height 0
+Radius 0
++NOINTERACTION
+-SOLID
++NOGRAVITY
++MISSILE
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 //A_GiveToTarget("RollHitPickup",1)
+stop
+}
+}
+
+actor BasicPoisonBase
+{
+var int user_HIT;
+var int user_SOURCE;
+var int user_AMOUNT;
+Height 0
+Radius 0
++NOINTERACTION
++NOCLIP
++SEEKERMISSILE
+PROJECTILE
+States
+{
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor BasicHitBaseF : BasicHitBase
+{
+var int user_HIT;
+//var int user_power;
+}
+
+actor CollideFlag : OnceC{}
+
+actor ForceEndPoisonFlag : OnceC{}
+
+actor C_PSN2 : PowerUp{Powerup.Duration -2}
+actor C_PSN3 : PowerUp{Powerup.Duration -3}
+actor C_PSN4 : PowerUp{Powerup.Duration -4}
+actor C_PSN5 : PowerUp{Powerup.Duration -5}
+actor C_PSN6 : PowerUp{Powerup.Duration -6}
+
+//General idea/method by JaxOf7
+
+//Bonus Damage
+
+actor WilyFireB1_PSNFlag : OnceC{}
+actor WilyFireB1_PSN : C_PSN2{}
+actor WilyFireB1_PSN0 : C_PSN2{}//Online desync
+
+actor WilyFireB1_PSN1000:C_PSN2{}actor WilyFireB1_PSN1001:C_PSN2{}actor WilyFireB1_PSN1002:C_PSN2{}actor WilyFireB1_PSN1003:C_PSN2{}actor WilyFireB1_PSN1004:C_PSN2{}actor WilyFireB1_PSN1005:C_PSN2{}actor WilyFireB1_PSN1006:C_PSN2{}actor WilyFireB1_PSN1007:C_PSN2{}
+actor WilyFireB1_PSN1008:C_PSN2{}actor WilyFireB1_PSN1009:C_PSN2{}actor WilyFireB1_PSN1010:C_PSN2{}actor WilyFireB1_PSN1011:C_PSN2{}actor WilyFireB1_PSN1012:C_PSN2{}actor WilyFireB1_PSN1013:C_PSN2{}actor WilyFireB1_PSN1014:C_PSN2{}actor WilyFireB1_PSN1015:C_PSN2{}
+actor WilyFireB1_PSN1016:C_PSN2{}actor WilyFireB1_PSN1017:C_PSN2{}actor WilyFireB1_PSN1018:C_PSN2{}actor WilyFireB1_PSN1019:C_PSN2{}actor WilyFireB1_PSN1020:C_PSN2{}actor WilyFireB1_PSN1021:C_PSN2{}actor WilyFireB1_PSN1022:C_PSN2{}actor WilyFireB1_PSN1023:C_PSN2{}
+actor WilyFireB1_PSN1024:C_PSN2{}actor WilyFireB1_PSN1025:C_PSN2{}actor WilyFireB1_PSN1026:C_PSN2{}actor WilyFireB1_PSN1027:C_PSN2{}actor WilyFireB1_PSN1028:C_PSN2{}actor WilyFireB1_PSN1029:C_PSN2{}actor WilyFireB1_PSN1030:C_PSN2{}actor WilyFireB1_PSN1031:C_PSN2{}
+actor WilyFireB1_PSN1032:C_PSN2{}actor WilyFireB1_PSN1033:C_PSN2{}actor WilyFireB1_PSN1034:C_PSN2{}actor WilyFireB1_PSN1035:C_PSN2{}actor WilyFireB1_PSN1036:C_PSN2{}actor WilyFireB1_PSN1037:C_PSN2{}actor WilyFireB1_PSN1038:C_PSN2{}actor WilyFireB1_PSN1039:C_PSN2{}
+actor WilyFireB1_PSN1040:C_PSN2{}actor WilyFireB1_PSN1041:C_PSN2{}actor WilyFireB1_PSN1042:C_PSN2{}actor WilyFireB1_PSN1043:C_PSN2{}actor WilyFireB1_PSN1044:C_PSN2{}actor WilyFireB1_PSN1045:C_PSN2{}actor WilyFireB1_PSN1046:C_PSN2{}actor WilyFireB1_PSN1047:C_PSN2{}
+actor WilyFireB1_PSN1048:C_PSN2{}actor WilyFireB1_PSN1049:C_PSN2{}actor WilyFireB1_PSN1050:C_PSN2{}actor WilyFireB1_PSN1051:C_PSN2{}actor WilyFireB1_PSN1052:C_PSN2{}actor WilyFireB1_PSN1053:C_PSN2{}actor WilyFireB1_PSN1054:C_PSN2{}actor WilyFireB1_PSN1055:C_PSN2{}
+actor WilyFireB1_PSN1056:C_PSN2{}actor WilyFireB1_PSN1057:C_PSN2{}actor WilyFireB1_PSN1058:C_PSN2{}actor WilyFireB1_PSN1059:C_PSN2{}actor WilyFireB1_PSN1060:C_PSN2{}actor WilyFireB1_PSN1061:C_PSN2{}actor WilyFireB1_PSN1062:C_PSN2{}actor WilyFireB1_PSN1063:C_PSN2{}
+
+
+actor PainWilyFireB1Hit : BasicPoisonBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_AMOUNT",1)//How much poison is given in tics. (1 if a powerup)
+TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(257,0))//Record who was hit
+TNT1 A 0 A_TransferPointer(2,0,2,2)//Make this projectile the shooters
+TNT1 A 0 A_SetUserVar("user_SOURCE", ACS_ExecuteWithResult(257,0))//Record the original shooter
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_POISONFOLLOW,user_HIT,-1,user_SOURCE)>=1, "Death")
+//^^Give player specific inventory based on who hit them, and also kills this actor if they already have that inventory
+TNT1 A 0 ACS_ExecuteAlways(C_POISONFOLLOW,0,user_HIT,200,user_SOURCE)//Makes this actor track/follow the person hit (Check ACS for more info)
+//^^This is Powerup track with following
+TNT1 A 0 A_GiveInventory("WeaponCharge",50)//Duration between damage in tics
+Goto DoT
+DoT:
+TNT1 A 0 A_SpawnItemEX("WilyTackleFireFX1",0,0,12,0,0,0,0,1)//From here you can do what for this actor while it tracks the Hit player.
+TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"Death")//If the Hit Player is out of poison time, this flag will be given to end this actor
+TNT1 A 0 A_SpawnItemEX("WilyTackleFireFX1",0,0,12,0,0,0,0,1)
+TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"Death")
+TNT1 A 0 A_SpawnItemEX("WilyTackleFireFX1",0,0,12,0,0,0,0,1)
+TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"Death")
+TNT1 A 0 A_SpawnItemEX("WilyTackleFireFX1",0,0,12,0,0,0,0,1)
+TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"Death")
+TNT1 A 0 A_SpawnItemEX("WilyTackleFireFX2",0,0,12,0,0,0,0,1)
+TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"Death")
+TNT1 A 0 A_SpawnItemEX("WilyTackleFireFX2",0,0,12,0,0,0,0,1)
+TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"Death")
+TNT1 A 0 A_SpawnItemEX("WilyTackleFireFX2",0,0,12,0,0,0,0,1)
+TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"Death")
+TNT1 A 0 A_SpawnItemEX("WilyTackleFireFX2",0,0,12,0,0,0,0,1)
+TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)//While this poison actor is following the player, its not following at the same rate online.
+//So the above will guarantee the below will spawn directly on the poisoned target.
+TNT1 A 0 A_SpawnItemEX("WilyFireCollide",0,0,28)//The main damager
+loop
+}
+}
+
+actor PainMaestroAfterburn : BasicPoisonBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_AMOUNT",1)
+TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 A_SetUserVar("user_SOURCE", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 ACS_ExecuteAlways(C_POISONFOLLOW,0,user_HIT,200,user_SOURCE)
+TNT1 A 0 A_GiveInventory("WeaponCharge",50)
+Goto DoT
+DoT:
+TNT1 AAA 4 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 0 A_SpawnItemEX("MaestroAfterburn",0,0,28)
+TNT1 AAA 4 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 0 A_SpawnItemEX("MaestroAfterburn",0,0,28)
+TNT1 AAA 4 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 0 A_SpawnItemEX("MaestroAfterburn",0,0,28)
+TNT1 AAA 4 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 0 A_SpawnItemEX("MaestroAfterburn",0,0,28)
+TNT1 AAA 4 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 0 A_SpawnItemEX("MaestroAfterburn",0,0,28)
+stop
+}
+}
+
+actor MegaFireBall_PSNFlag : OnceC{}
+actor MegaFireBall_PSN : C_PSN3{}
+actor MegaFireBall_PSN0 : C_PSN3{}//Online desync
+
+actor MegaFireBall_PSN1000:C_PSN3{}actor MegaFireBall_PSN1001:C_PSN3{}actor MegaFireBall_PSN1002:C_PSN3{}actor MegaFireBall_PSN1003:C_PSN3{}actor MegaFireBall_PSN1004:C_PSN3{}actor MegaFireBall_PSN1005:C_PSN3{}actor MegaFireBall_PSN1006:C_PSN3{}actor MegaFireBall_PSN1007:C_PSN3{}
+actor MegaFireBall_PSN1008:C_PSN3{}actor MegaFireBall_PSN1009:C_PSN3{}actor MegaFireBall_PSN1010:C_PSN3{}actor MegaFireBall_PSN1011:C_PSN3{}actor MegaFireBall_PSN1012:C_PSN3{}actor MegaFireBall_PSN1013:C_PSN3{}actor MegaFireBall_PSN1014:C_PSN3{}actor MegaFireBall_PSN1015:C_PSN3{}
+actor MegaFireBall_PSN1016:C_PSN3{}actor MegaFireBall_PSN1017:C_PSN3{}actor MegaFireBall_PSN1018:C_PSN3{}actor MegaFireBall_PSN1019:C_PSN3{}actor MegaFireBall_PSN1020:C_PSN3{}actor MegaFireBall_PSN1021:C_PSN3{}actor MegaFireBall_PSN1022:C_PSN3{}actor MegaFireBall_PSN1023:C_PSN3{}
+actor MegaFireBall_PSN1024:C_PSN3{}actor MegaFireBall_PSN1025:C_PSN3{}actor MegaFireBall_PSN1026:C_PSN3{}actor MegaFireBall_PSN1027:C_PSN3{}actor MegaFireBall_PSN1028:C_PSN3{}actor MegaFireBall_PSN1029:C_PSN3{}actor MegaFireBall_PSN1030:C_PSN3{}actor MegaFireBall_PSN1031:C_PSN3{}
+actor MegaFireBall_PSN1032:C_PSN3{}actor MegaFireBall_PSN1033:C_PSN3{}actor MegaFireBall_PSN1034:C_PSN3{}actor MegaFireBall_PSN1035:C_PSN3{}actor MegaFireBall_PSN1036:C_PSN3{}actor MegaFireBall_PSN1037:C_PSN3{}actor MegaFireBall_PSN1038:C_PSN3{}actor MegaFireBall_PSN1039:C_PSN3{}
+actor MegaFireBall_PSN1040:C_PSN3{}actor MegaFireBall_PSN1041:C_PSN3{}actor MegaFireBall_PSN1042:C_PSN3{}actor MegaFireBall_PSN1043:C_PSN3{}actor MegaFireBall_PSN1044:C_PSN3{}actor MegaFireBall_PSN1045:C_PSN3{}actor MegaFireBall_PSN1046:C_PSN3{}actor MegaFireBall_PSN1047:C_PSN3{}
+actor MegaFireBall_PSN1048:C_PSN3{}actor MegaFireBall_PSN1049:C_PSN3{}actor MegaFireBall_PSN1050:C_PSN3{}actor MegaFireBall_PSN1051:C_PSN3{}actor MegaFireBall_PSN1052:C_PSN3{}actor MegaFireBall_PSN1053:C_PSN3{}actor MegaFireBall_PSN1054:C_PSN3{}actor MegaFireBall_PSN1055:C_PSN3{}
+actor MegaFireBall_PSN1056:C_PSN3{}actor MegaFireBall_PSN1057:C_PSN3{}actor MegaFireBall_PSN1058:C_PSN3{}actor MegaFireBall_PSN1059:C_PSN3{}actor MegaFireBall_PSN1060:C_PSN3{}actor MegaFireBall_PSN1061:C_PSN3{}actor MegaFireBall_PSN1062:C_PSN3{}actor MegaFireBall_PSN1063:C_PSN3{}
+
+
+actor PainMegaFireBallHit : BasicPoisonBase//Spawned from MegaFireBall
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_AMOUNT",1)
+//TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(257,0))
+//TNT1 A 0 A_TransferPointer(2,0,2,2)
+//TNT1 A 0 A_SetUserVar("user_SOURCE", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(147,1))
+TNT1 A 0 A_SetUserVar("user_SOURCE",ACS_ExecuteWithResult(147,0))
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_POISONFOLLOW,user_HIT,-2,user_SOURCE)>=1, "Death")
+TNT1 A 0 ACS_ExecuteAlways(C_POISONFOLLOW,0,user_HIT,301,user_SOURCE)
+
+Goto DoT
+DoT://15
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("RockFireBallBurn",0,0,28)//The main damager
+loop
+}
+}
+
+actor PainMegaFireBallHit2 : BasicPoisonBase//Spawned from MegaFireBall 2 : Burning Boogaloo
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_AMOUNT",1)
+//TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(257,0))
+//TNT1 A 0 A_TransferPointer(2,0,2,2)
+//TNT1 A 0 A_SetUserVar("user_SOURCE", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(147,1))
+TNT1 A 0 A_SetUserVar("user_SOURCE",ACS_ExecuteWithResult(147,0))
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_POISONFOLLOW,user_HIT,-2,user_SOURCE)>=1, "DoT")
+TNT1 A 0 ACS_ExecuteAlways(C_POISONFOLLOW,0,user_HIT,301,user_SOURCE)
+
+Goto DoT
+DoT://15
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("RockFireBallBurn",0,0,28)//The main damager
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("RockFireBallBurn",0,0,28)//The main damager
+stop
+}
+}
+
+actor PainMegaFireBallHit3 : BasicPoisonBase//Spawned from MegaFireBall 2 : Burning Boogaloo
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_AMOUNT",1)
+//TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(257,0))
+//TNT1 A 0 A_TransferPointer(2,0,2,2)
+//TNT1 A 0 A_SetUserVar("user_SOURCE", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(147,1))
+TNT1 A 0 A_SetUserVar("user_SOURCE",ACS_ExecuteWithResult(147,0))
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_POISONFOLLOW,user_HIT,-2,user_SOURCE)>=1, "DoT")
+TNT1 A 0 ACS_ExecuteAlways(C_POISONFOLLOW,0,user_HIT,301,user_SOURCE)
+
+Goto DoT
+DoT://15
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("RockFireBallBurn",0,0,28)//The main damager
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("RockFireBallBurn",0,0,28)//The main damager
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("RockFireBallBurn",0,0,28)//The main damager
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("RockFireBallBurn",0,0,28)//The main damager
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("RockFireBallBurn",0,0,28)//The main damager
+stop
+}
+}
+
+actor LightRyuFire_PSNFlag : OnceC{}
+actor LightRyuFire_PSN : C_PSN3{}
+actor LightRyuFire_PSN0 : C_PSN3{}//Online desync
+
+actor LightRyuFire_PSN1000:C_PSN3{}actor LightRyuFire_PSN1001:C_PSN3{}actor LightRyuFire_PSN1002:C_PSN3{}actor LightRyuFire_PSN1003:C_PSN3{}actor LightRyuFire_PSN1004:C_PSN3{}actor LightRyuFire_PSN1005:C_PSN3{}actor LightRyuFire_PSN1006:C_PSN3{}actor LightRyuFire_PSN1007:C_PSN3{}
+actor LightRyuFire_PSN1008:C_PSN3{}actor LightRyuFire_PSN1009:C_PSN3{}actor LightRyuFire_PSN1010:C_PSN3{}actor LightRyuFire_PSN1011:C_PSN3{}actor LightRyuFire_PSN1012:C_PSN3{}actor LightRyuFire_PSN1013:C_PSN3{}actor LightRyuFire_PSN1014:C_PSN3{}actor LightRyuFire_PSN1015:C_PSN3{}
+actor LightRyuFire_PSN1016:C_PSN3{}actor LightRyuFire_PSN1017:C_PSN3{}actor LightRyuFire_PSN1018:C_PSN3{}actor LightRyuFire_PSN1019:C_PSN3{}actor LightRyuFire_PSN1020:C_PSN3{}actor LightRyuFire_PSN1021:C_PSN3{}actor LightRyuFire_PSN1022:C_PSN3{}actor LightRyuFire_PSN1023:C_PSN3{}
+actor LightRyuFire_PSN1024:C_PSN3{}actor LightRyuFire_PSN1025:C_PSN3{}actor LightRyuFire_PSN1026:C_PSN3{}actor LightRyuFire_PSN1027:C_PSN3{}actor LightRyuFire_PSN1028:C_PSN3{}actor LightRyuFire_PSN1029:C_PSN3{}actor LightRyuFire_PSN1030:C_PSN3{}actor LightRyuFire_PSN1031:C_PSN3{}
+actor LightRyuFire_PSN1032:C_PSN3{}actor LightRyuFire_PSN1033:C_PSN3{}actor LightRyuFire_PSN1034:C_PSN3{}actor LightRyuFire_PSN1035:C_PSN3{}actor LightRyuFire_PSN1036:C_PSN3{}actor LightRyuFire_PSN1037:C_PSN3{}actor LightRyuFire_PSN1038:C_PSN3{}actor LightRyuFire_PSN1039:C_PSN3{}
+actor LightRyuFire_PSN1040:C_PSN3{}actor LightRyuFire_PSN1041:C_PSN3{}actor LightRyuFire_PSN1042:C_PSN3{}actor LightRyuFire_PSN1043:C_PSN3{}actor LightRyuFire_PSN1044:C_PSN3{}actor LightRyuFire_PSN1045:C_PSN3{}actor LightRyuFire_PSN1046:C_PSN3{}actor LightRyuFire_PSN1047:C_PSN3{}
+actor LightRyuFire_PSN1048:C_PSN3{}actor LightRyuFire_PSN1049:C_PSN3{}actor LightRyuFire_PSN1050:C_PSN3{}actor LightRyuFire_PSN1051:C_PSN3{}actor LightRyuFire_PSN1052:C_PSN3{}actor LightRyuFire_PSN1053:C_PSN3{}actor LightRyuFire_PSN1054:C_PSN3{}actor LightRyuFire_PSN1055:C_PSN3{}
+actor LightRyuFire_PSN1056:C_PSN3{}actor LightRyuFire_PSN1057:C_PSN3{}actor LightRyuFire_PSN1058:C_PSN3{}actor LightRyuFire_PSN1059:C_PSN3{}actor LightRyuFire_PSN1060:C_PSN3{}actor LightRyuFire_PSN1061:C_PSN3{}actor LightRyuFire_PSN1062:C_PSN3{}actor LightRyuFire_PSN1063:C_PSN3{}
+
+actor PainLightRyuFireHit : BasicPoisonBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_AMOUNT",1)
+TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 A_SetUserVar("user_SOURCE", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_POISONFOLLOW,user_HIT,-3,user_SOURCE)>=1, "Death")
+TNT1 A 0 ACS_ExecuteAlways(C_POISONFOLLOW,0,user_HIT,302,user_SOURCE)
+Goto DoT
+DoT://15
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("LightRyuFireBurn",0,0,28)
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("LightRyuFireBurn",0,0,28)
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("LightRyuFireBurn",0,0,28)
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("LightRyuFireBurn",0,0,28)
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("CollideFlag",1,"Death")
+
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MagmamanBitFX2",random(4,18),0,random(16,40),frandom(1,4),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_SpawnItemEX("LightRyuFireBurn",0,0,28)
+stop
+}
+}
+
+actor PainGravitySlamHit : BasicHelper//Gravityman
+{
+var int user_HIT;
+var int user_GravStack;
++NOCLIP
+//+NOTARGETSWITCH
+Mass 250
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetArg(0, z-floorz)
+TNT1 A 0 A_SetUserVar("user_HIT", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 ACS_ExecuteAlways(C_GRAVITY_SLAM,0,user_HIT)
+goto CollideWait
+CollideWait:
+TNT1 A 1 A_JumpIfInventory("CollideFlag",1,"CollideCheck")
+loop
+
+CollideCheck:
+TNT1 A 0 //A_LogInt(user_GravStack)
+TNT1 A 0 A_SetScale(user_GravStack)
+TNT1 A 0 A_JumpIf(user_GravStack>=Mass,"CollideX")
+TNT1 A 0 A_JumpIf(user_GravStack>=1,"Collide")
+TNT1 A 2 //A_Log("Gravity Slam = 0")
+stop
+Collide:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEx("GravitySmackDownCollide",0,0,28,0,0,0,0,SXF_TRANSFERSPECIAL)//SXF_TRANSFERSCALE
+TNT1 A 2
+stop
+CollideX:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEx("GravitySmackDownCollideX",0,0,28,0,0,0,0,SXF_TRANSFERSPECIAL)
+TNT1 A 2
+stop
+}
+}
+
+actor PainGravitySphereSlamHit : PainGravitySlamHit//GravitySphere
+{
+States
+{
+Collide:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2
+stop
+CollideX:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2
+stop
+}
+}
+
+actor PainG_TenguSlamHit : PainGravitySlamHit//Tenguman
+{
+States
+{
+Collide:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEX("G_TenguSlamCollide",0,0,28,0,0,0,0,SXF_TRANSFERSPECIAL)
+TNT1 A 2
+stop
+CollideX:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEX("G_TenguSlamCollideX",0,0,28,0,0,0,0,SXF_TRANSFERSPECIAL)
+TNT1 A 2
+stop
+}
+}
+
+actor PainG_TornadoSlamHit : PainGravitySlamHit//Tornadoman
+{
+States
+{
+Collide:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEX("G_TornadoSlamCollide",0,0,28,0,0,0,0,16384)
+TNT1 A 2
+stop
+CollideX:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEX("G_TornadoSlamCollideX",0,0,28,0,0,0,0,16384)
+TNT1 A 2
+stop
+}
+}
+
+
+actor PainDynaTagHit : BasicHitBaseF
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_HIT",ACS_ExecuteWithResult(257,0)+2000)
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 ACS_ExecuteAlways(C_DYNAMOACS,0,user_HIT,ACS_ExecuteWithResult(257,0))
+stop
+}
+}
+
+//Flings
+actor PainBaseFlingHit : BasicHitBaseF
+{
+var int user_Amount;
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("TempPitProtect",1)
+TNT1 A 0 A_SetUserVar("user_HIT", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_FLINGACS,0,ACS_ExecuteWithResult(257,0),user_HIT,user_Amount)
+stop
+}
+}
+
+actor PainSaturnShotHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",45)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainDuoRamHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",32)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor DeathLightRyuShoryuHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",15)
+goto PainBaseFlingHit::Spawn+2
+}
+}
+
+actor DeathLightRyuShinShoryuHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",35)
+goto PainBaseFlingHit::Spawn+2
+}
+}
+
+actor PainMagPushHit : BasicHitBaseF//MagHitKai
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("TempPitProtect",1)
+TNT1 A 0 A_SetUserVar("user_HIT", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_FLINGACS,0,ACS_ExecuteWithResult(257,0),user_HIT,0+2.5*ACS_ExecuteWithResult(C_CHECK_TARGET_ITEM,2))
+stop
+}
+}
+
+actor PainPharaohPunchHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",20)
+goto PainBaseFlingHit::Spawn
+}
+}
+actor PainKnightRushHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",8)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainWindStormPullHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",-16)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainWindStormPushHit : BasicHitBaseF
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("TempPitProtect",1)
+TNT1 A 0 A_SetUserVar("user_HIT", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_FLINGACS,0,ACS_ExecuteWithResult(257,0),user_HIT,10+ACS_ExecuteWithResult(C_CHECK_TARGET_ITEM,1))
+stop
+}
+}
+
+actor PainODuoRamHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",64)
+goto PainBaseFlingHit::Spawn
+}
+}
+actor PainODuoMeteorFHit : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",38)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor DeathConcreteShoulderHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",70)
+goto PainBaseFlingHit::Spawn+2
+}
+}
+
+
+actor DeathUranusLiftHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",40)
+goto PainBaseFlingHit::Spawn+2
+}
+}
+
+actor PainEnkerPushHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",22)
+goto PainBaseFlingHit::Spawn
+}
+}
+actor DeathEnkerPushHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",44)
+goto PainBaseFlingHit::Spawn+2
+}
+}
+
+actor PainMegaWaterBarrierHit : BasicHitBaseF
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("TempPitProtect",1)
+TNT1 A 0 A_SetUserVar("user_HIT", ACS_ExecuteWithResult(257,0))
+TNT1 A 0 A_TransferPointer(2,0,2,2)
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_FLINGACS,0,ACS_ExecuteWithResult(257,0),user_HIT,5+1*ACS_ExecuteWithResult(C_CHECK_TARGET_ITEM,3))
+stop
+}
+}
+
+actor PainHarpoon2PullHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",-30)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainYellowDevilPHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",77)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+
+actor PainHyperStormBlasterHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",7)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainJupiterPushHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",25)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+
+//Give on-hit
+actor PainRollHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainRollHit_P",1)
+stop
+}
+}
+actor PainRollHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("RollHealAmmo",4)
+stop
+}
+}
+
+actor PainLightRyu1Hit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainLightRyu1Hit_P",1)
+stop
+}
+}
+actor PainLightRyu1Hit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("SuperComboGauge",1)
+stop
+}
+}
+actor PainLightRyu4Hit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainLightRyu4Hit_P",1)
+stop
+}
+}
+actor PainLightRyu4Hit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("SuperComboGauge",4)
+stop
+}
+}
+actor PainLightRyuStopHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainLightRyuStopHit_P",1)
+stop
+}
+}
+actor PainLightRyuStopHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("RyuShinShoryuFlag_P",1)
+stop
+}
+}
+
+actor JoeHitFlag2 : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+actor JoeHitFlag : Powerup
+{
+Powerup.Duration -8
+}
+actor JoeHitItem : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("JoeHitFlag",1,3)
+TNT1 A 0 A_GiveInventory("JoeHitFlag2",1)
+TNT1 A 0 A_SpawnItemEx("JoeHitWatcher")
+TNT1 A 0 A_GiveInventory("JoeHitFlag",1)
+stop
+}
+}
+actor JoeHitWatcher : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("JoeHitFlag", 1, "Spawn")
+TNT1 A 0 A_TakeFromTarget("JoeHitFlag2",999)
+stop
+}
+}
+
+actor JoeJHit: BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("JoeJHit_P",1)
+stop
+}
+}
+actor JoeJHit_P: CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("JoeUpgradeAmmo",10)
+stop
+}
+}
+
+actor PainBBA_MegaRHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainBBA_MegaRHit_P",1)
+stop
+}
+}
+actor PainBBA_MegaRHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("BBA_Money",16)
+stop
+}
+}
+
+actor PainToadLeapHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainToadLeapHit_P",1)
+stop
+}
+}
+actor PainToadLeapHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("ToadLeap_Pickup",1)
+stop
+}
+}
+
+actor PainPlantBusterHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainPlantBusterHit_P",1)
+stop
+}
+}
+actor PainPlantBusterHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("PlantmanHealAmmoHelper")
+TNT1 A 0 A_GiveToTarget("LMSRegen",1)
+stop
+}
+}
+
+actor PainBlizzardBowlHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainBlizzardBowlHit_P",1)
+stop
+}
+}
+actor PainBlizzardBowlHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("CrackFlag",1)
+stop
+}
+}
+
+actor PainTerraMeleeHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",10)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor SolarVentHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",16)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainShadeSuckHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainShadeSuckHit_P",1)
+stop
+}
+}
+actor PainShadeSuckHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("DocBusterC",1,"P_DOC")
+
+TNT1 A 0 A_JumpIfInventory("EnkerAbsorbCount",1,"P_1")
+TNT1 A 0 A_JumpIfInventory("BasicArmor",1,"P_2")
+TNT1 A 0 A_JumpIfInventory("StarArmorPower",1,"P_2")
+
+TNT1 A 0 A_JumpIfInventory("WilyNoSuitWeakness",1,"P_7")
+TNT1 A 0 A_JumpIfInventory("DynamoHealingWeakness",1,"P_7")
+TNT1 A 0 A_JumpIfInventory("TrioRageWeakness",1,"P_10")
+goto P_5
+
+P_1:TNT1 A 0 A_GiveToTarget("Health",1)stop
+P_2:TNT1 A 0 A_GiveToTarget("Health",2)stop
+P_3:TNT1 A 0 A_GiveToTarget("Health",3)stop
+P_4:TNT1 A 0 A_GiveToTarget("Health",5)stop
+P_5:TNT1 A 0 A_GiveToTarget("Health",5)stop
+P_6:TNT1 A 0 A_GiveToTarget("Health",6)stop
+P_7:TNT1 A 0 A_GiveToTarget("Health",7)stop
+P_8:TNT1 A 0 A_GiveToTarget("Health",8)stop
+P_9:TNT1 A 0 A_GiveToTarget("Health",9)stop
+P_10:TNT1 A 0 A_GiveToTarget("Health",10)stop
+P_11:TNT1 A 0 A_GiveToTarget("Health",11)stop
+
+P_DOC:
+TNT1 A 0 A_JumpIfInventory("DocToadHealthBar",1,"P_3")
+TNT1 A 0 A_JumpIfInventory("DuoHealthBar",1,"P_4")
+TNT1 A 0 A_JumpIfInventory("MegaHealthBar",1,"P_6")
+TNT1 A 0 A_JumpIfInventory("ProtoHealthBar",1,"P_7")
+goto P_7
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor PainFlashBombB1Hit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainFlashBombB1Hit_P",1)
+stop
+}
+}
+actor PainFlashBombB1Hit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("THATFELTGOODAMMO",1)
+stop
+}
+}
+actor PainFlashBombB2Hit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainFlashBombB2Hit_P",1)
+stop
+}
+}
+actor PainFlashBombB2Hit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("THATFELTGOODAMMO",3)
+stop
+}
+}
+
+actor PainMagicCardBHit : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 //A_JumpIf(CheckClass("Magicman",2),"GiveHealth")//This works, but not on the first hit
+//stop
+//GiveHealth:
+TNT1 A 0 A_JumpIfInventory("MagicStackedDeckFlag1",1,"Stack_1")
+TNT1 A 0 A_JumpIfInventory("MagicStackedDeckFlag2",1,"Stack_1")
+TNT1 A 0 A_JumpIfInventory("MagicStackedDeckFlag3",1,"Stack_2")
+TNT1 A 0 A_JumpIfInventory("MagicStackedDeckFlag4",1,"Stack_3")
+TNT1 A 0 A_JumpIfInventory("MagicStackedDeckFlag5",1,"Stack_4")
+goto Stack_5
+Stack_1:
+TNT1 A 0 A_GiveInventory("MagicStackedDeckFlag1",1)
+TNT1 A 0 A_SpawnItemEx("MagicCardHealth_1",0,0,28,0,0,0,0,1)
+stop
+Stack_2:
+TNT1 A 0 A_GiveInventory("MagicStackedDeckFlag2",1)
+TNT1 A 0 A_SpawnItemEx("MagicCardHealth_2",0,0,28,0,0,0,0,1)
+stop
+Stack_3:
+TNT1 A 0 A_GiveInventory("MagicStackedDeckFlag3",1)
+TNT1 A 0 A_SpawnItemEx("MagicCardHealth_3",0,0,28,0,0,0,0,1)
+stop
+Stack_4:
+TNT1 A 0 A_GiveInventory("MagicStackedDeckFlag4",1)
+TNT1 A 0 A_SpawnItemEx("MagicCardHealth_4",0,0,28,0,0,0,0,1)
+stop
+Stack_5:
+TNT1 A 0 A_GiveInventory("MagicStackedDeckFlag5",1)
+TNT1 A 0 A_SpawnItemEx("MagicCardHealth_5",0,0,28,0,0,0,0,1)
+stop
+
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor MagicStackedDeckFlag1 : Powerup
+{
+Powerup.Duration -3
+}
+actor MagicStackedDeckFlag2 : MagicStackedDeckFlag1 {}
+actor MagicStackedDeckFlag3 : MagicStackedDeckFlag1 {}
+actor MagicStackedDeckFlag4 : MagicStackedDeckFlag1 {}
+actor MagicStackedDeckFlag5 : MagicStackedDeckFlag1 {}
+
+actor MagicCardHealth_1
+{
+PROJECTILE
++NOINTERACTION
++NOCLIP
++SEEKERMISSILE
+ReactionTime 100
+Damage (0)
+Radius 2
+Height 2
+speed 35
+scale 2.5
+states
+{
+Spawn:
+MCAR S 0
+MCAR S 0 A_TransferPointer(2,0,2,2)
+MCAR S 0 A_RearrangePointers(0,0,2)
+MCAR S 1 A_FaceTarget
+goto Spawn2
+Spawn2:
+MCAR S 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR S 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR S 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR S 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR S 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR S 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR T 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR T 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR T 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR T 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR T 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR T 1 A_JumpIfCloser(64,"Giver")MCAR S 0 A_SeekerMissile(90,90,2)
+MCAR S 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SuperDeath")
+MCAR S 0 A_CountDown
+loop
+SuperDeath:
+TNT1 A 1
+stop
+Giver:
+TNT1 A 0 A_GiveToTarget("MC_H_PU_1",1)
+goto End
+End:
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("MagicCardHealthFX",-8,0,-8,0,0,0,0,1)
+stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor MagicCardHealthFX : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("item/energyup","Weapon")
+TNT1 A 2 A_SpawnItemEx("MagicCardHealthFX2",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor MagicCardHealthFX2 : BasicClientSide
+{
+States
+{
+Spawn:
+MGB9 ABCDEFG 3
+stop
+}
+}
+
+actor MagicCardHealth_2 : MagicCardHealth_1
+{
+States
+{
+Giver:
+TNT1 A 0 A_GiveToTarget("MC_H_PU_2",1)
+goto End
+}
+}
+actor MagicCardHealth_3 : MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_3",1)goto End}}
+actor MagicCardHealth_4 : MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_4",1)goto End}}
+actor MagicCardHealth_5 : MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_5",1)goto End}}
+actor MagicCardHealth_6 : MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_6",1)goto End}}
+actor MagicCardHealth_7 : MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_7",1)goto End}}
+actor MagicCardHealth_8 : MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_8",1)goto End}}
+actor MagicCardHealth_9 : MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_9",1)goto End}}
+actor MagicCardHealth_10: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_10",1)goto End}}
+actor MagicCardHealth_11: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_11",1)goto End}}
+actor MagicCardHealth_12: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_12",1)goto End}}
+actor MagicCardHealth_13: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_13",1)goto End}}
+actor MagicCardHealth_14: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_14",1)goto End}}
+actor MagicCardHealth_15: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_15",1)goto End}}
+actor MagicCardHealth_16: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_16",1)goto End}}
+actor MagicCardHealth_17: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_17",1)goto End}}
+actor MagicCardHealth_18: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_18",1)goto End}}
+actor MagicCardHealth_19: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_19",1)goto End}}
+actor MagicCardHealth_20: MagicCardHealth_1{States{Giver:TNT1 A 0 A_GiveToTarget("MC_H_PU_20",1)goto End}}
+
+
+actor MC_H_PU_1 : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIf(Health>0,"Pickup2")
+stop
+Pickup2:
+TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,1)
+stop
+}
+}
+actor MC_H_PU_2 : MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,2)stop}}
+actor MC_H_PU_3 : MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,3)stop}}
+actor MC_H_PU_4 : MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,4)stop}}
+actor MC_H_PU_5 : MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,5)stop}}
+actor MC_H_PU_6 : MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,6)stop}}
+actor MC_H_PU_7 : MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,7)stop}}
+actor MC_H_PU_8 : MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,8)stop}}
+actor MC_H_PU_9 : MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,9)stop}}
+actor MC_H_PU_10: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,10)stop}}
+actor MC_H_PU_11: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,11)stop}}
+actor MC_H_PU_12: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,12)stop}}
+actor MC_H_PU_13: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,13)stop}}
+actor MC_H_PU_14: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,14)stop}}
+actor MC_H_PU_15: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,15)stop}}
+actor MC_H_PU_16: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,16)stop}}
+actor MC_H_PU_17: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,17)stop}}
+actor MC_H_PU_18: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,18)stop}}
+actor MC_H_PU_19: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,19)stop}}
+actor MC_H_PU_20: MC_H_PU_1{states{Pickup2:TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,2,20)stop}}
+
+actor PainODuoMeteorHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainODuoMeteorHit_P",1)
+stop
+}
+}
+actor PainODuoMeteorHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("ODuoTheMeteorPickup",1)
+stop
+}
+}
+
+
+actor PainConcreteShoulderHit : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainConcreteShoulderHit_P",1)
+TNT1 A 0 A_SetUserVar("user_Amount",30)
+goto PainBaseFlingHit::Spawn
+}
+}
+actor PainConcreteShoulderHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("ConcreteBashFlag",1)
+stop
+}
+}
+
+actor PainStrikeBallHit : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainStrikeBallHit_P",1)
+TNT1 A 0 A_SetUserVar("user_Amount",30)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainStrikeBallHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("StrikeHitTarget",1)
+stop
+}
+}
+
+actor PainStrikeBallHit2 : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainStrikeBallHit2_P",1)
+TNT1 A 0 A_SetUserVar("user_Amount",40)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainStrikeBallHit2_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("ReboundStrikerPower",4)
+stop
+}
+}
+
+actor PainDarkTankHit : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",5)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainTornadoLeapHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainTornadoLeapHit_P",1)
+stop
+}
+}
+actor PainTornadoLeapHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("TornadoLeap_Pickup",1)
+stop
+}
+}
+
+actor PainQuintLeapHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainQuintLeapHit_P",1)
+stop
+}
+}
+actor PainQuintLeapHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("QuintLeap_Pickup",1)
+stop
+}
+}
+
+
+actor PainHSHColdHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainHSHColdHit_P",1)
+stop
+}
+}
+actor PainHSHColdHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("HyperStormCold",6)
+stop
+}
+}
+
+actor PainHSHSuckHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainHSHSuckHit_P",1)
+stop
+}
+}
+actor PainHSHSuckHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("Health",1)
+stop
+}
+}
+
+actor PainScrewCrusherMHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainScrewCrusherMHit_P",1)
+stop
+}
+}
+actor PainScrewCrusherMHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("PunkMeleeStopPickup",1)
+stop
+}
+}
+
+//Bull
+actor PainProtoShieldBashHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",28)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainBassKickHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",24)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainBassKickHitEx : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",36)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainDuoGrabHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainDuoGrabHit_P",1)
+stop
+}
+}
+actor PainDuoGrabHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_PlaySoundEx("weapon/crashland","Weapon")
+TNT1 A 0 A_GiveToTarget("DuoGrabSucess",1)
+TNT1 A 0 A_GiveToTarget("DuoGrabP",1)
+TNT1 A 0 A_GiveToTarget("DuoCleanserGrabberSpd0",1)
+TNT1 A 0 A_GiveToTarget("IsInvunFlag",1)
+stop
+}
+}
+
+actor PainDuoExplodeHit5 : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",50)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainDuoExplodeHit4 : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",40)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainDuoExplodeHit3 : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",30)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainDuoExplodeHit2 : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",20)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainDuoExplodeHit1 : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",10)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainHyperBombRecoil : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",25)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PainMaestroAquaGuts : PainBaseFlingHit
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",6)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+//$Binary
+
+actor ChillFree : custominventory {
+states {
+pickup:
+TNT1 A 0
+TNT1 A 0 SetPlayerProperty(0,0,4)
+stop
+}}
+
+actor ChillStuck : custominventory {
+states {
+pickup:
+TNT1 A 0
+TNT1 A 0 SetPlayerProperty(0,1,4)
+stop
+}}
+
+actor ChillVision : PowerUp
+{
+	Powerup.Duration 9999
+	Powerup.Colormap 0.5, 1.0, 1.0, 1.0, 1.0, 1.1
+}
+
+actor ChillFreeze : powerspeed
+{
+powerup.duration 1600
+speed 0
++POWERSPEED.NOTRAIL
+}
+
+actor ChillFreezeWatcher
+{
+Height 0
+Radius 0
++NOINTERACTION
+-SOLID
++NOTARGETSWITCH
++NOGRAVITY
++MISSILE
+reactiontime 26
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("GoodatGettingHit",1,"Death2")
+TNT1 A 0 A_GiveToTarget("ChillStuck",1)
+TNT1 A 0 A_GiveToTarget("ChillVision",1)
+TNT1 A 1 A_GiveToTarget("ChillVision",1)
+TNT1 A 0 A_GiveToTarget("ChillStuck",1)
+TNT1 A 0 A_GiveToTarget("ChillVision",1)
+TNT1 A 0 A_Countdown
+loop
+Death:
+TNT1 A 0
+TNT1 A 0 A_TakeFromTarget("PowerofNothing",999)
+TNT1 A 0 A_TakeFromTarget("GoodatGettingHit",999)
+TNT1 A 0 A_TakeFromTarget("ChillVision",999)
+TNT1 A 0 A_GiveToTarget("ChillFree",1)
+stop
+Death2:
+TNT1 A 0
+TNT1 A 0 A_TakeFromTarget("PowerofNothing",999)
+TNT1 A 0 A_TakeFromTarget("GoodatGettingHit",999)
+PLY1 H 0 A_SpawnItemEx("ChillFreezeWatcher",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS)
+stop
+Death2:
+TNT1 A 0
+stop
+}}
+
+
+actor PowerofNothing : Powerup {}
+
+actor GoodatGettingHit : PowerupGiver
+{
++INVENTORY.AUTOACTIVATE
++INVENTORY.ALWAYSPICKUP
+powerup.duration 5
+powerup.type "PowerofNothing"
+}
+
+
+actor PainNeptuneLeapHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainNeptuneLeapHit_P",1)
+stop
+}
+}
+actor PainNeptuneLeapHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("NeptuneLeap_Pickup",1)
+stop
+}
+}
+
+actor PainRaThorThrowHit : PainBaseFlingHit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_Amount",64)
+goto PainBaseFlingHit::Spawn
+}
+}
+
+actor PowerRaThorHitG : BasicPowerupGiver
+{
+powerup.type "PowerRaThorHit"
+}
+actor PowerRaThorHit : PowerUp
+{
+Powerup.Duration -10
+}
+actor RaThorHitFlag : OnceC{}
+
+actor RaThorHitItem : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PowerRaThorHit",1,3)
+TNT1 A 0 A_GiveInventory("RaThorHitFlag",1)
+TNT1 A 0 A_SpawnItemEx("RaThorHitWatcher")
+TNT1 A 0 A_GiveInventory("PowerRaThorHitG",1)
+stop
+}
+}
+actor RaThorHitWatcher : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("PowerRaThorHit",1,"Spawn")
+TNT1 A 0 A_TakeFromTarget("RaThorHitFlag",999)
+stop
+}
+}

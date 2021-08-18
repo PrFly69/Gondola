@@ -1,0 +1,641 @@
+#library "boolacs"
+#include "zcommon.acs"
+
+//lol
+// sqrt and distance functions from ZDoom wiki
+function int sqrt8__(int number)
+{
+	if(number <= 3)
+	{
+		if(number > 0)
+		{
+			return 1;
+		}
+		return 0;
+	}
+
+	int oldAns = number >> 1,                     // initial guess
+	    newAns = (oldAns + number / oldAns) >> 1; // first iteration
+
+	// main iterative method
+	while(newAns < oldAns)
+	{
+		oldAns = newAns;
+		newAns = (oldAns + number / oldAns) >> 1;
+	}
+
+	return oldAns;
+}
+
+// Distance measuring functions
+function int xyzDistance__ (int tid1, int tid2)
+{
+	int x, y, z, d;
+	x = GetActorX(tid1) - GetActorX(tid2) >> 16; // Convert fixed point to integer
+	y = GetActorY(tid1) - GetActorY(tid2) >> 16;
+	z = GetActorZ(tid1) - GetActorZ(tid2) >> 16;
+	d = sqrt8__( x*x + y*y + z*z );
+	return d;
+}
+
+function int xyDistance__ (int tid1, int tid2)
+{
+	int x, y, d;
+	x = GetActorX(tid1) - GetActorX(tid2) >> 16;
+	y = GetActorY(tid1) - GetActorY(tid2) >> 16;
+	d = sqrt8__( x*x + y*y );
+	return d;
+}
+
+function int zdistance__ (int tid1, int tid2)
+{
+	int z;
+	z = GetActorZ(tid1) - GetActorZ(tid2) >> 16;
+	return z;
+}
+
+function bool BHAngleCheck (int tid1, int tid2)
+{
+	//printbold(f:abs(GetAngleDif(GetActorAngle(tid1),AngleFromActorToActor(tid1,tid2))));
+	return (abs(GetAngleDif(GetActorAngle(tid1),AngleFromActorToActor(tid1,tid2)))<0.0277);
+}
+
+function int AngleFromActorToActor(int tid1, int tid2)  {
+	return VectorAngle(GetActorX(tid2) - GetActorX(tid1),GetActorY(tid2) - GetActorY(tid1));
+}
+
+function int GetAngleDif(int angle1, int angle2)  {
+	return WrapAround(angle1-angle2);
+}
+
+function int WrapAround(int i)
+{
+	if(i<-0.5) return i+1.0;
+	if(i>0.5) return i-1.0;
+	return i;
+}
+
+function int abs (int x)
+{
+    if (x < 0) return -x;
+	return x;
+}
+
+// [BG] Gives a tid to a projectile without the use of UniqueTID()
+// Until RGF_Missiles exists, I'm sticking with this
+#DEFINE TID_Range 100000
+int ScanningTIDS[TID_Range];
+script "BULL_TidScanner_Reset" OPEN {
+	for(int pos = 0; pos<TID_Range; pos++)
+	{
+		ScanningTIDS[pos] = -1;
+	}
+}
+
+script "BULL_Tidifier" (void)
+{
+	// [BG] Startup variables
+	// Max tid range is 4294967295 so I think I'm safe :D
+	int pOwner = GetActorProperty(ActivatorTID(), APROP_TargetTID);
+	int baseTID = 500000;
+	int pos = 0;
+	
+	while(ThingCount(0, baseTID) != 0){
+		baseTID++;
+		pos++;
+	}
+	//PrintBold(s:"Tid changed to: ", i:baseTID);
+	Thing_ChangeTID(0, baseTID);
+	ScanningTIDS[pos] = baseTID;
+}
+
+script "BULL_ProjectileSucker" (int range, int force, int delrange)
+{
+	//PrintBold(s:"script");
+    int pTeam0 = GetActorProperty(ActivatorTID(), APROP_TargetTID)-1000;
+    pTeam0 = GetPlayerInfo(pTeam0, PLAYERINFO_TEAM);
+    int myOwner = GetActorProperty(ActivatorTID(), APROP_TargetTID);
+    int pTeamC;
+    int pAngle, pPitch;
+    int pX, pY, sX, sY = 0.0;
+    int distance;
+    str OwnerPickup, ProjectilePickup;
+    while (CheckInventory("SuckerActiveFlag")){
+        for(int pos = 0; pos < TID_Range; pos++){
+            if(ScanningTIDS[pos] == -1) {break;}
+            pTeamC = GetActorProperty(ScanningTIDS[pos], APROP_TargetTID)-1000;
+            pTeamC = GetPlayerInfo(pTeamC, PLAYERINFO_TEAM);
+           
+            if(ThingCount(0,ScanningTIDS[pos])){
+                distance = xyzDistance__(ActivatorTID(), ScanningTIDS[pos]);
+                if( (distance < range && pTeam0 <= 3 && pTeamC <= 3 && pTeamC != pTeam0) ||
+                (distance < range && pTeam0 == 4 && pTeamC == 4)){
+                    if(xyzDistance__(ActivatorTID(), ScanningTIDS[pos]) < delrange){
+                        OwnerPickup = StrParam(s:GetActorClass(myOwner), s:"_pspickup");
+                        ProjectilePickup = "";
+                        Thing_Remove(ScanningTIDS[pos]);
+						GiveActorInventory(myOwner, OwnerPickup, 1);
+                    }
+					if(BHAngleCheck(ActivatorTID(),ScanningTIDS[pos])) {
+                    pX = GetActorX(0);  pY = GetActorY(0);
+                    sX = GetActorX(ScanningTIDS[pos]);  sY = GetActorY(ScanningTIDS[pos]);
+                   
+                    pAngle = VectorAngle(pX-sX, pY-sY);
+                    pPitch = VectorAngle(
+                        xyDistance__(ActivatorTID(), ScanningTIDS[pos])<<16,
+                        GetActorZ(ActivatorTID())-(GetActorZ(ScanningTIDS[pos])/*-(45<<16)*/)
+                        );
+                        
+                    GiveActorInventory(myOwner, "NullifyDamagePSS", 1);
+                    GiveActorInventory(ScanningTIDS[pos], "DamageTypeNull", 1);
+                    
+                    int scale = GetActorProperty(ScanningTIDS[pos], APROP_ScaleX);
+                    int new_scale = FixedDiv(scale, 1.125);
+                    if(new_scale > 0.25){
+                        SetActorProperty(ScanningTIDS[pos], APROP_ScaleX, new_scale);
+                        SetActorProperty(ScanningTIDS[pos], APROP_ScaleY, new_scale);
+                    }
+                    SetActorVelocity(ScanningTIDS[pos],
+                                    force*cos(pAngle),
+                                    force*sin(pAngle),
+                                    force*sin(pPitch),
+                                    false, false);
+					}
+                }
+            }
+        }
+        Delay(1);
+    }
+}
+
+script "BULL_ProjectileSuckerLegacy" (int range, int force, int delrange)
+{
+    int pTeam0 = GetActorProperty(ActivatorTID(), APROP_TargetTID)-1000;
+    pTeam0 = GetPlayerInfo(pTeam0, PLAYERINFO_TEAM);
+    int myOwner = GetActorProperty(ActivatorTID(), APROP_TargetTID);
+    int pTeamC;
+    int pAngle, pPitch;
+    int pX, pY, sX, sY = 0.0;
+    int distance;
+    str OwnerPickup, ProjectilePickup;
+    while (CheckInventory("SuckerActiveFlag")){
+        for(int pos = 0; pos < TID_Range; pos++){
+            if(ScanningTIDS[pos] == -1) {break;}
+            pTeamC = GetActorProperty(ScanningTIDS[pos], APROP_TargetTID)-1000;
+            pTeamC = GetPlayerInfo(pTeamC, PLAYERINFO_TEAM);
+           
+            if(ThingCount(0,ScanningTIDS[pos])){
+                distance = xyzDistance__(ActivatorTID(), ScanningTIDS[pos]);
+                if( (distance < range && pTeam0 <= 3 && pTeamC <= 3 && pTeamC != pTeam0) ||
+                (distance < range && pTeam0 == 4 && pTeamC == 4)){
+                    if(xyzDistance__(ActivatorTID(), ScanningTIDS[pos]) < delrange){
+                        OwnerPickup = StrParam(s:GetActorClass(myOwner), s:"_pspickup");
+                        ProjectilePickup = "";
+                        Thing_Remove(ScanningTIDS[pos]);
+						GiveActorInventory(myOwner, OwnerPickup, 1);
+                    }
+                    pX = GetActorX(0);  pY = GetActorY(0);
+                    sX = GetActorX(ScanningTIDS[pos]);  sY = GetActorY(ScanningTIDS[pos]);
+                   
+                    pAngle = VectorAngle(pX-sX, pY-sY);
+                    pPitch = VectorAngle(
+                        xyDistance__(ActivatorTID(), ScanningTIDS[pos])<<16,
+                        GetActorZ(ActivatorTID())-(GetActorZ(ScanningTIDS[pos])/*-(45<<16)*/)
+                        );
+                        
+                    GiveActorInventory(myOwner, "NullifyDamagePSS", 1);
+                    GiveActorInventory(ScanningTIDS[pos], "DamageTypeNull", 1);
+                    
+                    int scale = GetActorProperty(ScanningTIDS[pos], APROP_ScaleX);
+                    int new_scale = FixedDiv(scale, 1.125);
+                    if(new_scale > 0.25){
+                        SetActorProperty(ScanningTIDS[pos], APROP_ScaleX, new_scale);
+                        SetActorProperty(ScanningTIDS[pos], APROP_ScaleY, new_scale);
+                    }
+                    SetActorVelocity(ScanningTIDS[pos],
+                                    force*cos(pAngle),
+                                    force*sin(pAngle),
+                                    force*sin(pPitch),
+                                    false, false);
+                }
+            }
+        }
+        Delay(1);
+    }
+}
+
+// [BG] Simple meteor script, execute from a weapon
+script "BULL_Meteor" (int force)
+{
+	int angle, pitch = 0;
+	
+	// [BG] Convert into byte
+	angle = GetActorAngle(0);
+	pitch = GetActorPitch(0);
+	
+	while(GetActorProperty(0,APROP_Health) >= 1 && PlayerInGame(PlayerNumber()))
+	{
+		// [BG] Pickups used to terminate the script
+		if(
+		  CheckInventory("MeteorScriptTerminate")||
+		  CheckInventory("MeteorScriptTerminateX")
+		  ){terminate;}
+		  
+		  
+		// [BG] Change the velocity
+		// The fact that Zandronum doesnt yet know what "fixed variable;" is yet pisses me.
+		// Soooooo... reconvert the byte angle into fixed again
+		
+		SetActorVelocity(0, force*cos(angle), force*sin(angle), force*sin(-pitch), false, false);
+		Delay(1);
+	}
+}
+
+// [BG] Variant of the meteor script
+//  Thrusts towards whoever or whatever has 'whosTID' TID.
+//  and stops whenever they're in 'terminateRange' range.
+script "BULL_MeteorTowards" (int force, int whosTID, int terminateRange)
+{
+	int angle, pitch = 0;
+	int p = ActivatorTID();
+	int scriptTimer = CheckInventory("FusemanAmmo");
+	while(GetActorProperty(0,APROP_Health) >= 1 && PlayerInGame(PlayerNumber())
+		&& ThingCount(0, whosTID) != 0
+	)
+	{
+		// [BG] Pickups used to terminate the script
+		if(xyzDistance__(p,whosTID) < terminateRange || scriptTimer < 0){
+			Thing_Stop(p);
+			Thing_Move(p,whosTID,1);
+			TakeInventory("FuseDashScriptTerminate",9999);
+			terminate;
+			}
+		  
+		// [BG] Change the velocity
+		// The fact that Zandronum doesnt yet know what "fixed variable;" is yet pisses me.
+		// Soooooo... reconvert the byte angle into fixed again
+		
+		SetActorVelocity(0, 
+			force*cos(VectorAngle(GetActorX(whosTID) - GetActorX(p), GetActorY(whosTID) - GetActorY(p))), 
+			force*sin(VectorAngle(GetActorX(whosTID) - GetActorX(p), GetActorY(whosTID) - GetActorY(p))), 
+			force*sin(VectorAngle(xyDistance__(whosTID, p)<<16,GetActorZ(whosTID)-(GetActorZ(p)))), 
+			false, 
+			false);
+		scriptTimer -= 2;
+		Delay(1);
+	}
+}
+
+script "Fuseman Tracer" (int ownerTID, int force, int reactiontime)
+{
+	int beaconTID = 10000 + ownerTID;
+	int ownerTIDReal = ACS_ExecuteWithResult(257, 0);
+	while(reactiontime > 0 && ThingCount(0, BeaconTID) != 0 && reactiontime > 0) {
+		while(xyzDistance__(ActivatorTID(),beaconTID) > 32 && ThingCount(0, BeaconTID) != 0) {
+			
+			// [BG] IF the beacon for some reason disapears, look for another one.
+			if(ThingCount(0,beaconTID) == 0) {break;}
+			if(CheckActorInventory(ownerTID, "FuseIsTeleportingFuckOff") >= 1) {break;}
+			SetActorVelocity(0, 
+			force*cos(VectorAngle(GetActorX(beaconTID) - GetActorX(ActivatorTID()), GetActorY(beaconTID) - GetActorY(ActivatorTID()))), 
+			force*sin(VectorAngle(GetActorX(beaconTID) - GetActorX(ActivatorTID()), GetActorY(beaconTID) - GetActorY(ActivatorTID()))), 
+			force*sin(VectorAngle(xyDistance__(beaconTID, ActivatorTID())<<16,GetActorZ(beaconTID)-(GetActorZ(ActivatorTID())))), 
+			false, 
+			false);
+			Delay(1);
+			// [BG] If the user uses Reload (FusermanInDash), end it early
+			if(CheckActorInventory(ownerTIDReal,"FuseInDashState") || CheckActorInventory(ownerTIDReal,"FuserEnd"))
+			{
+				Thing_Stop(ActivatorTID());
+				SetActorState(ActivatorTID(), "BeaconReachedForced");
+				terminate;
+			}
+		}
+		if(CheckActorInventory(ownerTID, "FuseIsTeleportingFuckOff") >= 1) {break;}
+		// [BG] Tracer reached the beacon, reduce reactiontime.
+		if(ThingCount(0, BeaconTID) != 0){
+			Thing_Stop(ActivatorTID());
+			Thing_Move(ActivatorTID(), BeaconTID, 1);
+			Delay(1);
+			SetActorState(ActivatorTID(), "BeaconReached");
+			SetActorState(BeaconTID, "Zap");
+			reactiontime--;
+			if(CheckActorInventory(BeaconTID,"FuseBeaconAlive") &&(CheckActorInventory(ownerTIDReal,"FuseInDashState") || CheckActorInventory(ownerTIDReal,"FuserEnd")))
+			{
+				Thing_Stop(ActivatorTID());
+				SetActorState(ActivatorTID(), "BeaconReachedForced");
+				terminate;
+			}
+			Delay(7);
+		}
+		
+		// [BG] Look for another beacon, if it reaches the 4th one, return to the first one
+		if(beaconTID >= 10300+ownerTID) {
+			beaconTID = 10000 + (ownerTID);
+		}else{
+			beaconTID += 100;
+		}
+		
+		// [BG] If there are less than 4, go back to the first beacon
+		if(ThingCount(0,BeaconTID) == 0 && ThingCount(0,10000+ownerTID) != 0)
+		{
+			beaconTID = 10000 + ownerTID;
+		}
+		
+		Delay(1);
+	}
+	//Thing_Remove(ActivatorTID());
+	
+	SetActorState(ActivatorTID(), "Death");
+}
+
+// [BG] Returns 1 if player & tracer are on the same team, reutrns 0 otherwise
+script "BULL_CheckTeams" (void)
+{
+	int TracerPlayer = 0;
+	int AreThereTeams = 0;
+	int Ply = ACS_ExecuteWithResult(257); //Owner
+	
+	SetActivator(0,AAPTR_Tracer);
+	int Trc = ActivatorTID();
+	
+	if(PlayerNumber() == -1 || CheckInventory("IsDead") || !PlayerInGame(PlayerNumber())){
+		TracerPlayer = 0;//SetResultValue(0);
+	}else{
+		TracerPlayer = 1;//SetResultValue(1);
+	}
+	
+	SetActivator(0,AAPTR_Target); //Resets to the true activator, the Player
+	
+	int PlyTeam = GetPlayerInfo(Ply-1000, PLAYERINFO_TEAM);
+	int TrcTeam = GetPlayerInfo(Trc-1000, PLAYERINFO_TEAM);
+	
+	if(GetCVar("teamlms")==1||GetCVar("ctf")==1||GetCVar("teamplay")==1||GetCVar("oneflagctf")==1||GetCVar("teampossession")==1||GetCVar("teamgame")==1 )
+	{
+		AreThereTeams = 1;
+	}
+	
+	if(PlyTeam == TRCTeam && AreThereTeams == 1 && TracerPlayer == 1) {
+		SetResultValue(1);
+		terminate;
+	}else{
+		SetResultValue(0);
+		terminate;
+	}
+}
+
+script "BULL_CheckFor" (int who, int Which)
+{
+	int result;
+	int orgActivator = ActivatorTID();
+	Switch(who) {
+		Case 2: //Check the target
+			SetActivator(0,AAPTR_Target);
+			break;
+		Case 4: //Check the master
+			SetActivator(0,AAPTR_Master);
+			break;
+			
+		Case 8: //Check the tracer
+			SetActivator(0,AAPTR_Tracer);
+			break;
+			
+		Case 16: //Check the thing the player is aiming at
+			SetActivator(0,AAPTR_PLAYER_GETTARGET);
+			break;
+			
+		Case 16384: //Check the friendly thing - monsters and the like
+			SetActivator(0,AAPTR_FriendPlayer);
+			break;
+	}
+	
+	
+	Switch(Which) {
+		Case 1: //Returns the current hp
+			result = GetActorProperty(0, APROP_Health);
+			break;
+			
+		Case 2: //Returns the current max hp
+			result = GetActorProperty(0, APROP_SpawnHealth);
+			break;
+			
+		Case 3: //Returns the angle
+			result = GetActorAngle(0);
+			break;
+		Case 4: //Returns the pitch
+			result = GetActorPitch(0) >> 8;
+			break;
+			
+		//Pointer and TID comparisons
+		Case 100://Is this pointer dead???
+			if(PlayerNumber() == -1 || CheckInventory("IsDead") || !PlayerInGame(PlayerNumber())){
+				result = 0;//Yes, its dead
+			}else{
+				result = 1;//No it is not.
+			}
+			break;
+		Case 101://Return the pointer's TID
+			result = ActivatorTID();
+			break;
+		Case 102:
+			SetActorPitch(orgActivator,GetActorPitch(0));
+			result = 0;
+			break;
+	}
+	SetResultValue(result);
+}
+
+// [BG] Script used for stoneman's buddha gimmick
+script "BULL_StonemanACS" (int baseHP, int substractHP)
+{
+	int DeathCounts, HealthDiff;
+	DeathCounts = CheckInventory("StonemanDeathCounter");
+	
+	DeathCounts--;
+	
+	HealthDiff = baseHP - ( DeathCounts * substractHP );
+	if(HealthDiff <= 10){HealthDiff = 10;}
+	
+	SetActorProperty(0, APROP_Health, HealthDiff);
+}
+
+// [BG] Much safer version of script 512 xd
+script "BULL_SetState" (int statenum)
+{
+	if(GetActorProperty(0,APROP_Health) <= 0) {terminate;}
+	str state = StrParam(s:"CustomState",i:statenum);
+	SetActorState(ActivatorTID(), state, TRUE);
+}
+
+// [BG] Gets the owner's colors and transfers them to the projectile
+script "BULL_TeamTranslation" (void)
+{
+	SetActivatorToTarget(0);
+	
+	int projectile = ActivatorTID() + 12000;
+	
+	Thing_SetTranslation(projectile, -1);
+	Thing_ChangeTID(projectile, 0);
+}
+
+ script "Does TID Exist" (int tid)
+ {
+	SetResultValue(ThingCount(0, tid));
+ }
+
+// [BG] lol
+script "BULL_FuseTeleport" (int force, int whosTID, int terminateRange)
+{
+    int angle, pitch = 0;
+    int p = ActivatorTID();
+    int scriptTimer = CheckInventory("FusemanAmmo");
+    if(GetActorProperty(0,APROP_Health) >= 1 && PlayerInGame(PlayerNumber())
+        && ThingCount(0, whosTID) != 0){
+        Thing_Move(p, whosTID, True);
+		//SetActorState(whosTID, "ZapDetonate");
+		Delay(1);
+		Thing_Remove(whosTID);
+    }
+}
+
+// [BG] Attempt to spawn the beacon
+script "Spawn try" (void)
+{
+	if(SpawnSpot("FusemanSpawnChecker", ActivatorTID(), 0, 0) > 0){
+		SetResultValue(1);
+	}else{
+		SetResultValue(0);
+	}
+}
+
+// ==========================
+// [BG] Ported from core v9eh
+// ==========================
+//ZANGIEF
+
+#define GRAB_DISTANCE 100 //how far to position the grabbed away from zangief
+#define GRAB_DISTANCE_LIMIT 100000 //how far away to give up on the grabbed, squared
+
+
+str ZangiefCountItem[3] = 
+{
+"WalrusSlideAngle",
+"ZangiefAngle",
+"SuplexID"
+};
+
+str ZangiefGiveItem[3] = 
+{
+"TempPitProtect",
+//"AirSuplexGroundCheck",
+"AntiInvincible",
+"ShademanGrabRelease_P"
+};
+
+script "cbm_ZangiefCountInv" (int Item, int ThePointer)
+{
+	if(ThePointer>0){
+		SetActivator(0,ThePointer);
+	}
+	SetResultValue(CheckInventory(ZangiefCountItem[Item]));
+}
+
+script "cbm_ZangiefGiver" (int i, int target)
+{
+	//log(i:i,s:" & ",i:target);
+	if (target==999) { terminate; }
+	GiveActorInventory(target,ZangiefGiveItem[i],1);
+}
+
+script "cbm_ZangiefGiveToAll" (int i)
+{
+	for(int j=0; j<32; j++) {
+		if(PlayerInGame(j))GiveActorInventory(1000+j,ZangiefGiveItem[i],1);
+	}
+}
+
+script "cbm_ZangiefFaceTarget" (int target)
+{
+	SetResultValue(VectorAngle(getActorX(target) - getActorX(0), getActorY(target) - getActorY(0)) >> 8);
+}
+
+script "cbm_ZangiefStartGrab" (int target)
+{
+	if (target==999) { SetResultValue(1); terminate; }
+	int angle = getActorAngle(0);
+	int xDiff = (getActorX(0)+GRAB_DISTANCE*cos(angle)) - getActorX(target);
+	int yDiff = (getActorY(0)+GRAB_DISTANCE*sin(angle)) - getActorY(target);
+	int zDiff = getActorZ(0) - getActorZ(target);
+	
+	int xDiffI = xDiff>>16;
+	int yDiffI = yDiff>>16;
+	int zDiffI = zDiff>>16;
+	
+	if (xDiffI*xDiffI+yDiffI*yDiffI+zDiffI*zDiffI < GRAB_DISTANCE_LIMIT) {
+		SetActorVelocity(target, xDiff, yDiff, zDiff, 0, 0);
+		setResultValue(1);
+	} else {
+		setResultValue(0);
+	}
+}
+
+script "cbm_ZangiefGrab" (int pitch, int angle, int Grab_D) //Pitch is given as x/360, Angle is given as x/255
+{
+	int target = ACS_NamedExecuteWithResult("cbm_ZangiefCountInv",2)+999;
+	if (target==999) { SetResultValue(1); terminate; }
+	angle = angle<<8;
+	pitch = (pitch-360)*1.0/360;
+	int xDiff = (getActorX(0)+fixedMul(Grab_D*cos(angle),cos(pitch))) - getActorX(target);
+	int yDiff = (getActorY(0)+fixedMul(Grab_D*sin(angle),cos(pitch))) - getActorY(target);
+	int zDiff = (getActorZ(0)-Grab_D*sin(pitch)) - getActorZ(target);
+	
+	int xDiffI = xDiff>>16;
+	int yDiffI = yDiff>>16;
+	int zDiffI = zDiff>>16;
+
+	if (xDiffI*xDiffI+yDiffI*yDiffI+zDiffI*zDiffI < GRAB_DISTANCE_LIMIT) {
+		SetActorVelocity(target, xDiff, yDiff, zDiff, 0, 0);
+		setResultValue(1);
+	} else {
+		setResultValue(0);
+	}
+}
+
+script "cbm_ZangiefSetThrow" (int target, int force, int zforce)
+{
+	GiveActorInventory(target,"TempPitProtect",1);
+	Thing_Stop(target);
+	ThrustThing(GetActorAngle(0) >> 8, force, 1, target);
+	ThrustThingZ(target,zforce,0,0);
+}
+
+// ================================
+// ======== Button Checker ========
+// ================================
+script "BG button check" (int combination)
+{
+	int btn = GetPlayerInput(-1, INPUT_BUTTONS);
+	int res;
+	
+	switch(combination){
+		Case 1: // Attack-Mainfire only
+			res = btn & BT_Attack;
+			//print(i:res);
+			break;
+	}
+	
+	SetResultValue(res);
+}
+
+script "BG Spawner" (int radheg)
+{
+	int success;
+	int me = ActivatorTID();
+	switch(radheg){
+		Case 1: //Concrete
+			success = SpawnSpot("AC_ConcreteBlock", me, 0, 0);
+			break;
+	}
+//	printBold(i:success);
+	SetResultValue(success);
+}

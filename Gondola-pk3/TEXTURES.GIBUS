@@ -1,0 +1,359 @@
+texture RIPPBAR,8,56{patch B_BAR01C,0,0{Translation"192:192=4:4","198:198=4:4"}}
+texture RIPPVAR,56,8{patch RIPPBAR,0,0{rotate 90}}//Metalman
+
+graphic YAMAICON,30,30{XScale 2.0 YScale 2.0 Patch RSH1H0,0,0}
+texture BARYAM,8,56{patch B_BAR12B,0,0{Translation "198:198=63:63","192:192=60:60","4:4=57:57"}}
+texture VARYAM,56,8{patch BARYAM,0,0{rotate 90}}
+texture BARYAMX,8,56{patch B_BAR12B,0,0{Translation "198:198=63:63","192:192=60:60","4:4=57:57"}}
+texture VARYAMX,56,8{patch BARYAMX,0,0{rotate 90}}//Yamato
+
+texture GYROBAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=86:86"}}
+texture GYROVAR,56,8{patch GYROBAR,0,0{rotate 90}}//GyroMan
+
+graphic KAPPICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOMWS0,0,0}//MWS
+
+texture PTSDBAR,8,56{patch B_BAR01C,0,0{Translation"192:192=227:227","198:198=227:227"}}
+texture PTSDVAR,56,8{patch PTSDBAR,0,0{rotate 90}}//Napalm
+
+graphic SATRNICN,30,30{XScale 2.0 YScale 2.0 Patch RSHOY0,0,0}
+graphic Sat1Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPP0,0,0}
+graphic Sat2Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPQ0,0,0}//Saturn
+
+graphic BRG1ICON,30,30{XScale 2.0 YScale 2.0 Patch RSHPBRP0,0,0}
+graphic BRG2ICON,30,30{XScale 2.0 YScale 2.0 Patch RSHPBRG0,0,0}//BRG
+
+graphic BLLDICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOBAL0,0,0}//Ballade
+
+texture CRABBAR,8,56{patch B5ENER,0,0{Translation"192:192=4:4","198:198=229:229"}}
+texture CRABVAR,56,8{patch CRABBAR,0,0{rotate 90}}//Venus
+
+graphic BLIRICON,30,30{XScale 2.0 YScale 2.0 Patch "RSHO[0",0,0}//Blizzard
+
+texture BARDM4,8,56{patch BARENERG,0,0{Translation "198:198=178:178","192:192=90:90"}}
+texture VARDM4,56,8{patch BARDM4,0,0{rotate 90}}//Dark Man 4
+
+texture BRKDM4,8,56{patch BARENERG,0,0{Translation "198:198=185:185","192:192=95:95"}}
+texture VRKDM4,56,8{patch BRKDM4,0,0{rotate 90}}//Dark Man 4
+
+graphic NITRICON,30,30{XScale 2.0 YScale 2.0 Patch NITRZ0,0,0}//Nitro
+
+//Darkman3
+graphic DarkIco3,30,30{XScale 2.0 YScale 2.0 Patch DKC3Z0,0,0}
+texture 05_D3BAR,8,56{patch B_3BARSB,0,0{Translation"192:192=4:4","198:198=216:216","202:202=4:4","199:199=216:216","204:204=4:4","195:195=216:216"}}
+texture 05_D3VAR,56,8{patch 05_D3BAR,0,0{rotate 90}}
+texture 5K_B_BAR,8,56{patch TNT1A0,0,0}
+texture 5K_B_VAR,56,8{patch TNT1A0,0,0}
+texture 5K_C_BAR,8,56{patch B_BAR10A,0,0{Translation"198:198=57:57"}}
+texture 5K_C_VAR,56,8{patch 5K_C_BAR,0,0{rotate 90}}
+texture 5K_D_BAR,8,56{patch B_BAR10B,0,0{Translation"198:198=57:57"}}
+texture 5K_D_VAR,56,8{patch 5K_D_BAR,0,0{rotate 90}}
+texture 5K_E_BAR,8,56{patch B_BAR10C,0,0{Translation"198:198=57:57"}}
+texture 5K_E_VAR,56,8{patch 5K_E_BAR,0,0{rotate 90}}
+texture 5K_F_BAR,8,56{patch B_BAR10D,0,0{Translation"198:198=57:57"}}
+texture 5K_F_VAR,56,8{patch 5K_F_BAR,0,0{rotate 90}}
+texture 5K_G_BAR,8,56{patch B_BAR10E,0,0{Translation"198:198=57:57"}}
+texture 5K_G_VAR,56,8{patch 5K_G_BAR,0,0{rotate 90}}
+texture 5K_H_BAR,8,56{patch B_BAR10F,0,0{Translation"198:198=57:57"}}
+texture 5K_H_VAR,56,8{patch 5K_H_BAR,0,0{rotate 90}}
+texture 5K_I_BAR,8,56{patch B_BAR10G,0,0{Translation"198:198=57:57"}}
+texture 5K_I_VAR,56,8{patch 5K_I_BAR,0,0{rotate 90}}
+
+texture 00_E_BAR,8,56{patch B4ENER,0,0{Translation "192:192=248:248","198:198=222:222","202:202=248:248","199:199=222:222","204:204=248:248","195:195=222:222"}}
+texture 00_E_VAR,56,8{patch 00_E_BAR,0,0{rotate 90}}
+
+texture SOLBAR1,8,56{patch B4ENER,0,0{Translation "198:198=220:220","192:192=215:215"}}
+texture SOLVAR1,56,8{patch SOLBAR1,0,0{rotate 90}}
+texture SOLBAR2,8,56{patch B4ENER,0,0{Translation "198:198=220:220","192:192=215:215"}}
+texture SOLVAR2,56,8{patch SOLBAR2,0,0{rotate 90}}
+texture SOLBAR3,8,56{patch B4ENER,0,0{Translation "198:198=226:226","192:192=212:212"}}
+texture SOLVAR3,56,8{patch SOLBAR3,0,0{rotate 90}}
+texture SOLBAR4,8,56{patch B4ENER,0,0{Translation "198:198=216:216","192:192=209:209"}}
+texture SOLVAR4,56,8{patch SOLBAR4,0,0{rotate 90}}
+texture SOLBAR5,8,56{patch B4ENER,0,0{Translation "198:198=213:213","192:192=4:4"}}
+texture SOLVAR5,56,8{patch SOLBAR5,0,0{rotate 90}}
+graphic SOLICON1,30,30{XScale 2.0 YScale 2.0 Patch "SOLICON1",0,0}
+graphic SOLICON2,30,30{XScale 2.0 YScale 2.0 Patch "SOLICON2",0,0}
+graphic SLRRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOM0,0,0}//Solar
+
+graphic TNGUICON,30,30{XScale 2.0 YScale 2.0 Patch "RSHTENG0",0,0}//Tengu
+
+graphic ShadIcon,30,30{XScale 2.0 YScale 2.0 Patch SHAHI0,0,0}
+graphic Sha1Icon,30,30{XScale 2.0 YScale 2.0 Patch SHAHK0,0,0}
+graphic Sha2Icon,30,30{XScale 2.0 YScale 2.0 Patch "SHAHL0",0,0}
+graphic Sha3Icon,30,30{XScale 2.0 YScale 2.0 Patch "SHAH]0",0,0}
+
+sprite SHAXO0,9,9{offset 4,8 patch SHAXY0,0,0{Rotate 90}}
+sprite SHAXP0,9,9{offset 4,8 patch SHAXZ0,0,0{Rotate 90}}
+sprite SHAXQ0,9,9{offset 4,8 patch SHAXY0,0,0{Rotate 180}}
+sprite SHAXR0,9,9{offset 4,8 patch SHAXZ0,0,0{Rotate 180}}
+sprite SHAXS0,9,9{offset 4,8 patch SHAXY0,0,0{Rotate 270}}
+sprite SHAXT0,9,9{offset 4,8 patch SHAXZ0,0,0{Rotate 270}}//Shadow
+
+texture 00_G_BAR,8,56{patch BARENERG,0,0{Translation"192:192=208:208","198:198=128:128"}}
+texture 00_G_VAR,56,8{patch 00_G_BAR,0,0{rotate 90}}
+
+texture 00_GA_BR,8,1{patch TNT1A0,0,0}
+texture 00_GA_VR,1,8{patch TNT1A0,0,0}
+texture 00_GB_BR,8,1{patch B_BAR02J,0,0{Translation"192:192=196:196","198:198=197:197"}}
+texture 00_GB_VR,1,8{patch 00_GB_BR,0,0{rotate 90}}
+
+Graphic AUTOIT0, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4A0, 0, 0
+}
+
+Graphic AUTOIT1, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4B0, 0, 0
+}
+
+Graphic AUTOIT2, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4C0, 0, 0
+}
+
+Graphic AUTOIT3, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4D0, 0, 0
+}
+
+Graphic AUTOIT4, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4E0, 0, 0
+}
+
+Graphic AUTOIT5, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4F0, 0, 0
+}
+
+Graphic AUTOIT6, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4G0, 0, 0
+}
+
+graphic AutoIcon,30,30{XScale 2.0 YScale 2.0 Patch AUT4Z0,0,0}//Auto
+
+texture SWORBAR,8,56{patch B_BAR12B,0,0{Translation "198:198=190:190","192:192=185:185","4:4=180:180"}}
+texture SWORVAR,56,8{patch SWORBAR,0,0{rotate 90}}
+texture SWORBARX,8,56{patch B_BAR12B,0,0{Translation "198:198=227:227","192:192=216:216","4:4=160:160"}}
+texture SWORVARX,56,8{patch SWORBARX,0,0{rotate 90}}//Sword
+
+
+graphic TERRICON,30,30{XScale 2.0 YScale 2.0 Patch RSH1E0,0,0}
+texture BAMM1_V0,8,56{patch B_5BARSB,0,0{Translation"192:192=196:196","198:198=198:198"}}
+texture VAMM1_V0,56,8{patch BAMM1_V0,0,0{rotate 90}}
+texture BAMM2_V0,8,56{patch B_4BARSX,0,0{Translation"192:192=132:132","198:198=135:135","202:202=130:130","199:199=132:132","204:204=128:128","195:195=130:130","118:118=108:108","119:119=128:128"}}
+texture VAMM2_V0,56,8{patch BAMM2_V0,0,0{rotate 90}}//Terra Ammobars
+
+
+sprite  C_11T0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0112, 0, 0}
+texture C_11T0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE0112, 0, 0}
+
+texture BARTOR,8,56{patch B_BAR12B,0,0{Translation "4:4=175:175","192:192=180:180","198:198=185:185"}}//,"0:0=190:190"
+texture VARTOR,56,8{patch BARTOR,0,0{rotate 90}}
+texture BARTORX,8,56{patch B_BAR12B,0,0{Translation "4:4=160:160","192:192=218:218","198:198=175:175"}}//,"0:0=180:180"
+texture VARTORX,56,8{patch BARTORX,0,0{rotate 90}}
+texture BARTOK,8,56{patch B4ENER,0,0{Translation "192:192=95:95","198:198=185:185"}}
+texture VARTOK,56,8{patch BARTOK,0,0{rotate 90}}
+texture BARTOKX,8,56{patch B4ENER,0,0{Translation "192:192=90:90","198:198=175:175"}}
+texture VARTOKX,56,8{patch BARTOKX,0,0{rotate 90}}//Torchman
+
+sprite PROCR0,116,96{Offset -184,-94 Patch PROCD0,0,0{Translation"0:0=253:253","247:247=253:253"}}//251    ,"93:93=253:253"
+sprite PROCS0,116,96{Offset -184,-94 Patch PROCD0,0,0{Translation"0:0=230:230","247:247=230:230","42:42=138:138","186:186=229:229","87:87=138:138","93:93=229:229"}}
+//Protoman
+//210&248 black>225 (MM10 colors), Above matches core ProtoCharge
+
+texture HEATBAR,8,56{patch B4ENER,0,0{Translation "192:192=229:229", "198:198=41:41"}}
+texture HEATVAR,56,8{patch HEATBAR,0,0{rotate 90}}//Heat
+
+graphic VENUS_I1,30,30{XScale 2.0 YScale 2.0 Patch VENBY0,0,0}
+graphic VENUS_I2,30,30{XScale 2.0 YScale 2.0 Patch VENBZ0,0,0}//Venus
+
+//Dive Sonar
+graphic XTR0WI_H,30,30{XScale 2.0 YScale 2.0 Patch XWI0H0,0,0}
+
+//sprite STFXB0,6,7{patch STFXA0,0,0{Rotate 90}}
+//sprite STFXC0,6,7{patch STFXA0,0,0{Rotate 45}}
+
+graphic ICEMRCON,30,30{XScale 2.0 YScale 2.0 Patch RSH1Z0,0,0}//Ice
+texture ICEBAR,8,56{patch B4ENER,0,0{Translation "192:192=4:4", "198:198=85:85"}}
+texture ICEVAR,56,8{patch ICEBAR,0,0{rotate 90}}//jaja iceman
+
+//New Galaxyman Item Icon
+texture GALCON8,30,30{XScale 2.0 YScale 2.0 patch GLCNA0,0,0}
+graphic GALRICON,30,30{XScale 2.0 YScale 2.0 Patch "RSHO^0",0,0}
+
+//Acid Reload Icon
+texture ACIDRCON,30,30{XScale 2.0 YScale 2.0 Patch RSH1W0,0,0}
+texture ACIDRCOX,30,30{XScale 2.0 YScale 2.0 Patch RSH1X0,0,0}
+
+//Acid Mugshot
+sprite  C_11H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0113, 0, 0}
+texture C_11H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE0113, 0, 0}
+
+//Acid Bars
+texture 11_J_BAR,8,56{patch BARENERG,0,0{Translation"192:192=104:104","198:198=117:117"}}
+texture 11_J_VAR,56,8{patch 02_A_BAR,0,0{rotate 90}}
+texture 11_K_BAR,8,56{patch BARENERG,0,0{Translation"192:192=117:117","198:198=104:104"}}
+texture 11_K_VAR,56,8{patch 02_A_BAR,0,0{rotate 90}}
+
+//Acid Barrier
+graphic ACIDBCON,30,30{XScale 2.0 YScale 2.0 Patch 11WPI0,0,0}
+sprite ACIUA0,116,96{Offset -184,-94 Patch BUSTB0,0,0 {Translation"192:192=104:104", "198:198=107:107"}}
+sprite ACIUB0,124,96{Offset -184,-98 Patch BUSTC0,0,0 {Translation"192:192=104:104", "198:198=107:107"}}
+
+sprite  C_05I0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE50A, 0, 0}//DARK1
+texture C_05I0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE50A, 0, 0}
+sprite  C_05J0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE50B, 0, 0}//DARK2
+texture C_05J0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE50B, 0, 0}
+sprite  C_05K0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE50C, 0, 0}//DARK3
+texture C_05K0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE50C, 0, 0}
+sprite  C_05L0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE50D, 0, 0}//DARK4
+texture C_05L0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE50D, 0, 0}
+
+//Light
+texture 0R_SSVAR,56,8{patch 0R_SSBAR,0,0{rotate 90}}
+
+//Heat
+texture VEATEMPT,56,8{patch HEATEMPT,0,0{rotate 90}}
+
+//Junk
+texture JUNCHBAR,8,56{patch B_BAR01C,0,0{Translation"192:192=68:68","198:198=68:68"}}
+texture JUNCHVAR,56,8{patch JUNCHBAR,0,0{rotate 90}}
+
+//Chain Blast
+graphic CBLAICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPF0,0,0}
+sprite CBLAA0, 148, 80 {Offset -202, -103 Patch HSPRE0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+sprite CBLAB0, 115, 96 {Offset -210, -96  Patch HSPRB0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+sprite CBLAC0, 115, 96 {Offset -190, -82  Patch HSPRC0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+sprite CBLAD0, 128, 128 {Offset -195, -65 Patch HSPRD0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+sprite CBLAE0, 128, 128 {Offset -177, -50 Patch HSPRD0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+graphic BLASICON,30,30{XScale 2.0 YScale 2.0 Patch RSH1G0,0,0}
+
+texture BAMMO11F,8,56{patch BARENERG,0,0{Translation"192:192=174:174", "198:198=241:241"}}
+texture VAMMO11F,56,8{patch BAMMO11F,0,0{rotate 90}}//Chain Blast
+
+graphic CBLACBR,8,56{patch B_BAR01C,0,0{Translation "192:192=174:174", "198:198=174:174"}}
+texture CBLACVR, 56, 8 {patch CBLACBR, 0, 0 {rotate 90}}
+
+//Scramble Thunder
+graphic STHUICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPG0,0,0}
+sprite STHUA0,116,96{Offset -184,-94 Patch BUSTB0,0,0 {Translation"192:192=160:160", "198:198=86:86"}}
+sprite STHUB0,124,96{Offset -184,-98 Patch BUSTC0,0,0 {Translation"192:192=160:160", "198:198=86:86"}}
+sprite STHUC0,128,92{Offset -187,-102 Patch BUSTD0,0,0{Translation"192:192=160:160", "198:198=86:86"}}
+
+texture BAMMO11G,8,56{patch BARENERG,0,0{Translation"192:192=160:160", "198:198=86:86"}}
+texture VAMMO11G,56,8{patch BAMMO11G,0,0{rotate 90}}//Scramble Thunder
+
+//Sunstar
+graphic SUNSICON,32,32{XScale 2.0 YScale 2.0 Patch SUNSZ0,0,0}
+graphic V_I_SUN, 8, 56 {patch BARENERG, 0, 0 {Translation "192:192=216:216", "198:198=243:243"}}
+graphic V_I_VUN, 56, 8 {patch V_I_SUN, 0, 0 {Rotate 90}}
+graphic V_I_SUF, 8, 56 {patch BARENERG, 0, 0 {Translation "192:192=216:216", "198:198=220:220"}}
+graphic V_I_VUF, 56, 8 {patch V_I_SUF, 0, 0 {Rotate 90}}
+texture V_I_SUV,8,56{patch TNT1A0,0,0}
+texture V_I_VUV,56,8{patch TNT1A0,0,0}
+graphic V_I_SUW,8,56{patch B_BAR01A,0,0{Translation "192:192=210:210","198:198=218:218"}}
+graphic V_I_VUW,56,8{patch V_I_SUW,0,0{Rotate 90}}
+graphic V_I_SUX,8,56{patch B_BAR01B,0,0{Translation "192:192=210:210","198:198=218:218"}}
+graphic V_I_VUX,56,8{patch V_I_SUX,0,0{Rotate 90}}
+graphic V_I_SUY,8,56{patch B_BAR01A,0,0{Translation "192:192=218:218","198:198=210:210"}}
+graphic V_I_VUY,56,8{patch V_I_SUY,0,0{Rotate 90}}
+graphic V_I_SUZ,8,56{patch B_BAR01B,0,0{Translation "192:192=218:218","198:198=210:210"}}
+graphic V_I_VUZ,56,8{patch V_I_SUZ,0,0{Rotate 90}}
+
+sprite  C_VSUN0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0V0J, 0, 0}
+texture C_VSUN0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE0V0J, 0, 0}
+
+//Sunstar AltSkin Mugshots
+graphic SGDST00,32,32{XScale 4.0 YScale 4.0 Patch SSTAMUG,0,0}
+
+graphic SUNCROWN, 32, 32{XScale 1.25 YScale 1.25  Patch SUNSW0, 0, 0 {Translation "192:192=216:216", "198:198=220:220"}}
+
+//Copywep
+graphic SunLaser,30,30{XScale 2.0 YScale 2.0 Patch SLZRI0,0,0}
+sprite SLZHA0,116,96{Offset -184,-94 Patch BUSTB0,0,0{Translation"192:192=216:216", "198:198=220:220"}}
+sprite SLZHB0,124,96{Offset -184,-98 Patch BUSTD0,0,0{Translation"192:192=216:216", "198:198=220:220"}}
+sprite SLZHC0,124,96{Offset -184,-98 Patch BUSTC0,0,0{Translation"192:192=216:216", "198:198=220:220"}}
+
+//Blastman Mugshot
+sprite  C_11B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE011B, 0, 0}
+texture C_11B0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE011B, 0, 0}
+
+//Blast Detonate Icon
+graphic BLSTDT,30,30{XScale 2.0 YScale 2.0 Patch CBSTM0,0,0}
+
+//Blast
+texture VLASBARR,56,8{patch BLASBARR,0,0{rotate 90}}
+
+//V6 mugs
+sprite  C_0VA0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE146, 0, 0}//Terra
+texture C_0VA0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE146, 0, 0}
+sprite  C_0VB0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE147, 0, 0}//Mercury
+texture C_0VB0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE147, 0, 0}
+sprite  C_0VC0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE148, 0, 0}//Venus
+texture C_0VC0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE148, 0, 0}
+sprite  C_0VD0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE149, 0, 0}//Mars
+texture C_0VD0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE149, 0, 0}
+sprite  C_0VE0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE150, 0, 0}//Jupiter
+texture C_0VE0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE150, 0, 0}
+//sprite  C_0VF0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0V05, 0, 0}//Saturn
+//texture C_0VF0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE0V05, 0, 0}
+sprite  C_0VG0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE152, 0, 0}//Uranus
+texture C_0VG0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE152, 0, 0}
+sprite  C_0VH0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE153, 0, 0}//Pluto
+texture C_0VH0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE153, 0, 0}
+sprite  C_0VI0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE154, 0, 0}//Neptune
+texture C_0VI0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE154, 0, 0}
+
+//Dynamo
+graphic DYNAICON,30,30{XScale 2.0 YScale 2.0 Patch RSH1I0,0,0}
+
+//Spark
+texture SPAR1BAR,8,56{patch BARENERG,0,0{Translation "192:192=4:4", "198:198=219:219"}}
+texture SPAR1VAR,56,8{patch SPAR1BAR,0,0{rotate 90}}
+texture SPAR2BAR,8,56{patch BARENERG,0,0{Translation "192:192=4:4", "198:198=220:220"}}
+texture SPAR2VAR,56,8{patch SPAR2BAR,0,0{rotate 90}}
+
+//Cloudman
+graphic ClouIcon,30,30{XScale 2.0 YScale 2.0 Patch CLOHZ0,0,0}
+
+graphic ACIDICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPE0,0,0}
+sprite ACDBA0, 148, 80 {Offset -202, -103 Patch HSPRE0, 0, 0 {Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBB0, 308, 204 {Offset -105, -147 Patch HSPRJ0, 0, 0{Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBC0, 308, 204 {Offset -126, -123 Patch HSPRI0, 0, 0{Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBD0, 308, 204 {Offset -151, -36 Patch HSPRH0, 0, 0 {Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBE0, 308, 204 {Offset -202, 4 Patch HSPRG0, 0, 0   {Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBF0, 308, 204 {Offset -272, 46 Patch HSPRF0, 0, 0  {Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACBSA0,116,96{Offset -184,-94 Patch BUSTB0,0,0 {Translation"192:192=34:56",		   "198:198=117:117"}}
+sprite ACBSB0,124,96{Offset -184,-98 Patch BUSTC0,0,0 {Translation"192:192=34:56",		   "198:198=117:117"}}
+sprite ACBSC0,128,92{Offset -187,-102 Patch BUSTD0,0,0{Translation"192:192=34:34",		   "198:198=117:117"}}
+texture BAMMO11E,8,56{patch BARENERG,0,0{Translation"192:192=34:34","198:198=117:117"}}
+texture VAMMO11E,56,8{patch BAMMO11E,0,0{rotate 90}}//Acid Barrier
+texture BARACID, 8, 56{patch BARAMT70,0,0{Translation "74:74=112:112"}}
+texture VARACID,56,8{patch BARACID,0,0{rotate 90}}//
+
+//Stone
+graphic STONICON,30,30{XScale 2.0 YScale 2.0 Patch RSH1O0,0,0}
+
+//Needle
+graphic NEEDRCON,30,30{XScale 2.0 YScale 2.0 Patch RSH2H0,0,0}
+
+//Fire
+graphic F1REIcon,30,30{XScale 2.0 YScale 2.0 Patch FIRICON1,0,0}
+graphic FI2EIcon,30,30{XScale 2.0 YScale 2.0 Patch FIRICON2,0,0}

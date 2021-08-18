@@ -1,0 +1,39 @@
+actor DocRobot : ClassBase
+{
+Player.ScoreIcon "C_03I0X"
+player.displayname "DocRobot"
+player.soundclass "DocRobotc"
+player.startitem "DocBusterC"
+player.startitem "DocVirusAmmo", 54
+player.startitem "BusterAmmo", 3
+player.startitem "CanCopyWeapons"
+player.startitem "CanUseItems"
+player.startitem "NoAmmoPickup"
+
+player.startitem "CopyNerf"
+States
+{
+Spawn:
+DOCB A 0
+DOCB B 1
+DOCB A 1
+Goto Spawn+2
+See:
+DOCB BCDE 5
+Goto Spawn
+Missile:
+DOCB F 0 //ACS_ExecuteAlways(648,0,8)//Change DocRobot stats
+DOCB F 5
+DOCB G 4
+goto Spawn
+ClassPain:
+DOCB H 0
+goto PainContinue
+DeathFix:
+DOCB H 0
+goto DeathContinue
+ClassDeath:
+DOCB H 1
+goto MegaDeathEnd
+}
+}

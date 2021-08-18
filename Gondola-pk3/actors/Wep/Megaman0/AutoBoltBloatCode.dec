@@ -1,0 +1,2221 @@
+actor AutoTangoRollProjectile
+{
+Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
+PROJECTILE
+SeeSound "weapon/dustbit"
+//+DONTBLAST
+damagetype "ClassPainLess2"
+Speed 60
+-NOGRAVITY
++HITTRACER
+Gravity 1.2
+Damage (0)
+radius 16
+height 16
+scale 2.0
+States
+{
+Spawn:
+WEA3 B 1
+wait
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoTangoRollN")
+stop
+}
+}
+
+actor AutoTangoRollProjectileB : AutoTangoRollProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoTangoRollB")
+stop
+}
+}
+
+actor AutoTangoRollProjectileR : AutoTangoRollProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoTangoRollR")
+stop
+}
+}
+
+actor AutoTangoRollProjectileO : AutoTangoRollProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoTangoRollO")
+stop
+}
+}
+
+actor AutoTangoRollProjectileP : AutoTangoRollProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoTangoRollP")
+stop
+}
+}
+
+actor AutoTangoRollN : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's custom Tango Roll."
+Tag "Auto's Tango Roll"
+inventory.icon "TANGOSI"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 4200
+states
+{
+Spawn:
+WEA3 B 1
+WEA3 B 0 A_Countdown
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoTangoRollN",1,"NoPickup")
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoTangoRollBasicItem",1)
+stop
+
+NoPickup:
+EDDI O 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoTangoRollB : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's custom Tango Roll."
+Tag "Auto's Tango Roll"
+inventory.icon "TANGOSI"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 700
+states
+{
+Spawn:
+WEA3 BBBBBB 1
+WEA3 B 0 A_Countdown
+WEA3 B 0 A_SpawnItemEx("AutoItemFXB",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoTangoRollBasicItem",1,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoTangoRollBasicItem",1)
+stop
+
+NoPickup:
+EDDI O 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoTangoRollR : AutoTangoRollB
+{
+states
+{
+Spawn:
+WEA3 BBBBBB 1
+WEA3 B 0 A_Countdown
+WEA3 B 0 A_SpawnItemEx("AutoItemFXR",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoTangoRollBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoTangoRollO : AutoTangoRollB
+{
+states
+{
+Spawn:
+WEA3 BBBBBB 1
+WEA3 B 0 A_Countdown
+WEA3 B 0 A_SpawnItemEx("AutoItemFXO",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoTangoRollBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoTangoRollP : AutoTangoRollB
+{
+states
+{
+Spawn:
+WEA3 BBBBBB 1
+WEA3 B 0 A_Countdown
+WEA3 B 0 A_SpawnItemEx("AutoItemFXP",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoTangoRollBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoTangoRollBasicItem : CustomInventory 
+{
+inventory.amount 2
+inventory.maxamount 2
+inventory.pickupmessage "Picked up Auto's custom Tango Roll."
+Tag "Auto's Tango Roll"
+inventory.icon "TANGOSI"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+states
+{
+Spawn:
+WEA3 B 1
+loop
+
+Use:
+WEA3 B 0 A_PlaySoundEx("item/refill","Voice")
+WEA3 B 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"UseTeam")
+WEA3 B 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"UseTeam")
+WEA3 B 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"UseTeam")
+WEA3 B 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"UseTeam")
+WEA3 B 0 A_SpawnItemEx("TangoTeleportAuto", 40, 0, 256, 0, 0, -24, 0, SXF_NOCHECKPOSITION, 0)
+stop
+
+UseTeam:
+WEA3 B 0 A_SpawnItemEx("TangoTeleportAuto", 40, 0, 256, 0, 0, -24, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 0)
+stop
+
+TooSoon:
+TNT1 A 0
+fail
+
+NoPickup:
+WEA3 B 0
+fail
+}
+}
+
+actor TangoTeleportAuto : TangoTeleport
+{
+Translation "192:192=201:201", "198:198=128:128"
+states
+{
+Spawn:
+T_TA H 0
+T_TA H 9
+T_TA H 0 A_ChangeFlag("NOINTERACTION", 0)
+T_TA HHHHHHHHHH 1 A_CheckFloor("Next")
+Next:
+T_TA H 0 A_ChangeFlag("NOINTERACTION", 0)
+T_TA H 0
+Goto Death
+Death:
+TNT1 A 0 A_SpawnItemEx("TangoAuto",0,0,3,0,0,momz,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION,0)
+stop
+}
+}
+
+actor TangoAuto : Tango
+{
+states
+{
+Spawn:
+T_TA H 0 A_Jump(256,"Death")
+T_TA H 1 A_ChangeFlag("MISSILE",0)
+T_TA H 0 A_ChangeVelocity(0, 0, -32, CVF_REPLACE)
+T_TA H 1 A_JumpIf(z-floorz<=0, "Look")
+Goto Spawn+2
+Look:
+T_TA I 0 A_ChangeFlag("NOCLIP",0)
+T_TA IJ 2
+T_TA I 0 A_PlaySoundEx("item/tango","Voice")
+T_TA ABCDBCA 4
+T_TA A 0 A_SpawnItemEx("TangoAttackAuto",0,0,0,30,0,9,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+stop
+Death:
+T_TA F 0 A_SpawnItemEx("TangoDeathAuto",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+stop
+}
+}
+
+actor TangoAttackAuto : TangoAttack
+{
+Translation "192:192=201:201", "198:198=128:128"
+damage (10)
+States
+{
+Spawn:
+T_TA E 0 A_CountDown
+T_TA EFG 3
+loop
+Death:
+T_TA E 0 A_SpawnItemEx("TangoDeathAuto",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+stop
+}
+}
+
+actor TangoDeathAuto : TangoDeath
+{
+Translation "192:192=201:201", "198:198=128:128"
+States
+{
+Spawn:
+T_TA JI 2
+T_TA H 0 ThrustThingZ(0, 40, 0, 1)
+T_TA H 1 A_CountDown
+Goto Spawn+3
+Death:
+T_TA H 0
+stop
+}
+}
+
+actor AutoReggaeCallProjectile
+{
+Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
+PROJECTILE
+SeeSound "weapon/dustbit"
+//+DONTBLAST
+damagetype "ClassPainLess2"
+Speed 60
+-NOGRAVITY
++HITTRACER
+Gravity 1.2
+Damage (0)
+radius 16
+height 16
+scale 2.0
+States
+{
+Spawn:
+WEA9 Z 1
+wait
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoReggaeCallN")
+stop
+}
+}
+
+actor AutoReggaeCallProjectileB : AutoReggaeCallProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoReggaeCallB")
+stop
+}
+}
+
+actor AutoReggaeCallProjectileR : AutoReggaeCallProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoReggaeCallR")
+stop
+}
+}
+
+actor AutoReggaeCallProjectileO : AutoReggaeCallProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoReggaeCallO")
+stop
+}
+}
+
+actor AutoReggaeCallProjectileP : AutoReggaeCallProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoReggaeCallP")
+stop
+}
+}
+
+actor AutoReggaeCallN : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's custom Reggae Trick."
+Tag "Auto's Reggae Trick"
+inventory.icon "REGGS"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 4200
+states
+{
+Spawn:
+WEA9 Z 1
+WEA9 Z 0 A_Countdown
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoReggaeCallBasicItem",1)
+stop
+
+NoPickup:
+EDDI O 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoReggaeCallB : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's custom Reggae Trick."
+Tag "Auto's Reggae Trick"
+inventory.icon "REGGS"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 700
+states
+{
+Spawn:
+WEA9 ZZZZZZ 1
+WEA9 Z 0 A_Countdown
+WEA9 Z 0 A_SpawnItemEx("AutoItemFXB",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoReggaeCallBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoReggaeCallBasicItem",1)
+stop
+
+NoPickup:
+EDDI O 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoReggaeCallR : AutoReggaeCallB
+{
+states
+{
+Spawn:
+WEA9 ZZZZZZ 1
+WEA9 Z 0 A_Countdown
+WEA9 Z 0 A_SpawnItemEx("AutoItemFXR",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoReggaeCallBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoReggaeCallO : AutoReggaeCallB
+{
+states
+{
+Spawn:
+WEA9 ZZZZZZ 1
+WEA9 Z 0 A_Countdown
+WEA9 Z 0 A_SpawnItemEx("AutoItemFXO",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoReggaeCallBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoReggaeCallP : AutoReggaeCallB
+{
+states
+{
+Spawn:
+WEA9 ZZZZZZ 1
+WEA9 Z 0 A_Countdown
+WEA9 Z 0 A_SpawnItemEx("AutoItemFXP",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoReggaeCallBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoReggaeCallBasicItem : CustomInventory 
+{
+inventory.amount 2
+inventory.maxamount 2
+inventory.pickupmessage "Picked up Auto's custom Reggae Trick."
+Tag "Auto's Reggae Trick"
+inventory.icon "REGGS"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+states
+{
+Spawn:
+WEA9 Z 1
+loop
+
+Use:
+WEA9 Z 0 A_PlaySoundEx("item/refill","Voice")
+WEA9 Z 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"UseTeam")
+WEA9 Z 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"UseTeam")
+WEA9 Z 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"UseTeam")
+WEA9 Z 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"UseTeam")
+WEA9 Z 0 A_SpawnItemEx("ReggaeTeleportAuto", 80, 0, 256, 0, 0, -24, 0, SXF_NOCHECKPOSITION, 0)
+stop
+
+UseTeam:
+WEA9 Z 0 A_SpawnItemEx("ReggaeTeleportAuto", 80, 0, 256, 0, 0, -24, 0, SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION, 0)
+stop
+
+TooSoon:
+TNT1 A 0
+fail
+
+NoPickup:
+WEA9 Z 0
+fail
+}
+}
+
+actor ReggaeTeleportAuto : ReggaeTeleport
+{
+Translation "192:192=216:216", "198:198=39:39"
+states
+{
+Spawn:
+T_RE E 0
+T_RE E 7
+T_RE E 0 A_ChangeFlag("NOINTERACTION", 0)
+T_RE EEEE 1 A_CheckFloor("Next")
+Next:
+TNT1 A 0 A_ChangeFlag("NOINTERACTION", 1)
+TNT1 A 0 A_Stop//A_ChangeFlag("NOINTERACTION", 0)
+Goto Death
+Death:
+TNT1 A 1 A_SpawnItemEx("ReggaeAuto",0,0,3,0,0,momz,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION,0)
+stop
+}
+}
+
+actor ReggaeAuto : Reggae
+{
+Translation "192:192=216:216", "198:198=39:39"
+states
+{
+Spawn:
+TNT1 A 0 A_Jump(256,"Death")
+TNT1 A 0 A_ChangeFlag("MISSILE",0)
+TNT1 A 0 ThrustThingZ(0, 80, 1, 0)
+T_RE EEEEEEEEEEEEE 1 A_CheckFloor("Land")
+FlyLand:
+TNT1 A 0 A_PlaySoundEx("item/reggae", "Voice", 0)
+T_RE E 0 A_ChangeFlag("NOINTERACTION",0)
+T_RE E 0 A_ChangeFlag("NOCLIP",0)
+T_RE E 1 A_Stop
+T_RE BBBCCCDDDCCCBBBCCCDDDCCC 1 
+T_RE B 1 A_ChangeVelocity(9.5, 0.0, 0.0, CVF_REPLACE|CVF_RELATIVE)
+Goto Presents
+Land:
+TNT1 A 0 A_PlaySoundEx("item/reggae", "Voice", 0)
+T_RE E 0 A_ChangeFlag("NOINTERACTION",0)
+T_RE E 0 A_ChangeFlag("NOCLIP",0)
+T_RE E 1 A_Stop
+T_RE FG 2
+T_RE A 25
+T_RE B 0 A_ChangeVelocity(0.0, 0.0, 2.5, CVF_REPLACE|CVF_RELATIVE)
+T_RE BBBCCCDDDCCC 1 
+T_RE B 1 A_ChangeVelocity(9.5, 0.0, 0.0, CVF_REPLACE|CVF_RELATIVE)
+Presents:
+TNT1 A 0 A_ChangeFlag("MISSILE",1)
+T_RE B 0 A_PlaySoundex("weapon/crackermine", "Voice", 0, 0)
+T_RE B 0 A_SpawnItemEx("ReggaeCanAuto", 0, 0, random(3,18), 8, 0, 8, random(0,360),1)
+T_RE BBBCCCDDDCCC 1
+T_RE A 0 A_GiveInventory("CutterFlag",1)
+T_RE A 0 A_JumpIfInventory("CutterFlag",15,"Death")
+loop
+Death:
+T_RE F 0 A_SpawnItemEx("ReggaeDeathAuto",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION)
+stop
+}
+}
+
+actor ReggaeCanAuto : ReggaeCan
+{
+Translation "192:192=216:216", "198:198=39:39"
+damage (15)
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 //Thing_ChangeTID(0,999)
+Mine:
+EBAL E 3 A_JumpIfInventory("CutterFlag", 95, "Death")
+EBAL E 1 A_JumpIfInTargetInventory("IsDead",1,"Death")
+T_RE H 3 A_GiveInventory("CutterFlag",1)
+T_RE H 1 A_JumpIfInTargetInventory("IsDead",1,"Death")
+loop
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/crackerexplode", "Voice", 0)
+TN_B EFGHIJKLMNOPQRS 2
+stop
+Exit:
+TNT1 A 0
+stop
+}
+}
+
+actor ReggaeCanAutoB : ReggaeCanAuto{translation "202:202=205:205", "199:199=74:74"}
+actor ReggaeCanAutoR : ReggaeCanAuto{translation "202:202=171:171", "199:199=41:41"}
+actor ReggaeCanAutoO : ReggaeCanAuto{translation "202:202=104:104", "199:199=128:128"}
+actor ReggaeCanAutoP : ReggaeCanAuto{translation "202:202=229:229", "199:199=232:232"}
+
+actor ReggaeDeathAuto : ReggaeDeath
+{
+Translation "192:192=216:216", "198:198=39:39"
+States
+{
+Spawn:
+T_RE GF 2
+T_RE E 0 ThrustThingZ(0, 40, 0, 1)
+T_RE E 1 A_CountDown
+Goto Spawn+3
+Death:
+T_RE E 0
+stop
+}
+}
+
+actor AutoBoltPickupShot
+{
+Translation "192:192=110:110", "198:198=128:128"
+Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
+PROJECTILE
+SeeSound "weapon/dustbit"
+//+DONTBLAST
+damagetype "ClassPainLess2"
+Speed 60
+-NOGRAVITY
+Gravity 1.2
+Damage (0)
+radius 16
+height 16
+scale 2.5
+States
+{
+Spawn:
+SCOR F 1
+wait
+XDeath:
+Crash:
+Death:
+TNT1 AA 0 A_SpawnItemEx("ScrewBoltPickupAuto",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor AutoBoltPickupShotB : AutoBoltPickupShot
+{
+translation "192:192=205:205", "198:198=74:74"
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 AA 0 A_SpawnItemEx("ScrewBoltPickupAutoB",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor AutoBoltPickupShotR : AutoBoltPickupShot
+{
+translation "192:192=171:171", "198:198=41:41"
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 AA 0 A_SpawnItemEx("ScrewBoltPickupAutoR",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor AutoBoltPickupShotO : AutoBoltPickupShot
+{
+translation "192:192=104:104", "198:198=128:128"
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 AA 0 A_SpawnItemEx("ScrewBoltPickupAutoO",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor AutoBoltPickupShotP : AutoBoltPickupShot
+{
+translation "192:192=229:229", "198:198=232:232"
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 AA 0 A_SpawnItemEx("ScrewBoltPickupAutoP",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor AutoBoltPickupShotSmall : AutoBoltPickupShot
+{
+States
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("ScrewBoltPickupAuto",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor AutoBoltPickupShotSmallB : AutoBoltPickupShotSmall
+{
+translation "192:192=205:205", "198:198=74:74"
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("ScrewBoltPickupAutoB",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor AutoBoltPickupShotSmallR : AutoBoltPickupShotSmall
+{
+translation "192:192=171:171", "198:198=41:41"
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("ScrewBoltPickupAutoR",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor AutoBoltPickupShotSmallO : AutoBoltPickupShotSmall
+{
+translation "192:192=104:104", "198:198=128:128"
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("ScrewBoltPickupAutoO",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor AutoBoltPickupShotSmallP : AutoBoltPickupShotSmall
+{
+translation "192:192=229:229", "198:198=232:232"
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("ScrewBoltPickupAutoP",0,-8,0,0,random(-1,1),random(3,6),0,1)
+stop
+}
+}
+
+actor ScrewBoltPickupAuto : ScrewBoltPickup
+{
+inventory.pickupmessage "Picked up an auto converted Small Screw!"
+reactiontime 700
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Auto")
+TNT1 A 0
+fail
+}
+}
+
+actor ScrewBoltPickupAutoB : ScrewBoltPickup
+{
+inventory.pickupmessage "Picked up an auto converted Small Screw!"
+reactiontime 700
+States
+{
+Spawn:
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 0 A_SpawnItemEx("AutoItemFXB",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"PickupNext")
+goto No
+
+PickupNext:
+TNT1 A 0 A_JumpIfInventory("PlantBarrierBoss",1,"Plant")
+TNT1 A 0 A_JumpIfInventory("RollFlag",1,"Roll")
+TNT1 A 0 A_JumpIfInventory("LightningBoltBoss",1,"Dynamo")
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Auto")
+TNT1 A 0 A_JumpIfInventory("LaserTridentBoss",1,"Splash")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+TNT1 A 0
+fail
+
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor ScrewBoltPickupAutoR : ScrewBoltPickup
+{
+inventory.pickupmessage "Picked up an auto converted Small Screw!"
+States
+{
+Spawn:
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 0 A_SpawnItemEx("AutoItemFXR",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"PickupNext")
+goto No
+
+PickupNext:
+TNT1 A 0 A_JumpIfInventory("PlantBarrierBoss",1,"Plant")
+TNT1 A 0 A_JumpIfInventory("RollFlag",1,"Roll")
+TNT1 A 0 A_JumpIfInventory("LightningBoltBoss",1,"Dynamo")
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Auto")
+TNT1 A 0 A_JumpIfInventory("LaserTridentBoss",1,"Splash")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+TNT1 A 0
+fail
+}
+}
+
+actor ScrewBoltPickupAutoO : ScrewBoltPickup
+{
+inventory.pickupmessage "Picked up an auto converted Small Screw!"
+States
+{
+Spawn:
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 0 A_SpawnItemEx("AutoItemFXO",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"PickupNext")
+goto No
+
+PickupNext:
+TNT1 A 0 A_JumpIfInventory("PlantBarrierBoss",1,"Plant")
+TNT1 A 0 A_JumpIfInventory("RollFlag",1,"Roll")
+TNT1 A 0 A_JumpIfInventory("LightningBoltBoss",1,"Dynamo")
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Auto")
+TNT1 A 0 A_JumpIfInventory("LaserTridentBoss",1,"Splash")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+TNT1 A 0
+fail
+}
+}
+
+actor ScrewBoltPickupAutoP : ScrewBoltPickup
+{
+inventory.pickupmessage "Picked up an auto converted Small Screw!"
+States
+{
+Spawn:
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 1 A_SetAngle(angle+15)
+SCOR E 0 A_CountDown
+SCOR E 0 A_SpawnItemEx("AutoItemFXP",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"PickupNext")
+goto No
+
+PickupNext:
+TNT1 A 0 A_JumpIfInventory("PlantBarrierBoss",1,"Plant")
+TNT1 A 0 A_JumpIfInventory("RollFlag",1,"Roll")
+TNT1 A 0 A_JumpIfInventory("LightningBoltBoss",1,"Dynamo")
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Auto")
+TNT1 A 0 A_JumpIfInventory("LaserTridentBoss",1,"Splash")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+TNT1 A 0
+fail
+}
+}
+  
+//WIRE DROP & TEAM PICKUPS
+
+actor AutoWireProjectile
+{
+Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
+PROJECTILE
+SeeSound "weapon/dustbit"
+//+DONTBLAST
+damagetype "ClassPainLess2"
+Speed 60
+-NOGRAVITY
++HITTRACER
+Gravity 1.2
+Damage (0)
+radius 16
+height 16
+scale 2.0
+States
+{
+Spawn:
+WADP A 1
+wait
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoWireN")
+stop
+}
+}
+
+actor AutoWireProjectileB : AutoWireProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoWireB")
+stop
+}
+}
+
+actor AutoWireProjectileR : AutoWireProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoWireR")
+stop
+}
+}
+
+actor AutoWireProjectileO : AutoWireProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoWireO")
+stop
+}
+}
+
+actor AutoWireProjectileP : AutoWireProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoWireP")
+stop
+}
+}
+
+actor AutoWireBasicItem : CustomInventory 
+{
+inventory.amount 2
+inventory.maxamount 2
+inventory.pickupmessage "Picked up Auto's custom Wire Adaptor."
+Tag "Auto's Wire Adapter"
+inventory.icon "WIRE"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+states
+{
+Spawn:
+WADP A 1
+loop
+
+Use:
+TNT1 A 0 A_JumpIfInventory("WireHookShotDelay",1,"TooSoon")
+TNT1 A 0 A_GiveInventory("WireHookShotDelay",1)
+TNT1 A 0 A_PlaySoundEx("weapon/WireAdp","Item")
+TNT1 A 0 A_SpawnItemEx("WireAdaptorHookAuto",-2,0,32,cos(-pitch)*1,0,sin(-pitch)*1,0,0)
+fail
+
+TooSoon:
+TNT1 A 0
+fail
+
+NoPickup:
+WADP A 0
+fail
+}
+}
+
+actor AutoWireN : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's custom Wire Adaptor."
+Tag "Auto's Wire Adapter"
+inventory.icon "WIRE"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 4200
+states
+{
+Spawn:
+WADP A 1
+WADP A 0 A_Countdown
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoWireBasicItem",1)
+stop
+
+NoPickup:
+EDDI O 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoWireB : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's custom Wire Adaptor."
+Tag "Auto's Wire Adapter"
+inventory.icon "WIRE"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 700
+states
+{
+Spawn:
+WADP AAAAAA 1
+WADP A 0 A_Countdown
+WADP A 0 A_SpawnItemEx("AutoItemFXB",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoWireBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoWireBasicItem",1)
+stop
+
+NoPickup:
+EDDI O 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoWireR : AutoWireB
+{
+states
+{
+Spawn:
+WADP AAAAAA 1
+WADP A 0 A_Countdown
+WADP A 0 A_SpawnItemEx("AutoItemFXR",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoWireBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoWireO : AutoWireB
+{
+states
+{
+Spawn:
+WADP AAAAAA 1
+WADP A 0 A_Countdown
+WADP A 0 A_SpawnItemEx("AutoItemFXO",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoWireBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoWireP : AutoWireB
+{
+states
+{
+Spawn:
+WADP AAAAAA 1
+WADP A 0 A_Countdown
+WADP A 0 A_SpawnItemEx("AutoItemFXP",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoWireBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"Pickup2")
+goto NoPickup
+}
+}
+
+actor WireAdaptorHookAuto
+{
+Translation "199:199=193:193"
+var int user_PTID;
+var int user_CountDown;
+PROJECTILE
+obituary "%o was grappled by %k's Wire Adaptor."
+damagetype "WireAdaptor"
++DONTBLAST
++DONTREFLECT
+//+PAINLESS
+//+SKYEXPLODE
++THRUGHOST
++NOTIMEFREEZE
++HITTRACER
+ReactionTime 1
+Damage (2)
+Radius 8
+Height 8
+Speed 1
+scale 2.5
+states
+{
+Spawn:
+WADP B 0
+WADP B 0 A_SetUserVar("user_CountDown",reactiontime)
+WADP B 0 A_SetUserVar(user_PTID, ACS_NamedExecuteWithResult("core_gettarget"))
+WADP B 0 A_GiveInventory("WeaponCharge",1)
+WADP B 0 A_ScaleVelocity(75)//Speed of projectile.
+goto Spawn2
+
+Spawn2:
+WADP B 0 ACS_NamedExecuteAlways("core_drawhookshot", 0, user_PTID, 18)
+WADP B 0 A_GiveToTarget("WireHookShotDelay",1)
+WAD1 ABABAB 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+WADP B 0 A_GiveToTarget("WireHookShotDelay",1)
+WAD1 ABABAB 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+WireLoop:
+WADP B 0 A_GiveToTarget("WireHookShotDelay",1)
+WAD1 ABABAB 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+WADP B 0 A_SetUserVar("user_CountDown",user_CountDown - 1)
+WAD1 A 0 A_CountDown
+loop
+
+Death:
+WADP B 0 A_JumpIfCloser(64, "SuperDeath")
+XDeath:
+Crash:
+WADP B 0 A_JumpIf(user_CountDown == 0, "SuperDeath")
+WADP B 0 A_JumpIfInventory("WeaponCharge",2,"SuperDeath")
+WADP B 0 A_JumpIfInventory("WeaponCharge",1,1)
+goto SuperDeathPoof//Kill hook early if it never got through the Spawn state.
+WADP B 0 A_PlaySoundEx("weapon/crashland","Weapon")
+WADP B 0 A_JumpIfInventory("NoHookshot",1,"Death1",AAPTR_TRACER)
+WADP B 0 A_CheckFlag("SHOOTABLE","Death2",AAPTR_TRACER)
+goto Death1
+Death1://Tracer isn't shootable (probably can't move)
+WADP B 0 ACS_NamedExecuteAlways("core_hookshot",0,user_PTID,5,0)
+WAD1 B 3
+goto DeathLoop1
+Death2://Tracer IS shootable (probably CAN move)
+WADP B 0 ACS_NamedExecuteAlways("core_hookshot",0,user_PTID,5,1)
+WAD1 B 3//Needs at least 3 tics of delay.
+goto DeathLoop2
+DeathLoop1:
+WADP B 0 A_JumpIfCloser(64,"SuperDeathPoof")
+WADP B 0 A_GiveToTarget("WireHookShotDelay",1)
+WAD1 B 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+loop
+DeathLoop2:
+WADP B 0 A_JumpIfCloser(64,"SuperDeathPoof")
+WADP B 0 A_Warp(AAPTR_TRACER,-4,0,28)
+WADP B 0 A_GiveToTarget("WireHookShotDelay",1)
+WAD1 B 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+WAD1 B 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists",1)==0,"DeathLoop1")
+loop
+SuperDeathPoof:
+WADP B 0 A_PlaySoundEx("weapon/adapterreturn","Weapon")
+WADP B 0 A_TakeFromTarget("WireAdaptorDelay",1)
+WADP B 0 A_TakeFromTarget("AutoWireBasicItem",1)
+WADP B 0 A_ChangeFlag("NOINTERACTION",1)
+WAD1 B 6 A_Stop
+stop
+SuperDeath:
+WAD1 B 0
+stop
+}
+}  
+
+//ITEM 2 DROP & TEAM PICKUPS
+
+actor AutoItemTwoProjectile
+{
+Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
+PROJECTILE
+SeeSound "weapon/dustbit"
+//+DONTBLAST
+damagetype "ClassPainLess2"
+Speed 60
+-NOGRAVITY
++HITTRACER
+Gravity 1.2
+Damage (0)
+radius 16
+height 16
+scale 2.0
+States
+{
+Spawn:
+WEA2 D 1
+wait
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoItemTwoN")
+stop
+}
+}
+
+actor AutoItemTwoProjectileB : AutoItemTwoProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoItemTwoB")
+stop
+}
+}
+
+actor AutoItemTwoProjectileR : AutoItemTwoProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoItemTwoR")
+stop
+}
+}
+
+actor AutoItemTwoProjectileO : AutoItemTwoProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoItemTwoO")
+stop
+}
+}
+
+actor AutoItemTwoProjectileP : AutoItemTwoProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoItemTwoP")
+stop
+}
+}
+
+actor AutoItemTwoBasicItem : CustomInventory 
+{
+inventory.amount 2
+inventory.maxamount 2
+inventory.pickupmessage "Picked up Auto's custom Item 2."
+Tag "Auto's Item 2"
+inventory.icon "ITEM2"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+states
+{
+Spawn:
+WEA2 D 1
+loop
+
+Use:
+WEA2 D 0 A_Jumpif(floorz<z, "Under")
+WEA2 D 0 A_SpawnItemEx("Item2Platform", 56, 0, 28, 1)
+stop
+Under:
+WEA2 D 0 A_Stop
+WEA2 D 0 A_SpawnItemEx("Item2Platform", 0, 0, 0, 1)
+stop
+
+NoPickup:
+WEA2 D 0
+fail
+}
+}
+
+actor AutoItemTwoN : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's custom Item 2."
+Tag "Auto's Item 2"
+inventory.icon "ITEM2"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 4200
+states
+{
+Spawn:
+WEA2 D 1
+WEA2 D 0 A_Countdown
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoItemTwoBasicItem",1)
+stop
+
+NoPickup:
+WEA2 D 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoItemTwoB : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's custom Item 2."
+Tag "Auto's Item 2"
+inventory.icon "ITEM2"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 700
+states
+{
+Spawn:
+WEA2 DDDDDD 1
+WEA2 D 0 A_Countdown
+WEA2 D 0 A_SpawnItemEx("AutoItemFXB",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoItemTwoBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoItemTwoBasicItem",1)
+stop
+
+NoPickup:
+EDDI O 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoItemTwoR : AutoItemTwoB
+{
+states
+{
+Spawn:
+WEA2 DDDDDD 1
+WEA2 D 0 A_Countdown
+WEA2 D 0 A_SpawnItemEx("AutoItemFXR",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoItemTwoBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoItemTwoO : AutoItemTwoB
+{
+states
+{
+Spawn:
+WEA2 DDDDDD 1
+WEA2 D 0 A_Countdown
+WEA2 D 0 A_SpawnItemEx("AutoItemFXO",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoItemTwoBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoItemTwoP : AutoItemTwoB
+{
+states
+{
+Spawn:
+WEA2 DDDDDD 1
+WEA2 D 0 A_Countdown
+WEA2 D 0 A_SpawnItemEx("AutoItemFXP",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoItemTwoBasicItem",2,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"Pickup2")
+goto NoPickup
+}
+}
+  
+//EDDIE DROP & TEAM PICKUPS
+
+actor AutoEddieProjectile
+{
+Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
+PROJECTILE
+SeeSound "weapon/dustbit"
+//+DONTBLAST
+damagetype "ClassPainLess2"
+Speed 60
+-NOGRAVITY
++HITTRACER
+Gravity 1.2
+Damage (0)
+radius 16
+height 16
+scale 2.0
+States
+{
+Spawn:
+EDDI Q 1
+wait
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoEddieN")
+stop
+}
+}
+
+actor AutoEddieProjectileB : AutoEddieProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoEddieB")
+stop
+}
+}
+
+actor AutoEddieProjectileR : AutoEddieProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoEddieR")
+stop
+}
+}
+
+actor AutoEddieProjectileO : AutoEddieProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoEddieO")
+stop
+}
+}
+
+actor AutoEddieProjectileP : AutoEddieProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoEddieP")
+stop
+}
+}
+
+actor AutoEddieBasicItem : CustomInventory 
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's custom Eddie Bomber."
+Tag "Auto's Eddie Bomber"
+inventory.icon "EDDIEB"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+states
+{
+Spawn:
+EDDI Q 1
+loop
+
+Use:
+EDDI O 0 A_JumpIfInventory("AutoEddieIsOut",1,"NoPickup")
+EDDI O 0 A_PlaySoundEx("item/refill","Voice")
+EDDI O 0 A_SpawnItemEx("AutoEddieTeleport", 40, 0, 128, 0, 0, -22, 0, SXF_NOCHECKPOSITION, 0)
+EDDI O 0 A_GiveInventory("AutoEddieIsOut",1)
+stop
+
+NoPickup:
+EDDI O 0
+fail
+
+}
+}
+
+actor AutoEddieN : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's Eddie Bomber."
+Tag "Auto's Eddie Bomber"
+inventory.icon "EDDIEB"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 4200
+states
+{
+Spawn:
+EDDI Q 1
+EDDI Q 0 A_Countdown
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoEddieBasicItem",1)
+stop
+
+NoPickup:
+EDDI Q 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoEddieB : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's Eddie Bomber."
+Tag "Auto's Eddie Bomber"
+inventory.icon "EDDIEB"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 700
+states
+{
+Spawn:
+EDDI QQQQQQ 1
+EDDI Q 0 A_Countdown
+EDDI Q 0 A_SpawnItemEx("AutoItemFXB",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoEddieBasicItem",1,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoEddieBasicItem",1)
+stop
+
+NoPickup:
+EDDI Q 0
+fail
+}
+}
+
+actor AutoEddieR : AutoEddieB
+{
+states
+{
+Spawn:
+EDDI QQQQQQ 1
+EDDI Q 0 A_Countdown
+EDDI Q 0 A_SpawnItemEx("AutoItemFXR",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoEddieBasicItem",1,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoEddieO : AutoEddieB
+{
+states
+{
+Spawn:
+EDDI QQQQQQ 1
+EDDI Q 0 A_Countdown
+EDDI Q 0 A_SpawnItemEx("AutoItemFXO",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoEddieBasicItem",1,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoEddieP : AutoEddieB
+{
+states
+{
+Spawn:
+EDDI QQQQQQ 1
+EDDI Q 0 A_Countdown
+EDDI Q 0 A_SpawnItemEx("AutoItemFXP",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoEddieBasicItem",1,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoEddieTeleport
+{
+Radius 12
+Height 32
+scale 2.5
++NOCLIP
++DONTBLAST
++SKYEXPLODE
+PROJECTILE
+states
+{
+Spawn:
+RUSH D 0
+RUSH D 0 A_ChangeFlag("NOCLIP", 0)
+RUSH DDDD 1 A_CheckFloor("Next")
+Next:
+TNT1 A 0 A_ChangeFlag("NOCLIP", 0)
+TNT1 A 0 //A_Stop//A_ChangeFlag("NOINTERACTION", 0)
+Goto Death
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoEddieBomber",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+stop
+}
+}
+
+actor AutoEddieBomber
+{
+Radius 12
+Height 32
+scale 2.5
++MISSILE
+-SOLID
+speed 0
++NOINTERACTION
++HEXENBOUNCE
++THRUACTORS
++SKYEXPLODE
++NOGRAVITY
+bouncefactor 1.0
+wallbouncefactor 1.0
+reactiontime 10
+var int user_eddietimer;
+states
+{
+Spawn:
+RUSH E 0
+RUSH E 0 A_RearrangePointers(0,0,2)
+RUSH EEFF 1 A_Warp(AAPTR_TRACER,10,-40,28,5,0)
+EDDI A 0 A_PlaySoundEx("item/eddiecry", "Voice")
+EDDI IIIIHHHHGGGGHHHHIIIIGGGG 1 A_Warp(AAPTR_TRACER,10,40,28,5,WARPF_NoCheckPosition)
+BombStart:
+EDDI IIII 1 A_Warp(AAPTR_TRACER,10,40,28,5,WARPF_NoCheckPosition)
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+Bombing:
+EDDI C 0 A_SpawnItemEx("EddieBomberBomb2", 8, 0, 32, 28, 0, 15, 4)
+EDDI JJJJ 1 A_Warp(AAPTR_TRACER,10,40,28,-5,WARPF_NoCheckPosition)
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+EDDI C 0 A_SpawnItemEx("EddieBomberBomb2", 8, 0, 32, 28, 0, 15, -4)
+EDDI KKKK 1 A_Warp(AAPTR_TRACER,10,40,28,-5,WARPF_NoCheckPosition)
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+EDDI C 0 A_SpawnItemEx("EddieBomberBomb2", 8, 0, 32, 28, 0, 15, 8)
+EDDI LLLL 1 A_Warp(AAPTR_TRACER,10,40,28,-5,WARPF_NoCheckPosition)
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+EDDI KKKK 1 A_Warp(AAPTR_TRACER,10,40,28,5,WARPF_NoCheckPosition)
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+EDDI IIII 1 A_Warp(AAPTR_TRACER,10,40,28,5,WARPF_NoCheckPosition)
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+EDDI JJJJ 1 A_Warp(AAPTR_TRACER,10,40,28,5,WARPF_NoCheckPosition)
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+EDDI KKKK 1 A_Warp(AAPTR_TRACER,10,40,28,5,WARPF_NoCheckPosition) 
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+EDDI LLLL 1 A_Warp(AAPTR_TRACER,10,40,28,5,WARPF_NoCheckPosition)
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+EDDI KKKK 1 A_Warp(AAPTR_TRACER,10,40,28,5,WARPF_NoCheckPosition)
+EDDI I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+EDDI C 0 A_SetUserVar("user_eddietimer", user_eddietimer + 1)
+EDDI C 0 A_JumpIf(user_eddietimer == 10, "Death")
+loop
+
+Death:
+TNT1 A 1 A_TakeFromTarget("AutoEddieIsOut",999)
+Goto RealDeath
+RealDeath:
+TNT1 A 0 A_SpawnItemEx("RushDeath",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+stop
+}
+}
+
+actor AutoEddieIsOut : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor EddieBomberBomb2
+{
+PROJECTILE
+-NOGRAVITY
++HEXENBOUNCE
+damage (1)
+damagetype "EddieBomber"
+Obituary "$OB_EDDIEBOMBER"
+scale 2.5
+gravity 3.0
+reactiontime 10
+states
+{
+Spawn:
+EDDI N 0// A_SpawnItemEx("EddieBombTrail")
+EDDI MN 1
+EDDI K 0// A_SpawnItemEx("EddieBombTrail")
+EDDI OP 1
+EDDI K 0 //A_SpawnItemEx("EddieBombTrail")
+EDDI MN 1
+EDDI K 0 //A_SpawnItemEx("EddieBombTrail")
+EDDI O 1
+EDDI P 1 A_ChangeFlag("HEXENBOUNCE", 0)
+Bomb:
+EDDI K 0 A_SpawnItemEx("EddieBombTrail")
+EDDI MN 1
+EDDI K 0 A_SpawnItemEx("EddieBombTrail")
+EDDI OP 1
+EDDI K 0 A_SpawnItemEx("EddieBombTrail")
+EDDI MN 1
+EDDI K 0 A_SpawnItemEx("EddieBombTrail")
+EDDI O 1
+EDDI P 1 A_CountDown
+loop
+Death:
+NAPA A 0 A_Stop
+NAPA A 0 A_PlaySoundEx("misc/mm3explosion", "Weapon")
+NAPA A 0 A_ChangeFlag("NOGRAVITY",1)
+NAPA D 0 A_Explode(5, 80, 0)
+NAPA EFGHIJKLMNOPQRS 2
+stop
+}
+}
+
+//BEAT DROP & TEAM PICKUPS
+
+actor AutoBeatBasicItem : CustomInventory 
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's Beat Attack."
+Tag "Auto Beat Attack"
+inventory.icon "BEATI"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
++NOBLOOD
+states
+{
+Spawn:
+WEA4 O 1
+loop
+
+Use:
+WEAP B 0 A_JumpIfInventory("BeatSupportActivated", 1, "Failed")
+WEAP B 0 A_PlaySoundEx("item/refill","Voice")
+WEAP B 0 A_SpawnItemEx("BeatSupportCheckerX")
+WEAP B 0 A_SpawnItemEx("BeatSupportWarper")
+WEAP B 0 ACS_NamedExecuteAlways("core_portedbeat",0,0)
+stop
+
+Failed:
+WEAP B 0
+fail
+}
+}
+
+actor AutoBeatProjectile
+{
+Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
+PROJECTILE
+SeeSound "weapon/dustbit"
+//+DONTBLAST
+damagetype "ClassPainLess2"
+Speed 60
+-NOGRAVITY
++HITTRACER
+Gravity 1.2
+Damage (0)
+radius 16
+height 16
+scale 2.0
+States
+{
+Spawn:
+WEA4 O 1
+wait
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoBeatN")
+stop
+}
+}
+
+actor AutoBeatProjectileB : AutoBeatProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoBeatB")
+stop
+}
+}
+
+actor AutoBeatProjectileR : AutoBeatProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoBeatR")
+stop
+}
+}
+
+actor AutoBeatProjectileO : AutoBeatProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoBeatO")
+stop
+}
+}
+
+actor AutoBeatProjectileP : AutoBeatProjectile
+{
+states
+{
+XDeath:
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("AutoBeatP")
+stop
+}
+}
+
+actor AutoBeatN : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's Beat Attack."
+Tag "Auto's Beat Support"
+inventory.icon "BEATI"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 4200
+States
+{
+Spawn:
+WEA4 O 1
+WEA4 O 0 A_Countdown
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("IsAuto",1,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoBeatBasicItem",1)
+stop
+
+NoPickup:
+WEA4 O 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoBeatB : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Picked up Auto's Beat Attack."
+Tag "Auto's Beat Attack"
+inventory.icon "BEATI"
+Inventory.PickupSound "item/1up"
+scale 2.0
++COUNTITEM
++INVBAR
+reactiontime 700
+states
+{
+Spawn:
+WEA4 OOOOOO 1
+WEA4 O 0 A_Countdown
+WEA4 O 0 A_SpawnItemEx("AutoItemFXB",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoBeatBasicItem",1,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"Pickup2")
+goto NoPickup
+
+Pickup2:
+TNT1 A 0 A_GiveInventory("AutoBeatBasicItem",1)
+stop
+
+NoPickup:
+WEA4 O 0
+fail
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor AutoBeatR : AutoBeatB
+{
+states
+{
+Spawn:
+WEA4 OOOOOO 1
+WEA4 O 0 A_Countdown
+WEA4 O 0 A_SpawnItemEx("AutoItemFXR",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoBeatBasicItem",1,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoBeatO : AutoBeatB
+{
+states
+{
+Spawn:
+WEA4 OOOOOO 1
+WEA4 O 0 A_Countdown
+WEA4 O 0 A_SpawnItemEx("AutoItemFXO",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoBeatBasicItem",1,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"Pickup2")
+goto NoPickup
+}
+}
+
+actor AutoBeatP : AutoBeatB
+{
+states
+{
+Spawn:
+WEA4 OOOOOO 1
+WEA4 O 0 A_Countdown
+WEA4 O 0 A_SpawnItemEx("AutoItemFXP",32,0,random(0,32),velx,vely,velz+12,random(0,360))
+loop
+
+Pickup:
+TNT1 A 0 A_JumpIfInventory("AutoBeatBasicItem",1,"NoPickup")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"Pickup2")
+goto NoPickup
+}
+}
+
+
+actor BeatSupportCheckerX : BasicHelper
+{
+Reactiontime 984
+states
+{
+Spawn:
+TNT1 A 1 A_Countdown
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead", 1, "Death")
+TNT1 A 0 A_JumpIfInTargetInventory("BeatSupportFired",1,"Skip")
+TNT1 A 0 A_JumpIfInTargetInventory("BeatSupportRefresh",1,"Skip")
+TNT1 A 0 A_GiveToTarget("BeatSupportRefresherX",1)
+loop
+Skip:
+TNT1 A 0
+goto Spawn
+Death:
+TNT1 A 0 A_TakeFromTarget("BeatSupportActivated")
+TNT1 A 0 A_TakeFromTarget("BeatSupportFired")
+TNT1 A 0 A_TakeFromTarget("BeatSupportRefresh")
+stop
+}
+}
+
+actor BeatSupportRefresherX : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("BeatSupportRefresh",1)
+WEAP B 0 A_PlaySoundEx("item/beat","SoundSlot5")
+stop
+}
+}
+
+actor BeatSupportFireX : CustomInventory
+{
+states
+{
+Pickup:
+WEAP B 0 A_FireCustomMissile("BeatSupportProjectileX",0,0,8,0)
+WEAP B 0 A_GiveInventory("BeatSupportFired",1)
+stop
+}
+}
+
+actor BeatSupportProjectileX
+{
+PROJECTILE
+Radius 16
+Height 16
+scale 2.5
+damage (10)
+Obituary "$OB_BEATSUPPORT"
+//+RIPPER
++THRUGHOST
++SKYEXPLODE
+damagetype "Beat"
+speed 44
+States
+{
+Spawn:
+BEAT ABCABCABCABC 2
+goto Death
+Death:
+BEAT A 0 A_CustomMissile("BeatSupportReturn",0,0,0,0)
+stop
+}
+}

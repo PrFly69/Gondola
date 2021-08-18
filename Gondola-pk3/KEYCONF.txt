@@ -1,0 +1,181 @@
+clearplayerclasses
+addplayerclass MegamanC nomenu//could really use some changes in his upgrades
+addplayerclass ProtomanHero nomenu
+addplayerclass BassHero nomenu
+addplayerclass DuoHero nomenu
+//addplayerclass Protoman nomenu
+//addplayerclass Bass nomenu
+//addplayerclass Duo nomenu
+addplayerclass Maestro nomenu//can't support his team anymore
+addplayerclass RockClass nomenu
+addplayerclass RollClass nomenu
+addplayerclass Auto nomenu//insert witty dev remark here
+addplayerclass LightRyu nomenu//was going to be slotted out for being an meme itself
+addplayerclass DrWily nomenu
+addplayerclass SniperJoe nomenu
+
+addplayerclass Cutman nomenu
+addplayerclass Gutsman nomenu//software users HATE him!!
+addplayerclass Iceman nomenu//pocket ice
+addplayerclass Bombman nomenu//LOOK GUYS BIG BOOM = BIG EFFECT
+addplayerclass Fireman nomenu
+addplayerclass Elecman nomenu//infinite fire mans
+addplayerclass Timeman nomenu
+addplayerclass Oilman nomenu//HAHA FUNNY XD SNAP ON SLIDE MAYMAY
+
+addplayerclass Metalman nomenu
+addplayerclass Airman nomenu//Cleaned out his fans
+addplayerclass Bubbleman nomenu//put some oompf in his buster
+addplayerclass Quickman nomenu
+addplayerclass Crashman nomenu//IS THAT A SMASH REFERENCE??
+addplayerclass Flashman nomenu
+addplayerclass Heatman nomenu//inb4 dev buffs his own mains
+addplayerclass Woodman nomenu
+addplayerclass Alien nomenu
+
+//addplayerclass MetalmanRNC nomenu
+//addplayerclass AirmanRNC nomenu
+//addplayerclass BubblemanRNC nomenu
+//addplayerclass QuickmanRNC nomenu
+//addplayerclass CrashmanRNC nomenu
+//addplayerclass FlashmanRNC nomenu
+//addplayerclass HeatmanRNC nomenu
+//addplayerclass WoodmanRNC nomenu
+
+addplayerclass Needleman nomenu//revving is an important part of his playstyle yes yes
+addplayerclass Magnetman nomenu//What? Actual aim now?
+addplayerclass Geminiman nomenu//upgraded his potatoes to yams
+addplayerclass Hardman nomenu//Took some speed enhancers
+addplayerclass Topman nomenu
+addplayerclass Snakeman nomenu
+addplayerclass Sparkman nomenu//man pharaoh + stun = yes yes
+addplayerclass Shadowman nomenu//Can dash
+addplayerclass DocRobot nomenu//What do you mean I can't scan magnet missile anymore?
+//addplayerclass Breakman nomenu not yet :^)
+
+addplayerclass Brightman nomenu//local fat lightbulb walljumps on skyscraper
+addplayerclass Toadman nomenu
+addplayerclass Drillman nomenu
+addplayerclass Pharaohman nomenu//IS THAT A PUNCH? IN MY  C O M P E T I T I V E   P A T C H ?
+addplayerclass Ringman nomenu//ring thing recieves delay 
+addplayerclass Dustman nomenu
+addplayerclass Diveman nomenu//Tackleman suprememe
+addplayerclass Skullman nomenu
+
+addplayerclass Gravityman nomenu//What do you mean I can't fling for 2 damage anymore?
+addplayerclass Waveman nomenu//Wave pun, also +SKYEXPLODE
+addplayerclass Stoneman nomenu
+addplayerclass Gyroman nomenu//huzzah, flight item
+addplayerclass Starman nomenu//brainlet m1 + w user
+addplayerclass Chargeman nomenu//I choo choo choose your buffs patch did and apply them to cbm to a lesser degree
+addplayerclass Napalmman nomenu//good pub stomper
+addplayerclass Crystalman nomenu//foresees a not so bright future, but to whom?
+addplayerclass Darkman1 nomenu
+addplayerclass Darkman2 nomenu//not sure why he was nerfed in v9b ¯\_(ツ)_/¯
+addplayerclass Darkman3 nomenu
+addplayerclass Darkman4 nomenu//Wanna hear a joke? Honk XDDDDDDDDDDDD
+
+addplayerclass Blizzardman nomenu
+addplayerclass Centaurman nomenu
+addplayerclass Flameman nomenu
+addplayerclass Knightman nomenu
+addplayerclass Plantman nomenu
+addplayerclass Tomahawkman nomenu//good HUD
+addplayerclass Windman nomenu//making him lose ammo on mainfire would hurt his identity :(((
+addplayerclass Yamatoman nomenu//took about 3 hours to get his spears to hurt on callback
+
+addplayerclass Freezeman nomenu//Saved up to buy seperate hydrogen tanks
+addplayerclass Junkman nomenu
+addplayerclass Burstman nomenu//kaboom x3
+addplayerclass Cloudman nomenu//upgraded his medicine to get more pep in his step
+addplayerclass Springman nomenu
+addplayerclass Slashman nomenu
+addplayerclass Shademan nomenu//suck for 25-30 HP, reapply 2 seconds afterwards 
+addplayerclass Turboman nomenu
+
+addplayerclass Tenguman nomenu
+addplayerclass Astroman nomenu//Clones became competent
+addplayerclass Swordman nomenu//is now a fair fight
+addplayerclass Clownman nomenu
+addplayerclass Searchman nomenu//HEY BOY HEY BOY HEY BOY HEY BOY HEY BOY HEY BOY HEY BOY
+addplayerclass Frostman nomenu//learned how to control his inner JUMP JUMP SLIDE SLIDE
+addplayerclass Grenademan nomenu
+addplayerclass Aquaman nomenu//THE PROJECTILE LOOKS LIKE ITS EXPLODING, BETTER GIVE IT A_EXPLODE
+addplayerclass OriginalDuo nomenu//Recieved a fair amount of justice
+addplayerclass Trio nomenu//stole the latest tech from the intergalactic space police
+
+addplayerclass Dynamoman nomenu//2397 lines in weapon actor yes yes
+addplayerclass Coldman nomenu
+addplayerclass Groundman nomenu//focuses on his line of work
+addplayerclass Pirateman nomenu//99% save percent yes yes
+addplayerclass Burnerman nomenu
+addplayerclass Magicman nomenu
+addplayerclass KingClass nomenu//MIND BULLETS
+
+addplayerclass Concreteman nomenu//let's make his dash longer and harder to control instead of just delaying his altfire :thonkin:
+addplayerclass Tornadoman nomenu//took some steroids
+addplayerclass Splashwoman nomenu//lemme just make this quick edit, damage (14) --> damage (12) there we go
+addplayerclass Plugman nomenu//can't keep his hands to himself
+addplayerclass Jewelman nomenu//ouch oof owie 6 int vars
+addplayerclass Hornetman nomenu//its hip to aim bees
+addplayerclass Magmaman nomenu//didn't attend his anger management classes
+addplayerclass Galaxyman nomenu
+addplayerclass Fakeman nomenu//became the best sharpshooter
+
+addplayerclass Blademan nomenu//TOO SIMILAR TO ELECMAN. LET'S ADD GRAVITY.
+addplayerclass Pumpman nomenu
+addplayerclass Commandoman nomenu
+addplayerclass Chillman nomenu
+addplayerclass Sheepman nomenu
+addplayerclass Strikeman nomenu
+addplayerclass Nitroman nomenu//No longer hacks the game to get more gas
+addplayerclass Solarman nomenu
+
+addplayerclass Terra nomenu
+addplayerclass Mercury nomenu//Sure, a punch is a meme, but a 1/256 chance of instakill? better keep it in
+addplayerclass Venus nomenu//Bubble ticker uses lead now instead of 1$ bubble solution
+addplayerclass Mars nomenu
+addplayerclass Jupiter nomenu//GOTTA BLAST
+addplayerclass Saturn nomenu
+addplayerclass Uranus nomenu//brick master
+addplayerclass Pluto nomenu
+addplayerclass Neptune nomenu
+addplayerclass Sunstar nomenu
+
+addplayerclass Fuseman nomenu
+addplayerclass Blastman nomenu
+addplayerclass Acidman nomenu
+
+addplayerclass BusterRodG nomenu//WATCH OUT FOR THAT TREE
+addplayerclass MegaWaterS nomenu//harpoon is a meme, better remove it
+addplayerclass HyperStormH nomenu
+
+addplayerclass Enker nomenu
+addplayerclass Punk nomenu//found inspiration from his core form
+addplayerclass Ballade nomenu
+addplayerclass Quint nomenu//Recieved some flak armor
+addplayerclass RaThor nomenu//sunstar please add details
+
+addplayerclass BBAMegaman nomenu
+
+
+//Tricking the Menu
+alias !cbm_justjoin "closemenu;join"
+
+//Class Information ALIAS
+alias classhelp "menuconsole;menu_CH_NumHelp;puke 22693"//452
+alias cbm_SetCHelpNum "pukename cbm_SetCH_MenuNum"
+
+alias menuclasshelp "menuconsole;classhelp"//452
+alias menu_CH_NumHelp "cbm_SetCHelpNum"
+
+
+//alias !EXAMPLE "closemenu;pukename EXAMPLE 0"
+
+
+alias +rapidattackc "+user1; +altattack"
+alias -rapidattackc "-user1; -altattack"
+
+addkeysection "CCBM Reload Key" MM8BDMSpecials
+//addmenukey "Turbo Attack" +rapidattackc
+

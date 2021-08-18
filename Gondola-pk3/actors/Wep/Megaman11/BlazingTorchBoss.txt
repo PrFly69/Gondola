@@ -1,0 +1,1160 @@
+actor BlazingTorchBoss : BaseMM8BDMWep_CBM 
+{
+tag "$TAGC_11B"
+dropitem "BlazingTorchWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+Obituary "$OB_BLAZINGTORCH"
+Inventory.Pickupmessage "Prepare yourself to feel the heat! TORCHJUTSU!"
+weapon.ammotype "TorchjutsuAmmo"
+weapon.ammotype2 "WaveDashAmmo"
+States
+{
+Spawn:
+C_01 E 1
+loop
+Ready:
+TCCC Z 0 ACS_ExecuteAlways(998,0,59)
+TCCC Z 0 A_GunFlash
+goto Ready1
+Ready1:
+TCCC Z 0 A_GiveInventory("WaveDashAmmo",4)
+TCCC Z 0 A_TakeInventory("LightHeavyChargeAmmo",999)
+TCCC Z 0 A_TakeInventory("TorchBashFlag",999)
+TCCC Z 1 A_WeaponReady
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 2 A_Lower
+TNT1 Z 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TCCC Z 1 A_Raise
+Loop
+Fire:
+TCCC Z 1
+TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",100,1)
+goto Ready1
+LightOrHeavyPunch:
+TCCC Z 1 A_GiveInventory("LightHeavyChargeAmmo",20)
+//TCCC Z 0 A_GiveInventory("WaveDashAmmo",3)
+TCCC Z 0 A_Refire("LightOrHeavyPunch")
+Punch:
+TCCC Z 0 A_TakeInventory("WaveDashAmmo",100)
+TCCC Z 0 A_JumpIfInventory("TorchJutsuAmmo",420,"PowerFire")
+TCCC Z 0 A_JumpIfInventory("LightHeavyChargeAmmo",400,"HeavyPunch")
+LightPunch:
+TCCC Z 0 OffSet(-14,22)
+TCCC Z 0 A_PlaySoundEx("Ryu_L/shinhit","Weapon")
+TCCC Z 0 A_GiveInventory("TorchMain_CI",1)
+TCCC Z 0 OffSet(-14,22)
+TCCC Z 0 OffSet(-14,22)
+TCCC Z 1 OffSet(-20,16)
+//TCCC Z 1 OffSet(-20,16)
+TCCC Z 1 OffSet(-12,20)
+//TCCC Z 1 OffSet(-12,20)
+TCCC Z 1 OffSet(-6,24)
+//TCCC Z 1 OffSet(-6,24)
+TCCC Z 1 OffSet(-2,28)//16
+TCCC Z 9 A_WeaponReady(14)
+Goto Ready1
+HeavyPunch:
+TCCC Z 0 A_TakeInventory("WaveDashAmmo",100)
+TCCC Z 0 OffSet(-14,22)
+TCCC Z 0 A_PlaySoundEx("Ryu_L/shinhit","Weapon")
+TCCC Z 0 A_GiveInventory("TorchMainHeavy_CI",1)
+TCCC Z 0 OffSet(-14,22)
+TCCC Z 0 OffSet(-14,22)
+TCCC Z 1 OffSet(-20,16)
+TCCC Z 1 OffSet(-20,16)
+TCCC Z 1 OffSet(-12,20)
+TCCC Z 1 OffSet(-12,20)
+TCCC Z 1 OffSet(-6,24)
+TCCC Z 1 OffSet(-6,24)
+TCCC Z 2 OffSet(-2,28)//16
+TCCC Z 18 A_WeaponReady(14)
+Goto Ready1
+PowerFire:
+TCCC X 0 A_PlaySoundEx("Ryu_L/exmove","Weapon")
+TCCC X 0 A_GiveInventory("TorchMainEX_CI",1)
+TCCC X 1 OffSet(-3,29)
+TCCC X 0 A_GiveInventory("TorchMainX_CI",1)
+TCCC X 1 OffSet(-7,23)
+TCCC X 0 A_GiveInventory("TorchMainX_CI",1)
+TCCC X 1 OffSet(-14,17)
+TCCC X 0 A_GiveInventory("TorchMainX_CI",1)
+TCCC X 1 OffSet(-17,15)
+TCCC X 0 A_GiveInventory("TorchMainX_CI",1)
+TCCC Y 1 OffSet(-15,17)
+TCCC Y 1 OffSet(-12,20)
+TCCC Y 1 OffSet(-9,23)
+TCCC Y 1 OffSet(-6,26)
+TCCC Z 2 OffSet(-3,29)//16
+TCCC Z 18 A_WeaponReady(14)
+Goto Ready1
+Altfire:
+TCCC Z 1 //tic delay on altfire to prevent desync
+TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",100,1)
+goto Ready1
+LightOrHeavyKick:
+TCCC Z 1 A_GiveInventory("LightHeavyChargeAmmo",20)
+//TCCC Z 0 A_GiveInventory("WaveDashAmmo",3)
+TCCC Z 0 A_Refire("LightOrHeavyKick")
+Kick:
+TNT1 A 0 A_JumpIfInventory("TorchJutsuAmmo",420,"PowerKick")
+TCCC Z 0 A_JumpIfInventory("LightHeavyChargeAmmo",400,"HeavyKick")
+LightKick: //seperate state because i like state names and stuff like altfire + 2
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"LightAirKick")
+TNT1 A 1 Offset(-55,52)A_TakeInventory("WaveDashAmmo",100) 
+TCCC A 0 ACS_ExecuteAlways(512,0,1)
+TCCC A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+//TCCC A 1 Offset(-245,52)A_GiveInventory("TorchKick_CI",1)
+TCCC A 1 Offset(-55,52)
+//TCCC A 1 Offset(-165,42)A_GiveInventory("TorchKick_CI",1)
+TCCC B 1 Offset(-54,32)
+TCCC B 1 Offset(-53,22)A_GiveInventory("TorchKickVert_CI",1)
+TCCC B 1 Offset(-52,12)
+TCCC B 1 Offset(-51,2)//A_GiveInventory("TorchKick_CI",1)
+TCCC B 1 Offset(-50,12)
+//TCCC B 1 Offset(75,22)A_GiveInventory("TorchKickEX_CI",1)
+TCCC B 1 OffSet(-51,32)
+//TCCC A 2 Offset(155,42)
+TCCC A 2 Offset(-53,52)
+TNT1 A 2 Offset(-55,52)A_WeaponReady(14)
+TCCC Z 1 Offset(0,85)
+//TCCC Z 1 Offset(0,60)
+TCCC Z 5 Offset(0,40)A_WeaponReady(14)
+Goto Ready1
+HeavyKick: //seperate state because i like state names and stuff like altfire + 2
+TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",200,1)
+goto LightKick
+TCCC Z 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"HeavyAirKick")
+TNT1 A 1 Offset(-245,52)A_TakeInventory("WaveDashAmmo",200)
+TCCC A 0 ACS_ExecuteAlways(512,0,2)
+TCCC A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+TCCC A 1 Offset(-245,52)A_GiveInventory("TorchKick_CI",1)
+TCCC A 1 Offset(-185,52)
+TCCC A 1 Offset(-165,42)A_GiveInventory("TorchKick_CI",1)
+TCCC B 1 Offset(-125,32)
+TCCC B 1 Offset(-85,22)A_GiveInventory("TorchKick_CI",1)
+TCCC B 1 Offset(-45,12)
+TCCC B 1 Offset(-5,2)A_GiveInventory("TorchKick_CI",1)
+TCCC B 1 Offset(35,12)
+TCCC B 1 Offset(75,22)A_GiveInventory("TorchKickEX_CI",1)
+TCCC B 1 OffSet(115,32)
+TCCC A 2 Offset(155,42)
+TCCC A 2 Offset(175,52)
+TNT1 A 8 A_WeaponReady(14)
+TCCC Z 1 Offset(0,85)
+TCCC Z 1 Offset(0,60)
+TCCC Z 1 Offset(0,40)
+TCCC Z 5 A_WeaponReady(14)
+Goto Ready1
+LightAirKick:
+TNT1 A 1 A_JumpIfInventory("WaveDashAmmo",100,"LightAirKickReal")
+Goto LightKick //read above
+LightAirKickReal:
+TCCC A 0 ACS_ExecuteAlways(512,0,4)
+TCCC A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+//TCCC A 1 Offset(-245,52)A_GiveInventory("TorchKick_CI",1)
+TCCC A 1 Offset(-55,52)
+//TCCC A 1 Offset(-165,42)A_GiveInventory("TorchKick_CI",1)
+TCCC B 1 Offset(-54,32)
+TCCC B 1 Offset(-53,22)A_GiveInventory("TorchKickVert_CI",1)
+TCCC B 1 Offset(-52,12)
+TCCC B 1 Offset(-51,2)//A_GiveInventory("TorchKick_CI",1)
+TCCC B 1 Offset(-50,12)
+//TCCC B 1 Offset(75,22)A_GiveInventory("TorchKickEX_CI",1)
+TCCC B 1 OffSet(-51,32)
+//TCCC A 2 Offset(155,42)
+TCCC A 2 Offset(-53,52)
+TNT1 A 2 Offset(-55,52)A_WeaponReady(14)
+TCCC Z 1 Offset(0,85)
+//TCCC Z 1 Offset(0,60)
+TCCC Z 5 Offset(0,40)A_WeaponReady(14)
+goto Ready1
+HeavyAirKick:
+TNT1 A 1 A_JumpIfInventory("WaveDashAmmo",100,"HeavyAirKick")
+Goto LightKick //read above
+HeavyAirKick:
+TNT1 A 1
+TCCC A 0 ACS_ExecuteAlways(512,0,3)
+TCCC Z 1 Offset(-14,85)
+TCCC Z 1 Offset(-14,60)
+TCCC Z 1 Offset(-14,40)
+TCCC Z 1 Offset(-14,20)
+TCCC A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)//WeaponReady to prevent hud shenanigans
+TCCC A 0 A_GiveInventory("TorchAltPitch_P",1)
+TCCC B 0 A_SetArg(2,momx)
+TCCC B 0 A_SetArg(3,momy)
+TCCC B 0 A_SetArg(4,momz)
+TCCC B 0 SetPlayerProperty(0,1,0)
+//TCCC B 0 A_TakeInventory("UnSolid",99)
+//TCCC B 0 A_ChangeFlag("SOLID",0)
+//TCCC B 0 A_ChangeFlag("THRUSPECIES",1)
+TCCC B 0 A_GiveInventory("NoJumpCancel",1)
+TCCC B 0 A_GiveInventory("LadderDisable",1)
+Goto HeavyAirKickLoop
+HeavyAirKickLoop: //had to rewrite entire segment to prevent jank
+TCCC A 0 ACS_ExecuteAlways(512,0,4)
+TCCC B 0 A_PlaySoundEx("weapon/superboost","Body")
+TCCC B 1 A_GiveInventory("TorchKickVert_CI",1)
+TCCC B 0 A_JumpIfInventory("TorchBashFlag",1,"Rebound")
+TCCC B 0 A_ChangeVelocity(args[2],args[3],args[4]-10,2)
+TCCC B 1 OffSet(-14,17)A_GiveInventory("TorchKickVert_CI",1)
+TCCC B 0 A_JumpIf(z-floorz==0,"Rebound")//AltEnd
+TCCC B 0 A_JumpIfInventory("TorchBashFlag",1,"Rebound")
+TCCC B 0 A_JumpIf(z-floorz==0,"Rebound")//AltEnd
+TCCC B 1 OffSet(-14,10)A_GiveInventory("TorchKickVert_CI",1)
+TCCC B 0 A_GiveInventory("WeaponCharge",1)
+TCCC B 0 A_JumpIfInventory("TorchBashFlag",1,"Rebound")
+TCCC B 0 A_JumpIf(z-floorz==0,"Rebound")//AltEnd
+TCCC B 1 A_GiveInventory("TorchKickVert_CI",1)
+TCCC B 0 A_ChangeVelocity(args[2],args[3],args[4]-10,2)
+TCCC B 0 A_JumpIfInventory("TorchBashFlag",1,"Rebound")
+TCCC B 0 A_JumpIf(z-floorz==0,"Rebound")//AltEnd
+TCCC B 0 A_JumpIfInventory("WeaponCharge",50,"Rebound")
+goto HeavyAirKickLoop
+/*AltEnd:
+TCCC B 0 A_TakeInventory("TorchBashFlag",999)
+TCCC B 0 SetPlayerProperty(0,0,0)
+TCCC B 0 A_TakeInventory("WeaponCharge",999)
+TCCC B 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+TCCC B 0 A_TakeInventory("NoJumpCancel",999)
+TCCC B 0 A_GiveInventory("LadderEnable",1)
+TCCC B 0 A_PlaySoundEx("weapon/buttstomp","Body")
+TCCC B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)//WeaponReady to prevent hud shenanigans; moved takeinventory up a few tics to prevent desync
+TCCC B 0 offset(0,82)A_Quake(4,15,0,192,0)
+TCCC B 0 offset(0,82)
+TCCC B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+TCCC B 0 A_SpawnItemEX("TorchKick",0,0,5,60,0,0,0,1)
+TCCC B 0 A_SpawnItemEX("TorchKick",0,0,5,60,0,0,45,1)
+TCCC B 0 A_SpawnItemEX("TorchKick",0,0,5,60,0,0,90,1)
+TCCC B 0 A_SpawnItemEX("TorchKick",0,0,5,60,0,0,135,1)
+TCCC B 0 A_SpawnItemEX("TorchKick",0,0,5,60,0,0,180,1)
+TCCC B 0 A_SpawnItemEX("TorchKick",0,0,5,60,0,0,225,1)
+TCCC B 0 A_SpawnItemEX("TorchKick",0,0,5,60,0,0,270,1)
+TCCC B 0 A_SpawnItemEX("TorchKick",0,0,5,60,0,0,305,1)
+goto AltEndReal*/
+Rebound:
+TCCC B 0 A_Stop
+TCCC B 0 SetPlayerProperty(0,0,0)
+TCCC B 0 A_TakeInventory("TorchBashFlag",999)
+CONH X 0 A_PlaySoundEx("weapon/shoulderhit","Weapon")
+CONH X 0 A_PlaySoundEx("weapon/shoulderhit","Body")
+CONH X 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+TCCC X 0 A_Recoil(35)
+TCCC X 0 ThrustThingZ(0,60,0,0)
+CONH A 0 A_TakeInventory("NoJumpCancel",999)
+goto AltEndReal
+AltEndReal:
+TCCC B 0 A_TakeInventory("NoJumpCancel",999)
+TCCC B 0 A_GiveInventory("LadderEnable",1)
+//TCCC B 0 A_ChangeFlag("THRUSPECIES",0)
+//TCCC B 0 A_SpawnItemEx("ReSolidifier")
+TCCC B 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+TCCC B 2 offset(-14,30)A_TakeInventory("WaveDashAmmo",200)
+//TCCC B 2 offset(-14,40)
+TCCC B 2 offset(-14,50)
+//TCCC B 2 offset(-14,60)
+TCCC B 2 offset(-14,70)
+//TCCC B 2 offset(-14,80)
+TCCC B 2 offset(-14,90)
+//TCCC B 2 offset(-14,100)
+TCCC B 1 OffSet(-14,110)
+//TCCC B 1 OffSet(-14,120)
+TCCC B 1 OffSet(-14,130)
+//TCCC A 1 OffSet(-198,50)
+TCCC A 1 OffSet(-198,60)
+//TCCC A 1 OffSet(-198,70)
+TCCC A 1 OffSet(-198,80)
+//TCCC A 1 OffSet(-198,90)
+TNT1 A 0 A_WeaponReady(14)
+//TNT1 A 1 Offset(0,85)
+TCCC Z 1 Offset(0,85)
+//TCCC Z 1 Offset(0,60)
+TCCC Z 1 Offset(0,40)A_WeaponReady(14)
+Goto Ready1 //wtf two ready1 states, fixd
+
+PowerKick: //pretty sure since first state has a delay, one wont be required here
+TCCC A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"PowerKick2")
+TCCC A 0 A_PlaySoundEx("weapon/searchdash","Weapon")
+TCCC A 0 A_JumpIfInventory("WaveDashAmmo",100,"PowerKickContinue")
+Goto Ready1
+PowerKickContinue: //same deal as before, prefer state names over numbered states
+TCCC Z 0 A_JumpIfInventory("LightHeavyChargeAmmo",400,"HeavyPowerKick")
+goto LightPowerKick
+HeavyPowerKick:
+DRIA A 0 A_GiveInventory("InvulnerableOn_Pickup",1)
+TCCC A 0 SetPlayerProperty(0,1,3)
+TCCC A 1 SetPlayerProperty(0,1,4)
+TCCC A 1 offset(-245,52)A_Recoil(-50)
+TCCC A 1 offset(-245,52)
+TCCC A 1 offset(-245,52)
+TCCC A 1 offset(-245,52)
+TCCC A 5 
+TCCC A 0 A_TakeInventory("WaveDashAmmo",200)
+TCCC A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+TCCC A 0 A_Stop
+TCCC A 1 offset(-245,52)A_GiveInventory("TorchKick_CI",1)
+TCCC A 1 offset(-185,52)
+TCCC A 1 offset(-165,42)A_GiveInventory("TorchKick_CI",1)
+TCCC C 1 offset(-125,32)
+TCCC C 1 offset(-85,22)A_GiveInventory("TorchKick_CI",1)
+TCCC C 1 offset(-45,12)
+TCCC C 1 offset(-5,2)A_GiveInventory("TorchKick_CI",1)
+TCCC C 1 offset(35,12)
+TCCC C 2 offset(75,22)A_GiveInventory("TorchKickEX_CI",1)
+TCCC A 0 SetPlayerProperty(0,0,4)
+TCCC A 0 SetPlayerProperty(0,0,3)
+TCCC A 2 Offset(155,42)
+TCCC A 2 offset(175,52)
+TCCC A 2 offset(205,52)
+TCCC A 8 offset(235,72)
+TCCC A 2 offset(265,72)
+TCCC A 2 offset(295,72)
+TCCC Z 1 Offset(0,85)
+TCCC Z 1 Offset(0,60)
+TCCC Z 1 Offset(0,40)
+Goto Ready1
+LightPowerKick:
+DRIA A 0 A_GiveInventory("InvulnerableOn_Pickup",1)
+TCCC A 0 SetPlayerProperty(0,1,3)
+TCCC A 1 SetPlayerProperty(0,1,4)
+TCCC A 1 offset(-245,52)A_Recoil(-50)
+TCCC A 1 offset(-245,52)
+TCCC A 1 offset(-245,52)
+TCCC A 1 offset(-245,52)
+TCCC A 1 Offset(-55,52)A_TakeInventory("WaveDashAmmo",100) 
+DRIA A 0 A_GiveInventory("InvulnerableOff_Pickup",1)
+TCCC A 0 ACS_ExecuteAlways(512,0,1)
+//TCCC A 1 Offset(-245,52)A_GiveInventory("TorchKick_CI",1)
+TCCC A 1 Offset(-55,52)
+//TCCC A 1 Offset(-165,42)A_GiveInventory("TorchKick_CI",1)
+TCCC B 1 Offset(-54,32)
+TCCC A 0 A_Stop
+TCCC A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+TCCC B 1 Offset(-53,22)A_GiveInventory("TorchKickVertEX_CI",1)
+TCCC B 1 Offset(-52,12)
+TCCC B 1 Offset(-51,2)//A_GiveInventory("TorchKick_CI",1)
+TCCC B 1 Offset(-50,12)
+//TCCC B 1 Offset(75,22)A_GiveInventory("TorchKickEX_CI",1)
+TCCC B 1 OffSet(-51,32)
+//TCCC A 2 Offset(155,42)
+TCCC A 2 Offset(-53,52)
+TNT1 A 2 Offset(-55,52)
+TCCC A 0 SetPlayerProperty(0,0,3)
+TCCC A 1 SetPlayerProperty(0,0,4)
+TCCC Z 1 Offset(0,85)
+//TCCC Z 1 Offset(0,60)
+TCCC Z 5 
+Goto Ready1
+PowerKick2:
+TCCC C 0 A_JumpIfInventory("WaveDashAmmo",14,"Altkick2")
+Goto PowerKickContinue
+Altkick2:
+TCCC A 0 ACS_ExecuteAlways(512,0,3)
+TCCC X 0 ThrustThingZ(0,60,0,0)
+TCCC X 0 A_PlaySoundEx("weapon/searchdash","Weapon")
+TCCC X 2 
+TCCC W 2 OffSet(60,30)
+TCCC W 2 OffSet(83,23)
+TCCC W 2 OffSet(83,23)
+TCCC W 1 OffSet(116,18)
+TCCC W 1 OffSet(188,11)
+Goto AltkickX
+AltkickX:
+TCCC C 0 A_GiveInventory("TorchAltPitch_P",1)
+TCCC C 0 A_SetArg(2,momx)
+TCCC C 0 A_SetArg(3,momy)
+TCCC C 0 A_SetArg(4,momz)
+//TCCC C 0 A_TakeInventory("UnSolid",99)
+//TCCC C 0 A_ChangeFlag("SOLID",0)
+//TCCC C 0 A_ChangeFlag("THRUSPECIES",1)
+TCCC C 0 A_GiveInventory("NoJumpCancel",1)
+TCCC C 0 A_GiveInventory("LadderDisable",1)
+AltkickLoopX:
+TCCC A 0 ACS_ExecuteAlways(512,0,4)
+TCCC C 0 A_PlaySoundEx("weapon/superboost","Body")
+TCCC C 0 A_GiveInventory("TorchKick_CI",1)
+TCCC C 0 A_ChangeVelocity(args[2],args[3],args[4]-5,2)
+TCCC C 1 A_JumpIf(z-floorz==0,"AltEnd2")
+TCCC C 1 OffSet(-14,17)A_JumpIf(z-floorz==0,"AltEnd2")
+TCCC C 0 A_TakeInventory("WaveDashAmmo",1)
+TCCC C 1 OffSet(-14,10)A_JumpIf(z-floorz==0,"AltEnd2")
+TCCC C 0 A_ChangeVelocity(args[2],args[3],args[4]-5,2)
+TCCC C 0 A_JumpIf(z-floorz==0,"AltEnd2")
+TCCC C 0 A_JumpIfInventory("WaveDashAmmo",1,"AltkickLoopX")
+goto AltEnd2
+AltEnd2:
+TCCC C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+TCCC C 0 A_TakeInventory("NoJumpCancel",999)
+TCCC C 0 A_GiveInventory("LadderEnable",1)
+TCCC C 0 A_PlaySoundEx("weapon/buttstomp","Body")
+TCCC C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH) //same deal as before, moved up ammo and added weaponready
+TCCC C 0 A_SpawnItemEx("TorchCrushFX",0,0,-10,0,0,-10)
+TCCC C 0 offset(0,82)A_Quake(4,15,0,192,0)
+TCCC C 0 offset(0,82)
+TCCC C 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+TCCC C 0 A_SpawnItemEX("TorchKick2",0,0,5,60,0,0,0,1)
+TCCC C 0 A_SpawnItemEX("TorchKick2",0,0,5,60,0,0,45,1)
+TCCC C 0 A_SpawnItemEX("TorchKick2",0,0,5,60,0,0,90,1)
+TCCC C 0 A_SpawnItemEX("TorchKick2",0,0,5,60,0,0,135,1)
+TCCC C 0 A_SpawnItemEX("TorchKick2",0,0,5,60,0,0,180,1)
+TCCC C 0 A_SpawnItemEX("TorchKick2",0,0,5,60,0,0,225,1)
+TCCC C 0 A_SpawnItemEX("TorchKick2",0,0,5,60,0,0,270,1)
+TCCC C 0 A_SpawnItemEX("TorchKick2",0,0,5,60,0,0,305,1)
+TCCC C 2 offset(-14,30)A_TakeInventory("WaveDashAmmo",7)
+TCCC C 2 offset(-14,40)
+TCCC C 2 offset(-14,50)
+TCCC C 2 offset(-14,60)
+TCCC C 2 offset(-14,70)
+TCCC C 2 offset(-14,80)
+TCCC C 2 offset(-14,90)
+TCCC C 2 offset(-14,100)
+TCCC C 2 OffSet(-14,110)
+TCCC C 2 OffSet(-14,120)
+TCCC C 2 OffSet(-14,130)
+TCCC C 1 OffSet(-14,130)
+TCCC C 1 OffSet(-14,130)
+TCCC C 1 OffSet(-14,130)
+TCCC C 1 OffSet(-14,130)
+TCCC C 1 OffSet(-14,130)
+TNT1 A 1 A_WeaponReady(14)
+TCCC Z 1 Offset(0,85)
+TCCC Z 1 Offset(0,60)
+TCCC Z 1 Offset(0,40)
+TCCC Z 1 Offset(0,20)
+TCCC Z 1 A_WeaponReady(14)
+Goto Ready1
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("PowerGearEnabled",1,"FlashPG")
+TNT1 A 0 A_JumpIfInventory("TorchjutsuAmmo",420,"FlashPGSound")
+TNT1 A 1 A_GiveInventory("TorchTake_P",1)
+TNT1 A 0 A_CheckSight("StreetFighterFlash")
+goto StreetFighterFlash
+TNT1 A 0
+loop
+FlashPGSound:
+TNT1 A 0 A_GiveInventory("PowerGearEnabled",1)
+TNT1 A 0 A_PlaySound("weapon/BurnerBoom","Body")
+TNT1 A 0 A_GiveInventory("TorchjutsuAmmo",20)
+FlashPG:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_GiveInventory("TorchTakePG_P",1)
+TNT1 A 0 A_SpawnItemEx("MagmamanBitFX",random(12,24),0,random(70,90),frandom(-1,1),0,frandom(0,2),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("TorchjutsuAmmo",420,"FlashPG")
+TNT1 A 0 A_TakeInventory("PowerGearEnabled",1)
+TNT1 A 0 A_CheckSight("StreetFighterFlash")
+goto Flash
+StreetFighterFlash:
+TNT1 A 0 A_FaceTarget(180,180)
+goto Flash
+}
+}
+
+actor TorchjutsuAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 560
++INVENTORY.IGNORESKILL
+}
+
+actor WaveDashAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 400
++INVENTORY.IGNORESKILL
+}
+
+actor LightHeavyChargeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 500
++INVENTORY.IGNORESKILL
+}
+
+actor TorchTakeFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 20
++INVENTORY.IGNORESKILL
+}
+
+Actor TorchBashFlag : OnceC {}
+actor PowerGearEnabled : OnceC {}
+
+actor TorchTake_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("TorchTakeFlag",3,"Take")
+TNT1 A 0 A_GiveInventory("TorchTakeFlag",1)
+stop
+Take:
+TNT1 A 2 A_TakeInventory("TorchjutsuAmmo",1)
+TNT1 A 0 A_TakeInventory("TorchTakeFlag",20)
+stop
+}
+}
+
+actor TorchTakePG_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("TorchTakeFlag",1,"Take")
+TNT1 A 0 A_GiveInventory("TorchTakeFlag",1)
+stop
+Take:
+TNT1 A 2 A_TakeInventory("TorchjutsuAmmo",1)
+TNT1 A 0 A_TakeInventory("TorchTakeFlag",20)
+stop
+}
+}
+
+actor TorchmanJutsu
+{
+Translation "195:195=175:175", "204:204=216:216"
+PROJECTILE
+damagetype "TorchHit1"
+Obituary "$OB_TORCH"
+Damage (15)
+radius 12
+height 12
+Speed 40
+scale 2.5
+reactiontime 4
+States
+{
+Spawn:
+GIGL CC 1
+SpawnLOOP:
+GIGL C 1
+GIGL C 0 A_Countdown
+GIGL C 1 A_FadeOut(.1)
+goto SpawnLOOP
+Death:
+TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+stop
+}
+}
+
+actor TorchmanJutsuHeavy : TorchmanJutsu
+{
+Speed 50
+damage (10)
++RIPPER
+States
+{
+Spawn:
+GIGL CCCCCC 1 A_SpawnItemEx("TorchmanJutsuHeavyFX",0,0,0,0,0,0,0,1)
+SpawnLOOP:
+GIGL C 1 A_SpawnItemEx("TorchmanJutsuHeavyFX",0,0,0,0,0,0,0,1)
+GIGL C 0 A_Countdown
+GIGL C 0 A_FadeOut(.1)
+goto SpawnLOOP
+Death:
+TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+stop
+}
+}
+
+actor TorchmanJutsuHeavyFX : TorchmanJutsuHeavy
+{
+damage (0)
+speed 0
+alpha 0.75
+scale 3
+States
+{
+Spawn:
+GIGL C 1 A_Fadeout
+GIGL C 0 A_SetScale(ScaleX-0.1)
+GIGL C 0 A_SetScale(ScaleY-0.1)
+loop
+}
+}
+
+actor PowerBurnJutsu
+{
+Translation "195:195=227:227", "204:204=219:219"
+PROJECTILE
+damagetype "TorchHit3"
+Obituary "$OB_TORCHEX"
+Damage (15)
+radius 24
+height 24
+Speed 50
+scale 3.5
+reactiontime 4
+States
+{
+Spawn:
+GIGL CCCC 1
+SpawnLOOP:
+GIGL C 1
+GIGL C 0 A_Countdown
+GIGL C 1 A_FadeOut(.1)
+GIGL C 0 A_SetScale(ScaleX-0.1)
+GIGL C 0 A_SetScale(ScaleY-0.1)
+goto SpawnLOOP
+Death:
+TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+stop
+}
+}
+
+actor PowerStormJutsu
+{
+Translation "195:195=227:227", "204:204=219:219"
+PROJECTILE
+damagetype "TorchHit35"
+Obituary "$OB_TORCHX"
+Damage (3)
+radius 6
+height 6
+Speed 50
+scale 1.25
+reactiontime 4
+States
+{
+Spawn:
+GIGL DDDD 1
+SpawnLOOP:
+GIGL D 1
+GIGL D 0 A_Countdown
+GIGL D 1 A_FadeOut(.1)
+GIGL D 0 A_SetScale(ScaleX-0.1)
+GIGL D 0 A_SetScale(ScaleY-0.1)
+loop
+Death:
+TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+stop
+}
+}
+
+actor TorchKick
+{
+Translation "198:198=178:178", "192:192=227:227", "4:4=216:216"
+PROJECTILE
+damagetype "TorchHit2"
+Obituary "$OB_TORCH2"
++DONTBLAST
++DONTREFLECT
++HITTRACER
+damage (6)
+Radius 28
+Height 16
+speed 80
+scale 4
+States
+{
+Spawn:
+KGNP JK 2
+stop
+Crash:
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedexecuteWithResult("cbm_istracerenemy")==1,"Death_Give")
+Goto Death
+Death_Give:
+TNT1 A 2 A_SpawnItemEx("OilPitIgnite",0,0,8)
+TNT1 A 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
+TNT1 A 0 A_Recoil(-8)
+Goto Death
+Death:
+KGNP JK 2 
+KGNP J 2
+stop
+}
+}
+
+actor TorchKickVert : TorchKick
+{
+Translation "198:198=178:178", "192:192=227:227", "4:4=216:216"
+PROJECTILE
+damagetype "TorchHit1"
+damage (15)
+Radius 36
+Height 56
+States
+{
+Spawn:
+STEA MNO 1
+stop
+Crash:
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedexecuteWithResult("cbm_istracerenemy")==1,"Death_Give")
+Goto Death
+Death_Give:
+TNT1 A 2 A_SpawnItemEx("OilPitIgnite",0,0,8)
+TNT1 A 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
+TNT1 A 0 A_Recoil(-8)
+Goto Death
+Death:
+STEA MNO 1
+stop
+}
+}
+
+actor TorchKick2
+{
+Translation "198:198=228:228", "192:192=160:160"
+PROJECTILE
+damagetype "TorchHit25"
+Obituary "$OB_TORCH2X"
++DONTBLAST
++DONTREFLECT
++HITTRACER
+damage (6)
+Radius 39
+Height 22
+speed 60
+scale 6
+States
+{
+Spawn:
+KGNP JK 2
+stop
+Crash:
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedexecuteWithResult("cbm_istracerenemy")==1,"Death_Give")
+Goto Death
+Death_Give:
+TNT1 A 2 A_SpawnItemEx("OilPitIgnite",0,0,8)
+TNT1 A 0 A_PlaySoundEx("weapon/pharaohpunchhit","Weapon")
+TNT1 A 0 A_Recoil(-8)
+Goto Death
+Death:
+KGNP JK 2 
+KGNP J 2
+stop
+}
+}
+
+actor TorchKickVert2 : TorchKick2
+{
+damage (30)
+Radius 36
+Height 64
+speed 60
+scale 6
+States
+{
+Spawn:
+STEA MNO 1
+stop
+Crash:
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedexecuteWithResult("cbm_istracerenemy")==1,"Death_Give")
+Goto Death
+Death_Give:
+TNT1 A 2 A_SpawnItemEx("OilPitIgnite",0,0,8)
+TNT1 A 0 A_PlaySoundEx("weapon/pharaohpunchhit","Weapon")
+TNT1 A 0 A_Recoil(-8)
+Goto Death
+Death:
+STEA MNO 1
+stop
+}
+}
+
+actor TorchmanJutsuB : TorchmanJutsu{translation "195:195=74:74", "204:204=205:205"}
+actor TorchmanJutsuR : TorchmanJutsu{translation "195:195=41:41", "204:204=171:171"}
+actor TorchmanJutsuO : TorchmanJutsu{translation "195:195=128:128", "204:204=104:104"}
+actor TorchmanJutsuP : TorchmanJutsu{translation "195:195=232:232", "204:204=229:229"}
+
+actor TorchMain_CI : TeamColor_CI
+{
+Obituary "$OB_TORCH"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsu",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsuB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsuR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsuO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsuP",0,0,8,0)
+goto Done
+}
+}
+
+actor TorchmanJutsuHeavyB : TorchmanJutsuHeavy{translation "195:195=74:74", "204:204=205:205"}
+actor TorchmanJutsuHeavyR : TorchmanJutsuHeavy{translation "195:195=41:41", "204:204=171:171"}
+actor TorchmanJutsuHeavyO : TorchmanJutsuHeavy{translation "195:195=128:128", "204:204=104:104"}
+actor TorchmanJutsuHeavyP : TorchmanJutsuHeavy{translation "195:195=232:232", "204:204=229:229"}
+
+actor TorchMainHeavy_CI : TeamColor_CI
+{
+Obituary "$OB_TORCH"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsuHeavy",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsuHeavyB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsuHeavyR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsuHeavyO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TorchmanJutsuHeavyP",0,0,8,0)
+goto Done
+}
+}
+
+actor PowerBurnJutsuB : PowerBurnJutsu{translation "195:195=205:205", "204:204=196:196"}
+actor PowerBurnJutsuR : PowerBurnJutsu{translation "195:195=171:171", "204:204=48:48"}
+actor PowerBurnJutsuO : PowerBurnJutsu{translation "195:195=104:104", "204:204=138:138"}
+actor PowerBurnJutsuP : PowerBurnJutsu{translation "195:195=229:229", "204:204=214:214"}
+
+actor TorchMainEX_CI : TeamColor_CI
+{
+Obituary "$OB_TORCHEX"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PowerBurnJutsu",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PowerBurnJutsuB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PowerBurnJutsuR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PowerBurnJutsuO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PowerBurnJutsuP",0,0,8,0)
+goto Done
+}
+}
+
+actor PowerStormJutsuB : PowerStormJutsu{translation "195:195=205:205", "204:204=196:196"}
+actor PowerStormJutsuR : PowerStormJutsu{translation "195:195=171:171", "204:204=48:48"}
+actor PowerStormJutsuO : PowerStormJutsu{translation "195:195=104:104", "204:204=138:138"}
+actor PowerStormJutsuP : PowerStormJutsu{translation "195:195=229:229", "204:204=214:214"}
+
+actor TorchMainX_CI : TeamColor_CI
+{
+Obituary "$OB_TORCHX"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PowerStormJutsu",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PowerStormJutsuB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PowerStormJutsuR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PowerStormJutsuO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PowerStormJutsuP",0,0,8,0)
+goto Done
+}
+}
+
+actor TorchKickB : TorchKick{translation "198:198=205:205", "192:192=196:196"}
+actor TorchKickR : TorchKick{translation "198:198=171:171", "192:192=170:170"}
+actor TorchKickO : TorchKick{translation "198:198=104:104", "192:192=138:138"}
+actor TorchKickP : TorchKick{translation "198:198=229:229", "192:192=214:214"}
+
+actor TorchKick_CI : TeamColor_CI
+{
+Obituary "$OB_TORCH2"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TorchKick",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TorchKickB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TorchKickR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TorchKickO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TorchKickP",0,0,8,0)
+goto Done
+}
+}
+
+actor TorchKickVertB : TorchKickVert{translation "198:198=205:205", "192:192=196:196"}
+actor TorchKickVertR : TorchKickVert{translation "198:198=171:171", "192:192=170:170"}
+actor TorchKickVertO : TorchKickVert{translation "198:198=104:104", "192:192=138:138"}
+actor TorchKickVertP : TorchKickVert{translation "198:198=229:229", "192:192=214:214"}
+
+actor TorchKickVert_CI : TeamColor_CI
+{
+Obituary "$OB_TORCH2"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TorchKickVert",0,0,-16,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TorchKickVertB",0,0,-16,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TorchKickVertR",0,0,-16,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TorchKickVertO",0,0,-16,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TorchKickVertP",0,0,-16,0)
+goto Done
+}
+}
+
+actor TorchKick2B : TorchKick2{translation "198:198=205:205", "192:192=196:196"}
+actor TorchKick2R : TorchKick2{translation "198:198=171:171", "192:192=48:48"}
+actor TorchKick2O : TorchKick2{translation "198:198=104:104", "192:192=138:138"}
+actor TorchKick2P : TorchKick2{translation "198:198=229:229", "192:192=214:214"}
+
+actor TorchKickEX_CI : TeamColor_CI
+{
+Obituary "$OB_TORCHEX"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TorchKick2",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TorchKick2B",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TorchKick2R",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TorchKick2O",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TorchKick2P",0,0,0,0)
+goto Done
+}
+}
+
+actor TorchKickVert2B : TorchKickVert2{translation "198:198=205:205", "192:192=196:196"}
+actor TorchKickVert2R : TorchKickVert2{translation "198:198=171:171", "192:192=170:170"}
+actor TorchKickVert2O : TorchKickVert2{translation "198:198=104:104", "192:192=138:138"}
+actor TorchKickVert2P : TorchKickVert2{translation "198:198=229:229", "192:192=214:214"}
+
+actor TorchKickVertEX_CI : TeamColor_CI
+{
+Obituary "$OB_TORCHEX"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TorchKickVert2",0,0,-16,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TorchKickVert2B",0,0,-16,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TorchKickVert2R",0,0,-16,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TorchKickVert2O",0,0,-16,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TorchKickVert2P",0,0,-16,0)
+goto Done
+}
+}
+
+//FOR PAINSTATES
+actor PainTorchHit1 : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainTorchHit1_P",1)
+stop
+}
+}
+actor PainTorchHit1_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("TorchjutsuAmmo",40)
+stop
+}
+}
+
+actor PainSmallTorchHit1 : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainTorchHit1_P",1)
+stop
+}
+}
+actor PainSmallTorchHit1_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("TorchjutsuAmmo",20)
+stop
+}
+}
+
+actor PainTorchHit2 : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainTorchHit2_P",1)
+stop
+}
+}
+actor PainTorchHit2_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("TorchjutsuAmmo",30)
+TNT1 A 0 A_GiveToTarget("TorchBashFlag",1)
+stop
+}
+}
+
+actor PainTorchHit25 : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainTorchHit25_P",1)
+stop
+}
+}
+actor PainTorchHit25_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("TorchjutsuAmmo",60)
+stop
+}
+}
+
+actor PainTorchHit3 : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainTorchHit3_P",1)
+stop
+}
+}
+actor PainTorchHit3_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("TorchjutsuAmmo",20)
+stop
+}
+}
+
+actor PainTorchHit35 : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainTorchHit35_P",1)
+stop
+}
+}
+actor PainTorchHit35_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("TorchjutsuAmmo",10)
+stop
+}
+}
+
+actor TorchFistFX : BasicClientSide
+{
+Translation "195:195=175:175", "204:204=216:216"
+Scale 2.5
+States
+{
+Spawn:
+X_4D PQRSTYVWXY 1
+stop
+}
+}
+
+actor TorchFistFX2 : BasicClientSide
+{
+Translation "195:195=175:175", "204:204=216:216"
+Scale 3.5
+States
+{
+Spawn:
+X_4D PQRSTYVWXY 1
+stop
+}
+}
+
+actor TorchFistFX3 : BasicClientSide
+{
+Translation "195:195=175:175", "204:204=216:216"
+Scale 1.25
+States
+{
+Spawn:
+X_4D PQRSTYVWXY 1
+stop
+}
+}
+
+actor TorchAltPitch_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 //A_LogInt(pitch)
+TNT1 A 0 A_JumpIf(pitch<=90 && pitch>=20,"Yes")
+TNT1 A 0 A_ChangeVelocity(cos(20)*50,0,-sin(20)*50,3)
+stop
+Yes:
+TNT1 A 0 A_ChangeVelocity(cos(pitch)*50,0,-sin(pitch)*50,3)
+stop
+}
+}

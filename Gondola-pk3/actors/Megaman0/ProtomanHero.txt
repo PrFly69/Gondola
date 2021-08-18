@@ -1,0 +1,70 @@
+actor ProtomanHero : LightClassBase
+{
+Player.ScoreIcon "C_00A0X"
+player.startitem "LightClassBar"
+player.displayname "Protoman"
+player.soundclass "protomanc"
+player.startitem "HeroicProtoBuster"
+player.startitem "BusterAmmo", 3
+player.startitem "ProtomanHeroShieldTossItem"
+player.startitem "CanCopyWeapons"
+//player.startitem "CanUseItems"
+
+player.startitem "SlideLimitFlag", 500
+player.startitem "CopyNerfCCBM"
+
+player.forwardmove 0.83, 0.83
+player.sidemove 0.81, 0.81
+States
+{
+Spawn:
+PRO_ A 0
+PRO_ B 1
+PRO_ A 1
+Goto Spawn+2
+See:
+PRO_ BCDE 5
+Goto Spawn
+Missile:
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ F 0 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ F 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ F 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ F 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ F 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ G 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ G 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ G 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ G 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ G 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+PRO_ G 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
+PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
+goto Spawn+2
+Slide:
+PRO_ Y 20
+goto Spawn
+ShieldBash:
+PROM P 20
+goto Spawn
+ClassPain:
+PRO_ H 0
+goto PainContinue
+DeathFix:
+PRO_ H 0
+goto DeathContinue
+ClassDeath:
+PRO_ H 1
+goto MegaDeathEnd
+}
+}

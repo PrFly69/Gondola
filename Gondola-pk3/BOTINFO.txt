@@ -1,0 +1,20 @@
+{
+name = "\cfFuseman"
+accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
+class = "Fuseman"
+script = "humanbot"
+}
+
+{
+name = "\chBlastman"
+accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
+class = "Blastman"
+script = "humanbot"
+}
+
+{
+name = "\cdAcidman"
+accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
+class = "Acidman"
+script = "humanbot"
+}

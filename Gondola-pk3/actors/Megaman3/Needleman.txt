@@ -1,0 +1,52 @@
+actor Needleman : ToadClassBase
+{
+Player.ScoreIcon "C_03A0X"
+player.startitem "ToadHealthBar"
+player.displayname "needleman"
+player.soundclass "needlemanc"
+player.startitem "NeedleCannonBoss"
+//player.startitem "NeedlePokerBoss"
+player.startitem "NoodleAmmo", 28
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+//player.weaponslot 0, "NeedleCannonBoss"
+//player.weaponslot 1, "NeedlePokerBoss"
+
+player.startitem "GeminiLaserWeakness2", 1
+
+player.startitem "GeminiLaserWeakness", 1
+player.startitem "CrystalEyeWeakness", 1
+player.startitem "CopyVisionWeakness", 1
+player.startitem "JewelSatelliteWeakness", 1
+States
+{
+Spawn:
+NEED A 0
+NEED A 0 A_JumpIfInventory("NeedlePoker",1,"Poke")
+NEED B 1
+NEED A 1 A_JumpIfInventory("NeedlePoker",1,"Poke")
+Goto Spawn+3
+See:
+NEED BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("NeedlePoker",1,"Poke")
+Goto Spawn
+Missile:
+NEED FFFFFFFFFFFFFFFFFFFFFFFFFFFF 1 A_JumpIfInventory("NeedlePoker",1,"Poke")
+NEED GGGGGGGGGG 1 A_JumpIfInventory("NeedlePoker",1,"Poke")
+goto Spawn
+Poke:
+NEED P 3
+NEED O 5
+NEED P 4
+goto Spawn
+ClassPain:
+NEED H 0
+goto PainContinue
+DeathFix:
+NEED H 0
+goto DeathContinue
+ClassDeath:
+NEED H 1
+goto MegaDeathEnd
+}
+}

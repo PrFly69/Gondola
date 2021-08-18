@@ -1,0 +1,109 @@
+actor DiveSonarWep : BaseMM8BDMWep
+{
+dropitem "DiveSonarWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 6
+Inventory.Pickupmessage "You got Dive Mines!"
+Obituary "$OB_DIVESONAR"
+Tag "Dive Mines"
+weapon.ammotype "DiveSonarAmmo"
+inventory.icon "XTR0WI_H"
+States
+{
+Spawn:
+DIVA Y 1
+loop
+Ready:
+AIRS D 0 ACS_ExecuteAlways(998,0,38)
+AIRS D 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+AIRS D 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+AIRS D 1 A_Raise
+Loop
+Fire:
+AIRS D 0 A_JumpIfNoAmmo("NoAmmo")
+AIRS D 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+AIRS E 6 A_FireCustomMissile("DiveMineClass",0,1,8,0)
+AIRS F 6
+AIRS D 6
+AIRS D 0 A_Refire
+Goto Ready+1
+NoAmmo:
+AIRS D 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor DiveSonarAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor PowerDiveSonarLockonG : BasicPowerupGiver
+{
+powerup.type "PowerDiveSonarLockon"
+}
+
+actor PowerDiveSonarLockon : Powerup
+{
+powerup.duration -7
+}
+
+
+actor DiveSonarProtect : PowerProtection
+{
+Powerup.Duration 11
+DamageFactor "DiveSonar", 0.0
+}
+
+actor DiveSonar
+{
+Translation "192:192=4:4","198:198=198:198"
+PROJECTILE
+damagetype "DiveSonar"
+Obituary "$OB_DIVESONAR"
++NOINTERACTION
++THRUACTORS
++DONTBLAST
++DONTREFLECT
+renderstyle none
+reactiontime 10
+Damage (0)
+radius 2
+height 2
+Speed 50
+xscale 0.6
+yscale 0.6
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/divesonar","Voice",1)
+Air:
+TNT1 A 0 A_CountDown
+X_1G F 0 A_Explode(12,32*scalex,0,0,12*scalex)
+X_1G F 0 ACS_NamedExecuteAlways("cbm_divesonardetect",0,(32 * scalex) + 20)
+X_1G F 0 A_SpawnITemEx("DiveSonarFX",0,0,0,0,0,0,0,16385)
+X_1G FF 1 A_SetScale(scalex+0.3, scaley+0.3) 
+loop
+}
+}
+
+actor DiveSonarFX : BasicClientSide
+{
+states
+{
+Spawn:
+X_1G K 1 A_FadeOut(0.02)
+loop
+}
+}
+

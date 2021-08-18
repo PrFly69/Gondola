@@ -1,0 +1,28 @@
+pointlight SOLARLIGHT
+{
+color 5.0 0.55 0.25
+size 75
+dontlightself 1
+}
+
+object SolarFlare2 {frame GSOL {light SOLARLIGHT}}
+object SolarFlare3 {frame GSOL {light SOLARLIGHT}}
+object SolarMortar {frame GSOL {light SOLARLIGHT}}
+object SolarMortarFX {frame GSOL {light SOLARLIGHT}}
+object SolarGrenadeLob {frame GSOL {light SOLARLIGHT}}
+object SolarGrenadeLobFX {frame GSOL {light SOLARLIGHT}}
+object SolarGrenadeLobAir {frame GSOL {light SOLARLIGHT}}
+object SolarHeadFX {frame GSOL {light SOLARLIGHT}}
+object SolarFlareExplosionWave {frame GSOL {light SOLARLIGHT}}
+object SolarFlareExplosionWaveFX {frame GSOL {light SOLARLIGHT}}
+object SolarFlareExplosionWaveFX2 {frame GSOL {light SOLARLIGHT}}
+
+pointlight FIRELIGHT
+{
+color 1.0 0.1 0.05
+size 35
+dontlightself 1
+}
+
+object FireManWaveD {frame FWVE {light FIRELIGHT}}
+object FireManWave2D {frame FWVE {light FIRELIGHT}}

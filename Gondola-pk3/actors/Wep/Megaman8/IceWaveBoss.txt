@@ -1,0 +1,696 @@
+actor IceWaveBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_8F"
+dropitem "IceWaveWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Obituary "$OB_FROSTPUNCH"//Obituary "$OB_ICEWAVE"//Attempt at making point blank kills better
+Inventory.Pickupmessage "I'M FROSTMAN"
+weapon.ammotype "PopsicleAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_08 F 1
+loop
+Ready:
+ICWB A 0 ACS_ExecuteAlways(998,0,DYE_FROSTMAN)
+ICWB A 0 A_WeaponReady(WRF_NOSECONDARY)
+ICWB A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+ICWB A 1 A_Lower
+loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+ICWB A 1 A_Raise
+Loop
+
+Fire:
+
+FireH0:
+ICWB B 0 A_JumpIfInventory("PopsicleAmmo",7,"FireH1_Start")
+ICWB B 1 Offset(0,24)A_GiveInventory("PopsicleAmmo_RC",1)
+ICWB B 0 A_Refire("FireH0")
+goto Unhold3
+
+FireH1_Start:
+ICWB C 0 A_GiveInventory("ShieldCheck",1)
+ICWB C 0 A_SpawnItemEx("FrostmanChargeWarper",8,0,128,0,0,0,0,1)
+goto FireH1
+FireH1:
+ICWB C 0 A_JumpIfInventory("PopsicleAmmo",13,"FireH2")
+ICWB C 1 Offset(0,-6)A_GiveInventory("PopsicleAmmo_RC",1)
+ICWB C 0 A_Refire("FireH1")
+goto Unhold2
+
+FireH2:
+ICWB D 0 A_JumpIfInventory("PopsicleAmmo",22,"FireH3")
+ICWB D 1 Offset(0,-36)A_GiveInventory("PopsicleAmmo_RC",1)
+ICWB D 0 A_Refire("FireH2")
+goto Unhold
+
+FireH3:
+ICWB E 0 A_JumpIfInventory("PopsicleAmmo",27,"FireH4")
+ICWB E 1 Offset(0,-66)A_GiveInventory("PopsicleAmmo_RC",1)
+ICWB E 0 A_Refire("FireH3")
+goto Unhold
+
+FireH4:
+ICWB F 0 A_JumpIfInventory("PopsicleAmmo",45,"FireH5.a")
+ICWB F 0 A_GiveInventory("PopsicleAmmo_RC",1)
+ICWB F 1 Offset(-1,-66)A_WeaponReady(7)
+ICWB F 0 A_Refire("FireH4.a")
+goto Unhold
+FireH4.a:
+ICWB F 0 A_JumpIfInventory("PopsicleAmmo",45,"FireH5.a")
+ICWB F 0 A_JumpIfInventory("PowerRage_ST",1,"FireH4.b")
+ICWB F 0 A_GiveInventory("PopsicleAmmo_RC",1)
+ICWB F 1 Offset(-1,-66)A_WeaponReady(7)
+ICWB F 0 A_Refire("FireH4.b")
+goto Unhold
+FireH4.b:
+ICWB F 0 A_JumpIfInventory("PopsicleAmmo",45,"FireH5")
+ICWB F 0 A_GiveInventory("PopsicleAmmo_RC",1)
+ICWB F 1 Offset(1,-66)A_WeaponReady(7)
+ICWB F 0 A_Refire("FireH4.c")
+goto Unhold
+FireH4.c:
+ICWB F 0 A_JumpIfInventory("PopsicleAmmo",45,"FireH5")
+ICWB F 0 A_JumpIfInventory("PowerRage_ST",1,"FireH4")
+ICWB F 0 A_GiveInventory("PopsicleAmmo_RC",1)
+ICWB F 1 Offset(1,-66)A_WeaponReady(7)
+ICWB F 0 A_Refire("FireH4")
+goto Unhold
+
+FireH5:
+ICWB F 1 Offset(-1,-66)A_WeaponReady(7)
+ICWB F 0 A_Refire("FireH5.a")
+goto IceWave
+FireH5.a:
+ICWB F 1 Offset(1,-66)A_WeaponReady(7)
+ICWB F 0 A_Refire("FireH5")
+goto IceWave
+
+IcePunch:
+ICWB G 0 A_GiveInventory("FrostmanAlt2_CI",1)
+goto IceWaveEnd
+IceWave:
+ICWB G 0 A_GiveInventory("FrostmanMain_CI",1)
+goto IceWaveEnd
+IceWaveEnd:
+ICWB G 0 A_PlaySoundEx("weapon/BlizzStrike","Weapon")
+//ICWB IJK 3
+//ICWB K 9
+//ICWB KLA 6
+ICWB G 0 A_WeaponReady(14)
+ICWB G 2 Offset(0,8)
+ICWB H 2 Offset(0,28)
+ICWB I 2 Offset(0,48)
+ICWB I 6 Offset(0,48)
+ICWB I 3 Offset(0,48)
+ICWB J 2 Offset(0,44)
+ICWB J 2 Offset(0,40)
+ICWB A 2 Offset(0,36)
+ICWB A 2 A_WeaponReady(14)
+Goto Ready+1
+//WalrusLeap:
+//ICWB F 0 A_PlaySoundEx("weapon/coilbounce1", "Weapon")
+//ICWB F 0 ThrustThingZ(0,32,0,1)
+//ICWB F 0 A_Recoil(-33)
+//ICWB F 0 A_GiveInventory("IceWaveLeapFlag",1)
+//Goto Unhold+1
+Unhold:
+//ICWB F 0 A_JumpIfInventory("PopsicleAmmo",29,"WalrusLeap")
+ICWB F 0 A_TakeInventory("ShieldCheck",9)
+ICWB DD 2 Offset(0,-36)A_TakeInventory("PopsicleAmmo",8)
+ICWB C 2 Offset(0,-6)A_TakeInventory("PopsicleAmmo",8)
+ICWB B 2 Offset(0,24)A_TakeInventory("PopsicleAmmo",8)
+Goto UnholdEnd
+
+Unhold2:
+ICWB E 0 A_TakeInventory("ShieldCheck",9)
+ICWB CC 2 Offset(0,-6)A_TakeInventory("PopsicleAmmo",6)
+ICWB BB 2 Offset(0,24)A_TakeInventory("PopsicleAmmo",6)
+Goto UnholdEnd
+Unhold3:
+ICWB BBB 2 Offset(0,24)A_TakeInventory("PopsicleAmmo",4)
+Goto UnholdEnd
+UnholdEnd:
+ICWB B 0 A_TakeInventory("PopsicleAmmo",99)
+Goto Ready+1
+
+Altfire:
+ICWB K 0 A_JumpIfInventory("PopsicleAmmo",27,"IcePunch")
+ICWB K 0 A_GiveInventory("FrostmanAlt_CI",1)
+ICWB K 0 A_PlaySoundEx("Weapon/GutMelee","Weapon")
+
+ICWB K 2 Offset(0,22)
+ICWB L 2 Offset(0,10)
+ICWB LL 2 Offset(0,2)
+ICWB L 2 Offset(0,7)
+ICWB M 2 Offset(0,12)
+ICWB N 2 Offset(0,17)
+ICWB O 2 Offset(0,22)
+ICWB P 2 Offset(0,27)
+ICWB A 2 A_WeaponReady(14)
+Goto Ready+1
+/*Flash:
+TNT1 A 1 A_JumpIf(z-floorz==0, "CanLeapAgain")
+TNT1 A 0 A_JumpIf(momz==0, "momzverify")
+TNT1 A 0
+loop
+momzverify:
+TNT1 A 1 A_JumpIf(z-floorz==0, "CanLeapAgain")
+TNT1 A 0 A_JumpIf(momz==0, "CanLeapAgain")
+TNT1 A 0
+goto Flash
+CanLeapAgain:
+TNT1 A 1 A_TakeInventory("IceWaveLeapFlag",999)
+goto NoFlash*/
+NoAmmo:
+ICWB A 0
+Goto Ready+1
+}
+}
+
+actor PopsicleAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 45
++INVENTORY.IGNORESKILL
+}
+
+actor IceWaveLeapFlag : OnceC {}
+
+actor PopsicleAmmo_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("PopsicleAmmo",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("PopsicleAmmo",2)
+stop
+}
+}
+
+actor FrostmanChargeWarper : ShieldWarper_CBM
+{
++NOTIMEFREEZE
+States
+{
+Shield:
+ICWB R 0 A_JumpIfInTargetInventory("PopsicleAmmo",27,"Shield2")
+ICWB R 1 A_Warp(AAPTR_TARGET,8,0,128,0,24)
+loop
+Shield2:
+ICWB S 0 A_JumpIfInTargetInventory("PopsicleAmmo",45,"Shield3")
+ICWB S 1 A_Warp(AAPTR_TARGET,8,0,128,0,24)
+loop
+Shield3:
+ICWB T 1 A_Warp(AAPTR_TARGET,8,0,128,0,24)
+loop
+}
+}
+
+actor FrostPunchShot
+{
+Translation "199:199=196:196", "192:192=4:4"
+PROJECTILE
++DONTREFLECT
++SKYEXPLODE
++HEXENBOUNCE
++DONTSPLASH
++THRUGHOST
++THRUACTORS
+BounceFactor 1.0
+WallBounceFactor 1.0
+BounceCount 5
+Damagetype "IceWave"
+Obituary "$OB_ICECRUSH"
+Radius 15
+Height 15
+damage (0)
+speed 28
+scale 2.5
+Reactiontime 24//13
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 0 A_CountDown
+Spawn2:
+TNT1 A 2 A_SpawnItemEx("FrostPunchIcicle",0,0,0,0,0,0,0,1)
+Goto SpawnLOOP
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor FrostPunchShotB : FrostPunchShot{translation "192:192=205:205","199:199=74:74"}
+actor FrostPunchShotR : FrostPunchShot{translation "192:192=171:171","199:199=41:41"}
+actor FrostPunchShotO : FrostPunchShot{translation "192:192=104:104","199:199=128:128"}
+actor FrostPunchShotP : FrostPunchShot{translation "192:192=229:229","199:199=232:232"}
+
+
+actor FrostPunchIcicle
+{
+PROJECTILE
++DONTBLAST
+-RIPPER
+Damagetype "IceWave"
+Obituary "$OB_ICECRUSH"
+Radius 15
+Height 15
+Damage (15)
+Scale 2.5
+States
+{
+Spawn:
+ICWB R 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+ICWB R 0 A_PlaySoundEx("weapon/icewavespawn","weapon")
+ICWB RSTTT 3
+Goto Death
+Death:
+TNT1 A 0 A_PlaySound("weapon/icewavebreak",1,1.0)
+TNT1 AAAAA 0 A_SpawnItemEx("FrostPunchShotBitFX", Random(-16, 16), Random(-16, 16), Random(-16, 16),Random(-4, 4),Random(-4, 4),Random(2, 8),0,1)
+TNT1 A 0
+stop
+}
+}
+
+actor FrostPunchIcicleFX1 : BasicClientSide
+{
+Renderstyle Translucent
+Alpha 0.8
+States
+{
+Spawn:
+ICWB R 0
+ICWB R 1
+stop
+}
+}
+actor FrostPunchIcicleFX2 : FrostPunchIcicleFX1
+{
+States
+{
+Spawn:
+ICWB S 0
+ICWB S 1
+stop
+}
+}
+actor FrostPunchIcicleFX3 : FrostPunchIcicleFX1
+{
+States
+{
+Spawn:
+ICWB T 0
+ICWB T 1
+stop
+}
+}
+
+actor FrostPunchShotBitFX
+{
+//Translation "199:199=196:196", "192:192=4:4"
+scale 2.5
++NOINTERACTION
++DONTSPLASH
++CLIENTSIDEONLY
+Gravity 0.75
+Damage (0)
+height 2
+radius 2
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_Jump(256,"U","V","W","X")
+U:
+ICWB U 0 ThrustThingZ(0,4,1,1)
+ICWB U 1 A_FadeOut
+loop
+V:
+ICWB V 0 ThrustThingZ(0,4,1,1)
+ICWB V 1 A_FadeOut
+loop
+W:
+ICWB W 0 ThrustThingZ(0,4,1,1)
+ICWB W 1 A_FadeOut
+loop
+X:
+ICWB X 0 ThrustThingZ(0,4,1,1)
+ICWB X 1 A_FadeOut
+loop
+}
+}
+
+
+actor IceWaveSpawnerB
+{
+Translation "199:199=196:196", "202:202=4:4", "192:192=4:4"
+PROJECTILE
++DONTBLAST
+Damage (0)
+height 1
+radius 1
+Speed 0
+Obituary "$OB_ICEWAVE"
++THRUACTORS
++NOINTERACTION
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("IceWaveSpawnerB2",32,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("IceWaveSpawnerB2",32,50,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("IceWaveSpawnerB2",32,-50,0,0,0,0,0,1)
+stop
+}
+}
+
+actor IceWaveSpawnerBB : IceWaveSpawnerB{translation "192:192=205:205","202:202=205:205","199:199=74:74"}
+actor IceWaveSpawnerBR : IceWaveSpawnerB{translation "192:192=171:171","202:202=171:171","199:199=41:41"}
+actor IceWaveSpawnerBO : IceWaveSpawnerB{translation "192:192=104:104","202:202=104:104","199:199=128:128"}
+actor IceWaveSpawnerBP : IceWaveSpawnerB{translation "192:192=229:229","202:202=229:229","199:199=232:232"}
+
+actor IceWaveSpawnerB2
+{
+PROJECTILE
++DONTBLAST
++DONTREFLECT
+-NOGRAVITY
+Damagetype "IceWaveB"
+Obituary "$OB_ICEWAVEDROP"
+Height 10
+Radius 10
+Damage(15)
+Scale 3.0
+ReactionTime 35
+States
+{
+Spawn:
+ICWB R 0
+ICWB R 1 ThrustThingZ(0,500,1,0)
+ICWB R 2 A_CountDown
+Goto Spawn+2
+Crash:
+Death:
+TNT1 A 0 A_SpawnItemEx("IceWaveB",0,0,0,30,0,0,0,1)
+stop
+}
+}
+
+
+
+actor IceWaveB
+{
+PROJECTILE
++RIPPER
++DONTREFLECT
++DONTBLAST
+Damage (3)
+Damagetype "IceWaveB"
+Obituary "$OB_ICEWAVE"
+Speed 30
+Height 48
+Radius 10
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_SpawnItemEx("IceWaveIcicleFloorB",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_CheckFloor("MakeIcicle")
+TNT1 AA 1 A_JumpIf(z-floorz!=0,"Down")
+Loop
+MakeIcicle:
+TNT1 A 0 A_SpawnItemEx("IceWaveIcicleFloorB",0,0,0,0,0,0,0,1)
+Goto Spawn+3
+Down: 
+TNT1 A 0 A_SpawnItemEx("IceWaveDownB",0,0,0,0,0,-30,0,1)
+stop
+Death:
+TNT1 A 0 A_SpawnItemEx("IceWaveUpB",0,0,0,0,0,30,0,1)//TNT1 A 0 A_CustomMissile("IceWave",0,0,0,2,0)
+stop
+}
+}
+
+actor IceWaveDownB : IceWaveDown
+{
++DONTBLAST
+Damage (3)
+Damagetype "IceWaveB"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_SpawnItemEx("IceWaveIcicleWallB",0,0,0,0,0,0,0,1)
+Goto Spawn+1
+Death:
+TNT1 A 0 A_SpawnItemEx("IceWaveB",0,0,0,30,0,0,0,1)//A_CustomMissile("IceWaveB",0,0,0,2,0)
+stop
+}
+}
+
+actor IceWaveUpB : IceWaveUp
+{
++DONTBLAST
+Damage (3)
+Damagetype "IceWaveB"
+States
+{
+Spawn:
+TNT1 A 2
+TNT1 A 0 A_Stop
+TNT1 A 0 A_SpawnItemEx("IceWaveIcicleWallB",0,0,0,0,0,0,180,1)
+TNT1 A 0 A_ChangeVelocity(30,0,0,CVF_REPLACE|CVF_RELATIVE) 
+TNT1 A 1
+TNT1 A 0 A_SpawnItemEx("IceWaveB",0,0,0,30,0,0,0,1)//A_CustomMissile("IceWaveB",0,0,0,2,0)
+stop
+Death:
+TNT1 A 0 A_JumpIf(ceilingz-z > 48, "Continue")
+TNT1 A 0 
+stop
+Continue:
+TNT1 A 0 A_SpawnItemEx("IceWaveUpB",0,0,4,0,0,30,0,1)
+stop
+}
+}
+
+actor IceWaveIcicleB : IceWaveB
+{
+-RIPPER
+Damage (8)
+Damagetype "IceWaveB"
+States
+{
+Spawn:
+Y_8F B 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_8F B 0 A_PlaySoundEx("weapon/icewavespawn","weapon")
+Y_8F B 0 A_Jump(80, "Icicle2")
+Y_8F B 0 A_Jump(64, "Icicle4")
+Y_8F BCDEE 3
+Goto Death
+Icicle2:
+Y_8F L 0
+Y_8F L 0 A_Jump(80, "Icicle3")
+Y_8F LMMNN 3
+Goto Death
+Icicle3:
+Y_8F LMNOO 3
+Goto Death
+Icicle4:
+Y_8F BCCDD 3
+Goto Death
+Death: 
+TNT1 A 0 A_SpawnItemEx("IceWaveBreakB",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor IceWaveIcicleWallB : IceWaveIcicleB
+{
+Damage (8)
+Damagetype "IceWaveB"
+States
+{
+Spawn:
+Y_8F P 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_8F P 0 A_PlaySoundEx("weapon/icewavespawn","weapon")
+Y_8F P 0 A_JumpIf(z-floorz <= 8,"SpawnFloor")
+Y_8F P 0 A_Jump(80, "Icicle2")
+Y_8F P 0 A_Jump(64, "Icicle4")
+Y_8F PQRSS 3
+Goto Death
+Icicle2:
+Y_8F T 0
+Y_8F T 0 A_Jump(80, "Icicle3")
+Y_8F TUUVV 3
+Goto Death
+Icicle3:
+Y_8F TUVWW 3
+Goto Death
+Icicle4:
+Y_8F PQQRR 3
+Goto Death
+SpawnFloor:
+TNT1 A 0 A_SpawnItemEx("IceWaveIcicleFloorB",0,0,0,0,0,0,0,1)
+stop
+Death: 
+TNT1 A 0 A_SpawnItemEx("IceWaveBreakB",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor IceWaveIcicleFloorB : IceWaveIcicleB
+{
++FLOORHUGGER
+}
+
+actor IceWaveBreakB : IceWaveBreak
+{
+States
+{
+Spawn:
+Y_8F FGH 2
+stop
+}
+}
+
+actor FrostPunch : FastProjectile
+{
+translation "202:202=4:4"
+Obituary "$OB_FROSTPUNCH"
+Speed 80
+Damage (45)
+PROJECTILE
++DONTBLAST
+reactiontime 1
+Radius 20
+Height 20
+scale 2.5
+States
+{
+Spawn:
+UMFX R 0
+UMFX R 1 A_CountDown
+wait
+Death:
+UMFX R 0 A_Explode(45,52,0,0,4)
+goto XDeath
+XDeath:
+UMFX R 0 A_Stop
+UMFX R 2
+YMFX Q 2
+UMFX RS 2
+stop
+}
+}
+
+actor FrostPunchB : FrostPunch{translation "202:202=205:205"}
+actor FrostPunchR : FrostPunch{translation "202:202=171:171"}
+actor FrostPunchO : FrostPunch{translation "202:202=104:104"}
+actor FrostPunchP : FrostPunch{translation "202:202=229:229"}
+
+actor GroundIce_Frost : GroundIce_Freeze
+{
+reactiontime 15
+}
+
+actor FrostmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("IceWaveSpawnerB",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("IceWaveSpawnerBB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("IceWaveSpawnerBR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("IceWaveSpawnerBO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("IceWaveSpawnerBP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("ShieldCheck",9)
+TNT1 A 0 A_TakeInventory("PopsicleAmmo",999)
+stop
+}
+}
+
+actor FrostmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FrostPunch",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FrostPunchB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FrostPunchR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FrostPunchO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FrostPunchP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("ShieldCheck",9)
+stop
+}
+}
+
+actor FrostmanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FrostPunchShot",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FrostPunchShotB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FrostPunchShotR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FrostPunchShotO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FrostPunchShotP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("ShieldCheck",9)
+TNT1 A 0 A_TakeInventory("PopsicleAmmo",999)
+stop
+}
+}

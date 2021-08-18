@@ -1,0 +1,491 @@
+actor ReboundStrikeBoss : BaseMM8BDMWep_CBM
+{
+tag "Strikeman Mitt"
+dropitem "ReboundStrikerWepCDropped"
+Inventory.Pickupmessage "oh thats a fuckin baseball alright"
+Obituary "%o was smacked to the benches by %k's Rebound Striker."
+weapon.ammotype "ReboundStrikerLimit"
+weapon.ammotype2 "ReboundStrikerPower"
+Weapon.SlotNumber 0
+inventory.icon "Str1Icon"
+States
+{
+Spawn:
+C_00 F 1
+loop
+Ready:
+SRKH A 0 A_GunFlash
+SRKH A 0 ACS_ExecuteAlways(998,0,10905)
+Goto Ready1
+
+Ready0:
+SRKH A 1 A_WeaponReady(WRF_NOPRIMARY)
+SRKH A 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
+SRKH A 0 A_TakeInventory("StrikeBuntCheck",99)
+goto Ready1
+
+Ready1:
+SRKH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+SRKH A 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
+SRKH A 0 A_TakeInventory("StrikeBuntCheck",99)
+loop
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+SRKH A 1 A_Lower
+goto Deselect+1
+
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+SRKH A 1 A_Raise
+Loop
+
+Fire:
+SRKH A 0 A_JumpIfInventory("ReboundStrikerLimit",35,1)
+goto NoFire
+SRKH A 0 A_GunFlash("Flash.MoveAside")
+SRKH A 0 A_TakeInventory("ReboundStrikerLimit",35)
+SRKH A 0 A_TakeInventory("WeaponCharge",999)
+SRKH BC 1
+SRKH D 0 A_PlaySoundEx("weapon/reboundweak","Weapon")
+SRKH D 0 A_GiveInventory("StrikemanMain_CI")
+SRKH DEF 1
+TNT1 A 8
+SRKH GA 2
+goto Ready1
+
+NoFire:
+SRKH A 1
+SRKH A 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
+goto Ready1
+
+Altfire:
+SRKH A 0 A_JumpIfInventory("ReboundStrikerPower",7,1)
+goto Fire
+SRKH A 0 A_GunFlash("Flash.MoveAside")
+SRKH A 0 A_TakeInventory("ReboundStrikerPower",7)
+SRKH A 0 A_TakeInventory("WeaponCharge",999)
+SRKH A 0 A_PlaySoundEx("weapon/searchdash","SoundSlot6")
+SRKH BC 1
+SRKH D 0 A_PlaySoundEx("weapon/reboundweak","Weapon")
+SRKH D 0 A_GiveInventory("StrikemanMainAlt_CI")
+SRKH DEF 1
+TNT1 A 8
+SRKH GA 2
+goto Ready1
+
+Reload:
+SRKH S 0 A_JumpIfInventory("ReboundStrikerPower",7,1)
+goto Ready0
+SRKH A 0 A_TakeInventory("ReboundStrikerPower",7)
+SRKH A 0 A_PlaySoundEx("weapon/reboundstartup","Weapon")
+SRKH A 1 OffSet(0,42)
+SRKH A 1 OffSet(0,52)
+SRKH A 1 OffSet(0,62)
+SRKH A 1 OffSet(0,72)
+SRKH A 1 OffSet(0,82)
+SRKH A 1 OffSet(0,92)
+SRKH A 1 OffSet(0,102)
+SRKH A 1 OffSet(0,112)
+SRKH A 1 OffSet(0,122)
+Reload2:
+TNT1 A 1
+TNT1 A 0 A_JumpIf(z-floorz<=0,"ReloadBounce")
+loop
+
+ReloadBounce:
+TNT1 A 0 A_GiveInventory("WeaponCharge",1)
+TNT1 A 0 ACS_ExecuteAlways(512,0,2,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"ReloadBounceHigh")
+goto ReloadBounceLow
+
+ReloadBounceLow:
+TNT1 A 0 ThrustThingZ(0,40,0,0)
+TNT1 A 0 A_Recoil(-8)
+TNT1 A 0 A_StopSound(0)
+TNT1 A 0 A_PlaySoundEx("weapon/reboundbounce","Body")
+goto ReloadBounceWait
+
+ReloadBounceHigh:
+TNT1 A 0 ThrustThingZ(0,60,0,0)
+TNT1 A 0 A_Recoil(-8)
+TNT1 A 0 A_StopSound(0)
+TNT1 A 0 A_PlaySoundEx("weapon/reboundbounce","Body")
+goto ReloadBounceWait
+
+ReloadBounceWait:
+TNT1 A 1 A_SpawnItemEx("StrikeMeleeC",0,0,28,momx,momy,momz,0,8)
+TNT1 A 0 A_JumpIfInventory("StrikeHitTarget",1,"ReloadBounceBack")
+TNT1 A 0 A_Recoil(-1)
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",4,"ReloadEnd")
+TNT1 A 0 A_JumpIf(z-floorz<=0,"ReloadBounce")
+loop
+
+ReloadBounceWait2:
+TNT1 A 1 A_SpawnItemEx("StrikeMeleeC",0,0,28,momx,momy,momz,0,8)
+TNT1 A 0 A_JumpIfInventory("StrikeHitTarget",1,"ReloadBounceBack")
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",4,"ReloadEnd")
+TNT1 A 0 A_JumpIf(z-floorz<=0,"ReloadBounce")
+loop
+
+ReloadBounceBack:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_TakeInventory("StrikeHitTarget",9)
+TNT1 A 0 ThrustThingZ(0,40,0,0)
+TNT1 A 0 A_Recoil(8)
+TNT1 A 0 A_StopSound(0)
+TNT1 A 0 A_PlaySoundEx("weapon/reboundbounce","Body")
+TNT1 A 1
+goto ReloadBounceWait2
+
+ReloadEnd:
+SRKH A 0 ACS_ExecuteAlways(512,0,3,0)
+SRKH A 0 A_TakeInventory("WeaponCharge",9)
+SRKH A 1 OffSet(0,122)
+SRKH A 1 OffSet(0,107)
+SRKH A 1 OffSet(0,92)
+SRKH A 1 OffSet(0,77)
+SRKH A 1 OffSet(0,62)
+SRKH A 0 A_ChangeFlag("THRUACTORS",0)
+SRKH A 0 A_SpawnItemEx("ReSolidifier")
+SRKH A 1 OffSet(0,47)
+Goto Ready1
+
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("StrikeHUDCheck",1,"Flash.AnimateMeFucker")
+SRKH H 1
+loop
+
+Flash.AnimateMeFucker:
+SRKH I 0 A_PlaySoundEx("weapon/reboundgrab", "Body")
+SRKH IJKL 1
+SRKH LLKJIM 1 A_JumpIfInventory("StrikeHUDCheck",1,"Flash.AnimateMeFucker")
+goto Flash
+
+Flash.MoveAside:
+SRKH NOOOON 2 A_JumpIfInventory("StrikeHUDCheck",1,"Flash.AnimateMeFucker")
+goto Flash
+
+Flash.MoveAsider:
+SRKH NOOOOOOOON 2 A_JumpIfInventory("StrikeHUDCheck",1,"Flash.AnimateMeFucker")
+goto Flash
+
+Flash.StopBatTime:
+SRKH Q 4
+goto Flash.Invis
+
+Flash.ReadyToCharge:
+SRKH Q 2
+goto Flash.Invis2
+
+Flash.Invis:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("StrikeBuntCheck",1,1)
+goto Flash.StartBatTime
+TNT1 A 1
+loop
+
+Flash.Invis2:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1
+loop
+
+Flash.StartBatTime:
+SRKH Q 2
+goto Flash
+}
+}
+
+actor ReboundStrikerBoss : BaseMM8BDMWep_CBM
+{
+tag "Strikeman Bat"
+dropitem "ReboundStrikerWepCDropped"
+Inventory.Pickupmessage "oh thats a fuckin baseball alright"
+Obituary "%o was smacked to the benches by %k's Rebound Striker."
+weapon.ammotype "ReboundStrikerLimit"
+weapon.ammotype2 "ReboundStrikerPower"
+Weapon.SlotNumber 1
+inventory.icon "Str2Icon"
+States
+{
+Spawn:
+C_00 F 1
+loop
+Ready:
+SRKH R 0 A_GunFlash("Flash.Invis2")
+SRKH R 0 ACS_ExecuteAlways(998,0,10905)
+Goto Ready1
+
+Ready0:
+SRKH R 1 A_WeaponReady(WRF_NOPRIMARY)
+SRKH R 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
+SRKH R 0 A_TakeInventory("StrikeBuntCheck",99)
+goto Ready1
+
+Ready1:
+SRKH R 1 A_WeaponReady(WRF_ALLOWRELOAD)
+SRKH R 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
+SRKH R 0 A_TakeInventory("StrikeBuntCheck",99)
+loop
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+SRKH R 1 A_Lower
+goto Deselect+1
+
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+SRKH R 1 A_Raise
+Loop
+
+Fire:
+SRKH S 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
+SRKH S 0 A_PlaySoundEx("Weapon/pharaohpunchswing","Weapon")
+SRKH ST 1
+SRKH T 0 A_GiveInventory("StrikemanBat_CI",1)
+SRKH UVWX 1 A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+TNT1 AAAAAAAAAAAAAAAAA 1 A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH YZR 1 A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+goto Ready1
+
+FireR:
+SRKH S 0 A_PlaySoundEx("Weapon/pharaohpunchswing","Weapon")
+SRKH ST 1
+SRKH T 0 A_GiveInventory("StrikemanBat_CI",1)
+SRKH UVWX 1 A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+TNT1 AAA 1 A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH YZR 1 A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+goto Ready1
+
+Altfire:
+SRKH R 1
+SRKH R 0 A_GiveInventory("StrikeBuntCheck",1)
+AltfireStart:
+SRKH RR 1 Offset(0,36)A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH R 0 A_Refire("Altfire2")
+goto Ready1
+Altfire2:
+SRKH RR 1 Offset(0,32)A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH R 0 A_Refire("Altfire3")
+goto Ready1
+Altfire3:
+SRKH RR 1 Offset(0,28)A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH R 0 A_Refire("Altfire4")
+goto Ready1
+Altfire4:
+SRKH RR 1 Offset(0,32)A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+AltfireRefire:
+SRKH R 0 A_Refire("AltfireStart")
+SRKH RR 1 A_TakeInventory("StrikeBuntCheck",99)
+goto Ready1
+
+AltfireFire:
+SRKH S 0 ACS_ExecuteAlways(512,0,1,0)
+TNT1 A 0 A_PlaySoundEx("weapon/reboundbunt","Weapon")
+SRKH ST 1
+SRKH UVWX 1 A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+TNT1 AAAA 1 A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH YZ 1 A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+goto AltfireRefire
+
+Reload:
+SRKH R 0 A_JumpIfInventory("ReboundStrikerPower",7,1)
+goto Ready0
+SRKH R 0 A_TakeInventory("ReboundStrikerPower",7)
+SRKH R 0 A_PlaySoundEx("weapon/reboundstartup","Weapon")
+SRKH R 1 OffSet(0,42)
+SRKH R 1 OffSet(0,52)
+SRKH R 1 OffSet(0,62)
+SRKH R 1 OffSet(0,72)
+SRKH R 1 OffSet(0,82)
+SRKH R 1 OffSet(0,92)
+SRKH R 1 OffSet(0,102)
+SRKH R 1 OffSet(0,112)
+SRKH R 1 OffSet(0,122)
+Reload2:
+TNT1 A 1
+TNT1 A 0 A_JumpIf(z-floorz<=0,"ReloadBounce")
+loop
+
+ReloadBounce:
+TNT1 A 0 A_GiveInventory("WeaponCharge",1)
+TNT1 A 0 ACS_ExecuteAlways(512,0,2,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"ReloadBounceHigh")
+goto ReloadBounceLow
+
+ReloadBounceLow:
+TNT1 A 0 ThrustThingZ(0,40,0,0)
+TNT1 A 0 A_Recoil(-8)
+TNT1 A 0 A_StopSound(0)
+TNT1 A 0 A_PlaySoundEx("weapon/reboundbounce","Body")
+goto ReloadBounceWait
+
+ReloadBounceHigh:
+TNT1 A 0 ThrustThingZ(0,60,0,0)
+TNT1 A 0 A_Recoil(-8)
+TNT1 A 0 A_StopSound(0)
+TNT1 A 0 A_PlaySoundEx("weapon/reboundbounce","Body")
+goto ReloadBounceWait
+
+ReloadBounceWait:
+TNT1 A 1 A_SpawnItemEx("StrikeMeleeC",0,0,28,momx,momy,momz,0,8)
+TNT1 A 0 A_JumpIfInventory("StrikeHitTarget",1,"ReloadBounceBack")
+TNT1 A 0 A_Recoil(-1)
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",4,"ReloadEnd")
+TNT1 A 0 A_JumpIf(z-floorz<=0,"ReloadBounce")
+loop
+
+ReloadBounceWait2:
+TNT1 A 1 A_SpawnItemEx("StrikeMeleeC",0,0,28,momx,momy,momz,0,8)
+TNT1 A 0 A_JumpIfInventory("StrikeHitTarget",1,"ReloadBounceBack")
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",4,"ReloadEnd")
+TNT1 A 0 A_JumpIf(z-floorz<=0,"ReloadBounce")
+loop
+
+ReloadBounceBack:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_TakeInventory("StrikeHitTarget",9)
+TNT1 A 0 ThrustThingZ(0,40,0,0)
+TNT1 A 0 A_Recoil(8)
+TNT1 A 0 A_StopSound(0)
+TNT1 A 0 A_PlaySoundEx("weapon/reboundbounce","Body")
+TNT1 A 1
+goto ReloadBounceWait2
+
+ReloadEnd:
+SRKH R 0 ACS_ExecuteAlways(512,0,3,0)
+SRKH R 0 A_TakeInventory("WeaponCharge",9)
+SRKH R 1 OffSet(0,122)
+SRKH R 1 OffSet(0,107)
+SRKH R 1 OffSet(0,92)
+SRKH R 1 OffSet(0,77)
+SRKH R 1 OffSet(0,62)
+SRKH R 0 A_ChangeFlag("THRUACTORS",0)
+SRKH R 0 A_SpawnItemEx("ReSolidifier")
+SRKH R 1 OffSet(0,47)
+Goto Ready1
+
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("StrikeHUDCheck",1,"Flash.AnimateMeFucker")
+SRKH H 1
+loop
+
+Flash.AnimateMeFucker:
+SRKH I 0 A_PlaySoundEx("weapon/reboundgrab", "Body")
+SRKH IJKL 1
+SRKH LLKJIM 1 A_JumpIfInventory("StrikeHUDCheck",1,"Flash.AnimateMeFucker")
+goto Flash
+
+Flash.MoveAside:
+SRKH NOOOOOOON 2 A_JumpIfInventory("StrikeHUDCheck",1,"Flash.AnimateMeFucker")
+goto Flash
+
+Flash.StopBatTime:
+SRKH Q 4
+goto Flash.Invis
+
+Flash.ReadyToCharge:
+SRKH Q 2
+goto Flash.Invis2
+
+Flash.Invis:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("StrikeBuntCheck",1,1)
+goto Flash.StartBatTime
+TNT1 A 1
+loop
+
+Flash.Invis2:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1
+loop
+
+Flash.StartBatTime:
+SRKH Q 2
+goto Flash
+}
+}
+
+actor ReboundStrikerLimit_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("ReboundStrikerLimit",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("ReboundStrikerLimit",2)
+stop
+}
+}
+
+actor StrikemanMain_CI : TeamColor_CI
+{
+States
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("ReboundStriker",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ReboundStrikerB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ReboundStrikerR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ReboundStrikerO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ReboundStrikerP",0,0,8,0)
+goto Done
+}
+}
+
+actor StrikemanMainAlt_CI : TeamColor_CI
+{
+States
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("ReboundStrikerPowerballAlt",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ReboundStrikerPowerballAltB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ReboundStrikerPowerballAltR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ReboundStrikerPowerballAltO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ReboundStrikerPowerballAltP",0,0,8,0)
+goto Done
+}
+}
+
+actor StrikemanBat_CI : TeamColor_CI
+{
+States
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("StrikeMelee")
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("StrikeMeleeB")
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("StrikeMeleeR")
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("StrikeMeleeO")
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("StrikeMeleeP")
+goto Done
+}
+}

@@ -1,0 +1,1359 @@
+actor GeminiLaserBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_3C"
+dropitem "GeminiLaserWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+Obituary "$OB_GEMINILASER"
+weapon.ammotype "CloneAmmo"
+States
+{
+Spawn:
+C_03 C 1
+loop
+Ready:
+GEMB A 0 A_GunFlash
+GEMB A 0 ACS_ExecuteAlways(998,0,DYE_GEMINIMAN)
+Ready1:
+GEMB A 0 A_JumpIfInventory("CloneSpawned",1,"FullReady")
+GEMB A 0 A_JumpIfInventory("CloneSpawning",1,"FullReady")
+GEMB A 0 A_JumpIfInventory("CloneAmmo",28,"FullReady")
+GEMB A 7 A_WeaponReady
+GEMB A 0 A_JumpIfInventory("CloneSpawned",1,"FullReady")
+GEMB A 0 A_GiveInventory("CloneAmmo",1)
+Goto Ready1+1
+FullReady:
+GEMB A 1 A_WeaponReady
+Goto Ready1+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+GEMB A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+GEMB A 1 A_Raise
+Loop
+Fire:
+GEMB A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+GMEB A 0 A_GiveInventory("GeminiIsFiring")
+GEMB A 0 A_TakeInventory("SpawningMisfire",1)
+GEMB A 0 A_PlaySoundEx("Weapon/Mbuster","Weapon")
+GEMB A 0 A_GiveInventory("GeminimanMain_CI",6)
+GEMB BC 2
+GEMB CCBA 1
+GEMB A 8
+GEMB A 0 A_JumpIfInventory("CloneSpawned",1,2)
+GEMB A 0 A_GiveInventory("CloneAmmo",1)
+GEMB A 0 A_ReFire
+Goto Ready1+1
+
+BotFire:
+GEMB A 0 A_Jump(8,2)
+GEMB A 0 A_Jump(96,"GeminiLaser")
+goto Fire+1
+GEMB A 0 A_JumpIfInventory("CloneSpawned",1,4)
+GEMB A 1 A_GiveInventory("CloneAmmo",28)
+GEMB A 2 A_GiveInventory("GemSpawnerAuto",1)
+GEMB A 12 A_TakeInventory("GemSpawnerAuto",1)
+goto AltFire
+GEMB A 2 A_GiveInventory("GemSpawnerAuto",1)
+GEMB A 3 A_TakeInventory("GemSpawnerAuto",1)
+goto BotFire+3
+
+AltFire:
+//TNT1 A 0 A_JumpIfInventory("GeminiItemSet",1,"NoAmmo")
+//TNT1 A 0 A_JumpIfInventory("GeminiItemUnSet",1,"NoAmmo")
+GEMB A 0 A_JumpIfInventory("CloneSpawned",1,"Set")
+GEMM A 0 A_JumpIfInventory("CloneAmmo",4,"GeminiLaser")
+goto NoAmmo
+GeminiLaser:
+GEMB A 0 A_TakeInventory("SpawningMisfire",1)
+GEMB A 0 A_PlaySoundEx("weapon/gemini","Weapon")
+GEMB A 0 A_GiveInventory("GeminimanAlt_CI",1)
+GEMB BC 2
+GEMB CCCCCCBA 1
+GEMB A 12
+GEMB A 0 A_Refire
+Goto Ready1+1
+
+Set:
+GEMM A 0 A_JumpIfInventory("SpawningMisfire",1,"AltWait")
+GEMB A 0 A_PlaySoundEx("item/refill","Body")
+GEMB A 0 A_GiveInventory("SpawningMisfire",1)
+GEMM A 0 A_JumpIfInventory("CloneStationary",1,"Unset")
+GEMB A 0 A_GiveInventory("CloneStationary",1)
+GEMB A 0 A_GiveInventory("GeminiItemSet",1)
+goto AltWait
+UnSet:
+GEMB A 0 A_GiveInventory("GeminiItemUnSet",1)
+GEMB A 0 A_TakeInventory("CloneStationary",1)
+GEMB A 0 A_TakeInventory("CloneDistance",999)
+GEMB A 0 ACS_ExecuteAlways(149,0,0)
+goto AltWait
+AltWait:
+GEMB A 1
+GEMB A 1 A_WeaponReady
+GEMB A 0 A_TakeInventory("SpawningMisfire",1)
+Goto Ready1+1
+NoAmmo:
+GEMB A 8
+GEMB A 0 A_GiveInventory("CloneAmmo",1)
+Goto Ready1+1
+
+Flash:
+TNT1 A 1 A_JumpIfInventory("GeminiItemUsed",1,"Flash_Use")
+TNT1 A 0 A_JumpIfInventory("CloneSpawned",1,"Flash_Active")
+Goto Flash
+Flash_Use:
+GEMB A 0 A_TakeInventory("GeminiItemUsed",99)
+GEMR A 2
+GEMR BCD 1
+GEMR H 3
+GEMR I 1
+TNT1 A 2
+GEMR N 2
+GEMR O 2
+goto Flash_Active
+Flash_Active:
+GEMR J 0 A_JumpIfInventory("CloneSpawned",1,1)
+Goto Flash_Retract
+GEMR J 1
+TNT1 A 0 A_JumpIfInventory("GeminiItemSet",1,"Flash_Set")
+Goto Flash_Active
+Flash_Set:
+GEMR JKLM 1 A_TakeInventory("GeminiItemSet",99)
+GEMB A 0
+goto Flash_SetHold
+Flash_SetHold:
+GEMR M 0 A_JumpIfInventory("CloneSpawned",1,1)
+Goto Flash_Retract
+GEMR M 1
+TNT1 A 0 A_JumpIfInventory("GeminiItemUnSet",1,"Flash_UnSet")
+goto Flash_SetHold
+Flash_UnSet:
+GEMR MLKJ 1 A_TakeInventory("GeminiItemUnSet",99)
+GEMB A 0
+goto Flash_Active
+Flash_Retract:
+GEMR ON 2
+TNT1 A 1
+Goto Flash
+}
+}
+
+actor GeminiIsFiring : Powerup {powerup.duration 8}
+
+actor BossGeminiLaser
+{
+translation "202:202=197:197"
+PROJECTILE
+damagetype "GeminiLaser"
+Obituary "$OB_GEMINILASER"
++FORCEXYBILLBOARD
++HEXENBOUNCE
+-ALLOWBOUNCEONACTORS
++CANBOUNCEWATER
+WALLBOUNCEFACTOR 1.0
+BOUNCEFACTOR 1.0
+reactiontime 150
+damage (25)
+Radius 5
+Height 5
+speed 22
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+GEMB D 0
+GEMB D 0 A_SpawnItemEx("BossGeminiLaserFX1",0,0,0,0,0,0,0,1)
+GEMB D 1 A_CountDown
+GEMB D 0 A_SpawnItemEx("BossGeminiLaserFX2",0,0,0,0,0,0,0,1)
+GEMB D 1 A_CountDown
+GEMB D 0 A_SpawnItemEx("BossGeminiLaserFX3",0,0,0,0,0,0,0,1)
+GEMB D 1 A_CountDown
+GEMB E 0 A_SpawnItemEx("BossGeminiLaserFX4",0,0,0,0,0,0,0,1)
+GEMB E 1 A_CountDown
+GEMB E 0 A_SpawnItemEx("BossGeminiLaserFX5",0,0,0,0,0,0,0,1)
+GEMB E 1 A_CountDown
+loop
+}
+}
+
+actor BossGeminiLaserB : BossGeminiLaser{translation "202:202=205:205"}
+actor BossGeminiLaserR : BossGeminiLaser{translation "202:202=171:171"}
+actor BossGeminiLaserO : BossGeminiLaser{translation "202:202=104:104"}
+actor BossGeminiLaserP : BossGeminiLaser{translation "202:202=229:229"}
+
+actor BossGeminiLaserFX1 : BasicClientSide
+{
++FORCEXYBILLBOARD
+States
+{
+Spawn:
+GEMB DDDEE 1
+stop
+}
+}
+actor BossGeminiLaserFX2 : BossGeminiLaserFX1
+{
+States
+{
+Spawn:
+GEMB DDEED 1
+stop
+}
+}
+actor BossGeminiLaserFX3 : BossGeminiLaserFX1
+{
+States
+{
+Spawn:
+GEMB DEEDD 1
+stop
+}
+}
+actor BossGeminiLaserFX4 : BossGeminiLaserFX1
+{
+States
+{
+Spawn:
+GEMB EEDDD 1
+stop
+}
+}
+
+actor BossGeminiLaserFX5 : BossGeminiLaserFX1
+{
+States
+{
+Spawn:
+GEMB EDDDE 1
+stop
+}
+}
+
+
+
+actor GemShot : FastProjectile
+{
+Translation "204:204=215:215"
+PROJECTILE
+Obituary "$OB_GEMINIBUSTER"
+damagetype "Buster"
++THRUSPECIES//+THRUGHOST
+species "GeminiClone"
+Damage (12)
+radius 5
+height 5
+Speed 48
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 1
+BASB T 1 A_ChangeFlag("THRUSPECIES",0)
+BASB T 1
+wait
+Death:
+BASB T 1
+stop
+}
+}
+
+actor GemShotB : GemShot{translation "204:204=205:205"}
+actor GemShotR : GemShot{translation "204:204=171:171"}
+actor GemShotO : GemShot{translation "204:204=104:104"}
+actor GemShotP : GemShot{translation "204:204=229:229"}
+
+actor GemShotClone : GemShot {
+Speed 1
++THRUACTORS
+Obituary "$OB_GEMINIBUSTER2"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 0 A_TransferPointer(AAPTR_TARGET,AAPTR_DEFAULT,AAPTR_FRIENDPLAYER,AAPTR_TARGET)
+TNT1 A 0 A_ScaleVelocity(48)
+TNT1 A 0 A_ChangeFlag("THRUACTORS",0)
+TNT1 A 1
+BASB T 1 A_ChangeFlag("THRUSPECIES",0)
+Spawn2:
+BASB T 1
+wait
+}
+}
+
+actor GemShotCloneB : GemShotClone{translation "204:204=205:205"}
+actor GemShotCloneR : GemShotClone{translation "204:204=171:171"}
+actor GemShotCloneO : GemShotClone{translation "204:204=104:104"}
+actor GemShotCloneP : GemShotClone{translation "204:204=229:229"}
+
+actor GemShotCloneW : GemShotClone {Damage (8)}
+
+actor GemShotCloneWB : GemShotCloneW {translation "204:204=205:205"}
+actor GemShotCloneWR : GemShotCloneW {translation "204:204=171:171"}
+actor GemShotCloneWO : GemShotCloneW {translation "204:204=104:104"}
+actor GemShotCloneWP : GemShotCloneW {translation "204:204=229:229"}
+
+actor GeminimanOther_CI : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("LightTeamFlag",1,"P_B",AAPTR_FRIENDPLAYER)
+TNT1 A 0 A_JumpIfInventory("WilyTeamFlag",1,"P_R",AAPTR_FRIENDPLAYER)
+TNT1 A 0 A_JumpIfInventory("CossackTeamFlag",1,"P_O",AAPTR_FRIENDPLAYER)
+TNT1 A 0 A_JumpIfInventory("KingTeamFlag",1,"P_P",AAPTR_FRIENDPLAYER)
+
+TNT1 A 0 A_CustomMissile("GemShotClone",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotClone",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotClone",28,16,-15,4)
+stop
+P_B:
+TNT1 A 0 A_CustomMissile("GemShotCloneB",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotCloneB",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotCloneB",28,16,-15,4)
+stop
+P_R:
+TNT1 A 0 A_CustomMissile("GemShotCloneR",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotCloneR",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotCloneR",28,16,-15,4)
+stop
+P_O:
+TNT1 A 0 A_CustomMissile("GemShotCloneO",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotCloneO",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotCloneO",28,16,-15,4)
+stop
+P_P:
+TNT1 A 0 A_CustomMissile("GemShotCloneP",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotCloneP",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotCloneP",28,16,-15,4)
+stop
+}
+}
+
+actor GeminimanOtherW_CI : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("LightTeamFlag",1,"P_B",AAPTR_FRIENDPLAYER)
+TNT1 A 0 A_JumpIfInventory("WilyTeamFlag",1,"P_R",AAPTR_FRIENDPLAYER)
+TNT1 A 0 A_JumpIfInventory("CossackTeamFlag",1,"P_O",AAPTR_FRIENDPLAYER)
+TNT1 A 0 A_JumpIfInventory("KingTeamFlag",1,"P_P",AAPTR_FRIENDPLAYER)
+
+TNT1 A 0 A_CustomMissile("GemShotCloneW",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotCloneW",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotCloneW",28,16,-15,4)
+stop
+P_B:
+TNT1 A 0 A_CustomMissile("GemShotCloneWB",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotCloneWB",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotCloneWB",28,16,-15,4)
+stop
+P_R:
+TNT1 A 0 A_CustomMissile("GemShotCloneWR",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotCloneWR",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotCloneWR",28,16,-15,4)
+stop
+P_O:
+TNT1 A 0 A_CustomMissile("GemShotCloneWO",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotCloneWO",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotCloneWO",28,16,-15,4)
+stop
+P_P:
+TNT1 A 0 A_CustomMissile("GemShotCloneWP",28,16,0,4)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,1,AAPTR_FRIENDPLAYER)
+stop
+TNT1 A 0 A_CustomMissile("GemShotCloneWP",28,16,15,4)
+TNT1 A 0 A_CustomMissile("GemShotCloneWP",28,16,-15,4)
+stop
+}
+}
+
+actor GeminimanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("GemShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("GemShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("GemShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("GemShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("GemShotP",0,0,8,0)
+goto Done
+}
+}
+
+actor GeminimanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BossGeminiLaser",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BossGeminiLaserB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BossGeminiLaserR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BossGeminiLaserO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BossGeminiLaserP",0,1,8,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("CloneAmmo",4)
+stop
+}
+}
+
+actor GemSpawner : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "GemIconN"
+inventory.pickupmessage "My own clone! Someone to play Battletoads with!"
+scale 2.0
++INVBAR
+states
+{
+Spawn:
+GEMB I 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("CloneSpawning",1,"BugFix")
+TNT1 A 0 A_JumpIfInventory("CloneSpawned",1,"Success2")
+TNT1 A 0 A_JumpIfInventory("CloneAmmo",28,"Success")
+fail
+Success:
+//TNT1 A 0 A_SpawnItemEx("GemClone",0,0,28,0,0,0,0,0)//SXF_SETMASTER
+//TNT1 A 0 A_SpawnItemEx("GemCloneHitbox",0,0,28,0,0,0,0,33,0)//SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION
+
+TNT1 A 0 A_JumpIf(z-ceilingz>=0-(56+14),2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"Success_G")
+TNT1 A 0 A_SpawnItemEx("GemClone",0,0,0,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("GeminiTeamCheck",1)
+goto Success1
+Success_G:
+TNT1 A 0 A_SpawnItemEx("GemClone",0,0,14,0,0,0,0,0)
+TNT1 A 0 A_GiveInventory("GeminiTeamCheck2",1)
+goto Success1
+Success1:
+
+TNT1 A 0 A_GiveInventory("GeminiItemUsed",1)
+TNT1 A 0 A_TakeInventory("CloneDistance",999)
+TNT1 A 0 A_TakeInventory("CloneStationary",999)
+TNT1 A 0 ACS_ExecuteAlways(149,0,0)
+TNT1 A 0 A_GiveInventory("CloneSpawning",1)
+TNT1 A 1 A_PlaySoundEx("class/Geminidouble","Voice")
+fail
+Success2:
+TNT1 A 0 A_TakeInventory("CloneBug2",999)
+TNT1 A 0 A_TakeInventory("CloneBugFix",999)
+TNT1 A 0 A_TakeInventory("CloneSpawned",999)
+//TNT1 A 1 A_PlaySoundEx("item/refill","Voice")
+TNT1 A 1 A_PlaySoundEx("class/Geminidouble","Voice")
+fail
+BugFix:
+TNT1 A 0 A_JumpIfInventory("CloneBugFix",1,"BugWait")
+TNT1 A 0 A_JumpIfInventory("CloneBug2",1,"BugPatch")
+TNT1 A 0 A_GiveInventory("CloneBug2",1)
+TNT1 A 0 A_GiveInventory("CloneBugFix",1)
+BugWait:
+TNT1 A 0 A_PlaySoundEx("S3_K/MetalSpark","Voice")
+fail
+BugPatch:
+TNT1 A 0
+TNT1 A 0 A_TakeInventory("CloneAmmo",14)
+TNT1 A 0 A_TakeInventory("CloneSpawning",999)
+TNT1 A 0 A_TakeInventory("CloneAngle",999)
+TNT1 A 0 A_TakeInventory("CloneDistance",999)
+TNT1 A 0 A_TakeInventory("CloneRun",999)
+TNT1 A 0 A_TakeInventory("CloneStationary",999)
+TNT1 A 0 A_TakeInventory("CloneFiring",999)
+TNT1 A 0 A_TakeInventory("CloneBug",999)
+TNT1 A 0 A_TakeInventory("CloneBug2",999)
+TNT1 A 0 A_TakeInventory("CloneBugFix",999)
+TNT1 A 0 A_PlaySoundEx("BaBH/Fart","Voice")
+fail
+Failure:
+TNT1 A 1
+fail
+//TNT1 A 1 A_PlaySoundEx("weapon/gemini","weapon")
+}
+}
+
+actor GemSpawnerAuto : GemSpawner
+{
++INVENTORY.AUTOACTIVATE
+}
+
+actor GemClone
+{
+- SOLID
+//+NOGRAVITY
+MONSTER
+//+MISSILE
++NOCLIP
++DONTBLAST
++SKYEXPLODE
+-SOLID
+-COUNTKILL
++FRIENDLY
+-SHOOTABLE
++DONTDRAIN
+speed 0
+scale 2.5
++MISSILEMORE
++MISSILEEVENMORE
+Radius 16
+Height 56
+reactiontime 256
+meleerange 20
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(149,0,2)
+TNT1 A 5
+TNT1 A 1
+Goto SummonCooldown
+SummonCooldown:
+TNT1 A 35 A_TakeInventory("CloneFiring",999)
+TNT1 A 1
+Goto See
+See:
+TNT1 A 0 //A_ClearTarget
+TNT1 A 0
+//TNT1 A 0 A_GiveInventory("",1,AAPTR_FRIENDPLAYER)
+TNT1 A 1 A_LookEx(42,0,1514,1,360,"MissileCheck")//A_Chase
+TNT1 A 0 A_JumpIfTargetInLOS("MissileCheck",0,0)
+loop
+MissileCheck:
+TNT1 A 0 A_JumpIfInventory("CloneStationary",1,2,AAPTR_FriendPlayer)
+TNT1 A 0 A_JumpIfInventory("GeminiIsFiring",1,1,AAPTR_FriendPlayer)
+goto See
+TNT1 A 0 A_CheckFlag("CANTSEEK","MissileFail",AAPTR_TARGET)
+TNT1 A 0 A_CheckFlag("INVULNERABLE","MissileFail",AAPTR_TARGET)
+TNT1 A 0 A_CheckFlag("NONSHOOTABLE","MissileFail",AAPTR_TARGET)
+//TNT1 A 0 A_JumpIfInTargetInventory("CloakFlag",1,"MissileFail")
+Missile:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"MissileR",AAPTR_FRIENDPLAYER)
+TNT1 A 6 A_FaceTarget
+TNT1 A 0 A_PlaySoundEx("weapon/mbuster","weapon")
+
+
+TNT1 A 0 A_JumpIfInventory("CloneStationary",1,3,AAPTR_FriendPlayer)
+TNT1 A 0 A_GiveInventory("GeminimanOtherW_CI",1)
+TNT1 A 0 A_Jump(256,2)
+TNT1 A 0 A_GiveInventory("GeminimanOther_CI",1)
+
+
+TNT1 A 2 A_GiveInventory("CloneFiring",1)
+TNT1 A 8 A_TakeInventory("CloneFiring",999)
+//TNT1 A 0 A_LookEx(42,0,1000,1,360,"MissileCheck")//A_JumpIfTargetInLOS("MissileCheck",0,JLOSF_DEADNOJUMP)
+goto MissileFail
+MissileFail:
+TNT1 A 0 A_ClearTarget
+Goto See
+MissileR:
+TNT1 A 3 A_FaceTarget
+TNT1 A 0 A_PlaySoundEx("weapon/mbuster","weapon")
+TNT1 A 0 A_GiveInventory("GeminimanOther_CI",1)//A_CustomMissile("GemShotClone",28,16,0,4)
+TNT1 A 2 A_GiveInventory("CloneFiring",1)
+TNT1 A 4 A_TakeInventory("CloneFiring",999)
+//TNT1 A 0 A_JumpIfTargetInLOS("MissileCheck",0,JLOSF_DEADNOJUMP)
+goto MissileFail
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor GemCloneHitbox
+{
++MISSILE
+Speed 0
++NOCLIP
++DONTSPLASH
+Damage 0
+Height 56
+Radius 16
+health 28
+scale 2.5
+damagefactor "Normal", 0.5
+damageFactor "IceWallC", 0.24
+DamageFactor "ConcreteShoulder", 0.08
++FRIENDLY
++NOTARGETSWITCH
++NOBLOOD
+-SOLID
+//+THRUACTORS 
+//+BOUNCEONACTORS
++DONTBLAST
++DONTREFLECT
+painchance 256
+bloodtype ""
+species "GeminiClone"//+GHOST
+
+//+NOINTERACTION
+
+//+NOTARGET
+
+-SHOOTABLE
++DONTDRAIN
+
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("SearchSnakeWeakness2",1,2)
+TNT1 A 0 A_Jump(256,7)
+TNT1 A 0 A_GiveInventory("SearchSnakeWeakness2",1)
+TNT1 A 0 A_GiveInventory("SearchSnakeWeakness",1)
+TNT1 A 0 A_GiveInventory("HomingSniperWeakness",1)
+TNT1 A 0 A_GiveInventory("DiveMissileWeakness",1)
+TNT1 A 0 A_GiveInventory("MagicCardWeakness",1)
+TNT1 A 0 A_GiveInventory("HornetChaserWeakness",1)
+TNT1 A 0 //A_GiveInventory("CloneInvuln",1)
+TNT1 A 2
+TNT1 A 0 A_ChangeFlag("SHOOTABLE",1)
+Spawn2:
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualA",0,0,0,momx,momy,momz,0,137,0)//SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION|SXF_CLIENTSIDE
+TNT1 A 0 A_JumpIfInTargetInventory("CloneRun",1,"Run")
+loop
+Run:
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+//TNT1 A 0 A_JumpIfInTargetInventory("CloneRunStand",1,"Spawn2")
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualB",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualB",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualB",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualB",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualB",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualC",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualC",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualC",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualC",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualC",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualD",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualD",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualD",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualD",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualD",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualE",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualE",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualE",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualE",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualE",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneStationary",1,"Spawn2")
+loop
+Shoot:
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualF",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualF",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualF",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualF",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualF",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualF",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualF",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualF",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualF",0,0,0,momx,momy,momz,0,137,0)
+Goto Spawn2
+Death:
+TNT1 A 1 ACS_ExecuteAlways(150,0)
+loop
+Death2:
+TNT1 A 1
+stop
+Pain.SearchSnake:
+Pain.HomingSniper:
+Pain.DiveMissile:
+Pain.MagicCard:
+TNT1 A 0 A_JumpIfInTargetInventory("SearchSnakeWeakness2",1,"SuperGMPain")
+TNT1 A 0
+goto Pain
+SuperGMPain:
+TNT1 A 0 A_PlaySoundEx("classes/super","Voice")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH3",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH2",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH2",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH2",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH2",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH2",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH2",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH2",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH2",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH2",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+goto Spawn2
+Pain:
+TNT1 A 0 A_PlaySoundEx("classes/geminipain","Voice")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH1",0,0,0,momx,momy,momz,0,137,0)
+TNT1 A 0 A_JumpIfInTargetInventory("CloneFiring",1,"Shoot")
+TNT1 A 0 A_GiveToTarget("CloneInventoryFrame", 1)
+TNT1 A 0 ACS_ExecuteAlways(150,0)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_SpawnItemEx("GemCloneVisualH0",0,0,0,momx,momy,momz,0,137,0)
+goto Spawn2
+}
+}
+
+actor GemCloneHitboxB : GemCloneHitbox {DesignatedTeam 0}
+actor GemCloneHitboxR : GemCloneHitbox {DesignatedTeam 1}
+actor GemCloneHitboxO : GemCloneHitbox {DesignatedTeam 2}
+actor GemCloneHitboxP : GemCloneHitbox {DesignatedTeam 3}
+
+
+actor GeminiTeamCheck : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("LightTeamFlag",1,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("WilyTeamFlag",1,"Pickup3")
+TNT1 A 0 A_JumpIfInventory("CossackTeamFlag",1,"Pickup4")
+TNT1 A 0 A_JumpIfInventory("KingTeamFlag",1,"Pickup5")
+goto NoTeam
+Pickup2:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitboxB",0,0,0,0,0,0,0,33,0)
+stop
+Pickup3:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitboxR",0,0,0,0,0,0,0,33,0)
+stop
+Pickup4:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitboxO",0,0,0,0,0,0,0,33,0)
+stop
+Pickup5:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitboxP",0,0,0,0,0,0,0,33,0)
+stop
+NoTeam:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitbox",0,0,0,0,0,0,0,33,0)
+stop
+}
+}
+
+actor GeminiTeamCheck2 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("LightTeamFlag",1,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("WilyTeamFlag",1,"Pickup3")
+TNT1 A 0 A_JumpIfInventory("CossackTeamFlag",1,"Pickup4")
+TNT1 A 0 A_JumpIfInventory("KingTeamFlag",1,"Pickup5")
+goto NoTeam
+Pickup2:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitboxB",0,0,14,0,0,0,0,33,0)
+stop
+Pickup3:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitboxR",0,0,14,0,0,0,0,33,0)
+stop
+Pickup4:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitboxO",0,0,14,0,0,0,0,33,0)
+stop
+Pickup5:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitboxP",0,0,14,0,0,0,0,33,0)
+stop
+NoTeam:
+TNT1 A 0 A_SpawnItemEx("GemCloneHitbox",0,0,14,0,0,0,0,33,0)
+stop
+}
+}
+
+actor CloneInventoryFrame : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+States
+{
+Spawn:
+TNT1 A 0
+stop
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("CloneDistance", 1)
+//TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)<=3,"RunStand")
+TNT1 A 0 A_JumpIfInventory("CloneStationary", 1, "RunClear")
+TNT1 A 0 A_GiveInventory("CloneRun", 1)
+//TNT1 A 0 A_TakeInventory("CloneRunStand", 999)
+stop
+RunClear:
+TNT1 A 0 A_TakeInventory("CloneRun",999)
+//TNT1 A 0 A_TakeInventory("CloneRunStand", 999)
+stop
+RunStand:
+TNT1 A 0 A_GiveInventory("CloneRunStand", 1)
+stop
+}
+}
+
+actor GemCloneVisualA
+{
+scale 2.5
+- SOLID
++NOGRAVITY
++CLIENTSIDEONLY
+States
+{
+Spawn:
+GEMM A 0
+GEMM A 1
+stop
+}
+}
+actor GemCloneVisualB : GemCloneVisualA
+{
+States
+{
+Spawn:
+GEMM B 0
+GEMM B 1
+stop
+}
+}
+actor GemCloneVisualC : GemCloneVisualA
+{
+States
+{
+Spawn:
+GEMM C 0
+GEMM C 1
+stop
+}
+}
+actor GemCloneVisualD : GemCloneVisualA
+{
+States
+{
+Spawn:
+GEMM D 0
+GEMM D 1
+stop
+}
+}
+actor GemCloneVisualE : GemCloneVisualA
+{
+States
+{
+Spawn:
+GEMM E 0
+GEMM E 1
+stop
+}
+}
+actor GemCloneVisualF : GemCloneVisualA
+{
+States
+{
+Spawn:
+GEMM F 0
+GEMM F 1
+stop
+}
+}
+
+actor GemCloneVisualH0 : GemCloneVisualA
+{
+States
+{
+Spawn:
+GEMM H 0
+GEMM H 1
+stop
+}
+}
+
+actor GemCloneVisualH1 : GemCloneVisualA
+{
+States
+{
+Spawn:
+GEMM H 0
+GEMM H 1 A_SpawnItemEx("ClonePainFX1",-5,0,3,0,0,0)
+stop
+}
+}
+
+actor GemCloneVisualH2 : GemCloneVisualA
+{
+States
+{
+Spawn:
+GEMM H 0
+GEMM H 1 A_SpawnItemEx("ClonePainFX2",-5,0,3,0,0,0)
+stop
+}
+}
+
+actor GemCloneVisualH3 : GemCloneVisualA
+{
+States
+{
+Spawn:
+GEMM H 0
+GEMM H 1 A_SpawnItemEx("ClonePainFX3",-5,0,3,0,0,0)
+stop
+}
+}
+
+actor ClonePainFX1 : PainFX
+{
++CLIENTSIDEONLY
+}
+
+actor ClonePainFX2 : ClonePainFX1
+{
+Scale 3.5
+}
+
+actor ClonePainFX3 : ClonePainFX2
+{
+-CLIENTSIDEONLY
+States
+{
+Spawn:
+MMFX A 0
+MMFX A 0 A_PlaySoundEX("classes/super","Weapon")
+MMFX AA 1
+stop
+}
+}
+
+actor CloneAmmo : Ammo
+{
++INVENTORY.IGNORESKILL 
+inventory.amount 1
+inventory.maxamount 28
+}
+
+actor CloneSpawning : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+actor CloneSpawned : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+actor CloneStationary : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+actor CloneAngle : Inventory
+{
+inventory.amount 1
+inventory.maxamount 255
+}
+actor CloneDistance : Inventory
+{
+inventory.amount 1
+inventory.maxamount 8
+}
+
+actor CloneRun : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+/*actor CloneRunStand : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}*/
+actor CloneFiring : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+actor CloneBug : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+actor CloneID : Inventory
+{
+inventory.amount 1
+inventory.maxamount 64//32
+}
+
+actor GeminiItemUsed : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor GeminiItemSet : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor GeminiItemUnSet : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor CloneBug2 : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+actor CloneBugFix : PowerUp
+{
+powerup.duration 70
+}
+
+actor CloneRareBug : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("CloneBug", 1)
+TNT1 A 0 A_PlaySoundEx("item/reggae","SoundSlot7")
+stop
+}
+}
+/*
+actor CloneInvuln : PowerProtection
+{
+powerup.duration 3
+damagefactor "normal", 0.0
+}
+*/

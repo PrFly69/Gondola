@@ -1,0 +1,51 @@
+actor Crystalman : LightClassBase2
+{
+Player.ScoreIcon "C_05H0X"
+player.startitem "LightClassBar"
+
+player.displayname "crystalman"
+player.soundclass "crystalmanc"
+player.startitem "CustomBossAmmoBar"
+player.startitem "CrystalEyeBoss"
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+player.jumpz 13
+
+player.startitem "GyroAttackWeakness2", 1
+
+player.startitem "RollingCutterWeakness", 1
+player.startitem "MetalBladeWeakness", 1
+player.startitem "ShadowBladeWeakness", 1
+//player.startitem "RingBoomerangWeakness", 1
+player.startitem "GyroAttackWeakness", 1
+player.startitem "SilverTomahawkWeakness", 1
+player.startitem "TenguBladeWeakness", 1
+//player.startitem "WheelCutterWeakness", 1
+player.startitem "ScrewCrusherWeakness", 1
+
+player.startitem "RealClassFlag", 53
+States
+{
+Spawn:
+CRYM A 0
+CRYM B 1
+CRYM A 1
+Goto Spawn+2
+See:
+CRYM BCDE 5
+Goto Spawn
+Missile:
+CRYM FGFG 2
+goto Spawn
+
+ClassPain:
+CRYM H 0
+goto PainContinue
+DeathFix:
+CRYM H 0
+goto DeathContinue
+ClassDeath:
+CRYM H 1
+goto MegaDeathEnd
+}
+}

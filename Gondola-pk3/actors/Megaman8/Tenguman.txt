@@ -1,0 +1,61 @@
+actor Tenguman : MegaClassBase
+{
+Player.ScoreIcon "C_08A0X"
+player.startitem "MegaHealthBar"
+player.displayname "Tenguman"
+player.soundclass "tengumanc"
+player.startitem "TornadoHoldBoss"
+player.startitem "FeelMyPowerAmmo", 252
+player.startitem "TenguHoverItem"
+
+player.forwardmove 0.76, 0.76
+player.sidemove 0.74, 0.74
+
+player.startitem "IceWaveWeakness2", 1
+player.startitem "SpreadDrillWeakness2", 1
+
+player.startitem "IceSlasherWeakness", 1
+player.startitem "BlizzardAttackWeakness", 1
+player.startitem "FreezeCrackerWeakness", 1
+player.startitem "IceWaveWeakness", 1
+//player.startitem "IceWallWeakness", 1
+player.startitem "ChillSpikeWeakness", 1
+player.startitem "SpreadDrillWeakness", 1
+player.startitem "PhotonMissileWeakness", 1
+States
+{
+Spawn:
+TENG A 0 
+TENG B 1
+TENG A 1 A_JumpIfInventory("TenguFlagH",1,"SeeHover2")
+Goto Spawn+2
+See:
+TENG BCDE 5 A_JumpIfInventory("TenguFlagH",1,"SeeHover2")
+Goto Spawn
+Missile:
+TENG F 0 A_JumpIfInventory("VivifyDelay7",1,"Missile2")
+TENG F 1 A_JumpIfInventory("VivifyDelay7",1,"Missile2")
+TENG F 3 A_JumpIfInventory("VivifyDelay7",1,"Missile2")
+TENG G 4 
+goto Spawn
+Missile2:
+TENG K 2
+TENG L 7
+goto Spawn
+SeeHover2:
+TENG YYYYZZZZ 1
+TENG Z 0 A_JumpIfInventory("TenguFlagH",1,"SeeHover2")
+goto Spawn
+//SpawnYeet:
+//Goto Spawn+2
+ClassPain:
+TENG H 0
+goto PainContinue
+DeathFix:
+TENG H 0
+goto DeathContinue
+ClassDeath:
+TENG H 1
+goto MegaDeathEnd
+}
+}

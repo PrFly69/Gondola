@@ -1,0 +1,1015 @@
+actor SandySandBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_WTB1"
+dropitem "MegaWaterSWepCDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 28
+Weapon.SlotNumber 1
+Obituary "$OB_MWSHARPOON"
+Inventory.Pickupmessage "Shiranai. Fuzakenaideyo! Butsu butsu iwanai-de!"
+weapon.ammotype "KappaMikeyAmmo"
+weapon.ammotype2 "KappaBarrierAmmo"
+inventory.icon "MWS1Icon"
+States
+{
+Spawn:
+C_WT B 1
+loop
+Ready:
+MWSH A 0 ACS_ExecuteAlways(998,0,DYE_MEGAWATERS)
+MWSH A 0 A_JumpIfInventory("MWS_ItemFlag",1,"SwappinTime")
+MWSH A 0 A_GunFlash
+goto Ready2
+SwappinTime:
+MWSH A 0 A_GunFlash("FlashShield")
+MWSH A 0 A_GiveInventory("MWSShieldCharge",1)
+Ready2:
+MWSH A 0 A_JumpIfInventory("MWS_ItemFlag",1,"Ready2a")
+MWSH A 0 A_JumpIfInventory("KappaMikeyAmmo",3,"Ready3")
+MWSH A 8 A_WeaponReady(WRF_NOSECONDARY)
+MWSH A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
+MWSH A 0 A_GiveInventory("KappaBarrierAmmo",1)
+MWSH A 0 A_GiveInventory("KappaMikeyAmmo",1)
+loop
+Ready2a:
+MWSH A 0 A_JumpIfInventory("KappaMikeyAmmo",6,"Ready3")
+MWSH A 8 A_WeaponReady(WRF_NOSECONDARY)
+MWSH A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
+MWSH A 0 A_GiveInventory("KappaBarrierAmmo",1)
+MWSH A 0 A_GiveInventory("KappaMikeyAmmo",1)
+goto Ready2
+Ready3:
+MWSH A 8 A_WeaponReady
+MWSH A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
+MWSH A 0 A_GiveInventory("KappaBarrierAmmo",1)
+MWSH A 0 A_GiveInventory("KappaMikeyAmmo",1)
+loop
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+MWSH A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+MWSH A 1 A_Raise
+Loop
+Fire:
+MWSH A 0 A_GiveInventory("VivifyDelay10",1)
+MWSH A 0 A_Refire(1)
+MWSH B 0 A_PlaySoundEx("weapon/pshot","Weapon")
+MWSH B 0 A_GiveInventory("MegaWaterSMain_CI",1)
+MWSH BC 2
+MWSH B 1
+MWSH A 1
+MWSH B 0 A_GiveInventory("KappaMikeyAmmo",1)
+MWSH B 0 A_PlaySoundEx("weapon/pshot","Weapon")
+MWSH B 0 A_GiveInventory("MegaWaterSMain_CI",1)
+MWSH A 0 A_GiveInventory("KappaBarrierAmmo",2)
+MWSH A 0 A_GiveInventory("KappaMikeyAmmo",0.5)
+MWSH BC 2
+MWSH B 1
+MWSH A 1
+MWSH B 0 A_PlaySoundEx("weapon/pshot","Weapon")
+MWSH B 0 A_GiveInventory("MegaWaterSMain_CI",1)
+MWSH BC 2
+MWSH B 1
+MWSH A 1
+MWSH A 12
+MWSH A 0 A_Refire
+goto Ready2
+AltFire:
+MWSH BB 2
+MWSH C 0 A_PlaySound("weapon/BigRain",1,1.0)
+MWSH C 0 A_TakeInventory("KappaMikeyAmmo",6)
+MWSH C 0 A_JumpIfInventory("PowerRage_ST",1,"Altfire3_R")
+MWSH BBCCBBCCBBCCBB 1 A_GiveInventory("MegaWaterSAlt2_CI",1)
+MWSH BA 3
+MWSH A 10
+goto Ready2
+Altfire3_R:
+MWSH BCBCBCBCBCBCB  1 A_GiveInventory("MegaWaterSAlt2_CI",1)
+MWSH BA 1
+MWSH A 2
+goto Ready2
+
+NoAmmo:
+MWSH A 0
+Goto Ready2
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,"FlashShieldTime")
+TNT1 A 1
+goto Flash
+FlashShieldTime:
+MWSH D 0 A_PlaySound("classes/MWS_Shield",4,1.0)
+MWSH D 1 A_JumpIfInventory("PowerRage_ST",1,1)
+MWSH E 1
+MWSH F 1 A_JumpIfInventory("PowerRage_ST",1,1)
+MWSH G 4
+MWSH F 1 A_JumpIfInventory("PowerRage_ST",1,1)
+MWSH E 1
+MWSH D 1 A_JumpIfInventory("PowerRage_ST",1,1)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+MWSH D 0 A_TakeInventory("MWS_ItemHoldIt",99)
+goto FlashShield
+FlashShield:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX1",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX1",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX1",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX2",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX2",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX2",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_GiveInventory("MWSShieldCharge",2)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,"FlashShield")
+goto FlashBoom
+
+
+FlashBoom:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+
+TNT1 A 0 A_PlaySound("classes/ShieldPop",4,1.0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemForceFail",1,3)
+TNT1 A 0 A_FireCustomMissile("MWSPush",0,0,0,0)
+TNT1 A 0 A_SpawnItemEx("MWSPushFXHelper",0,0,28,0,0,0,0,1)
+TNT1 AAAAA 0 A_SpawnItemEx("MWS_SplashFX2",0,0,16,random(-5,5),random(-5,5),random(2,6),0,1)
+TNT1 AAAAA 0 A_SpawnItemEx("MWS_SplashFX2",0,0,32,random(-5,5),random(-5,5),random(2,6),0,1)
+TNT1 AAAAA 0 A_SpawnItemEx("MWS_SplashFX2",0,0,48,random(-5,5),random(-5,5),random(2,6),0,1)
+
+TNT1 A 0 A_TakeInventory("KappaBarrierAmmo",28)
+TNT1 AAA 1
+TNT1 A 0 A_TakeInventory("MWSShieldCharge",99)
+TNT1 A 0 A_TakeInventory("MWS_ItemForceFail",99)
+TNT1 A 0 A_TakeInventory("MWS_ItemHoldIt",99)
+TNT1 A 1
+TNT1 A 0 A_TakeInventory("KappaBarrierAmmo",28)
+TNT1 A 0 A_TakeInventory("MWSShieldCharge",99)
+TNT1 A 0 A_TakeInventory("MWS_ItemForceFail",99)
+TNT1 A 0 A_TakeInventory("MWS_ItemHoldIt",99)
+goto Flash
+NoFlash:
+TNT1 A 1
+stop
+}
+}
+
+actor SandySanderBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_WTB2"
+dropitem "MegaWaterSWepCDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 28
+Weapon.SlotNumber 2
+Obituary "$OB_MWSHARPOON"
+Inventory.Pickupmessage "insert jaypaynese here"
+weapon.ammotype "KappaMikeyAmmo"
+weapon.ammotype2 "KappaBarrierAmmo"
+inventory.icon "MWS2Icon"
+States
+{
+Spawn:
+C_WT B 1
+loop
+Ready:
+SWMX A 0 ACS_ExecuteAlways(998,0,DYE_MEGAWATERS)
+SWMX A 0 A_JumpIfInventory("MWS_ItemFlag",1,"SwappinTimer")
+SWMX A 0 A_GunFlash
+goto Ready2
+SwappinTimer:
+SWMX A 0 A_GunFlash("FlashShield")
+SWMX A 0 A_GiveInventory("MWSShieldCharge",1)
+Ready2:
+SWMX A 0 A_JumpIfInventory("MWS_ItemFlag",1,"Ready2a")
+SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",3,"Ready3")
+SWMX A 8 A_WeaponReady(WRF_NOSECONDARY)
+SWMX A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
+SWMX A 0 A_GiveInventory("KappaBarrierAmmo",1)
+SWMX A 0 A_GiveInventory("KappaMikeyAmmo",1)
+loop
+Ready2a:
+SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",6,"Ready3")
+SWMX A 8 A_WeaponReady(WRF_NOSECONDARY)
+SWMX A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
+SWMX A 0 A_GiveInventory("KappaBarrierAmmo",1)
+SWMX A 0 A_GiveInventory("KappaMikeyAmmo",1)
+goto Ready2
+Ready3:
+SWMX A 8 A_WeaponReady
+SWMX A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
+SWMX A 0 A_GiveInventory("KappaBarrierAmmo",1)
+SWMX A 0 A_GiveInventory("KappaMikeyAmmo",1)
+loop
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+SWMX A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+SWMX A 1 A_Raise
+Loop
+Fire:
+SWMX A 0 A_GiveInventory("VivifyDelay10",1)
+SWMX A 0 A_Refire(1)
+SWMX B 0 A_PlaySoundEx("weapon/pshot","Weapon")
+SWMX B 0 A_GiveInventory("MegaWaterSMain_CI",1)
+SWMX BC 2
+SWMX B 1
+SWMX A 1
+SWMX B 0 A_GiveInventory("KappaMikeyAmmo",1)
+SWMX B 0 A_PlaySoundEx("weapon/pshot","Weapon")
+SWMX B 0 A_GiveInventory("MegaWaterSMain_CI",1)
+SWMX A 0 A_GiveInventory("KappaBarrierAmmo",2)
+SWMX A 0 A_GiveInventory("KappaMikeyAmmo",0.5)
+SWMX BC 2
+SWMX B 1
+SWMX A 1
+SWMX B 0 A_PlaySoundEx("weapon/pshot","Weapon")
+SWMX B 0 A_GiveInventory("MegaWaterSMain_CI",1)
+SWMX BC 2
+SWMX B 1
+SWMX A 1
+SWMX A 12
+SWMX A 0 A_Refire
+goto Ready2
+AltFire:
+SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",6,"Altfire1")
+goto NoAmmo
+Altfire1:
+SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",3,1)
+goto NoAmmo
+SWMX B 0 A_GiveInventory("VivifyDelay6",1)
+SWMX B 0 A_Refire(1)
+SWMX B 0 A_PlaySound("weapon/WaveSummon2",1,0.65)
+SWMX B 0 A_TakeInventory("KappaMikeyAmmo",3)
+SWMX B 0 A_GiveInventory("MegaWaterSAlt_CI",1)
+SWMX A 1 Offset(0, 32)
+SWMX A 1 Offset(0, 42)
+SWMX B 1 Offset(0, 52)
+SWMX B 1 Offset(0, 59)
+SWMX C 1 Offset(0, 63)
+SWMX C 1 Offset(0, 64)
+SWMX B 1 Offset(0, 65)
+SWMX B 1 Offset(0, 64)
+SWMX C 1 Offset(0, 63)
+SWMX C 1 Offset(0, 59)
+SWMX A 1 Offset(0, 52)
+SWMX A 1 Offset(0, 42)
+SWMX A 1 Offset(0, 32)
+SWMX A 5 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+SWMX A 0
+Goto Ready2
+
+NoAmmo:
+SWMX A 0
+Goto Ready2
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,"FlashShieldTime")
+TNT1 A 1
+goto Flash
+FlashShieldTime:
+MWSH D 0 A_PlaySound("classes/MWS_Shield",4,1.0)
+MWSH D 1 A_JumpIfInventory("PowerRage_ST",1,1)
+MWSH E 1
+MWSH F 1 A_JumpIfInventory("PowerRage_ST",1,1)
+MWSH G 4
+MWSH F 1 A_JumpIfInventory("PowerRage_ST",1,1)
+MWSH E 1
+MWSH D 1 A_JumpIfInventory("PowerRage_ST",1,1)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+MWSH D 0 A_TakeInventory("MWS_ItemHoldIt",99)
+goto FlashShield
+FlashShield:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX1",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX1",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX1",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX2",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX2",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,1)
+goto FlashBoom
+TNT1 A 1 A_SpawnItemEx("MWS_ShieldFX2",0,0,-12,momx,momy,momz,0,9,0)
+TNT1 A 0 A_GiveInventory("MWSShieldCharge",2)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("MWS_ItemFlag",1,"FlashShield")
+goto FlashBoom
+
+
+FlashBoom:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+
+TNT1 A 0 A_PlaySound("classes/ShieldPop",4,1.0)
+TNT1 A 0 A_JumpIfInventory("MWS_ItemForceFail",1,3)
+TNT1 A 0 A_FireCustomMissile("MWSPush",0,0,0,0)
+TNT1 A 0 A_SpawnItemEx("MWSPushFXHelper",0,0,28,0,0,0,0,1)
+TNT1 AAAAA 0 A_SpawnItemEx("MWS_SplashFX2",0,0,16,random(-5,5),random(-5,5),random(2,6),0,1)
+TNT1 AAAAA 0 A_SpawnItemEx("MWS_SplashFX2",0,0,32,random(-5,5),random(-5,5),random(2,6),0,1)
+TNT1 AAAAA 0 A_SpawnItemEx("MWS_SplashFX2",0,0,48,random(-5,5),random(-5,5),random(2,6),0,1)
+
+TNT1 A 0 A_TakeInventory("KappaBarrierAmmo",999)
+TNT1 AAAA 1
+TNT1 A 0 A_TakeInventory("KappaBarrierAmmo",999)
+TNT1 A 0 A_TakeInventory("MWSShieldCharge",999)
+TNT1 A 0 A_TakeInventory("MWS_ItemForceFail",999)
+TNT1 A 0 A_TakeInventory("MWS_ItemHoldIt",999)
+TNT1 A 1
+TNT1 A 0 A_TakeInventory("KappaBarrierAmmo",999)
+TNT1 A 0 A_TakeInventory("MWSShieldCharge",999)
+TNT1 A 0 A_TakeInventory("MWS_ItemForceFail",999)
+TNT1 A 0 A_TakeInventory("MWS_ItemHoldIt",999)
+goto Flash
+NoFlash:
+TNT1 A 1
+stop
+}
+}
+
+actor KappaMikeyAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor KappaBarrierAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor MWSShieldCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 60
+}
+
+actor MWS_ItemFlag : OnceC{}
+actor MWS_ItemHoldIt : Powerup { powerup.duration 6 }
+actor MWS_ItemForceFail : OnceC{}
+
+actor MWS_Armour : BasicArmorPickup
+{
+armor.saveamount 40
+armor.savepercent 65.001
+}
+
+actor MWS_ShieldItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "XTR0WI_R"
+inventory.pickupmessage "My shield is better than Pumpman's!"
+scale 2.0
++INVBAR
+states
+{
+Spawn:
+MWSH I 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("MWS_ItemHoldIt",1,"No")
+TNT1 A 1 A_JumpIfInventory("MWS_ItemFlag",1,"Use2")
+TNT1 A 1 A_JumpIfInventory("KappaBarrierAmmo",28,"Use1")
+fail
+Use1:
+//TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,8,10)//80% speed
+TNT1 A 0 A_GiveInventory("MWS_ItemHoldIt",1)
+TNT1 A 0 A_GiveInventory("MWS_Armour",1)
+TNT1 A 0 A_GiveInventory("BossBasicArmorAmount",50)
+TNT1 A 0 A_GiveInventory("MWS_ItemFlag",1)
+TNT1 A 0 A_SpawnItemEx("MWS_ShieldWatcher")
+fail
+Use2:
+TNT1 A 0 A_GiveInventory("MWS_ItemHoldIt",1)
+TNT1 A 0 A_TakeInventory("MWS_ItemFlag",999)
+TNT1 A 0 A_TakeInventory("BasicArmor",999)
+TNT1 A 0 A_TakeInventory("BossBasicArmorAmount",999)
+fail
+No:
+TNT1 A 0
+fail
+}
+}
+
+actor MWS_ShieldWatcher : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 1
+
+TNT1 A 0 A_JumpIfInTargetInventory("MWS_ItemFlag",1,2)
+TNT1 A 0
+goto Death2
+TNT1 A 0 A_JumpIfInTargetInventory("MWSShieldCharge",60,"Pressure")
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",1,"Spawn")
+TNT1 A 0
+goto Death3
+Pressure:
+TNT1 A 0 A_JumpIfInventory("MWSShieldCharge",35,"PressureBuild")//60
+TNT1 A 0 A_GiveInventory("MWSShieldCharge",1)
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",1,"Spawn")
+TNT1 A 0
+goto Death3
+PressureBuild:
+TNT1 A 0 A_TakeFromTarget("KappaBarrierAmmo",1)
+TNT1 A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"PressureBuild_R")
+TNT1 A 0 A_TakeInventory("MWSShieldCharge",6)//16
+TNT1 A 0 A_JumpIfInTargetInventory("KappaBarrierAmmo",1,"Spawn")
+TNT1 A 0
+goto Death3
+PressureBuild_R:
+TNT1 A 0 A_TakeInventory("MWSShieldCharge",3)//8
+TNT1 A 0 A_JumpIfInTargetInventory("KappaBarrierAmmo",1,"Spawn")
+TNT1 A 0
+goto Death3
+
+Death3:
+TNT1 A 0 A_GiveToTarget("MWS_ItemForceFail",1)
+goto Death
+Death2:
+TNT1 A 3
+goto Death
+Death:
+TNT1 A 0 A_GiveToTarget("MWS_ItemHoldIt",1)
+TNT1 A 0 A_TakeFromTarget("BasicArmor",999)
+TNT1 A 0 A_TakeFromTarget("BossBasicArmorAmount",999)
+TNT1 A 0 A_TakeFromTarget("MWSShieldCharge",50)
+TNT1 A 0 A_TakeFromTarget("MWS_ItemFlag",999)
+TNT1 A 1
+stop
+}
+}
+
+
+actor MWSPush : BasicExplosion
+{
+var int user_P;
+damagetype "MegaWaterBarrier"
+Obituary "$OB_MWSPUSH"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("MWSShieldCharge",user_P,"SpawnAdd")
+TNT1 A 1 A_Explode(user_P/6*2+9,user_P/6*20+199,0)
+stop
+SpawnAdd:
+TNT1 A 0 A_SetUserVar("user_P",user_P+1)
+goto Spawn+2
+}
+}
+
+actor MWSPushFXHelper : BasicHelper
+{
+var int user_P;
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("MWSShieldCharge",user_P,"SpawnAdd")
+TNT1 A 1
+stop
+SpawnAdd:
+TNT1 A 0 A_SetUserVar("user_P",user_P+1)
+TNT1 AAA 0 A_SpawnItemEx("MWS_SplashFX2",8,0,random(-10,10),random(2,user_P*0.5),0,random(3,8),random(0,359),1)
+TNT1 A 0 A_JumpIf(user_P>=300,"SpawnD")
+goto Spawn+2
+SpawnD:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MWS_SplashFX2",8,0,random(-10,10),random(50,100),0,random(3,8),random(0,359),1)
+TNT1 A 1
+stop
+}
+}
+
+Actor MWSHookshotFX-1 : BasicClientSide
+{
+Translation "202:202=202:202","199:199=193:193"
+States
+{
+Spawn:
+HARP F 0
+HARP F 1
+stop
+}
+}
+
+actor MWS_Harpoon
+{
+//var int user_P;
+Translation "198:198=116:116"
+PROJECTILE
++NOGRAVITY
++SKYEXPLODE
+Damagetype "MegaWaterS"
+Obituary "$OB_MWSHARPOON"
+
+damage (12)//(10+user_P)
+radius 7
+height 10
+speed 40
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+MWSX K 1
+loop
+}
+}
+
+actor MWS_Harpoon2
+{
+var int user_PTID;
+Translation "198:198=116:116"
+PROJECTILE
++NOGRAVITY
++SKYEXPLODE
++HITTRACER
+Damagetype "MWSHookPull"
+Obituary "$OB_MWSHARPOON2"
+
+damage (15)//(10+user_P)
+radius 8
+height 12
+speed 60
+scale 4
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+HARP H 0
+HARP H 0 A_SetUserVar("user_PTID",ACS_ExecuteWithResult(257,0))
+HARP H 0 ACS_NamedExecuteAlways("cbm_WaveHookshotFX", 0, user_PTID, ACS_ExecuteWithResult(143,0))
+MWSX K 12
+stop
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/BionicArm2","Weapon")
+stop
+XDeath:
+TNT1 A 0 A_PlaySound("weapon/crashland")
+TNT1 A 1
+stop
+}
+}
+
+actor MWS_HarpoonB : MWS_Harpoon{translation "198:198=74:74"}
+actor MWS_HarpoonR : MWS_Harpoon{translation "198:198=41:41"}
+actor MWS_HarpoonO : MWS_Harpoon{translation "198:198=128:128"}
+actor MWS_HarpoonP : MWS_Harpoon{translation "198:198=232:232"}
+
+actor MWS_Harpoon2B : MWS_Harpoon2{translation "198:198=74:74"}
+actor MWS_Harpoon2R : MWS_Harpoon2{translation "198:198=41:41"}
+actor MWS_Harpoon2O : MWS_Harpoon2{translation "198:198=128:128"}
+actor MWS_Harpoon2P : MWS_Harpoon2{translation "198:198=232:232"}
+
+actor MWS_WaterBlower
+{
+PROJECTILE
++NOINTERACTION
+height 0
+radius 0
+speed 0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,11,9)//22
+TNT1 A 3
+stop
+}
+}
+
+actor MWS_Water
+{
+Translation "199:199=204:204", "202:202=202:202"
+PROJECTILE
++SKYEXPLODE
++DONTBLAST
++DONTREFLECT
+Damage (1)
+height 16
+radius 16
+Scale 1.5
+Speed 40
+ReactionTime 8
+Obituary "$OB_MWSWATER"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 1
+TNT1 A 0 A_Jump(256,1,4,7)
+Spawn2:
+MWSX RR 1 A_SpawnItemEx("MWS_WaterFXR",0,0,0,0,0,0,0,1)
+MWSX R 0 A_CountDown
+MWSX SS 1 A_SpawnItemEx("MWS_WaterFXS",0,0,0,0,0,0,0,1)
+MWSX S 0 A_CountDown
+MWSX TT 1 A_SpawnItemEx("MWS_WaterFXT",0,0,0,0,0,0,0,1)
+MWSX T 0 A_CountDown
+Loop
+Crash:
+XDeath:
+TNT1 A 0 A_Stop
+TNT1 A 3 ACS_NamedExecuteAlways("cbm_legacyDustPull",0,88,15)
+goto Death
+Death:
+TNT1 A 0 A_Stop
+//TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,120,22,9)
+//TNT1 A 3
+TNT1 A 1
+stop
+}
+}
+
+
+actor MWS_WaterB : MWS_Water{translation "202:202=205:205", "199:199=74:74"}
+actor MWS_WaterR : MWS_Water{translation "202:202=171:171", "199:199=41:41"}
+actor MWS_WaterO : MWS_Water{translation "202:202=104:104", "199:199=128:128"}
+actor MWS_WaterP : MWS_Water{translation "202:202=229:229", "199:199=232:232"}
+
+
+actor MWS_WaterFX
+{
+-SOLID
++NOINTERACTION
++CLIENTSIDEONLY
++NOGRAVITY
++DONTBLAST
+renderstyle translucent
+alpha 0.8
+scale 1.0
+}
+
+actor MWS_WaterFXR : MWS_WaterFX
+{
+States
+{
+Spawn:
+MWSX R 2
+stop
+}
+}
+
+actor MWS_WaterFXS : MWS_WaterFX
+{
+States
+{
+Spawn:
+MWSX S 2
+stop
+}
+}
+
+actor MWS_WaterFXT : MWS_WaterFX
+{
+States
+{
+Spawn:
+MWSX T 2
+stop
+}
+}
+
+
+
+actor MWS_ShieldFX1
+{
+Scale 2.5
+renderstyle translucent
+alpha 0.5
+-SOLID
++NOGRAVITY
++CLIENTSIDEONLY
++DONTBLAST
++NOINTERACTION
++NOTIMEFREEZE
+States
+{
+Spawn:
+MWSX P 0
+MWSX P 1
+stop
+}
+}
+
+actor MWS_ShieldFX2 : MWS_ShieldFX1
+{
+States
+{
+Spawn:
+MWSX Q 0
+MWSX Q 1
+stop
+}
+}
+
+
+actor MWS_WaterSpoutSpawn : FastProjectile
+{
+Translation "199:199=204:204", "202:202=202:202"
++SKYEXPLODE
+//+RIPPER
++THRUGHOST
+//+THRUACTORS
++DONTBLAST
++DONTREFLECT
+radius 8
+height 12
+speed 1000
+damage (0)
+reactiontime 5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+loop
+Death:
+TNT1 A 0 A_SpawnItemEx("MWS_WaterSpout",0,0,0,0,0,0,0,1)
+stop
+XDeath:
+TNT1 A 0 A_SpawnItemEx("MWS_WaterSpout",6,0,0,0,0,0,0,1)
+stop
+
+}
+}
+
+actor MWS_WaterSpoutSpawnB : MWS_WaterSpoutSpawn{translation "202:202=205:205", "199:199=74:74"}
+actor MWS_WaterSpoutSpawnR : MWS_WaterSpoutSpawn{translation "202:202=171:171", "199:199=41:41"}
+actor MWS_WaterSpoutSpawnO : MWS_WaterSpoutSpawn{translation "202:202=104:104", "199:199=128:128"}
+actor MWS_WaterSpoutSpawnP : MWS_WaterSpoutSpawn{translation "202:202=229:229", "199:199=232:232"}
+
+
+actor MWS_WaterSpout
+{
+PROJECTILE
+//+NOINTERACTION
++RIPPER
++THRUGHOST
++FLOORHUGGER
++DONTBLAST
++DONTREFLECT
++THRUACTORS
+
+radius 4
+height 12
+scale 0.80
+damagetype "MWSLift"
+Obituary "$OB_MWSLIFT"
+damage (0)
+
+reactiontime 3
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 0
+TNT1 A 0 A_JumpIfCloser(250,26)
+TNT1 A 0 //A_LOG("Too far 250")
+TNT1 A 0 A_JumpIfCloser(500,20)
+TNT1 A 0 //A_LOG("Too far 500")
+TNT1 A 0 A_JumpIfCloser(750,13)
+TNT1 A 0 //A_LOG("Too far 750")
+TNT1 A 0 A_JumpIfCloser(1000,7)
+TNT1 A 0 //A_LOG("Too far 1000")
+TNT1 A 0 A_PlaySound("misc/waterslide",1,0.75)
+TNT1 AAAAAAAA 1 A_SpawnItemEx("MWS_SplashFX2",0,0,0,random(-5,5),random(-5,5),random(5,10),0,1)
+TNT1 A 0 A_PlaySound("misc/waterslide",1,0.75)
+TNT1 AAAAAAAA 1 A_SpawnItemEx("MWS_SplashFX2",0,0,0,random(-5,5),random(-5,5),random(5,10),0,1)
+TNT1 A 0 //A_LOG("Fired")
+TNT1 A 1 A_GiveInventory("WeaponCharge",1)
+TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MWS_SplashFX2",0,0,0,random(-10,10),random(-10,10),15,0,1)
+MWSX A 0 A_PlaySound("weapon/WaveSummonGo2",4,0.55)
+MWSX A 1 A_SpawnItemEx("MWS_LaunchCheck",0,0,32)
+MWSX B 0 A_Explode(8,48,0,0,48)
+MWSX BCDEFG 1 A_SpawnItemEx("MWS_LaunchCheck",0,0,32)
+Burst:
+MWSX H 0 A_SpawnItemEx("MWS_SpoutDamageF",0,0,35)
+MWSX H 0 A_SpawnItemEx("MWS_SpoutDamageF",0,0,70)
+MWSX HHIIJJ 1 A_SpawnItemEx("MWS_LaunchCheck",0,0,32)
+MWSX H 0 A_CountDown
+loop
+Death:
+TNT1 A 1 A_JumpIfInventory("WeaponCharge",1,"RealDeath")
+TNT1 A 1
+stop
+RealDeath:
+MWSX GFEDCBA 2
+stop
+}
+}
+
+actor MWS_LaunchCheck : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 0 A_JumpIfCloser(48,2)
+TNT1 A 0 A_Jump(256,3)
+TNT1 A 0 A_JumpIfInTargetInventory("MWS_LaunchCooldown",1,2)
+TNT1 A 0 A_GiveToTarget("MWS_LaunchItem",1)
+TNT1 A 1
+stop
+}
+}
+
+actor MWS_LaunchCooldown : Powerup
+{
+Powerup.Duration 35
+}
+
+actor MWS_LaunchItem : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("MWS_LaunchCooldown",1)
+TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
+goto Air
+Air:
+TNT1 A 0 ThrustThingZ(0,50,0,1)
+stop
+Ground:
+TNT1 A 0 ThrustThingZ(0,80,0,0)
+stop
+}
+}
+
+actor MWS_SpoutDamageF : BasicExplosion
+{
+damagetype "MWSLift"
+Obituary "$OB_MWSLIFT"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(5,48,0,0,48)
+stop
+}
+}
+
+
+actor MWSLiftProtect : PowerProtection
+{
+Powerup.Duration 14
+DamageFactor "MWSLift", 0.5
+}
+
+actor MWS_SplashFX
+{
++MISSILE
+-SOLID
++RIPPER
++THRUGHOST
++THRUACTORS
++DONTBLAST
++CLIENTSIDEONLY
+Damage (0)
+height 1
+radius 1
+renderstyle translucent
+alpha 1.0
+scale 1.0//1.5
+speed 25
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+MWSX MMNNOO 1 A_FadeOut(0.05)
+loop
+}
+}
+
+actor MWS_SplashFX2 : MWS_SplashFX
+{
+alpha 1.0
+}
+
+
+actor MegaWaterSMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MWS_Harpoon",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MWS_HarpoonB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MWS_HarpoonR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MWS_HarpoonO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MWS_HarpoonP",0,0,8,0)
+goto Done
+}
+}
+
+actor MegaWaterSMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MWS_Harpoon2",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MWS_Harpoon2B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MWS_Harpoon2R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MWS_Harpoon2O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MWS_Harpoon2P",0,0,8,0)
+goto Done
+}
+}
+
+actor MegaWaterSAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MWS_WaterSpoutSpawn",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MWS_WaterSpoutSpawnB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MWS_WaterSpoutSpawnR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MWS_WaterSpoutSpawnO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MWS_WaterSpoutSpawnP",0,0,8,0)
+goto Done
+}
+}
+
+actor MegaWaterSAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MWS_Water",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MWS_WaterB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MWS_WaterR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MWS_WaterO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MWS_WaterP",0,0,8,0)
+goto Done
+}
+}

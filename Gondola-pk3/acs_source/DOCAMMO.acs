@@ -1,0 +1,378 @@
+#library "docammo"
+#include "zcommon.acs"
+
+#import "WEPACS.acs"//Needs the entire weapon_ammo array
+
+
+#DEFINE C_WEAPON_CATEGORY_CHECK 530
+
+script "cbm_CopyWepAmmoSet" (int number, int which) //Ammo Changer
+{
+	int i;
+	switch (which){
+	case 0:
+		for (i=0; i<MAX_WEAPONS_GLOBAL; i++) {
+			//SetAmmoCapacity(weapons_ammo[i][1],AmmoMax_Modifier[i][0]+number);//Old method
+			if(weapons_ammo[i][3]>0.25){SetAmmoCapacity(weapons_ammo[i][1],GetAmmoCapacity(weapons_ammo[i][1])+number);}
+		}
+		break;
+	case 1:
+		for (i=0; i<MAX_WEAPONS_GLOBAL; i++) {
+			if(weapons_ammo[i][3]>0.25){SetAmmoCapacity(weapons_ammo[i][1],GetAmmoCapacity(weapons_ammo[i][1])-number);}
+		}
+		break;
+	case 2:
+		for (i=0; i<MAX_WEAPONS_GLOBAL; i++) {
+			if(weapons_ammo[i][3]>0.25){SetAmmoCapacity(weapons_ammo[i][1],GetAmmoCapacity(weapons_ammo[i][1])*number);}
+		}
+		break;
+	case 3:
+		for (i=0; i<MAX_WEAPONS_GLOBAL; i++) {
+			if(weapons_ammo[i][3]>0.25){SetAmmoCapacity(weapons_ammo[i][1],GetAmmoCapacity(weapons_ammo[i][1])/number);}
+		}
+		break;
+	//case 4:
+		//for (i=0; i<MAX_WEAPONS_GLOBAL; i++) {
+			//SetAmmoCapacity(weapons_ammo[i][1],round(GetAmmoCapacity(weapons_ammo[i][1])*1.14));
+		//}
+		//break;
+}
+}
+
+//function int round(int fixedNumber)
+//{return (fixedNumber + 0.5) >> 16;}
+
+script "cbm_CopyWepAmmoRatioGive" (int amount) //Doc Robot ammo regen
+{
+	int percentage = FixedDiv(amount << 16, 100.0);
+	int AmmoMultiplier = 1.0;
+	int AmmoPer = 1.0;
+
+	For(int i = 0; i < MAX_WEAPONS_GLOBAL; i++) {
+		If(CheckInventory(weapons_ammo[i][0]) == 1) {
+			if ( (StrCmp(weapons_ammo[i][0],"PlantBarrierWepC") != 0 || ACS_ExecuteWithResult(975,0)!=2) && weapons_ammo[i][3] != 0.0) {
+				if(weapons_ammo[i][3] == 1.0){
+					AmmoPer = FixedMul((GetAmmoCapacity(weapons_ammo[i][1]) * percentage) >> 16, AmmoMultiplier);
+				}
+				else{
+					AmmoPer = FixedMul((GetAmmoCapacity(weapons_ammo[i][1]) * FixedMul(percentage,weapons_ammo[i][3])) >> 16, AmmoMultiplier);
+				}
+				if(AmmoPer < 1){AmmoPer = 1;}
+				GiveInventory(weapons_ammo[i][1], AmmoPer);
+			}
+		}
+	}
+}
+
+script "cbm_CopyWepAmmoBasicGive" (int amount)
+{
+	//if(negative){amount *= -1;};
+	For(int i = 0; i < MAX_WEAPONS_GLOBAL; i++) {
+		If(CheckInventory(weapons_ammo[i][0]) == 1) {
+			if (weapons_ammo[i][3] != 0.0) {
+				//TakeInventory(weapons_ammo[i][1], amount);
+				GiveInventory(weapons_ammo[i][1], amount);
+			}
+		}
+	}
+}
+
+#DEFINE WEAPON_GROUPS 15
+#DEFINE WEAPON_CATEGORIES 8
+
+str weapon_groupings[WEAPON_GROUPS][WEAPON_CATEGORIES] = 
+{
+//{"FlameSwordWep","FlashBombWep","TornadoHoldWep","ThunderClawWep","HomingSniperWep","WaterBalloonWep","IceWaveWep","AstroCrushWep"},
+{"FireStormWep","HyperBombWep","RollingCutterWep","ThunderBeamWep","SuperArmWep","OilSliderWep","IceSlasherWep","TimeSlowWep"},
+{"AtomicFireWep","CrashBombWep","MetalBladeWep","AirShooterWep","LeafShieldWep","QuickBoomerangWep","BubbleLeadWep","TimeStopperWep"},
+{"TopSpinWep","HardKnuckleWep","ShadowBladeWep","SparkShockWep","SearchSnakeWep","NeedleCannonWep","MagnetMissileWep","GeminiLaserWep"},
+{"PharaohShotWep","DrillBombWep","RingBoomerangWep","DiveMissileWep","SkullBarrierWep","DustCrusherWep","RainFlushWep","FlashStopperWep"},
+{"ChargeKickWep","NapalmBombWep","GyroAttackWep","StarCrashWep","PowerStoneWep","CrystalEyeWep","WaterWaveWep","GravityHoldWep"},
+{"FlameBlastWep","KnightCrushWep","SilverTomahawkWep","WindStormWep","PlantBarrierWep","YamatoSpearWep","BlizzardAttackWep","CentaurFlashWep"},
+{"ScorchWheelWep","DangerWrapWep","SlashClawWep","ThunderBoltWep","WildCoilWep","JunkShieldWep","FreezeCrackerWep","NoiseCrushWep"},
+{"FlameSwordWep","FlashBombWep","TornadoHoldWep","ThunderClawWep","HomingSniperWep","WaterBalloonWep","IceWaveWep","AstroCrushWep"},
+{"WaveBurnerWep","RemoteMineWep","TenguBladeWep","LightningBoltWep","SpreadDrillWep","MagicCardWep","IceWallWep","CopyVisionWep"},
+{"MagmaBazookaWep","LaserTridentWep","TornadoBlowWep","PlugBallWep","ConcreteShotWep","HornetChaserWep","JewelSatelliteWep","BlackholeBombWep"},
+
+{"SolarBlazeWep","","","","","","",""},
+//{"SolarBlazeWep","ComandoBombWep","TripleBladeWep","ThunderWoolWep","WheelCutterWep","WaterShieldWep","ChillSpikeWep","ReboundStrikerWep"},
+{"RisingFistWep","","","DiveSonarWep","PlantTrapperWep","MegaBallWep","",""},
+{"HyperStormHWep","BalladeCrackerWep","ScrewCrusherWep","DarkShieldWep","SakugarneWep","TopTwistWep","SkullSniperWep","MirrorBusterWep"},
+{"BusterRodGWep","FlashBulbWep","CentaurArrowWep","DynamoTendrilWep","GravitySphereWep","RainbowGalaxyWep","MegaWaterSWep","TimeBenderWep"}
+};
+
+
+/*
+script C_WEAPON_CATEGORY_CHECK (void) {
+	setResultValue(findCategory());
+}
+*/
+
+script C_WEAPON_CATEGORY_CHECK (void) {}
+
+
+#DEFINE I_TOTAL_CLASSES 129
+str Doc_Scan_List[I_TOTAL_CLASSES][4] =
+{
+{"CopyWep","Null2","0","Megaman"},
+{"CopyWep","Null2","0","Protoman"},
+{"CopyWep","Null2","0","Bass"},
+{"CopyWep","Null2","0","Duo"},
+{"CopyWep","Null2","0","Maestro"},
+{"MegaBallWepC","Null2","0","Rock"},
+{"Null","Null2","0","Roll"},
+{"Null","Null2","0","Auto"},
+{"RisingFistWepC","Null2","0","Dr. Light"},
+{"WaveBusterWepC","Null2","0","Dr. Wily"},
+{"Null","Null2","0","Sniper Joe"},
+
+{"RollingCutterWepC","Null2","0","Cutman"},
+{"SuperArmWepC","Null2","0","Gutsman"},
+{"IceSlasherWepC","Null2","0","Iceman"},
+{"HyperBombWepC","Null2","0","Bombman"},
+{"FireStormWepC","Null2","0","Fireman"},
+{"ThunderBeamWepC","Null2","0","Elecman"},
+{"TimeSlowWepC","Null2","0","Timeman"},
+{"OilSliderWepC","Null2","0","Oilman"},
+
+{"MetalBladeWepC","Null2","0","Metalman"},
+{"AirShooterWepC","Null2","0","Airman"},
+{"BubbleLeadWepC","Null2","0","Bubbleman"},
+{"QuickBoomerangWepC","Null2","0","Quickman"},
+{"CrashBombWepC","Null2","0","Crashman"},
+{"TimeBenderWepC","Null2","0","Flashman"},
+{"AtomicFireWepC","Null2","0","Heatman"},
+{"LeafShieldWepC","Null2","0","Woodman"},
+{"BoobeamBarrierWepC","Null2","0","Alien"},
+//{"Null","Null2","0","Breakman"},
+
+{"NeedleCannonWepC","Null2","0","Needleman"},
+{"Null","Null2","0","Magnetman"},
+{"GeminiLaserWepC","Null2","0","Geminiman"},
+{"HardKnuckleWepC","Null2","0","Hardman"},
+{"TopTwistWepC","Null2","0","Topman"},
+{"SearchSnakeWepC","Null2","0","Snakeman"},
+{"SparkShockWepC","Null2","0","Sparkman"},
+{"ShadowBladeWepC","Null2","0","Shadowman"},
+{"DocScannerWepC","Null2","0","DocRobot"},
+
+{"FlashBulbWepC","Null2","0","Brightman"},
+{"RainFlushWepC","Null2","0","Toadman"},
+{"DrillBombWepC","Null2","0","Drillman"},
+{"PharaohShotWepC","Null2","0","Pharaohman"},
+{"RingBoomerangWepC","Null2","0","Ringman"},
+{"DustCrusherWepC","Null2","0","Dustman"},
+{"DiveSonarWepC","Null2","0","Diveman"},
+{"SkullBarrierWepC","SkullSniperWepC",50.0,"Skullman"},
+
+{"GravitySphereWepC","GravitySphereWepC",10.0,"Gravityman"},
+{"WaterWaveWepC","Null2","0","Waveman"},
+{"PowerStoneWepC","Null2","0","Stoneman"},
+{"GyroAttackWepC","Null2","0","Gyroman"},
+{"StarCrashWepC","Null2","0","Starman"},
+{"ChargeKickWepC","Null2","0","Chargeman"},
+{"NapalmBombWepC","Null2","0","Napalmman"},
+{"CrystalEyeWepC","Null2","0","Crystalman"},
+{"DarkShieldWepC","Null2","0","Darkman1"},
+{"DarkShieldWepC","Null2","0","Darkman2"},
+{"DarkShieldWepC","Null2","0","Darkman3"},
+{"DarkShieldWepC","Null2","0","Darkman4"},
+
+{"BlizzardAttackWepC","Null2","0","Blizzardman"},
+{"CentaurFlashWepC","CentaurArrowWepC",50.0,"Centaurman"},
+{"FlameBlastWepC","Null2","0","Flameman"},
+{"KnightCrushWepC","Null2","0","Knightman"},
+{"PlantTrapperWepC","PlantTrapperWepC",5.0,"Plantman"},
+{"SilverTomahawkWepC","Null2","0","Tomahawkman"},
+{"WindStormWepC","Null2","0","Windman"},
+{"YamatoSpearWepC","Null2","0","Yamatoman"},
+
+{"FreezeCrackerWepC","Null2","0","Freezeman"},
+{"JunkShieldWepC","Null2","0","Junkman"},
+{"DangerWrapWepC","Null2","0","Burstman"},
+{"ThunderBoltWepC","Null2","0","Cloudman"},
+{"WildCoilWepC","Null2","0","Springman"},
+{"SlashClawWepC","Null2","0","Slashman"},
+{"NoiseCrushWepC","Null2","0","Shademan"},
+{"ScorchWheelWepC","Null2","0","Turboman"},
+
+{"TenguBladeWepC","TornadoHoldWepC",50.0,"Tenguman"},
+{"CopyVisionWepC","CopyVisionWepC",5.0,"Astroman"},
+{"FlameSwordWepC","Null2","0","Swordman"},
+{"ThunderClawWepC","Null2","0","Clownman"},
+{"Null","Null2","0","Searchman"},
+{"IceWaveWepC","Null2","0","Frostman"},
+{"FlashBombWepC","Null2","0","Grenademan"},
+{"WaterBalloonWepC","Null2","0","Aquaman"},
+{"Null","Null2","0","OriginalDuo"},
+{"CopyWep","Null2","0","Evil Robot"},
+
+{"DynamoTendrilWepC","DynamoTendrilWepC",5.0,"Dynamoman"},
+{"IceWallWepC","Null2","0","Coldman"},
+{"SpreadDrillWepC","Null2","0","Groundman"},
+{"RemoteMineWepC","Null2","0","Pirateman"},
+{"WaveBurnerWepC","Null2","0","Burnerman"},
+{"MagicCardWepC","Null2","0","Magicman"},
+{"Null","Null2","0","King"},
+
+{"ConcreteShotWepC","Null2","0","Concreteman"},
+{"TornadoBlowWepC","Null2","0","Tornadoman"},
+{"LaserTridentWepC","Null2","0","Splashwoman"},
+{"PlugBallWepC","Null2","0","Plugman"},
+{"JewelSatelliteWepC","Null2","0","Jewelman"},
+{"Null","Null2","0","Hornetman"},
+{"MagmaBazookaWepC","Null2","0","Magmaman"},
+{"RainbowGalaxyWepC","RainbowGalaxyWepC",5.0,"Galaxyman"},
+{"FakeRepeaterWepC","Null2","0","Fakeman"},
+
+{"TripleBladeWepC","Null2","0","Blademan"},
+{"WaterShieldWepC","Null2","0","Pumpman"},
+{"CommandoBombWepC","Null2","0","Commandoman"},
+{"ChillSpikeWepC","Null2","0","Chillman"},
+{"ThunderWoolWepC","Null2","0","Sheepman"},
+{"ReboundStrikerWepC","Null2","0","Strikeman"},
+{"WheelCutterWepC","Null2","0","Nitroman"},
+{"SolarBlazeWepC","Null2","0","Solarman"},
+
+{"SparkChaserWepC","Null2","0","Terra"},
+{"GrabBusterWepC","Null2","0","Mercury"},
+{"BubbleBombWepC","Null2","0","Venus"},
+{"PhotonMissileWepC","Null2","0","Mars"},
+{"ElectricShockWepC","Null2","0","Jupiter"},
+{"BlackHoleWepC","Null2","0","Saturn"},
+{"DeepDiggerWepC","Null2","0","Uranus"},
+{"BreakDashWepC","Null2","0","Pluto"},
+{"SaltWaterWepC","Null2","0","Neptune"},
+{"NovaBeamWepC","Null2","0","Sunstar"},
+
+{"ScrambleThunderWepC","Null2","0","Fuseman"},
+{"ChainBlastWepC","Null2","0","Blastman"},
+{"AcidBarrierWepC","Null2","0","Acidman"},
+
+{"BusterRodGWepC","Null2","0","Buster Rod G"},
+{"MegaWaterSWepC","Null2","0","Mega Water S"},
+{"HyperStormHWepC","Null2","0","Hyper Storm H"},
+
+{"MirrorBusterWepC","Null2","0","Enker"},
+{"ScrewCrusherWepC","Null2","0","Punk"},
+{"BalladeCrackerWepC","Null2","0","Ballade"},
+{"SakugarneWepC","Null2","0","Quint"},
+{"Null","Null2","0","RaThor"},
+{"Null","Null2","0","BBA Mega Man"}
+};
+
+int Doc_Memory_Array[64][4]={
+//Scanner(Gone so null),LastWep,Jump,Speed
+{-1,-1,-1,-1}
+};
+int Doc_Scan_Memory[64]={
+-1
+};
+
+
+script "cbm_DocScannerFetch" (int TID, int OwnerTID, int GetInfo)
+{
+//Check for 'BearerFlag' for YD
+
+	int WepInteger = -1;
+	str WepString = "DocCarry";
+
+	if(GetInfo >= 1){
+		WepInteger = Doc_Scan_Memory[TID-1000];
+
+		SetActivator(OwnerTID);
+		SetHudSize(600,380,0);
+		if(WepInteger >= -1 && WepInteger <= 1){
+			//SORRY NOTHING
+			HudMessage(s:"ERROR! CANNOT COPY ", n:TID-999, s:"!";HUDMSG_FADEOUT|HUDMSG_COLORSTRING,38000+OwnerTID,"MenuWhite",300.4,50.0,2.0,0.5);
+			GetInfo /= 4;
+			GiveActorInventory(OwnerTID,"DocCarry",1);
+			GiveActorInventory(OwnerTID,"DocScannerGetNoSnd_P",1);
+		}
+		else{//WEAPON COPIED
+			HudMessage(s:"YOU COPIED ", n:TID-999,s:"\nYOU GOT ", s:weapons_ammo[WepInteger][2];HUDMSG_FADEOUT|HUDMSG_COLORSTRING,38000+OwnerTID,"MenuWhite",300.4,50.0,2.0,0.5);
+			GiveActorInventory(OwnerTID,weapons_ammo[WepInteger][0],1);
+			GiveActorInventory(OwnerTID,"DocScannerGetSnd_P",1);
+		}
+		TakeActorInventory(OwnerTID,"DocVirusAmmo",GetInfo);
+		terminate;
+	}
+
+	int TheTracer = PlayerClass(TID-1000);
+
+	//Log(s:"Owner TID = ",i:OwnerTID,s:" /// Tracer TID = ",i:TID,s:" /// The Class = ",s:Doc_Scan_List[TheTracer][3]);
+	if(CheckActorInventory(TID,"BearerFlag")){
+		//Log(s:"BearerFlag, skip");
+	}
+	else if(StrCmp(Doc_Scan_List[TheTracer][0],"CopyWep") == 0){
+		WepInteger = ACS_NamedExecuteWithResult("cbm_DocCheckPointerWep",TID);
+		if(WepInteger != -1){
+			WepString = weapons_ammo[WepInteger][0];
+		}
+		else{
+			//Log(s:"WepInteger is -1!!");
+		}
+	}
+	else if(StrCmp(Doc_Scan_List[TheTracer][0],"Null") == 0){
+		//WepString = "DocCarry";
+	}
+	else{
+		int ClassWepRNG = StringToInt(Doc_Scan_List[TheTracer][2],StrLen(Doc_Scan_List[TheTracer][2]));
+		if(RandomPercent(ClassWepRNG)){
+			WepString = Doc_Scan_List[TheTracer][1];
+		}
+		else{
+			WepString = Doc_Scan_List[TheTracer][0];
+		}
+		WepInteger = cbm_FindWepInWEPACS(WepString);
+	}
+	Doc_Scan_Memory[TID-1000] = WepInteger;
+}
+
+script "cbm_DocCheckPointerWep" (int TID)
+{//Checks Tracer TID's current weapon
+	SetActivator(TID);
+	SetResultValue(cbm_CheckForWeaponFunc());
+}
+
+
+Function int cbm_CheckForWeaponFunc(void)
+{
+	For(int i = 0; i < MAX_WEAPONS_GLOBAL; i++)
+		{
+			If(CheckWeapon(weapons_ammo[i][0])){
+				//Log(s:"cbm_CheckForWeaponFunc = ",i:i);
+				Return i;
+			}
+		}
+	Return -1;
+}
+
+Function int cbm_FindWepInWEPACS(str TheWep)
+{
+	For(int i = 0; i < MAX_WEAPONS_GLOBAL; i++)
+		{
+			If(StrCmp(weapons_ammo[i][0],TheWep) == 0){
+				//Log(s:"cbm_FindWepInWEPACS = ",i:i,s:" [][] Weapon = ",s:TheWep);
+				Return i;
+			}
+		}
+	Return -1;
+}
+
+function int StringToInt(str String, int length) {
+	int result = 0;
+	
+	for (int i=0; i<length; i++) {
+		result *= 10;
+		result += (GetChar(String,i)-'0');
+	}
+	return result;
+}
+
+function bool RandomPercent(int chance)
+{
+	return (random(1, 100) <= chance);
+}
+
+

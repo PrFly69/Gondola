@@ -1,0 +1,416 @@
+// indented with decorate indenter by IvanDobrovski
+Actor BalladeCrackerBoss : BaseMM8BDMWep_CBM {
+    Tag "$TAGC_KC"
+    Dropitem "BalladeCrackerWepCDropped"
+    Weapon.AmmoUse 0
+    Weapon.AmmoGive 3
+    Obituary "$OB_BALLADECRACKERC"
+    Inventory.Pickupmessage "Power up! Ballade Cracker!"
+    Weapon.ammotype "BalladeMineAmmo"
+    States {
+        Spawn:
+            C_0K C 1
+        Loop
+        Ready:
+            BLLD A 0 ACS_ExecuteAlways(998, 0, DYE_BALLADE)
+            BLLD A 0 A_GunFlash
+        Goto Ready1
+        Ready1:
+            BLLD A 0 A_JumpIfInventory("BalladeMineFlag", 3, "Ready2")
+            BLLD A 1 A_WeaponReady
+        Wait
+        Ready2:
+            BLLD A 1 A_WeaponReady(WRF_NOSECONDARY)
+        Goto Ready1
+        Deselect:
+            TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+            BLLD A 1 A_Lower
+        Loop
+        Select:
+            TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+            BLLD A 1 A_Raise
+        Loop
+        Fire:
+            BLLD A 0
+			BLLD A 0 A_Jump(128,"Fire2")
+            BLLD A 0 A_GunFlash("NoFlash")
+            BLLD A 0 A_PlaySoundEx("weapon/crackerthrow", "Weapon")
+            BLLD A 0 A_GiveInventory("BalladeMainPickup_CI", 1)
+            //BLLD BCDEFG 2
+            //BLLD HI 2
+            //BLLD A 13
+            //BLLD BCDEFG 2
+            //BLLD A 17
+			BLLD B 2
+		Goto FireEnd
+		Fire2:
+		    BLLD A 0 A_GunFlash("NoFlash")
+            BLLD A 0 A_PlaySoundEx("weapon/crackerthrow", "Weapon")
+            BLLD A 0 A_GiveInventory("BalladeMainPickup_CI", 1)
+            //BLLD BCDEFG 2
+            //BLLD HI 2
+            //BLLD A 13
+            //BLLD BCDEFG 2
+            //BLLD A 17
+			BLLD C 2
+		Goto FireEnd
+		FireEnd:
+			BLLD A 1 Offset(10,40) A_JumpIfInventory("PowerRage_ST",1,1)
+			BLLD A 1 Offset(28,58)
+			BLLD A 1 Offset(38,68) A_JumpIfInventory("PowerRage_ST",1,1)
+			BLLD A 1 Offset(41,71)
+			BLLD A 1 Offset(42,72) A_JumpIfInventory("PowerRage_ST",1,1)
+			BLLD A 1 Offset(43,73)
+			BLLD A 1 Offset(43,73) A_JumpIfInventory("PowerRage_ST",1,1)
+			BLLD A 1 Offset(43,73)
+			BLLD A 1 Offset(43,73) A_JumpIfInventory("PowerRage_ST",1,1)
+			BLLD A 1 Offset(42,72)
+			BLLD A 1 Offset(41,71) A_JumpIfInventory("PowerRage_ST",1,1)
+			BLLD A 1 Offset(40,70)
+			BLLD A 1 Offset(38,68) A_JumpIfInventory("PowerRage_ST",1,1)
+			BLLD A 1 Offset(34,64) 
+			BLLD A 1 Offset(28,58) A_JumpIfInventory("PowerRage_ST",1,1)
+			BLLD A 1 Offset(15,45)
+			BLLD A 1 Offset(10,40) A_JumpIfInventory("PowerRage_ST",1,1)
+			BLLD A 1 Offset(5,35)
+			BLLD A 9 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        Goto Ready + 1
+        Flash:
+            TNT1 A 2 A_JumpIfInventory("IsDead", 1, "NoFlash")
+            TNT1 A 0 A_GiveInventory("BalladeChargeFlag", 1)
+        Loop
+        AltFire:
+            BLLD A 0 A_JumpIfInventory("BalladeMineFlag", 3, "NoAmmo")
+            BLLD A 0 A_GiveInventory("VivifyDelay8", 1)
+            BLLD A 0 A_Refire(1)
+            /*BLLD A 2 OffSet(-10, 52)
+            BLLD H 2 OffSet(-1, 33)
+            BLLD H 2 OffSet(-21, 57)
+            BLLD H 2 OffSet(-33, 67)A_GiveInventory("BalladeMineFlag", 1)
+            BLLD H 0 A_SpawnItemEx("BalladeMineCBM", 0, 0, 16, 0, 0, 0, 0, 1)
+            BLLD H 0 A_GiveInventory("BalladeMineThrust_P", 1)
+            BLLD H 2 OffSet(-21, 57)
+            BLLD H 2 OffSet(-1, 33)
+            BLLD A 2 OffSet(-10, 52)*/
+		BLLD A 1
+		BLLD A 1 Offset(-4, 44)
+		BLLD H 1 Offset(-24, 51)
+		BLLD H 1 Offset(-68, 80)
+		BLLD H 1 Offset(-148, 130)
+		BLLD H 1 Offset(-189, 151) A_GiveInventory("BalladeMineFlag", 1)
+        BLLD H 0 A_SpawnItemEx("BalladeMineCBM", 0, 0, 16, 0, 0, 0, 0, 1)
+        BLLD H 0 A_GiveInventory("BalladeMineThrust_P", 1)
+		BLLD H 1 Offset(-240, 161)
+		//BLLD H 1 Offset(-265, 187)
+		BLLD H 1 Offset(-245, 179)
+		BLLD H 1 Offset(-204, 166)
+		BLLD H 1 Offset(-152, 139)
+		BLLD H 1 Offset(-97, 102)
+		BLLD H 1 Offset(-50, 64)
+		BLLD H 1 Offset(-22, 37)
+		BLLD A 1 A_WeaponReady(14)
+        Goto Ready1
+        NoAmmo:
+            BLLD A 0
+        Goto Ready1
+    }
+}
+ 
+Actor BalladeMineAmmo : Ammo {
+    Inventory.amount 1
+    Inventory.maxamount 3
+    +INVENTORY.IGNORESKILL
+}
+ 
+Actor BalladeChargeFlag : Ammo {
+    Inventory.amount 1
+    Inventory.maxamount 30
+}
+ 
+Actor BalladeMineFlag : Inventory {
+    Inventory.amount 1
+    Inventory.maxamount 3
+}
+ 
+Actor BalladeMineDelay1 : Powerup {
+    Powerup.Duration 35
+}
+ 
+Actor BalladeMineDelay2 : BalladeMineDelay1 { }
+ 
+Actor BalladeMineDelay3 : BalladeMineDelay1 { }
+ 
+Actor BalladeMineDelay4 : BalladeMineDelay1 { }
+ 
+Actor BalladeMineDelay5 : BalladeMineDelay1 { }
+ 
+Actor BalladeMineThrust_P : CustomInventory {
+    States {
+        Pickup:
+            TNT1 A 0
+            TNT1 A 0 A_Recoil(-15)
+            TNT1 A 0 A_JumpIfInventory("FlightDisableFlag", 1, "No")
+        Goto PickupT
+        PickupT:
+            TNT1 A 0 A_JumpIfInventory("BalladeMineDelay5", 1, "P_5")
+            TNT1 A 0 A_JumpIfInventory("BalladeMineDelay4", 1, "P_4")
+            TNT1 A 0 A_JumpIfInventory("BalladeMineDelay3", 1, "P_3")
+            TNT1 A 0 A_JumpIfInventory("BalladeMineDelay2", 1, "P_2")
+            TNT1 A 0 A_JumpIfInventory("BalladeMineDelay1", 1, "P_1")
+        Goto P_0
+        P_30:
+            TNT1 A 0 A_JumpIfInventory("IsUnderWater", 1, "P_30W")
+            TNT1 A 0 ThrustThingZ(0, 30, 0, 0)
+        Stop
+        P_30W:
+            TNT1 A 0 ThrustThingZ(0, 16, 0, 0)
+        Stop
+        P_0:
+            TNT1 A 0 A_GiveInventory("BalladeMineDelay1", 1)
+        Goto P_30
+        P_1:
+            TNT1 A 0 A_GiveInventory("BalladeMineDelay2", 1)
+        Goto P_30
+        P_2:
+            TNT1 A 0 A_GiveInventory("BalladeMineDelay3", 1)
+        Goto P_30
+        P_3:
+            TNT1 A 0 A_GiveInventory("BalladeMineDelay4", 1)
+        Goto P_30
+        P_4:
+            TNT1 A 0 A_GiveInventory("BalladeMineDelay5", 1)
+        Goto P_30
+        P_5:
+            TNT1 A 0 A_GiveInventory("BalladeMineDelay5", 1)
+            TNT1 A 0 ThrustThingZ(0, 4, 0, 0)
+        Stop
+        No:
+            TNT1 A 0
+        Stop
+    }
+}
+ 
+Actor BC_Base {
+    Translation "202:202=210:210", "198:198=62:62", "204:204=64:64", "249:249=62:62"
+    PROJECTILE
+    Damagetype "BalladeCracker"
+    Obituary "$OB_BALLADECRACKER"
+    +EXPLODEONWATER
+    Damage (12)
+    Radius 8
+    Height 16
+    Speed 0
+    Scale 2.5
+    States {
+        Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+			SpawnLOOP:
+            TNT1 A 0
+            TNT1 A 0 ACS_NamedExecuteWithResult("CCBM Ballade Speed")
+        SpawnLoop:
+            BLLD STUV 3 // STUV
+        Loop
+        Death:
+		TNT1 A 0
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_SpawnItemEx("TheBalladeKaboomExplode",0,0,0,0,0,0,0,1)
+		TNT1 A 2
+        Stop
+    }
+}
+ 
+Actor BC_Base_Fast : FastProjectile {
+    Translation "202:202=210:210", "198:198=62:62", "204:204=64:64", "249:249=62:62"
+    PROJECTILE
+    Damagetype "BalladeCracker"
+    Obituary "$OB_BALLADECRACKER"
+    +EXPLODEONWATER
+    Damage (12)
+    Radius 8
+    Height 16
+    Speed 0
+    Scale 2.5
+    States {
+        Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+			SpawnLOOP:
+            TNT1 A 0
+            TNT1 A 0 ACS_NamedExecuteWithResult("CCBM Ballade Speed")
+        SpawnLoop:
+            BLLD STUV 3 // STUV
+        Loop
+        Death:
+		TNT1 A 0
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_SpawnItemEx("TheBalladeKaboomExplode",0,0,0,0,0,0,0,1)
+		TNT1 A 2
+        Stop
+    }
+}
+
+  Actor TheBalladeKaboomExplode : BasicExplosion
+  {
+	Obituary "$OB_BALLADECRACKER"
+	DamageType "BalladeCracker"
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySoundEx("weapon/crackerexplode", "Weapon")
+		TNT1 A 0 A_Explode(16,96,0,0,10)
+		X_VC FGHIJKLMNO 1
+		Stop
+	}
+  }
+ 
+Actor BC_BaseB : BC_Base {
+    Translation "202:202=205:205", "204:204=205:205", "198:198=74:74", "249:249=74:74"
+}
+ 
+Actor BC_BaseR : BC_Base {
+    Translation "202:202=171:171", "204:204=171:171", "198:198=41:41", "249:249=41:41"
+}
+ 
+Actor BC_BaseO : BC_Base {
+    Translation "202:202=104:104", "204:204=104:104", "198:198=128:128", "249:249=128:128"
+}
+ 
+Actor BC_BaseP : BC_Base {
+    Translation "202:202=229:229", "204:204=229:229", "198:198=232:232", "249:249=232:232"
+}
+ 
+// Fast Projectile variants
+ 
+Actor BC_BaseB_Fast : BC_Base_Fast {
+    Translation "202:202=205:205", "204:204=205:205", "198:198=74:74", "249:249=74:74"
+}
+ 
+Actor BC_BaseR_Fast : BC_Base_Fast {
+    Translation "202:202=171:171", "204:204=171:171", "198:198=41:41", "249:249=41:41"
+}
+ 
+Actor BC_BaseO_Fast : BC_Base_Fast {
+    Translation "202:202=104:104", "204:204=104:104", "198:198=128:128", "249:249=128:128"
+}
+ 
+Actor BC_BaseP_Fast : BC_Base_Fast {
+    Translation "202:202=229:229", "204:204=229:229", "198:198=232:232", "249:249=232:232"
+}
+ 
+Actor BalladeMineCBM {
+    //Translation "202:202=210:210", "198:198=62:62"
+    PROJECTILE
+    Damagetype "BalladeCracker"
+    Obituary "$OB_BALLADEMINE"
+    -NOGRAVITY
+    +NOEXPLODEFLOOR
+    +SKYEXPLODE
+    -NOBLOCKMAP
+    +DONTSPLASH
+    +FIXMAPTHINGPOS
+    Reactiontime 120
+    Damage (10)
+    Radius 20
+    Height 20
+    Speed 0
+    Scale 2.5
+    States {
+        Spawn:
+			TNT1 A 0
+			//TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0) this breaks the mines sadly xdd
+			SpawnLOOP:
+            BLLD W 0
+            BLLD W 0 A_PlaySoundEx("weapon/crackermine", "Weapon")
+            BLLD WWW 1 A_JumpIf(z-floorz==0, "Spawn2")
+            BLLD X 0 A_GiveInventory("CutterFlag", 1)
+            BLLD XXX 1 A_JumpIf(z-floorz==0, "Spawn2")
+            BLLD Y 0 A_GiveInventory("CutterFlag", 1)
+            BLLD YYY 1 A_JumpIf(z-floorz==0, "Spawn2")
+            BLLD Z 0 A_GiveInventory("CutterFlag", 1)
+            BLLD ZZZ 1 A_JumpIf(z-floorz==0, "Spawn2")
+            BLLD W 0 A_TakeInventory("CutterFlag", 4)
+        Goto Spawnloop + 2
+        Spawn2:
+            BLLD "#" 0 ThrustThingZ(0, 0, 0, 0)
+            BLLD "#" 0 A_JumpIfInventory("CutterFlag", 3, "SpawnZ")
+            BLLD "#" 0 A_JumpIfInventory("CutterFlag", 3, "SpawnY")
+            BLLD "#" 0 A_JumpIfInventory("CutterFlag", 3, "SpawnX")
+        Goto Spawn3
+        SpawnX:
+        Goto Spawn3 + 3
+        SpawnY:
+        Goto Spawn3 + 6
+        SpawnZ:
+        Goto Spawn3 + 9
+        Spawn3:
+            BLLD WWWXXXYYYZZZ 1 A_CountDown
+        Goto Spawn3
+        Death:
+            TNT1 A 0 A_Stop
+            TNT1 A 0 A_Explode(10, 96, 0, 0, 8)
+            TNT1 A 0 A_ChangeFlag("NOGRAVITY", 1)
+            TNT1 A 0 A_PlaySoundEx("weapon/GameBoyBallade", "Weapon")
+            TNT1 A 0 A_TakeFromTarget("BalladeMineFlag", 1)
+            X_VC FGHIJKLMNO 1
+        Stop
+    }
+}
+ 
+Actor BalladeMainPickup_CI : CustomInventory {
+    States {
+        Pickup:
+            TNT1 A 0 A_JumpIfInventory("BalladeChargeFlag", 20, "FastProj") // this makes 60
+        NormalProj:
+            TNT1 A 0 A_GiveInventory("BalladeM1Normal_CI", 1)
+        Goto End
+        FastProj:
+            TNT1 A 0 A_GiveInventory("BalladeM1Fast_CI", 1)
+        Goto End
+        End:
+            TNT1 A 0
+        Stop
+    }
+}
+ 
+Actor BalladeM1Normal_CI : TeamColor_CI {
+    States {
+        FireX:
+            TNT1 A 0 A_FireCustomMissile("BC_Base", 0, 0, 8, 0)
+        Goto Done
+        FireB:
+            TNT1 A 0 A_FireCustomMissile("BC_BaseB", 0, 0, 8, 0)
+        Goto Done
+        FireR:
+            TNT1 A 0 A_FireCustomMissile("BC_BaseR", 0, 0, 8, 0)
+        Goto Done
+        FireO:
+            TNT1 A 0 A_FireCustomMissile("BC_BaseO", 0, 0, 8, 0)
+        Goto Done
+        FireP:
+            TNT1 A 0 A_FireCustomMissile("BC_BaseP", 0, 0, 8, 0)
+        Goto Done
+    }
+}
+ 
+Actor BalladeM1Fast_CI : TeamColor_CI {
+    States {
+        FireX:
+            TNT1 A 0 A_FireCustomMissile("BC_Base_Fast", 0, 0, 8, 0)
+        Goto Done
+        FireB:
+            TNT1 A 0 A_FireCustomMissile("BC_BaseB_Fast", 0, 0, 8, 0)
+        Goto Done
+        FireR:
+            TNT1 A 0 A_FireCustomMissile("BC_BaseR_Fast", 0, 0, 8, 0)
+        Goto Done
+        FireO:
+            TNT1 A 0 A_FireCustomMissile("BC_BaseO_Fast", 0, 0, 8, 0)
+        Goto Done
+        FireP:
+            TNT1 A 0 A_FireCustomMissile("BC_BaseP_Fast", 0, 0, 8, 0)
+        Goto Done
+    }
+}

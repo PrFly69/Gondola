@@ -1,0 +1,395 @@
+actor WheelCutterWep : BaseMM8BDMWep
+{
+//$Category MM8BDM-Weapons
+//$Title Wheel Cutter
+//$Sprite WHEEA0
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 4
+Obituary "$OB_WHEELCUTTER"
+Tag "$TAG_WHEELCUTTER"
+Inventory.Pickupmessage "$PU_WHEELCUTTER"
+weapon.ammotype "WheelCutterAmmo"
+inventory.icon "WHEELI"
+States
+{
+SpawnLoop:
+WHEE A -1
+loop 
+Ready:
+WHEE I 0 ACS_ExecuteAlways(998,0,199)
+WHEE I 0 A_TakeInventory("WheelCutterCheck", 105)
+WHEE I 1 A_WeaponReady
+wait
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+WHEE I 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+WHEE I 1 A_Raise
+Loop
+Fire:
+WHEE I 0 A_JumpIfNoAmmo("NoAmmo")
+WHEE J 0 A_TakeInventory("WheelCutterAmmo",2,TIF_NOTAKEINFINITE)
+WHEE J 0 A_PlaySoundEx("weapon/wheelstart","Weapon")
+WHEE J 0 A_GiveInventory("WheelCutterCheck", 105)
+WHEE J 1
+WHEE J 0 A_GiveInventory("FireWheelSaw", 1)
+WHEE I 0 A_Refire
+goto Throw
+Hold:
+WHEE J 0 A_JumpIfInventory("WheelCutterCheck", 1, "HoldLoop")
+goto Throw
+HoldLoop:
+WHEE J 1 
+WHEE J 0 A_Refire("HoldLoop2")
+goto Throw
+HoldLoop2:
+WHEE J 1 
+WHEE J 0 A_Refire("HoldLoop3")
+goto Throw
+HoldLoop3:
+WHEE J 1 
+WHEE J 0 A_Refire("HoldLoop4")
+goto Throw
+HoldLoop4:
+WHEE J 1 
+WHEE J 0 A_Refire("HoldLoop5")
+goto Throw
+HoldLoop5:
+WHEE J 1
+WHEE J 0 A_TakeInventory("WheelCutterCheck", 1)
+WHEE J 0 A_JumpIfInventory("WheelCutterDestroy", 1, "End")
+WHEE J 0 A_JumpIfInventory("IsBot", 1, "Throw")
+WHEE J 0 A_Refire
+Goto Throw
+Altfire:
+WHEE I 0 A_JumpIfNoAmmo("NoAmmo")
+WHEE J 0 A_TakeInventory("WheelCutterAmmo",2,TIF_NOTAKEINFINITE)
+WHEE J 0 A_PlaySoundEx("weapon/wheelstart","Weapon")
+WHEE J 1
+Throw:
+WHEE J 0 A_GiveInventory("FireWheelCutter", 1)
+WHEE JK 3
+WHEE I 0 A_TakeInventory("WheelCutterCheck", 105)
+WHEE I 16
+WHEE I 0 A_ClearRefire
+goto Ready+1
+End:
+WHEE J 1
+WHEE J 0 A_TakeInventory("WheelCutterDestroy", 1)
+WHEE JK 3
+WHEE J 0 A_TakeInventory("WheelCutterCheck", 105)
+WHEE I 10
+WHEE I 0 A_ClearRefire
+goto Ready+1
+NoAmmo:
+WHEE I 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor WheelCutterCheck : Inventory
+{
+inventory.amount 1
+inventory.maxamount 105
+}
+
+actor WheelCutterDestroy : WheelCutterCheck
+{
+inventory.maxamount 1
+}
+
+actor WheelThruster : CustomInventory
+{
++INVENTORY.AUTOACTIVATE
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("WheelCutterCheck", 4)
+TNT1 A 0 A_JumpIf(momz < -8.24, "MinSpeed")
+TNT1 A 0 A_JumpIf(momz > 14, "MaxSpeed")
+TNT1 A 1 A_ChangeVelocity(0, 0, 2.5)
+stop
+MinSpeed:
+TNT1 A 1 A_ChangeVelocity(0, 0, 5)
+stop
+MaxSpeed:
+TNT1 A 1 A_ChangeVelocity(momx, momy, 14, CVF_REPLACE)
+stop
+}
+}
+
+actor FireWheelCutter : CustomInventory
+{
+    States
+    {
+    Pickup:
+        WHEE J 0 A_TakeInventory("WheelCutterCheck", 105)
+        WHEE J 0 A_TakeInventory("WheelCutterDestroy", 1)
+        WHEE J 0 A_SpawnItemEx("WheelBounceSpawner", 0, 8, 16, 32)
+        WHEE J 0 A_JumpIfInventory("RuneSpread", 1, "PickupSpread")
+        stop
+    PickupSpread:
+        WHEE J 0 A_SpawnItemEx("WheelBounceSpawner", 0, 8, 16, 32, 0, 0, 15)
+        WHEE J 0 A_SpawnItemEx("WheelBounceSpawner", 0, 8, 16, 32, 0, 0, -15)
+        stop
+    }
+}
+
+actor FireWheelSaw : CustomInventory
+{
+    States
+    {
+    Pickup:
+        WHEE J 0 A_SpawnItemEx("WheelCutterSaw", 48, 8, 32, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+        WHEE J 0 A_JumpIfInventory("RuneSpread", 1, "PickupSpread")
+        stop
+    PickupSpread:
+        WHEE J 0 A_SpawnItemEx("WheelCutterSawL", 48, 8, 32, 0, 0, 0, -15, SXF_NOCHECKPOSITION,0)
+        WHEE J 0 A_SpawnItemEx("WheelCutterSawR", 48, 8, 32, 0, 0, 0, 15, SXF_NOCHECKPOSITION,0)
+        stop
+    }
+}
+
+actor WheelBounceSpawner
+{
+    PROJECTILE
+    Obituary "$OB_WHEELCUTTER"
+    Damagetype "WheelCutter"
+    Damage (27)
+    scale 2.5
+    +STEPMISSILE
+    +NOEXPLODEFLOOR
+    maxstepheight 32
+    Radius 3
+    Height 4
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 1 A_Stop
+        TNT1 A 0 A_SpawnItemEx("WheelBouncer", 0, 0, 0, 1.5, 0, 1.0, 0, SXF_NOCHECKPOSITION|SXF_MULTIPLYSPEED,0)
+        stop
+    Death:
+        TNT1 A 0 A_SpawnItemEx("ExplosionEffect1", 0, 0, 20)
+        stop
+    }
+}
+
+actor WheelCutterWallCheck
+{
+PROJECTILE
++THRUACTORS
++DONTREFLECT
++NOEXPLODEFLOOR
+damage (0)
+Speed 32
+radius 8
+height 16
+States
+{
+Spawn:
+TNT1 A 1
+stop
+Death:
+TNT1 A 0 A_SpawnItemEx("WheelCutterClimbFX", 16, 0, frandom(-16, 16), 5, 0, 1, 180+frandom(-8, 8))
+TNT1 A 0 A_PlaySoundEx("weapon/wheelclimb", "body")
+TNT1 A 0 A_GiveToTarget("WheelThruster",1)
+TNT1 A 10
+stop
+}
+}
+
+actor WheelCutterClimbFX : BasicGraphicEffect
+{
+    +BRIGHT
+    States
+    {
+    Spawn:
+        WHEE LLMMNN 1 ThrustThingZ(0, 3, 1, 1)
+        stop
+    }
+}
+
+actor WheelCutterSaw
+{
+    PROJECTILE
+    +DONTSPLASH
+    +THRUACTORS
+	bouncetype hexen
+	-ALLOWBOUNCEONACTORS
+	bouncefactor 0.0
+	Height 10
+	Radius 5
+	Scale 2.5
+    Damage(0)
+    mass 30
+	States
+	{
+	Spawn:
+		WHEE B 0
+	SpawnB1:
+		WHEE B 0 A_GiveToTarget("WheelCutterWallClimb", 1)
+        WHEE B 1 A_Warp(AAPTR_TARGET, 48, 8, 32, mass-30, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+        WHEE B 0 A_JumpIfInTargetInventory("WheelCutterDestroy", 1, "Death")
+        WHEE B 0 A_JumpIfInTargetInventory("IsDead", 1, "End")
+		WHEE B 0 A_JumpIfInTargetInventory("WheelCutterCheck", 1, "SpawnB2")
+		WHEE B 1 A_JumpIf(true, "End")
+		wait
+	SpawnB2:
+		WHEE B 0 //A_GiveToTarget("WheelCutterWallClimb", 1)
+        WHEE B 1 A_Warp(AAPTR_TARGET, 48, 8, 32, mass-30, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+        WHEE B 0 A_JumpIfInTargetInventory("WheelCutterDestroy", 1, "Death")
+        WHEE B 0 A_JumpIfInTargetInventory("IsDead", 1, "End")
+		WHEE B 0 A_JumpIfInTargetInventory("WheelCutterCheck", 1, "SpawnC1")
+		WHEE B 1 A_JumpIf(true, "End")
+		wait
+	SpawnC1:
+		WHEE B 0 A_GiveToTarget("WheelCutterWallClimb", 1)
+        WHEE C 1 A_Warp(AAPTR_TARGET, 48, 8, 32, mass-30, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+        WHEE B 0 A_JumpIfInTargetInventory("WheelCutterDestroy", 1, "Death")
+        WHEE B 0 A_JumpIfInTargetInventory("IsDead", 1, "End")
+		WHEE B 0 A_JumpIfInTargetInventory("WheelCutterCheck", 1, "SpawnC2")
+		WHEE C 1 A_JumpIf(true, "End")
+		wait
+	SpawnC2:
+		WHEE B 0 //A_GiveToTarget("WheelCutterWallClimb", 1)
+        WHEE C 1 A_Warp(AAPTR_TARGET, 48, 8, 32, mass-30, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+        WHEE B 0 A_JumpIfInTargetInventory("WheelCutterDestroy", 1, "Death")
+        WHEE B 0 A_JumpIfInTargetInventory("IsDead", 1, "End")
+		WHEE B 0 A_JumpIfInTargetInventory("WheelCutterCheck", 1, "SpawnB1")
+		WHEE C 1 A_JumpIf(true, "End")
+		wait
+    End:
+		WHEE B 0 A_TakeFromTarget("WheelCutterDestroy", 1)
+		WHEE B 0 A_TakeFromTarget("WheelCutterCheck", 105)
+        WHEE B 2
+		stop
+	Death:
+        WHEE B 0 A_GiveToTarget("WheelCutterDestroy", 1)
+		TNT1 A 0 A_SpawnItemEx("ExplosionEffect1")
+		stop
+	}
+}
+
+actor WheelCutterSawDamage : FastProjectile
+{
+    PROJECTILE
+	Obituary "$OB_WHEELCUTTER"
+	damagetype "WheelCutterSaw"
+	Height 10
+    Radius 10
+    Damage (27)
+    Speed 16
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        stop
+    Death:
+        TNT1 A 0
+        stop
+    XDeath:
+        WHEE B 0 A_GiveToTarget("WheelCutterDestroy", 1)
+        TNT1 A 0 A_SpawnItemEx("ExplosionEffect1")
+        stop
+    }
+}
+
+actor WheelCutterSawL : WheelCutterSaw
+{
+    mass 15
+}
+
+actor WheelCutterSawR : WheelCutterSaw
+{
+    mass 45
+}
+
+actor WheelCutterWallClimb : CustomInventory
+{
+	+INVENTORY.AUTOACTIVATE
+	States
+	{
+	Use:
+        TNT1 A 0 A_SpawnItemEx("WheelCutterWallCheck", 0, 0, 24, 64)
+        TNT1 A 0 A_FireCustomMissile("WheelCutterSawDamage", 0, 0, 8, 0)
+		stop
+	}
+}
+
+actor WheelBouncer
+{
+PROJECTILE
+Obituary "$OB_WHEELCUTTER"
+Damagetype "WheelCutter"
+-NOGRAVITY
+speed 5
+scale 2.5
+Radius 10
+Height 10
+Damage (27)
++HEXENBOUNCE
+-ALLOWBOUNCEONACTORS
++CANBOUNCEWATER
+bouncecount 2
+bouncefactor 0.6
+wallbouncefactor 1.0
+gravity 1.5
+var int user_angle;
+States
+{
+Spawn:
+WHEE D 0
+WHEE D 0 A_SetUserVar(user_angle, angle)
+WHEE D 0 A_JumpIf(z-floorz<=0, "Boost")
+WHEE DE 2
+goto Spawn+3
+Boost:
+WHEE A 0 A_ChangeVelocity(0, 0, 10, CVF_RELATIVE)
+goto Spawn+3
+XDeath:
+TNT1 A 0 A_SpawnItemEx("ExplosionEffect1", 0, 0, 20)
+stop
+Death:
+WHEE D 0
+WHEE D 0 A_PlaySoundEx("weapon/wheelshot","weapon")
+WHEE D 0 A_ChangeFlag("NOGRAVITY",0)
+WHEE D 0 A_SpawnItemEx("WheelCutter", 0, 0, 0, 1.0, 0, 0, user_angle, SXF_MULTIPLYSPEED|SXF_ABSOLUTEANGLE)
+WHEE D 0 A_ChangeFlag(NOINTERACTION, false)
+WHEE Z 5
+stop
+}
+}
+
+actor WheelCutter
+{
+PROJECTILE
++NOEXPLODEFLOOR
++STEPMISSILE
+maxstepheight 15
++BOUNCEONCEILINGS
+BounceCount 1
+Obituary "$OB_WHEELCUTTER"
+Damagetype "WheelCutter"
+scale 2.5
+-NOGRAVITY
+Radius 10
+Height 10
+Speed 40
+Damage (27)
+reactiontime 100
+States
+{
+Spawn:
+WHEE DE 2 A_Countdown
+loop
+Death:
+TNT1 A 0 A_SpawnItemEx("ExplosionEffect1", 0, 0, 20)
+stop
+}
+}

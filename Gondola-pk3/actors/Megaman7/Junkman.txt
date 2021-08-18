@@ -1,0 +1,155 @@
+actor Junkman : SturdyClassBase
+{
+Player.ScoreIcon "C_07B0X"
+player.startitem "SturdyHealthBar"
+player.displayname "junkman"
+player.soundclass "junkmanc"
+player.startitem "JunkShieldBoss"
+player.startitem "JunkShieldUseItem"
+player.startitem "JunkLeakSpawner"
+//player.startitem "JunkShielderBoss"
+player.startitem "TrunkAmmo",600
+player.forwardmove 0.6, 0.6
+player.sidemove 0.58, 0.58
+player.jumpz 11
+
+player.startitem "ThunderBoltWeakness2", 1
+
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "CrashBombWeakness", 1
+player.startitem "SparkShockWeakness", 1
+player.startitem "ThunderBoltWeakness", 1
+player.startitem "ThunderClawWeakness", 1
+player.startitem "LightningBoltWeakness", 1
+player.startitem "PlugBallWeakness", 1
+player.startitem "ElectricShockWeakness", 1
+
+player.startitem "RealClassFlag", 67
+States
+{
+Spawn:
+JUNM A 0
+JUNM B 1 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
+JUNM A 1 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
+Goto Spawn+2
+See:
+JUNM BCDE 5 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
+Goto Spawn
+Missile:
+JUNM FG 4
+goto Spawn
+Missile2:
+JUNM FFG 4
+goto Spawn
+ClassPain:
+JUNM H 0
+goto PainContinue
+DeathFix:
+JUNM H 0 A_JumpIfInventory("TrunkAmmo",500,1)
+goto DeathContinue
+JUNM H 0 A_GiveInventory("SpecialDeathFlag",1)
+goto DeathContinue
+ClassDeath:
+JUNM H 0 A_PlaySoundEx("weapon/JunkBreaker","SoundSlot7")
+JUNM HHHHHHHH 0 A_SpawnItemEx("JunkLeakBit",random(0,8),0,random(12,48),random(4,9),0,random(7,14),random(0,359),1)
+goto DeathContinue+2
+
+}
+}
+
+actor JunkLeakSpawner : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEX("JunkLeakGiver")
+stop
+}
+}
+
+actor JunkLeakGiver
+{
+Height 0
+Radius 0
++NOINTERACTION
+-SOLID
++NOGRAVITY
++MISSILE
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("JunkShieldBoss",1,1)
+//goto Death
+goto OneMore
+TNT1 A 0 A_GiveToTarget("JunkLeak",1)
+TNT1 A 0
+loop
+OneMore:
+TNT1 A 0 A_GiveToTarget("JunkLeak",1)
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor LeakStock : Inventory
+{
+inventory.amount 1
+inventory.maxamount 999
+}
+
+actor JunkLeak : CustomInventory
+{
+States
+{
+Pickup:
+DUST B 0 ACS_ExecuteAlways(648,0,13)
+DUST B 0 A_JumpIfInventory("LeakStock",10, "Pickup2") 
+stop
+Pickup2:
+DUST B 0 A_TakeInventory("LeakStock",10)
+DUST B 0 A_SpawnItemEx("JunkSpewerB",0,0,0,0,0,0,0,1)
+goto Pickup+1
+}
+}
+
+actor JunkLeakBit : JunkBits1
+{
+States
+{
+Spawn2:
+TNT1 A 0
+//TNT1 A 0 A_GiveInventory("ScrapMetalFlag",1)
+//TNT1 A 0 ACS_ExecuteAlways(148,0)
+TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8)
+
+JUCT I 500
+stop
+JUCT J 500
+stop
+JUCT K 500
+stop
+JUCT L 500
+stop
+JUCT M 500
+stop
+JUCT N 500
+stop
+JUCT O 500
+stop
+JUCT P 500
+stop
+}
+}
+
+actor JunkSpewerB : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_SpawnItemEx("JunkLeakBit",40,0,0,random(9,11),0,random(11,14),random(0,359),1)
+stop
+}
+}

@@ -1,0 +1,45 @@
+actor Plugman : ClassBase
+{
+Player.ScoreIcon "C_09D0X"
+player.displayname "Plugman"
+player.soundclass "plugmanc"
+player.startitem "PlugBallBoss"
+player.startitem "PlugBallAmmoBoss", 14
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "JewelSatelliteWeakness2", 1
+
+player.startitem "JewelSatelliteWeakness", 1
+player.startitem "SparkChaserWeakness", 1
+States
+{
+Spawn:
+PLUM A 0
+PLUM A 0 A_JumpIfInventory("PlugmanIsShocking",1,"PlugPower")
+PLUM B 1
+PLUM A 1
+Goto Spawn+3
+See:
+PLUM BCDE 5
+Goto Spawn
+Missile:
+PLUM F 0 A_JumpIfInventory("PlugmanIsShocking",1,"PlugPower")
+PLUM F 5
+PLUM G 4 
+goto Spawn
+PlugPower:
+PLUM G 4
+PLUM GGG 1 A_JumpIfInventory("PlugmanIsShocking",1,"PlugPower")
+goto Spawn
+ClassPain:
+PLUM H 0
+goto PainContinue
+DeathFix:
+PLUM H 0
+goto DeathContinue
+ClassDeath:
+PLUM H 1
+goto MegaDeathEnd
+}
+}

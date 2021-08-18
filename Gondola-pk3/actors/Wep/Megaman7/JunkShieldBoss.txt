@@ -1,0 +1,1409 @@
+actor JunkShieldBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_7B"
+dropitem "JunkShieldWepCDropped"
+Weapon.AmmoUse 300//60
+Weapon.AmmoGive 0
+Obituary "$OB_JUNKSHIELD"
+weapon.ammotype "TrunkAmmo"
+States
+{
+Spawn:
+C_07 B 1
+loop
+Ready:
+JCLA A 0 ACS_ExecuteAlways(998,0,DYE_JUNKMAN)
+JCLA ABC 3 A_WeaponReady
+Goto Ready1
+Ready1:
+JCLA A 0 A_JumpIfInventory("TrunkAmmo",300,"Ready2")//60
+JCLA A 2 A_WeaponReady(WRF_NOPRIMARY)//|WRF_ALLOWRELOAD)
+JCLA A 0 A_GiveInventory("TrunkAmmo",3)
+loop
+Ready2:
+JCLA A 0 A_JumpIfInventory("UseJunkShieldFlag",1,"JunkShield")
+JCLA A 2 A_WeaponReady//(WRF_ALLOWRELOAD)
+JCLA A 0 A_GiveInventory("TrunkAmmo",3)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TNT1 A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+JCLA A 1 A_Raise
+Loop
+
+Fire:
+JCLA A 0// A_JumpIfNoAmmo("Hold")
+JCLA A 0 A_GiveInventory("UseJunkShieldFlag",1)
+JCLA ABCDEF 2 A_TakeInventory("TrunkAmmo",50)//
+JCLA A 0 A_SpawnItemEx("JunkCube",64,0,8,0,0,0,0,1)
+JCLA A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireSpread")
+goto FireEnd
+FireSpread:
+JCLA A 0 A_SpawnItemEx("JunkCube",64,-40,8,0,0,0,45,1)
+JCLA A 0 A_SpawnItemEx("JunkCube",64,40,8,0,0,0,-45,1)
+goto FireEnd
+FireEnd:
+//JCLA G 19 A_PlaySoundEx("Weapon/Thunderbolt","Weapon")
+JCLA G 1 OffSet(-3,29) A_PlaySoundEx("Weapon/Thunderbolt","Weapon")
+JCLA G 1 OffSet(-7,23)
+JCLA G 1 OffSet(-14,17)
+JCLA G 2 OffSet(-17,15)
+JCLA G 7 OffSet(-20,12)
+JCLA G 2 OffSet(-15,17)
+JCLA G 2 OffSet(-12,20)
+JCLA G 1 OffSet(-9,23)
+JCLA G 1 OffSet(-6,26)
+JCLA G 1 OffSet(-3,29)
+JCLA AFEDCB 3
+JCLA A 1
+JCLA A 0 A_TakeInventory("UseJunkShieldFlag",999)
+goto Ready1
+
+Altfire:
+JCLA A 1 //Offset(1,20)
+//JCLA A 1 Offset(1,40)
+//JCLA A 1 Offset(1,60)
+//JCLA A 1 Offset(1,80)
+//JCLA A 1 Offset(1,100)
+goto ReloadHold
+RegularAltfire:
+JCLA A 0 A_GiveInventory("UseJunkShieldFlag",1)
+JCLA A 0 A_GiveInventory("JunkmanAlt_CI",1)
+JCLA A 0 A_TakeInventory("PunchChargeAmmo",999)
+JCLA A 0 A_TakeInventory("BlockLaunched",999)
+JCLA A 0 A_GiveInventory("GoFlag")
+JCLA A 0 A_PlaySoundEx("Weapon/napalm","Weapon")
+JUNP D 0 A_Quake(2,14,0,8,"none")
+TNT1 A 1 Offset(-311, 147) A_GiveInventory("TrunkAmmo",1)
+JUNP A 1 Offset(-284, 136)
+//JUNP D 2 A_GiveInventory("JunkPunchShot_P",1)
+JUNP A 1 Offset(-227, 116) A_GiveInventory("JunkPunchShot_P",1)
+JUNP A 1 Offset(-161, 91)
+JUNP A 1 Offset(-161, 91)
+JUNP A 1 Offset(-103, 98)
+JUNP F 0 A_GiveInventory("TrunkAmmo",1)
+JUNP A 1 Offset(-89, 120)
+JUNP A 1 Offset(-76, 143)
+JUNP A 1 Offset(-69, 168)
+JUNP A 1 Offset(-63, 198)
+TNT1 A 1 A_TakeInventory("GoFlag")
+TNT1 A 1 A_GiveInventory("TrunkAmmo",1)
+TNT1 A 1
+TNT1 A 1 A_GiveInventory("TrunkAmmo",1)
+TNT1 A 1
+TNT1 AAAA 2 A_GiveInventory("TrunkAmmo",1)
+JCLA A 1 Offset(1,100) A_GiveInventory("TrunkAmmo",3)
+JCLA A 1 Offset(1,60)
+JCLA A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+JCLA A 0 A_TakeInventory("UseJunkShieldFlag",999)
+Goto Ready1
+
+JunkShield:
+JCLA A 0 //A_JumpIfInventory("JunkDoneC",1,2)
+JCLA A 0 A_JumpIfInventory("TrunkAmmo",300,"ShieldUp1")//45
+JCLA A 0 A_TakeInventory("UseJunkShieldFlag",999)
+Goto Ready+2
+ShieldUp1:
+JCLA E 0 A_TakeInventory("JunkDoneC",99)
+JCLA E 0 A_TakeInventory("TrunkAmmo",300)
+JCLA E 0 A_JumpIfInventory("ShieldCheck", 1,"ShieldUp2")
+//JCLA QRSTU 2
+JCLA K 1 offset(10,40)
+JCLA K 1 offset(60,65)
+JCLA K 1 offset(30,51)
+JCLA O 1 offset(10,44)
+JCLA O 1 offset(-20,36)
+JCLA T 1 offset(-50,29)
+JCLA T 1 offset(-83,23)
+JCLA T 1 offset(-116,18)
+JCLA T 1 offset(-152,14)
+JCLA T 1 offset(-188,11)
+JCLA E 0 A_TakeInventory("BasicArmor",999)
+JCLA E 0 A_GiveInventory("BossBasicArmorAmount",20)
+JCLA E 0 A_GiveInventory("BossJunkArmor",1)
+JCLA E 0 A_GiveInventory("ShieldCheck",1)
+JCLA E 0 A_SpawnItemEx("JunkWatcherC")
+JCLA E 0 //A_SpawnItemEx("JunkmanShieldHelper")
+TNT1 A 6 Offset(-63, 198)
+JCLA A 1 Offset(1,100)
+JCLA A 1 Offset(1,60)
+JCLA A 0 A_TakeInventory("UseJunkShieldFlag",999)
+goto Ready1
+ShieldUp2:
+JCLA A 0 A_GiveInventory("JunkDoneC",1)
+//JCLA QRS 2
+JCLA K 1 offset(10,40)
+JCLA K 1 offset(60,65)
+JCLA K 1 offset(30,51)
+JCLA O 1 offset(10,44)
+JCLA O 1 offset(-20,36)
+JCLA T 1 offset(-50,29)
+JCLA A 0 A_TakeInventory("JunkDoneC",1)
+JCLA A 0 A_PlayWeaponSound("weapon/junkshield")
+//JCLA O 2 A_GiveInventory("JunkmanOther1_CI",1)
+JCLA T 1 offset(-83,23) A_GiveInventory("JunkmanOther1_CI",1)
+JCLA T 1 offset(-116,18)
+//JCLA U 2 A_GiveInventory("JunkmanOther2_CI",1)
+JCLA T 1 offset(-152,14) A_GiveInventory("JunkmanOther2_CI",1)
+JCLA T 1 offset(-188,11)
+JCLA A 0
+JCLA A 0 A_TakeInventory("BasicArmor",999)
+JCLA E 0 A_GiveInventory("BossBasicArmorAmount",20)
+JCLA E 0 A_GiveInventory("BossJunkArmor",1)
+JCLA E 0 A_GiveInventory("ShieldCheck",1)
+JCLA E 0 A_SpawnItemEx("JunkWatcherC")
+TNT1 A 6 Offset(-63, 198)
+JCLA A 1 Offset(1,100)
+JCLA A 1 Offset(1,60)
+JCLA A 0 A_TakeInventory("UseJunkShieldFlag",999)
+Goto Ready1
+
+//Hold:
+//JCLA A 1 //ACS_Execute(979,0)
+//JCLA A 0 A_GiveInventory("TrunkAmmo",1)
+//JCLA A 0 A_TakeInventory("UseJunkShieldFlag",999)
+//JCLA A 0 A_Refire
+//Goto Ready1
+
+ReloadHold:
+JCLA A 1 A_GiveInventory("PunchChargeAmmo",10)
+JCLA A 0 A_Refire
+goto PunchChecker
+
+PunchChecker:
+JCLA A 0 A_JumpIfInventory("PunchChargeAmmo",100,"Reload")
+goto RegularAltfire
+
+Reload:
+JCLA A 0 A_GiveInventory("UseJunkShieldFlag",1)
+JCLA A 0 A_GiveInventory("VivifyDelay5",1)
+JCLA A 0 A_TakeInventory("BlockLaunched",999)
+JCLA A 0 A_TakeInventory("PunchChargeAmmo",999)
+TNT1 A 0 A_GiveInventory("TrunkAmmo",1)
+JCLA A 0 A_PlaySoundEx("Weapon/Thunderbolt","Weapon")
+NEDR A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,75,100)
+JUNP A 1 Offset(-284, 136)
+JUNP B 1 Offset(-284, 136)
+//JUNP D 2 A_GiveInventory("JunkPunchShot_P",1)
+JUNP A 1 Offset(-227, 116)
+JUNP B 1 Offset(-227, 116) //A_GiveInventory("JunkPunchShot_P",1)
+JUNP D 0 A_Quake(3,14,0,8,"none")
+JCLA A 0 A_GiveInventory("GoFlag2")
+JCLA A 0 A_GiveInventory("JunkmanReload_CI",1)
+JCLA A 0 A_GiveInventory("JunkPunchShotX_P",1)
+JCLA A 0 A_PlaySoundEx("Weapon/napalm","Weapon")
+JUNP F 0 A_GiveInventory("TrunkAmmo",1)
+JUNP C 1 Offset(-161, 91)
+JUNP D 1 Offset(-161, 91)
+JUNP B 1 Offset(-103, 98)
+JUNP C 1 Offset(-89, 120)
+JUNP D 1 Offset(-76, 143)
+JUNP B 1 Offset(-69, 168)
+JUNP C 1 Offset(-63, 198)
+NEDR A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,100,100)
+TNT1 A 1 A_TakeInventory("GoFlag2")
+TNT1 A 1 A_GiveInventory("TrunkAmmo",1)
+TNT1 A 1
+TNT1 A 1 A_GiveInventory("TrunkAmmo",1)
+TNT1 A 1
+TNT1 AAAAAA 2 A_GiveInventory("TrunkAmmo",1)
+JCLA A 1 Offset(1,100) A_GiveInventory("TrunkAmmo",3)
+JCLA A 1 Offset(1,60)
+JCLA A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+JCLA A 0 A_TakeInventory("UseJunkShieldFlag",999)
+Goto Ready1
+
+NoAmmo:
+JCLA A 0
+//JCLA A 1 ACS_Execute(979,0)
+Goto Ready1
+}
+}
+
+actor PunchChargeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 100
++INVENTORY.IGNORESKILL
+}
+
+actor TrunkAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 600
++INVENTORY.IGNORESKILL
+}
+
+actor GoFlag : OnceC {}
+actor GoFlag2 : OnceC {}
+actor UseJunkShieldFlag : OnceC {}
+actor BlockLaunched : OnceC {}
+actor JunkDoneC : OnceC {}
+
+actor JunkShieldUseItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "JunIcon"
+scale 2.0
+inventory.pickupmessage "I love the smell of trash in the morning."
++INVBAR
+states
+{
+Spawn:
+WEA3 N 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("UseJunkShieldFlag",1,"No")
+TNT1 A 0 A_JumpIfInventory("TrunkAmmo",300,"Success")
+fail
+Success:
+TNT1 A 0 A_PlaySoundEx("item/JunkArmor","SoundSlot6")
+TNT1 A 0 A_GiveInventory("UseJunkShieldFlag",1)
+fail
+No:
+TNT1 A 0
+fail
+}
+}
+
+actor JunkWatcherC : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("JunkmanShieldLoopSnd_P",1)
+Spawn2:
+TNT1 A 1 A_JumpIfInTargetInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("JunkDoneC",1,"Death")
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("JunkDoneC",1,"Death")
+TNT1 A 1 A_JumpIfInTargetInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("JunkDoneC",1,"Death")
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("JunkDoneC",1,"Death")
+TNT1 A 1 A_JumpIfInTargetInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("JunkDoneC",1,"Death")
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("JunkDoneC",1,"Death")
+TNT1 A 1 A_JumpIfInTargetInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("JunkDoneC",1,"Death")
+TNT1 A 1 A_GiveToTarget("BossJunkShieldRadiusItem",1)
+TNT1 A 0 A_GiveToTarget("BossJunkShieldItem",1)
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("JunkDoneC",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",1,"Spawn2")
+goto Death
+Death:
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"SuperDeath")
+TNT1 A 1 A_GiveToTarget("BossJunkBreakSoundItem",1)
+TNT1 A 0 A_TakeFromTarget("BossBasicArmorAmount",1000)
+TNT1 A 1 A_TakeFromTarget("ShieldCheck",1)
+TNT1 A 0 A_TakeFromTarget("BasicArmor",1000)
+TNT1 A 0 A_TakeFromTarget("JunkDoneC",100)
+stop
+SuperDeath:
+TNT1 A 1 A_GiveToTarget("JunkmanShieldLoopEnd_P",1)
+stop
+}
+}
+
+actor JunkmanShieldLoopSnd_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 //A_PlaySound("weapon/JunkM_ShieldLoop",7,0.85,1)
+stop
+}
+}
+
+actor JunkmanShieldLoopEnd_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_StopSound(CHAN_7)
+stop
+}
+}
+
+
+actor BossJunkBreakSoundItem : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 1 A_PlaySound("weapon/JunkBreaker",7,1)
+stop
+}
+}
+
+actor BossJunkShieldRadiusItem : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("BossJunkShield",0,0,32,momx,momy,momz,0,9,0)
+stop
+}
+}
+
+
+actor BossJunkShieldItem : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("BossJunkShieldRadius",0,0,32,momx,momy,momz,0,8,0)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+stop
+PickupS:
+TNT1 AA 0 A_SpawnItemEx("BossJunkShieldRadius",0,0,32,momx,momy,momz,0,8,0)
+stop
+}
+}
+
+actor JunkPunch
+{
+translation "202:202=210:210"
+Obituary "$OB_JUNKPUNCH"
+damagetype "JunkPunch"
+damage (25)
+PROJECTILE
++DONTBLAST
+reactiontime 1
+Radius 20
+Height 20
+speed 60
+scale 2.5
+States
+{
+Spawn:
+UMFX R 0
+UMFX R 1 A_CountDown
+wait
+Death:
+UMFX R 0 A_Explode(25,40,0)
+goto XDeath
+XDeath:
+UMFX R 0 A_Stop
+UMFX R 2
+YMFX Q 2
+UMFX RS 2
+stop
+}
+}
+
+actor JunkPunchB : JunkPunch{translation "202:202=205:205"}
+actor JunkPunchR : JunkPunch{translation "202:202=171:171"}
+actor JunkPunchO : JunkPunch{translation "202:202=104:104"}
+actor JunkPunchP : JunkPunch{translation "202:202=229:229"}
+
+actor JunkPunch2 : JunkPunch
+{
+Obituary "$OB_JUNKPUNCH2"
+damagetype "JunkPunch2"
+damage (35)
+States
+{
+Death:
+UMFX R 0 A_Explode(35,40,0)
+goto XDeath
+}
+}
+
+actor JunkPunch2B : JunkPunch2{translation "202:202=205:205"}
+actor JunkPunch2R : JunkPunch2{translation "202:202=171:171"}
+actor JunkPunch2O : JunkPunch2{translation "202:202=104:104"}
+actor JunkPunch2P : JunkPunch2{translation "202:202=229:229"}
+
+actor JunkCube
+{
+var int user_P;
+//Translation "192:192=4:4", "198:198=94:94"
+Obituary "$OB_JUNKCUBE"
+damagetype "JunkShield"
++MISSILE//PROJECTILE//-NOBLOCKMAP
++CANTSEEK
++DONTBLAST
++DONTDRAIN
++DONTREFLECT
++DONTRIP
++DONTSPLASH
++NOBLOOD
++NOEXPLODEFLOOR
++NOGRAVITY
++NOPAIN
++NOTARGETSWITCH
++RIPPER
++SHOOTABLE
+
++STEPMISSILE
+maxstepheight 32
++BOUNCEONCEILINGS
+BounceFactor 0.00
+WallBounceFactor 0.95
+Species "JunkCubeThing"
+
+mass 99999
+Health 200
+damagefactor "JunkShield", 0.0
+damagefactor "JunkPunch", 0.0
+damagefactor "JunkPunch2", 0.0
+damagefactor "Fire", 0.1 //MageStaff
+
+DamageFactor "IceWallC", 0.125
+DamageFactor "ConcreteShoulder", 0.04
+
+
+Args 0,0,29,0,0
+ReactionTime 1
+Damage (4+user_P)
+Radius 30
+Height 60
+Speed 0
+Scale 2.5
+
+states
+{
+Spawn:
+JUCT A 0
+JUCT A 3// A_Stop
+JUCT BCDE 3 A_SetUserVar("user_P",user_P+2)
+JUCT F 0 A_ChangeFlag("NOGRAVITY",0)
+JUCT F 0 //A_SetArg(2,29)
+JUCT FG 3 A_SetUserVar("user_P",user_P+1)
+JUCT E 0 //A_ChangeFlag("THRUACTORS",1)
+goto Spawn2
+Spawn2:
+JUCT D 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+JUCT D 0 A_RadiusGive("JunkCubeAmmoGive_P",196,514)
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 0 A_RadiusGive("JunkCubeAmmoGive_P",196,514)
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_RadiusGive("JunkCubeAmmoGive_P",196,514)
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_RadiusGive("JunkCubeAmmoGive_P",196,514)
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"LaunchCheck")
+JUCT D 0 A_JumpIfInTargetInventory("GoFlag2",1,"LaunchCheck2")
+JUCT D 0 A_CountDownArg(7)
+JUCT D 0 DamageThing(7)
+loop
+LaunchCheck2:
+JUCT DDD 1 A_JumpIfCloser(150,"Launched2")
+JUCT DDD 1 A_JumpIfCloser(150,"Launched2")
+JUCT DDD 1 A_JumpIfCloser(150,"Launched2")
+JUCT DDD 1 A_JumpIfCloser(150,"Launched2")
+JUCT D 0 A_CountDownArg(7)
+JUCT D 0 DamageThing(7)
+goto Spawn2
+Launched2:
+JUCT F 0 A_SetArg(2,Args[2]+29)
+JUCT F 0 A_SetArg(1,health)
+JUCT D 0 A_GiveToTarget("BlockLaunched",1)
+JUCT D 0 A_ChangeFlag("NOGRAVITY",1)
+JUCT D 0 A_Stop
+JUCT D 1 ACS_ExecuteAlways(259,0,2)
+JUCT D 0 A_SpawnItemEx("JunkCubeGo1",0,0,0,26+sqrt(momx*momx+momy*momy)/4,0,momz,0,1+32768)
+stop
+
+LaunchCheck:
+JUCT DDD 1 A_JumpIfCloser(150,"Launched")
+JUCT DDD 1 A_JumpIfCloser(150,"Launched")
+JUCT DDD 1 A_JumpIfCloser(150,"Launched")
+JUCT DDD 1 A_JumpIfCloser(150,"Launched")
+JUCT D 0 A_CountDownArg(7)
+JUCT D 0 DamageThing(7)
+goto Spawn2
+Launched:
+JUCT F 0 A_SetArg(2,Args[2]+29)
+JUCT F 0 A_SetArg(1,health)
+JUCT D 0 A_GiveToTarget("BlockLaunched",1)
+JUCT D 0 A_ChangeFlag("NOGRAVITY",1)
+JUCT D 0 A_Stop
+JUCT D 1 ACS_ExecuteAlways(259,0,2)
+JUCT D 0 A_SpawnItemEx("JunkCubeGo1",0,0,0,6,0,momz,0,1+32768)
+stop
+
+Death:
+TNT1 A 1 A_GiveInventory("BossJunkBreakSoundItem",1)
+TNT1 AAAAAAAA 0 A_SpawnItemEx("JunkBitsX",0,0,0,random(8,12),0,random(11,16),random(0,359),1)
+TNT1 A 1
+stop
+}
+}
+
+actor JunkCubeAmmoDelay : Powerup
+{
+Powerup.Duration 3
+}
+actor JunkCubeAmmoGive_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("JunkCubeAmmoDelay",1,3)
+TNT1 A 0 A_JumpIfInventory("DustCrusherBoss",1,"PickupDust")
+TNT1 A 0 A_JumpIfInventory("JunkShieldBoss",1,"PickupJunk")
+TNT1 A 0
+stop
+PickupDust:
+TNT1 A 0 A_GiveInventory("CrushEmAmmo",1)
+goto GaveAmmo
+PickupJunk:
+TNT1 A 0 A_GiveInventory("TrunkAmmo",2)
+goto GaveAmmo
+GaveAmmo:
+TNT1 A 0 A_GiveInventory("JunkCubeAmmoDelay",1)
+stop
+}
+}
+
+actor JunkCubeGo1
+{
+damagetype "JunkShield"
+Obituary "$OB_JUNKCUBE"
++MISSILE
++BOUNCEONCEILINGS
++CANTSEEK
++DONTBLAST
++DONTDRAIN
++DONTREFLECT
++DONTRIP
++DONTSPLASH
+//+INVULNERABLE
++NOBLOOD
++NOEXPLODEFLOOR
++NOPAIN
+//+NORADIUSDMG
++NOTARGETSWITCH
++RIPPER
++SHOOTABLE
++STEPMISSILE
+MaxStepHeight 24
++THRUSPECIES
+Species "JunkCubeThing"
+BounceFactor 1.0
+
+mass 9999999
+Health 200
+damagefactor "JunkShield", 0.0
+damagefactor "JunkPunch", 0.0
+damagefactor "JunkPunch2", 0.0
+damagefactor "Fire", 0.1 //MageStaff
+
+DamageFactor "IceWallC", 0.125
+DamageFactor "ConcreteShoulder", 0.04
+
+
+ReactionTime 124
+Damage (4)
+Radius 30
+Height 60
+Speed 6
+Scale 2.5
+states
+{
+Spawn:
+JUCT E 0
+JUCT E 0 ACS_NamedExecuteWithResult("cbm_Re_SetThingSpecial",0,Args[1],Args[2],0)
+JUCT E 0 //A_ChangeVelocity(32*cos(pitch),0,40*abs(sin(pitch)),3)
+JUCT E 0 DamageThing((health+1)-Args[1])
+JUCT E 3 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT F 3 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT G 3 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT D 3 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT E 0 A_CountDownArg(7)
+JUCT E 0 DamageThing(7)
+SpawnL:
+JUCT E 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT E 0 A_RadiusGive("JunkCubeAmmoGive_P",150,514)
+JUCT E 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT E 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT E 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT F 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT E 0 A_RadiusGive("JunkCubeAmmoGive_P",150,514)
+JUCT F 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT F 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT F 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT E 0 A_RadiusGive("JunkCubeAmmoGive_P",150,514)
+JUCT G 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT G 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT G 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT G 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT E 0 A_RadiusGive("JunkCubeAmmoGive_P",150,514)
+JUCT D 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT D 1 A_JumpIfInTargetInventory("GoFlag",1,"SpawnLCheck")
+JUCT E 0 A_JumpIfInTargetInventory("GoFlag2",1,"SpawnLCheck2")
+JUCT E 0 A_CountDownArg(7)
+JUCT E 0 DamageThing(7)
+loop
+SpawnLCheck:
+JUCT E 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT EEE 1 A_JumpIfCloser(150,"Launched")
+JUCT F 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT FFF 1 A_JumpIfCloser(150,"Launched")
+JUCT G 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT GGG 1 A_JumpIfCloser(150,"Launched")
+JUCT D 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT DDD 1 A_JumpIfCloser(150,"Launched")
+JUCT E 0 A_CountDownArg(7)
+JUCT E 0 DamageThing(7)
+goto SpawnL
+
+SpawnLCheck2:
+JUCT E 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT EEE 1 A_JumpIfCloser(150,"Launched2")
+JUCT F 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT FFF 1 A_JumpIfCloser(150,"Launched2")
+JUCT G 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT GGG 1 A_JumpIfCloser(150,"Launched2")
+JUCT D 0 A_PlaySoundEx("weapon/ClownBall","Weapon")
+JUCT DDD 1 A_JumpIfCloser(150,"Launched2")
+JUCT E 0 A_CountDownArg(7)
+JUCT E 0 DamageThing(7)
+goto SpawnL
+
+Launched:
+JUCT F 0 A_SetArg(2,Args[2]+29)
+JUCT F 0 A_SetArg(1,health)
+JUCT D 0 A_GiveToTarget("BlockLaunched",1)
+JUCT D 0 A_ChangeFlag("NOGRAVITY",1)
+JUCT D 0 A_Stop
+JUCT D 1 ACS_ExecuteAlways(259,0,2)
+JUCT D 0 A_SpawnItemEx("JunkCubeGo1",0,0,0,6,0,momz,0,1+32768)
+stop
+
+Launched2:
+JUCT D 0 A_SetArg(1,health)
+JUCT D 0 A_GiveToTarget("BlockLaunched",1)
+JUCT D 0 A_ChangeFlag("NOGRAVITY",1)
+JUCT D 0 //A_Stop
+JUCT D 1 ACS_ExecuteAlways(259,0,2)
+JUCT D 0 A_SpawnItemEx("JunkCubeGo3",0,0,0,26+sqrt(momx*momx+momy*momy)/4,0,momz,0,1+32768)
+stop
+
+Death:
+TNT1 A 0 A_GiveInventory("BossJunkBreakSoundItem",1)
+TNT1 AAAAAAAA 0 A_SpawnItemEx("JunkBitsX",0,0,0,random(8,12),0,random(11,16),random(0,359),1)
+TNT1 A 1
+stop
+}
+}
+
+actor JunkCubeGo2 : JunkCubeGo1
+{
+Speed 26//2
+Damage (14)
+States
+{
+Launched:
+JUCT D 0 A_SetArg(1,health)
+JUCT D 0 A_GiveToTarget("BlockLaunched",1)
+JUCT D 0 A_ChangeFlag("NOGRAVITY",1)
+JUCT D 0 //A_Stop
+JUCT D 1 ACS_ExecuteAlways(259,0,2)
+JUCT D 0 A_SpawnItemEx("JunkCubeGo1",0,0,0,26+sqrt(momx*momx+momy*momy)/4,0,momz,0,1+32768)
+//JUCT D 0 A_SpawnItemEx("JunkmanCubePushed2",0,0,0,sqrt(momx*momx+momy*momy),momz,0,0,1+8192)
+stop
+}
+}
+
+actor JunkCubeGo3 : JunkCubeGo2
+{
+Speed 46//2
+States
+{
+Launched:
+JUCT D 0 A_SetArg(1,health)
+JUCT D 0 A_GiveToTarget("BlockLaunched",1)
+JUCT D 0 A_ChangeFlag("NOGRAVITY",1)
+JUCT D 0 //A_Stop
+JUCT D 1 ACS_ExecuteAlways(259,0,2)
+JUCT D 0 A_SpawnItemEx("JunkCubeGo3",0,0,0,26+sqrt(momx*momx+momy*momy)/4,0,momz,0,1+32768)
+//JUCT D 0 A_SpawnItemEx("JunkmanCubePushed2",0,0,0,sqrt(momx*momx+momy*momy),momz,0,0,1+8192)
+stop
+}
+}
+
+actor JunkBits1 : ScrapMetalBase
+{
++INVENTORY.QUIET
+States
+{
+Spawn2:
+JUCT H 500
+stop
+}
+}
+
+actor JunkBits2 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT I 500
+stop
+}
+}
+
+actor JunkBits3 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT J 500
+stop
+}
+}
+
+actor JunkBits4 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT K 500
+stop
+}
+}
+
+actor JunkBits5 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT L 500
+stop
+}
+}
+
+actor JunkBits6 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT M 500
+stop
+}
+}
+
+actor JunkBits7 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT N 500
+stop
+}
+}
+
+actor JunkBits8 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT O 500
+stop
+}
+}
+
+actor JunkBits9 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT P 500
+stop
+}
+}
+
+actor JunkBitsX : JunkBits1
+{
+States
+{
+Spawn2:
+TNT1 A 0 A_Jump(256,"S_1","S_2","S_3","S_4","S_5","S_6","S_7","S_8","S_9")
+TNT1 A 1
+loop
+S_1:
+JUCT H 500
+stop
+S_2:
+JUCT I 500
+stop
+S_3:
+JUCT J 500
+stop
+S_4:
+JUCT K 500
+stop
+S_5:
+JUCT L 500
+stop
+S_6:
+JUCT M 500
+stop
+S_7:
+JUCT N 500
+stop
+S_8:
+JUCT O 500
+stop
+S_9:
+JUCT P 500
+stop
+}
+}
+
+actor ClassJunkBit : ScrapMetalBase
+{
+States
+{
+Spawn2:
+TNT1 A 0 A_Jump(256,"S_3","S_4","S_5","S_6","S_7","S_8","S_9")
+TNT1 A 1
+loop
+S_1:
+JUCT H 500
+stop
+S_2:
+JUCT I 500
+stop
+S_3:
+JUCT J 500
+stop
+S_4:
+JUCT K 500
+stop
+S_5:
+JUCT L 500
+stop
+S_6:
+JUCT M 500
+stop
+S_7:
+JUCT N 500
+stop
+S_8:
+JUCT O 500
+stop
+S_9:
+JUCT P 500
+stop
+}
+}
+
+
+actor JunkPunchShot_P : CustomInventory
+{
+States
+{
+Pickup:
+//TNT1 A 0 A_JumpIfInventory("BlockLaunched",1,"PunchEnd")
+TNT1 A 0 A_JumpIfInventory("TrunkAmmo",35,"ThrowJunk")
+stop
+PunchEnd:
+TNT1 A 0
+stop
+ThrowJunk:
+TNT1 A 0 A_TakeInventory("TrunkAmmo",70)//14
+TNT1 A 0 A_GiveInventory("JunkmanAlt2_CI",1)
+stop
+}
+}
+
+actor JunkPunchShotX_P : CustomInventory
+{
+States
+{
+Pickup:
+//TNT1 A 0 A_JumpIfInventory("BlockLaunched",1,"PunchEnd")
+TNT1 A 0 A_JumpIfInventory("TrunkAmmo",35,"ThrowJunk")
+stop
+PunchEnd:
+TNT1 A 0
+stop
+ThrowJunk:
+TNT1 A 0 A_TakeInventory("TrunkAmmo",70)//14
+TNT1 A 0 A_GiveInventory("JunkmanAlt2X_CI",1)
+stop
+}
+}
+
+actor JunkPunchShot
+{
+translation "192:192=4:4", "198:198=94:94"
+PROJECTILE
+damagetype "JunkShot"
+Obituary "$OB_JUNKSHOT"
+//+DONTBLAST
+-NOGRAVITY
++THRUSPECIES
+Species "JunkCubeThing"
+Damage (18)
+Radius 16
+Height 16
+Speed 48
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+JUCT H 0
+JUCT H 0 //ThrustThingZ(0,8,0,1)
+JUCT H 2
+wait
+Death:
+DUSA A 0 A_Jump(256,"B","C","D","E","F","G")
+B:
+JUCT A 0 A_SpawnItemEx("JunkBits7",0,0,0,random(2,5),0,random(2,3),random(0,359),1)
+JUCT A 0 A_SpawnItemEx("JunkBits8",0,0,0,random(2,5),0,random(3,2),random(0,359),1)
+stop
+C:
+JUCT A 0 A_SpawnItemEx("JunkBits8",0,0,0,random(2,5),0,random(3,2),random(0,359),1)
+JUCT A 0 A_SpawnItemEx("JunkBits9",0,0,0,random(2,5),0,random(2,3),random(0,359),1)
+stop
+D:
+JUCT A 0 A_SpawnItemEx("JunkBits7",0,0,0,random(2,5),0,random(2,3),random(0,359),1)
+goto C+1
+E:
+JUCT A 0 A_SpawnItemEx("JunkBits7",0,0,0,random(2,5),0,random(2,3),random(0,359),1)
+JUCT A 0 A_SpawnItemEx("JunkBits5",0,0,0,random(2,5),0,random(2,3),random(0,359),1)
+stop
+F:
+JUCT A 0 A_SpawnItemEx("JunkBits5",0,0,0,random(2,5),0,random(2,3),random(0,359),1)
+goto B+1
+G:
+JUCT A 0 A_SpawnItemEx("JunkBits5",0,0,0,random(2,5),0,random(2,3),random(0,359),1)
+goto C+1
+}
+}
+
+actor JunkPunchShotB : JunkPunchShot{translation "192:192=205:205","198:198=74:74"}
+actor JunkPunchShotR : JunkPunchShot{translation "192:192=171:171","198:198=41:41"}
+actor JunkPunchShotO : JunkPunchShot{translation "192:192=104:104","198:198=128:128"}
+actor JunkPunchShotP : JunkPunchShot{translation "192:192=229:229","198:198=232:232"}
+
+actor JunkPunchShot2 : JunkPunchShot
+{
+Damage (20)
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+JUCT H 1 A_SpawnItemEx("JunkingShotFX1",0,Random(-24, 24),Random(-24, 24),0,0,0,0,1)
+JUCT H 1 A_SpawnItemEx("JunkingShotFX2",0,Random(-24, 24),Random(-24, 24),0,0,0,0,1)
+loop
+}
+}
+
+actor JunkingShotFX1:FreezeCrackerFX{
+//gravity 2
+States{Spawn:
+MRFP M 1
+MRFP N 1 A_Fadeout(0.15)
+loop}}
+actor JunkingShotFX2:FreezeCrackerFX{
+//gravity 2
+States{Spawn:
+MRFP K 1
+MRFP L 1 A_Fadeout(0.15)
+loop}}
+actor JunkingShotFXX1:FreezeCrackerFX1{+NOINTERACTION}
+actor JunkingShotFXX2:FreezeCrackerFX2{+NOINTERACTION}
+
+actor JunkPunchShot2B : JunkPunchShot2{translation "192:192=205:205","198:198=74:74"}
+actor JunkPunchShot2R : JunkPunchShot2{translation "192:192=171:171","198:198=41:41"}
+actor JunkPunchShot2O : JunkPunchShot2{translation "192:192=104:104","198:198=128:128"}
+actor JunkPunchShot2P : JunkPunchShot2{translation "192:192=229:229","198:198=232:232"}
+
+actor BossJunkShield : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",14,"Spawn3")
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",7,"Spawn2")
+goto Spawn1
+Spawn3:
+TNT1 A 0 A_SpawnItemEx("BossJunkShieldBit",0,0,0,5,0,random(-4,4),random(0, 359),129)
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("BossJunkShieldBit",0,0,0,5,0,random(-4,4),random(0, 359),129)
+Spawn1:
+TNT1 A 0 A_SpawnItemEx("BossJunkShieldBit",0,0,0,5,0,random(-4,4),random(0, 359),129)
+stop
+}
+}
+
+actor BossJunkShieldBit
+{
+//Translation "192:192=4:4", "198:198=94:94"
+PROJECTILE
++CLIENTSIDEONLY
++NOINTERACTION
+- SOLID
++NOGRAVITY
+RenderStyle "Translucent"
+Alpha 0.5
+radius 0
+height 0
+Speed 15
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 3
+TNT1 A 0 A_Jump(256,"SpawnJ","SpawnK","SpawnL","SpawnM","SpawnN","SpawnO","SpawnP")
+SpawnJ:
+JUCT J 1
+goto SpawnDone
+SpawnK:
+JUCT K 1
+goto SpawnDone
+SpawnL:
+JUCT L 1
+goto SpawnDone
+SpawnM:
+JUCT M 1
+goto SpawnDone
+SpawnN:
+JUCT N 1
+goto SpawnDone
+SpawnO:
+JUCT O 1
+goto SpawnDone
+SpawnP:
+JUCT P 1
+goto SpawnDone
+
+SpawnDone:
+"####" "#" 4
+"####" "#" 7 A_ScaleVelocity(-1.0)
+stop
+
+}
+}
+
+actor BossJunkArmor : BasicArmorPickup
+{
+Armor.Savepercent 40.001
+Armor.Saveamount 40
+//Armor.MaxSaveAmount 20
+}
+
+
+actor BossJunkShieldRadius : BasicExplosion
+{
+Obituary "$OB_JUNKSHIELDB"
+Damagetype "JunkShield"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",14,"Spawn3")
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",7,"Spawn2")
+goto Spawn1
+Spawn3:
+TNT1 A 0
+TNT1 A 2 A_Explode(7,160,0)
+stop
+Spawn2:
+TNT1 A 0
+TNT1 A 2 A_Explode(6,160,0)
+stop
+Spawn1:
+TNT1 A 0
+TNT1 A 2 A_Explode(5,160,0)
+stop
+}
+}
+
+actor JunkingProjectile
+{
+PROJECTILE
+Damage (8)
+damagetype "JunkShield"
+Obituary "$OB_JUNKSHIELD"
+Height 10
+Radius 32
+scale 2.5
+Speed 20
+States
+{
+Spawn:
+JSHI V 4
+loop
+Death:
+TNT1 A 0 A_SpawnItemEx("JunkProjectileDeathFX")
+stop
+}
+}
+
+actor JunkingProjectile2
+{
+PROJECTILE
+damagetype "JunkShield"
+Obituary "$OB_JUNKSHIELD"
+Damage (4)
+Height 10
+Radius 21
+scale 2.5
+Speed 20
+States
+{
+Spawn:
+JSHI W 4
+loop
+}
+}
+
+actor JunkProjectileBoss : JunkingProjectile
+{
+Translation "192:192=4:4", "198:198=94:94"
+Obituary "$OB_JUNKSHIELD"
+Damagetype "JunkShock"
+Damage (12)
+Speed 26
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+JUCT I 4
+loop
+}
+}
+
+actor JunkProjectileBossB : JunkProjectileBoss{translation "192:192=205:205","198:198=74:74"}
+actor JunkProjectileBossR : JunkProjectileBoss{translation "192:192=171:171","198:198=41:41"}
+actor JunkProjectileBossO : JunkProjectileBoss{translation "192:192=104:104","198:198=128:128"}
+actor JunkProjectileBossP : JunkProjectileBoss{translation "192:192=229:229","198:198=232:232"}
+
+actor JunkProjectile2Boss : JunkingProjectile2
+{
+Translation "192:192=4:4", "198:198=94:94"
+Obituary "$OB_JUNKSHIELD"
+Damagetype "JunkShock"
+Damage (3)
+Speed 26//18
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+JUCT M 4
+loop
+}
+}
+
+actor JunkProjectile2BossB : JunkProjectile2Boss{translation "192:192=205:205","198:198=74:74"}
+actor JunkProjectile2BossR : JunkProjectile2Boss{translation "192:192=171:171","198:198=41:41"}
+actor JunkProjectile2BossO : JunkProjectile2Boss{translation "192:192=104:104","198:198=128:128"}
+actor JunkProjectile2BossP : JunkProjectile2Boss{translation "192:192=229:229","198:198=232:232"}
+
+
+actor JunkmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JunkPunch",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JunkPunchB",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JunkPunchR",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JunkPunchO",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JunkPunchP",0,0,-8,0)
+goto Done
+}
+}
+
+actor JunkmanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShot",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShotB",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShotR",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShotO",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShotP",0,0,-8,0)
+goto Done
+}
+}
+
+actor JunkmanAlt2X_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShot2",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShot2B",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShot2R",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShot2O",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JunkPunchShot2P",0,0,-8,0)
+goto Done
+}
+}
+
+actor JunkmanReload_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JunkPunch2",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JunkPunch2B",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JunkPunch2R",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JunkPunch2O",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JunkPunch2P",0,0,-8,0)
+goto Done
+}
+}
+
+actor JunkmanOther1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBoss",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBoss",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBoss",-120,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossB",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossB",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossB",-120,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossR",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossR",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossR",-120,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossO",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossO",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossO",-120,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossP",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossP",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectileBossP",-120,0,0,0)
+goto Done
+}
+}
+
+actor JunkmanOther2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2Boss",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2Boss",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2Boss",-120,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossB",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossB",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossB",-120,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossR",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossR",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossR",-120,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossO",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossO",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossO",-120,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossP",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossP",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("JunkProjectile2BossP",-120,0,0,0)
+goto Done
+}
+}

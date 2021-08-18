@@ -1,0 +1,73 @@
+actor Searchman : MegaClassBase
+{
+Player.ScoreIcon "C_08E0X"
+player.startitem "MegaHealthBar"
+player.displayname "Searchman"
+player.soundclass "searchmanc"
+player.startitem "HomingSniperBoss"
+player.startitem "SearchBusher"
+player.startitem "MetalFloatFlag"
+player.startitem "WilyBanzaiAmmo", 560
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+player.startitem "FlameSwordWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "FlameSwordWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+player.startitem "BreakDashWeakness", 1
+States
+{
+Spawn:
+SEAR A 0
+SEAR B 1
+SEAR A 1
+Goto Spawn+2
+See:
+SEAR BCDE 5
+Goto Spawn
+Missile:
+SEAR F 0 A_JumpIfInventory("VivifyDelay7",1,"Missile2")
+SEAR F 5
+SEAR G 4
+goto Spawn
+
+Missile2:
+SEAR J 9
+goto Spawn
+
+CustomState1:
+SCMR A 13
+SCMR BC 5
+goto Spawn+2
+
+CustomState2:
+SCMR C 10
+goto Spawn+2
+
+CustomState3:
+SCMR CBA 5
+goto Spawn+2
+
+CustomState4:
+SCMR B 1
+goto Spawn
+
+ClassPain:
+SEAR H 0
+goto PainContinue
+DeathFix:
+SEAR H 0
+goto DeathContinue
+ClassDeath:
+SEAR H 1
+goto MegaDeathEnd
+}
+}

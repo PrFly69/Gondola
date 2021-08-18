@@ -1,0 +1,172 @@
+actor MegamanC : MegaClassBase replaces Megaman
+{
+Player.ScoreIcon "C_00B0X"
+player.startitem "MegaHealthBar"
+player.displayname "megaman"
+player.soundclass "megamanc"
+player.startitem "MegaBusterC"
+player.startitem "BusterAmmo", 3
+player.startitem "CanCopyWeapons"
+player.startitem "CanUseItems"
+player.startitem "MegaFlag"
+player.startitem "MegaBusterFlag"
+player.startitem "CanWallJump"
+
+player.startitem "SlideLimitFlag", 500
+player.startitem "CopyNerf"
++NOSKIN
+States
+{
+Spawn:
+PLAY A 0
+PLAY B 1
+PLAY A 1 //A_TakeInventory("SexoBradFlag",1)
+//90
+//10
+Goto Spawn+2
+See:
+PLAY BCDE 5 //A_GiveInventory("SexoBradFlag",1)
+Goto Spawn
+Missile:
+PLAY A 0 A_JumpIfInventory("MegaSlide",1,"Slide")
+PLAY A 0 A_JumpIfInventory("DoubleUp",1,"IsThisX")
+PLAY A 0 A_JumpIfInventory("JetBusterC",1,"JetMissile")
+PLAY A 0 A_JumpIfInventory("PowerFistC",1,"PowerMissile")
+PLAY FFFFF 1 A_JumpIfInventory("MegaSlide",1,"Slide")
+PLAY GGGG 1 A_JumpIfInventory("MegaSlide",1,"Slide")
+goto Spawn+2
+JetMissile:
+PLAY A 0 A_JumpIfInventory("JetTrigger",1,"Flight")
+PLAY F 5
+PLAY G 4
+goto Spawn+2
+Flight:
+PLAY A 0 A_JumpIfInventory("JetFuel",0,"See")
+PLAY R 0
+PLAY RR 5
+goto Spawn+2
+PowerMissile:
+PLAY A 0
+PLAY F 5
+PLAY G 4
+goto Spawn//+4
+Slide:
+PLAY R 20
+PLAY A 0
+goto Spawn
+IsThisX:
+XOVE ZZZZZZZZZ 1
+PLAY A 0
+goto Spawn+2
+ClassPain:
+PLAY H 0
+goto PainContinue
+DeathFix:
+PLAY H 0
+goto DeathContinue
+ClassDeath:
+PLAY H 1
+goto MegaDeathEnd
+}
+}
+
+actor GravCancel : Inventory
+{
+Inventory.Amount 1
+Inventory.MaxAmount 1
++INVENTORY.AUTOACTIVATE
+States
+{
+Spawn:
+TNT1 A 1
+loop
+Use:
+TNT1 A 350
+TNT1 A 0 A_SetGravity(800)
+TNT1 A 0 SetPlayerProperty (0,0,3)
+stop
+}
+}
+
+actor UnGlitcher : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 SetPlayerProperty(0,0,0)
+TNT1 A 0 SetPlayerProperty(0,0,1)
+TNT1 A 0 SetPlayerProperty(0,0,3)
+TNT1 A 0 SetPlayerProperty(0,0,4)
+TNT1 A 0 A_ChangeFlag("LOWGRAVITY",0)
+TNT1 A 0 A_ChangeFlag("INVULNERABLE",0)
+TNT1 A 0 A_SetGravity(0.8)
+TNT1 A 4
+//TNT1 A 0 ACS_ExecuteAlways(500)
+//TNT1 A 0 ACS_ExecuteAlways(501)
+stop
+}
+}
+
+actor CanCopyWeapons : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor HeroNoSpawn : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor NoDroppedWeapons : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor CanUseItems : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor MegaBusterFlag : Inventory //Sliding
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor MegaFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor NoAmmoPickup : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+//actor SexoBradFlag : OnceC{}
+
+/*
+actor RemoveMegaman : PlayerPawn
+{
+player.displayname "megaman"
+limitedtoteam 254
+visibletoteam 254
+player.colorrange 0 0
+Player.MaxSkinSizeFactor 0, 0
+scale 2.5
+States
+{
+Spawn:
+PLAY A -1
+loop
+See:
+PLAY BCDE 5
+loop
+}
+}*/

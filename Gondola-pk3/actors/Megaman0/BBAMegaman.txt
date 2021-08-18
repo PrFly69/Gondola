@@ -1,0 +1,163 @@
+actor BBAMegaman : ClassBase
+{
+Player.ScoreIcon "C_00T0X"
+player.displayname "BBAMegaMan"
+player.soundclass "bbamegamanc"
+player.startitem "BBA_Pistol"
+player.startitem "BBA_Clip", 50
+player.startitem "BBA_Money", 0
+player.startitem "BBA_ShopItem", 1
+player.forwardmove 0.85, 0.85
+player.sidemove 0.83, 0.83
+
+player.weaponSlot 1, "BBA_Pistol"
+player.weaponSlot 2, "BBA_Shotgun"
+player.weaponSlot 3, "BBA_SuperShotgun"
+player.weaponSlot 4, "BBA_Chaingun"
+player.weaponSlot 5, "BBA_RocketLauncher"
+player.weaponSlot 6, "BBA_PlasmaRifle"
+player.weaponSlot 7, "BBA_BFG9000"
+
+States
+{
+Spawn:
+BBAM A 0
+BBAM B 1
+BBAM A 1
+BBAM A 210
+BBAM R random(8,20)
+BBAM SRSRSRS 3
+BBAM R random(8,20)
+BBAM TRTRTRTRTRTR 2
+Goto Spawn+4
+See:
+BBAM BCDE 5
+Goto Spawn
+Missile:
+BBAM F 0 A_JumpIfInventory("VivifyDelay5",1,"MissilePunch")
+BBAM F 5
+BBAM G 4
+goto Spawn
+MissilePunch:
+BBAM Q 9
+goto Spawn
+
+ClassPain:
+BBAM H 0
+goto PainContinue
+
+DeathFix:
+BBAM H 0 A_GiveInventory("SpecialDeathFlag")
+goto DeathContinue
+ClassDeath:
+BBAM H 0
+BBAM H 0 A_JumpIfInventory("InstagibFlag",1,"ClassDeathM")
+BBAM H 0 A_JumpIfInventory("FlingDeathFlag",1,"ClassDeathF")
+BBAM H 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
+BBAM H 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
+BBAM H 2 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_DEATH,3)
+BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
+BBAM H 0 A_SpawnItemEx("BBADeathAnimation",0,0,0,0,0,0,0,1)
+goto MegaDeathEnd
+ClassDeathM:
+BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
+goto MegaDeathEnd
+ClassDeathF:
+BBAM H 19 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_DEATH,3)
+BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
+BBAM H 0 A_SpawnItemEx("BBADeathAnimationF",0,0,0,0,0,0,0,1)
+goto MegaDeathEnd
+ClassDeathR:
+BBAM H 1 ThrustThingZ(0,21,0,1)
+BBAM H 0 A_JumpIf(ceilingz-z<64,"ClassDeathRE")
+BBAM H 0 A_JumpIfInventory("RiseDeathFlag2",25,"ClassDeathRE")
+BBAM H 0 A_JumpIfInventory("RiseDeathFlag2",1,"ClassDeathR")
+BBAM H 0 A_GiveInventory("RiseDeathFlag2",1)
+BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
+Goto ClassDeathR
+ClassDeathRE:
+BBAM H 0 A_Stop
+goto MegaDeathEnd
+ClassDeathI:
+BBAM H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
+BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
+BBAM H 1 A_PlaySoundEx("CBM/freeze","Voice")
+BBAM HHHHHHHHHHHHHHH 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
+BBAM H 0 A_SpawnItemEx("BBADeathAnimationI",0,0,0,0,0,0,0,1)
+goto DeathWait
+}
+}
+
+actor BBADeathAnimation
+{
+-SOLID
++THRUACTORS
++DONTBLAST
++DONTREFLECT
+damage 0
+radius 2
+height 2
+scale 2.5
+states
+{
+Spawn:
+BBAM H 25
+BBAM A 20 A_SetAngle(random(0,359))
+BBAM E 0 A_SpawnItemEx("BBADeathAnimationFX",0,0,0,2,0,0,0,1)
+stop
+}
+}
+actor BBADeathAnimationFX : BasicClientSide
+{
+States
+{
+Spawn:
+BBAM BBBCCCDDDEEE 1 A_FadeOut(0.01)
+loop
+}
+}
+actor BBADeathAnimationF : BBADeathAnimation
+{
+states
+{
+Spawn:
+BBAM H 10
+BBAM A 20 A_SetAngle(random(0,359))
+BBAM E 0 A_SpawnItemEx("BBADeathAnimationFX",0,0,0,2,0,0,0,1)
+stop
+}
+}
+
+actor BBADeathAnimationI : BBADeathAnimation
+{
+states
+{
+Spawn:
+BBAM H 5
+BBAM A 20 A_SetAngle(random(0,359))
+BBAM E 0 A_SpawnItemEx("BBADeathAnimationIFX",0,0,0,1,0,0,0,1)
+stop
+}
+}
+actor BBADeathAnimationIFX : BasicClientSide
+{
+States
+{
+Spawn:
+BBAM BBBBBBBBCCCCCCCCDDDDDDDDEEEEEEEE 1 A_FadeOut(0.01)
+loop
+}
+}
+
+actor BBADeathBubble : BasicExplosion
+{
+scale 1.5
+states
+{
+Spawn:
+BBAB Y 0
+BBAB Y 1 A_PlaySoundEx("BBA_Snd/cut","SoundSlot6")
+BBAB XYXYXYXYXYXYXYXYX 1
+stop
+}
+}

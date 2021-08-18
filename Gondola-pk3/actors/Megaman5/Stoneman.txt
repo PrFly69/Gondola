@@ -1,0 +1,117 @@
+actor Stoneman : ToadClassBase
+{
+Player.ScoreIcon "C_05C0X"
+player.startitem "ToadHealthBar"
+player.displayname "stoneman"
+player.soundclass "stonemanc"
+player.startitem "StoneScriptStarter"
+player.startitem "PowerStoneBoss"
+player.startitem "CantStopTheRockAmmo", 3
+player.startitem "SemiStunArmor"
+
+player.startitem "NapalmBombWeakness2", 1
+
+player.startitem "HyperBombWeakness", 1
+player.startitem "CrashBombWeakness", 1
+player.startitem "DrillBombWeakness", 1
+player.startitem "NapalmBombWeakness", 1
+player.startitem "DangerWrapWeakness", 1
+player.startitem "FlashBombWeakness", 1
+player.startitem "RemoteMineWeakness", 1
+player.startitem "LaserTridentWeakness", 1
+player.startitem "CommandoBombWeakness", 1
+player.startitem "BalladeCrackerWeakness", 1
+
+player.startitem "RealClassFlag", 48
+States
+{
+Spawn:
+STOM A 0 A_JumpIfInventory("StoneCoreFlag",1,"SpawnCore")
+STOM A 0 A_JumpIfInventory("StoneBossLeap",1,"MissileL")
+STOM B 1 A_JumpIfInventory("StoneBossLeap",1,"MissileL")
+STOM A 1
+Goto Spawn+3
+SpawnCore:
+STOM R 1 A_JumpIfInventory("StoneCoreFlag",1,"SpawnCoreB")
+goto Spawn
+Melee:
+STOM R 0 A_JumpIfInventory("StoneCoreFlag",1,"SpawnCoreB")
+STOM R 0 A_JumpIfInventory("StoneBossLeap2",1,"MissileL2")
+STOM R 0 A_JumpIfInventory("StoneCoreBuddha",1,"CoreRebuild")
+goto Spawn
+See:
+STOM BCDE 5
+Goto Spawn
+Missile:
+STOM F 0 A_JumpIfInventory("StoneCoreFlag",1,"SpawnCoreB")
+STOM F 0 A_JumpIfInventory("StoneBossLeap",1,"MissileL")
+STOM F 0 A_JumpIfInventory("StoneBossCharge",1,"MissileC")
+STOM FFFFF 1 A_JumpIfInventory("StoneBossCharge",1,"MissileC")
+STOM G 4
+goto Spawn+3
+MissileC:
+STOM I 3
+STOM I 0 A_JumpIfInventory("StoneBossLeap",1,"MissileL")
+STOM I 2 A_JumpIfInventory("StoneBossCharge",1,"MissileC")
+goto Missile+8
+MissileL:
+STOM J 2
+STOM J 0 A_JumpIfInventory("StoneBossLeap2",1,"MissileL2")
+STOM JJ 1 A_JumpIfInventory("StoneBossLeap",1,"MissileL")
+STOM KLMMLK 3
+goto Spawn+3
+MissileL2:
+STOM FG 5
+goto Spawn+3
+CustomState1:
+STOM I 5
+goto Missile
+
+
+SpawnCoreB:
+STOM R 0
+STOM R 1 A_JumpIf(user_wepaimlimit<8,"CoreBouncing")
+Goto CoreNoB
+CoreBouncing:
+STOM R 1 A_JumpIf(floorz==z,"CoreBounce")
+loop
+CoreBounce:
+STOM R 0 A_PlaySoundEx("weapon/StoneBounce","Body")
+STOM R 0 A_ChangeVelocity(11-user_wepaimlimit,0,momz,3)
+STOM R 3 ThrustThingZ(0,40-(user_wepaimlimit*3),0,1)
+STOM R 0 A_GiveInventory("StoneCoreBounceFlag",1)
+STOM R 0 A_SetUserVar("user_wepaimlimit",user_wepaimlimit+1)
+Goto SpawnCoreB
+CoreNoB:
+STOM RRRRRSSSSS 1 A_JumpIfInventory("StoneCoreBuddha",1,"CoreRebuild")
+loop
+
+CoreRebuild:
+STOM MLK 3
+goto Spawn
+
+ClassPain:
+STOM H 0 A_JumpIfInventory("StoneCoreFlag",1,"ClassPainCore")
+goto PainContinue
+ClassPainCore:
+STOM R 1 A_SpawnItemEx("PainFX_CBM",-5,0,3,0,0,0)
+goto SpawnCore
+
+DeathFix://SpecialDeathFlag
+STOM H 0 A_JumpIfInventory("StoneCoreFlag",1,"DeathFixCore")
+goto DeathContinue
+DeathFixCore:
+STOM R 0
+goto DeathContinue
+ClassDeath:
+STOM H 1
+goto MegaDeathEnd
+
+TimeStopped:
+STOM H 0 A_JumpIfInventory("StoneCoreFlag",1,"TimeStoppedCore")
+Goto "Super::TimeStopped"
+TimeStoppedCore:
+STOM R 0
+Goto "Super::TimeStoppedX"
+}
+}

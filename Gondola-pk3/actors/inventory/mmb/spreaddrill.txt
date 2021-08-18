@@ -1,0 +1,271 @@
+actor SpreadDrillWep : BaseMM8BDMWep 10014
+{
+//$Category MM8BDM-Weapons
+//$Title Spread Drill
+//$Sprite SPREX0
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 5
+Inventory.Pickupmessage "$PU_SPREADDRILL"
+Obituary "$OB_SPREADDRILL"
+Tag "$TAG_SPREADDRILL"
+weapon.ammotype "SpreadDrillAmmo"
+inventory.icon "SPREI"
++AMMO_OPTIONAL
++ALT_AMMO_OPTIONAL
+States
+{
+Spawn:
+SPRE X 1
+loop
+Ready:
+SPRE H 0 ACS_ExecuteAlways(998,0,172)
+SPRE H 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 A 0 A_TakeInventory("SpreadDrillFlag",4)
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+SPRE H 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+SPRE H 1 A_Raise
+Loop
+Altfire:
+SPRE I 0 A_JumpIfInventory("SpreadDrillBuffer",1,"Waiting")
+SPRE H 0 A_TakeInventory("SpreadDrillFlag", 2)
+Goto Fire
+Fire:
+SPRE H 0 A_JumpIfInventory("SpreadDrillFlag",2,"Reset")
+SPRE H 0 A_JumpIfInventory("SpreadDrillFlag",1,"Spread")
+SPRE H 0 A_JumpIfNoAmmo("NoAmmo")
+SPRE I 0 A_JumpIfInventory("SpreadDrillBuffer",1,"Waiting")
+SPRE H 0 A_GiveInventory("SpreadDrillBuffer",1)
+SPRE H 0 A_PlaySoundEx("weapon/spreaddrill1","Weapon")
+SPRE H 0 A_SpawnItemEx("SpreadDrill",cos(pitch)*32,0,28-(sin(pitch)*32),cos(pitch)*13,0,-sin(pitch)*13,0,0,0)//A_FireCustomMissile("SpreadDrill",0,1,8,0)
+SPRE H 0 A_TakeInventory("SpreadDrillAmmo",2,TIF_NOTAKEINFINITE)
+SPRE H 0 A_GiveInventory("SpreadDrillFlag",1)
+SPRE IJ 2
+SPRE H 4
+SPRE J 0 A_Refire
+Goto Ready+1
+Reset:
+SPRE H 0 A_TakeInventory("SpreadDrillBuffer",999)
+SPRE H 1 A_TakeInventory("SpreadDrillFlag", 2)
+Goto Fire+2
+Spread:
+SPRE H 2 A_GiveInventory("SpreadDrillFlag", 1)
+SPRE H 4 
+SPRE H 0 A_JumpIfInventory("SpreadDrillFlag",2, "Waiting")
+SPRE H 0 A_JumpIfInventory("SpreadDrillFlag",1, 1)
+Goto Ready+1
+SPRE H 0 A_Refire
+goto Ready+1
+Waiting:
+SPRE H 5
+SPRE H 0 A_Refire
+Goto Ready+1
+NoAmmo:
+SPRE H 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor SpreadDrillAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor SpreadDrillFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 2
+}
+
+actor SpreadDrillBuffer : Powerup
+{
+powerup.duration 23
+}
+
+actor SpreadDrill
+{
+PROJECTILE
++RIPPER
+radius 32
+height 16
+scale 2.5
+speed 13
+DamageType "SpreadDrill"
+Obituary "$OB_SPREADDRILL"
+damage (30)
+Gravity 0.25
+states
+{
+Spawn:
+TNT1 A 0
+SPRE AA 1 
+SPRE A 0 A_ChangeFlag("NOCLIP",0)
+Waiting:
+SPRE F 2 A_GiveInventory("CutterFlag", 1)
+SPRE F 0 A_JumpIfInTargetInventory("SpreadDrillFlag",2,"Spread")
+SPRE A 2 A_GiveInventory("CutterFlag", 1)
+SPRE A 0 A_JumpIfInTargetInventory("SpreadDrillFlag",2,"Spread")
+SPRE A 0 A_JumpIfInventory("CutterFlag",5,"AddGravity")
+Loop
+AddGravity:
+SPRE A 0 A_ChangeFlag("NOGRAVITY", 0)
+Goto Waiting2
+Waiting2:
+SPRE AA 1 A_JumpIf(z-floorz < 1, "Death")
+SPRE A 0 A_JumpIfInTargetInventory("SpreadDrillFlag",2,"Spread")
+SPRE FF 1 A_JumpIf(z-floorz < 1, "Death") // A_Checkfloor doesn't work here
+SPRE B 0 A_JumpIfInTargetInventory("SpreadDrillFlag",2,"Spread")
+Loop
+Spread:
+TNT1 A 0 A_TakeFromTarget("SpreadDrillFlag",1)
+TNT1 A 0 A_SpawnItemEx("LargeDrillShell",-8,0,0,5)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1",0,0,0,20,13,0,0)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1",0,0,0,20,-13,0,0)
+stop
+Death:
+TNT1 A 0 A_TakeFromTarget("SpreadDrillFlag",2)
+stop
+}
+}
+
+actor MediumDrill1 : SpreadDrill
+{
+-NOCLIP
+-LOWGRAVITY
++NOGRAVITY
+radius 20
+scale 2.5
+damage (10)
+DamageType "SpreadDrill2"
+states
+{
+Spawn:
+SPRE B 0
+SPRE CB 2
+Goto Death
+Death:
+TNT1 A 0 A_CustomMissile("MediumDrill2",0,0,0, 2,0)
+TNT1 A 0 A_CustomMissile("MediumDrill2",0,0,0, 2,0)
+stop
+}
+}
+
+actor MediumDrill2 : SpreadDrill
+{
+-NOCLIP
+-LOWGRAVITY
++NOGRAVITY
+radius 16
+scale 2.5
+Speed 20
+DamageType "SpreadDrill2"
+damage (10)
+states
+{
+Spawn:
+SPRE CB 2 
+SPRE B 0 A_JumpIfInTargetInventory("SpreadDrillFlag",2,"Spread")
+Loop
+Spread:
+TNT1 A 0 A_SpawnItemEx("MediumDrillShell",-4,0,0,5)
+TNT1 A 0 A_SpawnItemEx("SmallDrill1",0,0,0,20,8,0,0)
+TNT1 A 0 A_SpawnItemEx("SmallDrill1",0,0,0,20,-8,0,0)
+TNT1 A 0 A_GiveToTarget("SpreadDrillFlag", 2)
+stop
+Death:
+TNT1 A 0 
+TNT1 A 0 A_TakeFromTarget("SpreadDrillFlag",2)
+stop
+}
+}
+
+actor SmallDrill1 : MediumDrill1
+{
+radius 12
+height 8
+damage (8)
+DamageType "SpreadDrill3"
+states
+{
+Spawn:
+SPRE D 0
+SPRE ED 2
+Goto Death
+Death:
+TNT1 A 0 A_CustomMissile("SmallDrill2",0,0,0, 2,0)//A_SpawnItemEx("SmallDrill2",0,0,0,27,0,0,0)
+stop
+}
+}
+
+actor SmallDrill2 : MediumDrill2
+{
+radius 8
+height 8
+damage (8)
+Speed 28
+DamageType "SpreadDrill3"
+states
+{
+Spawn:
+SPRE ED 2
+loop
+Death:
+TNT1 A 0 
+stop
+}
+}
+
+actor LargeDrillShell
+{
++MISSILE
++RIPPER
++NOCLIP
+Radius 1
+Height 1
+scale 2.5
+Gravity 0.3
+States
+{
+Spawn:
+TNT1 A 0
+SHEL A 1 A_PlaySoundEx("weapon/spreaddrill2","Weapon")
+TNT1 A 1 
+Spawn2:
+SHEL A 1
+TNT1 A 1 A_CheckFloor("Death")
+loop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor MediumDrillShell : LargeDrillShell
+{
+States
+{
+Spawn:
+TNT1 A 0 
+SHEL B 1 A_PlaySoundEx("weapon/spreaddrill3","Weapon")
+TNT1 A 1 
+Spawn2:
+SHEL B 1
+TNT1 A 1 A_CheckFloor("Death")
+loop
+}
+}
+
+actor SpreadDrillProtect : PowerProtection
+{
+Powerup.Duration 3
+DamageFactor "SpreadDrill", 0.1
+DamageFactor "SpreadDrill2", 0.5
+DamageFactor "SpreadDrill3", 0.5
+}

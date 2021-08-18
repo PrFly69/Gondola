@@ -1,0 +1,81 @@
+//=================================
+// Formatting & Cleaned by Ru5tK1ng
+//=================================
+ 
+  Actor Nitroman : LightClassBase
+  {
+    Player.ScoreIcon "C_10G0X"
+    Player.StartItem "LightHealthBar"
+    Player.DisplayName "Nitroman"
+    Player.SoundClass "nitromanc"
+    Player.StartItem "WheelCutterBoss"
+    Player.StartItem "WheelCutterBossAmmo", 90
+    Player.StartItem "IceSlasherWeakness", 1
+    Player.StartItem "BlizzardAttackWeakness", 1
+    Player.StartItem "FreezeCrackerWeakness", 1
+    Player.StartItem "IceWaveWeakness", 1
+    Player.StartItem "IceWallWeakness", 1
+	Player.StartItem "NitroGearToggle", 1
+	//Player.StartItem "NitroGearState", 1 //"Wow, DECORATE is easy!"
+    //player.startitem "ChillSpikeWeakness2", 1
+    States
+    {
+        Spawn:
+        NITB A 0
+        NITB I 1
+        NITB A 1
+        Goto Spawn+2
+ 
+        See:
+        NITB IJKL 5
+        Goto Spawn
+       
+        Missile:
+        NITB F 0 A_JumpIfInventory("NitroBikeState",5,"BikeD")
+        NITB F 0 A_JumpIfInventory("NitroBikeState",3,"BikeC")
+        NITB F 0 A_JumpIfInventory("NitroBikeState",1,"BikeB")
+        NITB F 1
+        NITB F 5 A_JumpIfInventory("NitroBikeState",1,"Bike")
+        NITB G 4
+        Goto Spawn+2
+ 
+        Bike:
+        NITB BC 3
+        NITB BBB 1 A_JumpIfInventory("NitroBikeState",1,"Bike")
+        Goto Spawn+2
+ 
+        BikeB:
+        NITB B 3
+        Goto Spawn
+ 
+        BikeC:
+        NITB C 3
+        Goto Spawn
+ 
+        BikeD:
+        NITB B 3 A_TakeInventory("NitroBikeState",4)
+        Goto Spawn
+ 
+        ClassPain:
+        NITB H 0
+        Goto PainContinue
+ 
+        DeathFix:
+        TNT1 A 0 Thing_Remove(TID+9000)
+        NITB H 0
+        Goto DeathContinue
+ 
+        ClassDeath:
+        TNT1 A 0 Thing_Remove(TID+9000)
+        NITB H 1
+        Goto MegaDeathEnd
+       
+        Death.Falling:
+        "----" H 0 Thing_Remove(TID+9000)
+        "----" H 0 A_GiveInventory("FallingFlag",1)
+        "----" H 0 A_GiveInventory("DeadClassBundle")
+        "----" H 0 A_SetTranslucent(0.0,0)
+        "----" H 0 A_PlaySoundEx("*death","Voice")
+        Goto DeathWait
+    }
+  }

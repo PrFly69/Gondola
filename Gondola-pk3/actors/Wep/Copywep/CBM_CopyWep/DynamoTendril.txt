@@ -1,0 +1,100 @@
+actor DynamoTendrilWep : BaseMM8BDMWep
+{
+dropitem "DynamoTendrilWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 2
+Inventory.Pickupmessage "$PU_DYNAMOTENDRIL"
+Obituary "$OB_DYNAMOTENDRIL"
+Tag "$TAG_DYNAMOTENDRIL"
+weapon.ammotype "DynamoTendrilAmmo"
+inventory.icon "XTR0WI_N"
+States
+{
+Spawn:
+XWI0 N 1
+loop
+Ready:
+XH0N A 0 ACS_ExecuteAlways(998,0,207)//BubbleBomb
+XH0N A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0N A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0N A 1 A_Raise
+Loop
+Fire:
+XH0N A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0N B 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
+XH0N B 0 A_FireCustomMissile("DynamoDish2",0,1,8,0)
+XH0N BC 3
+XH0N C 10
+XH0N CB 3 
+XH0N B 0 A_Refire
+Goto Ready+1
+NoAmmo:
+XH0N A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor DynamoTendrilAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor DynamoDish2// : DynamoM_Dish
+{
+translation "192:192=217:217","202:202=217:217","199:199=229:229"
+PROJECTILE
+damagetype "DynamoTendril"
+Obituary "$OB_DYNAMOTENDRIL"
+damage (16)
+Radius 12
+Height 8
+speed 24
+scale 2.5
+States
+{
+Spawn:
+DYPJ AB 6
+Flying:
+DYPJ C 0 A_SpawnItemEx("DynamoTendrilZap"  ,0,0,0,momx/2+33*-sin(angle)    ,momy/2+33*cos(angle)    ,momz/2,-90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXC",0,0,0,momx/2+33*-sin(angle)    ,momy/2+33*cos(angle)    ,momz/2,-90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXB",0,0,0,momx/2+33*-sin(angle)*2/3,momy/2+33*cos(angle)*2/3,momz/2,-90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXA",0,0,0,momx/2+33*-sin(angle)/3  ,momy/2+33*cos(angle)/3  ,momz/2,-90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoTendrilZap"  ,0,0,0,momx/2-33*-sin(angle)    ,momy/2-33*cos(angle)    ,momz/2,90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXC",0,0,0,momx/2-33*-sin(angle)    ,momy/2-33*cos(angle)    ,momz/2,90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXB",0,0,0,momx/2-33*-sin(angle)*2/3,momy/2-33*cos(angle)*2/3,momz/2,90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXA",0,0,0,momx/2-33*-sin(angle)/3  ,momy/2-33*cos(angle)/3  ,momz/2,90,9)
+DYPJ C 1
+DYPJ C 0 A_SpawnItemEx("DynamoTendrilZap"  ,0,0,0,momx/2+33*-sin(angle)    ,momy/2+33*cos(angle)    ,momz/2,-90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXF",0,0,0,momx/2+33*-sin(angle)    ,momy/2+33*cos(angle)    ,momz/2,-90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXE",0,0,0,momx/2+33*-sin(angle)*2/3,momy/2+33*cos(angle)*2/3,momz/2,-90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXD",0,0,0,momx/2+33*-sin(angle)/3  ,momy/2+33*cos(angle)/3  ,momz/2,-90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoTendrilZap"  ,0,0,0,momx/2-33*-sin(angle)    ,momy/2-33*cos(angle)    ,momz/2,90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXF",0,0,0,momx/2-33*-sin(angle)    ,momy/2-33*cos(angle)    ,momz/2,90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXE",0,0,0,momx/2-33*-sin(angle)*2/3,momy/2-33*cos(angle)*2/3,momz/2,90,9)
+DYPJ C 0 A_SpawnItemEx("DynamoM_DishZapFXD",0,0,0,momx/2-33*-sin(angle)/3  ,momy/2-33*cos(angle)/3  ,momz/2,90,9)
+DYPJ C 1
+loop
+Crash:
+TNT1 A 1
+stop
+Death:
+MMFX BCDE 3
+stop
+}
+}
+
+actor DynamoTendrilZap : DynamoM_DishZap
+{
+damagetype "DynamoTendrilZap"
+Obituary "$OB_DYNAMOTENDRIL"
+damage (12)
+}

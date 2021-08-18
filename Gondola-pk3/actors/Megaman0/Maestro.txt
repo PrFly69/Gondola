@@ -1,0 +1,48 @@
+actor Maestro : LightClassBase
+{
+Player.ScoreIcon "C_00C0X"
+player.startitem "LightHealthBar"
+player.displayname "Maestro"
+player.soundclass "rockmanc"
+
+player.startitem "MaestroNeutralBoss"
+player.startitem "VanillaAmmo", 3
+player.startitem "BusterAmmo", 3
+player.startitem "GreenSupremeFlag"
+player.startitem "CanCopyWeapons"
+player.startitem "CanUseItems"
+player.startitem "MaestroHasSpawned", 1
+player.startitem "CopyNerf"
+States
+{
+Spawn:
+PLY1 A 0
+PLY1 B 1
+PLY1 A 1
+Goto Spawn+2
+See:
+PLY1 BCDE 5
+Goto Spawn+2
+Missile:
+PLY1 F 8
+PLY1 G 7
+goto Spawn
+CustomState1:
+PLY1 T 65
+goto Spawn+2
+CustomState2:
+PLY1 A 1
+goto Spawn+2
+ClassPain:
+PLY1 H 0
+goto PainContinue
+DeathFix:
+PLY1 H 0
+goto DeathContinue
+ClassDeath:
+PLY1 H 1
+goto MegaDeathEnd
+}
+}
+
+actor GreenSupremeFlag : OnceC{}

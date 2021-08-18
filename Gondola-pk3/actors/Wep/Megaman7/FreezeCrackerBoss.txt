@@ -1,0 +1,624 @@
+actor FreezeCrackerBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_7A"
+dropitem "FreezeCrackerWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoUse2 0
+Weapon.AmmoGive 0
+Obituary "$OB_FREEZECRACKER"
+weapon.ammotype "MrFreezeAmmo"
+weapon.ammotype2 "FreezeCrackAmmo"
+States
+{
+Spawn:
+C_07 A 1
+loop
+Ready:
+MRFA A 0 ACS_ExecuteAlways(998,0,DYE_FREEZEMAN)
+MRFA A 0 A_JumpIfInventory("MrFreezeAmmo",2,"Ready2")
+MRFA A 4 A_WeaponReady(WRF_NOFIRE)
+MRFA A 0 A_GiveInventory("MrFreezeAmmo",1)
+Goto Ready+1
+Ready2:
+MRFA A 0 A_JumpIfInventory("MrFreezeAmmo",42,"Ready3")
+MRFA A 4 A_WeaponReady(WRF_NOSECONDARY)
+MRFA A 0 A_GiveInventory("MrFreezeAmmo",1)
+MRFA A 0 A_GiveInventory("FreezeCrackAmmo",1)
+loop
+Ready3:
+MRFA A 5 A_WeaponReady
+MRFA A 0 A_GiveInventory("FreezeCrackAmmo",1)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+MRFA A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+MRFA A 1 A_Raise
+Loop
+Fire:
+MRFA A 0 A_JumpIfInventory("FreezeCrackAmmo",2,1)
+goto NoAmmo
+MRFA BCD 2
+FreezeRefire:
+MRFA A 0 A_JumpIfInventory("FreezeCrackAmmo",2,1)
+goto NoAmmoFromHold
+MRFA A 0 A_TakeInventory("FreezeCrackAmmo",2)
+MRFA A 0 A_PlaySoundEx("weapon/freezecracker","Weapon")
+MRFA A 0 A_GiveInventory("FreezemanMain_CI",1)
+MRFA A 0 A_GiveInventory("MrFreezeAmmo",1)
+/*MRFA IJI 2
+//MRFA D 8*/ //12 *14 lol
+MRFA J 1 Offset(10,40)A_JumpIfInventory("PowerRage_ST",1,1)
+MRFA J 1 Offset(15,45)
+MRFA I 1 Offset(22,52)A_JumpIfInventory("PowerRage_ST",1,1)
+MRFA I 1 Offset(24,54)
+MRFA J 1 Offset(25,55)A_JumpIfInventory("PowerRage_ST",1,1)
+MRFA J 1 Offset(25,55)
+MRFA D 1 Offset(24,54)A_JumpIfInventory("PowerRage_ST",1,1)
+MRFA D 1 Offset(22,52)
+MRFA D 1 Offset(13,43)A_JumpIfInventory("PowerRage_ST",1,1)
+MRFA D 1 Offset(10,40)
+MRFA D 1 Offset(7,37)A_JumpIfInventory("PowerRage_ST",1,1)
+MRFA D 1 Offset(4,34)
+MRFA D 2 Offset(1,32)
+MRFA D 0 A_Refire("FreezeRefire")
+MRFA CBA 2
+Goto Ready+1
+AltFire:
+MRFA A 0 A_JumpIfInventory("MrFreezeAmmo",42,1)
+goto NoAmmo
+MRFA A 0 A_GiveInventory("FreezeFireHold",1)
+MRFA A 0 A_Refire(1)
+MRFA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
+MRFA A 0 SetPlayerProperty(0,1,0)
+MRFA BCD 2
+goto AltCharge
+
+AltCharge:
+MRFA B 0 A_GiveInventory("MrFreezeAltCharge",1)
+MRFA EKG 2 Offset(14,65) A_SpawnItemEx("FreezeFXB1",cos(-pitch)*20,8,32+(sin(-pitch)*20),cos(-pitch)*momx,momy,sin(-pitch)*momz,0,553,0)
+MRFA A 0 A_JumpIfInventory("MrFreezeAltCharge",4,"AltfireAltfire")
+MRFA A 0 A_JumpIfInventory("MrFreezeAltCharge",1,"AltCharge")
+goto AltfireAltfire
+AltfireAltfire:
+MRFA A 0 A_TakeInventory("MrFreezeAltCharge",99)
+MRFA A 0 A_TakeInventory("FreezeFireHold",99)
+MRFA A 0 A_PlaySoundEx("weapon/freezecracker","Weapon")
+MRFA A 0 A_SpawnItemEx("FreezeFXB",-1/*20*/,8,32,0,0,0,0,1)
+MRFA A 0 A_TakeInventory("MrFreezeAmmo",42)
+MRFA A 0 A_GiveInventory("FreezemanAlt_CI",1)
+MRFA D 1 offset(14,65)
+MRFA H 1 offset(22,75)
+MRFA D 1 offset(30,80)
+MRFA H 2 offset(35,85)
+MRFA D 1 offset(30,85)
+MRFA H 1 offset(22,75)
+MRFA D 1 offset(14,65)
+MRFA D 17 
+MRFA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+MRFA A 0 SetPlayerProperty(0,0,0)
+MRFA CB 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+MRFA A 7
+Goto Ready+1
+NoAmmoFromHold:
+MRFA CBA 2
+NoAmmo:
+MRFA A 4
+MRFA A 0 A_GiveInventory("FreezeCrackAmmo",1)
+Goto Ready+1
+}
+}
+
+actor MrFreezeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 42
++INVENTORY.IGNORESKILL
+}
+
+actor FreezeCrackAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor FreezeFireHold : OnceC{}
+
+actor MrFreezeAltCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 5
+}
+
+actor MrFreezeCracker
+{
+translation "192:192=4:4", "198:198=69:69"
+PROJECTILE
+damagetype "FreezeCracker"
+Obituary "$OB_FREEZECRACKER"
++SKYEXPLODE
+damage (15)
+Radius 10
+Height 10
+speed 32
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+MRFP A 2
+MRFP B 0 A_SpawnItemEx("FreezeCrackerFX2",-8,Random(-16, 16),random(0,-8),0,0,0,0,1)
+MRFP B 2 A_SpawnItemEx("FreezeCrackerFX1",-8,Random(-16, 16),random(0,-8),0,0,0,0,1)
+goto SpawnLOOP+1
+Death:
+TNT1 A 0 A_JumpIf(z-floorz<5, "Floor")
+TNT1 A 0 A_JumpIf(z-ceilingz==0-10, "Ceiling")
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,60,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,-60,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,120,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,-120,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,180,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,0,1)
+TNT1 A 1 A_PlaySoundEx("weapon/freezecrackerhit","Weapon")
+stop
+Floor:
+MRFF A 0 A_SpawnItemEx("FreezeFloorSpike",0,0,0,0,0,0,0,1)
+stop
+Ceiling:
+MRFF A 0 A_SpawnItemEx("FreezeCeilingSpike",0,0,0,0,0,0,0,1)
+stop
+XDeath:
+TNT1 A 1
+stop
+}
+}
+
+actor MrFreezeCrackerB : MrFreezeCracker{translation "192:192=205:205","198:198=74:74"}
+actor MrFreezeCrackerR : MrFreezeCracker{translation "192:192=171:171","198:198=41:41"}
+actor MrFreezeCrackerO : MrFreezeCracker{translation "192:192=104:104","198:198=128:128"}
+actor MrFreezeCrackerP : MrFreezeCracker{translation "192:192=229:229","198:198=232:232"}
+
+actor GroundFreezeCracker : MrFreezeCracker
+{
++SKYEXPLODE
++RIPPER
+Damage (6)
+damagetype "FreezeCrackerF"
+States
+{
+Spawn:
+MRFP A 0
+MRFP A 1 A_SpawnItemEx("GroundFreezeCrackerFX",0,0,0,0,0,0,0,1)
+MRFP A 0 A_SpawnItemEx("FreezeCrackerFX1",-8,Random(-24, 24),random(4,-8),0,0,0,0,1)
+MRFP A 0 A_SpawnItemEx("FreezeCrackerFX2",-8,Random(-24, 24),random(4,-8),0,0,0,0,1)
+loop
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/centaurflash","Item")
+TNT1 A 0 A_PlaySoundEx("weapon/freezefloor","Weapon")
+TNT1 A 0 A_JumpIf(z-floorz<0-z+ceilingz, "Floor")
+TNT1 A 0 A_JumpIf(z-ceilingz<-10, 2)
+TNT1 A 0 A_SpawnItemEx("FreezeCeilingSpike",0,0,0,0,0,0,0,1)
+
+TNT1 A 0 A_SpawnItemEx("CeilingFreezeWave",35,0,0,14,0,0,45,1)
+TNT1 A 0 A_SpawnItemEx("CeilingFreezeWave",35,0,0,14,0,0,-45,1)
+TNT1 A 0 A_SpawnItemEx("CeilingFreezeWave",35,0,0,14,0,0,90,1)
+TNT1 A 0 A_SpawnItemEx("CeilingFreezeWave",35,0,0,14,0,0,-90,1)
+TNT1 A 0 A_SpawnItemEx("CeilingFreezeWave",35,0,0,14,0,0,135,1)
+TNT1 A 0 A_SpawnItemEx("CeilingFreezeWave",35,0,0,14,0,0,-135,1)
+TNT1 A 0 A_SpawnItemEx("CeilingFreezeWave",35,0,0,14,0,0,180,1)
+TNT1 A 0 A_SpawnItemEx("CeilingFreezeWave",35,0,0,14,0,0,0,1)
+TNT1 A 1
+stop
+Floor:
+TNT1 A 0 A_JumpIf(z-floorz>=5, 2)//5
+TNT1 A 0 A_SpawnItemEx("FreezeFloorSpike",0,0,0,0,0,0,0,1)
+
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWave",35,0,0,14,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWave",35,0,0,14,0,0,60,1)
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWave",35,0,0,14,0,0,-60,1)
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWave",35,0,0,14,0,0,90,1)
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWave",35,0,0,14,0,0,-90,1)
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWave",35,0,0,14,0,0,120,1)
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWave",35,0,0,14,0,0,-120,1)
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWave",35,0,0,14,0,0,180,1)
+
+TNT1 A 1
+stop
+}
+}
+
+actor GroundFreezeCrackerB : GroundFreezeCracker{translation "192:192=205:205","198:198=74:74"}
+actor GroundFreezeCrackerR : GroundFreezeCracker{translation "192:192=171:171","198:198=41:41"}
+actor GroundFreezeCrackerO : GroundFreezeCracker{translation "192:192=104:104","198:198=128:128"}
+actor GroundFreezeCrackerP : GroundFreezeCracker{translation "192:192=229:229","198:198=232:232"}
+
+
+actor GroundFreezeCrackerFX : BasicClientSide
+{
+RenderStyle "Translucent"
+Alpha 0.75
+States
+{
+Spawn:
+MRFP A 6
+stop
+}
+}
+
+actor MrFreezeCrackerBit
+{
+PROJECTILE
+damagetype "FreezeCrackerBit"
+Obituary "$OB_FREEZECRACKER"
+damage (5)
+Radius 6
+Height 6
+speed 28
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+MRFP D 1
+wait
+}
+}
+
+actor MrFreezeCrackerBitT : MrFreezeCrackerBit
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+MRFP D 2
+MRFP D 4
+wait
+}
+}
+
+
+actor FreezeFXB
+{
+PROJECTILE
++DONTBLAST
++NOGRAVITY
++NOINTERACTION
+Height 2
+Radius 2
+scale 2.5
+states
+{
+Spawn:
+MRFP CDE 4
+stop
+}
+}
+
+actor GroundFreezeWave
+{
+PROJECTILE
+damagetype "FreezeCrackerB"
+Obituary "$OB_FREEZECRACKER"
++FLOORHUGGER
++RIPPER
++HEXENBOUNCE
+WallBounceFactor 1.0
+Bouncecount 5
+reactiontime 6
+Damage (3)
+Height 10
+Radius 10
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+MRFP I 0
+MRFP IIIIIIIIII 1 A_GiveInventory("GroundFreezeWave_P2",1)
+MRFP I 0 A_CountDown
+MRFP H 0 A_SpawnItemEx("FreezeFloorSpike",0,0,0,0,0,0,0,1)
+MRFP HHHHHHHHHH 1 A_GiveInventory("GroundFreezeWave_P1",1)
+MRFP H 0 A_CountDown
+MRFP I 0 A_SpawnItemEx("FreezeFloorSpike",0,0,0,0,0,0,0,1)
+loop
+}
+}
+actor GroundFreezeWave2 : GroundFreezeWave
+{
+Renderstyle "Translucent"
+Alpha 0.6
+States
+{
+Spawn:
+MRFP I 0
+MRFP IIIIIIIIII 1 A_GiveInventory("GroundFreezeWave_P2",1)
+MRFP HHHHHHHHHH 1 A_GiveInventory("GroundFreezeWave_P1",1)
+stop
+}
+}
+
+actor GroundFreezeWave_P1 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 ThrustThing(angle*256/360,0)
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWaveFX1",0,0,0,0,0,0,0,1)
+stop
+}
+}
+actor GroundFreezeWave_P2 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 ThrustThing(angle*256/360,0)
+TNT1 A 0 A_SpawnItemEx("GroundFreezeWaveFX2",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor GroundFreezeWaveFX1 : BasicClientSide
+{
+RenderStyle "Translucent"
+Alpha 0.6
+states
+{
+Spawn:
+TNT1 A 0
+MRFP HHHHHH 1 A_Fadeout
+stop
+}
+}
+actor GroundFreezeWaveFX2 : GroundFreezeWaveFX1
+{
+states
+{
+Spawn:
+TNT1 A 0
+MRFP IIIIII 1 A_Fadeout 
+stop
+}
+}
+
+actor CeilingFreezeWave : GroundFreezeWave
+{
+-FLOORHUGGER
++CEILINGHUGGER
+States
+{
+Spawn:
+MRFP I 0
+MRFP IIIIIIIIII 1 A_GiveInventory("GroundFreezeWave_P2",1)
+MRFP I 0 A_CountDown
+MRFP H 0 A_SpawnItemEx("FreezeCeilingSpike",0,0,0,0,0,0,random(0,359),1)
+MRFP HHHHHHHHHH 1 A_GiveInventory("GroundFreezeWave_P1",1)
+MRFP H 0 A_CountDown
+MRFP I 0 A_SpawnItemEx("FreezeCeilingSpike",0,0,0,0,0,0,random(0,359),1)
+loop
+}
+}
+actor CeilingFreezeWave2 : CeilingFreezeWave
+{
+Renderstyle "Translucent"
+Alpha 0.6
+States
+{
+Spawn:
+MRFP I 0
+MRFP IIIIIIIIII 1 A_GiveInventory("GroundFreezeWave_P2",1)
+MRFP HHHHHHHHHH 1 A_GiveInventory("GroundFreezeWave_P1",1)
+Stop
+}
+}
+
+
+actor FreezeFXB1 : FreezeFXB
+{
++NOTIMEFREEZE
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,2)
+MRFP F 2
+stop
+MRFP G 2
+stop
+}
+}
+
+/*
+actor FreezeBitter : MrFreezeCrackerBit
+{
+-NOGRAVITY
+}
+*/
+
+actor FreezeFloorSpike
+{
+var int user_P;
+PROJECTILE
+damagetype "FreezeCracker"
+Obituary "$OB_FREEZEICICLE"
++DONTBLAST
++FLOORHUGGER
+damage (4+user_P)
+Radius 9
+Height 9
+speed 26
+scale 2.5
+states
+{
+Spawn:
+MRFP A 0
+MRFF A 4 A_PlaySoundEx("weapon/blizzboss","Weapon")
+MRFF B 4 A_SetUserVar("user_P",8)
+MRFF C 78 A_SetUserVar("user_P",16)
+MRFF B 4 A_SetUserVar("user_P",8)
+MRFF A 4 A_SetUserVar("user_P",0)
+stop
+}
+}
+
+actor FreezeCeilingSpike : FreezeFloorSpike
+{
+Obituary "$OB_FREEZEICICLEC"
+-DONTBLAST
+-FLOORHUGGER
++NOGRAVITY
+damage (25+user_P)
+states
+{
+Spawn:
+MRFC A 0
+MRFC A 4 A_PlaySoundEx("weapon/blizzboss","Weapon")
+MRFC B 4 A_SetUserVar("user_P",6)
+MRFC C 12 A_SetUserVar("user_P",14)
+MRFC C 0 A_ChangeFlag("NOGRAVITY",0)
+MRFC C 1
+wait
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/freezecrackerhit","Weapon")
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,60,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,-60,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,120,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,-120,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,180,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBit",0,0,0,28,0,0,0,1)
+TNT1 A 1
+stop
+XDeath:
+TNT1 A 0 A_PlaySoundEx("weapon/freezecrackerhit","Weapon")
+//TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBitT",0,0,0,28,0,0,60,1)
+//TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBitT",0,0,0,28,0,0,-60,1)
+//TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBitT",0,0,0,28,0,0,120,1)
+//TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBitT",0,0,0,28,0,0,-120,1)
+//TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBitT",0,0,0,28,0,0,180,1)
+//TNT1 A 0 A_SpawnItemEx("MrFreezeCrackerBitT",0,0,0,28,0,0,0,1)
+TNT1 A 1
+stop
+}
+}
+
+actor GroundIce_Freeze : BasicHelper
+{
+reactiontime 60
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 1 A_GiveToTarget("GroundIceStop",1)
+TNT1 A 0 A_CountDown
+loop
+Death:
+TNT1 A 0 A_GiveToTarget("FlightEnable",1)
+TNT1 A 1 A_TakeFromTarget("GroundIceFlag",99)
+stop
+}
+}
+
+actor GroundIce_FreezeAir : GroundIce_Freeze
+{
+reactiontime 52
+}
+
+actor GroundIceFlag : OnceC{}
+
+actor GroundIceStop : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_GiveInventory("FlightDisable",1)
+TNT1 A 0 A_GiveInventory("GroundIceFlag",1)
+TNT1 A 0 A_SpawnItemEx("GroundIceFX",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor GroundIceFX
+{
+scale 2.5
+- SOLID
++NOGRAVITY
++CLIENTSIDEONLY
+States
+{
+Spawn:
+MRFF D 0
+MRFF D 1
+stop
+}
+}
+
+actor FreezeCrackerFX1:FreezeCrackerFX{States{Spawn:
+MRFP M 4
+MRFP N 15
+MRFP N 1 A_Fadeout
+wait}}
+actor FreezeCrackerFX2:FreezeCrackerFX{States{Spawn:
+MRFP K 4
+MRFP L 15
+MRFP L 1 A_Fadeout
+wait}}
+actor FreezeCrackerFXX:FreezeCrackerFX1{+NOINTERACTION}
+actor FreezeCrackerFXX2:FreezeCrackerFX2{+NOINTERACTION}
+
+
+actor FreezemanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MrFreezeCracker",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MrFreezeCrackerB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MrFreezeCrackerR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MrFreezeCrackerO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MrFreezeCrackerP",0,1,8,0)
+goto Done
+}
+}
+
+actor FreezemanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("GroundFreezeCracker",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("GroundFreezeCrackerB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("GroundFreezeCrackerR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("GroundFreezeCrackerO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("GroundFreezeCrackerP",0,0,8,0)
+goto Done
+}
+}

@@ -1,0 +1,1695 @@
+// [Celebi] This is a copy of MM8BDM v6a GLOBAL
+// Any area with the following line
+//$CBM
+// Means that area is edited for CBM
+
+// Core game/legacy scripts that should only be messed with if you know what you're doing.
+
+#library "global"
+#include "zcommon.acs"// [Russ] Always include this before 8bdmlib
+#include "8bdmlib.acs"// included with MM8BDM under acs_source.
+					  // See 8bdmlib.acs for details
+
+// [Mike] Various per player scripts
+// On level enter/spawn
+//
+script 997 ENTER
+{
+    int pln = playerNumber();
+    int tid = pln+1000;
+    if(tid < 1000) // The activator is not a player!
+    {
+        terminate;
+    }
+    
+    // [Mike] Give Player a unique TID (tag)
+    Thing_ChangeTID(tid, 0);
+    Thing_ChangeTID(0, tid);
+
+    // Stores the players starting gravity on spawn
+    PlayerGravity[pln] = GetActorProperty(0, APROP_Gravity);
+
+    // Sets the max number of clients for use in scripts later on.
+    ServerMAX = GetMaxPlayers();
+
+	// [Mess] Spawns an object to spawn other items at (Terminator, Possession etc)
+	If(ThingCount(0,pln+PLN_RESPAWN)==0)
+	{
+	    SpawnSpot("PlayerRespawnPoint",ActivatorTID(),pln+PLN_RESPAWN,0);
+	}
+	
+	// If a timestop is active, freeze the player
+	if(timestop>=0){
+	    SetPlayerProperty(0,1,4);
+	}
+
+	// If instagib is enabled, give Instagib Blades
+	if(GetCvar("instagib")==1 && !GetCVar("mm8bdm_sv_noigbehavior")){
+        TakeInventory("MegaBuster",1);
+        GiveInventory("IGMetalBladeWep",1);
+        GiveInventory("IGMovement",1);
+	}
+
+	// If player is a bot, enable ledge blocking (Monster Cross Lines) 
+	// and give them an inventory item to identify them
+	if(PlayerIsBot(pln))
+    {
+        GiveInventory("MonsterBlock",1);
+        GiveInventory("IsBot", 1);
+	
+		if(GameSkill()==1)
+        {
+            GiveInventory("BotEasyPower",1);
+            GiveInventory("BotEasySpeed",1);
+		}
+	}
+
+    // Clear the HUD of any effects/messages etc
+    HudMessage(s:""; HUDMSG_PLAIN,50,CR_UNTRANSLATED,0.0,0.0,0.1);
+
+    Switch(GetPlayerInfo(pln, PLAYERINFO_TEAM))
+    {
+        Case 0:
+            GiveInventory("LightTeamFlag", 1);
+            break;
+        Case 1:
+            GiveInventory("WilyTeamFlag", 1);
+            break;
+        Case 2:
+            GiveInventory("CossackTeamFlag", 1);
+            break;
+        Case 3:
+            GiveInventory("KingTeamFlag", 1);
+            break;
+    }
+
+    ACS_NamedExecuteAlways("core_synccolors", 0);
+
+    Delay(2);
+    int ang = GetActorAngle(tid);
+    If(ThingCount(0, pln+PLN_EXITUNITIMAGE)>0)
+    {
+        Thing_Remove(pln+PLN_EXITUNITIMAGE);
+    }
+    SpawnSpotForced("ExitUnitGhost",ActivatorTID(),pln+PLN_EXITUNITIMAGE,ang>>8);
+
+    If(ThingCount(0, pln+PLN_EXITUNITPOINT)>0)
+    {
+        Thing_Remove(pln+PLN_EXITUNITPOINT);
+    }
+    SpawnSpotForced("TeleportDest2",ActivatorTID(),pln+PLN_EXITUNITPOINT,ang>>8);
+}
+
+// Various per player scripts
+// On respawn
+//
+script 996 RESPAWN
+{
+ACS_NamedExecuteAlways("core_commonwater",0);
+ACS_NamedExecuteAlways("core_burstgel", 0);
+ACS_NamedExecuteAlways("core_jumpcancel", 0);
+
+ACS_ExecuteAlways(997, 0);
+ACS_ExecuteAlways(983, 0);
+//ACS_ExecuteAlways(188, 0);
+if(PlayerIsBot(PlayerNumber()))
+	{
+	ACS_ExecuteAlways(252,0);
+	}
+}
+
+// [Mike] Force compat_clientssendfullbuttoninfo true (to enable jump cancel)
+// Possibly not needed anymore
+script 995 OPEN
+{
+// Check if the server has compat_clientssendfullbuttoninfo set to false
+IsTeamGame = ACS_ExecuteWithResult(975, 1);
+if(GetCVar("compat_clientssendfullbuttoninfo")==0)
+	{
+	ConsoleCommand("compat_clientssendfullbuttoninfo 1");
+	}
+}
+
+
+// [Mess] Ice Wall Script (Used because NOEXPLODEFLOOR is broken)
+Script 994 (int AngleToo)
+{
+int momx = GetActorVelX(0);
+int momy = GetActorVelY(0);
+int Angle = VectorAngle(momx, momy);
+While(CheckInventory("IceWallFlag") > 0){Delay(1);}
+SetActorVelocity(0, momx, momy, 0.0, 0, 0);
+If(AngleToo){SetActorAngle(0, Angle);}
+}
+
+// [Mess] Aiming Script for Remote Mine & Copy Vision
+Script 989 (int AimTarget, int HeightAdjust)
+{
+if(AimTarget <= 0){Terminate;}
+If(!ThingCount(T_NONE, AimTarget)){terminate;}
+
+int AimX = GetActorX(0);
+int AimY = GetActorY(0);
+int TargetX = GetActorX(AimTarget);
+int TargetY = GetActorY(AimTarget);
+SetActorAngle(0, VectorAngle(TargetX - AimX, TargetY - AimY));
+SetActorPitch(ActivatorTID(),VectorPitch(ActivatorTID(), AimTarget, HeightAdjust));
+}
+
+// Time Stopper HUD FX
+//
+script 986 (void)
+{
+SetHudSize(256,224,0);
+SetFont("FLASHS1");
+HudMessageBold(s:"A"; HUDMSG_PLAIN,50,CR_UNTRANSLATED,128.0,112.0,0.0);
+Delay(4);
+SetFont("FLASHS2");
+HudMessageBold(s:"A"; HUDMSG_PLAIN,50,CR_UNTRANSLATED,128.0,112.0,0.0);
+Delay(4);
+SetFont("FLASHS3");
+HudMessageBold(s:"A"; HUDMSG_PLAIN,50,CR_UNTRANSLATED,128.0,112.0,0.0);
+Delay(4);
+SetFont("FLASHS4");
+HudMessageBold(s:"A"; HUDMSG_PLAIN,50,CR_UNTRANSLATED,128.0,112.0,0.0);
+Delay(4);
+SetFont("FLASHS5");
+HudMessageBold(s:"A"; HUDMSG_PLAIN,50,CR_UNTRANSLATED,128.0,112.0,0.0);
+Delay(4);
+SetFont("FLASHS6");
+HudMessageBold(s:"A"; HUDMSG_PLAIN,50,CR_UNTRANSLATED,128.0,112.0,0.0);
+Delay(4);
+SetFont("FLASHS7");
+HudMessageBold(s:"A"; HUDMSG_PLAIN,50,CR_UNTRANSLATED,128.0,112.0,0.0);
+Delay(4);
+SetFont("FLASHS8");
+HudMessageBold(s:"A"; HUDMSG_PLAIN,50,CR_UNTRANSLATED,128.0,112.0,0.0);
+Delay(4);
+SetFont("FLASHS9");
+HudMessageBold(s:"A"; HUDMSG_PLAIN,50,CR_UNTRANSLATED,128.0,112.0,0.0);
+Delay(4);
+Restart;
+}
+
+// [Russ] Map Tools - Jump Pad scripts.
+// These must be numbered scripts because of placeable map actors that call them.
+// They cannot be mapped to at runtime as named scripts in Zandronum.
+//
+str padSounds[2] = {
+    "misc/boing",
+    "misc/jumppad"
+};
+
+script 985 (int force, int superforce, int sound)
+{
+    if(CheckInventory("JumpPadDelay") > 0)
+        terminate;
+    GiveInventory("JumpPadDelay", 1);
+    if(superforce == 0) {
+        superforce = force;
+    }
+    if(sound > -1) {
+        ThingSound(ActivatorTID(), padSounds[sound], 128);
+    }
+    if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_JUMP) {
+        ThrustThingZ(0, superforce, 0, 0);
+    } else {
+        ThrustThingZ(0, force, 0, 0);
+    }
+}
+
+script 987 (int force, int angle, int sound)
+{
+    if(CheckInventory("JumpDirDelay") > 0)
+        terminate;
+    GiveInventory("JumpDirDelay", 1);
+    if(sound > -1) {
+        ThingSound(ActivatorTID(), padSounds[sound], 128);
+    }
+    ThrustThing(angle * 256 / 360, force, force>30, 0);
+}
+
+// [Mike] Some extra stuff to help bots
+//
+script 983 ENTER
+{
+Delay(2);
+
+	if(PlayerIsBot(PlayerNumber())){
+	
+		for(int i = 1; i<PlayerCount(); i++){
+		if(!PlayerIsBot(i)){GiveInventory("NoBotFix",1);break;}
+		}
+	
+		if(GetLevelInfo(LEVELINFO_LEVELNUM)>94){GiveInventory("BotDifficulty",1);} // If > MM9 increase the difficulty
+		while(timestop==-1 && GetActorProperty(ActivatorTID(), APROP_HEALTH)>0){
+		// Give the bot the special "stair checker" actor
+		GiveInventory("CreateBotBuddy",1);
+		int botX = GetActorX(ActivatorTID());
+		int botY = GetActorY(ActivatorTID());
+		//int botZ = GetActorZ(ActivatorTID());
+		int botKicker;
+		Delay(8);
+		// Kick them up the butt for not moving
+		if(CheckInventory("NoBotFix")==0){
+			if(GetGameModeState()==GAMESTATE_INRESULTSEQUENCE){terminate;}
+			if(botX == GetActorX(ActivatorTID()) && botY == GetActorY(ActivatorTID())){
+			botKicker++;
+				if(botKicker>20){
+				//PrintBold(s:"MOVE, LAZY BOLTS!");
+				Thing_Stop(ActivatorTID());
+				ThrustThing(random(0,256),10,0,0);
+				botKicker = 0;
+				}
+			}
+			else
+			{
+			botKicker = 0;
+			}
+			}
+		}
+	}
+}
+
+
+
+// Health checker for hit-based shields.
+// hits - the number of hits the shield can tank for the player
+// customProtect (true or false) - whether the shield uses the generic protection or its own
+script 982 (int hits, int customProtect)
+{
+	if(hits == 0)
+	{
+		hits = 1;
+	}
+	else if(hits > 999)
+	{
+		//Log(s:"\cgSCRIPT 982: SPECIFIED HITS VALUE TOO HIGH. TERMINATING.");
+		terminate;
+	}
+	
+	int health = GetActorProperty(0, APROP_HEALTH);
+	int maxHealth = GetActorProperty(0, APROP_SPAWNHEALTH);
+	int healCurrent = health;
+	bool loanHP = false;
+	
+	if(maxHealth == 0)
+	{
+		maxHealth = 100;
+	}
+	
+	TakeInventory("ShieldHits", 999);
+	GiveInventory("ShieldHits", hits);
+	
+	SetPlayerProperty(0, 1, PROP_BUDDHA);
+	
+	if(health < 2)
+	{
+		healCurrent = 2;
+		loanHP = true;
+		SetActorProperty(0, APROP_HEALTH, 2);
+	}
+	
+	while(CheckInventory("ShieldHits")>0 && CheckInventory("StopHitShield")==0)
+	{
+		Delay(1);
+		if(GetActorProperty(0, APROP_HEALTH) > health)
+		{
+			health = GetActorProperty(0, APROP_HEALTH);
+			healCurrent = GetActorProperty(0, APROP_HEALTH);
+		}
+		
+		if(healCurrent > GetActorProperty(0, APROP_HEALTH))
+		{
+			TakeInventory("ShieldHits", 1);
+			
+			if(CheckInventory("ShieldHits")>0)
+			{
+				SetActorProperty(0, APROP_HEALTH, healCurrent);
+			}
+			else
+			{
+				SetActorProperty(0, APROP_HEALTH, health);
+			}
+			
+			if(!customProtect)
+			{
+				GiveInventory("HitShieldProtection", 1);
+			}
+		}
+	}
+	
+	if(loanHP && GetActorProperty(0, APROP_HEALTH) < maxHealth)
+	{
+		SetActorProperty(0, APROP_HEALTH, GetActorProperty(0, APROP_HEALTH)-1);
+	}
+	
+	if(CheckInventory("ShieldCheck")==0 && CheckInventory("BasicArmor")==0 && !customProtect)
+	{
+		GiveInventory("HitShieldProtection", 1);
+	}
+	
+	SetPlayerProperty(0, 0, PROP_BUDDHA);
+}
+
+// Script that is executed everytime a weapon's NoAmmo state is called.
+// Script that is executed everytime a weapon's NoAmmo state is called.
+script 979 (void)
+{
+
+if(CheckInventory("NoAmmoSoundCooldown")==0){
+	LocalAmbientSound("weapon/noammo",128);
+	GiveInventory("NoAmmoSoundCooldown", 1);
+}
+
+If(PlayerIsBot(PlayerNumber()))
+	{
+	/*
+	if(CheckInventory("TimeStopperWepC")>0)
+		{
+		TakeInventory("TimeStopperWepC",1);
+		GiveInventory("MegaBuster",1);
+		SetWeapon("MegaBuster");
+		}
+	*/
+	if(CheckInventory("SkullBarrierWepC")>0)//$CBM
+		{
+		TakeInventory("SkullBarrierWepC",1);//$CBM
+		//GiveInventory("MegaBuster",1);//$CBM
+		//SetWeapon("MegaBuster");//$CBM
+		}
+	SetPlayerProperty(0,1,4);
+	ACS_Execute(992, 0, 255);
+	Delay(15);
+	SetPlayerProperty(0,0,4);
+	}
+}
+
+// Quick flash script for Centaur Flash
+//
+script 976 (void) clientside
+{
+FadeTo(255,255,255,1.0,0.0);
+Delay(2);
+FadeTo(255,255,255,0.0,0.0);
+Delay(2);
+}
+
+// [Mike] Quickly freeze/unfreeze a bot. Used to force them to keep pressing the fire button
+//
+script 974 (void) clientside
+{
+if(PlayerIsBot(PlayerNumber()))
+	{
+	SetPlayerProperty(0,1,4);
+	Delay(5);
+	SetPlayerProperty(0,0,4);
+	}
+}
+
+// [Russ] Teleport script for two-way teleporters.
+script 973 (int dest)
+{
+if(CheckInventory("TeleportFlag")==0)
+    {
+    GiveInventory("TeleportFlag", 1);
+    Teleport(dest, 0, 0);
+    }
+}
+
+// [Mess] Beat Support Script
+script 300 (void)
+{
+GiveInventory("BeatSupportActivated",1);
+Delay(10);
+while(CheckInventory("BeatSupportActivated")!=0)
+	{
+	if(GetPlayerInput(-1,INPUT_BUTTONS) & (BT_ATTACK|BT_ALTATTACK) && CheckInventory("BeatSupportFired") == 0 && CheckInventory("BeatSupportRefresh") == 1)
+		{
+		GiveInventory("BeatSupportFire",1);
+		TakeInventory("BeatSupportRefresh",1);
+		Delay(5);
+		}
+	Delay(1);
+	}
+}
+
+// [Mess] Scripts to determine pitch or Angle of player on a projectile
+
+Script 259 (int PitchAngle)//$CBM
+{
+int TargetPlayer=ACS_ExecuteWithResult(257);
+int PlayerPitch = GetActorPitch(TargetPlayer);
+int PlayerAngle = GetActorAngle(TargetPlayer);
+
+Switch(PitchAngle)
+	{
+	Case 0:
+	SetActorPitch(0, PlayerPitch);
+	break;
+	Case 1:
+	SetActorPitch(0, PlayerPitch);
+	SetActorAngle(0, PlayerAngle);
+	break;
+	Case 2:
+	SetActorAngle(0, PlayerAngle);
+	break;
+
+	Case 3://$CBM
+	SetResultValue(PlayerPitch);
+	break;
+	Case 4://$CBM
+	SetResultValue(PlayerAngle >> 8);
+	break;
+	}
+}
+
+// [Russ] Clientside actors script.
+// Handles:
+// - Weapon Energy Colors (Thanks to Messatsu)
+// - Exit Unit teleport point visual
+Script 255 ENTER CLIENTSIDE
+{
+	If(PlayerIsBot(PlayerNumber()))
+	{
+		terminate; //Since this is pointless for bots
+	}
+	Delay(10);
+
+    bool exitUnit = false;
+	
+	// If(GetCvar("mm8bdm_noenergycolors") == 0)
+	// {
+	// 	// Declare the console variable [old method]
+	// 	SetUserCvar(PlayerNumber(), "mm8bdm_noenergycolors", 0);
+	// }
+	
+	// If(GetCvar("mm8bdm_noenergycolors") > 0)
+	// {
+	// 	SetUserCvar(PlayerNumber(), "mm8bdm_noenergycolors", 1);
+	// 	terminate;
+	// }
+	
+	While(PlayerInGame(ConsolePlayerNumber()))
+	{
+		If(PlayerNumber()!=ConsolePlayerNumber())
+		{
+			SetActivator(ConsolePlayerNumber()+1000);
+			restart;
+		}
+		
+        if(!GetCVar("mm8bdm_noenergycolors"))
+        {
+            Thing_SetTranslation(999, -1);
+        }
+        else
+        {
+            Thing_SetTranslation(999, 0);
+        }
+
+        Thing_SetTranslation(ConsolePlayerNumber()+PLN_EXITUNITIMAGE, -1);
+
+        if(CheckInventory("ExitUnitItem") > 0 && GetActorProperty(0, APROP_HEALTH) > 0)
+        {
+            if(!exitUnit && ThingCount(0, ConsolePlayerNumber()+PLN_EXITUNITIMAGE))
+            {
+                SetActorState(ConsolePlayerNumber()+PLN_EXITUNITIMAGE, "Appear");
+                exitUnit = true;
+            }
+        }
+
+        if(CheckInventory("ExitUnitItem") == 0 || GetActorProperty(0, APROP_HEALTH) <= 0)
+        {
+            if(exitUnit && ThingCount(0, ConsolePlayerNumber()+PLN_EXITUNITIMAGE))
+            {
+                SetActorState(ConsolePlayerNumber()+PLN_EXITUNITIMAGE, "Vanish");
+                exitUnit = false;
+            }
+        }
+
+		Delay(1);
+	}
+}
+
+// [Russ] Exit Unit teleport script
+script "core_exitunit" (void)
+{
+    int pln = PlayerNumber();
+    int posX = GetActorX(0);
+    int posY = GetActorY(0);
+    int posZ = GetActorZ(0);
+    Teleport(pln+PLN_EXITUNITPOINT, 0, false);
+
+    if(posX == GetActorX(0) && posY == GetActorY(0) && posZ == GetActorZ(0)) {
+        //Print(s:"Cannot return to original spawn point. Teleport point may be missing or obstructed by terrain. Teleporting to random spawn point instead.");
+        GiveInventory("ExitUnitAuto", 1);
+    }
+}
+
+script "core_exitunit_disconnect" (int who) DISCONNECT
+{
+    Thing_Remove(who+PLN_EXITUNITPOINT);
+    Thing_Remove(who+PLN_EXITUNITIMAGE);
+}
+
+// [Russ] Beat Call jump check. (Created by Celebi, minified slightly)
+script "core_checkforjump" (void)
+{
+    bool ret = (GetPlayerInput(-1, INPUT_BUTTONS) & BT_JUMP)>0 && (GetPlayerInput(-1, INPUT_OLDBUTTONS) & BT_JUMP)==0;
+	SetResultValue(ret);
+}
+
+script "core_loadphotonmissile" (void)
+{
+	int tid = ACS_NamedExecuteWithResult("core_getptrtid", AAPTR_TARGET);
+	GiveInventory("PhotonMissileCharge", CheckActorInventory(tid, "PhotonMissileCharge"));
+}
+
+script "core_watershield_noclip" (void) CLIENTSIDE
+{
+	GiveInventory("WaterShieldInteract", 1);
+}
+
+script "core_flashstopperlight" (int maxRange)
+{
+	if(maxRange == 0){terminate;}
+    maxRange = maxRange << 16;
+
+	int targetTID;
+	int angle;
+	int targetAngle;
+	int xDist, yDist;
+	int userTID;
+	int userTeam = -1;
+	int userCount = 0;
+
+	if(ActivatorTID() == 0)
+	{
+		userTID = ACS_ExecuteWithResult(257, 0);
+		userTeam = GetPlayerInfo(userTID - 1000, PLAYERINFO_TEAM);
+	}
+	else
+	{
+		userTID = ActivatorTID();
+	}
+
+	for(int p = 0;p < ServerMax; p++)
+	{
+		if(!PlayerInGame(p))
+		{
+			continue;
+		}
+		if(isTeamGame)
+		{
+			if(userTeam == GetPlayerInfo(p, PLAYERINFO_TEAM))
+			{
+				continue;
+			}
+		}
+		
+		targetTID = p+1000;
+        xDist = abs(GetActorX(0)-GetActorX(targetTID)) < maxRange;
+        yDist = abs(GetActorY(0)-GetActorY(targetTID)) < maxRange;
+		if(CheckActorInventory(targetTID, "FlashStopperHitCheck") > 0 && xDist && yDist && userTID != targetTID)
+		{	
+			angle = VectorAngle(GetActorX(0) - GetActorX(targetTID), GetActorY(0) - GetActorY(targetTID)) + 1.0;
+            targetAngle = GetActorAngle(targetTID) + 1.0;
+
+			if(angle-0.15 < targetAngle && angle+0.15 > targetAngle) {
+			    userCount++;
+                TakeActorInventory(targetTID, "FlashStopperHitCheck", 1);
+                GiveActorInventory(targetTID, "FlashStopperBlind", 1);
+            }
+		}
+	}
+	SetResultValue(userCount); // Returns amount of players caught in the pull
+} // end of core_flashstopperlight
+
+// Flash Stopper Script
+Script 249 (void) 
+{
+int BrightBlindCount;
+FadeTo(150,150,150,1.0,0.05);
+Delay(10);
+While(CheckInventory("BrightBlind")>0)
+	{
+	BrightBlindCount=CheckInventory("BrightBlind");
+	if(BrightBlindCount>100){BrightBlindCount=100;}
+	FadeTo(150,150,150,FixedDiv(BrightBlindCount,100),0.0);
+	TakeInventory("BrightBlind",1);
+	Delay(1);
+	}
+FadeTo(150,150,150,0.0,0.0);
+}
+
+// Thunder Claw peg script
+Script 248 (int timeout)
+{
+int hooktid = ActivatorTID();
+if(hooktid==0 || ThingCount(0,hooktid)>1)
+	{
+	int HookNewTID=random(4800, 4950); 
+	if(ThingCount(0,HookNewTID)==0)
+		{
+		Thing_ChangeTID(0,HookNewTID);
+		}
+	Delay(1);
+	restart;
+	}
+
+int hookx = GetActorX(ActivatorTID());
+int hooky = GetActorY(ActivatorTID());
+int hookz = GetActorZ(ActivatorTID());
+int playerx;
+int playery;
+int thrust;
+int zthrust;
+int ThrustTimeOut=0;
+
+if(timeout > 0){ThrustTimeOut = timeout;}
+SetActivatortoTarget(0);
+If(CheckInventory("RushJetCounter") >= 5){terminate;}
+If(CheckInventory("YoGeekyAmmo") < 75 && CheckInventory("ThunderClawBoss") == 1){terminate;}
+SetActorState(hooktid,"TargetClear",1);
+If(ActivatorTID()==hooktid){terminate;}
+playerx=GetActorX(ActivatorTID());
+playery=GetActorY(ActivatorTID());
+//SetPlayerProperty(0,1,0);//$CBM
+TakeInventory("JumpCancler",1);
+
+TakeInventory("ClownShockUpPeg2",1);
+GiveInventory("ClownShockUpPeg",1);
+
+If(GetActorZ(ActivatorTID()) - GetActorFloorZ(ActivatorTID())<8)
+	{
+	ThrustThingZ(0,35,0,0);
+	Delay(5);
+	}
+While(GetActorZ(ActivatorTID()) >= (hookz-64.0) && ThrustTimeOut < 105) // If Player is above the hook, force them below it
+	{
+	ThrustThingZ(0,8,1,1);
+	ThrustThing(VectorAngle(hookx - playerx, hooky - playery)>>8,1,1,0);
+	playerx=GetActorX(ActivatorTID());
+	playery=GetActorY(ActivatorTID());
+	ThrustTimeOut++;
+	Delay(1);
+	}
+thrust=xyDistance(hooktid, ActivatorTID())/10;
+zthrust=zDistance(hooktid, ActivatorTID())/13;
+if(thrust < 10){thrust=10;}
+if(thrust > 50){thrust=50;}
+ThrustThing(VectorAngle(hookx - playerx, hooky - playery)>>8,thrust,1,0);
+ThrustThingZ(0,0,0,0);
+ThrustThingZ(0,zthrust,0,1);
+Delay(5);
+ThrustThingZ(0,10,0,1);
+TakeInventory("WireFlag", 1);
+Delay(2);
+ThrustThingZ(0,14,0,1);
+Delay(2);
+ThrustThingZ(0,18,0,1);
+Delay(2);
+ThrustThingZ(0,20,0,1);
+Delay(2);
+ThrustThingZ(0,22,0,1);
+//SetPlayerProperty(0,0,0);//$CBM
+
+TakeInventory("ClownShockUpPeg",1);
+GiveInventory("ClownShockUpPeg2",1);
+}
+
+// [Mike] Gravity altering script for certain maps with water (horrible method)
+//
+script 204 (int grav)
+{
+if(PlayerNumber() ==-1){terminate;}
+If(Timer() < 5){Delay(2);}
+int gravity = PlayerGravity[PlayerNumber()];//$CBM
+Switch(grav)
+	{
+/*
+	Case 0:
+	SetActorProperty(0, APROP_Gravity, PlayerGravity[PlayerNumber()]);
+	break;
+	Case 1:
+	SetActorProperty(0, APROP_Gravity, FixedDiv(PlayerGravity[PlayerNumber()],3.2));
+	break;
+	}
+*/
+//$CBM
+	case -2: //Gravity Slam End
+		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater")){
+			gravity = FixedDiv(gravity,3.2);
+		}
+		break;
+	case -1: //Gravity Slam
+		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater")){
+			gravity = FixedDiv(gravity,3.2);
+		}
+		gravity *= 20;
+		break;
+	Case 0: //Exiting water
+		if(CheckInventory("IsUnderBubbleWater")){
+			gravity = FixedDiv(gravity,3.2);
+		}
+		break;
+	Case 1: //Entering water
+		gravity = FixedDiv(gravity,3.2);
+		break;
+	Case 2: //Exit Bubble water
+		if(CheckInventory("HasFeetInWater")){
+			gravity = FixedDiv(gravity,3.2);
+		}
+		break;
+	Case 3: //Enter Bubble water
+		if(CheckInventory("HasFeetInWater")){
+			gravity = FixedDiv(gravity,3.2);
+		}
+		else{
+			gravity = FixedDiv(gravity,3.2);
+		}
+		break;
+	}
+
+SetActorProperty(0, APROP_Gravity, gravity);
+//$CBM
+}
+
+// Turbo Man hanging tire script - bounces you away from it
+//
+Script 190 (int ThrustForce)
+{
+int ActX = GetActorX(0);
+int ActY = GetActorY(0);
+SetActivatorToTarget(0);
+int PlayerX = GetActorX(0);
+int PlayerY = GetActorY(0);
+If(ActivatorTID() == 0){terminate;}
+ThrustThing(VectorAngle(ActX - PlayerX,ActY - PlayerY)>>8,-ThrustForce,1,0);
+If(!CheckInventory("HangingTireCooldown"))
+    ThrustThingZ(0,20,0,0);
+GiveInventory("HangingTireCooldown",1);
+} 
+
+
+// Game event script
+script "core_event" (int type, int arg1, int arg2) EVENT
+{
+	switch(type){
+		case GAMEEVENT_CAPTURES:
+		SpawnForced("ConfettiSpawner", GetActorX(0), GetActorY(0), GetActorZ(0)+ 64.0, 0);
+		break;
+	}
+}
+
+int WaterSectors[64];
+
+script "core_commonwater" ENTER
+{
+    int feetInWater = false;
+    int eyesInWater = false;
+    int oldFeetInWater = false;
+    int oldEyesInWater = false;
+    int WaterGravity;
+    int w = 0;
+
+    Delay(5);
+    if(ThingCountName("MM8BDM_Water",0)==0){terminate;}
+    while(GetActorProperty(ActivatorTID(),APROP_HEALTH)>0) {
+ 
+        int eyeDiff = 41.0;
+        int feetZ = GetActorZ(0);
+        int eyeZ = GetActorZ(0)+eyeDiff;
+        int tid = ActivatorTID();
+        int waterBase = 0.0;
+        int waterTop = 0.0;
+        int waterSector = 0;
+ 
+        // Determine which water sector the player is in (if any)
+        if(ThingCountName("MM8BDM_Water", -9999) > 0){
+            waterSector = -9999;
+        }
+        else
+        {
+            for(int i = 0; i<64; i++) {
+ 
+                if(WaterSectors[i] == 0) {
+                    waterSector = 0;
+                    break;
+                }
+ 
+                if(ThingCountSector(T_NONE, tid, WaterSectors[i]) == 1) {
+                    waterSector = WaterSectors[i];
+                    break;
+                }
+            }
+        }
+ 
+        // [Russ] if player is in water sector, give them physics based on their height in the sector,
+        // if they're within the defined height of the water, give them physics!
+        if(waterSector != 0) {
+ 
+            switch(GetUserVariable(waterSector, "user_direction")) {
+ 
+                default:
+                case 0: // Water builds down
+                    waterBase = GetActorZ(waterSector);
+                    if(feetZ < waterBase) {
+                        feetInWater = true;
+                    } else {
+                        feetInWater = false;
+                    }
+                    if(eyeZ < waterBase) {
+                        eyesInWater = true;
+                    } else {
+                        eyesInWater = false;
+                    }
+                    break;
+ 
+                case 1: // Water builds up
+                    waterBase = GetActorZ(waterSector);
+                    if(feetZ >= waterBase) {
+                        feetInWater = true;
+                    } else {
+                        feetInWater = false;
+                    }
+                    if(eyeZ >= waterBase) {
+                        eyesInWater = true;
+                    } else {
+                        eyesInWater = false;
+                    }
+                    break;
+ 
+                case 2: // Water builds to sector height
+                    waterBase = GetActorFloorZ(waterSector);
+ 
+                    waterTop = GetActorCeilingZ(waterSector);
+ 
+                    if(feetZ >= waterBase && feetZ < waterTop) {
+                        feetInWater = true;
+                    } else {
+                        feetInWater = false;
+                    }
+                    if(eyeZ >= waterBase && eyeZ < waterTop) {
+                        eyesInWater = true;
+                    } else {
+                        eyesInWater = false;
+                    }
+                    break;
+            }
+ 
+        } else {
+            feetInWater = false;
+            eyesInWater = false;
+        }
+ 
+        if(feetInWater != oldFeetInWater || eyesInWater != oldEyesInWater) {
+            if(feetInWater || eyesInWater) {
+                GiveInventory("WaterGravityOn", 1);
+            } else {
+                GiveInventory("WaterGravityOff", 1);
+            }
+ 
+            if(feetInWater) {
+                GiveInventory("HasFeetInWater", 1);
+            } else {
+                TakeInventory("HasFeetInWater", 999);
+            }
+ 
+            if(eyesInWater) {
+                GiveInventory("IsUnderWater", 1);
+            } else {
+                TakeInventory("IsUnderWater", 999);
+            }
+ 
+            if(w<=0)
+            {
+                int xpos = GetActorX(0)-GetActorVelX(0);
+                int ypos = GetActorY(0)-GetActorVelY(0);
+                int zposf = feetZ-GetActorVelZ(0);
+                int zpose = eyeZ-GetActorVelZ(0);
+ 
+                if(eyesInWater != oldEyesInWater && feetInWater != oldFeetInWater)
+                {
+                    Spawn("MMSplash_Mid", xpos, ypos, zposf+32.0);
+                } else {
+                    if(eyesInWater != oldEyesInWater) {
+                        if(feetInWater) {
+                            Spawn("MMSplash", xpos, ypos, zpose);
+                        } else {
+                            Spawn("MMSplash_Down", xpos, ypos, zpose);
+                        }
+                    } else if(feetInWater != oldFeetInWater) {
+                        if(eyesInWater) {
+                            Spawn("MMSplash_Down", xpos, ypos, zposf);
+                        } else {
+                            Spawn("MMSplash", xpos, ypos, zposf);
+                        }
+                       
+                    }
+                }
+                w=20;
+            }
+ 
+            oldFeetInWater = feetInWater;
+            oldEyesInWater = eyesInWater;
+        }
+ 
+        if(W > 0){w--;}
+        Delay(1);
+    }
+}
+
+script "core_newwater" (void)
+{
+int i;
+
+	// Activate Global Mode (I can't think of a cool way to do it)
+	if(ActivatorTID()==0){
+	Thing_ChangeTID(0,-9999);
+	terminate;
+	}
+
+	while(WaterSectors[i]!=0){
+	i++;
+	}
+	
+	// To prevent the array from 
+	if(GetActorZ(0)==0){SetActorPosition(ActivatorTID(), GetActorX(0), GetActorY(0), GetActorZ(1), 0);}
+	
+	WaterSectors[i] = ActivatorTID();
+	//PrintBold(s:"Water Sector ", i:i, s:" now equals ", i:WaterSectors[i]);
+}
+
+int gelSectors[64];
+ 
+script "core_burstgel" ENTER
+{
+    int feetInWater = false;
+    int eyesInWater = false;
+    int oldFeetInWater = false;
+    int oldEyesInWater = false;
+    int WaterGravity;
+    int w = 0;
+    int jumpDelay = 0;
+    int sinkConstant = 8.0;
+ 
+    int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+    int oldButtons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+ 
+    Delay(5);
+ 
+    if(ThingCountName("MM8BDM_BurstGel",0)==0){terminate;}
+ 
+    while(GetActorProperty(ActivatorTID(),APROP_HEALTH)>0){
+ 
+        int eyeDiff = 41.0;
+        int feetZ = GetActorZ(0);
+        int eyeZ = GetActorZ(0)+eyeDiff;
+        int tid = ActivatorTID();
+        int waterBase = 0.0;
+        int waterTop = 0.0;
+        int waterSector = 0;
+ 
+        // Determine which water sector the player is in (if any)
+        if(ThingCountName("MM8BDM_BurstGel", -9998) > 0){
+            waterSector = -9998;
+        }
+        else
+        {
+            for(int i = 0; i<64; i++) {
+ 
+                if(gelSectors[i] == 0) {
+                    waterSector = 0;
+                    break;
+                }
+ 
+                if(ThingCountSector(T_NONE, tid, gelSectors[i]) == 1) {
+                    waterSector = gelSectors[i];
+                    break;
+                }
+            }
+        }
+ 
+        // [Russ] if player is in water sector, give them physics based on their height in the sector,
+        // if they're within the defined height of the water, give them physics!
+        if(waterSector != 0) {
+ 
+            waterBase = GetActorZ(waterSector);
+            if(feetZ < waterBase) {
+                feetInWater = true;
+            } else {
+                feetInWater = false;
+            }
+            if(eyeZ < waterBase) {
+                eyesInWater = true;
+            } else {
+                eyesInWater = false;
+            }
+ 
+            if(feetInWater) { // Feet in the gel.
+
+                if(jumpDelay == 0) {
+                    gelFlight(true);
+                    int velX = GetActorVelX(0);
+                    int velY = GetActorVelY(0);
+                    int velZ = GetActorVelZ(0);
+    
+                    if(!eyesInWater) { // Eyes above the gel.
+                        int comp = compareRange(feetZ, waterBase-sinkConstant-2.0, waterBase-sinkConstant+2.0);
+                        int jumpComp = compareRange(feetZ, waterBase-sinkConstant-8.0, waterBase-sinkConstant+8.0);
+    
+                        if(comp > 0) { // Feet above target zone
+                            gelFlight(false);
+                            if(velZ > 0) { SetActorVelocity(0, velX, velY, velZ/3, false, false); }
+
+                            if(velZ > -2.0 && velZ < 2.0) {
+                                ThrustThingZ(0, -(waterBase-sinkConstant-GetActorZ(0))>>16, 1, 0);
+                            }
+    
+                        } else if(comp < 0) { // Feet below target zone
+
+                            if(velZ > -2.0) {
+                                ThrustThingZ(0, (waterBase-sinkConstant-GetActorZ(0))>>16, 0, 0);
+                            }
+    
+                        } else { // Feet at target zone
+                            if(velZ > -2.0) {
+                                ThrustThingZ(0, 0, 0, 0);
+                            }
+                        }
+
+                        if(jumpComp == 0) {
+                            if((buttons & BT_JUMP) && !(oldButtons & BT_JUMP)) {
+                                GiveInventory("JumpSound", 1);
+                                ThrustThingZ(0, 45, 0, 0);
+                                jumpDelay = 15;
+                            }
+                        }
+                    } else { // Eyes in the gel.
+                        // a s c e n d
+                        ThrustThingZ(0, 6, 0, 1);
+                    }
+                } else {
+                    jumpDelay--;
+                }
+            } else { // Completely above the gel.
+                jumpDelay = 0;
+                gelFlight(false);
+            }
+
+        } else {
+            feetInWater = false;
+            eyesInWater = false;
+        }
+
+        if(feetInWater != oldFeetInWater || eyesInWater != oldEyesInWater) {
+
+            if(w<=0)
+            {
+                int xpos = GetActorX(0)-GetActorVelX(0);
+                int ypos = GetActorY(0)-GetActorVelY(0);
+                int zposf = feetZ-GetActorVelZ(0);
+                int zpose = eyeZ-GetActorVelZ(0);
+
+                if(eyesInWater != oldEyesInWater && feetInWater != oldFeetInWater)
+                {
+                    Spawn("MMSplash_Mid", xpos, ypos, zposf+32.0);
+                } else {
+                    if(eyesInWater != oldEyesInWater) {
+                        if(feetInWater) {
+                            Spawn("MMSplash", xpos, ypos, zpose);
+                        } else {
+                            Spawn("MMSplash_Down", xpos, ypos, zpose);
+                        }
+                    } else if(feetInWater != oldFeetInWater) {
+                        if(eyesInWater) {
+                            Spawn("MMSplash_Down", xpos, ypos, zposf);
+                        } else {
+                            Spawn("MMSplash", xpos, ypos, zposf);
+                        }
+                        
+                    }
+                }
+                w=20;
+            }
+            
+            oldFeetInWater = feetInWater;
+            oldEyesInWater = eyesInWater;
+        }
+ 
+        oldButtons = buttons;
+        buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+        if(w > 0){w--;}
+        Delay(1);
+    }
+}
+ 
+function void gelFlight(bool onoff) {
+    if(onoff) {
+        GiveInventory("GelSpeed", 1);
+    } else {
+        TakeInventory("GelSpeed", 1);
+    }
+    ACS_NamedExecuteAlways("core_gelflight", 0, onoff);
+}
+ 
+script "core_gelflight" (int onoff) CLIENTSIDE
+{
+    if(PlayerIsBot(1) || PlayerCount()==1){terminate;}
+    SetPlayerProperty(0, onoff, PROP_FLY);
+}
+ 
+// RETURNS: <0 IF BELOW RANGE; 0 IF IN RANGE; >0 IF ABOVE RANGE
+function int compareRange(int val, int m, int n) {
+    int ret = 0;
+ 
+    int a = n-val;
+    int b = val-m;
+ 
+    if(a < 0) ret = -a;
+    if(b < 0) ret = b;
+ 
+    return ret;
+}
+ 
+script "core_newgel" (void)
+{
+    int i;
+ 
+    // Activate Global Mode
+    if(ActivatorTID()==0){
+    Thing_ChangeTID(0,-9998);
+    terminate;
+    }
+ 
+    while(gelSectors[i]!=0){
+    i++;
+    }
+   
+    gelSectors[i] = ActivatorTID();
+}
+
+// Music handling script. Boss music depends on the level's map card OR par setting (old method).
+
+script "core_musichandler" DEATH
+{
+int bossState = getBossMusicState();
+If(bossState > 2){Terminate;}
+
+int modeofplay = ACS_ExecuteWithResult(975);
+int LevelParTime = GetLevelInfo(LEVELINFO_PAR_TIME);
+int fraglimit = GetCVar("fraglimit");
+int fragdiff = 5;
+
+SetActivatorToTarget(0);
+
+if(fraglimit <= 10){fragdiff = 3;}
+
+Bool MoreFrags = False;
+
+If(Timer() < 105 || GetGameModeState() == GAMESTATE_COUNTDOWN){terminate;}
+
+Switch(modeofplay)
+	{
+	Case 0: // DM / TDM
+	Case 5: // Terminator too!
+		if(fraglimit <= 0){terminate;}
+		If(IsTeamGame==0)
+		{
+			if(PlayerFrags() <= maxfrags){terminate;}
+			maxfrags = PlayerFrags();
+		}
+		If(IsTeamGame==1)
+		{
+			If(BlueScore() > maxfrags){maxfrags=BlueScore(); MoreFrags=true;}
+			If(RedScore() > maxfrags){maxfrags=RedScore(); MoreFrags=true;}
+			If(GetCvar("sv_maxteams")>=3)
+			{
+				If(OrangeFrags() > maxfrags){maxfrags=OrangeFrags();MoreFrags=true;}
+				If(PurpleFrags() > maxfrags){maxfrags=PurpleFrags();MoreFrags=true;}
+			}
+			If(MoreFrags == False){terminate;}
+		}
+		if((MaxFrags >= fraglimit - fragdiff && MaxFrags < fraglimit) && bossState==0)
+			{
+			setBossMusicState(1);
+			BossMusicSelect(LevelParTime, 0);
+			}
+		if(MaxFrags >= fraglimit&& bossState < 2)
+			{
+			setBossMusicState(2);
+			BossMusicSelect(LevelParTime, 1);
+			}
+		break;
+	Case 1: // Possession
+		break;
+	Case 2: // LMS / TLMS
+		int BlueAlive=0;
+		int RedAlive=0;
+		int OrangeAlive=0;
+		int PurpleAlive=0;
+		int AlivePlayers=0;
+		for(int i=0; i < ServerMAX; i++)
+			{
+			If(!PlayerInGame(i)){continue;}
+			//printbold(n:i+1, s:" - ", i:LivesLeft(i), s:" lives.");
+			If(GetActorProperty(i+1000, APROP_HEALTH) > 0 || LivesLeft(i) > 0)
+				{
+				Switch(GetPlayerInfo(i, PLAYERINFO_TEAM))
+					{
+					Case 0:
+					BlueAlive++;
+					break;
+					Case 1:
+					RedAlive++;
+					break;
+					Case 2:
+					OrangeAlive++;
+					break;
+					Case 3:
+					PurpleAlive++;
+					break;
+					Default:
+					AlivePlayers++;
+					break;
+					}
+				}
+			}
+		If(IsTeamGame == 0)
+			{
+			If(AlivePlayers <= 2 && bossState == 0)
+				{
+				setBossMusicState(1);
+				BossMusicSelect(LevelParTime, 0);
+				}
+			If(AlivePlayers == 1 && bossState == 1)
+				{
+				setBossMusicState(2);
+				BossMusicSelect(LevelParTime, 1);
+				Delay(35*6);
+				SetMusic("*");
+				setBossMusicState(0);
+				}
+			}
+		If(IsTeamGame == 1)
+			{
+			If(bossState==0)
+				{
+				If(LMSBossCheck(BlueAlive, RedAlive, OrangeAlive,PurpleAlive))
+					{
+					setBossMusicState(1);
+					BossMusicSelect(LevelParTime, 0);
+					}
+				}
+			If(bossState==1)
+				{
+				if(!intensePlaying && TLMSBossCount(BlueAlive, RedAlive, OrangeAlive, PurpleAlive) == 2){
+					BossMusicSelect(LevelParTime, 2);
+					intensePlaying = true;
+				}
+
+				If(((BlueAlive > 0) + (RedAlive > 0) + (OrangeAlive > 0) + (PurpleAlive > 0)) == 1)
+					{
+					setBossMusicState(2);
+					BossMusicSelect(LevelParTime, 1);
+					Delay(35*6);
+					SetMusic("*");
+					setBossMusicState(0);
+					}
+				}
+			}
+		break;
+	Case 3: // Duel
+		if(fraglimit <= 1 || PlayerFrags() <= maxfrags){terminate;}
+		maxfrags = PlayerFrags();
+		if((MaxFrags == fraglimit - 1 && MaxFrags < fraglimit) && bossState==0)
+			{
+			setBossMusicState(1);
+			BossMusicSelect(LevelParTime, 0);
+			}
+		if(MaxFrags >= fraglimit && bossState < 2)
+			{
+			setBossMusicState(2);
+			BossMusicSelect(LevelParTime, 1);
+			Delay(35*6);
+			SetMusic("*");
+			setBossMusicState(0);
+			}
+		break;
+	Case 4: // CTF
+		if(GetCVar("pointlimit")<=1){terminate;}
+		
+		if((BlueScore() == GetCVar("pointlimit") - 1 || RedScore() == GetCVar("pointlimit") - 1) && bossState==0)
+			{
+			setBossMusicState(1);
+			BossMusicSelect(LevelParTime, 0);
+			}
+		if((BlueScore() == GetCVar("pointlimit") || RedScore() == GetCVar("pointlimit")) && bossState < 2)
+			{
+			setBossMusicState(2);
+			BossMusicSelect(LevelParTime, 1);
+			}
+		break;
+	}
+}
+
+// [Russ] To keep Plug Ball from travelling across sky planes
+//
+script "core_plugballskycheck" (void)
+{
+	if(CheckActorFloorTexture(0,"F_SKY1"))
+	{
+		SetResultValue(1);
+	}
+	else
+	{
+		SetResultValue(0);
+	}
+}
+
+// Script called by most shield warpers
+Script "core_shieldwarper" (int noshieldcheck) CLIENTSIDE
+{
+	int Player = ACS_NamedExecuteWithResult("core_gettarget",0);
+	int Weapon = ACS_NamedExecuteWithResult("core_getplayerweapon", Player - 1000);
+
+	// Loop if shield is active
+	while(GetActorProperty(Player, APROP_HEALTH)>0
+	&& ACS_NamedExecuteWithResult("core_getplayerweapon", Player - 1000) == Weapon
+	){
+		// Used for warpers using ShieldCheck
+		if(noshieldcheck == 0 && CheckActorInventory(Player, "ShieldCheck") == 0){
+		break;
+		}
+		Delay(1);
+	}
+	
+	// Remove
+	Thing_Remove(0);
+}
+
+// Script called by Skull Barrier
+Script "core_shieldwarper_skull" (void) CLIENTSIDE
+{
+	int Player = ACS_NamedExecuteWithResult("core_gettarget",0);
+	
+	// Loop if shield is active
+	while(GetActorProperty(Player, APROP_HEALTH)>0
+	&& CheckActorInventory(Player, "SkullShieldCheck") > 0
+	){
+		Delay(1);
+	}
+	
+	// Remove
+	Thing_Remove(0);
+}
+
+// Script called by Scorch Wheel
+Script "core_shieldwarper_scorch" (void) CLIENTSIDE
+{
+	int Player = ACS_NamedExecuteWithResult("core_gettarget",0);
+	
+	// Loop if shield is active
+	while(GetActorProperty(Player, APROP_HEALTH)>0
+	&& CheckActorInventory(Player, "ScorchWheelPowerup")>0
+	){
+		Delay(1);
+	}
+	
+	// Remove
+	Thing_Remove(0);
+}
+
+// Script called by Jewel Satellite
+Script "core_shieldwarper_jewel" (int jewelno) CLIENTSIDE
+{
+	int Player = ACS_NamedExecuteWithResult("core_gettarget",0);
+	int Weapon = ACS_NamedExecuteWithResult("core_getplayerweapon", Player - 1000);
+	
+	// Loop if shield is active
+	while(GetActorProperty(Player, APROP_HEALTH)>0
+	&& ACS_NamedExecuteWithResult("core_getplayerweapon", Player - 1000) == Weapon
+	&& CheckActorInventory(Player, "ShieldCheck") > 0
+	&& CheckActorInventory(Player, "JewelShieldCheck") > jewelno
+	){
+		Delay(1);
+	}
+	
+	// Remove
+	Thing_Remove(0);
+}
+
+script "core_rushjetflight" (void)
+{
+	ACS_NamedExecuteAlways("core_flyplayer",0,0,2);
+	
+	while(CheckInventory("RushJetCounter")>0){
+	Delay(35);
+		if(CheckInventory("SpinTime")>0){TakeInventory("RushJetCounter", 9999);}
+		if(CheckInventory("InBoat")>0){TakeInventory("RushJetCounter", 9999);}
+		TakeInventory("RushJetCounter", 1);
+	}
+	ACS_NamedExecuteAlways("core_flyplayer",0,0,0);
+}
+
+script "core_rushmarineflight" (void)
+{
+    bool watertoggle = false;
+    int countDelay = 35;
+
+    while(CheckInventory("RushMarineCounter")>0) {
+        if(CheckInventory("SpinTime")>0){ TakeInventory("RushMarineCounter", 9999); }
+		if(CheckInventory("InBoat")>0){ TakeInventory("RushMarineCounter", 9999); }
+        
+        if(CheckInventory("IsUnderWater")) {
+
+            if(!waterToggle) {
+                ACS_NamedExecuteAlways("core_flyplayer",0,0,2);
+                watertoggle = true;
+            }
+
+            if(countDelay == 0) {
+                TakeInventory("RushMarineCounter", 1);
+                countDelay = 35;
+            }
+
+            if(countDelay > 0) {
+                countDelay--;
+            }
+        } else {
+            if(waterToggle) {
+                ACS_NamedExecuteAlways("core_flyplayer",0,0,0);
+                watertoggle = false;
+                delay(1);
+                if(GetActorVelZ(0) >= 1.0) {
+                    ThrustThingZ(0, 45, 0, 0);
+                }
+            }
+        }
+
+        Delay(1);
+    }
+	ACS_NamedExecuteAlways("core_flyplayer",0,0,0);
+}
+
+//A note for the next two scripts, these are from the following file "lod-addon1.2pk3"
+//It was used for the hookshot weapon for WitchHunter
+// By IjonTichy, modified by Ivan, modified for this mod by Celebi
+
+Script "core_hookshot" (int PlayerID, int Vel, int Moving)
+{
+	int myx, myy, myz;
+	int vx, vy, vz, magnitude, nx, ny, nz;
+	int Letgo = false;
+	//int HookID = PlayerID+1700;
+	myx = GetActorX(0);
+	myy = GetActorY(0);
+	myz = GetActorZ(0);
+
+	//SetActivator(PlayerID);
+	GiveActorInventory(PlayerID,"WireAdaptorDelay",1);
+	//SetActorProperty(PlayerID, APROP_Gravity, 0.44);
+	
+	while(!Letgo)
+	{
+		if(Moving > 0){//If the hook is set to move, the positions need to be updated.
+			myx = GetActorX(0);
+			myy = GetActorY(0);
+			myz = GetActorZ(0);
+		}
+		vx = myx - GetActorX(PlayerID);
+		vy = myy - GetActorY(PlayerID);
+		vz = myz - GetActorZ(PlayerID);
+		
+
+        magnitude = magnitudeThree(vx >> 16, vy >> 16, vz >> 16);
+
+        if(magnitude != 0) {
+            nx = vx / magnitude; ny = vy / magnitude; nz = vz / magnitude;
+            //ACS_NamedExecuteAlways("core_drawhookshot", 0, HookID, PlayerID, 18);
+        }
+        else {
+            nx = 0; ny = 0; nz = 0;
+        }
+		if(xyDistance(PlayerID, 0)>1500){Letgo = true;}
+		Thing_Stop(0);
+		SetActorVelocity(PlayerID, nx*Vel, ny*Vel, nz*Vel, true, true);
+
+		Delay(1);
+        if(CheckActorInventory(PlayerID,"WireAdaptorDelay") < 1 || CheckActorInventory(PlayerID,"IsDead")) {Letgo = True;}
+	}
+	//SetActorVelocity(0, GetActorVelX(PlayerID) / 2, GetActorVelY(PlayerID) / 2, GetActorVelZ(PlayerID) / 2, 0, true);
+	Thing_Remove(0);//Remove Hook
+	Delay(1);
+	GiveActorInventory(PlayerID,"WireHookShotEndC",1);//$CBM
+}
+
+//This spawns the sprite
+Script "core_drawhookshot" (int playerTid, int density) CLIENTSIDE
+{
+    int plX; int plY;  int plZ;
+    int grX; int grY;  int grZ;
+    int vX;  int vY;   int vZ;
+    int nX;  int nY;   int nZ;
+    int bX;  int bY;   int bZ;
+    int magnitude;
+    int pointCount;
+    int pointOffset;
+	
+	while(ClassifyActor(0) && GetActorProperty(playerTid, APROP_HEALTH)>0){
+
+    plX = GetActorX(playerTid); grX = GetActorX(0);
+    plY = GetActorY(playerTid); grY  = GetActorY(0);
+    plZ = GetActorZ(playerTid)+(28 << 16); grZ  = GetActorZ(0);
+//+28 to the spawn height of the ^player so the chain doesn't spawn from their feet.
+    vX = grX - plX;   vY = grY - plY;   vZ = grZ - plZ;
+
+    magnitude = magnitudeThree(vX >> 16, vY >> 16, vZ >> 16);
+
+    pointCount  = magnitude / density;
+    pointOffset = magnitude - (pointCount * density);
+
+	str SpawnName = "WireAdaptorHookFX";
+	
+	if(grX == 0 && grY == 0 && grZ == 0){terminate;} 
+
+    if (magnitude != 0)
+    {
+        nX = vX / magnitude; nY = vY / magnitude; nZ = vZ / magnitude;
+
+        int i; int j;
+        for (i = 0; i < pointCount; i++)
+        {
+            j = (i * density) + pointOffset;
+
+            bX = (nX * j) + plX;
+            bY = (nY * j) + plY;
+            bZ = (nZ * j) + plZ;// +(16 << 16);
+
+			if(i>0){
+			Spawn(SpawnName, bX, bY, bZ);
+			}
+		
+        }
+    }				
+	Delay(1);
+			
+	}
+}
+
+
+// Disable monster blocking on lines specifically to prevent bot swarming.
+Script "core_clearbotline" (int line)
+{
+	if(GetCvar("mm8bdm_sv_nobotblocklines"))
+	{
+	Line_SetBlocking(line, 0, BLOCKF_MONSTERS);
+	}
+}
+
+script "core_HPTrack" ENTER
+{
+	int health = GetActorProperty(0, APROP_Health);
+	int maxHealth = GetActorProperty(0, APROP_SpawnHealth);
+
+	if(maxhealth == 0) {
+		maxhealth = 100;
+	}
+		
+	while(GetActorProperty(ActivatorTID(), APROP_HEALTH) > 0)
+	{
+		if (GetActorProperty(0, APROP_SpawnHealth) != maxHealth)
+		{
+        maxHealth = GetActorProperty(0, APROP_SpawnHealth);
+		}
+		
+		if (GetUserVariable(ActivatorTID(),"user_hp") != GetActorProperty(ActivatorTID(), APROP_HEALTH))
+		{
+			SetUserVariable(ActivatorTID(),"user_hp",GetActorProperty(ActivatorTID(), APROP_HEALTH));
+		}
+		delay(1);
+	}
+}
+
+script "core_HPTrack_Respawn" RESPAWN
+{
+    ACS_NamedExecuteAlways("core_HPTrack", 0);
+}
+
+/*function int min(int x, int y)
+{
+    if(x < y)
+        return x;
+    return y;
+}*/
+
+script "core_decdmg_begin" (void) {
+    if(CheckInventory("DecisiveScriptWait")==0) {
+        GiveInventory("DecisiveScriptWait", 1);
+        ACS_NamedExecuteAlways("core_decdmg", 0);
+    }
+}
+
+script "core_decdmg" (void/*int confirm*/)
+{
+    int oldTrackedHP = -1;
+	int trackedHP = GetUserVariable(ActivatorTID(),"user_hp");
+    if(trackedHP == 0) {
+        terminate;
+    }
+
+    while(Checkinventory("DecisiveScriptWait") > 0) {
+        trackedHP = GetUserVariable(ActivatorTID(),"user_hp");
+        int newHP = GetActorProperty(ActivatorTID(), APROP_Health);
+        int difference = trackedHP-newHP;
+
+        if(difference > 0 && oldTrackedHP != trackedHP) {
+            int spawnHealth = GetActorProperty(ActivatorTID(), APROP_SpawnHealth);
+            int halfHealth = ceilOld(FixedDiv(spawnHealth,2));
+			if(halfHealth>500){halfHealth = 500;}//$CBM
+            GiveInventory("CriticalFlag",difference);
+            GiveInventory("DecisiveScriptWait", 1);
+
+            if( (difference >= halfHealth) || (CheckInventory("CriticalFlag") >= halfHealth) )
+            {
+                if(newHP > 0) {
+                    GiveInventory("CriticalHitGiver",1);
+                    TakeInventory("DecisiveScriptWait", 1);
+                }
+                else {
+                    GiveInventory("CriticalDeath", 1);
+                    TakeInventory("DecisiveScriptWait", 1);
+                }
+            }
+        }
+
+        if(oldTrackedHP != trackedHP) {
+            oldTrackedHP = trackedHP;
+        }
+        
+        delay(1);
+    }
+	
+	TakeInventory("CriticalFlag",99999);//$CBM //999
+}

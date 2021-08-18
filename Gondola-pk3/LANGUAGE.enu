@@ -1,0 +1,130 @@
+[enu default]
+//Yamato
+OB_YAMATODIVE = "%o was honorably defeated by %k's Spear Dive.";
+//Astro
+OB_ASTROSHOT = "%o's was embarrassed by %k's Astro Bullet.";
+//Saturn
+//OB_SATURNAOE = "%k fucked %o's ass up without a fucking glitch. Say some shit; fuck ya ass up! This shit not funny right now. Say something! Say something! Say something about your punk ass bitches, say something! Say something! Fuck outta here with that bullshit We keep fucking your ass like you nothing! You guys are trash, fuck outta my game. Fuck outta my game--we beat you without a glitch. With a glitch and without a glitch; fuck outta my shit! Fu-Fuck outta here. Trash ass. %o got spanked like they nothin'. Know your fucking place.";
+OB_SATURNAOE = "%o's body was sent to another universe after touching %k's Quazar Burst.";
+//BRG (Unused)
+OB_MONKEYSHOT = "%k avenged Harambe by sacrificing %o to the Monkey Gods.";
+//Blizzard
+OB_BLIZZARDBOWL = "%k's Blizzard Bowl mashed %o into poutine.";
+//Wind
+OB_WINDQUAKE = "%o was stomped into a dumpling by %k.";
+//Solar
+OB_SOLARMORTAR = "%k's Fat Old Sun fell onto %o's head.";
+//get gilmied lol!
+OB_SOLARLOB = "%k Solar Launcher blasted %o into space.";
+//Ice
+TAGC_1C1 = "Iceman Blocks";
+TAGC_1C2 = "Iceman Rain";
+//Sword
+OB_FLAMESWORDSHOT = "%k's Flame Beam was too fair for %o.";
+//Tengu
+OB_DIVINEWIND = "%o was severed by %k's Divine Wind.";
+//Terra
+TAGC_VA = "Terra Boss";
+OB_TERRAMELEE = "%o was bashed in the gut by %k's Warping Knee Strike.";
+OB_SPARKCHASERBOSS = "%o was enucleated by %k's Spark Laser.";
+OB_SPARKCHASERBOSSX = "%o lost an eye as %g lost %p life to %k's Spark Laser.";
+OB_SPARKCHASERBOSS2 = "%o was pincushioned by %k's Spark Chaser.";
+//Knight
+OB_KNIGHTRUSHX = "%o was banged into Bangers and Mash by %k's Knight Rush.";
+//Torch
+OB_TORCH = "%o fell to %k's Fist of Flame.";
+OB_TORCHEX = "%o burnt too many calories facing %k's Torchjutsu Fist.";
+OB_TORCHX = "%k had to teach %o campfire safety through brute force.";
+OB_TORCH2 = "%o got hot feet from %k's Torchjutsu Kick.";
+OB_TORCH2X = "%k gave %o \c[Fire]the ole Dick Twist!";
+TAGC_11B = "Torchman Daigo Parry";
+//Bomb
+OB_HYPERBOMBSPLITX = "%o was blown to smithereens by %k's Rapid Bomb.";
+//Plant
+OB_PLANTDRAINX = "%o was wrapped into %k's Plant Feijoada.";
+//Tomahawk
+OB_TOMAHAWKFEATHERX = "%o could not handle the spiciness of %k's Wings.";
+//Centaur
+OB_CENTAURFLASHX = "%k's Centaur Flash turned %o into a fucking Falafel.";
+//Flame
+OB_FLAMEBURST = "%k's Flame Burst skewered %o.";
+OB_FLAMEBURSTX = "%k's Flame Burst skewered %o's body into shawarma.";
+//Junk
+OB_JUNKPUNCH2 = "%o got punched the next town over for talking trash about %k.";
+//Cloud
+OB_THUNDERBOLTA = "%o's current was redirected by %k's Split Thunder Bolt.";
+//Galaxy
+TAGC_9H = "Galaxyman Boss";
+//Acid
+TAGC_11D = "Acidman Boss";
+OB_ACIDSHOT = "%o was dissolved by %k's acid shot.";
+OB_ACIDMELT = "%o lost too much of %p chassis to %k's acid gas.";
+
+PU_ACIDBARRC = "Power up! Acid Barrier!";
+
+MNU_JOIN1 = "\c[MenuRed]Select \c[MenuGreen]a class, \c[MenuOrange]type \c[MenuGreen]one, or \c[MenuYellow]use \c[MenuGreen]the menu.";
+MNU_JOIN2 = "\c[MenuBlue]Auto Select \c[MenuGreen]picks a team for you.";
+
+MNU_JOIN3 = "\c[MenuRed]Class \c-Select";
+MNU_JOIN4 = "\c[MenuOrange]Class \c-Text";
+MNU_JOIN5 = "\c[MenuYellow]Class \c-Specific Menu";
+MNU_JOIN6 = "\c[MenuBlue]Auto\c--Select";
+MNU_JOIN7 = "\c[MenuCyan]Original Selection";
+
+M_G0 = "0";
+M_G1 = "1";
+M_G2 = "2";
+M_G3 = "3";
+M_G4 = "4";
+M_G5 = "5";
+M_G6 = "6";
+M_G7 = "7";
+M_G8 = "8";
+M_GB = "B";
+M_G9 = "9";
+M_G10 = "10";
+M_G11 = "11";
+M_GV = "V";
+M_GWT = "WT";
+M_GK = "K";
+
+//Blast
+TAGC_11C = "Blastman Boss";
+OB_CHAINBLASTBOSS = "%o was tagged by %k's Chain Blast.";
+OB_BLASTBOMB = "%o was blown away by %k's Blast Bomb.";
+OB_BLASTBOMBX = "%o was turned into a crater by %k's Power Blast Bomb.";
+OB_CHAINBLASTBOOM = "%o was tagged and bagged by %k's Chain Blast.";
+OB_CHAINBLASTPUFF = "%o wasn't warned about %k's pretty short fuse.";
+
+//Copywep
+OB_BLAZINGTORCH = "%o was inflamed by %k's Blazing Torch.";
+PU_BLAZINGTORCH = "Power up! Blazing Torch!";
+TAG_BLAZINGTORCH = "Blazing Torch";
+
+OB_CHAINBLAST = "%o was chained by %k's Chain Blast.";
+PU_CHAINBLAST = "Power up! Chain Blast!";
+TAG_CHAINBLAST = "Chain Blast";
+
+OB_SCRAMBLETHUNDER = "%o's circuits were scrambled by %k's Scramble Thunder.";
+PU_SCRAMBLETHUNDER = "Power up! Scramble Thunder!";
+TAG_SCRAMBLETHUNDER = "Scramble Thunder";
+
+//Sunstar
+TAGC_VJ = "Sunstar Boss";
+OB_SUNSDEFAULT = "%k destroyed %o with their unending firepower.";
+OB_SUNSLAND = "%o lacked the endurance to brave %k's Scorched Land.";
+OB_SUNSDYS1 = "%o was irradiated away by %k's Dyson Star.";
+OB_SUNSDYS2 = "%o melted like simple plastic from %k's Dyson Sphere.";
+OB_SUNSCHAS = "%o was tripped and scalded by %k's Sun Chaser.";
+OB_SUNSCHAU = "%o was blindsided from below by %k's Sun Chaser.";
+OB_SUNSVENT = "%o felt megatons of encased heat through %k's Solar Vent.";
+
+PU_NOVABEAMC = "Power up! Nova Beam!";
+OB_NOVABEAMC = "%o was condemned straight to Hell by %k's Nova Beam.";
+
+//DM3
+OB_DARK3SNIPE = "%o was sniped by %k's Dark Sniper.";
+OB_DARK3SNIPER = "%o was strategically sniped by %k's Dark Sniper.";
+OB_DARK3SMG = "%o was assailed by %k's Dark Sniper.";
+OB_DARK3RING = "%k ran rings around %o with Dark Rings.";
+OB_DARK3RINGER = "%o was incapacitated by %k's Dark Rings.";

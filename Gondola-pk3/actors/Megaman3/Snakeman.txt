@@ -1,0 +1,45 @@
+actor Snakeman : LightClassBase
+{
+Player.ScoreIcon "C_03F0X"
+player.startitem "LightHealthBar"
+player.displayname "snakeman"
+player.soundclass "snakemanc"
+player.startitem "SearchSnakeBoss"
+player.startitem "SnakeManAmmo", 28
+player.startitem "SnakeCommandAmmo", 28
+player.startitem "SnakemanClimbingItem"
+
+player.forwardmove 1.0, 1.0
+player.sidemove 0.98, 0.98
+
+player.startitem "NeedleCannonWeakness2", 1
+
+player.startitem "NeedleCannonWeakness", 1
+player.startitem "QuickBoomerangWeakness", 1
+player.startitem "YamatoSpearWeakness", 1
+player.startitem "SpreadDrillWeakness", 1
+States
+{
+Spawn:
+SNAM A 0
+SNAM B 1
+SNAM A 1
+Goto Spawn+2
+See:
+SNAM BCDE 5
+Goto Spawn
+Missile:
+SNAM F 5
+SNAM G 4
+goto Spawn
+ClassPain:
+SNAM H 0
+goto PainContinue
+DeathFix:
+SNAM H 0
+goto DeathContinue
+ClassDeath:
+SNAM H 1
+goto MegaDeathEnd
+}
+}

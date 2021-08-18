@@ -1,0 +1,156 @@
+actor ThunderWoolWep : BaseMM8BDMWep
+{
+//$Category MM8BDM-Weapons
+//$Title Bubble Lead
+Weapon.AmmoUse 4
+Weapon.AmmoGive 28
+Weapon.SlotNumber 4
+Obituary "$OB_THUNDERWOOL"
+Tag "$TAG_THUNDERWOOL"
+Inventory.Pickupmessage "$PU_THUNDERWOOL"
+weapon.ammotype "ThunderWoolAmmo"
+inventory.icon "TWOOLI"
+States
+{
+Spawn:
+CWA5 A 1
+loop
+Ready:
+CWA5 A 0 ACS_ExecuteAlways(998,0,DYE_CBM_THUNDERWOOL)
+CWA5 A 1 A_WeaponReady
+goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+CWA5 A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+CWA5 A 1 A_Raise
+Loop
+Fire:
+CWA5 A 0 A_JumpIfNoAmmo("NoAmmo")
+CWA5 A 0 
+CWA5 A 0 A_FireCustomMissile("ArchOfWoolCopywep",0,1,8,0)
+CWA5 BCCCCCCCCCCCBA 2
+CWA5 A 0 A_Refire
+goto Ready+1
+NoAmmo:
+CWA5 A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor ArchOfWoolCopywep
+{
+Translation "198:198=36:36", "192:192=248:248"
+PROJECTILE
+Renderstyle Translucent
+Alpha 0.5
+Bouncetype Hexen
++THRUACTORS
++DONTBLAST
++SKYEXPLODE
++BOUNCEONWALLS
++USEBOUNCESTATE
++NOTARGETSWITCH
++NOGRAVITY
+BounceFactor 0.5
+WallBounceFactor 0.5
+speed 15
+scale 2.5
+Radius 16
+Height 16
+gravity 1
+Species "ThunderWoolBoss"
+reactiontime 10
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+SHPC A 0
+SHPC A 0 A_PlaySoundEx("weapon/woolrise", "Body")
+Ready:
+SHPC A 1 A_SetTranslucent(0.6)
+SHPC A 1 A_SetTranslucent(0.7)
+SHPC A 1 A_SetTranslucent(0.8)
+SHPC A 1 A_SetTranslucent(0.9) 
+SHPC B 1 A_SetTranslucent(1)
+SHPC B 1
+SHPC B 1
+SHPC B 1
+See:
+SHPC C 0 A_PlaySoundEx("weapon/woolshock", "Weapon")
+SHPC C 1 A_SpawnItemEx("ArchWoolProjectile",0,0,0,0,0,0,0,1)
+SHPC C 0 A_SpawnItemEx("ArchWoolProjectileExplosionC",0,0,0,momx,momy,-10,0,552)
+SHPC C 0 ThrustThingZ(0,2,0,1)
+SHPC C 0 A_Recoil(-1)
+SHPC D 1 A_SpawnItemEx("ArchWoolProjectile2",0,0,0,0,0,0,0,1)
+SHPC D 0 A_SpawnItemEx("ArchWoolProjectileExplosionC",0,0,0,momx,momy,-10,0,552)
+SHPC D 0 ThrustThingZ(0,2,0,1)
+SHPC D 0 A_Recoil(-1)
+SHPC C 1 A_SpawnItemEx("ArchWoolProjectile",0,0,0,0,0,0,0,1)
+SHPC C 0 A_SpawnItemEx("ArchWoolProjectileExplosionC",0,0,0,momx,momy,-10,0,552)
+SHPC C 0 ThrustThingZ(0,2,0,1)
+SHPC C 0 A_Recoil(-1)
+SHPC D 1 A_SpawnItemEx("ArchWoolProjectile2",0,0,0,0,0,0,0,1)
+SHPC D 0 A_SpawnItemEx("ArchWoolProjectileExplosionC",0,0,0,momx,momy,-10,0,552)
+SHPC D 0 ThrustThingZ(0,2,0,1)
+SHPC D 0 A_Recoil(-1)
+SHPC C 1 A_SpawnItemEx("ArchWoolProjectile",0,0,0,0,0,0,0,1)
+SHPC C 0 A_SpawnItemEx("ArchWoolProjectileExplosionC",0,0,0,momx,momy,-10,0,552)
+SHPC C 0 ThrustThingZ(0,2,0,1)
+SHPC C 0 A_Recoil(-1)
+SHPC D 1 A_SpawnItemEx("ArchWoolProjectile2",0,0,0,0,0,0,0,1)
+SHPC D 0 A_SpawnItemEx("ArchWoolProjectileExplosionC",0,0,0,momx,momy,-10,0,552)
+SHPC D 0 ThrustThingZ(0,2,0,1)
+SHPC D 0 A_Recoil(-1)
+SHPC D 0 A_Countdown
+goto See
+
+Death:
+SHPC A 1 A_SetTranslucent(0.9)
+SHPC A 1 A_SetTranslucent(0.8)
+SHPC B 1 A_SetTranslucent(0.7)
+SHPC B 1 A_SetTranslucent(0.6)
+SHPC A 1 A_SetTranslucent(0.5)
+SHPC A 1 A_SetTranslucent(0.4)
+SHPC B 1 A_SetTranslucent(0.3)
+SHPC B 1 A_SetTranslucent(0.2)
+SHPC A 1 A_SetTranslucent(0.1)
+SHPC A 1 A_SetTranslucent(0)
+stop
+}
+}
+
+actor ArchWoolProjectileExplosionC
+{
+PROJECTILE
+Species "ThunderWoolBoss"
+Obituary "%o was galvanized by %k's thunder wool."
+damagetype "ArchOfWool"
++THRUACTORS
++THRUSPECIES
++THRUGHOST
++DONTBLAST
++DONTREFLECT
++SERVERSIDEONLY
+renderstyle none
+damage (0)
+Radius 8
+Height 8
+speed 45
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("ArchWoolProjectileExplosionC",0,0,0,0,0,momz,0,552)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_Explode(7,32,0,0,33)
+stop
+Death:
+TNT1 A 1
+stop
+}
+}

@@ -1,0 +1,608 @@
+#library "gondola_general"
+
+#include "zcommon.acs"
+#include "8bdmlib.acs"
+
+//Terra
+Script "CCBM_PitchAngleSetter" (int PitchAngle)
+{
+int TargetPlayer=ACS_ExecuteWithResult(257);
+int PlayerPitch = GetActorPitch(TargetPlayer);
+int PlayerAngle = GetActorAngle(TargetPlayer);
+
+Switch(PitchAngle)
+	{
+	Case 0:
+	SetActorPitch(0, PlayerPitch);
+	break;
+	Case 1:
+	SetActorPitch(0, PlayerPitch);
+	SetActorAngle(0, PlayerAngle);
+	break;
+	Case 2:
+	SetActorAngle(0, PlayerAngle);
+	break;
+
+	Case 3://$CBM
+	SetResultValue(PlayerPitch);
+	break;
+	Case 4://$CBM
+	SetResultValue(PlayerAngle >> 8);
+	break;
+	
+	Case 5://%CCBM Terra
+	SetActorPitch(0, PlayerPitch);
+	SetActorAngle(0, PlayerAngle - 0.002);
+	break;
+	}
+}
+
+//Rocketjump
+script "cbm_MarsRocketJump" (int thrust, int radius, int zOffset)
+{
+	int target = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2);
+
+	//Log(i:xyzDistance(0, target));
+	if(xyzDistance(0, target) <= radius+16){
+		SetResultValue(0);
+		actorPull(0, target, -thrust, 0, 0, zOffset<<16);
+	}
+}
+
+//Junk from Core
+script "cbm_Re_SetThingSpecial" (int Thing0, int Thing1, int Thing2, int Thing3)
+{
+	SetThingSpecial(0,0,Thing0,Thing1,Thing2,Thing3);
+}
+
+//From Trillster's Magnet concept
+script "Trill_MagnetJumpBooster" (int maxRange)
+{
+int userTID = ACS_ExecuteWithResult(257, 0);
+int userTeam = GetPlayerInfo(userTID - 1000, PLAYERINFO_TEAM);
+int targetTID;
+if(maxRange == 0){terminate;}
+
+for(int p = 0;p < 64; p++)
+	{
+	if(!PlayerInGame(p))
+		{
+		continue;
+		}
+	if(ACS_ExecuteWithResult(975, 1))
+		{
+		if(userTeam != GetPlayerInfo(p, PLAYERINFO_TEAM))
+			{
+			continue;
+			}
+		}
+	targetTID = p+1000;
+		
+	if(xyDistance(0, targetTID) < maxRange)
+		{	
+		GiveActorInventory(targetTID,"MagnetJumpBoost",1);
+		}
+	}
+}
+
+//for V6 compat
+script "core_checkforjump" (void)
+{
+    bool ret = (GetPlayerInput(-1, INPUT_BUTTONS) & BT_JUMP)>0 && (GetPlayerInput(-1, INPUT_OLDBUTTONS) & BT_JUMP)==0;
+	SetResultValue(ret);
+}
+
+script "core_loadphotonmissile" (void)
+{
+	int tid = ACS_NamedExecuteWithResult("core_getptrtid", AAPTR_TARGET);
+	GiveInventory("PhotonMissileCharge", CheckActorInventory(tid, "PhotonMissileCharge"));
+}
+/*
+script "core_lookatptr" (int ptr) {
+	int tid = ACS_NamedExecuteWithResult("core_getptrtid", ptr);
+	if(tid != 0) {
+		ActorFace(0, tid);
+		ActorLookAt(0, tid, 32.0, 0);
+	}
+}
+
+script "core_getptrtid" (int ptr) {
+	SetActivator(0, ptr);
+	setResultValue(ActivatorTID());
+}
+
+script "core_compareptr" (int ptr1, int ptr2) {
+	setResultValue(IsPointerEqual(ptr1, ptr2) && !IsPointerEqual(ptr1, AAPTR_NULL) && !IsPointerEqual(ptr2, AAPTR_NULL));
+}
+
+script "core_setpointer" (int assign_slot, int tid, int pointer_selector)
+{
+SetPointer(assign_slot, tid, pointer_selector);
+}*/
+
+//el epatch import
+Script "CCBM_ButtonCheck" (int theButton)
+{
+SetResultValue(PressingButton(theButton));
+}
+
+function bool PressingButton (int theButton)
+{
+return PressingButton2(GetPlayerInput(-1, INPUT_BUTTONS),theButton);
+}
+
+function bool PressingButton2 (int buttons, int theButton)
+{
+return ((buttons&theButton)>0);
+}
+
+function bool checkInput_LeftRight(int buttons) {
+	int result = 0;
+
+	if (buttons & BT_MOVERIGHT){
+		result=1;
+	}
+
+	if (buttons & BT_MOVELEFT){
+		result=-1;
+	}
+
+	return(result);
+}
+
+function bool checkInput_ForBack(int buttons) {
+	int result = 0;
+
+	if (buttons & BT_FORWARD){
+		result=1;
+	}
+
+	if (buttons & BT_BACK){
+		result=-1;
+	}
+
+	return(result);
+}
+
+Script "CC_CheckLeftRightInput" (void)
+{
+SetResultValue(checkInput_LeftRight(GetPlayerInput(-1, INPUT_BUTTONS)));
+}
+
+Script "CC_CheckForwardBackInput" (void)
+{
+SetResultValue(checkInput_ForBack(GetPlayerInput(-1, INPUT_BUTTONS)));
+}
+
+Script "Get_Button" (void)
+ {
+	int Button = GetPlayerInput(-1, Input_Buttons);
+	
+	if(Button & (BT_ATTACK|BT_ALTATTACK|BT_RELOAD))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+ }
+ 
+//Edited the script above specifically for main, alt and reload checks 
+ 
+ Script "Get_Button_M" (void)
+ {
+	int Button = GetPlayerInput(-1, Input_Buttons);
+	
+	if(Button & (BT_ATTACK))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+ }
+ 
+ Script "Get_Button_A" (void)
+ {
+	int Button = GetPlayerInput(-1, Input_Buttons);
+	
+	if(Button & (BT_ALTATTACK))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+ }
+ 
+ Script "Get_Button_R" (void)
+ {
+	int Button = GetPlayerInput(-1, Input_Buttons);
+	
+	if(Button & (BT_RELOAD))
+		SetResultValue(1);
+	else
+		SetResultValue(0);
+ }
+ 
+ Script "UEC OpenGL Check" (void) CLIENTSIDE
+{
+SetActivatorToTarget(0);
+SetResultValue(GetCVAR("vid_renderer"));
+}
+
+Script "core_hookshot" (int PlayerID, int Vel, int Moving)
+{
+    int myx, myy, myz;
+    int px, py, pz;
+    int vx, vy, vz, magnitude, nx, ny, nz;
+    myx = GetActorX(0);
+    myy = GetActorY(0);
+    myz = GetActorZ(0);
+    
+    px = GetActorX(PlayerID);
+    py = GetActorY(PlayerID);
+    pz = GetActorZ(PlayerID);
+
+    GiveActorInventory(PlayerID,"WireAdaptorDelay",1);
+    
+    while(true)
+    {
+        if(Moving > 0){//If the hook is set to move, the positions need to be updated.
+            myx = GetActorX(0);
+            myy = GetActorY(0);
+            myz = GetActorZ(0);
+        }
+        
+        px = GetActorX(PlayerID);
+        py = GetActorY(PlayerID);
+        pz = GetActorZ(PlayerID) + 32.0;
+        
+        vx = myx - px;
+        vy = myy - py;
+        vz = myz - pz;
+        
+
+        magnitude = magnitudeThree(vx >> 16, vy >> 16, vz >> 16);
+
+        if(magnitude != 0)
+        {
+            nx = vx / magnitude; ny = vy / magnitude; nz = vz / magnitude;
+        }
+        else {
+            nx = 0; ny = 0; nz = 0;
+        }
+        
+        SetActorVelocity(PlayerID, nx*Vel, ny*Vel, nz*Vel, false, true);
+
+        Delay(1);
+        
+        if(magnitude <= Vel)
+        {
+            break;
+        }
+        
+        if(CheckActorInventory(PlayerID,"WireAdaptorDelay") < 1 || CheckActorInventory(PlayerID,"IsDead"))
+        {
+            break;
+        }
+		
+		if(abs(px - GetActorX(PlayerID)) < 2.0 && abs(py - GetActorY(PlayerID)) < 2.0 && abs(pz - GetActorZ(PlayerID) - 32.0) < 2.0)
+		{
+            break;
+		}
+		
+    }
+    
+    Thing_Remove(0);//Remove Hook
+    Delay(1);
+    GiveActorInventory(PlayerID, "WireHookShotEnd",1);
+}
+
+ script "uec_AcidmanHUD" (void)
+{
+	SetResultValue(GetUserCVar(PlayerNumber(),"UEC_AcidmanHUD"));
+}
+
+script "IsTargetClient" (void) CLIENTSIDE
+{
+SetActivatorToTarget(0);
+if(ConsolePlayerNumber()==PlayerNumber()){SetResultValue(1);}
+else{SetResultValue(0);}
+}
+
+script "IsClient" (void) CLIENTSIDE
+{
+if(ConsolePlayerNumber()==PlayerNumber()){SetResultValue(1);}
+else{SetResultValue(0);}
+}
+
+script "AcidmanBarrierProtect" (void)
+{
+	SetActivator(0,AAPTR_TARGET);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.1);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.15);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.2);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.25);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.3);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.35);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.4);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.45);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.5);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.55);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.6);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.65);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.7);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.75);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.8);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.85);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.90);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.95);
+	Delay(4);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,1.0);
+}
+
+script "AcidmanBarrierProtectAlly" (void)
+{
+	SetActivator(0,AAPTR_TRACER);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.1);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.15);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.2);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.25);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.3);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.35);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.4);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.45);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.5);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.55);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.6);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.65);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.7);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.75);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.8);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.85);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.90);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,0.95);
+	Delay(4);
+	TakeInventory("AcidBarrierVisualBar",1);
+	SetActorProperty(0,APROP_DAMAGEFACTOR,1.0);
+}
+
+script "AcidmanGearAmmo" (int AcidMult)
+{
+	int TracerSave = ACS_ExecuteWithResult(147,1);
+	int TargetSave = ACS_ExecuteWithResult(147,0);
+	int AcidH = max(GetActorProperty(TracerSave,APROP_HEALTH),0);
+	int AcidDiff = CheckActorInventory(TracerSave,"AcidLastHealthFlag") - AcidH;
+	If(AcidDiff != 0){GiveActorInventory(TargetSave,"AcidGearUpSound_P",1);};
+		GiveActorInventory(TargetSave,"AcidGearAmmo",AcidDiff*AcidMult);
+		TakeActorInventory(TracerSave,"AcidLastHealthFlag",999);
+		GiveActorInventory(TracerSave,"AcidLastHealthFlag",AcidH);
+}
+
+script "AcidmanGearAmmoSelf" (int AcidMult)
+{
+	SetActivatorToTarget(0);
+	int AcidH = max(PlayerHealth(),0);
+	int AcidDiff = CheckInventory("AcidLastHealthFlag") - AcidH;
+	If(AcidDiff != 0){GiveInventory("AcidGearUpSound_P",1);};
+		GiveInventory("AcidGearAmmo",AcidDiff*AcidMult);
+		TakeInventory("AcidLastHealthFlag",999);
+		GiveInventory("AcidLastHealthFlag",AcidH);
+}
+
+script "AcidmanGearAmmoUpdate" (void)
+{
+	int TracerSave = ACS_ExecuteWithResult(147,1);
+	int AcidH = max(GetActorProperty(TracerSave,APROP_HEALTH),0);
+		TakeActorInventory(TracerSave,"AcidLastHealthFlag",999);
+		GiveActorInventory(TracerSave,"AcidLastHealthFlag",AcidH);
+}
+
+script "AcidmanGearAmmoSelfUpdate" (void)
+{
+	SetActivatorToTarget(0);
+	int AcidH = max(PlayerHealth(),0);
+	TakeInventory("AcidLastHealthFlag",999);
+	GiveInventory("AcidLastHealthFlag",AcidH);
+}
+
+script "CCBM_BlastCheckInput" (void)
+{
+SetResultValue(BlastMoveCheck(GetPlayerInput(-1, INPUT_BUTTONS)));
+}
+
+function bool BlastMoveCheck(int buttons) {
+	int result = 1;
+
+	if (buttons & BT_MOVERIGHT){
+		result+=2;
+	}
+	if (buttons & BT_MOVELEFT){
+		result+=4;
+	}
+	if (buttons & BT_BACK){
+		result+=8;
+	}
+	if (buttons & BT_FORWARD){
+		result+=16;
+	}
+
+	return(result);
+}
+
+int merc_mode[32];
+
+ Script "Blob_Initial" (void)
+ {
+    merc_mode[PlayerNumber()] = 0;
+ }
+ 
+ Script "Mercury_BlobChange" (void)
+ {
+	if(merc_mode[PlayerNumber()] == 0)
+	{	
+		// [BG] Added the health check just in case.
+		if(CheckInventory("MercuryBlobFormAmmo") < 20 || GetActorProperty(0,APROP_Health) <= 0)
+		{
+			Terminate;
+		}
+
+		GiveInventory("GrabBusterBoss2", 1);
+		SetWeapon("GrabBusterBoss2");
+		Delay(5);
+		TakeInventory("GrabBusterBoss", 99);
+		TakeInventory("Merc_BlobOff_F", 99);
+		
+		// [BG] Prevents the corpse from staying on blob if the user dies
+		if(GetActorProperty(0,APROP_Health) <= 0)
+		{
+			Terminate;
+		}
+		
+		SetActorState(0, "BlobForm");
+		PlaySound(ActivatorTID(), "Weapon/PirateBubble", CHAN_Weapon);
+		TakeInventory("MercuryBlobFormAmmo", 20);
+		Delay(1);
+		SetActorProperty(0, APROP_Speed, ((1.0)*140)/100);
+		SetActorProperty(0, APROP_JumpZ, ((1.0)*7)/1);
+		GiveInventory("SnakeClimbing",99);
+		TakeInventory("UnSolid",1);
+		GiveInventory("Merc_BlobOn_F", 1);
+		merc_mode[PlayerNumber()] = 1;		
+	}
+	else
+	{
+		
+		GiveInventory("GrabBusterBoss", 1);
+		SetWeapon("GrabBusterBoss");
+		Delay(1);
+		TakeInventory("GrabBusterBoss2", 99);
+		TakeInventory("Merc_BlobOn_F", 99);
+		TakeInventory("SnakeClimbing",99);
+		// [BG] Prevents the corpse from going back to normal if the user dies while transforming back
+		if(GetActorProperty(0,APROP_Health) <= 0)
+		{
+			Terminate;
+		}
+		SetActorState(0, "RobotForm");
+		PlaySound(ActivatorTID(), "Weapon/PirateBubble", CHAN_Weapon);
+		Delay(1);
+		SetActorProperty(0, APROP_Speed, ((1.0)*1)/1);
+		SetActorProperty(0, APROP_JumpZ, ((1.0)*10)/1);
+		GiveInventory("Merc_BlobOff_F", 1);
+		merc_mode[PlayerNumber()] = 0;	
+	}
+ }
+ 
+Script "cbm_PlugLatch" (void)
+{
+	int TargetTID = ACS_ExecuteWithResult(147,1);//Tracer
+	SetActivatorToTarget(0);
+
+	if(TargetTID==0){terminate;}
+
+	SetPointer(AAPTR_TRACER, TargetTID);
+
+	int OwnerTID = ActivatorTID();
+
+	if(IsTeamGame){
+		if(GetPlayerInfo(TargetTID-1000, PLAYERINFO_TEAM) == GetPlayerInfo(OwnerTID-1000, PLAYERINFO_TEAM)){
+		GiveInventory("PlugmanLatch",2);
+		}
+	}
+	GiveInventory("PlugmanLatch",1);
+
+	while(GetActorProperty(TargetTID, APROP_HEALTH)>0 && GetActorProperty(OwnerTID, APROP_HEALTH)>0 && xyzDistance(OwnerTID, TargetTID) < 800 && CheckInventory("PlugmanLatch")>0){
+		ACS_NamedExecuteAlways("cbm_DrawPlugCable", 0, TargetTID, OwnerTID, CheckInventory("PlugmanIsShocking"));
+		Delay(1);
+	}
+
+	SetPointer(AAPTR_TRACER,0);
+	TakeInventory("PlugmanLatch",999);
+}
+
+#define TEAM_NONE -1
+
+script "cbm_GiveIfPlayerHitMe" (int mode, int O_TID, int H_TID)
+{
+switch (mode) {
+	case 3://Mercury
+	case 2://King
+	case 1://Skull
+		//log(s:"Hitter TID = ",i:H_TID);
+		//log(s:"Owner TID = ",i:O_TID);
+		if(H_TID == 0){
+			break;
+		}
+		if(H_TID != O_TID && ClassifyActor(H_TID) & ACTOR_PLAYER){
+			int O_TID_Team = ACS_ExecuteWithResult(143,O_TID,1);
+			int H_TID_Team = ACS_ExecuteWithResult(143,H_TID,1);
+			//log(s:"Hitter Team = ",i:H_TID_Team);
+			//log(s:"Owner Team = ",i:O_TID_Team);
+			if(H_TID_Team == TEAM_NONE || H_TID_Team != O_TID_Team){
+				switch (mode) {
+						default:
+							break;
+						case 1://Skull
+							GiveActorInventory(O_TID,"SkullM_CounterTime_P",1);
+							//log(s:"Gave SkullCounter");
+							break;
+						case 2://King
+							GiveActorInventory(O_TID,"TheKingShieldCounter",1);
+							//log(s:"Gave KingCounter");
+							break;
+						case 3://Mercury
+							GiveActorInventory(O_TID,"MercurySnatchPickup",1);
+							//log(s:"Gave MercurySnatch");
+							break;
+				}
+			}
+		}
+		break;
+	default:
+		break;
+}
+}

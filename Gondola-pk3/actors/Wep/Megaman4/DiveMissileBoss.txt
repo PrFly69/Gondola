@@ -1,0 +1,912 @@
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
+
+  Actor DiveMissileBoss : BaseMM8BDMWep_CBM
+  {
+    Tag "$TAGC_4G"
+	DropItem "DiveSonarWepCDropped"
+	Weapon.AmmoUse 10
+	Weapon.AmmoGive 560
+	Weapon.AmmoUse2 100
+	Weapon.AmmoGive2 400
+	//Weapon.SlotNumber 1
+	Obituary "$OB_DIVEMISSILE"
+	Inventory.PickupMessage "You found my battleship!"
+	Weapon.ammotype "YouSunkMyAmmo"
+	Weapon.ammotype2 "DiveTackleAmmo"
+	//Inventory.Icon "DiveIco1"
+	States
+	{
+		Spawn:
+		C_04 G 1
+		Loop
+		
+		Ready:
+		DIVA A 0 ACS_ExecuteAlways(998,0,DYE_DIVEMAN)
+		DIVA A 0
+		Goto Ready1
+		
+		Ready1:
+		DIVA A 0 A_JumpIfInventory("YouSunkMyAmmo",60,"Ready2a")
+		DIVA A 0 A_JumpIfInventory("DiveTackleAmmo",140,"Ready2b")
+		DIVA A 2 A_WeaponReady(WRF_NOFIRE)
+		DIVA A 0 A_JumpIfInventory("DiveTackleCooldown",1,2)
+		DIVA A 0 A_GiveInventory("DiveTackleAmmo",4)
+		DIVA A 0 A_GiveInventory("YouSunkMyAmmo",5)
+		Loop
+		
+		Ready2a:
+		DIVA A 0 A_JumpIfInventory("DiveTackleAmmo",140,"Ready3")
+		DIVA A 2 A_WeaponReady(WRF_NOSECONDARY)
+		DIVA A 0 A_JumpIfInventory("DiveTackleCooldown",1,2)
+		DIVA A 0 A_GiveInventory("DiveTackleAmmo",4)
+		DIVA A 0 A_GiveInventory("YouSunkMyAmmo",5)
+		Loop
+		
+		Ready2b:
+		DIVA A 0 A_JumpIfInventory("YouSunkMyAmmo",60,"Ready3")
+		DIVA A 2 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
+		DIVA A 0 A_JumpIfInventory("DiveTackleCooldown",1,2)
+		DIVA A 0 A_GiveInventory("DiveTackleAmmo",4)
+		DIVA A 0 A_GiveInventory("YouSunkMyAmmo",5)
+		Loop
+		
+		Ready3:
+		DIVA A 2 A_WeaponReady(WRF_ALLOWRELOAD)
+		DIVA A 0 A_JumpIfInventory("DiveTackleCooldown",1,2)
+		DIVA A 0 A_GiveInventory("DiveTackleAmmo",4)
+		DIVA A 0 A_GiveInventory("YouSunkMyAmmo",5)
+		Loop
+
+		Deselect:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+		DIVA A 1 A_Lower
+		Loop
+		
+		Select:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+		DIVA A 1 A_Raise
+		Loop
+		
+		Fire:
+		DIVA A 0 A_PlaySoundEx("weapon/sakugarne","Weapon")
+		DIVA BCD 2
+		DIVA D 0 A_GiveInventory("VivifyDelay5",1)
+		DIVA D 0 A_Refire("FireL")
+		Goto FireL
+		
+		FireL:
+		DIVA D 0 A_JumpIfNoAmmo("FireEnd")
+		DIVA D 0 A_JumpIfInventory("DiveCounter",7,"ShootRed")
+		DIVA D 0 A_PlaySoundEx("weapon/needleDakka","Weapon")
+		DIVA D 0 A_GiveInventory("DivemanMain_CI",1)
+		DIVA D 4
+		DIVA D 0 A_GiveInventory("DiveCounter",1)
+		DIVA D 0 A_GiveInventory("VivifyDelay5",1)
+		DIVA D 0 A_Refire("FireL")
+		Goto FireEnd
+		
+		FireEnd:
+		DIVA D 0 A_TakeInventory("DiveCounter",999)
+		DIVA DCB 2
+		Goto Ready1
+		
+		ShootRed:
+		DIVA D 0 A_PlaySoundEx("weapon/needleDakka","Weapon")
+		DIVA D 0 A_GiveInventory("DivemanMain2_CI",1)
+		DIVA D 4
+		DIVA D 0 A_TakeInventory("DiveCounter",999)
+		DIVA D 0 A_GiveInventory("VivifyDelay5",1)
+		DIVA D 0 A_Refire("FireL")
+		Goto FireEnd
+
+		FireOld:
+		DIVA A 0 A_JumpIfNoAmmo("NoAmmo")
+		DIVA A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+		DIVA A 0 A_TakeInventory("YouSunkMyAmmo",60)
+		DIVA A 0 A_GiveInventory("DivemanMain_CI",1)
+		DIVA BCDCB 3
+		DIVA A 10
+		Goto Ready1
+		
+		AltFire:
+		DIVA B 0 A_JumpIfInventory("DiveTackleAmmo",100,"AltFire2")
+		Goto Ready1
+		
+		AltFire2:
+		DIVA B 0 A_JumpIfInventory("DiveAntiSpam",1,"NoAmmo")
+		DIVA B 2
+		DIVA B 0 A_TakeInventory("DiveTackleHitFlag",999)
+        DIVA B 0 A_TakeInventory("DiveTackleHitFlagX",999)
+		DIVA CD 2
+		DIVA D 0 SetPlayerProperty(0,1,0)
+		DIVA D 0 ACS_ExecuteWithResult(CORE_ACS_191,APROP_JumpZ,0,1)
+		DIVA D 0 A_GiveInventory("DiveTackleFrame",1)
+		DIVA D 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
+		DIVA D 0 A_TakeInventory("DiveTackleAmmo",50)//A_TakeInventory("DiveTackleAmmo",105)
+		DIVA D 0 //A_JumpIf(pitch<340 && pitch>=270,"AltFire2UpLimit")
+		Goto AltFireH
+		
+		AltFireH:
+		DIVA D 0 A_JumpIfInventory("DiveTackleAmmo",1,"AltFireH2")
+		Goto AltTackleE
+		
+		AltFireH2:
+        DIVA D 0 A_JumpIfInventory("DiveTackleHitFlagX",1,"AltCollideDrop")
+		DIVA D 0 A_JumpIfInventory("DiveTackleHitFlag",1,"AltCollide")
+		DIVA D 0 A_PlaySound("weapon/BRGSpin",4,0.75)
+		DIVA D 0 A_TakeInventory("DiveTackleAmmo",3)
+		DIVA D 1 A_GiveInventory("DiveTackle_P",1)
+		DIVA D 0 A_Refire(1)
+		Goto AltTackleE
+        DIVA D 0 A_JumpIfInventory("DiveTackleHitFlagX",1,"AltCollideDrop")
+		DIVA D 0 A_JumpIfInventory("DiveTackleHitFlag",1,"AltCollide")
+		DIVA D 0 A_TakeInventory("DiveTackleAmmo",3)
+		DIVA D 1 A_GiveInventory("DiveTackle_P",1)
+		DIVA D 0 A_Refire(1)
+		Goto AltTackleE
+        DIVA D 0 A_JumpIfInventory("DiveTackleHitFlagX",1,"AltCollideDrop")
+		DIVA D 0 A_JumpIfInventory("DiveTackleHitFlag",1,"AltCollide")
+		DIVA D 0 A_TakeInventory("DiveTackleAmmo",3)
+		DIVA D 1 A_GiveInventory("DiveTackle_P",1)
+		DIVA D 0 A_Refire("AltFireH")
+		Goto AltTackleE
+		
+		AltCollide:
+		DIVA D 0 A_PlaySoundEx("weapon/blizzstrike","Body")
+		DIVA D 0 A_GiveInventory("DivemanAlt2_CI",1)
+		DIVA D 0 A_ChangeVelocity(-6,0,12,3)
+		DIVA D 0 A_TakeInventory("DiveTackleAmmo",25)
+		DIVA D 0 A_GiveInventory("DiveAntiSpam",1)
+		Goto AltTackleE
+        
+        AltCollideDrop:
+		DIVA D 0 A_GiveInventory("DiveAntiSpam",1)
+		Goto AltTackleE
+		
+		AltTackleE:
+		DIVA D 0 SetPlayerProperty(0,0,0)
+		DIVA C 0 A_TakeInventory("DiveTackleFrame",999)
+		DIVA C 3
+		DIVA B 0 ACS_ExecuteWithResult(CORE_ACS_191,APROP_JumpZ,10,1)
+		DIVA B 3
+		DIVA A 6 A_GiveInventory("DiveTackleCooldown",1)
+		Goto Ready1
+
+		Reload:
+		DIVA A 0 A_JumpIfInventory("DiveTackleAmmo",140,"Mines")
+		Goto Ready1
+		
+		Mines:
+		TNT1 A 0 ACS_ExecuteWithResult(512,1,0)
+		DIVA BCD 2
+		DIVA A 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+		DIVA A 0 A_TakeInventory("DiveTackleAmmo",120)
+		DIVA A 0 A_GiveInventory("DivemanAlt_CI",1)
+		DIVA D 5
+		DIVA DCB 2
+		DIVA A 5
+		Goto Ready1
+
+		NoAmmo:
+		DIVA A 0
+		Goto Ready+1
+	}
+  }
+
+
+//====================
+// Ammo & Inventory
+//--------------------
+//====================
+
+  Actor YouSunkMyAmmo : AmmO
+  {
+	Inventory.Amount 1
+	Inventory.MaxAmount 560
+	+INVENTORY.IGNORESKILL
+  }
+
+
+  Actor DiveTackleAmmo : Ammo
+  {
+	Inventory.Amount 1
+	Inventory.MaxAmount 400
+	+INVENTORY.IGNORESKILL
+  }
+
+
+  Actor DiveTackleHitFlag : OnceC{}
+  Actor DiveTackleHitFlagX : OnceC{}
+
+  
+  Actor DiveTackleCooldown : Powerup
+  {
+	PowerUp.Duration 70
+  }
+
+
+  Actor DiveTackleFrame : Inventory
+  {
+	Inventory.Amount 1
+	Inventory.MaxAmount 8
+  }
+
+
+  Actor DiveBossLockon : Powerup
+  {
+    PowerUp.Duration 8
+}
+
+
+  Actor DiveLockonCleanse : Powerup
+  {
+    PowerUp.Duration 6
+  }
+
+
+  Actor DiveAntiSpam : Powerup
+  {
+	PowerUp.Duration 35
+	+INVENTORY.ADDITIVETIME
+  }
+
+
+  Actor DiveTackle_P : CustomInventory
+  {
+	States
+	{
+		Pickup:
+		TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+		TNT1 A 0 A_ChangeVelocity(26*cos(pitch),0,26*-sin(pitch),3)
+		Goto PickupEnd
+		
+		PickupR:
+		TNT1 A 0 A_ChangeVelocity(42*cos(pitch),0,42*-sin(pitch),3)
+		Goto PickupEnd
+		
+		PickupEnd:
+		TNT1 A 0 A_GiveInventory("DiveTackleFrame",1)
+		TNT1 A 0 A_SpawnItemEx("DiveTackleHitbox",0,0,-10,cos(-pitch)*30,0,sin(-pitch)*30,0,0)
+		TNT1 A 0 A_SpawnItemEx("DiveTackleHitboxCheck",0,0,0,momx,momy,momz,0,9)
+		Stop
+	}
+  }
+
+
+  Actor DivemanLockonACS_P : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0 A_PlaySound("wep_L/DiveSonar",7,1.0)
+		TNT1 A 0 ACS_ExecuteWithResult(C_DIVELOCKDISPLAY)
+		Stop
+	}
+  }
+
+
+  Actor DiveMissileUseItem : CustomInventory
+  {
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+	Inventory.Icon "DiveIcon"
+	Scale 2.0
+	Inventory.PickupMessage "R.I.P. homing Diveman."
+	Tag "Clear Lock-on"
+	+INVBAR
+	States
+	{
+		Spawn:
+		DIVA X 1
+		Loop
+		
+		Use:
+		TNT1 A 0 A_JumpIfInventory("SuplexID",1,"Cancel")
+		Fail
+		
+		Cancel:
+		TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
+		TNT1 A 0 A_GiveInventory("DiveLockonCleanse",1)
+		TNT1 A 0 A_TakeInventory("SuplexID",9999)
+		Fail
+	}
+  }
+
+
+//================
+// Dive Mine
+//----------------
+//================
+
+  Actor DiveMineClass
+  {
+	Translation "192:192=4:4", "198:198=194:194", "202:202=210:210"
+	PROJECTILE
+	DamageType "DiveMine"
+	Obituary "$OB_DIVEMINE"
+	//+SHOOTABLE
+    //+MTHRUSPECIES
+	+DONTDRAIN
+	+NOBLOOD
+	-NOBLOCKMAP
+	+RIPPER
+	+HEXENBOUNCE//+DOOMBOUNCE
+	+CANBOUNCEWATER
+	+FLOATBOB
+	+BOUNCEONACTORS
+	+NOTARGETSWITCH
+	+CANTSEEK
+	+NOPAIN
+	+THRUSPECIES
+	Species "DumbDiveMine"
+
+	//+DONTDRAIN
+	DamageFactor "DiveMine", 20.0
+	DamageFactor "PlantDrain", 0.0
+	DamageFactor "ShadeDrain", 0.0
+
+	Health 50
+	Mass 99999
+	ReactionTime 1
+	Damage (0)
+	Radius 18
+	Height 24
+	Speed 30
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0 nodelay ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		DIVA M 7
+		DIVA M 0 A_ChangeFlag("BOUNCEONACTORS",0)
+		DIVA M 0 A_ChangeFlag("RIPPER",0)
+		DIVA M 0 A_ChangeFlag("SHOOTABLE",1)
+		DIVA MMM 1
+		DIVA M 0 A_ScaleVelocity(0.1)
+		
+		Floating:
+		DIVA MMMMM 5
+		DIVA N 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathC")
+		DIVA M 0 A_GiveInventory("WeaponCharge",1)//A_CountDown
+		DIVA M 0 A_JumpIfInventory("WeaponCharge",21,"DeathC")
+		Loop
+		
+		DeathC:
+		DIVA N 1 A_CountDown
+		Wait
+		
+		Death:
+		DIVA N 0
+		DIVA N 0 A_ChangeFlag("SHOOTABLE",0)//Bug that was supposed to be fixed
+		DIVA N 0 A_ChangeFlag("FLOATBOB",0)//Persists
+		DIVA N 0 A_ChangeFlag("NOGRAVITY",1)//A_CountDown makes it fall down
+		DIVA N 1 A_Stop
+		DIVA N 0 A_PlaySoundEx("weapon/drillexplode", "Weapon")
+		DIVA N 0 A_SpawnItemEx("DiveMineExplode",0,0,16,0,0,0,0,1)
+		TNT1 A 1
+		Stop
+	}
+  }
+
+
+  Actor DiveMineExplode : BasicExplosion
+  {
+	Obituary "$OB_DIVEMINE"
+	DamageType "DiveMine"
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Explode(20,128,0)
+		TN_B EFGHIJKLMNOPQRS 2
+		Stop
+	}
+  }
+
+
+  Actor DiveMineProtect : PowerProtection
+  {
+	PowerUp.Duration 12
+	DamageFactor "DiveMine", 0.3
+  }
+
+
+//~~~~~~~~~~~~~~~~~~~
+// Translations
+//~~~~~~~~~~~~~~~~~~~
+
+  Actor DiveMineClassB : DiveMineClass{translation "192:192=205:205", "198:198=74:74", "202:202=205:205"}
+  Actor DiveMineClassR : DiveMineClass{translation "192:192=171:171", "198:198=41:41", "202:202=171:171"}
+  Actor DiveMineClassO : DiveMineClass{translation "192:192=104:104", "198:198=128:128", "202:202=104:104"}
+  Actor DiveMineClassP : DiveMineClass{translation "192:192=229:229", "198:198=232:232", "202:202=229:229"}
+
+
+//==================
+// Dive Missile
+//------------------
+//==================
+
+  Actor DivemanMissileHelper1 : BasicHelper
+  {
+	Translation "199:199=194:194","202:202=210:210"
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("DivemanMissileClass",0,0,0,random(8,10),random(-20,20),random(-4,4),0,1)
+		Stop
+	}
+  }
+
+  Actor DivemanMissileHelper2 : BasicHelper
+  {
+	Translation "250:250=227:227","249:249=0:0","202:202=210:210"
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("DivemanMissileClass2",0,0,0,random(8,10),random(-20,20),random(-4,4),0,1)
+		Stop
+	}
+  }
+
+
+//~~~~~~~~~~~~~~~~~~
+// Translations
+//~~~~~~~~~~~~~~~~~~
+
+  Actor DivemanMissileHelper1B : DivemanMissileHelper1{translation "199:199=74:74","202:202=205:205"}
+  Actor DivemanMissileHelper1R : DivemanMissileHelper1{translation "199:199=41:41","202:202=171:171"}
+  Actor DivemanMissileHelper1O : DivemanMissileHelper1{translation "199:199=128:128","202:202=104:104"}
+  Actor DivemanMissileHelper1P : DivemanMissileHelper1{translation "199:199=232:232","202:202=229:229"}
+  
+  Actor DivemanMissileHelper2B : DivemanMissileHelper2{translation "250:250=196:196","249:249=199:199","202:202=205:205"}
+  Actor DivemanMissileHelper2R : DivemanMissileHelper2{translation "250:250=170:170","249:249=43:43","202:202=171:171"}
+  Actor DivemanMissileHelper2O : DivemanMissileHelper2{translation "250:250=138:138","249:249=131:131","202:202=104:104"}
+  Actor DivemanMissileHelper2P : DivemanMissileHelper2{translation "250:250=214:214","249:249=223:223","202:202=229:229"}
+
+
+  Actor DivemanMissileClass
+  {
+	PROJECTILE
+	DamageType "DiveMissile"//DiveMissileLock
+	Obituary "$OB_DIVEMISSILE"
+	+HEXENBOUNCE
+	+HITTRACER
+    //+MTHRUSPECIES
+	Damage (8)
+	Radius 6
+	Height 7
+	Speed 27
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0 nodelay ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		DIVA L 3
+		DIVA L 0 A_Stop
+		
+		Spawn2:
+		DIVA L 6
+		
+		Spawn3:
+		DIVA L 2 A_GiveToTarget("TargetMarkerT",1)
+		DIVA L 2 ACS_ExecuteWithResult(989,ACS_ExecuteWithResult(257)+100)
+		DIVA L 0 A_ChangeVelocity(cos(pitch)*40,0,-sin(pitch)*40,CVF_RELATIVE)
+		DIVA L 0 A_PlaySoundEx("weapon/solarshoot","Weapon")
+		DIVA L 0 A_ChangeFlag("HEXENBOUNCE",0)
+		
+		Spawn4:
+		DIVA L 2
+		DIVA L 0 A_SpawnItemEx("DivemanMissileClassFX")
+		Loop
+		
+		Death:
+		//UMFX R 0 ACS_NamedExecuteAlways("RFC_DiveLockOn",0)
+		UMFX RS 2
+		SMFX D 2
+		Stop
+
+		Crash:
+		XDeath:
+		TNT1 A 0 A_JumpIfInTargetInventory("SuplexID",1,"Death")
+		TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1, "DeathWatcher1")
+		Goto Death
+		
+		DeathWatcher1:
+		TNT1 A 0 A_SpawnItemEx("DivemanMissileClassFXD",0,0,0,0,0,0,0,1)
+		TNT1 A 0 A_GiveToTarget("SuplexID",(ACS_ExecuteWithResult(147,1)-1000)+1)
+		TNT1 A 0 A_GiveToTarget("DivemanLockonACS_P",1)
+		TNT1 A 0 A_PlaySound("wep_L/DiveSonar",7,1.0)
+		Goto DeathWatcher2
+		
+		DeathWatcher2:
+		TNT1 A 1 A_GiveInventory("DiveBossLockon",1,8)
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathTarget")
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathTracer")
+		TNT1 A 0 A_JumpIfInTargetInventory("DiveLockonCleanse",1,"DeathTracer")
+		TNT1 A 1 A_GiveInventory("DiveBossLockon",1,8)
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathTarget")
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathTracer")
+		TNT1 A 0 A_JumpIfInTargetInventory("DiveLockonCleanse",1,"DeathTracer")
+		TNT1 A 1 A_GiveInventory("DiveBossLockon",1,8)
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathTarget")
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathTracer")
+		TNT1 A 0 A_JumpIfInTargetInventory("DiveLockonCleanse",1,"DeathTracer")
+		TNT1 A 1 A_GiveInventory("DiveBossLockon",1,8)
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathTarget")
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathTracer")
+		TNT1 A 0 A_JumpIfInTargetInventory("DiveLockonCleanse",1,"DeathTracer")
+		TNT1 A 1 A_GiveInventory("DiveBossLockon",1,8)
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathTarget")
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathTracer")
+		TNT1 A 0 A_JumpIfInTargetInventory("DiveLockonCleanse",1,"DeathTracer")
+		TNT1 A 0 A_JumpIfInventory("WeaponCharge",105,"DeathTarget")
+		TNT1 A 0 A_GiveInventory("WeaponCharge",1)
+		Loop
+		
+		DeathTarget:
+		TNT1 A 0 //A_LOG("DeathTarget")
+		TNT1 A 0 A_TakeFromTarget("SuplexID",999)
+		TNT1 A 1 A_TakeInventory("DiveBossLockon",9,0,8)
+		Stop
+		
+		DeathTracer:
+		TNT1 A 0 //A_LOG("DeathTracer")
+		TNT1 A 1 A_TakeFromTarget("SuplexID",999)
+		Stop
+	}
+  }
+
+
+  Actor DivemanMissileClassFXD : BasicClientSide
+  {
+	States
+	{
+		Spawn:
+		UMFX RS 2
+		SMFX D 2
+		Stop
+	}
+  }
+
+
+  Actor DivemanMissileClass2 : DivemanMissileClass
+  {
+	+SEEKERMISSILE
+	Speed 20
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		DIVA P 4
+		DIVA P 0 A_Stop
+		
+		Spawn2:
+		DIVA P 8 //A_SetSpeed(30)
+		
+		Spawn3:
+		DIVA P 2 A_GiveToTarget("TargetMarkerT",1)
+		DIVA P 2 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100)
+		DIVA P 0 A_ChangeVelocity(cos(pitch)*40,0,-sin(pitch)*40,CVF_RELATIVE)
+		DIVA P 0 A_PlaySoundEx("weapon/solarshoot","Weapon")
+		DIVA P 0 A_ChangeFlag("HEXENBOUNCE",0)
+		DIVA P 0 //ACS_ExecuteAlways("RFC_DiveGetTracer",0)C_SET_POINTER
+		DIVA P 0 ACS_ExecuteAlways(C_SET_POINTER,0,8,ACS_ExecuteWithResult(414,2)+999)
+		DIVA PP 1 A_SeekerMissile(0,0)
+		DIVA P 0 A_SpawnItemEx("DivemanMissileClassFX")
+		DIVA PP 1 A_SeekerMissile(0,0)
+		DIVA P 0 A_SpawnItemEx("DivemanMissileClassFX")
+		DIVA PP 1 A_SeekerMissile(0,0)
+		DIVA P 0 A_SpawnItemEx("DivemanMissileClassFX")
+		DIVA PP 1 A_SeekerMissile(0,0)
+		DIVA P 0 A_SpawnItemEx("DivemanMissileClassFX")
+		
+		Spawn4:
+		DIVA PP 1 A_SeekerMissile(0,90)
+		DIVA P 0 A_SpawnItemEx("DivemanMissileClassFX")
+		Loop
+		
+		Death:
+		UMFX RS 2
+		SMFX D 2
+		Stop
+	}
+  }
+
+
+  Actor DivemanMissileClassFX : BasicClientSide
+  {
+	RenderStyle Add
+	Alpha 0.8
+	States
+	{
+		Spawn:
+		TNT1 A 2
+		DIVA QRS 3
+		Stop
+	}
+  }
+
+
+//=======================
+// Dive Tackle Attack
+//-----------------------
+//=======================
+
+  Actor DiveTackleHitboxCheck
+  {
+	PROJECTILE
+	DamageType "ClassPain"
+	Obituary "$OB_DIVETACKLE"
+	+DONTBLAST
+	+DONTREFLECT
+	+DONTSPLASH
+	//+NOCLIP
+	+THRUGHOST
+	+SKYEXPLODE
+	+STEPMISSILE
+	+THRUSPECIES
+	+NOEXPLODEFLOOR
+	+THRUACTORS
+	Species "DumbDiveMine"
+	MaxStepHeight 24
+	Damage (0)
+	Radius 36
+	Height 56
+	Speed 2
+	States
+	{
+		Spawn:
+		TNT1 A 1
+		Stop
+		
+		Crash:
+		XDeath:
+		TNT1 A 0
+		TNT1 A 2
+		Stop
+		
+		Death:
+		TNT1 A 0 A_GiveToTarget("DiveTackleHitFlagX",1)
+		TNT1 A 2
+		Stop
+	}
+  }
+
+
+  Actor DiveTackleHitbox
+  {
+	PROJECTILE
+	DamageType "DumbDiveTackle"
+	Obituary "$OB_DIVETACKLE"
+	+DONTSPLASH
+	+DONTBLAST
+	+NOEXPLODEFLOOR
+	+THRUGHOST
+	+DONTREFLECT
+	+THRUSPECIES
+    +HITTRACER
+    //+MTHRUSPECIES
+	Species "DumbDiveMine"
+	Damage (0)
+	Radius 36
+	Height 56
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 1
+		Stop
+		
+		Crash:
+		XDeath:
+		TNT1 A 0 
+        TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1, "DeathWatcher1")
+		TNT1 A 2
+		Stop
+        
+        DeathWatcher1:
+        TNT1 A 0 A_GiveToTarget("DiveTackleHitFlag",1)
+        stop
+		
+		Death:
+		TNT1 A 1
+		Stop
+	}
+  }
+
+
+  Actor DiveTackleExplode
+  {
+	Translation"204:204=228:228","195:195=177:177"
+	PROJECTILE
+	DamageType "DumbDiveTackle"
+	Obituary "$OB_DIVETACKLE"
+	+THRUACTORS
+	+DONTBLAST
+	+DONTSPLASH
+	+DONTREFLECT
+	ReactionTime 1
+	Damage (1)
+	Radius 4
+	Height 4
+	Speed 60
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 1 A_CountDown
+		Wait
+		
+		Death:
+		TNT1 A 0
+		TNT1 A 3 A_SpawnItemEx("DiveTackleExplodeEnd",0,0,0,0,0,0,0,1)
+		Stop
+	}
+  }
+
+
+//~~~~~~~~~~~~~~~~
+// Translations
+//~~~~~~~~~~~~~~~~  
+
+  Actor DiveTackleExplodeB : DiveTackleExplode{translation"204:204=205:205","195:195=74:74"}
+  Actor DiveTackleExplodeR : DiveTackleExplode{translation"204:204=171:171","195:195=41:41"}
+  Actor DiveTackleExplodeO : DiveTackleExplode{translation"204:204=104:104","195:195=128:128"}
+  Actor DiveTackleExplodeP : DiveTackleExplode{translation"204:204=229:229","195:195=232:232"}
+
+
+  Actor DiveTackleExplodeEnd : BasicExplosion
+  {
+	DamageType "ClassPain"
+	Obituary "$OB_DIVETACKLE"
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerSpread_ST",1,"SpawnS")
+		Goto SpawnB
+		
+		SpawnS:
+		TNT1 AA 0 A_Explode(25,128,0,0,128)
+		Goto SpawnB
+		
+		SpawnB:
+		TNT1 A 0 A_Explode(25,128,0,0,128)
+		DIVA TUV 2
+		Stop
+	}
+  }
+
+
+//=================
+// Attack Items
+//-----------------
+//=================
+
+  Actor DivemanMain_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper1",0,1,0,0)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper1B",0,1,0,0)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper1R",0,1,0,0)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper1O",0,1,0,0)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper1P",0,1,0,0)
+		Goto Done
+	}
+  }
+
+
+  Actor DivemanMain2_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper2",0,1,0,0)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper2B",0,1,0,0)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper2R",0,1,0,0)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper2O",0,1,0,0)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("DivemanMissileHelper2P",0,1,0,0)
+		Goto Done
+	}
+  }
+
+
+  Actor DivemanAlt_CI : TeamColor_CI
+  {
+	States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("DiveMineClass",0,0,0,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClass",-15,0,25,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClass",15,0,-25,0)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassB",0,0,0,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassB",-15,0,25,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassB",15,0,-25,0)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassR",0,0,0,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassR",-15,0,25,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassR",15,0,-25,0)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassO",0,0,0,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassO",-15,0,25,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassO",15,0,-25,0)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassP",0,0,0,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassP",-15,0,25,0)
+		TNT1 A 0 A_FireCustomMissile("DiveMineClassP",15,0,-25,0)
+		Goto Done
+	}
+  }
+
+
+  Actor DivemanAlt2_CI : TeamColor_CI
+  {
+	States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("DiveTackleExplode",0,0,0,0)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("DiveTackleExplodeB",0,0,0,0)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("DiveTackleExplodeR",0,0,0,0)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("DiveTackleExplodeO",0,0,0,0)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("DiveTackleExplodeP",0,0,0,0)
+		Goto Done
+	}
+  }

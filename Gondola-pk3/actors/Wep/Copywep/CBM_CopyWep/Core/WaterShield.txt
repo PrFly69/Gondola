@@ -1,0 +1,347 @@
+actor WaterShieldWep : BaseMM8BDMWep
+{
+	//$Category MM8BDM-Weapons
+	//$Title Water Shield
+	//$Sprite WATSA0
+	Weapon.AmmoUse 7
+	Weapon.AmmoGive 28
+	Weapon.SlotNumber 7
+	Obituary "$OB_WATERSHIELD"
+	Tag "$TAG_WATERSHIELD"
+	Inventory.Pickupmessage "$PU_WATERSHIELD"
+	weapon.ammotype "WaterShieldAmmo"
+	inventory.icon "WATERI"
+	States
+	{
+	SpawnLoop:
+		WATS A -1
+		loop
+	Ready:
+		WSHD D 0 ACS_ExecuteAlways(998,0,204)
+		WSHD D 1 A_WeaponReady
+		Goto Ready+1
+	Deselect:
+		TNT1 A 0 A_TakeInventory("WaterShieldCheck", 8)
+		TNT1 A 0 A_TakeInventory("ShieldCheck", 1)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+		WSHD D 1 A_Lower
+		Goto Deselect+1
+	Select:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+		WSHD D 1 A_Raise
+		Loop
+	Fire:
+		WSHD D 0 A_JumpIfInventory("WaterShieldCheck", 1, "BotCheck")
+		WSHD D 0 A_JumpIfNoAmmo("NoAmmo")
+		WSHD D 0 A_TakeInventory("WaterShieldAmmo",7,TIF_NOTAKEINFINITE)
+		WSHD D 0 A_PlaySoundEx("weapon/watershieldspawn", "Weapon")
+		WSHD D 0 A_GiveInventory("ShieldCheck", 1)
+		WSHD E 0 A_GiveInventory("SpawnWaterShield", 1)
+		WSHD EEEFFEEEFFEEEFFEEEFF 1
+		WSHD EEEFFEEEFFEEEFFEEEFF 1
+		WSHD D 10
+		WSHD D 0 A_GiveInventory("WaterShieldExpand", 1)
+		Goto Ready+1
+	Active:
+		WSHD D 1 A_WeaponReady
+		WSHD D 0 A_JumpIfInventory("WaterShieldCheck", 1, "Active")
+		WSHD D 1 A_Jump(256, "ClearReady")
+		wait
+	ClearReady:
+		WSHD D 0 A_TakeInventory("ShieldCheck", 1)
+		goto Ready+1
+	BotCheck:
+		WSHD E 0 A_JumpIfInventory("IsBot", 1, "BotBullRun")
+		goto ShieldFire
+	ShieldFire:
+		WSHD D 0 A_PlaySoundEx("weapon/watershieldburst", "Weapon")
+		WSHD D 0 A_GiveInventory("WaterShieldShoot", 1)
+		WSHD D 1
+		WSHD E 0 A_TakeInventory("WaterShieldCheck",8)
+		WSHD E 0 A_TakeInventory("ShieldCheck", 1)
+		WSHD D 35
+		WSHD D 0 A_TakeInventory("WaterShieldShoot", 1)
+		Goto Ready+1
+	BotBullrun:
+		WSHD D 10 A_ChangeVelocity(10, 0, momz, CVF_RELATIVE|CVF_REPLACE)
+		WSHD D 0 A_Refire("Fire")
+		goto ShieldFire
+	NoAmmo:
+		WOOD J 0 A_TakeInventory("WaterShieldCheck",999)
+		WSHD D 1 ACS_Execute(979,0)
+		goto Ready+1
+	}
+}
+
+actor WaterShieldShoot : ShieldCheck {}
+actor WaterShieldCheck : ShieldCheck
+{
+	inventory.maxamount 8
+}
+
+actor WaterShieldExpand : PowerUp {powerup.duration 4}
+
+actor SpawnWaterShield : Custominventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0 A_JumpIfInventory("RuneSpread", 1, "PickupSpread")
+        TNT1 A 0 A_SpawnItemEx("WaterShieldSpawner", 0, 0, 0, 0, 0, 0, 0)
+        stop
+    PickupSpread:
+        TNT1 A 0 A_SpawnItemEx("WaterShieldSpawnerS1", 0, 0, 0, 0, 0, 0, 342)
+        TNT1 A 0 A_SpawnItemEx("WaterShieldSpawnerS2", 0, 0, 0, 0, 0, 0, 354)
+        TNT1 A 0 A_SpawnItemEx("WaterShieldSpawnerS3", 0, 0, 0, 0, 0, 0, 366)
+        TNT1 A 0 A_SpawnItemEx("WaterShieldSpawnerS4", 0, 0, 0, 0, 0, 0, 378)
+        stop
+    }
+}
+
+actor WaterShieldSpawner
+{
+	PROJECTILE
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Scale 4.0
+    renderstyle none
+    mass 360
+	States
+	{
+	Spawn:
+		WATS C 0
+		WATS C 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0, "End")
+		WATS C 0 A_GiveToTarget("WaterShieldCheck", 1)
+		// Spawned blobs sometimes bounce on walls, resetting their angle.
+		// By manipulating the scale in this manner, the angle can be synced again by transferring it to the blob.
+		WATS C 0 A_SetScale(angle, ScaleY)
+		WATS C 0 A_SpawnItemEx("WaterShield", 0, 0, 8, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		WATS C 0 A_SpawnItemEx("WaterShieldSpawn", 64, 0, 40)
+		WATS ZZZZZ 1 A_Warp(AAPTR_TARGET, 0, 0, 0, angle+mass, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		WATS C 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0, "End")
+		WATS C 0 A_GiveToTarget("WaterShieldCheck", 1)
+		WATS C 0 A_SpawnItemEx("WaterShieldSpawn", 64, 0, 40)
+		WATS C 0 A_SpawnItemEx("WaterShield", 0, 0, 8, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		WATS ZZZZZ 1 A_Warp(AAPTR_TARGET, 0, 0, 0, angle+mass, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		WATS C 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0, "End")
+		WATS C 0 A_GiveToTarget("WaterShieldCheck", 1)
+		WATS C 0 A_SpawnItemEx("WaterShieldSpawn", 64, 0, 40)
+		WATS C 0 A_SpawnItemEx("WaterShield", 0, 0, 8, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		WATS ZZZZZ 1 A_Warp(AAPTR_TARGET, 0, 0, 0, angle+mass, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		WATS C 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0, "End")
+		WATS C 0 A_GiveToTarget("WaterShieldCheck", 1)
+		WATS C 0 A_SpawnItemEx("WaterShieldSpawn", 64, 0, 40)
+		WATS C 0 A_SpawnItemEx("WaterShield", 0, 0, 8, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		WATS ZZZZZ 1 A_Warp(AAPTR_TARGET, 0, 0, 0, angle+mass, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		WATS C 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0, "End")
+		WATS C 0 A_GiveToTarget("WaterShieldCheck", 1)
+		WATS C 0 A_SpawnItemEx("WaterShieldSpawn", 64, 0, 40)
+		WATS C 0 A_SpawnItemEx("WaterShield", 0, 0, 8, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		WATS ZZZZZ 1 A_Warp(AAPTR_TARGET, 0, 0, 0, angle+mass, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		WATS C 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0, "End")
+		WATS C 0 A_GiveToTarget("WaterShieldCheck", 1)
+		WATS C 0 A_SpawnItemEx("WaterShieldSpawn", 64, 0, 40)
+		WATS C 0 A_SpawnItemEx("WaterShield", 0, 0, 8, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		WATS ZZZZZ 1 A_Warp(AAPTR_TARGET, 0, 0, 0, angle+mass, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		WATS C 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0, "End")
+		WATS C 0 A_GiveToTarget("WaterShieldCheck", 1)
+		WATS C 0 A_SpawnItemEx("WaterShieldSpawn", 64, 0, 40)
+		WATS C 0 A_SpawnItemEx("WaterShield", 0, 0, 8, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		WATS ZZZZZ 1 A_Warp(AAPTR_TARGET, 0, 0, 0, angle+mass, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		WATS C 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0, "End")
+		WATS C 0 A_GiveToTarget("WaterShieldCheck", 1)
+		WATS C 0 A_SpawnItemEx("WaterShieldSpawn", 64, 0, 40)
+		WATS C 0 A_SpawnItemEx("WaterShield", 0, 0, 8, 0, 0, 0, 0, SXF_TRANSFERSCALE)
+		stop
+	End:
+		TNT1 A 0
+		stop
+	}
+}
+
+actor WaterShieldSpawnerS1 : WaterShieldSpawner { mass 342 }
+actor WaterShieldSpawnerS2 : WaterShieldSpawner { mass 354 }
+actor WaterShieldSpawnerS3 : WaterShieldSpawner { mass 366 }
+actor WaterShieldSpawnerS4 : WaterShieldSpawner { mass 378 }
+
+// Item to conditionally give Water Shield NOINTERACTION and remove bouncing
+// if the game is a network game. (Given by a clientside script.)
+actor WaterShieldInteract : Custominventory
+{
+	States
+	{
+	Pickup:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIf(true, "End") // Client skips this jump online, but not offline.
+		TNT1 A 0 A_ChangeFlag(NOINTERACTION, true)
+		TNT1 A 0 A_ChangeFlag(HEXENBOUNCE, false)
+		stop
+	End:
+		TNT1 A 0
+		stop
+	}
+}
+
+actor WaterShield
+{
+	PROJECTILE
+	+FORCEXYBILLBOARD
+	Obituary "$OB_WATERSHIELD"
+	Damagetype "WaterShield"
+	bouncetype hexen
+	+THRUSPECIES
+	+SHOOTABLE
+	+DONTRIP
+	health 1
+	-NOBLOCKMAP
+	+SKYEXPLODE
+	+NOBLOOD
+	+CANTSEEK
+    +DONTSPLASH
+    +NORADIUSDMG
+    -ALLOWBOUNCEONACTORS
+    +NOTAUTOAIMED
+	bouncefactor 0.0
+	Damage (20)
+	Speed 30
+	Height 40
+	Radius 20
+	Scale 4.0
+	reactiontime 35
+	var int user_radius;
+	var int user_angleadd;
+	var int user_angle;
+	var int user_expandtime;
+	
+	var int user_speed;
+	var int user_maxturn;
+	var int user_turndivisor;
+	var int user_turndivisor_add;
+	States
+	{
+	Spawn:
+		WATS B 0 A_JumpIf(true, "SpawnLoop")
+		WATS B 0 A_SetUserVar(user_radius, 64)
+		WATS B 0 A_SetUserVar(user_angleadd, 9)
+		WATS B 0 A_SetUserVar(user_angle, scaleX) // Scale is pulled into the blob position info before set back to 4.0
+		WATS B 0 A_SetScale(4.0, ScaleY)
+	SpawnLoop:
+		WATS B 0 A_SetUserVar(user_angle, user_angle-user_angleadd)
+		WATS B 0 A_Warp(AAPTR_TARGET, cos(-user_angle)*user_radius, sin(-user_angle)*user_radius, 8, 0, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		WATS B 0 A_JumpIfInTargetInventory("IsDead", 1, "Death")
+		WATS B 0 A_JumpIfInTargetInventory("WaterShieldExpand", 1, "Expand")
+		WATS B 0 A_JumpIfInTargetInventory("WaterShieldShoot", 1, "Shoot")
+		WATS B 1
+		WATS B 0 A_JumpIfInTargetInventory("WaterShieldCheck", 1, "SpawnLoop")
+		WATS B 0 A_JumpIf(true, "Death")
+		WATS B 70
+		goto Death
+	Expand:
+		WATS B 0 A_SetUserVar(user_expandtime, 16)
+	ExpandLoop:
+		WATS B 0 A_SetUserVar(user_angleadd, user_angleadd-((user_expandtime%3)%2))
+		WATS B 0 A_SetUserVar(user_radius, user_radius+3)
+		WATS B 0 A_SetUserVar(user_expandtime, user_expandtime-1)
+		WATS B 1
+		WATS B 0 A_SetUserVar(user_angle, user_angle-user_angleadd)
+		WATS B 0 A_Warp(AAPTR_TARGET, cos(-user_angle)*user_radius, sin(-user_angle)*user_radius, 8, 0, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		WATS B 0 A_JumpIf(user_expandtime <= 0, "ExpandEnd")
+		WATS B 0 A_JumpIfInTargetInventory("IsDead", 1, "Death")
+		WATS B 0 A_JumpIfInTargetInventory("WaterShieldShoot", 1, "Shoot")
+		WATS B 0 A_JumpIfInTargetInventory("WaterShieldCheck", 1, "ExpandLoop")
+		WATS B 0 A_JumpIf(true, "Death")
+		WATS B 10
+		goto Death
+	ExpandEnd:
+		WATS B 0 //A_ChangeFlag(THRUSPECIES, false)
+		goto SpawnLoop
+	Shoot:
+		WATS B 0 A_GiveInventory("WaterShieldShoot", 1)
+		// stolen from Power Stone
+		WATS A 0 A_SetUserVar("user_speed", 30)
+		WATS A 0 A_SetUserVar("user_maxturn", 600)
+		WATS A 0 A_SetUserVar("user_turndivisor", 50)
+		WATS A 0 A_SetUserVar("user_turndivisor_add", 12)
+
+		WATS B 0 A_SetAngle(user_angle-2*(user_maxturn/user_turndivisor))
+		WATS B 0 A_ChangeVelocity(30, 0, 0, CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_ChangeFlag(BOUNCEONWALLS, false)
+		WATS B 1
+	Shoot2:
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+	Shoot3:
+		WATS B 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+		WATS B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+		WATS B 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+		WATS B 0 A_Countdown
+		loop
+	Death:
+		WATS C 0 A_Stop
+		WATS C 0 A_JumpIfInventory("WaterShieldShoot", 1, "DeathPop")
+		WATS C 0 A_TakeFromTarget("WaterShieldCheck", 1)
+	DeathPop:
+		WATS C 0 A_SpawnItemEx("WatershieldPop", 0, 0, 32)
+		stop
+	}
+}
+
+actor WatershieldPop
+{
+	+NOINTERACTION
+	+NOGRAVITY
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	-SOLID
+	scale 4.0
+	height 0
+	radius 0
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_CheckFloor("End")
+		WATS C 4
+		stop
+	End:
+		TNT1 C 4
+		stop
+	}
+}
+
+actor WaterShieldSpawn : WaterShieldPop
+{
+	+MISSILE
+	States
+	{
+	Spawn:
+		WATS C 0
+		WATS CC 1 A_Warp(AAPTR_TARGET, 64, 0, 40, angle, WARPF_ABSOLUTEANGLE|WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+		stop
+	}
+}

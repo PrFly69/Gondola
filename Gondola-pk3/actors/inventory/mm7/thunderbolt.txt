@@ -1,0 +1,139 @@
+actor ThunderBoltWep : BaseMM8BDMWep 10089
+{
+//$Category MM8BDM-Weapons
+//$Title Thunder Bolt
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 2
+Inventory.Pickupmessage "$PU_THUNDERBOLT"
+Obituary "$OB_THUNDERBOLT"
+Tag "$TAG_THUNDERBOLT"
+weapon.ammotype "ThunderBoltAmmo"
+inventory.icon "TBOLSI"
+States
+{
+Spawn:
+WEA3 R 1
+loop
+Ready:
+TBOL S 0 ACS_ExecuteAlways(998,0,56)
+TBOL S 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TBOL S 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TBOL S 1 A_Raise
+Loop
+Fire:
+TBOL S 0 A_JumpIfNoAmmo("NoAmmo")
+TBOL S 0 A_PlaySoundEx("weapon/thunderbolt","Weapon")
+TBOL S 0 A_FireCustomMissile("ThunderBolt",0,1,8,0)
+TBOL TU 5
+TBOL S 14
+TBOL S 0 A_Refire
+Goto Ready+1
+NoAmmo:
+TBOL S 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor ThunderBoltAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor ThunderBolt
+{
+PROJECTILE
+damagetype "ThunderBolt"
+Obituary "$OB_THUNDERBOLT"
+scale 2.5
+Speed 30
+Radius 20
+Height 15
+Damage (25)
+States
+{
+Spawn:
+TBOL ABCD 1
+Goto Flying
+Flying:
+TBOL N 1
+TBOL M 1 A_SpawnItemEx("ThunderTrail")
+loop
+Death:
+TNT1 A 0 A_CustomMissile("ThunderBoltSplit",0,0,90,2,0)
+TNT1 A 0 A_CustomMissile("ThunderBoltSplit",0,0,-90,2,0)
+MMFX BCDE 2
+stop
+}
+}
+
+actor ThunderBoltSplit : ThunderBolt
+{
++THRUACTORS
+Radius 20
+Height 15
+Damage (15)
+reactiontime 90
+States
+{
+Spawn:
+TBOL OP 1 A_CountDown
+TBOL O 0 A_SpawnItemEx("ThunderTrail")
+TBOL O 0 A_ChangeFlag(THRUACTORS, false)
+TBOL QR 1 A_CountDown
+TBOL O 0 A_GiveInventory("CutterFlag",1)
+TBOL O 0 A_SpawnItemEx("ThunderTrail")
+loop
+Death:
+TNT1 A 0
+stop
+XDeath:
+Crash:
+TBOL O 0 A_JumpIfInventory("CutterFlag",1,"Split")
+stop
+Split:
+TNT1 A 0 A_CustomMissile("ThunderBoltSplit",0,0,90,2,0)
+TNT1 A 0 A_CustomMissile("ThunderBoltSplit",0,0,-90,2,0)
+stop
+}
+}
+
+actor ThunderBoltFX
+{
+scale 2.5
+-SOLID
++NOGRAVITY
++CLIENTSIDEONLY
+height 0
+radius 0
+States
+{
+Spawn:
+TBOL ABCD 1
+stop
+}
+}
+
+actor ThunderTrail
+{
+scale 2.5
+-SOLID
++NOGRAVITY
++CLIENTSIDEONLY
+height 0
+radius 0
+States
+{
+Spawn:
+TBOL IJKL 2
+stop
+}
+}

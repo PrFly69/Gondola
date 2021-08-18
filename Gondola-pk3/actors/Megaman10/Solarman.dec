@@ -1,0 +1,46 @@
+actor Solarman : MegaClassBase
+{
+Player.ScoreIcon "C_10H0X"
+Player.StartItem "MegaHealthBar"
+player.displayname "solarman"
+player.soundclass "solarmanc"
+player.startitem "SolarBlazeBoss"
+player.startitem "SolarBlazerBoss"
+player.startitem "SolarSunAmmo", 400
+Player.JumpZ 12
+
+player.weaponslot 1, "SolarBlazeBoss"
+player.weaponslot 2, "SolarBlazerBoss"
+
+player.forwardmove 0.8, 0.8
+player.sidemove 0.8, 0.8
+States
+{
+Spawn:
+SOLM A 0
+SOLM B 1
+SOLM A 1
+Goto Spawn+2
+See:
+SOLM BCDE 5
+Goto Spawn
+Missile:
+SOLM F 8
+SOLM G 8
+SOLM F 14
+goto Spawn
+ClassPain:
+SOLM H 0
+goto PainContinue
+DeathFix:
+SOLM H 0
+goto DeathContinue
+ClassDeath:
+SOLM H 1
+goto MegaDeathEnd
+
+CustomState1:
+SOLM IIJJ 1
+goto Spawn
+}
+}

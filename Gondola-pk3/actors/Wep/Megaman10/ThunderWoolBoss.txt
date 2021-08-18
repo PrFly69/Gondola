@@ -1,0 +1,329 @@
+actor ThunderWoolBoss : BaseMM8BDMWep_CBM
+{
+tag "Arch of Wool"
+dropitem "ThunderWoolWepCDropped"
+Obituary "%o was scrambled by %k's Thunder Wool."
+weapon.ammotype "ThunderWoolAmmoB"
+weapon.ammotype2 "ArchOfWoolAmmo"
+States
+{
+Spawn:
+C_02 D 1
+loop
+
+Ready:
+SHEP A 0 ACS_ExecuteAlways(998,0,10904)
+goto Ready1
+
+Ready1:
+SHEP A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+SHEP A 0 A_GiveInventory("ThunderWoolAmmoB",1)
+SHEP A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+SHEP A 0 A_GiveInventory("ThunderWoolAmmoB",1)
+SHEP A 0 A_GiveInventory("ArchOfWoolAmmo",1)
+goto Ready1
+
+Ready2:
+SHEP A 1 A_WeaponReady
+SHEP A 0 A_GiveInventory("ThunderWoolAmmoB",1)
+SHEP A 1 A_WeaponReady
+SHEP A 0 A_GiveInventory("ThunderWoolAmmoB",1)
+SHEP A 0 A_GiveInventory("ArchOfWoolAmmo",1)
+goto Ready1
+
+Ready3:
+SHEP A 1 A_WeaponReady(WRF_NOSECONDARY)
+SHEP A 0 A_GiveInventory("ThunderWoolAmmoB",1)
+SHEP A 1 A_WeaponReady(WRF_NOSECONDARY)
+SHEP A 0 A_GiveInventory("ThunderWoolAmmoB",1)
+SHEP A 0 A_GiveInventory("ArchOfWoolAmmo",1)
+goto Ready1
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+SHEP A 1 A_Lower
+loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+SHEP A 1 A_Raise
+Loop
+Fire:
+SHEP BBB 1
+SHEP C 1 A_GiveInventory("SheepmanMain_CI")
+goto Hold
+
+Altfire:
+SHEP A 1 A_JumpIfInventory("ThunderWoolAmmoB",70,"AltfireContinued")
+goto Ready3
+
+AltfireContinued:
+SHEP B 3
+SHEP C 0 A_GiveInventory("SheepmanAlt_CI")
+SHEP C 0 A_TakeInventory("ThunderWoolAmmoB",70)
+SHEP C 9
+SHEP BAAA 3
+goto Ready1
+
+Reload:
+SHEP A 1 A_JumpIfInventory("ArchOfWoolAmmo",280,"ReloadContinued")
+goto Ready2
+
+ReloadContinued:
+SHEP A 0 ACS_ExecuteAlways(512,0,1,0)
+SHEP A 1 A_TakeInventory("ArchOfWoolAmmo",280)
+SHPC A 0 A_PlaySoundEx("weapon/woolrise", "Body")
+SHEP B 1 ////Offset(0,8)
+SHEP C 1 ////Offset(0,-4)
+SHEP A 0 ThrustThingZ(0,60,0,1)
+//SHEP A 12 ////Offset(0,-16)
+SHEP CDEFGI 2 
+SHEP I 1 ////Offset(0,-4)
+SHEP I 1 ////Offset(0,8)
+SHEP I 1 ////Offset(0,20)
+SHEP JKLM 1 A_WeaponReady(WRF_NOFIRE)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,75,100)
+TNT1 A 0 ACS_ExecuteAlways(512,0,2,0)
+TNT1 A 0 SetPlayerProperty(0,1,3)
+TNT1 A 0 A_GiveInventory("SheepmanReload_CI")
+
+ReloadUsingCloud:
+SHEP A 0 A_JumpIfInventory("SheepWeaponCharge",157,"ReloadEnd")
+TNT1 A 0 SetPlayerProperty(0,1,3)
+SHEP A 0 A_GiveInventory("SheepWeaponCharge",1)
+ReloadCloudStrike:
+SHEP J 1 Offset(0,40)
+SHEP K 1 Offset(0,48)
+SHEP L 1 Offset(0,56)
+SHEP C 0 A_PlaySoundEx("weapon/woolshock", "Body")
+SHEP N 1 Offset(0,56)A_SpawnItemEx("ArchWoolProjectile3",0,0,0,0,0,0,0,1)
+SHEP N 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP N 1 Offset(0,50)A_SpawnItemEx("ArchWoolProjectile4",0,0,0,0,0,0,0,1)
+SHEP N 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP O 1 Offset(0,56)A_SpawnItemEx("ArchWoolProjectile3",0,0,0,0,0,0,0,1)
+SHEP O 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP O 1 Offset(0,50)A_SpawnItemEx("ArchWoolProjectile4",0,0,0,0,0,0,0,1)
+SHEP O 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP N 1 Offset(0,56)A_SpawnItemEx("ArchWoolProjectile3",0,0,0,0,0,0,0,1)
+SHEP N 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP O 1 Offset(0,50)A_SpawnItemEx("ArchWoolProjectile4",0,0,0,0,0,0,0,1)
+SHEP O 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP O 0 A_SpawnItemEx("ArchWoolProjectileEndExplode",0,0,0,0,0,0,0,1)
+SHEP O 0 A_PlaySoundEx("weapon/woolshock", "Body")
+SHEP O 1 Offset(0,56)A_SpawnItemEx("ArchWoolProjectile3",0,0,0,0,0,0,0,1)
+SHEP O 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP N 1 Offset(0,50)A_SpawnItemEx("ArchWoolProjectile4",0,0,0,0,0,0,0,1)
+SHEP N 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP N 1 Offset(0,56)A_SpawnItemEx("ArchWoolProjectile3",0,0,0,0,0,0,0,1)
+SHEP N 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP O 1 Offset(0,50)A_SpawnItemEx("ArchWoolProjectile4",0,0,0,0,0,0,0,1)
+SHEP O 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP O 1 Offset(0,56)A_SpawnItemEx("ArchWoolProjectile3",0,0,0,0,0,0,0,1)
+SHEP O 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP N 1 Offset(0,50)A_SpawnItemEx("ArchWoolProjectile4",0,0,0,0,0,0,0,1)
+SHEP N 0 A_SpawnItemEx("ArchWoolProjectileExplosion2",0,0,0,momx,momy,-10,0,552)
+SHEP N 0 A_SpawnItemEx("ArchWoolProjectileEndExplode",0,0,0,0,0,0,0,1)
+SHEP N 0 A_GiveInventory("SheepWeaponCharge",30)
+SHEP M 1 Offset(0,56)
+SHEP M 1 Offset(0,48)
+SHEP I 1 Offset(0,40)
+SHEP I 9 A_WeaponReady(WRF_NOFIRE)
+goto ReloadUsingCloud
+
+ReloadEnd:
+TNT1 A 0 A_TakeInventory("SheepWeaponCharge",999)
+TNT1 A 0 A_TakeInventory("CancelFlag",999)
+TNT1 A 0 ACS_ExecuteAlways(512,0,3,0)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+SHEP IIGFFEEDD 1 A_WeaponReady(WRF_NOFIRE)
+SHEP A 0 SetPlayerProperty(0,0,3)
+goto Ready1
+
+Hold:
+SHEP C 0 A_GiveInventory("SheepmanMain2_CI")
+SHEP C 4
+SHEP C 1 A_GiveInventory("ThunderWoolAmmoB",3)
+SHEP C 1 A_GiveInventory("ArchOfWoolAmmo",3)
+SHEP C 0 A_Refire("Hold")
+goto End
+
+End:
+SHEP C 0 A_GiveInventory("SheepHoldChecker")
+SHEP C 3
+SHEP BBBAAA 1 
+goto Ready1
+}
+}
+
+actor SheepWeaponCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 157
+}
+
+actor FlyinJamFlag : OnceC {}
+
+actor SheepWeaponCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 157
+}
+
+actor StaticScourgeItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "SHPCLO"
+scale 2.0
+inventory.pickupmessage "haha electricity"
++INVBAR
+states
+{
+Spawn:
+CRAA X 1
+loop
+Use:
+TNT1 A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot6")
+TNT1 A 0 A_GiveInventory("SheepItemCheck",1)
+fail
+No:
+TNT1 A 0
+fail
+}
+}
+
+actor ThunderWoolAmmoB : Ammo
+{
+inventory.amount 1
+inventory.maxamount 280
+}
+
+actor ArchOfWoolAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 280
+}
+
+actor SheepItemCheck : Powerup
+{
+Powerup.Duration 3
+}
+
+actor SheepHoldChecker : Powerup
+{
+Powerup.Duration 3
+}
+
+actor ArchWoolProtect : PowerProtection
+{
+Powerup.Duration 3
+damagefactor "ArchOfWool", 0.0
+}
+
+actor ArchWoolGroundProtect : PowerProtection
+{
+Powerup.Duration 4
+damagefactor "ArchOfWoolGround", 0.0
+}
+
+actor SheepmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("SheepHold",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("SheepHoldB",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("SheepHoldR",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("SheepHoldO",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("SheepHoldP",0,0,0,0,0,0,0,SXF_SETMASTER)
+goto Done
+}
+}
+//A_FireCustomMissile("SheepBolter",0,0,random(-24,24),random(-24,24),FPF_TRANSFERTRANSLATION)
+actor SheepmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SheepBolter",0,0,random(-12,12),random(-12,12))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SheepBolterB",0,0,random(-12,12),random(-12,12))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SheepBolterR",0,0,random(-12,12),random(-12,12))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SheepBolterO",0,0,random(-12,12),random(-12,12))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SheepBolterP",0,0,random(-12,12),random(-12,12))
+goto Done
+}
+}
+
+actor SheepmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("ArchOfWool")
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ArchOfWoolB")
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ArchOfWoolR")
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ArchOfWoolO")
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ArchOfWoolP")
+goto Done
+}
+}
+
+actor SheepmanReload_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload2",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload3",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload4",0,0,24)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEX("ArchWoolReloadB",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload2B",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload3B",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload4B",0,0,24)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEX("ArchWoolReloadR",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload2R",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload3R",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload4R",0,0,24)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEX("ArchWoolReloadO",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload2O",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload3O",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload4O",0,0,24)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEX("ArchWoolReloadP",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload2P",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload3P",0,0,24)
+TNT1 A 0 A_SpawnItemEX("ArchWoolReload4P",0,0,24)
+goto Done
+}
+}

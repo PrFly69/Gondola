@@ -1,0 +1,406 @@
+actor HeroBassBusterBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_0F"
+dropitem "JetUpgradeGiverDropped"
+
+Weapon.AmmoUse 1
+Weapon.AmmoGive 3
+Weapon.SlotNumber 1
+Inventory.Pickupmessage "$PU_BASSBUSTER"
+Obituary "$OB_BASSBUSTER"
+States
+{
+Spawn:
+C_00 F 1
+loop
+Ready:
+BASB B 0 A_JumpIfInventory("Once",1,"Ready2")
+BASB B 0 A_GunFlash
+BUST B 0 ACS_ExecuteAlways(981,0,0)
+BASB B 0 A_GiveInventory("Once",1)
+Goto Ready2
+Ready2:
+BASB B 0 ACS_ExecuteAlways(998,0,DYE_BASSC)
+NEDR A 0 A_GiveInventory("AdaptorFlag")
+BASB B 2 A_WeaponReady
+BASB B 0 A_GunFlash
+BASB B 0 A_GiveInventory("BassBusterCharge",2)
+Goto Ready2+2
+
+//sorry bull had to slot these out for now as weapon swapping breaks his skin's color
+Flash:
+TNT1 A 1
+TNT1 A 0 //ACS_ExecuteAlways(998,0,DYE_BASSC,1)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("BassBusterCharge",56,"Flash3")
+TNT1 A 0 A_JumpIfInventory("BassBusterCharge",28,"Flash2")
+loop
+Flash2:
+TNT1 A 0// ACS_ExecuteAlways(991,0,107)
+TNT1 A 3
+goto Flash
+Flash3:
+TNT1 A 0// ACS_ExecuteAlways(991,0,107)
+TNT1 AA 0 A_SpawnItemEx("BassChargeFX",32,0,random(0,48),velx,vely,velz+12,random(0,360),SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEMOMENTUM)
+TNT1 A 1
+goto Flash
+NoFlash:
+TNT1 A 0
+stop
+
+Deselect:
+BASB B 0 A_TakeInventory("BassDash",1)
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+BASB B 1 A_Lower
+goto Deselect+1
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+BASB B 1 A_Raise
+Loop
+
+Fire:
+BASB B 0 A_JumpIfInventory("DickKickemCheck",1,"DickKickem")
+BASB B 0 A_JumpIfInventory("BassBusterCharge",56,"FireC")
+FireX:
+BASB B 0 A_JumpIfInventory("BassUpgradeFlag",1,"FireXUP")
+BASB B 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+BASB B 0 A_GiveInventory("BassMain_CI")
+BASB CD 2 A_JumpIfInventory("BassDash",1,"FireC")
+BASB B 0 //A_GiveInventory("BassBusterCharge",1)
+BASB B 0 A_Refire("FireX")
+goto Ready2+2
+
+FireXUP:
+BASB B 0 A_PlaySoundEx("weapon/pshot","Weapon")
+BASB B 0 A_GiveInventory("BassMainUP_CI")
+BASB CD 2 A_JumpIfInventory("BassDash",1,"FireC")
+BASB B 0 //A_GiveInventory("BassBusterCharge",1)
+BASB B 0 A_Refire("FireX")
+goto Ready2+2
+
+FireC:
+BASB C 0 A_JumpIfInventory("BassUpGradeFlag",1,"FireC2")
+BASB C 1
+BASB B 0 A_PlaySoundEx("weapon/cfire","Weapon")
+BASB B 0 A_GiveInventory("BassChargeShot_CI")
+BASB B 0 A_TakeInventory("BassBusterCharge",56)
+BASB C 1
+BASB DB 1
+BASB B 5
+goto Ready2+2
+
+FireC2:
+BASB C 1
+BASB B 0 A_PlaySoundEx("weapon/cfire","Weapon")
+BASB B 0 A_GiveInventory("BassChargeShotEx_CI")
+BASB B 0 A_TakeInventory("BassBusterCharge",56)
+BASB C 1
+BASB DB 1
+BASB B 5
+goto Ready2+2
+
+AltFire:
+BASB B 1
+BASB B 0 A_JumpIfInventory("SlideLimitFlag",100,"BassKickS")
+BASD B 0 A_Recoil(-16)
+BASD B 0 A_GiveInventory("BassDash",1)
+BASD B 0 A_PlaySoundEx("weapon/chargekick","Weapon")
+BASD B 0 SetPlayerProperty(0,1,0)
+BASD B 0 ACS_ExecuteAlways(191,0,APROP_Speed,85,100)
+BASD B 2 //A_GiveInventory("BassDashThrust",1)
+BASD C 8
+BASD C 5 SetPlayerProperty(0,0,0)
+BASD C 5 ACS_ExecuteAlways(191,0,APROP_Speed,1,1)
+BASD C 0 A_TakeInventory("BassDash",99)
+BASD B 15
+goto Ready2+2
+
+BassKickS:
+BASD B 1
+BASD C 0 A_GiveInventory("DickKickemCheck")
+TNT1 A 0 A_GiveInventory("CopySlideDelay")
+TNT1 A 0 A_GiveInventory("CopySlideAmmoPickup")//A_TakeInventory("SlideLimitFlag",100)
+BASD B 0 A_GiveInventory("BassDash")
+BASD B 0 A_PlaySoundEx("weapon/chargekick","Weapon")
+BASD B 0 SetPlayerProperty(0,1,0)
+BASD B 0 ACS_ExecuteAlways(191,0,APROP_Speed,85,100)
+BASD B 0 A_ChangeVelocity(cos(pitch)*35,0,-sin(pitch)*5,CVF_RELATIVE)
+BASD B 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+BASD CCCCCCCCCCCCCCCCC 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+BASD C 0 A_TakeInventory("BassDash",99)
+BASD C 0 SetPlayerProperty(0,0,0)
+BASD C 0 ACS_ExecuteAlways(191,0,APROP_Speed,1,1)
+BASD B 10
+goto Ready2+2
+DickKickem:
+BASD C 0 A_GiveInventory("BassKickFlag",1)
+BASD B 0 A_ScaleVelocity(0.35)
+BASD B 0 A_PlaySoundEx("weapon/chargekick","Weapon")
+
+BASD C 0 A_JumpIfInventory("BassUpgradeFlag",1,3)
+BASD C 0 A_SpawnItemEx("BassKickC",cos(pitch)*64,0,32+sin(-pitch)*64,cos(pitch)*15,0,sin(-pitch)*15,0,1)
+BASD C 0 A_Jump(256,2)
+BASD C 0 A_SpawnItemEx("BassKickCE",cos(pitch)*64,0,32+sin(-pitch)*64,cos(pitch)*15,0,sin(-pitch)*15,0,1)
+
+BASD C 0 SetPlayerProperty(0,0,0)
+BASD C 0  ACS_ExecuteAlways(191,0,APROP_Speed,1,1)
+BASK A 2
+BASK B 2
+BASK C 1
+BASK D 1 
+BASD C 0 A_TakeInventory("BassKickFlag",99)
+BASK D 1
+BASK G 1
+BASK E 1
+BASK F 2
+TNT1 A 3 Offset(30,100)
+BASB B 1 
+BASB B 1 Offset(20,70)
+BASB B 1 Offset(17,60)
+BASB B 1 Offset(12,45)
+BASB B 1 Offset(8,38)
+BASB B 11 Offset(2,34)A_TakeInventory("BassDash",99)
+BASB B 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+goto Ready2+2
+
+NoAmmo:
+BASB B 1 ACS_Execute(979,0)
+Goto Ready2+2
+}
+}
+
+actor BassBusterCharge : Ammo
+{
+	+INVENTORY.IGNORESKILL
+	inventory.maxamount 56
+	inventory.amount 1
+}
+
+actor DickKickemCheck : Powerup
+{
+powerup.duration 20
++INVENTORY.ADDITIVETIME
+}
+
+actor BassKickFlag : OnceC{}
+
+actor BassShotB : FastProjectile
+{
+Translation "204:204=215:215","202:202=4:4","199:199=215:215"
+PROJECTILE
++FORCEXYBILLBOARD
+damagetype "BassBuster"
+Obituary "$OB_BASSBUSTER"
+Damage (5)
+Speed 64
+radius 5
+height 5
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+BASB T 1
+loop
+Death:
+NEDR UVU 2
+stop
+}
+}
+actor BassShotBB : BassShotB{translation "204:204=205:205","202:202=4:4","199:199=205:205"}
+actor BassShotBR : BassShotB{translation "204:204=171:171","202:202=4:4","199:199=171:171"}
+actor BassShotBO : BassShotB{translation "204:204=104:104","202:202=4:4","199:199=104:104"}
+actor BassShotBP : BassShotB{translation "204:204=229:229","202:202=4:4","199:199=229:229"}
+
+actor HeroBassChargeShot : BassChargeShot
+{
+translation "220:220=4:4", "228:228=103:103", "192:198=103:103"
+Obituary "%o's particles were disintegrated by %k's charge shot."
+Damage (20)
+Speed 45
+Scale 2.75
+Radius 20
+Height 14
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+ARRS B 1
+ARRS C 1 A_SpawnItemEx("BassChargeShotFX",12,random(-22,22),random(-7,7),0,0,0,0,1|SXF_ABSOLUTEMOMENTUM)
+loop
+}
+}
+
+actor HeroBassChargeShotEX : HeroBassChargeShot {Damage(25)}
+
+actor HeroBassChargeShotEXB : HeroBassChargeShotEX {translation "220:220=74:74", "228:228=205:205", "192:198=74:74" }
+actor HeroBassChargeShotEXR : HeroBassChargeShotEX {translation "220:220=41:41", "228:228=171:171", "192:198=41:41" }
+actor HeroBassChargeShotEXO : HeroBassChargeShotEX {translation "220:220=128:128", "228:228=104:104", "192:198=128:128" }
+actor HeroBassChargeShotEXP : HeroBassChargeShotEX {translation "220:220=232:232", "228:228=229:229", "192:198=232:232" }
+
+
+actor HeroBassChargeShotB : HeroBassChargeShot {translation "220:220=74:74", "228:228=205:205", "192:198=74:74" }
+actor HeroBassChargeShotR : HeroBassChargeShot {translation "220:220=41:41", "228:228=171:171", "192:198=41:41" }
+actor HeroBassChargeShotO : HeroBassChargeShot {translation "220:220=128:128", "228:228=104:104", "192:198=128:128" }
+actor HeroBassChargeShotP : HeroBassChargeShot {translation "220:220=232:232", "228:228=229:229", "192:198=232:232" }
+
+actor BassChargeShotFX : FlashmanSparkleFX_X
+{
+Scale 1.65
+}
+
+actor BassChargeFX : BasicClientside
+{
+Scale 2.35
+States
+{
+Spawn:
+TNT1 A 0
+GRSH B 3
+stop
+}
+}
+
+actor BassKickC
+{
+PROJECTILE
+//+THRUACTORS
+//+THRUGHOST
++DONTBLAST
+//+NOINTERACTION
+DamageType "BassKickC"
+Radius 2
+Height 2
+Scale 2.5
+Obituary "%o was kicked off the stage by %k's crescent kick."
+States
+{
+Spawn:
+TNT1 A 0
+Death:
+STEA MMNNO 1 A_Explode(15,64,0,0,65)
+stop
+}
+}
+
+actor BassKickCE : BassKickC {DamageType "BassKickEx"}
+
+actor BassKickCProtect : PowerProtection
+{
+	DamageFactor "BassKickC", 0
+	DamageFactor "BassKickEx", 0
+	powerup.duration 10
+}
+
+actor BassBulletUpgraded : BassShotB
+{
+	Damage (5)
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+			_BAS EF 2
+			wait
+	}
+}
+
+actor BassBulletUpgradedB : BassBulletUpgraded {Translation "198:198=196:196", "56:56=205:205", "62:62=74:74","199:199=205:205","202:202=196:196"}
+actor BassBulletUpgradedR : BassBulletUpgraded {Translation "198:198=170:170", "56:56=171:171", "62:62=41:41","199:199=171:171","202:202=170:170"}
+actor BassBulletUpgradedO : BassBulletUpgraded {Translation "198:198=138:138", "56:56=104:104", "62:62=128:128","199:199=104:104","202:202=138:138"}
+actor BassBulletUpgradedP : BassBulletUpgraded {Translation "198:198=214:214", "56:56=229:229", "62:62=232:232","199:199=229:229","202:202=214:214"}
+
+//"198:198=0:0", "56:56=0:0", "62:62=0:0"
+
+actor BassMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BassShotB",random(-2,2),0,8,0,1,random(-2,2))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BassShotBB",random(-2,2),0,8,0,1,random(-2,2))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BassShotBR",random(-2,2),0,8,0,1,random(-2,2))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BassShotBO",random(-2,2),0,8,0,1,random(-2,2))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BassShotBP",random(-2,2),0,8,0,1,random(-2,2))
+goto Done
+}
+}
+
+actor BassMainUP_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BassBulletUpgraded",random(-1,1),1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BassBulletUpgradedB",random(-1,1),1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BassBulletUpgradedR",random(-1,1),1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BassBulletUpgradedO",random(-1,1),1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BassBulletUpgradedP",random(-1,1),1,8,0)
+goto Done
+}
+}
+
+actor BassChargeShot_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShot",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShotB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShotR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShotO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShotP",0,1,8,0)
+goto Done
+}
+}
+
+actor BassChargeShotEx_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShotEx",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShotExB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShotExR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShotExO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HeroBassChargeShotExP",0,1,8,0)
+goto Done
+}
+}

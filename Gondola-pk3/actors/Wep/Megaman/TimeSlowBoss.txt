@@ -1,0 +1,414 @@
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
+
+  Actor TimeSlowBoss : BaseMM8BDMWep_CBM
+  {
+	Tag "$TAGC_1G"
+	DropItem "TimeSlowWepCDropped"
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 0
+	//Weapon.SlotNumber 1
+	Obituary "$OB_TIMEARROW"
+	Weapon.AmmoType "TimeClassAmmo"
+	+WEAPON.NOAUTOAIM
+	Inventory.Icon "Tim1Icon"
+	States
+	{
+		Spawn:
+		C_01 G 1
+		Loop
+		
+		Ready:
+		TIMA B 0 ACS_ExecuteAlways(998,0,DYE_TIMEMAN)
+		TIMA B 0 A_GunFlash
+		Goto Ready1
+		
+		Ready1:
+		TIMA B 0 A_JumpIfInventory("TimeClassAmmo",42,"Ready2")
+		TNT1 A 8 A_WeaponReady
+		TIMA B 0 A_JumpIfInventory("PowerTimeB",1,2)
+		TIMA B 0 A_GiveInventory("TimeClassAmmo",1)
+		TIMA B 0 A_GiveInventory("TimeClassAmmo",1)
+		Loop
+		
+		Ready2:
+		TNT1 A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+		Loop
+		
+		Deselect:
+		TNT1 A 0// A_SelectWeapon("TimeSlowerBoss")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+		TNT1 A 1 A_Lower
+		Loop
+		
+		Select:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+		TNT1 A 1 A_Raise
+		Loop
+		
+		Fire:
+		TIMA B 0 A_JumpIfInventory("PowerRage_ST",1,"Fire_Rage")
+		TIMA B 0 A_GunFlash("Flash_Mainfire")
+		TIMA B 0 A_PlaySoundEx("weapon/timeshot","Weapon")
+		TIMA B 0 A_GiveInventory("TimemanMain1_CI",1)
+		//TIMA B 0 A_TakeInventory("TimeCharge",999)
+		/*TIMA B 10
+		TIMA A 5*/
+		TIMA CDEEEEFFGH 1
+		TNT1 A 5
+		TIMA B 0 A_JumpIfInventory("PowerTimeB",1,2)
+		TIMA B 0 A_GiveInventory("TimeClassAmmo",1)
+		TIMA B 0 A_GiveInventory("TimeClassAmmo",1)
+		TIMA B 0 A_Refire
+		Goto Ready1
+		
+		Fire_Rage:
+		TIMA B 0 A_GunFlash("Flash_Mainfire_Rage")
+		TIMA B 0 A_PlaySoundEx("weapon/timeshot","Weapon")
+		TIMA B 0 A_GiveInventory("TimemanMain1_CI",1)
+		//TIMA B 0 A_TakeInventory("TimeCharge",999)
+		/*TIMA B 10
+		TIMA A 5*/
+		TIMA CDEEEEFFGH 1
+		TNT1 A 5
+		TIMA B 0 A_JumpIfInventory("PowerTimeB",1,2)
+		TIMA B 0 A_GiveInventory("TimeClassAmmo",1)
+		TIMA B 0 A_GiveInventory("TimeClassAmmo",1)
+		TIMA B 0 A_Refire
+		Goto Ready1
+		
+
+		AltFire:
+		TIMA B 0 A_JumpIfInventory("PowerRage_ST",1,"AltFire_Rage")
+		TIMA B 0 A_GunFlash("Flash_Altfire")
+		TIMA D 0 A_PlaySoundEx("weapon/timeshot","Weapon")
+		TIMA D 0 A_JumpIfInventory("TimeFlag",1,"AltFire2")
+		TIMA D 0 A_GiveInventory("TimeFlag",1)
+		TIMA D 0 A_GiveInventory("TimemanMain2_CI",1)
+		Goto AltFireEnd
+		
+		AltFire_Rage:
+		TIMA B 0 A_GunFlash("Flash_Altfire_Rage")
+		TIMA D 0 A_PlaySoundEx("weapon/timeshot","Weapon")
+		TIMA D 0 A_JumpIfInventory("TimeFlag",1,"AltFire2")
+		TIMA D 0 A_GiveInventory("TimeFlag",1)
+		TIMA D 0 A_GiveInventory("TimemanMain2_CI",1)
+		Goto AltFireEnd
+		
+		AltFire2:
+		TIMA D 0 A_TakeInventory("TimeFlag",9)
+		TIMA D 0 A_GiveInventory("TimemanMain3_CI",1)
+		Goto AltFireEnd
+		
+		AltFireEnd:
+		/*TIMA B 10
+		TIMA A 5*/
+		TIMA JKLLLLMMNO 1
+		TNT1 A 5
+		TIMA B 0 A_JumpIfInventory("PowerTimeB",1,2)
+		TIMA B 0 A_GiveInventory("TimeClassAmmo",1)
+		TIMA B 0 A_GiveInventory("TimeClassAmmo",1)
+		TIMA B 0 A_Refire
+		Goto Ready1
+
+		Reload:
+		TIMA B 0 A_JumpIfInventory("TimeClassAmmo",42,"Slow")
+		Goto Ready1
+
+		Slow:
+		TIMA B 0 A_JumpIfInventory("PowerRage_ST",1,"Slow_Rage")
+		TIMA B 0 A_GunFlash("Flash_Reload")
+		TIMA B 0 A_TakeInventory("TimeClassAmmo",42)
+		TIMA C 0 A_GiveInventory("UnhittableOn_Pickup",1)
+		TIMA C 0 A_GiveInventory("PowerTimeC",1)
+		TIMA P 1 A_GiveInventory("PowerTimeB",1)
+		//TIMA A 0 A_TakeInventory("TimeCharge",999)
+		//TIMA DDDD 1
+		TIMA QR 1
+		TIMA S 1 Offset(-4,36)
+		TIMA S 1 Offset(4,36)
+		TIMA D 0 A_PlaySoundEx("weapon/slow","SoundSlot7")
+		TIMA S 1 Offset(-4,28)A_SetBlend(purple,0.85,5)
+		TIMA S 1 Offset(-4,36)A_GiveInventory("TimemanAlt_CI",1)
+		TIMA S 1 Offset(4,28)
+		TIMA RQPA 1 A_WeaponReady(14)
+		TIMA C 0 A_GiveInventory("UnhittableOff_Pickup",1)
+		TNT1 A 5
+		Goto Ready1
+		
+		Slow_Rage:
+		TIMA B 0 A_GunFlash("Flash_Reload_Rage")
+		TIMA B 0 A_TakeInventory("TimeClassAmmo",42)
+		TIMA C 0 A_GiveInventory("UnhittableOn_Pickup",1)
+		TIMA C 0 A_GiveInventory("PowerTimeC",1)
+		TIMA P 1 A_GiveInventory("PowerTimeB",1)
+		//TIMA A 0 A_TakeInventory("TimeCharge",999)
+		//TIMA DDDD 1
+		TIMA QR 1
+		TIMA S 1 Offset(-4,36)
+		TIMA S 1 Offset(4,36)
+		TIMA D 0 A_PlaySoundEx("weapon/slow","SoundSlot7")
+		TIMA S 1 Offset(-4,28)A_SetBlend(purple,0.85,5)
+		TIMA S 1 Offset(-4,36)A_GiveInventory("TimemanAlt_CI",1)
+		TIMA S 1 Offset(4,28)
+		TIMA RQPA 1 A_WeaponReady(14)
+		TIMA C 0 A_GiveInventory("UnhittableOff_Pickup",1)
+		TNT1 A 5
+		Goto Ready1
+
+		NoAmmo:
+		TIMA A 0
+		Goto Ready1
+		
+		Flash:
+		TIMA A 1
+		loop
+		
+		Flash_Mainfire:
+		TIMA I 10
+		Goto Flash
+		
+		Flash_Mainfire_Rage:
+		TIMA I 20
+		Goto Flash
+		
+		Flash_Altfire:
+		TIMA B 10
+		Goto Flash
+		
+		Flash_Altfire_Rage:
+		TIMA B 20
+		Goto Flash
+		
+		Flash_Reload:
+		TNT1 A 11
+		Goto Flash
+		
+		Flash_Reload_Rage:
+		TNT1 A 22
+		Goto Flash
+	}
+  }
+
+
+//======================
+// Ammo & Inventory
+//----------------------
+//======================
+
+  Actor TimeClassAmmo : Ammo
+  {
+	Inventory.amount 1
+	Inventory.maxamount 42
+	+INVENTORY.IGNORESKILL
+  }
+
+
+  Actor PowerTimeC : PowerSpeed
+  {
+	PowerUp.Duration 10
+	Speed 2.5
+  }
+  
+
+  Actor PowerTimeB : PowerFrightener
+  {
+    PowerUp.Duration 215
+	Inventory.Icon "TIMICON"
+	Speed 1.0
+  }
+
+
+  Actor TimeFlag : OnceC{}
+
+
+//===================
+// Arrow Attacks
+//-------------------
+//===================
+
+  Actor TimeArrow
+  {
+	Translation "192:192=65:65", "198:198=61:61"
+	PROJECTILE
+	Damage (13)
+	Height 7
+	Radius 6
+	+FORCEXYBILLBOARD
+	//+RIPPER
+	Scale 2.5
+	Speed 32
+	Obituary "$OB_TIMEARROW"
+	DamageType "ClassPainLess"
+	//damagetype "TimeArrow"
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnL:
+		SLOT EEI 3 //ACS_Execute(979,0)
+		Loop
+	}
+  }
+
+  Actor TimeManArrow : TimeArrow{speed 40 Damage (11)}
+
+  Actor TimeManArrowB : TimeManArrow{translation "192:192=205:205", "198:198=74:74"}
+  Actor TimeManArrowR : TimeManArrow{translation "192:192=171:171", "198:198=41:41"}
+  Actor TimeManArrowO : TimeManArrow{translation "192:192=104:104", "198:198=128:128"}
+  Actor TimeManArrowP : TimeManArrow{translation "192:192=229:229", "198:198=232:232"}
+  
+  Actor TimeArrowSlow : TimeManArrow{Damage (7) +RIPPER speed 15}
+  Actor TimeArrowSlowB : TimeManArrowB{Damage (7) +RIPPER speed 15}
+  Actor TimeArrowSlowR : TimeManArrowR{Damage (7) +RIPPER speed 15}
+  Actor TimeArrowSlowO : TimeManArrowO{Damage (7) +RIPPER speed 15}
+  Actor TimeArrowSlowP : TimeManArrowP{Damage (7) +RIPPER speed 15}
+
+  Actor TimeArrowFast : TimeManArrow{Damage (9) +RIPPER speed 64}
+  Actor TimeArrowFastB : TimeManArrowB{Damage (9) +RIPPER speed 64}
+  Actor TimeArrowFastR : TimeManArrowR{Damage (9) +RIPPER speed 64}
+  Actor TimeArrowFastO : TimeManArrowO{Damage (9) +RIPPER speed 64}
+  Actor TimeArrowFastP : TimeManArrowP{Damage (9) +RIPPER speed 64}
+
+
+  Actor TimeManSlow : BasicExplosion
+  {
+	Translation "192:192=65:65", "198:198=61:61"
+	damagetype "TimeSlow"
+	Obituary "$OB_TIMESLOW"
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 1 A_Explode(10,480,0,0,16)
+		X_1G EFGHIJKLMNEFGHIJKLMN 1
+		Stop
+	}
+  }
+
+
+  Actor TimeManSlowB : TimeManSlow{translation "192:192=205:205", "198:198=74:74"}
+  Actor TimeManSlowR : TimeManSlow{translation "192:192=171:171", "198:198=41:41"}
+  Actor TimeManSlowO : TimeManSlow{translation "192:192=104:104", "198:198=128:128"}
+  Actor TimeManSlowP : TimeManSlow{translation "192:192=229:229", "198:198=232:232"}
+
+//====================
+// Attack Items
+//--------------------
+//====================
+
+  Actor TimemanMain1_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("TimeManArrow",-7,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("TimeManArrow",7,0,8,0)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("TimeManArrowB",-7,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("TimeManArrowB",7,0,8,0)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("TimeManArrowR",-7,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("TimeManArrowR",7,0,8,0)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("TimeManArrowO",-7,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("TimeManArrowO",7,0,8,0)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("TimeManArrowP",-7,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("TimeManArrowP",7,0,8,0)
+		Goto Done
+	}
+  }
+
+
+  Actor TimemanMain2_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowSlow",0,0,-8,0)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowSlowB",0,0,-8,0)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowSlowR",0,0,-8,0)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowSlowO",0,0,-8,0)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowSlowP",0,0,-8,0)
+		Goto Done
+	}
+  }
+
+
+  Actor TimemanMain3_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowFast",0,0,-8,0)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowFastB",0,0,-8,0)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowFastR",0,0,-8,0)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowFastO",0,0,-8,0)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("TimeArrowFastP",0,0,-8,0)
+		Goto Done
+	}
+  }
+
+
+  Actor TimemanAlt_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("TimeManSlow",0,1,0,0)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("TimeManSlowB",0,1,0,0)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("TimeManSlowR",0,1,0,0)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("TimeManSlowO",0,1,0,0)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("TimeManSlowP",0,1,0,0)
+		Goto Done
+	}
+  }

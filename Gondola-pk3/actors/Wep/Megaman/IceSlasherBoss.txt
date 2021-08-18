@@ -1,0 +1,1404 @@
+actor IceStatueBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_1C1"
+dropitem "IceSlasherWepCDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 28
+Weapon.SlotNumber 1
+Obituary "$OB_ICESLASHER"
+weapon.ammotype "IcicleAmmo"
+weapon.ammotype2 "IceLaserAmmo"
+//inventory.icon "ICEMANI1"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_01 C 1
+loop
+Ready:
+ICEB D 0 ACS_ExecuteAlways(998,0,DYE_ICEMAN)
+ICEB D 0 A_GunFlash
+goto Ready2
+Ready1:
+ICEB D 0 A_JumpIfInventory("IcicleAmmo",7,"Ready2")
+ICEB D 4 A_WeaponReady(WRF_NoSecondary|WRF_ALLOWRELOAD)
+ICEB D 0 A_GiveInventory("IcicleAmmo",1)
+ICEB D 0 A_GiveInventory("IceLaserAmmo",1)
+loop
+Ready2:
+ICEB D 4 A_WeaponReady(WRF_ALLOWRELOAD)
+ICEB D 0 A_GiveInventory("IcicleAmmo",1)
+ICEB D 0 A_GiveInventory("IceLaserAmmo",1)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+ICEB D 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+ICEB D 1 A_Raise
+Loop
+Fire:
+ICEB D 1
+ICEB D 1 Offset(-15, 30)
+ICEB B 1 Offset(-25, 25)
+ICEB B 1 Offset(-55, 15)
+ICEB C 1 Offset(-65, 10)
+ICEB C 1
+FireH:
+ICEB A 0 A_JumpIfNoAmmo("FireN")
+ICEB A 0 A_PlaySoundEx("weapon/icemanshot","Weapon")
+ICEB A 0 A_GiveInventory("IcemanMain_CI",1)
+ICEB I 1 Offset(-63,18)
+ICEB I 1 Offset(-67,22)
+ICEB I 1 Offset(-63,22)
+ICEB I 1 Offset(-67,18)
+ICEB I 1 Offset(-67,22)
+ICEB C 4
+ICEB C 2 A_Refire("FireH")
+ICEB C 1
+ICEB C 1 Offset(-65, 0)
+ICEB C 1 Offset(-45, 24)
+ICEB B 1 Offset(-30, 26)
+ICEB D 1 Offset(-15, 30)
+ICEB D 1 A_WeaponReady(14)
+Goto Ready+2
+FireN:
+ICEB A 0 A_PlaySoundEx("weapon/icemanshot","Weapon")
+ICEB A 0
+ICEB A 0 A_GiveInventory("IcemanMain_CI",1)
+ICEB I 1 Offset(-63,18)
+ICEB I 1 Offset(-67,22)
+ICEB I 1 Offset(-63,22)
+ICEB I 1 Offset(-67,18)
+ICEB I 1 Offset(-67,22)
+ICEB C 13
+ICEB C 2 A_Refire("FireH")
+ICEB C 1
+ICEB C 1 Offset(-65, 0)
+ICEB C 1 Offset(-45, 24)
+ICEB B 1 Offset(-30, 26)
+ICEB D 1 Offset(-15, 30)
+ICEB D 1 A_WeaponReady(14)
+Goto Ready+2
+Altfire:
+TNT1 A 0 A_JumpIfInventory("IceLaserAmmo",7,1)
+Goto NoAmmoAltfire
+ICEB D 0 A_TakeInventory("IceLaserAmmo",7)
+ICEB D 0 A_GiveInventory("VivifyDelay6",1)
+ICEB D 0 A_Refire(1)
+ICEB G 1 Offset(-5,28)
+ICEB G 1 Offset(-10,24)
+ICEB G 0 A_PlaySoundEx("weapon/IceManLaser","Body")
+ICEB G 0 A_GiveInventory("IcemanAlt_CI",1)
+ICEB G 1 Offset(-11,21)
+ICEB G 1 Offset(-9,25)
+ICEB H 1 Offset(-11,25)
+ICEB H 1 Offset(-9,21)
+ICEB G 2  Offset(-10,24)
+ICEB H 2 
+ICEB G 8
+ICEB G 1 Offset(-10,24)
+ICEB G 1 Offset(-2,30)
+ICEB G 1 A_WeaponReady(14)
+ICEB D 4
+goto Ready+2
+NoAmmo:
+ICEB A 0 A_PlaySoundEx("weapon/icemanshot","Weapon")
+ICEB A 0
+ICEB A 0 A_GiveInventory("IcemanMain_CI",1)
+ICEB C 18
+ICEB C 2 A_Refire("FireH")
+ICEB CBD 2
+Goto Ready+2
+
+NoAmmoAltfire:
+ICEB D 4
+ICEB D 0 A_GiveInventory("IcicleAmmo",1)
+ICEB D 0 A_GiveInventory("IceLaserAmmo",1)
+Goto Ready+2
+
+Reload:
+TNT1 A 0 A_JumpIfInventory("IceLaserAmmo",14,1)
+Goto NoAmmoAltfire
+ICEB D 0 A_TakeInventory("IceLaserAmmo",14)
+ICEB D 0 A_GiveInventory("VivifyDelay6",1)
+ICEB D 0 A_Refire(1)
+ICEB G 1 Offset(-5,28)
+ICEB G 1 Offset(-10,24)
+ICEB G 0 A_PlaySoundEx("weapon/IceManLaser","Body")
+ICEB G 0 A_GiveInventory("IcemanAltX_CI",1)
+ICEB G 1 Offset(-11,21)
+ICEB G 1 Offset(-9,25)
+ICEB H 1 Offset(-11,25)
+ICEB H 1 Offset(-9,21)
+ICEB G 2  
+ICEB H 2
+ICEB G 12
+ICEB G 1 Offset(-10,24)
+ICEB G 1 Offset(-2,30)
+ICEB G 1 A_WeaponReady(14)
+ICEB JJJ 4
+goto Ready+2
+
+}
+}
+
+actor IceRainBoss : IceStatueBoss
+{
+Tag "$TAGC_1C2"
+inventory.icon "ICEMANI2"
+States
+{
+Ready:
+ICEB J 0 ACS_ExecuteAlways(998,0,DYE_ICEMAN)
+ICEB J 0 A_GunFlash
+goto Ready2
+Ready1:
+ICEB J 0 A_JumpIfInventory("IcicleAmmo",7,"Ready2")
+ICEB J 4 A_WeaponReady(WRF_NoSecondary)
+ICEB J 0 A_GiveInventory("IcicleAmmo",1)
+loop
+Ready2:
+ICEB J 4 A_WeaponReady
+ICEB J 0 A_GiveInventory("IcicleAmmo",1)
+loop
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+ICEB J 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+ICEB J 1 A_Raise
+Loop
+
+Fire:
+ICEB D 1
+ICEB D 1 Offset(-15, 30)
+ICEB B 1 Offset(-25, 25)
+ICEB B 1 Offset(-55, 15)
+ICEB C 1 Offset(-65, 10)
+ICEB C 1
+FireH:
+ICEB A 0 A_JumpIfNoAmmo("FireN")
+ICEB A 0 A_PlaySoundEx("weapon/icemanshot","Weapon")
+ICEB A 0
+ICEB A 0 A_GiveInventory("IcemanMain_CI",1)
+ICEB I 1 Offset(-63,18)
+ICEB I 1 Offset(-67,22)
+ICEB I 1 Offset(-63,22)
+ICEB I 1 Offset(-67,18)
+ICEB I 1 Offset(-67,22)
+ICEB C 4
+ICEB C 2 A_Refire("FireH")
+ICEB C 1
+ICEB C 1 Offset(-65, 0)
+ICEB C 1 Offset(-45, 24)
+ICEB B 1 Offset(-30, 26)
+ICEB J 1 Offset(-15, 30)
+ICEB J 1 A_WeaponReady(14)
+Goto Ready+2
+FireN:
+ICEB A 0 A_PlaySoundEx("weapon/icemanshot","Weapon")
+ICEB A 0
+ICEB A 0 A_GiveInventory("IcemanMain_CI",1)
+ICEB I 1 Offset(-63,18)
+ICEB I 1 Offset(-67,22)
+ICEB I 1 Offset(-63,22)
+ICEB I 1 Offset(-67,18)
+ICEB I 1 Offset(-67,22)
+ICEB C 13
+ICEB C 2 A_Refire("FireH")
+ICEB C 1
+ICEB C 1 Offset(-65, 0)
+ICEB C 1 Offset(-45, 24)
+ICEB B 1 Offset(-30, 26)
+ICEB J 1 Offset(-15, 30)
+ICEB J 1 A_WeaponReady(14)
+Goto Ready+2
+
+Altfire:
+TNT1 A 0 A_JumpIfInventory("IcicleAmmo",14,1)
+Goto NoAmmoAltfire
+ICEB D 0 A_TakeInventory("IcicleAmmo",14)
+ICEB D 0 A_GiveInventory("VivifyDelay6",1)
+ICEB D 0 A_Refire(1)
+ICEB G 1 Offset(-5,28)
+ICEB G 1 Offset(-10,24)
+ICEB G 0 A_PlaySoundEx("weapon/IceManLaser","Body")
+ICEB G 0 A_GiveInventory("IcemanAltX_CI",1)
+ICEB G 1 Offset(-11,21)
+ICEB G 1 Offset(-9,25)
+ICEB H 1 Offset(-11,25)
+ICEB H 1 Offset(-9,21)
+ICEB G 2  
+ICEB H 2
+ICEB G 12
+ICEB G 1 Offset(-10,24)
+ICEB G 1 Offset(-2,30)
+ICEB G 1 A_WeaponReady(14)
+ICEB JJJ 4
+goto Ready+2
+
+NoAmmo:
+ICEB A 0 A_PlaySoundEx("weapon/icemanshot","Weapon")
+ICEB A 0 
+ICEB A 0 A_GiveInventory("IcemanMain_CI",1)
+ICEB C 18
+ICEB C 2 A_Refire("FireH")
+ICEB CBJ 2
+Goto Ready+2
+
+NoAmmoAltfire:
+ICEB J 4
+ICEB J 0 A_GiveInventory("IcicleAmmo",1)
+Goto Ready+2
+}
+}
+
+actor IcicleAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor IceLaserAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor IcemanHoverFlag : Powerup
+{
+Powerup.Duration 11
+}
+
+actor IceSlasherB : IceSlasher
+{
+Translation "198:198=197:197"
+damagetype "ClassPainLess2Ice"
+damage (10)
+speed 30
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+ICEB TU 3 A_ScaleVelocity(1.025)
+loop
+}
+}
+
+actor IceSlasherBB : IceSlasherB{translation "198:198=74:74"}
+actor IceSlasherBR : IceSlasherB{translation "198:198=41:41"}
+actor IceSlasherBO : IceSlasherB{translation "198:198=128:128"}
+actor IceSlasherBP : IceSlasherB{translation "198:198=232:232"}
+
+actor CoolestGuy
+{
+Translation "198:198=197:197"
+PROJECTILE
+scale 2.5
++RIPPER
+Obituary "$OB_ICECOOLGUY"
+Speed 22
+damagetype "ClassPainLess2Ice"
+Radius 6
+Height 6
+Damage (2)
+States
+{
+Spawn:
+ICEB Z 18
+stop
+}
+}
+
+actor CoolestGuyB : CoolestGuy{translation "198:198=74:74"}
+actor CoolestGuyR : CoolestGuy{translation "198:198=41:41"}
+actor CoolestGuyO : CoolestGuy{translation "198:198=128:128"}
+actor CoolestGuyP : CoolestGuy{translation "198:198=232:232"}
+
+actor CoolestGuy2 : CoolestGuy{Damage (2)}
+
+actor CoolestGuy2B : CoolestGuyB{Damage (2)}
+actor CoolestGuy2R : CoolestGuyR{Damage (2)}
+actor CoolestGuy2O : CoolestGuyO{Damage (2)}
+actor CoolestGuy2P : CoolestGuyP{Damage (2)}
+
+actor CoolestGuy3 : CoolestGuy{Damage (2)}
+
+actor CoolestGuy3B : CoolestGuyB{Damage (2)}
+actor CoolestGuy3R : CoolestGuyR{Damage (2)}
+actor CoolestGuy3O : CoolestGuyO{Damage (2)}
+actor CoolestGuy3P : CoolestGuyP{Damage (2)}
+
+
+actor PowerIceGiver : BasicPowerupGiver
+{
+Powerup.Type "PowerIce"
+}
+
+actor PowerIce : PowerSpeed
+{
+Speed 0.67
+powerup.duration 100
+}
+
+actor IcemanSlowPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerIce",1,2)
+TNT1 A 0 A_SpawnItemEx("IceSlowWatcher")
+TNT1 A 0 A_GiveInventory("PowerIceGiver",1)
+stop
+}
+}
+
+actor IceSlowWatcher : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 3 A_GiveToTarget("IceSlowFX",1)
+TNT1 A 0 A_JumpIfInTargetInventory("PowerIce",1,"Spawn")
+stop
+}
+}
+
+actor IceSlowFX : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("IceSlowGFX", random(18, 56), 0, Random(18,56), 0, 0, 0, random(0, 359),1)
+stop
+}
+}
+
+actor IceSlowGFX
+{
++FLOATBOB
++NOGRAVITY
++THRUACTORS
++CLIENTSIDEONLY
++FORCEXYBILLBOARD
++MISSILE
+Damage(0)
+Scale 2.5
+Height 0
+Radius 0
+States
+{
+Spawn:
+ICEB YZ 4 A_Fadeout(0.2)
+loop
+}
+}
+
+actor IceBaFLaser
+{
+Translation "192:192=4:4","198:198=197:197","202:202=197:197","199:199=198:198","204:204=202:202","195:195=204:204","250:250=80:80","249:249=86:86"
+PROJECTILE
+damagetype "IceSlashSlowL"
+Obituary "$OB_ICELASERX"
++SKYEXPLODE
++FORCEXYBILLBOARD
++HITTRACER
+Reactiontime 1
+Damage (10)
+Radius 8
+Height 8
+Speed 50
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("IceBaFLaserFX1",0,-1,4,0,0,0,0,1)
+TNT1 AAAAAAAAAAA 1 A_SpawnItemEx("IceBaFLaserFX2",0,0,0,momx,momy,momz,0,9)
+TNT1 A 1 A_CountDown
+wait
+Death:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(z-ceilingz>=-8,"DeathSky")
+TNT1 A 0 A_JumpIf(z-floorz<7,"DeathFloor")
+goto DeathWall
+
+DeathSky:
+TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX1",0,0,-62,0,0,0,180,1)
+stop
+
+DeathFloor:
+TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX1",0,0,0,0,0,0,180,1)
+stop
+
+DeathWall:
+TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX1",30,0,0,0,0,0,180,1)
+stop
+
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy"),1)
+Goto Death
+TNT1 A 1
+wait
+
+}
+}
+
+actor IceBaFLaser2 : IceBaFLaser
+{
+damagetype "IceSlashSlowB"
+Obituary "$OB_ICELASER"
+Damage (0)
+States
+{
+Death:
+TNT1 A 0 
+TNT1 A 0 A_JumpIf(z-ceilingz>=-8,"DeathSky")
+TNT1 A 0 A_JumpIf(z-floorz>=128,"DeathSky")
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_PlaySound("weapon/IceManDetonate",1,0.75)
+TNT1 A 6 A_Explode(23,108,0,0,0)
+stop
+
+DeathSky:
+TNT1 A 0 A_PlaySound("weapon/Ice_Cloud",1)
+TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,90,1)
+TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,-90,1)
+TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,180,1)
+TNT1 A 1 A_SpawnItemEx("IceBaFCloud",0,0,0,0,0,0,0,1)
+stop
+
+XDeath:
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_PlaySound("weapon/IceManDetonate",1,0.75)
+TNT1 A 6 A_Explode(23,108,0,0,0)
+stop
+}
+}
+
+actor IceBaFLaserFX1 : BasicClientSide
+{
++FORCEXYBILLBOARD
+Scale 3.0
+States
+{
+Spawn:
+ICEL H 8
+stop
+}
+}
+
+actor IceBaFLaserFX2 : BasicExplosion
+{
+damagetype "IceSlashSlowL"
+Obituary "$OB_ICECOOLLASER"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("IceBaFLaserFX3",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("IceBaFLaserFX3",0,0,0,-momx*0.2,-momy*0.2,-momz*0.2,0,9)
+TNT1 A 0 A_SpawnItemEx("IceBaFLaserFX3",0,0,0,-momx*0.4,-momy*0.4,-momz*0.4,0,9)
+TNT1 A 0 A_SpawnItemEx("IceBaFLaserFX3",0,0,0,-momx*0.6,-momy*0.6,-momz*0.6,0,9)
+TNT1 A 1 A_SpawnItemEx("IceBaFLaserFX3",0,0,0,-momx*0.8,-momy*0.8,-momz*0.8,0,9)
+stop
+}
+}
+
+actor IceBaFLaserFX3 : BasicClientSide
+{
++FORCEXYBILLBOARD
+Scale 3.5
+States
+{
+Spawn:
+ICEL I 0
+ICEL I 0 A_Stop
+ICEL IZIZ 2
+stop
+}
+}
+
+
+actor IceBaFLaserB : IceBaFLaser{translation "192:192=205:205","198:198=74:74","202:202=205:205","199:199=74:74","204:204=205:205","195:195=74:74","250:250=196:196","249:249=75:75"}
+actor IceBaFLaserR : IceBaFLaser{translation "192:192=171:171","198:198=41:41","202:202=171:171","199:199=41:41","204:204=171:171","195:195=41:41","250:250=170:170","249:249=43:43"}
+actor IceBaFLaserO : IceBaFLaser{translation "192:192=104:104","198:198=128:128","202:202=104:104","199:199=128:128","204:204=104:104","195:195=128:128","250:250=138:138","249:249=131:131"}
+actor IceBaFLaserP : IceBaFLaser{translation "192:192=229:229","198:198=232:232","202:202=229:229","199:199=232:232","204:204=229:229","195:195=232:232","250:250=214:214","249:249=223:223"}
+
+actor IceBaFLaser2B : IceBaFLaser2{translation "192:192=205:205","198:198=74:74","202:202=205:205","199:199=74:74","204:204=205:205","195:195=74:74","250:250=196:196","249:249=75:75"}
+actor IceBaFLaser2R : IceBaFLaser2{translation "192:192=171:171","198:198=41:41","202:202=171:171","199:199=41:41","204:204=171:171","195:195=41:41","250:250=170:170","249:249=43:43"}
+actor IceBaFLaser2O : IceBaFLaser2{translation "192:192=104:104","198:198=128:128","202:202=104:104","199:199=128:128","204:204=104:104","195:195=128:128","250:250=138:138","249:249=131:131"}
+actor IceBaFLaser2P : IceBaFLaser2{translation "192:192=229:229","198:198=232:232","202:202=229:229","199:199=232:232","204:204=229:229","195:195=232:232","250:250=214:214","249:249=223:223"}
+
+
+actor IceBaFCloud : BasicExplosion
+{
+Reactiontime 13
+Scale 4.5
+States
+{
+Spawn:
+ICEL AABCBCDD 2
+Spawn2:
+ICEL EEEE 0 A_SpawnItemEx("IceBaFIcicleFX",random(0,-8),0,0,random(1,4),0,random(-1,-3),random(0,359),1)
+ICEL E 2 A_SpawnItemEx("IceBaFIcicle",0,0,-20,0,0,-3,0,1)
+ICEL F 1
+ICEL F 1 A_SpawnItemEx("IceBaFIcicle",0,0,-20,0,0,-3,0,1)
+ICEL G 2
+
+ICEL E 0 A_CountDown
+loop
+Death:
+ICEL EFGEFGEFGEFG 2
+ICEL DDCBCBAA 2
+stop
+}
+}
+
+actor IceBaFCloud2 : IceBaFCloud
+{
+var int user_speed;
+var int user_num;
+var int user_time;
+var int user_time_add;
+Scale 4.0
+States
+{
+Spawn:
+ICEL A 0
+ICEL A 0 A_SetUserVar("user_speed",12)
+ICEL A 0 A_SetUserVar("user_num",600)
+ICEL A 0 A_SetUserVar("user_time",60)
+ICEL A 0 A_SetUserVar("user_time_add",6)
+
+ICEL AABCBCDD 2
+ICEL D 0 A_Stop
+
+Spawn2:
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL E 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL EEEE 0 A_SpawnItemEx("IceBaFIcicleFX",random(0,-8),0,0,random(1,4),0,random(-1,-3),random(0,359),1)
+ICEL E 0 A_SpawnItemEx("IceBaFIcicle",0,0,-20,momx*0.2,0,-3,0,9)
+ICEL E 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL F 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL F 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL G 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL G 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_CountDown
+loop
+Death:
+ICEL E 0 //A_Logint(angle)
+ICEL E 0 A_Setangle(angle+78)
+ICEL E 0 A_ChangeVelocity(-11,2,0,3)
+ICEL EFGEFGEFGEFGEFGEFGEFGEFG 2
+stop
+}
+}
+
+
+
+actor IceBaFIcicle
+{
+PROJECTILE
+-NOGRAVITY
++THRUGHOST
+damagetype "IceSlashSlow"
+Obituary "$OB_ICERAIN"
+gravity 2.0
+Damage (0)
+radius 10
+height 16
+Speed 0
+scale 1.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 0
+TNT1 A 2
+TNT1 A 0 A_Jump(256,"Spawn1","Spawn2")
+goto Spawn1
+Spawn1:
+ICEL TUV 3
+loop
+Spawn2:
+ICEL WXY 3
+loop
+Death:
+TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX1",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
+TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX2",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
+TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX3",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_PlaySound("weapon/IceManBit",1,0.5)
+TNT1 A 2 A_Explode(5,48,0,0,48)
+stop
+}
+}
+
+actor IceBaFIcicleFX
+{
++MISSILE
++DONTBLAST
++NOGRAVITY
++THRUACTORS
++CLIENTSIDEONLY
++FLOORCLIP
++DONTSPLASH
+Damage (0)
+Height 4
+Radius 4
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+ICEL H 1 A_Fadeout(0.05)
+wait
+}
+}
+
+actor IceBaFIcicleFX1 : IceBaFIcicleFX
+{
+-NOGRAVITY
+Scale 2.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Jump(256,"S_K","S_L","S_M")
+wait
+S_K:
+ICEL K 35
+stop
+S_L:
+ICEL L 35
+stop
+S_M:
+ICEL M 35
+stop
+S_N:
+ICEL N 35
+stop
+S_O:
+ICEL O 35
+stop
+S_P:
+ICEL P 35
+stop
+S_Q:
+ICEL Q 35
+stop
+S_R:
+ICEL R 35
+stop
+S_S:
+ICEL S 35
+stop
+}
+}
+actor IceBaFIcicleFX2 : IceBaFIcicleFX1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Jump(256,"S_N","S_O","S_P")
+wait
+}
+}
+actor IceBaFIcicleFX3 : IceBaFIcicleFX1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Jump(256,"S_Q","S_R","S_S")
+wait
+}
+}
+
+actor IceBaF_SculptHelpX1
+{
+PROJECTILE
++DONTBLAST
++THRUACTORS
+Damage (0)
+Radius 16
+Height 48
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptHelp",0,0,0,0,0,0,0,1)
+stop
+Death:
+TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX2",2,0,0,0,0,0,0,1)
+stop
+}
+}
+actor IceBaF_SculptHelpX2 : IceBaF_SculptHelpX1
+{
+States
+{
+Death:
+TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX3",2,0,0,0,0,0,0,1)
+stop
+}
+}
+actor IceBaF_SculptHelpX3 : IceBaF_SculptHelpX1{States{Death:TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX4",2,0,0,0,0,0,0,1)stop}}
+actor IceBaF_SculptHelpX4 : IceBaF_SculptHelpX1{States{Death:TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX5",2,0,0,0,0,0,0,1)stop}}
+actor IceBaF_SculptHelpX5 : IceBaF_SculptHelpX1{States{Death:TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX6",2,0,0,0,0,0,0,1)stop}}
+actor IceBaF_SculptHelpX6 : IceBaF_SculptHelpX1{States{Death:TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX7",2,0,0,0,0,0,0,1)stop}}
+actor IceBaF_SculptHelpX7 : IceBaF_SculptHelpX1{States{Death:TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX8",2,0,0,0,0,0,0,1)stop}}
+actor IceBaF_SculptHelpX8 : IceBaF_SculptHelpX1{States{Death:TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelpX9",2,0,0,0,0,0,0,1)stop}}
+actor IceBaF_SculptHelpX9 : IceBaF_SculptHelpX1{States{Death:TNT1 A 1 A_SpawnItemEx("IceBaF_SculptHelp",2,0,0,0,0,0,0,1)stop}}
+
+actor IceBaF_SculptHelp : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+TNT1 A 0 A_PlaySound("weapon/IceManBit",1,0.5)
+TNT1 A 0 A_Jump(8,"S_P","S_Q","S_R","S_S","S_T","S_U")
+TNT1 A 0 A_Jump(32,"S_L","S_M","S_N","S_O")
+TNT1 A 0 A_Jump(64,"S_H","S_I","S_J","S_K")
+TNT1 A 0 A_Jump(128,"S_D","S_E","S_F","S_G")
+TNT1 A 0 A_Jump(255,"S_A","S_B","S_C")
+goto S_Z
+S_A:
+ICEK A 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)
+goto S_End
+S_B:ICEK B 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_C:ICEK C 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_D:ICEK D 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_E:ICEK E 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_F:ICEK F 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_G:ICEK G 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_H:ICEK H 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_I:ICEK I 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_J:ICEK J 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_K:ICEK K 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_L:ICEK L 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_M:ICEK M 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_N:ICEK N 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_O:ICEK O 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_P:ICEK P 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_Q:ICEK Q 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_R:ICEK R 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_S:ICEK S 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_T:ICEK T 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_U:ICEK U 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+Rare1:
+goto S_Z
+S_V:ICEK V 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_W:ICEK W 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_X:ICEK X 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_Y:ICEK Y 1 A_SpawnItemEx("IceBaF_Sculpt_M",0,0,0,0,0,0,0,1)goto S_End
+S_Z:
+goto S_End
+S_End:
+TNT1 A 1 A_SpawnItemEx("IceBaF_SculptFX",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+//no memes allowed
+actor IceBaF_SculptFX : BasicClientSide
+{
+var int user_A;
+reactiontime 20
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_A",0)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptFX2",14+user_A*0.1,0,-10+user_A*0.2,1,0,2,user_A,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptFX2",14+user_A*0.1,0,-10+user_A*0.2,1,0,2,user_A+180,33)
+TNT1 A 0 A_SetUserVar("user_A",user_A+30)
+TNT1 A 1 A_Countdown
+goto Spawn+2
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor IceBaF_SculptFX2 : BasicClientSide
+{
+alpha 0.85
+scale 1.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,2,3,4)
+Spawn2:
+ICEL HHJJ 1 A_FadeOut(0.05)
+loop
+}
+}
+
+
+actor IceBaF_SculptBase
+{
+PROJECTILE
+damagetype "IceSlashSlow"
+Obituary "$OB_ICEBLOCK"
+
++DONTRIP
++DONTBLAST
++NOGRAVITY//
++NOEXPLODEFLOOR
+//+DONTSPLASH
++QUICKTORETALIATE
+-NOBLOCKMAP
++SHOOTABLE
++DONTDRAIN
++NOBLOOD
++NOTARGETSWITCH
+//+NOPAIN
++SOLID
+
++CANPASS
+
++DONTREFLECT
+
+Bouncetype Classic//Desync fix?
+-BOUNCEONWALLS
+-BOUNCEONFLOORS
+-BOUNCEONCEILINGS
+-ALLOWBOUNCEONACTORS
++CANBOUNCEWATER
++NOEXPLODEFLOOR
+BounceFactor 1.0
+WallBounceFactor 0.0//Desync fix?
+
+Renderstyle Translucent
+Alpha 0.12
+
+painchance 0
+painchance "IceSlashSlowB", 256
+painchance "IceSlashBlock", 256
+painchance "IceSlasher", 256
+painchance "IceSlashSlow", 256
+painchance "ClassPainLess2Ice", 256
+painchance "CoolestGuy", 256
+
+//Species ""
+damagefactor "IceSlasher", 0.5
+damagefactor "IceSlashSlow", 1.0
+damagefactor "IceSlashSlowB", 1.0
+damagefactor "IceSlashBlock", 1.0
+damagefactor "Fire", 0.1 //MageStaff
+damageFactor "ConcreteShoulder", 0.04
+mass 99999
+Health 50
+Reactiontime 1
+Damage (0)
+Radius 28
+Height 64
+Speed 0
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+ICEK E 1
+goto S_0
+
+S_A:
+ICEK A 1
+goto S_0
+S_B:
+ICEK B 1
+goto S_0
+S_C:
+ICEK C 1
+goto S_0
+S_D:
+ICEK D 1
+goto S_0
+S_E:
+ICEK E 1
+goto S_0
+S_F:
+ICEK F 1
+goto S_0
+S_G:
+ICEK G 1
+goto S_0
+S_H:
+ICEK H 1
+goto S_0
+S_I:
+ICEK I 1
+goto S_0
+S_J:
+ICEK J 1
+goto S_0
+S_K:
+ICEK K 1
+goto S_0
+S_L:
+ICEK L 1
+goto S_0
+S_M:
+ICEK M 1
+goto S_0
+S_N:
+ICEK N 1
+goto S_0
+S_O:
+ICEK O 1
+goto S_0
+S_P:
+ICEK P 1
+goto S_0
+S_Q:
+ICEK Q 1
+goto S_0
+S_R:
+ICEK R 1
+goto S_0
+S_S:
+ICEK S 1
+goto S_0
+S_T:
+ICEK T 1
+goto S_0
+S_U:
+ICEK U 1
+goto S_0
+S_V:
+ICEK V 0
+ICEK V 1 A_GiveInventory("IcicleAmmo",1)
+goto S_0
+S_W:
+ICEK W 0
+ICEK W 1 A_GiveInventory("IcicleAmmo",1)
+goto S_0
+S_X:
+ICEK X 0
+ICEK X 1 A_GiveInventory("IcicleAmmo",1)
+goto S_0
+S_Y:
+ICEK Y 0
+ICEK Y 1 A_GiveInventory("IcicleAmmo",1)
+goto S_0
+S_Z:
+ICEK Z 0
+ICEK Z 1 A_GiveInventory("IcicleAmmo",1)
+goto S_0
+
+S_0:
+"####" "#" 0 A_ChangeFlag("NOGRAVITY",0)
+"####" "###########" 1 A_FadeIn(0.08)
+//"####" "#" 0 A_ChangeFlag("NOGRAVITY",0)
+"####" "#" 0 A_JumpIf(ACS_ExecuteWithResult(107,0)==1,"DeathTime")
+"####" "#" 1 A_JumpIfCloser(32,"DeathTime")//Change to A_RadiusGive with CubeCheck
+"####" "#" 0 A_JumpIfInventory("IcicleAmmo",1,"Spawn2")
+goto Spawn1
+Spawn1:
+"####" "#" 2 A_SpawnItemEx("IceBaF_SculptFX2",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359),1,0)
+"####" "#" 2 A_GiveInventory("WeaponCharge",1)
+"####" "#" 0 A_JumpIfInventory("WeaponCharge",100,"DeathTime")
+loop
+Spawn2:
+"####" "#" 0 A_ChangeFlag("NODAMAGE",1)
+"####" "##" 1 A_SpawnItemEx("IceBaF_SculptFX2",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359),1,0)
+"####" "#" 2 A_GiveInventory("WeaponCharge",1)
+"####" "#" 0 A_JumpIfInventory("WeaponCharge",250,"DeathTime")
+goto Spawn2+1
+
+Death.IceSlasher:
+Pain.IceSlasher:
+"####" "#" 0
+goto SuperDeath
+
+Death.ClassPainLess2Ice:
+Pain.ClassPainLess2Ice:
+"####" "#" 0
+goto SuperDeath
+
+Death.CoolestGuy:
+Pain.CoolestGuy:
+"####" "#" 0
+goto SuperDeath
+
+Death.IceSlashSlow:
+Pain.IceSlashSlow:
+"####" "#" 0 A_ChangeFlag("NODAMAGE",1)
+"####" "#" 0 A_ChangeFlag("NOPAIN",1)
+goto SuperDeath
+
+Death.IceSlashSlowL:
+Pain.IceSlashSlowL:
+"####" "#" 0 A_ChangeFlag("NODAMAGE",1)
+"####" "#" 2 A_ChangeFlag("NOPAIN",1)
+goto Death
+
+Death.IceSlashSlowB:
+Pain.IceSlashSlowB:
+"####" "#" 0 A_ChangeFlag("NODAMAGE",1)
+"####" "#" 2 A_ChangeFlag("NOPAIN",1)
+goto SuperDeath
+
+Death.IceSlashBlock:
+Pain.IceSlashBlock:
+"####" "#" 0 A_ChangeFlag("NODAMAGE",1)
+"####" "#" 2 A_ChangeFlag("NOPAIN",1)
+goto SuperDeath
+
+DeathTime:
+"####" "#" 1 A_CountDown
+wait
+
+SuperDeath:
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseDeath",0,0,24,0,0,0,0,1)
+stop
+
+Death:
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseDeath",0,0,24,0,0,0,0,1)
+stop
+}
+}
+
+actor IceBaF_SculptBaseDeath : BasicExplosion
+{
+damagetype "IceSlashBlock"
+Obituary "$OB_ICEBLOCK"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFX",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_PlaySound("weapon/IceManBreak",1,0.75)
+TNT1 A 6 A_Explode(15,196,0,0,80)
+stop
+}
+}
+
+actor IceBaF_SculptBaseFX : BasicClientSide
+{
+var int user_A;
+reactiontime 12
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_A",random(0,30))
+
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFX2",10,0,0,40,0,5,user_A,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFX2",10,0,0,40,0,-5,user_A+15,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFX2",8,0,6,30,0,20,user_A,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFX2",8,0,-6,30,0,-20,user_A,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFX2",6,0,8,20,0,30,user_A+15,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFX2",6,0,-8,20,0,-30,user_A+15,33)
+
+TNT1 A 0 A_SetUserVar("user_A",user_A+30)
+TNT1 A 0 A_Countdown
+goto Spawn+2
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFX2",0,0,10,0,0,35,0,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFX2",0,0,-10,0,0,-35,0,33)
+stop
+}
+}
+
+actor IceBaF_SculptBaseFXX : BasicClientSide
+{
+var int user_A;
+reactiontime 12
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_A",random(0,30))
+
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX2",10,0,0,40,0,5,user_A,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX2",10,0,0,40,0,-5,user_A+15,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX2",8,0,6,30,0,20,user_A,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX2",8,0,-6,30,0,-20,user_A,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX2",6,0,8,20,0,30,user_A+15,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX2",6,0,-8,20,0,-30,user_A+15,33)
+
+TNT1 A 0 A_SetUserVar("user_A",user_A+30)
+TNT1 A 0 A_Countdown
+goto Spawn+2
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX2",0,0,10,0,0,35,0,33)
+TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX2",0,0,-10,0,0,-35,0,33)
+stop
+}
+}
+
+actor IceBaF_SculptBaseFX2 : BasicClientSide
+{
+Renderstyle Translucent
+Alpha 0.95
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,"Spawn1","Spawn2")
+Spawn1:
+ICEL H 2
+ICEL JJH 1 A_FadeOut(0.2)
+stop
+Spawn2:
+ICEL J 2
+ICEL HHJ 1 A_FadeOut(0.2)
+stop
+}
+}
+
+actor IceBaF_SculptBaseFXX2 : BasicClientSide
+{
+Renderstyle Translucent
+Alpha 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,"Spawn1","Spawn2")
+Spawn1:
+//ICEL H 2
+ICEL JJH 1 A_FadeOut(0.2)
+stop
+Spawn2:
+//ICEL J 2
+ICEL HHJ 1 A_FadeOut(0.2)
+stop
+}
+}
+
+
+actor IceBaF_SculptBit
+{
+PROJECTILE
+damagetype "IceSlashSlow"
+Obituary "$OB_ICEBLOCKBIT"
+-NOGRAVITY
+Damage (8)
+Radius 10
+Height 10
+Speed 25
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ThrustThingZ(0,12,0,1)
+TNT1 A 0 A_Jump(256,1,2)
+ICEL H 1
+wait
+ICEL J 1
+wait
+Death:
+TMFX C 0 A_Stop
+TMFX C 0 A_ChangeFlag("NOGRAVITY",1)
+TMFX CD 2
+stop
+}
+}
+
+actor IceBaF_Sculpt_A : IceBaF_SculptBase//Foot Holder
+{
+States
+{
+Spawn:
+goto S_A
+}
+}
+
+actor IceBaF_Sculpt_B : IceBaF_SculptBase{Scale 1.75 States{Spawn:goto S_B}}//Bigeye
+actor IceBaF_Sculpt_C : IceBaF_SculptBase{States{Spawn:goto S_C}}//Crazy Razy
+actor IceBaF_Sculpt_D : IceBaF_SculptBase{States{Spawn:goto S_D}}//Roll Pose
+actor IceBaF_Sculpt_E : IceBaF_SculptBase{States{Spawn:goto S_E}}//Megaman Firing
+actor IceBaF_Sculpt_F : IceBaF_SculptBase{Scale 2.75 States{Spawn:goto S_F}}//Pepe
+actor IceBaF_Sculpt_G : IceBaF_SculptBase{States{Spawn:goto S_G}}//Gutsman Statue
+actor IceBaF_Sculpt_H : IceBaF_SculptBase{Scale 3.0 States{Spawn:goto S_H}}//Telly
+actor IceBaF_Sculpt_I : IceBaF_SculptBase{Scale 3.0 States{Spawn:goto S_I}}//Tank with an 'I'
+actor IceBaF_Sculpt_J : IceBaF_SculptBase{States{Spawn:goto S_J}}//Balloon
+actor IceBaF_Sculpt_K : IceBaF_SculptBase{States{Spawn:goto S_K}}//Bomb Platform '5'
+actor IceBaF_Sculpt_L : IceBaF_SculptBase{States{Spawn:goto S_L}}//Megaman 6 Barrel Met
+actor IceBaF_Sculpt_M : IceBaF_SculptBase{Scale 2.0 States{Spawn:goto S_M}}//Frostman RMC8 Cube
+actor IceBaF_Sculpt_N : IceBaF_SculptBase{Scale 2.0 States{Spawn:goto S_N}}//Guts Rock
+actor IceBaF_Sculpt_O : IceBaF_SculptBase{Scale 2.0 States{Spawn:goto S_O}}//Chillman Cube
+actor IceBaF_Sculpt_P : IceBaF_SculptBase{States{Spawn:goto S_P}}//Chill Penguin
+actor IceBaF_Sculpt_Q : IceBaF_SculptBase{States{Spawn:goto S_Q}}//Ducktales Yeti
+actor IceBaF_Sculpt_R : IceBaF_SculptBase{States{Spawn:goto S_R}}//Earthworm Jim//Rockman DX3 Ice
+actor IceBaF_Sculpt_S : IceBaF_SculptBase{States{Spawn:goto S_S}}//Snow Bro
+actor IceBaF_Sculpt_T : IceBaF_SculptBase{States{Spawn:goto S_T}}//Statue Mario
+actor IceBaF_Sculpt_U : IceBaF_SculptBase{Scale 2.0 States{Spawn:goto S_U}}//Frozen Bass
+actor IceBaF_Sculpt_V : IceBaF_SculptBase{States{Spawn:goto S_V}}//Ribbon
+actor IceBaF_Sculpt_W : IceBaF_SculptBase{Scale 3.25 States{Spawn:goto S_W}}//Pitch
+actor IceBaF_Sculpt_X : IceBaF_SculptBase{States{Spawn:goto S_X}}//Cutmanmike
+actor IceBaF_Sculpt_Y : IceBaF_SculptBase{States{Spawn:goto S_Y}}//Bonerman
+actor IceBaF_Sculpt_Z : IceBaF_SculptBase{Scale 3.10 States{Spawn:goto S_Z}}//Devileye
+
+actor IcemanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("IceSlasherB",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("IceSlasherBB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("IceSlasherBR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("IceSlasherBO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("IceSlasherBP",0,1,0,0)
+goto Done
+}
+}
+
+actor IcemanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaser",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaserB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaserR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaserO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaserP",0,0,8,0)
+goto Done
+}
+}
+
+actor IcemanAltX_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaser2",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaser2B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaser2R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaser2O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("IceBaFLaser2P",0,0,8,0)
+goto Done
+}
+}
+
+actor IcemanAlt1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CoolestGuyB",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CoolestGuyR",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CoolestGuyO",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CoolestGuyP",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+}
+}
+
+actor IcemanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy2",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy2B",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy2R",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy2O",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy2P",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+}
+}
+
+actor IcemanAlt3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy3",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy3B",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy3R",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy3O",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CoolestGuy3P",random(-12,12),0,8,0,0,random(-7,7))
+goto Done
+}
+}

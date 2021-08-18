@@ -1,0 +1,1185 @@
+actor PigsyBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_WTC"
+dropitem "HyperStormHWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 50
+Obituary "$OB_HSHHOTAIR"
+Inventory.Pickupmessage "Time to bring home the bacon!"
+weapon.ammotype "BaconAmmo"
+weapon.ammotype2 "HyperStormHeat"
+inventory.icon "HSHISUCK"
+States
+{
+Spawn:
+C_WT C 1
+loop
+//HSHH S 1
+Ready:
+HSHG A 0 ACS_ExecuteAlways(998,0,DYE_HYPERSTORMH)
+goto Ready1
+Ready1:
+HSHG A 0 A_JumpIfInventory("HyperStormHeat",1,"Ready2")
+HSHG A 0 A_JumpIfInventory("HyperStormCold",1,"Ready2")
+HSHG A 1 A_WeaponReady(8)
+wait
+Ready2:
+HSHG A 1 A_WeaponReady
+wait
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+HSHG A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+HSHG A 1 A_Raise
+Loop
+
+Fire:
+HSHG A 0
+HSHG BC 3
+HSHG D 0 A_GiveInventory("HSHSuckDelay",1)
+HSHG D 0 A_GiveInventory("HSHSoundDelay",1)
+HSHG D 0 A_PlaySound("weapon/HSHSuckBlow",1,1.0)
+goto SuckingReFire
+
+SuckCold:
+HSHG DD 0 A_FireCustomMissile("HSHSuckerCold2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+HSHG D 0 A_TakeInventory("HyperStormCold",2)
+HSHG D 2 A_FireCustomMissile("HSHSuckerCold",0,0)
+goto SuckingReFire
+Sucking:
+HSHG DD 0 A_FireCustomMissile("HSHSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+HSHG D 0 A_GiveInventory("HyperStormHeat",2)
+HSHG D 2 A_FireCustomMissile("HSHSucker",0,0)
+HSHG D 0
+goto SuckingReFire
+SuckingWeak:
+HSHG D 0 A_FireCustomMissile("HSHSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+HSHG D 0 A_GiveInventory("HyperStormHeat",2)
+HSHG D 2 A_FireCustomMissile("HSHSuckerWeak",0,0)
+goto SuckingReFire
+
+SuckingReFire:
+HSHG D 0 A_Refire("SuckingSnd")
+HSHG D 0 A_StopSound(1)
+Goto SuckingEnd
+SuckingSnd:
+HSHG D 0 A_JumpIfInventory("HSHSoundDelay",1,"SuckingPew")
+HSHG D 0 A_PlaySound("weapon/HSHSuckBlow",1,1.0)
+HSHG D 0 A_GiveInventory("HSHSoundDelay",1)
+goto SuckingPew
+SuckingPew:
+HSHG D 0 A_JumpIfInventory("HSHSuckDelay",1,"SuckingCheck")
+HSHG D 0 A_FireCustomMissile("HSHSuckExplode",0,0)
+HSHG D 0 A_GiveInventory("HSHSuckDelay_RC",1)
+goto SuckingCheck
+SuckingCheck:
+HSHG D 0 A_JumpIfInventory("HyperStormCold",1,"SuckCold")
+HSHG D 0 A_JumpIfInventory("HyperStormHeat",200,"SuckingWeak")
+Goto Sucking
+
+SuckingEnd:
+HSHG CB 3
+HSHG B 0 A_StopSound(1)
+goto Ready1
+
+AltFire:
+HSHG A 0 A_JumpIfInventory("HyperStormHeat",1,"AltHot")
+HSHG A 0 A_JumpIfInventory("HyperStormCold",1,"AltCold")
+Goto Ready1
+AltHot:
+HSHG C 0 A_JumpIfInventory("FlightDisableFlag",1,"AltHot3")
+HSHG C 0 A_JumpIfInventory("IsUnderWater",1,"AltHot2")
+HSHG C 0 A_JumpIf(momz>=0,"AltHot2")
+HSHG C 0 ThrustThingZ(0,0,0,0)
+goto AltHot2
+AltHot2:
+HSHG C 0 ThrustThingZ(0,6,0,1)
+AltHot3:
+HSHG C 0 A_TakeInventory("HyperStormHeat",6)
+HSHG C 0 A_SpawnItemEx("HSHExplodeHeat",0,0,8)
+HSHG C 0 A_Recoil(-1)
+HSHG C 0 A_PlaySoundEX("weapon/superboost","Weapon")
+HSHG CCCCC 0 A_SpawnItemEx("HSHHeatThrustFX",random(-10,-6),random(-16,16),random(28,36),random(-8,4),random(-8,8),random(-8,3),0,129) 
+HSHG C 0 A_SpawnItemEX("HSHBoosterFX",-8,-16,32,0,0,0,0,1)
+HSHG C 2 A_SpawnItemEX("HSHBoosterFX",-8,16,32,0,0,0,0,1)
+HSHG C 0 A_JumpIfInventory("HyperStormHeat",1,"AltHotFire")
+goto AltHotEnd
+AltHotFire:
+HSHG C 0 A_Refire("AltHot")
+goto AltHotEnd
+AltHotEnd:
+HSHG CB 3
+goto Ready1
+
+AltCold:
+HSHG B 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,7,1)//Half jump
+HSHG B 0 SetPlayerProperty(0,1,0)
+
+HSHG B 0 A_GiveInventory("HSHDashFlagX",1)
+HSHG B 0 A_GiveInventory("HSHDashFlag",1)
+HSHG B 0 A_TakeInventory("HSHDashPower",9999)
+
+HSHG B 4 A_Quake(2,5,0,256)
+HSHG B 0 A_SpawnItemEx("HSHDashExplodeStart",0,0,28,momx,momy,momz,0,9,0)
+HSHG B 4 A_PlaySound("weapon/HSHRunning",4,1.0)
+HSHG G 4 A_Quake(2,5,0,256)
+HSHG G 0 A_SpawnItemEx("HSHDashExplodeStart",0,0,28,momx,momy,momz,0,9,0)
+HSHG H 4 A_PlaySound("weapon/HSHRunning",4,1.0)
+HSHG G 4 A_Quake(2,5,0,256)
+HSHG G 0 A_SpawnItemEx("HSHDashExplodeStart",0,0,28,momx,momy,momz,0,9,0)
+HSHG F 4 A_PlaySound("weapon/HSHRunning",4,1.0)
+HSHG G 4 A_Quake(2,5,0,256)
+HSHG G 0 A_SetUserVar("user_wepangle",angle)
+HSHG G 0 A_GunFlash
+
+goto GottaHeatUp1
+GottaHeatUp1:
+HSHG G 0 A_GiveInventory("HSHDashFlag",1)
+HSHG G 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHG G 0 A_ReFire("GottaHeatUp1C")
+goto AltColdEndC
+GottaHeatUp1C:
+HSHG G 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp2")
+goto AltColdEndC
+GottaHeatUp2:
+HSHG H 0
+HSHG H 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHG H 0 A_ReFire("GottaHeatUp2C")
+goto AltColdEndR
+GottaHeatUp2C:
+HSHG H 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp3")
+goto AltColdEndR
+GottaHeatUp3:
+HSHG I 0 A_GiveInventory("HSHDashFlag",1)
+HSHG I 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHG I 0 A_ReFire("GottaHeatUp3C")
+goto AltColdEndR
+GottaHeatUp3C:
+HSHG I 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp4")
+goto AltColdEndR
+GottaHeatUp4:
+HSHG H 0
+HSHG H 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHG H 0 A_ReFire("GottaHeatUp4C")
+goto AltColdEndR
+GottaHeatUp4C:
+HSHG H 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp5")
+goto AltColdEndR
+GottaHeatUp5:
+HSHG G 0 A_GiveInventory("HSHDashFlag",1)
+HSHG G 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHG G 0 A_ReFire("GottaHeatUp5C")
+goto AltColdEndC
+GottaHeatUp5C:
+HSHG G 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp6")
+goto AltColdEndC
+GottaHeatUp6:
+HSHG F 0
+HSHG F 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHG F 0 A_ReFire("GottaHeatUp6C")
+goto AltColdEndL
+GottaHeatUp6C:
+HSHG F 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp7")
+goto AltColdEndL
+GottaHeatUp7:
+HSHG E 0 A_GiveInventory("HSHDashFlag",1)
+HSHG E 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHG E 0 A_ReFire("GottaHeatUp7C")
+goto AltColdEndL
+GottaHeatUp7C:
+HSHG E 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp8")
+goto AltColdEndL
+GottaHeatUp8:
+HSHG F 0
+HSHG F 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHG F 0 A_ReFire("GottaHeatUp8C")
+goto AltColdEndL
+GottaHeatUp8C:
+HSHG F 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp1")
+goto AltColdEndL
+
+AltColdEndC:
+HSHG A 0 A_TakeInventory("HSHDashFlagX",99)
+HSHG A 0 A_TakeInventory("HSHDashFlag",99)
+HSHG A 0 SetPlayerProperty(0,0,0)
+HSHG A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)//Gain Jump
+HSHG GBA 2
+goto Ready1
+AltColdEndR:
+HSHG A 0 A_TakeInventory("HSHDashFlagX",99)
+HSHG A 0 A_TakeInventory("HSHDashFlag",99)
+HSHG A 0 SetPlayerProperty(0,0,0)
+HSHG A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+HSHG HGB 2
+goto Ready1
+AltColdEndL:
+HSHG A 0 A_TakeInventory("HSHDashFlagX",99)
+HSHG A 0 A_TakeInventory("HSHDashFlag",99)
+HSHG A 0 SetPlayerProperty(0,0,0)
+HSHG A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+HSHG FGB 2
+goto Ready1
+
+NoAmmo:
+HSHG A 1
+Goto Ready1
+Flash:
+TNT1 A 0 A_SpawnItemEx("HSHDashExplode",0,0,28,momx,momy,momz,0,9,0)
+TNT1 A 0 A_Quake(2,4,0,256)
+TNT1 A 0 A_PlaySound("weapon/HSHRunning",4,1.0)
+TNT1 A 0 A_GiveInventory("HSHDashPower",1)
+
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,5)
+TNT1 A 1 A_GiveInventory("HSHThrust3",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust4",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust3",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust4",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,5)
+TNT1 A 1 A_GiveInventory("HSHThrust3",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust4",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust3",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust4",1)
+
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,"Flash")
+stop
+}
+}
+
+actor PiggyBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_WTC2"
+dropitem "HyperStormHWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 50
+Inventory.Pickupmessage "Damn, look at that bacon sizzle!"
+Obituary "$OB_HSHCOLDRAM"
+weapon.ammotype "SizzleAmmo"
+weapon.ammotype2 "HyperStormCold"
+inventory.icon "HSHIBLOW"
+States
+{
+Spawn:
+C_WT C 1
+loop
+
+Ready:
+HSHH A 0 ACS_ExecuteAlways(998,0,DYE_HYPERSTORMH)
+goto Ready1
+Ready1:
+HSHH A 0 A_JumpIfInventory("HyperStormHeat",1,"Ready2")
+HSHH A 0 A_JumpIfInventory("HyperStormCold",1,"Ready2")
+HSHH A 1 A_WeaponReady(8)
+wait
+Ready2:
+HSHH A 1 A_WeaponReady
+wait
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+HSHH A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+HSHH A 1 A_Raise
+Loop
+
+
+Fire:
+HSHH A 0
+HSHH A 0
+HSHH BC 3
+HSHH D 0 A_GiveInventory("HSHBlowDelay",1)
+HSHH D 0 A_GiveInventory("HSHSoundDelay",1)
+HSHH D 0 A_PlaySound("weapon/HSHSuckBlow",1,1.0)
+goto BlowingReFire
+
+BlowHeat:
+HSHH DD 0 A_FireCustomMissile("HSHParticleBlowHeat_H",random(-14,14),0,random(-7,7),random(-7,7),0,random(-8,8))
+HSHH D 0 A_TakeInventory("HyperStormHeat",2)
+HSHH D 2 A_FireCustomMissile("HSHBlowerHeat",0,0)
+goto BlowingReFire
+Blowing:
+HSHH DD 0 A_FireCustomMissile("HSHParticleBlow_H",random(-14,14),0,random(-7,7),random(-7,7),0,random(-8,8))
+HSHH D 0 A_GiveInventory("HyperStormCold",2)
+HSHH D 2 A_FireCustomMissile("HSHBlower",0,0)
+goto BlowingReFire
+BlowingWeak:
+HSHH D 0 A_FireCustomMissile("HSHParticleBlow_H",random(-14,14),0,random(-7,7),random(-7,7),0,random(-8,8))
+HSHH D 0 A_GiveInventory("HyperStormCold",2)
+HSHH D 2 A_FireCustomMissile("HSHBlowerWeak",0,0)
+goto BlowingReFire
+
+BlowingReFire:
+HSHH D 0 A_Refire("BlowingSnd")
+HSHH D 0 A_StopSound(1)
+Goto BlowingEnd
+BlowingSnd:
+HSHH D 0 A_JumpIfInventory("HSHSoundDelay",1,"BlowingPew")
+HSHH D 0 A_PlaySound("weapon/HSHSuckBlow",1,1.0)
+HSHH D 0 A_GiveInventory("HSHSoundDelay",1)
+goto BlowingPew
+BlowingPew:
+HSHH D 0 A_JumpIfInventory("HSHBlowDelay",1,"BlowingCheck")
+HSHH D 0 A_GiveInventory("HSHBlowDelay_RC",1)
+HSHH D 0 A_JumpIfInventory("HyperStormHeat",1,"BlowingPew2")
+HSHH D 0 A_PlaySound("weapon/HSHPew",4,1.0)
+HSHH D 0 A_GiveInventory("HyperStormHMain_CI",1)
+goto BlowingCheck
+BlowingPew2:
+HSHH D 0 A_PlaySound("weapon/FlameBall",4,1.0)
+HSHH D 0 A_GiveInventory("HyperStormHMain2_CI",1)
+goto BlowingCheck
+BlowingCheck:
+HSHH D 0 A_JumpIfInventory("HyperStormHeat",1,"BlowHeat")
+HSHH D 0 A_JumpIfInventory("HyperStormCold",200,"BlowingWeak")
+Goto Blowing
+
+BlowingEnd:
+HSHH CB 3
+HSHH B 0 A_StopSound(1)
+goto Ready1
+
+AltFire:
+HSHH A 0 A_JumpIfInventory("HyperStormHeat",1,"AltHot")
+HSHH A 0 A_JumpIfInventory("HyperStormCold",1,"AltCold")
+Goto Ready1
+AltHot:
+HSHH C 0 A_JumpIfInventory("FlightDisableFlag",1,"AltHot3")
+HSHH C 0 A_JumpIfInventory("IsUnderWater",1,"AltHot2")
+HSHH C 0 A_JumpIf(momz>=0,"AltHot2")
+HSHH C 0 ThrustThingZ(0,0,0,0)
+goto AltHot2
+AltHot2:
+HSHH C 0 ThrustThingZ(0,6,0,1)
+AltHot3:
+HSHH C 0 A_TakeInventory("HyperStormHeat",6)
+HSHH C 0 A_SpawnItemEx("HSHExplodeHeat",0,0,8)
+HSHH C 0 A_Recoil(-1)
+HSHH C 0 A_PlaySoundEX("weapon/superboost","Weapon")
+HSHH CCCCC 0 A_SpawnItemEx("HSHHeatThrustFX",random(-10,-6),random(-16,16),random(28,36),random(-8,4),random(-8,8),random(-8,3),0,129) 
+HSHH C 0 A_SpawnItemEX("HSHBoosterFX",-8,-16,32,0,0,0,0,1)
+HSHH C 2 A_SpawnItemEX("HSHBoosterFX",-8,16,32,0,0,0,0,1)
+HSHH C 0 A_JumpIfInventory("HyperStormHeat",1,"AltHotFire")
+goto AltHotEnd
+AltHotFire:
+HSHH C 0 A_Refire("AltHot")
+goto AltHotEnd
+AltHotEnd:
+HSHH CB 3
+goto Ready1
+
+AltCold:
+HSHH B 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,7,1)//Half jump
+HSHH B 0 SetPlayerProperty(0,1,0)
+
+HSHH B 0 A_GiveInventory("HSHDashFlagX",1)
+HSHH B 0 A_GiveInventory("HSHDashFlag",1)
+HSHH B 0 A_TakeInventory("HSHDashPower",9999)
+
+HSHH B 4 A_Quake(2,5,0,256)
+HSHH B 0 A_SpawnItemEx("HSHDashExplodeStart",0,0,28,momx,momy,momz,0,9,0)
+HSHH B 4 A_PlaySound("weapon/HSHRunning",4,1.0)
+HSHH G 4 A_Quake(2,5,0,256)
+HSHH G 0 A_SpawnItemEx("HSHDashExplodeStart",0,0,28,momx,momy,momz,0,9,0)
+HSHH H 4 A_PlaySound("weapon/HSHRunning",4,1.0)
+HSHH G 4 A_Quake(2,5,0,256)
+HSHH G 0 A_SpawnItemEx("HSHDashExplodeStart",0,0,28,momx,momy,momz,0,9,0)
+HSHH F 4 A_PlaySound("weapon/HSHRunning",4,1.0)
+HSHH G 4 A_Quake(2,5,0,256)
+HSHH G 0 A_SetUserVar("user_wepangle", angle)
+HSHH G 0 A_GunFlash
+
+goto GottaHeatUp1
+GottaHeatUp1:
+HSHH G 0 A_GiveInventory("HSHDashFlag",1)
+HSHH G 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHH G 0 A_ReFire("GottaHeatUp1C")
+goto AltColdEndC
+GottaHeatUp1C:
+HSHH G 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp2")
+goto AltColdEndC
+GottaHeatUp2:
+HSHH H 0
+HSHH H 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHH H 0 A_ReFire("GottaHeatUp2C")
+goto AltColdEndR
+GottaHeatUp2C:
+HSHH H 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp3")
+goto AltColdEndR
+GottaHeatUp3:
+HSHH I 0 A_GiveInventory("HSHDashFlag",1)
+HSHH I 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHH I 0 A_ReFire("GottaHeatUp3C")
+goto AltColdEndR
+GottaHeatUp3C:
+HSHH I 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp4")
+goto AltColdEndR
+GottaHeatUp4:
+HSHH H 0
+HSHH H 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHH H 0 A_ReFire("GottaHeatUp4C")
+goto AltColdEndR
+GottaHeatUp4C:
+HSHH H 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp5")
+goto AltColdEndR
+GottaHeatUp5:
+HSHH G 0 A_GiveInventory("HSHDashFlag",1)
+HSHH G 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHH G 0 A_ReFire("GottaHeatUp5C")
+goto AltColdEndC
+GottaHeatUp5C:
+HSHH G 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp6")
+goto AltColdEndC
+GottaHeatUp6:
+HSHH F 0
+HSHH F 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHH F 0 A_ReFire("GottaHeatUp6C")
+goto AltColdEndL
+GottaHeatUp6C:
+HSHH F 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp7")
+goto AltColdEndL
+GottaHeatUp7:
+HSHH E 0 A_GiveInventory("HSHDashFlag",1)
+HSHH E 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHH E 0 A_ReFire("GottaHeatUp7C")
+goto AltColdEndL
+GottaHeatUp7C:
+HSHH E 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp8")
+goto AltColdEndL
+GottaHeatUp8:
+HSHH F 0
+HSHH F 1 A_GiveInventory("HSHColdTake_RC",1)
+HSHH F 0 A_ReFire("GottaHeatUp8C")
+goto AltColdEndL
+GottaHeatUp8C:
+HSHH F 0 A_JumpIfInventory("HyperStormCold",1,"GottaHeatUp1")
+goto AltColdEndL
+
+AltColdEndC:
+HSHH A 0 A_TakeInventory("HSHDashFlagX",99)
+HSHH A 0 A_TakeInventory("HSHDashFlag",99)
+HSHH A 0 SetPlayerProperty(0,0,0)
+HSHH A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)//Gain Jump
+HSHH GBA 2
+goto Ready1
+AltColdEndR:
+HSHH A 0 A_TakeInventory("HSHDashFlagX",99)
+HSHH A 0 A_TakeInventory("HSHDashFlag",99)
+HSHH A 0 SetPlayerProperty(0,0,0)
+HSHH A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+HSHH HGB 2
+goto Ready1
+AltColdEndL:
+HSHH A 0 A_TakeInventory("HSHDashFlagX",99)
+HSHH A 0 A_TakeInventory("HSHDashFlag",99)
+HSHH A 0 SetPlayerProperty(0,0,0)
+HSHH A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+HSHH FGB 2
+goto Ready1
+
+NoAmmo:
+HSHH A 1
+goto Ready1
+Flash:
+TNT1 A 0 A_SpawnItemEx("HSHDashExplode",0,0,28,momx,momy,momz,0,9,0)
+TNT1 A 0 A_Quake(2,4,0,256)
+TNT1 A 0 A_PlaySound("weapon/HSHRunning",4,1.0)
+TNT1 A 0 A_GiveInventory("HSHDashPower",1)
+
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,5)
+TNT1 A 1 A_GiveInventory("HSHThrust3",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust4",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust3",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust4",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,5)
+TNT1 A 1 A_GiveInventory("HSHThrust3",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust4",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust3",1)
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,1)
+stop
+TNT1 A 1 A_GiveInventory("HSHThrust4",1)
+
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("HSHDashFlagX",1,"Flash")
+stop
+}
+}
+
+actor BaconAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 30
++INVENTORY.IGNORESKILL
+}
+
+actor SizzleAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 30
++INVENTORY.IGNORESKILL
+}
+
+actor HyperStormHeat : Ammo
+{
+inventory.amount 1
+inventory.maxamount 200
++INVENTORY.IGNORESKILL
+}
+actor HyperStormCold : Ammo
+{
+inventory.amount 1
+inventory.maxamount 200
++INVENTORY.IGNORESKILL
+}
+
+actor HSHSoundDelay : Powerup
+{
+Powerup.Duration 24
+}
+actor HSHSuckDelay : Powerup
+{
++INVENTORY.ADDITIVETIME
+Powerup.Duration 5
+}
+actor HSHBlowDelay : Powerup
+{
++INVENTORY.ADDITIVETIME
+Powerup.Duration 10
+}
+
+actor HSHDashFlagX : Inventory
+{
+Inventory.amount 1
+Inventory.maxamount 3
+}
+actor HSHDashFlag : Inventory
+{
+Inventory.amount 1
+Inventory.maxamount 5
+}
+
+actor HSHDashPower : Inventory
+{
+Inventory.amount 1
+Inventory.maxamount 9999
+}
+
+actor HSHColdTake_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_TakeInventory("HyperStormCold",1)
+stop
+PickupR:
+TNT1 A 0 A_TakeInventory("HyperStormCold",2)
+stop
+}
+}
+
+actor HSHBlowDelay_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("HSHBlowDelay",1)
+goto PickupR
+PickupR:
+TNT1 A 0 A_GiveInventory("HSHBlowDelay",1)
+stop
+}
+}
+actor HSHSuckDelay_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("HSHSuckDelay",1)
+goto PickupR
+PickupR:
+TNT1 A 0 A_GiveInventory("HSHSuckDelay",1)
+stop
+}
+}
+
+actor HSHBullet
+{
+Translation "204:204=215:215"
+PROJECTILE
+Radius 15
+Height 15
+DamageType "HyperStormH"
+Obituary "$OB_HSHBULLET"
+scale 3.0
+Damage (13)//15
+speed 39//38
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+BASB T -1
+loop
+}
+}
+
+actor HSHBulletB : HSHBullet{translation "204:204=205:205"}
+actor HSHBulletR : HSHBullet{translation "204:204=171:171"}
+actor HSHBulletO : HSHBullet{translation "204:204=104:104"}
+actor HSHBulletP : HSHBullet{translation "204:204=229:229"}
+
+
+actor HSHBulletHeat
+{
+translation "199:199=227:227", "202:202=229:229"
+PROJECTILE
+Radius 16
+Height 16
+DamageType "HSHFire"
+Obituary "$OB_HSHHOTBULLET"
+scale 2.0
+Damage (18)//20
+speed 47//46
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+HSHH TUV 2
+loop
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+stop
+}
+}
+
+actor HSHBulletHeatB : HSHBulletHeat{translation "202:202=205:205", "199:199=74:74"}
+actor HSHBulletHeatR : HSHBulletHeat{translation "202:202=171:171", "199:199=41:41"}
+actor HSHBulletHeatO : HSHBulletHeat{translation "202:202=104:104", "199:199=128:128"}
+actor HSHBulletHeatP : HSHBulletHeat{translation "202:202=229:229", "199:199=232:232"}
+
+actor HSHSuckExplode// : BasicExplosion
+{
+DamageType "HSHSuck"
+Obituary "$OB_HSHCOLDSUCK"
++DROPOFF
+-SOLID
++NOGRAVITY
++THRUACTORS
++THRUGHOST
++DONTBLAST
++DONTREFLECT
+radius 2
+height 2
+Speed 42
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_Stop
+TNT1 A 1 A_Explode(5,96,0,0,32)//10
+stop
+}
+}
+
+actor HSHDashExplodeStart : BasicExplosion
+{
+DamageType "HSHCold"
+Obituary "$OB_HSHCOLDRAM"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("HSHDustFX",-5,0,-28,-3,0,0,0,1)
+TNT1 A 1 A_Explode(10,112,0,0,32)
+stop
+}
+}
+
+actor HSHDashExplode : HSHDashExplodeStart
+{
+var int user_P;
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",1000,"Spawn1000Add")
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",100,"Spawn100Add")
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",10,"Spawn10Add")
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",user_P,"SpawnAdd")
+TNT1 A 0// A_LOGINT(user_P)
+goto SpawnDone
+SpawnDone://A_Explode(user_P*0.65+10,user_P/3+112,0)
+TNT1 A 0 A_SpawnItemEx("HSHDustFX",-2,0,-28,-2,0,0,0,1)
+TNT1 A 1 A_Explode(18,128,0,0,64)
+stop
+SpawnAdd:
+TNT1 A 0 A_SetUserVar("user_P",user_P+1)
+goto Spawn+5
+Spawn10Add:
+TNT1 A 0 A_SetUserVar("user_P",user_P+10)
+TNT1 A 0 //A_LOGINT(user_P)
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",user_P+9,"Spawn10Add")
+goto Spawn+5
+Spawn100Add:
+TNT1 A 0 A_SetUserVar("user_P",user_P+100)
+TNT1 A 0 //A_LOGINT(user_P)
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",user_P+99,"Spawn100Add")
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",user_P+9,"Spawn10Add")
+goto Spawn+5
+Spawn1000Add:
+TNT1 A 0 A_SetUserVar("user_P",user_P+1000)
+TNT1 A 0 //A_LOGINT(user_P)
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",user_P+999,"Spawn1000Add")
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",user_P+99,"Spawn100Add")
+TNT1 A 0 A_JumpIfInTargetInventory("HSHDashPower",user_P+9,"Spawn10Add")
+goto Spawn+5
+
+
+}
+}
+
+actor HSHExplodeHeat : BasicExplosion
+{
+DamageType "HSHFire"
+Obituary "$OB_HSHHOTAIR"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(7,112,0,0,16)
+stop
+}
+}
+
+actor HSHBoosterFX
+{
++MISSILE
++THRUACTORS
++CLIENTSIDEONLY
+damage 0
+Radius 2
+Height 2
+scale 2.5
+States
+{
+Spawn:
+VMFX QRS 1
+SMFX D 1
+stop
+}
+}
+
+actor HSHHeatThrustFX
+{
+Translation "248:248=229:229", "41:41=227:227"
+Scale 1.5
+height 1
+radius 1
+-SOLID
++NOBLOCKMONST
++NOGRAVITY
++CLIENTSIDEONLY
++DONTBLAST
++NOINTERACTION
++NOTIMEFREEZE
+States
+{
+Spawn:
+Y_8C AAABBCCDD 2 A_Fadeout
+stop
+}
+}
+
+actor HSHDustFX
+{
++NOINTERACTION
++NOGRAVITY
++CLIENTSIDEONLY
+Radius 4
+Height 4
+Scale 3.5
+States
+{
+Spawn:
+HSHH PQR 6
+stop
+}
+}
+
+actor HSHSucker33
+{
+PROJECTILE
++NOINTERACTION
+height 0
+radius 0
+speed 0
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,11,2)//25 blow
+TNT1 A 3
+stop
+}
+}
+
+actor HSHSucker
+{
+PROJECTILE
++NOINTERACTION
+height 0
+radius 0
+speed 0
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,11,3)
+TNT1 A 3
+stop
+}
+}
+actor HSHSuckerCold : HSHSucker
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,11,3)
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,125,11,4)
+TNT1 A 3
+stop
+}
+}
+actor HSHSuckerWeak : HSHSucker
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,11,5)
+TNT1 A 3
+stop
+}
+}
+
+actor HSHSuckerColdWeak : HSHSucker
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,11,5)
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,125,11,10)
+TNT1 A 3
+stop
+}
+}
+
+actor HSHBlower
+{
+PROJECTILE
++NOINTERACTION
+height 0
+radius 0
+speed 0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,22,6)
+TNT1 A 3
+stop
+}
+}
+actor HSHBlowerHeat : HSHBlower
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,22,7)
+TNT1 A 3
+stop
+}
+}
+actor HSHBlowerWeak : HSHBlower
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,22,8)
+TNT1 A 3
+stop
+}
+}
+
+actor HSHSucker2 : FastProjectile
+{
+PROJECTILE
++SKYEXPLODE
++DONTBLAST
++DONTREFLECT
++DONTSPLASH
+Speed 500
+Damage (0)
+radius 16
+height 16
+States
+{
+Spawn:
+TNT1 A 1
+goto Death
+Crash:
+XDeath:
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 1 A_CustomMissile("HSHParticleSuck", 0, 0, 0, 0)
+stop
+}
+}
+
+actor HSHSuckerCold2 : HSHSucker2
+{
+States
+{
+Spawn:
+TNT1 A 1
+goto Death
+Crash:
+XDeath:
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 1 A_CustomMissile("HSHParticleSuckCold", 0, 0, 0, 0)
+stop
+}
+}
+
+actor HSHParticleSuck
+{
+PROJECTILE
+translation "192:198=4:4"
++CLIENTSIDEONLY
+//+NOINTERACTION
+//-SOLID
++NOGRAVITY
++DONTBLAST
++DONTREFLECT
++DONTSPLASH
+Damage (0)
+height 5
+radius 5
+Scale 1.5
+Speed 35
+States
+{
+Spawn:
+TMFX DDDDDDDDDDDDDDD 1 A_JumpIfCloser(60,"Death")
+stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor HSHParticleSuckCold : HSHParticleSuck
+{
+States
+{
+Spawn:
+BLIZ AAAAABBBBBCCCCC 1 A_JumpIfCloser(60,"Death")
+stop
+}
+}
+
+
+actor HSHParticleBlow_H : BasicHelper
+{
+translation "192:198=4:4"
+Speed 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("HSHParticleBlow",0,0,0,momx*35,momy*35,momz*35,0,9)
+TNT1 A 1
+stop
+}
+}
+
+actor HSHParticleBlow
+{
+PROJECTILE
+translation "192:198=4:4"
+//+NONETID
++CLIENTSIDEONLY
++DONTBLAST
++DONTREFLECT
++DONTSPLASH
+Damage (0)
+height 4
+radius 4
+Speed 35
+Scale 1.5
+States
+{
+Spawn:
+TNT1 AA 1
+TMFX DDDDDDDDDDDDD 1
+stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor HSHParticleBlowHeat_H : BasicHelper
+{
+translation "41:41=4:4", "229:229=4:4"
+Speed 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("HSHParticleBlowHeat",0,0,0,momx*35,momy*35,momz*35,0,9)
+TNT1 A 1
+stop
+}
+}
+
+actor HSHParticleBlowHeat : HSHParticleBlow
+{//41 175
+translation "41:41=4:4", "229:229=4:4"
+States
+{
+Spawn:
+TNT1 AA 1
+HEAT ABABABA 2
+stop
+}
+}
+
+
+
+actor HSHThrust3 : CustomInventory
+{
+states
+{
+Pickup://20
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"Pickup_R")
+TNT1 A 0 A_SetUserVar("user_wepangle", ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,3))
+TNT1 A 0 A_ChangeVelocity(20*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),20*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
+stop
+Pickup_R:
+TNT1 A 0 A_SetUserVar("user_wepangle", ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,5))
+TNT1 A 0 A_ChangeVelocity(28*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),28*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
+stop
+}
+}
+
+actor HSHThrust4 : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"Pickup_R")
+TNT1 A 0 A_SetUserVar("user_wepangle", ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,4))
+TNT1 A 0 A_ChangeVelocity(20*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),20*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
+stop
+Pickup_R:
+TNT1 A 0 A_SetUserVar("user_wepangle", ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,6))
+TNT1 A 0 A_ChangeVelocity(28*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),28*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
+stop
+}
+}
+
+actor TastyPullStock : Inventory
+{
+inventory.amount 1
+inventory.maxamount 99999
+}
+
+
+actor HyperStormHMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HSHBullet",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HSHBulletB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HSHBulletR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HSHBulletO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HSHBulletP",0,0,0,0)
+goto Done
+}
+}
+
+actor HyperStormHMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HSHBulletHeat",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HSHBulletHeatB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HSHBulletHeatR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HSHBulletHeatO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HSHBulletHeatP",0,0,0,0)
+goto Done
+}
+}

@@ -1,0 +1,83 @@
+actor IsAuto : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor Auto : ClassBase
+{
+Player.ScoreIcon "C_00G0X"
+player.startitem "MegaHealthBar"
+player.displayname "auto"
+player.soundclass "autoc"
+player.startitem "IsAuto"
+//player.startitem "AutoToggler"
+player.startitem "AutoBoltBoss"
+//player.startitem "AutoBoltBoltDistribute"
+//player.startitem "AutoBoltAmmoSmall"
+//player.startitem "AutoBoltTheWire"
+//player.startitem "AutoBoltTheItemTwo"
+//player.startitem "AutoBoltAmmoLarge"
+//player.startitem "AutoBoltTheAutoBeat"
+//player.startitem "AutoBoltTheAutoEddie"
+player.startitem "AutoBoltAmmo", 56
+player.startitem "AutoNutsAmmo", 4
+player.startitem "AutoCycleItem"
+Player.JumpZ 10
+
+player.forwardmove 0.75, 0.75
+player.sidemove 0.73, 0.73
+States
+{
+Spawn:
+AUT6 A 0
+AUT6 B 1
+AUT6 A 245
+AUT6 QA 4
+goto Spawn+3
+See:
+AUT6 BCDE 5
+Goto Spawn
+Missile:
+AUT6 R 4
+AUT6 R 6
+AUT6 R 4
+AUT6 R 6
+AUT6 R 4
+AUT6 R 6
+goto Spawn+2
+
+CustomState1:
+AUT6 FGF 3
+goto Spawn+2
+CustomState2:
+AUT6 U 2
+AUT6 V 2
+AUT6 U 2
+AUT6 V 2
+AUT6 U 2
+AUT6 V 2
+AUT6 U 2
+goto Spawn+2
+CustomState3:
+AUT6 W 4
+AUT6 R 18
+goto Spawn+2
+CustomState4:
+AUT6 H 6
+goto Spawn+2
+MissileC2:
+AUT6 W 9
+goto Spawn
+
+ClassPain:
+AUT6 H 0
+goto PainContinue
+DeathFix:
+AUT6 H 0
+goto DeathContinue
+ClassDeath:
+AUT6 H 1
+goto MegaDeathEnd
+}
+}

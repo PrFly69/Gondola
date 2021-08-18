@@ -1,0 +1,509 @@
+
+OptionMenu ZA_JoinMenu
+{
+	Title "JOIN GAME"
+
+	StaticText"You are spectating."
+	StaticText""
+	StaticText""
+	StaticText""
+	StaticText""
+	StaticText""
+	StaticText"$MNU_JOIN1"
+	StaticText""
+	Command "Join Game", "!cbm_justjoin"
+	StaticText""
+	Option "$MNU_JOIN3", "playerclass", "CBM_ClassStrings"
+	StaticText""
+	TextField "$MNU_JOIN4", "playerclass"
+	StaticText""
+	Submenu "$MNU_JOIN5", "CBM_JoinMenuSelect"
+	StaticText""
+	StaticText""
+	StaticText""
+	StaticText"$MNU_JOIN7"
+	StaticText""
+	JoinMenuPlayerClassOption
+	StaticText""
+	Command "       Join game", "menu_joingamewithclass"
+}
+
+OptionMenu ZA_JoinTeamMenu
+{
+	Title "JOIN TEAMGAME"
+
+	StaticText"Please select a team."
+	StaticText""
+	StaticText""
+	StaticText"$MNU_JOIN1"//$MNU_CHELP_EQUALLINE
+	StaticText"$MNU_JOIN2"
+	StaticText""
+	StaticText""
+	Command "$MNU_JOIN6", "menu_autoselect"
+	StaticText""
+	Option "$MNU_JOIN3", "playerclass", "CBM_ClassStrings"
+	StaticText""
+	TextField "$MNU_JOIN4", "playerclass"
+	StaticText""
+	Submenu "$MNU_JOIN5", "CBM_JoinMenuSelectT"
+	StaticText""
+	StaticText""
+	StaticText""
+	StaticText"$MNU_JOIN7"
+	StaticText""
+	JoinMenuPlayerClassOption
+	StaticText""
+	JoinMenuTeamOption
+	StaticText""
+	Command "       Join game", "menu_joingamewithclass"
+	StaticText""
+}
+
+OptionMenu ZA_SelectClassMenu
+{
+	Title "PLAYER CLASS SELECTION"
+
+	StaticText""
+	StaticText""
+	StaticText""
+	StaticText""
+	StaticText""
+	StaticText""
+	JoinMenuPlayerClassOption
+	StaticText""
+	Command "Join game", "menu_joingamewithclass"
+}
+
+OptionMenu CBM_JoinMenuSelect
+{//centermenu
+
+	Title "SPECIFIC PLAYER CLASS SELECTION"
+	//Position 24
+
+	StaticText""StaticText""StaticText""StaticText""
+
+	Option "Your Class is:", "playerclass", "CBM_ClassStrings"
+	StaticText""
+	Command "Join Game", "!cbm_justjoin"
+	StaticText""
+	Option "$M_G0", "playerclass", "CBM_ClassStrings0"
+	StaticText""
+	Option "$M_G1", "playerclass", "CBM_ClassStrings1"
+	StaticText""
+	Option "$M_G2", "playerclass", "CBM_ClassStrings2"
+	StaticText""
+	Option "$M_G3", "playerclass", "CBM_ClassStrings3"
+	StaticText""
+	Option "$M_G4", "playerclass", "CBM_ClassStrings4"
+	StaticText""
+	Option "$M_G5", "playerclass", "CBM_ClassStrings5"
+	StaticText""
+	Option "$M_G6", "playerclass", "CBM_ClassStrings6"
+	StaticText""
+	Option "$M_G7", "playerclass", "CBM_ClassStrings7"
+	StaticText""
+	Option "$M_G8", "playerclass", "CBM_ClassStrings8"
+	StaticText""
+	Option "$M_GB", "playerclass", "CBM_ClassStringsB"
+	StaticText""
+	Option "$M_G9", "playerclass", "CBM_ClassStrings9"
+	StaticText""
+	Option "$M_G10", "playerclass", "CBM_ClassStrings10"
+	StaticText""
+	Option "$M_G11", "playerclass", "CBM_ClassStrings11"
+	StaticText""
+	Option "$M_GV", "playerclass", "CBM_ClassStringsV"
+	StaticText""
+	Option "$M_GWT", "playerclass", "CBM_ClassStringsWT"
+	StaticText""
+	Option "$M_GK", "playerclass", "CBM_ClassStringsK"
+}
+
+OptionMenu CBM_JoinMenuSelectT
+{
+
+	Title "SPECIFIC PLAYER CLASS SELECTION"
+
+	StaticText""StaticText""StaticText""StaticText""
+
+	Option "Your Class is:", "playerclass", "CBM_ClassStrings"
+	StaticText""
+	Command "Join Game", "menu_autoselect"
+	StaticText""
+	Option "$M_G0", "playerclass", "CBM_ClassStrings0"
+	StaticText""
+	Option "$M_G1", "playerclass", "CBM_ClassStrings1"
+	StaticText""
+	Option "$M_G2", "playerclass", "CBM_ClassStrings2"
+	StaticText""
+	Option "$M_G3", "playerclass", "CBM_ClassStrings3"
+	StaticText""
+	Option "$M_G4", "playerclass", "CBM_ClassStrings4"
+	StaticText""
+	Option "$M_G5", "playerclass", "CBM_ClassStrings5"
+	StaticText""
+	Option "$M_G6", "playerclass", "CBM_ClassStrings6"
+	StaticText""
+	Option "$M_G7", "playerclass", "CBM_ClassStrings7"
+	StaticText""
+	Option "$M_G8", "playerclass", "CBM_ClassStrings8"
+	StaticText""
+	Option "$M_GB", "playerclass", "CBM_ClassStringsB"
+	StaticText""
+	Option "$M_G9", "playerclass", "CBM_ClassStrings9"
+	StaticText""
+	Option "$M_G10", "playerclass", "CBM_ClassStrings10"
+	StaticText""
+	Option "$M_G11", "playerclass", "CBM_ClassStrings11"
+	StaticText""
+	Option "$M_GV", "playerclass", "CBM_ClassStringsV"
+	StaticText""
+	Option "$M_GWT", "playerclass", "CBM_ClassStringsWT"
+	StaticText""
+	Option "$M_GK", "playerclass", "CBM_ClassStringsK"
+}
+
+
+OptionString CBM_ClassStrings0
+{
+"Megaman", "Megaman"
+"Protoman", "Protoman"
+"Bass", "Bass"
+"Duo", "Duo"
+"Maestro", "Maestro"
+"Rock", "Rock"
+"Roll", "Roll"
+"Auto", "Auto"
+"DrLight", "Dr. Light"
+"DrWily", "Dr. Wily"
+"SniperJoe", "Sniper Joe"
+"BBAMegaMan", "BBA Mega Man"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings1
+{
+"Cutman", "Cutman"
+"Gutsman", "Gutsman"
+"Iceman", "Iceman"
+"Bombman", "Bombman"
+"Fireman", "Fireman"
+"Elecman", "Elecman"
+"Timeman", "Timeman"
+"Oilman", "Oilman"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings2
+{
+"Metalman", "Metalman"
+"Airman", "Airman"
+"Bubbleman", "Bubbleman"
+"Quickman", "Quickman"
+"Crashman", "Crashman"
+"Flashman", "Flashman"
+"Heatman", "Heatman"
+"Woodman", "Woodman"
+"Alien", "Alien"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings3
+{
+"Needleman", "Needleman"
+"Magnetman", "Magnetman"
+"Geminiman", "Geminiman"
+"Hardman", "Hardman"
+"Topman", "Topman"
+"Snakeman", "Snakeman"
+"Sparkman", "Sparkman"
+"Shadowman", "Shadowman"
+"DocRobot", "DocRobot"
+"Breakman", "Breakman"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings4
+{
+"Brightman", "Brightman"
+"Toadman", "Toadman"
+"Drillman", "Drillman"
+"Pharaohman", "Pharaohman"
+"Ringman", "Ringman"
+"Dustman", "Dustman"
+"Diveman", "Diveman"
+"Skullman", "Skullman"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings5
+{
+"Gravityman", "Gravityman"
+"Waveman", "Waveman"
+"Stoneman", "Stoneman"
+"Gyroman", "Gyroman"
+"Starman", "Starman"
+"Chargeman", "Chargeman"
+"Napalmman", "Napalmman"
+"Crystalman", "Crystalman"
+"Darkman1", "Darkman1"
+"Darkman2", "Darkman2"
+"Darkman3", "Darkman3"
+"Darkman4", "Darkman4"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings6
+{
+"Blizzardman", "Blizzardman"
+"Centaurman", "Centaurman"
+"Flameman", "Flameman"
+"Knightman", "Knightman"
+"Plantman", "Plantman"
+"Tomahawkman", "Tomahawkman"
+"Windman", "Windman"
+"Yamatoman", "Yamatoman"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings7
+{
+"Freezeman", "Freezeman"
+"Junkman", "Junkman"
+"Burstman", "Burstman"
+"Cloudman", "Cloudman"
+"Springman", "Springman"
+"Slashman", "Slashman"
+"Shademan", "Shademan"
+"Turboman", "Turboman"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings8
+{
+"Tenguman", "Tenguman"
+"Astroman", "Astroman"
+"Swordman", "Swordman"
+"Clownman", "Clownman"
+"Searchman", "Searchman"
+"Frostman", "Frostman"
+"Grenademan", "Grenademan"
+"Aquaman", "Aquaman"
+"OriginalDuo", "OriginalDuo"
+"EvilRobot", "Evil Robot"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings9
+{
+"Concreteman", "Concreteman"
+"Tornadoman", "Tornadoman"
+"Splashwoman", "Splashwoman"
+"Plugman", "Plugman"
+"Jewelman", "Jewelman"
+"Hornetman", "Hornetman"
+"Magmaman", "Magmaman"
+"Galaxyman", "Galaxyman"
+"Fakeman", "Fakeman"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings10
+{
+"Blademan", "Blademan"
+"Pumpman", "Pumpman"
+"Commandoman", "Commandoman"
+"Chillman", "Chillman"
+"Sheepman", "Sheepman"
+"Strikeman", "Strikeman"
+"Nitroman", "Nitroman"
+"Solarman", "Solarman"
+"Random", "Random"
+}
+OptionString CBM_ClassStrings11
+{
+"Fuseman", "Fuseman"
+"Blastman", "Blastman"
+"Acidman", "Acidman"
+"Random", "Random"
+}
+OptionString CBM_ClassStringsB
+{
+"Dynamoman", "Dynamoman"
+"Coldman", "Coldman"
+"Groundman", "Groundman"
+"Pirateman", "Pirateman"
+"Burnerman", "Burnerman"
+"Magicman", "Magicman"
+"King", "King"
+"Random", "Random"
+}
+OptionString CBM_ClassStringsV
+{
+"Terra", "Terra"
+"Mercury", "Mercury"
+"Venus", "Venus"
+"Mars", "Mars"
+"Jupiter", "Jupiter"
+"Saturn", "Saturn"
+"Uranus", "Uranus"
+"Pluto", "Pluto"
+"Neptune", "Neptune"
+"Sunstar", "Sunstar"
+"Random", "Random"
+}
+OptionString CBM_ClassStringsWT
+{
+"BusterRodG", "BusterRod G"
+"MegaWaterS", "MegaWater S"
+"HyperStormH", "HyperStorm H"
+"Random", "Random"
+}
+OptionString CBM_ClassStringsK
+{
+"Enker", "Enker"
+"Punk", "Punk"
+"Ballade", "Ballade"
+"Quint", "Quint"
+"RaThor", "RaThor"
+"Random", "Random"
+}
+
+OptionString CBM_ClassStrings
+{
+"Megaman", "Megaman"
+"Protoman", "Protoman"
+"Bass", "Bass"
+"Duo", "Duo"
+"Maestro", "Maestro"
+"Rock", "Rock"
+"Roll", "Roll"
+"Auto", "Auto"
+"DrLight", "Dr. Light"
+"DrWily", "Dr. Wily"
+"SniperJoe", "Sniper Joe"
+
+"Cutman", "Cutman"
+"Gutsman", "Gutsman"
+"Iceman", "Iceman"
+"Bombman", "Bombman"
+"Fireman", "Fireman"
+"Elecman", "Elecman"
+"Timeman", "Timeman"
+"Oilman", "Oilman"
+
+"Metalman", "Metalman"
+"Airman", "Airman"
+"Bubbleman", "Bubbleman"
+"Quickman", "Quickman"
+"Crashman", "Crashman"
+"Flashman", "Flashman"
+"Heatman", "Heatman"
+"Woodman", "Woodman"
+"Alien", "Alien"
+
+"Needleman", "Needleman"
+"Magnetman", "Magnetman"
+"Geminiman", "Geminiman"
+"Hardman", "Hardman"
+"Topman", "Topman"
+"Snakeman", "Snakeman"
+"Sparkman", "Sparkman"
+"Shadowman", "Shadowman"
+"DocRobot", "DocRobot"
+
+"Brightman", "Brightman"
+"Toadman", "Toadman"
+"Drillman", "Drillman"
+"Pharaohman", "Pharaohman"
+"Ringman", "Ringman"
+"Dustman", "Dustman"
+"Diveman", "Diveman"
+"Skullman", "Skullman"
+
+"Gravityman", "Gravityman"
+"Waveman", "Waveman"
+"Stoneman", "Stoneman"
+"Gyroman", "Gyroman"
+"Starman", "Starman"
+"Chargeman", "Chargeman"
+"Napalmman", "Napalmman"
+"Crystalman", "Crystalman"
+"Darkman1", "Darkman1"
+"Darkman2", "Darkman2"
+"Darkman3", "Darkman3"
+"Darkman4", "Darkman4"
+
+"Blizzardman", "Blizzardman"
+"Centaurman", "Centaurman"
+"Flameman", "Flameman"
+"Knightman", "Knightman"
+"Plantman", "Plantman"
+"Tomahawkman", "Tomahawkman"
+"Windman", "Windman"
+"Yamatoman", "Yamatoman"
+
+"Freezeman", "Freezeman"
+"Junkman", "Junkman"
+"Burstman", "Burstman"
+"Cloudman", "Cloudman"
+"Springman", "Springman"
+"Slashman", "Slashman"
+"Shademan", "Shademan"
+"Turboman", "Turboman"
+
+"Tenguman", "Tenguman"
+"Astroman", "Astroman"
+"Swordman", "Swordman"
+"Clownman", "Clownman"
+"Searchman", "Searchman"
+"Frostman", "Frostman"
+"Grenademan", "Grenademan"
+"Aquaman", "Aquaman"
+"OriginalDuo", "OriginalDuo"
+"EvilRobot", "Evil Robot"
+
+"Dynamoman", "Dynamoman"
+"Coldman", "Coldman"
+"Groundman", "Groundman"
+"Pirateman", "Pirateman"
+"Burnerman", "Burnerman"
+"Magicman", "Magicman"
+"King", "King"
+
+"Concreteman", "Concreteman"
+"Tornadoman", "Tornadoman"
+"Splashwoman", "Splashwoman"
+"Plugman", "Plugman"
+"Jewelman", "Jewelman"
+"Hornetman", "Hornetman"
+"Magmaman", "Magmaman"
+"Galaxyman", "Galaxyman"
+"Fakeman", "Fakeman"
+
+"Blademan", "Blademan"
+"Pumpman", "Pumpman"
+"Commandoman", "Commandoman"
+"Chillman", "Chillman"
+"Sheepman", "Sheepman"
+"Strikeman", "Strikeman"
+"Nitroman", "Nitroman"
+"Solarman", "Solarman"
+
+"Terra", "Terra"
+"Mercury", "Mercury"
+"Venus", "Venus"
+"Mars", "Mars"
+"Jupiter", "Jupiter"
+"Saturn", "Saturn"
+"Uranus", "Uranus"
+"Pluto", "Pluto"
+"Neptune", "Neptune"
+"Sunstar", "Sunstar"
+
+"Fuseman", "Fuseman"
+"Blastman", "Blastman"
+"Acidman", "Acidman"
+
+"BusterRodG", "BusterRod G"
+"MegaWaterS", "MegaWater S"
+"HyperStormH", "HyperStorm H"
+
+"Enker", "Enker"
+"Punk", "Punk"
+"Ballade", "Ballade"
+"Quint", "Quint"
+"RaThor", "RaThor"
+"BBAMegaMan", "BBA Mega Man"
+"Random", "Random"
+}
