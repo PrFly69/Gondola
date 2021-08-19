@@ -1,0 +1,101 @@
+#library "ecl1p5e"
+
+#include "zcommon.acs"
+
+#include "8bdmlib.acs"
+
+script 512 (int state, int speedmodify)
+{
+if(GetActorProperty(0,APROP_HEALTH)>0){
+switch(state)
+{
+case 1:
+SetActorState (0, "CustomState1");
+break;
+case 2:
+SetActorState (0, "CustomState2");
+break;
+case 3:
+SetActorState (0, "CustomState3");
+break;
+case 4:
+SetActorState (0, "CustomState4");
+break;
+case 5:
+SetActorState (0, "CustomState5");
+break;
+case 6:
+SetActorState (0, "CustomState6");
+break;
+case 7:
+SetActorState (0, "CustomState7");
+break;
+case 8:
+SetActorState (0, "CustomState8");
+break;
+case 9:
+SetActorState (0, "CustomState9");
+break;
+case 10:
+SetActorState (0, "CustomState10");
+break;
+case 11:
+SetActorState (0, "CustomState11");
+break;
+case 12:
+SetActorState (0, "CustomState12");
+break;
+case 13:
+SetActorState (0, "CustomState13");
+break;
+case 14:
+SetActorState (0, "CustomState14");
+break;
+case 15:
+SetActorState (0, "CustomState15");
+break;
+}
+switch(speedmodify)
+{
+case -5:
+SetActorProperty(0,APROP_SPEED,0.50);
+break;
+case -4:
+SetActorProperty(0,APROP_SPEED,0.60);
+break;
+case -3:
+SetActorProperty(0,APROP_SPEED,0.70);
+break;
+case -2:
+SetActorProperty(0,APROP_SPEED,0.80);
+break;
+case -1:
+SetActorProperty(0,APROP_SPEED,0.90);
+break;
+case 0:
+SetActorProperty(0,APROP_SPEED,1.00);
+break;
+case 1:
+SetActorProperty(0,APROP_SPEED,1.20);
+break;
+case 2:
+SetActorProperty(0,APROP_SPEED,1.40);
+break;
+case 3:
+SetActorProperty(0,APROP_SPEED,1.60);
+break;
+case 4:
+SetActorProperty(0,APROP_SPEED,1.80);
+break;
+case 5:
+SetActorProperty(0,APROP_SPEED,2.00);
+break;
+}
+}
+}
+
+script "DuoSlamCounter" (void)
+{
+SetActivatorToTarget(0);
+SetResultValue(CheckInventory("WeaponChargeDuo"));
+}

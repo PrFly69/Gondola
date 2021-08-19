@@ -726,7 +726,7 @@ RenderStyle Translucent
 Alpha 0.75
 Scale 5
 Damagetype "DuoGrabExplosion5"
-Obituary "%o could not escape from %k's grip of justice."
+Obituary "$OB_DUOGRIP"
 States
 {
 Spawn:
@@ -746,7 +746,7 @@ RenderStyle Translucent
 Alpha 0.75
 Scale 5
 Damagetype "DuoGrabExplosion4"
-Obituary "%o could not escape from %k's grip of justice."
+Obituary "$OB_DUOGRIP"
 States
 {
 Spawn:
@@ -766,7 +766,7 @@ RenderStyle Translucent
 Alpha 0.75
 Scale 5
 Damagetype "DuoGrabExplosion3"
-Obituary "%o could not escape from %k's grip of justice."
+Obituary "$OB_DUOGRIP"
 States
 {
 Spawn:
@@ -786,7 +786,7 @@ RenderStyle Translucent
 Alpha 0.75
 Scale 5
 Damagetype "DuoGrabExplosion2"
-Obituary "%o could not escape from %k's grip of justice."
+Obituary "$OB_DUOGRIP"
 States
 {
 Spawn:
@@ -806,7 +806,7 @@ RenderStyle Translucent
 Alpha 0.75
 Scale 5
 Damagetype "DuoGrabExplosion1"
-Obituary "%o could not escape from %k's grip of justice."
+Obituary "$OB_DUOGRIP"
 States
 {
 Spawn:

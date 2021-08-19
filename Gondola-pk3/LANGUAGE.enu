@@ -1,4 +1,9 @@
 [enu default]
+//Duo
+OB_DUOCSLAM = "%o was chokeslammed by %k's grip of justice.";
+OB_DUOWAVE = "%o lost %p footing to %k's Justice Shockwave.";
+OB_DUOGRIP = "%o could not escape from %k's Grip of Justice.";
+
 //Yamato
 OB_YAMATODIVE = "%o was honorably defeated by %k's Spear Dive.";
 //Astro

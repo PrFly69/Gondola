@@ -722,56 +722,62 @@ GiveInventory("ClownShockUpPeg2",1);
 //
 script 204 (int grav)
 {
-if(PlayerNumber() ==-1){terminate;}
-If(Timer() < 5){Delay(2);}
-int gravity = PlayerGravity[PlayerNumber()];//$CBM
-Switch(grav)
+	if(PlayerNumber() ==-1){terminate;}
+	If(Timer() < 5){Delay(2);}
+	int gravity = PlayerGravity[PlayerNumber()];//$CBM
+	Switch(grav)
 	{
-/*
-	Case 0:
-	SetActorProperty(0, APROP_Gravity, PlayerGravity[PlayerNumber()]);
-	break;
-	Case 1:
-	SetActorProperty(0, APROP_Gravity, FixedDiv(PlayerGravity[PlayerNumber()],3.2));
-	break;
-	}
-*/
+//*
+	//Case 0:
+	//SetActorProperty(0, APROP_Gravity, PlayerGravity[PlayerNumber()]);
+	//break;
+	//Case 1:
+	//SetActorProperty(0, APROP_Gravity, FixedDiv(PlayerGravity[PlayerNumber()],3.2));
+	//break;
+	//
+//*
 //$CBM
-	case -2: //Gravity Slam End
-		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater")){
+		case -2: //Gravity Slam End
+		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		break;
-	case -1: //Gravity Slam
-		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater")){
+		case -1: //Gravity Slam
+		if(CheckInventory("HasFeetInWater")||CheckInventory("IsUnderBubbleWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		gravity *= 20;
 		break;
-	Case 0: //Exiting water
-		if(CheckInventory("IsUnderBubbleWater")){
+		Case 0: //Exiting water
+		if(CheckInventory("IsUnderBubbleWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		break;
-	Case 1: //Entering water
+		Case 1: //Entering water
 		gravity = FixedDiv(gravity,3.2);
 		break;
-	Case 2: //Exit Bubble water
-		if(CheckInventory("HasFeetInWater")){
+		Case 2: //Exit Bubble water
+		if(CheckInventory("HasFeetInWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		break;
-	Case 3: //Enter Bubble water
-		if(CheckInventory("HasFeetInWater")){
+		Case 3: //Enter Bubble water
+		if(CheckInventory("HasFeetInWater"))
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
-		else{
+		else
+		{
 			gravity = FixedDiv(gravity,3.2);
 		}
 		break;
 	}
 
-SetActorProperty(0, APROP_Gravity, gravity);
+	SetActorProperty(0, APROP_Gravity, gravity);
 //$CBM
 }
 
