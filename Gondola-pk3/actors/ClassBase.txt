@@ -179,24 +179,17 @@ Pain.MegaTimeBall:
 "----" H 0 A_GiveInventory("Slowed",1)
 "----" H 0 A_GiveInventory("TimeBallProtect",1)
 Goto Pain+2
-Pain.MegaIceBall:
-"----" H 0 A_GiveInventory("PainStopC",1)
-"----" H 0 A_GiveInventory("IceBallProtect",1)
+
 Pain.HornetHoney:
 "----" H 0 A_GiveInventory("HornetmanSlowPickup",1)
 "----" H 0 A_JumpIfInventory("HornetIceImpaired",1,2)
 "----" H 0 A_SpawnItemEx("ImpairmentHelperHornetIce")
 "----" H 0 
 Goto Pain+2
-Pain.IceSlashSlow:
-Pain.IceSlashSlowL:
-Pain.IceSlashBlock:
-"----" H 0 A_GiveInventory("IcemanSlowPickup",1)
-Goto Pain+2 
+
 Pain.MegaIceBall:
 "----" H 0 A_GiveInventory("PainStopC",1)
 "----" H 0 A_GiveInventory("IceBallProtect",1)
-Pain.HornetHoney:
 Pain.IceSlashSlow:
 Pain.IceSlashSlowL:
 Pain.IceSlashBlock:
