@@ -134,6 +134,12 @@ OB_DARK3SMG = "%o was assailed by %k's Dark Sniper.";
 OB_DARK3RING = "%k ran rings around %o with Dark Rings.";
 OB_DARK3RINGER = "%o was incapacitated by %k's Dark Rings.";
 
-//V-Classes Magnet
-OB_MAGNETMAN4 = "%o stepped within range of %k's Magnetic Mines.";
+//Magnetman
 OB_MAGNETMANFLY = "%o was crushed like a tin can by %k's Mag Fly.";
+
+//Duo
+OB_DUOWAVE = "%o lost %p footing to %k's justice shockwave.";
+OB_DUOCSLAM = "%o was chokeslammed by %k's grip of justice.";
+
+//Fake Stone Core
+TAGC_5C3 = "Stoneman Is Regenerating?";

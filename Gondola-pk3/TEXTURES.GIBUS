@@ -363,7 +363,8 @@ texture TNGUBAR,8,56{patch B_5BARSB,0,0{Translation "198:198=109:109","192:192=4
 texture TNGUVAR,56,8{patch TNGUBAR,0,0{rotate 90}}
 
 //Magnet
-graphic MAGNICON,30,30{XScale 2.0 YScale 2.0 Patch RSH3H0,0,0}
+graphic MagIcon1,30,30{XScale 2.0 YScale 2.0 Patch MAGN1CON,0,0}
+graphic MagIcon2,30,30{XScale 2.0 YScale 2.0 Patch MAGN2CON,0,0}
 
 //Puto
 texture 0V_7_PAR,8,56{patch B_2BARSP,0,0}

@@ -1218,8 +1218,9 @@ CHANGELOG
 -Fixed wirefist being unusable when you have no ammo(?)
 ~Updated huds by Kazza, customized from the usual V3
 -Slam is now properly teamcolored
+(slam obits and acs fixed as of gond beta 5)
 
-==Maestro (as of gond beta 4)
+==Maestro
 -Fixed Woodcustom Altfire crashing when plug boosted
 
 ==Auto
@@ -1239,6 +1240,7 @@ CHANGELOG
 
 ==Fireman
 -Mainfire now has VFX on projectile death
+(unteamcolored VFX fixed as of gond beta 5)
 -Now has two weapons for different altfires
 --Second altfire is old Fire Wave
 --Fire Ring now uses renderstyle add
@@ -1268,21 +1270,27 @@ CHANGELOG
 ==Needleman
 -Readded rev, moved Needle Hammer to reload
 
-==Magnetman (as of gond beta 4)
--Reworked by NightFly (with assets from Greg.EXE, Trillster and whoever made Magnetman in V-Classes)
--Mainfire homing reworked, now has 8 tics of delay before doing a singular fast redirect
+==Magnetman
+-Reworked by NightFly (with assets from Greg.EXE and Trillster
+-Mainfire homing reworked, now has 8 tics of delay before doing a singular fast redirect (homing fixed as of gond beta 5)
+-Redirect maxangleturning precision increases as Magnet Missile is held (as of gond beta 5)
+-SECOND WEP: MAGNET BARRIER (as of gond beta 5)
+--Hold a magnet in front of you
+--If it's hit, it flies out and does 15 damage
+--You have 4 uses of it
 -NEW ALTFIRE: MAG FLY
 --Can be placed in the air and increases allied players' jumpheight who are underneath it
 --Pressing altfire again switches Mag Fly's polarity, crushing enemies into the ground
---Applies minor hitstun and grounds enemies who are underneath it
---3 second cooldown after reversed polarity Mag Fly dies, 2 second cooldown after regular Mag Fly dies
+--Applies minor hitstun and grounds enemies who are underneath it (now applies everywhere under Mag Fly + 0.9 hitstun > 0.75 hitstun as of gond beta 5)
+--3 second cooldown after reversed polarity Mag Fly dies, 2 second cooldown after regular Mag Fly dies (new sound as of gond beta 5)
+(reduced quaking fx as of gond beta 5)
 --Reversed Mag Fly does 69 damage (don't you fucking dare say it)
--NEW RELOAD: MAGNETIC MINE
--A singular Magnetic Mine from V-Classes
--Has 4 uses, does 10 damage
+-NEW ITEM: MAGFLY CANCEL (as of gond beta 5)
+--Manually destroy a non-crushing Mag Fly
+(removed reload as of gond beta 5)
 
 ==Geminiman
--Gemini/Clone Buster speed 64 > 55 (as of gond beta 4)
+-Gemini/Clone Buster speed 64 > 55
 
 ==Hardman
 -Added new FX on Hard Knuckle
@@ -1294,7 +1302,6 @@ CHANGELOG
 -HP 110 > 100
 -Base speed 0.8/0.78 > 0.85/0.83
 -Can now pick up screws (see altfire)
-(base screw count 42 > 14 as of gond beta 4)
 -Ported HUD sprites from classes-v9fh.pk3
 -FX above head now properly show charge level
 -Spark Shock damage 15/25/35 > 10/20/30
@@ -1309,7 +1316,7 @@ CHANGELOG
 -NEW ALTFIRE: Charge Transfer
 --Close ranged healing tool
 --Heals twice as fast as other healing tools but consumes screw ammo twice as fast
---Does no damage, but can be used to self-heal off of enemies if the user has screws
+--Does 1 damage per rip and can be used to self-heal off of enemies (as of gond beta 5)
 -Spark Taser no longer holds directly in front of the user
 --Spark Taser duration shortened
 --Spark Taser damage 15 > 25
@@ -1342,7 +1349,7 @@ CHANGELOG
 -Ported UEC changes
 
 ==Stoneman
--Ported Fakeout Core reload from UEC
+-Ported Fakeout Core reload from UEC (tag fixed as of gond beta 5)
 
 ==Starman
 -Shield Toss ammo consumption 4 > 7
@@ -1361,12 +1368,10 @@ CHANGELOG
 
 ==Darkman3
 -Ported from classes-v9fh.pk3, following are edits made to CBM base
--SMG damage 6 > 5 (as of gond beta 4)
+-SMG damage 6 > 5
 --SMG always consumes ammo
--Snipe shot damage 25 > 15 (as of gond beta 4)
---Base Maxcharge snipe shot damage 40 > 20
---Maxcharge snipe shot caps at 40 damage (as of gond beta 4)
---Maxcharge snipe shot damage ramps up 2x slower (as of gond beta 4)
+-Snipe shot damage 25 > 15
+--Base Maxcharge snipe shot damage no longer scales, does a flat 45 (as of gond beta 5)
 
 ==Blizzardman
 -Rapid Blizzard shots now weave
@@ -1398,7 +1403,7 @@ CHANGELOG
 ==Slashman
 -Base Slash Claw radius 16 > 18
 
-==Shademan (as of gond beta 4)
+==Shademan
 -Noise Crush is now green
 --Fully charged Noise Crush has impact VFX
 
@@ -1408,7 +1413,7 @@ CHANGELOG
 --Tornado Hold Bar stops regening in midair
 
 ==Astroman
--Walking animation 2 tics faster (as of gond beta 4)
+-Walking animation 2 tics faster
 
 ==Frostman
 -All skinsounds ported from vanilla
@@ -1437,7 +1442,7 @@ CHANGELOG
 -Fixed Cold Field not dunking properly
 
 ==King
--Ported from UEC
+-Ported from UEC (altfire reverted to 2.0h as of gond beta 5)
 
 ==Concreteman
 -Ported Concrete Block fixes from UEC (prevents being stuck in blocks)
@@ -1449,7 +1454,7 @@ CHANGELOG
 ==Plugman
 -Base speed 0.75/0.73 > 0.8/0.78
 -Altfire plug range increased (lasts for 5 more tics)
---Plugging allies gives the user 1.25x speed, as well as giving the ally 1.5x speed (as of gond beta 4)
+--Plugging allies gives the user 1.25x speed (ally speed boost removed as of gond beta 5)
 --Removed the user slowing down on plugging enemies
 
 ==Hornetman
@@ -1457,6 +1462,7 @@ CHANGELOG
 -Unhomed Hornet Chaser damage 9 > 10
 -Hornet Chaser now has +SKYEXPLODE
 -Ported desync fixes from Conejo
+-Nectar Trap slowdown honey fx properly added (as of gond beta 5)
 
 ==Blademan
 -Ported V6 skin + extra skinsprites from classes-v9fh.pk3
@@ -1486,7 +1492,6 @@ CHANGELOG
 -Ported V6 skin
 
 ==Nitroman
--HP 85 > 75 (as of gond beta 4)
 -Now starts in superbike mode
 -Unsuperbiked wheel spam attack RoF buffed
 --Unsuperbiked wheel spam attack damage 13 > 8
