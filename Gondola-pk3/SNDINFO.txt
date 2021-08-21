@@ -274,4 +274,5 @@ weapon/scrambleboom SCTHBOOM
 weapon/magnettrack MAGTRACK $limit weapon/magnettrack 99
 weapon/magnetmine MAGMINES
 weapon/magnetminefly MAGMINE $limit weapon/magnetminefly 99 $volume weapon/magnetminefly 0.3
+weapon/MagFlyMad MGFLYMAD
 weapon/magnetbeep MAGBEEP

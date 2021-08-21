@@ -122,49 +122,24 @@ KINH E 0 A_GiveInventory("TheKingSpinFlag",1)
 KINH E 0 A_Refire(1)
 KINH E 1 offset(-4,34)A_JumpIfInventory("PowerRage_ST",1,"AltFire2_R")
 KINH E 1 offset(-8,34)
-goto SpinToWinS
+goto SpinToWin
 AltFire2_R:
 KINH E 1 offset(-6,34)
-goto SpinToWinS
-
-SpinToWinS:
-KINH I 0 A_JumpIfInventory("DinnerAmmo",1,"SpinToWin2")
-goto AltFireEnd
-SpinToWin2S:
-KINH I 0 A_JumpIfInventory("PowerRage_ST",1,"SpinToWin_RS")
-KINH I 0 A_TakeInventory("DinnerAmmo",2)
-KINH I 1 offset(-6,52)A_GiveInventory("TheKingSpinSnd_P",1)
-KINH J 0 A_GiveInventory("TheKingSpinSnd_P",1)
-KINH J 0 A_FireCustomMissile("TheKingSpinAlt",0,0,0,0)
-KINH J 1 offset(-6,52)A_GiveInventory("TheKingSpinBoostStarter",1)
-KINH J 0 A_Refire("SpinToWin")
-goto AltFireEnd
-
+goto SpinToWin
 SpinToWin:
 KINH I 0 A_JumpIfInventory("DinnerAmmo",1,"SpinToWin2")
 goto AltFireEnd
 SpinToWin2:
 KINH I 0 A_JumpIfInventory("PowerRage_ST",1,"SpinToWin_R")
-KINH I 0 A_TakeInventory("DinnerAmmo",2)
+KINH I 0 A_TakeInventory("DinnerAmmo",3)
 KINH I 1 offset(-6,52)A_GiveInventory("TheKingSpinSnd_P",1)
 KINH J 0 A_GiveInventory("TheKingSpinSnd_P",1)
 KINH J 0 A_FireCustomMissile("TheKingSpinAlt",0,0,0,0)
 KINH J 1 offset(-6,52)A_GiveInventory("TheKingSpinBoost",1)
 KINH J 0 A_Refire("SpinToWin")
 goto AltFireEnd
-
 SpinToWin_R:
-KINH I 0 A_TakeInventory("DinnerAmmo",4)
-KINH I 0 A_GiveInventory("TheKingSpinSnd_P",1)
-KINH I 0 A_FireCustomMissile("TheKingSpinAlt",0,0,0,0)
-KINH I 1 offset(-6,52)A_GiveInventory("TheKingSpinBoost",1)
-KINH J 0 A_GiveInventory("TheKingSpinSnd_P",1)
-KINH J 0 A_FireCustomMissile("TheKingSpinAlt",0,0,0,0)
-KINH J 1 offset(-6,52)A_GiveInventory("TheKingSpinBoostStarter",1)
-KINH J 0 A_Refire("SpinToWin")
-goto AltFireEnd
-SpinToWin_R:
-KINH I 0 A_TakeInventory("DinnerAmmo",4)
+KINH I 0 A_TakeInventory("DinnerAmmo",6)
 KINH I 0 A_GiveInventory("TheKingSpinSnd_P",1)
 KINH I 0 A_FireCustomMissile("TheKingSpinAlt",0,0,0,0)
 KINH I 1 offset(-6,52)A_GiveInventory("TheKingSpinBoost",1)

@@ -433,7 +433,13 @@ DamageFactor "SparkShotAlt", 1.0
 actor ShockProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "SparkShot1", 0.0
+DamageFactor "SparkShot3", 0.1
+}
+
+actor ShockChainsawProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "SparkSaw", 0.0
 }
 
 actor SparkDelayHelper : BasicHelper
@@ -703,7 +709,7 @@ actor BigShockAlt : FastProjectile
 Translation "198:198=218:218", "192:192=212:212"
 PROJECTILE
 +HITTRACER
-damagetype "MagicCardBF"
+damagetype "SparkSaw"
 Obituary "%k electrically stimulated %o's penis."
 damage (1)
 Radius 18
@@ -747,8 +753,6 @@ TNT1 A 0 A_TakeFromTarget("SparkHealAmmo",1)
 TNT1 A 0 A_GiveToTarget("Health",1)
 stop
 GreedyHeal:
-TNT1 A 0 A_JumpIfInTargetInventory("SparkIsFullFlag",1,"Death")
-TNT1 A 0 A_TakeFromTarget("SparkHealAmmo",1)
 TNT1 A 0 A_GiveToTarget("Health",1)
 stop
 Death:
@@ -1114,6 +1118,8 @@ stop
 }
 }
 
+actor SmallShockBoom : SmallShock{damagetype "SparkShot3"}
+
 actor SparkmanSynthExplosionFX_H1 : SmallShock
 {
 var int user_RT;
@@ -1130,8 +1136,8 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 A_SetUserVar("user_RT",360/reactiontime)
 TNT1 A 0 //A_SetUserVar("user_A",random(0,user_RT))
-TNT1 A 0 A_SpawnItemEx("SmallShock",Mass/accuracy,0,MeleeRange/accuracy,Mass/accuracy,0,MeleeRange/accuracy,user_A,1)
-TNT1 A 0 A_SpawnItemEx("SmallShock",Mass/accuracy,0,MeleeRange/-accuracy,Mass/accuracy,0,MeleeRange/-accuracy,user_A,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",Mass/accuracy,0,MeleeRange/accuracy,Mass/accuracy,0,MeleeRange/accuracy,user_A,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",Mass/accuracy,0,MeleeRange/-accuracy,Mass/accuracy,0,MeleeRange/-accuracy,user_A,1)
 TNT1 A 0 A_SetUserVar("user_A",user_A+user_RT)
 TNT1 A 0 A_Countdown
 goto Spawn+3
@@ -1479,8 +1485,8 @@ TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H3",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H4",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H5",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H6",0,0,32,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShock",0,0,32,0,0,33,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShock",0,0,32,0,0,-33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,-33,0,1)
 goto Done
 FireB:
 //TNT1 A 0 A_FireCustomMissile("SmallShockB",0,0,0,0)
@@ -1490,8 +1496,8 @@ TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H3",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H4",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H5",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H6",0,0,32,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShockB",0,0,32,0,0,33,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShockB",0,0,32,0,0,-33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,-33,0,1)
 goto Done
 FireR:
 //TNT1 A 0 A_FireCustomMissile("SmallShockR",0,0,0,0)
@@ -1501,8 +1507,8 @@ TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H3",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H4",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H5",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H6",0,0,32,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShockR",0,0,32,0,0,33,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShockR",0,0,32,0,0,-33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,-33,0,1)
 goto Done
 FireO:
 //TNT1 A 0 A_FireCustomMissile("SmallShockO",0,0,0,0)
@@ -1512,8 +1518,8 @@ TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H3",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H4",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H5",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H6",0,0,32,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShockO",0,0,32,0,0,33,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShockO",0,0,32,0,0,-33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,-33,0,1)
 goto Done
 FireP:
 //TNT1 A 0 A_FireCustomMissile("SmallShockP",0,0,0,0)
@@ -1523,8 +1529,8 @@ TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H3",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H4",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H5",0,0,32,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("SparkmanSynthExplosionFX_H6",0,0,32,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShockP",0,0,32,0,0,33,0,1)
-TNT1 A 0 A_SpawnItemEx("SmallShockP",0,0,32,0,0,-33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,33,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallShockBoom",0,0,32,0,0,-33,0,1)
 goto Done
 }
 }
