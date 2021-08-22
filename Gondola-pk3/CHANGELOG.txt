@@ -1183,6 +1183,7 @@ CHANGELOG
 --Removes the ability to see through 3D floors using 'R_3DFLOORS 0' in software mode
 -Removed BEBE
 -Pain FX ported from chasecamonlyhitfx.pk3
+(Fixed walljumps not working as of gond beta 5h)
 
 ==Copyweapons
 -Reverted Thunder Wool to CCBM version
@@ -1218,7 +1219,6 @@ CHANGELOG
 -Fixed wirefist being unusable when you have no ammo(?)
 ~Updated huds by Kazza, customized from the usual V3
 -Slam is now properly teamcolored
-(slam obits and acs fixed as of gond beta 5)
 
 ==Maestro
 -Fixed Woodcustom Altfire crashing when plug boosted
@@ -1240,7 +1240,7 @@ CHANGELOG
 
 ==Fireman
 -Mainfire now has VFX on projectile death
-(unteamcolored VFX fixed as of gond beta 5)
+(Mainfire teamcolors fixed as of gond beta 5h)
 -Now has two weapons for different altfires
 --Second altfire is old Fire Wave
 --Fire Ring now uses renderstyle add
@@ -1272,18 +1272,19 @@ CHANGELOG
 
 ==Magnetman
 -Reworked by NightFly (with assets from Greg.EXE and Trillster
--Mainfire homing reworked, now has 8 tics of delay before doing a singular fast redirect (homing fixed as of gond beta 5)
--Redirect maxangleturning precision increases as Magnet Missile is held (as of gond beta 5)
+-Mainfire homing reworked, now has 8 tics of delay before doing a singular fast redirect
+-Redirect maxangleturning precision increases as Magnet Missile is held
+-SECOND WEP: MAGNET SPREAD (as of gond beta 5h)
+--Fire 4 three damage magnets that go where your crosshair is
+--Has 4 uses
 -NEW ALTFIRE: MAG FLY
 --Can be placed in the air and increases allied players' jumpheight who are underneath it
 --Pressing altfire again switches Mag Fly's polarity, crushing enemies into the ground
---Applies minor hitstun and grounds enemies who are underneath it (now applies everywhere under Mag Fly + 0.9 hitstun > 0.75 hitstun as of gond beta 5)
---3 second cooldown after reversed polarity Mag Fly dies, 50 tic cooldown after regular Mag Fly dies (new sound as of gond beta 5)
-(reduced quaking fx as of gond beta 5)
+--Applies 0.75 hitstun and grounds enemies who are underneath it 
+--3 second cooldown after reversed polarity Mag Fly dies, 50 tic cooldown after regular Mag Fly dies
 --Reversed Mag Fly does 69 damage (don't you fucking dare say it)
--NEW ITEM: MAGFLY CANCEL (as of gond beta 5)
+-NEW ITEM: MAGFLY CANCEL
 --Manually destroy a non-crushing Mag Fly
-(removed reload as of gond beta 5)
 
 ==Geminiman
 -Gemini/Clone Buster speed 64 > 55
@@ -1312,7 +1313,7 @@ CHANGELOG
 -NEW ALTFIRE: Charge Transfer
 --Close ranged healing tool
 --Heals twice as fast as other healing tools but consumes screw ammo twice as fast
---Does 1 damage per rip and can be used to self-heal off of enemies (as of gond beta 5)
+--Does 1 damage per rip and can be used to self-heal off of enemies
 -Spark Taser no longer holds directly in front of the user
 --Spark Taser duration shortened
 --Spark Taser damage 15 > 25
@@ -1345,7 +1346,7 @@ CHANGELOG
 -Ported UEC changes
 
 ==Stoneman
--Ported Fakeout Core reload from UEC (tag fixed as of gond beta 5)
+-Ported Fakeout Core reload from UEC
 
 ==Starman
 -Shield Toss ammo consumption 4 > 7
@@ -1367,7 +1368,7 @@ CHANGELOG
 -SMG damage 6 > 5
 --SMG always consumes ammo
 -Snipe shot damage 25 > 15
---Base Maxcharge snipe shot damage no longer scales, does a flat 45 (as of gond beta 5)
+--Base Maxcharge snipe shot damage no longer scales, does a flat 45
 
 ==Blizzardman
 -Rapid Blizzard shots now weave
@@ -1417,12 +1418,12 @@ CHANGELOG
 ==Swordman
 -No longer uses railguns for Flame Sword, reverted back to previous spawner method
 --Particle spawner now lasts 50% longer before dissipating
---Particle spawner speed 20 > 30 (as of gond beta 5)
+--Particle spawner speed 20 > 30
 --Flame Sword now does 16 flat per swing
 --Third Swing now does 22 flat
 -Removed Flame Beam
 -Fixed Sword Spin blowing enemies away
---Endlag from Sword Spin halved (as of gond beta 5)
+--Endlag from Sword Spin halved
 --Removed Powerprotect from Flame Spin
 --Flame Spin suction range 700 > 350
 -Flying Flame Spin ammo consumption 6/9/12 > 9/12/15
@@ -1440,7 +1441,8 @@ CHANGELOG
 -Fixed Cold Field not dunking properly
 
 ==King
--Ported from UEC (altfire reverted to 2.0h as of gond beta 5)
+-Ported from UEC
+-Altfire reverted back to 2.0h
 
 ==Concreteman
 -Ported Concrete Block fixes from UEC (prevents being stuck in blocks)
@@ -1452,7 +1454,7 @@ CHANGELOG
 ==Plugman
 -Base speed 0.75/0.73 > 0.8/0.78
 -Altfire plug range increased (lasts for 5 more tics)
---Plugging allies gives the user 1.25x speed (ally speed boost removed as of gond beta 5)
+--Plugging allies gives the user 1.25x speed
 --Removed the user slowing down on plugging enemies
 
 ==Hornetman
@@ -1460,7 +1462,7 @@ CHANGELOG
 -Unhomed Hornet Chaser damage 9 > 10
 -Hornet Chaser now has +SKYEXPLODE
 -Ported desync fixes from Conejo
--Nectar Trap slowdown honey fx properly added (as of gond beta 5)
+-Nectar Trap slowdown honey fx properly added
 
 ==Blademan
 -Ported V6 skin + extra skinsprites from classes-v9fh.pk3
@@ -1480,8 +1482,8 @@ CHANGELOG
 -Ported from UEC, following are edits made to UEC base
 -Ammo regen buffed (1 ammo per 4 tics > 1 ammo per 3 tics)
 -Both weapons have the same ammo regen and ammo consumption
---Commando Mines have 6 tics of delay after firing (as of gond beta 5)
---Delay on Commando Bomb reduced 18 tics > 12 tics (as of gond beta 5)
+--Commando Mines have 6 tics of delay after firing
+--Delay on Commando Bomb reduced 18 tics > 12 tics
 -Altfire waves last 5 tics longer
 
 ==Chillman
@@ -1491,6 +1493,7 @@ CHANGELOG
 -Ported V6 skin
 
 ==Nitroman
+-New item icon added (as of gond beta 5h)
 -Now starts in superbike mode
 -Unsuperbiked wheel spam attack RoF buffed
 --Unsuperbiked wheel spam attack damage 13 > 8
@@ -1565,8 +1568,9 @@ CHANGELOG
 -Removed ACS delay on speed updating
 -Readded idle animation
 -Altfire ammo bar ported from UEC
-(fixed sbar inconsistency as of gond beta 5)
 -Fury Swipes on altfire removed, now plays a clientsided meow
+-NEW ITEM: MEOW
+--TAKE A WILD GUESS
 
 ==Neptune
 -Salty mode gives user 1.25x damage vulnerability

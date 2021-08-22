@@ -309,10 +309,10 @@ stop
 }
 }
 
-actor FiremanStormShotB : FiremanStormShot{translation "202:202=205:205", "199:199=74:74"}
-actor FiremanStormShotR : FiremanStormShot{translation "202:202=171:171", "199:199=41:41"}
-actor FiremanStormShotO : FiremanStormShot{translation "202:202=104:104", "199:199=128:128"}
-actor FiremanStormShotP : FiremanStormShot{translation "202:202=229:229", "199:199=232:232"}
+actor FiremanStormShotB : FiremanStormShot{translation "202:202=205:205", "199:199=74:74","198:198=205:205", "192:192=74:74"}
+actor FiremanStormShotR : FiremanStormShot{translation "202:202=171:171", "199:199=41:41","198:198=171:171", "192:192=41:41"}
+actor FiremanStormShotO : FiremanStormShot{translation "202:202=104:104", "199:199=128:128","198:198=104:104", "192:192=128:128"}
+actor FiremanStormShotP : FiremanStormShot{translation "202:202=229:229", "199:199=232:232","198:198=229:229", "192:192=232:232"}
 
 actor FireStormDFX
 {
@@ -334,11 +334,6 @@ X_8C ABCD 1
 stop
 }
 }
-
-actor FiremanStormShotB : FiremanStormShot{translation "198:198=205:205", "192:192=74:74"}
-actor FiremanStormShotR : FiremanStormShot{translation "198:198=171:171", "192:192=41:41"}
-actor FiremanStormShotO : FiremanStormShot{translation "198:198=104:104", "192:192=128:128"}
-actor FiremanStormShotP : FiremanStormShot{translation "198:198=229:229", "192:192=232:232"}
 
 actor FiremanStormShotBit
 {
