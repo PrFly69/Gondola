@@ -1274,15 +1274,11 @@ CHANGELOG
 -Reworked by NightFly (with assets from Greg.EXE and Trillster
 -Mainfire homing reworked, now has 8 tics of delay before doing a singular fast redirect (homing fixed as of gond beta 5)
 -Redirect maxangleturning precision increases as Magnet Missile is held (as of gond beta 5)
--SECOND WEP: MAGNET BARRIER (as of gond beta 5)
---Hold a magnet in front of you
---If it's hit, it flies out and does 15 damage
---You have 4 uses of it
 -NEW ALTFIRE: MAG FLY
 --Can be placed in the air and increases allied players' jumpheight who are underneath it
 --Pressing altfire again switches Mag Fly's polarity, crushing enemies into the ground
 --Applies minor hitstun and grounds enemies who are underneath it (now applies everywhere under Mag Fly + 0.9 hitstun > 0.75 hitstun as of gond beta 5)
---3 second cooldown after reversed polarity Mag Fly dies, 2 second cooldown after regular Mag Fly dies (new sound as of gond beta 5)
+--3 second cooldown after reversed polarity Mag Fly dies, 50 tic cooldown after regular Mag Fly dies (new sound as of gond beta 5)
 (reduced quaking fx as of gond beta 5)
 --Reversed Mag Fly does 69 damage (don't you fucking dare say it)
 -NEW ITEM: MAGFLY CANCEL (as of gond beta 5)
@@ -1421,10 +1417,12 @@ CHANGELOG
 ==Swordman
 -No longer uses railguns for Flame Sword, reverted back to previous spawner method
 --Particle spawner now lasts 50% longer before dissipating
+--Particle spawner speed 20 > 30 (as of gond beta 5)
 --Flame Sword now does 16 flat per swing
 --Third Swing now does 22 flat
 -Removed Flame Beam
 -Fixed Sword Spin blowing enemies away
+--Endlag from Sword Spin halved (as of gond beta 5)
 --Removed Powerprotect from Flame Spin
 --Flame Spin suction range 700 > 350
 -Flying Flame Spin ammo consumption 6/9/12 > 9/12/15
@@ -1482,7 +1480,8 @@ CHANGELOG
 -Ported from UEC, following are edits made to UEC base
 -Ammo regen buffed (1 ammo per 4 tics > 1 ammo per 3 tics)
 -Both weapons have the same ammo regen and ammo consumption
---Commando Mines also have the same delay as Commando Bomb
+--Commando Mines have 6 tics of delay after firing (as of gond beta 5)
+--Delay on Commando Bomb reduced 18 tics > 12 tics (as of gond beta 5)
 -Altfire waves last 5 tics longer
 
 ==Chillman
@@ -1566,6 +1565,7 @@ CHANGELOG
 -Removed ACS delay on speed updating
 -Readded idle animation
 -Altfire ammo bar ported from UEC
+(fixed sbar inconsistency as of gond beta 5)
 -Fury Swipes on altfire removed, now plays a clientsided meow
 
 ==Neptune

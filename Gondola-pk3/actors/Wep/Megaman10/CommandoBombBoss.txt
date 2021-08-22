@@ -251,7 +251,7 @@ CMDH D 1 A_Raise
 Loop
 
 Fire:
-	CMDH A 0 A_JumpIfInventory("CommandDelayM",1,"NoAmmo")
+	CMDH A 0 A_JumpIfInventory("CommandDelayM2",1,"NoAmmo")
 	CMDH D 0 A_JumpIfNoAmmo("NoAmmo")
     CMDH D 1 Offset(0, 32)A_JumpIfInventory("PowerRage_ST",1,1)
     CMDH D 1 Offset(-7, 26)
@@ -273,7 +273,7 @@ Fire:
     CMDH D 1 Offset(-13, 23)A_JumpIfInventory("PowerRage_ST",1,1)
     CMDH D 1 Offset(-8, 28)
     CMDH D 1 Offset(-4, 30)
-	CMDH A 0 A_GiveInventory("CommandDelayM",1)
+	CMDH A 0 A_GiveInventory("CommandDelayM2",1)
 Goto Ready1
 
 AltFire:
@@ -362,7 +362,12 @@ goto Ready1
 
 actor CommandDelayM : Powerup
 {
-powerup.duration 18
+powerup.duration 12
+}
+
+actor CommandDelayM2 : Powerup
+{
+powerup.duration 6
 }
 
 actor CommandoBombJustDied : Powerup
