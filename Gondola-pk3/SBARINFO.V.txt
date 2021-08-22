@@ -466,6 +466,7 @@ WeaponAmmo NoodleAmmo{Drawbar"BARAMMO2","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage"NEEDRCON",32,55;}
 IsSelected MagnetMissileBoss,MagnetMissilerBoss{DrawBar"MAGNBAR","BAREMPTY",MagnetFlag,vertical,16,8;
 	//DrawImage"MAGNICON",32,55;
+	Drawbar"BARTOKX","BAREMPTY",Ammo1,vertical,8,8;
 	InInventory MagFlyIsOut, 1{Drawbar"BARFLS1","NOBAR",MagFlyIsOut,vertical,24,8;}
 	InInventory MagFlyDelay, 1{Drawbar"BARFLS1","NOBAR",MagFlyDelay,vertical,24,8;}
 	InInventory MagFlyDelayFast, 1{Drawbar"BARFLS1","NOBAR",MagFlyDelayFast,vertical,24,8;}}

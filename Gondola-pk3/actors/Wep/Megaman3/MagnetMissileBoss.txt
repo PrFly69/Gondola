@@ -7,7 +7,7 @@ Weapon.AmmoGive 0
 Obituary "$OB_MAGNETMISSILE"
 Inventory.Pickupmessage "Power up! YOU GOT SOME POWER!!!"
 weapon.ammotype "PullCharge"
-//inventory.icon "MagIcon1"
+inventory.icon "MagIcon1"
 +WEAPON.Alt_AMMO_OPTIONAL
 +WEAPON.NOAUTOAIM
 States
@@ -24,7 +24,7 @@ MAGB A 10 A_WeaponReady//(WRF_ALLOWRELOAD)
 goto Ready1
 Ready1:
 MAGB A 0 A_JumpIfInventory("PullCharge",14,"Ready2")
-MAGB A 0 A_GiveInventory("MagnetFlag",1)
+//MAGB A 0 A_GiveInventory("MagnetFlag",1)
 MAGB A 4 A_WeaponReady//(WRF_ALLOWRELOAD)
 MAGB A 0 A_GiveInventory("MagnetFlag",1)
 MAGB A 0 A_GiveInventory("PullCharge",1)
@@ -293,7 +293,7 @@ MAGN A 10 A_WeaponReady//(WRF_ALLOWRELOAD)
 goto Ready1
 Ready1:
 MAGN A 0 A_JumpIfInventory("PullCharge",14,"Ready2")
-MAGN A 0 A_GiveInventory("MagnetFlag",1)
+//MAGN A 0 A_GiveInventory("MagnetFlag",1)
 MAGN A 4 A_WeaponReady//(WRF_ALLOWRELOAD)
 MAGN A 0 A_GiveInventory("MagnetFlag",1)
 MAGN A 0 A_GiveInventory("PullCharge",1)
@@ -388,28 +388,29 @@ Loop
 Fire:
 MAGN B 0 A_JumpIfInventory("PullCharge",14,1)
 goto Noammo
-MAGN A 1 OffSet(-14,22)
-MAGN A 1 OffSet(-28,12)
-MAGN A 0 A_PlaySoundEx("weapon/magnetminefly","Weapon")
-FireHold:
-MAGN B 0 A_JumpIfInventory("BarriersOut",1,"HoldEnd")
-MAGN B 1 OffSet(-28,12)A_SpawnItemEx("MagnetBarrier1",38*cos(pitch), 0, 38*sin(-pitch)+32, momx, momy, momz, 0, SXF_ABSOLUTEMOMENTUM | SXF_TRANSFERPITCH | 1)
-MAGN B 0 A_JumpIfInventory("BarriersOut",1,"HoldEnd")
-MAGN B 1 OffSet(-28,12)A_SpawnItemEx("MagnetBarrier1",38*cos(pitch), 0, 38*sin(-pitch)+32, momx, momy, momz, 0, SXF_ABSOLUTEMOMENTUM | SXF_TRANSFERPITCH | 1)
-MAGN A 0 A_Refire("FireHold2")
-goto HoldEnd
-FireHold2:
-MAGN B 1 OffSet(-28,12)A_SpawnItemEx("MagnetBarrier2",38*cos(pitch), 0, 38*sin(-pitch)+32, momx, momy, momz, 0, SXF_ABSOLUTEMOMENTUM | SXF_TRANSFERPITCH | 1)
-MAGN B 0 A_JumpIfInventory("BarriersOut",1,"HoldEnd")
-MAGN B 1 OffSet(-28,12)A_SpawnItemEx("MagnetBarrier2",38*cos(pitch), 0, 38*sin(-pitch)+32, momx, momy, momz, 0, SXF_ABSOLUTEMOMENTUM | SXF_TRANSFERPITCH | 1)
-MAGN A 0 A_Refire("FireHold")
-HoldEnd:
-INEV D 0 A_TakeInventory("PullCharge",14)
-MAGN B 3 OffSet(-12,20)
-MAGN A 3 OffSet(-6,24)
-MAGN A 3 OffSet(-2,28)
-MAGN A 0 A_TakeInventory("BarriersOut",999)
-MAGN A 20
+MAGN HI 1
+TNT1 A 0 A_GiveInventory("ShieldCheck",1)
+MAGN J 1 A_SpawnItemEx("MagSpreadWarperA",30,27,28,0,0,0,0,1,0)
+MAGB A 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
+MAGN K 1 A_SpawnItemEx("MagSpreadWarperB",30,9,28,0,0,0,0,1,0)
+MAGB A 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
+MAGN L 1 A_SpawnItemEx("MagSpreadWarperD",30,-9,28,0,0,0,0,1,0)
+MAGB A 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
+MAGN M 1 A_SpawnItemEx("MagSpreadWarperD",30,27,28,0,0,0,0,1,0)
+MAGB A 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
+TNT1 A 12
+MAGN B 0 A_TakeInventory("PullCharge",14)
+TNT1 A 0 A_TakeInventory("ShieldCheck",999)
+TNT1 A 0 A_PlaySoundEx("S3_K/Beep","Weapon")
+TNT1 A 0 A_GiveInventory("MagnetmanMain2a_CI",1)
+TNT1 A 0 A_GiveInventory("MagnetmanMain2b_CI",1)
+TNT1 A 0 A_GiveInventory("MagnetmanMain2c_CI",1)
+TNT1 A 0 A_GiveInventory("MagnetmanMain2d_CI",1)
+MAGN A 1 Offset(0,56)
+MAGN A 1 Offset(0,48)
+MAGN A 1 Offset(0,40)
+MAGN A 1 
+MAGB A 5 
 Goto Delay
 
 NoAmmo:
@@ -1236,53 +1237,85 @@ stop
 }
 }
 
-actor MagMissileBig
+actor MagMissileSpread
 {
 PROJECTILE
 +LOOKALLAROUND
 +SKYEXPLODE
 +DONTBLAST
 +THRUGHOST
-translation "192:192=4:4","198:198=196:196"
+Translation "192:192=4:4","198:198=41:41","250:250=4:4","249:249=205:205"
 alpha 0.35
 Speed 60
-Damage (15)
+Damage (3)
 radius 20
 height 20
-scale 2.5
+scale 2
 damagetype "ProtoBuster3"
-Obituary "funy munky GUMPY WUMPY WEEEOOOOOOOOOOOOOOOOOOO"
+Obituary "$o's opposite team color attracted $k's Magnet Spread."
 States
 {
 Spawn:
 INEV D 0 
+INEV D 0 A_GiveToTarget("TargetMarkerT",1)
 SpawnLOOP:
-MAGG FG 3 A_SpawnItemEx("MagMissileBigTrail",0,0,0,0,0,0,0,1)
+MAGB UU 1 ACS_ExecuteWithResult(989,ACS_ExecuteWithResult(257)+100)
+MAGG F 0 A_ChangeVelocity(cos(pitch)*40,0,-sin(pitch)*40,CVF_RELATIVE)
 loop
+Death:
+WMFX ABCD 2
+stop
 }
 }
 
-actor MagMissileBigTrail
+actor MagSpreadWarperA : ShieldWarper_CBM
 {
-alpha 0.8
-+CLIENTSIDEONLY
--SOLID
-+NOGRAVITY
-+BRIGHT
-+NOINTERACTION
+renderstyle translucent
++NOTIMEFREEZE
+alpha 0.5
 scale 2
 States
 {
-Spawn:
-INEV OOONNN 1 A_FadeOut(0.15)
+Shield:
+MAGG FFFGGG 1 A_Warp(AAPTR_TARGET,30,27,28,0,24)
 loop
 }
 }
 
-actor MagMissileBigB : MagMissileBig{Translation "192:192=4:4","198:198=74:74","250:250=196:196","249:249=199:199","195:195=74:74"}
-actor MagMissileBigR : MagMissileBig{Translation "192:192=4:4","198:198=41:41","250:250=170:170","249:249=43:43","195:195=41:41"}
-actor MagMissileBigO : MagMissileBig{Translation "192:192=4:4","198:198=128:128","250:250=138:138","249:249=131:131","195:195=128:128"}
-actor MagMissileBigP : MagMissileBig{Translation "192:192=4:4","198:198=232:232","250:250=214:214","249:249=223:223","195:195=232:232"}
+actor MagSpreadWarperB : MagSpreadWarperA
+{
+States
+{
+Shield:
+MAGG FFFGGG 1 A_Warp(AAPTR_TARGET,30,9,28,0,24)
+loop
+}
+}
+
+actor MagSpreadWarperC : MagSpreadWarperA
+{
+States
+{
+Shield:
+MAGG FFFGGG 1 A_Warp(AAPTR_TARGET,30,-9,28,0,24)
+loop
+}
+}
+
+actor MagSpreadWarperD : MagSpreadWarperA
+{
+States
+{
+Shield:
+MAGG FFFGGG 1 A_Warp(AAPTR_TARGET,30,-27,28,0,24)
+loop
+}
+}
+
+actor MagMissileSpreadB : MagMissileSpread{Translation "192:192=4:4","198:198=74:74","250:250=196:196","249:249=199:199","195:195=74:74"}
+actor MagMissileSpreadR : MagMissileSpread{Translation "192:192=4:4","198:198=41:41","250:250=170:170","249:249=43:43","195:195=41:41"}
+actor MagMissileSpreadO : MagMissileSpread{Translation "192:192=4:4","198:198=128:128","250:250=138:138","249:249=131:131","195:195=128:128"}
+actor MagMissileSpreadP : MagMissileSpread{Translation "192:192=4:4","198:198=232:232","250:250=214:214","249:249=223:223","195:195=232:232"}
 
 actor MagnetmanMain_CI : TeamColor_CI
 {
@@ -1306,24 +1339,90 @@ goto Done
 }
 }
 
-actor MagnetmanMain2_CI : TeamColor_CI
+actor MagnetmanMain2a_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("MagMissileBig",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagMissileSpread",0,1,28,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("MagMissileBigB",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadB",0,1,27,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("MagMissileBigR",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadR",0,1,27,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("MagMissileBigO",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadO",0,1,27,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("MagMissileBigP",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadP",0,1,27,0)
+goto Done
+}
+}
+
+actor MagnetmanMain2b_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpread",0,1,9,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadB",0,1,9,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadR",0,1,9,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadO",0,1,9,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadP",0,1,9,0)
+goto Done
+}
+}
+
+actor MagnetmanMain2c_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpread",0,1,-9,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadB",0,1,-9,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadR",0,1,-9,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadO",0,1,-9,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadP",0,1,-8,0)
+goto Done
+}
+}
+
+actor MagnetmanMain2d_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpread",0,1,-27,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadB",0,1,-27,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadR",0,1,-27,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadO",0,1,-27,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MagMissileSpreadP",0,1,-27,0)
 goto Done
 }
 }

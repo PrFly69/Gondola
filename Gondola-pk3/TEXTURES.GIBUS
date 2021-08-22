@@ -373,3 +373,5 @@ texture 0V_7_PAR,8,56{patch B_2BARSP,0,0}
 texture 0V_7_PVR,56,8{patch 0V_7_PAR,0,0{rotate 90}}
 texture 0V_7_PAX,8,56{patch B_2BARSP,0,0{Translation"210:210=87:87"}}
 texture 0V_7_PVX,56,8{patch 0V_7_PAX,0,0{rotate 90}}
+
+graphic PLMWICON,30,30{XScale 2.0 YScale 2.0 Patch MEOWICON,0,0}//Nitro

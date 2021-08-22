@@ -1,0 +1,294 @@
+// [Celebi] This is a copy of MM8BDM v6a JUMPCANC
+// Any area with the following line
+//$CBM
+// Means that area is edited for CBM
+
+#library "jumpcanc"
+#include "zcommon.acs"
+//#include "8bdmlib.acs"//$CBM [Celebi] See `JumpStatus` near bottom
+
+
+
+// [Mike]/[Mess] Jump Canceling script. 
+//
+script "core_jumpcancel" ENTER//$CBM
+{
+int InputButtons; 
+int InputOldButtons; 
+int JumpState;
+int Grounded;
+bool Hit_Jump;
+if(PlayerIsBot(PlayerNumber())){terminate;}
+
+while (GetActorProperty(ActivatorTID(), APROP_HEALTH) > 0)
+	{
+	//Log(i:ActivatorTID(),s:"'s jump cancel started.");
+	InputButtons = GetPlayerInput(-1, INPUT_BUTTONS);
+	//InputOldButtons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+	JumpState = JumpStatus(InputButtons, InputOldButtons);
+	Hit_Jump = false;
+	Switch(JumpState)
+		{
+		Case 1: // [Mess] You pressed Jump
+	if(!CheckInventory("FlightDisableFlag")) {
+		//Order to what goes first
+		if(CheckInventory("VenusBlastJumpFlag") && !Hit_Jump) {
+			if(CheckInventory("JumpCancler")==0) {
+				GiveInventory("VenusExplosiveJump_P",1);
+				Hit_Jump = true;
+			}
+		}
+		if(CheckWeapon("SuperAdaptorWepC")==1 && !Hit_Jump)
+			{
+			if(CheckInventory("JumpCancler")==0)
+				{
+				if (CheckInventory("BoostFlag")==1 && CheckInventory("RushJetCounter")<1)
+					{
+					//GiveInventory("JumpCancler",1);
+					GiveInventory("Boosting",1);
+					TakeInventory("BoostFlag",1);
+					Hit_Jump = true;
+					}
+				}
+			}
+        if(CheckWeapon("TrebleBoostC")==1 && !Hit_Jump)
+			{
+			if(CheckInventory("JumpCancler")==0)
+				{
+				if (CheckInventory("TrebleBoostDelay")==0 && CheckInventory("BoostFlag")==1 && CheckInventory("RushJetCounter")<1)
+					{
+                        ACS_NamedExecuteAlways("core_trebleboostdash",0);
+                        GiveInventory("TrebleBoostDelay",1);
+                        GiveInventory("TrebleBoostJet",1);
+                        TakeInventory("BoostFlag",1);
+						Hit_Jump = true;
+					}
+				}
+			}
+		if(CheckInventory("CanTreadWater")) {
+			if(CheckInventory("JumpCancler")==0) {
+				if (CheckInventory("IsTreadingWater")==0) {
+					GiveInventory("GiveIsTreadingWater_P",1);
+				}
+			}
+		}
+		if(CheckInventory("CanAirJump") && !Hit_Jump) {
+			if(CheckInventory("JumpCancler")==0) {
+				if (!CheckInventory("SelfTotallyFrozenFlag")) {
+					GiveInventory("AirJumpBoost_P",1);
+					Hit_Jump = true;
+				}
+			}
+		}
+		if(CheckInventory("CanWallJump") && !Hit_Jump) {
+			if(CheckInventory("JumpCancler")==0) {
+				GiveInventory("WallJumping_P",1);
+				Hit_Jump = true;
+			}
+		}
+		if(CheckInventory("OnCeilingFlag") && !Hit_Jump){
+			GiveInventory("ReverseJump",1);
+			TakeInventory("OnCeilingFlag", 1);
+		}
+	}
+		
+		Grounded = 0;
+		break;
+		Case 2: // You Released Jump
+		if(CheckInventory("JumpCancler")>0)
+			{
+			TakeInventory("JumpCancler",1);
+				if(CheckInventory("NoJumpCancel")==0){
+				//Log(i:ActivatorTID(),s:"'s jump cancel activated!!");
+				ThrustThingZ(0,0,0,0);
+				}
+			Grounded = 0;
+			}
+		break;
+		
+		Case 3: //Holding Jump
+		if(CheckInventory("OnCeilingFlag")){
+			GiveInventory("ReverseJump",1);
+			TakeInventory("OnCeilingFlag", 1);
+		}
+		Default: //Holding Jump OR not holding Jump
+	if(CheckInventory("CeilingFlag")==0) {
+
+		if((GetActorZ (0) - GetActorFloorZ (0)==0.0) || Grounded == 3 && CheckInventory("TrebleBoostDelay")==0)
+			{
+				GiveInventory("JumpCancler",1);
+				GiveInventory("BoostFlag",1);
+				//print(s:"You're grounded!");
+				if(CheckInventory("CanAirJump")){
+					if(CheckInventory("CanAirJumpLimit") != CheckInventory("CanAirJumpStack")){
+						TakeInventory("CanAirJumpLimit",999);
+						GiveInventory("CanAirJumpLimit",CheckInventory("CanAirJumpStack"));
+					}
+				}
+				if(CheckInventory("CanWallJump")){
+					if(CheckInventory("CanWallJumpLimit") != CheckInventory("CanWallJumpStack")){
+						TakeInventory("CanWallJumpLimit",999);
+						GiveInventory("CanWallJumpLimit",CheckInventory("CanWallJumpStack"));
+					}
+				}
+			}
+		if(GetActorVelZ(0)==0.0 && Grounded < 3 && GetActorCeilingZ(0) - GetActorZ(0) > 64.0 && !CheckInventory("SelfTotallyFrozenFlag")){Grounded++;}
+		
+		if(GetActorVelZ(0)<0.0)
+			{
+			TakeInventory("JumpCancler",1);
+			//print(s:"You're falling!");
+			Grounded = 0;
+			}
+			
+	} else {
+		
+		if(CheckInventory("OnCeilingFlag") || Grounded == 3)
+			{
+				GiveInventory("JumpCancler",1);
+				GiveInventory("BoostFlag",1);
+				//print(s:"You're 'grounded!'");
+				if(CheckInventory("CanAirJump")){//Why yes, I am accounting for the possibility of a class that can reverse gravity and wall jump [Jax[
+					if(CheckInventory("CanAirJumpLimit") != CheckInventory("CanAirJumpStack")){
+						TakeInventory("CanAirJumpLimit",999);
+						GiveInventory("CanAirJumpLimit",CheckInventory("CanAirJumpStack"));
+					}
+				}
+				if(CheckInventory("CanWallJump")){
+					if(CheckInventory("CanWallJumpLimit") != CheckInventory("CanWallJumpStack")){
+						TakeInventory("CanWallJumpLimit",999);
+						GiveInventory("CanWallJumpLimit",CheckInventory("CanWallJumpStack"));
+					}
+				}
+			}
+		if(GetActorVelZ(0)==0.0 && Grounded < 3){Grounded++;}
+		
+		if(GetActorVelZ(0)>0.0)
+			{
+			TakeInventory("JumpCancler",1);
+			//print(s:"You're 'falling!'");
+			Grounded = 0;
+			}
+		
+	}
+			break;
+			}
+    delay(1);
+	InputOldButtons = InputButtons; // More reliable than INPUT_OLDBUTTONS
+	}
+}
+
+script "core_trebleboostdash" (void)
+{
+    int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+    int boostAngle = -360.0;
+    int boostTime = 7;
+    int speed = 45.0;
+    int hspeed = 22.5;
+
+    ActivatorSound("weapon/trebleboost", 128);
+
+    if(buttons & BT_FORWARD) {
+        if(buttons & BT_MOVERIGHT) {
+            boostAngle = GetActorAngle(0)-0.1074;
+        } else if(buttons & BT_MOVELEFT) {
+            boostAngle = GetActorAngle(0)+0.1074;
+        } else {
+            boostAngle = GetActorAngle(0);
+        }
+    } else if(buttons & BT_BACK) {
+        if(buttons & BT_MOVERIGHT) {
+            boostAngle = GetActorAngle(0)+0.5+0.1074;
+        } else if(buttons & BT_MOVELEFT) {
+            boostAngle = GetActorAngle(0)+0.5-0.1074;
+        } else {
+            boostAngle = GetActorAngle(0)+0.5;
+        }
+    } else if(buttons & BT_MOVERIGHT) {
+        boostAngle = GetActorAngle(0)-0.25;
+    } else if(buttons & BT_MOVELEFT) {
+        boostAngle = GetActorAngle(0)+0.25;
+    }
+
+    if(boostAngle == -360.0) {
+        for(int i = 0; i < boostTime; i++) {
+            ThrustThingZ(0, 30, 0, 0);
+            Delay(1);
+        }
+    }
+    else
+    {
+        for(i = 0; i < boostTime; i++) {
+            SetActorVelocity(0, fixedMul(cos(boostAngle), speed), fixedMul(sin(boostAngle), speed), 0.01, false, true);
+            Delay(1);
+        }
+        SetActorVelocity(0, fixedMul(cos(boostAngle), hspeed), fixedMul(sin(boostAngle), hspeed), 0.01, false, true);
+    }
+}
+
+//$CBM
+//[Celebi] Only the below from 8BDMLIB is needed.
+
+// [Mess] The following function returns:
+// 0 if they haven't pressed jump (in a given tic)
+// 1 if the player pressed jump
+// 2 if the player released jump
+// 3 if the player is holding jump
+Function int JumpStatus (int Buttons, int OldButtons)
+{
+	int JumpNow = Buttons & BT_JUMP;
+	int JumpOld = OldButtons & BT_JUMP;
+	If(JumpNow > JumpOld){Return 1;}
+	If(JumpNow < JumpOld){Return 2;}
+	If(JumpNow > 0 &&  JumpOld > 0){Return 3;}
+	Return 0;
+}
+
+//$CBM//$CBM//$CBM//$CBM//$CBM
+//$CBM//$CBM//$CBM//$CBM//$CBM
+//$CBM//$CBM//$CBM//$CBM//$CBM
+//$CBM//$CBM//$CBM//$CBM//$CBM
+//$CBM//$CBM//$CBM//$CBM//$CBM
+
+// [Celebi] Moved here since this is related to Jump Cancel tricks
+
+script "CBM_WallJumpThruster" (int Force, int BonusJump)
+{
+	//SetActivatorToTarget(0);
+	//int JumpFixAngle = 0;
+	int JumpAngByte = 0;
+	int TotalAngles = 0;
+    if (CheckInventory("WallN") && !CheckInventory("WallS")) {
+		JumpAngByte += 128;
+		TotalAngles++;
+	}
+    if (/*CheckInventory("WallS") &&*/ !CheckInventory("WallN")) {
+		JumpAngByte += 256;
+		TotalAngles++;
+	}
+	if (CheckInventory("WallE") && !CheckInventory("WallW")) {
+	    JumpAngByte += 64;
+		TotalAngles++;
+	}
+	if (CheckInventory("WallW") && !CheckInventory("WallE")) {
+	    JumpAngByte += 192;
+		TotalAngles++;
+	}
+	if (/*CheckInventory("WallS") && */ !CheckInventory("WallN") && CheckInventory("WallE") && !CheckInventory("WallW")) { //Somewhere, a mathematician is crying.
+	    JumpAngByte = 32;
+		TotalAngles = 1;
+	}
+	if (TotalAngles>0) {
+		JumpAngByte /= TotalAngles;
+		ThrustThing(((GetActorAngle(0) >> 8) + JumpAngByte),Force,1);
+		SetActorVelocity(0,GetActorVelX(0),GetActorVelY(0),GetActorProperty(0,APROP_JumpZ)*(1+(CheckInventory("PowerHighJump_ST")||CheckInventory("RuneHighJump")))+BonusJump*1.0,0,0);
+		//ThrustThingZ(0,(GetActorProperty(0,APROP_JumpZ) >> 16) * 4 + BonusJump,0,0);
+	}
+}
+
+//Thrusts up based on JumpZ, doubles thrust with HighJumpRune or HighJumpRune_ST
+script "CBM_AirJumpZ_Thrust" (void)
+{
+	SetActorVelocity(0,GetActorVelX(0),GetActorVelY(0),GetActorProperty(0,APROP_JumpZ)*(1+(CheckInventory("PowerHighJump_ST")||CheckInventory("RuneHighJump"))),0,0);
+}
+

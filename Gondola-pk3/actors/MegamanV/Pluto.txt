@@ -9,6 +9,7 @@ player.startitem "BreakDashBoss"
 player.startitem "GetBentDegenerateAmmo", 56
 player.startitem "CanWallJump"
 player.startitem "CanWallJumpStack", 6
+player.startitem "PlutoMeowItem"
 player.jumpz 11
 
 //Doesn't like Cold temps
