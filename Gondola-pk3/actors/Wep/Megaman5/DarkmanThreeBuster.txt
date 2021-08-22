@@ -335,7 +335,7 @@ speed 180
 var int user_P;
 Obituary "$OB_DARK3SNIPER"
 damagetype "DM3_Snipe"
-Damage (40)
+Damage (45)
 States
 {
 Spawn:

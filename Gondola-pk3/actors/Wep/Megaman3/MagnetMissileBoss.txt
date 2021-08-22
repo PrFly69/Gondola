@@ -7,7 +7,7 @@ Weapon.AmmoGive 0
 Obituary "$OB_MAGNETMISSILE"
 Inventory.Pickupmessage "Power up! YOU GOT SOME POWER!!!"
 weapon.ammotype "PullCharge"
-inventory.icon "MagIcon1"
+//inventory.icon "MagIcon1"
 +WEAPON.Alt_AMMO_OPTIONAL
 +WEAPON.NOAUTOAIM
 States
@@ -190,6 +190,7 @@ goto Ready1
 Altfire:
 MAGB A 0 A_JumpIfInventory("CutterFlag",1,"AltDetonate")
 MAGB A 0 A_JumpIfInventory("MagFlyDelay",1,"NoAmmo")
+MAGN A 0 A_JumpIfInventory("MagFlyDelayFast",1,"NoAmmo")
 MAGB A 0 A_JumpIfInventory("MagFlyIsOut",1,"NoAmmo")
 MAGB A 0 A_GiveInventory("CutterFlag",1)
 MAGB H 0 A_PlaySoundEx("weapon/magnetmine","Weapon")
@@ -261,6 +262,7 @@ goto AltCheck
 
 Flash:
 TNT1 A 1 A_TakeInventory("MagFlyDelay",1)
+TNT1 A 0 A_TakeInventory("MagFlyDelayFast",1)
 loop
 }
 }
@@ -419,6 +421,7 @@ goto Ready1
 Altfire:
 MAGN A 0 A_JumpIfInventory("CutterFlag",1,"AltDetonate")
 MAGN A 0 A_JumpIfInventory("MagFlyDelay",1,"NoAmmo")
+MAGN A 0 A_JumpIfInventory("MagFlyDelayFast",1,"NoAmmo")
 MAGN A 0 A_JumpIfInventory("MagFlyIsOut",1,"NoAmmo")
 MAGN A 0 A_GiveInventory("CutterFlag",1)
 MAGN H 0 A_PlaySoundEx("weapon/magnetmine","Weapon")
@@ -490,6 +493,7 @@ goto AltCheck
 
 Flash:
 TNT1 A 1 A_TakeInventory("MagFlyDelay",1)
+TNT1 A 0 A_TakeInventory("MagFlyDelayFast",1)
 loop
 }
 }
@@ -546,11 +550,23 @@ inventory.maxamount 105
 +INVENTORY.IGNORESKILL
 }
 
+actor MagFlyDelayFast : Ammo
+{
+inventory.amount 1
+inventory.maxamount 50
++INVENTORY.IGNORESKILL
+}
+
 actor MagFlyIsOut : OnceC{}
 actor BarriersOut : OnceC{}
 
 actor MagnetmanFlag1 : OnceC{}
 actor MagnetmanFlag2 : OnceC{}
+
+actor MagFlyTrollmiteFlag : Powerup
+{
+Powerup.Duration 3
+}
 
 actor MagMissileClassX
 {
@@ -743,33 +759,41 @@ MAG3 A 0 ACS_NamedExecuteAlways("Trill_MagnetJumpBooster",0,128)
 MAG3 AA 0 A_SpawnItemEx("MagParticleSpawnerX",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 MAG3 A 1 A_Countdown
 MAG3 A 0 A_JumpIfInTargetInventory("WeaponCharge",1,"BRRRRRRRRRR")
+MAG3 A 0 A_JumpIfInTargetInventory("MagFlyTrollmiteFlag",1,"Death")
 MAG3 A 0 ACS_NamedExecuteAlways("Trill_MagnetJumpBooster",0,128)
 MAG3 AA 0 A_SpawnItemEx("MagParticleSpawnerX",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 MAG3 A 1 A_Countdown
 MAG3 A 0 A_JumpIfInTargetInventory("WeaponCharge",1,"BRRRRRRRRRR")
+MAG3 A 0 A_JumpIfInTargetInventory("MagFlyTrollmiteFlag",1,"Death")
 MAG3 A 0 ACS_NamedExecuteAlways("Trill_MagnetJumpBooster",0,128)
 MAG3 AA 0 A_SpawnItemEx("MagParticleSpawnerX",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 MAG3 A 1 A_Countdown
 MAG3 A 0 A_JumpIfInTargetInventory("WeaponCharge",1,"BRRRRRRRRRR")
+MAG3 A 0 A_JumpIfInTargetInventory("MagFlyTrollmiteFlag",1,"Death")
 MAG3 A 0 ACS_NamedExecuteAlways("Trill_MagnetJumpBooster",0,128)
 MAG3 AA 0 A_SpawnItemEx("MagParticleSpawnerX",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 MAG3 B 1 A_Countdown
 MAG3 A 0 A_JumpIfInTargetInventory("WeaponCharge",1,"BRRRRRRRRRR")
+MAG3 A 0 A_JumpIfInTargetInventory("MagFlyTrollmiteFlag",1,"Death")
 MAG3 A 0 ACS_NamedExecuteAlways("Trill_MagnetJumpBooster",0,128)
 MAG3 AA 0 A_SpawnItemEx("MagParticleSpawnerX",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 MAG3 B 1 A_Countdown
 MAG3 A 0 A_JumpIfInTargetInventory("WeaponCharge",1,"BRRRRRRRRRR")
+MAG3 A 0 A_JumpIfInTargetInventory("MagFlyTrollmiteFlag",1,"Death")
 MAG3 A 0 ACS_NamedExecuteAlways("Trill_MagnetJumpBooster",0,128)
 MAG3 AA 0 A_SpawnItemEx("MagParticleSpawnerX",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 MAG3 B 1 A_Countdown
 MAG3 A 0 A_JumpIfInTargetInventory("WeaponCharge",1,"BRRRRRRRRRR")
+MAG3 A 0 A_JumpIfInTargetInventory("MagFlyTrollmiteFlag",1,"Death")
 loop
 Death:
+MAGB A 0 A_TakeFromTarget("MagFlyTrollmiteFlag",1)
 MAGB A 0 A_TakeFromTarget("CutterFlag",999)
 NAPA E 0 A_PlaySoundEx("misc/mm3explosion", "Body")
-MAGB A 0 A_GiveToTarget("MagFlyDelay",70)
+MAGB A 0 A_GiveToTarget("MagFlyDelayFast",50)
 MAGB A 0 A_TakeFromTarget("MagFlyIsOut",999)
-TN_B EFGHIJKLMNOPQRS 2
+MAGB A 0 A_ChangeFlag("FLOATBOB",FALSE)
+MXP2 ABCDEFGHIJKLMNOPQRST 1
 stop
 BRRRRRRRRRR:
 MAG3 A 0 A_SpawnItemEX("MagflyMagnetMad",0,0,0,0,0,0,0,1)
@@ -794,36 +818,36 @@ reactiontime 70
 states
 {
 Spawn:
-MAG3 A 2 A_PlaySoundEx("Weapon/MagFlyMad","Weapon")
+MAG3 A 2 A_PlaySoundEx("weapon/magnetminefly","Weapon")
 MAG3 B 0 A_Quake(3,2,0,180)
 MAG3 B 0 A_Quake(1,2,0,360)
 MAG3 B 0 A_CountDown
-MAG3 AAAA 0 A_SpawnItemEx("MagMissileClassFX2", random(0, 128), 0, Random(0, 8), 0, 0, random(-40, -50), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
-MAG3 AAAA 0 A_SpawnItemEx("MagMissileClassFX3", random(0, 128), 0, Random(0, 8), 0, 0, random(-40, -50), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+MAG3 AA 0 A_SpawnItemEx("MagMissileClassFX2", random(0, 128), 0, Random(0, 8), 0, 0, random(-80, -100), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+MAG3 AA 0 A_SpawnItemEx("MagMissileClassFX3", random(0, 128), 0, Random(0, 8), 0, 0, random(-80, -100), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
 MAG3 AAAA 0 A_SpawnItemEx("MagParticleSpawnerX2",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 //MAG3 A 0 A_SpawnItemEx("MagFlyExploder",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 MAG3 B 2 //A_PlaySoundEx("Weapon/MagFlyMad","Weapon")
 MAG3 B 0 A_Quake(3,2,0,180)
 MAG3 B 0 A_Quake(1,2,0,360)
 MAG3 B 0 A_CountDown
-MAG3 AAAA 0 A_SpawnItemEx("MagMissileClassFX2", random(0, 128), 0, Random(0, 8), 0, 0, random(-40, -50), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
-MAG3 AAAA 0 A_SpawnItemEx("MagMissileClassFX3", random(0, 128), 0, Random(0, 8), 0, 0, random(-40, -50), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+MAG3 AA 0 A_SpawnItemEx("MagMissileClassFX2", random(0, 128), 0, Random(0, 8), 0, 0, random(-80, -100), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+MAG3 AA 0 A_SpawnItemEx("MagMissileClassFX3", random(0, 128), 0, Random(0, 8), 0, 0, random(-80, -100), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
 MAG3 AAAA 0 A_SpawnItemEx("MagParticleSpawnerX2",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 TNT1 A 0 A_SpawnItemEx("MagFlyExploder",0,0,-10,0,0,0,0,552)
 MAG3 A 2
 MAG3 B 0 A_Quake(3,2,0,180)
 MAG3 B 0 A_Quake(1,2,0,360)
 MAG3 B 0 A_CountDown
-MAG3 AAAA 0 A_SpawnItemEx("MagMissileClassFX2", random(0, 128), 0, Random(0, 8), 0, 0, random(-40, -50), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
-MAG3 AAAA 0 A_SpawnItemEx("MagMissileClassFX3", random(0, 128), 0, Random(0, 8), 0, 0, random(-40, -50), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+MAG3 AA 0 A_SpawnItemEx("MagMissileClassFX2", random(0, 128), 0, Random(0, 8), 0, 0, random(-80, -100), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+MAG3 AA 0 A_SpawnItemEx("MagMissileClassFX3", random(0, 128), 0, Random(0, 8), 0, 0, random(-80, -100), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
 MAG3 AAAA 0 A_SpawnItemEx("MagParticleSpawnerX2",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 //MAG3 A 0 A_SpawnItemEx("MagFlyExploder",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 MAG3 B 2 //A_PlaySoundEx("Weapon/MagFlyMad","Weapon")
 MAG3 B 0 A_Quake(3,2,0,180)
 MAG3 B 0 A_Quake(1,2,0,360)
 MAG3 B 0 A_CountDown
-MAG3 AAAA 0 A_SpawnItemEx("MagMissileClassFX2", random(0, 128), 0, Random(0, 8), 0, 0, random(-40, -50), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
-MAG3 AAAA 0 A_SpawnItemEx("MagMissileClassFX3", random(0, 128), 0, Random(0, 8), 0, 0, random(-40, -50), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+MAG3 AA 0 A_SpawnItemEx("MagMissileClassFX2", random(0, 128), 0, Random(0, 8), 0, 0, random(-80, -100), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+MAG3 AA 0 A_SpawnItemEx("MagMissileClassFX3", random(0, 128), 0, Random(0, 8), 0, 0, random(-80, -100), random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
 MAG3 AAAA 0 A_SpawnItemEx("MagParticleSpawnerX2",0,0,-(z-floorz),0,0,0,0,SXF_TRANSFERTRANSLATION)
 TNT1 A 0 A_SpawnItemEx("MagFlyExploder",0,0,-10,0,0,0,0,552)
 loop
@@ -853,9 +877,9 @@ Obituary "$OB_MAGNETMANFLY"
 +THRUACTORS
 +THRUSPECIES
 +THRUGHOST
+renderstyle none
 +DONTBLAST
 +DONTREFLECT
-renderstyle none
 damage (0)
 Radius 8
 Height 8
@@ -895,6 +919,30 @@ actor MagnetJumpBoost : PowerHighJump
 powerup.duration 17
 }
 
+actor MagFlyDeleteItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "MAGNETSI"
+scale 2.0
+inventory.pickupmessage "Hey, hey, step aside, Crash Man. It's time for Magnet Man to finish this job with his Mag Flies."
++INVBAR
+states
+{
+Spawn:
+MAGB X 1
+loop
+Use:
+TNT1 A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot6")
+//TNT1 A 0 A_JumpIfInventory("ClashFlagT",1,"No")
+TNT1 A 0 A_GiveInventory("MagFlyTrollmiteFlag",1)
+fail
+No:
+TNT1 A 0
+fail
+}
+}
+
 actor MagParticleSpawnerX
 {
 +NOINTERACTION
@@ -931,6 +979,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 AA 0 A_SpawnItemEx("MagMissileClassFX", random(0, 128), 0, Random(0, 8), momx, momy, 0, random(0,359), SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+TNT1 A 0 A_PlaySoundEx("Weapon/MagFlyMad","Weapon")
 stop
 }
 }
@@ -1029,6 +1078,9 @@ wait
 X_0C F 5
 X_0C F 1 A_Fadeout(0.1)
 wait
+Death:
+TNT1 A 0
+stop
 }
 }
 
@@ -1039,9 +1091,8 @@ States
 Spawn:
 TNT1 A 0
 X_0C EEEEEEEEEE 1 A_FadeIn(0.2)
-SpawnLOOP:
-X_OC F 10
-loop
+X_0C E 1 A_CheckFloor("Death")
+wait
 }
 }
 
@@ -1052,9 +1103,8 @@ States
 Spawn:
 TNT1 A 0
 X_0C FFFFFFFFFF 1 A_FadeIn(0.2)
-SpawnLOOP:
-X_OC F 10
-loop
+X_0C F 1 A_CheckFloor("Death")
+wait
 }
 }
 

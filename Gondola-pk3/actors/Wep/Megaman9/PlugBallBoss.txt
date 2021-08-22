@@ -37,10 +37,10 @@ PLGH A 0 A_JumpIfInventory("PlugmanLatch",2,"AllyPlug")
 PLGH A 0 A_JumpIfInventory("PlugmanLatch",1,"EnemyPlug")
 PLGH A 0 A_JumpIfNoAmmo("NoAmmo")
 PLGH A 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
-PLGH BCDEB 1
+PLGH BCDBC 1
 goto FireEnd
 FireR:
-PLGH BED 1
+PLGH BCD 1
 goto FireEnd
 FireEnd:
 PLGH A 0 A_GiveInventory("PlugmanMain_CI",1)

@@ -4,12 +4,13 @@ Player.ScoreIcon "C_03B0X"
 player.displayname "Magnetman"
 player.soundclass "magnetmanc"
 player.startitem "MagnetMissileBoss"
-player.startitem "MagnetMissilerBoss"
+//player.startitem "MagnetMissilerBoss"
+player.startitem "MagFlyDeleteItem"
 player.startitem "MagnetFlag", 15
 player.jumpz 12
 
-player.weaponslot 1, "MagnetMissileBoss"
-player.weaponslot 2, "MagnetMissilerBoss"
+//player.weaponslot 1, "MagnetMissileBoss"
+//player.weaponslot 2, "MagnetMissilerBoss"
 
 player.startitem "SparkShockWeakness2", 1
 
