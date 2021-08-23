@@ -1332,6 +1332,10 @@ CHANGELOG
 ==Drillman
 -Removed all ACS delays
 
+==Ringman (as of gond beta 6)
+-Gleam FX replaced with translucent ring trail
+-Returning empowered Ring Boomerangs now have translucent ring trail as well
+
 ==Diveman
 -Removed all ACS delays
 
