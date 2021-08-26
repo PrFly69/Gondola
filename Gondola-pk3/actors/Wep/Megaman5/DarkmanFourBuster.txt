@@ -454,7 +454,6 @@ actor DarkShield4SegmentRNG1 : DarkShield4Segment
 +NOBLOOD
 -SOLID
 +NOTIMEFREEZE
-+NOTARGETSWITCH
 +NOGRAVITY
 +HEXENBOUNCE
 +BOUNCEONACTORS
@@ -483,7 +482,7 @@ DSHW N 1
 goto Spawn
 Death:
 DSHW N 0 
-DSHW N 1 A_TakeFromTarget("DarkBlasterAmmo",50)
+DSHW N 1
 stop
 }
 }
@@ -493,16 +492,16 @@ actor DarkShield4SegmentRNG2 : DarkShield4SegmentRNG1
 States
 {
 Spawn:
-DSHW N 0 
+DSHW O 0 
 DSHW O 1 
 stop
 Pain:
-DSHW O 0
-DSHW O 1 ACS_NamedExecuteAlways("CCBM_Dark4Shield",0)
+DSHW O 0 ACS_NamedExecuteAlways("CCBM_Dark4Shield",0)
+DSHW O 1 
 goto Spawn
 Death:
 DSHW O 0 
-DSHW O 1 A_TakeFromTarget("DarkBlasterAmmo",50)
+DSHW O 1 
 stop
 }
 }
@@ -512,16 +511,16 @@ actor DarkShield4SegmentRNG3 : DarkShield4SegmentRNG1
 States
 {
 Spawn:
-DSHW N 0 
+DSHW P 0 
 DSHW P 1 
 stop
 Pain:
-DSHW P 0
-DSHW P 1 ACS_NamedExecuteAlways("CCBM_Dark4Shield",0)
+DSHW P 0 ACS_NamedExecuteAlways("CCBM_Dark4Shield",0)
+DSHW P 1 
 goto Spawn
 Death:
 DSHW P 0 
-DSHW P 1 A_TakeFromTarget("DarkBlasterAmmo",50)
+DSHW P 1 
 stop
 }
 }

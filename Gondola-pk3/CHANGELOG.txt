@@ -1371,8 +1371,8 @@ CHANGELOG
 -Ported from classes-v9fh.pk3, following are edits made to CBM base
 -SMG damage 6 > 5
 --SMG always consumes ammo
--Snipe shot damage 25 > 15
---Base Maxcharge snipe shot damage no longer scales, does a flat 45
+-Snipe shot damage 25
+--Scales up to 45 damage at a distance 
 
 ==Darkman4 (as of gond beta 6)
 --Shield now takes 50 or more damage to destroy rather than 5 hits
