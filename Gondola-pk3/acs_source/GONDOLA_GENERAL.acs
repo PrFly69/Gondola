@@ -3,6 +3,14 @@
 #include "zcommon.acs"
 #include "8bdmlib.acs"
 
+//Dark Man 4
+script "CCBM_Dark4Shield" (void)
+{
+		int shielddiff = 50 - GetActorProperty(0,APROP_HEALTH);
+		SetActivatorToTarget(0);
+		TakeInventory("DarkBlasterAmmo",shielddiff);
+}
+
 //Terra
 Script "CCBM_PitchAngleSetter" (int PitchAngle)
 {
