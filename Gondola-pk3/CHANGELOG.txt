@@ -1557,7 +1557,7 @@ CHANGELOG
 ==Mercury
 -Ported V6 skin + extra skinsprites from classes-v9fh.pk3
 -Fixed holding noammo altfire bug
--Grab Buster damage 8 > 9
+-Grab Buster damage 8 > 10 (as of gond beta 6)
 -Removed wallclimbing from blob form
 -Blob starting ammo 8 > 12
 --Blobs have powerprotect for 50% that lasts 15 tics
