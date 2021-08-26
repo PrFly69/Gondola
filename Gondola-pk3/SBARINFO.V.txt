@@ -565,7 +565,7 @@ IsSelected DarkSniperBoss{DrawBar"BARAMM51","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory DarkSniperCharge,1{DrawBar"5K_B_BAR","NOBAR",DarkSniperCharge,vertical,16,8;}
 	DrawBar"05_D3BAR","BAREMPTY",Ammo2,vertical,8,8;}
 IsSelected DarkBlasterBoss{DrawBar"BRKDM4","BAREMPTY",Ammo1,vertical,16,8;
-	InInventory DarkBlasterAmmo,70{DrawBar"BARDM4","BAREMPTY",Ammo1,vertical,16,8;
+	InInventory DarkBlasterAmmo,25{DrawBar"BARDM4","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory DarkAltDelay,1{DrawBar"BARFLS1","NOBAR",DarkAltDelay,vertical,16,8;}}}
 
 //MM6

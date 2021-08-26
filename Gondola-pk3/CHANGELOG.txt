@@ -1374,6 +1374,12 @@ CHANGELOG
 -Snipe shot damage 25 > 15
 --Base Maxcharge snipe shot damage no longer scales, does a flat 45
 
+==Darkman4 (as of gond beta 6)
+--Shield now takes 50 or more damage to destroy rather than 5 hits
+-Max ammo 140 > 50
+-Starting ammo 28 > 10
+-Ammo regen rate 1 per 2 tics > 1 per 5 tics
+
 ==Blizzardman
 -Rapid Blizzard shots now weave
 
