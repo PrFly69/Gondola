@@ -1391,6 +1391,7 @@ CHANGELOG
 --Scales up to 45 damage at a distance (as of gond beta 6)
 
 ==Darkman4 (as of gond beta 6)
+--Shield no longer affected by ally attacks
 --Shield now takes 50 or more damage to destroy rather than 5 hits
 -Max ammo 140 > 50
 -Starting ammo 28 > 10
