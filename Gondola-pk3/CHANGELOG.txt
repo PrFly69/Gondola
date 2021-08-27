@@ -1533,6 +1533,7 @@ CHANGELOG
 --Fat Old Sun bouncecount 10 > 3
 --Fat Old Sun direct damage 15 > 10
 --Fat Old Sun explosive damage 25 > 20
+--Ripper powerprotect duration 1 > 2 (as of gond beta 6)
 
 ==Fuseman
 -Uses Redflash's skin, Dimpsy's skin exists as an alternative
