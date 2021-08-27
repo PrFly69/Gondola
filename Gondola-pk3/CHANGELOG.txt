@@ -1267,6 +1267,12 @@ CHANGELOG
 ==Alien
 -Fixed no ammo gain issue
 
+==Dr. Wily
+-Ported UEC changes
+-Suit ammo regen rate 8 tics > 10 tics
+-Capsule ammo regen rate 5 tics (Ice)/4 tics (Fire) > 6 tics (Both)
+-Wily now correctly loses all upgrade ammo upon manually exiting Wily Capsule
+
 ==Needleman
 -Readded rev, moved Needle Hammer to reload
 
