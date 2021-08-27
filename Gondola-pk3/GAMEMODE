@@ -1,0 +1,16 @@
+Cooperative { addflag DEADSPECTATORS }
+//Survival { addflag DEADSPECTATORS }
+Invasion { addflag DEADSPECTATORS }
+Deathmatch { addflag DEADSPECTATORS }
+Teamplay { addflag DEADSPECTATORS }
+Duel { addflag DEADSPECTATORS }
+Terminator { addflag DEADSPECTATORS }
+//LastManStanding { addflag DEADSPECTATORS }
+//TeamLMS { addflag DEADSPECTATORS }
+Possession { addflag DEADSPECTATORS }
+TeamPossession { addflag DEADSPECTATORS }
+TeamGame { addflag DEADSPECTATORS }
+CTF { addflag DEADSPECTATORS }
+OneFlagCTF { addflag DEADSPECTATORS }
+Skulltag { addflag DEADSPECTATORS }
+Domination { addflag DEADSPECTATORS }

@@ -111,7 +111,7 @@ script C_WEAPON_CATEGORY_CHECK (void) {
 script C_WEAPON_CATEGORY_CHECK (void) {}
 
 
-#DEFINE I_TOTAL_CLASSES 129
+#DEFINE I_TOTAL_CLASSES 130
 str Doc_Scan_List[I_TOTAL_CLASSES][4] =
 {
 {"CopyWep","Null2","0","Megaman"},
@@ -134,6 +134,7 @@ str Doc_Scan_List[I_TOTAL_CLASSES][4] =
 {"ThunderBeamWepC","Null2","0","Elecman"},
 {"TimeSlowWepC","Null2","0","Timeman"},
 {"OilSliderWepC","Null2","0","Oilman"},
+{"Null","Null2","0","YellowDevil"},
 
 {"MetalBladeWepC","Null2","0","Metalman"},
 {"AirShooterWepC","Null2","0","Airman"},

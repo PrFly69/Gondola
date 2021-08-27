@@ -17,3 +17,7 @@ global
 sunstar
 JUMPCANC
 a_anticheat
+RESPO
+RESP
+RESPD
+GREMOV

@@ -1,0 +1,83 @@
+#library "resp"
+#include "zcommon.acs"
+
+bool RespawnDelayActive = false;
+
+#DEFINE MAX_PLAYERS 64
+int RespawnTimer[MAX_PLAYERS];
+int DeathTimer[MAX_PLAYERS];
+
+function int GetRespawnTime(void) {
+	return GetCvar("SV_RESPAWNTIME")*35;
+} 
+
+function bool ForcedInstantRespawn(void) {
+	return (GetCVar("sv_forcerespawn")&&(GetCVar("sv_forcerespawntime")<0));
+}
+
+function int FraglessDeath(int p) {
+	return (CheckActorInventory(1000+p,"FraglessKillFlag")>0); //fraglesskillflag defined in other mods
+}
+
+function void ResetRespawnTimes(int maxClients) {
+	for(int i=0; i<maxClients; i++) SetCvar(StrParam(s:"SV_RESPAWN",i:i),0);
+}
+
+function void RespawnDMainFunc(int maxClients) {
+	for(int i=0; i<maxClients; i++) {
+		if(RespawnTimer[i]>0) {
+			RespawnTimer[i]--;
+			if(DeathTimer[i]>0) {
+				DeathTimer[i]--;
+			} else {
+				DeathTimer[i] = 0;
+				if(PlayerIsSpectator(i)==0) SetDeadSpectator(i,1);
+			}
+		} else {
+			RespawnTimer[i] = 0;
+			DeathTimer[i] = 0;
+			if(PlayerIsSpectator(i)==2) SetDeadSpectator(i,0);
+		}
+		//SetCvar(StrParam(s:"SV_RESPAWN",i:i),DivAndRoundUp(RespawnTimer[i],35));
+		UpdateCvar(StrParam(s:"SV_RESPAWN",i:i),DivAndRoundUp(RespawnTimer[i],35));
+	}
+}
+
+function void UpdateCvar(str cvar, int value) {
+    if(GetCvar(cvar)!=value) SetCvar(cvar,value);
+}
+
+function int DivAndRoundUp(int num, int div) {
+	return (num/div)+((num%div)>0);
+}
+
+function void RespawnDDeathFunc(int p, bool died) {
+	if(RespawnDelayActive&&!ForcedInstantRespawn()&&!FraglessDeath(p)) {
+		RespawnTimer[p] = GetRespawnTime();
+		DeathTimer[p] = 30;
+	}
+}
+
+Script "RespawnDMain" (void)
+{
+RespawnDelayActive = true;
+while(true) {
+	RespawnDMainFunc(GetCvar("sv_maxclients"));
+	delay(1);
+}
+}
+
+Script "RespawnDReset" (void)
+{
+ResetRespawnTimes(GetCvar("sv_maxclients"));
+}
+
+Script "RespawnDDeath" DEATH
+{
+RespawnDDeathFunc(PlayerNumber(), true);
+}
+
+Script "RespawnDDisconnect" (int d) DISCONNECT
+{
+RespawnDDeathFunc(d, false);
+}
