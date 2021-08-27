@@ -607,7 +607,7 @@ powerup.duration 15
 	+FORCEXYBILLBOARD
 	+BOUNCEONWALLS
 	BounceCount 3
-	Damage (9)
+	Damage (10)
 	Radius 9
 	Height 9
 	Speed 44

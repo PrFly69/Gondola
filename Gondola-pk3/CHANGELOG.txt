@@ -1267,22 +1267,28 @@ CHANGELOG
 ==Alien
 -Fixed no ammo gain issue
 
+==Dr. Wily
+-Ported UEC changes
+-Suit ammo regen rate 8 tics > 10 tics
+-Capsule ammo regen rate 5 tics (Ice)/4 tics (Fire) > 6 tics (Both)
+-Wily now correctly loses all upgrade ammo upon manually exiting Wily Capsule
+
 ==Needleman
 -Readded rev, moved Needle Hammer to reload
 
 ==Magnetman
--Reworked by NightFly (with assets from Greg.EXE and Trillster
--Mainfire homing reworked, now has 8 tics of delay before doing a singular fast redirect
+-Reworked by NightFly (with assets from Greg.EXE and Trillster)
+-Mainfire homing reworked, now has 5 tics of delay before doing a singular fast redirect (as of gond beta 6)
+*(this was originally 8 but incorrectly scripted as 10)
 -Redirect maxangleturning precision increases as Magnet Missile is held
--SECOND WEP: MAGNET SPREAD (as of gond beta 5h)
---Fire 4 three damage magnets that go where your crosshair is
---Has 4 uses
 -NEW ALTFIRE: MAG FLY
 --Can be placed in the air and increases allied players' jumpheight who are underneath it
 --Pressing altfire again switches Mag Fly's polarity, crushing enemies into the ground
 --Applies 0.75 hitstun and grounds enemies who are underneath it 
 --3 second cooldown after reversed polarity Mag Fly dies, 50 tic cooldown after regular Mag Fly dies
 --Reversed Mag Fly does 69 damage (don't you fucking dare say it)
+-RETURNING RELOAD: MAGNETIC MINE (as of gond beta 6)
+--Relative to inclusion in gond beta 4: speed 12 > 9, health 30 > 15, direct angles reduced
 -NEW ITEM: MAGFLY CANCEL
 --Manually destroy a non-crushing Mag Fly
 
@@ -1345,6 +1351,10 @@ CHANGELOG
 -Rage Skull Buster now has special sound effect
 --Rage FX now used renderstyle add
 
+==Gravityman (as of gond beta 6)
+-Health reduced to 90
+-Gravity Hold Up and Gravity Sphere Up damage reduced to 0
+
 ==Crystalman
 -Removed ACS delay
 -Ported UEC changes
@@ -1362,6 +1372,12 @@ CHANGELOG
 --Charge Tackle duration 3 tics > 2 tics
 -Readded Charge Parry on altfire
 
+==Darkman1 (as of gond beta 6)
+-M1 no longer explodes; damage added to main projectile
+-Maximum damage reduced from 12~9 > 11~8
+-Fixed a bug where Darkman1 dealt 5 more damage per M1 between the 80-94 health threshold whilst playing for the King team.
+*(What the fuck.)
+
 ==Darkman2
 -Charging mainfire has new SFX
 -Level 1 shot spread deviation 0, 15, 30 --> 0, 10, 20
@@ -1375,6 +1391,7 @@ CHANGELOG
 --Scales up to 45 damage at a distance (as of gond beta 6)
 
 ==Darkman4 (as of gond beta 6)
+--Shield no longer affected by ally attacks
 --Shield now takes 50 or more damage to destroy rather than 5 hits
 -Max ammo 140 > 50
 -Starting ammo 28 > 10
@@ -1523,6 +1540,7 @@ CHANGELOG
 --Fat Old Sun bouncecount 10 > 3
 --Fat Old Sun direct damage 15 > 10
 --Fat Old Sun explosive damage 25 > 20
+--Ripper powerprotect duration 1 > 2 (as of gond beta 6)
 
 ==Fuseman
 -Uses Redflash's skin, Dimpsy's skin exists as an alternative
@@ -1557,7 +1575,7 @@ CHANGELOG
 ==Mercury
 -Ported V6 skin + extra skinsprites from classes-v9fh.pk3
 -Fixed holding noammo altfire bug
--Grab Buster damage 8 > 9
+-Grab Buster damage 8 > 10 (as of gond beta 6)
 -Removed wallclimbing from blob form
 -Blob starting ammo 8 > 12
 --Blobs have powerprotect for 50% that lasts 15 tics

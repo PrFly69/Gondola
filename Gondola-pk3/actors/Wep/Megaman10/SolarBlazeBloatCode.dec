@@ -534,7 +534,7 @@ stop
 
 actor SolarMortarProtect : PowerProtection
 {
-Powerup.Duration 1
+Powerup.Duration 2
 damagefactor "SolarMortarWave", 0.0
 }
 
