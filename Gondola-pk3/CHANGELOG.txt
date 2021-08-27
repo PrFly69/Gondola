@@ -1362,6 +1362,12 @@ CHANGELOG
 --Charge Tackle duration 3 tics > 2 tics
 -Readded Charge Parry on altfire
 
+==Darkman1
+-M1 no longer explodes; damage added to main projectile
+-Maximum damage reduced from 12~9 > 11~8
+-Fixed a bug where Darkman1 dealt 5 more damage per M1 between the 80-94 health threshold whilst playing for the King team.
+*(What the fuck.)
+
 ==Darkman2
 -Charging mainfire has new SFX
 -Level 1 shot spread deviation 0, 15, 30 --> 0, 10, 20
