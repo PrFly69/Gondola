@@ -1345,6 +1345,10 @@ CHANGELOG
 -Rage Skull Buster now has special sound effect
 --Rage FX now used renderstyle add
 
+==Gravityman (as of gond beta 6)
+-Health reduced to 90
+-Gravity Hold Up and Gravity Sphere Up damage reduced to 0
+
 ==Crystalman
 -Removed ACS delay
 -Ported UEC changes
@@ -1362,7 +1366,7 @@ CHANGELOG
 --Charge Tackle duration 3 tics > 2 tics
 -Readded Charge Parry on altfire
 
-==Darkman1
+==Darkman1 (as of gond beta 6)
 -M1 no longer explodes; damage added to main projectile
 -Maximum damage reduced from 12~9 > 11~8
 -Fixed a bug where Darkman1 dealt 5 more damage per M1 between the 80-94 health threshold whilst playing for the King team.
