@@ -371,6 +371,7 @@ actor DarkBusterShot
 {
 Translation "202:202=216:216","199:199=219:219"
 PROJECTILE
++FORCEXYBILLBOARD
 Obituary "$OB_DARK1BUSTER"
 damagetype "DarkBuster"
 radius 32

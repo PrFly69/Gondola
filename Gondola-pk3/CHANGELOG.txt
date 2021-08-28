@@ -1183,7 +1183,10 @@ CHANGELOG
 --Removes the ability to see through 3D floors using 'R_3DFLOORS 0' in software mode
 -Removed BEBE
 -Pain FX ported from chasecamonlyhitfx.pk3
-(Fixed walljumps not working as of gond beta 5h)
+
+==Yellow Devil (as of gond beta 6)
+-Imported from ctfpatch v04
+-When chosen as a player class, Yellow Devil takes 35% more damage for the duration of One-Eyed Cube and for two seconds after, rather than losing health during the throw. (Flagbearer behavior unchanged.)
 
 ==Copyweapons
 -Reverted Thunder Wool to CCBM version
@@ -1210,6 +1213,7 @@ CHANGELOG
 -Grab replaced by a leap, creating a wave upon landing
 --Deals 20 damage and variable knock-up based on the portion's size, has 70 Stepheight
 --Can grab people and drag them scaling up to 20 bonus damage
+(hitstun on slam 1.0 > 0.75 as of gond beta 6)
 -Ram radius 16 > 18
 --Damage falloff delayed by 2 tics
 -Wire Punch Radius/Width 10/10 > 13/13
@@ -1240,7 +1244,6 @@ CHANGELOG
 
 ==Fireman
 -Mainfire now has VFX on projectile death
-(Mainfire teamcolors fixed as of gond beta 5h)
 -Now has two weapons for different altfires
 --Second altfire is old Fire Wave
 --Fire Ring now uses renderstyle add
@@ -1249,7 +1252,7 @@ CHANGELOG
 -Time Slow damage 14 > 10
 
 ==Yellow Devil (flagbearer)
--imported from ctfpatch v04
+-Imported from ctfpatch v04
 
 ==Airman
 -Air Shooter now consumes 2 ammo
@@ -1286,6 +1289,7 @@ CHANGELOG
 -Redirect maxangleturning precision increases as Magnet Missile is held
 -NEW ALTFIRE: MAG FLY
 --Can be placed in the air and increases allied players' jumpheight who are underneath it
+(added +CANBOUNCEWATER as of gond beta 6)
 --Pressing altfire again switches Mag Fly's polarity, crushing enemies into the ground
 --Applies 0.75 hitstun and grounds enemies who are underneath it 
 --3 second cooldown after reversed polarity Mag Fly dies, 50 tic cooldown after regular Mag Fly dies
@@ -1323,6 +1327,7 @@ CHANGELOG
 --Close ranged healing tool
 --Heals twice as fast as other healing tools but consumes screw ammo twice as fast
 --Does 1 damage per rip and can be used to self-heal off of enemies
+(histun 1.0 > 0.5 as of gond beta 6)
 -Spark Taser no longer holds directly in front of the user
 --Spark Taser duration shortened
 --Spark Taser damage 15 > 25
@@ -1380,6 +1385,7 @@ CHANGELOG
 -Maximum damage reduced from 12~9 > 11~8
 -Fixed a bug where Darkman1 dealt 5 more damage per M1 between the 80-94 health threshold whilst playing for the King team.
 *(What the fuck.)
+**(Beats me, as of gond beta 6)
 
 ==Darkman2
 -Charging mainfire has new SFX
@@ -1388,12 +1394,15 @@ CHANGELOG
 
 ==Darkman3
 -Ported from classes-v9fh.pk3, following are edits made to CBM base
+-All shots now have FX on death (as of gond beta 6)
 -SMG damage 6 > 5
---SMG always consumes ammo
--Snipe shot damage 25
+(ammo consumption on SMG removed as of gond beta 6)
+-Uncharged snipe shot damage 25 > 15
+-Fully charged snipe shot 40 > 25 (as of gond beta 6)
 --Scales up to 45 damage at a distance (as of gond beta 6)
 
 ==Darkman4 (as of gond beta 6)
+-All shots now have FX on death
 --Shield no longer affected by ally attacks
 --Shield now takes 50 or more damage to destroy rather than 5 hits
 -Max ammo 140 > 50
@@ -1523,7 +1532,7 @@ CHANGELOG
 -Ported V6 skin
 
 ==Nitroman
--New item icon added (as of gond beta 5h)
+-New item icon added
 -Now starts in superbike mode
 -Unsuperbiked wheel spam attack RoF buffed
 --Unsuperbiked wheel spam attack damage 13 > 8
@@ -1618,7 +1627,7 @@ CHANGELOG
 -Tackle damage rampup user_P*0.5+9 > 18
 --Tackle hitbox 176 > 128
 --Tackle maxdamageradius user_P*0.25+32 > 48
--UEC suck/blow stamina implemented
+-UEC suck/blow stamina implemented (as of gond beta 6)
 
 ==Ballade
 -Removed ACS delay on speed updating

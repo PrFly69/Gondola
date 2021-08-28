@@ -1,0 +1,1829 @@
+actor SniperJoeBoss : BaseMM8BDMWep_CBM 
+{
+Tag "$TAGC_0J"
+dropitem "ScoreBallJoeDrop"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 25
+Weapon.SlotNumber 1
+Obituary "$OB_JOEBUSTER"
+Inventory.Pickupmessage "You got the Joe Buster!"
+weapon.ammotype "JoeAmmo"
+inventory.icon "JOSHU"
+States
+{
+Spawn:
+C_00 J 1
+loop
+Ready:
+JOEB J 0 ACS_ExecuteAlways(998,0,DYE_SNIPERJOE)
+JOEB J 0 A_GiveInventory("LMSCheckPickup",1)
+JOEB J 0 A_GunFlash
+goto Ready2
+Ready2:
+JOEB K 1 A_WeaponReady
+JOEB K 0 A_TakeInventory("SpawningMisfire",1)
+Goto Ready3
+Ready3:
+JOEB J 5
+goto Ready4
+Ready4:
+JOEB J 0 A_SpawnItemEx("ProtoShieldX_2",28,0,8,momx,momy,momz,0,9,0)
+JOEB J 0 A_SpawnItemEx("ProtoShieldFX",23,-10,8,momx,momy,momz,0,9,0)
+JOEB J 1 A_WeaponReady
+//TNT1 A 0 A_GiveInventory("JoeAmmo",1)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+JOEB J 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+JOEB J 1 A_Raise
+Loop
+
+SpawnProtect:
+JOEB K 1 A_RailWait
+JOEB K 0 A_ReFire("SpawnProtect")
+JOEB K 0 A_TakeInventory("SpawningMisfire",9)
+Goto Ready2
+
+Fire:
+//TNT1 A 0 A_JumpIfInventory("InBoat",1,"wavebustershot")
+JOEB D 0 A_JumpIfInventory("SpawningMisfire",1,"SpawnProtect")
+JOEB KL 1
+JOEB D 0 A_PlaySoundEx("misc/devilfire","Weapon")
+JOEB D 0 A_GiveInventory("SniperJoeMain_CI",1)
+/*JOEB D 1
+JOEB EF 3
+JOEB D 5*/
+JOEB D 1
+JOEB EF 2
+JOEB F 1
+JOEB E 1
+JOEB D 5
+JOEB D 0 A_Refire("FireH")
+JOEB L 1 A_WeaponReady
+goto Ready2
+FireH:
+JOEB D 0 A_PlaySoundEx("misc/devilfire","Weapon")
+JOEB D 0 A_GiveInventory("SniperJoeMain_CI",1)
+JOEB D 1
+JOEB EF 2
+JOEB F 1
+JOEB E 1
+JOEB D 5
+JOEB D 0 A_Refire("FireH")
+JOEB L 1 A_WeaponReady
+goto Ready2
+Altfire:
+/*TNT1 A 0 A_JumpIfInventory("InBoat",1,"wavebustershot")
+TNT1 A 0 A_JumpIfInventory("JoeAmmo",25,"grentoss")
+goto ready+1
+grentoss:
+TNT1 A 0 A_JumpIfInventory("InBoat",1,"NoAmmo")*/
+JOEB A 0 A_JumpIfInventory("SpawningMisfire",1,"SpawnProtect")
+JOEB A 0 //A_JumpIfInventory("JoeUpgradeAmmo",1,"GrenadeLauncher")
+JOEB A 0 A_TakeInventory("JoeGrenadeCharge",999)
+JOEB A 0 ACS_ExecuteAlways(512,0,1,0)
+JOEB AB 3
+JOEB B 0 A_ReFire("AltHoldSlow")
+JOEB B 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+//JOEB B 0 A_FireCustomMissile("JoeGrenade",0,0,8,0)
+goto AltCharge+9
+GrenadeLauncher:
+JOEB KL 1
+JOEB D 2
+JOEB D 0 A_TakeInventory("JoeUpgradeAmmo",1)
+JOEB D 0 A_PlaySoundEx("weapon/dustbit","Weapon")
+JOEB D 0 A_GiveInventory("SniperJoeAltX_CI",1)
+JOEB EFE 2
+JOEB D 3
+JOEB L 1 A_ReFire("Altfire")
+goto Ready2
+AltHoldSlow:
+JOEB B 0 A_JumpIfInventory("JoeGrenadeCharge",5,"AltHoldSlowX")//Delay to the slow
+JOEB B 2 A_GiveInventory("JoeGrenadeCharge")
+JOEB B 0 //A_JumpIfInventory("JoeUpgradeAmmo",1,"AltCharge")
+JOEB B 0 A_ReFire("AltHoldSlow")
+goto AltCharge+3
+AltHoldSlowX:
+JOEB B 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,5,10)
+goto AltCharge
+AltCharge:
+JOEB B 2 A_GiveInventory("JoeGrenadeCharge")
+JOEB B 0 //A_JumpIfInventory("JoeUpgradeAmmo",1,2)
+JOEB B 0 A_ReFire("AltCharge")
+JOEB D 0 A_PlaySoundEx("weapon/BombThrow","Weapon")//A_PlaySoundEx("weapon/mbuster","Weapon")
+JOEB D 0 A_JumpIfInventory("JoeGrenadeCharge",50,"Alt5")
+JOEB D 0 A_JumpIfInventory("JoeGrenadeCharge",40,"Alt4")
+JOEB D 0 A_JumpIfInventory("JoeGrenadeCharge",30,"Alt3")
+JOEB D 0 A_JumpIfInventory("JoeGrenadeCharge",20,"Alt2")
+JOEB D 0 A_JumpIfInventory("JoeGrenadeCharge",10,"Alt1")
+JOEB D 0
+JOEB D 0 A_GiveInventory("SniperJoeAlt0_CI",1)
+goto AltEnd
+Alt1://
+JOEB D 0 A_GiveInventory("SniperJoeAlt1_CI",1)
+goto AltEnd
+Alt2://
+JOEB D 0 A_GiveInventory("SniperJoeAlt2_CI",1)
+goto AltEnd
+Alt3://
+JOEB D 0 A_GiveInventory("SniperJoeAlt3_CI",1)
+goto AltEnd
+Alt4://
+JOEB D 0 A_GiveInventory("SniperJoeAlt4_CI",1)
+goto AltEnd
+Alt5://
+JOEB D 0 A_GiveInventory("SniperJoeAlt5_CI",1)
+AltEnd:
+JOEB A 0 ACS_ExecuteAlways(512,0,2,0)
+//TNT1 A 0 A_TakeInventory("JoeAmmo",25)
+/*JOET ABC 2
+JOEB B 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+JOET DEF 2*/
+JOET A 1
+JOET A 1 OffSet(70,72)
+JOET A 2 OffSet(121,112)
+JOEB B 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+JOET D 2 OffSet(1,33)
+JOET D 2 OffSet(21,56)
+JOET D 2 OffSet(35,84)
+JOEB F 0 A_TakeInventory("JoeGrenadeCharge",999)
+TNT1 A 21 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+JOEB B 2
+JOEB A 1
+goto Ready3
+NoAmmo:
+JOEB J 0
+goto Ready2
+/*wavebuster:
+WAVJ A 1 A_WeaponReady
+Goto Ready+1
+wavebustershot:
+JOEB D 0 A_PlaySoundEx("misc/devilfire","Weapon")
+JOEB D 0 A_FireCustomMissile("BikeShot",0,0,0,0)
+WAVJ A 3
+WAVJ A 6
+WAVJ A 3 A_Refire
+goto Ready+1*/
+Flash:
+TNT1 A 4
+TNT1 A 0 A_JumpIfInventory("IsLMSFlag",1,3)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("JoeUpgradeAmmo",1)
+loop
+TNT1 A 3
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("JoeUpgradeAmmo",1)
+loop
+}
+}
+
+
+actor JoeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 25
++INVENTORY.IGNORESKILL
+}
+
+actor JoeGrenadeCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 50
+}
+
+actor JoeUpgradeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 420
++INVENTORY.IGNORESKILL
+}
+
+actor ScoreBallPickup : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 0
+inventory.pickupmessage "Picked up a Score Ball!"
+scale 2.0
+States
+{
+Spawn:
+SCOR B 0 //90 B's
+SCOR BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 35 A_SpawnItemEx("ScoreBallPickupFX",random(-16,16),random(-16,16),random(0,32),0,0,0,0,1) 
+stop
+Pickup:
+TNT1 A 0 A_JumpIfInventory("CanKillStreak",1,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+TNT1 A 0
+fail
+Pickup2:
+TNT1 A 0 A_JumpIfInventory("SniperJoeBoss",1,"Joe")
+fail
+Joe:
+TNT1 A 0 A_PlaySound("item/ScorePickup",3,1.0)
+TNT1 A 0 A_GiveInventory("JoeUpgradeAmmo",105)
+stop
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P2",1)
+stop
+No:
+TNT1 A 0 
+fail
+}
+}
+
+actor ScoreBallJoeDrop : ScoreBallPickup
+{
+Translation "192:192=4:4", "198:198=110:110"
+}
+
+actor ScoreBallPickupFX : BasicClientSide
+{
+Renderstyle "Translucent"
+Alpha 0.95
+ReactionTime 3
+Scale 1.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(75,"SpawnNo")
+FLAS R 0 A_Jump(256,1,2,3,4,5,6)
+FLAS RST 2 bright A_CountDown
+goto Spawn+3
+FLAS UVW 2 bright A_CountDown
+goto Spawn+6
+SpawnNo:
+TNT1 A 1
+stop
+}
+}
+
+actor JoeShot
+{
+Translation "192:192=4:4", "198:198=108:108"
+PROJECTILE
++THRUGHOST
++DONTREFLECT
+Obituary "$OB_JOEBUSTER"
+damagetype "JoeJ"
+Speed 29//26
+Damage (13)//14
+radius 5
+height 5
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 1 
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+TNT1 A 0 A_ChangeFlag("DONTREFLECT",0)
+TNT1 A 0 A_ChangeFlag("THRUGHOST",0)
+JOSH A 1
+
+goto spawn+4
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor JoeShotB : JoeShot{translation "192:192=205:205","198:198=74:74"}
+actor JoeShotR : JoeShot{translation "192:192=171:171","198:198=41:41"}
+actor JoeShotO : JoeShot{translation "192:192=104:104","198:198=128:128"}
+actor JoeShotP : JoeShot{translation "192:192=229:229","198:198=232:232"}
+
+/*
+actor BikeShot
+{
+PROJECTILE
++THRUGHOST
+damagetype "Joe"
+//seesound "weapon/mbuster"
+Speed 50
+Damage (30)
+radius 9
+height 9
+scale 4.5
+States
+{
+Spawn:
+TNT1 A 2
+JOSH A 1
+goto spawn+1
+Death:
+JOSH A 1
+stop
+}
+}
+
+*/
+
+actor JoeGrenade
+{
+Translation "192:192=4:4", "198:198=108:108","202:202=210:210"
+Obituary "$OB_JOEGRENADE"
+Damagetype "JoeGrenade"
+PROJECTILE
+Radius 6
+Height 7
+scale 2.5
+- NOGRAVITY
+speed 15
++HEXENBOUNCE
++CANBOUNCEWATER
+bouncefactor 0.6
+wallbouncefactor 0.25//0.0
+reactiontime 15
+bouncecount 5
+States
+{
+Spawn:
+JGRE A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+JGRE A 0 ThrustThingZ(0,25,0,1)
+JGRE A 0 A_CountDown
+JGRE EEEEEEEEEEEEEEEE 1 A_JumpIf(z-floorz<7,"Bounce")
+Goto Spawn+3
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_Explode(48,128,0)
+TN_B EFGHIJKLMNOPQRS 2
+stop
+Bounce:
+JGRE A 0 A_CountDown
+JGRE ABCD 4
+Goto Bounce
+}
+}
+
+actor JoeGrenadeB : JoeGrenade{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor JoeGrenadeR : JoeGrenade{translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor JoeGrenadeO : JoeGrenade{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor JoeGrenadeP : JoeGrenade{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+
+actor JoeGrenade1 : JoeGrenade {speed 23 reactiontime 14}
+actor JoeGrenade1B : JoeGrenadeB {speed 23 reactiontime 14}
+actor JoeGrenade1R : JoeGrenadeR {speed 23 reactiontime 14}
+actor JoeGrenade1O : JoeGrenadeO {speed 23 reactiontime 14}
+actor JoeGrenade1P : JoeGrenadeP {speed 23 reactiontime 14}
+
+actor JoeGrenade2 : JoeGrenade {speed 30 reactiontime 13}
+actor JoeGrenade2B : JoeGrenadeB {speed 30 reactiontime 13}
+actor JoeGrenade2R : JoeGrenadeR {speed 30 reactiontime 13}
+actor JoeGrenade2O : JoeGrenadeO {speed 30 reactiontime 13}
+actor JoeGrenade2P : JoeGrenadeP {speed 30 reactiontime 13}
+
+actor JoeGrenade3 : JoeGrenade {speed 36 reactiontime 12}
+actor JoeGrenade3B : JoeGrenadeB {speed 36 reactiontime 12}
+actor JoeGrenade3R : JoeGrenadeR {speed 36 reactiontime 12}
+actor JoeGrenade3O : JoeGrenadeO {speed 36 reactiontime 12}
+actor JoeGrenade3P : JoeGrenadeP {speed 36 reactiontime 12}
+
+actor JoeGrenade4 : JoeGrenade {speed 41 reactiontime 11}
+actor JoeGrenade4B : JoeGrenadeB {speed 41 reactiontime 11}
+actor JoeGrenade4R : JoeGrenadeR {speed 41 reactiontime 11}
+actor JoeGrenade4O : JoeGrenadeO {speed 41 reactiontime 11}
+actor JoeGrenade4P : JoeGrenadeP {speed 41 reactiontime 11}
+
+actor JoeGrenade5 : JoeGrenade {speed 45 reactiontime 10}
+actor JoeGrenade5B : JoeGrenadeB {speed 45 reactiontime 10}
+actor JoeGrenade5R : JoeGrenadeR {speed 45 reactiontime 10}
+actor JoeGrenade5O : JoeGrenadeO {speed 45 reactiontime 10}
+actor JoeGrenade5P : JoeGrenadeP {speed 45 reactiontime 10}
+
+actor JoeGrenadeX
+{
+Translation "192:192=4:4", "198:198=108:108","202:202=210:210"
+Obituary "$OB_JOEGRENADE"
+Damagetype "JoeApache"
+PROJECTILE
+Radius 6
+Height 7
+scale 2.5
+- NOGRAVITY
+speed 40
++HEXENBOUNCE
++CANBOUNCEWATER
+bouncefactor 0.6
+wallbouncefactor 0.25//0.0
+reactiontime 13
+bouncecount 5
+States
+{
+Spawn:
+JGRE A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+JGRE A 0 ThrustThingZ(0,25,0,1)
+JGRE A 0 A_CountDown
+JGRE EEEEEEEEEEEEEEEE 1 A_JumpIf(z-floorz<7,"Bounce")
+Goto Spawn+3
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_Explode(30,128,0)
+TN_B EFGHIJKLMNOPQRS 2
+stop
+Bounce:
+JGRE A 0 A_CountDown
+JGRE ABCD 4
+Goto Bounce
+}
+}
+
+actor JoeGrenadeXB : JoeGrenadeX{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor JoeGrenadeXR : JoeGrenadeX{translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor JoeGrenadeXO : JoeGrenadeX{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor JoeGrenadeXP : JoeGrenadeX{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+
+actor JoeShieldX : BasicHelper
+{
++NOTIMEFREEZE
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("JoeShieldHitbox",0,-24,0,velx,vely,velz,0,8)
+TNT1 A 0 A_SpawnItemEx("JoeShieldHitbox",0,-16,0,velx,vely,velz,0,8)
+TNT1 A 0 A_SpawnItemEx("JoeShieldHitbox",0,-8,0,velx,vely,velz,0,8)
+TNT1 A 0 A_SpawnItemEx("JoeShieldHitbox",0,0,0,velx,vely,velz,0,8)
+TNT1 A 0 A_SpawnItemEx("JoeShieldHitbox",0,8,0,velx,vely,velz,0,8)
+TNT1 A 0 A_SpawnItemEx("JoeShieldHitbox",-8,8,0,velx,vely,velz,0,8)
+TNT1 A 0 A_SpawnItemEx("JoeShieldHitbox",-16,8,0,velx,vely,velz,0,8)
+TNT1 A 1
+stop
+}
+}
+
+actor JoeShieldHitbox : BasicShieldHitbox
+{
+states
+{
+Pain:
+TNT1 A 0 
+TNT1 A 0 A_SpawnItemEx("JoeShieldDeathFX")
+TNT1 A 2 A_PlaySound("item/protoreflect")
+stop
+}
+}
+
+actor JoeShieldDeathFX : BasicClientSide
+{
+alpha 0.9
+renderstyle add
+states
+{
+Spawn:
+KNIA L 0 A_SetScale(scaleX + 0.1, 2.5) 
+KNIA L 1 A_FadeOut(0.05)
+loop
+}
+}
+
+
+actor SniperJoeMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JoeShot",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JoeShotB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JoeShotR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JoeShotO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JoeShotP",0,1,8,0)
+goto Done
+}
+}
+
+actor SniperJoeAlt0_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade",0,1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JoeGrenadeB",0,1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JoeGrenadeR",0,1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JoeGrenadeO",0,1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JoeGrenadeP",0,1,-8,0)
+goto Done
+}
+}
+
+actor SniperJoeAlt1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade1",0,1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade1B",0,1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade1R",0,1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade1O",0,1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade1P",0,1,-8,0)
+goto Done
+}
+}
+
+actor SniperJoeAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade2",0,1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade2B",0,1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade2R",0,1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade2O",0,1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade2P",0,1,-8,0)
+goto Done
+}
+}
+
+actor SniperJoeAlt3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade3",0,1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade3B",0,1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade3R",0,1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade3O",0,1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade3P",0,1,-8,0)
+goto Done
+}
+}
+
+actor SniperJoeAlt4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade4",0,1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade4B",0,1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade4R",0,1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade4O",0,1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade4P",0,1,-8,0)
+goto Done
+}
+}
+
+actor SniperJoeAlt5_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade5",0,1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade5B",0,1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade5R",0,1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade5O",0,1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JoeGrenade5P",0,1,-8,0)
+goto Done
+}
+}
+
+actor SniperJoeAltX_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JoeGrenadeX",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JoeGrenadeXB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JoeGrenadeXR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JoeGrenadeXO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JoeGrenadeXP",0,1,8,0)
+goto Done
+}
+}
+
+/////////////////////////////////////////////////////////////////
+// ___  ___           _     _              _____              //
+// |  \/  |          | |   (_)            |  __ \             //
+// | .  . | __ _  ___| |__  _ _ __   ___  | |  \/_   _ _ __   //
+// | |\/| |/ _` |/ __| '_ \| | '_ \ / _ \ | | __| | | | '_ \  //
+// | |  | | (_| | (__| | | | | | | |  __/ | |_\ \ |_| | | | | //
+// \_|  |_/\__,_|\___|_| |_|_|_| |_|\___|  \____/\__,_|_| |_| //
+//                                                            //
+/////////////////////////////////////////////////////////////////
+
+actor MachineGunJoeBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_0J2"
+dropitem "ScoreBallJoeDrop"
+weapon.preferredskin "MachineGun-SniperJoe"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 56
+Weapon.SlotNumber 2
+Obituary "$OB_JOEMGUN"
+Inventory.Pickupmessage "You found the Machine Gun!"
+weapon.ammotype "ContraJoeAmmo"
+weapon.ammotype2 "ContraJoeAmmo"
+inventory.icon "JOSHV"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_00 J 1
+loop
+Ready:
+JOEB Q 0 ACS_ExecuteAlways(998,0,DYE_SNIPERJOE)
+JOEB Q 0 A_GunFlash
+JOEB Q 1 A_WeaponReady
+goto Ready+2
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+JOEB Q 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+JOEB Q 1 A_Raise
+Loop
+Fire:
+JOEB Q 0 A_JumpIfNoAmmo("NoAmmo")
+JOEB Q 0 A_PlaySoundEx("misc/devilfire","Weapon")
+JOEB Q 0 A_GiveInventory("MachineGunJoeMain_CI",1)
+JOEB Q 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
+JOEB RQ 1
+JOEB S 1 offset(8,36)
+JOEB Q 1 offset(4,33)
+goto Ready+2
+FireR:
+JOEB RS 1
+goto Ready+2
+Altfire:
+JOEB Q 0 A_JumpIfInventory("ContraJoeAmmo",7,"Altfire2")
+goto NoAmmo
+Altfire2:
+JOEB OPOQ 1
+JOEB R 0 A_PlaySoundEx("weapon/dustbit","Weapon")
+JOEB R 0 A_TakeInventory("ContraJoeAmmo",14)
+JOEB R 0 A_GiveInventory("SniperJoeAltX_CI",1)
+JOEB R 0 A_JumpIfInventory("PowerRage_ST",1,"Altfire2_R")
+JOEB RQ 2
+JOEB S 2 offset(8,36)
+JOEB Q 2 offset(7,36)
+JOEB Q 2 offset(6,35)
+JOEB Q 2 offset(5,35)
+JOEB Q 2 offset(4,34)
+JOEB Q 2 offset(3,34)
+JOEB Q 2 offset(2,33)
+JOEB Q 2 offset(1,33)
+goto Ready+2
+Altfire2_R:
+JOEB RQ 2
+JOEB S 2 offset(9,37)
+JOEB Q 2 offset(6,35)
+JOEB Q 2 offset(3,33)
+goto Ready+2
+NoAmmo:
+JOEB Q 1
+Goto Ready+2
+Flash:
+TNT1 A 4
+TNT1 A 0 A_JumpIfInventory("IsLMSFlag",1,3)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("JoeUpgradeAmmo",1)
+loop
+TNT1 A 3
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("JoeUpgradeAmmo",1)
+loop
+}
+}
+
+actor ContraJoeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor MGunJoeShot
+{
+Translation "192:192=4:4", "198:198=108:108"
+PROJECTILE
++THRUGHOST
+Obituary "$OB_JOEMGUN"
+damagetype "JoeApache"
+Speed 51
+Damage (6)
+radius 5
+height 5
+scale 3.0
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+TNT1 A 0 A_ChangeFlag("THRUGHOST",0)
+JOSH D 1
+goto Spawn+3
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor MGunJoeShotB : MGunJoeShot{translation "192:192=205:205", "198:198=74:74"}
+actor MGunJoeShotR : MGunJoeShot{translation "192:192=171:171", "198:198=41:41"}
+actor MGunJoeShotO : MGunJoeShot{translation "192:192=104:104", "198:198=128:128"}
+actor MGunJoeShotP : MGunJoeShot{translation "192:192=229:229", "198:198=232:232"}
+
+actor MachineGunJoeMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MGunJoeShot",random(-2,2),1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MGunJoeShotB",random(-2,2),1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MGunJoeShotR",random(-2,2),1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MGunJoeShotO",random(-2,2),1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MGunJoeShotP",random(-2,2),1,8,0)
+goto Done
+}
+}
+
+//////////////////////////////////////////////////
+//    ___              _____           _        //
+//   |_  |            /  __ \         | |       //
+//     | | ___   ___  | /  \/_ __ __ _| |_ ___  //
+//     | |/ _ \ / _ \ | |   | '__/ _` | __/ _ \ //
+// /\__/ / (_) |  __/ | \__/\ | | (_| | ||  __/ //
+// \____/ \___/ \___|  \____/_|  \__,_|\__\___| //
+//////////////////////////////////////////////////
+
+actor JoeKillStreakItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "You found a Professional Killstreak Kit (Joe Buster)."
+scale 2.0
+inventory.icon "JoeIcon"
++COUNTITEM
++INVBAR
+States
+{//6000
+Spawn:
+SCOR I 6
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("JoeUpgradeAmmo",420,"Use3")
+TNT1 A 0 A_JumpIfInventory("JoeUpgradeAmmo",2,"Use2")//105
+fail
+Use2:
+TNT1 A 0 A_JumpIfInventory("ContraJoeAmmo",56,"No")
+TNT1 A 0 //A_PlaySound("item/ScoreUse",6,0.55)
+TNT1 A 0 //A_GiveInventory("ContraJoeAmmo",56)
+TNT1 A 0 A_SpawnItemEx("ContraJoeAmmoHelper")//A_TakeInventory("JoeUpgradeAmmo",105)
+fail
+Use3:
+TNT1 A 0 A_PlaySound("item/ScoreUse",6,0.55)
+TNT1 A 0 A_TakeInventory("JoeUpgradeAmmo",315)
+TNT1 A 0 A_SpawnItemEx("JoeCrateSpawner",cos(-pitch)*0,0,28+sin(-pitch),cos(-pitch)*1000,0,sin(-pitch)*1000,0,33,0)
+fail
+No:
+TNT1 A 0
+fail
+}
+}
+
+actor ContraJoeAmmoHelper : BasicHelper
+{
+var int user_P;
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySound("item/ScoreUse",6,0.55)
+TNT1 A 0 A_SetUserVar("user_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("ContraJoeAmmo",user_P,"SpawnAdd")
+goto SpawnGive
+SpawnGive:
+TNT1 A 0 A_JumpIfInTargetInventory("ContraJoeAmmo",56,"SpawnEnd")
+TNT1 A 0 //A_LOG("Give me Ammo")
+TNT1 A 0 A_GiveToTarget("ContraJoeAmmo",1)
+TNT1 A 0 A_TakeFromTarget("JoeUpgradeAmmo",2)
+TNT1 A 0 A_JumpIfInTargetInventory("JoeUpgradeAmmo",2,"SpawnAdd")
+goto SpawnEnd
+SpawnEnd:
+TNT1 A 1 //A_LOGINT(user_P)
+stop
+SpawnAdd:
+TNT1 A 0 A_SetUserVar("user_P",user_P+1)
+goto Spawn+3
+}
+}
+
+
+actor JoeCrateSpawner : FastProjectile
+{
+var int user_Height;
+var int user_XX;
+Translation "192:192=4:4", "198:198=108:108"
+radius 12
+height 12
+speed 1000
++SKYEXPLODE
++DONTBLAST
++THRUGHOST
++DONTREFLECT
+damage (0)
+reactiontime 7
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+loop
+XDeath:
+TNT1 A 0 A_SetUserVar("user_XX",12)
+goto Death
+Death:
+TNT1 A 0 A_JumpIf(z-ceilingz>=-16,"DeathC")
+TNT1 A 0 A_JumpIf(z-ceilingz<=-512,"DeathC2")
+TNT1 A 0 A_SetUserVar("user_Height",ceilingz-z-16)
+TNT1 A 0 A_Jump(256,"Death2")
+Death2:
+TNT1 A 0 A_SpawnItemEx("JoeCrateDrop",user_XX,0,user_Height,0,0,-20,0,33)
+stop
+DeathC:
+TNT1 A 0 A_SetUserVar("user_Height",-0)
+goto Death+3
+DeathC2:
+TNT1 A 0 A_SetUserVar("user_Height",496)
+goto Death+3
+}
+}
+
+actor JoeCrateDrop
+{
+Translation "192:192=212:212","198:198=238:238"
+PROJECTILE
+Obituary "$OB_JOECRATE"
+Damagetype "JoeGrenade"
++THRUGHOST
++DONTBLAST
++RIPPER
+-NOGRAVITY
++HEXENBOUNCE
+-BOUNCEONFLOORS
++DONTREFLECT
+bouncefactor 0.4
+wallbouncefactor 0.75
+Damage (25)
+Speed 26
+Radius 10
+Height 10
+gravity 1.5
+scale 2.5
+States
+{
+Spawn:
+JOSH X 0
+JOSH X 1 A_PlaySound("weapon/JoeDrop",1,0.55)
+JOSH X 1 //A_SpawnItemEx("JoeCrateDropFX",0,0,0,momx,momy,0,0,9)
+wait
+Death:
+JOSH X 0 A_SpawnItemEx("JoeCrateWait",0,0,0,0,0,0,0,1)
+TNT1 A 2
+stop
+NoDeath:
+JOSH X 1 A_FadeOut(0.05)
+wait
+}
+}
+
+actor JoeCrateDropFX : BasicClientSide
+{
+States
+{
+Spawn:
+JOSH W 0
+JOSH W 1
+stop
+}
+}
+
+actor JoeCrateWait : JoeCrateDrop
+{
++THRUACTORS
+-HEXENBOUNCE
++NOGRAVITY
++NOEXPLODEFLOOR
+ReactionTime 350
+States
+{
+Spawn:
+JOSH X 0 A_JumpIfInTargetInventory("WildBearBoss",1,"Death2")
+JOSH X 1 A_JumpIfCloser(36,"BuffJoeCheck")
+JOSH X 0 A_CountDown
+JOSH X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+loop
+SpawnDelay:
+JOSH X 1
+goto Spawn+1
+BuffJoeCheck:
+JOSH X 0 A_JumpIfInTargetInventory("JoeSelectApacheFlag",1,"SpawnDelay")
+JOSH X 0 A_JumpIfInTargetInventory("JoeSelectTruckFlag",1,"SpawnDelay")
+BuffJoe:
+JOSH X 0 A_ChangeFlag("NOINTERACTION",1)
+JOSH X 0 A_GiveToTarget("Joe_KS_Select_Pickup",1)
+JOSH X 20
+BuffJoeWait:
+JOSH X 0 A_JumpIfInTargetInventory("JoeSelectApacheFlag",1,"BuffJoeDeath")
+JOSH X 0 A_JumpIfInTargetInventory("JoeSelectTruckFlag",1,"BuffJoeDeath")
+JOSH X 1 A_GiveInventory("WeaponCharge",1)
+JOSH X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+JOSH X 0 A_JumpIfInTargetInventory("WeaponCharge",100,"Death2")
+loop
+BuffJoeDeath:
+JOSH X 16
+JOSH XXX 1 A_GiveToTarget("Joe_KS_TransparentFix_Pickup",1)
+goto Death2
+Death2:
+JOSH XXXX 1 A_FadeOut(0.2)
+stop
+Death:
+JOSH X 0 A_GiveToTarget("JoeUpgradeAmmo",210)
+goto NoDeath
+}
+}
+
+
+//////////////////////////////////
+//  _____      _           _    //
+// /  ___|    | |         | |   //
+// \ `--.  ___| | ___  ___| |_  //
+//  `--. \/ _ \ |/ _ \/ __| __| //
+// /\__/ /  __/ |  __/ (__| |_  //
+// \____/ \___|_|\___|\___|\__| //
+//////////////////////////////////
+
+actor JoeSelectBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_0J3"
+dropitem "ScoreBallJoeDrop"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Weapon.SlotNumber 1
+Obituary "%o thought %k was an average joe."
+Inventory.Pickupmessage "You got the Joe Select!"
+weapon.ammotype "JoeMontyHallAmmo"
+States
+{
+Spawn:
+C_00 J 1
+loop
+Ready:
+TNT1 A 0 ACS_ExecuteAlways(998,0,DYE_SNIPERJOE,1)
+TNT1 A 0 A_GunFlash
+goto Ready2
+Ready2:
+TNT1 AA 1 A_WeaponReady
+TNT1 A 0 A_TakeInventory("JoeMontyHallAmmo",1)
+TNT1 A 0 A_JumpIfInventory("JoeMontyHallAmmo",1,"Ready2")
+Goto ReadyTime
+ReadyTime:
+TNT1 A 1 A_Jump(256,"Fire","Altfire")
+TNT1 A 1
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TNT1 A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TNT1 A 1 A_Raise
+Loop
+Fire:
+TNT1 A 0 A_PlaySound("item/ScoreUse",6,0.55)
+TNT1 A 0 A_SpawnItemEx("JoeSelectApacheFX",0,0,0,0,0,0,0,1)
+TNT1 A 16 A_GiveInventory("JoeSelectApacheFlag",1)
+TNT1 A 2 A_GiveInventory("Joe_KS_Apache_Pickup",1)
+goto Fire+3
+Altfire:
+TNT1 A 0 A_PlaySound("item/ScoreUse",6,0.55)
+TNT1 A 0 A_SpawnItemEx("JoeSelectTruckFX",0,0,0,0,0,0,0,1)
+TNT1 A 16 A_GiveInventory("JoeSelectTruckFlag",1)
+TNT1 A 2 A_GiveInventory("Joe_KS_Truck_Pickup",1)
+goto Altfire+3
+Flash:
+TNT1 A 1
+stop
+}
+}
+
+actor JoeMontyHallAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor JoeSelectApacheFlag : OnceC {}
+actor JoeSelectTruckFlag : OnceC {}
+
+
+actor JoeSelectApacheFX
+{
+-SOLID
++NOGRAVITY
++NOINTERACTION
+RenderStyle "Translucent"
+Alpha 0.1
+Scale 2.5
+States
+{
+Spawn:
+S5IP AAAAAAAAA 2 A_FadeIn
+stop
+}
+}
+
+actor JoeSelectTruckFX : JoeSelectApacheFX
+{
+States
+{
+Spawn:
+S7IP AAAAAAAAA 2 A_FadeIn
+stop
+}
+}
+
+actor Joe_KS_Select_Pickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("JoeSelectBoss",1)
+TNT1 A 0 A_GiveInventory("JoeMontyHallAmmo",56)
+TNT1 A 0 A_JumpIfInventory("JoeUpgradeAmmo",105,"Pickup1")
+goto Pickup2
+Pickup1:
+TNT1 A 0 A_GiveInventory("ContraJoeAmmo",56)
+goto Pickup2
+Pickup2:
+TNT1 A 0 A_TakeInventory("SniperJoeBoss",1)
+TNT1 A 0 A_TakeInventory("MachineGunJoeBoss",1)
+TNT1 A 0 //A_TakeInventory("ContraJoeAmmo",999)
+TNT1 A 0 A_TakeInventory("JoeGrenadeCharge",99)
+TNT1 A 0 A_TakeInventory("JoeKillStreakItem",1)
+
+TNT1 A 0 A_GiveInventory("UnhittableOn_Pickup",1)
+
+TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
+TNT1 A 0 A_ChangeFlag("SOLID",0)
+TNT1 A 0 A_TakeInventory("UnSolid",1)
+TNT1 A 0 A_SetTranslucent(0.0,0)
+TNT1 A 0 A_Stop
+TNT1 A 0 SetPlayerProperty(0,1,0)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)//No jump
+stop
+}
+}
+
+actor Joe_KS_TransparentFix_Pickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SetTranslucent(1.0,0)
+stop
+}
+}
+
+actor Joe_KS_Truck_Pickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("JoeUpgradeAmmo",420)
+TNT1 A 0 A_GiveInventory("TruckJoeBoss",1)
+TNT1 A 0 A_GiveInventory("JoeTruckArmorBoost",1)
+
+TNT1 A 0 A_GiveInventory("UnhittableOff_Pickup",1)
+TNT1 A 0 A_TakeInventory("JoeSelectBoss",1)
+TNT1 A 0 A_TakeInventory("JoeMontyHallAmmo",56)
+TNT1 A 0 A_TakeInventory("SniperJoeBoss",1)
+TNT1 A 0 A_TakeInventory("MachineGunJoeBoss",1)
+TNT1 A 0 //A_TakeInventory("ContraJoeAmmo",999)
+TNT1 A 0 A_TakeInventory("JoeKillStreakItem",1)
+TNT1 A 0 A_GiveInventory("JoeNukeMyRideItem",1)
+
+TNT1 A 0 A_GiveInventory("SemiStunArmor",1)
+
+TNT1 A 0 A_ChangeFlag("THRUACTORS",0)
+TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+TNT1 A 0 A_SetTranslucent(1.0,0)
+TNT1 A 0 //SetPlayerProperty(0,0,0)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)//Normal Jump + normal speed
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+stop
+}
+}
+
+
+actor Joe_KS_Apache_Pickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 SetPlayerProperty(0,1,3)
+TNT1 A 0 A_GiveInventory("JoeUpgradeAmmo",420)
+TNT1 A 0 A_GiveInventory("ApacheJoeBoss",1)
+TNT1 A 0 A_GiveInventory("JoeApacheArmorBoost",1)
+
+TNT1 A 0 A_GiveInventory("UnhittableOff_Pickup",1)
+TNT1 A 0 A_TakeInventory("JoeSelectBoss",1)
+TNT1 A 0 A_TakeInventory("JoeMontyHallAmmo",56)
+TNT1 A 0 A_TakeInventory("SniperJoeBoss",1)
+TNT1 A 0 A_TakeInventory("MachineGunJoeBoss",1)
+TNT1 A 0 //A_TakeInventory("ContraJoeAmmo",999)
+TNT1 A 0 A_TakeInventory("JoeKillStreakItem",1)
+TNT1 A 0 A_GiveInventory("JoeNukeMyRideItem",1)
+
+TNT1 A 0 A_ChangeFlag("THRUACTORS",0)
+TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+TNT1 A 0 A_SetTranslucent(1.0,0)
+TNT1 A 0 SetPlayerProperty(0,0,0)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,125,100)//1.25 speed
+stop
+}
+}
+
+actor Joe_KS_Normal_Pickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 SetPlayerProperty(0,0,3)
+TNT1 A 0 SetPlayerProperty(0,0,0)
+TNT1 A 0 A_GiveInventory("SniperJoeBoss",1)
+TNT1 A 0 A_GiveInventory("MachineGunJoeBoss",1)
+TNT1 A 0 //A_GiveInventory("ContraJoeAmmo",28)
+TNT1 A 0 A_GiveInventory("JoeKillStreakItem",1)
+TNT1 A 0 A_GiveInventory("SpawningMisfire",1)
+
+
+TNT1 A 0 A_GiveInventory("UnhittableOff_Pickup",1)
+TNT1 A 0 A_TakeInventory("SemiStunArmor",1)
+TNT1 A 0 A_TakeInventory("TruckJoeBoss",1)
+TNT1 A 0 A_TakeInventory("JoeTruckDashFlag",99)
+TNT1 A 0 A_TakeInventory("ApacheJoeBoss",1)
+TNT1 A 0 A_TakeInventory("JoeSelectBoss",1)
+TNT1 A 0 A_TakeInventory("JoeNukeMyRideItem",1)
+TNT1 A 0 A_TakeInventory("JoeUpgradeAmmo",420)
+
+TNT1 A 0 A_JumpIfInventory("JoeSelectApacheFlag",1,"Pick_A")
+TNT1 A 0 A_JumpIfInventory("JoeSelectTruckFlag",1,"Pick_T")
+stop
+
+Pick_A:
+TNT1 A 0 A_SpawnItemEx("JoeNukedHisApache",0,0,28,0,0,0,0,1)
+goto End
+Pick_T:
+TNT1 A 0 A_SpawnItemEx("JoeNukedHisTruck",0,0,28,0,0,0,0,1)
+goto End
+End:
+TNT1 A 0 A_SpawnItemEx("JoeArmorEjectHelper")
+TNT1 A 0 A_Recoil(-6)
+TNT1 A 0 ThrustThingZ(0,50,0,0)
+TNT1 A 0 A_TakeInventory("JoeSelectApacheFlag",1)
+TNT1 A 0 A_TakeInventory("JoeSelectTruckFlag",1)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)//Normal Jump + normal speed
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+stop
+}
+}
+
+actor JoeArmorEjectHelper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AA 1 A_TakeFromTarget("BasicArmor",9999)
+stop
+}
+}
+
+actor JoeNukedHisApache : BasicExplosion
+{
+Obituary "$OB_JOENUKEA"
+damagetype "JoeApache"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(5,128,0,0,64)
+TNT1 AAA 0 A_SpawnItemEx("JoeNukedHisRideFX",random(-32,32),random(-32,32),random(-32,64),0,0,0,0,1)
+TNT1 A 5 A_PlaySoundEx("classes/drillexplode","Auto")
+TNT1 A 0 A_Explode(5,128,0,0,64)
+TNT1 AAA 0 A_SpawnItemEx("JoeNukedHisRideFX",random(-32,32),random(-32,32),random(-32,64),0,0,0,0,1)
+TNT1 A 5 A_PlaySoundEx("classes/drillexplode","Auto")
+TNT1 A 0 A_Explode(5,128,0,0,64)
+TNT1 AAA 0 A_SpawnItemEx("JoeNukedHisRideFX",random(-32,32),random(-32,32),random(-32,64),0,0,0,0,1)
+TNT1 A 5 A_PlaySoundEx("classes/drillexplode","Auto")
+stop
+}
+}
+
+actor JoeNukedHisTruck : BasicExplosion
+{
+Obituary "$OB_JOENUKET"
+damagetype "JoeApache"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(4,128,0,0,32)
+TNT1 AAA 0 A_SpawnItemEx("JoeNukedHisRideFX",random(-48,48),random(-48,48),random(-32,96),0,0,0,0,1)
+TNT1 A 5 A_PlaySoundEx("classes/drillexplode","Auto")
+TNT1 A 0 A_Explode(4,128,0,0,32)
+TNT1 AAA 0 A_SpawnItemEx("JoeNukedHisRideFX",random(-48,48),random(-48,48),random(-32,96),0,0,0,0,1)
+TNT1 A 5 A_PlaySoundEx("classes/drillexplode","Auto")
+TNT1 A 0 A_Explode(4,128,0,0,32)
+TNT1 AAA 0 A_SpawnItemEx("JoeNukedHisRideFX",random(-48,48),random(-48,48),random(-32,96),0,0,0,0,1)
+TNT1 A 5 A_PlaySoundEx("classes/drillexplode","Auto")
+stop
+}
+}
+
+actor JoeNukedHisRideFX : BasicClientSide
+{
+States
+{
+Spawn:
+TN_B EFGHIJKLMNOPQRS 1
+stop
+}
+}
+
+
+actor JoeNukeMyRideItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "JoeEject"
+scale 2.0
+inventory.pickupmessage "Flip off your vehicle with 5 bucks."
++COUNTITEM
++INVBAR
+states
+{
+Spawn:
+JOSH Z 1
+loop
+Use:
+TNT1 A 1 A_GiveInventory("Joe_KS_Normal_Pickup",1)
+stop
+}
+}
+
+
+////////////////////////////////
+//  _____               _     //
+// |_   _|             | |    //
+//   | |_ __ _   _  ___| | __ //
+//   | | '__| | | |/ __| |/ / //
+//   | | |  | |_| | (__|   <  //
+//   \_/_|   \__,_|\___|_|\_\ //
+////////////////////////////////
+actor TruckJoeBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_0J4"
+dropitem "ScoreBallJoeDrop"
+weapon.preferredskin "Truck-SniperJoe"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 3
+Weapon.SlotNumber 1
+Obituary "$OB_JOETRUCK"
+Inventory.Pickupmessage "You found some car keys!"
+weapon.ammotype "TollBoothAmmo"
+weapon.ammotype2 "JoeUpgradeAmmo"
+States
+{
+Spawn:
+C_00 J 1
+loop
+Ready:
+JOEB T 0 ACS_ExecuteAlways(998,0,DYE_SNIPERJOE)
+JOEB T 0 A_GunFlash
+JOEB T 2 A_WeaponReady
+goto Ready+2
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+JOEB T 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+JOEB T 1 A_Raise
+Loop
+Fire:
+JOEB T 0 A_JumpIfInventory("TruckJoeHornDelay",1,3)
+JOEB T 0 A_GiveInventory("TruckJoeHornDelay",1)
+JOEB T 0 A_PlaySound("classes/CarHonk",6,0.5)
+Fire2:
+JOEB T 0 A_WeaponReady(15)
+JOEB T 0 A_JumpIfInventory("PowerRage_ST",1,"Fire2_R")
+JOEB T 1 A_GiveInventory("JoeTruckThrustD",1)
+JOEB T 1 offset(0,34)A_GiveInventory("JoeTruckThrust",1)
+JOEB T 1 offset(0,36)A_GiveInventory("JoeTruckThrust",1)
+JOEB T 1 offset(0,38)A_GiveInventory("JoeTruckThrustD",1)
+JOEB T 1 offset(0,40)A_GiveInventory("JoeTruckThrust",1)
+JOEB T 1 offset(0,40)A_GiveInventory("JoeTruckThrust",1)
+JOEB T 1 offset(0,38)A_GiveInventory("JoeTruckThrustD",1)
+JOEB T 1 offset(0,36)A_GiveInventory("JoeTruckThrust",1)
+JOEB T 1 offset(0,34)A_GiveInventory("JoeTruckThrust",1)
+JOEB T 0 A_Refire("Fire2")
+JOEB T 0 A_TakeInventory("JoeTruckDashFlag",99)
+goto Ready+2
+Fire2_R:
+JOEB T 1 A_GiveInventory("JoeTruckThrustD",1)
+JOEB T 1 offset(0,35)A_GiveInventory("JoeTruckThrust",1)
+JOEB T 1 offset(0,38)A_GiveInventory("JoeTruckThrustD",1)
+JOEB T 1 offset(0,41)A_GiveInventory("JoeTruckThrust",1)
+JOEB T 1 offset(0,38)A_GiveInventory("JoeTruckThrustD",1)
+JOEB T 1 offset(0,35)A_GiveInventory("JoeTruckThrust",1)
+JOEB T 0 A_Refire("Fire2")
+JOEB T 0 A_TakeInventory("JoeTruckDashFlag",99)
+goto Ready+2
+
+AltFire:
+JOEB T 0 A_JumpIfInventory("TruckJoeHornDelay",1,3)
+JOEB T 0 A_GiveInventory("TruckJoeHornDelay",1)
+JOEB T 0 A_PlaySound("classes/CarHonk",6,0.5)
+Altfire2:
+JOEB T 0 A_WeaponReady(15)
+JOEB T 0 A_JumpIfInventory("PowerRage_ST",1,"Altfire2_R")
+JOEB T 1 A_GiveInventory("JoeTruckThrustRD",1)
+JOEB T 1 offset(0,34)A_GiveInventory("JoeTruckThrustR",1)
+JOEB T 1 offset(0,36)A_GiveInventory("JoeTruckThrustR",1)
+JOEB T 1 offset(0,38)A_GiveInventory("JoeTruckThrustRD",1)
+JOEB T 1 offset(0,40)A_GiveInventory("JoeTruckThrustR",1)
+JOEB T 1 offset(0,40)A_GiveInventory("JoeTruckThrustR",1)
+JOEB T 1 offset(0,38)A_GiveInventory("JoeTruckThrustRD",1)
+JOEB T 1 offset(0,36)A_GiveInventory("JoeTruckThrustR",1)
+JOEB T 1 offset(0,34)A_GiveInventory("JoeTruckThrustR",1)
+JOEB T 0 A_Refire("Altfire2")
+JOEB T 0 A_TakeInventory("JoeTruckDashFlag",99)
+goto Ready+2
+Altfire2_R:
+JOEB T 1 A_GiveInventory("JoeTruckThrustRD",1)
+JOEB T 1 offset(0,35)A_GiveInventory("JoeTruckThrustR",1)
+JOEB T 1 offset(0,38)A_GiveInventory("JoeTruckThrustRD",1)
+JOEB T 1 offset(0,41)A_GiveInventory("JoeTruckThrustR",1)
+JOEB T 1 offset(0,38)A_GiveInventory("JoeTruckThrustRD",1)
+JOEB T 1 offset(0,35)A_GiveInventory("JoeTruckThrustR",1)
+JOEB T 0 A_Refire("Altfire2")
+JOEB T 0 A_TakeInventory("JoeTruckDashFlag",99)
+goto Ready+2
+
+NoAmmo:
+JOEB T 0
+Goto Ready+2
+
+Flash:
+TNT1 A 0 A_SpawnItemEx("TruckJoeRamDamage",0,0,24,100,0,0,0,0)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_TakeInventory("JoeUpgradeAmmo",1)
+TNT1 A 0 A_JumpIfInventory("JoeUpgradeAmmo",1,2)
+TNT1 A 1 A_GiveInventory("Joe_KS_Normal_Pickup",1)
+loop
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_TakeInventory("JoeUpgradeAmmo",1)
+TNT1 A 0 A_JumpIfInventory("JoeUpgradeAmmo",1,3)
+TNT1 A 1 A_GiveInventory("Joe_KS_Normal_Pickup",1)
+loop
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_TakeInventory("JoeUpgradeAmmo",1)
+TNT1 A 0 A_JumpIfInventory("JoeUpgradeAmmo",1,"Flash")
+TNT1 A 1 A_GiveInventory("Joe_KS_Normal_Pickup",1)
+loop
+
+}
+}
+
+actor TollBoothAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 3
++INVENTORY.IGNORESKILL
+}
+
+actor JoeTruckArmorBoost : BasicArmorPickup
+{
+Armor.Savepercent 90
+Armor.Saveamount 100
+}
+
+actor JoeTruckDashFlag : Inventory //Used for fire animation
+{
+inventory.amount 1
+inventory.maxamount 8
+}
+
+actor TruckJoeRamDamage
+{
+PROJECTILE
+Obituary "$OB_JOETRUCK"
+damagetype "JoeTruck"
++DONTBLAST
++THRUGHOST
++DONTREFLECT
+Radius 10
+Height 10
+Damage (0)
+ReactionTime 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+goto Spawn+1
+Death:
+TNT1 A 1 A_Explode(6,48,0,0,32)
+stop
+}
+}
+
+
+actor TruckJoeRamDamageAim : TruckJoeRamDamage
+{
+Damage (3)
+Speed 160
+States
+{
+Death:
+TNT1 A 1 A_Explode(2,32,0,0,32)
+stop
+}
+}
+
+actor TruckJoeRamDamageR : TruckJoeRamDamageAim
+{
+Obituary "$OB_JOETRUCKX"
+Damage (4)
+States
+{
+Death:
+TNT1 A 1 A_Explode(8,48,0,0,48)
+stop
+}
+}
+
+
+actor TruckJoeHornDelay : Powerup
+{
+Powerup.Duration -2
+}
+
+actor JoeTruckThrust : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_Recoil(-0.5)
+goto End
+PickupR:
+TNT1 A 0 A_Recoil(-0.75)
+goto End
+Ground:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"GroundR")
+TNT1 A 0 A_Recoil(-2.0)
+goto End
+GroundR:
+TNT1 A 0 A_Recoil(-2.5)
+goto End
+End:
+TNT1 A 0 A_GiveInventory("JoeTruckDashFlag",1)
+stop
+}
+}
+
+actor JoeTruckThrustD : JoeTruckThrust
+{
+States
+{
+Pickup:
+TNT1 A 0 A_FireCustomMissile("TruckJoeRamDamageAim",0,0,0,0)
+goto Super::Pickup
+}
+}
+
+actor JoeTruckThrustR : JoeTruckThrust
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_Recoil(0.55)
+goto End
+PickupR:
+TNT1 A 0 A_Recoil(0.90)
+goto End
+Ground:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"GroundR")
+TNT1 A 0 A_Recoil(2.25)
+goto End
+GroundR:
+TNT1 A 0 A_Recoil(3.0)
+goto End
+}
+}
+
+actor JoeTruckThrustRD : JoeTruckThrustR
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("TruckJoeRamDamageR",0,0,24,-150,0,0,0,0)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"Pickup_S")
+goto Super::Pickup
+Pickup_S:
+TNT1 A 0 A_SpawnItemEx("TruckJoeRamDamageR",0,0,24,-150,20,0,0,0)
+TNT1 A 0 A_SpawnItemEx("TruckJoeRamDamageR",0,0,24,-150,-20,0,0,0)
+goto Super::Pickup
+}
+}
+
+
+/////////////////////////////////////////
+//   ___                   _           //
+//  / _ \                 | |          //
+// / /_\ \_ __   __ _  ___| |__   ___  //
+// |  _  | '_ \ / _` |/ __| '_ \ / _ \ //
+// | | | | |_) | (_| | (__| | | |  __/ //
+// \_| |_/ .__/ \__,_|\___|_| |_|\___| //
+//       | |                           //
+//       |_|                           //
+/////////////////////////////////////////
+actor ApacheJoeBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_0J5"
+dropitem "ScoreBallJoeDrop"
+weapon.preferredskin "Apache-SniperJoe"
+Obituary "$OB_JOEAPACHE"
+Inventory.Pickupmessage "You found some helicopter keys!"
+weapon.ammotype "AttackHelicopterAmmo"
+weapon.ammotype2 "JoeUpgradeAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_00 J 1
+loop
+Ready:
+JOEB U 0 ACS_ExecuteAlways(998,0,DYE_SNIPERJOE)
+JOEB U 0 A_GunFlash
+JOEB U 0 
+JOEB U 2 A_WeaponReady
+Goto Ready+3
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+JOEB U 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+JOEB U 1 A_Raise
+Loop
+Fire:
+JOEB U 0 A_PlaySoundEx("misc/devilfire","Weapon")
+JOEB U 0 A_GiveInventory("ApacheJoeMain_CI",1)
+JOEB WWU 2
+JOEB U 0 A_PlaySoundEx("misc/devilfire","Weapon")
+JOEB U 0 A_GiveInventory("ApacheJoeMain_CI",1)
+JOEB XXU 2
+goto Ready+3
+Altfire:
+JOEB U 0 A_PlaySound("weapon/JoeDrop",1,0.65)
+JOEB U 0 A_GiveInventory("ApacheBomb_P",1)
+JOEB VVUUUU 3
+goto Ready+3
+NoAmmo:
+JOEB D 1
+Goto Ready+3
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,6)
+TNT1 A 0 A_JumpIf(z-floorz>=320,5)
+TNT1 A 0 A_TakeInventory("JoeUpgradeAmmo",1)
+TNT1 A 1 SetPlayerProperty(0,1,3)
+TNT1 A 0 A_JumpIfInventory("JoeUpgradeAmmo",1,"Flash")
+TNT1 A 1 A_GiveInventory("Joe_KS_Normal_Pickup",1)
+loop
+TNT1 A 0 A_TakeInventory("JoeUpgradeAmmo",1)
+TNT1 A 1 SetPlayerProperty(0,0,3)
+TNT1 A 0 A_JumpIfInventory("JoeUpgradeAmmo",1,"Flash")
+TNT1 A 1 A_GiveInventory("Joe_KS_Normal_Pickup",1)
+loop
+}
+}
+
+actor AttackHelicopterAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 3
++INVENTORY.IGNORESKILL
+}
+
+actor JoeApacheArmorBoost : BasicArmorPickup
+{
+Armor.Savepercent 45
+Armor.Saveamount 100
+}
+
+actor Apacheshot
+{
+Translation "192:192=4:4", "198:198=108:108"
+PROJECTILE
+Obituary "$OB_JOEAPACHE"
+damagetype "JoeApache"
+Speed 48
+Damage (12)
+radius 10
+height 10
+scale 3.0
+States
+{
+Spawn:
+TNT1 A 2
+JOSH B 1
+goto spawn+1
+Death:
+JOSH A 1
+stop
+}
+}
+
+actor ApacheshotB : Apacheshot{translation "192:192=205:205", "198:198=74:74"}
+actor ApacheshotR : Apacheshot{translation "192:192=171:171", "198:198=41:41"}
+actor ApacheshotO : Apacheshot{translation "192:192=104:104", "198:198=128:128"}
+actor ApacheshotP : Apacheshot{translation "192:192=229:229", "198:198=232:232"}
+
+actor ApacheBomb_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("ApacheBomb",0,0,8,momx*1.15,momy*1.15,-4,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+stop
+PickupS:
+TNT1 A 0 A_SpawnItemEx("ApacheBombL",0,0,8,momx*1.15,momy*1.15,-4,0,9)
+TNT1 A 0 A_SpawnItemEx("ApacheBombR",0,0,8,momx*1.15,momy*1.15,-4,0,9)
+stop
+}
+}
+
+actor ApacheBomb
+{
+PROJECTILE
+-NOGRAVITY
++THRUGHOST
+Obituary "$OB_JOEAPACHEB"
+damagetype "JoeApache"
+gravity 2.0
+Speed 0
+Damage (0)
+radius 10
+height 16
+scale 2.5
+States
+{
+Spawn:
+JOSH C 1
+loop
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_PlaySoundEx("weapon/napalm","Weapon")
+TNT1 A 0 A_Explode(30,128,0,0,16)
+TN_B EFGHIJKLMNOPQRS 2
+stop
+}
+}
+
+actor ApacheBombL : ApacheBomb
+{
+States
+{
+Spawn:
+JOSH C 0
+JOSH C 0 A_ChangeVelocity(0,-4,0,1)
+JOSH C 1
+wait
+}
+}
+actor ApacheBombR : ApacheBomb
+{
+States
+{
+Spawn:
+JOSH C 0
+JOSH C 0 A_ChangeVelocity(0,4,0,1)
+JOSH C 1
+wait
+}
+}
+
+actor ApacheJoeMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Apacheshot",random(-2,2),1,0,0,0,random(-2,2))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ApacheshotB",random(-2,2),1,0,0,0,random(-2,2))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ApacheshotR",random(-2,2),1,0,0,0,random(-2,2))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ApacheshotO",random(-2,2),1,0,0,0,random(-2,2))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ApacheshotP",random(-2,2),1,0,0,0,random(-2,2))
+goto Done
+}
+}
