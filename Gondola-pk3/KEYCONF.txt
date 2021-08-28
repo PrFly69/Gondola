@@ -22,6 +22,7 @@ addplayerclass Fireman nomenu
 addplayerclass Elecman nomenu//infinite fire mans
 addplayerclass Timeman nomenu
 addplayerclass Oilman nomenu//HAHA FUNNY XD SNAP ON SLIDE MAYMAY
+//addplayerclass YellowDevil nomenu (Not yet.)
 
 addplayerclass Metalman nomenu
 addplayerclass Airman nomenu//Cleaned out his fans

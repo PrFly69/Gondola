@@ -1,0 +1,16 @@
+#library "respo"
+#include "zcommon.acs"
+
+function bool SurvivalTypeMode(void) {
+	return (GetCvar("LastManStanding")
+	||GetCvar("TeamLMS")
+	||GetCvar("Survival")
+	||(GetCvar("Invasion")&&GetCvar("sv_maxlives")>0)
+	);
+}
+
+Script "RespawnDOpen" OPEN
+{
+if(!SurvivalTypeMode()&&GetCvar("SV_RESPAWNDSTART")) ACS_NamedExecute("RespawnDMain",0);
+else ACS_NamedExecute("RespawnDReset",0);
+}

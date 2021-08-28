@@ -1,4 +1,9 @@
 [enu default]
+//Flagbearer - Yellow Devil
+OB_BEARMAIN3 = "%o couldn't make a dent in %k's yellow one-eyed cube.";
+OB_BEARALT = "%o was whapped by %k's perfect fist."; //Perfect.
+OB_BEARWIN = "%o played the objective!"; //Does this even work?
+
 //Duo
 OB_DUOCSLAM = "%o was chokeslammed by %k's grip of justice.";
 OB_DUOWAVE = "%o lost %p footing to %k's Justice Shockwave.";

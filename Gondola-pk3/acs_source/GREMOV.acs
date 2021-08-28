@@ -1,0 +1,15 @@
+#library "gremov"
+#include "zcommon.acs"
+
+Script "RemoveCorpse" OPEN
+{
+while(true) {
+	RemoveCorpseFunc();
+	delay(1);
+}
+}
+
+function void RemoveCorpseFunc(void)
+{
+for(int i = 0; i<64; i++) Thing_Remove(1000+i);
+}

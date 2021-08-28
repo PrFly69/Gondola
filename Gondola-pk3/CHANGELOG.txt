@@ -1248,6 +1248,9 @@ CHANGELOG
 ==Timeman
 -Time Slow damage 14 > 10
 
+==Yellow Devil (flagbearer)
+-imported from ctfpatch v04
+
 ==Airman
 -Air Shooter now consumes 2 ammo
 --Fires only one tornado with insufficient ammo
@@ -1615,6 +1618,7 @@ CHANGELOG
 -Tackle damage rampup user_P*0.5+9 > 18
 --Tackle hitbox 176 > 128
 --Tackle maxdamageradius user_P*0.25+32 > 48
+-UEC suck/blow stamina implemented
 
 ==Ballade
 -Removed ACS delay on speed updating

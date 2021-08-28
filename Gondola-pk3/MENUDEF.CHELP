@@ -174,6 +174,7 @@ OptionValue Classname
 124, "BBA Mega Man"
 125, "Auto"
 126, "RaThor"
+127, "Yellow Devil \ca(Flagbearer)"
 } 
 
 
@@ -307,6 +308,7 @@ OptionValue ClassHealth
 124, "100"
 125, "100"
 126, "115"
+127, "200"
 } 
 
 
@@ -439,6 +441,7 @@ OptionValue ClassJump
 124, "10"
 125, "10"
 126, "14"
+127, "10"
 } 
 
 
@@ -571,6 +574,7 @@ OptionValue ClassSpeed
 124, "0.8"
 125, "0.7"
 126, "0.89"
+127, "0.6"
 } 
 
 
@@ -703,6 +707,7 @@ OptionValue ClassMainfire
 124, "\cdFires selected weapon\nEach weapon uses different ammo"
 125, "\cdFires basic rockets\nRockets spawn shrapnel on explosion"
 126, "\cdMore souls give better mainfires"
+127, "\cdCube that splashes out damaging spheres\n\ciCharge to throw self with cube, lose life midair\nRegain 1/2 life lost while idle"
 } 
 
 
@@ -835,6 +840,7 @@ OptionValue ClassAltfire
 124, "\cdBasic melee that gives 100 ammo on hit"
 125, "\cdFires bolt repeater in a 5-round burst"
 126, "\cdLunge at enemies to grab them\nSucessful grab slams them once\nUse with item to slam more based on souls"
+127, "\cdA basic melee punch"
 } 
 
 
@@ -967,6 +973,7 @@ OptionValue ClassItem
 124, "\cdOrders weapon based on meter\nBlank space refills all weapons"
 125, "\cdIf using Item Toggle, swaps item for reload\n\cuOtherwise, No Item"
 126, "\cdActivates and deactivates soul usage"
+127, "\cuNo item"
 } 
 
 
@@ -1099,4 +1106,5 @@ OptionValue ClassReload
 124, "\ckGain meter by damaging foes"
 125, "\ckReload : Dispense current item\nIf no ammo left, dispenses nothing\nCan select weapon style in user options"
 126, "\ckFoes drop souls on death"
-} 
+127, "\ckImmune to damage for 1.5 seconds after picking up a flag\nStarts with less health if flag isn't returned"
+}

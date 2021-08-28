@@ -21,11 +21,13 @@ goto Ready1
 Ready1:
 HSHG A 0 A_JumpIfInventory("HyperStormHeat",1,"Ready2")
 HSHG A 0 A_JumpIfInventory("HyperStormCold",1,"Ready2")
-HSHG A 1 A_WeaponReady(8)
-wait
+HSHG A 3 A_WeaponReady(8)
+HSHG A 0 A_TakeInventory("HyperStormLungStamina",1)
+loop
 Ready2:
-HSHG A 1 A_WeaponReady
-wait
+HSHG A 3 A_WeaponReady
+HSHG A 0 A_TakeInventory("HyperStormLungStamina",1)
+loop
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 HSHG A 1 A_Lower
@@ -44,11 +46,13 @@ HSHG D 0 A_PlaySound("weapon/HSHSuckBlow",1,1.0)
 goto SuckingReFire
 
 SuckCold:
+HSHG D 0 A_JumpIfInventory("HyperStormLungStamina",132,"SuckingColdWeak")
 HSHG DD 0 A_FireCustomMissile("HSHSuckerCold2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 HSHG D 0 A_TakeInventory("HyperStormCold",2)
 HSHG D 2 A_FireCustomMissile("HSHSuckerCold",0,0)
 goto SuckingReFire
 Sucking:
+HSHG D 0 A_JumpIfInventory("HyperStormLungStamina",132,"SuckingWeak")
 HSHG DD 0 A_FireCustomMissile("HSHSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 HSHG D 0 A_GiveInventory("HyperStormHeat",2)
 HSHG D 2 A_FireCustomMissile("HSHSucker",0,0)
@@ -58,6 +62,11 @@ SuckingWeak:
 HSHG D 0 A_FireCustomMissile("HSHSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 HSHG D 0 A_GiveInventory("HyperStormHeat",2)
 HSHG D 2 A_FireCustomMissile("HSHSuckerWeak",0,0)
+goto SuckingReFire
+SuckingColdWeak:
+HSHG D 0 A_FireCustomMissile("HSHSuckerCold2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+HSHG D 0 A_TakeInventory("HyperStormCold",2)
+HSHG D 2 A_FireCustomMissile("HSHSuckerColdWeak",0,0)
 goto SuckingReFire
 
 SuckingReFire:
@@ -285,11 +294,13 @@ goto Ready1
 Ready1:
 HSHH A 0 A_JumpIfInventory("HyperStormHeat",1,"Ready2")
 HSHH A 0 A_JumpIfInventory("HyperStormCold",1,"Ready2")
-HSHH A 1 A_WeaponReady(8)
-wait
+HSHH A 3 A_WeaponReady(8)
+HSHH A 0 A_TakeInventory("HyperStormLungStamina",1)
+loop
 Ready2:
-HSHH A 1 A_WeaponReady
-wait
+HSHH A 3 A_WeaponReady
+HSHH A 0 A_TakeInventory("HyperStormLungStamina",1)
+loop
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 HSHH A 1 A_Lower
@@ -310,11 +321,13 @@ HSHH D 0 A_PlaySound("weapon/HSHSuckBlow",1,1.0)
 goto BlowingReFire
 
 BlowHeat:
+HSHG D 0 A_JumpIfInventory("HyperStormLungStamina",132,"BlowHeatWeak")
 HSHH DD 0 A_FireCustomMissile("HSHParticleBlowHeat_H",random(-14,14),0,random(-7,7),random(-7,7),0,random(-8,8))
 HSHH D 0 A_TakeInventory("HyperStormHeat",2)
 HSHH D 2 A_FireCustomMissile("HSHBlowerHeat",0,0)
 goto BlowingReFire
 Blowing:
+HSHG D 0 A_JumpIfInventory("HyperStormLungStamina",132,"BlowingWeak")
 HSHH DD 0 A_FireCustomMissile("HSHParticleBlow_H",random(-14,14),0,random(-7,7),random(-7,7),0,random(-8,8))
 HSHH D 0 A_GiveInventory("HyperStormCold",2)
 HSHH D 2 A_FireCustomMissile("HSHBlower",0,0)
@@ -323,6 +336,11 @@ BlowingWeak:
 HSHH D 0 A_FireCustomMissile("HSHParticleBlow_H",random(-14,14),0,random(-7,7),random(-7,7),0,random(-8,8))
 HSHH D 0 A_GiveInventory("HyperStormCold",2)
 HSHH D 2 A_FireCustomMissile("HSHBlowerWeak",0,0)
+goto BlowingReFire
+BlowHeatWeak:
+HSHH D 0 A_FireCustomMissile("HSHParticleBlowHeat_H",random(-14,14),0,random(-7,7),random(-7,7),0,random(-8,8))
+HSHH D 0 A_TakeInventory("HyperStormHeat",2)
+HSHH D 2 A_FireCustomMissile("HSHBlowerHeatWeak",0,0)
 goto BlowingReFire
 
 BlowingReFire:
@@ -557,6 +575,13 @@ actor HyperStormCold : Ammo
 {
 inventory.amount 1
 inventory.maxamount 200
++INVENTORY.IGNORESKILL
+}
+
+actor HyperStormLungStamina : Ammo
+{
+inventory.amount 1
+inventory.maxamount 132
 +INVENTORY.IGNORESKILL
 }
 
@@ -949,6 +974,17 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,22,8)
+TNT1 A 3
+stop
+}
+}
+actor HSHBlowerHeatWeak : HSHBlower
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteWithResult(C_JAX_SUCKRECODE,625,22,11)
 TNT1 A 3
 stop
 }

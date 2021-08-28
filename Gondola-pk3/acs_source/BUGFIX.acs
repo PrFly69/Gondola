@@ -1,0 +1,1653 @@
+#library "bugfix"//Legacy name
+#include "zcommon.acs"
+#include "8BDMLIB.acs"
+
+#define TEAM_NONE -1
+
+#DEFINE MAX_PLAYERS 63 //0-31//0-63
+
+
+
+#DEFINE C_HEALTHACS 142
+
+#DEFINE C_RETURN_APROP 144
+
+
+#DEFINE C_POISONFOLLOW 211 
+
+#DEFINE CBM_FetchMyHealth 6142
+
+
+#DEFINE C_JAX_SPECTRUM_SET1 444
+#DEFINE C_JAX_SPECTRUM_SET2 445
+#DEFINE C_JAX_SPECTRUM_TURN 446
+
+#DEFINE C_JAX_FLINGACS 520
+#DEFINE C_CHECK_TARGET_ITEM 521
+#DEFINE C_JAX_CHECK_JUMP 522
+
+#DEFINE C_CHECK_TARGET_OOC 649
+#DEFINE C_CHECK_TRACER_OOC 650
+#DEFINE C_CHECK_MASTER_OOC 651
+
+#DEFINE C_GRAVITY_SLAM 667
+
+
+#DEFINE C_GET_USER_VAR 811
+
+#DEFINE C_DYNAMOACS 813
+
+#DEFINE C_SETACTOR_P 1191
+
+script CBM_FetchMyHealth (int Which, int HPBoost)
+{
+	int HP = max(PlayerHealth(),0);
+	int Spawn_H = GetActorProperty(0, APROP_SPAWNHEALTH);
+	switch(Which)
+	{
+		Case 10://Percent Heal
+			if(HP <= 0){terminate;}
+			if(GetCVAR("YD_NoHealingScale")){
+				HealThing(HPBoost,Spawn_H);
+			}
+			else{
+				HealThing(round(HPBoost * 0.01 * Spawn_H + HP),Spawn_H);
+			}
+			break;
+		Case 3://Return Percent Heal
+			if(GetCVAR("YD_NoHealingScale")){
+				SetResultValue(HPBoost);
+			}
+			else{
+				SetResultValue(round(HPBoost * 0.01 * Spawn_H + HP));
+			}
+			break;
+		Case 2://Return false if max health
+			if(HP >= Spawn_H){SetResultValue(0);}
+			break;
+		Case 1://Max Health
+			SetResultValue(Spawn_H);
+			break;
+		Case 0://Current Health
+			SetResultValue(HP);
+			break;
+		Default:
+			Log(s:"Invalid Number for script CBM_FetchMyHealth");
+			break;
+	}
+}
+
+script "CBM_MainEnter" ENTER
+{
+	GiveInventory("IsInGame",1);
+	GiveInventory("PowerNoGravityFix",1);//Ask Celebi why this is given
+	GiveInventory("SpawnTelefragFixPickup",1);
+	GiveInventory("StaminaFlag",500);
+	//if(GetUserCVar(0,"CBM_OldStaminaBar")) {GiveInventory("PinkStaminaBar",1);}
+}
+
+script "CBM_MainRespawn" RESPAWN
+{
+ACS_NamedExecuteAlways("CBM_MainEnter",0);
+}
+
+script C_RETURN_APROP (int Swap)
+{
+	Switch (Swap) {
+		Case 2:
+			SetResultValue(GetActorProperty(0,APROP_Gravity));
+			//LOG(f:GetActorProperty(0,APROP_Gravity));
+			break;
+		Case 1:
+			if(GetPlayerInfo(PlayerNumber(), PLAYERINFO_GENDER) == 0){SetResultValue(0);}
+			else if(GetPlayerInfo(PlayerNumber(), PLAYERINFO_GENDER) == 1){SetResultValue(1);}
+			else if(GetPlayerInfo(PlayerNumber(), PLAYERINFO_GENDER) == 2){SetResultValue(2);}
+			else{SetResultValue(-1);}//If the script caller is not a player
+			break;
+
+		Case 0:
+		default:
+			SetResultValue(-1);
+			break;
+	}
+}
+
+script 143 (int ID, int Swap)
+{
+	if(Swap==1){
+		if(ClassifyActor(ID) & ACTOR_PLAYER){
+			if(GetCVar("teamlms")==1||GetCVar("ctf")==1||GetCVar("teamplay")==1||GetCVar("oneflagctf")==1||GetCVar("teampossession")==1||GetCVar("teamgame")==1 ){
+				SetResultValue(GetPlayerInfo(ID-1000,PLAYERINFO_TEAM));
+				terminate;
+			}
+		}
+	SetResultValue(TEAM_NONE);
+	terminate;
+	}
+
+	if(!(ClassifyActor(ActivatorTID()) & ACTOR_PLAYER)){
+		SetActivatorToTarget(0);
+	}
+	if(ClassifyActor(ActivatorTID()) & ACTOR_PLAYER) {
+		if(GetCVar("teamlms")==1||GetCVar("ctf")==1||GetCVar("teamplay")==1||GetCVar("oneflagctf")==1||GetCVar("teampossession")==1||GetCVar("teamgame")==1 ){
+			SetResultValue(PlayerTeam());
+			terminate;
+		}
+	}
+	SetResultValue(TEAM_NONE);
+}
+
+//Wall jump angling
+int JumpAngByte;
+int TotalAngles;
+
+script 160 (int Force, int BonusJump)
+{
+	//SetActivatorToTarget(0);
+	JumpAngByte = 0;
+	TotalAngles = 0;
+    if (CheckInventory("WallN") && !CheckInventory("WallS")) {
+		JumpAngByte += 128;
+		TotalAngles++;
+	}
+    if (/*CheckInventory("WallS") &&*/ !CheckInventory("WallN")) {
+		JumpAngByte += 256;
+		TotalAngles++;
+	}
+	if (CheckInventory("WallE") && !CheckInventory("WallW")) {
+	    JumpAngByte += 64;
+		TotalAngles++;
+	}
+	if (CheckInventory("WallW") && !CheckInventory("WallE")) {
+	    JumpAngByte += 192;
+		TotalAngles++;
+	}
+	if (/*CheckInventory("WallS") && */ !CheckInventory("WallN") && CheckInventory("WallE") && !CheckInventory("WallW")) { //Somewhere, a mathematician is crying.
+	    JumpAngByte = 32;
+		TotalAngles = 1;
+	}
+	if (TotalAngles>0) {
+		JumpAngByte /= TotalAngles;
+		ThrustThing(((GetActorAngle(0) >> 8) + JumpAngByte),Force,1);
+		ThrustThingZ(0,(GetActorProperty(0,APROP_JumpZ) >> 16) * 4 + BonusJump,0,0);
+	}
+}
+
+
+
+function void DocLightArmor (void)
+{
+	GiveInventory("LightDocArmor",1);//
+	TakeInventory("NormalDocArmor",1);
+	TakeInventory("SturdyDocArmor",1);
+	TakeInventory("ToadDocArmor",1);
+
+	GiveInventory("LightHealthBar",1);//
+	TakeInventory("MegaHealthBar",1);
+	TakeInventory("SturdyHealthBar",1);
+	TakeInventory("ToadHealthBar",1);
+}
+
+function void DocNormalArmor (void)
+{
+	TakeInventory("LightDocArmor",1);
+	GiveInventory("NormalDocArmor",1);//
+	TakeInventory("SturdyDocArmor",1);
+	TakeInventory("ToadDocArmor",1);
+
+	TakeInventory("LightHealthBar",1);
+	GiveInventory("MegaHealthBar",1);//
+	TakeInventory("SturdyHealthBar",1);
+	TakeInventory("ToadHealthBar",1);
+}
+
+function void DocSturdyArmor (void)
+{
+	TakeInventory("LightDocArmor",1);
+	TakeInventory("NormalDocArmor",1);
+	GiveInventory("SturdyDocArmor",1);//
+	TakeInventory("ToadDocArmor",1);
+
+	TakeInventory("LightHealthBar",1);
+	TakeInventory("MegaHealthBar",1);
+	GiveInventory("SturdyHealthBar",1);//
+	TakeInventory("ToadHealthBar",1);
+}
+
+function void DocToadArmor (void)
+{
+	TakeInventory("LightDocArmor",1);
+	TakeInventory("NormalDocArmor",1);
+	TakeInventory("SturdyDocArmor",1);
+	GiveInventory("ToadDocArmor",1);//
+
+	TakeInventory("LightHealthBar",1);
+	TakeInventory("MegaHealthBar",1);
+	TakeInventory("SturdyHealthBar",1);
+	GiveInventory("ToadHealthBar",1);//
+}
+
+function void DocSpeed100 (void)
+{
+	SetActorProperty(0,APROP_SPEED,1.00);
+	
+	GiveInventory("DocSpeed100",1);
+	
+	TakeInventory("DocSpeed090",1);
+	TakeInventory("DocSpeed105",1);
+	TakeInventory("DocSpeed110",1);
+	TakeInventory("DocSpeed115",1);
+	TakeInventory("DocSpeed120",1);
+}
+function void DocSpeed090 (void)
+{
+	SetActorProperty(0,APROP_SPEED,0.90);
+	
+	GiveInventory("DocSpeed090",1);
+	
+	TakeInventory("DocSpeed100",1);
+	TakeInventory("DocSpeed105",1);
+	TakeInventory("DocSpeed110",1);
+	TakeInventory("DocSpeed115",1);
+	TakeInventory("DocSpeed120",1);
+}
+function void DocSpeed105 (void)
+{
+	SetActorProperty(0,APROP_SPEED,1.05);
+	
+	GiveInventory("DocSpeed105",1);
+	
+	TakeInventory("DocSpeed090",1);
+	TakeInventory("DocSpeed100",1);
+	TakeInventory("DocSpeed110",1);
+	TakeInventory("DocSpeed115",1);
+	TakeInventory("DocSpeed120",1);
+}
+function void DocSpeed105a (void)
+{
+	GiveInventory("DocSpeed105",1);
+
+	TakeInventory("DocSpeed090",1);
+	TakeInventory("DocSpeed100",1);
+	TakeInventory("DocSpeed110",1);
+	TakeInventory("DocSpeed115",1);
+	TakeInventory("DocSpeed120",1);
+}
+function void DocSpeed110 (void)
+{
+	SetActorProperty(0,APROP_SPEED,1.10);
+	
+	GiveInventory("DocSpeed110",1);
+	
+	TakeInventory("DocSpeed090",1);
+	TakeInventory("DocSpeed100",1);
+	TakeInventory("DocSpeed105",1);
+	TakeInventory("DocSpeed115",1);
+	TakeInventory("DocSpeed120",1);
+}
+function void DocSpeed115 (void)
+{
+	SetActorProperty(0,APROP_SPEED,1.15);
+	
+	GiveInventory("DocSpeed115",1);
+
+	TakeInventory("DocSpeed090",1);
+	TakeInventory("DocSpeed100",1);
+	TakeInventory("DocSpeed105",1);
+	TakeInventory("DocSpeed110",1);
+	TakeInventory("DocSpeed120",1);
+}
+function void DocSpeed120 (void)
+{
+	SetActorProperty(0,APROP_SPEED,1.20);
+	
+	GiveInventory("DocSpeed120",1);
+	
+	TakeInventory("DocSpeed090",1);
+	TakeInventory("DocSpeed100",1);
+	TakeInventory("DocSpeed105",1);
+	TakeInventory("DocSpeed110",1);
+	TakeInventory("DocSpeed115",1);
+}
+
+function void DocJump100 (void)
+{
+	SetActorProperty(0,APROP_JumpZ,10.0);
+	
+	GiveInventory("DocJump100",1);
+	
+	TakeInventory("DocJump110",1);
+	TakeInventory("DocJump120",1);
+	TakeInventory("DocJump130",1);
+}
+function void DocJump110 (void)
+{
+	SetActorProperty(0,APROP_JumpZ,11.0);
+	
+	GiveInventory("DocJump110",1);
+	
+	TakeInventory("DocJump100",1);
+	TakeInventory("DocJump120",1);
+	TakeInventory("DocJump130",1);
+}
+function void DocJump120 (void)
+{
+	SetActorProperty(0,APROP_JumpZ,12.0);
+	
+	GiveInventory("DocJump120",1);
+	
+	TakeInventory("DocJump100",1);
+	TakeInventory("DocJump110",1);
+	TakeInventory("DocJump130",1);
+}
+function void DocJump130 (void)
+{
+	SetActorProperty(0,APROP_JumpZ,13.0);
+	
+	GiveInventory("DocJump130",1);
+	
+	TakeInventory("DocJump100",1);
+	TakeInventory("DocJump110",1);
+	TakeInventory("DocJump120",1);
+}
+
+script C_SETACTOR_P (int prop, int mult, int div)
+{
+//Log(i:prop,s:" --- ",i:mult,s:" --- ",i:div);
+SetActorProperty(0,prop,((1.0)*mult)/div);
+}
+
+// Player Modifier
+//
+script 648 (int jump)
+{
+	switch (jump) {
+	//Pluto
+		case 27:
+			int PlutH = max(PlayerHealth(),0);
+			int PlutDiff = CheckInventory("LastHealthFlag") - PlutH;
+			if(PlutDiff != 0){
+				TakeInventory("BreakingIntoADashAmmo",max(PlutDiff*15,0));
+				TakeInventory("LastHealthFlag",999);
+				GiveInventory("LastHealthFlag",PlutH);
+			}
+			
+            int PlutoSpeed = 0.00115;
+            PlutoSpeed *= CheckInventory("BreakingIntoADashAmmo");
+            SetActorProperty(0,APROP_SPEED,(1.0+PlutoSpeed));
+            break;
+	//Woodman ammo
+		case 19:
+			int hh = max(PlayerHealth(),0);
+			GiveInventory("IncredibleAmmo",max((CheckInventory("LastHealthFlag")-hh)*2,0));
+			TakeInventory("LastHealthFlag",999);
+			GiveInventory("LastHealthFlag",hh);
+			break;
+	//Darkman 1Lite
+		case 18:
+	//Darkman 1
+		case 17:
+			int DarkSpeed = 0.006;
+			if(jump==18){DarkSpeed = 0.002;}
+			DarkSpeed *= 100-min(PlayerHealth()*100/GetActorProperty(0,APROP_SPAWNHEALTH),100);
+			SetActorProperty(0,APROP_SPEED,(1.0+DarkSpeed));
+			break;
+	//Magma ammo
+		case 14:
+			int MagH = max(PlayerHealth(),0);
+			TakeInventory("MagmaAmmoB",max((CheckInventory("LastHealthFlag")-MagH)/2,0));
+			TakeInventory("LastHealthFlag",999);
+			GiveInventory("LastHealthFlag",MagH);
+			break;
+	//Junk leak
+	    case 13:
+			int junkLoss = CheckInventory("LastHealthFlag") - max(PlayerHealth(),0);
+			if (junkLoss>0) {
+				giveInventory("LeakStock",junkLoss);
+				takeInventory("LastHealthFlag",junkLoss);
+			} else if (junkLoss<0) {
+				giveInventory("LastHealthFlag",-junkLoss);
+			}
+			break;
+	//Enker absorb
+	    case 12:
+			if (CheckInventory("EnkerAbsorbCount")) {
+			int armor = PlayerArmorPoints();
+			GiveInventory("MirrorCharge",max(CheckInventory("LastArmorCount")-Armor-3, 0));
+			TakeInventory("LastArmorCount",999);
+			GiveInventory("LastArmorCount",armor);
+			}
+			break;
+	//Star gravity
+	    case 11:
+			SetActorProperty(0, APROP_Gravity, min(GetActorProperty(0, APROP_Gravity),0.7));
+			break;
+	//Cloud gravity
+		case 10:
+			SetActorProperty(0, APROP_Gravity, min(GetActorProperty(0, APROP_Gravity),0.4));
+			break;
+	//Doc Default
+		case 9:
+			DocJump110();
+			DocSpeed105();
+			DocNormalArmor();
+			break;
+	//Doc Copy
+		case 8:
+			//Jump Mode
+			if (CheckWeapon("MetalBladeWepC")||CheckWeapon("ShadowBladeWepC")||
+			CheckWeapon("RainFlushWepC")|| CheckWeapon("GyroAttackWepC")||
+			CheckWeapon("GravityHoldWepC")||CheckWeapon("ThunderBoltWepC")||
+			CheckWeapon("GravitySphereWepC")||CheckWeapon("StarCrashWepC")||
+			CheckWeapon("WildCoilWepC")||CheckWeapon("WindStormWepC")||
+			CheckWeapon("NoiseCrushWepC")||CheckWeapon("RingBoomerangWepC")||
+			CheckWeapon("AstroCrushWepC")||CheckWeapon("TornadoHoldWepC")||
+			CheckWeapon("BlackHoleBombWepC")||CheckWeapon("CopyVisionWepC")||
+			CheckWeapon("TornadoBlowWepC")) {
+			DocJump130();
+			DocSpeed100();
+			DocNormalArmor();
+
+			//Speed Mode
+			} else if (CheckWeapon("RisingFistWepC")||
+			CheckWeapon("AirShooterWepC")||CheckWeapon("FlashStopperWepC")||
+			CheckWeapon("FlashBulbWepC")||CheckWeapon("NapalmBombWepC")||
+			CheckWeapon("ChargeKickWepC")||CheckWeapon("BlizzardAttackWepC")||
+			CheckWeapon("SilverTomahawkWepC")||CheckWeapon("TenguBladeWepC")||
+			CheckWeapon("LaserTridentWepC")) {
+			DocJump100();
+			DocSpeed110();
+			DocNormalArmor();
+
+			//Armor Mode
+			} else if (CheckWeapon("PowerStoneWepC")||CheckWeapon("LeafShieldWepC")||
+			CheckWeapon("HyperBombWepC")||CheckWeapon("YamatoSpearWepC")||
+			CheckWeapon("KnightCrushWepC")||CheckWeapon("FlameSwordWepC")||
+			CheckWeapon("JunkShieldWepC")||CheckWeapon("IceWallWepC")||
+			CheckWeapon("SpreadDrillWepC")||CheckWeapon("ConcreteShotWepC")){
+			DocJump100();
+			DocSpeed100();
+			DocSturdyArmor();
+
+			//Frail Mode
+			} else if (CheckWeapon("RollingCutterWepC")||CheckWeapon("SlashClawWepC")||
+			CheckWeapon("ThunderClawWepC")||CheckWeapon("BusterRodGWepC")){
+			DocJump120();
+			DocSpeed115();
+			DocLightArmor();
+
+			//Frail Speed Mode
+			} else if (CheckWeapon("ThunderBeamWepC")||CheckWeapon("QuickBoomerangWepC")||
+			CheckWeapon("TopSpinWepC")||CheckWeapon("CentaurFlashWepC")||
+			CheckWeapon("SearchSnakeWepC")||CheckWeapon("CentaurArrowWepC")||
+			CheckWeapon("TopTwistWepC")){
+			
+			DocJump100();
+			DocSpeed120();
+			DocLightArmor();
+
+			//Slow Armor Mode
+			} else if (CheckWeapon("HardKnuckleWepC")||CheckWeapon("SuperArmWepC")||
+			CheckWeapon("IceWaveWepC")||CheckWeapon("HyperStormHWepC")){
+			DocJump100();
+			DocSpeed090();
+			DocToadArmor();
+
+			//Lucky Luck
+			} else if (CheckWeapon("SolarBlazeWepC")){
+			DocJump130();
+			DocSpeed120();
+			DocToadArmor();
+
+			} else {
+			if (!CheckActorProperty(0,APROP_SPEED,1.45)) {
+				SetActorProperty(0,APROP_SPEED,1.05);
+			}
+			DocSpeed105a();
+			DocJump110();
+			DocNormalArmor();
+			}
+			break;
+	//Bot Revert
+		case 7:
+			int o1 = GetActorProperty(0,APROP_SPEED);
+			SetActorProperty(0,APROP_SPEED,max(o1,o1*-1));
+			break;
+	//Bot Reverse
+		case 6:
+			int o2 = GetActorProperty(0,APROP_SPEED);
+			SetActorProperty(0,APROP_SPEED,min(o2,o2*-1));
+			break;
+	//Grenade Man Death
+		case 5:
+			SetResultValue(CheckInventory("GrenadeHealth")/3);
+			break;
+	//Grenade Man
+		case 4:
+			int GreH = max(PlayerHealth(),0);
+			int diff = CheckInventory("GrenadeHealth") - GreH;
+			if(diff != 0){
+				GiveInventory("THATFELTGOODAMMO",max(diff/3,0));
+				TakeInventory("GrenadeHealth",999);
+				GiveInventory("GrenadeHealth",GreH);
+			}
+			int ghealthSpeed2 = 0.012;
+			ghealthSpeed2 *= CheckInventory("THATFELTGOODAMMO");
+			SetActorProperty(0,APROP_SPEED,(1.0+ghealthSpeed2));
+			break;
+	//Darkman 1Lite old
+		case 3:
+			int healthSpeedL = 0.002;
+			healthSpeedL *= 100-min(PlayerHealth(),100);
+			SetActorProperty(0,APROP_SPEED,(1.0+healthSpeedL));
+			break;
+	//Darkman 1 old
+		case 2:
+			int healthSpeed = 0.006;
+			healthSpeed *= 100-min(PlayerHealth(),100);
+			SetActorProperty(0,APROP_SPEED,(1.0+healthSpeed));
+			break;
+
+		default:
+			Log(s:"Error! Invalid switch for script 648!");
+			break;
+	}
+}
+
+script 148 (void)
+{
+//	for(int j=0; j<499; j++) {
+		int x;
+		int y;
+		int z;
+		while(CheckInventory("ScrapMetalFlag")>0) {
+			x = GetActorX(0);
+			y = GetActorY(0);
+			z = GetActorZ(0);
+			for(int i=0; i<MAX_PLAYERS; i++) {
+				if (CheckActorInventory(1000+i,"DustCrusherBoss")) {
+					if (distanceVal(x,y,z, 1800+i) < 64) {//50
+						GiveActorInventory(1000+i,"DustBits",1);
+						SetActorState(0, "Vacuumed");
+						terminate;
+					}
+				}
+			}
+//			SetActorProperty(0, APROP_RenderStyle, STYLE_Translucent);
+//			SetActorProperty(0, APROP_Alpha, 0.5);
+			Delay(1);
+		}
+//	}
+
+}
+
+
+//Gravity Hold
+
+#DEFINE GRAVITY_FACTOR 20
+//#DEFINE FORCE_DIVIDER 1
+#DEFINE FORCE_MULTIPLIER 6
+#DEFINE SPRING_CUSHION 4 //+1
+#DEFINE FALLING_TIME_START 0
+
+script C_GRAVITY_SLAM (int gravitated)
+{
+
+	int gravity = GetActorProperty(gravitated,APROP_Gravity);
+	int downZ = GetActorVelZ(gravitated);
+	int gZ = GetActorZ(gravitated);
+	int gZ1 = gZ;
+	int fallingTime = FALLING_TIME_START;
+	int lastDownZ = downZ;
+
+	//if (gZ < 0){ThrustThingZ(gravitated,0,1,0);}
+
+	while (gZ - GetActorFloorZ (gravitated) != 0.0 &&
+	!(lastdownZ <= 0.0 && downZ >= 0.0 && fallingTime>FALLING_TIME_START)) {
+
+		GiveActorInventory(gravitated,"LadderDisable",1);
+		GiveActorInventory(gravitated,"TeleDisable",1);
+		GiveActorInventory(gravitated,"FlightDisable",1);
+
+		ACS_NamedExecuteAlways("cbm_GravitySlamSetter",0,gravitated,-1);//*20 gravity
+
+		fallingTime++;
+		Delay(1);
+
+		gravity = GetActorProperty(gravitated,APROP_Gravity);
+		lastDownZ = downZ;
+		downZ = GetActorVelZ(gravitated);
+		gZ = GetActorZ(gravitated);
+		gZ1 = max(gZ, gZ1);
+		if(fallingTime >= 246){
+			//log(s:"Gravity Script 667 has surpassed 246 loops!");
+			break;
+		}
+	}
+
+	giveActorInventory(gravitated,"LadderEnable",1);
+	giveActorInventory(gravitated,"TeleEnable",1);
+	giveActorInventory(gravitated,"FlightEnable",1);
+
+	ACS_NamedExecuteAlways("cbm_GravitySlamSetter",0,gravitated,-2);
+
+	//Thing_Move(0,gravitated,1);
+	//SetActorPosition(0,GetActorX(gravitated),GetActorY(gravitated),gZ,0);
+
+	//int springCheck = 1;
+	//springCheck += SPRING_CUSHION*(downZ >= lastDownZ*-1 && fallingTime>FALLING_TIME_START);
+	//log(s:"springCheck = ",i:springCheck);
+	//log(s:"gravity = ",f:gravity);
+	//log(s:"downZ = ",f:downZ);
+	//log(s:"lastDownZ = ",f:lastDownZ);
+	//log(s:"fallingTime = ",i:fallingTime);
+
+	//if(springCheck > 1){log(s:"Spring detected!");}
+
+	//log(s:"gZ1 = ",f:gZ1);
+	//log(s:"gZ = ",f:gZ);
+
+	//log(i:max(0,round((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime)))/springCheck);
+	//GiveInventory("CutterFlag",max(0,round((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime)))/springCheck);
+	//log(s:"user_GravStack = ",i:max(0,round((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime))));
+	SetUserVariable(0,"user_GravStack",max(0,round((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime))));
+
+	//log(s:"gZ1 = ",f:fallingTime);
+	//log(s:"gz = ",f:fallingTime);
+	//log(s:"Z velocity = ",i:round((gZ1 - gZ)*FORCE_MULTIPLIER),s:" \\\ FallingTime = ",i:fallingTime);
+	//log(s:"CutterFlags = ",i:GetUserVariable(0,"user_GravStack"));
+
+	GiveInventory("CollideFlag",1);
+}
+
+script "cbm_GravitySlamSetter" (int gravitated, int Swap)
+{
+	SetActivator(gravitated);
+	ACS_ExecuteAlways(204,0,Swap);//Gravity Script in GLOBAL
+}
+
+
+str C_Poison_List[3] = 
+{
+"WilyFireB1_PSN",
+"MegaFireBall_PSN",
+"LightRyuFire_PSN"
+};
+
+script C_POISONFOLLOW (int ID, int List, int ID2)//Move actor to follow a player
+{
+	if(List < 0) {//Check Poison flags
+		int Amount = GetUserVariable(0,"user_AMOUNT");
+		str Item = StrParam(s:C_Poison_List[(List+1)*-1],i:ID2);//Combine Inventory name + Source TID
+		SetResultValue(CheckActorInventory(ID,Item));//Return if Hit TID even has the Item
+		GiveActorInventory(ID, Item, Amount);//Give Hit TID the Item
+		terminate;
+	}
+
+	int Type = 0;
+	if(List>=100){//Check if List is above 100, augment Type and adjust List. Example with 215
+		Type = List / 100; //Type becomes 2
+		List = List % 100; //List becomes 15
+	}
+
+	str IDFlag = StrParam(s:C_Poison_List[List],i:ID2);
+
+	switch(Type)
+	{
+	Case 66://Generic Follow
+		while (CheckActorInventory(0,"WeaponCharge")<1) {
+			Thing_Move(0,ID,1);
+			Delay(1);
+		}
+		break;
+	Case 3://Powerup Track, do not move
+		while (CheckActorInventory(ID,IDFlag)>0 && CheckInventory("ForceEndPoisonFlag")<= 0) {
+			Delay(1);
+		}
+		TakeActorInventory(ID,IDFlag,1);
+		break;
+	Case 2://Powerup Track
+		while (CheckActorInventory(ID,IDFlag)>0 && CheckInventory("ForceEndPoisonFlag")<= 0) {
+			Thing_Move(0,ID,1);
+			Delay(1);
+		}
+		TakeActorInventory(ID,IDFlag,1);
+		break;
+	Case 1://Flag Stack track, do not move
+		while (CheckActorInventory(ID,IDFlag)>0) {
+			TakeActorInventory(ID,IDFlag,1);
+			Delay(1);
+		}
+		break;
+	Case 0://Flag Stack track
+		while (CheckActorInventory(ID,IDFlag)>0) {
+			Thing_Move(0,ID,1);
+			TakeActorInventory(ID,IDFlag,1);
+			Delay(1);
+		}
+		break;
+
+	}
+	GiveInventory("CollideFlag",1);
+}
+
+script 213 (int mode, int O_TID, int H_TID)
+{
+switch (mode) {
+	case 3://Mercury
+	case 2://King
+	case 1://Skull
+		//log(s:"Hitter TID = ",i:H_TID);
+		//log(s:"Owner TID = ",i:O_TID);
+		if(H_TID == 0){
+			break;
+		}
+		if(H_TID != O_TID && ClassifyActor(H_TID) & ACTOR_PLAYER){
+			int O_TID_Team = ACS_ExecuteWithResult(143,O_TID,1);
+			int H_TID_Team = ACS_ExecuteWithResult(143,H_TID,1);
+			//log(s:"Hitter Team = ",i:H_TID_Team);
+			//log(s:"Owner Team = ",i:O_TID_Team);
+			if(H_TID_Team == TEAM_NONE || H_TID_Team != O_TID_Team){
+				switch (mode) {
+						default:
+							break;
+						case 1://Skull
+							GiveActorInventory(O_TID,"SkullCounter",1);
+							//log(s:"Gave SkullCounter");
+							break;
+						case 2://King
+							GiveActorInventory(O_TID,"TheKingShieldCounter",1);
+							//log(s:"Gave KingCounter");
+							break;
+						case 3://Mercury
+							GiveActorInventory(O_TID,"MercurySnatchPickup",1);
+							//log(s:"Gave MercurySnatch");
+							break;
+				}
+			}
+		}
+		break;
+	default:
+		break;
+}
+}
+
+//Bubbleman bubble
+script 212 (int jump)
+{
+switch (jump) {
+	case 2: //Exit Flood
+		Acs_ExecuteAlways(204,0,2);
+	break;
+	case 1: //Enter Flood
+		Acs_ExecuteAlways(204,0,3);
+	break;
+	case 0:
+	default:
+		int x = GetActorX(0);
+		int y = GetActorY(0);
+		int z = GetActorZ(0);
+		for(int i=0; i<MAX_PLAYERS; i++) {
+			if(distanceVal(x,y,z, 1000+i)<200) {
+				GiveActorInventory(1000 + i, "BubbleFloodPickup", 1);
+			}
+		}
+	break;
+}
+}
+
+script 146 (void)
+{
+//	printbold(s:"146 called, plz tell celebi");
+SetResultValue(round(fixedmul(GetActorProperty(0,APROP_JUMPZ),4.2)));
+}
+
+script C_CHECK_TARGET_OOC (void)//This is for projectiles to check if their owner spectated, disconnected, or is dead.
+{
+	SetActivatorToTarget(0);
+	//log(s:"Player #? ",i:PlayerInGame(PlayerNumber()));
+	//log(s:"Is Dead? ",i:CheckInventory("IsDead"));
+	//log(s:"In Game? ",i:PlayerInGame(PlayerNumber()));
+	if(PlayerNumber() == -1 || CheckInventory("IsDead") || !PlayerInGame(PlayerNumber())){
+		SetResultValue(0);
+	}
+}
+
+script C_CHECK_TRACER_OOC (void)
+{
+	SetActivator(0,AAPTR_TRACER);
+	if(PlayerNumber() == -1 || CheckInventory("IsDead") || !PlayerInGame(PlayerNumber())){
+		SetResultValue(0);
+	}
+}
+script C_CHECK_MASTER_OOC (void)
+{
+	SetActivator(0,AAPTR_MASTER);
+	if(PlayerNumber() == -1 || CheckInventory("IsDead") || !PlayerInGame(PlayerNumber())){
+		SetResultValue(0);
+	}
+}
+
+
+script 799 (void)
+{
+	int chasetarget = ACS_ExecuteWithResult(147, 0);
+
+	int x2 = GetActorX(0);
+	int y2 = GetActorY(0);
+
+	int xc = GetActorX(chasetarget);
+	int yc = GetActorY(chasetarget);
+
+	SetActorAngle (ActivatorTID(), VectorAngle(xc - x2, yc - y2));
+
+	SetActorPitch (ActivatorTID(),VectorAngle(xydistanceVal2(x2,y2,xc,yc)<<16,GetActorZ(0)-GetActorZ(chasetarget)-28.0));
+	
+}
+
+script 800 (void)
+{
+	int owner = ACS_ExecuteWithResult(147, 0);
+	SetActorAngle (ActivatorTID(), GetActorAngle(owner));
+	SetActorPitch (ActivatorTID(), GetActorPitch(owner));
+}
+
+#define HS_CAPACITY 4
+
+str SearchTargetID[HS_CAPACITY+1]={
+"SearchTargetID",
+"SearchTargetID1",
+"SearchTargetID2",
+"SearchTargetID3",
+"SearchTargetID4"
+};
+
+str SearchTargetIDCD[HS_CAPACITY+1]={
+"SearchTargetIDCD",
+"SearchTargetID1CD",
+"SearchTargetID2CD",
+"SearchTargetID3CD",
+"SearchTargetID4CD"
+};
+
+str SearchTargetIDCD_RC[HS_CAPACITY+1]={
+"SearchTargetIDCD",
+"SearchTargetID1CD_RC",
+"SearchTargetID2CD_RC",
+"SearchTargetID3CD_RC",
+"SearchTargetID4CD_RC"
+};
+
+function bool LockCooldowned (int owner, int target)
+{
+	bool canLock = 1;
+	for (int i=1; i<=HS_CAPACITY; i++) {
+		if ( (checkActorInventory(owner, SearchTargetID[i])==target+1) && (checkActorInventory(owner, SearchTargetIDCD[i])) ) {
+			canLock = 0;
+			break;
+		}
+	}		
+	return canLock;
+}
+
+script "cbm_Searchman_ACS" (int mode, int missile)
+{
+switch (mode) {
+case -1:
+
+	int Lock_Tracer = ACS_ExecuteWithResult(147,1);//Get Tracer TID
+	SetActivatorToTarget(0);
+	int Lock_Owner = ActivatorTID();
+	
+	if (LockCooldowned(Lock_Owner,Lock_Tracer-1000)) {
+		int Lock_TeamO = ACS_ExecuteWithResult(143,0);
+		if (Lock_TeamO == TEAM_NONE) {
+			//if(distanceVal(x,y,z, Lock_Tracer) < 64) {
+				GiveInventory(SearchTargetID[missile], Lock_Tracer-999);
+				GiveInventory(SearchTargetIDCD_RC[missile], 1);//StrParam(s:SearchTargetIDCD[missile],s:"_RC")//I don't trust using this [C]
+				//locked = 1;
+				break;
+			//}
+		}
+		else {
+			if (differentTeams(Lock_TeamO,Lock_Tracer)) {
+				//if(distanceVal(x,y,z, Lock_Tracer) < 64) {
+					GiveInventory(SearchTargetID[missile], Lock_Tracer-999);
+					GiveInventory(SearchTargetIDCD_RC[missile], 1);
+					//locked = 1;
+					break;
+				//}
+			}
+		}
+	}
+
+break;
+case 0: //just a crossheir
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	//int angle = GetActorAngle(0);
+	
+	SetActivatorToTarget(0);
+	int owner = ActivatorTID();
+	int team = ACS_ExecuteWithResult(143, 0);
+	
+	//bool locked = 0;
+	
+	if (team == TEAM_NONE) {
+		for(int i=0; i<MAX_PLAYERS; i++) {
+			if (owner != 1000 + i) {
+				if (LockCooldowned(owner,i)) {
+				if(distanceVal(x,y,z, 1000+i) < 64) {
+					GiveInventory(SearchTargetID[missile], i+1);
+					GiveInventory(SearchTargetIDCD[missile], 1);
+					//locked = 1;
+					break;
+				}
+				}
+			}
+		}	
+	} else {
+		for(int j=0; j<MAX_PLAYERS; j++) {
+			if (owner != 1000 + j) {
+				if (LockCooldowned(owner,j)) {
+				if (differentTeams(team,1000+j)) {
+					if(distanceVal(x,y,z, 1000+j) < 64) {
+						GiveInventory(SearchTargetID[missile], j+1);
+						GiveInventory(SearchTargetIDCD[missile], 1);
+						//locked = 1;
+						break;
+					}
+				}
+				}
+			}
+		}	
+	}
+	
+	/*if (locked) {
+		int target = checkInventory(SearchTargetID[missile])+999;
+		do {
+		giveActorInventory(target, "HomingLockGiver", 1);
+		delay(1);
+		} while( checkInventory(SearchTargetID[missile]) );
+	}*/
+break;
+case 1: //have the missile copy searchman's target
+	//GiveInventory("SearchTargetID",  checkActorInventory(ACS_ExecuteWithResult(147, 0), SearchTargetID[missile]));
+	SetActivatorToTarget(0);
+	SetResultValue(CheckInventory(SearchTargetID[missile]));
+break;
+case 2: //have the missile chase the guy
+	//int chasetarget = checkInventory("SearchTargetID")+999;
+	
+	int chasetarget = missile + 999;
+	
+	if (GetActorProperty(chasetarget, APROP_HEALTH) > 0) {
+	
+	if(checkActorInventory(chasetarget, "HomingLockedVision") == 0){
+		giveActorInventory(chasetarget, "HomingLockGiverB2", 1);
+	}
+	
+	int x2 = GetActorX(0);
+	int y2 = GetActorY(0);
+	//int angle2 = GetActorAngle(0);
+	//int pitch2 = GetActorPitch(0);
+	
+	int xc = GetActorX(chasetarget);
+	int yc = GetActorY(chasetarget);
+	
+	SetActorAngle (ActivatorTID(), VectorAngle(xc - x2, yc - y2));
+
+	SetActorPitch(ActivatorTID(),VectorAngle(xydistanceVal2(x2,y2,xc,yc)<<16,GetActorZ(0)-GetActorZ(chasetarget)-28.0));
+	
+	//giveActorInventory(chasetarget, "HomingLockGiverB", 1);
+	SetResultValue(1);
+	
+	} else {
+	SetResultValue(0);
+	}
+	
+break;
+case 3: //have searchman give crossheirs to people he's locked onto
+	int target = checkInventory(SearchTargetID[missile])+999;
+	if (GetActorProperty(target, APROP_HEALTH) > 0) {
+		if(checkActorInventory(target, "HomingLockedVision") == 0){
+			giveActorInventory(target, "HomingLockGiverB", 1);
+		}
+	} else {
+		takeInventory(SearchTargetID[missile],999);
+	}
+
+break;
+/*case 4: //Tell the missile who it is chasing... cause online.
+	SetResultValue(checkInventory("SearchTargetID"));
+break;*/
+}	
+}
+
+#define temporary_acs_tid 2000
+
+script 802 (void)
+{
+	Thing_ChangeTID(0, temporary_acs_tid); // set the activator's tid to the temporary value
+	SetActivatorToTarget(0); // set the player as the activator
+	ChangeCamera (temporary_acs_tid, 0, 0); 
+	Thing_ChangeTID(temporary_acs_tid, 0); // change any temporary_acs_tid to 0 so that the tid is no longer in use
+}
+
+
+
+str acs_check_items[2] =
+{
+"TorsoSpeed",
+"GigaAmmo"
+};
+
+script 803 (int num)
+{
+SetActivatorToTarget(0);
+SetResultValue(CheckInventory(acs_check_items[num]));
+}
+
+script 726(void){}//A Pentagonal pyramidal number test
+script 804 (int S)//Would be nice if this could be done with decorate without having to give everyone items.
+{
+switch (S){
+case 0: SetMusic("MGCMUSX",0); break;
+case 1: SetMusic("MMBMAG",0); break;
+case 66: SetResultValue(GetCVAR("YD_NoPitProtect")); break;
+
+}
+
+}
+
+
+script 806 (void) CLIENTSIDE//Time Bender look around
+{
+if(!CheckInventory("TotallyFrozenLookOnce")) {
+	GiveInventory("TotallyFrozenLookOnce",1);
+	
+	do {
+		if(!CheckInventory("SelfTotallyFrozenFlag")) {
+			SetActorAngle(0,GetActorAngle(0)+GetPlayerInput(-1, INPUT_YAW));
+			SetActorPitch(0,GetActorPitch(0)-GetPlayerInput(-1, INPUT_PITCH));
+		}
+		delay(1);
+	} while (GetActorProperty(0, APROP_HEALTH)>0 && CheckInventory("TotallyFrozenLook"));
+	
+	TakeInventory("TotallyFrozenLookOnce",1);
+}
+}
+
+
+
+
+str user_variables[3] =
+{
+"user_wepangle",
+"user_weppitch",
+"user_wepangle2",
+};
+
+script C_GET_USER_VAR (int num, int Swap)
+{
+	Switch(Swap)
+	{
+		Case 1:
+		SetResultValue(GetUserVariable(0,user_variables[num])>>16);
+		break;
+		Default:
+		Case 0:
+		SetResultValue(GetUserVariable(0,user_variables[num]));
+		break;
+	}
+}
+
+Script 812 (int currentAngle, int inputAngle, int angleChangeLimit)
+{
+//print(i:inputAngle);
+
+int angleDif = inputAngle-currentAngle;
+//print(i:angleDif);
+
+int returnAngle;
+
+if (angleDif>180) {
+	if ((angleDif-360)<-angleChangeLimit) {
+		returnAngle = currentAngle-angleChangeLimit;
+		if (returnAngle<0) returnAngle+=360;
+    } else {
+		returnAngle = inputAngle;
+	}
+} else if (angleDif<-180) {
+	if ((angleDif+360)>angleChangeLimit) {
+		returnAngle = currentAngle+angleChangeLimit;
+		if (returnAngle>=360) returnAngle-=360;
+    } else {
+		returnAngle = inputAngle;
+	}
+} else if (angleDif<-angleChangeLimit) {
+	returnAngle = currentAngle-angleChangeLimit;
+	if (returnAngle<0) returnAngle+=360;
+} else if (angleDif>angleChangeLimit) {
+	returnAngle = currentAngle+angleChangeLimit;
+	if (returnAngle>=360) returnAngle-=360;
+} else {
+	returnAngle = inputAngle;
+}
+
+//print(i:currentAngle);
+
+setResultValue(returnAngle);
+}
+
+//Dynamoman's script
+script C_DYNAMOACS (int target, int Dynamo)
+{
+	if(target >= 3000){//On Scanner hit
+		GiveActorInventory(Dynamo,strParam(s:"DynaFlag",i:target-2999),1);
+	}
+	else if(target >= 2000){//Called by Dynamo's Weapon
+		str temp;
+		for(int i=0; i<MAX_PLAYERS; i++) {
+			temp = strParam(s:"DynaFlag",i:i+1);
+			if (CheckInventory(temp)) {
+				if(!(getActorProperty(1000+i, APROP_Health)>0)) {
+					TakeInventory(temp,4);
+				}
+				else{GiveActorInventory(1000+i,"DynamoTagPickup",1);}
+			}
+		}
+	}
+	else{//Thrust the Lightning at target
+		//SetPointer(AAPTR_TRACER, target);
+		//Log(s:"Lightning Location >>> X = ",f:getActorX(0),s:" \\\ Y = ",f:getActorY(0),s: " \\\ Z = ",f:getActorZ(0));
+		//Log(s:"Target Location >>> X = ",f:getActorX(target),s:" \\\ Y = ",f:getActorY(target),s: " \\\ Z = ",f:getActorZ(target));
+		SetActorVelocity(0, getActorX(target) - getActorX(0), getActorY(target) - getActorY(0), getActorZ(target) - getActorZ(0), 0, 0);
+	}
+}
+
+Script "cbm_drawdynamotrail" (int playerTid, int P_team) CLIENTSIDE
+{
+    int plX; int plY;  int plZ;
+    int grX; int grY;  int grZ;
+    int vX;  int vY;   int vZ;
+    int nX;  int nY;   int nZ;
+    int bX;  int bY;   int bZ;
+    int magnitude;
+    int pointCount;
+    int pointOffset;
+	int density = 40;
+
+	plX = GetActorX(playerTid); grX = GetActorX(0);
+	plY = GetActorY(playerTid); grY  = GetActorY(0);
+	plZ = GetActorZ(playerTid)+(28 << 16); grZ  = GetActorZ(0);
+	//+28 to the spawn height of the ^player so the chain doesn't spawn from their feet.
+	vX = grX - plX;   vY = grY - plY;   vZ = grZ - plZ;
+
+	magnitude = magnitudeThree(vX >> 16, vY >> 16, vZ >> 16);
+
+	pointCount  = magnitude / density;
+	pointOffset = magnitude - (pointCount * density);
+
+	//if(grX == 0 && grY == 0 && grZ == 0){terminate;} 
+
+	if (magnitude != 0)
+	{
+		nX = vX / magnitude; nY = vY / magnitude; nZ = vZ / magnitude;
+
+		int i; int j;
+		for (i = 0; i < pointCount; i++)
+		{
+			j = (i * density) + pointOffset;
+
+			bX = (nX * j) + plX;
+			bY = (nY * j) + plY;
+			bZ = (nZ * j) + plZ;//+(16 << 16);
+			Spawn(StrParam(s:"DynamoTaggerFX",i:P_team), bX, bY, plZ);
+		}
+	}
+}
+
+int flagdropcount[5] = {0,0,0,0,0}; //I'm so sorry for what you're about to witness. -Greg
+
+script "cbm_PickupCTFMorph" PICKUP//Attempt at CTF stuff
+{
+	//Log(s:"cbm_PickupCTFMorph has begun thanks to ",i:ActivatorTID());
+	if(GetCVAR("YD_NoCTFMorph")){terminate;}
+	if(CheckInventory("MegaWhiteFlag")){
+		//Log(s:"Bear has the MegaWhiteFlag, wait for WhiteFlag");
+		terminate;
+	}
+
+	int k = GetActorProperty(0,APROP_HEALTH);
+	int j = GetActorProperty(0,APROP_SpawnHealth);
+	if(j == 0){j = 100;}
+	int t;
+	//I hate that I'm about to do this when I'm not even sure that it works.
+	while(true)
+	{
+		if(CheckInventory("MegaBlueFlag")){t=0;break;}
+		if(CheckInventory("MegaRedFlag")){t=1;break;}
+		if(CheckInventory("MegaGreenFlag")){t=2;break;}
+		if(CheckInventory("MegaYellowFlag")){t=3;break;}
+		if(CheckInventory("WhiteFlag")||CheckInventory("MegaWhiteFlag")){t=4;break;}
+		break; //If this structure doesn't actually increase efficiency at all, *please* DM me at @Greg.EXE#1965 to call me an idiot. I need it.
+		//What we're looking for here is the team of the flag, not the team of the player.
+		//In one-flag CTF, the flag doesn't care who, just how many times it's been dropped - true hot potato!
+	}
+	int losthealth = GetCvar("SV_FLAGHOTPOTATO") * flagdropcount[t];
+	int i;
+	if(losthealth<200){i = ( ( 200 - ( losthealth ) ) * k ) / j;}
+	else{i = 1;}
+	
+	while(GetActorProperty(0, APROP_HEALTH)>0){
+		while(CheckInventory("BearerFlag")==1){
+			//Log(s:"Whats that Bear doing?");
+			if(CheckInventory("MegaRedFlag")==0&&CheckInventory("MegaBlueFlag")==0&&CheckInventory("WhiteFlag")==0&&CheckInventory("MegaGreenFlag")==0&&CheckInventory("MegaYellowFlag")==0)
+			{
+				//UnMorphActor(0,1);
+				flagdropcount[t]++;
+				Thing_Damage2(ActivatorTID(), 256000, "OB_FSUICIDE");
+				//Log(s:"Thats a dead bear");
+				terminate;
+			}
+			Delay(1);
+		}
+		//Log(s:"cbm_PickupCTFMorph is looping");
+		if(CheckInventory("MegaWhiteFlag")==1||CheckInventory("WhiteFlag")==1)
+		{
+			startMorph();//WhiteFlag can't be edited
+			Delay(1);//So it gets removed via ClearInventory
+			GiveInventory("WhiteFlag",1);//Giving a flag starts a new script!
+			completeMorph(i,losthealth);
+			//Log(s:"Bear has a WhiteFlag, terminate");
+			terminate;
+		}
+		if(CheckInventory("MegaBlueFlag")==1 || CheckInventory("MegaRedFlag")==1 ||
+		CheckInventory("MegaGreenFlag")==1 || CheckInventory("MegaYellowFlag")==1)
+		{
+			startMorph();
+			Delay(1);
+			completeMorph(i,losthealth);
+		}
+
+		Delay(1);
+	}
+	//Log(s:"cbm_PickupCTFMorph has ended for ",i:ActivatorTID());
+
+}
+//Jesus.
+
+script "cbm_flag_event" (int type, int arg1, int arg2) EVENT //Realizing event scripts exist saved my life.
+{
+	int i;
+	if(arg1>3){i=4;}
+	else{i=arg1;}
+	delay(1);
+	
+	switch(type){
+		case GAMEEVENT_CAPTURES:
+		flagdropcount[arg1] = 0;
+		break;
+		case GAMEEVENT_RETURNS:
+		flagdropcount[arg1] = 0;	
+		break;
+	}
+}
+
+function void startMorph (void)
+{
+ClearInventory();
+SetActorProperty(0,APROP_Invulnerable ,0);
+MorphActor(ActivatorTID(), "BearerClass", "", 999999999999, 256, "", "HumanMorphFlash");
+}
+
+function void completeMorph(int i,int losthealth)
+{
+
+Switch(ACS_ExecuteWithResult(143,0)){
+	Default:
+		break;
+	Case 0:
+		GiveInventory("LightTeamFlag",1);
+		break;
+	Case 1:
+		GiveInventory("WilyTeamFlag",1);
+		break;
+	Case 2:
+		GiveInventory("CossackTeamFlag",1);
+		break;
+	Case 3:
+		GiveInventory("KingTeamFlag",1);
+		break;
+}
+
+SetActorProperty(0,APROP_Speed,1.0);
+SetActorProperty(0,APROP_JumpZ,10.0);
+SetActorProperty(0,APROP_Gravity,0.8);
+SetActorProperty(0,APROP_HEALTH,i);
+SetActorProperty(0,APROP_SpawnHealth,200-losthealth);
+
+if(GetActorProperty(0,APROP_HEALTH)>201){SetActorProperty(0,APROP_HEALTH,200);}
+
+GiveInventory("BearerMorphStart_P",1);
+}
+
+//Projectile Porting
+script 815 (int maxDist)
+{
+int target = ACS_ExecuteWithResult(257);
+
+if(getActorProperty(0,APROP_HEALTH) <= 0 || getActorProperty(target,APROP_HEALTH) <= 0) {
+	terminate;
+}
+
+maxDist = maxDist << 16;
+
+int xDiff = getActorX(0) - getActorX(target);
+int yDiff = getActorY(0) - getActorY(target);
+int zDiff = getActorZ(0) - getActorZ(target);
+
+if(fdistanceVal(xDiff,yDiff,zDiff) > maxDist) {
+	terminate;
+}
+
+while (true) {
+	xDiff += getActorVelX(0);
+	yDiff += getActorVelY(0);
+	zDiff += getActorVelZ(0);
+	SetActorVelocity(target, xDiff, yDiff, zDiff, 0, 0);
+	//Log(s:"MOVED");
+	//GiveActorInventory(target,"ProjectilePorting",1);
+
+	delay(1);
+
+	if(getActorProperty(0,APROP_HEALTH) <= 0 || getActorProperty(target,APROP_HEALTH) <= 0 || CheckInventory("ProjectilePortDead")) {
+		//Log(s:"Someone is Dead");
+		GiveActorInventory(target,"ProjectilePortDead",1);
+		//TakeActorInventory(target,"ProjectilePorting",1);
+		terminate;
+	}
+	xDiff = getActorX(0) - getActorX(target);
+	yDiff = getActorY(0) - getActorY(target);
+	zDiff = getActorZ(0) - getActorZ(target);
+	if(fdistanceVal(xDiff,yDiff,zDiff) > maxDist) {
+		//Log(s:"Someone is too far");
+		SetActorState(0,"Death",1);
+		GiveActorInventory(target,"ProjectilePortDead",1);
+		//TakeActorInventory(target,"ProjectilePorting",1);
+		terminate;
+	}
+	if(CheckActorInventory(target,"FlightDisableFlag")>=1 || CheckActorInventory(target,"TimeStoppedTFFlag")>=1) {
+		//Log(s:"Someone is suffering");
+		SetActorState(0,"Death",1);
+		GiveActorInventory(target,"ProjectilePortDead",1);
+		//TakeActorInventory(target,"ProjectilePorting",1);
+		terminate;
+	}
+	
+
+}
+
+}
+
+
+
+script C_JAX_FLINGACS (int pusher, int pushee, int force)
+{
+ThrustThing(VectorAngle(GetActorX(pushee) - GetActorX(pusher), GetActorY(pushee) - GetActorY(pusher)) >> 8, force, 1, pushee);
+}
+
+str C_InventoryList[5] =
+{
+"PullCharge",
+"Quaking",
+"PullCharge",
+"MWSShieldCharge",
+"PirateWaterPush"
+};
+
+script C_CHECK_TARGET_ITEM (int num, int Which)
+{
+	Switch(Which)
+	{
+		Case 0:
+			SetActivatorToTarget(0);
+			break;
+		Case 1:
+			SetActivator(0,AAPTR_TRACER);
+			break;
+	}
+	//Log(i:CheckInventory(C_InventoryList[num]));
+	SetResultValue(CheckInventory(C_InventoryList[num]));
+}
+
+
+script C_JAX_CHECK_JUMP (void)
+{
+SetResultValue(checkForJump(GetPlayerInput(-1, INPUT_BUTTONS)));
+}
+
+function bool checkForJump(int buttons) {
+	return ((buttons & BT_JUMP)>0);
+}
+
+
+// [BG] Because fuck you trying to make it not compat with CCBM :^)
+
+script "C_HEALTHACS" (int Magic, int HPBoost) //Health related script
+{
+	int h = max(PlayerHealth(),0);
+	switch(Magic)
+	{
+		Case 0://Return Health
+			if(HPBoost == 7777){
+				log(s:"HP: ",i:h);
+				terminate;
+			}
+			SetResultValue(CheckInventory("Health"));
+			break;
+		Case 1://Check current HP, if less than max health, return true
+			if(h < GetActorProperty(0, APROP_SPAWNHEALTH)){SetResultValue(1);}
+			else{SetResultValue(0);}
+			break;
+		Case 2://Basic Healing
+			if(h <= 0){terminate;}
+			int HPAdd2 = min(h + HPBoost,GetActorProperty(0, APROP_SPAWNHEALTH));
+			SetActorProperty(0, APROP_HEALTH, HPAdd2);
+			break;
+		Case 3://Percentage Healing
+			if(h <= 0){terminate;}
+			int SpawnHP3 = GetActorProperty(0, APROP_SPAWNHEALTH);
+			int PCT3;
+			if(GetCVAR("YD_NoHealingScale")){
+				PCT3 = HPBoost;
+			}
+			else{
+				PCT3 = round(HPBoost * 0.01 * SpawnHP3 + h);
+			}
+			int HPAdd3 = min(PCT3 + h,SpawnHP3);
+			SetActorProperty(0, APROP_HEALTH, HPAdd3);
+			break;
+		Case 7://Change Health to this exact amount
+			if(h <= 0){terminate;}
+			SetActorProperty(0, APROP_HEALTH, HPBoost);
+			break;
+		Case 9://Burning damage
+			if (GetActorProperty(0,APROP_HEALTH) >= HPBoost+1){
+				SetActorProperty(0, APROP_HEALTH, (GetActorProperty(0,APROP_HEALTH)-HPBoost));
+				break;
+			}
+			SetResultValue(2);
+			break;
+		Case 66://Returns MaxHp
+			SetResultValue(GetActorProperty(0, APROP_SPAWNHEALTH));
+			break;
+	}
+
+}
+
+script C_JAX_SPECTRUM_SET1 (int numerator, int denominator)
+{
+SetUserVariable(0,"user_wepaimlimit",((numerator<<16)/(denominator/2)));
+}
+
+script C_JAX_SPECTRUM_SET2 (int inputAngle, int inputPitch)
+{
+SetUserVariable(0,"user_wepangle",inputAngle<<16);
+SetUserVariable(0,"user_weppitch",inputPitch<<16);
+}
+
+script C_JAX_SPECTRUM_TURN (int inputAngle, int inputPitch)
+{
+inputAngle <<= 16;
+inputPitch <<= 16;
+int changeLimit = GetUserVariable(0,"user_wepaimlimit");
+int currentAngle = GetUserVariable(0,"user_wepangle");
+int currentPitch = GetUserVariable(0,"user_weppitch");
+
+int angleDif = WrapAround1(inputAngle - currentAngle);
+int pitchDif = WrapAround1(inputPitch - currentPitch);
+
+int len = getHypotenuse(angleDif, pitchDif);
+
+//print(s:"len: ",i:len,s:" limit:",i:changeLimit);
+//print(s:"currentAngle: ",i:currentAngle,s:" inputAngle:",i:inputAngle);
+//print(s:"currentPitch: ",i:currentPitch,s:" inputPitch:",i:inputPitch);
+
+/*
+print(
+s:" cAngle: ",i:currentAngle,
+s:" cPitch: ",i:currentPitch,
+s:" iAngle: ",i:inputAngle,
+s:" iPitch: ",i:inputPitch,
+s:" dAngle: ",i:angleDif,
+s:" dPitch: ",i:pitchDif,
+s:" len: ",i:len
+);
+*/
+
+if(len<changeLimit) {
+	SetUserVariable(0,"user_wepangle",inputAngle);
+	SetUserVariable(0,"user_weppitch",inputPitch);
+} else {
+	SetUserVariable(0,"user_wepangle",WrapAround2(currentAngle+FixedDiv(FixedMul(angleDif,changeLimit),len)));
+	SetUserVariable(0,"user_weppitch",WrapAround2(currentPitch+FixedDiv(FixedMul(pitchDif,changeLimit),len)));
+}
+
+}
+
+
+//script 777 OPEN
+//{
+
+//}
+
+//FFFFFFFFFFFF
+//FFFFFFFFFFFF
+//FFFF
+//FFFF
+//FFFFFFFF
+//FFFFFFFF
+//FFFF
+//FFFF
+//FFFF
+
+function int round(int fixedNumber)
+{
+	return (fixedNumber + 0.5) >> 16;
+}
+
+
+function int distance (int tid1, int tid2)
+{
+	int x, y, z, d;
+	x = GetActorX(tid1) - GetActorX(tid2) >> 16; // Convert fixed point to integer
+	y = GetActorY(tid1) - GetActorY(tid2) >> 16;
+	z = GetActorZ(tid1) - GetActorZ(tid2) >> 16;
+	d = sqrt8( x*x + y*y + z*z );
+	return d;
+}
+
+function int distanceVal (int tid1x, int tid1y, int tid1z, int tid2)
+{
+	int x, y, z, d;
+	x = tid1x - GetActorX(tid2) >> 16; // Convert fixed point to integer
+	y = tid1y - GetActorY(tid2) >> 16;
+	z = tid1z - GetActorZ(tid2) >> 16;
+	d = sqrt8( x*x + y*y + z*z );
+	return d;
+}
+
+function int distanceVal2 (int tid1x, int tid1y, int tid1z, int tid2x, int tid2y, int tid2z)
+{
+	int x, y, z, d;
+	x = tid1x - tid2x >> 16; // Convert fixed point to integer
+	y = tid1y - tid2y >> 16;
+	z = tid1z - tid2z >> 16;
+	d = sqrt8( x*x + y*y + z*z );
+	return d;
+}
+
+function int xydistanceVal2 (int tid1x, int tid1y, int tid2x, int tid2y)
+{
+	int x, y, d;
+	x = tid1x - tid2x >> 16; // Convert fixed point to integer
+	y = tid1y - tid2y >> 16;
+	d = sqrt8( x*x + y*y );
+	return d;
+}
+
+function int fdistanceVal (int x, int y, int z)
+{
+	int len;
+
+	int ang = vectorangle(x,y);
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
+	else len = fixeddiv(x, cos(ang));
+
+	ang = vectorangle(len, z);
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(z, sin(ang));
+	else len = fixeddiv(len, cos(ang));
+
+	return len;
+}
+
+
+
+function int WrapAround1(int i)
+{
+	if(i<-180.0) return i+360.0;
+	if(i>180.0) return i-360.0;
+	return i;
+}
+
+function int WrapAround2(int i)
+{
+	if(i<0.0) return i+360.0;
+	if(i>360.0) return i-360.0;
+	//print(f:i);
+	return i;
+}
+
+
+function int getHypotenuse(int x, int y)
+{
+	int len;
+	
+	int ang = vectorangle(x,y);
+	if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
+	else len = fixeddiv(x, cos(ang));
+
+	//print(f:len);
+	return len;
+}
+
+
+
+function bool differentTeams (int pusherTeam, int pushee)
+{
+	return (pusherTeam != GetPlayerInfo(pushee-1000, PLAYERINFO_TEAM));
+}
+

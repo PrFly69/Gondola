@@ -412,6 +412,7 @@ IsSelected OilSliderBoss{DrawBar"VARAMMO8","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"01_8_VAR","VAREMPTY",Ammo2,horizontal,58,176;
 	InInventory OilSledFlag,1{DrawBar"1H_S_VAR","VNOBAR",OilSledFlag,horizontal,58,184;}
 	InInventory not OilStaminaFlag,127{DrawBar"1H_R_VAR","VNOBAR",OilStaminaFlag,horizontal,58,184;}}
+IsSelected WildBearBoss{DrawBar"VARAMMO5","VAREMPTY",BumoCharge,horizontal,58,184;}
 
 //MM2
 IsSelected MetalBladeBoss{Drawbar"VARAMMO9","VAREMPTY",Ammo1,horizontal,58,184;
@@ -806,9 +807,11 @@ IsSelected SandySandBoss,SandySanderBoss{Drawbar"WT_B_VAR","VAREMPTY",ammo1,hori
 	Drawbar"WT_2_VAR","VAREMPTY",ammo2,horizontal,58,176;
 	InInventory MWSShieldCharge,1{DrawBar"VARFLS1","VNOBAR",MWSShieldCharge,horizontal,58,176;}}
 IsSelected PigsyBoss{DrawBar"WT_C_VAR","VAREMPTY",HyperStormHeat,horizontal,58,184;
-DrawBar"WT_3_VAR","VNOBAR",HyperStormCold,horizontal,58,184;}
+DrawBar"WT_3_VAR","VNOBAR",HyperStormCold,horizontal,58,184;
+InInventory HyperStormLungStamina,1{Drawbar"VG_A_VAR","VNOBAR",HyperStormLungStamina,horizontal,58,184;}}
 IsSelected PiggyBoss{DrawBar"WT_C_VAR","VAREMPTY",HyperStormHeat,horizontal,58,184;
-DrawBar"WT_3_VAR","VNOBAR",HyperStormCold,horizontal,58,184;}
+DrawBar"WT_3_VAR","VNOBAR",HyperStormCold,horizontal,58,184;
+InInventory HyperStormLungStamina,1{Drawbar"VG_A_VAR","VNOBAR",HyperStormLungStamina,horizontal,58,184;}}
 
 //MMK
 IsSelected MirrorBusterBoss{Drawbar"VARAMM49","VAREMPTY",Ammo1,horizontal,58,184;
