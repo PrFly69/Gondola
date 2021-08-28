@@ -1,0 +1,646 @@
+actor BearerClass : HardClassBase
+{
+Player.ScoreIcon "C_00X0X"
+player.startitem "HardHealthBar"
+player.displayname "BearerClass"
+player.soundclass "BearerClassC"
+
+player.startitem "WildBearBoss"
+player.startitem "MaximumBearAmmo",3
+player.startitem "BearerFlag"
+player.startitem "CanUseItems"
+player.startitem "SemiStunArmor"
+
+player.forwardmove 0.60, 0.60
+player.sidemove 0.58, 0.58
+
++NOSKIN
+player.morphweapon "WildBearBoss"
+PainSound "misc/ROCKHURTX"
+
+States
+{
+Spawn:
+YD_B A 0
+YD_B B 1
+YD_B A 1
+YD_B A 0 A_JumpIfInventory("YDEyeFlag",1,"Eye")
+Goto Spawn+2
+See:
+YD_B BCDE 4
+Goto Spawn
+Eye:
+YEYE B 2 
+YEYE B 0 A_JumpIfInventory("YDEyeFlag",1,"Eye")
+Goto Spawn+2
+Missile:
+YD_B FG 5
+goto Spawn
+
+ClassPain:
+YD_B H 0
+YD_B H 0 A_Pain
+//YD_B H 0 A_PlaySoundEX("misc/GBPAINX","Voice")
+YD_B H 0 A_GiveInventory("IsInPain",1)
+YD_B H 0 A_JumpIfInventory("YDEyeFlag",1,"EyePain")
+YD_B HHHHHHHHHH 2 A_SpawnItemEx("PainFX_CBM",-5,0,3,0,0,0)
+YD_B H 1
+YD_B H 0 A_Jump(256,"Spawn")
+YD_B H 1 A_Jump(256,"Spawn")
+Goto Spawn+2
+
+EyePain:
+YEYE AAAAA 1
+YEYE AAAAA 0
+YEYE A 0 A_Jump(256,"Spawn")
+YEYE A 0 A_Jump(256,"Spawn")
+Goto Spawn+2
+
+DeathFix:
+YD_B H 0 A_GiveInventory("SpecialDeathFlag",1)
+goto DeathContinue
+
+ClassDeath:
+YD_B H 0 A_JumpIfInventory("InstagibFlag",1,"MegaDeathEnd")
+YD_B H 0 A_JumpIfInventory("RiseDeathFlag",1,"RiseDeath")
+YD_B H 0 A_JumpIfInventory("IceDeathFlag",1,"IceDeath")
+YD_B H 19
+goto MegaDeathEnd
+
+
+RiseDeath:
+YD_B H 1 ThrustThingZ(0,21,0,1)
+YD_B H 0 A_JumpIf(ceilingz-z<64,"MegaDeathEnd")
+YD_B H 0 A_GiveInventory("RiseDeathFlag2",1)
+YD_B H 0 A_JumpIfInventory("RiseDeathFlag2",25,"MegaDeathEnd")
+Goto RiseDeath
+IceDeath:
+YD_B H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
+YD_B H 1 A_PlaySoundEx("CBM/freeze","Voice")
+YD_B HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
+YD_B H 0 A_PlaySoundEx("CBM/icebreak","Body")
+YD_B H 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+goto DeathWait
+
+//Have to hard code because morphes break the rules
+//
+TimeStopped:
+YD_B "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]" 1 A_Stop
+Goto Pain+2
+TimeStoppedX:
+YD_B "#####################################################################################################" 1 A_Stop
+Goto Pain+2
+
+Pain.LightRyuStop:
+YD_B H 0 A_SpawnItemEx("PainLightRyuStopHit")
+YD_B H 0 A_GiveInventory("LightRyuStopProtect",1)
+YD_B H 0 A_GiveInventory("TimeStoppedTF",1)
+YD_B HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_Stop
+Goto Pain+2
+
+}
+}
+
+actor YellowDevil : BearerClass
+{
+	player.displayname "YellowDevil"
+	//You don't want to fight 200 YD in TLMS.
+	player.startitem "ToadHealthBar"
+	player.maxhealth 155
+	health 155
+
+	player.startitem "WildBearBoss"
+	player.startitem "MaximumBearAmmo",3
+	player.startitem "CanUseItems"
+	player.startitem "SemiStunArmor"
+}
+
+actor WildBearBoss : BaseMM8BDMWep_CBM
+{
+dropitem "ConfettiDeathSpawner"
+Tag "$TAGC_1Y"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 3
+Obituary "$OB_BEARCLOSE"
+weapon.ammotype "MaximumBearAmmo"
+States
+{
+Spawn:
+C_00 X 1
+loop
+Ready:
+YD_H A 0 ACS_ExecuteAlways(998,0,DYE_YELLOWDEVIL)
+goto Ready1
+Ready1:
+YD_H A 0 A_JumpIfInventory("BumoHeal",1,"Heal")
+YD_H A 1 A_WeaponReady
+wait
+
+Heal:
+YD_H A 0 HealThing(5)
+YD_H A 0 A_TakeInventory("BumoHeal",1)
+YD_H A 10 A_WeaponReady
+goto Ready1
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+YD_H A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+YD_H A 1 A_Raise
+Loop
+Fire:
+YD_H C 0
+YD_H A 1 Offset(8,26)
+YD_H C 1 Offset(8,26)
+YD_H C 1 Offset(20,16)
+YD_H C 1 Offset(30,6)
+YD_H C 0 A_Refire("FireCharge")
+Fire2:
+YD_H C 0 A_TakeInventory("BumoCharge", 50)
+YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
+YD_H C 0 A_GiveInventory("WildBearMain_CI",1)
+YD_H D 2 Offset(20,8)
+YD_H E 1 Offset(12,17)
+YD_H E 1 Offset(2,27)
+YD_H E 13 Offset(-10,37)
+YD_H A 1 Offset(-8,36)
+YD_H A 1 Offset(-6,35)
+YD_H A 1 Offset(-4,34)
+YD_H A 1 Offset(-2,33)
+Goto Ready1
+
+FireCharge:
+YD_H C 0 A_JumpIfInventory("BumoCharge",50,"FireCharged")
+YD_H C 2 Offset(30,6) A_GiveInventory("BumoCharge")
+YD_H C 0 A_Refire("FireCharge")
+Goto Fire2
+
+FireCharged:
+YD_H C 0 A_PlaySoundEx("misc/electrap","weapon")
+YD_H C 2 Offset(30,6) 
+YD_H C 2 Offset(28,8)
+YD_H C 1 A_Refire("FireCharged")
+YD_H C 0 A_TakeInventory("BumoCharge", 50)
+YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
+YD_H C 0 A_GiveInventory("WildBearMain2_CI",1)
+YD_H C 0 A_ChangeFlag("NOTELEPORT",1)
+YD_H C 0 A_ChangeFlag("SOLID",0)
+YD_H C 0 A_TakeInventory("UnSolid",1)
+YD_H C 0 A_Changeflag("PICKUP",0)
+YD_H C 0 A_GiveInventory("YDEyeFlag",1)
+YD_H D 2 Offset(20,8)
+YD_H C 0 A_JumpIfInventory("BearerFlag",1,"FireLoop")
+goto FireLoopNonBearer
+
+FireLoopNonBearer:
+YD_H E 0 A_GiveInventory("GuardDownFlag",1)
+YD_H E 0 A_SpawnItemEx("MarkedForDeathHandler")
+FireLoopNonBearer2:
+YD_H E 0 A_GiveInventory("PowerMarkedForDeath",1)
+YD_H E 4 Offset(12,17)
+YD_H E 1 Offset(12,17) A_JumpIfInventory("BumoEnd",1,"FireEnd")
+loop
+
+FireLoop:
+YD_H E 4 Offset(12,17)
+YD_H E 1 Offset(12,17) A_JumpIfInventory("BumoEnd",1,"FireEnd") 
+YD_H E 0 DamageThing(10)
+YD_H E 0 A_GiveInventory("BumoHeal",1)
+loop
+
+FireEnd:
+YD_H E 0 A_TakeInventory("BumoEnd",1)
+YD_H E 0 A_TakeInventory("YDEyeFlag",1)
+YD_H E 0 A_ChangeFlag("PICKUP",1)
+YD_H E 0 A_ChangeFlag("NOTELEPORT",0)
+YD_H E 0 A_SpawnItemEx("ReSolidifier")
+YD_H E 1 Offset(12,17)
+YD_H E 1 Offset(2,27)
+YD_H E 18 Offset(-10,37)
+YD_H A 1 Offset(-8,36)
+YD_H A 1 Offset(-6,35)
+YD_H A 1 Offset(-4,34)
+YD_H A 1 Offset(-2,33)
+Goto Ready1
+
+Altfire:
+YD_H A 0 A_GiveInventory("WildBearAlt_CI",1)
+YD_H A 0 A_PlaySoundEx("wep/YD_Punch","Weapon")
+YD_H B 2 Offset(-28,14)
+YD_H BBBB 2 Offset(-56,-4)
+YD_H B 2 Offset(-56,-4)
+YD_H B 2 Offset(-56,-4)
+YD_H B 2 Offset(-32,8)
+YD_H A 2 Offset(-12,20)
+YD_H A 2 A_WeaponReady(14)
+Goto Ready1
+}
+}
+
+actor MaximumBearAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 3
++INVENTORY.IGNORESKILL
+}
+
+actor BearerFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor BumoCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 50
+}
+
+actor BumoHeal : Inventory
+{
+inventory.amount 1
+inventory.maxamount 33
+}
+
+actor BumoEnd : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor PowerMarkedForDeath : BasePowerWeak
+{
+damagefactor "Normal",1.35
+powerup.duration 75
+}
+
+actor MarkedForDeathHandler : BasicHelper
+{
+	States
+	{
+		Spawn:
+		TNT1 A 1
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerMarkedForDeath",1,"VisualSpawn")
+		TNT1 A 0 A_TakeFromTarget("GuardDownFlag",999)
+		stop
+		VisualSpawn:
+		TNT1 A 0 A_GiveToTarget("WildBearMain2V_CI",1)
+		goto Spawn
+	}
+}
+
+actor MarkedVisualB
+{
+scale 2.5
+Radius 1
+Height 1
+-SOLID
++NOGRAVITY
++NOINTERACTION
++DONTBLAST
+RenderStyle "Translucent"
+Alpha 0.8
+//+CLIENTSIDEONLY
++NONETID
+states
+{
+Spawn:
+YD_H Q 0
+YD_H Q 1
+stop
+}
+}
+
+actor MarkedVisual : MarkedVisualB {translation "192:192=216:216", "198:198=220:220"}
+actor MarkedVisualR : MarkedVisualB {translation "192:192=171:171", "198:198=41:41"}
+actor MarkedVisualO : MarkedVisualB {translation "192:192=104:104", "198:198=128:128"}
+actor MarkedVisualP : MarkedVisualB {translation "192:192=229:229", "198:198=232:232"}
+
+actor YDEyeFlag : OnceC{}
+
+//I present, a far less bad version of the original very loopy cheese protection.
+actor CheeseProtectionHelper : CustomInventory 
+{
+	States
+	{
+		Pickup:
+		TNT1 A 0 A_SpawnItemEx("CheeseProtectionGiver")
+		TNT1 A 0 A_SpawnItemEx("CheeseProtectionTaker")
+		stop
+	}
+}
+
+actor CheeseProtectionGiver : BasicHelper
+{
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_GiveToTarget("InvulnerableOn_Pickup")
+		stop
+	}
+}
+
+actor CheeseProtectionTaker : BasicHelper
+{
+	States
+	{
+		Spawn:
+		TNT1 A 50
+		TNT1 A 0 A_GiveToTarget("InvulnerableOff_Pickup")
+		stop
+	}
+}
+
+actor BearerMorphStart_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 //LightTeamFlag//ACS handles TeamFlags/FlagPickups
+
+TNT1 A 0 SetPlayerProperty(0,0,16)//Buddha
+TNT1 A 0 SetPlayerProperty(0,0,4)//TotallyFrozen
+TNT1 A 0 SetPlayerProperty(0,0,0)//Frozen
+TNT1 A 0 SetPlayerProperty(0,0,3)//Flight
+
+//Important Gives
+TNT1 A 0 A_GiveInventory("BearerFlag",1)//ACS watches for this
+TNT1 A 0 A_GiveInventory("EnvironmentGravity",1)//Fix underwater gravity
+TNT1 A 0 A_GiveInventory("IsInGame",1)//Great deal of things watch for this
+TNT1 A 0 A_GiveInventory("PowerNoGravityFix",1)//Fixes NoGravity
+TNT1 A 0 A_GiveInventory("SpawnTelefragFixPickup",1)//Probably not needed, but might as well
+TNT1 A 0 A_GiveInventory("StaminaFlag",500)//Restore Stamina due to ClearInventory();
+
+//Bonus Gives
+TNT1 A 0 A_GiveInventory("CanUseItems",1)
+TNT1 A 0 A_GiveInventory("SemiStunArmor",1)
+TNT1 A 0 A_GiveInventory("HardHealthBar",1)
+TNT1 A 0 A_GiveInventory("CheeseProtectionHelper",1)
+
+
+//Flags to end certain class actors/projectiles
+
+TNT1 A 0 A_GiveInventory("BubbleFloodUndeploy",1)
+
+TNT1 A 0 A_GiveInventory("ClashFlag1",1)//Applies to Tornado as well
+TNT1 A 0 A_GiveInventory("ClashFlag2",1)
+TNT1 A 0 A_GiveInventory("ClashFlag3",1)
+TNT1 A 0 A_GiveInventory("ClashFlag4",1)
+TNT1 A 0 A_GiveInventory("ClashFlagT",1)
+
+TNT1 A 0 A_GiveInventory("RingFlag",1)
+TNT1 A 0 A_GiveInventory("RingFlag2",1)
+
+TNT1 A 0 A_GiveInventory("DiveLockonCleanse",1)
+
+TNT1 A 0 A_GiveInventory("EndFlameFlag",1)
+
+TNT1 A 0 A_GiveInventory("SearchBushFlag1",1)
+TNT1 A 0 A_GiveInventory("SearchBushFlag2",1)
+TNT1 A 0 A_GiveInventory("SearchBushFlag3",1)
+TNT1 A 0 A_GiveInventory("SearchBushFlag4",1)
+
+TNT1 A 0 A_GiveInventory("AquaKillFlag",1)
+
+TNT1 A 0 A_GiveInventory("DuoMeteorEnd",1)
+TNT1 A 0 A_GiveInventory("ODuoMeteorStop",1)
+
+TNT1 A 0 A_GiveInventory("SplashEndSinging",1)
+
+TNT1 A 0 A_GiveInventory("BeeFlag1",1)
+
+TNT1 A 0 A_GiveInventory("Merc_BlobOff_F",1)
+
+TNT1 A 0 A_TakeInventory("NoJumpCancel",9)
+TNT1 A 0 A_GiveInventory("StopShield",1) //I'm kind of amazed this wasn't already here.
+stop
+}
+}
+
+actor YD_BearerCube
+{
+	Translation "192:192=216:216", "198:198=220:220"
+	PROJECTILE
+	Obituary "$OB_BEARMAIN1"
+	damagetype "YellowDevilB"
+	-NOGRAVITY
+	+SKYEXPLODE
+	damage (25)
+	gravity .7
+	Radius 25
+	Height 20
+	speed 29
+	scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ThrustThingZ(0,14,0,1)
+		TNT1 A 0 A_Jump(256,1,2,3,4)
+		YD_H FGHI 3
+		Goto Spawn+3
+		Death:
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+		TNT1 A 1 A_Stop
+		TNT1 A 0 A_PlaySoundEx("wep/YD_Sploosh","Weapon")
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,0,1)
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,90,1)
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,180,1)
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,270,1)
+		stop
+	}
+}
+
+actor YD_BearerCubeCharged : YD_BearerCube
+{
+	Obituary "$OB_BEARMAIN3"
+	+DONTBLAST
+	+DONTREFLECT
+	+DONTSPLASH
+	damage (35)
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_ExecuteAlways(815,0,150) //Man, I wonder who I borrowed this script from.
+		TNT1 A 0 ThrustThingZ(0,14,0,1)
+		TNT1 A 0 A_Jump(256,1,2,3,4)
+		YD_H MNOP 3 
+		Goto Spawn+4
+		Death:
+		TNT1 A 0 A_GiveInventory("ProjectilePortDead",1)
+		TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+		TNT1 A 0 A_GiveToTarget("BumoEnd",1)
+		TNT1 A 0 A_PlaySoundEx("wep/YD_Sploosh","Weapon")
+		TNT1 A 1 A_Stop
+		//TNT1 A 1 Thing_Move(0,user_TID,1)2
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,0,1)
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,90,1)
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,180,1)
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,270,1)
+		stop
+	}
+}
+
+actor YD_BearerCubeB : YD_BearerCube{translation "192:192=205:205", "198:198=74:74"}
+actor YD_BearerCubeR : YD_BearerCube{translation "192:192=171:171", "198:198=41:41"}
+actor YD_BearerCubeO : YD_BearerCube{translation "192:192=104:104", "198:198=128:128"}
+actor YD_BearerCubeP : YD_BearerCube{translation "192:192=229:229", "198:198=232:232"}
+actor YD_BearerCubeChargedB : YD_BearerCubeCharged{translation "192:192=205:205", "198:198=74:74"}
+actor YD_BearerCubeChargedR : YD_BearerCubeCharged{translation "192:192=171:171", "198:198=41:41"}
+actor YD_BearerCubeChargedO : YD_BearerCubeCharged{translation "192:192=104:104", "198:198=128:128"}
+actor YD_BearerCubeChargedP : YD_BearerCubeCharged{translation "192:192=229:229", "198:198=232:232"}
+
+actor YD_BearerCubeBit
+{
+PROJECTILE
+Obituary "$OB_BEARMAIN2"
+damagetype "YellowDevilB"
++DONTSPLASH
+-NOGRAVITY
+damage (5)
+Radius 8//25
+Height 8//20
+speed 14
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetScale(ScaleX-frandom(0,1))
+TNT1 A 0 A_Jump(256,1,2,3)
+YD_H JKL 3
+goto Spawn+3
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor YD_BearerPunch
+{
+translation "192:192=216:216"
+PROJECTILE
+damagetype "YellowDevilP"
+Obituary "$OB_BEARALT"
++DONTBLAST
+reactiontime 1
+damage (35)
+Radius 40
+Height 20
+speed 60
+scale 2.5
+States
+{
+Spawn:
+TMFX R 0
+TMFX R 1 A_CountDown
+wait
+Death:
+TMFX R 0 A_Explode(35,40,0,0,40)
+goto XDeath
+XDeath:
+TMFX R 0 A_Stop
+TMFX R 2
+YMFX C 2
+TMFX RS 2
+stop
+}
+}
+
+actor YD_BearerPunchB : YD_BearerPunch{translation "192:192=205:205"}
+actor YD_BearerPunchR : YD_BearerPunch{translation "192:192=171:171"}
+actor YD_BearerPunchO : YD_BearerPunch{translation "192:192=104:104"}
+actor YD_BearerPunchP : YD_BearerPunch{translation "192:192=229:229"}
+
+actor WildBearMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCube",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeP",0,0,8,0)
+goto Done
+}
+}
+
+actor WildBearMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeCharged",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeChargedB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeChargedR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeChargedO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeChargedP",0,0,8,0)
+goto Done
+}
+}
+
+actor WildBearMain2V_CI : TeamColor_CI
+{
+	states
+	{
+		FireX:
+		TNT1 A 0 A_SpawnItemEx("MarkedVisual",0,0,100,momx,momy,momz,0,9)
+		stop
+		FireB:
+		TNT1 A 0 A_SpawnItemEx("MarkedVisualB",0,0,100,momx,momy,momz,0,9)
+		stop
+		FireR:
+		TNT1 A 0 A_SpawnItemEx("MarkedVisualR",0,0,100,momx,momy,momz,0,9)
+		stop
+		FireO:
+		TNT1 A 0 A_SpawnItemEx("MarkedVisualO",0,0,100,momx,momy,momz,0,9)
+		stop
+		FireP:
+		TNT1 A 0 A_SpawnItemEx("MarkedVisualP",0,0,100,momx,momy,momz,0,9)
+		stop
+	}
+}
+
+actor WildBearAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("YD_BearerPunch",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("YD_BearerPunchB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("YD_BearerPunchR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("YD_BearerPunchO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("YD_BearerPunchP",0,0,8,0)
+goto Done
+}
+}
