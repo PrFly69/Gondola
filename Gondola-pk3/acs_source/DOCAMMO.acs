@@ -33,13 +33,13 @@ script "cbm_CopyWepAmmoSet" (int number, int which) //Ammo Changer
 		break;
 	//case 4:
 		//for (i=0; i<MAX_WEAPONS_GLOBAL; i++) {
-			//SetAmmoCapacity(weapons_ammo[i][1],round(GetAmmoCapacity(weapons_ammo[i][1])*1.14));
+			//SetAmmoCapacity(weapons_ammo[i][1],roundOld(GetAmmoCapacity(weapons_ammo[i][1])*1.14));
 		//}
 		//break;
 }
 }
 
-//function int round(int fixedNumber)
+//function int roundOld(int fixedNumber)
 //{return (fixedNumber + 0.5) >> 16;}
 
 script "cbm_CopyWepAmmoRatioGive" (int amount) //Doc Robot ammo regen

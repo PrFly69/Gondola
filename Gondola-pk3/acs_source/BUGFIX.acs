@@ -39,6 +39,11 @@
 
 #DEFINE C_SETACTOR_P 1191
 
+function int roundOld(int fixedNumber)
+{
+	return (fixedNumber + 0.5) >> 16;
+}
+
 script CBM_FetchMyHealth (int Which, int HPBoost)
 {
 	int HP = max(PlayerHealth(),0);
@@ -51,7 +56,7 @@ script CBM_FetchMyHealth (int Which, int HPBoost)
 				HealThing(HPBoost,Spawn_H);
 			}
 			else{
-				HealThing(round(HPBoost * 0.01 * Spawn_H + HP),Spawn_H);
+				HealThing(roundOld(HPBoost * 0.01 * Spawn_H + HP),Spawn_H);
 			}
 			break;
 		Case 3://Return Percent Heal
@@ -59,7 +64,7 @@ script CBM_FetchMyHealth (int Which, int HPBoost)
 				SetResultValue(HPBoost);
 			}
 			else{
-				SetResultValue(round(HPBoost * 0.01 * Spawn_H + HP));
+				SetResultValue(roundOld(HPBoost * 0.01 * Spawn_H + HP));
 			}
 			break;
 		Case 2://Return false if max health
@@ -647,14 +652,14 @@ script C_GRAVITY_SLAM (int gravitated)
 	//log(s:"gZ1 = ",f:gZ1);
 	//log(s:"gZ = ",f:gZ);
 
-	//log(i:max(0,round((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime)))/springCheck);
-	//GiveInventory("CutterFlag",max(0,round((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime)))/springCheck);
-	//log(s:"user_GravStack = ",i:max(0,round((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime))));
-	SetUserVariable(0,"user_GravStack",max(0,round((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime))));
+	//log(i:max(0,roundOld((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime)))/springCheck);
+	//GiveInventory("CutterFlag",max(0,roundOld((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime)))/springCheck);
+	//log(s:"user_GravStack = ",i:max(0,roundOld((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime))));
+	SetUserVariable(0,"user_GravStack",max(0,roundOld((gZ1 - gZ)*FORCE_MULTIPLIER/max(1,fallingTime))));
 
 	//log(s:"gZ1 = ",f:fallingTime);
 	//log(s:"gz = ",f:fallingTime);
-	//log(s:"Z velocity = ",i:round((gZ1 - gZ)*FORCE_MULTIPLIER),s:" \\\ FallingTime = ",i:fallingTime);
+	//log(s:"Z velocity = ",i:roundOld((gZ1 - gZ)*FORCE_MULTIPLIER),s:" \\\ FallingTime = ",i:fallingTime);
 	//log(s:"CutterFlags = ",i:GetUserVariable(0,"user_GravStack"));
 
 	GiveInventory("CollideFlag",1);
@@ -799,7 +804,7 @@ switch (jump) {
 script 146 (void)
 {
 //	printbold(s:"146 called, plz tell celebi");
-SetResultValue(round(fixedmul(GetActorProperty(0,APROP_JUMPZ),4.2)));
+SetResultValue(roundOld(fixedmul(GetActorProperty(0,APROP_JUMPZ),4.2)));
 }
 
 script C_CHECK_TARGET_OOC (void)//This is for projectiles to check if their owner spectated, disconnected, or is dead.
@@ -1465,7 +1470,7 @@ script "C_HEALTHACS" (int Magic, int HPBoost) //Health related script
 				PCT3 = HPBoost;
 			}
 			else{
-				PCT3 = round(HPBoost * 0.01 * SpawnHP3 + h);
+				PCT3 = roundOld(HPBoost * 0.01 * SpawnHP3 + h);
 			}
 			int HPAdd3 = min(PCT3 + h,SpawnHP3);
 			SetActorProperty(0, APROP_HEALTH, HPAdd3);
@@ -1553,11 +1558,6 @@ if(len<changeLimit) {
 //FFFF
 //FFFF
 //FFFF
-
-function int round(int fixedNumber)
-{
-	return (fixedNumber + 0.5) >> 16;
-}
 
 
 function int distance (int tid1, int tid2)

@@ -412,7 +412,12 @@ special
 	-123:BeginDBTransaction(0),
 	-124:EndDBTransaction(0),
 	-125:GetDBEntries(1),
-	
+	-126:NamedRequestScriptPuke(1,4),
+    -127:SystemTime(0),
+ 	-128:GetTimeProperty(2, 3),
+	-129:Strftime(2, 3),
+    -130:SetDeadSpectator(2),
+    -131:SetActivatorToPlayer(1),
 	// -1xx are reserved for Zandronum
 	-200:CheckClass(1),
 	-201:DamageActor(6), // [arookas]
@@ -444,4 +449,3 @@ special
 	-19621:SetTeamScore(2),
 	
 	-100000:__EndOfList__(10);
-	
