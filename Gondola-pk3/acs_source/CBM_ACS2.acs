@@ -869,7 +869,7 @@ Script "cbm_PlugLatch" (void)
 	}
 	GiveInventory("PlugmanLatch",1);
 
-	while(GetActorProperty(TargetTID, APROP_HEALTH)>0 && GetActorProperty(OwnerTID, APROP_HEALTH)>0 && xyzDistance(OwnerTID, TargetTID) < 800 && CheckInventory("PlugmanLatch")>0){
+	while(GetActorProperty(TargetTID, APROP_HEALTH)>0 && GetActorProperty(OwnerTID, APROP_HEALTH)>0 && xyzDistance(OwnerTID, TargetTID) < 840 && CheckInventory("PlugmanLatch")>0){
 		ACS_NamedExecuteAlways("cbm_DrawPlugCable", 0, TargetTID, OwnerTID, CheckInventory("PlugmanIsShocking"));
 		Delay(1);
 	}
