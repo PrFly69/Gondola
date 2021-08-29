@@ -287,7 +287,7 @@ Actor KnightmanCrusher {
 		XDeath:
 		Death:
 			//KNIA I 0 A_GiveToTarget("KnightDouble", 1)
-			TNT1 A 0 A_Explode(36,96,0,0,96)
+			TNT1 A 0 A_Explode(32,96,0,0,96)
 			TNT1 A 0 A_PlaySoundEx("misc/hugequake","Body")
 			TNT1 A 0 A_Quake(3,28,0,512)
 			KNIA I 0 A_TakeFromTarget("KnightFlag", 999)
@@ -426,7 +426,7 @@ Actor KnightmanCrusherNoRip : KnightmanCrusher {
 	Obituary "$OB_KNIGHTCRUSH"
 	BounceFactor 1.0
 	WallBounceFactor 1.0
-	Damage (18)
+	Damage (16)
 	Radius 8
 	Height 16
 	reactiontime 10
