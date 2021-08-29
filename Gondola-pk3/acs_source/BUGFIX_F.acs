@@ -1,5 +1,5 @@
-#include "zcommon.acs"
 #library "bugfix_f"//F is for fish
+#include "zcommon.acs"
 
 #DEFINE C_JAX_SUCKRECODE 422
 #DEFINE C_JAX_SUCKRECODE2 423
