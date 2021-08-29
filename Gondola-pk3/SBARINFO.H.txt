@@ -555,7 +555,8 @@ WeaponAmmo BallAmmo{Drawbar"VARAMM15","VAREMPTY",Ammo1,horizontal,58,184;
 					   DrawImage"BLIRICON",178,175;}
 IsSelected CentaurFlashBoss{Drawbar"VARAMM26","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected FlameBlastBoss{Drawbar"VARAMM20","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected KnightCrushBoss{Drawbar"VARAMM27","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected KnightCrushBoss{Drawbar"VARAMM27","VAREMPTY",Ammo1,horizontal,58,184;
+		InInventory KnightmanCharge,1{DrawBar"7D_A_VAR","VNOBAR",KnightmanCharge,horizontal,58,184;}}
 IsSelected PlantbarrierBoss{Drawbar"VARAMM28","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory ShieldCheck,1{DrawBar"VARFLS7","VAREMPTY",Ammo1,horizontal,58,184;}
 	DrawBar"00_2_VAR","VAREMPTY",Ammo2,horizontal,58,176;

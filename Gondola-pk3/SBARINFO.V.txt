@@ -94,7 +94,8 @@ IsSelected CrystalEyeWepC{Drawbar"BARAMM25", "BAREMPTY", CrystalEyeAmmo, vertica
 IsSelected BlizzardAttackWepC{Drawbar"BARAMM15", "BAREMPTY", BlizzardAttackAmmo, vertical, 16, 8;}
 IsSelected CentaurFlashWepC{Drawbar"BARAMM26", "BAREMPTY", CentaurFlashAmmo, vertical, 16, 8;}
 IsSelected FlameBlastWepC, FlameBlastWepCMaestro{Drawbar"BARAMM20", "BAREMPTY", FlameBlastAmmo, vertical, 16, 8;}
-IsSelected KnightCrushWepC{Drawbar"BARAMM27", "BAREMPTY", KnightCrushAmmo, vertical, 16, 8;}
+IsSelected KnightCrushBoss{Drawbar"BARAMM27","BAREMPTY",Ammo1,vertical,16,8;
+		InInventory KnightmanCharge,1{DrawBar"7D_A_BAR","NOBAR",KnightmanCharge,vertical,16,8;}}
 IsSelected PlantbarrierWepC{Drawbar"BARAMM28", "BAREMPTY", PlantbarrierAmmo, vertical, 16, 8;	
 	InInventory ShieldCheck, 1{DrawBar "BARFLS7", "BAREMPTY", PlantbarrierAmmo, vertical, 16, 8;
 							   DrawBar "BARHEALP", "BAREMPTY", Health, vertical, 24, 8;}}
@@ -574,7 +575,8 @@ WeaponAmmo BallAmmo{Drawbar"BARAMM15","BAREMPTY",Ammo1,vertical,16,8;
 					   DrawImage"BLIRICON",32,55;}
 IsSelected CentaurFlashBoss{Drawbar"BARAMM26","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected FlameBlastBoss{Drawbar"BARAMM20","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected KnightCrushBoss{Drawbar"BARAMM27","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected KnightCrushBoss{Drawbar"BARAMM27","BAREMPTY",Ammo1,vertical,16,8;
+		InInventory KnightmanCharge,1{DrawBar"7D_A_BAR","NOBAR",KnightmanCharge,vertical,16,8;}}
 IsSelected PlantbarrierBoss{Drawbar"BARAMM28","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory ShieldCheck,1{DrawBar"BARFLS7","BAREMPTY",Ammo1,vertical,16,8;}
 	DrawBar"00_2_BAR","BAREMPTY",Ammo2,vertical,8,8;

@@ -45,12 +45,12 @@ TGUH H 0 A_TakeInventory("UnSolid",1)
 TGUH H 0 A_ChangeFlag("SOLID",0)
 TGUH H 0 A_Refire("HoldCheck")
 goto Release
-Hold2:
+Hold:
 TGUH H 0 A_GiveInventory("TenguDashFlag",1)
 TGUH H 1 A_GiveInventory("TengumanDash_P",1)
 TGUH H 0 A_TakeInventory("FeelMyPowerAmmo",6)
 TGUH H 0 A_JumpIfNoAmmo("Release")
-TGUH H 0 A_Refire("Hold2")
+TGUH H 0 A_Refire("Hold")
 goto Release
 Release:
 TGUH I 0 A_TakeInventory("TenguDashFlag",1)

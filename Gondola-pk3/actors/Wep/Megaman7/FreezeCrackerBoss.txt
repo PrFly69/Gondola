@@ -336,7 +336,7 @@ loop
 }
 actor GroundFreezeWave2 : GroundFreezeWave
 {
-Renderstyle "Translucent"
+Renderstyle "add"
 Alpha 0.6
 States
 {
@@ -371,7 +371,7 @@ stop
 
 actor GroundFreezeWaveFX1 : BasicClientSide
 {
-RenderStyle "Translucent"
+RenderStyle "add"
 Alpha 0.6
 states
 {
@@ -463,11 +463,11 @@ states
 {
 Spawn:
 MRFP A 0
-MRFF A 4 A_PlaySoundEx("weapon/blizzboss","Weapon")
-MRFF B 4 A_SetUserVar("user_P",8)
+MRFF A 1 A_PlaySoundEx("weapon/blizzboss","Weapon")
+MRFF B 1 A_SetUserVar("user_P",8)
 MRFF C 78 A_SetUserVar("user_P",16)
-MRFF B 4 A_SetUserVar("user_P",8)
-MRFF A 4 A_SetUserVar("user_P",0)
+MRFF B 1 A_SetUserVar("user_P",8)
+MRFF A 1 A_SetUserVar("user_P",0)
 stop
 }
 }
@@ -483,8 +483,8 @@ states
 {
 Spawn:
 MRFC A 0
-MRFC A 4 A_PlaySoundEx("weapon/blizzboss","Weapon")
-MRFC B 4 A_SetUserVar("user_P",6)
+MRFC A 1 A_PlaySoundEx("weapon/blizzboss","Weapon")
+MRFC B 1 A_SetUserVar("user_P",6)
 MRFC C 12 A_SetUserVar("user_P",14)
 MRFC C 0 A_ChangeFlag("NOGRAVITY",0)
 MRFC C 1

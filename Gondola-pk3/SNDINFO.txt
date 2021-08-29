@@ -276,3 +276,7 @@ weapon/magnetmine MAGMINES
 weapon/magnetminefly MAGMINE $limit weapon/magnetminefly 99 $volume weapon/magnetminefly 0.3
 weapon/MagFlyMad MGFLYMAD
 weapon/magnetbeep MAGBEEP
+
+//Knight
+weapon/knightcrushspin KNGTSPIN
+weapon/knightcrushhit KNGTHIT
