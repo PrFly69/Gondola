@@ -1227,6 +1227,9 @@ CHANGELOG
 ==Maestro
 -Fixed Woodcustom Altfire crashing when plug boosted
 
+==Rock
+-Fixed bug where Rock could randomly roll the same weapon twice at the start of an LMS round; Rock should now always have 2 special Mega Balls alongside his regular one (as of gond beta 6)
+
 ==Auto
 -Cans are now properly teamcolored
 
