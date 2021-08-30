@@ -2035,68 +2035,62 @@ goto Yes0
 Yes0:
 TNT1 A 0 A_GiveInventory("MegaBallBoss",1)
 stop
+
 Yes1:
 TNT1 A 0 A_GiveInventory("MegaCutBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB2","YesB3","YesB4","YesB5","YesB6","YesB7","YesB8")
 stop
 Yes2:
 TNT1 A 0 A_GiveInventory("MegaGutsBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB3","YesB4","YesB5","YesB6","YesB7","YesB8")
 stop
 Yes3:
 TNT1 A 0 A_GiveInventory("MegaIceBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB4","YesB5","YesB6","YesB7","YesB8")
 stop
 Yes4:
 TNT1 A 0 A_GiveInventory("MegaBombBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB5","YesB6","YesB7","YesB8")
 stop
 Yes5:
 TNT1 A 0 A_GiveInventory("MegaFireBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB4","YesB6","YesB7","YesB8")
 stop
 Yes6:
 TNT1 A 0 A_GiveInventory("MegaElecBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB4","YesB5","YesB7","YesB8")
 stop
 Yes7:
 TNT1 A 0 A_GiveInventory("MegaTimeBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB4","YesB5","YesB6","YesB8")
 stop
 Yes8:
 TNT1 A 0 A_GiveInventory("MegaOilBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB4","YesB5","YesB6","YesB7")
 stop
-}
-}
 
-actor LMSRockBallPickup2 : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(975)==2,"Yes")
-stop
-Yes:
-TNT1 A 0 A_Jump(256,"Yes1","Yes2","Yes3","Yes4","Yes5","Yes6","Yes7","Yes8")
-goto Yes1
-Yes0:
-TNT1 A 0 A_GiveInventory("MegaBallBoss",1)
-stop
-Yes1:
+YesB1:
 TNT1 A 0 A_GiveInventory("MegaCutBallBoss",1)
 stop
-Yes2:
+YesB2:
 TNT1 A 0 A_GiveInventory("MegaGutsBallBoss",1)
 stop
-Yes3:
+YesB3:
 TNT1 A 0 A_GiveInventory("MegaIceBallBoss",1)
 stop
-Yes4:
+YesB4:
 TNT1 A 0 A_GiveInventory("MegaBombBallBoss",1)
 stop
-Yes5:
+YesB5:
 TNT1 A 0 A_GiveInventory("MegaFireBallBoss",1)
 stop
-Yes6:
+YesB6:
 TNT1 A 0 A_GiveInventory("MegaElecBallBoss",1)
 stop
-Yes7:
+YesB7:
 TNT1 A 0 A_GiveInventory("MegaTimeBallBoss",1)
 stop
-Yes8:
+YesB8:
 TNT1 A 0 A_GiveInventory("MegaOilBallBoss",1)
 stop
 }
