@@ -1254,6 +1254,8 @@ CHANGELOG
 ==Yellow Devil (as of gond beta 6)
 -Imported from ctfpatch v04
 -When chosen as a player class, Yellow Devil takes 35% more damage for the duration of One-Eyed Cube and for two seconds after, rather than losing health during the throw. (Flagbearer behavior unchanged.)
+(Appears on botmenu as of gond beta 6h)
+(Appears on class selection menu as of gond beta 6h)
 
 ==Airman
 -Air Shooter now consumes 2 ammo
@@ -1414,17 +1416,18 @@ CHANGELOG
 ==Blizzardman
 -Rapid Blizzard shots now weave
 
-==Knightman (as of gond beta 6)
+==Knightman
 -Imported ECL1P5E Patch, following are edits made to EC Patch base
 -Knight Crush can now be turned based on where the user faces
 --No longer bounces on surfaces
---Damage 18 > 16
+--Damage 18 > 15 (as of gond beta 6h)
 --Knight Crush now has 25% hitstun on hit
 -Mace Spin now has minor knockback
 --Mace Spin damage 1 > 4, powerprotected for 5 tics
 -Empowered Knight Crush reworked, now is Ult. Knight Crush from V-Classes
 --Can not be redirected like its uncharged counterpart
---Direct attack does 32 damage, has knockback and knockup on hit
+--Direct attack does 25 damage, has knockback and knockup on hit (damage nerfed as of gond beta 6h)
+(quaking on Empowered Knight Crush removed as of gond beta 6h)
 
 ==Plantman
 -Plant Buster has new SFX
@@ -1441,7 +1444,7 @@ CHANGELOG
 --Junk Cube now takes twice as long to passively despawn
 --Junk ammo near cube ported from core, ammo gain reduced 3 > 2
 -Removed idle sound on Junk Shield
--Altfire and reload split, akin to UEC (as of gond beta 6)
+-Altfire and reload split, akin to UEC
 -Uncharged Junk Shot damage 20 > 18
 --Fully charged Junk Shot damage is still 20, projectile now has FX
 --Junk Shot can be fired while near a cube
@@ -1474,7 +1477,7 @@ CHANGELOG
 --Flame Sword usage now halts ammo gain
 --Flame Sword now does 16 base
 --Third Swing now does 22 base
---Has more fx/sounds on hit (as of gond beta 6)
+--Has more fx/sounds on hit
 -Removed Flame Beam
 -Fixed Sword Spin blowing enemies away
 --Endlag from Sword Spin slightly reduced
@@ -1482,6 +1485,9 @@ CHANGELOG
 --Flame Spin suction range 700 > 350
 -Flying Flame Spin ammo consumption 6/9/12 > 9/12/15
 -Flame Lunge recoil 50 > 40
+
+==Clownman
+-Thunder Claw no longer inherits from Knight Crush (as of gond beta 6h)
 
 ==Dynamoman
 -Ported Dynamo Tendril sprites from classes-v9fh.pk3

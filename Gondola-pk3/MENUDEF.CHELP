@@ -308,7 +308,7 @@ OptionValue ClassHealth
 124, "100"
 125, "100"
 126, "115"
-127, "200"
+127, "155 (200 with Flag)"
 } 
 
 
@@ -707,7 +707,7 @@ OptionValue ClassMainfire
 124, "\cdFires selected weapon\nEach weapon uses different ammo"
 125, "\cdFires basic rockets\nRockets spawn shrapnel on explosion"
 126, "\cdMore souls give better mainfires"
-127, "\cdCube that splashes out damaging spheres\n\ciCharge to throw self with cube, lose life midair\nRegain 1/2 life lost while idle"
+127, "\cdCube that splashes out damaging spheres\n\ciCharge to throw self with cube\nTake 135% damage during and 2sec after\nWith flag, lose life instead; regain 50% while idle" 
 } 
 
 

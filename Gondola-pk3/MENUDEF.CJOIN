@@ -190,7 +190,7 @@ OptionString CBM_ClassStrings1
 "Elecman", "Elecman"
 "Timeman", "Timeman"
 "Oilman", "Oilman"
-//"YellowDevil", "Yellow Devil"
+"YellowDevil", "Yellow Devil"
 "Random", "Random"
 }
 OptionString CBM_ClassStrings2
@@ -382,7 +382,7 @@ OptionString CBM_ClassStrings
 "Elecman", "Elecman"
 "Timeman", "Timeman"
 "Oilman", "Oilman"
-//"YellowDevil", "Yellow Devil"
+"YellowDevil", "Yellow Devil"
 
 "Metalman", "Metalman"
 "Airman", "Airman"
