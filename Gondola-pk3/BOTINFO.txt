@@ -19,11 +19,9 @@ class = "Acidman"
 script = "humanbot"
 }
 
-/*
 {
 name = "\ckYellow Devil"
 accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
 class = "YellowDevil"
 script = "humanbot"
 }
-*/

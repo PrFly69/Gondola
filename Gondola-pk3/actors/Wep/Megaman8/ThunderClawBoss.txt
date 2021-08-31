@@ -534,7 +534,8 @@ stop
 }
 }
 
-actor ThunderClawB : KnightmanCrusher {
+
+actor ThunderClawB {
 Translation "192:192=197:197", "198:198=229:229", "199:199=60:60", "202:202=41:41"
 PROJECTILE
 damagetype "ThunderClaw"
@@ -549,6 +550,10 @@ WallBounceFactor 1.0
 //+RIPPER
 +FORCEXYBILLBOARD
 +DONTREFLECT
++DONTSPLASH
++HEXENBOUNCE
++SKYEXPLODE
++THRUGHOST
 ReactionTime 1
 damage (20)//40
 height 18//8
