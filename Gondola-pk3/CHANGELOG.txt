@@ -1251,6 +1251,10 @@ CHANGELOG
 ==Yellow Devil (flagbearer)
 -Imported from ctfpatch v04
 
+==Yellow Devil (as of gond beta 6)
+-Imported from ctfpatch v04
+-When chosen as a player class, Yellow Devil takes 35% more damage for the duration of One-Eyed Cube and for two seconds after, rather than losing health during the throw. (Flagbearer behavior unchanged.)
+
 ==Airman
 -Air Shooter now consumes 2 ammo
 --Fires only one tornado with insufficient ammo
