@@ -17,12 +17,12 @@ JCLA ABC 3 A_WeaponReady
 Goto Ready1
 Ready1:
 JCLA A 0 A_JumpIfInventory("TrunkAmmo",300,"Ready2")//60
-JCLA A 2 A_WeaponReady(WRF_NOPRIMARY)//|WRF_ALLOWRELOAD)
+JCLA A 2 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
 JCLA A 0 A_GiveInventory("TrunkAmmo",3)
 loop
 Ready2:
 JCLA A 0 A_JumpIfInventory("UseJunkShieldFlag",1,"JunkShield")
-JCLA A 2 A_WeaponReady//(WRF_ALLOWRELOAD)
+JCLA A 2 A_WeaponReady(WRF_ALLOWRELOAD)
 JCLA A 0 A_GiveInventory("TrunkAmmo",3)
 loop
 Deselect:
@@ -63,16 +63,8 @@ JCLA A 0 A_TakeInventory("UseJunkShieldFlag",999)
 goto Ready1
 
 Altfire:
-JCLA A 1 //Offset(1,20)
-//JCLA A 1 Offset(1,40)
-//JCLA A 1 Offset(1,60)
-//JCLA A 1 Offset(1,80)
-//JCLA A 1 Offset(1,100)
-goto ReloadHold
-RegularAltfire:
 JCLA A 0 A_GiveInventory("UseJunkShieldFlag",1)
 JCLA A 0 A_GiveInventory("JunkmanAlt_CI",1)
-JCLA A 0 A_TakeInventory("PunchChargeAmmo",999)
 JCLA A 0 A_TakeInventory("BlockLaunched",999)
 JCLA A 0 A_GiveInventory("GoFlag")
 JCLA A 0 A_PlaySoundEx("Weapon/napalm","Weapon")
@@ -168,22 +160,12 @@ Goto Ready1
 //JCLA A 0 A_Refire
 //Goto Ready1
 
-ReloadHold:
-JCLA A 1 A_GiveInventory("PunchChargeAmmo",10)
-JCLA A 0 A_Refire
-goto PunchChecker
-
-PunchChecker:
-JCLA A 0 A_JumpIfInventory("PunchChargeAmmo",100,"Reload")
-goto RegularAltfire
-
 Reload:
 JCLA A 0 A_GiveInventory("UseJunkShieldFlag",1)
 JCLA A 0 A_GiveInventory("VivifyDelay5",1)
-JCLA A 0 A_TakeInventory("BlockLaunched",999)
-JCLA A 0 A_TakeInventory("PunchChargeAmmo",999)
-TNT1 A 0 A_GiveInventory("TrunkAmmo",1)
 JCLA A 0 A_PlaySoundEx("Weapon/Thunderbolt","Weapon")
+JCLA A 0 A_TakeInventory("BlockLaunched",999)
+TNT1 A 6 Offset(-311, 147) A_GiveInventory("TrunkAmmo",1)
 NEDR A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,75,100)
 JUNP A 1 Offset(-284, 136)
 JUNP B 1 Offset(-284, 136)

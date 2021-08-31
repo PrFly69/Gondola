@@ -467,7 +467,7 @@ IsSelected AlienTrapBoss{Drawbar"02_A_BAR","BAREMPTY",Ammo1,vertical,16,8;}
 WeaponAmmo NoodleAmmo{Drawbar"BARAMMO2","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage"NEEDRCON",32,55;}
 IsSelected MagnetMissileBoss{DrawBar"MAGNBAR","BAREMPTY",MagnetFlag,vertical,16,8;
-	//DrawImage"MAGNICON",32,55;
+	DrawImage"MAGNICON",32,55;
 	Drawbar"BARTOKX","BAREMPTY",Ammo1,vertical,8,8;
 	InInventory MagFlyIsOut, 1{Drawbar"BARFLS1","NOBAR",MagFlyIsOut,vertical,24,8;}
 	InInventory MagFlyDelay, 1{Drawbar"BARFLS1","NOBAR",MagFlyDelay,vertical,24,8;}
@@ -595,7 +595,7 @@ Drawbar "BARAMM30","BAREMPTY",Ammo1,vertical,16,8;
 IsSelected FreezeCrackerBoss{Drawbar"BARAMM15","BAREMPTY",Ammo2,vertical,16,8;
     DrawBar"BARAMM31","BAREMPTY",Ammo1,vertical,8,8;}
 IsSelected JunkShieldBoss{Drawbar"DUSBAR","DUSEMPTY",Ammo1,vertical,16,8;
-	DrawBar"JUNCHBAR","NOBAR",PunchChargeAmmo,vertical,24,8;}
+	DrawImage"JUNKRCON",32,55;}
 IsSelected DangerWrapBoss{Drawbar"BARAMM33","BAREMPTY",Ammo1,vertical,16,8; 
 	Drawbar"BAREMPTY","07_3_BAR",BurstBombStock,vertical,reverse,8,8;
 	InInventory DangerFly,1{DrawBar"BARFLS1","NOBAR",DangerFly,vertical,16,8;}}

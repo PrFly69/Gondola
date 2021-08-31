@@ -438,7 +438,7 @@ DamageFactor "SparkShot3", 0.1
 
 actor ShockChainsawProtect : PowerProtection
 {
-Powerup.Duration 5
+Powerup.Duration 10
 DamageFactor "SparkSaw", 0.0
 }
 
@@ -735,7 +735,6 @@ TNT1 A 0 A_JumpIfInTargetInventory("SparkHealAmmo",1,"HealingCheck")
 goto Death
 HealingCheck:
 TNT1 A 0 A_JumpIf(CallACS("BULL_CheckTeams") == 1, "Healing")
-TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"GreedyHeal")
 goto Death
 Healing:
 TNT1 A 0 A_JumpIf(CallACS("BULL_CheckFor",AAPTR_Tracer,1) == CallACS("BULL_CheckFor",AAPTR_Tracer,2), "Death")
@@ -751,9 +750,6 @@ TNT1 A 0 A_TakeFromTarget("SparkHealAmmo",1)
 TNT1 A 0 A_GiveInventory("SparkHealthHandler",1,AAPTR_Tracer)
 TNT1 A 0 A_JumpIfInTargetInventory("SparkIsFullFlag",1,"Death")
 TNT1 A 0 A_TakeFromTarget("SparkHealAmmo",1)
-TNT1 A 0 A_GiveToTarget("Health",1)
-stop
-GreedyHeal:
 TNT1 A 0 A_GiveToTarget("Health",1)
 stop
 Death:

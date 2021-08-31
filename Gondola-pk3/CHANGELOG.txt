@@ -1181,12 +1181,8 @@ CHANGELOG
 -All new V6 portraits properly ported
 -Ported JidiJMidiJDongleBongleAntiMidiJidi3DFloorCheat.pk3
 --Removes the ability to see through 3D floors using 'R_3DFLOORS 0' in software mode
--Removed BEBE
+-Removed BEBE (as of gond beta 6)
 -Pain FX ported from chasecamonlyhitfx.pk3
-
-==Yellow Devil (as of gond beta 6)
--Imported from ctfpatch v04
--When chosen as a player class, Yellow Devil takes 35% more damage for the duration of One-Eyed Cube and for two seconds after, rather than losing health during the throw. (Flagbearer behavior unchanged.)
 
 ==Copyweapons
 -Reverted Thunder Wool to CCBM version
@@ -1194,6 +1190,7 @@ CHANGELOG
 -Ported V6 icons for maps-spawned copyweapons
 
 ==Megaman
+-Ported V6 skin (as of gond beta 6)
 -Ported HUD Cutoff fix from LemonLimeBrony
 -Updated Double Buster HUD for V6
 -Uncharged buster impact VFX added
@@ -1226,9 +1223,6 @@ CHANGELOG
 
 ==Maestro
 -Fixed Woodcustom Altfire crashing when plug boosted
-
-==Rock
--Fixed bug where Rock could randomly roll the same weapon twice at the start of an LMS round; Rock should now always have 2 special Mega Balls alongside his regular one (as of gond beta 6)
 
 ==Auto
 -Cans are now properly teamcolored
@@ -1324,13 +1318,14 @@ CHANGELOG
 -Spark Spread retooled, now done via cancelling Spark Shock with 50% or 100% charge
 --With 50% charge, Spark Spread fires 8 projectiles around the user
 --With 100 charge, Spark Spread fires several projectiles in a 360 degree radius around the user
---Spark Spread hitstun nerf reverted, does stun again
+--Spark Spread hitstun nerf reverted, does full stun
 --Spark Spread shots have 5 tics of powerprotect
 -NEW ALTFIRE: Charge Transfer
 --Close ranged healing tool
 --Heals twice as fast as other healing tools but consumes screw ammo twice as fast
 --Does 1 damage per rip and can be used to self-heal off of enemies
-(histun 1.0 > 0.5 as of gond beta 6)
+(histun 100% > 10% as of gond beta 6)
+(powerprotect 5 tics > 10 tics as of gond beta 6)
 -Spark Taser no longer holds directly in front of the user
 --Spark Taser duration shortened
 --Spark Taser damage 15 > 25
@@ -1442,8 +1437,7 @@ CHANGELOG
 --Junk Cube now takes twice as long to passively despawn
 --Junk ammo near cube ported from core, ammo gain reduced 3 > 2
 -Removed idle sound on Junk Shield
--Altfire charging revamped, now builds charge that does big punch when full
---Fully charged Junk Punch has 6 less tics of startup delay
+-Altfire and reload split, akin to UEC (as of gond beta 6)
 -Uncharged Junk Shot damage 20 > 18
 --Fully charged Junk Shot damage is still 20, projectile now has FX
 --Junk Shot can be fired while near a cube
@@ -1473,11 +1467,13 @@ CHANGELOG
 -No longer uses railguns for Flame Sword, reverted back to previous spawner method
 --Particle spawner now lasts 50% longer before dissipating
 --Particle spawner speed 20 > 30
---Flame Sword now does 16 flat per swing
---Third Swing now does 22 flat
+--Flame Sword usage now halts ammo gain
+--Flame Sword now does 16 base
+--Third Swing now does 22 base
+--Has more fx/sounds on hit (as of gond beta 6)
 -Removed Flame Beam
 -Fixed Sword Spin blowing enemies away
---Endlag from Sword Spin halved
+--Endlag from Sword Spin slightly reduced
 --Removed Powerprotect from Flame Spin
 --Flame Spin suction range 700 > 350
 -Flying Flame Spin ammo consumption 6/9/12 > 9/12/15
@@ -1507,7 +1503,7 @@ CHANGELOG
 
 ==Plugman
 -Base speed 0.75/0.73 > 0.8/0.78
--Altfire plug range increased (lasts for 5 more tics) (as of gond beta 6, can stay latched from 20% farther away; should almost never break instantly on hit)
+-Altfire plug range increased (lasts for 5 more tics)
 --Plugging allies gives the user 1.25x speed
 --Removed the user slowing down on plugging enemies
 
@@ -1635,6 +1631,9 @@ CHANGELOG
 -Imported from UEC
 --All skinsounds ported from vanilla
 --Uses Pegg's skin, Redflash's skin exists as an alternative
+
+==Mega Water S (as of gond beta 6)
+-Health 100 > 85
 
 ==Hyper Storm H
 -All changes reverted except for the following

@@ -447,7 +447,7 @@ IsSelected AlienTrapBoss{Drawbar"02_A_VAR","VAREMPTY",Ammo1,horizontal,58,184;}
 WeaponAmmo NoodleAmmo{Drawbar"VARAMMO2","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawImage"NEEDRCON",178,175;}
 IsSelected MagnetMissileBoss{DrawBar"MAGNVAR","VAREMPTY",MagnetFlag,horizontal,58,184;
-	//DrawImage"MAGNICON",178,175;
+	DrawImage"MAGNICON",178,175;
 	Drawbar"VARTOKX","VAREMPTY",Ammo1,horizontal,58,176;
 	InInventory MagFlyIsOut,1{Drawbar"VARFLS1","VNOBAR",MagFlyIsOut,horizontal,130,184;}
 	InInventory MagFlyDelay,1{Drawbar"VARFLS1","VNOBAR",MagFlyDelay,horizontal,130,184;}
@@ -573,7 +573,7 @@ IsSelected YamatoSpearBoss{Drawbar"VARAMM30","VAREMPTY",Ammo1,horizontal,58,184;
 IsSelected FreezeCrackerBoss{Drawbar"VARAMM15","VAREMPTY",Ammo2,horizontal,58,184;
     DrawBar"VARAMM31","VAREMPTY",Ammo1,horizontal,58,176;}
 IsSelected JunkShieldBoss{Drawbar"DUSVAR","DUSVMPTY",Ammo1,horizontal,58,184;
-	DrawBar"JUNCHVAR","VNOBAR",PunchChargeAmmo,horizontal,130,184;}
+	DrawImage"JUNKRCON",178,175;}
 IsSelected DangerWrapBoss{Drawbar"VARAMM33","VAREMPTY",Ammo1,horizontal,58,184;
 	Drawbar"VAREMPTY","07_3_VAR",BurstBombStock,horizontal,reverse,58,176;
 	InInventory DangerFly,1{DrawBar"VARFLS1","VNOBAR",DangerFly,horizontal,58,184;}}

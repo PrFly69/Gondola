@@ -213,9 +213,9 @@ Pain.ThunderClawT2:
 Goto Pain+2
 
 Pain.FlameSword:
-"----" H 0 A_PlaySound("weapon/flameswordhit","Body")
+"----" H 0 A_PlaySoundEx("weapon/flamehit","SoundSlot5")
 "----" H 0 A_GiveInventory("FlameSwordProtect",1)
-"----" HH 0 A_SpawnItemEx("FlameSwordBit",0,0,0,random(-10,10),random(-10,10),random(10,15),random(0,359))
+"----" H 0 A_SpawnItemEx("FlameSwordBit",0,0,0,random(-10,10),random(-10,10),random(10,15),random(0,359))
 Goto Pain
 
 Pain.FlashBombT:
@@ -251,6 +251,8 @@ Goto Pain+2
 Pain.RemoteMineB2:
 "----" H 0
 Goto Pain+2
+
+
 
 Pain.MagicCardBF:
 "----" H 0 HealThing(1)

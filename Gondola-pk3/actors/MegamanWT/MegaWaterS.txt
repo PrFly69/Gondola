@@ -1,6 +1,7 @@
-actor MegaWaterS : ClassBase
+actor MegaWaterS : LightClassBase
 {
 Player.ScoreIcon "C_WTB0X"
+player.startitem "LightHealthBar"
 player.displayname "MegaWaterS"
 player.soundclass "megawatersc"
 player.startitem "SandySandBoss"
