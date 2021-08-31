@@ -39,7 +39,7 @@ Loop
 Fire:
 TGUH H 0 A_PlaySoundEx("class/windstart","Weapon")
 HoldCheck:
-TGUH H 0 A_JumpIfInventory("TenguDashStartup",3,"Hold2")
+TGUH H 0 A_JumpIfInventory("TenguDashStartup",3,"Hold")
 TGUH H 1 A_GiveInventory("TenguDashStartup",1)
 TGUH H 0 A_TakeInventory("UnSolid",1)
 TGUH H 0 A_ChangeFlag("SOLID",0)
