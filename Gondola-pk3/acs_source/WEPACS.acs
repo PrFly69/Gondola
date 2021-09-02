@@ -175,7 +175,7 @@ str weapons_ammo[MAX_WEAPONS_GLOBAL][8] = //$CBM
 
 {"NovaBeamWepC", "NovaBeamAmmo", "Nova Beam", 0.25, "YES", "YES", "SLOT_POWER", "None"},
 
-{"AcidBarrierWepC", "AcidBarrierAmmo", "Acid Barrier", 0.5, "YES", "YES", "SLOT_SHIELD", "None"},
+{"AcidBarrierWepC", "AcidBarrierAmmo", "Acid Barrier", 0.3, "YES", "YES", "SLOT_SHIELD", "None"},
 {"BlazingTorchWepC", "BlazingTorchAmmo", "Blazing Torch", 1.0, "YES", "YES", "SLOT_RANGED", "None"},
 {"ScrambleThunderWepC", "ScrambleThunderAmmo", "Scramble Thunder", 1.0, "YES", "YES", "SLOT_RANGED", "None"},
 {"ChainBlastWepC", "ChainBlastAmmo", "Chain Blast", 1.0, "YES", "YES", "SLOT_CLOSE", "None"}

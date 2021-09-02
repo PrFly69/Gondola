@@ -57,7 +57,7 @@ AcidBuster:
 ACBS A 0 A_JumpIfInventory("AcidBar",280,"ShieldPop")
 ACBS A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
 ACBS A 0 A_FireCustomMissile("AcidShot",0,0,8,0)
-ACBS BBC 3
+ACBS BBC 4
 ACDB A 0 A_JumpIfInventory("BasicArmor",1,"ShieldUp")
 Goto ShieldPop
 Altfire:
@@ -175,7 +175,7 @@ actor BarrierPopWarper : BaseShieldWarper
 
 actor AcidShield : BasicArmorPickup
 {
-Armor.Savepercent 50
+Armor.Savepercent 30
 Armor.Saveamount 50
 States
 {
