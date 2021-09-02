@@ -1248,14 +1248,17 @@ CHANGELOG
 ==Timeman
 -Time Slow damage 14 > 10
 
-==Yellow Devil (flagbearer)
--Imported from ctfpatch v04
-
 ==Yellow Devil (as of gond beta 6)
 -Imported from ctfpatch v04
--When chosen as a player class, Yellow Devil takes 35% more damage for the duration of One-Eyed Cube and for two seconds after, rather than losing health during the throw. (Flagbearer behavior unchanged.)
-(Appears on botmenu as of gond beta 6h)
-(Appears on class selection menu as of gond beta 6h)
+-When chosen as a player class, Yellow Devil takes 35% more damage for the duration of One-Eyed Cube and for two seconds after, rather than losing health during the throw.
+(Appears on class selection menu and botmenu as of gond beta 6h)
+(As of gond beta 7:)
+-Perfect Cube/One-Eyed Cube damage 25 -> 15 and 35 -> 30
+-Cubes now bounce off of surfaces once
+-Cubes now correctly drop Perfect Spheres upon hitting a ceiling
+-While flying in a One-Eyed Cube, Yellow Devil has an item that untethers him from the flying cube, allowing him to move on his own. Doing so reverts the One-Eyed Cube into a Perfect Cube
+-Fixed a bug where Yellow Devil could throw One-Eyed Cube and fail to be pulled due to a closeby pit
+-Fixed a bug where Yellow Devil would appear in his walking sprite while in a One-Eyed Cube
 
 ==Airman
 -Air Shooter now consumes 2 ammo

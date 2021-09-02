@@ -26,6 +26,7 @@ actor Fireman_pspickup : PSuckerBase {}
 actor Elecman_pspickup : PSuckerBase {}
 actor Timeman_pspickup : PSuckerBase {}
 actor OilMan_pspickup : PSuckerBase {}
+actor YellowDevil_pspickup : PSuckerBase {}
 actor Metalman_pspickup : PSuckerBase {}
 actor Airman_pspickup : PSuckerBase {}
 actor BubbleMan_pspickup : PSuckerBase {}
