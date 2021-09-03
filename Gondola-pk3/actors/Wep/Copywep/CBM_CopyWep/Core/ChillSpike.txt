@@ -305,7 +305,7 @@ actor ChillFreeze : CustomInventory
 
 actor ChillFreezeTimer : Powerup
 {
-	powerup.duration 45
+	powerup.duration 30
 }
 
 actor ChillFreezeVision : PowerSpeed
