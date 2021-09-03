@@ -1,6 +1,7 @@
 [enu default]
 //Flagbearer - Yellow Devil
 OB_BEARMAIN3 = "%o couldn't make a dent in %k's yellow one-eyed cube.";
+OB_BEARMAIN4 = "%o got mixed by %k's leftover cube.";
 OB_BEARALT = "%o was whapped by %k's perfect fist."; //Perfect.
 OB_BEARWIN = "%o played the objective!"; //Does this even work?
 
