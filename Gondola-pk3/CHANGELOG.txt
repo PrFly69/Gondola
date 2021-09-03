@@ -1188,6 +1188,10 @@ CHANGELOG
 -Reverted Thunder Wool to CCBM version
 -Reverted Rebound Striker to CCBM version
 -Ported V6 icons for maps-spawned copyweapons
+(as of gond beta 7:)
+-Acid Barrier fire rate 9tics -> 12tics, armor save 50% -> 30%, ammo gain multiplier .5 -> .3
+-Knight Crush vertical ammo bar restored
+-Chill Spike slow duration 45tics -> 30tics
 
 ==Megaman
 -Ported V6 skin (as of gond beta 6)
