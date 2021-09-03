@@ -169,7 +169,6 @@ YD_H C 0 A_PlaySoundEx("misc/electrap","weapon")
 YD_H C 2 Offset(30,6) 
 YD_H C 2 Offset(28,8)
 YD_H C 1 A_Refire("FireCharged")
-YD_H C 0 A_Stop
 YD_H C 0 A_TakeInventory("BumoCharge", 50)
 YD_H C 0 A_TakeInventory("BumoEnd",3) //Just to be sure.
 YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
@@ -494,11 +493,12 @@ actor YD_BearerCubeCharged : YD_BearerCube
 	States
 	{
 		Spawn:
-		TNT1 A 0 ACS_ExecuteAlways(815,0,150) //Man, I wonder who I borrowed this script from.
+		TNT1 A 0
+		TNT1 A 0 ACS_ExecuteAlways(815,0,200) //Maybe this had a comment that said '200' next to it in Magicman's decorate for a reason.
 		TNT1 A 0 ThrustThingZ(0,14,0,1)
 		TNT1 A 0 A_Countdown //A_Jump(256,1,2,3,4) //(Why was this random??)
 		YD_H MNOP 3 A_JumpIfInTargetInventory("BumoEnd",1,"CubeRC")
-		Goto Spawn+2
+		Goto Spawn+3
 		Death:
 		TNT1 A 0 A_GiveToTarget("BumoEnd",1)
 		TNT1 A 0 A_GiveInventory("ProjectilePortDead",1)
