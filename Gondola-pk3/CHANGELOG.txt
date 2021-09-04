@@ -1192,6 +1192,7 @@ CHANGELOG
 -Acid Barrier fire rate 9tics -> 12tics, armor save 50% -> 30%, ammo gain multiplier .5 -> .3
 -Knight Crush vertical ammo bar restored
 -Chill Spike slow duration 45tics -> 30tics
+-Break Dash icon restored
 
 ==Megaman
 -Ported V6 skin (as of gond beta 6)
