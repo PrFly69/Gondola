@@ -8,7 +8,7 @@ Inventory.Pickupmessage "$PU_BREAKDASH"
 Obituary "$OB_BREAKDASH"
 Tag "$TAG_BREAKDASH"
 weapon.ammotype "BreakDashAmmo"
-inventory.icon "MVICN_7"
+inventory.icon "BDASWI"
 States
 {
 Spawn:
