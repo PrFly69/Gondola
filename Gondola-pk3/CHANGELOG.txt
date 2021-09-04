@@ -1301,7 +1301,7 @@ CHANGELOG
 --Applies 0.75 hitstun and grounds enemies who are underneath it 
 --3 second cooldown after reversed polarity Mag Fly dies, 50 tic cooldown after regular Mag Fly dies
 --Reversed Mag Fly does 69 damage (don't you fucking dare say it)
--RETURNING RELOAD: MAGNETIC MINE (as of gond beta 6)
+-RETURNING RELOAD: MAGNETIC MINE (as of gond beta 6) (hud as of gond beta 7)
 --Relative to inclusion in gond beta 4: speed 12 > 9, health 30 > 15, direct angles reduced
 -NEW ITEM: MAGFLY CANCEL
 --Manually destroy a non-crushing Mag Fly
