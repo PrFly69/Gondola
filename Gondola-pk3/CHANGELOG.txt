@@ -1231,8 +1231,8 @@ CHANGELOG
 ==Auto
 -Cans are now properly teamcolored
 
-==Cutman
--Ported damage fixes from UEC
+==Cutman (as of gond beta 7)
+-damage fixes from UEC unimported; restored to 2.0h Cutman
 
 ==Gutsman
 -Super Arm debris has spawns downwards on ceilings
