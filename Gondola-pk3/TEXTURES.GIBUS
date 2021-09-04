@@ -1,3 +1,9 @@
+//Yellow Devil. Technically this is a Megaman 11 class...
+graphic 11_Y_BAR, 8, 56 {patch B_BAR12B, 0, 0 {Translation "192:192=216:216", "198:198=220:220"}}
+graphic 11_Y_VAR, 56, 8 {patch 11_Y_BAR, 0, 0 {Rotate 90}}
+graphic 11_Z_BAR, 8, 56 {patch B6ENER, 0, 0 {Translation "192:192=168:168", "198:198=176:176"}}
+graphic 11_Z_VAR, 56, 8 {patch 11_Z_BAR, 0, 0 {Rotate 90}}
+
 texture RIPPBAR,8,56{patch B_BAR01C,0,0{Translation"192:192=4:4","198:198=4:4"}}
 texture RIPPVAR,56,8{patch RIPPBAR,0,0{rotate 90}}//Metalman
 

@@ -120,16 +120,21 @@ loop
 Ready:
 YD_H A 0 ACS_ExecuteAlways(998,0,DYE_YELLOWDEVIL)
 Ready1:
-YD_H A 0 A_JumpIfInventory("BumoHeal",1,"Heal")
+YD_H A 0 A_JumpIfInventory("BearerFlag",1,"ReadyBearer")
 YD_H A 6 A_WeaponReady
 YD_H A 0 A_GiveInventory("SpeedGearCharge",1)
+loop
+
+ReadyBearer:
+YD_H A 0 A_JumpIfInventory("BumoHeal",1,"Heal")
+YD_H A 6 A_WeaponReady
 loop
 
 Heal:
 YD_H A 0 HealThing(5)
 YD_H A 0 A_TakeInventory("BumoHeal",1)
 YD_H A 10 A_WeaponReady
-goto Ready1
+goto ReadyBearer
 
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
@@ -182,11 +187,11 @@ YD_H C 0 A_TakeInventory("UnSolid",1)
 YD_H C 0 A_Changeflag("PICKUP",0)
 YD_H C 0 A_ChangeFlag("INVISIBLE",1)
 YD_H D 2 Offset(20,8)
-YD_H C 0 A_GiveInventory("YellowDevilRomanCancel",1)
 YD_H C 0 A_JumpIfInventory("BearerFlag",1,"FireLoop")
 goto FireLoopNonBearer
 
 FireLoopNonBearer:
+YD_H C 0 A_GiveInventory("YellowDevilRomanCancel",1)
 YD_H E 0 A_GiveInventory("GuardDownFlag",1)
 YD_H E 0 A_SpawnItemEx("MarkedForDeathHandler")
 FireLoopNonBearer2:

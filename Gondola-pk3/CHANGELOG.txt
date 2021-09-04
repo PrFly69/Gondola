@@ -1254,16 +1254,17 @@ CHANGELOG
 (Appears on class selection menu and botmenu as of gond beta 6h)
 (As of gond beta 7:) //I'm fully aware that this is way wordier than it needs to be.
 -Now correctly drops a Copywep class upgrade on death
--Speed Gear meter added: fills 1 ammo every six tics, up to a maximum of 56 in 10~ seconds
+-Speed Gear meter added: fills 1 ammo every six tics, up to a maximum of 56 in 10~ seconds (Playerclass only)
 -Perfect Cube damage 25 -> 15; now bounces off of surfaces once. One Eyed Cube damage 35 -> 30.
 -Perfect Cube height doubled to closer match diameter
 -Perfect Cube/One-Eyed Cube now correctly drop Perfect Spheres upon hitting a ceiling
--NEW WEAPON: EYE BEAM
+-NEW WEAPON: EYE BEAM (Playerclass only)
 --Mainfire for a decent-speed eye beam that briefly halts your movement
 --Charge for a rapid-fire burst of eye beams that grants halved gravity
 --35% more damage taken while in eye beam burst and for two seconds after, like One-Eyed Cube
--NEW ITEM: SPEED CANCEL 
---While using either charged mainfire, Yellow Devil can use Item to instantly reset to his normal state, at the cost of half a bar of Speed Gear
+--Shares Altfire with weapon 1
+-NEW ITEM: SPEED CANCEL (Playerclass only)
+--While using either charged mainfire, Yellow Devil can use item to instantly reset to his normal state, at the cost of half a bar of Speed Gear
 --Doing so with One-Eyed Cube retains its damage while giving it Perfect Cube's bounce
 * I'm extremely tempted to just let this be named 'Roman Cancel'
 -Fixed a bug where Yellow Devil could throw One-Eyed Cube and fail to be pulled due to falling at terminal velocity
