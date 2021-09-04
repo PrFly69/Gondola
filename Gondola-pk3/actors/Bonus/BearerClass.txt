@@ -97,6 +97,7 @@ actor YellowDevil : BearerClass
 	health 155
 
 	player.startitem "WildBearBoss"
+	player.startitem "NotABearBoss"
 	player.startitem "MaximumBearAmmo",3
 	player.startitem "CanUseItems"
 	player.startitem "SemiStunArmor"
@@ -105,6 +106,7 @@ actor YellowDevil : BearerClass
 actor WildBearBoss : BaseMM8BDMWep_CBM
 {
 dropitem "ConfettiDeathSpawner"
+dropitem "CopyClassUpgradeDropped"
 Tag "$TAGC_1Y"
 Weapon.AmmoUse 0
 Weapon.AmmoGive 3
@@ -121,7 +123,7 @@ Ready1:
 YD_H A 0 A_JumpIfInventory("BumoHeal",1,"Heal")
 YD_H A 6 A_WeaponReady
 YD_H A 0 A_GiveInventory("SpeedGearCharge",1)
-goto Ready1
+loop
 
 Heal:
 YD_H A 0 HealThing(5)
@@ -137,6 +139,7 @@ Select:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 YD_H A 1 A_Raise
 Loop
+
 Fire:
 YD_H C 0
 YD_H A 1 Offset(8,26)
@@ -170,7 +173,7 @@ YD_H C 2 Offset(30,6)
 YD_H C 2 Offset(28,8)
 YD_H C 1 A_Refire("FireCharged")
 YD_H C 0 A_TakeInventory("BumoCharge", 50)
-YD_H C 0 A_TakeInventory("BumoEnd",3) //Just to be sure.
+YD_H C 0 A_TakeInventory("BumoEnd",3)
 YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
 YD_H C 0 A_GiveInventory("WildBearMain2_CI",1)
 YD_H C 0 A_ChangeFlag("NOTELEPORT",1)
@@ -188,8 +191,9 @@ YD_H E 0 A_GiveInventory("GuardDownFlag",1)
 YD_H E 0 A_SpawnItemEx("MarkedForDeathHandler")
 FireLoopNonBearer2:
 YD_H E 0 A_GiveInventory("PowerMarkedForDeath",1)
-YD_H E 4 Offset(12,17)
-YD_H E 1 Offset(12,17) A_JumpIfInventory("BumoEnd",1,"FireEnd")
+YD_H E 5 Offset(12,17) 
+YD_H E 0 A_JumpIfInventory("BumoEnd",3,"RomanCancel")
+YD_H E 0 A_JumpIfInventory("BumoEnd",1,"FireEnd")
 loop
 
 FireLoop:
@@ -214,6 +218,16 @@ YD_H A 1 Offset(-4,34)
 YD_H A 1 Offset(-2,33)
 Goto Ready1
 
+RomanCancel: 
+YD_H E 0 A_PlaySoundEx("item/1up","Voice")
+YD_H E 0 A_TakeInventory("YellowDevilRomanCancel",1)
+YD_H E 0 A_ChangeFlag("INVISIBLE",0)
+YD_H E 0 A_ChangeFlag("PICKUP",1)
+YD_H E 0 A_ChangeFlag("NOTELEPORT",0)
+YD_H E 0 A_SpawnItemEx("ReSolidifier")
+YD_H A 6
+Goto Ready1
+
 Altfire:
 YD_H A 0 A_GiveInventory("WildBearAlt_CI",1)
 YD_H A 0 A_PlaySoundEx("wep/YD_Punch","Weapon")
@@ -226,6 +240,93 @@ YD_H A 2 Offset(-12,20)
 YD_H A 2 A_WeaponReady(14)
 Goto Ready1
 }
+}
+
+actor NotABearBoss : WildBearBoss
+{
+	Tag "$TAGC_1Y2"
+	Obituary "$OB_BEARLASER2"
+	States
+	{
+		Ready:
+		YD_H A 0 ACS_ExecuteAlways(998,0,DYE_YELLOWDEVIL)
+		Ready1:
+		YD_H B 0 A_JumpIfInventory("BumoHeal",1,"Heal")
+		YD_H B 6 A_WeaponReady
+		YD_H B 0 A_GiveInventory("SpeedGearCharge",1)
+		loop
+
+		Deselect:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+		YD_H B 1 A_Lower
+		Loop
+		Select:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+		YD_H B 1 A_Raise
+		Loop
+
+		Fire:
+		YD_H B 0
+		YD_H B 2 Offset(12,50)
+		YD_H B 2 Offset(24,68)
+		YD_H B 0 A_Refire("FireCharge")
+		goto Fire2
+
+		FireCharge:
+		YD_H B 0 A_JumpIfInventory("BumoCharge",50,"FireCharged")
+		YD_H B 2 Offset(24,68) A_GiveInventory("BumoCharge")
+		YD_H B 0 A_Refire("FireCharge")
+		Goto Fire2
+
+		Fire2:
+		YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,1)
+		YD_H B 0 A_PlaySoundEx("misc/minilaser","weapon")
+		YD_H B 0 A_TakeInventory("BumoCharge", 50)
+		YD_H B 0 A_GiveInventory("NotABearMain_CI",1)
+		YD_H B 7 Offset(24,68)
+		YD_H B 1 Offset(20,62)
+		YD_H B 1 Offset(16,56)
+		YD_H B 1 Offset(12,50)
+		YD_H B 1 Offset(8,44)
+		YD_H B 1 Offset(4,38)
+		YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,0)
+		goto Ready1
+
+		FireCharged:
+		YD_H B 1 Offset(36,86)
+		TNT1 A 1
+		YD_H B 0 A_TakeInventory("BumoEnd",3)
+		YD_H B 0 A_GiveInventory("YellowDevilRomanCancel")
+		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,0)
+		YD_H B 0 A_GiveInventory("GuardDownFlag",1)
+		YD_H B 0 A_SpawnItemEx("MarkedForDeathHandler")
+		FireLoop:
+		YD_H B 0 A_GiveInventory("PowerMarkedForDeath",1)
+		YD_H B 0 A_PlaySoundEx("misc/minilaser","weapon")
+		YD_H B 0 A_TakeInventory("BumoCharge",10)
+		YD_H B 0 A_GiveInventory("NotABearMain_CI",1)
+		TNT1 A 6
+		YD_H B 0 A_JumpIfInventory("BumoEnd",3,"RomanCancel")
+		YD_H B 0 A_JumpIfInventory("BumoCharge",10,"FireLoop")
+		goto FireEnd
+
+		RomanCancel:
+		YD_H B 0 A_PlaySoundEx("item/1up","Voice")
+		YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
+		YD_H B 6
+		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
+		Goto Ready1
+
+		FireEnd:
+		YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
+		YD_H B 1 Offset(20,62)
+		YD_H B 1 Offset(16,56)
+		YD_H B 1 Offset(12,50)
+		YD_H B 1 Offset(8,44)
+		YD_H B 1 Offset(4,38)
+		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
+		goto Ready1
+	}
 }
 
 actor MaximumBearAmmo : Ammo
@@ -262,7 +363,7 @@ inventory.maxamount 33
 actor BumoEnd : Inventory
 {
 inventory.amount 1
-inventory.maxamount 1
+inventory.maxamount 3
 }
 
 // Not done yet.
@@ -281,7 +382,7 @@ actor YellowDevilRomanCancel : CustomInventory
 		stop
 		RomanCancel:
 		TNT1 A 0 A_TakeInventory("SpeedGearCharge",28)
-		TNT1 A 0 A_GiveInventory("BumoEnd")
+		TNT1 A 0 A_GiveInventory("BumoEnd",3)
 		TNT1 A 1
 		stop
 	}
@@ -299,13 +400,11 @@ actor MarkedForDeathHandler : BasicHelper
 	States
 	{
 		Spawn:
-		TNT1 A 1
-		TNT1 A 0 A_JumpIfInTargetInventory("PowerMarkedForDeath",1,"VisualSpawn")
+		TNT1 A 0
+		TNT1 A 1 A_GiveToTarget("WildBearMain2V_CI",1)
+		TNT1 A 0 A_JumpIfInTargetInventory("PowerMarkedForDeath",1,"Spawn")
 		TNT1 A 0 A_TakeFromTarget("GuardDownFlag",999)
 		stop
-		VisualSpawn:
-		TNT1 A 0 A_GiveToTarget("WildBearMain2V_CI",1)
-		goto Spawn
 	}
 }
 
@@ -452,7 +551,7 @@ actor YD_BearerCube
 	reactiontime 15
 	gravity .7
 	Radius 25
-	Height 20
+	Height 40
 	speed 29
 	scale 2.5
 	States
@@ -460,7 +559,7 @@ actor YD_BearerCube
 		Spawn:
 		TNT1 A 0
 		TNT1 A 0 ThrustThingZ(0,14,0,1)
-		TNT1 A 0 A_Countdown //A_Jump(256,1,2,3,4) //(Why was this random??)
+		TNT1 A 0 A_Countdown 
 		YD_H FGHI 3
 		Goto Spawn+2
 		Death:
@@ -488,16 +587,16 @@ actor YD_BearerCubeCharged : YD_BearerCube
 	+DONTBLAST
 	+DONTREFLECT
 	+DONTSPLASH
-	damage (35)
+	damage (30)
 	BounceCount 1
 	States
 	{
 		Spawn:
 		TNT1 A 0
-		TNT1 A 0 ACS_ExecuteAlways(815,0,200) //Maybe this had a comment that said '200' next to it in Magicman's decorate for a reason.
+		TNT1 A 0 ACS_ExecuteAlways(815,0,200)
 		TNT1 A 0 ThrustThingZ(0,14,0,1)
-		TNT1 A 0 A_Countdown //A_Jump(256,1,2,3,4) //(Why was this random??)
-		YD_H MNOP 3 A_JumpIfInTargetInventory("BumoEnd",1,"CubeRC")
+		TNT1 A 0 A_Countdown 
+		YD_H MNOP 3 A_JumpIfInTargetInventory("BumoEnd",3,"CubeRC")
 		Goto Spawn+3
 		Death:
 		TNT1 A 0 A_GiveToTarget("BumoEnd",1)
@@ -527,7 +626,7 @@ actor YD_BearerCubeCharged : YD_BearerCube
 actor YD_BearerCubeCancelled : YD_BearerCube
 {
 	Obituary "$OB_BEARMAIN4"
-	Damage (35)
+	Damage (30)
 	Bouncecount 2
 }
 
@@ -601,6 +700,30 @@ actor YD_BearerPunchB : YD_BearerPunch{translation "192:192=205:205"}
 actor YD_BearerPunchR : YD_BearerPunch{translation "192:192=171:171"}
 actor YD_BearerPunchO : YD_BearerPunch{translation "192:192=104:104"}
 actor YD_BearerPunchP : YD_BearerPunch{translation "192:192=229:229"}
+
+actor YD_EyeShot : FastProjectile
+{
+	translation "198:198=176:176"
+	PROJECTILE
+	damagetype "YellowDevilL"
+	Obituary "$OB_BEARLASER"
+	radius 10
+	height 6
+	damage (10)
+	speed 60
+	scale 2.5
+	States
+	{
+		Spawn:
+		YD_H R 1
+		loop
+	}
+}
+
+actor YD_EyeShotB : YD_EyeShot{translation "198:198=74:74"}
+actor YD_EyeShotR : YD_EyeShot{translation "198:198=41:41"}
+actor YD_EyeShotO : YD_EyeShot{translation "198:198=128:128"}
+actor YD_EyeShotP : YD_EyeShot{translation "198:198=232:232"}
 
 actor WildBearMain_CI : TeamColor_CI
 {
@@ -686,6 +809,28 @@ TNT1 A 0 A_FireCustomMissile("YD_BearerPunchO",0,0,8,0)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("YD_BearerPunchP",0,0,8,0)
+goto Done
+}
+}
+
+actor NotABearMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShot",0,0,0,0,16)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShotB",0,0,0,0,16)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShotR",0,0,0,0,16)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShotO",0,0,0,0,16)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShotP",0,0,0,0,16)
 goto Done
 }
 }

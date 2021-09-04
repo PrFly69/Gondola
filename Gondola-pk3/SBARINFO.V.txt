@@ -432,8 +432,9 @@ IsSelected OilSliderBoss{DrawBar"BARAMMO8","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory OilSledDelay,1{DrawBar"BARFLS1","NOBAR",OilSledDelay,vertical,16,8;}
 	InInventory OilSledFlag,1{DrawBar"1H_S_BAR","NOBAR",OilSledFlag,vertical,16,8;}
 	InInventory not OilStaminaFlag,127{DrawBar"1H_R_BAR","NOBAR",OilStaminaFlag,vertical,16,8;}}
-IsSelected WildBearBoss{DrawBar"BARAMMO5","BAREMPTY", BumoCharge, vertical, 16, 8;
-	DrawBar "11_I_BAR", "BAREMPTY", SpeedGearCharge, vertical,  8, 8;} //Incomplete.
+IsSelected WildBearBoss{DrawBar"BARAMMO5","BAREMPTY", BumoCharge, vertical, 16, 8;} //Both of these need replacing.
+IsSelected NotABearBoss{DrawBar"BARAMMO5","BAREMPTY", BumoCharge, vertical, 16, 8;} //They're using Fireman's colors.
+InInventory SpeedGearCharge{DrawBar "11_I_BAR", "BAREMPTY", SpeedGearCharge, vertical,  8, 8;} //Fuseman here.
 
 //MM2
 IsSelected MetalBladeBoss{Drawbar"BARAMMO9","BAREMPTY",Ammo1,vertical,16,8;

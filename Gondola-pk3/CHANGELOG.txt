@@ -1252,14 +1252,24 @@ CHANGELOG
 -Imported from ctfpatch v04
 -When chosen as a player class, Yellow Devil takes 35% more damage for the duration of One-Eyed Cube and for two seconds after, rather than losing health during the throw.
 (Appears on class selection menu and botmenu as of gond beta 6h)
-(As of gond beta 7:)
--Secondary meter added: fills 1 ammo every six tics, up to a maximum of 56 in 10~ seconds
--Perfect Cube damage 25 -> 15; now bounces off of surfaces once
---Perfect Cube/One-Eyed Cube now correctly drop Perfect Spheres upon hitting a ceiling
---While flying in a One-Eyed Cube, Yellow Devil gains an item that spends half a bar of secondary ammo to untether him from the flying cube, allowing him to move on his own 
---Doing so reverts the One-Eyed Cube into a Perfect Cube without lowering its damage
+(As of gond beta 7:) //I'm fully aware that this is way wordier than it needs to be.
+-Now correctly drops a Copywep class upgrade on death
+-Speed Gear meter added: fills 1 ammo every six tics, up to a maximum of 56 in 10~ seconds
+-Perfect Cube damage 25 -> 15; now bounces off of surfaces once. One Eyed Cube damage 35 -> 30.
+-Perfect Cube height doubled to closer match diameter
+-Perfect Cube/One-Eyed Cube now correctly drop Perfect Spheres upon hitting a ceiling
+-NEW WEAPON: EYE BEAM
+--Mainfire for a decent-speed eye beam that briefly halts your movement
+--Charge for a rapid-fire burst of eye beams that grants halved gravity
+--35% more damage taken while in eye beam burst and for two seconds after, like One-Eyed Cube
+-NEW ITEM: SPEED CANCEL 
+--While using either charged mainfire, Yellow Devil can use Item to instantly reset to his normal state, at the cost of half a bar of Speed Gear
+--Doing so with One-Eyed Cube retains its damage while giving it Perfect Cube's bounce
+* I'm extremely tempted to just let this be named 'Roman Cancel'
 -Fixed a bug where Yellow Devil could throw One-Eyed Cube and fail to be pulled due to falling at terminal velocity
 -Fixed a bug where Yellow Devil could appear in his walking sprite while in a One-Eyed Cube
+-Fixed bug where Yellow Devil's projectiles were all immune to Saturn's projectile suck
+-Fixed bug where Perfect Cube/One-Eyed Cube could be indefinitely stuck in the pits of certain maps, lagging servers
 
 ==Airman
 -Air Shooter now consumes 2 ammo
