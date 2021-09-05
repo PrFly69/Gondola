@@ -1,0 +1,31 @@
+#library "copywepvis"
+#include "zcommon.acs"
+#import "WEPACS.acs"
+
+script "CCBM_copywepvisibility" ENTER
+{
+    int lastweapon = -1;
+    int currentweapon;
+    int skiponce = 0;
+    if(ACS_ExecuteWithResult(975, 1) && CheckInventory("CanCopyWeapons"))
+    {
+        while(GetActorProperty(ActivatorTID(), APROP_HEALTH) > 0 && !CheckInventory("IsDead")==1)
+        {
+            currentweapon = WhichWeapon();
+
+            if(lastweapon==currentweapon){delay(1);continue;} //Continues if someone already has a display or doesn't need one.
+            if(lastweapon!=-1){GiveInventory("WeaponSwappedFlag",1);} //Clear flag if last wep was copywep.
+            else{TakeInventory("WeaponSwappedFlag",1);} //If last wep wasn't a listed copywep, it's unlikely anything spawned to take the most recent flag from them.
+            delay(1); //To be sure a given WeaponSwappedFlag did its job.
+            if(currentweapon>1) //If the current weapon isn't on the weapon list (or is a Treble Boost), don't even try spawning anything.
+            {
+                int wepparam = strparam(s:"CWV_",s:weapons_ammo[currentweapon][0]);
+                GiveInventory(wepparam,1);
+                lastweapon = currentweapon;
+            }
+            lastweapon = currentweapon;
+        }
+    }
+}
+
+script "CCBM_copywepvisibilityR" RESPAWN {ACS_NamedExecuteAlways("CCBM_copywepvisibility",0);}
