@@ -23,9 +23,11 @@ actor BlackHoleWep : BaseMM8BDMWep
     Deselect:
         TNT1 A 0 A_JumpIfInventory("ShieldCheck", 1, "Detonate")
         TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+        BHOL I 1 A_Lower
         Loop
     Select:
         TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+        BHOL I 1 A_Raise
         Loop
     Fire:
         BHOL I 0 A_JumpIfInventory("ShieldCheck", 1, "Detonate")
