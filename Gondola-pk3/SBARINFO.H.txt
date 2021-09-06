@@ -412,7 +412,9 @@ IsSelected OilSliderBoss{DrawBar"VARAMMO8","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"01_8_VAR","VAREMPTY",Ammo2,horizontal,58,176;
 	InInventory OilSledFlag,1{DrawBar"1H_S_VAR","VNOBAR",OilSledFlag,horizontal,58,184;}
 	InInventory not OilStaminaFlag,127{DrawBar"1H_R_VAR","VNOBAR",OilStaminaFlag,horizontal,58,184;}}
-IsSelected WildBearBoss{DrawBar"VARAMMO5","VAREMPTY",BumoCharge,horizontal,58,184;}
+IsSelected WildBearBoss{DrawBar"11_Y_VAR","VAREMPTY",BumoCharge,horizontal,58,184;}
+IsSelected NotABearBoss{DrawBar"11_Y_VAR","VAREMPTY",BumoCharge,horizontal,58,184;}
+InInventory SpeedGearCharge{DrawBar "11_Z_VAR", "VAREMPTY", SpeedGearCharge, horizontal, 58, 176;}
 
 //MM2
 IsSelected MetalBladeBoss{Drawbar"VARAMMO9","VAREMPTY",Ammo1,horizontal,58,184;

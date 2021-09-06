@@ -3,6 +3,18 @@
 #include "zcommon.acs"
 #include "8bdmlib.acs"
 
+//Yellow Devil
+script "CCBM_YellowGravity" (int x)
+{
+	if(x == 1)
+	{
+		SetActorProperty(0,APROP_Gravity,0.8);
+		terminate;
+	}
+	SetActorProperty(0,APROP_Gravity,0.4);
+	terminate;
+}
+
 //Dark Man 4
 script "CCBM_Dark4Shield" (void)
 {
