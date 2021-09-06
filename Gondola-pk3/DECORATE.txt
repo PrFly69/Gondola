@@ -24,6 +24,8 @@
 #include "actors/Megaman11/Blastman.txt"
 #include "actors/Wep/Megaman11/ChainBlastBoss.txt"
 
+#include "actors/Wep/copywepvisibility.txt"
+
 actor CopyNerf : PowerDamage
 {
 //damagefactor "Normal", 0.71

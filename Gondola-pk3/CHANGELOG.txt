@@ -1189,6 +1189,7 @@ CHANGELOG
 -Reverted Rebound Striker to CCBM version
 -Ported V6 icons for maps-spawned copyweapons
 (as of gond beta 7:)
+-In team gamemodes where weapon color translations are usually unseeable, switching to a copy weapon displays that weapon's icon over your head
 -Acid Barrier fire rate 9tics -> 12tics, armor save 50% -> 30%, ammo gain multiplier .5 -> .3
 -Knight Crush vertical ammo bar restored
 -Chill Spike slow duration 45tics -> 30tics
