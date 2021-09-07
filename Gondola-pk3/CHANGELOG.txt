@@ -1228,6 +1228,7 @@ CHANGELOG
 
 ==Maestro
 -Fixed Woodcustom Altfire crashing when plug boosted
+-In team gamemodes where weapon color translations are usually unseeable, switching to a style displays that style's icon over your head
 
 ==Auto
 -Cans are now properly teamcolored

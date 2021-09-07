@@ -3,8 +3,9 @@
 
 script "CCBM_copywepvisibility" ENTER
 {
-    str lastweapon;
-    str currentweapon;
+    str lastweapon = "";
+    str currentweapon = "";
+    str wepparam = "";
     if(ACS_ExecuteWithResult(975, 1) && CheckInventory("CanCopyWeapons"))
     {
         while(GetActorProperty(ActivatorTID(), APROP_HEALTH) > 0 && !CheckInventory("IsDead")==1)
@@ -12,9 +13,10 @@ script "CCBM_copywepvisibility" ENTER
             currentweapon = GetWeapon();
 
             if(lastweapon==currentweapon){delay(1);continue;} //Continues if someone already has the correct display or blanker.
-            if(lastweapon>0){GiveInventory("WeaponSwappedFlag",1);} //Only clears existing displays/blankers if this script has already run once.
+            GiveInventory("WeaponSwappedFlag",1);
             delay(1);
-            int wepparam = strparam(s:"CWV_",s:currentweapon);
+            TakeInventory("WeaponSwappedFlag",1); //If something is wrong or this is the first time the script has looped, this removes spare flags. Important.
+            wepparam = strparam(s:"CWV_",s:currentweapon);
             GiveInventory(wepparam,1);
             lastweapon = currentweapon;
         }
