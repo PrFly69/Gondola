@@ -11,7 +11,7 @@ player.startitem "CanCopyWeapons"
 //player.startitem "CanUseItems"
 
 player.startitem "SlideLimitFlag", 500
-player.startitem "CopyNerfCCBM"
+player.startitem "CopyNerf"
 
 player.forwardmove 0.83, 0.83
 player.sidemove 0.81, 0.81
@@ -52,7 +52,7 @@ PRO_ G 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
 PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
 goto Spawn+2
 Slide:
-PRO_ Y 20
+PROM Y 20
 goto Spawn
 ShieldBash:
 PROM P 20

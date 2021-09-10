@@ -1,4 +1,3 @@
-//i am the great and powerful sir el mactyneiliondaviontaviousosusacasius the 52nd
 
 //lmao
 weapon/saturnglitch SATFUK
@@ -53,6 +52,7 @@ weapon/terrateleport TERRWARP
 weapon/terramelee TERRKNEE
 weapon/terrameleeko TERRKNED
 weapon/sparkchaseractivate TERRACTI
+weapon/sparkchaserhit TERRACTX
 
 //Centaur
 weapon/centaurarrowshot CENTAROW $volume weapon/centaurarrowshot 0.5
@@ -280,3 +280,93 @@ weapon/magnetbeep MAGBEEP
 //Knight
 weapon/knightcrushspin KNGTSPIN
 weapon/knightcrushhit KNGTHIT
+
+//JEB STUFF
+weapon/windvacuum WINDVAC
+//weapon/mercuryslime MERSLIME
+weapon/uranusstab URASTAB
+
+$playersound	concretemanc	male	*pain100	MM9PAIN
+$playersound	concretemanc	male	*pain75		MM9PAIN
+$playersound	concretemanc	male	*pain50		MM9PAIN
+$playersound	concretemanc	male	*pain25		MM9PAIN
+
+$playersound	tornadomanc	male	*pain100	MM9PAIN
+$playersound	tornadomanc	male	*pain75		MM9PAIN
+$playersound	tornadomanc	male	*pain50		MM9PAIN
+$playersound	tornadomanc	male	*pain25		MM9PAIN
+
+$playersound	splashwomanc	male	*pain100	MM9PAIN
+$playersound	splashwomanc	male	*pain75		MM9PAIN
+$playersound	splashwomanc	male	*pain50		MM9PAIN
+$playersound	splashwomanc	male	*pain25		MM9PAIN
+
+$playersound	plugmanc	male	*pain100	MM9PAIN
+$playersound	plugmanc	male	*pain75		MM9PAIN
+$playersound	plugmanc	male	*pain50		MM9PAIN
+$playersound	plugmanc	male	*pain25		MM9PAIN
+
+$playersound	jewelmanc	male	*pain100	MM9PAIN
+$playersound	jewelmanc	male	*pain75		MM9PAIN
+$playersound	jewelmanc	male	*pain50		MM9PAIN
+$playersound	jewelmanc	male	*pain25		MM9PAIN
+
+$playersound	hornetmanc	male	*pain100	MM9PAIN
+$playersound	hornetmanc	male	*pain75		MM9PAIN
+$playersound	hornetmanc	male	*pain50		MM9PAIN
+$playersound	hornetmanc	male	*pain25		MM9PAIN
+
+$playersound	magmamanc	male	*pain100	MM9PAIN
+$playersound	magmamanc	male	*pain75		MM9PAIN
+$playersound	magmamanc	male	*pain50		MM9PAIN
+$playersound	magmamanc	male	*pain25		MM9PAIN
+
+$playersound	galaxymanc	male	*pain100	MM9PAIN
+$playersound	galaxymanc	male	*pain75		MM9PAIN
+$playersound	galaxymanc	male	*pain50		MM9PAIN
+$playersound	galaxymanc	male	*pain25		MM9PAIN
+
+$playersound	fakemanc	male	*pain100	MM9PAIN
+$playersound	fakemanc	male	*pain75		MM9PAIN
+$playersound	fakemanc	male	*pain50		MM9PAIN
+$playersound	fakemanc	male	*pain25		MM9PAIN
+
+$playersound	blademanc	male	*pain100	MM9PAIN
+$playersound	blademanc	male	*pain75		MM9PAIN
+$playersound	blademanc	male	*pain50		MM9PAIN
+$playersound	blademanc	male	*pain25		MM9PAIN
+
+$playersound	pumpmanc	male	*pain100	MM9PAIN
+$playersound	pumpmanc	male	*pain75		MM9PAIN
+$playersound	pumpmanc	male	*pain50		MM9PAIN
+$playersound	pumpmanc	male	*pain25		MM9PAIN
+
+$playersound	commandomanc	male	*pain100	MM9PAIN
+$playersound	commandomanc	male	*pain75		MM9PAIN
+$playersound	commandomanc	male	*pain50		MM9PAIN
+$playersound	commandomanc	male	*pain25		MM9PAIN
+
+$playersound	chillmanc	male	*pain100	MM9PAIN
+$playersound	chillmanc	male	*pain75		MM9PAIN
+$playersound	chillmanc	male	*pain50		MM9PAIN
+$playersound	chillmanc	male	*pain25		MM9PAIN
+
+$playersound	sheepmanc	male	*pain100	MM9PAIN
+$playersound	sheepmanc	male	*pain75		MM9PAIN
+$playersound	sheepmanc	male	*pain50		MM9PAIN
+$playersound	sheepmanc	male	*pain25		MM9PAIN
+
+$playersound	strikemanc	male	*pain100	MM9PAIN
+$playersound	strikemanc	male	*pain75		MM9PAIN
+$playersound	strikemanc	male	*pain50		MM9PAIN
+$playersound	strikemanc	male	*pain25		MM9PAIN
+
+$playersound	nitromanc	male	*pain100	MM9PAIN
+$playersound	nitromanc	male	*pain75		MM9PAIN
+$playersound	nitromanc	male	*pain50		MM9PAIN
+$playersound	nitromanc	male	*pain25		MM9PAIN
+
+$playersound	solarmanc	male	*pain100	MM9PAIN
+$playersound	solarmanc	male	*pain75		MM9PAIN
+$playersound	solarmanc	male	*pain50		MM9PAIN
+$playersound	solarmanc	male	*pain25		MM9PAIN

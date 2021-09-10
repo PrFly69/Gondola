@@ -239,7 +239,7 @@ TNT1 A 0
 BLAH A 0 A_JumpIfInventory("BlastDashCooldown",1,"Dont")
 TNT1 A 0 A_GiveInventory("BlastDashItem_P",1)
 TNT1 A 0 A_GiveInventory("BlastDashCooldown",198)
-TNT1 A 0 A_SpawnItemEx("BlastJumpFX",0,0,-10)
+TNT1 A 0 A_GiveInventory("BlastJumpFX_CI",1)
 Fail
 Dont:
 TNT1 A 0
@@ -361,7 +361,8 @@ TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 X_2E D 0 A_PlaySound("weapon/blastpuff")
 TNT1 A 0 A_SpawnItemEx("BlastmanPuffExplode",0,0,6,momx,momy,momz,0,9,0)
 TNT1 A 0 A_SetScale(4,4)
-MMFX BCDE 3
+MMFX B 3
+TMFX RSD 3
 stop
 }
 }
@@ -713,7 +714,8 @@ TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 X_2E D 0 A_PlaySound("weapon/blastpuff")
 TNT1 A 0 A_SpawnItemEx("BlastmanPuffExplode",0,0,6,momx,momy,momz,0,9,0)
 TNT1 A 0 A_SetScale(4,4)
-MMFX BCDE 3
+MMFX B 3
+TMFX RSD 3
 stop
 }
 }
@@ -753,10 +755,10 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-CBST E 3
-CBST FGH 3 A_ScaleVelocity(1.01)
+CBST E 1
+CBST FGH 1 A_ScaleVelocity(1.003)
 Spawn2:
-CBST EFGH 3 A_ScaleVelocity(1.01)
+CBST EFGH 1 A_ScaleVelocity(1.0025)
 loop
 Death:
 TNT1 A 0 A_Stop
@@ -850,7 +852,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 Spawn2:
-CBST IJKL 4
+CBST IJKL 2
 loop
 Crash:
 Death:
@@ -1125,6 +1127,33 @@ TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("classes/drillexplode", "Weapon")
 TN_B EFGHIJKLMNOPQRS 2
 stop
+}
+}
+
+actor BlastJumpFXB : BlastJumpFX{translation "202:202=205:205"}
+actor BlastJumpFXR : BlastJumpFX{translation "202:202=171:171"}
+actor BlastJumpFXO : BlastJumpFX{translation "202:202=104:229"}
+actor BlastJumpFXP : BlastJumpFX{translation "202:202=229:229"}
+
+actor BlastJumpFX_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("BlastJumpFX",0,0,-10)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("BlastJumpFXB",0,0,-10)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("BlastJumpFXR",0,0,-10)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("BlastJumpFXO",0,0,-10)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("BlastJumpFXP",0,0,-10)
+goto Done
 }
 }
 

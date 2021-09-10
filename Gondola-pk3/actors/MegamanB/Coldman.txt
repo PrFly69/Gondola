@@ -1,0 +1,64 @@
+actor ColdMan : DocToadClassBase
+{
+Player.ScoreIcon "C_0BB0X"
+player.startitem "DocToadHealthBar"
+player.displayname "Coldman"
+player.soundclass "coldmanc"
+player.startitem "IceWallBoss"
+player.startitem "ColdBossAmmo", 240
+player.startitem "RunningFridgeAmmo", 14
+//player.startitem "ColdmanUseItem"
+
+player.forwardmove 0.62, 0.62
+player.sidemove 0.60, 0.60
+
+player.startitem "LightningBoltWeakness2", 1
+
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "SparkShockWeakness", 1
+player.startitem "ThunderBoltWeakness", 1
+player.startitem "ThunderClawWeakness", 1
+player.startitem "LightningBoltWeakness", 1
+player.startitem "PlugBallWeakness", 1
+player.startitem "ElectricShockWeakness", 1
+States
+{
+Spawn:
+COLM A 0
+COLM B 1
+COLM A 35
+COLM A random(35,175)
+COLM QRSTU 3
+Goto Spawn+2
+See:
+COLM BCDE 5
+Goto Spawn
+Missile:
+COLM F 5
+COLM GGGG 1 A_JumpIfInventory("ColdBossFireFlag",1,"MissileC")
+goto Spawn
+Melee:
+COLM FG 5
+goto Spawn
+MissileC:
+COLM G 2
+COLM G 1 A_JumpIfInventory("ColdBossFireFlag",1,"MissileC")
+goto Spawn
+
+CustomState1:
+COLM N 2
+COLM M 9//6 (can't decide how many frames)
+COLM N 2
+goto Spawn
+
+ClassPain:
+COLM H 0
+goto PainContinue
+DeathFix:
+COLM H 0
+goto DeathContinue
+ClassDeath:
+COLM H 1
+goto MegaDeathEnd
+}
+}

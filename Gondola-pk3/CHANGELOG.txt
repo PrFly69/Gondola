@@ -1468,6 +1468,10 @@ CHANGELOG
 --Fully charged Junk Shot damage is still 20, projectile now has FX
 --Junk Shot can be fired while near a cube
 
+==Burstman
+-Dropped bomb damage 22 > 10
+--Dropped bomb explosion radius 128 > 96
+
 ==Cloudman
 -Recharge FX and Thunder Bolt sprites ported from classes-v9fh.pk3
 

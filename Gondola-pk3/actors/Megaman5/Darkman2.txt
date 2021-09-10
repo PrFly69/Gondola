@@ -1,0 +1,48 @@
+actor Darkman2 : DuoClassBase
+{
+Player.ScoreIcon "C_05J0X"
+player.startitem "DuoHealthBar"
+player.displayname "darkman2"
+player.soundclass "darkman2c"
+player.startitem "DarkShieldBoss"
+player.startitem "DarkShieldAmmo",28
+player.startitem "Darkman2ShieldAmmo", 500
+player.forwardmove 0.810, 0.810
+player.sidemove 0.808, 0.808
+//damagefactor "CrystalEye", 1.5
+//damagefactor "CrystalEyeBit", 1.5
+//damagefactor "GeminiLaser", 1.3
+States
+{
+Spawn:
+DAR2 A 0 
+DAR2 B 1
+DAR2 A 1
+Goto Spawn+2
+
+See:
+DAR2 BCDE 5
+Goto Spawn
+
+Missile:
+DAR2 F 4
+DAR2 G 5
+goto Spawn
+CustomState1:
+DAR2 F 10
+goto Missile
+CustomState2:
+DAR2 G 3
+DAR2 G 8
+goto Spawn
+ClassPain:
+DAR2 H 0
+goto PainContinue
+DeathFix:
+DAR2 H 0
+goto DeathContinue
+ClassDeath:
+DAR2 H 1
+goto MegaDeathEnd
+}
+}
