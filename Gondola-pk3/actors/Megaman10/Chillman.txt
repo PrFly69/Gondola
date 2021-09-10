@@ -1,0 +1,56 @@
+// Credits to Dimpsy for chillman skin!
+
+actor Chillman : MegaClassBase
+{
+Player.ScoreIcon "C_10D0X"
+player.startitem "MegaHealthBar"
+player.displayname "Chillman"
+player.soundclass "chillmanc"
+
+player.jumpz 12
+
+player.startitem "ChillSpikeBossC", 1
+player.startitem "ChillSprayBossC", 1
+//player.startitem "ChillReloadItem", 1
+player.startitem "ChillSpikeBossAmmo", 56
+player.startitem "ChillSlideBossAmmo", 112
+
+player.startitem "SolarBlazeWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "FlameSwordWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+States
+{
+Spawn:
+CHIM A 0
+CHIM B 1
+CHIM A 1
+Goto Spawn+2
+See:
+CHIM BBBBBCCCCCDDDDDEEEEE 1
+Goto Spawn
+Missile:
+CHIM F 5
+CHIM G 4
+goto Spawn
+
+ClassPain:
+CHIM H 0
+goto PainContinue
+DeathFix:
+TNT1 A 0 A_PlaySoundEx("weapon/ChillIceBrk","weapon")
+CHIM H 2 
+CHIM V 1
+goto DeathContinue
+ClassDeath:
+CHIM V 1
+goto MegaDeathEnd
+}
+}

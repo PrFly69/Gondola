@@ -488,7 +488,7 @@ Goto SpawnLOOP+3
 Crash:
 XDeath:
 TNT1 A 0
-TERV A 2 A_PlaySoundEx("weapon/sparkchaseractivate","Body")
+TERV A 2 A_PlaySoundEx("weapon/sparkchaserhit","Body")
 TERV B 2
 Stop
 

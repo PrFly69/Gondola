@@ -756,7 +756,7 @@ stop
 
 actor MagneticMine
 {
-Translation "192:192=4:4","198:198=41:41"
+Translation "192:192=4:4","198:198=41:41","202:202=41:41"
 species "MagnetMissile"
 +MISSILE
 +THRUSPECIES
@@ -814,10 +814,10 @@ stop
 }
 }
 
-actor MagneticMineB : MagneticMine{Translation "192:192=205:205","198:198=74:74"}
-actor MagneticMineR : MagneticMine{Translation "192:192=171:171","198:198=41:41"}
-actor MagneticMineO : MagneticMine{Translation "192:192=104:104","198:198=128:128"}
-actor MagneticMineP : MagneticMine{Translation "192:192=229:229","198:198=232:232"}
+actor MagneticMineB : MagneticMine{Translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor MagneticMineR : MagneticMine{Translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor MagneticMineO : MagneticMine{Translation "192:192=104:104","198:198=128:128","202:202=104:229"}
+actor MagneticMineP : MagneticMine{Translation "192:192=229:229","198:198=232:232","202:202=229:229"}
 
 actor PullChargeFX_Helper : BasicHelper
 {

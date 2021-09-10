@@ -77,7 +77,7 @@ AltFire:
 WINB A 0 A_JumpIfInventory("IBeFlyin",1,"AltFire2")
 WINB A 0 A_JumpIfNoAmmo("NoAmmo")
 WINB A 0 A_JumpIfInventory("WindInAir",1,"AltFire3")
-WINB B 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+WINB B 0 A_PlaySoundEx("weapon/windvacuum","Weapon")
 WINB B 0 A_GiveInventory("WindmanAlt_CI",1)
 WINB DE 2 
 WINB F 2

@@ -563,9 +563,27 @@ actor UranusChargeSnd : Powerup
 powerup.duration 8
 }
 
-actor UranusMooSndDelay : Powerup
+actor UranusMooSndDelay : Powerup //HAHA SNEED DELAY
 {
 powerup.duration 35
+}
+
+actor UranusTempDigger
+{
++NOINTERACTION
+-SOLID
++NOGRAVITY
++NOTIMEFREEZE
+radius 2
+height 2
+scale 2.5
+States
+{
+Spawn:
+URAH X 0
+URAH X 1
+stop
+}
 }
 
 actor UranusMaximumMoo_P : CustomInventory
@@ -1164,6 +1182,8 @@ BASS A 0 A_JumpIfInTargetInventory("UranusCarrying",1,"End")
 BASS A 0 A_JumpIf(ACS_NamedexecuteWithResult("cbm_istracerenemy")==1,"Carry")
 Goto Death
 Carry:
+TNT1 A 0 A_PlaySoundEx("weapon/uranusstab","Auto")
+
 PLAY A 0 A_GiveToTarget("UranusArmor",1)
 PLAY A 0 A_GiveToTarget("UranusCarrying",1)
 PLAY A 0 A_TransferPointer(0,2,8,8)

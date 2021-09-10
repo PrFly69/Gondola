@@ -22,8 +22,8 @@ texture PTSDBAR,8,56{patch B_BAR01C,0,0{Translation"192:192=227:227","198:198=22
 texture PTSDVAR,56,8{patch PTSDBAR,0,0{rotate 90}}//Napalm
 
 graphic SATRNICN,30,30{XScale 2.0 YScale 2.0 Patch RSHOY0,0,0}
-graphic Sat1Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPP0,0,0}
-graphic Sat2Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPQ0,0,0}//Saturn
+graphic Sat1Icon,30,30{XScale 2.0 YScale 2.0 Patch SATICON1,0,0}
+graphic Sat2Icon,30,30{XScale 2.0 YScale 2.0 Patch SATICON2,0,0}//Saturn
 
 graphic BRG1ICON,30,30{XScale 2.0 YScale 2.0 Patch RSHPBRP0,0,0}
 graphic BRG2ICON,30,30{XScale 2.0 YScale 2.0 Patch RSHPBRG0,0,0}//BRG

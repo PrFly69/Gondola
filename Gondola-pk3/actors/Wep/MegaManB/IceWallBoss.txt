@@ -89,6 +89,7 @@ goto Ready1
 Reload:
 CLDH C 0 A_JumpIfInventory("RunningFridgeAmmo",28,1)
 goto ReloadNot
+CLDH C 0 ACS_ExecuteAlways(512,0,1)
 CLDH C 0 A_PlaySoundEx("weapon/adapterreturn","Body")
 CLDH C 0 A_GunFlash
 CLDH C 0 A_JumpIfInventory("PowerRage_ST",1,"ColdGroundFreezeR")

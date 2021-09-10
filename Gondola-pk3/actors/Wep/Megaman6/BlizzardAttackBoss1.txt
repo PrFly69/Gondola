@@ -11,7 +11,7 @@ weapon.ammotype1 "BallAmmo"
 weapon.ammotype2 "BallAmmo"
 +WEAPON.ALT_AMMO_OPTIONAL
 +WEAPON.NOAUTOAIM
-inventory.icon "BSKIY"
+//inventory.icon "BSKIY"
 States
 {
 Spawn:

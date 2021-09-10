@@ -1,0 +1,55 @@
+actor Windman : SturdyClassBase
+{
+Player.ScoreIcon "C_06G0X"
+player.startitem "SturdyHealthBar"
+player.displayname "Windman"
+player.soundclass "windmanc"
+player.startitem "WindStormBoss"
+player.startitem "WindClassAmmo", 28
+player.startitem "FlyingKickAmmo", 28
+player.startitem "WindFlightItem"
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+player.startitem "CentaurFlashWeakness2", 1
+
+player.startitem "TimeSlowWeakness", 1
+player.startitem "TimeStopperWeakness", 1
+player.startitem "FlashStopperWeakness", 1
+player.startitem "CentaurFlashWeakness", 1
+States
+{
+Spawn:
+WINM A 0 
+WINM A 0 A_JumpIfInventory("WindInAir",1,"Woosh")
+WINM K 1 
+WINM A 1 A_JumpIfInventory("WindInAir",1,"Woosh")
+Wait
+
+Woosh: //NEW
+WINM BC 3
+WINM BBB 1 A_JumpIfInventory("WindInAir",1,"Woosh")
+Goto Spawn
+
+See:
+WINM KKKKKLLLLLMMMMMLLLLL 1 A_JumpIfInventory("WindInAir",1,"Woosh")
+Goto Spawn
+
+Missile:
+WINM F 1
+WINM F 0 //A_JumpIfInventory("WindInAir",1,"Woosh")
+WINM F 4
+WINM G 4
+goto Spawn
+
+ClassPain:
+WINM H 0
+goto PainContinue
+DeathFix:
+WINM H 0
+goto DeathContinue
+ClassDeath:
+WINM H 1
+goto MegaDeathEnd
+}
+}

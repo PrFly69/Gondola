@@ -1,0 +1,54 @@
+actor Strikeman : ClassBase
+{
+Player.ScoreIcon "C_10F0X"
+player.displayname "Strikeman"
+player.soundclass "strikemanc"
+player.startitem "ReboundStrikeBoss"
+player.startitem "ReboundStrikerBoss"
+player.startitem "ReboundStrikeItem"
+player.startitem "ReboundStrikerLimit", 175
+player.startitem "ReboundStrikerPower", 14
+player.jumpz 14
+
+States
+{
+Spawn:
+STKM A 0
+STKM B 1
+STKM A 1
+Goto Spawn+2
+See:
+STKM BBBBBCCCCCDDDDDEEEEE 1
+Goto Spawn
+Missile:
+STKM F 5
+STKM G 4
+goto Spawn
+
+CustomState1:
+SRKC IJIJ 2
+goto Spawn
+
+CustomState2:
+SRKC KL 1
+loop
+
+CustomState3:
+SRKC IJ 2
+goto Spawn
+
+ClassPain:
+STKM H 0 A_JumpIfInventory("WeaponCharge",1,"ClassPainBall")
+goto PainContinue
+ClassPainBall:
+SRKC I 0
+goto PainContinue
+
+DeathFix:
+STKM H 0
+goto DeathContinue
+ClassDeath:
+STKM H 1
+goto MegaDeathEnd
+}
+}
