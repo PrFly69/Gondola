@@ -1183,6 +1183,8 @@ CHANGELOG
 --Removes the ability to see through 3D floors using 'R_3DFLOORS 0' in software mode
 -Removed BEBE (as of gond beta 6)
 -Pain FX ported from chasecamonlyhitfx.pk3
+-All MM9 and MM10 classes have MM9PAIN from V-Classes (as of gond beta 7)
+-Updated color ACS for Mercury, Mars, Jupiter, Saturn, Pluto, and Neptune based on v6 colors (as of gond beta 7)
 
 ==Copyweapons
 -Reverted Thunder Wool to CCBM version
@@ -1202,6 +1204,8 @@ CHANGELOG
 -Uncharged buster impact VFX added
 
 ==Protoman
+-Updated to V6 skin (as of gond beta 7)
+--Ported shieldless skinsprites from classes-v9fh.pk3
 -Uncharged/midcharge buster impact VFX added
 
 ==Bass
@@ -1229,13 +1233,13 @@ CHANGELOG
 
 ==Maestro
 -Fixed Woodcustom Altfire crashing when plug boosted
--In team gamemodes where weapon color translations are usually unseeable, switching to a style displays that style's icon over your head
+-In team gamemodes where weapon color translations are usually unseeable, switching to a style displays that style's icon over your head (as of gond beta 7)
 
 ==Auto
 -Cans are now properly teamcolored
 
 ==Cutman (as of gond beta 7)
--damage fixes from UEC unimported; restored to 2.0h Cutman
+-Damage fixes from UEC unimported; restored to 2.0h Cutman
 
 ==Gutsman
 -Super Arm debris has spawns downwards on ceilings
@@ -1254,6 +1258,9 @@ CHANGELOG
 
 ==Timeman
 -Time Slow damage 14 > 10
+
+==Oilman (as of gond beta 7)
+-Ported sliding skinsprites from classes-v9fh.pk3
 
 ==Yellow Devil (as of gond beta 6)
 -Imported from ctfpatch v04
@@ -1393,6 +1400,9 @@ CHANGELOG
 ==Stoneman
 -Ported Fakeout Core reload from UEC
 
+==Gyroman (as of gond beta 7)
+-Skin ported from V-Classes, include flying and firing (midflight) sprites
+
 ==Starman
 -Shield Toss ammo consumption 4 > 7
 -Star Flurry ammo consumption 7 > 14
@@ -1411,6 +1421,7 @@ CHANGELOG
 **(Beats me, as of gond beta 6)
 
 ==Darkman2
+-Firing frames ported from vanilla (as of gond beta 7)
 -Charging mainfire has new SFX
 -Level 1 shot spread deviation 0, 15, 30 --> 0, 10, 20
 --Releasing mainfire has 4 less tics of startlag, now have 4 more tics of endlag
@@ -1433,6 +1444,7 @@ CHANGELOG
 -Ammo regen rate 1 per 2 tics > 1 per 5 tics
 
 ==Blizzardman
+-Weapon tag updated and inventory icon removed (as of gond beta 7)
 -Rapid Blizzard shots now weave
 
 ==Knightman
@@ -1451,6 +1463,10 @@ CHANGELOG
 ==Plantman
 -Plant Buster has new SFX
 
+==Windman (as of gond beta 7)
+-Walking sprites ported from V-Classes
+-Wind Storm has new SFX on launch
+
 ==Yamatoman
 -Ported HUD Cutoff fix from LemonLimeBrony
 -Ported new firing frames from UEC
@@ -1458,6 +1474,7 @@ CHANGELOG
 --Reload leap forwards thrust 25 > 45
 
 ==Junkman
+-Teamcolors edited 94/4 > 3/91 (as of gond beta 7)
 -Junk Cube can now be redirected multiple times until either hit with a fully charged punch or until it passively despawns
 --If hit with fully charged Junk Punch, will become fast
 --Junk Cube now takes twice as long to passively despawn
@@ -1468,7 +1485,7 @@ CHANGELOG
 --Fully charged Junk Shot damage is still 20, projectile now has FX
 --Junk Shot can be fired while near a cube
 
-==Burstman
+==Burstman (as of gond beta 7)
 -Dropped bomb damage 22 > 10
 --Dropped bomb explosion radius 128 > 96
 
@@ -1483,9 +1500,14 @@ CHANGELOG
 --Fully charged Noise Crush has impact VFX
 
 ==Tenguman
+-8FC Skin slightly edited, legs are white (as of gond beta 7)
+--Swapped firing frames for Redflash Skin (as of gond beta 7)
+-Teamcolors edited 42/4 > 228/227 (as of gond beta 7)
 -HP 90 > 100
+-Tengu Dash frames reverted to CCBM 1.95h (as of gond beta 7)
 -Tornado Hold now on separate bar, has five uses per clip
 --Tornado Hold Bar stops regening in midair
+--Fixed Tornado Hold taking no ammo when fired directly down (as of gond beta 7)
 
 ==Astroman
 -Walking animation 2 tics faster
@@ -1522,6 +1544,7 @@ CHANGELOG
 ==Coldman
 -Ice Wall passive ammo gain doubled
 -Fixed Cold Field not dunking properly
+-Cold Field skinsprites ported from V-Classes (as of gond beta 7)
 
 ==King
 -Ported from UEC
@@ -1570,10 +1593,14 @@ CHANGELOG
 -Altfire waves last 5 tics longer
 
 ==Chillman
+-Now has funky (crappy) new death animation and updated weaknesses (as of gond beta 7)
 -Fixed Chill Spike being usable with insufficient ammo
 
 ==Sheepman
 -Ported V6 skin
+
+==Strikeman
+-Ported V6 skin (as of gond beta 7)
 
 ==Nitroman
 -New item icon added
@@ -1598,35 +1625,16 @@ CHANGELOG
 --Fat Old Sun explosive damage 25 > 20
 --Ripper powerprotect duration 1 > 2 (as of gond beta 6)
 
-==Fuseman
--Uses Redflash's skin, Dimpsy's skin exists as an alternative
---198 color of skin translates to 75 instead of 207
--Added Scramble Thunder copywep (WIP)
-
-==Acidman
--Movespeed 0.884/0.864 > 0.89/0.87
--Ported all recent UEC changes
--Added 4 ZThrust to M1
---Speed 43 > 42 to readjust range
--FriendBarrier regens 50% faster
--Gaining gear ammo now has a 'rattling gears' noise
--Fixed Saturn sucking up gas
--Added Acid Barrier copywep (WIP)
-
-==Blastman
--Imported from UEC
---Altfire and Power Gear Mainfire now take ammo
--Added Chain Blast copywep (WIP)
-
 ==Terra
--Now starts with full ammo
 -Fixed TerraSparkChaser overwriting the campaign boss attack
 -Ported V6 skin + edited walkframes made by NightFly
 --Uses assets from Redflash's Terra skin
 -Fixed reduced ammo gain bug
--Removed all ACS delays
--Spark Chaser now blinks
+-Now starts with full ammo
+-Removed all ACS delays on Spark Chaser
+-=Spark Chaser now blinks
 --Spark Chaser can be moved around twice as long before automatically going off
+-New Spark Chaser activation/hit sound, edited from V-Classes (as of gond beta 7)
 
 ==Mercury
 -Ported V6 skin + extra skinsprites from classes-v9fh.pk3
@@ -1647,6 +1655,8 @@ CHANGELOG
 
 ==Uranus
 -All skinsounds ported from vanilla
+-Uranus drops Deep Digger copy weapon now (as of gond beta 7)
+-Deep Digger sprite ported from vanilla (teamcolored unlike the copyweapon, of course. Done as of gond beta 7)
 
 ==Pluto
 -Removed ACS delay on speed updating
@@ -1664,6 +1674,28 @@ CHANGELOG
 -Imported from UEC
 --All skinsounds ported from vanilla
 --Uses Pegg's skin, Redflash's skin exists as an alternative
+
+==Fuseman
+-Uses Redflash's skin, Dimpsy's skin exists as an alternative
+--198 color of skin translates to 75 instead of 207
+-Added Scramble Thunder copywep (WIP)
+
+==Acidman
+-Movespeed 0.884/0.864 > 0.89/0.87
+-Ported all recent UEC changes
+-Added 4 ZThrust to M1
+--Speed 43 > 42 to readjust range
+--Fixed Saturn sucking up gas
+-FriendBarrier regens 50% faster
+-Gaining gear ammo now has a 'rattling gears' noise
+-New Reload Acid Barrier sound from V-Classes (as of gond beta 7)
+-Added Acid Barrier copywep (WIP)
+
+==Blastman
+-Imported from UEC
+--Blast Spread and Power Gear Blast Bomb now take ammo
+--Power Gear Blast Bomb are properly colored (as of gond beta 7)
+-Added Chain Blast copywep (WIP)
 
 ==Mega Water S (as of gond beta 6)
 -Health 100 > 85
