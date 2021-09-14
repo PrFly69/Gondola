@@ -44,7 +44,7 @@ actor MaestroHeatShield : BaseMM8BDMWep_CBM
 tag "Maestro HeatShield"
 dropitem "CopyClassUpgradeDropped"
 
-
+weapon.preferredskin "Maestro-Shield"
 Weapon.SlotNumber 1
 Obituary "$OB_ROCKBUSTER"
 Inventory.Pickupmessage "You got Maestro.exe!"
@@ -421,7 +421,7 @@ actor MaestroAquaShield : BaseMM8BDMWep_CBM
 tag "Maestro AquaShield"
 dropitem "CopyClassUpgradeDropped"
 
-
+weapon.preferredskin "Maestro-Shield"
 Weapon.SlotNumber 1
 Obituary "$OB_ROCKBUSTER"
 Inventory.Pickupmessage "You got Maestro.exe!"
@@ -712,7 +712,7 @@ actor MaestroElecShield : BaseMM8BDMWep_CBM
 tag "Maestro ElecShield"
 dropitem "CopyClassUpgradeDropped"
 
-
+weapon.preferredskin "Maestro-Shield"
 Weapon.SlotNumber 1
 Obituary "$OB_ROCKBUSTER"
 Inventory.Pickupmessage "You got Maestro.exe!"
@@ -1035,7 +1035,7 @@ actor MaestroWoodShield : BaseMM8BDMWep_CBM
 tag "Maestro WoodShield"
 dropitem "CopyClassUpgradeDropped"
 
-
+weapon.preferredskin "Maestro-Shield"
 Weapon.SlotNumber 1
 Obituary "$OB_ROCKBUSTER"
 Inventory.Pickupmessage "You got Maestro.exe!"

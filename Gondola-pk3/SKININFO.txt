@@ -70,3 +70,48 @@ gender = male
 }
 
 //LONG LIVE THE KING
+
+{
+name = "Maestro-Guts"
+sprite = PLY2
+class = Maestro
+*land = MM2LAND
+dsnoway = MM2LAND
+dsoof = dsnone
+dspldeth = ROCKDEAD
+dspdiehi = ROCKDEAD
+dsslop = ROCKDEAD
+dsplpain = ROCKHURT
+dstaunt = ROCKMTAU
+gender = male
+}
+
+{
+name = "Maestro-Custom"
+sprite = PLY3
+class = Maestro
+*land = MM2LAND
+dsnoway = MM2LAND
+dsoof = dsnone
+dspldeth = ROCKDEAD
+dspdiehi = ROCKDEAD
+dsslop = ROCKDEAD
+dsplpain = ROCKHURT
+dstaunt = ROCKMTAU
+gender = male
+}
+
+{
+name = "Maestro-Shield"
+sprite = PLY4
+class = Maestro
+*land = MM2LAND
+dsnoway = MM2LAND
+dsoof = dsnone
+dspldeth = ROCKDEAD
+dspdiehi = ROCKDEAD
+dsslop = ROCKDEAD
+dsplpain = ROCKHURT
+dstaunt = ROCKMTAU
+gender = male
+}

@@ -1181,7 +1181,7 @@ CHANGELOG
 -All new V6 portraits properly ported
 -Ported JidiJMidiJDongleBongleAntiMidiJidi3DFloorCheat.pk3
 --Removes the ability to see through 3D floors using 'R_3DFLOORS 0' in software mode
--Removed BEBE (as of gond beta 6)
+-Removed BEBE (as of gond beta 7)
 -Pain FX ported from chasecamonlyhitfx.pk3
 -All MM9 and MM10 classes have MM9PAIN from V-Classes (as of gond beta 7)
 -Updated color ACS for Mercury, Mars, Jupiter, Saturn, Pluto, and Neptune based on v6 colors (as of gond beta 7)
@@ -1198,7 +1198,7 @@ CHANGELOG
 -Break Dash icon restored
 
 ==Megaman
--Ported V6 skin (as of gond beta 6)
+-Ported V6 skin
 -Ported HUD Cutoff fix from LemonLimeBrony
 -Updated Double Buster HUD for V6
 -Uncharged buster impact VFX added
@@ -1220,7 +1220,6 @@ CHANGELOG
 -Grab replaced by a leap, creating a wave upon landing
 --Deals 20 damage and variable knock-up based on the portion's size, has 70 Stepheight
 --Can grab people and drag them scaling up to 20 bonus damage
-(hitstun on slam 1.0 > 0.75 as of gond beta 6)
 -Ram radius 16 > 18
 --Damage falloff delayed by 2 tics
 -Wire Punch Radius/Width 10/10 > 13/13
@@ -1262,10 +1261,9 @@ CHANGELOG
 ==Oilman (as of gond beta 7)
 -Ported sliding skinsprites from classes-v9fh.pk3
 
-==Yellow Devil (as of gond beta 6)
+==Yellow Devil
 -Imported from ctfpatch v04
 -When chosen as a player class, Yellow Devil takes 35% more damage for the duration of One-Eyed Cube and for two seconds after, rather than losing health during the throw.
-(Appears on class selection menu and botmenu as of gond beta 6h)
 (As of gond beta 7:) //I'm fully aware that this is way wordier than it needs to be.
 -Now correctly drops a Copywep class upgrade on death
 -Speed Gear meter added: fills 1 ammo every six tics, up to a maximum of 56 in 10~ seconds (Playerclass only)
@@ -1313,17 +1311,16 @@ CHANGELOG
 
 ==Magnetman
 -Reworked by NightFly (with assets from Greg.EXE and Trillster)
--Mainfire homing reworked, now has 5 tics of delay before doing a singular fast redirect (as of gond beta 6)
+-Mainfire homing reworked, now has 5 tics of delay before doing a singular fast redirect
 *(this was originally 8 but incorrectly scripted as 10)
 -Redirect maxangleturning precision increases as Magnet Missile is held
 -NEW ALTFIRE: MAG FLY
 --Can be placed in the air and increases allied players' jumpheight who are underneath it
-(added +CANBOUNCEWATER as of gond beta 6)
 --Pressing altfire again switches Mag Fly's polarity, crushing enemies into the ground
 --Applies 0.75 hitstun and grounds enemies who are underneath it 
 --3 second cooldown after reversed polarity Mag Fly dies, 50 tic cooldown after regular Mag Fly dies
 --Reversed Mag Fly does 69 damage (don't you fucking dare say it)
--RETURNING RELOAD: MAGNETIC MINE (as of gond beta 6) (hud as of gond beta 7)
+-RETURNING RELOAD: MAGNETIC MINE (hud as of gond beta 7)
 --Relative to inclusion in gond beta 4: speed 12 > 9, health 30 > 15, direct angles reduced
 -NEW ITEM: MAGFLY CANCEL
 --Manually destroy a non-crushing Mag Fly
@@ -1356,8 +1353,6 @@ CHANGELOG
 --Close ranged healing tool
 --Heals twice as fast as other healing tools but consumes screw ammo twice as fast
 --Does 1 damage per rip and can be used to self-heal off of enemies
-(histun 100% > 10% as of gond beta 6)
-(powerprotect 5 tics > 10 tics as of gond beta 6)
 -Spark Taser no longer holds directly in front of the user
 --Spark Taser duration shortened
 --Spark Taser damage 15 > 25
@@ -1376,7 +1371,7 @@ CHANGELOG
 ==Drillman
 -Removed all ACS delays
 
-==Ringman (as of gond beta 6)
+==Ringman
 -Gleam FX replaced with translucent ring trail
 -Returning empowered Ring Boomerangs now have translucent ring trail as well
 
@@ -1389,7 +1384,7 @@ CHANGELOG
 -Rage Skull Buster now has special sound effect
 --Rage FX now used renderstyle add
 
-==Gravityman (as of gond beta 6)
+==Gravityman
 -Health reduced to 90
 -Gravity Hold Up and Gravity Sphere Up damage reduced to 0
 
@@ -1413,12 +1408,12 @@ CHANGELOG
 --Charge Tackle duration 3 tics > 2 tics
 -Readded Charge Parry on altfire
 
-==Darkman1 (as of gond beta 6)
+==Darkman1
 -M1 no longer explodes; damage added to main projectile
 -Maximum damage reduced from 12~9 > 11~8
 -Fixed a bug where Darkman1 dealt 5 more damage per M1 between the 80-94 health threshold whilst playing for the King team.
 *(What the fuck.)
-**(Beats me, as of gond beta 6)
+**(beats me lol)
 
 ==Darkman2
 -Firing frames ported from vanilla (as of gond beta 7)
@@ -1428,14 +1423,13 @@ CHANGELOG
 
 ==Darkman3
 -Ported from classes-v9fh.pk3, following are edits made to CBM base
--All shots now have FX on death (as of gond beta 6)
+-All shots now have FX on death
 -SMG damage 6 > 5
-(ammo consumption on SMG removed as of gond beta 6)
 -Uncharged snipe shot damage 25 > 15
--Fully charged snipe shot 40 > 25 (as of gond beta 6)
---Scales up to 45 damage at a distance (as of gond beta 6)
+-Fully charged snipe shot 40 > 25
+--Scales up to 45 damage at a distance
 
-==Darkman4 (as of gond beta 6)
+==Darkman4
 -All shots now have FX on death
 --Shield no longer affected by ally attacks
 --Shield now takes 50 or more damage to destroy rather than 5 hits
@@ -1451,7 +1445,6 @@ CHANGELOG
 -Imported ECL1P5E Patch, following are edits made to EC Patch base (damage reverted as of gond beta 7)
 -Knight Crush can now be turned based on where the user faces
 --No longer bounces on surfaces
---Knight Crush range increased 10 tics > 15 tics (as of gond beta 7)
 --Knight Crush now has 25% hitstun on hit
 --Returning Knight Crush has 9 damage flat on return
 -Mace Spin now has medium knockback (doubled as of gond beta 7)
@@ -1459,11 +1452,6 @@ CHANGELOG
 --Can now be held indefinitely (as of gond beta 7)
 -Empowered Knight Crush reworked, now is Ult. Knight Crush from V-Classes
 --Can not be redirected like its uncharged counterpart
---Does 27 damage, has knockback and knockup on hit (damage buffed and explosion removed as of gond beta 7)
---No longer has range limit, now acts like a standard projectile with gravity and returns on hitting a surface/player (as of gond beta 7)
---Ball is destroyed on hit and no longer returns with the chain (as of gond beta 7)
-(quaking on Empowered Knight Crush removed as of gond beta 6h)
--Shield offsets cleaned up
 
 ==Plantman
 -Plant Buster has new SFX
@@ -1537,7 +1525,7 @@ CHANGELOG
 -Flame Lunge recoil 50 > 40
 
 ==Clownman
--Thunder Claw no longer inherits from Knight Crush (as of gond beta 6h)
+-Thunder Claw no longer inherits from Knight Crush
 
 ==Dynamoman
 -Ported Dynamo Tendril sprites from classes-v9fh.pk3
@@ -1628,7 +1616,7 @@ CHANGELOG
 --Fat Old Sun bouncecount 10 > 3
 --Fat Old Sun direct damage 15 > 10
 --Fat Old Sun explosive damage 25 > 20
---Ripper powerprotect duration 1 > 2 (as of gond beta 6)
+--Ripper powerprotect duration 1 > 2
 
 ==Terra
 -Fixed TerraSparkChaser overwriting the campaign boss attack
@@ -1644,7 +1632,7 @@ CHANGELOG
 ==Mercury
 -Ported V6 skin + extra skinsprites from classes-v9fh.pk3
 -Fixed holding noammo altfire bug
--Grab Buster damage 8 > 10 (as of gond beta 6)
+-Grab Buster damage 8 > 10
 -Removed wallclimbing from blob form
 -Blob starting ammo 8 > 12
 --Blobs have powerprotect for 50% that lasts 15 tics
@@ -1702,7 +1690,7 @@ CHANGELOG
 --Power Gear Blast Bomb are properly colored (as of gond beta 7)
 -Added Chain Blast copywep (WIP)
 
-==Mega Water S (as of gond beta 6)
+==Mega Water S
 -Health 100 > 85
 
 ==Hyper Storm H
@@ -1711,7 +1699,7 @@ CHANGELOG
 -Tackle damage rampup user_P*0.5+9 > 18
 --Tackle hitbox 176 > 128
 --Tackle maxdamageradius user_P*0.25+32 > 48
--UEC suck/blow stamina implemented (as of gond beta 6)
+-UEC suck/blow stamina implemented
 
 ==Ballade
 -Removed ACS delay on speed updating

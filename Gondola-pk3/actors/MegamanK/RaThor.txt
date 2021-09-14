@@ -1,0 +1,460 @@
+actor RaThor : DuoClassBase
+{
+Player.ScoreIcon "C_0KE0X"
+player.displayname "RaThor"
+player.soundclass "rathorc"
+
+player.startitem "RaThorWrathBoss"
+player.startitem "ThorPrimeItem"
+player.startitem "WrathAmmo", 24
+player.startitem "AztecAmmo", 7
+player.startitem "RaThorSpawnStart_P"
+player.startitem "CanHarvestSouls"
+//player.startitem "CanAirJump"
+//player.startitem "CanAirJumpStack", 1
+
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+player.jumpz 14
+
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "SparkShockWeakness", 1
+player.startitem "ThunderBoltWeakness", 1
+player.startitem "ThunderClawWeakness", 1
+player.startitem "LightningBoltWeakness", 1
+player.startitem "PlugBallWeakness", 1
+player.startitem "ElectricShockWeakness", 1
+
+States
+{
+Spawn:
+RATH A 0 A_JumpIf(z-floorz>0,"RaThorJumping")
+RATH A 0 A_JumpIfInventory("ThorIsGrabbingF",1,2)
+RATH A 1 A_JumpIf(z-floorz>0,"RaThorJumping")
+Goto Spawn
+RATH A 0 A_JumpIf(z-floorz>0,"RaThorJumping")
+RATH R 1 A_JumpIf(z-floorz>0,"RaThorJumping")
+RATH Q 1 A_JumpIfInventory("VivifyDelay8",1,"MissileRelease")
+RATH A 0 A_JumpIf(z-floorz>0,"RaThorJumping")
+Goto Spawn
+See:
+RATH B 0 A_JumpIfInventory("ThorIsGrabbingF",1,"SeeHold")
+RATH BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"RaThorJumping")
+Goto Spawn
+SeeHold:
+RATH RRRRRSSSSSTTTTTUUUUU 1 A_JumpIfInventory("VivifyDelay8",1,"MissileRelease")
+Goto Spawn+4
+Missile:
+RATH F 0 A_JumpIfInventory("VivifyDelay10",1,"MissileThrow")
+RATH F 0 A_JumpIfInventory("VivifyDelay6",1,"MissileSlam")
+RATH F 0 A_JumpIfInventory("VivifyDelay4",1,"MissileLungeWait")
+RATH FFFFFGGGGG 1 A_JumpIf(z-floorz>0,"RaThorJumpingShooting")
+goto Spawn
+MissileLungeWait:
+RAT1 L 1 A_JumpIfInventory("ThorIsLungingF",1,"MissileLunge")
+loop
+MissileLunge:
+RATH V 0 A_JumpIfInventory("ThorIsGrabbingF",1,"Spawn")
+RATH V 1 A_JumpIfInventory("VivifyDelay5",1,"SpawnDelay")
+loop
+SpawnDelay:
+RAT1 L 1
+goto Spawn
+MissileThrow:
+RATH P 24
+RATH Q 5
+goto Spawn
+MissileSlam:
+RATH Q 1 A_JumpIfInventory("VivifyDelay5",1,"MissileRelease")
+loop
+MissileRelease:
+RATH Q 6
+Goto Spawn
+
+RaThorJumpingShooting:
+RATH F 0 A_JumpIf(z-floorz<=0, "Spawn")
+RATH F 0 A_JumpIfInventory("VivifyDelay10",1,"MissileThrow")
+RATH F 0 A_JumpIfInventory("VivifyDelay6",1,"MissileSlam")
+RATH F 0 A_JumpIfInventory("VivifyDelay4",1,"MissileLungeWait")
+RAT1 LLLLLLLLLL 1 A_JumpIf(z-floorz<=0, "Spawn")
+goto RaThorJumping
+
+RaThorJumping:
+TNT1 A 0 A_JumpIfInventory("ThorIsGrabbingF",1,"SeeHold")
+RAT1 K 1 A_JumpIf(z-floorz<=0, "Spawn")
+loop
+
+ClassPainLunge:
+RATH "#" 0 A_SpawnItemEx("DelayPainFX")
+goto MissileLunge
+ClassPain:
+RATH H 0 A_JumpIfInventory("ThorIsLungingF",1,"ClassPainLunge")
+goto PainContinue
+DeathFix:
+RATH H 0 A_GiveInventory("SpecialDeathFlag",1)
+goto DeathContinue
+ClassDeath:
+RATH H 0 A_JumpIfInventory("InstagibFlag",1,"ClassDeathM")
+RATH H 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
+RATH H 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
+RATH H 19
+goto ClassDeathM
+ClassDeathM:
+RATH H 0 A_SpawnItemEx("RaThorRareDeathHelper",0,0,0,momx,momy,momz,0,9)
+goto MegaDeathEnd
+ClassDeathR:
+RATH H 1 ThrustThingZ(0,21,0,1)
+RATH H 0 A_JumpIf(ceilingz-z<64,"ClassDeathM")
+RATH H 0 A_GiveInventory("RiseDeathFlag2",1)
+RATH H 0 A_JumpIfInventory("RiseDeathFlag2",25,"ClassDeathM")
+loop
+ClassDeathI:
+RATH H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
+RATH H 1 A_PlaySoundEx("CBM/freeze","Voice")
+RATH HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
+RATH H 0 A_PlaySoundEx("CBM/icebreak","Body")
+RATH H 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+RATH H 0 A_SpawnItemEx("RaThorRareDeathHelper",0,0,0,momx,momy,momz,0,9)
+goto DeathWait
+}
+}
+
+
+actor RaThorSinistarFlag : OnceC{}
+actor RaThorSinistarFlag1 : OnceC{}
+actor RaThorSinistarFlag2 : OnceC{}
+actor RaThorSinistarFlag3 : OnceC{}
+actor RaThorSinistarFlag4 : OnceC{}
+actor RaThorSinistarFlag5 : OnceC{}
+actor RaThorSinistarFlag6 : OnceC{}
+
+actor RaThorRareDeathHelper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,"S_1","S_2","S_3","S_4","S_5","S_6")
+goto S_1
+S_1:
+TNT1 A 1 A_SpawnItemEx("RaThorSinistar_P1",0,0,40,momx+random(2,3),momy+frandom(-1,1),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_2:
+TNT1 A 1 A_SpawnItemEx("RaThorSinistar_P2",0,0,28,momx+random(1,3),momy+frandom(-1,1),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_3:
+TNT1 A 1 A_SpawnItemEx("RaThorSinistar_P3",0,0,30,momx+random(1,4),momy+frandom(-2,2),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_4:
+TNT1 A 1 A_SpawnItemEx("RaThorSinistar_P4",0,0,30,momx+random(1,4),momy+frandom(-2,2),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_5:
+TNT1 A 1 A_SpawnItemEx("RaThorSinistar_P5",0,0,6,momx+random(1,4),momy+frandom(-2,2),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_6:
+TNT1 A 1 A_SpawnItemEx("RaThorSinistar_P6",0,0,6,momx+random(1,4),momy+frandom(-2,2),momz+frandom(2,6),random(-2,2),41,0)
+stop
+}
+}
+
+actor RaThorSinistar_PFX : BasicClientSide
+{
+renderstyle translucent
+alpha 0.8
+Scale 2.5
+States
+{
+Spawn:
+RA_H V 0
+RA_H V 0 A_Jump(256,"S1","S2","S3","S4","S5","S6","S7","S8","S9")
+S1:
+RA_H RUTVRUTV 2
+stop
+S2:
+RA_H TSRWTSRW 2
+stop
+S3:
+RA_H RSTURSTU 2
+stop
+S4:
+RA_H TURSTURS 2
+stop
+S5:
+RA_H RVTWSVUW 2
+stop
+S6:
+RA_H UWSVTWRV 2
+stop
+S7:
+RA_H RTVWSUVW 2
+stop
+S8:
+RA_H VWVWVWVW 2
+stop
+S9:
+RA_H WVWVWVWV 2
+stop
+}
+}
+
+actor RaThorSinistar_P1 : CustomInventory
+{//βεωαᴦΣ
+inventory.pickupmessage "\cgPicked up Central Piece \cuSigma\cg."
+inventory.amount 1
+inventory.maxamount 1
+scale 1.25
+States
+{
+Spawn:
+SINI M 1
+goto Spawn2
+Spawn2:
+//300 * 5 // A_SpawnItemEx("RaThorSinistar_PFX",random(4,12),0,random(6,24),frandom(1,3),0,frandom(1,3),random(0,89)*4,1)
+"----" "############################################################################################################################################################################################################################################################################################################" 5 A_SpawnItemEx("RaThorSinistar_PFX",random(4,12),0,random(6,24),frandom(1,3),0,frandom(1,3),random(0,89)*4,1)
+"----" "#" 1 A_FadeOut(0.05)
+wait
+Pickup:
+TNT1 A 0 A_GiveInventory("RaThorSinistarFlag1",1)
+goto End
+End:
+TNT1 A 0 A_PlaySoundEx("GNT/Treasure","Item")
+TNT1 A 0 A_GiveInventory("RaThorSinistar_PX",1)
+stop
+}
+}
+actor RaThorSinistar_P2 : RaThorSinistar_P1
+{
+inventory.pickupmessage "\cgPicked up Amulet Piece \cuGamma\cg."
+States
+{
+Spawn:
+SINI N 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("RaThorSinistarFlag2",1)
+goto End
+}
+}
+actor RaThorSinistar_P3 : RaThorSinistar_P1
+{
+inventory.pickupmessage "\cgPicked up Amulet Piece \cuAlpha\cg."
+States
+{
+Spawn:
+SINI O 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("RaThorSinistarFlag3",1)
+goto End
+}
+}
+actor RaThorSinistar_P4 : RaThorSinistar_P1
+{
+inventory.pickupmessage "\cgPicked up Amulet Piece \cuOmega\cg."
+States
+{
+Spawn:
+SINI P 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("RaThorSinistarFlag4",1)
+goto End
+}
+}
+actor RaThorSinistar_P5 : RaThorSinistar_P1
+{
+inventory.pickupmessage "\cgPicked up Amulet Piece \cuEpsilon\cg."
+States
+{
+Spawn:
+SINI Q 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("RaThorSinistarFlag5",1)
+goto End
+}
+}
+actor RaThorSinistar_P6 : RaThorSinistar_P1
+{
+inventory.pickupmessage "\cgPicked up Amulet Piece \cuBeta\cg."
+States
+{
+Spawn:
+SINI R 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("RaThorSinistarFlag6",1)
+goto End
+}
+}
+
+actor RaThorSinistar_PX : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag1",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag2",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag3",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag4",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag5",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag6",1,1)
+stop
+TNT1 A 0 A_GiveInventory("RaThorSinistar_PZ")
+stop
+}
+}
+
+actor RaThorSinistar_PZ : CustomInventory
+{
+inventory.pickupmessage "\cgYou have rebuilt the \cuSinistar\cg!"
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("DrainRune_ST")
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag",1,3)
+TNT1 A 0 A_SpawnItemEx("RaThorSinistarFollow",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("RaThorSinistarFollow_W")
+TNT1 A 0 A_GiveInventory("RaThorSinistarFlag")
+stop
+}
+}
+
+actor RaThorSinistarFollow_W : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/RaThorSinistarX","Weapon")
+TNT1 A 0 A_PlaySoundEx("weapon/RaThorSinistar","Weapon")
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(2,0,0,28,0,24)
+TNT1 A 10
+stop
+}
+}
+
+actor RaThorSinistarFollow : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+TNT1 A 0
+TNT1 AA 1 A_GiveToTarget("RaThorSinistarFollowFX1_P",1)
+TNT1 A 2
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 AA 1 A_GiveToTarget("RaThorSinistarFollowFX2_P",1)
+TNT1 A 2
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 AA 1 A_GiveToTarget("RaThorSinistarFollowFX3_P",1)
+TNT1 A 2
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+goto Spawn+3
+}
+}
+
+actor RaThorSinistarFollowFX1_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("RaThorSinistarFollowFX1",0,0,84,momx,momy,momz,0,9)
+stop
+}
+}
+actor RaThorSinistarFollowFX2_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("RaThorSinistarFollowFX2",0,0,84,momx,momy,momz,0,9)
+stop
+}
+}
+actor RaThorSinistarFollowFX3_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("RaThorSinistarFollowFX3",0,0,84,momx,momy,momz,0,9)
+stop
+}
+}
+
+actor RaThorSinistarFollowFX1 : BasicClientSide
+{
+RenderStyle Translucent
+Alpha 0.85
+Scale 1.0
+States
+{
+Spawn:
+SINI S 0
+SINI S 1
+stop
+}
+}
+actor RaThorSinistarFollowFX2 : RaThorSinistarFollowFX1
+{
+States
+{
+Spawn:
+SINI T 0
+SINI T 1
+stop
+}
+}
+actor RaThorSinistarFollowFX3 : RaThorSinistarFollowFX1
+{
+States
+{
+Spawn:
+SINI U 0
+SINI U 1
+stop
+}
+}
+
+actor RaThorSinistarDropper_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag",1,"No")
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag1",1,"P_1")
+goto P_1+1
+No:
+TNT1 A 0
+stop
+P_1:
+TNT1 A 0 A_SpawnItemEx("RaThorSinistar_P1",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag2",1,"P_2")
+goto P_2+1
+P_2:
+TNT1 A 0 A_SpawnItemEx("RaThorSinistar_P2",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag3",1,"P_3")
+goto P_3+1
+P_3:
+TNT1 A 0 A_SpawnItemEx("RaThorSinistar_P3",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag4",1,"P_4")
+goto P_4+1
+P_4:
+TNT1 A 0 A_SpawnItemEx("RaThorSinistar_P4",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag5",1,"P_5")
+goto P_5+1
+P_5:
+TNT1 A 0 A_SpawnItemEx("RaThorSinistar_P5",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("RaThorSinistarFlag6",1,"P_6")
+goto No
+P_6:
+TNT1 A 0 A_SpawnItemEx("RaThorSinistar_P6",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+stop
+}
+}
