@@ -1442,16 +1442,16 @@ CHANGELOG
 -Rapid Blizzard shots now weave
 
 ==Knightman
--Imported ECL1P5E Patch, following are edits made to EC Patch base
+-Imported ECL1P5E Patch, following are edits made to EC Patch base (damage reverted as of gond beta 7)
 -Knight Crush can now be turned based on where the user faces
 --No longer bounces on surfaces
---Damage 18 > 15
 --Knight Crush now has 25% hitstun on hit
--Mace Spin now has minor knockback
---Mace Spin damage 1 > 4, powerprotected for 5 tics
+--Returning Knight Crush has 9 damage flat on return
+-Mace Spin now has medium knockback (doubled as of gond beta 7)
+--Mace Spin damage 1 > 12, powerprotected for 5 tics (as of gond beta 7)
+--Can now be held indefinitely (as of gond beta 7)
 -Empowered Knight Crush reworked, now is Ult. Knight Crush from V-Classes
 --Can not be redirected like its uncharged counterpart
---Direct attack does 25 damage, has knockback and knockup on hit
 
 ==Plantman
 -Plant Buster has new SFX

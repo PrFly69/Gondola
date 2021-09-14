@@ -47,6 +47,7 @@ OB_SPARKCHASERBOSS2 = "%o was pincushioned by %k's Spark Chaser.";
 OB_KNIGHTRUSHX = "%o was banged into Bangers and Mash by %k's Knight Rush.";
 OB_KNIGHTCRUSHX = "%o was decimated by %k's Super Knight Crush.";
 OB_KNIGHTCRUSHY = "%o broke %p nose from getting too close to %k's Spinning Mace.";
+OB_KNIGHTCRUSHZ = "%o was slain by %k's Returning Knight Crush.";
 //Torch
 OB_TORCH = "%o fell to %k's Fist of Flame.";
 OB_TORCHEX = "%o burnt too many calories facing %k's Torchjutsu Fist.";

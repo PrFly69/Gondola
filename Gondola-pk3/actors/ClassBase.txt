@@ -13,6 +13,10 @@ Pain.KnightBonk2:
 "----" H 0 A_SpawnItemEx("PainKnightRushHit")
 Goto Pain+2
 
+Pain.KnightReturn:
+"----" H 0 A_GiveInventory("KnightReturnProtect")
+Goto Pain+2
+
 Death.KnightBonk:
 "----" H 0 A_SpawnItemEx("PainKnightBonkHit")
 Goto FlingDeath
