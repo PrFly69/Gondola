@@ -3,7 +3,7 @@ actor MaestroHeatCustom : BaseMM8BDMWep_CBM
 tag "Maestro HeatCustom"
 dropitem "CopyClassUpgradeDropped"
 
-
+weapon.preferredskin "Maestro-Custom"
 Weapon.SlotNumber 1
 Obituary "$OB_ROCKBUSTER"
 Inventory.Pickupmessage "You got Maestro.exe!"
@@ -212,7 +212,7 @@ actor MaestroAquaCustom : BaseMM8BDMWep_CBM
 tag "Maestro AquaCustom"
 dropitem "CopyClassUpgradeDropped"
 
-
+weapon.preferredskin "Maestro-Custom"
 Weapon.SlotNumber 1
 Obituary "$OB_ROCKBUSTER"
 Inventory.Pickupmessage "You got Maestro.exe!"
@@ -421,7 +421,7 @@ actor MaestroElecCustom : BaseMM8BDMWep_CBM
 tag "Maestro ElecCustom"
 dropitem "CopyClassUpgradeDropped"
 
-
+weapon.preferredskin "Maestro-Custom"
 Weapon.SlotNumber 1
 Obituary "$OB_ROCKBUSTER"
 Inventory.Pickupmessage "You got Maestro.exe!"
@@ -629,7 +629,7 @@ actor MaestroWoodCustom : BaseMM8BDMWep_CBM
 tag "Maestro WoodCustom"
 dropitem "CopyClassUpgradeDropped"
 
-
+weapon.preferredskin "Maestro-Custom"
 Weapon.SlotNumber 1
 Obituary "$OB_ROCKBUSTER"
 Inventory.Pickupmessage "You got Maestro.exe!"
