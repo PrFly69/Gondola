@@ -24,14 +24,14 @@ CLDH A 0 //A_JumpIfInventory("DinoDNAFlag",1,"ColdGroundFreeze")
 CLDH A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_ALLOWRELOAD)
 CLDH A 0 //A_JumpIfInventory("DinoDNAFlag",1,"ColdGroundFreeze")
 //CLDH A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_ALLOWRELOAD)
-CLDH A 0 A_GiveInventory("ColdBossAmmo",2)
+CLDH A 0 A_GiveInventory("ColdBossAmmo",1)
 goto Ready1+1
 Ready2:
 CLDH A 0 //A_JumpIfInventory("DinoDNAFlag",1,"ColdGroundFreeze")
 CLDH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 CLDH A 0 //A_JumpIfInventory("DinoDNAFlag",1,"ColdGroundFreeze")
 //CLDH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-CLDH A 0 A_GiveInventory("ColdBossAmmo",2)
+CLDH A 0 A_GiveInventory("ColdBossAmmo",1)
 goto Ready2
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower

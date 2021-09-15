@@ -1255,6 +1255,9 @@ CHANGELOG
 --Second altfire is old Fire Wave
 --Fire Ring now uses renderstyle add
 
+==Elecman
+-Thunder Beam uses sprite FX from V-Classes (as of gond beta 7)
+
 ==Timeman
 -Time Slow damage 14 > 10
 
@@ -1440,18 +1443,23 @@ CHANGELOG
 ==Blizzardman
 -Weapon tag updated and inventory icon removed (as of gond beta 7)
 -Rapid Blizzard shots now weave
+-Blizzard Bowl turning before moving removed (as of gond beta 7)
 
 ==Knightman
 -Imported ECL1P5E Patch, following are edits made to EC Patch base (damage reverted as of gond beta 7)
 -Knight Crush can now be turned based on where the user faces
---No longer bounces on surfaces
 --Knight Crush now has 25% hitstun on hit
 --Returning Knight Crush has 9 damage flat on return
+--No longer bounces on surfaces
 -Mace Spin now has medium knockback (doubled as of gond beta 7)
 --Mace Spin damage 1 > 12, powerprotected for 5 tics (as of gond beta 7)
 --Can now be held indefinitely (as of gond beta 7)
 -Empowered Knight Crush reworked, now is Ult. Knight Crush from V-Classes
 --Can not be redirected like its uncharged counterpart
+--Does 27 damage, has knockback and knockup on hit (damage buffed and explosion removed as of gond beta 7)
+--No longer has range limit, now acts like a standard projectile with gravity and returns on hitting a surface/player (as of gond beta 7)
+--Ball is destroyed on hit and no longer returns with the chain (as of gond beta 7)
+-Shield offsets cleaned up
 
 ==Plantman
 -Plant Buster has new SFX
@@ -1535,9 +1543,9 @@ CHANGELOG
 --Dynamo Charger has 6 tics of endlag upon leaving
 
 ==Coldman
--Ice Wall passive ammo gain doubled
 -Fixed Cold Field not dunking properly
 -Cold Field skinsprites ported from V-Classes (as of gond beta 7)
+(double ammo gain removed as of gond beta 7)
 
 ==King
 -Ported from UEC
@@ -1608,15 +1616,20 @@ CHANGELOG
 -Sun above player now makes a sound on spawning (whether it be on player spawning or if player uses reload)
 --Sun drops and explodes upon the player dying
 -Added new mini sun deathsprites
--Solar Launcher explosive damage 15 > 10
+-Solar Launcher no longer fires straight down when jumping (as of gond beta 7)
+--Solar Launcher no longer bounces on ceilings (as of gond beta 7)
+--Solar Launcher explosive damage 15 > 10
 --Solar Launcher now spawns six 2 damage ripper Solar Waves
--Miniature Solar Launcher damage 15 > 10
+-=Miniature Solar Launcher damage 15 > 10
 --Miniature Solar Launcher also spawns Solar Waves that do 1 damage ripper
 -Fat Old Sun now knocks back user and enemy
 --Fat Old Sun bouncecount 10 > 3
 --Fat Old Sun direct damage 15 > 10
 --Fat Old Sun explosive damage 25 > 20
---Ripper powerprotect duration 1 > 2
+--Solar Mortar now takes 1 tic before firing waves (to prevent shotgunning) (as of gond beta 7)
+--Ripper powerprotect duration 1 > 5 (2 > 5 as of gond beta 7)
+--Removed bouncing on Fat Old Sun (as of gond beta 7)
+-Head Sun on death damage 25/20/15 > 15/10/5 (as of gond beta 7)
 
 ==Terra
 -Fixed TerraSparkChaser overwriting the campaign boss attack
@@ -1699,7 +1712,16 @@ CHANGELOG
 -Tackle damage rampup user_P*0.5+9 > 18
 --Tackle hitbox 176 > 128
 --Tackle maxdamageradius user_P*0.25+32 > 48
--UEC suck/blow stamina implemented
+(UEC suck/blow stamina implementation removed as of gond beta 7)
+
+==Punk (as of gond beta 7)
+-Weapon slots change 0 and 1 > 1 and 2 
+-Added jump sprites
 
 ==Ballade
 -Removed ACS delay on speed updating
+-Added jump sprites (as of gond beta 7)
+
+==Ra Thor (as of gond beta 7)
+-Added jump sprites
+-Movespeed 0.89/0.87 > 0.8/0.78

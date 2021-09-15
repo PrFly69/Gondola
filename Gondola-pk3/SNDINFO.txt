@@ -229,8 +229,8 @@ $playersound	acidmanc	male	*land		MM6JUMP
 $playersound	acidmanc	male	*jump		dsnone
 $playersound	acidmanc	male	*fist		dsnone
 $playersound	acidmanc	male	*usefail	MM6JUMP
-$playersound    acidmanc    male   *taunt      ACIDTAUN
-$playersound    acidmanc    other   *taunt      ACIDTAU3
+//$playersound    acidmanc    male   *taunt      ACIDTAUN
+//$playersound    acidmanc    other   *taunt      ACIDTAU3
 
 weapon/acidfire ACIDFIRE
 weapon/acidbarrier ACIDBARI

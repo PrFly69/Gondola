@@ -188,9 +188,10 @@ stop
 
 actor ThunderManBeam : ThunderBeam
 {
-Translation "202:202=4:4","199:199=215:215"
+Translation "192:192=211:211","198:198=216:216"
 var int user_P;
 Damage(15)
++FORCEXYBILLBOARD
 Height 12
 damagetype "ClassPainLess2"
 States
@@ -199,15 +200,51 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnL:
-ELEA TUVWXYZ 3
+ELEB HH 1 A_SpawnItemEx("ElecBarrierProjTrail1",0,0,0,0,0,0,0,1)
+ELEB II 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,0,0,0,0,0,1)
+ELEB KK 1 A_SpawnItemEx("ElecBarrierProjTrail3",0,0,0,0,0,0,0,1)
 loop
 }
 }
 
-actor ThunderManBeamB : ThunderManBeam{translation "202:202=205:205","199:199=74:74"}
-actor ThunderManBeamR : ThunderManBeam{translation "202:202=171:171","199:199=41:41"}
-actor ThunderManBeamO : ThunderManBeam{translation "202:202=104:104","199:199=128:128"}
-actor ThunderManBeamP : ThunderManBeam{translation "202:202=229:229","199:199=232:232"}
+actor ThunderManBeamB : ThunderManBeam{translation "192:192=205:205","198:198=74:74"}
+actor ThunderManBeamR : ThunderManBeam{translation "192:192=171:171","198:198=41:41"}
+actor ThunderManBeamO : ThunderManBeam{translation "192:192=104:104","198:198=128:128"}
+actor ThunderManBeamP : ThunderManBeam{translation "192:192=229:229","198:198=232:232"}
+
+actor ElecBarrierProjTrail1 : ThunderManBeam
+{
+damage (0)
+States
+{
+Spawn:
+TNT1 A 3
+ELEB KLM 2
+stop
+}
+}
+
+actor ElecBarrierProjTrail2 : ElecBarrierProjTrail1
+{
+States
+{
+Spawn:
+TNT1 A 3
+ELEB MKL 2
+stop
+}
+}
+
+actor ElecBarrierProjTrail3 : ElecBarrierProjTrail1
+{
+States
+{
+Spawn:
+TNT1 A 3
+ELEB LMK 2
+stop
+}
+}
 
 actor ThunderExtendHelper : BasicHelper
 {

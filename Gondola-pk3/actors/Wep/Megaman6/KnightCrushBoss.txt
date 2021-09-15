@@ -283,6 +283,7 @@ Actor KnightmanCrusher {
 	+DONTSPLASH
 	//+HEXENBOUNCE
 	+SKYEXPLODE
+	-NOGRAVITY
 	+FORCEXYBILLBOARD
 	+THRUGHOST
 	BounceFactor 1.0
@@ -312,6 +313,7 @@ Actor KnightmanCrusher {
 			TNT1 A 0 //A_Quake(3,28,0,512)
 			KNIA I 0 A_TakeFromTarget("KnightFlag", 999)
 			KNIA I 0 A_SpawnItemEx("KnightmanCrusherReturn", 0, 0, 0, 0, 0, 0, 0, 1)
+			KNIA I 0 A_ChangeFlag("NOGRAVITY", 1)
 			TN_B EFGHIJKLMNOPQRS 2
 		Stop
 	}
