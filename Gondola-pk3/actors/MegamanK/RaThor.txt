@@ -29,9 +29,9 @@ States
 {
 Spawn:
 RATH A 0 A_JumpIf(z-floorz>0,"RaThorJumping")
-RATH A 0 A_JumpIfInventory("ThorIsGrabbingF",1,2)
+RATH B 1 A_JumpIfInventory("ThorIsGrabbingF",1,2)
 RATH A 1 A_JumpIf(z-floorz>0,"RaThorJumping")
-Goto Spawn
+Goto Spawn+2
 RATH A 0 A_JumpIf(z-floorz>0,"RaThorJumping")
 RATH R 1 A_JumpIf(z-floorz>0,"RaThorJumping")
 RATH Q 1 A_JumpIfInventory("VivifyDelay8",1,"MissileRelease")
