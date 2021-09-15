@@ -1284,6 +1284,9 @@ CHANGELOG
 -Fixed bug where Yellow Devil's projectiles were all immune to Saturn's projectile suck
 -Fixed bug where Perfect Cube/One-Eyed Cube could be indefinitely stuck in the pits of certain maps, lagging servers
 
+==Metalman (as of gond beta 7)
+-Item gliding method made to be less jittery
+
 ==Airman
 -Air Shooter now consumes 2 ammo
 --Fires only one tornado with insufficient ammo

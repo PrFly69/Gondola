@@ -86,6 +86,8 @@ actor ChillSpikeBossC : BaseMM8BDMWep_CBM
 		goto Ready1
 		
 		Altfire:
+		CLHD A 0 A_JumpIfInventory("ChillSlideBossAmmo",56,1)
+		goto NoAmmo
 		CLHD A 0 A_PlaySound("weapon/CSlide2","Weapon")
 		CLHD A 0 A_GunFlash("NoFlash")
 		//CLHD BC 1
@@ -112,6 +114,7 @@ actor ChillSpikeBossC : BaseMM8BDMWep_CBM
 		CLHD A 1 Offset(93, 41)
 		CLHD A 1 Offset(45, 35)
 		CLHD A 1 A_WeaponReady(14)
+		AltFireEndPenis:
 		CLHD AAAAA 3
 		goto Ready1
 		
@@ -190,6 +193,8 @@ actor ChillSprayBossC : ChillSpikeBossC
 		goto Ready1
 		
 		Altfire:
+		CLHD A 0 A_JumpIfInventory("ChillSlideBossAmmo",56,1)
+		goto NoAmmo
 		CLHD E 0 A_PlaySound("weapon/CSlide2","Weapon")
 		CLHD E 0 A_GunFlash("NoFlash")
 		//CLHD EF 1
@@ -216,6 +221,7 @@ actor ChillSprayBossC : ChillSpikeBossC
 		CLHD E 1 Offset(93, 41)
 		CLHD E 1 Offset(45, 35)
 		CLHD E 1 A_WeaponReady(14)
+		AltFireEndPenis:
 		CLHD EEEEE 3
 		goto Ready1
 		
