@@ -43,7 +43,7 @@ YAMB A 1 A_Raise
 Loop
 
 Fire:
-TNT1 A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+//TNT1 A 0 A_JumpIfInventory("IsBot",1,"BotFire")
 YAMB B 3 
 Hold:
 YAMB A 0 A_JumpIfNoAmmo("No")

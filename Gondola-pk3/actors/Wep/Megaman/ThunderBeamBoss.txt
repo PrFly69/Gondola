@@ -202,7 +202,7 @@ TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnL:
 ELEB HH 1 A_SpawnItemEx("ElecBarrierProjTrail1",0,0,0,0,0,0,0,1)
 ELEB II 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,0,0,0,0,0,1)
-ELEB KK 1 A_SpawnItemEx("ElecBarrierProjTrail3",0,0,0,0,0,0,0,1)
+ELEB JJ 1 A_SpawnItemEx("ElecBarrierProjTrail3",0,0,0,0,0,0,0,1)
 loop
 }
 }
