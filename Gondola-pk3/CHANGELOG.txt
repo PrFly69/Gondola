@@ -1522,18 +1522,19 @@ CHANGELOG
 ==Swordman
 -No longer uses railguns for Flame Sword, reverted back to previous spawner method
 --Particle spawner now lasts 50% longer before dissipating
---Particle spawner speed 20 > 30
+--Particle spawner speed reverted (as of gond beta 7)
 --Flame Sword usage now halts ammo gain
 --Flame Sword now does 16 base
 --Third Swing now does 22 base
 --Has more fx/sounds on hit
 -Removed Flame Beam
 -Fixed Sword Spin blowing enemies away
---Endlag from Sword Spin slightly reduced
+--Endlag from Sword Spin reverted (as of gond beta 7)
 --Removed Powerprotect from Flame Spin
 --Flame Spin suction range 700 > 350
 -Flying Flame Spin ammo consumption 6/9/12 > 9/12/15
 -Flame Lunge recoil 50 > 40
+-Fixed Swordman having 50% higher passive ammo regen than intended (as of gond beta 7)
 
 ==Clownman
 -Thunder Claw no longer inherits from Knight Crush
