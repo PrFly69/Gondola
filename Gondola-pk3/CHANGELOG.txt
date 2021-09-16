@@ -1496,6 +1496,9 @@ CHANGELOG
 ==Cloudman
 -Recharge FX and Thunder Bolt sprites ported from classes-v9fh.pk3
 
+==Springman
+-JC Spring Punch animation imported (as of gond beta 7)
+
 ==Slashman
 -Base Slash Claw radius 16 > 18
 
