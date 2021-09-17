@@ -10,11 +10,14 @@
     Player.SoundClass "nitromanc"
     Player.StartItem "WheelCutterBoss"
     Player.StartItem "WheelCutterBossAmmo", 90
-    Player.StartItem "IceSlasherWeakness", 1
-    Player.StartItem "BlizzardAttackWeakness", 1
-    Player.StartItem "FreezeCrackerWeakness", 1
-    Player.StartItem "IceWaveWeakness", 1
-    Player.StartItem "IceWallWeakness", 1
+player.startitem "ChillSpikeWeakness2", 1
+
+player.startitem "IceSlasherWeakness", 1
+player.startitem "BlizzardAttackWeakness", 1
+player.startitem "FreezeCrackerWeakness", 1
+player.startitem "IceWaveWeakness", 1
+player.startitem "IceWallWeakness", 1
+player.startitem "ChillSpikeWeakness", 1
 	Player.StartItem "NitroGearToggle", 1
 	//Player.StartItem "NitroGearState", 1 //"Wow, DECORATE is easy!"
     //player.startitem "ChillSpikeWeakness2", 1

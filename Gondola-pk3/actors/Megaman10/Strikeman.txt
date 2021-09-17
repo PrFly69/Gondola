@@ -10,6 +10,13 @@ player.startitem "ReboundStrikerLimit", 175
 player.startitem "ReboundStrikerPower", 14
 player.jumpz 14
 
+player.startitem "TripleBladeWeakness2", 1
+
+player.startitem "NeedleCannonWeakness", 1
+player.startitem "QuickBoomerangWeakness", 1
+player.startitem "YamatoSpearWeakness", 1
+player.startitem "TripleBladeWeakness", 1
+
 States
 {
 Spawn:

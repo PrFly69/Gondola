@@ -23,7 +23,7 @@ player.startitem "DangerWrapWeakness", 1
 player.startitem "FlashBombWeakness", 1
 player.startitem "RemoteMineWeakness", 1
 player.startitem "LaserTridentWeakness", 1
-//player.startitem "CommandoBombWeakness", 1
+player.startitem "CommandoBombWeakness", 1
 player.startitem "BalladeCrackerWeakness", 1
 player.startitem "BubbleBombWeakness", 1
 States

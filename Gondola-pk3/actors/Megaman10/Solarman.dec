@@ -14,6 +14,16 @@ player.weaponslot 2, "SolarBlazerBoss"
 
 player.forwardmove 0.8, 0.8
 player.sidemove 0.8, 0.8
+
+player.startitem "WaterShieldWeakness2", 1
+
+player.startitem "BubbleLeadWeakness", 1
+player.startitem "RainFlushWeakness", 1
+player.startitem "WaterWaveWeakness", 1
+player.startitem "WaterBalloonWeakness", 1
+player.startitem "WaterShieldWeakness", 1
+player.startitem "SaltWaterWeakness", 1
+
 States
 {
 Spawn:
