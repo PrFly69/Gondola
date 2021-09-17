@@ -143,9 +143,14 @@ addplayerclass Pluto nomenu
 addplayerclass Neptune nomenu
 addplayerclass Sunstar nomenu
 
+//addplayerclass Blockman nomenu
 addplayerclass Fuseman nomenu
 addplayerclass Blastman nomenu
 addplayerclass Acidman nomenu
+//addplayerclass Tundraman nomenu
+//addplayerclass Torchman nomenu
+//addplayerclass Impactman nomenu
+//addplayerclass Bounceman nomenu
 
 addplayerclass BusterRodG nomenu//WATCH OUT FOR THAT TREE
 addplayerclass MegaWaterS nomenu//harpoon is a meme, better remove it
