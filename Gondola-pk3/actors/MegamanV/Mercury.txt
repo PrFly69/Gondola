@@ -17,9 +17,17 @@
 	//Player.StartItem "CanSnatch_F"
 	Player.ForwardMove 0.9, 0.9
 	Player.SideMove 0.89, 0.89
-	Player.StartItem "BlackHoleWeakness2", 1
-	Player.StartItem "BlackHoleBombWeakness", 1
-	Player.StartItem "BlackHoleWeakness", 1
+player.startitem "BlackHoleWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "StarCrashWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+player.startitem "BlackHoleWeakness", 1
 States
 {
 Spawn:

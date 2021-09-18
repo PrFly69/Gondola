@@ -11,8 +11,8 @@ player.startitem "Darkman3SniperAmmo",64
 player.startitem "Darkman3RingAmmo",84
 player.startitem "DarkSniperItem"
 
-//damagefactor "GyroAttack", 1.7
-//damagefactor "Windg", 1.5
+player.startitem "GyroAttackWeakness2", 1
+player.startitem "GyroAttackWeakness", 1
 
 States
 {

@@ -17,7 +17,16 @@ Player.SideMove 0.87, 0.87
 
 //player.startitem "RealClassFlag", 130
 
-//player.startitem "CommandoBombWeakness2", 1
+//player.startitem "BlockDropperWeakness2", 1
+
+player.startitem "SuperArmWeakness", 1
+player.startitem "HardKnuckleWeakness", 1
+player.startitem "PowerStoneWeakness", 1
+player.startitem "AstroCrushWeakness", 1
+player.startitem "SpreadDrillWeakness", 1
+player.startitem "ConcreteShotWeakness", 1
+player.startitem "DeepDiggerWeakness", 1
+//player.startitem "BlockDropperWeakness", 1
 
 States
 {

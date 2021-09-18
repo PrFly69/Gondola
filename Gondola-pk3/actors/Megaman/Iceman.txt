@@ -16,22 +16,22 @@ player.startitem "HyperBombWeakness2", 1
 
 player.startitem "HyperBombWeakness", 1
 player.startitem "CrashBombWeakness", 1
+player.startitem "MagnetMissileWeakness", 1
 player.startitem "DrillBombWeakness", 1
 player.startitem "NapalmBombWeakness", 1
+player.startitem "YamatoSpearWeakness", 1
 player.startitem "DangerWrapWeakness", 1
 player.startitem "FlashBombWeakness", 1
 player.startitem "RemoteMineWeakness", 1
 player.startitem "LaserTridentWeakness", 1
+player.startitem "CommandoBombWeakness", 1
+player.startitem "PhotonMissileWeakness", 1
 player.startitem "BalladeCrackerWeakness", 1
 
 //player.startitem "RealClassFlag", 13
 
-/*player.startitem "ThunderBeamWeakness2", 1
+//player.startitem "ThunderBeamWeakness2", 1
 
-player.startitem "ThunderBeamWeakness", 1
-player.startitem "SparkShockWeakness", 1
-player.startitem "ThunderBoltWeakness", 1
-player.startitem "ThunderClawWeakness", 1*/
 States
 {
 Spawn:

@@ -15,12 +15,12 @@ player.sidemove 0.83, 0.83
 
 //damagefactor "Metal", 1337.5
 player.startitem "QuickBoomerangWeakness2", 1
+player.startitem "MetalBladeWeakness2", 1
 
 player.startitem "NeedleCannonWeakness", 1
 player.startitem "QuickBoomerangWeakness", 1
 player.startitem "YamatoSpearWeakness", 1
 player.startitem "TripleBladeWeakness", 1
-player.startitem "MetalBladeWeakness", 1
 States
 {
 Spawn:

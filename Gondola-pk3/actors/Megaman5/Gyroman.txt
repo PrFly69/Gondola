@@ -14,9 +14,12 @@ player.sidemove 0.85, 0.85
 player.startitem "GravityHoldWeakness2", 1
 
 player.startitem "LeafShieldWeakness", 1
+player.startitem "SearchSnakeWeakness", 1
 //player.startitem "FlashStopperWeakness", 1
 player.startitem "GravityHoldWeakness", 1
 player.startitem "PlantBarrierWeakness", 1
+player.startitem "ConcreteShotWeakness", 1
+player.startitem "ChillSpikeWeakness", 1
 States
 {
 Spawn:

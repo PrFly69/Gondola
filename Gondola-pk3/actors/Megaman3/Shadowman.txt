@@ -20,6 +20,7 @@ player.startitem "TopSpinWeakness2", 1
 player.startitem "TopSpinWeakness", 1
 player.startitem "ChargeKickWeakness", 1
 player.startitem "SlashClawWeakness", 1
+player.startitem "FlameSwordWeakness", 1
 player.startitem "BreakDashWeakness", 1
 States
 {

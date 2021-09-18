@@ -22,6 +22,7 @@ player.startitem "ThunderBoltWeakness", 1
 player.startitem "ThunderClawWeakness", 1
 player.startitem "LightningBoltWeakness", 1
 player.startitem "PlugBallWeakness", 1
+player.startitem "ThunderWoolWeakness", 1
 player.startitem "ElectricShockWeakness", 1
 
 player.startitem "RealClassFlag", 67

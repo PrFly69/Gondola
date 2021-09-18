@@ -9,12 +9,12 @@ player.jumpz 14
 
 player.startitem "NoiseCrushWeakness2", 1
 
-player.startitem "NoiseCrushWeakness", 1
 player.startitem "QuickBoomerangWeakness", 1
 player.startitem "NeedleCannonWeakness", 1
 player.startitem "YamatoSpearWeakness", 1
+player.startitem "NoiseCrushWeakness", 1
 player.startitem "TornadoBlowWeakness", 1
-//player.startitem "WheelCutterWeakness", 1//???
+player.startitem "TripleBladeWeakness", 1
 player.startitem "ScrewCrusherWeakness", 1
 States
 {

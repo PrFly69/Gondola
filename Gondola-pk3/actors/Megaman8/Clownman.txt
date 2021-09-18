@@ -19,6 +19,7 @@ player.startitem "TornadoHoldWeakness2", 1
 player.startitem "AirShooterWeakness", 1
 player.startitem "WindStormWeakness", 1
 player.startitem "TornadoHoldWeakness", 1
+player.startitem "TenguBladeWeakness", 1 
 player.startitem "TornadoBlowWeakness", 1
 player.startitem "BlackHoleWeakness", 1
 

@@ -10,6 +10,11 @@ actor Fuseman : LightClassBase
 	player.jumpz 14
 	player.startitem "ScrambleThunderBossC", 1
 
+//player.startitem "BounceBallWeakness2", 1
+
+player.startitem "ReboundStrikerWeakness", 1
+//player.startitem "BounceBallWeakness", 1
+
 	States
 	{
 		Spawn:

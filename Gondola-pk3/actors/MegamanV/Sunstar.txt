@@ -10,6 +10,10 @@ player.sidemove 0.74, 0.74
 player.startitem "NovaBeamBoss"
 player.startitem "SolarVentItem"
 player.startitem "NuclearOverclockAmmo", 60
+
+player.startitem "SparkChaserWeakness2", 1
+player.startitem "SparkChaserWeakness", 1
+
 States
 {
 Spawn:

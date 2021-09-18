@@ -9,9 +9,10 @@ player.startitem "DarkShieldAmmo",28
 player.startitem "Darkman2ShieldAmmo", 500
 player.forwardmove 0.810, 0.810
 player.sidemove 0.808, 0.808
-//damagefactor "CrystalEye", 1.5
-//damagefactor "CrystalEyeBit", 1.5
-//damagefactor "GeminiLaser", 1.3
+
+player.startitem "CrystalEyeWeakness2", 1
+player.startitem "CrystalEyeWeakness", 1
+
 States
 {
 Spawn:

@@ -23,8 +23,9 @@ player.startitem "CrystalEyeWeakness", 1
 player.startitem "CentaurFlashWeakness", 1
 player.startitem "CopyVisionWeakness", 1
 player.startitem "JewelSatelliteWeakness", 1
-player.startitem "MirrorBusterWeakness", 1
+player.startitem "ReboundStrikerWeakness", 1
 player.startitem "SparkChaserWeakness", 1
+player.startitem "MirrorBusterWeakness", 1
 
 States
 {

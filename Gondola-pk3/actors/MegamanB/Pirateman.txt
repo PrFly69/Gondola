@@ -17,17 +17,18 @@
 	Player.StartItem "JollyRogerAmmo", 30
 	Player.StartItem "WetRogerAmmo", 28
 	Player.StartItem "PirateBubbleItem"
-	Player.StartItem "WaveBurnerWeakness2", 1
-	Player.StartItem "FireStormWeakness", 1
-	Player.StartItem "AtomicFireWeakness", 1
-	Player.StartItem "PharaohShotWeakness", 1
-	Player.StartItem "FlameBlastWeakness", 1
-	Player.StartItem "ScorchWheelWeakness", 1
-	Player.StartItem "FlameSwordWeakness", 1
-	Player.StartItem "WaveBurnerWeakness", 1
-	Player.StartItem "MagmaBazookaWeakness", 1
-	Player.StartItem "SolarBlazeWeakness", 1
-	Player.StartItem "GrabBusterWeakness", 1
+player.startitem "WaveBurnerWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "FlameSwordWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+player.startitem "GrabBusterWeakness", 1
 	Player.StartItem "RealClassFlag", 87
 	States
 	{

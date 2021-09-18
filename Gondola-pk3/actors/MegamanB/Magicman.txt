@@ -19,9 +19,9 @@ player.startitem "ShadowBladeWeakness", 1
 player.startitem "GyroAttackWeakness", 1
 player.startitem "SilverTomahawkWeakness", 1
 player.startitem "TenguBladeWeakness", 1
-//player.startitem "WheelCutterWeakness", 1
-player.startitem "ScrewCrusherWeakness", 1
+player.startitem "WheelCutterWeakness", 1
 player.startitem "PhotonMissileWeakness", 1
+player.startitem "ScrewCrusherWeakness", 1
 
 player.startitem "RealClassFlag", 89
 States

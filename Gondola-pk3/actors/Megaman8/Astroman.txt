@@ -15,6 +15,7 @@ player.startitem "HomingSniperWeakness2", 1
 player.startitem "MagicCardWeakness2", 1
 
 player.startitem "MagnetMissileWeakness", 1
+player.startitem "SearchSnakeWeakness", 1
 player.startitem "DiveMissileWeakness", 1
 player.startitem "SlashClawWeakness", 1
 player.startitem "HomingSniperWeakness", 1

@@ -18,6 +18,7 @@ player.startitem "NeedleCannonWeakness", 1
 player.startitem "QuickBoomerangWeakness", 1
 player.startitem "YamatoSpearWeakness", 1
 player.startitem "SpreadDrillWeakness", 1
+player.startitem "TripleBladeWeakness", 1
 States
 {
 Spawn:

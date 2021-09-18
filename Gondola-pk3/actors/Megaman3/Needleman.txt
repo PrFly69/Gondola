@@ -15,10 +15,15 @@ player.sidemove 0.68, 0.68
 
 player.startitem "GeminiLaserWeakness2", 1
 
+player.startitem "TimeSlowWeakness", 1
+player.startitem "TimeStopperWeakness", 1
 player.startitem "GeminiLaserWeakness", 1
+player.startitem "FlashStopperWeakness", 1
 player.startitem "CrystalEyeWeakness", 1
+player.startitem "CentaurFlashWeakness", 1
 player.startitem "CopyVisionWeakness", 1
 player.startitem "JewelSatelliteWeakness", 1
+player.startitem "ReboundStrikerWeakness", 1
 States
 {
 Spawn:

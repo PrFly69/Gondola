@@ -12,6 +12,20 @@ player.forwardmove 0.92, 0.92
 player.sidemove 0.90, 0.90
 player.jumpz 12
 
+//player.startitem "BlazingTorchWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "FlameSwordWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+player.startitem "BreakDashWeakness", 1
+//player.startitem "BlazingTorchWeakness", 1
+
 //player.startitem "RealClassFlag", 128
 States
 {

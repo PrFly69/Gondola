@@ -22,8 +22,8 @@ player.startitem "CrystalEyeWeakness", 1
 player.startitem "CentaurFlashWeakness", 1
 player.startitem "CopyVisionWeakness", 1
 player.startitem "JewelSatelliteWeakness", 1
-player.startitem "MirrorBusterWeakness", 1
 player.startitem "SaltWaterWeakness", 1
+player.startitem "MirrorBusterWeakness", 1
 States
 {
 Spawn:

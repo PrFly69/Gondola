@@ -9,11 +9,13 @@ Actor Knightman : DuoClassBase {
     Player.forwardmove 0.65, 0.65
     Player.sidemove 0.57, 0.57
     Player.jumpz 12
-    Player.startitem "YamatoSpearWeakness2", 1
-    Player.startitem "NeedleCannonWeakness", 1
-    Player.startitem "QuickBoomerangWeakness", 1
-    Player.startitem "YamatoSpearWeakness", 1
-    Player.startitem "SpreadDrillWeakness", 1
+player.startitem "YamatoSpearWeakness2", 1
+
+player.startitem "NeedleCannonWeakness", 1
+player.startitem "QuickBoomerangWeakness", 1
+player.startitem "YamatoSpearWeakness", 1
+player.startitem "SpreadDrillWeakness", 1
+player.startitem "TripleBladeWeakness", 1
     States {
         Spawn:
             KNIM A 0

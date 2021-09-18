@@ -19,6 +19,7 @@
 	Player.StartItem "RainFlushWeakness", 1
 	Player.StartItem "WaterWaveWeakness", 1
 	Player.StartItem "WaterBalloonWeakness", 1
+	player.startitem "WaterShieldWeakness", 1
 	Player.StartItem "SaltWaterWeakness", 1
 	States
 	{

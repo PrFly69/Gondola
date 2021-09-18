@@ -15,6 +15,7 @@ player.startitem "StarCrashWeakness2", 1
 //player.startitem "SkullBarrierWeakness", 1
 player.startitem "StarCrashWeakness", 1
 player.startitem "AstroCrushWeakness", 1
+player.startitem "BlackHoleBombWeakness", 1
 player.startitem "BlackHoleWeakness", 1
 States
 {

@@ -16,19 +16,19 @@ player.startitem "RollingCutterWeakness2", 1
 player.startitem "RollingCutterWeakness", 1
 player.startitem "MetalBladeWeakness", 1
 player.startitem "ShadowBladeWeakness", 1
+player.startitem "RingBoomerangWeakness", 1
 player.startitem "GyroAttackWeakness", 1
 player.startitem "SilverTomahawkWeakness", 1
+player.startitem "SlashClawWeakness", 1
+player.startitem "HomingSniperWeakness", 1
 player.startitem "TenguBladeWeakness", 1
-//player.startitem "WheelCutterWeakness", 1
+player.startitem "HornetChaserWeakness", 1
+player.startitem "WheelCutterWeakness", 1
+player.startitem "SparkChaserWeakness", 1
 player.startitem "ScrewCrusherWeakness", 1
 
-/*player.startitem "FireStormWeakness2", 1
+//player.startitem "FireStormWeakness2", 1
 
-player.startitem "FireStormWeakness", 1
-player.startitem "AtomicFireWeakness", 1
-player.startitem "PharaohShotWeakness", 1
-player.startitem "FlameBlastWeakness", 1
-player.startitem "FlameSwordWeakness", 1*/
 States
 {
 Spawn:

@@ -17,19 +17,16 @@ player.jumpz 12
 player.weaponslot 1, "BlackHoleBoss"
 player.weaponslot 2, "BlackerHoleBoss"
 
-player.startitem "BubbleBombWeakness2", 1
+player.startitem "ElectricShockWeakness2", 1
 
-player.startitem "DangerWrapWeakness", 1
-player.startitem "HyperBombWeakness", 1
-player.startitem "BubbleLeadWeakness", 1
-player.startitem "DrillBombWeakness", 1
-player.startitem "NapalmBombWeakness", 1
-player.startitem "DangerWrapWeakness", 1
-player.startitem "FlashBombWeakness", 1
-player.startitem "RemoteMineWeakness", 1
-player.startitem "LaserTridentWeakness", 1
-player.startitem "BubbleBombWeakness", 1
-player.startitem "BalladeCrackerWeakness", 1
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "SparkShockWeakness", 1
+player.startitem "ThunderBoltWeakness", 1
+player.startitem "ThunderClawWeakness", 1
+player.startitem "LightningBoltWeakness", 1
+player.startitem "PlugBallWeakness", 1
+player.startitem "ThunderWoolWeakness", 1
+player.startitem "ElectricShockWeakness", 1
 States
 {
 Spawn:

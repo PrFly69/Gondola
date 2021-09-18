@@ -20,6 +20,8 @@ player.startitem "BubbleLeadWeakness", 1
 player.startitem "RainFlushWeakness", 1
 player.startitem "WaterWaveWeakness", 1
 player.startitem "WaterBalloonWeakness", 1
+player.startitem "IceWallWeakness", 1
+player.startitem "WaterShieldWeakness", 1
 player.startitem "SaltWaterWeakness", 1
 States
 {
