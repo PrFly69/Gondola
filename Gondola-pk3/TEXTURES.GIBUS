@@ -1,3 +1,25 @@
+texture 2F_A_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=34:34"}}
+texture 2F_A_VAR,56,8{patch 2F_A_BAR,0,0{rotate 90}}
+graphic FLASHI1, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch FLASX0, 0, 0
+}
+graphic FLASHI2, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch FLASY0, 0, 0
+}
+graphic FLASHI3, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch FLASZ0, 0, 0
+}
+
+
 //Yellow Devil. Technically this is a Megaman 11 class...
 graphic 11_Y_BAR, 8, 56 {patch B_BAR12B, 0, 0 {Translation "192:192=216:216", "198:198=220:220"}}
 graphic 11_Y_VAR, 56, 8 {patch 11_Y_BAR, 0, 0 {Rotate 90}}

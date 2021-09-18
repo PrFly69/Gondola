@@ -447,7 +447,16 @@ IsSelected BubbleLeadBoss{Drawbar"BARAMMO1","BAREMPTY",Ammo1,vertical,16,8;
 IsSelected QuickBoomerangBoss{Drawbar"BARAMM11","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory QuickManTrail,1{Drawbar"2D_A_BAR","NOBAR",Ammo1,vertical,16,8;}}
 IsSelected CrashBombBoss{Drawbar"BARAMM12","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected TimeStopperBoss{Drawbar"BARAMMO7","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected TimeStopperBoss{
+	DrawImage"FLASHI3",32,55;
+	Drawbar"2F_A_BAR","BAREMPTY",Ammo1,vertical,16,8;
+	Drawbar"BARAMMO7","BAREMPTY",TimeAmmo,vertical,8,8;
+	}
+	IsSelected TimeStopperBoss2{
+	DrawImage"FLASHI3",32,55;
+	Drawbar"2F_A_BAR","BAREMPTY",Ammo1,vertical,16,8;
+	Drawbar"BARAMMO7","BAREMPTY",TimeAmmo,vertical,8,8;
+	}
 IsSelected AtomicDashBoss,AtomicFireBoss{Drawbar"BARAMM13","HEATEMPT",HeatmanDashFlag,vertical,16,8;
 						  DrawImage"HETRICON",32,55;
 	InInventory HeatmanDashFlag,200{DrawImage"HeatIco5",16,64;}

@@ -1,0 +1,1058 @@
+actor TimeStopperBoss : BaseMM8BDMWep_CBM
+{
+Tag "Flashman Sprayer"
+dropitem "TimeBenderWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+weapon.ammotype "TimeAmmo"
+Weapon.AmmoUse2 1
+Weapon.AmmoGive2 28
+weapon.ammotype2 "ZaWarudoAmmo"
+Obituary "$OB_TIMEBUSTER"
+weapon.ammotype "ZaWarudoAmmo"
++WEAPON.NOAUTOAIM
+inventory.icon "FLASHI1"
+States
+{
+Spawn:
+C_02 F 1
+loop
+Ready:
+FLSA A 0 ACS_ExecuteAlways(998,0,DYE_FLASHMAN)
+FLSA A 0 A_GunFlash
+goto Ready1
+Ready1:
+FLSA A 0 A_JumpIfInventory("ZaWarudoAmmo",1,"ReadyB1")
+FLSA A 0 A_JumpIfInventory("TimeAmmo",1960,"ReadyA2")
+FLSA A 2 A_WeaponReady(WRF_NOSECONDARY)
+FLSA A 0 A_GiveInventory("ZaWarudoAmmo",1)
+FLSA A 0 A_JumpIfInventory("TimeStopperFlag",1,2)
+FLSA A 0 A_GiveInventory("TimeAmmo",2)
+FLSA A 0
+loop
+ReadyB1:
+FLSA A 0 A_JumpIfInventory("TimeAmmo",1960,"ReadyB2")
+FLSA A 2 A_WeaponReady
+FLSA A 0 A_GiveInventory("ZaWarudoAmmo",1)
+FLSA A 0 A_JumpIfInventory("TimeStopperFlag",1,2)
+FLSA A 0 A_GiveInventory("TimeAmmo",2)
+FLSA A 0
+loop
+ReadyA2:
+FLSA A 0 A_JumpIfInventory("ZaWarudoAmmo",1,"ReadyB2")
+FLSA A 2 A_WeaponReady(WRF_NOSECONDARY|WRF_ALLOWRELOAD)
+FLSA A 0 A_GiveInventory("ZaWarudoAmmo",1)
+FLSA A 0 A_GiveInventory("TimeAmmo",2)
+loop
+ReadyB2:
+FLSA A 2 A_WeaponReady(WRF_ALLOWRELOAD)
+FLSA A 0 A_GiveInventory("ZaWarudoAmmo",1)
+FLSA A 0 A_GiveInventory("TimeAmmo",2)
+loop
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+FLSA A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+FLSA A 1 A_Raise
+Loop
+
+Fire:
+FLSA B 0 A_JumpIfInventory("IsBot",1,"BotFire")
+FLSA B 2
+goto Fire1
+Fire1:
+FLSA C 0 A_JumpIfInventory("IsBot",1,"BotFire3")
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain1_CI",1)
+FLSA C 0 A_ReFire("Fire2")
+goto FireE
+Fire2:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain2_CI",1)
+FLSA C 0 A_ReFire("Fire3")
+goto FireE
+Fire3:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain3_CI",1)
+FLSA C 0 A_ReFire("Fire4")
+goto FireE
+Fire4:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain4_CI",1)
+FLSA C 0 A_ReFire("Fire5")
+goto FireE
+Fire5:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain3_CI",1)
+FLSA C 0 A_ReFire("Fire6")
+goto FireE
+Fire6:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain2_CI",1)
+FLSA C 0 A_ReFire("Fire7")
+goto FireE
+Fire7:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain1_CI",1)
+FLSA C 0 A_ReFire("Fire8")
+goto FireE
+Fire8:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain5_CI",1)
+FLSA C 0 A_ReFire("Fire9")
+goto FireE
+Fire9:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain6_CI",1)
+FLSA C 0 A_ReFire("Fire10")
+goto FireE
+Fire10:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain7_CI",1)
+FLSA C 0 A_ReFire("Fire11")
+goto FireE
+Fire11:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain6_CI",1)
+FLSA C 0 A_ReFire("Fire12")
+goto FireE
+Fire12:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanMain5_CI",1)
+FLSA C 0 A_ReFire("Fire1")
+goto FireE
+
+FireE:
+FLSA BA 2
+Goto Ready1
+
+Altfire:
+FLSA B 0 A_JumpIfInventory("IsBot",1,"BotFire")
+FLSA B 2
+goto Altfire1
+Altfire1:
+FLSA C 0 A_JumpIfInventory("IsBot",1,"BotFire3")
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt1_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire2")
+goto FireE
+Altfire2:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt2_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire3")
+goto FireE
+Altfire3:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt3_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire4")
+goto FireE
+Altfire4:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt4_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire5")
+goto FireE
+Altfire5:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt3_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire6")
+goto FireE
+Altfire6:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt2_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire7")
+goto FireE
+Altfire7:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt1_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire8")
+goto FireE
+Altfire8:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt5_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire9")
+goto FireE
+Altfire9:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt6_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire10")
+goto FireE
+Altfire10:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt7_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire11")
+goto FireE
+Altfire11:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt6_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire12")
+goto FireE
+Altfire12:
+FLSA C 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+FLSA C 3 A_GiveInventory("FlashmanAlt5_CI",1)
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA C 0 A_ReFire("Altfire1")
+goto FireE
+
+Reload:
+FLSA DEF 2
+FLSA G 1 Offset(2,30)
+FLSA G 1 Offset(-2,34)
+FLSA I 1 Offset(2,34)
+FLSA I 1 Offset(-2,30)
+FLSA G 0 A_GiveInventory("TimeStopperFlag",1)
+FLSA G 0 A_GiveInventory("UseTimeStopper",1)
+FLSA G 0 A_GunFlash("FlashWait",GFF_NOEXTCHANGE)
+FLSA G 0 A_SpawnItemEX("TimeStopperDepleter")
+FLSA G 0 A_PlaySoundEx("weapon/timestopper","SoundSlot6")
+FLSA G 0 A_TakeInventory("TimeAmmo",1)
+FLSA G 0 A_FireCustomMissile("TimeBenderRadius",0,0,0,0)
+FLSA G 0 A_SpawnItemEx("TimeStopSparkleHelper",0,0,28,0,0,0,0,1)
+//FLSA G 0 A_GiveInventory("Repulsion",1)
+FLSA I 1 Offset(4,28) A_SetBlend(white,0.95,5)
+FLSA I 1 Offset(-4,30) A_SetBlend(white,0.95,5)
+FLSA I 1 Offset(4,30) A_SetBlend(white,0.95,5)
+FLSA I 1 Offset(-4,28) A_SetBlend(white,0.95,5)
+FLSA I 1 Offset(4,28)
+FLSA I 1 Offset(-4,30)
+FLSA I 1 Offset(4,30)
+FLSA J 1 Offset(-4,28)
+FLSA J 1 Offset(4,28)
+FLSA J 0 A_TakeInventory("UseTimeStopper",999)
+FLSA G 1
+FLSA FED 2
+Goto Ready1
+
+FlashWait:
+TNT1 A 10
+Flash:
+TNT1 A 0 A_JumpIfInventory("TimeAmmo",1960,"Flash.Full")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+FLSA A 0 A_JumpIfInventory("TimeStopperFlag",1,2)
+TNT1 A 0 A_GiveInventory("TimeAmmo",8)
+TNT1 A 2
+loop
+Flash.Full:
+TNT1 A 0 A_SpawnItemEx("FlashmanSparkleFX_Aura",random(16,48),0,Random(16,48),0,0,0,random(0,359),1)
+TNT1 AAAA 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+loop
+
+BotFire:
+FLSA A 0 A_JumpIfCloser(450,"BotFire2")
+FLSA A 2
+FLSA A 0 A_GiveInventory("TimeAmmo",2)
+Goto Ready1
+BotFire2:
+FLSA A 0 A_JumpIfInventory("TimeAmmo",1960,"Altfire")
+goto Fire+1
+BotFire3:
+FLSA C 0 A_JumpIfCloser(450,1)
+goto Fire1+1
+FLSA C 0 A_JumpIfInventory("TimeAmmo",1960,"Altfire")
+goto Fire1+1
+}
+}
+
+actor TimeStopperBoss2 : TimeStopperBoss
+{
+Tag "Flashman Burster"
+Weapon.AmmoUse2 4
+inventory.icon "FLASHI2"
+States
+{
+Ready:
+FLSA A 0 ACS_ExecuteAlways(998,0,DYE_FLASHMAN)
+FLSA A 0 A_GunFlash
+goto Ready1
+Ready1:
+FLSA A 0 A_JumpIfInventory("ZaWarudoAmmo",1,"ReadyB1")
+FLSA A 0 A_JumpIfInventory("TimeAmmo",1960,"ReadyA2")
+FLSA A 2 A_WeaponReady(WRF_NOSECONDARY)
+FLSA A 0 A_GiveInventory("ZaWarudoAmmo",1)
+FLSA A 0 A_JumpIfInventory("TimeStopperFlag",1,2)
+FLSA A 0 A_GiveInventory("TimeAmmo",2)
+FLSA A 0
+loop
+ReadyB1:
+FLSA A 0 A_JumpIfInventory("TimeAmmo",1960,"ReadyB2")
+FLSA A 2 A_WeaponReady
+FLSA A 0 A_GiveInventory("ZaWarudoAmmo",1)
+FLSA A 0 A_JumpIfInventory("TimeStopperFlag",1,2)
+FLSA A 0 A_GiveInventory("TimeAmmo",2)
+FLSA A 0
+loop
+ReadyA2:
+FLSA A 0 A_JumpIfInventory("ZaWarudoAmmo",1,"ReadyB2")
+FLSA A 2 A_WeaponReady(WRF_NOSECONDARY|WRF_ALLOWRELOAD)
+FLSA A 0 A_GiveInventory("ZaWarudoAmmo",1)
+FLSA A 0 A_GiveInventory("TimeAmmo",2)
+loop
+ReadyB2:
+FLSA A 2 A_WeaponReady(WRF_ALLOWRELOAD)
+FLSA A 0 A_GiveInventory("ZaWarudoAmmo",1)
+FLSA A 0 A_GiveInventory("TimeAmmo",2)
+loop
+
+Fire:
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 0 A_PlaySoundEx("weapon/napalm","SoundSlot7")
+FLSA C 9 A_GiveInventory("FlashmanShottyMain1_CI",1)
+FLSA B 3
+FLSA B 0 A_ReFire("Fire2")
+goto FireE
+Fire2:
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 0 A_PlaySoundEx("weapon/napalm","SoundSlot7")
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 9 A_GiveInventory("FlashmanShottyMain2_CI",1)
+FLSA B 3
+FLSA B 0 A_ReFire("Fire3")
+goto FireE
+Fire3:
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 0 A_PlaySoundEx("weapon/napalm","SoundSlot7")
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 9 A_GiveInventory("FlashmanShottyMain3_CI",1)
+FLSA B 3
+FLSA B 0 A_ReFire("Fire3")
+goto FireE
+
+FireE:
+FLSA BA 4
+Goto Ready1
+
+Altfire:
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 0 A_PlaySoundEx("weapon/napalm","SoundSlot7")
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 9 A_GiveInventory("FlashmanShottyAlt1_CI",1)
+FLSA B 3
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA B 0 A_ReFire("Altfire2")
+goto FireE
+Altfire2:
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 0 A_PlaySoundEx("weapon/napalm","SoundSlot7")
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 9 A_GiveInventory("FlashmanShottyAlt2_CI",1)
+FLSA B 3
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA B 0 A_ReFire("Altfire3")
+goto FireE
+Altfire3:
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 0 A_PlaySoundEx("weapon/napalm","SoundSlot7")
+FLSA C 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+FLSA C 9 A_GiveInventory("FlashmanShottyAlt3_CI",1)
+FLSA B 3
+FLSA C 0 A_JumpIfNoAmmo("FireE")
+FLSA B 0 A_ReFire("Altfire3")
+goto FireE
+}
+}
+
+actor TimeStopperDepleter : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Die")
+TNT1 A 1 A_TakeFromTarget("TimeAmmo",70)
+TNT1 AA 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Die")
+TNT1 A 0 A_JumpIfInTargetInventory("TimeAmmo",1,"Spawn")
+TNT1 AA 2 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Die")
+TNT1 A 0 A_TakeFromTarget("TimeStopperFlag",999)
+stop
+Die:
+TNT1 A 0
+stop
+}
+}
+
+actor TimeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 1960
++INVENTORY.IGNORESKILL
+}
+
+actor ZaWarudoAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor TimeStopperFlag : OnceC {}
+actor UseTimeStopper : OnceC {}
+
+actor FlashBullet
+{
+Translation "204:204=215:215","195:195=229:229"
+PROJECTILE
+damagetype "Buster"
+Obituary "$OB_TIMEBUSTER"
+Damage (4)
+reactiontime 1
+radius 6
+height 6
+Speed 65
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 1
+BASB T 7
+BASB T 1 A_Countdown
+wait
+Death:
+BBAB B 0 A_Stop
+BBAB BCD 2
+stop
+}
+}
+
+actor FlashBulletB : FlashBullet{translation "204:204=205:205","195:195=74:74"}
+actor FlashBulletR : FlashBullet{translation "204:204=171:171","195:195=41:41"}
+actor FlashBulletO : FlashBullet{translation "204:204=104:104","195:195=128:128"}
+actor FlashBulletP : FlashBullet{translation "204:204=229:229","195:195=232:232"}
+
+actor FlashBulletZad : FlashBullet
+{
+Speed 12
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+Spawn2:
+TNT1 A 4
+BASB TT 4 A_ScaleVelocity(2.3)
+BASB T 1
+wait
+}
+}
+
+actor FlashBulletZadB : FlashBulletZad{translation "204:204=205:205","195:195=74:74"}
+actor FlashBulletZadR : FlashBulletZad{translation "204:204=171:171","195:195=41:41"}
+actor FlashBulletZadO : FlashBulletZad{translation "204:204=104:104","195:195=128:128"}
+actor FlashBulletZadP : FlashBulletZad{translation "204:204=229:229","195:195=232:232"}
+
+actor TimeBenderRadius : BasicExplosion
+{
++PIERCEARMOR
+damagetype "TimeStop"
+Obituary "$OB_TIMEBENDER"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 4 A_Explode(5,512,0,0,256)
+stop
+}
+}
+
+actor TimeStopSparkleSparkle22222
+{
++NOGRAVITY
+-SOLID
++THRUGHOST
++CLIENTSIDEONLY
++NOINTERACTION
+speed 0
+Radius 1
+Height 1
+Scale 2.5
+Renderstyle "Translucent"
+Alpha 0.95
+States
+{
+Spawn:
+FLAS CBACBACBA 2 bright //BABABABA 2 bright 
+stop
+}
+}
+
+
+actor FlashmanSparkleFX_Base : BasicClientSide
+{
+Translation "192:192=4:4","198:198=4:4","250:250=4:4","249:249=4:4"
+Renderstyle "Translucent"
+Alpha 0.95
+ReactionTime 10
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+SpawnX:
+TNT1 A 0 A_Jump(256,1,2,3,4,5,6)
+Spawn1:
+X_2F ABC 2 bright A_CountDown
+loop
+Spawn2:
+X_2F DEF 2 bright A_CountDown
+loop
+/*
+SpawnY://,"202:202=4:4","199:199=4:4"
+TNT1 A 0 A_Jump(256,1,2,3,4,5,6)
+Spawn3:
+Y_2F ABC 2 bright A_CountDown
+loop
+Spawn4:
+Y_2F DEF 2 bright A_CountDown
+loop
+SpawnW://,"204:204=4:4","195:195=4:4"
+TNT1 A 0 A_Jump(256,1,2,3,4,5,6)
+Spawn5:
+W_2F ABC 2 bright A_CountDown
+loop
+Spawn6:
+W_2F DEF 2 bright A_CountDown
+loop
+*/
+SpawnV://215 161 160
+TNT1 A 0 A_Jump(256,1,2,3,4,5,6)
+Spawn7:
+V_2F ABC 2 bright A_CountDown
+loop
+Spawn8:
+V_2F DEF 2 bright A_CountDown
+loop
+}
+}
+
+actor FlashmanSparkleFX_X : FlashmanSparkleFX_Base
+{
+States
+{
+Spawn:
+TNT1 A 0
+goto SpawnX
+}
+}
+/*actor FlashmanSparkleFX_Y : FlashmanSparkleFX_Base
+{
+States
+{
+Spawn:
+TNT1 A 0
+goto SpawnY
+}
+}
+actor FlashmanSparkleFX_W : FlashmanSparkleFX_Base
+{
+States
+{
+Spawn:
+TNT1 A 0
+goto SpawnW
+}
+}*/
+actor FlashmanSparkleFX_V : FlashmanSparkleFX_Base
+{
+States
+{
+Spawn:
+TNT1 A 0
+goto SpawnV
+}
+}
+actor FlashmanSparkleFX_Aura : FlashmanSparkleFX_Base
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(32,"SpawnV")
+goto SpawnX
+}
+}
+
+actor TimeStopSparkleHelper : BasicHelper
+{
+Translation "192:192=4:4","198:198=4:4","250:250=168:168","249:249=208:208"
+ReactionTime 3
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("FlashmanSparkleFX_X",random(-384,384),random(-384,384),random(-384,384),0,0,0,0,129)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("FlashmanSparkleFX_V",random(-384,384),random(-384,384),random(-384,384),0,0,0,0,129)
+TNT1 A 2 A_CountDown
+loop
+}
+}
+
+actor AntiTimeStopFreezeHelper : BasicHelper
+{
+renderstyle none
+ReactionTime 3
+States
+{
+Spawn:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+TNT1 A 0 A_TakeFromTarget("SuperEffective",1)
+TNT1 A 0 A_GiveToTarget("EndBossFlashStoppered",1)
+TNT1 A 0 A_GiveToTarget("TimeStoppedUnfreeze",1)
+TNT1 A 0
+stop
+}
+}
+
+actor FlashmanMain1_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBullet" ,0,0,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,0,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,0,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,0,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,0,8,0)goto Done}}
+
+actor FlashmanMain2_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBullet" ,5,0,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletB",5,0,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletR",5,0,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletO",5,0,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletP",5,0,8,0)goto Done}}
+
+actor FlashmanMain3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBullet" ,10,0,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletB",10,0,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletR",10,0,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletO",10,0,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletP",10,0,8,0)goto Done}}
+
+actor FlashmanMain4_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBullet" ,15,0,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletB",15,0,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletR",15,0,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletO",15,0,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletP",15,0,8,0)goto Done}}
+
+actor FlashmanMain5_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBullet" ,-5,0,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletB",-5,0,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletR",-5,0,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletO",-5,0,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletP",-5,0,8,0)goto Done}}
+
+actor FlashmanMain6_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBullet" ,-10,0,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletB",-10,0,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletR",-10,0,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletO",-10,0,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletP",-10,0,8,0)goto Done}}
+
+actor FlashmanMain7_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBullet" ,-15,0,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletB",-15,0,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletR",-15,0,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletO",-15,0,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletP",-15,0,8,0)goto Done}}
+
+actor FlashmanAlt1_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBulletZad" ,0,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,1,8,0)goto Done}}
+
+actor FlashmanAlt2_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBulletZad" ,5,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",5,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",5,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",5,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",5,1,8,0)goto Done}}
+
+actor FlashmanAlt3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBulletZad" ,10,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",10,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",10,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",10,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",10,1,8,0)goto Done}}
+
+actor FlashmanAlt4_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBulletZad" ,15,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",15,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",15,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",15,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",15,1,8,0)goto Done}}
+
+actor FlashmanAlt5_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBulletZad" ,-5,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-5,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-5,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-5,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-5,1,8,0)goto Done}}
+
+actor FlashmanAlt6_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBulletZad" ,-10,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-10,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-10,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-10,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-10,1,8,0)goto Done}}
+
+actor FlashmanAlt7_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("FlashBulletZad" ,-15,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-15,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-15,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-15,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-15,1,8,0)goto Done}}
+
+actor FlashmanShottyMain1_CI : TeamColor_CI{states{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBullet",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done}}
+
+actor FlashmanShottyMain2_CI : TeamColor_CI{states{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBullet",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done}}
+
+actor FlashmanShottyMain3_CI : TeamColor_CI{states{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBullet",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBullet",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletB",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletR",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletO",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletP",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done}}
+
+
+actor FlashmanShottyAlt1_CI : TeamColor_CI{states{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-5.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,0,8,0,0,5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,0,8,0,0,-5.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-5.0*0.7,0,8,0,0,5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",5.0*0.7,0,8,0,0,-5.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-5.0*0.7,0,8,0,0,-5.0*0.7)
+goto Done}}
+
+actor FlashmanShottyAlt2_CI : TeamColor_CI{states{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-7.5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,0,8,0,0,7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,0,8,0,0,-7.5)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-7.5*0.7,0,8,0,0,7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",7.5*0.7,0,8,0,0,-7.5*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-7.5*0.7,0,8,0,0,-7.5*0.7)
+goto Done}}
+
+actor FlashmanShottyAlt3_CI : TeamColor_CI{states{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZad",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadB",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadR",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadO",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-10.0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,0,8,0,0,10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",0,0,8,0,0,-10.0)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-10.0*0.7,0,8,0,0,10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",10.0*0.7,0,8,0,0,-10.0*0.7)
+TNT1 A 0 A_FireCustomMissile("FlashBulletZadP",-10.0*0.7,0,8,0,0,-10.0*0.7)
+goto Done}}
