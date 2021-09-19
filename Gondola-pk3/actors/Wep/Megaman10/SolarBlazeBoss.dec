@@ -30,8 +30,9 @@ actor SolarBlazeBoss : BaseMM8BDMWep_CBM
 		
 		Ready1:
 		SUNH A 0 A_GiveInventory("SolarMainSwag",1)
-		SUNH A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_ALLOWRELOAD)
 		SUNH A 0 A_JumpIfInventory("SolarSunAmmo",100,"Ready2")
+		SUNH A 0 A_JumpIfInventory("IsBot",1,"Reload")
+		SUNH A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_ALLOWRELOAD)
 		loop
 		
 		Ready2:
@@ -327,6 +328,7 @@ actor SolarBlazeBoss : BaseMM8BDMWep_CBM
 		SUNH R 0 A_PlaySoundEx("weapon/solarammobuild","Body")
 		SUNH SSRR 1 ACS_ExecuteWithResult(512,1)
 		SUNH SSRR 1 ACS_ExecuteWithResult(512,1)
+		SUNH A 0 A_JumpIfInventory("IsBot",1,"Reload2")
 		SUNH R 0 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSWITCH)
 		goto Reload2
 		
@@ -340,6 +342,7 @@ actor SolarBlazeBoss : BaseMM8BDMWep_CBM
 		SUNH HH 0 A_SpawnItemEx("BassChargeFX",32,0,random(0,48),velx,vely,velz+12,random(0,360),SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEMOMENTUM)
 		SUNH H 0 A_JumpIfInventory("SolarSunAmmo",400,"ReloadEnd")
 		SUNH A 0 //A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 0, "ReloadEndCancel")
+		SUNH A 0 A_JumpIfInventory("IsBot",1,"Reload3")
 		SUNH A 0 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSWITCH)
 		goto Reload3
 		
@@ -349,6 +352,7 @@ actor SolarBlazeBoss : BaseMM8BDMWep_CBM
 		SUNH HHHH 0 A_SpawnItemEx("BassChargeFX",32,0,random(0,48),velx,vely,velz+12,random(0,360),SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEMOMENTUM)
 		SUNH H 0 A_JumpIfInventory("SolarSunAmmo",400,"ReloadEnd")
 		SUNH A 0 //A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 0, "ReloadEndCancel")
+		SUNH A 0 A_JumpIfInventory("IsBot",1,"Reload2")
 		SUNH A 0 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSWITCH)
 		goto Reload2
 		

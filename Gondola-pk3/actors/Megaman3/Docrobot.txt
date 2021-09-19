@@ -3,14 +3,17 @@ actor DocRobot : ClassBase
 Player.ScoreIcon "C_03I0X"
 player.displayname "DocRobot"
 player.soundclass "DocRobotc"
-player.startitem "DocBusterC"
-player.startitem "DocVirusAmmo", 54
-player.startitem "BusterAmmo", 3
-player.startitem "CanCopyWeapons"
-player.startitem "CanUseItems"
-player.startitem "NoAmmoPickup"
+player.startitem "DocBusterWoodHeatWep"
+player.startitem "DocBusterBubbleFlashWep"
+player.startitem "DocBusterAirCrashWep"
+player.startitem "DocBusterQuickMetalWep"
+player.startitem "DocVirusAmmo", 175
 
-player.startitem "CopyNerf"
+player.weaponslot 1, "DocBusterWoodHeatWep"
+player.weaponslot 2, "DocBusterBubbleFlashWep"
+player.weaponslot 3, "DocBusterAirCrashWep"
+player.weaponslot 4, "DocBusterQuickMetalWep"
+
 States
 {
 Spawn:

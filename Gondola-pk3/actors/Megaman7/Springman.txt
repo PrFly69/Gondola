@@ -22,21 +22,31 @@ player.startitem "WheelCutterWeakness", 1
 States
 {
 Spawn:
-SPNG A 0
+SPNG A 0 //A_JumpIf(z-floorz>0,"SpringyFunny")
 SPNG B 1
 SPNG A 1 A_JumpIfInventory("SpringPunchFlag",1,"SpringPunch")
+SPNG A 0 //A_JumpIf(z-floorz>0,"SpringyFunny")
 Goto Spawn+2
 See:
-SPNG B 5
-SPNG C 5
-SPNG D 5
-SPNG E 5
+SPNG BBB 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
+SPNG CCC 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
+SPNG DDD 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
+SPNG EEE 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
 Goto Spawn
 Missile:
 SPNG J 0 A_JumpIfInventory("SpringPunchFlag",1,"SpringPunch")
-SPNG F 5
-SPNG G 4
+SPNG FFFFF 1 A_JumpIfInventory("SpringPunchFlag",1,"SpringPunch")
+SPNG GGGG 1 A_JumpIfInventory("SpringPunchFlag",1,"SpringPunch")
 Goto Spawn
+
+SpringyFunny:
+SPNG J 1
+SPNG K 1
+SPNG L 1
+SPNG A 0 A_JumpIf(z-floorz>0,1)
+goto Spawn
+SPNG M 1
+goto SpringyFunny
 
 SpringPunch:
 SPNG J 1
