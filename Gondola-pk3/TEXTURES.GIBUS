@@ -385,3 +385,9 @@ texture 0V_7_PVX,56,8{patch 0V_7_PAX,0,0{rotate 90}}
 graphic PLMWICON,30,30{XScale 2.0 YScale 2.0 Patch MEOWICON,0,0}//Nitro
 
 graphic JUNKRCON,30,30{XScale 2.0 YScale 2.0 Patch RSH1Y0,0,0}//Junk
+
+//DOC
+graphic DOC1Icon,30,30{Patch DOCICON1,0,0}
+graphic DOC2Icon,30,30{Patch DOCICON2,0,0}
+graphic DOC3Icon,30,30{Patch DOCICON3,0,0}
+graphic DOC4Icon,30,30{Patch DOCICON4,0,0}

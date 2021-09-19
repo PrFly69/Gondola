@@ -16,7 +16,7 @@ object SolarHeadFX {frame GSOL {light SOLARLIGHT}}
 object SolarFlareExplosionWave {frame GSOL {light SOLARLIGHT}}
 object SolarFlareExplosionWaveFX {frame GSOL {light SOLARLIGHT}}
 object SolarFlareExplosionWaveFX2 {frame GSOL {light SOLARLIGHT}}
-
+object SolarSunHelper {frame GSOL {light SOLARLIGHT}}
 pointlight FIRELIGHT
 {
 color 1.0 0.1 0.05
@@ -26,3 +26,19 @@ dontlightself 1
 
 object FireManWaveD {frame FWVE {light FIRELIGHT}}
 object FireManWave2D {frame FWVE {light FIRELIGHT}}
+
+pointlight BRIGHTMAINSGLOWINTHEDARK
+{
+color 1.0 1.0 1.0
+size 75
+}
+
+object Brightman {frame BRIG {light BRIGHTMAINSGLOWINTHEDARK}}
+
+pointlight BRIGHTMAINSGLOWEVENBRIGHTERINTHEDARK
+{
+color 1.0 1.0 1.0
+size 512
+}
+
+object BrightmanFlashStopperFX {frame BRTS {light BRIGHTMAINSGLOWEVENBRIGHTERINTHEDARK}}

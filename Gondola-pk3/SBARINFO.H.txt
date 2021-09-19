@@ -474,22 +474,10 @@ IsSelected BreakBusterAgility,BreakBusterStability{DrawBar"VARAMM14","VAREMPTY",
 	DrawBar"VARAMMO1","VAREMPTY",SnipeAmmo,horizontal,58,184;
 	DrawBar"KC_A_VAR","VNOBAR",SnipeCharge,horizontal,58,184;}}
 
-InInventory DocBusterC,1{DrawBar"03_9_VAR","VAREMPTY",DocVirusAmmo,horizontal,58,176;
-	InInventory DocSpeed100,1{DrawImage"DOCS100X",2,136;}
-	else InInventory DocSpeed090,1{DrawImage"DOCS090X",2,136;}
-	else InInventory DocSpeed105,1{DrawImage"DOCS105X",2,136;}
-	else InInventory DocSpeed110,1{DrawImage"DOCS110X",2,136;}
-	else InInventory DocSpeed115,1{DrawImage"DOCS115X",2,136;}
-	else InInventory DocSpeed120,1{DrawImage"DOCS120X",2,136;}
-	InInventory DocJump100,1{DrawImage"DOCJ100X",2,164;}
-	else InInventory DocJump110,1{DrawImage"DOCJ110X",2,164;}
-	else InInventory DocJump120,1{DrawImage"DOCJ120X",2,164;}
-	else InInventory DocJump130,1{DrawImage"DOCJ130X",2,164;}
-	InInventory MegaHealthBar,1{DrawImage"DOCA100X",2,108;}
-	else InInventory LightHealthBar,1{DrawImage"DOCA120X",2,108;}
-	else InInventory SturdyHealthBar,1{DrawImage"DOCA080X",2,108;}
-	else InInventory ToadHealthBar,1{DrawImage"DOCA065X",2,108;}
-}
+IsSelected DocBusterWoodHeatWep{DrawBar"XTR0VR_Q","VAREMPTY",DocVirusAmmo,horizontal,58,184;}
+IsSelected DocBusterBubbleFlashWep{DrawBar"XTR0VR_R","VAREMPTY",DocVirusAmmo,horizontal,58,184;}
+IsSelected DocBusterAirCrashWep{DrawBar"XTR0VR_D","VAREMPTY",DocVirusAmmo,horizontal,58,184;}
+IsSelected DocBusterQuickMetalWep{DrawBar"XTR0VR_F","VAREMPTY",DocVirusAmmo,horizontal,58,184;}
 
 //MM4
 IsSelected FlashStopperBoss{DrawBar"VARAMM12","VAREMPTY",Ammo1,horizontal,58,184;

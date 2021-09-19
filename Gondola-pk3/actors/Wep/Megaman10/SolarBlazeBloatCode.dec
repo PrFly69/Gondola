@@ -97,7 +97,7 @@ stop
 
 actor SolarAimerFX1
 {
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 //Obituary "$OB_JUPITERBEAM"
 //DamageType "ElectricShockB"
@@ -156,7 +156,7 @@ stop
 
 actor SolarAimerFX3
 {
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 //Obituary "$OB_JUPITERBEAM"
 //DamageType "ElectricShockB"
@@ -220,7 +220,7 @@ Powerup.Duration 3
 
 actor SolarFlare //The main sun.
 {
-	Translation "192:192=248:248", "198:198=222:222"
+	Translation "192:192=213:213", "198:198=217:217"
     PROJECTILE
 	+DONTBLAST
 	+DONTREFLECT
@@ -293,7 +293,7 @@ actor SolarFlareP : SolarFlare{translation "192:192=229:229","198:198=232:232"}
 actor SolarFlare1FX : BasicClientSide
 {
 renderstyle add
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 states
 {
 Spawn:
@@ -372,7 +372,7 @@ stop
 actor SolarFlare1FX : BasicClientSide
 {
 renderstyle add
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 states
 {
 Spawn:
@@ -384,7 +384,7 @@ loop
 actor SolarFlare2FX : BasicClientSide
 {
 renderstyle add
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 states
 {
 Spawn:
@@ -409,7 +409,7 @@ loop
 actor SolarFlareExplosionFX : BasicClientSide
 {
 renderstyle add
-//Translation "192:192=248:248", "198:198=222:222"
+//Translation "192:192=213:213", "198:198=217:217"
 SCALE 2.5
 states
 {
@@ -452,7 +452,7 @@ loop
 
 actor SolarFlareExplosionWave
 {
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 Obituary "$OB_SOLARWAVE"
 damagetype "SolarMortarWave"
@@ -562,7 +562,7 @@ loop
 
 actor SolarFlare2 //The main sun.
 {
-	Translation "192:192=248:248", "198:198=222:222"
+	Translation "192:192=213:213", "198:198=217:217"
 	PROJECTILE
 	+DONTBLAST
 	+DONTREFLECT
@@ -664,7 +664,7 @@ actor SolarFlare2P : SolarFlare2{translation "192:192=229:229","198:198=232:232"
 
 actor SolarFlareExplosionWaveMed
 {
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 Obituary "$OB_SOLARWAVE"
 damagetype "ClassPainLess2"
@@ -691,7 +691,7 @@ stop
 
 actor SolarFlare3 //The main sun.
 {
-	Translation "192:192=248:248", "198:198=222:222"
+	Translation "192:192=213:213", "198:198=217:217"
 	PROJECTILE
 	+NOGRAVITY
 	+DONTBLAST
@@ -761,7 +761,7 @@ actor SolarFlare3P : SolarFlare3{translation "192:192=229:229","198:198=232:232"
 
 actor SolarGrenadeLob
 {
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 Obituary "$OB_SOLARLOB"
 DamageType "ClassPainLess2"
@@ -812,7 +812,7 @@ stop
 
 actor SolarSmallGrenadeLob
 {
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 Obituary "$OB_SOLARLOB"
 DamageType "ClassPainLess2"
@@ -967,7 +967,7 @@ actor MiniSolarGrenadeLobFXP : MiniSolarGrenadeLobFX{translation "192:192=229:22
 
 actor SolarMortar //The main sun.
 {
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 damagetype "SolarMortarWave"
 Obituary "$OB_SOLARMORTAR"
@@ -1018,7 +1018,7 @@ Death2:
 
 actor SolarMortarLobFX : SolarGrenadeLobFX
 {
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 +NOINTERACTION
 +THRUGHOST
@@ -1049,7 +1049,7 @@ actor SolarMortarLobFXP : SolarMortarLobFX{translation "192:192=229:229","198:19
 actor SolarFlareAlt1FX : BasicClientSide
 {
 renderstyle add
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 states
 {
 Spawn:
@@ -1061,7 +1061,7 @@ loop
 actor SolarFlareAlt2FX : BasicClientSide
 {
 renderstyle add
-Translation "192:192=248:248", "198:198=222:222"
+Translation "192:192=213:213", "198:198=217:217"
 states
 {
 Spawn:
@@ -1072,7 +1072,7 @@ loop
 
 actor SolarFlareAlt //The main sun.
 {
-	Translation "192:192=248:248", "198:198=222:222"
+	Translation "192:192=213:213", "198:198=217:217"
 	PROJECTILE
 	+NOGRAVITY
 	+DONTBLAST
@@ -1149,7 +1149,7 @@ actor SolarFlareAltP : SolarFlareAlt{translation "192:192=229:229","198:198=232:
 
 actor SolarFlareAlt2 //The main sun.
 {
-	Translation "192:192=248:248", "198:198=222:222"
+	Translation "192:192=213:213", "198:198=217:217"
 	PROJECTILE
 	+NOGRAVITY
 	+DONTBLAST
@@ -1226,7 +1226,7 @@ actor SolarFlareAlt2P : SolarFlareAlt2{translation "192:192=229:229","198:198=23
 
 actor SolarFlareAlt3 //The main sun.
 {
-	Translation "192:192=248:248", "198:198=222:222"
+	Translation "192:192=213:213", "198:198=217:217"
 	PROJECTILE
 	+NOGRAVITY
 	+DONTBLAST
@@ -1303,7 +1303,7 @@ actor SolarFlareAlt3P : SolarFlareAlt3{translation "192:192=229:229","198:198=23
 
 actor SolarFlareAlt4 //The main sun.
 {
-	Translation "192:192=248:248", "198:198=222:222"
+	Translation "192:192=213:213", "198:198=217:217"
 	PROJECTILE
 	+NOGRAVITY
 	+DONTBLAST
