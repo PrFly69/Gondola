@@ -7,7 +7,7 @@ Weapon.AmmoGive 3
 Weapon.SlotNumber 1
 Obituary "$OB_DOCBUSTER"
 weapon.ammotype "DocVirusAmmo"
-inventory.icon "DocIcon1"
+inventory.icon "DOC1Icon"
 States
 {
 Spawn:
@@ -77,7 +77,7 @@ Weapon.AmmoGive 3
 Weapon.SlotNumber 1
 Obituary "$OB_DOCBUSTER"
 weapon.ammotype "DocVirusAmmo"
-inventory.icon "DocIcon2"
+inventory.icon "DOC2Icon"
 States
 {
 Spawn:
@@ -147,7 +147,7 @@ Weapon.AmmoGive 3
 Weapon.SlotNumber 1
 Obituary "$OB_DOCBUSTER"
 weapon.ammotype "DocVirusAmmo"
-inventory.icon "DocIcon3"
+inventory.icon "DOC3Icon"
 States
 {
 Spawn:
@@ -217,7 +217,7 @@ Weapon.AmmoGive 3
 Weapon.SlotNumber 1
 Obituary "$OB_DOCBUSTER"
 weapon.ammotype "DocVirusAmmo"
-inventory.icon "DocIcon4"
+inventory.icon "DOC4Icon"
 States
 {
 Spawn:
