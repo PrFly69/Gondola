@@ -517,7 +517,7 @@ loop
 actor CommandoCrush : BasicExplosion
 {
 Obituary "$OB_COMMANDOLEAP"
-damagetype "ClassPainLess2"
+damagetype "CommandoCrush_p"
 renderstyle none
 States
 {
@@ -526,6 +526,12 @@ TNT1 A 0
 TNT1 A 2 A_Explode(4,20,0,0,20)
 stop
 }
+}
+
+actor CommandoCrushProtect : PowerProtection
+{
+Powerup.Duration 4
+damagefactor "CommandoCrush_p", 0.0
 }
 
 actor CommandoLeapExplosion : BasicExplosion
