@@ -12,6 +12,16 @@ player.sidemove 0.88, 0.88
 player.jumpz 12
 //FloatSpeed 2
 
+player.startitem "DeepDiggerWeakness2", 1
+
+player.startitem "SuperArmWeakness", 1
+player.startitem "HardKnuckleWeakness", 1
+player.startitem "PowerStoneWeakness", 1
+player.startitem "AstroCrushWeakness", 1
+player.startitem "SpreadDrillWeakness", 1
+player.startitem "ConcreteShotWeakness", 1
+player.startitem "DeepDiggerWeakness", 1
+
 States
 {
 Spawn:
