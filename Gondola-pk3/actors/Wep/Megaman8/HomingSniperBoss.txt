@@ -191,7 +191,7 @@ HSN8 A 0 A_GiveInventory("VivifyDelay7",1)
 HSN8 A 0 A_Refire(1)
 HSN8 A 0 A_GiveInventory("SearchmanAlt_CI",1)
 HSN8 A 0 A_PlaySoundEx("weapon/dustbit","Weapon")
-HSN8 A 0 ACS_ExecuteAlways(512,0,5,0)
+HSN8 A 0 ACS_NamedExecute("BULL_SetState",0,5)
 HSN8 BCEFGGGFECBA 2
 HSN8 A 0 A_ReFire("AltfireDisc")
 goto Ready1
@@ -211,7 +211,7 @@ BigAltfireX:
 HSN8 A 0 A_GiveInventory("SearchmanAlt2_CI",1)
 HSN8 A 0 A_GiveInventory("SearchmanFloat_P",1)
 HSN8 A 0 A_PlaySoundEx("weapon/dustbit","Weapon")
-HSN8 A 0 ACS_ExecuteAlways(512,0,5,0)
+HSN8 A 0 ACS_NamedExecute("BULL_SetState",0,5)
 HSN8 BEGEBA 1
 Goto AltfireEnd
 
@@ -234,7 +234,7 @@ TNT1 A 1 A_JumpIfInventory("SearchDeadlyCheck",1,"ReloadEnd")
 Goto AltfireHold
 
 AltfireHold:
-HSN8 A 0 ACS_ExecuteAlways(512,0,2,0)
+HSN8 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 TNT1 A 0 A_JumpIfInventory("WilyBanzaiAmmo",7,1)
 Goto AltfireEnd
 HSN8 A 0 A_JumpIfInventory("PowerSearchSpeed",1,1)
@@ -254,7 +254,7 @@ HSN8 G 0 A_ReFire("AltfireHold")
 AltfireEnd:
 HSN8 B 0 A_JumpIfInventory("PowerSearchSpeed",1,1)
 Goto AltfireEndX
-HSN8 A 0 ACS_ExecuteAlways(512,0,3,0)
+HSN8 A 0 ACS_NamedExecute("BULL_SetState",0,3)
 HSN8 B 0 A_GiveInventory("SearchDeadlyCheck",105)
 HSN8 B 0 A_SpawnItemEx("SearchDeadlyChecker")
 HSN8 G 1 //A_GiveInventory("WilyBanzaiAmmo",75)
@@ -359,7 +359,7 @@ Reload:
 HSN8 A 1 A_JumpIfInventory("SearchDeadlyCheck",1,"Ready1")
 HSN8 A 0 A_PlaySoundEx("weapon/searchdash","Weapon")
 HSN8 D 0 A_GiveInventory("PowerSearchSpeed",1)
-HSN8 A 0 ACS_ExecuteAlways(512,0,4,0)
+HSN8 A 0 ACS_NamedExecute("BULL_SetState",0,4)
 HSN8 A 0 ThrustThingZ(0,80,0,1) 
 HSN8 B 1 Offset(0,40) A_WeaponReady(WRF_NOSWITCH|WRF_NOBOB)
 HSN8 C 1 Offset(0,48) A_WeaponReady(WRF_NOSWITCH|WRF_NOBOB)

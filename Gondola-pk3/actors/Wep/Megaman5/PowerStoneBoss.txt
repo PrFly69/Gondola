@@ -47,7 +47,7 @@ POWB JJJJJJ 2 offset(0,48)A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
 goto FireHold
 
 FireHold:
-ODUH B 0 ACS_ExecuteAlways(512,0,1)
+ODUH B 0 ACS_NamedExecute("BULL_SetState",0,1)
 POWB J 0 A_GiveInventory("WeaponChargeStone",1)
 POWB J 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
 POWB J 0 A_JumpIfInventory("WeaponChargeStone",175,"FireEnd")

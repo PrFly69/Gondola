@@ -144,28 +144,28 @@ PHAA F 0 A_PlaySoundEx("weapon/pharaoh1","Weapon")
 PHAA F 0 A_GiveInventory("PharaohmanAlt1_CI",1)
 PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
 PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
-PH4W A 0 ACS_ExecuteAlways(512,0,1,0)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,1)
 PHAB EHGF 2
 PHAA F 0 A_PlaySoundEx("weapon/pharaoh2","Body")
 PHAA F 0 A_PlaySoundEx("weapon/pharaoh1","Weapon")
 PHAA F 0 A_GiveInventory("PharaohmanAlt2_CI",1)
 PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
 PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
-PH4W A 0 ACS_ExecuteAlways(512,0,1,0)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,1)
 PHAB EHGF 2
 PHAA F 0 A_PlaySoundEx("weapon/pharaoh2","Body")
 PHAA F 0 A_PlaySoundEx("weapon/pharaoh1","Weapon")
 PHAA F 0 A_GiveInventory("PharaohmanAlt3_CI",1)
 PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
 PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
-PH4W A 0 ACS_ExecuteAlways(512,0,1,0)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,1)
 PHAB EHGF 2
 PHAA F 0 A_PlaySoundEx("weapon/pharaoh2","Body")
 PHAA F 0 A_PlaySoundEx("weapon/pharaoh1","Weapon")
 PHAA F 0 A_GiveInventory("PharaohmanAlt4_CI",1)
 PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
 PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
-PH4W A 0 ACS_ExecuteAlways(512,0,1,0)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,1)
 PHAB EHGF 2
 PHAB ECBA 2 A_ClearRefire
 PHAP LM 2
@@ -187,7 +187,7 @@ PHAH FHJKLMNO 1
 TNT1 A 0 ThrustThingZ(0,1,0,1)
 
 HoverHold:
-TNT1 A 0 ACS_ExecuteAlways(512,0,3,0)
+TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,3)
 TNT1 A 0 A_JumpIfInventory("PharaohHover",14,"HoverFinish")
 PHAH P 1
 TNT1 A 0 A_PlaySoundEx("classes/float","Weapon")
@@ -224,7 +224,7 @@ TNT1 A 1 Offset(311, 147)
 PHAP A 1 Offset(284, 136)
 PHAP A 1 Offset(227, 116)
 PHAP A 1 Offset(161, 91)
-PH4W A 0 ACS_ExecuteAlways(512,0,2)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,2)
 PHAP A 0 A_PlaySoundEx("Weapon/pharaohpunchswing","Weapon")
 PHAP A 0 A_GiveInventory("PharaohManAlt_CI",1)
 PHAP A 1 Offset(161, 91)

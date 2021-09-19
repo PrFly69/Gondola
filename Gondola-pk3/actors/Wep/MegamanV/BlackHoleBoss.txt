@@ -127,7 +127,7 @@ States
 	Altfire:
 		SAHD A 1 A_JumpIfInventory("SaturnHoldAmmo",140,1)
 		goto Ready2
-		SAHD A 0 ACS_ExecuteAlways(512,0,1)
+		SAHD A 0 ACS_NamedExecute("BULL_SetState",0,1)
 		SAHD A 1 offset(-32,48)
 		SAHD A 1 offset(-64,64)
 		TNT1 A 1 Offset(1, 64)
@@ -140,7 +140,7 @@ States
 	AltSuck:
 		SAHD E 0 A_JumpIfInventory("SaturnHoldAmmo",1,1)
 	Goto AltEnd
-		SAHD E 0 ACS_ExecuteAlways(512,0,1)
+		SAHD E 0 ACS_NamedExecute("BULL_SetState",0,1)
 		SAHD E 0 A_PlaySoundEx("Weapon/blackhole","Weapon")
 		SAHD E 0 A_FireCustomMissile("SaturnSuckExplode")
 		//SAHD EE 0 A_SpawnItemEx("Saturn_Catcher",0,0,0,momx,momy,momz,0,8,0)
@@ -152,7 +152,7 @@ States
 	AltSuck2:
 		SAHD F 0 A_JumpIfInventory("SaturnHoldAmmo",1,1)
 	Goto AltEnd
-		SAHD F 0 ACS_ExecuteAlways(512,0,1)
+		SAHD F 0 ACS_NamedExecute("BULL_SetState",0,1)
 		SAHD F 0 A_FireCustomMissile("SaturnSuckExplode")
 		//SAHD FF 0 A_SpawnItemEx("Saturn_Catcher",0,0,0,momx,momy,momz,0,8,0)
 		SAHD F 1 Offset(0, 24)A_GiveInventory("SaturnAltSuction_P")
@@ -174,7 +174,7 @@ States
 	AltSuck4:
 		SAHD F 0 A_JumpIfInventory("SaturnHoldAmmo",1,1)
 	Goto AltEnd
-		SAHD F 0 ACS_ExecuteAlways(512,0,1)
+		SAHD F 0 ACS_NamedExecute("BULL_SetState",0,1)
 		SAHD F 0 A_FireCustomMissile("SaturnSuckExplode")
 		//SAHD FF 0 A_SpawnItemEx("Saturn_Catcher",0,0,0,momx,momy,momz,0,8,0)
 		SAHD F 1 Offset(0, 24)A_GiveInventory("SaturnAltSuction_P")
@@ -393,7 +393,7 @@ States
 	Altfire:
 		SATN A 1 A_JumpIfInventory("SaturnHoldAmmo",140,1)
 		goto Ready2
-		SATN A 0 ACS_ExecuteAlways(512,0,1)
+		SATN A 0 ACS_NamedExecute("BULL_SetState",0,1)
 		SATN A 1 offset(-32,48)
 		SATN A 1 offset(-64,64)
 		TNT1 A 1 Offset(1, 64)
@@ -406,7 +406,7 @@ States
 	AltSuck:
 		SATN E 0 A_JumpIfInventory("SaturnHoldAmmo",1,1)
 	Goto AltEnd
-		SATN E 0 ACS_ExecuteAlways(512,0,1)
+		SATN E 0 ACS_NamedExecute("BULL_SetState",0,1)
 		SATN E 0 A_PlaySoundEx("Weapon/blackhole","Weapon")
 		SATN E 0 A_FireCustomMissile("SaturnSuckExplode")
 		//SATN EE 0 A_SpawnItemEx("Saturn_Catcher",0,0,0,momx,momy,momz,0,8,0)
@@ -418,7 +418,7 @@ States
 	AltSuck2:
 		SATN F 0 A_JumpIfInventory("SaturnHoldAmmo",1,1)
 	Goto AltEnd
-		SATN F 0 ACS_ExecuteAlways(512,0,1)
+		SATN F 0 ACS_NamedExecute("BULL_SetState",0,1)
 		SATN F 0 A_FireCustomMissile("SaturnSuckExplode")
 		//SATN FF 0 A_SpawnItemEx("Saturn_Catcher",0,0,0,momx,momy,momz,0,8,0)
 		SATN F 1 Offset(0, 24)A_GiveInventory("SaturnAltSuction_P")
@@ -440,7 +440,7 @@ States
 	AltSuck4:
 		SATN F 0 A_JumpIfInventory("SaturnHoldAmmo",1,1)
 	Goto AltEnd
-		SATN F 0 ACS_ExecuteAlways(512,0,1)
+		SATN F 0 ACS_NamedExecute("BULL_SetState",0,1)
 		SATN F 0 A_FireCustomMissile("SaturnSuckExplode")
 		//SATN FF 0 A_SpawnItemEx("Saturn_Catcher",0,0,0,momx,momy,momz,0,8,0)
 		SATN F 1 Offset(0, 24)A_GiveInventory("SaturnAltSuction_P")

@@ -36,7 +36,7 @@ Loop
 Fire:
 DKN2 I 0 A_JumpIfInventory("ShieldCheck",1,"ShieldThrow2")
 DKN2 I 0 A_JumpIfInventory("PowerRage_ST",1,"Charge1r")
-DKN2 A 0 ACS_ExecuteAlways(512,0,1,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,1)
 DKN2 ABCD 2
 Charge1:
 DKN2 E 0 A_PlaySoundEx("weapon/darkcharge1","Weapon")
@@ -65,7 +65,7 @@ DKN2 G 0 A_GiveInventory("NetCharge",1)
 DKN2 G 0 A_Refire("Charge1.a")
 Goto Charge1.end
 Charge1.end:
-DKN2 A 0 ACS_ExecuteAlways(512,0,2,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 DKN2 E 1 Offset(15,48)
 DKN2 G 1 Offset(30,80)
 DKN2 F 1 Offset(45,112)
@@ -100,7 +100,7 @@ DKN2 J 0 A_GiveInventory("NetCharge",1)
 DKN2 J 0 A_Refire("Charge2.a")
 Goto Charge2.end
 Charge2.end:
-DKN2 A 0 ACS_ExecuteAlways(512,0,2,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 DKN2 H 1 Offset(15,48)
 DKN2 J 1 Offset(30,80)
 DKN2 I 1 Offset(45,112)
@@ -136,7 +136,7 @@ DKN2 M 1
 DKN2 M 0 A_Refire("Charge3.a")
 Goto Charge3.end
 Charge3.end:
-DKN2 A 0 ACS_ExecuteAlways(512,0,2,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 DKN2 K 1 Offset(15,48)
 DKN2 M 1 Offset(30,80)
 DKN2 L 1 Offset(45,112)
@@ -171,7 +171,7 @@ DKN2 G 0 A_GiveInventory("NetCharge",2)
 DKN2 G 0 A_Refire("Charge1.ar")
 Goto Charge1.end
 Charge1.end:
-DKN2 A 0 ACS_ExecuteAlways(512,0,2,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 DKN2 E 1 Offset(15,48)
 DKN2 G 1 Offset(30,80)
 DKN2 F 1 Offset(45,112)
@@ -206,7 +206,7 @@ DKN2 J 0 A_GiveInventory("NetCharge",2)
 DKN2 J 0 A_Refire("Charge2.ar")
 Goto Charge2.end
 Charge2.end:
-DKN2 A 0 ACS_ExecuteAlways(512,0,2,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 DKN2 H 1 Offset(15,48)
 DKN2 J 1 Offset(30,80)
 DKN2 I 1 Offset(45,112)
@@ -242,7 +242,7 @@ DKN2 M 1
 DKN2 M 0 A_Refire("Charge3.ar")
 Goto Charge3.end
 Charge3.end:
-DKN2 A 0 ACS_ExecuteAlways(512,0,2,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 DKN2 K 1 Offset(15,48)
 DKN2 M 1 Offset(30,80)
 DKN2 L 1 Offset(45,112)
@@ -252,7 +252,7 @@ Goto Level3
 
 Level1:
 DKN2 A 0 A_TakeInventory("NetCharge",999)
-DKN2 A 0 ACS_ExecuteAlways(512,0,2,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 //DKN2 NO 1 
 //DKN2 PQ 2
 DKN2 NP 1
@@ -267,7 +267,7 @@ DKC2 A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 Goto Ready+1
 Level2:
 DKN2 A 0 A_TakeInventory("NetCharge",999)
-DKN2 A 0 ACS_ExecuteAlways(512,0,2,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 //DKN2 NO 1 
 //DKN2 PQ 2
 DKN2 NP 1
@@ -282,7 +282,7 @@ DKC2 A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 Goto Ready+1
 Level3:
 DKN2 A 0 A_TakeInventory("NetCharge",999)
-DKN2 A 0 ACS_ExecuteAlways(512,0,2,0)
+DKN2 A 0 ACS_NamedExecute("BULL_SetState",0,2)
 //DKN2 NO 1 
 //DKN2 PQ 2
 DKN2 NP 1

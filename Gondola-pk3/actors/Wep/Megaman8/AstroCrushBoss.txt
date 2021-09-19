@@ -106,7 +106,7 @@ AHUG B 0 A_JumpIfInventory("AstroAmmoC",56,"Meteors")
 goto NoAmmo
 Meteors:
 AHUG B 0
-AHUG B 0 ACS_ExecuteAlways(512,0,1)
+AHUG B 0 ACS_NamedExecute("BULL_SetState",0,1)
 AHUG B 0 A_TakeInventory("AstroAmmoC",56)
 AHUG B 0 A_GiveInventory("SelfStoppedTF",1)
 AHUG B 0 A_GiveInventory("AstroAltFlag",1)

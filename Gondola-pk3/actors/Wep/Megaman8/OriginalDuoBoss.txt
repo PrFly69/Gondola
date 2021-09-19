@@ -62,7 +62,7 @@ ODUH L 0 A_JumpIfInventory("ProjectilePortDead",1,"MeteorEndAltFire")
 ODUH A 0 A_JumpIfInventory("DuoJusticeAmmo",14,"HoldX")
 goto NoAmmo
 A_Fire2222:
-ODUH B 0 ACS_ExecuteAlways(512,0,1)
+ODUH B 0 ACS_NamedExecute("BULL_SetState",0,1)
 ODUH B 0 ACS_ExecuteAlways(991,0,DYE_ORIGINDUO)
 ODUH B 0 A_PlaySoundEx("weapon/DuoShot2","Weapon")
 ODUH B 0 A_GiveInventory("ODuoMain1_CI",1)
@@ -79,7 +79,7 @@ ODUH A 2 A_GiveInventory("DuoJusticeAmmo",7)
 goto Ready1
 
 A_Fire2:
-ODUH B 0 ACS_ExecuteAlways(512,0,1)
+ODUH B 0 ACS_NamedExecute("BULL_SetState",0,1)
 ODUH B 0 ACS_ExecuteAlways(991,0,DYE_ORIGINDUO)
 ODUH B 0 A_PlaySoundEx("weapon/DuoShot2","Weapon")
 ODUH B 0 A_GiveInventory("ODuoAlt1_CI",1)
@@ -95,7 +95,7 @@ ODUH A 10 A_WeaponReady(14)
 goto Ready1
 
 A_Fire3:
-ODUH C 0 ACS_ExecuteAlways(512,0,5)
+ODUH C 0 ACS_NamedExecute("BULL_SetState",0,5)
 ODUH C 0 A_TakeInventory("WeaponCharge",999)
 ODUH C 0 ACS_ExecuteAlways(991,0,DYE_ORIGINDUO)
 ODUH C 0 A_GiveInventory("ODuoChargeArmor",1)
@@ -174,15 +174,15 @@ ODUH D 1 Offset(-9,41)ACS_ExecuteAlways(998,0,DYE_ORIGINDUO,1)
 ODUH D 0 A_Refire("Charge2")
 Goto A_Fire3
 Charge2:
-ODUH G 0 ACS_ExecuteAlways(512,0,2)
+ODUH G 0 ACS_NamedExecute("BULL_SetState",0,2)
 ODUH G 1 ACS_ExecuteAlways(998,0,DYE_ODUO_CHARGE2,6)
 ODUH G 0 A_Refire(1)
 Goto A_Fire3
-ODUH H 0 ACS_ExecuteAlways(512,0,3)
+ODUH H 0 ACS_NamedExecute("BULL_SetState",0,3)
 ODUH H 1 ACS_ExecuteAlways(998,0,DYE_ODUO_CHARGE3,7)
 ODUH H 0 A_Refire(1)
 Goto A_Fire3
-ODUH D 0 ACS_ExecuteAlways(512,0,4)
+ODUH D 0 ACS_NamedExecute("BULL_SetState",0,4)
 ODUH D 1 ACS_ExecuteAlways(998,0,DYE_ORIGINDUO,1)
 ODUH D 0 A_JumpIfInventory("IsBot",1,"BotCharge2")
 ODUH D 0 A_Refire("Charge2")
@@ -238,7 +238,7 @@ ODUI S 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)//No Speed
 ODUI S 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)//No Jump
 ODUI S 0 A_ChangeFlag("NOGRAVITY",1)
 ODUI S 0 A_PlaySoundEx("weapon/pcharge","Weapon")
-ODUI S 0 ACS_ExecuteAlways(512,0,6)
+ODUI S 0 ACS_NamedExecute("BULL_SetState",0,6)
 ODUI S 1 offset(-3,38)ThrustThingZ(0,4,0,0)
 ODUI S 1 offset(-6,44)A_JumpIfInventory("PowerRage_ST",1,1)
 ODUI S 1 offset(-9,50)

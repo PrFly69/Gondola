@@ -117,7 +117,7 @@ Reload:
 SHMH M 0 A_JumpIfInventory("CaltropAmmo",70,1)
 goto ReadyNoAmmo
 SHMH M 0 A_PlaySound("weapon/Shad_Kunai",1,0.75)
-TNT1 A 0 ACS_ExecuteAlways(512,0,1,0)
+TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,1)
 SHMH M 0 A_TakeInventory("ShadowSlide",1)
 SHMH M 0 A_TakeInventory("CaltropAmmo",70)
 SHMH M 0 A_GiveInventory("VivifyDelay5",1)
@@ -269,7 +269,7 @@ Reload:
 SHMH M 0 A_JumpIfInventory("CaltropAmmo",70,1)
 goto ReadyNoAmmo
 SHMH M 0 A_PlaySound("weapon/Shad_Kunai",1,0.75)
-TNT1 A 0 ACS_ExecuteAlways(512,0,1,0)
+TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,1)
 SHMH M 0 A_TakeInventory("ShadowSlide",1)
 SHMH M 0 A_TakeInventory("CaltropAmmo",70)
 SHMH M 0 A_GiveInventory("VivifyDelay5",1)
