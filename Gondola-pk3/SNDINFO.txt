@@ -36,6 +36,9 @@ weapon/burnbabyburn FIRERING
 weapon/JunkSlider JNKSLIDE
 weapon/JunkM_ShieldLoop JNKSHLDL
 
+//Pharaoh
+weapon/pharaoh5 phshot5
+
 //Skull
 weapon/SkullParryShot SKUPRSHT $volume weapon/SkullParryShot 0.75
 
