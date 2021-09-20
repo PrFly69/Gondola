@@ -26,6 +26,17 @@ dontlightself 1
 
 object FireManWaveD {frame FWVE {light FIRELIGHT}}
 object FireManWave2D {frame FWVE {light FIRELIGHT}}
+object FiremanStormShot {frame FWVE {light FIRELIGHT}}
+
+pointlight FIRELIGHTSMALL
+{
+color 1.0 0.1 0.05
+size 20
+dontlightself 1
+}
+
+object FiremanStormShieldFX {frame FWVE {light FIRELIGHTSMALL}}
+object FiremanStormShotBit {frame FWVE {light FIRELIGHTSMALL}}
 
 pointlight BRIGHTMAINSGLOWINTHEDARK
 {
@@ -34,6 +45,7 @@ size 75
 }
 
 object Brightman {frame BRIG {light BRIGHTMAINSGLOWINTHEDARK}}
+object BrightBulb1 {frame FSTB {light BRIGHTMAINSGLOWINTHEDARK}}
 
 pointlight BRIGHTMAINSGLOWEVENBRIGHTERINTHEDARK
 {
@@ -42,3 +54,16 @@ size 512
 }
 
 object BrightmanFlashStopperFX {frame BRTS {light BRIGHTMAINSGLOWEVENBRIGHTERINTHEDARK}}
+
+pointlight GerminiLight
+{
+color 0.1 0.2 1.0
+size 25
+}
+
+object BossGeminiLaser {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX1 {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX2 {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX3 {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX4 {frame GEMB {light GerminiLight}}
+object BossGeminiLaserFX5 {frame GEMB {light GerminiLight}}

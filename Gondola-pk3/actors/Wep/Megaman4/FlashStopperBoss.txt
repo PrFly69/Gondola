@@ -1,0 +1,511 @@
+actor FlashStopperBoss : BaseMM8BDMWep_CBM 
+{
+Tag "$TAGC_4A"
+dropitem "FlashBulbWepCDropped"
+Weapon.AmmoGive 28
+Inventory.Pickupmessage "Power up! Flash Stopper!"
+weapon.ammotype "FlashStopperClassAmmo"
+weapon.ammotype2 "BrightIdeasAmmo"
++WEAPON.NOAUTOAIM
+Obituary "$OB_BRIGHTBUSTER"
+States
+{
+Spawn:
+C_04 A 1
+loop
+Ready:
+FSTB A 0 ACS_ExecuteAlways(998,0,DYE_BRIGHTMAN)
+FSTB A 0 A_GunFlash
+FSTB A 0 A_JumpIfInventory("FlashStopperClassAmmo",28,"Ready2")
+FSTB A 0 A_JumpIfInventory("UseFlashStopperFlag",1,"FlashStopper")
+FSTB A 2 A_WeaponReady(WRF_NOSECONDARY)
+FSTB A 0 A_GiveInventory("FlashStopperClassAmmo",1)
+Goto Ready+2
+Ready2:
+FSTB A 0 A_JumpIfInventory("UseFlashStopperFlag",1,"FlashStopper")
+FSTB A 1 A_WeaponReady
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+FSTB A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+FSTB A 1 A_Raise
+Loop
+Fire:
+FSTB A 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
+FSTB A 0 A_GiveInventory("FlashStopperClassAmmo",1)
+FSTB A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+FSTB A 0 A_GiveInventory("BrightmanMain_CI",1)
+/*FSTB BC 3
+FSTB A 2*/
+FSTB CB 2
+FSTB B 1
+FSTB A 1
+FSTB A 2
+goto Ready+2
+FireR:
+FSTB A 0 A_GiveInventory("FlashStopperClassAmmo",1)
+FSTB A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+FSTB A 0 A_GiveInventory("BrightmanMain_CI",1)
+/*FSTB BC 3
+FSTB A 2*/
+FSTB CB 1
+FSTB A 2
+goto Ready+2
+AltFire:
+FSTB A 0 A_JumpIfInventory("FlashStopperClassAmmo",28,1)
+goto NoAmmo
+FSTB A 0 A_TakeInventory("FlashStopperClassAmmo",28)
+FSTB A 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+FSTB A 0 A_GiveInventory("BrightmanAlt_CI",1)
+FSTB A 0 A_GiveInventory("FlashThrowFlag", 1)
+FSTB I 4 A_GunFlash
+FSTB JJJJI 4
+Goto Ready+2
+FlashStopper:
+FSTB I 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
+FSTB I 0 SetPlayerProperty(0,1,0)
+FSTB I 0 A_PlaySoundEx("weapon/flashstopper","Weapon")
+FSTB I 0 A_GiveInventory("BrightmanOther_CI",1)
+FSTB I 0 A_TakeInventory("EndFlashStopperFlag",1)
+FSTB I 0 A_GiveInventory("FlashStopperFlag",1)
+FSTB I 15 ACS_ExecuteAlways(976,0)
+FSTB I 0 A_TakeInventory("FlashStopperFlag",1)
+FSTB I 0 A_GiveInventory("EndFlashStopperFlag",1)
+FSTB I 0 A_TakeInventory("BrightIdeasAmmo",28)
+FSTB I 0 A_TakeInventory("UseFlashStopperFlag",1)
+FSTB I 0 A_TakeInventory("FlashThrowFlag",1)
+FSTB I 0 A_GunFlash
+FSTB I 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+FSTB I 0 SetPlayerProperty(0,0,0)
+goto Ready+2
+NoAmmo:
+FSTB A 0
+//FSTB A 1 ACS_Execute(979,0)
+Goto Ready+2
+Flash:
+TNT1 A 0 A_JumpIfInventory("FlashThrowFlag",1,3)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_GiveInventory("BrightFlashStatePickup",1)
+loop
+FSTB DEFGGHH 1 A_GiveInventory("BrightFlashStatePickup",1)
+TNT1 AAAAAAAA 1 A_GiveInventory("BrightFlashStatePickup",1)
+FSTB D 0 A_TakeInventory("FlashThrowFlag",999)
+loop
+}
+}
+
+actor FlashStopperClassAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor BrightIdeasAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor FlashStock : Inventory
+{
+inventory.amount 1
+inventory.maxamount 999
+}
+
+actor FlashThrowFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor FlashStopperFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor EndFlashStopperFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor UseFlashStopperFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+
+actor BrightSparkleDelayF : Powerup
+{
+Powerup.Duration 22
+}
+
+actor BrightmanPowerLightAmp : PowerLightAmp
+{//Needs gl_enhanced_nightvision false, shouldn't force user
+Powerup.Duration 0x7FFFFFFC
+//powerup.color purple 0.5
+}
+
+actor FlashStopperUseItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "BriIcon"
+scale 2.0
+inventory.pickupmessage "Careful, this bulb is one of a kind, known as the 'Eternal Light' to some."
++INVBAR
+states
+{
+Spawn:
+WEA3 E 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("BrightIdeasAmmo",28,"Success")
+fail
+Success:
+TNT1 A 0 A_GiveInventory("UseFlashStopperFlag",1)
+fail
+}
+}
+
+actor BrightFlashStatePickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("BrightmanSparkleFX_P",1)
+TNT1 A 0 A_JumpIfInventory("FlashStock",10,"Success")
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("FlashStock",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("FlashStock",2)
+stop
+Success:
+TNT1 A 0 A_TakeInventory("FlashStock",10)
+TNT1 A 0 A_GiveInventory("BrightIdeasAmmo",1)
+stop
+}
+}
+
+actor BrightmanSparkleFX_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("BrightIdeasAmmo",28,"Pickup2")
+stop
+Pickup2:
+TNT1 A 0 A_JumpIfInventory("BrightSparkleDelayF",1,"No")
+TNT1 A 0 A_GiveInventory("BrightSparkleDelayF",1)
+TNT1 A 0 A_SpawnItemEx("BrightmanSparkleFX_Helper",0,0,0,0,0,0,0,1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor BrightmanSparkleFX_Helper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BrightmanSparkleFX",random(2,12),0,random(68,76),0,0,0,random(1,16)*20,1)
+TNT1 A 1
+stop
+}
+}
+
+actor BrightmanSparkleFX : BasicClientSide
+{
+Renderstyle "Translucent"
+Alpha 0.95
+Scale 2.25
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4")
+Spawn1:
+BRTS QRST 2
+stop
+Spawn2:
+BRTS QRRSSTT 1
+stop
+Spawn3:
+BRTS RQQRST 1
+stop
+Spawn4:
+BRTS RQRST 1
+stop
+}
+}
+
+actor BrightBulbGFX : BasicClientside
+{
+	-NOGRAVITY
+	Scale 2
+	Gravity 1.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(256,1,11,22)
+		FSTB OOOOOOOOOO 2 A_ChangeVelocity(0,0,-1.5,CVF_RELATIVE)
+		stop
+		FSTB PPPPPPPPPP 2 A_ChangeVelocity(0,0,-1.5,CVF_RELATIVE)
+		stop
+		FSTB QQQQQQQQQQ 2 A_ChangeVelocity(0,0,-1.5,CVF_RELATIVE)
+		stop
+	}
+}
+
+actor BrightBulb1
+{
+Translation "202:202=211:211"
+Obituary "$OB_BRIGHTBULB"
+PROJECTILE
++BRIGHT
+-NOGRAVITY
+Damage (10)
+damagetype "FlashBulb"
+Speed 20
+scale 2.5
+States
+{
+Spawn:
+FSTB K 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+FSTB K 0 ThrustThingZ(0,20,0,1)
+goto Spawn2
+Spawn2:
+FSTB KLMN 2
+loop
+Death:
+TNT1 A 0 A_Stop
+TNT1 AAA 0 A_SpawnItemEx("BrightBulbGFX",0,0,8,random(2,6),0,random(4,5),frandom(0,360),1)
+TNT1 A 0 A_Explode(10,156,0)
+TNT1 A 0 A_PlaySoundEx("weapon/centaurflash","Voice")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TN_B EFGHIJKLMNOPQRS 1
+stop
+}
+}
+
+
+actor BrightBulb2 : BrightBulb1
+{
+Speed 25
+States
+{
+Spawn:
+FSTB K 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+FSTB K 0 ThrustThingZ(0,30,0,1)
+goto Spawn2
+}
+}
+
+actor BrightBulb2B : BrightBulb2{translation "202:202=205:205"}
+actor BrightBulb2R : BrightBulb2{translation "202:202=171:171"}
+actor BrightBulb2O : BrightBulb2{translation "202:202=104:104"}
+actor BrightBulb2P : BrightBulb2{translation "202:202=229:229"}
+
+actor BrightBulb3 : BrightBulb1
+{
+Speed 32
+States
+{
+Spawn:
+FSTB K 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+FSTB K 0 ThrustThingZ(0,34,0,1)
+goto Spawn2
+}
+}
+
+actor BrightBulb3B : BrightBulb3{translation "202:202=205:205"}
+actor BrightBulb3R : BrightBulb3{translation "202:202=171:171"}
+actor BrightBulb3O : BrightBulb3{translation "202:202=104:104"}
+actor BrightBulb3P : BrightBulb3{translation "202:202=229:229"}
+
+actor BrightShot
+{
+Translation "202:202=211:211"
+PROJECTILE
++BRIGHT
+damagetype "Buster"
+Obituary "$OB_BRIGHTBUSTER"
+Damage (12)
+radius 6
+height 6
+Speed 42
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+BRTS G 1
+wait
+Death:
+BRTS G 1
+stop
+}
+}
+
+actor BrightShotB : BrightShot{translation "202:202=205:205"}
+actor BrightShotR : BrightShot{translation "202:202=171:171"}
+actor BrightShotO : BrightShot{translation "202:202=104:104"}
+actor BrightShotP : BrightShot{translation "202:202=229:229"}
+
+actor BrightmanFlashStopper : BasicExplosion
+{
+translation "192:192=4:4", "198:198=239:239"
+Obituary "$OB_BRIGHTFLASH"
+damagetype "BrightB"
+
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BrightmanFlashStopperFX",0,0,64-28,0,0,0,0,1)
+TNT1 A 1 A_Explode(6,512,0,0,256)
+stop
+}
+}
+
+actor BrightmanFlashStopperB : BrightmanFlashStopper{translation "192:192=205:205", "198:198=74:74"}
+actor BrightmanFlashStopperR : BrightmanFlashStopper{translation "192:192=171:171", "198:198=41:41"}
+actor BrightmanFlashStopperO : BrightmanFlashStopper{translation "192:192=104:104", "198:198=128:128"}
+actor BrightmanFlashStopperP : BrightmanFlashStopper{translation "192:192=229:229", "198:198=232:232"}
+
+actor BrightmanFlashStopperFX : BasicClientSide
+{
++FORCEXYBILLBOARD
+renderstyle translucent
+alpha 1.0
+scale 5.0
++BRIGHT
+States
+{
+Spawn:
+BRTS ABCDEF 1 A_FadeOut(0.12)
+stop
+}
+}
+
+actor BossFlashStoppered : BasicHelper
+{
+reactiontime 60
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_GiveToTarget("BossFlashStopperedStop",1)
+TNT1 A 0 A_TakeFromTarget("EndBossFlashStoppered",1)
+TNT1 A 0 A_CountDown
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_JumpIfInTargetInventory("EndBossFlashStoppered",1,"Death")
+TNT1 A 1 A_GiveToTarget("BossFlashStopperedStop",1)
+TNT1 A 0 A_CountDown
+loop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor BossFlashStopperedStop : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_Stop
+stop
+}
+}
+
+actor BrightmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BrightShot",random(-2,2),0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BrightShotB",random(-2,2),0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BrightShotR",random(-2,2),0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BrightShotO",random(-2,2),0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BrightShotP",random(-2,2),0,8,0)
+goto Done
+}
+}
+
+actor BrightmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BrightBulb3",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BrightBulb3B",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BrightBulb3R",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BrightBulb3O",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BrightBulb3P",0,0,-8,0)
+goto Done
+}
+}
+
+actor BrightmanOther_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BrightmanFlashStopper",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BrightmanFlashStopperB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BrightmanFlashStopperR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BrightmanFlashStopperO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BrightmanFlashStopperP",0,1,0,0)
+goto Done
+}
+}
