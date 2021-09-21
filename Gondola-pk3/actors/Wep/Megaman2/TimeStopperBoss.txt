@@ -181,7 +181,6 @@ PROJECTILE
 +SKYEXPLODE
 -DONTBLAST
 damagetype "TimeStop"
-//reactiontime 1
 Speed 50
 Damage (0)
 radius 16
