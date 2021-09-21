@@ -45,7 +45,7 @@ wait
 
 JumpingShooting:
 CRYM KKLLKKLL 1 A_JumpIf(z-floorz<=0, "Spawn")
-goto AcidJumping
+goto Jumping
 
 ClassPain:
 CRYM H 0

@@ -15,26 +15,36 @@ player.sidemove 0.83, 0.83
 
 //damagefactor "Metal", 1337.5
 player.startitem "QuickBoomerangWeakness2", 1
+player.startitem "MetalBladeWeakness2", 1
 
 player.startitem "NeedleCannonWeakness", 1
 player.startitem "QuickBoomerangWeakness", 1
 player.startitem "YamatoSpearWeakness", 1
 player.startitem "TripleBladeWeakness", 1
-player.startitem "MetalBladeWeakness", 1
 States
 {
 Spawn:
 METM A 0
 METM B 1
-METM A 1
+METM A 1 A_JumpIf(z-floorz>0,"Jumping")
 Goto Spawn+2
 See:
-METM BCDE 5
+METM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"Jumping")
 Goto Spawn
 Missile:
+TNT1 A 0 A_JumpIf(z-floorz>0,"JumpingShooting")
 METM F 5
 METM G 4
 goto Spawn
+
+Jumping:
+METM I 1 A_JumpIf(z-floorz<=0, "Spawn")
+wait
+
+JumpingShooting:
+METM JJJJJKKKK 1 A_JumpIf(z-floorz<=0, "Spawn")
+goto Jumping
+
 ClassPain:
 METM H 0
 goto PainContinue
