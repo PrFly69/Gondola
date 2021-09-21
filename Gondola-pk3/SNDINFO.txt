@@ -3,6 +3,9 @@
 weapon/saturnglitch SATFUK
 weapon/saturndeath SATFUCK
 
+//Flash
+weapon/flashstunboom FLASBOOM
+
 //Saturn
 weapon/quazarblast QUAZAR
 
