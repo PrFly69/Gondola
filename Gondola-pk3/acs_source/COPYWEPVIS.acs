@@ -3,6 +3,8 @@
 
 script "CCBM_copywepvisibility" ENTER
 {
+    if(GetCvar("SV_COPYDISPLAY")==false){terminate;}
+
     str lastweapon = "";
     str currentweapon = "";
     str wepparam = "";

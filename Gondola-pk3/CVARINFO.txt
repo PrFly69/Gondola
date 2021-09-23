@@ -1,6 +1,9 @@
 user bool ccbm_allyhealthbar = true;
 user bool ccbm_mapmarker = true;
 
+//Should the copywep display be on?
+server bool SV_COPYDISPLAY = true;
+
 //Decides how much life the flagbearer loses for each time the flag has been picked up without being returned.
 server int SV_FLAGHOTPOTATO = 10;
 
