@@ -1238,7 +1238,7 @@ CHANGELOG
 -Cans are now properly teamcolored
 
 ==Sniper Joe
--HUD updated to closer match design
+-New HUDs by Heelnavi to closer match design
 
 ==Cutman (as of gond beta 7)
 -Damage fixes from UEC unimported; restored to 2.0h Cutman
@@ -1388,6 +1388,7 @@ CHANGELOG
 -Returning empowered Ring Boomerangs now have translucent ring trail as well
 
 ==Diveman
+-New huds by Heelnavi
 -Removed all ACS delays
 
 ==Skullman
