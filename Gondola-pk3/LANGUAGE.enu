@@ -159,3 +159,7 @@ TAGC_5C3 = "Stoneman Is Regenerating?";
 
 //Blizzy
 TAGC_6A3 = "Blizzardman Boss";
+
+//Doc
+OB_DOCHEATBUSTER = "%k's Atomic Buster falsely accused %o of arson.";
+OB_DOCHEATPILLAR = "%k's Atomic Buster falsely accused %o of arson.";

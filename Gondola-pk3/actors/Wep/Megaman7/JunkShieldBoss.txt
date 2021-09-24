@@ -2,7 +2,7 @@ actor JunkShieldBoss : BaseMM8BDMWep_CBM
 {
 tag "$TAGC_7B"
 dropitem "JunkShieldWepCDropped"
-Weapon.AmmoUse 300//60
+Weapon.AmmoUse 200//60
 Weapon.AmmoGive 0
 Obituary "$OB_JUNKSHIELD"
 weapon.ammotype "TrunkAmmo"
@@ -16,7 +16,7 @@ JCLA A 0 ACS_ExecuteAlways(998,0,DYE_JUNKMAN)
 JCLA ABC 3 A_WeaponReady
 Goto Ready1
 Ready1:
-JCLA A 0 A_JumpIfInventory("TrunkAmmo",300,"Ready2")//60
+JCLA A 0 A_JumpIfInventory("TrunkAmmo",200,"Ready2")//60
 JCLA A 2 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
 JCLA A 0 A_GiveInventory("TrunkAmmo",3)
 loop
@@ -37,7 +37,7 @@ Loop
 Fire:
 JCLA A 0// A_JumpIfNoAmmo("Hold")
 JCLA A 0 A_GiveInventory("UseJunkShieldFlag",1)
-JCLA ABCDEF 2 A_TakeInventory("TrunkAmmo",50)//
+JCLA BCDEF 2 A_TakeInventory("TrunkAmmo",40)//
 JCLA A 0 A_SpawnItemEx("JunkCube",64,0,8,0,0,0,0,1)
 JCLA A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireSpread")
 goto FireEnd
@@ -960,7 +960,7 @@ stop
 
 actor JunkPunchShot
 {
-translation "192:192=4:4", "198:198=94:94"
+translation "192:192=91:91", "198:198=3:3"
 PROJECTILE
 damagetype "JunkShot"
 Obituary "$OB_JUNKSHOT"
@@ -1193,7 +1193,7 @@ loop
 
 actor JunkProjectileBoss : JunkingProjectile
 {
-Translation "192:192=4:4", "198:198=94:94"
+Translation "192:192=91:91", "198:198=3:3"
 Obituary "$OB_JUNKSHIELD"
 Damagetype "JunkShock"
 Damage (12)
@@ -1216,7 +1216,7 @@ actor JunkProjectileBossP : JunkProjectileBoss{translation "192:192=229:229","19
 
 actor JunkProjectile2Boss : JunkingProjectile2
 {
-Translation "192:192=4:4", "198:198=94:94"
+Translation "192:192=91:91", "198:198=3:3"
 Obituary "$OB_JUNKSHIELD"
 Damagetype "JunkShock"
 Damage (3)

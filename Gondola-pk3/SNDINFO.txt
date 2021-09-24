@@ -376,3 +376,14 @@ $playersound	solarmanc	male	*pain100	MM9PAIN
 $playersound	solarmanc	male	*pain75		MM9PAIN
 $playersound	solarmanc	male	*pain50		MM9PAIN
 $playersound	solarmanc	male	*pain25		MM9PAIN
+
+//Doc
+weapon/DocWoodStartup DOCWSTRT $volume weapon/DocWoodStartup 0.5
+weapon/DocBubbleStartup DOCBSTRT $volume weapon/DocBubbleStartup 0.5
+weapon/DocAirStartup DOCASTRT $volume weapon/DocAirStartup 0.5
+weapon/DocQuickStartup DOCQSTRT $volume weapon/DocQuickStartup 0.5
+
+weapon/DocHeatShot DOCSHEAT
+weapon/DocHeatPillar DOCHEATP $volume weapon/DocHeatPillar 0.2
+
+weapon/DocCrashShot DOCSCRSH

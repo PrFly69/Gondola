@@ -583,7 +583,7 @@ Drawbar "BARAMM30","BAREMPTY",Ammo1,vertical,16,8;
 //MM7
 IsSelected FreezeCrackerBoss{Drawbar"BARAMM15","BAREMPTY",Ammo2,vertical,16,8;
     DrawBar"BARAMM31","BAREMPTY",Ammo1,vertical,8,8;}
-IsSelected JunkShieldBoss{Drawbar"DUSBAR","DUSEMPTY",Ammo1,vertical,16,8;
+IsSelected JunkShieldBoss{Drawbar"JNKBAR","DUSEMPTY",Ammo1,vertical,16,8;
 	DrawImage"JUNKRCON",32,55;}
 IsSelected DangerWrapBoss{Drawbar"BARAMM33","BAREMPTY",Ammo1,vertical,16,8; 
 	Drawbar"BAREMPTY","07_3_BAR",BurstBombStock,vertical,reverse,8,8;
