@@ -22,14 +22,14 @@ Spawn:
 BASS A 0
 BASS A 0 A_JumpIfInventory("TrebleBoostcFlag",1,"Treb")
 BASS B 1
-BASS A 1
+BASS A 1 //A_JumpIf(z-floorz>0, "Jumping")
 wait
 Treb:
 BASS MNMN 5
 Goto Spawn
 See:
-BASS A 0 A_JumpIfInventory("TrebleBoostcFlag",1,"Treb")
-BASS BCDE 5
+//BASS A 0 
+BASS BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("TrebleBoostcFlag",1,"Treb")
 Goto Spawn
 Missile:
 BASS F 0 A_JumpIfInventory("TrebleBoostcFlag",1,"Trebs")

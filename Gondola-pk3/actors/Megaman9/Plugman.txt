@@ -18,16 +18,27 @@ Spawn:
 PLUM A 0
 PLUM A 0 A_JumpIfInventory("PlugmanIsShocking",1,"PlugPower")
 PLUM B 1
-PLUM A 1
+PLUM A 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn+3
 See:
-PLUM BCDE 5
+PLUM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn
 Missile:
 PLUM F 0 A_JumpIfInventory("PlugmanIsShocking",1,"PlugPower")
-PLUM F 5
-PLUM G 4 
+PLUM FFFFF 1 A_JumpIf(z-floorz>0, "JumpShoot")
+PLUM GGGG 1 A_JumpIf(z-floorz>0, "JumpShoot")
 goto Spawn
+
+Jumping:
+PLU1 I 1 A_JumpIf(z-floorz<=0, "Spawn")
+wait
+JumpShoot:
+PLUM J 5 A_JumpIf(z-floorz<=0, "Missile")
+Goto JumpShoot2
+JumpShoot2:
+PLUM K 4 A_JumpIf(z-floorz<=0, "Missile")
+goto Jumping
+
 PlugPower:
 PLUM G 4
 PLUM GGG 1 A_JumpIfInventory("PlugmanIsShocking",1,"PlugPower")

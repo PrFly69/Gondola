@@ -34,19 +34,31 @@ States
 Spawn:
 ICEM A 0
 ICEM B 1
-ICEM A 1
+ICEM A 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn+2
 See:
-ICEM BCDE 5
+ICEM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn
 Missile:
 ICEB F 0 A_JumpIfInventory("VivifyDelay6",1,"Missile2")
-ICEM F 5
-ICEM G 4
+ICEM FFFFF 1 A_JumpIf(z-floorz>0, "JumpingMissile")
+ICEM GGGG 1 A_JumpIf(z-floorz>0, "JumpingMissile")
 goto Spawn
 Missile2:
-ICEM KL 5
+ICEM KKKKKLLLLL 1 A_JumpIf(z-floorz>0, "JumpingMissile2")
 goto Spawn
+
+		Jumping:
+		ICE1 I 1 A_JumpIf(z-floorz<=0, "Spawn")
+		wait
+		
+		JumpingMissile:
+		ICE1 JJJJJKKKK 1 A_JumpIf(z-floorz<=0, "Missile")
+		Goto Jumping
+		JumpingMissile2:
+		ICE1 KKKKKKKKKK 1 A_JumpIf(z-floorz<=0, "Missile2")
+		Goto Jumping
+
 ClassPain:
 ICEM H 0
 goto PainContinue
