@@ -23,15 +23,23 @@ States
 Spawn:
 FLSM A 0
 FLSM B 1
-FLSM A 1
+FLSM A 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn+2
 See:
-FLSM BCDE 5
+FLSM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn
 Missile:
-FLSM G 5
-FLSM G 4
-goto Spawn
+FLSM GGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_JumpIf(z-floorz>0, "JumpingMissile")
+Goto Spawn+1
+
+Jumping:
+FLSM I 1 A_JumpIf(z-floorz<=0, "Spawn")
+wait
+
+JumpingMissile:
+FLSM JJJJJJJJJJJJJJJJJJJJJJJJJJJJ 1 A_JumpIf(z-floorz<=0, "Missile")
+Goto Jumping
+
 ClassPain:
 FLSM H 0
 goto PainContinue
