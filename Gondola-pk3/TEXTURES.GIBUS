@@ -175,9 +175,9 @@ texture BARTOR,8,56{patch B_BAR12B,0,0{Translation "4:4=175:175","192:192=180:18
 texture VARTOR,56,8{patch BARTOR,0,0{rotate 90}}
 texture BARTORX,8,56{patch B_BAR12B,0,0{Translation "4:4=160:160","192:192=218:218","198:198=175:175"}}//,"0:0=180:180"
 texture VARTORX,56,8{patch BARTORX,0,0{rotate 90}}
-texture BARTOK,8,56{patch B4ENER,0,0{Translation "192:192=95:95","198:198=185:185"}}
+texture BARTOK,8,56{patch B4ENER,0,0{Translation "192:192=87:87","198:198=227:227"}}
 texture VARTOK,56,8{patch BARTOK,0,0{rotate 90}}
-texture BARTOKX,8,56{patch B4ENER,0,0{Translation "192:192=90:90","198:198=175:175"}}
+texture BARTOKX,8,56{patch B4ENER,0,0{Translation "192:192=87:87","198:198=227:227"}}
 texture VARTOKX,56,8{patch BARTOKX,0,0{rotate 90}}//Torchman
 
 sprite PROCR0,116,96{Offset -184,-94 Patch PROCD0,0,0{Translation"0:0=253:253","247:247=253:253"}}//251    ,"93:93=253:253"
@@ -242,6 +242,8 @@ texture VEATEMPT,56,8{patch HEATEMPT,0,0{rotate 90}}
 //Junk
 texture JUNCHBAR,8,56{patch B_BAR01C,0,0{Translation"192:192=68:68","198:198=68:68"}}
 texture JUNCHVAR,56,8{patch JUNCHBAR,0,0{rotate 90}}
+texture JNKVAR,56,8{patch JNKBAR,0,0{rotate 90}}
+graphic JUNKRCON,30,30{XScale 2.0 YScale 2.0 Patch RSH1Y0,0,0}//Junk
 
 //Chain Blast
 graphic CBLAICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPF0,0,0}
@@ -383,8 +385,6 @@ texture 0V_7_PAX,8,56{patch B_2BARSP,0,0{Translation"210:210=87:87"}}
 texture 0V_7_PVX,56,8{patch 0V_7_PAX,0,0{rotate 90}}
 
 graphic PLMWICON,30,30{XScale 2.0 YScale 2.0 Patch MEOWICON,0,0}//Nitro
-
-graphic JUNKRCON,30,30{XScale 2.0 YScale 2.0 Patch RSH1Y0,0,0}//Junk
 
 //DOC
 graphic DOC1Icon,30,30{XScale 2.0 YScale 2.0 Patch DOCICON1,0,0}

@@ -562,7 +562,7 @@ IsSelected YamatoSpearBoss{Drawbar"VARAMM30","VAREMPTY",Ammo1,horizontal,58,184;
 //MM7
 IsSelected FreezeCrackerBoss{Drawbar"VARAMM15","VAREMPTY",Ammo2,horizontal,58,184;
     DrawBar"VARAMM31","VAREMPTY",Ammo1,horizontal,58,176;}
-IsSelected JunkShieldBoss{Drawbar"DUSVAR","DUSVMPTY",Ammo1,horizontal,58,184;
+IsSelected JunkShieldBoss{Drawbar"JNKVAR","DUSVMPTY",Ammo1,horizontal,58,184;
 	DrawImage"JUNKRCON",178,175;}
 IsSelected DangerWrapBoss{Drawbar"VARAMM33","VAREMPTY",Ammo1,horizontal,58,184;
 	Drawbar"VAREMPTY","07_3_VAR",BurstBombStock,horizontal,reverse,58,176;

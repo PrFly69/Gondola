@@ -1368,6 +1368,9 @@ CHANGELOG
 -Base Shadow Blade damage 15 > 20
 -Fixed infinite invis glitch
 
+==Doc Robot (as of gond beta 7)
+-Reworked by NightFly and (put your name here :o)
+
 ==Pharaohman
 -Uncharged Pharaoh Shot damage 16 > 12
 
@@ -1479,7 +1482,9 @@ CHANGELOG
 
 ==Junkman
 -Teamcolors edited 94/4 > 3/91 (as of gond beta 7)
--Junk Cube can now be redirected multiple times until either hit with a fully charged punch or until it passively despawns
+-New SBAR, reflects new teamcolors
+-Junk Cube ammo consumption 300 > 200 (as of gond beta 7)
+--Junk Cube can now be redirected multiple times until either hit with a fully charged punch or until it passively despawns
 --If hit with fully charged Junk Punch, will become fast
 --Junk Cube now takes twice as long to passively despawn
 --Junk ammo near cube ported from core, ammo gain reduced 3 > 2

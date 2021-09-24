@@ -728,7 +728,7 @@ actor ShadeNoiseCrushP : ShadeNoiseCrush{translation "192:192=229:229","198:198=
 
 actor ShadeNoiseCrush2
 {
-Translation "4:4=104:104","192:192=106:106", "198:198=112:112"
+Translation "4:4=138:138","192:192=104:104", "198:198=106:106"
 PROJECTILE
 damagetype "NoiseCrush2"
 Obituary "$OB_NOISECRUSH"

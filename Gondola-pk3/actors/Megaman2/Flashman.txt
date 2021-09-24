@@ -1,0 +1,55 @@
+actor Flashman : ClassBase
+{
+Player.ScoreIcon "C_02F0X"
+player.displayname "flashman"
+player.soundclass "flashmanc"
+player.startitem "TimeStopperBoss"
+
+player.startitem "CrashBombWeakness2", 1
+
+player.startitem "HyperBombWeakness", 1
+player.startitem "CrashBombWeakness", 1
+player.startitem "DrillBombWeakness", 1
+player.startitem "NapalmBombWeakness", 1
+player.startitem "FlashBombWeakness", 1
+player.startitem "DangerWrapWeakness", 1
+player.startitem "RemoteMineWeakness", 1
+player.startitem "LaserTridentWeakness", 1
+player.startitem "CommandoBombWeakness", 1
+player.startitem "BalladeCrackerWeakness", 1
+player.startitem "PhotonMissileWeakness", 1
+States
+{
+Spawn:
+FLSM A 0
+FLSM B 1
+FLSM A 1
+Goto Spawn+2
+See:
+FLSM BCDE 5
+Goto Spawn
+Missile:
+FLSM G 5
+FLSM G 4
+goto Spawn
+ClassPain:
+FLSM H 0
+goto PainContinue
+DeathFix:
+FLSM H 0
+goto DeathContinue
+ClassDeath:
+FLSM H 1
+goto MegaDeathEnd
+
+pain.TimeSlow:
+FLSM "]" 0 A_GiveInventory("SkipClassPainJump",1)
+goto Pain+2
+Pain.TimeStopper:
+FLSM "]" 0 A_GiveInventory("SkipClassPainJump",1)
+goto Pain+2
+TimeStopped:
+FLSM "]" 0 A_GiveInventory("SkipClassPainJump",1)
+goto Pain+2//Goto "Super::TimeStopped"
+}
+}
