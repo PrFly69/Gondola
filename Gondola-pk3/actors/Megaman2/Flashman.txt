@@ -29,7 +29,7 @@ See:
 FLSM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn
 Missile:
-FLSM GGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_JumpIf(z-floorz>0, "JumpingMissile")
+FLSM GGGGGGGGG 1 A_JumpIf(z-floorz>0, "JumpingMissile")
 Goto Spawn+1
 
 Jumping:
