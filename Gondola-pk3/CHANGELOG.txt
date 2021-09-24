@@ -1388,7 +1388,7 @@ CHANGELOG
 -Returning empowered Ring Boomerangs now have translucent ring trail as well
 
 ==Diveman
--New huds by Heelnavi
+-New huds by Christmas Cultist
 -Removed all ACS delays
 
 ==Skullman
