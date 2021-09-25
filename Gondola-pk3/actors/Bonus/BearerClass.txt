@@ -26,9 +26,13 @@ YD_B B 1
 YD_B A 1
 Goto Spawn+2
 See:
-YD_B BCDE 4
+YD_B BCDE 5
 Goto Spawn
 Missile:
+YD_B FG 5
+goto Spawn
+
+CustomState1:
 YD_B FG 5
 goto Spawn
 
@@ -97,15 +101,28 @@ actor YellowDevil : BearerClass
 	health 155
 
 	player.startitem "WildBearBoss"
-	player.startitem "NotABearBoss"
+	//player.startitem "NotABearBoss"
 	player.startitem "MaximumBearAmmo",3
 	player.startitem "CanUseItems"
 	player.startitem "SemiStunArmor"
+	
+player.startitem "ThunderBeamWeakness2", 1
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "SuperArmWeakness2", 1
+player.startitem "SuperArmWeakness", 1
+player.startitem "FireStormWeakness2", 1
+player.startitem "FireStormWeakness", 1
+player.startitem "HardKnuckleWeakness2", 1
+player.startitem "HardKnuckleWeakness", 1
+player.startitem "GyroAttackWeakness2", 1
+player.startitem "GyroAttackWeakness", 1
+//player.startitem "ChainBlastWeakness2", 1
+//player.startitem "ChainBlastWeakness", 1
 }
 
 actor WildBearBoss : BaseMM8BDMWep_CBM
 {
-dropitem "ConfettiDeathSpawner"
+//dropitem "ConfettiDeathSpawner"
 dropitem "CopyClassUpgradeDropped"
 Tag "$TAGC_1Y"
 Weapon.AmmoUse 0
@@ -121,19 +138,19 @@ Ready:
 YD_H A 0 ACS_ExecuteAlways(998,0,DYE_YELLOWDEVIL)
 Ready1:
 YD_H A 0 A_JumpIfInventory("BearerFlag",1,"ReadyBearer")
-YD_H A 6 A_WeaponReady
+YD_H A 6 A_WeaponReady(WRF_ALLOWRELOAD)
 YD_H A 0 A_GiveInventory("SpeedGearCharge",1)
 loop
 
 ReadyBearer:
 YD_H A 0 A_JumpIfInventory("BumoHeal",1,"Heal")
-YD_H A 6 A_WeaponReady
+YD_H A 6 A_WeaponReady(WRF_ALLOWRELOAD)
 loop
 
 Heal:
 YD_H A 0 HealThing(5)
 YD_H A 0 A_TakeInventory("BumoHeal",1)
-YD_H A 10 A_WeaponReady
+YD_H A 10 A_WeaponReady(WRF_ALLOWRELOAD)
 goto ReadyBearer
 
 Deselect:
@@ -145,14 +162,76 @@ TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 YD_H A 1 A_Raise
 Loop
 
-Fire:
+		Fire:
+		YD_H B 0
+		YD_H B 2 Offset(12,50)
+		YD_H B 2 Offset(24,68)
+		YD_H B 0 A_Refire("FireCharge")
+		goto Fire2
+
+		FireCharge:
+		YD_H B 0 A_JumpIfInventory("BumoCharge",50,"FireCharged")
+		YD_H B 2 Offset(24,68) A_GiveInventory("BumoCharge")
+		YD_H B 0 A_Refire("FireCharge")
+		Goto Fire2
+
+		Fire2:
+		YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,1)
+		YD_H B 0 A_PlaySoundEx("misc/minilaser","weapon")
+		YD_H B 0 A_TakeInventory("BumoCharge", 50)
+		YD_H B 0 A_GiveInventory("NotABearMain_CI",1)
+		YD_H B 7 Offset(24,68)
+		YD_H B 1 Offset(20,62)
+		YD_H B 1 Offset(16,56)
+		YD_H B 1 Offset(12,50)
+		YD_H B 1 Offset(8,44)
+		YD_H B 1 Offset(4,38)
+		YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,0)
+		goto Ready1
+
+		FireCharged:
+		YD_H B 1 Offset(36,86)
+		TNT1 A 1
+		YD_H B 0 A_TakeInventory("BumoEnd",3)
+		YD_H B 0 A_GiveInventory("YellowDevilRomanCancel")
+		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,0)
+		YD_H B 0 A_GiveInventory("GuardDownFlag",1)
+		YD_H B 0 A_SpawnItemEx("MarkedForDeathHandler")
+		FireLoop:
+		YD_H B 0 A_GiveInventory("PowerMarkedForDeath",1)
+		YD_H B 0 A_PlaySoundEx("misc/minilaser","weapon")
+		YD_H B 0 A_TakeInventory("BumoCharge",10)
+		YD_H B 0 A_GiveInventory("NotABearMain_CI",1)
+		TNT1 A 6
+		YD_H B 0 A_JumpIfInventory("BumoEnd",3,"RomanCancel")
+		YD_H B 0 A_JumpIfInventory("BumoCharge",10,"FireLoop")
+		goto FireEnd
+
+		RomanCancel:
+		YD_H B 0 A_PlaySoundEx("item/1up","Voice")
+		YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
+		YD_H B 6
+		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
+		Goto Ready1
+
+		FireEnd:
+		YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
+		YD_H B 1 Offset(20,62)
+		YD_H B 1 Offset(16,56)
+		YD_H B 1 Offset(12,50)
+		YD_H B 1 Offset(8,44)
+		YD_H B 1 Offset(4,38)
+		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
+		goto Ready1
+
+Altfire:
 YD_H C 0
 YD_H A 1 Offset(8,26)
 YD_H C 1 Offset(8,26)
 YD_H C 1 Offset(20,16)
 YD_H C 1 Offset(30,6)
-YD_H C 0 A_Refire("FireCharge")
-Fire2:
+YD_H C 0 A_Refire("AltfireCharge")
+Altfire2:
 YD_H C 0 A_TakeInventory("BumoCharge", 50)
 YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
 YD_H C 0 A_GiveInventory("WildBearMain_CI",1)
@@ -166,17 +245,17 @@ YD_H A 1 Offset(-4,34)
 YD_H A 1 Offset(-2,33)
 Goto Ready1
 
-FireCharge:
-YD_H C 0 A_JumpIfInventory("BumoCharge",50,"FireCharged")
+AltfireCharge:
+YD_H C 0 A_JumpIfInventory("BumoCharge",50,"AltfireCharged")
 YD_H C 2 Offset(30,6) A_GiveInventory("BumoCharge")
-YD_H C 0 A_Refire("FireCharge")
-Goto Fire2
+YD_H C 0 A_Refire("AltfireCharge")
+Goto Altfire2
 
-FireCharged:
+AltfireCharged:
 YD_H C 0 A_PlaySoundEx("misc/electrap","weapon")
 YD_H C 2 Offset(30,6) 
 YD_H C 2 Offset(28,8)
-YD_H C 1 A_Refire("FireCharged")
+YD_H C 1 A_Refire("AltfireCharged")
 YD_H C 0 A_TakeInventory("BumoCharge", 50)
 YD_H C 0 A_TakeInventory("BumoEnd",3)
 YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
@@ -187,28 +266,28 @@ YD_H C 0 A_TakeInventory("UnSolid",1)
 YD_H C 0 A_Changeflag("PICKUP",0)
 YD_H C 0 A_ChangeFlag("INVISIBLE",1)
 YD_H D 2 Offset(20,8)
-YD_H C 0 A_JumpIfInventory("BearerFlag",1,"FireLoop")
-goto FireLoopNonBearer
+YD_H C 0 A_JumpIfInventory("BearerFlag",1,"AltfireLoop")
+goto AltfireLoopNonBearer
 
-FireLoopNonBearer:
+AltfireLoopNonBearer:
 YD_H C 0 A_GiveInventory("YellowDevilRomanCancel",1)
 YD_H E 0 A_GiveInventory("GuardDownFlag",1)
 YD_H E 0 A_SpawnItemEx("MarkedForDeathHandler")
-FireLoopNonBearer2:
+AltfireLoopNonBearer2:
 YD_H E 0 A_GiveInventory("PowerMarkedForDeath",1)
 YD_H E 5 Offset(12,17) 
 YD_H E 0 A_JumpIfInventory("BumoEnd",3,"RomanCancel")
-YD_H E 0 A_JumpIfInventory("BumoEnd",1,"FireEnd")
+YD_H E 0 A_JumpIfInventory("BumoEnd",1,"AltfireEnd")
 loop
 
-FireLoop:
+AltfireLoop:
 YD_H E 4 Offset(12,17)
-YD_H E 1 Offset(12,17) A_JumpIfInventory("BumoEnd",1,"FireEnd") 
+YD_H E 1 Offset(12,17) A_JumpIfInventory("BumoEnd",1,"AltfireEnd") 
 YD_H E 0 DamageThing(10)
 YD_H E 0 A_GiveInventory("BumoHeal",1)
 loop
 
-FireEnd:
+AltfireEnd:
 YD_H E 0 A_TakeInventory("YellowDevilRomanCancel",1)
 YD_H E 0 A_ChangeFlag("INVISIBLE",0)
 YD_H E 0 A_ChangeFlag("PICKUP",1)
@@ -233,9 +312,10 @@ YD_H E 0 A_SpawnItemEx("ReSolidifier")
 YD_H A 6
 Goto Ready1
 
-Altfire:
+Reload:
 YD_H A 0 A_GiveInventory("WildBearAlt_CI",1)
 YD_H A 0 A_PlaySoundEx("wep/YD_Punch","Weapon")
+YD_H A 0 ACS_NamedExecute("BULL_SetState",0,1)
 YD_H B 2 Offset(-28,14)
 YD_H BBBB 2 Offset(-56,-4)
 YD_H B 2 Offset(-56,-4)
