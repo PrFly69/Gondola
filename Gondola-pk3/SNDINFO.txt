@@ -387,3 +387,10 @@ weapon/DocHeatShot DOCSHEAT
 weapon/DocHeatPillar DOCHEATP $volume weapon/DocHeatPillar 0.2
 
 weapon/DocCrashShot DOCSCRSH
+
+//Hornet
+Bee/Horny BEEHRNY  
+
+$volume Bee/Horny 0.8         //anti earrape stuffs
+$limit Bee/Horny 1 500       //you should give the copywep this
+$rolloff Bee/Horny 300 1200 //i think Soundwave is deafen O.o
