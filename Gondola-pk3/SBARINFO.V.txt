@@ -150,7 +150,7 @@ IsSelected MagmaBazookaWepC, MagmaBazookaWepCMaestro{DrawBar "BARAMM64", "BAREMP
 IsSelected ConcreteShotWepC {DrawBar "BARAMM65", "BAREMPTY", ConcreteShotAmmo, vertical, 16, 8;}
 IsSelected BlackHoleBombWepC {DrawBar "BARAMM66", "BAREMPTY", BlackHoleBombAmmo, vertical, 16, 8;
 	InInventory BlackHoleBombCooldown, 1 {DrawBar "BARFLS15", "BAREMPTY", BlackHoleBombAmmo, vertical, 16, 8;}}
-IsSelected HornetChaserWepC {DrawBar "BARAMM67", "BAREMPTY", HornetChaserAmmo, vertical, 16, 8;}
+IsSelected ChaserWepC {DrawBar "BARAMM67", "BAREMPTY", HornetChaserAmmo, vertical, 16, 8;}
 
 //MM10
 IsSelected TripleBladeWepC {DrawBar "BARAMM6A", "BAREMPTY", TripleBladeAmmo, vertical, 16, 8;}
@@ -702,6 +702,7 @@ IsSelected MagmaBazookaBoss{Drawbar"BARAMM64","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory MagmaItemFlag,1{DrawImage"MAGFLOWA",-53,-32;}}
 IsSelected HornetChaserBoss{DrawBar"BARAMM67","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"09_6_BAR","BAREMPTY",Ammo2,vertical,8,8;
+	DrawImage"HORNEICN",32,55;
 	InInventory HornetFlagH,1{DrawImage"HORNJETA",290,8;}}
 IsSelected BlackHoleBombBoss{Drawbar"GALBAR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage "GALRICON",32,55;
