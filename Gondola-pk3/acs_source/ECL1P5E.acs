@@ -99,3 +99,26 @@ script "DuoSlamCounter" (void)
 SetActivatorToTarget(0);
 SetResultValue(CheckInventory("WeaponChargeDuo"));
 }
+
+ script "uec_AutoToggleMethod" (void)
+{
+	SetResultValue(GetUserCVar(PlayerNumber(),"UEC_AutoToggleMethod"));
+}
+
+ script "uec_JewelmanGive" (void)
+{
+	GiveInventory("Jewelslot1",GetUserCVar(PlayerNumber(),"UEC_Jewel1"));
+	GiveInventory("Jewelslot2",GetUserCVar(PlayerNumber(),"UEC_Jewel2"));
+	GiveInventory("Jewelslot3",GetUserCVar(PlayerNumber(),"UEC_Jewel3"));
+	GiveInventory("Jewelslot4",GetUserCVar(PlayerNumber(),"UEC_Jewel4"));
+}
+
+ script "uec_JewelmanResetPlus" (void)
+{
+	SetResultValue(GetUserCVar(PlayerNumber(),"UEC_JewelResetPlus"));
+}
+
+ script "uec_AcidmanHUD" (void)
+{
+	SetResultValue(GetUserCVar(PlayerNumber(),"UEC_AcidmanHUD"));
+}
