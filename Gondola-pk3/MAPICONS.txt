@@ -1953,3 +1953,18 @@ actor Acidman_MapMarker_0 : Acidman_MapMarker_D {translation "192:192=205:205", 
 actor Acidman_MapMarker_1 : Acidman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
 actor Acidman_MapMarker_2 : Acidman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
 actor Acidman_MapMarker_3 : Acidman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor YellowDevil_MapMarker_D : Maestro_MapMarker_D
+{
+translation "192:192=216:216", "198:198=220:220"
+States
+{
+Spawn:
+_MM6 B 2
+stop
+}
+}
+actor YellowDevil_MapMarker_0 : YellowDevil_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor YellowDevil_MapMarker_1 : YellowDevil_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor YellowDevil_MapMarker_2 : YellowDevil_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor YellowDevil_MapMarker_3 : YellowDevil_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
