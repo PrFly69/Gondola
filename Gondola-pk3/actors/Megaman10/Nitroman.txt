@@ -2,10 +2,10 @@
 // Formatting & Cleaned by Ru5tK1ng
 //=================================
  
-  Actor Nitroman : LightClassBase
+  Actor Nitroman : ProtoClassBase
   {
     Player.ScoreIcon "C_10G0X"
-    Player.StartItem "LightHealthBar"
+    Player.StartItem "ProtoHealthBar"
     Player.DisplayName "Nitroman"
     Player.SoundClass "nitromanc"
     Player.StartItem "WheelCutterBoss"
