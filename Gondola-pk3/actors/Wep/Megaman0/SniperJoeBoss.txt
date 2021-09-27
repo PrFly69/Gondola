@@ -721,7 +721,7 @@ Altfire:
 JOEB Q 0 A_JumpIfInventory("ContraJoeAmmo",7,"Altfire2")
 goto NoAmmo
 Altfire2:
-JOEB OPOQ 1
+JOEB QQQQ 1
 JOEB R 0 A_PlaySoundEx("weapon/dustbit","Weapon")
 JOEB R 0 A_TakeInventory("ContraJoeAmmo",14)
 JOEB R 0 A_GiveInventory("SniperJoeAltX_CI",1)

@@ -578,6 +578,7 @@ IsSelected NoiseCrushBoss{Drawbar"VARAMM37","VAREMPTY",Ammo1,horizontal,58,184;
 IsSelected ScorchWheelBoss{Drawbar"VARAMM38","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory TurboWheelCount,1{DrawBar"VARFLS1","VNOBAR",TurboWheelCount,horizontal,58,192;}
 	Drawbar"07_8_VAR","BAREMPTY",Ammo2,horizontal,58,176;
+	InInventory TurboAltDelay,1{DrawBar"VARFLS1","VNOBAR",TurboAltDelay,horizontal,58,176;}
 	InInventory TurboHonkDelay,1{DrawBar"7H_A_VAR","VNOBAR",TurboHonkDelay,horizontal,58,176;}}
 
 //MM8
@@ -693,6 +694,7 @@ IsSelected RevolverBusterBoss{DrawBar"VARAMM10","VAREMPTY",FakemanDashCounter,ho
 	else InInventory RevolverbusterAmmoBoss,2{DrawImage"9FAKK2",79,168;}
 	else InInventory RevolverbusterAmmoBoss,1{DrawImage"9FAKK1",79,168;}
 	else {DrawImage"9FAKK0",79,168;}
+	InInventory FOMBuffer,1{DrawImage"9FAKKB",79,168;}
 	DrawImage"FKERICON",178,175;}
 
 //MM10

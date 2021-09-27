@@ -631,3 +631,13 @@ Script "MEOWMEOWMEOWMEOWMEOWMEOWMEOW" (void)
 {
 	LocalAmbientSound("item/tango",128);
 }
+
+Script "WaveHookAcsSound" (void)
+{
+	LocalAmbientSound("S3_K/MetalSpark",128);
+}
+
+Script "WaveHookLatchAcsSound" (void)
+{
+	LocalAmbientSound("weapon/BionicArm2",128);
+}

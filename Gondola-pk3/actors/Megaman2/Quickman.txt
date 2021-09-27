@@ -40,6 +40,10 @@ QUIM F 5
 QUIM G 4
 goto Spawn
 
+Jumping:
+QUIM J 1 A_JumpIf(z-floorz<=0, "Spawn")
+goto Jumping
+
 JumpingMissile:
 QUIM KKKKKKKKK 1 A_JumpIf(z-floorz<=0, "Missile")
 goto Jumping

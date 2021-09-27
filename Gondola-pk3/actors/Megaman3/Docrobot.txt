@@ -8,6 +8,8 @@ player.startitem "DocBusterBubbleFlashWep"
 player.startitem "DocBusterAirCrashWep"
 player.startitem "DocBusterQuickMetalWep"
 player.startitem "DocVirusAmmo", 175
+player.forwardmove 0.78, 0.78
+player.sidemove 0.76, 0.76
 
 player.weaponslot 1, "DocBusterWoodHeatWep"
 player.weaponslot 2, "DocBusterBubbleFlashWep"

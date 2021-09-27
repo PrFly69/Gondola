@@ -387,3 +387,9 @@ weapon/DocHeatShot DOCSHEAT
 weapon/DocHeatPillar DOCHEATP $volume weapon/DocHeatPillar 0.2
 
 weapon/DocCrashShot DOCSCRSH
+
+weapon/DocMetalCharge DOCSMETL
+weapon/DocMetalShot DOCCMETL
+
+//DM3
+weapon/DM3Ping DM3Ping
