@@ -785,7 +785,8 @@ IsSelected ThunderWoolBoss{Drawbar"10_S_BAR","BAREMPTY",Ammo1,vertical,16,8;
 	
 IsSelected ReboundStrikeBoss,ReboundStrikerBoss{Drawbar"10_4_BAR","BAREMPTY",Ammo1,vertical,16,8;
 						     DrawImage"STRRICON",32,55;
-	Drawbar"10_4_BA3","BAREMPTY",Ammo2,vertical,8,8;}
+	Drawbar"10_4_BAX","BAREMPTY",Ammo2,vertical,8,8;
+	InInventory ReboundStrikerPower,7{Drawbar"10_4_BA3","BAREMPTY",Ammo2,vertical,8,8;}}
 
 IsSelected SolarBlazeBoss,SolarBlazerBoss{Drawbar"00_E_BAR","BAREMPTY",SolarSunAmmo,vertical,16,8;
 	DrawImage"SLRRICON",32,55;
