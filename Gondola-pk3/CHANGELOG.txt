@@ -1202,6 +1202,11 @@ CHANGELOG
 -Ported HUD Cutoff fix from LemonLimeBrony
 -Updated Double Buster HUD for V6
 -Uncharged buster impact VFX added
+-Power Adaptor adjusted
+--Power Fist damage nerfed from 20/35/70 -> 13/25/50
+*Doubling his pellet damage + giving him easy rapid for the low price of a range cap was unreasonable, as were the backbreaking damage numbers on charged shots.
+--Delay after firing increased from 1/1/1 -> 5/10/20
+*Bulk as the price for damage - a small price to pay for salvation.
 
 ==Protoman
 -Updated to V6 skin (as of gond beta 7)
