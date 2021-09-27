@@ -332,42 +332,44 @@ stop
 
 actor TurbomanWheelWarper : ShieldWarper_CBM
 {
+Translation "195:195=183:183","194:194=42:42","202:202=248:248"
 +NOTIMEFREEZE
++BRIGHT
 States
 {
 Shield:
-Y_7H A 0 A_JumpIfInventory("Once",1,2)
-Y_7H A 0 A_JumpIfInTargetInventory("TurboWheelCount",45,"ShieldScale")
+SCTU A 0 A_JumpIfInventory("Once",1,2)
+SCTU A 0 A_JumpIfInTargetInventory("TurboWheelCount",45,"ShieldScale")
 
-Y_7H A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR1")
-Y_7H AAABBBCCC 1 A_Warp(AAPTR_TARGET,0,0,32,0,24)
+SCTU A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR1")
+SCTU AAABBBCCC 1 A_Warp(AAPTR_TARGET,0,0,0,0,24)
 
-Y_7H D 0 A_JumpIfInventory("Once",1,2)
-Y_7H D 0 A_JumpIfInTargetInventory("TurboWheelCount",45,"ShieldScale2")
+SCTU D 0 A_JumpIfInventory("Once",1,2)
+SCTU D 0 A_JumpIfInTargetInventory("TurboWheelCount",45,"ShieldScale2")
 
-Y_7H D 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR2")
-Y_7H DDDEEEFFF 1 A_Warp(AAPTR_TARGET,0,0,32,0,24)
+SCTU D 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR2")
+SCTU DDDEEEFFF 1 A_Warp(AAPTR_TARGET,0,0,0,0,24)
 loop
 ShieldR1:
-Y_7H AABBCC 1 A_Warp(AAPTR_TARGET,0,0,32,0,24)
+SCTU AABBCC 1 A_Warp(AAPTR_TARGET,0,0,0,0,24)
 goto Shield+12
 ShieldR2:
-Y_7H DDEEFF 1 A_Warp(AAPTR_TARGET,0,0,32,0,24)
+SCTU DDEEFF 1 A_Warp(AAPTR_TARGET,0,0,0,0,24)
 goto Shield
 ShieldScale:
-Y_7H A 0 A_GiveInventory("Once",1)
-Y_7H A 0 A_SetScale(3.0,3.0)
+SCTU A 0 A_GiveInventory("Once",1)
+SCTU A 0 A_SetScale(3.0,3.0)
 goto Shield+2
 ShieldScale2:
-Y_7H A 0 A_GiveInventory("Once",1)
-Y_7H A 0 A_SetScale(3.0,3.0)
+SCTU A 0 A_GiveInventory("Once",1)
+SCTU A 0 A_SetScale(3.0,3.0)
 goto Shield+14
 }
 }
 
 actor ScorchWheelB
 {
-Translation "202:202=210:210","199:199=42:42"
+Translation "195:195=183:183","194:194=42:42","202:202=248:248"
 damagetype "ScorchWheelB"
 Obituary "$OB_SCORCHWHEEL"
 -SOLID
@@ -375,6 +377,7 @@ Obituary "$OB_SCORCHWHEEL"
 +RIPPER
 -NOGRAVITY
 +NOBLOOD
++BRIGHT
 maxstepheight 24
 painchance 0
 reactiontime 10
@@ -389,8 +392,8 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-Y_7H A 0 ThrustThingZ(0,20,0,1)
-Y_7H ABCDEF 2 A_SpawnItemEx("ScorchWheelB_Explo",0,0,18)
+SCTU A 0 ThrustThingZ(0,20,0,1)
+SCTU ABCDEF 2 A_SpawnItemEx("ScorchWheelB_Explo",0,0,18)
 Goto SpawnLOOP+1
 Death:
 //TNT1 A 0 A_CustomMissile("ScorchWheelB2",0,0,0,2,0)
@@ -401,10 +404,10 @@ stop
 }
 }
 
-actor ScorchWheelBB : ScorchWheelB{translation "202:202=205:205","199:199=74:74"}
-actor ScorchWheelBR : ScorchWheelB{translation "202:202=171:171","199:199=41:41"}
-actor ScorchWheelBO : ScorchWheelB{translation "202:202=104:104","199:199=128:128"}
-actor ScorchWheelBP : ScorchWheelB{translation "202:202=229:229","199:199=232:232"}
+actor ScorchWheelBB : ScorchWheelB{translation "194:194=205:205","195:195=74:74","202:202=196:196"}
+actor ScorchWheelBR : ScorchWheelB{translation "194:194=171:171","195:195=41:41","202:202=169:169"}
+actor ScorchWheelBO : ScorchWheelB{translation "194:194=104:104","195:195=128:128","202:202=104:104"}
+actor ScorchWheelBP : ScorchWheelB{translation "194:194=229:229","195:195=232:232","202:202=229:229"}
 
 actor ScorchWheelB_Explo : BasicExplosion
 {
@@ -444,10 +447,10 @@ stop
 }
 }
 
-actor ScorchWheelB1B : ScorchWheelB1{translation "202:202=205:205","199:199=74:74"}
-actor ScorchWheelB1R : ScorchWheelB1{translation "202:202=171:171","199:199=41:41"}
-actor ScorchWheelB1O : ScorchWheelB1{translation "202:202=104:104","199:199=128:128"}
-actor ScorchWheelB1P : ScorchWheelB1{translation "202:202=229:229","199:199=232:232"}
+actor ScorchWheelB1B : ScorchWheelB1{translation "194:194=205:205","195:195=74:74","202:202=196:196"}
+actor ScorchWheelB1R : ScorchWheelB1{translation "194:194=171:171","195:195=41:41","202:202=169:169"}
+actor ScorchWheelB1O : ScorchWheelB1{translation "194:194=104:104","195:195=128:128","202:202=104:104"}
+actor ScorchWheelB1P : ScorchWheelB1{translation "194:194=229:229","195:195=232:232","202:202=229:229"}
 
 actor ScorchWheelB2 : ScorchWheelB
 {
@@ -458,6 +461,7 @@ Bouncetype Classic
 -ALLOWBOUNCEONACTORS
 +DONTSPLASH
 +NOEXPLODEFLOOR
++BRIGHT
 +STEPMISSILE
 BounceFactor 1.0
 WallBounceFactor 0.0
@@ -467,23 +471,23 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-Y_7H A 0
-Y_7H A 0 A_GiveInventory("ResyncPickup",1)
-Y_7H A 0 A_GiveInventory("ScorchWheelB2Pickup",1)
+SCTU A 0
+SCTU A 0 A_GiveInventory("ResyncPickup",1)
+SCTU A 0 A_GiveInventory("ScorchWheelB2Pickup",1)
 TNT1 A 0 A_PlaySoundEx("weapon/wheeltrail","Body")
-Y_7H AA 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H B 0 A_GiveInventory("ScorchWheelB2Pickup",1)
-Y_7H BB 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H C 0 A_GiveInventory("ScorchWheelB2Pickup",1)
+SCTU AA 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU B 0 A_GiveInventory("ScorchWheelB2Pickup",1)
+SCTU BB 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU C 0 A_GiveInventory("ScorchWheelB2Pickup",1)
 TNT1 A 0 A_PlaySoundEx("weapon/wheeltrail","Body")
-Y_7H CC 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H D 0 A_GiveInventory("ScorchWheelB2Pickup",1)
-Y_7H DD 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H E 0 A_GiveInventory("ScorchWheelB2Pickup",1)
+SCTU CC 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU D 0 A_GiveInventory("ScorchWheelB2Pickup",1)
+SCTU DD 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU E 0 A_GiveInventory("ScorchWheelB2Pickup",1)
 TNT1 A 0 A_PlaySoundEx("weapon/wheeltrail","Body")
-Y_7H EE 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H F 0 A_GiveInventory("ScorchWheelB2Pickup",1)
-Y_7H FF 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU EE 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU F 0 A_GiveInventory("ScorchWheelB2Pickup",1)
+SCTU FF 1 A_CheckFlag("BLASTED","NewShotX")
 goto SpawnLOOP+2
 NewShotX:
 TNT1 A 0 A_SpawnItemEx("ScorchWheelB2",0,0,0,momx,momy,momz,0,9)
@@ -505,22 +509,22 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-Y_7H A 0
-Y_7H A 0 A_GiveInventory("ResyncPickup",1)
-Y_7H A 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)//A_Explode(11,96,0)
+SCTU A 0
+SCTU A 0 A_GiveInventory("ResyncPickup",1)
+SCTU A 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)//A_Explode(11,96,0)
 TNT1 A 0 A_PlaySoundEx("weapon/wheeltrail","Body")
-Y_7H AA 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H B 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
-Y_7H BB 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H C 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
-Y_7H CC 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H D 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
+SCTU AA 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU B 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
+SCTU BB 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU C 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
+SCTU CC 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU D 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
 TNT1 A 0 A_PlaySoundEx("weapon/wheeltrail","Body")
-Y_7H DD 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H E 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
-Y_7H EE 1 A_CheckFlag("BLASTED","NewShotX")
-Y_7H F 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
-Y_7H FF 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU DD 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU E 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
+SCTU EE 1 A_CheckFlag("BLASTED","NewShotX")
+SCTU F 0 A_SpawnItemEx("ScorchWheelB_Explo3",0,0,18)
+SCTU FF 1 A_CheckFlag("BLASTED","NewShotX")
 goto SpawnLOOP+2
 NewShotX:
 TNT1 A 0 A_SpawnItemEx("ScorchWheelB3",0,0,0,momx,momy,momz,0,9)
@@ -555,6 +559,7 @@ damagetype "ScorchWheelB"
 Obituary "$OB_TURBOSKID"
 +DONTBLAST
 +FLOORHUGGER
++BRIGHT
 reactiontime 10
 Damage (5)
 Height 16
@@ -589,25 +594,25 @@ actor ScorchBitB : ScorchBit
 States
 {
 Spawn:
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
-Y_7H O 1
+SCTU O 1
 TNT1 A 1
 stop
 }

@@ -1,0 +1,649 @@
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
+
+  Actor RevolverBusterBoss : BaseMM8BDMWep_CBM
+  {
+	DropItem "FakeRepeaterWepCDropped"
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 6
+	Obituary "$OB_FAKEBRUTAL"
+	Inventory.Pickupmessage "I am the law."
+	Weapon.AmmoType "RevolverbusterAmmoBoss"
+	Tag "$TAGC_9I"
+	States
+	{
+		Spawn:
+		C_09 I 1
+		Loop
+		
+		Select:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+		FAKR A 1 A_Raise
+		Loop
+		
+		Deselect:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+		FAKR A 1 A_Lower
+		Loop
+		
+		Ready:
+		FAKR A 0 ACS_ExecuteAlways(998,0,DYE_FAKEMAN)
+		FAKR A 0 A_SpawnItemEx("FakemanAmmoHelper")
+		Goto Ready1
+		
+		Ready1:
+		FAKR A 0 A_Jumpifinventory("RevolverbusterAmmoBoss",6 , "Ready2")
+		FAKR A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+		Wait
+		
+		Ready2:
+		FAKR A 1 A_WeaponReady(WRF_DISABLESWITCH)
+		Wait
+
+		Fire:
+		FAKR E 0 A_JumpIfNoAmmo("NoAmmo")
+		FAKR E 0 A_JumpIfInventory("FOMBuffer",1,"FOMCheck")
+		FAKR E 0 A_PlaySoundEx("weapon/fakeshot1","Weapon")
+		FARK E 0 A_GiveInventory("FakemanFiring",1)
+		FAKR E 0 A_GiveInventory("FakemanMain1_CI",1)
+		FAKR E 1 A_Giveinventory("FOMBuffer")
+		FAKR B 0 A_Refire("FireH1")
+		Goto FireEnd
+		
+		FOMCheck:
+		Goto Fire2
+
+		Fire2:
+		FAKR E 0 A_JumpIfNoAmmo("NoAmmo")
+		FAKR E 1
+		FAKR A 0 A_PlaySoundEx("weapon/fakeshot1","Weapon")
+		FARK A 0 A_GiveInventory("FakemanFiring",1)
+		FAKR A 0 A_GiveInventory("FakemanMain2_CI",1)
+		FAKR A 1 A_Giveinventory("FOMBuffer")
+		FAKR B 0 A_Refire("FireBH1")
+		Goto FireBEnd
+
+		FireH1:
+		FAKR B 1 A_RailWait
+		FAKR C 0 A_Refire("FireH2")
+		Goto FireEnd+1
+
+		FireH2:
+		FAKR C 1 A_RailWait
+		FAKR D 0 A_Refire("FireH3")
+		Goto FireEnd+2
+
+		FireH3:
+		FAKR D 1 A_RailWait
+		FAKR A 0 A_Refire("FireH4")
+		Goto Ready1
+
+		FireH4:
+		FAKR A 1 A_RailWait
+		FAKR A 0 A_Refire("FireH4")
+		Goto Ready1
+
+		FireEnd:
+		FAKR BCD 1
+		Goto Ready1
+
+		FireBH1:
+		FAKR B 2 A_RailWait
+		FAKR C 0 A_Refire("FireBH2")
+		Goto FireBEnd+1
+
+		FireBH2:
+		FAKR C 2 A_RailWait
+		FAKR D 0 A_Refire("FireBH3")
+		Goto FireBEnd+2
+
+		FireBH3:
+		FAKR D 2 A_RailWait
+		FAKR A 0 A_Refire("FireBH4")
+		Goto Ready1
+
+		FireBH4:
+		FAKR A 2 A_RailWait
+		FAKR A 0 A_Refire("FireBH4")
+		Goto Ready1
+
+		FireBEnd:
+		FAKR BCD 2
+		Goto Ready1
+
+		NoAmmo:
+		FAKR A 1 A_PlaySoundEx("weapon/fakeempty","Body")
+		Goto FireEmptyH1
+
+		FireEmptyH1:
+		FAKR A 1 A_RailWait
+		FAKR A 0 A_Refire("FireEmptyH1")
+		FAKR A 2
+		Goto Ready1
+
+		AltFire:
+		FAKR A 1 Offset(37, 57)A_JumpIfInventory("PowerRage_ST",1,"AltFireR")
+		//FAKR A 1 Offset(74, 82)
+		FAKR F 0 A_PlaySoundEx("SoRage123/Punch","Weapon")
+		//FAKR F 1 Offset(110,84)
+		FAKR F 1 Offset(96,75)
+		FAKR F 1 Offset(81,66)A_FireCustomMissile("FakeBatonSwing1",0,0,0,0)
+		FAKR F 1 Offset(65,57)
+		//FAKR F 1 Offset(48,45)
+		FAKR F 1 Offset(30,33)
+		//FAKR G 1 Offset(8,22)
+		FAKR G 1 Offset(-18,12)
+		//FAKR G 1 Offset(-48,3)
+		FAKR G 1 Offset(-82,-5)
+		//FAKR G 1 Offset(-120,-12)
+		FAKR G 1 Offset(-162,-18)
+		//FAKR G 1 Offset(-208,-23)
+		FAKR G 1 Offset(-258,-27)
+		TNT1 A 7
+		TNT1 A 1 Offset(72, 84) A_Refire("AltFire2")
+		FAKR A 1 Offset(72, 84)
+		FAKR A 1 Offset(54, 71)
+		FAKR A 1 Offset(36, 58)
+		FAKR A 1 Offset(18, 45)
+		Goto AltEnd
+		
+		AltEnd:
+		//Since Offset(0,0) is retarded
+		FAKR A 2
+		Goto Ready1
+
+		AltFire2:
+		FAKR I 0 A_PlaySoundEx("SoRage123/Punch","Weapon")
+		//FAKR I 1 Offset(-9,21)
+		FAKR I 1 Offset(1,31)
+		FAKR I 1 Offset(12,42)A_FireCustomMissile("FakeBatonSwing2",0,0,0,0)
+		FAKR I 1 Offset(24,53)
+		//FAKR I 1 Offset(37,65)
+		FAKR I 1 Offset(51,77)
+		FAKR J 1 Offset(16,48)
+		//FAKR J 1 Offset(30,65)
+		//FAKR J 1 Offset(43,84)
+		FAKR J 1 Offset(55,105)
+		//FAKR J 1 Offset(66,128)
+		FAKR J 1 Offset(76,153)
+		//FAKR J 1 Offset(85,180)
+		FAKR J 1 Offset(93,209)
+		TNT1 A 21 Offset(72, 84)
+		FAKR A 1 Offset(72, 84)
+		FAKR A 1 Offset(54, 71)
+		FAKR A 1 Offset(36, 58)
+		FAKR A 1 Offset(18, 45)
+		FAKR A 2 Offset(1, 33)
+		Goto Ready1
+		
+		AltFireR:
+		FAKR A 1 Offset(37, 57)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR A 1 Offset(74, 82)
+		FAKR F 0 A_PlaySoundEx("SoRage123/Punch","Weapon")
+		FAKR F 1 Offset(110,84)
+		FAKR F 1 Offset(96,75)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR F 1 Offset(81,66)A_FireCustomMissile("FakeBatonSwing1",0,0,0,0)
+		FAKR F 1 Offset(65,57)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR F 1 Offset(48,45)
+		FAKR F 1 Offset(30,33)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR G 1 Offset(8,22)
+		FAKR G 1 Offset(-18,12)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR G 1 Offset(-48,3)
+		FAKR G 1 Offset(-82,-5)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR G 1 Offset(-120,-12)
+		FAKR G 1 Offset(-162,-18)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR G 1 Offset(-208,-23)
+		FAKR G 1 Offset(-258,-27)A_JumpIfInventory("PowerRage_ST",1,1)
+		TNT1 A 1 A_Refire("AltFire2R")
+		FAKR A 1 Offset(72, 84)
+		FAKR A 1 Offset(54, 71)
+		FAKR A 1 Offset(36, 58)
+		FAKR A 1 Offset(18, 45)
+		Goto AltEnd
+		
+		AltEndR:
+		//Since Offset(0,0) is retarded
+		FAKR A 2
+		Goto Ready1
+
+		AltFire2R:
+		FAKR I 0 A_PlaySoundEx("SoRage123/Punch","Weapon")
+		FAKR I 1 Offset(-9,21)
+		FAKR I 1 Offset(1,31)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR I 1 Offset(12,42)A_FireCustomMissile("FakeBatonSwing2",0,0,0,0)
+		FAKR I 1 Offset(24,53)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR I 1 Offset(37,65)
+		FAKR I 1 Offset(51,77)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR J 1 Offset(16,48)
+		FAKR J 1 Offset(30,65)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR J 1 Offset(43,84)
+		FAKR J 1 Offset(55,105)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR J 1 Offset(66,128)
+		FAKR J 1 Offset(76,153)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR J 1 Offset(85,180)
+		FAKR J 1 Offset(93,209)A_JumpIfInventory("PowerRage_ST",1,1)
+		TNT1 A 15 Offset(72, 84)
+		FAKR A 1 Offset(72, 84)
+		FAKR A 1 Offset(54, 71)
+		FAKR A 1 Offset(36, 58)
+		FAKR A 1 Offset(18, 45)
+		FAKR A 2 Offset(1, 33)
+		Goto Ready1
+
+		Reload:
+		FAKR A 2
+		FAKR A 1 Offset(0,42)
+		FAKR A 1 Offset(0,52)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR A 1 Offset(0,62)
+		FAKR A 1 Offset(0,72)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR A 2 Offset(0,82)
+		FAKR A 3 Offset(0,82)A_PlaySoundEx("weapon/fakereloadshort","Body")
+		FAKR DCB 2
+		FAKR A 4
+		Goto QLoad
+
+		QLoad:
+		FAKR A 1 Offset(0,82)A_PlaySoundEx("weapon/fakereload3","Body")
+		FAKR A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button") == 1, "QLoadR")//A_Refire("QLoadR")
+		FAKR BC 2 Offset(0,82)A_JumpIf(ACS_NamedExecuteWithResult("Get_Button") == 1, "QLoadR")//A_Refire("QLoadR")
+		FAKR D 0 A_SpawnItemEx("RevolverShotReloadFX_H",0,0,0,0,0,0,0,1)
+		FAKR D 0 Offset(0,82)A_Giveinventory("RevolverbusterAmmoBoss",1)
+		FAKR D 2 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button") == 1, "QLoadR")//A_Refire("QLoadR")
+		FAKR A 2 Offset(0,82) A_JumpIf(ACS_NamedExecuteWithResult("Get_Button") == 1, "QLoadR")//A_Refire("QLoadR")
+		FAKR A 0 A_Jumpifinventory("RevolverbusterAmmoBoss", 6, 1)
+		Goto QLoad
+
+		QLoadR:
+		FAKR A 2 Offset(0,82)
+		FAKR A 1 Offset(0,72)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR A 1 Offset(0,62)
+		FAKR A 1 Offset(0,52)A_JumpIfInventory("PowerRage_ST",1,1)
+		FAKR A 1 Offset(0,42)
+		FAKR A 0 A_WeaponReady(WRF_NOSWITCH|WRF_DISABLESWITCH)
+		FAKR A 1 A_PlaySoundEx("weapon/fakereload4","Body")
+		Goto Ready1
+	}
+  }
+
+
+//======================
+// Ammo and Powerups
+//----------------------
+//======================
+
+  Actor RevolverbusterAmmoBoss : Ammo
+  {
+    Inventory.Amount 1
+	Inventory.MaxAmount 6
+	+INVENTORY.IGNORESKILL
+  }
+
+
+  Actor FakemanDashCounter : Ammo 
+  {
+    Inventory.Amount 1
+	Inventory.MaxAmount 106
+  }
+
+
+  Actor FakemanFiring : Powerup
+  {
+    Powerup.Duration 7
+  }
+
+
+  Actor FOMBuffer : Powerup
+  {
+    Powerup.Duration 20
+  }
+
+
+//====================
+// Dash Items
+//--------------------
+//====================
+
+  Actor FakemanDashItem : CustomInventory
+  {
+    Inventory.Amount 1
+	Inventory.MaxAmount 1
+	Inventory.Icon "FAKBUM"
+	Inventory.PickupMessage "I found you, faker!"
+	Scale 2.0
+	+INVBAR
+	States
+	{
+		Spawn:
+		FAKR Z 1
+		Wait
+
+		Use:
+		TNT1 A 0 A_JumpIfInventory("FakemanDashCounter",106,"Activate")
+		Fail
+
+		Activate:
+		TNT1 A 0 A_GiveInventory("FakemanDashItem_P",1)
+		Fail
+
+		Cancel:
+		TNT1 A 0
+		Fail
+	}
+  }
+
+
+  Actor FakemanDashItem_P : CustomInventory
+  {
+	States
+	{
+		Pickup:
+		TNT1 A 0 A_SpawnItemEx("FakeDashFXGiver")
+		TNT1 A 0 A_PlaySoundEx("weapon/fakedash","SoundSlot6")
+		TNT1 A 0 A_TakeInventory("FakemanDashCounter",999)
+		TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"PickupF")
+		TNT1 A 0 A_JumpIf(momz<0,"PickupZ")
+		Goto Pickup2
+
+		PickupZ:
+		TNT1 A 0 A_ChangeVelocity(-25,0,10,3)
+		Stop
+
+		Pickup2:
+		TNT1 A 0 A_ChangeVelocity(-25,0,momz+10,3)
+		Stop
+
+		PickupF:
+		TNT1 A 0 A_ChangeVelocity(-25,0,momz,3)
+		Stop
+	}
+  }
+
+
+  Actor FakemanAmmoHelper : BasicHelper
+  {
+    States
+	{
+		Spawn:
+		TNT1 A 3 A_GiveToTarget("FakemanDashCounter",2)
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+		Loop
+	}
+  }
+
+
+  Actor FakeDashFX : BasicClientside
+  {
+    RenderStyle Translucent
+	Alpha 0.75
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 AA 1 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istargetclient")!=1, "Fade")
+		TNT1 A 1 
+		Stop
+
+		Fade:
+		TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+		FAKM O 1 A_FadeOut(0.08)
+		Loop
+
+		Death:
+		TNT1 A 0
+		Stop
+	}
+  }
+
+
+  Actor FakeDashFXInv : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0 A_SpawnItemEx("FakeDashFX",0,0,0,0,0,0,0,1)
+		Stop
+	}
+  }
+
+
+  Actor FakeDashFXGiver : BasicHelper
+  {
+    ReactionTime 9
+	States
+	{
+		Spawn:
+		TNT1 A 0 A_GiveToTarget("NoJumpCancel",1)
+		TNT1 A 0 A_CountDown
+		TNT1 A 2 A_GiveToTarget("FakeDashFXInv", 1)
+		Loop
+
+		Death:
+		TNT1 A 0 A_TakeFromTarget("NoJumpCancel",1)
+		Stop
+	}
+  }
+
+
+//======================
+// Projectiles & Baton
+//----------------------
+//======================
+
+  Actor RevolverShot : Fastprojectile
+  {
+    Translation "204:204=215:215"
+	Projectile
+	damagetype "RevolverBuster"
+	Obituary "$OB_FAKEBRUTAL"
+	Damage (16)
+	Radius 6
+	Height 7
+	Speed 90
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		TNT1 A 0 
+		Goto Fly
+		
+		Fly:
+		BASB T 1 A_SpawnItemEx("RevolverShotFX",0,0,0,0,0,0,0,1)
+		Loop
+		
+		Death:
+		BASB T 1
+		Stop
+	}
+  }
+
+
+  Actor StrayShot : RevolverShot
+  {
+    Damage (10)
+	Speed 60
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		TNT1 A 0
+		BASB T 1
+		Wait
+	}
+  }
+
+
+  Actor RevolverShotFX : BasicClientSide
+  {
+    RenderStyle "Add"
+	States
+	{
+		Spawn:
+		BASB T 1 A_FadeOut(0.25)
+		BASB T 0 A_ScaleVelocity(0.5)
+		loop
+	}
+  }
+  
+  
+    Actor RevolverShotReloadFX_H : BasicHelper
+  {
+    States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 2 A_SpawnItemEx("RevolverShotReloadFX",0,4,28,frandom(0,3),0,frandom(3,7),random(0,23)*15,1)
+		Stop
+	}
+  }
+
+
+  Actor RevolverShotReloadFX
+  {
+    +DONTBLAST
+	+MISSILE
+	-NOGRAVITY
+	+THRUACTORS
+	+CLIENTSIDEONLY
+	+FLOORCLIP
+	+DONTSPLASH
+	+HEXENBOUNCE
+	BounceCount 5
+	BounceFactor 0.65
+	WallBounceFactor 0.8
+	Damage (0)
+	Height 4
+	Radius 4
+	Speed 30
+	Scale 1.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8)
+		FAKR MNOPQRST 1
+		Goto Spawn+2
+	}
+  }
+
+//~~~~~~~~~~~~~~~~~
+//Translations
+//~~~~~~~~~~~~~~~~~
+
+  Actor RevolverShotB : RevolverShot{Translation "204:204=205:205"}
+  Actor RevolverShotR : RevolverShot{Translation "204:204=171:171"}
+  Actor RevolverShotO : RevolverShot{Translation "204:204=104:104"}
+  Actor RevolverShotP : RevolverShot{Translation "204:204=229:229"}
+
+  Actor StrayShotB : StrayShot{Translation "204:204=205:205"}
+  Actor StrayShotR : StrayShot{Translation "204:204=171:171"}
+  Actor StrayShotO : StrayShot{Translation "204:204=104:104"}
+  Actor StrayShotP : StrayShot{Translation "204:204=229:229"}
+
+
+  Actor FakeBatonSwing1
+  {
+    +DONTSPLASH
+	+DONTBLAST
+	Projectile
+	Obituary "$OB_FAKEBATON"
+	Damage (15)
+	Radius 14
+	Height 14
+	Speed 100
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 1
+		Stop
+		
+		Crash:
+		XDeath:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_Jump(256,1,4)
+		TNT1 A 0 A_PlaySound("weapon/fakewhack1",3,1.0)
+		TNT1 A 0 A_PlaySound("weapon/fakewhack1",2,1.0)
+		TNT1 A 1 A_PlaySound("weapon/fakewhack1",1,1.0)
+		Goto Death+4
+		TNT1 A 0 A_PlaySound("weapon/fakewhack2",3,1.0)
+		TNT1 A 0 A_PlaySound("weapon/fakewhack2",2,1.0)
+		TNT1 A 1 A_PlaySound("weapon/fakewhack2",1,1.0)
+		Goto Death+4
+		
+		Death:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_PlaySound("weapon/fakewhack3",3,1.0)
+		TNT1 A 0 A_PlaySound("weapon/fakewhack3",2,1.0)
+		TNT1 A 1 A_PlaySound("weapon/fakewhack3",1,1.0)
+		QMFX DEFGH 2
+		Stop
+	}
+  }
+
+
+  Actor FakeBatonSwing2 : FakeBatonSwing1 { Damage(20) }
+
+//======================
+// Attack Items
+//----------------------
+//======================
+
+  Actor FakemanMain1_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("RevolverShot",0,1,8,0)
+		Goto Done
+
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("RevolverShotB",0,1,8,0)
+		Goto Done
+
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("RevolverShotR",0,1,8,0)
+		Goto Done
+
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("RevolverShotO",0,1,8,0)
+		Goto Done
+
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("RevolverShotP",0,1,8,0)
+		Goto Done
+	}
+  }
+
+
+  Actor FakemanMain2_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("StrayShot",0,1,8,0)
+		Goto Done
+
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("StrayShotB",0,1,8,0)
+		Goto Done
+
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("StrayShotR",0,1,8,0)
+		Goto Done
+
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("StrayShotO",0,1,8,0)
+		Goto Done
+
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("StrayShotP",0,1,8,0)
+		Goto Done
+	}
+  }

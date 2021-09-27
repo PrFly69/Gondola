@@ -27,6 +27,11 @@ dontlightself 1
 object FireManWaveD {frame FWVE {light FIRELIGHT}}
 object FireManWave2D {frame FWVE {light FIRELIGHT}}
 object FiremanStormShot {frame FWVE {light FIRELIGHT}}
+object ScorchWheelB {frame SCTU {light FIRELIGHT}}
+object ScorchWheelB1 {frame SCTU {light FIRELIGHT}}
+object ScorchWheelB2 {frame SCTU {light FIRELIGHT}}
+object ScorchWheelB3 {frame SCTU {light FIRELIGHT}}
+object TurbomanWheelWarper {frame SCTU {light FIRELIGHT}}
 
 pointlight FIRELIGHTSMALL
 {
@@ -37,6 +42,7 @@ dontlightself 1
 
 object FiremanStormShieldFX {frame FWVE {light FIRELIGHTSMALL}}
 object FiremanStormShotBit {frame FWVE {light FIRELIGHTSMALL}}
+object ScorchWheelB2_Bit {frame TUCA {light FIRELIGHTSMALL}}
 
 pointlight BRIGHTMAINSGLOWINTHEDARK
 {

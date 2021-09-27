@@ -1245,7 +1245,7 @@ CHANGELOG
 
 ==Gutsman
 -Super Arm debris has spawns downwards on ceilings
--Guts Punch is now hitscan
+-Guts Punch is now hitscan (range reduced 130 > 100 as of gond beta 7)
 
 ==Bombman
 -Mainfire now properly has FX
@@ -1296,6 +1296,7 @@ CHANGELOG
 -Ported tighter Air Wall spread from UEC
 
 ==Quickman
+-Jumping frames added (as of gond beta 7)
 -Quick Boomerang mainfire SFX added
 -Quick Boomerang impact VFX added
 
@@ -1515,6 +1516,11 @@ CHANGELOG
 -Noise Crush is now green
 --Fully charged Noise Crush has impact VFX
 
+==Turboman (as of gond beta 7)
+-Scorch Wheel sprite ported from V-Classes
+--Now has dynamic lighting <:)
+-Driving mode delay now indicated on HUD
+
 ==Tenguman
 -8FC Skin slightly edited, legs are white (as of gond beta 7)
 --Swapped firing frames for Redflash Skin (as of gond beta 7)
@@ -1575,6 +1581,7 @@ CHANGELOG
 -Ported from UEC
 
 ==Plugman
+-Now has jumpframes (as of gond beta 7)
 -Base speed 0.75/0.73 > 0.8/0.78
 -Altfire plug range increased (lasts for 5 more tics)
 --Plugging allies gives the user 1.25x speed
@@ -1586,6 +1593,12 @@ CHANGELOG
 -Hornet Chaser now has +SKYEXPLODE
 -Ported desync fixes from Conejo
 -Nectar Trap slowdown honey fx properly added
+
+==Fakeman (as of gond beta 7)
+-Buffer timer duration 8 tics > 20 tics
+--HUD now has indicator to show if buffer is active)
+-Weak shot damage 12 > 10
+--Weak shots speed 90 > 60
 
 ==Blademan
 -Ported V6 skin + extra skinsprites from classes-v9fh.pk3
@@ -1620,7 +1633,8 @@ CHANGELOG
 -Ported V6 skin (as of gond beta 7)
 
 ==Nitroman
--New item icon added
+-HP 85 > 75 (as of gond beta 7)
+-New item icon added (as of gond beta 7)
 -Now starts in superbike mode
 -Unsuperbiked wheel spam attack RoF buffed
 --Unsuperbiked wheel spam attack damage 13 > 8
