@@ -2,7 +2,7 @@ actor ImpairmentStack : Inventory
 {
 inventory.amount 1
 inventory.maxamount 100
-}
+} //UEC
 
 Actor ReboundStriker
 {
