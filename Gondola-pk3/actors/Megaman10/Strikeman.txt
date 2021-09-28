@@ -3,12 +3,17 @@ actor Strikeman : ClassBase
 Player.ScoreIcon "C_10F0X"
 player.displayname "Strikeman"
 player.soundclass "strikemanc"
-player.startitem "ReboundStrikeBoss"
 player.startitem "ReboundStrikerBoss"
+player.startitem "ReboundStrikeBoss"
 player.startitem "ReboundStrikeItem"
 player.startitem "ReboundStrikerLimit", 175
 player.startitem "ReboundStrikerPower", 14
 player.jumpz 14
+
+player.weaponslot 1, "ReboundStrikerBoss"
+player.weaponslot 2, "ReboundStrikeBoss"
+
+player.startitem "RealClassFlag", 105
 
 player.startitem "TripleBladeWeakness2", 1
 

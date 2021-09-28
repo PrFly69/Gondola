@@ -122,3 +122,8 @@ SetResultValue(CheckInventory("WeaponChargeDuo"));
 {
 	SetResultValue(GetUserCVar(PlayerNumber(),"UEC_AcidmanHUD"));
 }
+
+script "ImpairmentACS" (void)
+{
+SetResultValue(100-CheckInventory("ImpairmentStack"));
+}
