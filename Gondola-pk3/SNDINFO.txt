@@ -393,3 +393,11 @@ weapon/DocMetalShot DOCCMETL
 
 //DM3
 weapon/DM3Ping DM3Ping
+
+//Hornetman
+Bee/Homing S_M9_F3  
+Bee/Charge BEECHRG
+
+$volume Bee/Homing 1          
+$limit Bee/Homing 1 500       //anti earrape stuffs
+$rolloff Bee/Homing 300 1200 
