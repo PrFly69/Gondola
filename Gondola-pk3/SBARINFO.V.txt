@@ -703,6 +703,8 @@ IsSelected MagmaBazookaBoss{Drawbar"BARAMM64","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory MagmaItemFlag,1{DrawImage"MAGFLOWA",-53,-32;}}
 IsSelected HornetChaserBoss{DrawBar"BARAMM67","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"09_6_BAR","BAREMPTY",Ammo2,vertical,8,8;
+        DrawImage"HORNEICN",32,55;
+        InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
 	InInventory HornetFlagH,1{DrawImage"HORNJETA",290,8;}}
 IsSelected BlackHoleBombBoss{Drawbar"GALBAR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage "GALRICON",32,55;
