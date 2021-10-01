@@ -18,10 +18,11 @@ player.startitem "SilverTomahawkWeakness2", 1
 player.startitem "RollingCutterWeakness", 1
 player.startitem "MetalBladeWeakness", 1
 player.startitem "ShadowBladeWeakness", 1
+player.startitem "RingBoomerangWeakness", 1
 player.startitem "GyroAttackWeakness", 1
 player.startitem "SilverTomahawkWeakness", 1
 player.startitem "TenguBladeWeakness", 1
-//player.startitem "WheelCutterWeakness", 1
+player.startitem "WheelCutterWeakness", 1
 player.startitem "ScrewCrusherWeakness", 1
 States
 {
@@ -34,7 +35,7 @@ See:
 YAMM BCDE 5
 Goto Spawn
 Missile:
-YAMM FGFGFGFGF 2
+YAMM IJIJIJIJI 2
 goto Spawn+2
 ClassPain:
 YAMM H 0

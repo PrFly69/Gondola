@@ -386,6 +386,12 @@ texture 0V_7_PVX,56,8{patch 0V_7_PAX,0,0{rotate 90}}
 
 graphic PLMWICON,30,30{XScale 2.0 YScale 2.0 Patch MEOWICON,0,0}//Nitro
 
+//Strike
+texture 10_4_BA3,8,56{patch B4ENERG,0,0{Translation"192:192=217:217","198:198=42:42"}}
+texture 10_4_VA3,56,8{patch 10_4_BA3,0,0{rotate 90}}
+texture 10_4_BAX,8,56{patch B4ENERG,0,0{Translation"192:192=222:222","198:198=46:46"}}
+texture 10_4_VAX,56,8{patch 10_4_BAX,0,0{rotate 90}}
+
 //DOC
 graphic DOC1Icon,30,30{XScale 2.0 YScale 2.0 Patch DOCICON1,0,0}
 graphic DOC2Icon,30,30{XScale 2.0 YScale 2.0 Patch DOCICON2,0,0} 

@@ -686,7 +686,9 @@ WeaponAmmo OutragousGemsAmmo{
 IsSelected MagmaBazookaBoss{Drawbar"VARAMM64","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory MagmaItemFlag,1{DrawImage"MAGFLOWA",-53,-32;}}
 IsSelected HornetChaserBoss{DrawBar"VARAMM67","VAREMPTY",Ammo1,horizontal,58,184;
+        InInventory HornetFireFlag,1{Drawbar"HC_S_VAR","VNOBAR",Ammo1,horizontal,58,184;}
 	DrawBar"09_6_VAR","VAREMPTY",Ammo2,horizontal,58,176;
+        DrawImage"HORNEICN",178,175;
 	InInventory HornetFlagH,1{DrawImage"HORNJETA",290,8;}}
 IsSelected BlackHoleBombBoss{Drawbar"GALBARJ","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawImage "GALRICON", 178,175;
@@ -763,7 +765,8 @@ IsSelected ThunderWoolBoss{Drawbar"10_S_VAR","VAREMPTY",Ammo1,horizontal,58,184;
 	
 IsSelected ReboundStrikeBoss,ReboundStrikerBoss{Drawbar"10_4_VAR","VAREMPTY",Ammo1,horizontal,58,184;
 						     DrawImage"STRRICON",178,175;
-	Drawbar"10_4_VA3","VAREMPTY",Ammo2,horizontal,58,176;}
+	Drawbar"10_4_VAX","VAREMPTY",Ammo2,horizontal,58,176;
+	InInventory ReboundStrikerPower,7{Drawbar"10_4_VA3","VAREMPTY",Ammo2,horizontal,58,176;}}
 	
 IsSelected SolarBlazeBoss,SolarBlazerBoss{Drawbar"00_E_VAR","VAREMPTY",SolarSunAmmo,horizontal,58,184;
 	DrawImage"SLRRICON",178,175;

@@ -1,0 +1,341 @@
+actor PowerFistC : BaseMM8BDMWep_CBM
+{
+tag "$TAG_POWERADAPTOR"
+dropitem "PowerUpgradeGiverDropped"
+weapon.preferredskin "Power-Megaman"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Weapon.SlotNumber 1
+Obituary "$OB_POWERADAPTOR"
+Obituary "%o was punched by %k's Power Fist."
+weapon.ammotype "PowerMeter"
+States
+{
+Spawn:
+C_00 B 1
+loop
+Ready:
+POWA A 0 A_JumpIfInventory("BusterGiven",1,"TakeBusters")
+Goto Ready2
+TakeBusters:
+POWA A 0 A_GiveInventory("TakeBuster_P",1)
+Goto Ready2
+Ready2:
+POWA A 0 ACS_ExecuteAlways(998,0,DYE_POWERFLIGHT)
+POWA A 1 A_WeaponReady
+Goto Ready2+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+POWA A 1 A_Lower
+POWA A 0
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+POWA A 1 A_Raise
+POWA A 1
+Loop
+Fire:
+PROC D 0 A_TakeInventory("PowerMeter",999)
+POWA A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+POWA F 3
+POWA I 3
+POWA A 0 A_GiveInventory("PowerMegaMain_CI",1)
+POWA A 1 Offset(0,48) A_JumpIfInventory("IsBot",1,"BotFire")
+POWA A 4 Offset(0,48)
+POWA B 0 A_Refire
+goto Ready2+1
+
+BotFire:
+POWA E 0 A_Refire("BotFire2")
+goto Ready2+1
+BotFire2:
+POWA E 0 A_Jump(196,"Fire3")
+goto Hold
+
+Hold:
+POWA A 0 A_JumpIfInventory("PowerMeter",32,"Charge2")
+POWA A 0 A_JumpIfInventory("PowerMeter",18,"Charge")
+POWA B 1 A_GiveInventory("PowerMeterRageCheck",1)
+POWA A 0 A_Refire
+Goto Ready2+1
+Charge:
+POWA A 0 A_PlaySoundEx("weapon/coilstart","Weapon")
+Goto Charge1
+Charge1:
+POWA B 0 A_JumpIfInventory("PowerMeter",32,"Charge2")
+POWA B 0 ACS_ExecuteAlways(998,0,DYE_POWERCHARGEAA,1)
+POWA B 1 A_GiveInventory("PowerMeterRageCheck",1)
+POWA B 0 A_Refire("Charge1.a")
+Goto Fire2
+Charge1.a:
+POWA C 1 ACS_ExecuteAlways(998,0,DYE_POWERCHARGEAB,5)
+POWA C 0 A_Refire("Charge1")
+Goto Fire2
+Charge2:
+POWA D 0 A_PlaySoundEx("weapon/coilcharge","Weapon")
+POWA D 1 ACS_ExecuteAlways(998,0,DYE_POWERCHARGEBA,6)
+POWA D 0 A_Refire("Charge2.a")
+Goto Fire3
+Charge2.a:
+POWA E 0 A_JumpIfInventory("PowerRage_ST",1,"Charge2.b")
+POWA E 1 ACS_ExecuteAlways(998,0,DYE_POWERCHARGEBB,7)
+POWA E 0 A_Refire("Charge2.b")
+Goto Fire3
+Charge2.b:
+POWA E 1 ACS_ExecuteAlways(998,0,DYE_POWERCHARGEBB,7)
+POWA E 0 A_JumpIfInventory("IsBot",1,"BotFireC")
+POWA E 0 A_Refire("Charge2")
+Goto Fire3
+BotFireC:
+POWA E 0 A_Jump(16,"Fire3")
+POWA E 0 A_Refire("Charge2")
+Goto Fire3
+Fire2:
+PROC J 0 ACS_ExecuteAlways(991,0,DYE_POWERFLIGHT)
+PROC D 0 A_TakeInventory("PowerMeter",999)
+POWA A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+POWA F 2
+POWA I 2
+POWA A 0 A_GiveInventory("PowerMegaMain2_CI",1)
+POWA A 10 Offset(0,48)
+POWA B 0 A_Refire
+goto Ready2+1
+Fire3:
+PROC J 0 ACS_ExecuteAlways(991,0,DYE_POWERFLIGHT)
+PROC D 0 A_TakeInventory("PowerMeter",999)
+POWA A 0 A_PlaySoundEx("weapon/napalm","Weapon")
+POWA F 2
+POWA I 2 
+POWA A 0 A_GiveInventory("PowerMegaMain3_CI",1)
+POWA A 20 Offset(0,48)
+POWA B 0 A_Refire
+goto Ready2+1
+Altfire:
+POWA A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+POWA F 3
+POWA I 3
+POWA A 0 A_GiveInventory("PowerMegaMain_CI",1)
+POWA A 5 Offset(0,48)
+goto Ready2+1
+}
+}
+
+actor PowerMeter : Ammo
+{
+inventory.amount 1
+inventory.maxamount 32
++INVENTORY.IGNORESKILL
+}
+
+actor PowerMeterRageCheck : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("PowerMeter",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("PowerMeter",2)
+stop
+}
+}
+
+actor PowerShot
+{
+Translation "204:204=210:210"
+PROJECTILE
+damagetype "Buster"
+Obituary "$OB_POWERADAPTOR"
+ReactionTime 1
+Damage (13)
+radius 8
+height 8
+Speed 32
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+POWW ABABABABABAB 2
+POWW A 1 A_CountDown
+wait
+Death:
+VMFX DSR 2
+YMFX Q 2
+POWW G 2
+stop
+XDeath:
+Crash:
+TNT1 A 1
+stop
+}
+}
+
+actor PowerShotB : PowerShot{translation "204:204=205:205"}
+actor PowerShotR : PowerShot{translation "204:204=171:171"}
+actor PowerShotO : PowerShot{translation "204:204=104:104"}
+actor PowerShotP : PowerShot{translation "204:204=229:229"}
+
+actor PowerShot2 : PowerShot
+{
++THRUGHOST
+Damage (25)
+radius 12
+height 12
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+POWW HIHIHIHIH 2
+POWW H 1 A_CountDown
+wait
+Death:
+VMFX DSR 2
+YMFX Q 2
+XMFX Q 2
+stop
+}
+}
+
+actor PowerShot2B : PowerShot2{translation "204:204=205:205"}
+actor PowerShot2R : PowerShot2{translation "204:204=171:171"}
+actor PowerShot2O : PowerShot2{translation "204:204=104:104"}
+actor PowerShot2P : PowerShot2{translation "204:204=229:229"}
+
+actor PowerShot3 : PowerShot
+{
++THRUGHOST
+Damage (50)
+radius 20
+height 20
+Speed 50
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+VMFX R 2
+YMFX Q 2
+VMFX R 0 A_Stop
+VMFX R 2
+YMFX Q 2
+VMFX R 2
+YMFX Q 2
+VMFX R 2
+stop
+Death:
+VMFX R 2
+YMFX Q 2
+VMFX R 2
+YMFX Q 2
+VMFX R 2
+stop
+XDeath:
+Crash:
+TNT1 A 1
+stop
+
+}
+}
+
+actor PowerShot3B : PowerShot3{translation "204:204=205:205"}
+actor PowerShot3R : PowerShot3{translation "204:204=171:171"}
+actor PowerShot3O : PowerShot3{translation "204:204=104:104"}
+actor PowerShot3P : PowerShot3{translation "204:204=229:229"}
+
+actor PowerAdaptor
+{
+-SOLID
++NOGRAVITY
++NOBLOCKMAP
++FIXMAPTHINGPOS
+Height 6
+Radius 6
++MISSILE
+damage 0
+scale 2.5
++CLIENTSIDEONLY
++DONTREFLECT
++DONTBLAST
+//+NOINTERACTION
+States
+{
+Spawn:
+TNT1 A 0
+POAD A 2
+stop
+}
+}
+
+actor PowerMegaMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PowerShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PowerShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PowerShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PowerShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PowerShotP",0,0,8,0)
+goto Done
+}
+}
+
+actor PowerMegaMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PowerShot2",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PowerShot2B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PowerShot2R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PowerShot2O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PowerShot2P",0,0,8,0)
+goto Done
+}
+}
+
+actor PowerMegaMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PowerShot3",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PowerShot3B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PowerShot3R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PowerShot3O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PowerShot3P",0,0,8,0)
+goto Done
+}
+}

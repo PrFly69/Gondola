@@ -713,6 +713,8 @@ IsSelected MagmaBazookaBoss{Drawbar"BARAMM64","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory MagmaItemFlag,1{DrawImage"MAGFLOWA",-53,-32;}}
 IsSelected HornetChaserBoss{DrawBar"BARAMM67","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"09_6_BAR","BAREMPTY",Ammo2,vertical,8,8;
+        DrawImage"HORNEICN",32,55;
+        InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
 	InInventory HornetFlagH,1{DrawImage"HORNJETA",290,8;}}
 IsSelected BlackHoleBombBoss{Drawbar"GALBAR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage "GALRICON",32,55;
@@ -795,7 +797,8 @@ IsSelected ThunderWoolBoss{Drawbar"10_S_BAR","BAREMPTY",Ammo1,vertical,16,8;
 	
 IsSelected ReboundStrikeBoss,ReboundStrikerBoss{Drawbar"10_4_BAR","BAREMPTY",Ammo1,vertical,16,8;
 						     DrawImage"STRRICON",32,55;
-	Drawbar"10_4_BA3","BAREMPTY",Ammo2,vertical,8,8;}
+	Drawbar"10_4_BAX","BAREMPTY",Ammo2,vertical,8,8;
+	InInventory ReboundStrikerPower,7{Drawbar"10_4_BA3","BAREMPTY",Ammo2,vertical,8,8;}}
 
 IsSelected SolarBlazeBoss,SolarBlazerBoss{Drawbar"00_E_BAR","BAREMPTY",SolarSunAmmo,vertical,16,8;
 	DrawImage"SLRRICON",32,55;
