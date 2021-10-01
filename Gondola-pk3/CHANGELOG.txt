@@ -1240,6 +1240,10 @@ CHANGELOG
 -Fixed Woodcustom Altfire crashing when plug boosted
 -In team gamemodes where weapon color translations are usually unseeable, switching to a style displays that style's icon over your head (as of gond beta 7)
 
+==Roll
+-Bucket shot speed 32 > 48
+-Puddle damage after being swept 30 > 15
+
 ==Auto
 -Cans are now properly teamcolored
 
