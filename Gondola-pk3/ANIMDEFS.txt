@@ -40,3 +40,16 @@ pic 5K_G_VAR tics 4
 pic 5K_H_VAR tics 4
 pic 5K_I_VAR tics 4
 pic TNT1A0 tics 4
+
+//Charge M2
+texture CHRXBAR
+pic CHX1BAR tics 2
+pic CHX2BAR tics 2
+pic CHX3BAR tics 2
+pic CHX2BAR tics 2
+
+texture CHRXVAR
+pic CHX1VAR tics 2
+pic CHX2VAR tics 2
+pic CHX3VAR tics 2
+pic CHX2VAR tics 2

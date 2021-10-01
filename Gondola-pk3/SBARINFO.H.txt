@@ -525,7 +525,12 @@ IsSelected GyroAttackBoss{Drawbar"VARAMMO4","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"GYROVAR","VAREMPTY",Ammo2,horizontal,58,176;}
 IsSelected StarCrashBoss{Drawbar"VARAMM23","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory ShieldCheck,1{DrawBar"VARFLS6","VAREMPTY",Ammo1,horizontal,58,184;}}
-IsSelected ChargeKickBoss{Drawbar"VARAMM12","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected ChargeKickBoss{Drawbar"VARAMM12","VAREMPTY",Ammo1,horizontal,58,184;
+	DrawImage"VAREMPTY",58,176;
+	InInventory BlackHotAmmo,1{DrawBar"CHR1VAR","VAREMPTY",Ammo2,horizontal,58,176;}
+	InInventory BlackHotAmmo,100{DrawBar"CHR2VAR","VAREMPTY",Ammo2,horizontal,58,176;}
+	InInventory BlackHotAmmo,200{DrawBar"CHR3VAR","VAREMPTY",Ammo2,horizontal,58,176;}
+	InInventory BlackHotAmmo,300{DrawBar"CHRFVAR","VAREMPTY",Ammo2,horizontal,58,176;}}
 IsSelected NapalmBombBoss{Drawbar"VARAMM24","VAREMPTY",Ammo1,horizontal,58,184;}
 	InInventory OverheaterAmmo,1{Drawbar"PTSDVAR","VNOBAR",Ammo2,horizontal,58,184;}
 IsSelected CrystalEyeBoss{Drawbar"VARAMM25","VAREMPTY",CrystalEyeCharge,horizontal,58,184;
@@ -546,7 +551,7 @@ WeaponAmmo BallAmmo{Drawbar"VARAMM15","VAREMPTY",Ammo1,horizontal,58,184;
 IsSelected CentaurFlashBoss{Drawbar"VARAMM26","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected FlameBlastBoss{Drawbar"VARAMM20","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected KnightCrushBoss{Drawbar"VARAMM27","VAREMPTY",Ammo1,horizontal,58,184;
-		InInventory KnightmanCharge,1{DrawBar"7D_A_VAR","VNOBAR",KnightmanCharge,horizontal,58,184;}}
+		InInventory KnightmanCharge,1{DrawBar"9C_S_VAR","VNOBAR",KnightmanCharge,horizontal,58,184;}}
 IsSelected PlantbarrierBoss{Drawbar"VARAMM28","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory ShieldCheck,1{DrawBar"VARFLS7","VAREMPTY",Ammo1,horizontal,58,184;}
 	DrawBar"00_2_VAR","VAREMPTY",Ammo2,horizontal,58,176;

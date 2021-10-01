@@ -193,6 +193,7 @@ var int user_P;
 Damage(15)
 +FORCEXYBILLBOARD
 Height 12
+scale 2
 damagetype "ClassPainLess2"
 States
 {
@@ -214,12 +215,13 @@ actor ThunderManBeamP : ThunderManBeam{translation "192:192=229:229","198:198=23
 
 actor ElecBarrierProjTrail1 : ThunderManBeam
 {
+scale 1
 damage (0)
 States
 {
 Spawn:
-TNT1 A 3
-ELEB KLM 2
+TNT1 A 2
+ELEB KLM 1
 stop
 }
 }
@@ -229,8 +231,8 @@ actor ElecBarrierProjTrail2 : ElecBarrierProjTrail1
 States
 {
 Spawn:
-TNT1 A 3
-ELEB MKL 2
+TNT1 A 2
+ELEB MKL 1
 stop
 }
 }
@@ -240,8 +242,8 @@ actor ElecBarrierProjTrail3 : ElecBarrierProjTrail1
 States
 {
 Spawn:
-TNT1 A 3
-ELEB LMK 2
+TNT1 A 2
+ELEB LMK 1
 stop
 }
 }

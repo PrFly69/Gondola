@@ -1218,8 +1218,9 @@ CHANGELOG
 -Removed frame-one invuln from meteor startup, gains invuln when in full meteor form
 -Ported from UEC (UEC changes below)
 -Grab replaced by a leap, creating a wave upon landing
---Deals 20 damage and variable knock-up based on the portion's size, has 70 Stepheight
---Can grab people and drag them scaling up to 20 bonus damage
+--Size scales down as it moves
+--Deals 20 damage and variable knock-up based on the portion's size (removed 70 stepheight)
+--Grab from UEC removed, now goes through enemies
 -Ram radius 16 > 18
 --Damage falloff delayed by 2 tics
 -Wire Punch Radius/Width 10/10 > 13/13
@@ -1373,7 +1374,28 @@ CHANGELOG
 -Fixed infinite invis glitch
 
 ==Doc Robot (as of gond beta 7)
--Reworked by NightFly and (put your name here :o)
+-Reworked by NightFly
+-Now has four weapons, each corresponding two a combination of two MM2 Robot Masters:
+--WoodHeat
+--BubbleFlash
+--AirCrash
+--QuickMetal
+-Speed 0.78/0.8 > 0.76/0.78
+-Doc Buster speed 45 > 35
+-NEW ALTFIRE: Buster Modification
+--Requires 1/7th of user's ammo, changes based on what weapon the user is holding
+---Heat: Shotgun of three extremely powerful Fireballs. Fireballs have very tight arc and leave lingering pillars on hitting a surface.
+---Flash: Spray of weak range-limited pellets. Does high damage upon every pellet connecting.
+---Crash: Singular explosive shot that travels quickly. Does a quick lingering explosion on death, but has high endlag.
+---Metal: Sawblade that rips through enemies and bounces twice on surfaces.
+-NEW RELOAD: Body Modification
+--Requires all of user's ammo, changes based on what weapon the user is holding
+---Wood: 50% less speed, 50% less damage from enemy shots
+---Bubble: Grants infinite airjumps
+---Air: Doubled jump height and speed while in the air
+---Quick: 50% more speed, 50% more damage from enemy shots. 
+--Grants user infinite uses of Buster Modification while active
+--Pressing reload while active cancels current style at the cost of any and all remaining ammo
 
 ==Pharaohman
 -Uncharged Pharaoh Shot damage 16 > 12
@@ -1417,10 +1439,15 @@ CHANGELOG
 -Star Flurry ammo consumption 7 > 14
 
 ==Chargeman
--Ported from UEC
--Charge Tackle speed 60 > 80
---Charge Tackle duration 3 tics > 2 tics
--Readded Charge Parry on altfire
+-Mainfire max ammo count 75 > 80 (as of gond beta 7)
+--Ammo consumption 3 > 4 (as of gond beta 7)
+-Changes ported from UEC
+--Charge Tackle speed 60 > 80
+---Charge Tackle duration 3 tics > 2 tics
+--Readded Charge Parry on altfire
+-Coal Shot ammo consumption is split from mainfire (as of gond beta 7)
+--Now has second bar w/ 3 uses, looks cool :D (as of gond beta 7)
+--Using mainfire halts altfire regen (as of gond beta 7)
 
 ==Darkman1
 -M1 no longer explodes; damage added to main projectile

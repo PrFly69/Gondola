@@ -391,3 +391,17 @@ graphic DOC1Icon,30,30{XScale 2.0 YScale 2.0 Patch DOCICON1,0,0}
 graphic DOC2Icon,30,30{XScale 2.0 YScale 2.0 Patch DOCICON2,0,0} 
 graphic DOC3Icon,30,30{XScale 2.0 YScale 2.0 Patch DOCICON3,0,0}
 graphic DOC4Icon,30,30{XScale 2.0 YScale 2.0 Patch DOCICON4,0,0}
+graphic DOCRICON,30,30{XScale 2.0 YScale 2.0 Patch "RSHDOCR0",0,0}
+
+//Charge
+texture CHR1VAR,56,8{patch CHR1BAR,0,0{rotate 90}}
+texture CHR2VAR,56,8{patch CHR2BAR,0,0{rotate 90}}
+texture CHR3VAR,56,8{patch CHR3BAR,0,0{rotate 90}}
+texture CHRFVAR,56,8{patch CHRFBAR,0,0{rotate 90}}
+
+texture CHX1VAR,56,8{patch CHX1BAR,0,0{rotate 90}}
+texture CHX2VAR,56,8{patch CHX2BAR,0,0{rotate 90}}
+texture CHX3VAR,56,8{patch CHX3BAR,0,0{rotate 90}}
+
+texture CHRXBAR,8,56{patch TNT1A0,0,0}
+texture CHRXVAR,56,8{patch TNT1A0,0,0}

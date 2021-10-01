@@ -493,10 +493,14 @@ IsSelected BreakBusterAgility,BreakBusterStability{DrawBar"BARAMM14","BAREMPTY",
 	DrawBar"BARAMMO1","BAREMPTY",SnipeAmmo,vertical,8,8;
 	DrawBar"KC_A_BAR","NOBAR",SnipeCharge,vertical,8,8;}
 
-IsSelected DocBusterWoodHeatWep{DrawBar"XTR0BR_Q","BAREMPTY",DocVirusAmmo,vertical,16,8;}
-IsSelected DocBusterBubbleFlashWep{DrawBar"XTR0BR_R","BAREMPTY",DocVirusAmmo,vertical,16,8;}
-IsSelected DocBusterAirCrashWep{DrawBar"XTR0BR_D","BAREMPTY",DocVirusAmmo,vertical,16,8;}
-IsSelected DocBusterQuickMetalWep{DrawBar"XTR0BR_F","BAREMPTY",DocVirusAmmo,vertical,16,8;}
+IsSelected DocBusterWoodHeatWep{DrawBar"XTR0BR_Q","BAREMPTY",DocVirusAmmo,vertical,16,8;
+DrawImage"DOCRICON",32,55;}
+IsSelected DocBusterBubbleFlashWep{DrawBar"XTR0BR_R","BAREMPTY",DocVirusAmmo,vertical,16,8;
+DrawImage"DOCRICON",32,55;}
+IsSelected DocBusterAirCrashWep{DrawBar"XTR0BR_D","BAREMPTY",DocVirusAmmo,vertical,16,8;
+DrawImage"DOCRICON",32,55;}
+IsSelected DocBusterQuickMetalWep{DrawBar"XTR0BR_F","BAREMPTY",DocVirusAmmo,vertical,16,8;
+DrawImage"DOCRICON",32,55;}
 
 //MM4
 IsSelected FlashStopperBoss{DrawBar"BARAMM12","BAREMPTY",Ammo1,vertical,16,8;
@@ -544,7 +548,13 @@ IsSelected GyroAttackBoss{Drawbar"BARAMMO4","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"GYROBAR","BAREMPTY",Ammo2,vertical,8,8;}
 IsSelected StarCrashBoss{Drawbar"BARAMM23","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory ShieldCheck,1{DrawBar"BARFLS6","BAREMPTY",Ammo1,vertical,16,8;}}
-IsSelected ChargeKickBoss{Drawbar"BARAMM12","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected ChargeKickBoss{Drawbar"BARAMM12","BAREMPTY",Ammo1,vertical,16,8;
+	DrawImage"BAREMPTY",8,8;
+	InInventory BlackHotAmmo,1{DrawBar"CHR1BAR","BAREMPTY",Ammo2,vertical,8,8;}
+	InInventory BlackHotAmmo,100{DrawBar"CHR2BAR","BAREMPTY",Ammo2,vertical,8,8;}
+	InInventory BlackHotAmmo,200{DrawBar"CHR3BAR","BAREMPTY",Ammo2,vertical,8,8;}
+	InInventory BlackHotAmmo,300{DrawBar"CHRFBAR","BAREMPTY",Ammo2,vertical,8,8;}
+	InInventory ChargeTrollageFlag,1{DrawBar"CHRXBAR","BAREMPTY",Ammo2,vertical,8,8;}}
 IsSelected NapalmBombBoss{Drawbar"BARAMM24","BAREMPTY",Ammo1,vertical,16,8;
 	Drawbar"PTSDBAR","NOBAR",Ammo2,vertical,16,8;}
 IsSelected CrystalEyeBoss{Drawbar"BARAMM25","BAREMPTY",CrystalEyeCharge,vertical,16,8;
@@ -565,7 +575,7 @@ WeaponAmmo BallAmmo{Drawbar"BARAMM15","BAREMPTY",Ammo1,vertical,16,8;
 IsSelected CentaurFlashBoss{Drawbar"BARAMM26","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected FlameBlastBoss{Drawbar"BARAMM20","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected KnightCrushBoss{Drawbar"BARAMM27","BAREMPTY",Ammo1,vertical,16,8;
-		InInventory KnightmanCharge,1{DrawBar"7D_A_BAR","NOBAR",KnightmanCharge,vertical,16,8;}}
+		InInventory KnightmanCharge,1{DrawBar"9C_S_BAR","NOBAR",KnightmanCharge,vertical,16,8;}}
 IsSelected PlantbarrierBoss{Drawbar"BARAMM28","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory ShieldCheck,1{DrawBar"BARFLS7","BAREMPTY",Ammo1,vertical,16,8;}
 	DrawBar"00_2_BAR","BAREMPTY",Ammo2,vertical,8,8;

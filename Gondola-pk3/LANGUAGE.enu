@@ -161,5 +161,12 @@ TAGC_5C3 = "Stoneman Is Regenerating?";
 TAGC_6A3 = "Blizzardman Boss";
 
 //Doc
-OB_DOCHEATBUSTER = "%k's Atomic Buster falsely accused %o of arson.";
-OB_DOCHEATPILLAR = "%k's Atomic Buster falsely accused %o of arson.";
+OB_DOCHEATBUSTER = "%k's Atomic Burner falsely accused %o of arson.";
+OB_DOCHEATPILLAR = "%k's Atomic Pillar falsely accused %o of arson.";
+OB_DOCFLASHBUSTER = "%k's Flash Sprayer falsely accused %o of messing with the space-time continuum.";
+OB_DOCCRASHBUSTER = "%k's Crash Blaster falsely accused %o of terrorism.";
+OB_DOCMETALBUSTER = "%k's Gear Grinder falsely accused %o of having a knife without a license.";
+TAGC_DOC1 = "\cm[\cqWood Body\cm] = [\ciDoc Robot\cm] = [\cgHeat Buster\cm]";
+TAGC_DOC2 = "\cm[\cqBubble Body\cm] = [\ciDoc Robot\cm] = [\chFlash Buster\cm]";
+TAGC_DOC3 = "\cm[\chAir Body\cm] = [\ciDoc Robot\cm] = [\cgCrash Buster\cm]";
+TAGC_DOC4 = "\cm[\caQuick Body\cm] = [\ciDoc Robot\cm] = [\cgMetal Buster\cm]";
