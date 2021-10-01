@@ -1434,6 +1434,10 @@ CHANGELOG
 -Health reduced to 90
 -Gravity Hold Up and Gravity Sphere Up damage reduced to 0
 
+==Waveman
+-Hook detachment noise no longer global
+--Hook detachment and latching sounds now play directly to the user upon occurring
+
 ==Crystalman
 -Removed ACS delay
 -Ported UEC changes
