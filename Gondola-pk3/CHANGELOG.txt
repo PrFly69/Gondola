@@ -1241,8 +1241,9 @@ CHANGELOG
 -In team gamemodes where weapon color translations are usually unseeable, switching to a style displays that style's icon over your head (as of gond beta 7)
 
 ==Roll (as of gond beta 7)
--Bucket shot speed 32 > 48
+-Bucket shot speed 32 > 40
 -Puddle damage after being swept 30 > 15
+-Healing no longer halts the user
 
 ==Auto
 -Cans are now properly teamcolored
@@ -1309,6 +1310,22 @@ CHANGELOG
 -Jumping frames added (as of gond beta 7)
 -Quick Boomerang mainfire SFX added
 -Quick Boomerang impact VFX added
+
+==Flashman
+-Reworked by Nightfly and Jeb, assets from Trillster and Fr3ak
+-HP 100 > 85
+-Max ammo decreased to 84
+-Flash Buster now requires and uses second ammo bar
+--Has increased range (15 tics of lifetime)
+-NEW ALTFIRE: Flash Stunner
+--Basically functions like V-Classes Bright Stunner
+--Has noticeable startlag
+--Timestops enemy for exactly one second, has 2 second powerprotect applied to prevent chainstunning
+--Three uses before depleting (compared to 4 uses in V-Classes)
+-NEW RELOAD: Time Bender (with a bit less cancer)
+--Still requires full ammo, timestop duration decreased to 1 second
+--User goes invisible and leaves a fake decoy while Time Bender is active
+--Enemies can shoot while in Time Bender
 
 ==Heatman
 -Movespeed buffed 0.72/0.7 > 0.8/0.78
@@ -1633,8 +1650,24 @@ CHANGELOG
 -Imported HUD from UEC
 -Unhomed Hornet Chaser damage 9 > 10
 -Hornet Chaser now has +SKYEXPLODE
--Ported desync fixes from Conejo
--Nectar Trap slowdown honey fx properly added
+-Hornetman can no longer activate redirect from infinite distances (ammobar indicator)
+-Ammo regen every 8 tics > every 6 tics
+--Hornet Chasers now make buzzing sounds while homing
+--Lowered Hornet Chasers homing stats (1,5)
+--Hornet Chasers will home more aggressively towards targets coated with honey (2,10)
+--Homing Hornet Chaser damage 6 > 5 
+--Hornet Chasers no longer freeze before homing, now just slow down
+-Honey slow power 0.67 > 0.75 (33% > 25%)
+--Nectar Hive blobs spread 'x'-style > '+'-style
+--Hornetman can now charge up the Nectar Hive throw (cannot be held forever, plays a sound, stops mainfire ammo regen)
+--Lvl 0 = 1 blob spawn, 0 splash damage, 25 speed, 1.0 gravity, 100 slow duration
+--lvl 1 = 2 blob spawn, 5 splash damage, 25 speed, 1.0 gravity, 125 slow duration
+--lvl 2 = 3 blob spawn, 10 splash damage, 30 speed, 0.75 gravity, 150 slow duration
+--lvl 3 = 4 blob spawn, 10 splash damage, 35 speed, 0.75 gravity, 175 slow duration 
+--Nectar Hive blobs applies lvl 0 slow no matter the charge level
+-Redirect moved to Reload button 
+--Redirect now does small dmg on poke
+--Honey slow debuff visual effects tweaks
 
 ==Fakeman (as of gond beta 7)
 -Buffer timer duration 8 tics > 20 tics

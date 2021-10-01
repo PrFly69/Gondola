@@ -655,7 +655,7 @@ Species "RollStuff"
 Damage (15)
 Height 10
 Radius 9
-speed 48 // [JD] 32 -> 48
+speed 40 // [JD] 32 -> 48 // [NF] 48 > 40
 Scale 2.0
 States
 {
@@ -776,12 +776,8 @@ damagetype "RollShock"
 
 actor UnholyCopyHealthShot
 {
-//+MISSILE
-//+CANPASS
-+DROPOFF
--SOLID
+PROJECTILE
 +NOGRAVITY
-+THRUACTORS
 +THRUGHOST
 +DONTBLAST
 +DONTREFLECT
@@ -853,10 +849,8 @@ stop
 actor RollHealShot
 {
 Translation"195:195=110:110","250:250=104:104","249:249=130:130"
-+MISSILE
-//+CANPASS
-+DROPOFF
-+SOLID
+PROJECTILE
+-SOLID
 +NOGRAVITY
 //+THRUACTORS
 //+THRUGHOST

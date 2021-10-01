@@ -19,16 +19,16 @@ HORH A 0 ACS_ExecuteAlways(998,0,DYE_HORNETMAN)
 HORH A 0 A_GunFlash
 HORH A 0 A_JumpIfInventory("NotTheHornetsAmmo",6,"Ready2")
 HORH A 0 A_StopSound(CHAN_5)
-HORH A 8 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
+HORH A 6 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
 HORH A 0 A_GiveInventory("NotTheHornetsAmmo",1)
 Goto Ready+2
 Ready2:
 HORH A 0 A_StopSound(CHAN_5)
-HORH A 8 A_WeaponReady(WRF_ALLOWRELOAD)
+HORH A 6 A_WeaponReady(WRF_ALLOWRELOAD)
 HORH A 0 A_GiveInventory("NotTheHornetsAmmo",1)
 loop
 Ready3:
-HORH A 8 A_WeaponReady
+HORH A 6 A_WeaponReady
 HORH A 0 A_GiveInventory("NotTheHornetsAmmo",1)
 Goto Ready2
 Deselect:
@@ -422,10 +422,10 @@ RealHome:
 HORH Q 0 A_RearrangePointers(0,0,1)
 HORH Q 0 ThrustThingZ(0,0,0,1)
 HORH Q 0 ThrustThing(angle*256/360,0)
-HORH QRST 1 A_Stop
+HORH QRST 1 A_ScaleVelocity(0.75)
 HORH Q 0 ThrustThingZ(0,0,0,1)
 HORH Q 0 ThrustThing(angle*256/360,0)
-HORH QRST 1 A_Stop
+HORH QRST 1 A_ScaleVelocity(0.75)
 HORH /*QQQQ*/Q 0 A_SeekerMissile(2,10,3,256,8)//chances raised to 100% but only seeks once to prevent bees from sometimes not doing anything at all
 HORH Q 1
 HORH Q 0 A_JumpIfInventory("IsInGame",1,"Spawn4",AAPTR_TRACER)

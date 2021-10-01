@@ -14,6 +14,7 @@ pic V_I_SUZ tics 4
 texture HC_S_BAR
 pic HC_T_BAR tics 4
 pic TNT1A0 tics 4
+
 texture HC_S_VAR
 pic HC_T_VAR tics 4
 pic TNT1A0 tics 4

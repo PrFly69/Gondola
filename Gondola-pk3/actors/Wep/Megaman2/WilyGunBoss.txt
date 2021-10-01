@@ -560,7 +560,7 @@ Speed 26
 Damage (24)
 radius 22
 height 22
-scale 2.5//5
+scale 1.5
 States
 {
 Spawn:
@@ -582,7 +582,7 @@ actor WilyShot2 : WilyShot1
 Damage (20)
 radius 18//20
 height 18
-scale 2.25
+scale 1.5
 States
 {
 Spawn:
@@ -603,7 +603,7 @@ actor WilyShot3 : WilyShot1
 Damage (15)
 radius 14//15
 height 14
-scale 2.0//2
+scale 1.25
 States
 {
 Spawn:
@@ -624,7 +624,7 @@ actor WilyShot4 : WilyShot1
 Damage (10)
 radius 10//7
 height 10
-Scale 1.0
+scale 1.5
 States
 {
 Spawn:
@@ -653,7 +653,7 @@ ReactionTime 1
 Radius 14
 Height 14
 speed 125
-scale 2.0
+scale 1.5
 States
 {
 Spawn:

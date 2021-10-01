@@ -5,6 +5,7 @@ weapon/saturndeath SATFUCK
 
 //Flash
 weapon/flashstunboom FLASBOOM
+weapon/flashstunstart FLSWNDUP
 
 //Saturn
 weapon/quazarblast QUAZAR

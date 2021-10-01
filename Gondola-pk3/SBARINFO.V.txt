@@ -447,7 +447,8 @@ IsSelected BubbleLeadBoss{Drawbar"BARAMMO1","BAREMPTY",Ammo1,vertical,16,8;
 IsSelected QuickBoomerangBoss{Drawbar"BARAMM11","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory QuickManTrail,1{Drawbar"2D_A_BAR","NOBAR",Ammo1,vertical,16,8;}}
 IsSelected CrashBombBoss{Drawbar"BARAMM12","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected TimeStopperBoss{Drawbar"BARAMMO7","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected TimeStopperBoss{Drawbar"BARAMMO7","BAREMPTY",Ammo1,vertical,16,8;
+	DrawBar"BARAMMO1","BAREMPTY",Ammo2,vertical,8,8;}
 IsSelected AtomicDashBoss,AtomicFireBoss{Drawbar"BARAMM13","HEATEMPT",HeatmanDashFlag,vertical,16,8;
 						  DrawImage"HETRICON",32,55;
 	InInventory HeatmanDashFlag,200{DrawImage"HeatIco5",16,64;}
@@ -711,10 +712,11 @@ WeaponAmmo OutragousGemsAmmo{
 }
 IsSelected MagmaBazookaBoss{Drawbar"BARAMM64","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory MagmaItemFlag,1{DrawImage"MAGFLOWA",-53,-32;}}
-IsSelected HornetChaserBoss{DrawBar"BARAMM67","BAREMPTY",Ammo1,vertical,16,8;
+IsSelected HornetChaserBoss{
+ DrawBar"BARAMM67","BAREMPTY",Ammo1,vertical,16,8; 
 	DrawBar"09_6_BAR","BAREMPTY",Ammo2,vertical,8,8;
-        DrawImage"HORNEICN",32,55;
-        InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
+	DrawImage"HORNEICN",32,55;
+    InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
 	InInventory HornetFlagH,1{DrawImage"HORNJETA",290,8;}}
 IsSelected BlackHoleBombBoss{Drawbar"GALBAR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage "GALRICON",32,55;

@@ -331,6 +331,7 @@ TNT1 A 1 A_Warp(AAPTR_TARGET,0.0,0.0,0.0,0.0,WARPF_NOCHECKPOSITION)
 TNT1 A 0 A_SpawnItemEx("TimeStopGFX",random(8,64),0,random(0,64),0,0,0,random(0,359))
 TNT1 A 0 A_JumpIfInTargetInventory("TimeStoppedCounter",1,"Spawn")
 TNT1 A 5 A_GiveToTarget("TimeUnstoppedC")
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TimeStopGFXSmall", random(8, 64), 0, random(0, 64), 0, 0, 0, random(0, 359))
 stop
 }
 }
@@ -441,6 +442,7 @@ TNT1 A 0 A_JumpIfInventory("WilyIceTFFlag",1,"PickupNo")
 TNT1 A 0 A_JumpIfInventory("SelfStoppedTFFlag",1,"PickupNo")
 TNT1 A 0 A_JumpIfInventory("TimeStoppedCounter",1,"PickupNo")
 TNT1 A 0 A_TakeInventory("TotallyFrozenLook",1)
+TNT1 A 0 SetPlayerProperty(0,0,0)
 TNT1 A 0 SetPlayerProperty(0,0,4)
 stop
 PickupNo:
