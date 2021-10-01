@@ -1326,9 +1326,11 @@ CHANGELOG
 
 ==Magnetman
 -Reworked by NightFly (with assets from Greg.EXE and Trillster)
--Mainfire homing reworked, now has 5 tics of delay before doing a singular fast redirect
-*(this was originally 8 but incorrectly scripted as 10)
--Redirect maxangleturning precision increases as Magnet Missile is held
+-Mainfire homing reworked, now has 2 tics of delay before doing a singular fast redirect (5 > 2 tics as of gond beta 7)
+-Base damage 15 > 14, scaled damage now correctly capped at 30 rather than unbounded (as of gond beta 7)
+-Speed after redirect 150% > 125% (as of gond beta 7)
+-Redirect maxangleturning precision increases as Magnet Missile is held (fixed as of gond beta 7)
+-No longer homes/scales if tapped/released within 9 tics (as of gond beta 7)
 -NEW ALTFIRE: MAG FLY
 --Can be placed in the air and increases allied players' jumpheight who are underneath it
 --Pressing altfire again switches Mag Fly's polarity, crushing enemies into the ground
