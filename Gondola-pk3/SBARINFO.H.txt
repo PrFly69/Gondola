@@ -474,10 +474,14 @@ IsSelected BreakBusterAgility,BreakBusterStability{DrawBar"VARAMM14","VAREMPTY",
 	DrawBar"VARAMMO1","VAREMPTY",SnipeAmmo,horizontal,58,184;
 	DrawBar"KC_A_VAR","VNOBAR",SnipeCharge,horizontal,58,184;}}
 
-IsSelected DocBusterWoodHeatWep{DrawBar"XTR0VR_Q","VAREMPTY",DocVirusAmmo,horizontal,58,184;}
-IsSelected DocBusterBubbleFlashWep{DrawBar"XTR0VR_R","VAREMPTY",DocVirusAmmo,horizontal,58,184;}
-IsSelected DocBusterAirCrashWep{DrawBar"XTR0VR_D","VAREMPTY",DocVirusAmmo,horizontal,58,184;}
-IsSelected DocBusterQuickMetalWep{DrawBar"XTR0VR_F","VAREMPTY",DocVirusAmmo,horizontal,58,184;}
+IsSelected DocBusterWoodHeatWep{DrawBar"XTR0VR_Q","VAREMPTY",DocVirusAmmo,horizontal,58,184;
+	DrawImage"DOCRICON",178,175;}
+IsSelected DocBusterBubbleFlashWep{DrawBar"XTR0VR_R","VAREMPTY",DocVirusAmmo,horizontal,58,184;
+	DrawImage"DOCRICON",178,175;}
+IsSelected DocBusterAirCrashWep{DrawBar"XTR0VR_D","VAREMPTY",DocVirusAmmo,horizontal,58,184;
+	DrawImage"DOCRICON",178,175;}
+IsSelected DocBusterQuickMetalWep{DrawBar"XTR0VR_F","VAREMPTY",DocVirusAmmo,horizontal,58,184;
+	DrawImage"DOCRICON",178,175;}
 
 //MM4
 IsSelected FlashStopperBoss{DrawBar"VARAMM12","VAREMPTY",Ammo1,horizontal,58,184;
@@ -530,7 +534,8 @@ IsSelected ChargeKickBoss{Drawbar"VARAMM12","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory BlackHotAmmo,1{DrawBar"CHR1VAR","VAREMPTY",Ammo2,horizontal,58,176;}
 	InInventory BlackHotAmmo,100{DrawBar"CHR2VAR","VAREMPTY",Ammo2,horizontal,58,176;}
 	InInventory BlackHotAmmo,200{DrawBar"CHR3VAR","VAREMPTY",Ammo2,horizontal,58,176;}
-	InInventory BlackHotAmmo,300{DrawBar"CHRFVAR","VAREMPTY",Ammo2,horizontal,58,176;}}
+	InInventory BlackHotAmmo,300{DrawBar"CHRFVAR","VAREMPTY",Ammo2,horizontal,58,176;}
+	InInventory ChargeTrollageFlag,1{DrawBar"CHRXVAR","VAREMPTY",Ammo2,horizontal,58,176;}}
 IsSelected NapalmBombBoss{Drawbar"VARAMM24","VAREMPTY",Ammo1,horizontal,58,184;}
 	InInventory OverheaterAmmo,1{Drawbar"PTSDVAR","VNOBAR",Ammo2,horizontal,58,184;}
 IsSelected CrystalEyeBoss{Drawbar"VARAMM25","VAREMPTY",CrystalEyeCharge,horizontal,58,184;

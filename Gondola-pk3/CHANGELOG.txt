@@ -1240,6 +1240,10 @@ CHANGELOG
 -Fixed Woodcustom Altfire crashing when plug boosted
 -In team gamemodes where weapon color translations are usually unseeable, switching to a style displays that style's icon over your head (as of gond beta 7)
 
+==Roll (as of gond beta 7)
+-Bucket shot speed 32 > 48
+-Puddle damage after being swept 30 > 15
+
 ==Auto
 -Cans are now properly teamcolored
 
@@ -1387,7 +1391,6 @@ CHANGELOG
 --BubbleFlash
 --AirCrash
 --QuickMetal
--Speed 0.78/0.8 > 0.76/0.78
 -Doc Buster speed 45 > 35
 -NEW ALTFIRE: Buster Modification
 --Requires 1/7th of user's ammo, changes based on what weapon the user is holding
@@ -1430,6 +1433,10 @@ CHANGELOG
 ==Gravityman
 -Health reduced to 90
 -Gravity Hold Up and Gravity Sphere Up damage reduced to 0
+
+==Waveman
+-Hook detachment noise no longer global
+--Hook detachment and latching sounds now play directly to the user upon occurring
 
 ==Crystalman
 -Removed ACS delay
@@ -1516,6 +1523,7 @@ CHANGELOG
 ==Yamatoman
 -Ported HUD Cutoff fix from LemonLimeBrony
 -Ported new firing frames from UEC
+-Yamato Spear startup removed (as of gond beta 7)
 -Reload passive ammo gain doubled
 --Reload leap forwards thrust 25 > 45
 
