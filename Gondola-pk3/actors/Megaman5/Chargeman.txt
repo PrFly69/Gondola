@@ -1,0 +1,71 @@
+actor Chargeman : DuoClassBase
+{
+Player.ScoreIcon "C_05F0X"
+player.startitem "SturdyHealthBar"
+player.displayname "Chargeman"
+player.soundclass "chargemanc"
+player.startitem "ChargeKickBoss"
+player.startitem "ChargeManIsEveryWhereAmmo", 75
+player.startitem "BlackHotAmmo", 300
+player.forwardmove 0.8, 0.8
+player.sidemove 0.4, 0.4
+
+player.startitem "PowerStoneWeakness2", 1
+
+player.startitem "SuperArmWeakness", 1
+player.startitem "HardKnuckleWeakness", 1
+//player.startitem "RainFlushWeakness", 1
+player.startitem "PowerStoneWeakness", 1
+player.startitem "AstroCrushWeakness", 1
+player.startitem "SpreadDrillWeakness", 1
+player.startitem "DeepDiggerWeakness", 1
+States
+{
+Spawn:
+CHRM A 0 
+CHRM I 1//B
+CHRM A 1
+Goto Spawn+2
+See:
+CHRM IJKL 5//BCDE
+Goto Spawn
+Missile:
+CHRM F 0 A_JumpIfInventory("ChargeDashFlag",5,"ARunF")
+CHRM F 0 A_JumpIfInventory("ChargeDashFlag",4,"ARunE")
+CHRM F 0 A_JumpIfInventory("ChargeDashFlag",3,"ARunD")
+CHRM F 0 A_JumpIfInventory("ChargeDashFlag",2,"ARunC")
+CHRM F 0 A_JumpIfInventory("ChargeDashFlag",1,"ARunB")
+CHRM F 5
+CHRM G 4
+goto Spawn
+Missile2:
+CHRM MNO 4
+goto Spawn
+
+ARunB:
+CHRM M 5
+Goto Spawn
+ARunC:
+CHRM N 5
+Goto Spawn
+ARunD:
+CHRM O 5
+Goto Spawn
+ARunE:
+CHRM N 5
+Goto Spawn
+ARunF:
+CHRM M 0 A_TakeInventory("ChargeDashFlag",4)
+Goto ARunB
+
+ClassPain:
+CHRM H 0
+goto PainContinue
+DeathFix:
+CHRM H 0
+goto DeathContinue
+ClassDeath:
+CHRM H 1
+goto MegaDeathEnd
+}
+}
