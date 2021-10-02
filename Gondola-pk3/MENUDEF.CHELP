@@ -816,7 +816,7 @@ OptionValue ClassAltfire
 90, "\cdCan be charged to do tackle\nCan grab blocks and charge throw"
 91, "\cdActivates all placed tornados\nConstant upward thrust during altfire\nThis thrust can assist allies"
 92, "\cdCharged sing buffs allies, tapped buffs user\n\caPower Song = 35% more damage on shots\n\cdHealing Song = Restores health, requires screws\n\cfSpeed Song = 40% more speed while affected"
-93, "\cdFires plug that connects to players\nEnemy: Damage and refill ammo\nAlly: Use ammo to haste ally attacks\nAlso grants 1.25x speed to allies"
+93, "\cdFires plug that connects to players\nEnemy: Damage and refill ammo\nAlly: Use ammo to haste ally attacks\nAlso grants 1.2x/1.35x speed to allies/you"
 94, "\cdChanges selected Gem\nDuring shield, homing ignores user\nAlso reflects most projectiles"
 95, "\cdTosses hornet hive\nThe honey bits slow foes\nCan be charged to increase \nslow duration, blobs and speed"
 96, "\cdShot fired straight and to the left"

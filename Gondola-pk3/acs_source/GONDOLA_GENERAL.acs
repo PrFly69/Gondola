@@ -556,33 +556,6 @@ int merc_mode[32];
 		merc_mode[PlayerNumber()] = 0;	
 	}
  }
- 
-Script "cbm_PlugLatch" (void)
-{
-	int TargetTID = ACS_ExecuteWithResult(147,1);//Tracer
-	SetActivatorToTarget(0);
-
-	if(TargetTID==0){terminate;}
-
-	SetPointer(AAPTR_TRACER, TargetTID);
-
-	int OwnerTID = ActivatorTID();
-
-	if(IsTeamGame){
-		if(GetPlayerInfo(TargetTID-1000, PLAYERINFO_TEAM) == GetPlayerInfo(OwnerTID-1000, PLAYERINFO_TEAM)){
-		GiveInventory("PlugmanLatch",2);
-		}
-	}
-	GiveInventory("PlugmanLatch",1);
-
-	while(GetActorProperty(TargetTID, APROP_HEALTH)>0 && GetActorProperty(OwnerTID, APROP_HEALTH)>0 && xyzDistance(OwnerTID, TargetTID) < 800 && CheckInventory("PlugmanLatch")>0){
-		ACS_NamedExecuteAlways("cbm_DrawPlugCable", 0, TargetTID, OwnerTID, CheckInventory("PlugmanIsShocking"));
-		Delay(1);
-	}
-
-	SetPointer(AAPTR_TRACER,0);
-	TakeInventory("PlugmanLatch",999);
-}
 
 #define TEAM_NONE -1
 
