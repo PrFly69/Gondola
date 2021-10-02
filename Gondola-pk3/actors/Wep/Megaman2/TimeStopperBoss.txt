@@ -18,7 +18,7 @@ FLSA A 0 ACS_ExecuteAlways(998,0,DYE_FLASHMAN)
 FLSA A 0 A_GunFlash
 goto Ready1
 Ready1:
-FLSA A 0 A_JumpIfInventory("TimeAmmo",28,"Ready2")
+FLSA A 0 A_JumpIfInventory("TimeAmmo",21,"Ready2")
 FLSA AAA 1 A_WeaponReady(WRF_NOSECONDARY)
 FLSA A 0 A_JumpIfInventory("TimeStopperFlag",1,2)
 FLSA A 0 A_GiveInventory("TimeAmmo",2)
@@ -385,7 +385,7 @@ actor FlashStunnerP : FlashStunner{translation "202:202=229:229", "199:199=232:2
 
   Actor TimeStopProtector : PowerProtection
   {
-	PowerUp.Duration 105
+	PowerUp.Duration 70
 	DamageFactor "TimeStop", 0.0
   }
 
