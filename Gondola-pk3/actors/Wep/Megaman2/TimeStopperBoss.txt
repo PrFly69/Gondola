@@ -207,11 +207,13 @@ FLSA G 0 A_SpawnItemEx("FlashSussyImpostor",0,0,0,0,0,0,0,1)
 //FLSA G 0 A_GiveInventory("Repulsion",1)
 FLSA G 0 A_GiveInventory("TimeStopCheckAmmo",35)
 FLSA G 0 A_GunFlash("Flash.Deplete",GFF_NOEXTCHANGE)
+TNT1 A 0 A_GiveInventory("InvulnerableOn_Pickup",1)
 FLSA I 1 Offset(4,28) A_SetBlend(white,0.95,5)
 FLSA I 1 Offset(-4,30) A_SetBlend(white,0.95,5)
 FLSA I 1 Offset(4,30) A_SetBlend(white,0.95,5)
 FLSA I 1 Offset(-4,28) A_SetBlend(white,0.95,5)
 TNT1 A 31
+TNT1 A 0 A_GiveInventory("InvulnerableOff_Pickup",1)
 FLSA I 1 Offset(4,28)
 FLSA I 1 Offset(-4,30)
 FLSA I 1 Offset(4,30)
@@ -418,7 +420,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 4 A_Explode(5,512,0,0,256)
+TNT1 A 4 A_Explode(5,400,0,0,400)
 stop
 }
 }

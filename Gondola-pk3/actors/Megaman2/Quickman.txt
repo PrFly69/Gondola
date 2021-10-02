@@ -35,9 +35,8 @@ QUIM BBBCCCDDDEEE 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn
 
 Missile:
-QUIM F 0 A_JumpIf(z-floorz>0, "JumpingMissile")
-QUIM F 5
-QUIM G 4
+QUIM FFFFF 1 A_JumpIf(z-floorz>0, "JumpingMissile")
+QUIM GGGG 1 A_JumpIf(z-floorz>0, "JumpingMissile")
 goto Spawn
 
 Jumping:

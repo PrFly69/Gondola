@@ -1171,6 +1171,7 @@ actor AcidBarrierAllyFX1 : GutPunch
 {
 +CLIENTSIDEONLY
 +FORCEXYBILLBOARD
++DONTSPLASH
 Translation "192:192=117:117","198:198=117:117"
 Alpha 1
 RenderStyle "Translucent"
@@ -1197,6 +1198,7 @@ stop
 
 actor AcidBarrierAllyFXHelper0 : BasicHelper
 {
++DONTSPLASH
 +CLIENTSIDEONLY
 States
 {

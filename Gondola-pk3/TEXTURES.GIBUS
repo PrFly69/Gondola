@@ -422,3 +422,5 @@ texture CHX3VAR,56,8{patch CHX3BAR,0,0{rotate 90}}
 
 texture CHRXBAR,8,56{patch TNT1A0,0,0}
 texture CHRXVAR,56,8{patch TNT1A0,0,0}
+
+graphic FLSHICON,30,30{XScale 2.0 YScale 2.0 Patch "RSHFLSH0",0,0}
