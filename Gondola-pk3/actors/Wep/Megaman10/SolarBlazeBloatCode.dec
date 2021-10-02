@@ -969,7 +969,7 @@ actor SolarMortar //The main sun.
 {
 Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
-damagetype "SolarMortarWave"
+damagetype "SolarMortarMain"
 Obituary "$OB_SOLARMORTAR"
 +SKYEXPLODE
 //+BOUNCEONWALLS
