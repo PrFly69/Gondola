@@ -315,7 +315,7 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 PLGH G 0 A_SetUserVar("user_PTID",ACS_ExecuteWithResult(257,0))
-PLGH GGGGGGGGGGGGGGGGGGGGG 1 ACS_NamedExecuteAlways("cbm_DrawPlugCable",0,0,user_PTID,0)
+PLGH GGGGGGGGGGGGGGGGGGG 1 ACS_NamedExecuteAlways("cbm_DrawPlugCable",0,0,user_PTID,0)
 stop
 Death:
 TNT1 A 1 A_JumpIfInventory("IsInGame",1,"DeathCheck",8)
