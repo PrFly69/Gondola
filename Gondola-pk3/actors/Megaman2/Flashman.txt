@@ -1,9 +1,8 @@
-actor Flashman : LightClassBase
+actor Flashman : ClassBase
 {
 Player.ScoreIcon "C_02F0X"
 player.displayname "flashman"
 player.soundclass "flashmanc"
-player.startitem "LightHealthBar"
 player.startitem "TimeStopperBoss"
 player.startitem "ZaWarudoAmmo", 56
 player.startitem "CrashBombWeakness2", 1

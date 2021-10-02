@@ -188,7 +188,7 @@ TNT1 A 0 A_TakeInventory("WilyCapsuleFireBoss",1)
 TNT1 A 0 A_TakeInventory("WilyCapsuleIceBoss",1)
 TNT1 A 0 A_TakeInventory("WilySandalsItem",1)
 TNT1 A 0 A_TakeInventory("PlasmaAmmo",28)
-TNT1 A 0 A_TakeInventory("CapsuleAmmo",28) //Wonder why UEC commented this out.
+TNT1 A 0 A_TakeInventory("CapsuleAmmo",14) //Wonder why UEC commented this out.
 TNT1 A 0 A_TakeInventory("WilyCapsuleFlagDelay",999)
 TNT1 A 0 A_GiveInventory("WilySkullSuitItem",1)
 

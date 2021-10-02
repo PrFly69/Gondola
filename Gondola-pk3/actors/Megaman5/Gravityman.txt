@@ -1,10 +1,9 @@
-actor Gravityman : MegaClassBase
+actor Gravityman : ClassBase
 {
 Player.ScoreIcon "C_05A0X"
 player.displayname "gravityman"
 player.soundclass "gravitymanc"
 player.startitem "GravityHoldBoss"
-player.startitem "MegaHealthBar"
 player.startitem "ScrewGravityAmmo", 140
 player.startitem "GroundFlag"
 player.startitem "GravitySwitchItem"

@@ -1339,7 +1339,7 @@ CHANGELOG
 -Ported UEC changes
 -Suit ammo regen rate 8 tics > 10 tics
 -Capsule ammo regen rate 5 tics (Ice)/4 tics (Fire) > 6 tics (Both)
--Wily now correctly loses all upgrade ammo upon manually exiting Wily Capsule
+-Wily now loses 50% of his ammo upon manually exiting Wily Capsule
 
 ==Needleman
 -Readded rev, moved Needle Hammer to reload
@@ -1446,7 +1446,6 @@ CHANGELOG
 --Rage FX now used renderstyle add
 
 ==Gravityman
--Health reduced to 90
 -Gravity Hold Up and Gravity Sphere Up damage reduced to 0
 
 ==Waveman
@@ -1569,7 +1568,7 @@ CHANGELOG
 -JC Spring Punch animation imported (as of gond beta 7)
 
 ==Slashman
--Base Slash Claw radius 16 > 18
+-Reverted to CCBM 2.0H
 
 ==Shademan
 -Noise Crush is now green
@@ -1814,7 +1813,11 @@ CHANGELOG
 -Added Chain Blast copywep (WIP)
 
 ==Mega Water S
--Health 100 > 85
+-Health 100 > 90
+-Harpoon damage 12 > 10
+--Firing harpoons halt ammo gain
+-Max Shield Pop damage 29 > 20
+-Barrier armor reduced 65/40 > 40/25
 
 ==Hyper Storm H
 -All changes reverted except for the following

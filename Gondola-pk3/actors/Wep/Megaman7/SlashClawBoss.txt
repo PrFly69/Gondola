@@ -333,7 +333,6 @@ Powerup.Duration 11
 DamageFactor "SlashClawB", 0.1
 }
 
-const int CONST_SLASHRAD = 18;
 actor ClawmanSlash
 {
 Translation "202:202=4:4","199:199=210:210"
@@ -355,19 +354,20 @@ States
 {
 Spawn:
 SLSA H 0
-SLSA H 1 A_Explode(Mass-0,ScaleX*(CONST_SLASHRAD),0,0,ScaleX*(CONST_SLASHRAD))//16
-SLSA H 1 A_Explode(Mass-1,ScaleX*(CONST_SLASHRAD),0,0,ScaleX*(CONST_SLASHRAD))
-SLSA I 1 A_Explode(Mass-2,ScaleX*(CONST_SLASHRAD-2),0,0,ScaleX*(CONST_SLASHRAD-2))//14
-SLSA I 1 A_Explode(Mass-3,ScaleX*(CONST_SLASHRAD-2),0,0,ScaleX*(CONST_SLASHRAD-2))
-SLSA J 1 A_Explode(Mass-4,ScaleX*(CONST_SLASHRAD-4),0,0,ScaleX*(CONST_SLASHRAD-4))//12
-SLSA J 1 A_Explode(Mass-5,ScaleX*(CONST_SLASHRAD-4),0,0,ScaleX*(CONST_SLASHRAD-4))
-SLSA K 1 A_Explode(Mass-6,ScaleX*(CONST_SLASHRAD-6),0,0,ScaleX*(CONST_SLASHRAD-6))//10
-SLSA K 1 A_Explode(Mass-7,ScaleX*(CONST_SLASHRAD-6),0,0,ScaleX*(CONST_SLASHRAD-6))
-SLSA L 1 A_Explode(Mass-8,ScaleX*(CONST_SLASHRAD-8),0,0,ScaleX*(CONST_SLASHRAD-8))//8
-SLSA L 1 A_Explode(Mass-9,ScaleX*(CONST_SLASHRAD-8),0,0,ScaleX*(CONST_SLASHRAD-8))
+SLSA H 1 A_Explode(Mass-0,ScaleX*27,0,0,ScaleX*27)//38
+SLSA H 1 A_Explode(Mass-1,ScaleX*27,0,0,ScaleX*27)
+SLSA I 1 A_Explode(Mass-2,ScaleX*25,0,0,ScaleX*25)//35.5
+SLSA I 1 A_Explode(Mass-3,ScaleX*25,0,0,ScaleX*25)
+SLSA J 1 A_Explode(Mass-4,ScaleX*23,0,0,ScaleX*23)//33
+SLSA J 1 A_Explode(Mass-5,ScaleX*23,0,0,ScaleX*23)
+SLSA K 1 A_Explode(Mass-6,ScaleX*21,0,0,ScaleX*21)//22
+SLSA K 1 A_Explode(Mass-7,ScaleX*21,0,0,ScaleX*21)
+SLSA L 1 A_Explode(Mass-8,ScaleX*17,0,0,ScaleX*17)//16
+SLSA L 1 A_Explode(Mass-9,ScaleX*17,0,0,ScaleX*17)
 stop
 }
 }
+
 actor ClawmanSlash1 : ClawmanSlash
 {
 mass 19

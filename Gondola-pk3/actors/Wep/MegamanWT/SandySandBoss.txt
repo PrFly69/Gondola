@@ -61,16 +61,16 @@ MWSH B 0 A_GiveInventory("MegaWaterSMain_CI",1)
 MWSH BC 2
 MWSH B 1
 MWSH A 1
-MWSH B 0 A_GiveInventory("KappaMikeyAmmo",1)
+MWSH B 0 //A_GiveInventory("KappaMikeyAmmo",1)
 MWSH B 0 A_PlaySoundEx("weapon/pshot","Weapon")
 MWSH B 0 A_GiveInventory("MegaWaterSMain_CI",1)
-MWSH A 0 A_GiveInventory("KappaBarrierAmmo",2)
-MWSH A 0 A_GiveInventory("KappaMikeyAmmo",0.5)
+MWSH A 0 //A_GiveInventory("KappaBarrierAmmo",2)
+MWSH A 0 //A_GiveInventory("KappaMikeyAmmo",0.5)
 MWSH BC 2
 MWSH B 1
 MWSH A 1
 MWSH B 0 A_PlaySoundEx("weapon/pshot","Weapon")
-MWSH B 0 A_GiveInventory("MegaWaterSMain_CI",1)
+MWSH B 0 //A_GiveInventory("MegaWaterSMain_CI",1)
 MWSH BC 2
 MWSH B 1
 MWSH A 1
@@ -229,11 +229,11 @@ SWMX B 0 A_GiveInventory("MegaWaterSMain_CI",1)
 SWMX BC 2
 SWMX B 1
 SWMX A 1
-SWMX B 0 A_GiveInventory("KappaMikeyAmmo",1)
+SWMX B 0 //A_GiveInventory("KappaMikeyAmmo",1)
 SWMX B 0 A_PlaySoundEx("weapon/pshot","Weapon")
 SWMX B 0 A_GiveInventory("MegaWaterSMain_CI",1)
-SWMX A 0 A_GiveInventory("KappaBarrierAmmo",2)
-SWMX A 0 A_GiveInventory("KappaMikeyAmmo",0.5)
+SWMX A 0 //A_GiveInventory("KappaBarrierAmmo",2)
+SWMX A 0 //A_GiveInventory("KappaMikeyAmmo",0.5)
 SWMX BC 2
 SWMX B 1
 SWMX A 1
@@ -374,8 +374,8 @@ actor MWS_ItemForceFail : OnceC{}
 
 actor MWS_Armour : BasicArmorPickup
 {
-armor.saveamount 40
-armor.savepercent 65.001
+armor.saveamount 25
+armor.savepercent 40.001
 }
 
 actor MWS_ShieldItem : CustomInventory
@@ -479,7 +479,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 A_SetUserVar("user_P",1)
 TNT1 A 0 A_JumpIfInTargetInventory("MWSShieldCharge",user_P,"SpawnAdd")
-TNT1 A 1 A_Explode(user_P/6*2+9,user_P/6*20+199,0)
+TNT1 A 1 A_Explode(user_P/6*2,user_P/6*20+199,0)
 stop
 SpawnAdd:
 TNT1 A 0 A_SetUserVar("user_P",user_P+1)
