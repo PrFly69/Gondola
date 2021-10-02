@@ -433,7 +433,7 @@ IsSelected OilSliderBoss{DrawBar"BARAMMO8","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory not OilStaminaFlag,127{DrawBar"1H_R_BAR","NOBAR",OilStaminaFlag,vertical,16,8;}}
 IsSelected WildBearBoss{DrawBar"11_Y_BAR","BAREMPTY", BumoCharge, vertical, 16, 8;}
 IsSelected NotABearBoss{DrawBar"11_Y_BAR","BAREMPTY", BumoCharge, vertical, 16, 8;} 
-InInventory SpeedGearCharge{DrawBar "11_Z_BAR", "BAREMPTY", SpeedGearCharge, vertical,  8, 8;}
+//InInventory SpeedGearCharge{DrawBar "11_Z_BAR", "BAREMPTY", SpeedGearCharge, vertical,  8, 8;}
 
 //MM2
 IsSelected MetalBladeBoss{Drawbar"BARAMMO9","BAREMPTY",Ammo1,vertical,16,8;
