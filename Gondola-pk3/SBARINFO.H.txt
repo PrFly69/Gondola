@@ -101,7 +101,7 @@ IsSelected YamatoSpearWepC{Drawbar"VARAMM30","VAREMPTY",Ammo1,horizontal,58,184;
 //MM7
 IsSelected FreezeCrackerWepC{Drawbar"VARAMM31","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected JunkShieldWepC{Drawbar"VARAMM32","VAREMPTY",Ammo1,horizontal,58,184;
-	InInventory ShieldCheck,1{DrawBar"VARFLS1","VNOBAR",JunkDuration,horizontal,58,184;}}
+	InInventory JunkShieldCharge,1{DrawBar"VARFLS1","VNOBAR",JunkShieldCharge,horizontal,58,184;}}
 IsSelected DangerWrapWepC{Drawbar"VARAMM33","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected ThunderBoltWepC, ThunderBoltWepCMaestro{Drawbar"VARAMM34","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected WildCoilWepC{Drawbar"VARAMM35","VAREMPTY",Ammo1,horizontal,58,184;
@@ -418,7 +418,6 @@ InInventory SpeedGearCharge{DrawBar "11_Z_VAR", "VAREMPTY", SpeedGearCharge, hor
 
 //MM2
 IsSelected MetalBladeBoss{Drawbar"VARAMMO9","VAREMPTY",Ammo1,horizontal,58,184;
-	Drawbar"RIPPVAR","VNOBAR",HeavyMetalAmmo,horizontal,58,184;
     Drawbar"VARAMMO1","VAREMPTY",MetalHoverBootsAmmo,horizontal,58,176;
     InInventory MetalFloatFlag,1{DrawImage"METSTALA",282,8;}}
 IsSelected AirShooterBoss{Drawbar"VARAMM10","VAREMPTY",Ammo1,horizontal,58,184;}
