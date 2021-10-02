@@ -1098,7 +1098,7 @@ OptionValue ClassReload
 102, "\ckNone"
 103, "\ckReload : Leap upwards and turn into a cloud\n4 warping archs of wool surround you"//Sheep
 104, "\ckReload : Turn into a rebounding ball\nHold jump to go higher\nEnemy collision knocks back"//Strike
-105, "\ckNone"
+105, "\ckStarts in Mach Bike"
 106, "\ckReload : Charges up ammo for attacks"//Solar
 107, "\ckA fast dash where the user is facing\nStuns on contact"//Terra
 108, "\ckReload : Changes into and out of blob mode\nBlobs can be reclaimed for ammo"
