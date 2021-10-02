@@ -588,7 +588,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 AAAAAAAAAAAAAA 3 A_SpawnItemEx("CommandoM_Wave",0,0,0,0,0,0,0,1)
+TNT1 AAAAAAA 3 A_SpawnItemEx("CommandoM_Wave",0,0,0,0,0,0,0,1)
 stop
 }
 }

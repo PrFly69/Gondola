@@ -1695,7 +1695,7 @@ CHANGELOG
 -Both weapons have the same ammo regen and ammo consumption
 --Commando Mines have 6 tics of delay after firing
 --Delay on Commando Bomb reduced 18 tics > 12 tics
--Altfire waves last 5 tics longer
+-Reverted altfire wave duration buff (as of gond beta 7)
 
 ==Chillman
 -Now has funky (crappy) new death animation and updated weaknesses (as of gond beta 7)
