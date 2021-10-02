@@ -976,7 +976,7 @@ OptionValue ClassItem
 115, "\cdTurns up the salt, empowering attacks\nSalty mode makes you take extra damage"
 116, "\cdVents heat for small knockback and damage\nBuffs you and all allies around\n15% all stats for 7 seconds"
 117, "\cdPlaces a tesseract where you are located\nUp to 4 can be placed"//Fuse
-118, "\cuNo Item"
+118, "\cuNo Item\nCan't use Auto's Item-2 or Wire"
 119, "\cdBoost yourself in the direction you are pressing."
 120, "\cdSummons two clones at full ammo\nThese clones mimic all attacks"
 121, "\cdCreates Water Shield at full ammo\nThe shield builds pressure while active\nItem pops the shield to fling foes"

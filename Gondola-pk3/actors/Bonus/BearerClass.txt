@@ -176,7 +176,6 @@ Loop
 		Goto Fire2
 
 		Fire2:
-		//YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,1)
 		YD_H B 0 A_PlaySoundEx("misc/minilaser","weapon")
 		YD_H B 0 A_TakeInventory("BumoCharge", 50)
 		YD_H B 0 A_GiveInventory("NotABearMainDOODOO_CI",1)
@@ -186,7 +185,6 @@ Loop
 		YD_H B 1 Offset(12,50)
 		YD_H B 1 Offset(8,44)
 		YD_H B 1 Offset(4,38)
-		//YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,0)
 		goto Ready1
 
 		FireCharged:
@@ -196,25 +194,20 @@ Loop
 		YD_H B 0 A_TakeInventory("BumoCharge",10)
 		YD_H B 0 A_GiveInventory("NotABearMain_CI",1)
 		YD_H B 6 Offset(36,86)
-		//YD_H B 0 A_JumpIfInventory("BumoEnd",3,"RomanCancel")
 		YD_H B 0 A_JumpIfInventory("BumoCharge",10,"FireLoop")
 		goto FireEnd
 
 		RomanCancel:
 		YD_H B 0 A_PlaySoundEx("item/1up","Voice")
-		YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
 		YD_H B 6
-		//YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
 		Goto Ready1
 
 		FireEnd:
-		//YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
 		YD_H B 1 Offset(20,62)
 		YD_H B 1 Offset(16,56)
 		YD_H B 1 Offset(12,50)
 		YD_H B 1 Offset(8,44)
 		YD_H B 1 Offset(4,38)
-		//YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
 		goto Ready1
 
 Altfire:
@@ -266,13 +259,11 @@ YD_H C 0 A_JumpIfInventory("BearerFlag",1,"AltfireLoop")
 goto AltfireLoopNonBearer
 
 AltfireLoopNonBearer:
-//YD_H C 0 A_GiveInventory("YellowDevilRomanCancel",1)
 YD_H E 0 A_GiveInventory("GuardDownFlag",1)
 YD_H E 0 A_SpawnItemEx("MarkedForDeathHandler")
 AltfireLoopNonBearer2:
 YD_H E 0 A_GiveInventory("PowerMarkedForDeath",1)
 YD_H E 5 Offset(12,17) 
-YD_H E 0 A_JumpIfInventory("BumoEnd",3,"RomanCancel")
 YD_H E 0 A_JumpIfInventory("BumoEnd",1,"AltfireEnd")
 loop
 
@@ -284,7 +275,6 @@ YD_H E 0 A_GiveInventory("BumoHeal",1)
 loop
 
 AltfireEnd:
-YD_H E 0 A_TakeInventory("YellowDevilRomanCancel",1)
 YD_H E 0 A_ChangeFlag("INVISIBLE",0)
 YD_H E 0 A_ChangeFlag("PICKUP",1)
 YD_H E 0 A_ChangeFlag("NOTELEPORT",0)
@@ -296,16 +286,6 @@ YD_H A 1 Offset(-8,36)
 YD_H A 1 Offset(-6,35)
 YD_H A 1 Offset(-4,34)
 YD_H A 1 Offset(-2,33)
-Goto Ready1
-
-RomanCancel: 
-YD_H E 0 A_PlaySoundEx("item/1up","Voice")
-YD_H E 0 A_TakeInventory("YellowDevilRomanCancel",1)
-YD_H E 0 A_ChangeFlag("INVISIBLE",0)
-YD_H E 0 A_ChangeFlag("PICKUP",1)
-YD_H E 0 A_ChangeFlag("NOTELEPORT",0)
-YD_H E 0 A_SpawnItemEx("ReSolidifier")
-YD_H A 6
 Goto Ready1
 
 Reload:
@@ -321,93 +301,6 @@ YD_H A 2 Offset(-12,20)
 YD_H A 2 A_WeaponReady(14)
 Goto Ready1
 }
-}
-
-actor NotABearBoss : WildBearBoss
-{
-	Tag "$TAGC_1Y2"
-	Obituary "$OB_BEARLASER2"
-	States
-	{
-		Ready:
-		YD_H A 0 ACS_ExecuteAlways(998,0,DYE_YELLOWDEVIL)
-		Ready1:
-		YD_H B 0 A_JumpIfInventory("BumoHeal",1,"Heal")
-		YD_H B 6 A_WeaponReady
-		YD_H B 0 A_GiveInventory("SpeedGearCharge",1)
-		loop
-
-		Deselect:
-		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-		YD_H B 1 A_Lower
-		Loop
-		Select:
-		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-		YD_H B 1 A_Raise
-		Loop
-
-		Fire:
-		YD_H B 0
-		YD_H B 2 Offset(12,50)
-		YD_H B 2 Offset(24,68)
-		YD_H B 0 A_Refire("FireCharge")
-		goto Fire2
-
-		FireCharge:
-		YD_H B 0 A_JumpIfInventory("BumoCharge",50,"FireCharged")
-		YD_H B 2 Offset(24,68) A_GiveInventory("BumoCharge")
-		YD_H B 0 A_Refire("FireCharge")
-		Goto Fire2
-
-		Fire2:
-		YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,1)
-		YD_H B 0 A_PlaySoundEx("misc/minilaser","weapon")
-		YD_H B 0 A_TakeInventory("BumoCharge", 50)
-		YD_H B 0 A_GiveInventory("NotABearMain_CI",1)
-		YD_H B 7 Offset(24,68)
-		YD_H B 1 Offset(20,62)
-		YD_H B 1 Offset(16,56)
-		YD_H B 1 Offset(12,50)
-		YD_H B 1 Offset(8,44)
-		YD_H B 1 Offset(4,38)
-		YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,0)
-		goto Ready1
-
-		FireCharged:
-		YD_H B 1 Offset(36,86)
-		TNT1 A 1
-		YD_H B 0 A_TakeInventory("BumoEnd",3)
-		YD_H B 0 A_GiveInventory("YellowDevilRomanCancel")
-		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,0)
-		YD_H B 0 A_GiveInventory("GuardDownFlag",1)
-		YD_H B 0 A_SpawnItemEx("MarkedForDeathHandler")
-		FireLoop:
-		YD_H B 0 A_GiveInventory("PowerMarkedForDeath",1)
-		YD_H B 0 A_PlaySoundEx("misc/minilaser","weapon")
-		YD_H B 0 A_TakeInventory("BumoCharge",10)
-		YD_H B 0 A_GiveInventory("NotABearMain_CI",1)
-		TNT1 A 6
-		YD_H B 0 A_JumpIfInventory("BumoEnd",3,"RomanCancel")
-		YD_H B 0 A_JumpIfInventory("BumoCharge",10,"FireLoop")
-		goto FireEnd
-
-		RomanCancel:
-		YD_H B 0 A_PlaySoundEx("item/1up","Voice")
-		YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
-		YD_H B 6
-		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
-		Goto Ready1
-
-		FireEnd:
-		YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
-		YD_H B 1 Offset(20,62)
-		YD_H B 1 Offset(16,56)
-		YD_H B 1 Offset(12,50)
-		YD_H B 1 Offset(8,44)
-		YD_H B 1 Offset(4,38)
-		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
-		goto Ready1
-	}
 }
 
 actor MaximumBearAmmo : Ammo
@@ -429,12 +322,6 @@ inventory.amount 1
 inventory.maxamount 50
 }
 
-actor SpeedGearCharge : Inventory
-{
-inventory.amount 1
-inventory.maxamount 56
-}
-
 actor BumoHeal : Inventory
 {
 inventory.amount 1
@@ -446,29 +333,6 @@ actor BumoEnd : Inventory
 inventory.amount 1
 inventory.maxamount 3
 }
-
-// Not done yet.
-actor YellowDevilRomanCancel : CustomInventory
-{
-	inventory.amount 1
-	inventory.maxamount 1
-	inventory.icon "YELDICON"
-	inventory.pickupmessage "\ckBumo... Bumomomo! Bumomo Bumomomomo Bumo!"
-	scale 2.0
-	+INVBAR
-	States
-	{
-		Use:
-		TNT1 A 0 A_JumpIfInventory("SpeedGearCharge",28,"RomanCancel")
-		stop
-		RomanCancel:
-		TNT1 A 0 A_TakeInventory("SpeedGearCharge",28)
-		TNT1 A 0 A_GiveInventory("BumoEnd",3)
-		TNT1 A 1
-		stop
-	}
-}
-
 
 actor PowerMarkedForDeath : BasePowerWeak
 {
@@ -515,8 +379,6 @@ actor MarkedVisual : MarkedVisualB {translation "192:192=216:216", "198:198=220:
 actor MarkedVisualR : MarkedVisualB {translation "192:192=171:171", "198:198=41:41"}
 actor MarkedVisualO : MarkedVisualB {translation "192:192=104:104", "198:198=128:128"}
 actor MarkedVisualP : MarkedVisualB {translation "192:192=229:229", "198:198=232:232"}
-
-actor YDEyeFlag : OnceC{}
 
 //I present, a far less bad version of the original very loopy cheese protection.
 actor CheeseProtectionHelper : CustomInventory 

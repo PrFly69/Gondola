@@ -1281,6 +1281,7 @@ CHANGELOG
 ==Yellow Devil
 -Modified from ctfpatch v04
 (As of gond beta 7:)
+-(Flagbearer:) Can pick up Auto's Wire and Item 2, but deletes them by attempting to use them
 -Now correctly drops a Copywep class upgrade on death
 -Kit reshuffled and revamped
 -MAINFIRE: EYE BEAM
