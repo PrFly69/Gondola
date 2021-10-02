@@ -50,7 +50,7 @@ color 1.0 1.0 1.0
 size 75
 }
 
-object Brightman {frame BRIG {light BRIGHTMAINSGLOWINTHEDARK}}
+//object BrightLightWarper {frame TNT1 {light BRIGHTMAINSGLOWINTHEDARK}}
 object BrightBulb1 {frame FSTB {light BRIGHTMAINSGLOWINTHEDARK}}
 
 pointlight BRIGHTMAINSGLOWEVENBRIGHTERINTHEDARK
@@ -73,3 +73,14 @@ object BossGeminiLaserFX2 {frame GEMB {light GerminiLight}}
 object BossGeminiLaserFX3 {frame GEMB {light GerminiLight}}
 object BossGeminiLaserFX4 {frame GEMB {light GerminiLight}}
 object BossGeminiLaserFX5 {frame GEMB {light GerminiLight}}
+
+pointlight ElecLight
+{
+color 1.0 1.0 0.2
+size 35
+}
+
+object ThunderManBeam {frame ELEB {light ElecLight}}
+object ElecBarrierProjTrail1 {frame ELEB {light ElecLight}}
+object ElecBarrierProjTrail2 {frame ELEB {light ElecLight}}
+object ElecBarrierProjTrail3 {frame ELEB {light ElecLight}}

@@ -449,7 +449,7 @@ IsSelected QuickBoomerangBoss{Drawbar"BARAMM11","BAREMPTY",Ammo1,vertical,16,8;
 IsSelected CrashBombBoss{Drawbar"BARAMM12","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected TimeStopperBoss{Drawbar"BARAMMO7","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"BARAMMO1","BAREMPTY",Ammo2,vertical,8,8;
-	DrawImage"FLASHICN",32,55;}
+	DrawImage"FLSHICON",32,55;}
 IsSelected AtomicDashBoss,AtomicFireBoss{Drawbar"BARAMM13","HEATEMPT",HeatmanDashFlag,vertical,16,8;
 						  DrawImage"HETRICON",32,55;
 	InInventory HeatmanDashFlag,200{DrawImage"HeatIco5",16,64;}

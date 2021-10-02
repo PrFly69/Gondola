@@ -51,7 +51,7 @@ WINB A 1 A_Raise
 Loop
 
 Fire:
-WINB A 0 A_JumpIfInventory("WindClassAmmo",1,1)
+WINB A 0 A_JumpIfInventory("WindClassAmmo",4,1)
 goto NoAmmo2
 WINB A 0 A_JumpIfNoAmmo("NoAmmo")
 WINB A 0 A_TakeInventory("WindClassAmmo",4)

@@ -138,19 +138,19 @@ Ready:
 YD_H A 0 ACS_ExecuteAlways(998,0,DYE_YELLOWDEVIL)
 Ready1:
 YD_H A 0 A_JumpIfInventory("BearerFlag",1,"ReadyBearer")
-YD_H A 6 A_WeaponReady(WRF_ALLOWRELOAD)
+YD_H A 6 A_WeaponReady//(WRF_ALLOWRELOAD)
 YD_H A 0 A_GiveInventory("SpeedGearCharge",1)
 loop
 
 ReadyBearer:
 YD_H A 0 A_JumpIfInventory("BumoHeal",1,"Heal")
-YD_H A 6 A_WeaponReady(WRF_ALLOWRELOAD)
+YD_H A 6 A_WeaponReady//(WRF_ALLOWRELOAD)
 loop
 
 Heal:
 YD_H A 0 HealThing(5)
 YD_H A 0 A_TakeInventory("BumoHeal",1)
-YD_H A 10 A_WeaponReady(WRF_ALLOWRELOAD)
+YD_H A 10 A_WeaponReady//(WRF_ALLOWRELOAD)
 goto ReadyBearer
 
 Deselect:
@@ -176,25 +176,24 @@ Loop
 		Goto Fire2
 
 		Fire2:
-		YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,1)
+		//YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,1)
 		YD_H B 0 A_PlaySoundEx("misc/minilaser","weapon")
 		YD_H B 0 A_TakeInventory("BumoCharge", 50)
-		YD_H B 0 A_GiveInventory("NotABearMain_CI",1)
-		YD_H B 7 Offset(24,68)
+		YD_H B 0 A_GiveInventory("NotABearMainDOODOO_CI",1)
+		YD_H B 8 Offset(24,68)
 		YD_H B 1 Offset(20,62)
 		YD_H B 1 Offset(16,56)
 		YD_H B 1 Offset(12,50)
 		YD_H B 1 Offset(8,44)
 		YD_H B 1 Offset(4,38)
-		YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,0)
+		//YD_H B 0 ACS_NamedExecuteAlways("core_stopplayer",0,0,0)
 		goto Ready1
 
 		FireCharged:
 		YD_H B 1 Offset(36,86)
-		TNT1 A 1
-		YD_H B 0 A_TakeInventory("BumoEnd",3)
-		YD_H B 0 A_GiveInventory("YellowDevilRomanCancel")
-		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,0)
+		//YD_H B 0 A_TakeInventory("BumoEnd",3)
+		//YD_H B 0 A_GiveInventory("YellowDevilRomanCancel")
+		//YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,0)
 		YD_H B 0 A_GiveInventory("GuardDownFlag",1)
 		YD_H B 0 A_SpawnItemEx("MarkedForDeathHandler")
 		FireLoop:
@@ -202,8 +201,8 @@ Loop
 		YD_H B 0 A_PlaySoundEx("misc/minilaser","weapon")
 		YD_H B 0 A_TakeInventory("BumoCharge",10)
 		YD_H B 0 A_GiveInventory("NotABearMain_CI",1)
-		TNT1 A 6
-		YD_H B 0 A_JumpIfInventory("BumoEnd",3,"RomanCancel")
+		YD_H B 6 Offset(36,86)
+		//YD_H B 0 A_JumpIfInventory("BumoEnd",3,"RomanCancel")
 		YD_H B 0 A_JumpIfInventory("BumoCharge",10,"FireLoop")
 		goto FireEnd
 
@@ -211,34 +210,37 @@ Loop
 		YD_H B 0 A_PlaySoundEx("item/1up","Voice")
 		YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
 		YD_H B 6
-		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
+		//YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
 		Goto Ready1
 
 		FireEnd:
-		YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
+		//YD_H B 0 A_TakeInventory("YellowDevilRomanCancel",1)
 		YD_H B 1 Offset(20,62)
 		YD_H B 1 Offset(16,56)
 		YD_H B 1 Offset(12,50)
 		YD_H B 1 Offset(8,44)
 		YD_H B 1 Offset(4,38)
-		YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
+		//YD_H B 0 ACS_NamedExecuteAlways("CCBM_YellowGravity",0,1)
 		goto Ready1
 
 Altfire:
 YD_H C 0
 YD_H A 1 Offset(8,26)
-YD_H C 1 Offset(8,26)
-YD_H C 1 Offset(20,16)
-YD_H C 1 Offset(30,6)
+YD_H E 1 Offset(8,26)
+YD_H E 1 Offset(20,16)
+YD_H E 1 Offset(28,8)
 YD_H C 0 A_Refire("AltfireCharge")
 Altfire2:
 YD_H C 0 A_TakeInventory("BumoCharge", 50)
 YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
-YD_H C 0 A_GiveInventory("WildBearMain_CI",1)
-YD_H D 2 Offset(20,8)
-YD_H E 1 Offset(12,17)
-YD_H E 1 Offset(2,27)
-YD_H E 13 Offset(-10,37)
+YD_H C 0 A_GiveInventory("WildBearMainA_CI",1)
+YD_H C 0 A_GiveInventory("WildBearMainB_CI",1)
+YD_H C 0 A_GiveInventory("WildBearMainC_CI",1)
+YD_H C 1 Offset(40,0)
+YD_H A 1 Offset(50,-8)
+TNT1 A 2 Offset(20,8)
+TNT1 A 2 Offset(20,8)
+YD_H A 15 Offset(-8,36)
 YD_H A 1 Offset(-8,36)
 YD_H A 1 Offset(-6,35)
 YD_H A 1 Offset(-4,34)
@@ -247,15 +249,15 @@ Goto Ready1
 
 AltfireCharge:
 YD_H C 0 A_JumpIfInventory("BumoCharge",50,"AltfireCharged")
-YD_H C 2 Offset(30,6) A_GiveInventory("BumoCharge")
+YD_H E 2 Offset(28,8) A_GiveInventory("BumoCharge")
 YD_H C 0 A_Refire("AltfireCharge")
 Goto Altfire2
 
 AltfireCharged:
-YD_H C 0 A_PlaySoundEx("misc/electrap","weapon")
-YD_H C 2 Offset(30,6) 
-YD_H C 2 Offset(28,8)
-YD_H C 1 A_Refire("AltfireCharged")
+YD_H C 0 A_PlaySoundEx("weapon/bumobrr","weapon")
+YD_H E 2 Offset(30,6) 
+YD_H E 2 Offset(28,8)
+YD_H E 1 A_Refire("AltfireCharged")
 YD_H C 0 A_TakeInventory("BumoCharge", 50)
 YD_H C 0 A_TakeInventory("BumoEnd",3)
 YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
@@ -265,12 +267,12 @@ YD_H C 0 A_ChangeFlag("SOLID",0)
 YD_H C 0 A_TakeInventory("UnSolid",1)
 YD_H C 0 A_Changeflag("PICKUP",0)
 YD_H C 0 A_ChangeFlag("INVISIBLE",1)
-YD_H D 2 Offset(20,8)
+YD_H E 2 Offset(20,8)
 YD_H C 0 A_JumpIfInventory("BearerFlag",1,"AltfireLoop")
 goto AltfireLoopNonBearer
 
 AltfireLoopNonBearer:
-YD_H C 0 A_GiveInventory("YellowDevilRomanCancel",1)
+//YD_H C 0 A_GiveInventory("YellowDevilRomanCancel",1)
 YD_H E 0 A_GiveInventory("GuardDownFlag",1)
 YD_H E 0 A_SpawnItemEx("MarkedForDeathHandler")
 AltfireLoopNonBearer2:
@@ -630,15 +632,15 @@ actor YD_BearerCube
 	damagetype "YellowDevilB"
 	-NOGRAVITY
 	+SKYEXPLODE
-	damage (15)
+	damage (10)
 	BounceType Doom
-	BounceCount 2
+	BounceCount 1
 	reactiontime 15
 	gravity .7
 	Radius 25
 	Height 40
 	speed 29
-	scale 2.5
+	scale 1.5
 	States
 	{
 		Spawn:
@@ -650,18 +652,15 @@ actor YD_BearerCube
 		Death:
 		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 		TNT1 A 1 A_Stop
-		TNT1 A 0 A_PlaySoundEx("wep/YD_Sploosh","Weapon")
+		TNT1 A 0 A_PlaySound("wep/YD_Sploosh","Weapon",0.35)
 		TNT1 A 0 A_CheckCeiling("DeathCeiling")
-		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,0,1)
-		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,90,1)
-		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,180,1)
-		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,270,1)
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",0,0,12,29,0,10,0,1)
 		stop
 		DeathCeiling:
-		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,-10,0,1)
-		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,-10,90,1)
-		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,-10,180,1)
-		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,-10,270,1)
+		TNT1 A 0 A_SpawnItemEx("YD_BearerCubeBit",0,0,12,29,0,-10,0,1)
+		stop
+		XDeath:
+		TNT1 A 0
 		stop
 	}
 }
@@ -673,7 +672,7 @@ actor YD_BearerCubeCharged : YD_BearerCube
 	+DONTREFLECT
 	+DONTSPLASH
 	damage (30)
-	BounceCount 1
+	scale 2.5
 	States
 	{
 		Spawn:
@@ -794,7 +793,27 @@ actor YD_EyeShot : FastProjectile
 	Obituary "$OB_BEARLASER"
 	radius 10
 	height 6
-	damage (10)
+	damage (8)
+	speed 60
+	scale 2.5
+	States
+	{
+		Spawn:
+		YD_H R 1
+		loop
+	}
+}
+
+actor YD_EyeShotDOODOO
+{
+	translation "198:198=176:176"
+	PROJECTILE
+	damagetype "YellowDevilL"
+	Obituary "$OB_BEARLASER"
+	-NOGRAVITY
+	radius 10
+	height 6
+	damage (8)
 	speed 60
 	scale 2.5
 	States
@@ -810,7 +829,12 @@ actor YD_EyeShotR : YD_EyeShot{translation "198:198=41:41"}
 actor YD_EyeShotO : YD_EyeShot{translation "198:198=128:128"}
 actor YD_EyeShotP : YD_EyeShot{translation "198:198=232:232"}
 
-actor WildBearMain_CI : TeamColor_CI
+actor YD_EyeShotDOODOOB : YD_EyeShotDOODOO{translation "198:198=74:74"}
+actor YD_EyeShotDOODOOR : YD_EyeShotDOODOO{translation "198:198=41:41"}
+actor YD_EyeShotDOODOOO : YD_EyeShotDOODOO{translation "198:198=128:128"}
+actor YD_EyeShotDOODOOP : YD_EyeShotDOODOO{translation "198:198=232:232"}
+
+actor WildBearMainA_CI : TeamColor_CI
 {
 states
 {
@@ -828,6 +852,60 @@ TNT1 A 0 A_FireCustomMissile("YD_BearerCubeO",0,0,8,0)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("YD_BearerCubeP",0,0,8,0)
+goto Done
+}
+}
+
+actor WildBearMainB_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCube",25,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCube",-25,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeB",25,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeB",-25,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeR",25,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeR",-25,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeO",25,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeO",-25,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeP",25,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeP",-25,0,8,0)
+goto Done
+}
+}
+
+actor WildBearMainC_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCube",50,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCube",-50,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeB",50,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeB",-50,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeR",50,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeR",-50,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeO",50,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeO",-50,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeP",50,0,8,0)
+TNT1 A 0 A_FireCustomMissile("YD_BearerCubeP",-50,0,8,0)
 goto Done
 }
 }
@@ -916,6 +994,28 @@ TNT1 A 0 A_FireCustomMissile("YD_EyeShotO",0,0,0,0,16)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("YD_EyeShotP",0,0,0,0,16)
+goto Done
+}
+}
+
+actor NotABearMainDOODOO_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShotDOODOO",0,0,0,0,16)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShotDOODOOB",0,0,0,0,16)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShotDOODOOR",0,0,0,0,16)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShotDOODOOO",0,0,0,0,16)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("YD_EyeShotDOODOOP",0,0,0,0,16)
 goto Done
 }
 }

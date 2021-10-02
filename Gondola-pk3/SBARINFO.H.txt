@@ -430,7 +430,7 @@ IsSelected QuickBoomerangBoss{Drawbar"VARAMM11","VAREMPTY",Ammo1,horizontal,58,1
 IsSelected CrashBombBoss{Drawbar"VARAMM12","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected TimeStopperBoss{Drawbar"VARAMMO7","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"VARAMMO1","VAREMPTY",Ammo2,horizontal,58,176;
-	DrawImage"FLASHICN",178,175;}
+	DrawImage"FLSHICON",178,175;}
 IsSelected AtomicDashBoss,AtomicFireBoss{Drawbar"VARAMM13","VEATEMPT",HeatmanDashFlag,horizontal,58,184;
 						  DrawImage"HETRICON",178,175;
 	InInventory HeatmanDashFlag,200{DrawImage"HeatIco5",50,184;}

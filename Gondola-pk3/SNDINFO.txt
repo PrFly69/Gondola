@@ -402,3 +402,6 @@ Bee/Charge BEECHRG
 $volume Bee/Homing 1          
 $limit Bee/Homing 1 500       //anti earrape stuffs
 $rolloff Bee/Homing 300 1200 
+
+//BumoBumo
+weapon/bumobrr BUMOCHRG

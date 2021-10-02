@@ -1086,8 +1086,7 @@ damage (8)
 Radius 16//42
 Height 32//56
 Speed 35
-XScale 1.5
-YScale 1.0
+Scale 2.5
 States
 {
 Spawn:
@@ -1110,8 +1109,7 @@ actor TheKingXAttackFX1 : BasicClientSide
 renderstyle add
 alpha 1.0
 +BRIGHT
-XScale 1.5
-YScale 1.0
+Scale 2.5
 States
 {
 Spawn:

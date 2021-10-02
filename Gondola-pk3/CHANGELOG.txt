@@ -1300,6 +1300,7 @@ CHANGELOG
 
 ==Metalman (as of gond beta 7)
 -Item gliding method made to be less jittery
+-Ported jumping/jumpfiring frames from V-Classes
 
 ==Airman
 -Air Shooter now consumes 2 ammo
@@ -1630,7 +1631,7 @@ CHANGELOG
 
 ==King
 -Ported from UEC
--Altfire reverted back to 2.0h
+-Both altfires reverted back to 2.0h
 
 ==Concreteman
 -Ported Concrete Block fixes from UEC (prevents being stuck in blocks)
@@ -1706,6 +1707,8 @@ CHANGELOG
 
 ==Strikeman
 -Ported V6 skin (as of gond beta 7)
+-Ported from UEC
+--Damage values on Rebound Striker unchanged from Gondola
 
 ==Nitroman
 -HP 85 > 75 (as of gond beta 7)
@@ -1763,6 +1766,8 @@ CHANGELOG
 -Removed all ACS delays
 -Quazar Blast no longer uses Proto Buster HUD
 -All skinsounds ported from vanilla
+-Rings now use full rotations
+--Removed FX on White Hole Ring
 
 ==Uranus
 -All skinsounds ported from vanilla
@@ -1798,6 +1803,7 @@ CHANGELOG
 --Speed 43 > 42 to readjust range
 --Fixed Saturn sucking up gas
 -FriendBarrier regens 50% faster
+--Barrier Spawner FX has +DONTSPLASH
 -Gaining gear ammo now has a 'rattling gears' noise
 -New Reload Acid Barrier sound from V-Classes (as of gond beta 7)
 -Added Acid Barrier copywep (WIP)
