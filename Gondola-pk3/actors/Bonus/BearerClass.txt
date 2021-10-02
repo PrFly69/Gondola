@@ -170,9 +170,9 @@ Loop
 		goto Fire2
 
 		FireCharge:
-		YD_H B 0 A_JumpIfInventory("BumoCharge",50,"FireCharged")
 		YD_H B 2 Offset(24,68) A_GiveInventory("BumoCharge")
 		YD_H B 0 A_Refire("FireCharge")
+		YD_H B 0 A_JumpIfInventory("BumoCharge",50,"FireCharged")
 		Goto Fire2
 
 		Fire2:
