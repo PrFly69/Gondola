@@ -1279,20 +1279,17 @@ CHANGELOG
 -Ported sliding skinsprites from classes-v9fh.pk3
 
 ==Yellow Devil
--Imported from ctfpatch v04
--When chosen as a player class, Yellow Devil takes 35% more damage for the duration of One-Eyed Cube and for two seconds after, rather than losing health during the throw.
-(As of gond beta 7:) //I'm fully aware that this is way wordier than it needs to be.
+-Modified from ctfpatch v04
+(As of gond beta 7:)
 -Now correctly drops a Copywep class upgrade on death
--Speed Gear meter added: fills 1 ammo every six tics, up to a maximum of 56 in 10~ seconds (Playerclass only)
--Perfect Cube damage 25 -> 15; now bounces off of surfaces once. One Eyed Cube damage 35 -> 30. Vertical heights doubled. Both now drop spheres upon hitting ceilings.
--NEW WEAPON: EYE BEAM (Playerclass only)
---Mainfire for a decent-speed eye beam that briefly halts your movement
---Charge for a rapid-fire burst of eye beams that grants halved gravity
---35% more damage taken while in Eye Beam Burst and for two seconds after, like One-Eyed Cube
---Shares Altfire with weapon 1
--NEW ITEM: SPEED CANCEL (Playerclass only)
---While using either charged mainfire, Yellow Devil can use item to instantly reset to his normal state, at the cost of half a bar of Speed Gear
---Doing so with One-Eyed Cube retains its damage while giving it Perfect Cube's bounce
+-Kit reshuffled and revamped
+-MAINFIRE: EYE BEAM
+--Eye Beam shot with slight gravity
+--Charge for a rapid-fire burst of eye beams
+-ALTFIRE: CUBE SPREAD
+--Spread of 5 Perfect Cubes that each drop one Perfect Sphere on death
+--High up close damage
+--Charge for the original One-Eyed Cube - 1.35x damage vuln during and for 2 seconds after
 -Fixed bug where Yellow Devil could throw One-Eyed Cube and fail to be pulled due to falling at terminal velocity
 -Fixed bug where Yellow Devil could appear in his walking sprite while in a One-Eyed Cube
 -Fixed bug where Yellow Devil's projectiles were all immune to Saturn's projectile suck
@@ -1461,7 +1458,8 @@ CHANGELOG
 -Ported UEC changes
 
 ==Stoneman
--Ported Fakeout Core reload from UEC
+-Ported Fakeout Core from UEC
+-Ported HUDs from V-Classes
 
 ==Gyroman (as of gond beta 7)
 -Skin ported from V-Classes, include flying and firing (midflight) sprites
@@ -1544,6 +1542,7 @@ CHANGELOG
 -Yamato Spear startup removed (as of gond beta 7)
 -Reload passive ammo gain doubled
 --Reload leap forwards thrust 25 > 45
+-Ported HUDs from V-Classes
 
 ==Junkman
 -Teamcolors edited 94/4 > 3/91 (as of gond beta 7)
