@@ -889,7 +889,7 @@ Pain.ProtoBuster2:Pain.ProtoBuster3:Pain.MegaBuster3:Pain.SuperAdaptor:Pain.Arro
 Pain.MegaCutBall:Pain.MegaGutsBall:/*Pain.MegaIceBall:*/Pain.MegaBombBall:Pain.MegaFireBall:Pain.MegaElecBall:/*Pain.MegaTimeBall:*/Pain.MegaOilBall:
 Pain.RollingCutter:Pain.SuperArm:Pain.IceSlasher:Pain.HyperBomb:Pain.FireStorm:Pain.ThunderBeam:/*Pain.OilSlider:*/Pain.OilFlame:
 Pain.MetalBlade:Pain.AirShooter:Pain.BubbleLead:Pain.AtomicFire1:Pain.AtomicFire2:/*Pain.AtomicFire3:*/Pain.LeafShield:
-Pain.GeminiLaser:Pain.HardKnuckle:Pain.TopSpin:Pain.SearchSnake:Pain.ShadowBlade:Pain.NeedleCannon:
+Pain.GeminiLaser:Pain.TopSpin:Pain.SearchSnake:Pain.ShadowBlade:Pain.NeedleCannon:
 Pain.RainFlush:Pain.DrillBomb:Pain.PharaohShot1:Pain.PharaohShot2:Pain.PharaohShot3:Pain.RingBoomerang:Pain.DustCrusher:Pain.DustCrusherBit:Pain.SkullBarrier:
 Pain.WaterWave:Pain.PowerStone:Pain.GyroAttack:Pain.NapalmBomb:Pain.CrystalEye:Pain.CrystalEyeBit:Pain.DarkShot:Pain.DarkRail:
 Pain.BlizzardAttack:Pain.FlameBlast:Pain.KnightCrush:Pain.SilverTomahawk:Pain.PlantBarrier:
