@@ -779,7 +779,7 @@ OptionValue ChangeLogIndex_99 {0,""}
 OptionValue ChangeLogIndex_100 {0,"\cq==Oilman "}
 OptionValue ChangeLogIndex_101 {0,"--Ported sliding skinsprites from classes-v9fh.pk3 "}
 OptionValue ChangeLogIndex_102 {0,""}
-OptionValue ChangeLogIndex_103 {0,"\cq==Yellow Devil "}
+OptionValue ChangeLogIndex_103 {0,"\cq==Yellow Devil \cv(NEW!)"}
 OptionValue ChangeLogIndex_104 {0,"Made by Greg.EXE and Nightfly "}
 OptionValue ChangeLogIndex_105 {0,""}
 OptionValue ChangeLogIndex_106 {0,"\cq==Metalman "}
@@ -1288,7 +1288,7 @@ OptionValue ChangeLogIndex_608 {0,"\cq==Neptune "}
 OptionValue ChangeLogIndex_609 {0,"--Salty mode gives 1.25x damage vulnerability "}
 OptionValue ChangeLogIndex_610 {0,"--Salt Water split now uses V6 effects "}
 OptionValue ChangeLogIndex_611 {0,""}
-OptionValue ChangeLogIndex_612 {0,"\cq==Sunstar "}
+OptionValue ChangeLogIndex_612 {0,"\cq==Sunstar \cv(NEW!)"}
 OptionValue ChangeLogIndex_613 {0,"--Imported from UEC "}
 OptionValue ChangeLogIndex_614 {0,"-All skinsounds ported from vanilla "}
 OptionValue ChangeLogIndex_615 {0,"-Uses Pegg's skin; Redflash skin is an alt "}
@@ -1310,7 +1310,7 @@ OptionValue ChangeLogIndex_631 {0,"--Gaining gear ammo now has gear SFX "}
 OptionValue ChangeLogIndex_632 {0,"--New Reload Acid Barrier sound from V-Classes "}
 OptionValue ChangeLogIndex_633 {0,"--Added Acid Barrier copywep "}
 OptionValue ChangeLogIndex_634 {0,""}
-OptionValue ChangeLogIndex_635 {0,"\cq==Blastman "}
+OptionValue ChangeLogIndex_635 {0,"\cq==Blastman \cv(NEW!)"}
 OptionValue ChangeLogIndex_636 {0,"--Imported from UEC "}
 OptionValue ChangeLogIndex_637 {0,"-Blast Spread and Power Gear Blast Bomb take ammo "}
 OptionValue ChangeLogIndex_638 {0,"-Power Gear Blast Bomb properly colored "}
