@@ -12,8 +12,8 @@ weapon.ammotype "ThunderClawAmmo"
 inventory.icon "TCLAWI"
 States
 {
-Spawn:
-WEA4 G 1 
+SpawnLoop:
+WEA4 G -1 
 loop
 Ready:
 TCLD D 0 ACS_ExecuteAlways(998,0,83)

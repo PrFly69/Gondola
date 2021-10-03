@@ -12,8 +12,8 @@ weapon.ammotype "TimeSlowAmmo"
 Inventory.Icon "TIMMI2"
 States
 {
-Spawn:
-SLOT X 1
+SpawnLoop:
+SLOT X -1
 loop
 Ready:
 TSLO A 0 ACS_ExecuteAlways (998,0,96)
