@@ -1181,10 +1181,10 @@ CHANGELOG
 -All new V6 portraits properly ported
 -Ported JidiJMidiJDongleBongleAntiMidiJidi3DFloorCheat.pk3
 --Removes the ability to see through 3D floors using 'R_3DFLOORS 0' in software mode
--Removed BEBE (as of gond beta 7)
+-Removed BEBE 
 -Pain FX ported from chasecamonlyhitfx.pk3
--All MM9 and MM10 classes have MM9PAIN from V-Classes (as of gond beta 7)
--Updated color ACS for Mercury, Mars, Jupiter, Saturn, Pluto, and Neptune based on v6 colors (as of gond beta 7)
+-All MM9 and MM10 classes have MM9PAIN from V-Classes 
+-Updated color ACS for Mercury, Mars, Jupiter, Saturn, Pluto, and Neptune based on v6 colors 
 
 ==Copyweapons
 -Reverted Thunder Wool to CCBM version
@@ -1209,7 +1209,7 @@ CHANGELOG
 *Bulk as the price for damage - a small price to pay for salvation.
 
 ==Protoman
--Updated to V6 skin (as of gond beta 7)
+-Updated to V6 skin 
 --Ported shieldless skinsprites from classes-v9fh.pk3
 -Uncharged/midcharge buster impact VFX added
 
@@ -1238,9 +1238,9 @@ CHANGELOG
 
 ==Maestro
 -Fixed Woodcustom Altfire crashing when plug boosted
--In team gamemodes where weapon color translations are usually unseeable, switching to a style displays that style's icon over your head (as of gond beta 7)
+-In team gamemodes where weapon color translations are usually unseeable, switching to a style displays that style's icon over your head 
 
-==Roll (as of gond beta 7)
+==Roll 
 -Bucket shot speed 32 > 40
 -Puddle damage after being swept 30 > 15
 -Healing no longer halts the user
@@ -1251,7 +1251,7 @@ CHANGELOG
 ==Sniper Joe
 -New HUDs by Heelnavi to closer match design
 
-==Cutman (as of gond beta 7)
+==Cutman 
 -Damage fixes from UEC unimported; restored to 2.0h Cutman
 
 ==Gutsman
@@ -1270,12 +1270,12 @@ CHANGELOG
 --Fire Ring now uses renderstyle add
 
 ==Elecman
--Thunder Beam uses sprite FX from V-Classes (as of gond beta 7)
+-Thunder Beam uses sprite FX from V-Classes 
 
 ==Timeman
 -Time Slow damage 14 > 10
 
-==Oilman (as of gond beta 7)
+==Oilman 
 -Ported sliding skinsprites from classes-v9fh.pk3
 
 ==Yellow Devil
@@ -1296,7 +1296,7 @@ CHANGELOG
 -Fixed bug where Yellow Devil's projectiles were all immune to Saturn's projectile suck
 -Fixed bug where Perfect Cube/One-Eyed Cube could be indefinitely stuck in the pits of certain maps, lagging servers
 
-==Metalman (as of gond beta 7)
+==Metalman 
 -Item gliding method made to be less jittery
 -Ported jumping/jumpfiring frames from V-Classes
 
@@ -1306,7 +1306,7 @@ CHANGELOG
 -Ported tighter Air Wall spread from UEC
 
 ==Quickman
--Jumping frames added (as of gond beta 7)
+-Jumping frames added 
 -Quick Boomerang mainfire SFX added
 -Quick Boomerang impact VFX added
 
@@ -1348,10 +1348,10 @@ CHANGELOG
 ==Magnetman
 -Reworked by NightFly (with assets from Greg.EXE and Trillster)
 -Mainfire homing reworked, now has 2 tics of delay before doing a singular fast redirect (5 > 2 tics as of gond beta 7)
--Base damage 15 > 14, scaled damage now correctly capped at 30 rather than unbounded (as of gond beta 7)
--Speed after redirect 150% > 125% (as of gond beta 7)
+-Base damage 15 > 14, scaled damage now correctly capped at 30 rather than unbounded 
+-Speed after redirect 150% > 125% 
 -Redirect maxangleturning precision increases as Magnet Missile is held (fixed as of gond beta 7)
--No longer homes/scales if tapped/released within 9 tics (as of gond beta 7)
+-No longer homes/scales if tapped/released within 9 tics 
 -NEW ALTFIRE: MAG FLY
 --Can be placed in the air and increases allied players' jumpheight who are underneath it
 --Pressing altfire again switches Mag Fly's polarity, crushing enemies into the ground
@@ -1400,7 +1400,7 @@ CHANGELOG
 -Base Shadow Blade damage 15 > 20
 -Fixed infinite invis glitch
 
-==Doc Robot (as of gond beta 7)
+==Doc Robot 
 -Reworked by NightFly
 -Now has four weapons, each corresponding two a combination of two MM2 Robot Masters:
 --WoodHeat
@@ -1457,12 +1457,13 @@ CHANGELOG
 ==Crystalman
 -Removed ACS delay
 -Ported UEC changes
+-Ported V-Classes skin
 
 ==Stoneman
 -Ported Fakeout Core from UEC
 -Ported HUDs from V-Classes
 
-==Gyroman (as of gond beta 7)
+==Gyroman 
 -Skin ported from V-Classes, include flying and firing (midflight) sprites
 
 ==Starman
@@ -1470,15 +1471,15 @@ CHANGELOG
 -Star Flurry ammo consumption 7 > 14
 
 ==Chargeman
--Mainfire max ammo count 75 > 80 (as of gond beta 7)
---Ammo consumption 3 > 4 (as of gond beta 7)
+-Mainfire max ammo count 75 > 80 
+--Ammo consumption 3 > 4 
 -Changes ported from UEC
 --Charge Tackle speed 60 > 80
 ---Charge Tackle duration 3 tics > 2 tics
 --Readded Charge Parry on altfire
--Coal Shot ammo consumption is split from mainfire (as of gond beta 7)
---Now has second bar w/ 3 uses, looks cool :D (as of gond beta 7)
---Using mainfire halts altfire regen (as of gond beta 7)
+-Coal Shot ammo consumption is split from mainfire 
+--Now has second bar w/ 3 uses, looks cool :D 
+--Using mainfire halts altfire regen 
 
 ==Darkman1
 -M1 no longer explodes; damage added to main projectile
@@ -1488,7 +1489,7 @@ CHANGELOG
 **(beats me lol)
 
 ==Darkman2
--Firing frames ported from vanilla (as of gond beta 7)
+-Firing frames ported from vanilla 
 -Charging mainfire has new SFX
 -Level 1 shot spread deviation 0, 15, 30 --> 0, 10, 20
 --Releasing mainfire has 4 less tics of startlag, now have 4 more tics of endlag
@@ -1510,9 +1511,9 @@ CHANGELOG
 -Ammo regen rate 1 per 2 tics > 1 per 5 tics
 
 ==Blizzardman
--Weapon tag updated and inventory icon removed (as of gond beta 7)
+-Weapon tag updated and inventory icon removed 
 -Rapid Blizzard shots now weave
--Blizzard Bowl turning before moving removed (as of gond beta 7)
+-Blizzard Bowl turning before moving removed 
 
 ==Knightman
 -Imported ECL1P5E Patch, following are edits made to EC Patch base (damage reverted as of gond beta 7)
@@ -1521,34 +1522,34 @@ CHANGELOG
 --Returning Knight Crush has 9 damage flat on return
 --No longer bounces on surfaces
 -Mace Spin now has medium knockback (doubled as of gond beta 7)
---Mace Spin damage 1 > 12, powerprotected for 5 tics (as of gond beta 7)
---Can now be held indefinitely (as of gond beta 7)
+--Mace Spin damage 1 > 12, powerprotected for 5 tics 
+--Can now be held indefinitely 
 -Empowered Knight Crush reworked, now is Ult. Knight Crush from V-Classes
 --Can not be redirected like its uncharged counterpart
 --Does 27 damage, has knockback and knockup on hit (damage buffed and explosion removed as of gond beta 7)
---No longer has range limit, now acts like a standard projectile with gravity and returns on hitting a surface/player (as of gond beta 7)
---Ball is destroyed on hit and no longer returns with the chain (as of gond beta 7)
+--No longer has range limit, now acts like a standard projectile with gravity and returns on hitting a surface/player 
+--Ball is destroyed on hit and no longer returns with the chain 
 -Shield offsets cleaned up
 
 ==Plantman
 -Plant Buster has new SFX
 
-==Windman (as of gond beta 7)
+==Windman 
 -Walking sprites ported from V-Classes
 -Wind Storm has new SFX on launch
 
 ==Yamatoman
 -Ported HUD Cutoff fix from LemonLimeBrony
 -Ported new firing frames from UEC
--Yamato Spear startup removed (as of gond beta 7)
+-Yamato Spear startup removed 
 -Reload passive ammo gain doubled
 --Reload leap forwards thrust 25 > 45
 -Ported HUDs from V-Classes
 
 ==Junkman
--Teamcolors edited 94/4 > 3/91 (as of gond beta 7)
+-Teamcolors edited 94/4 > 3/91 
 -New SBAR, reflects new teamcolors
--Junk Cube ammo consumption 300 > 200 (as of gond beta 7)
+-Junk Cube ammo consumption 300 > 200 
 --Junk Cube can now be redirected multiple times until either hit with a fully charged punch or until it passively despawns
 --If hit with fully charged Junk Punch, will become fast
 --Junk Cube now takes twice as long to passively despawn
@@ -1559,7 +1560,7 @@ CHANGELOG
 --Fully charged Junk Shot damage is still 20, projectile now has FX
 --Junk Shot can be fired while near a cube
 
-==Burstman (as of gond beta 7)
+==Burstman 
 -Dropped bomb damage 22 > 10
 --Dropped bomb explosion radius 128 > 96
 
@@ -1567,7 +1568,8 @@ CHANGELOG
 -Recharge FX and Thunder Bolt sprites ported from classes-v9fh.pk3
 
 ==Springman
--JC Spring Punch animation imported (as of gond beta 7)
+-JC Spring Punch animation imported 
+-Walking animation a few tics faster
 
 ==Slashman
 -Reverted to CCBM 2.0H
@@ -1576,20 +1578,20 @@ CHANGELOG
 -Noise Crush is now green
 --Fully charged Noise Crush has impact VFX
 
-==Turboman (as of gond beta 7)
+==Turboman 
 -Scorch Wheel sprite ported from V-Classes
 --Now has dynamic lighting <:)
 -Driving mode delay now indicated on HUD
 
 ==Tenguman
--8FC Skin slightly edited, legs are white (as of gond beta 7)
---Swapped firing frames for Redflash Skin (as of gond beta 7)
--Teamcolors edited 42/4 > 228/227 (as of gond beta 7)
+-8FC Skin slightly edited, legs are white 
+--Swapped firing frames for Redflash Skin 
+-Teamcolors edited 42/4 > 228/227 
 -HP 90 > 100
--Tengu Dash frames reverted to CCBM 1.95h (as of gond beta 7)
+-Tengu Dash frames reverted to CCBM 1.95h 
 -Tornado Hold now on separate bar, has five uses per clip
 --Tornado Hold Bar stops regening in midair
---Fixed Tornado Hold taking no ammo when fired directly down (as of gond beta 7)
+--Fixed Tornado Hold taking no ammo when fired directly down 
 
 ==Astroman
 -Walking animation 2 tics faster
@@ -1622,7 +1624,7 @@ CHANGELOG
 
 ==Coldman
 -Fixed Cold Field not dunking properly
--Cold Field skinsprites ported from V-Classes (as of gond beta 7)
+-Cold Field skinsprites ported from V-Classes 
 (double ammo gain removed as of gond beta 7)
 
 ==King
@@ -1637,11 +1639,11 @@ CHANGELOG
 -Ported from UEC
 
 ==Plugman
--Now has jumpframes (as of gond beta 7)
+-Now has jumpframes 
 -Base speed 0.75/0.73 > 0.8/0.78
 -Altfire plug range increased (lasts for 3 more tics) (buff toned down as of gond beta 7)
--Plug will now disconnect if line of sight is broken, e.g. by a wall (as of gond beta 7)
---Plugging allies gives the ally 1.25x speed and the user 1.35x speed (as of gond beta 7)
+-Plug will now disconnect if line of sight is broken, e.g. by a wall 
+--Plugging allies gives the ally 1.25x speed and the user 1.35x speed 
 
 ==Hornetman
 -Imported HUD from UEC
@@ -1666,7 +1668,7 @@ CHANGELOG
 --Redirect now does small dmg on poke
 --Honey slow debuff visual effects tweaks
 
-==Fakeman (as of gond beta 7)
+==Fakeman 
 -Buffer timer duration 8 tics > 20 tics
 --HUD now has indicator to show if buffer is active)
 -Weak shot damage 12 > 10
@@ -1694,23 +1696,23 @@ CHANGELOG
 -Both weapons have the same ammo regen and ammo consumption
 --Commando Mines have 6 tics of delay after firing
 --Delay on Commando Bomb reduced 18 tics > 12 tics
--Reverted altfire wave duration buff (as of gond beta 7)
+-Reverted altfire wave duration buff 
 
 ==Chillman
--Now has funky (crappy) new death animation and updated weaknesses (as of gond beta 7)
+-Now has funky (crappy) new death animation and updated weaknesses 
 -Fixed Chill Spike being usable with insufficient ammo
 
 ==Sheepman
 -Ported V6 skin
 
 ==Strikeman
--Ported V6 skin (as of gond beta 7)
+-Ported V6 skin 
 -Ported from UEC
 --Damage values on Rebound Striker unchanged from Gondola
 
 ==Nitroman
--HP 85 > 75 (as of gond beta 7)
--New item icon added (as of gond beta 7)
+-HP 85 > 75 
+-New item icon added 
 -Now starts in superbike mode
 -Unsuperbiked wheel spam attack RoF buffed
 --Unsuperbiked wheel spam attack damage 13 > 8
@@ -1722,8 +1724,8 @@ CHANGELOG
 -Sun above player now makes a sound on spawning (whether it be on player spawning or if player uses reload)
 --Sun drops and explodes upon the player dying
 -Added new mini sun deathsprites
--Solar Launcher no longer fires straight down when jumping (as of gond beta 7)
---Solar Launcher no longer bounces on ceilings (as of gond beta 7)
+-Solar Launcher no longer fires straight down when jumping 
+--Solar Launcher no longer bounces on ceilings 
 --Solar Launcher explosive damage 15 > 10
 --Solar Launcher now spawns six 2 damage ripper Solar Waves
 -=Miniature Solar Launcher damage 15 > 10
@@ -1732,10 +1734,10 @@ CHANGELOG
 --Fat Old Sun bouncecount 10 > 3
 --Fat Old Sun direct damage 15 > 10
 --Fat Old Sun explosive damage 25 > 20
---Solar Mortar now takes 1 tic before firing waves (to prevent shotgunning) (as of gond beta 7)
+--Solar Mortar now takes 1 tic before firing waves (to prevent shotgunning) 
 --Ripper powerprotect duration 1 > 5 (2 > 5 as of gond beta 7)
---Removed bouncing on Fat Old Sun (as of gond beta 7)
--Head Sun on death damage 25/20/15 > 15/10/5 (as of gond beta 7)
+--Removed bouncing on Fat Old Sun 
+-Head Sun on death damage 25/20/15 > 15/10/5 
 
 ==Terra
 -Fixed TerraSparkChaser overwriting the campaign boss attack
@@ -1746,7 +1748,7 @@ CHANGELOG
 -Removed all ACS delays on Spark Chaser
 -=Spark Chaser now blinks
 --Spark Chaser can be moved around twice as long before automatically going off
--New Spark Chaser activation/hit sound, edited from V-Classes (as of gond beta 7)
+-New Spark Chaser activation/hit sound, edited from V-Classes 
 
 ==Mercury
 -Ported V6 skin + extra skinsprites from classes-v9fh.pk3
@@ -1769,7 +1771,7 @@ CHANGELOG
 
 ==Uranus
 -All skinsounds ported from vanilla
--Uranus drops Deep Digger copy weapon now (as of gond beta 7)
+-Uranus drops Deep Digger copy weapon now 
 -Deep Digger sprite ported from vanilla (teamcolored unlike the copyweapon, of course. Done as of gond beta 7)
 
 ==Pluto
@@ -1803,13 +1805,13 @@ CHANGELOG
 -FriendBarrier regens 50% faster
 --Barrier Spawner FX has +DONTSPLASH
 -Gaining gear ammo now has a 'rattling gears' noise
--New Reload Acid Barrier sound from V-Classes (as of gond beta 7)
+-New Reload Acid Barrier sound from V-Classes 
 -Added Acid Barrier copywep (WIP)
 
 ==Blastman
 -Imported from UEC
 --Blast Spread and Power Gear Blast Bomb now take ammo
---Power Gear Blast Bomb are properly colored (as of gond beta 7)
+--Power Gear Blast Bomb are properly colored 
 -Added Chain Blast copywep (WIP)
 
 ==Mega Water S
@@ -1827,14 +1829,14 @@ CHANGELOG
 --Tackle maxdamageradius user_P*0.25+32 > 48
 (UEC suck/blow stamina implementation removed as of gond beta 7)
 
-==Punk (as of gond beta 7)
+==Punk 
 -Weapon slots change 0 and 1 > 1 and 2 
 -Added jump sprites
 
 ==Ballade
 -Removed ACS delay on speed updating
--Added jump sprites (as of gond beta 7)
+-Added jump sprites 
 
-==Ra Thor (as of gond beta 7)
+==Ra Thor 
 -Added jump sprites
 -Movespeed 0.89/0.87 > 0.84/0.82
