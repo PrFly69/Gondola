@@ -346,7 +346,7 @@ actor FlashBulletP : FlashBullet{translation "204:204=229:229"}
 actor FlashStunner
 {
 translation "202:202=215:215", "199:199=229:229"
-Obituary "$OB_TIMEBENDER"//"$OB_FLASHMAN2"
+Obituary "$OB_TIMESTUNNER"//"$OB_FLASHMAN2"
 PROJECTILE
 +SKYEXPLODE
 -DONTBLAST
