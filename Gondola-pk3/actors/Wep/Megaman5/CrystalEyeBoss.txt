@@ -102,97 +102,97 @@ CRYA D 0 A_Refire("FireH")
 goto FireEnd
 
 FireH:
-CRYC A 1
-CRYC A 0 A_Refire("FireH.a")
+CRY_ A 1
+CRY_ A 0 A_Refire("FireH.a")
 goto FireEnd
 FireH.a:
-CRYC A 1 A_GiveInventory("CrystalEyeCharge_RC",1)
-CRYC A 0 A_Refire("FireH.b")
+CRY_ A 1 A_GiveInventory("CrystalEyeCharge_RC",1)
+CRY_ A 0 A_Refire("FireH.b")
 goto FireEnd
 FireH.b:
-CRYC B 1 
-CRYC B 0 A_Refire("FireH.c")
+CRY_ B 1 
+CRY_ B 0 A_Refire("FireH.c")
 goto FireEnd
 FireH.c:
-CRYC B 1 A_GiveInventory("CrystalEyeCharge_RC",1)
-CRYC B 0 A_Refire("FireH.d")
+CRY_ B 1 A_GiveInventory("CrystalEyeCharge_RC",1)
+CRY_ B 0 A_Refire("FireH.d")
 goto FireEnd
 FireH.d:
-CRYC C 1 
-CRYC C 0 A_Refire("FireH.e")
+CRY_ C 1 
+CRY_ C 0 A_Refire("FireH.e")
 goto FireEnd
 FireH.e:
-CRYC C 1 A_GiveInventory("CrystalEyeCharge_RC",1)
-CRYC C 0 A_Refire("FireH.f")
+CRY_ C 1 A_GiveInventory("CrystalEyeCharge_RC",1)
+CRY_ C 0 A_Refire("FireH.f")
 goto FireEnd
 FireH.f:
-CRYC D 1 
-CRYC D 0 A_Refire("FireH.g")
+CRY_ D 1 
+CRY_ D 0 A_Refire("FireH.g")
 goto FireEnd
 FireH.g:
-CRYC D 1 A_GiveInventory("CrystalEyeCharge_RC",1)
-CRYC D 0 A_Refire("FireH1")
+CRY_ D 1 A_GiveInventory("CrystalEyeCharge_RC",1)
+CRY_ D 0 A_Refire("FireH1")
 goto FireEnd
 
 FireH1:
-CRYC D 0 A_JumpIfInventory("CrystalEyeCharge",14,"FireH2")
-CRYC D 1
-CRYC D 0 A_Refire("FireH1.a")
+CRY_ D 0 A_JumpIfInventory("CrystalEyeCharge",14,"FireH2")
+CRY_ D 1
+CRY_ D 0 A_Refire("FireH1.a")
 goto FireEnd
 FireH1.a:
-CRYC D 1 A_GiveInventory("CrystalEyeCharge_RC",1)
-CRYC D 0 A_Refire("FireH1")
+CRY_ D 1 A_GiveInventory("CrystalEyeCharge_RC",1)
+CRY_ D 0 A_Refire("FireH1")
 goto FireEnd
 
 FireH2:
-CRYC D 0 A_PlaySoundEx("wep/CrysCharge1","Body")
+CRY_ D 0 A_PlaySoundEx("wep/CrysCharge1","Body")
 FireH2.a:
-CRYC E 0 A_JumpIfInventory("CrystalEyeCharge",28,"FireH3")
-CRYC E 1 A_WeaponReady(WRF_NOPRIMARY)
-CRYC E 0 A_Refire("FireH2.b")
+CRY_ E 0 A_JumpIfInventory("CrystalEyeCharge",28,"FireH3")
+CRY_ E 1 A_WeaponReady(WRF_NOPRIMARY)
+CRY_ E 0 A_Refire("FireH2.b")
 goto FireEnd
 FireH2.b:
-CRYC D 0 A_GiveInventory("CrystalEyeCharge_RC",1)
-CRYC D 1 A_WeaponReady(WRF_NOPRIMARY)
-CRYC D 0 A_Refire("FireH2.a")
+CRY_ D 0 A_GiveInventory("CrystalEyeCharge_RC",1)
+CRY_ D 1 A_WeaponReady(WRF_NOPRIMARY)
+CRY_ D 0 A_Refire("FireH2.a")
 goto FireEnd
 
 FireH3:
-CRYC D 0 A_PlaySoundEx("wep/CrysCharge2","Body")
+CRY_ D 0 A_PlaySoundEx("wep/CrysCharge2","Body")
 FireH3.a:
-CRYC F 0 A_JumpIfInventory("CrystalEyeCharge",42,"FireH4")
-CRYC F 1 A_WeaponReady(WRF_NOPRIMARY)
-CRYC F 0 A_Refire("FireH3.b")
+CRY_ F 0 A_JumpIfInventory("CrystalEyeCharge",42,"FireH4")
+CRY_ F 1 A_WeaponReady(WRF_NOPRIMARY)
+CRY_ F 0 A_Refire("FireH3.b")
 goto FireEnd
 FireH3.b:
-CRYC D 0 A_GiveInventory("CrystalEyeCharge_RC",1)
-CRYC D 1 A_WeaponReady(WRF_NOPRIMARY)
-CRYC D 0 A_Refire("FireH3.a")
+CRY_ D 0 A_GiveInventory("CrystalEyeCharge_RC",1)
+CRY_ D 1 A_WeaponReady(WRF_NOPRIMARY)
+CRY_ D 0 A_Refire("FireH3.a")
 goto FireEnd
 
 FireH4:
-CRYC D 0 A_PlaySoundEx("wep/CrysCharge3","Body")
+CRY_ D 0 A_PlaySoundEx("wep/CrysCharge3","Body")
 FireH4.a:
-CRYC G 0 A_JumpIfInventory("CrystalEyeCharge",56,"FireH5")
-CRYC G 1 A_WeaponReady(WRF_NOPRIMARY)
-CRYC G 0 A_Refire("FireH4.b")
+CRY_ G 0 A_JumpIfInventory("CrystalEyeCharge",56,"FireH5")
+CRY_ G 1 A_WeaponReady(WRF_NOPRIMARY)
+CRY_ G 0 A_Refire("FireH4.b")
 goto FireEnd
 FireH4.b:
-CRYC D 0 A_GiveInventory("CrystalEyeCharge_RC",1)
-CRYC D 1 A_WeaponReady(WRF_NOPRIMARY)
-CRYC D 0 A_Refire("FireH4.a")
+CRY_ D 0 A_GiveInventory("CrystalEyeCharge_RC",1)
+CRY_ D 1 A_WeaponReady(WRF_NOPRIMARY)
+CRY_ D 0 A_Refire("FireH4.a")
 goto FireEnd
 
 FireH5:
-CRYC D 0 A_PlaySoundEx("wep/CrysCharge4","Body")
+CRY_ D 0 A_PlaySoundEx("wep/CrysCharge4","Body")
 FireH5.a:
-CRYC H 1 A_WeaponReady(WRF_NOPRIMARY)
-CRYC H 0 A_Refire("FireH5.b")
+CRY_ H 1 A_WeaponReady(WRF_NOPRIMARY)
+CRY_ H 0 A_Refire("FireH5.b")
 goto FireEnd
 FireH5.b:
-CRYC D 0 A_GiveInventory("CrystalEyeCharge_RC",1)
-CRYC D 1 A_WeaponReady(WRF_NOPRIMARY)
-CRYC D 0 A_Refire("FireH5.a")
+CRY_ D 0 A_GiveInventory("CrystalEyeCharge_RC",1)
+CRY_ D 1 A_WeaponReady(WRF_NOPRIMARY)
+CRY_ D 0 A_Refire("FireH5.a")
 goto FireEnd
 
 FireEnd:
