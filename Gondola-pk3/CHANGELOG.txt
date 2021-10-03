@@ -1215,7 +1215,7 @@ CHANGELOG
 ==Bass
 -Fixed stationary chargeshot spam bug
 -Regular buster impact VFX added
--Horizontal and vertical buster spread -3,3 > -2,2
+-Buster spread identical to vanilla buster spread, endlag included
 -Added back vertical thrust on being kicked
 
 ==Duo
@@ -1692,7 +1692,6 @@ CHANGELOG
 -Both weapons have the same ammo regen and ammo consumption
 --Commando Mines have 6 tics of delay after firing
 --Delay on Commando Bomb reduced 18 tics > 12 tics
--Reverted altfire wave duration buff 
 
 ==Chillman
 -Now has funky (crappy) new death animation and updated weaknesses 
