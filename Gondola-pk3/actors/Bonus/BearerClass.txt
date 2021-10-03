@@ -527,7 +527,7 @@ actor YD_BearerCubeCharged : YD_BearerCube
 	+DONTBLAST
 	+DONTREFLECT
 	+DONTSPLASH
-	+NOINTERACTION
+	+THRUACTORS
 	scale 2.5
 	States
 	{
