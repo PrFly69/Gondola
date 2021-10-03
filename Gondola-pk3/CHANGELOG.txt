@@ -1215,7 +1215,7 @@ CHANGELOG
 ==Bass
 -Fixed stationary chargeshot spam bug
 -Regular buster impact VFX added
--Horizontal and vertical buster spread -3,3 > -2,2
+-Buster spread identical to vanilla buster spread, endlag included
 -Added back vertical thrust on being kicked
 
 ==Duo
