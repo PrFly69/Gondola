@@ -1465,7 +1465,7 @@ CHANGELOG
 
 ==Starman
 -Shield Toss ammo consumption 4 > 7
--Star Flurry ammo consumption 7 > 14
+-Star Flurry ammo consumption 7 > 10
 
 ==Chargeman
 -Mainfire max ammo count 75 > 80 

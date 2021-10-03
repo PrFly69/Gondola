@@ -524,6 +524,7 @@ stop
 
 actor HornetNectarHive1 : HornetNectarHive
 { 
+damagetype "HornetHoney1"
 Damage (5) 
 speed 25 
 Scale 3.0//2.7
@@ -558,7 +559,8 @@ stop
 }
  
 actor HornetNectarHive2 : HornetNectarHive
-{ 
+{
+damagetype "HornetHoney2"
 Damage (5) 
 speed 30
 Gravity 0.75
@@ -597,7 +599,8 @@ stop
 
 
 actor HornetNectarHive3 : HornetNectarHive
-{ 
+{
+damagetype "HornetHoney3"
 Damage (5) 
 speed 35
 Gravity 0.75
@@ -831,7 +834,7 @@ Powerup.Type "PowerIceHornet3"
 actor PowerIceHornet : PowerSpeed
 { 
 Speed 0.75
-powerup.duration 75
+powerup.duration 100
 } 
  
 actor PowerIceHornet1 : PowerSpeed
