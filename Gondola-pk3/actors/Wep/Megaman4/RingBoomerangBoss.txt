@@ -608,11 +608,12 @@ stop
 actor RingBlingThing1 : BasicClientSide
 {
 Renderstyle "add"
-Alpha 0.5
+Alpha 0.25
++BRIGHT
 States
 {
 Spawn:
-RINA W 5 bright
+RINA W 5
 RINA WWWWW 1 A_FadeOut
 stop
 }
@@ -623,7 +624,7 @@ actor RingBlingThing2 : RingBlingThing1
 States
 {
 Spawn:
-RINA X 5 bright
+RINA X 5
 RINA XXXXX 1 A_FadeOut
 stop
 }
