@@ -50,7 +50,7 @@ SRKC IJ 2
 goto Spawn
 
 ClassPain:
-STKM H 0 A_JumpIfInventory("WeaponCharge",1,"ClassPainBall")
+STKM H 0 //A_JumpIfInventory("WeaponCharge",1,"ClassPainBall")
 goto PainContinue
 ClassPainBall:
 SRKC I 0

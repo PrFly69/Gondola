@@ -100,7 +100,7 @@ DOCR DADADADADADADADADADADADADADADADADADADADADADADADADADADADA 1 //A_TakeInventor
 DOCR A 0 A_GunFlash("WoodFlash")
 goto Ready1
 PowerKILL:
-TNT1 A 0 A_TakeInventory("DocVirusAmmo",350)
+TNT1 A 0  A_TakeInventory("DocVirusAmmo",175)
 goto Ready1
 NoAmmo:
 DOCR A 1
@@ -329,7 +329,7 @@ DOCR DADADADADADADADADADADADADADADADADADADADADADADADADADADADA 1 //A_TakeInventor
 DOCR A 0 A_GunFlash("BubbleFlashGive")
 goto Ready1
 PowerKILL:
-TNT1 A 0 A_TakeInventory("DocVirusAmmo",350)
+TNT1 A 0  A_TakeInventory("DocVirusAmmo",175)
 goto Ready1
 NoAmmo:
 DOCR A 1
@@ -477,7 +477,7 @@ DOCR DADADADADADADADADADADADADADADADADADADADADADADADADADADADA 1 //A_TakeInventor
 DOCR A 0 A_GunFlash("AirFlash")
 goto Ready1
 PowerKILL:
-TNT1 A 0 A_TakeInventory("DocVirusAmmo",350)
+TNT1 A 0  A_TakeInventory("DocVirusAmmo",175)
 goto Ready1
 NoAmmo:
 DOCR A 1
@@ -643,7 +643,7 @@ DOCR DADADADADADADADADADADADADADADADADADADADADADADADADADADADA 1 //A_TakeInventor
 DOCR A 0 A_GunFlash("QuickFlash")
 goto Ready1
 PowerKILL:
-TNT1 A 0 A_TakeInventory("DocVirusAmmo",350)
+TNT1 A 0  A_TakeInventory("DocVirusAmmo",175)
 goto Ready1
 NoAmmo:
 DOCR A 1
