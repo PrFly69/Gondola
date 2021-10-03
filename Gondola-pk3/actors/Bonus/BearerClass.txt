@@ -30,11 +30,11 @@ YD_B BCDE 5
 Goto Spawn
 Missile:
 YD_B FG 5
-goto Spawn
+goto Spawn+2
 
 CustomState1:
 YD_B FG 5
-goto Spawn
+goto Spawn+2
 
 ClassPain:
 YD_B H 0
@@ -218,12 +218,11 @@ YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
 YD_H C 0 A_GiveInventory("WildBearMainA_CI",1)
 YD_H C 0 A_GiveInventory("WildBearMainB_CI",1)
 YD_H C 0 A_GiveInventory("WildBearMainC_CI",1)
-YD_H C 1 Offset(40,0)
-YD_H A 1 Offset(50,-8)
-TNT1 A 2 Offset(20,8)
-TNT1 A 2 Offset(20,8)
-YD_H A 15 Offset(-8,36)
-YD_H A 1 Offset(-8,36)
+YD_H C 10 Offset(40,0)
+YD_H C 2 Offset(36,4)
+YD_H C 1 Offset(32,8)
+YD_H A 2 Offset(-4,32)
+YD_H A 7 Offset(-8,36)
 YD_H A 1 Offset(-6,35)
 YD_H A 1 Offset(-4,34)
 YD_H A 1 Offset(-2,33)
