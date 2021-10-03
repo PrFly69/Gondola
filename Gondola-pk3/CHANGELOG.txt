@@ -1683,6 +1683,8 @@ CHANGELOG
 --Removed said one tic
 -When attached to walls, mainfire spread is now 6/3/0/-3/-6
 -Keeps 25% > 40% momentum on performing head slash
+-Ammo consumption on dash 5 > 3
+--Ammo consumption on dash after leaping 4 > 3
 
 ==Pumpman
 -All recent UEC changes ported
