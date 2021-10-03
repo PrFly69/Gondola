@@ -636,7 +636,7 @@ DOCR A 0 A_JumpIfInventory("DocVirusAmmo",350,"ReloadCHUNGUSTIMEAHAHAHAHAHA")
 Goto NoAmmo
 ReloadCHUNGUSTIMEAHAHAHAHAHA:
 DOCR A 0 A_PlaySoundEx("weapon/DocQuickStartup","body") 
-STAC A 0 A_GiveInventory("GuardDownFlag",1)
+//STAC A 0 A_GiveInventory("GuardDownFlag",1)
 TNT1 A 0 A_GiveInventory("DocQuickSpeedup",1)
 //TNT1 A 0 A_GiveInventory("DocQuickWeakness",1)
 DOCR DADADADADADADADADADADADADADADADADADADADADADADADADADADADA 1 //A_TakeInventory("DocVirusAmmo",350)
@@ -655,7 +655,7 @@ goto Flash
 QuickFlash:
 DOCR A 0 A_JumpIfInventory("DocVirusAmmo",1,1)
 goto QuickFlashEnd
-STAC A 0 A_GiveInventory("GuardDownFlag",1)
+//STAC A 0 A_GiveInventory("GuardDownFlag",1)
 TNT1 A 0 A_TakeInventory("DocVirusAmmo",1)
 TNT1 A 0 A_GiveInventory("DocQuickSpeedup",1)
 //TNT1 A 0 A_GiveInventory("DocQuickWeakness",1)
@@ -664,7 +664,7 @@ TNT1 A 1 A_GiveInventory("DocBodyBoostFlag",1)
 goto QuickFlash
 QuickFlashEnd:
 STAC A 0 A_PlaySoundEx("fuseman/hvend","body") 
-STAC A 0 A_TakeInventory("GuardDownFlag",1)
+//STAC A 0 A_TakeInventory("GuardDownFlag",1)
 TNT1 A 0 A_TakeInventory("DocVirusAmmo",1)
 TNT1 A 0 A_TakeInventory("DocQuickSpeedup",1)
 //TNT1 A 0 A_TakeInventory("DocQuickWeakness",1)
@@ -672,7 +672,7 @@ TNT1 A 0 A_TakeInventory("DocBodyBoostFlag",1)
 goto Flash
 NoFlashBuffer:
 STAC A 0 A_PlaySoundEx("fuseman/hvend","body") 
-STAC A 0 A_TakeInventory("GuardDownFlag",1)
+//STAC A 0 A_TakeInventory("GuardDownFlag",1)
 TNT1 A 0 A_TakeInventory("DocVirusAmmo",1)
 TNT1 A 0 A_TakeInventory("DocQuickSpeedup",1)
 //TNT1 A 0 A_TakeInventory("DocQuickWeakness",1)
