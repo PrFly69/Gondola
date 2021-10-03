@@ -178,10 +178,10 @@ stop
 }
 }
 
-actor MrFreezeCrackerB : MrFreezeCracker{translation "192:192=205:205","198:198=74:74"}
-actor MrFreezeCrackerR : MrFreezeCracker{translation "192:192=171:171","198:198=41:41"}
-actor MrFreezeCrackerO : MrFreezeCracker{translation "192:192=104:104","198:198=128:128"}
-actor MrFreezeCrackerP : MrFreezeCracker{translation "192:192=229:229","198:198=232:232"}
+actor MrFreezeCrackerB : MrFreezeCracker{translation "198:198=205:205","192:192=4:4"}
+actor MrFreezeCrackerR : MrFreezeCracker{translation "198:192=171:171","192:192=4:4"}
+actor MrFreezeCrackerO : MrFreezeCracker{translation "198:198=104:104","192:192=4:4"}
+actor MrFreezeCrackerP : MrFreezeCracker{translation "198:198=229:229","192:192=4:4"}
 
 actor GroundFreezeCracker : MrFreezeCracker
 {
@@ -232,10 +232,10 @@ stop
 }
 }
 
-actor GroundFreezeCrackerB : GroundFreezeCracker{translation "192:192=205:205","198:198=74:74"}
-actor GroundFreezeCrackerR : GroundFreezeCracker{translation "192:192=171:171","198:198=41:41"}
-actor GroundFreezeCrackerO : GroundFreezeCracker{translation "192:192=104:104","198:198=128:128"}
-actor GroundFreezeCrackerP : GroundFreezeCracker{translation "192:192=229:229","198:198=232:232"}
+actor GroundFreezeCrackerB : GroundFreezeCracker{translation "198:198=205:205","192:192=4:4"}
+actor GroundFreezeCrackerR : GroundFreezeCracker{translation "198:198=171:171","192:192=4:4"}
+actor GroundFreezeCrackerO : GroundFreezeCracker{translation "198:198=104:104","192:192=4:4"}
+actor GroundFreezeCrackerP : GroundFreezeCracker{translation "198:198=229:229","192:192=4:4"}
 
 
 actor GroundFreezeCrackerFX : BasicClientSide

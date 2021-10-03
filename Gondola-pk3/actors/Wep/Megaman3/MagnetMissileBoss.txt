@@ -251,14 +251,8 @@ MAGB A 1
 MAGB A 0 A_TakeInventory("BotRetreatFlag",999)
 Goto Ready1
 AltCheck:
-MAGB A 0 A_JumpIfInventory("PullCharge",28,"AltEndPull")
-MAGB A 0 A_Jump(32,"AltEndPull")
-MAGB A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,4)
-MAGB A 0 //SetPlayerProperty(0,1,0)
-MAGB A 0 A_PlaySoundEx("weapon/magPush","auto")
-MAGB C 3 Offset(1,33)A_GiveInventory("PullCharge",random(2,4))
-MAGB C 3 Offset(1,58)A_GiveInventory("PullCharge",random(2,4))
-goto AltCheck
+MAGB A 1
+goto Altfire
 
 Flash:
 TNT1 A 1 A_TakeInventory("MagFlyDelay",1)
@@ -518,10 +512,29 @@ actor MagflyMagnetX : BasicHelper
 {
 height 64
 scale 2.5
-+FLOATBOB
+//+FLOATBOB
 renderstyle normal
 reactiontime 210
 Translation "192:192=4:4","198:198=41:41"
+//+SHOOTABLE
+//+NOTAUTOAIMED
+//+NODAMAGE
+//+NODAMAGETHRUST
+//+NOGRAVITY
+//+NOBLOOD
+//+QUICKTORETALIATE
+//+INVULNERABLE
+//+FORCEXYBILLBOARD
+//+CANTSEEK
+//Health 9999
+//Mass 99999
+Radius 32
+Speed 0
+//painchance 256
+damagefactor "Normal", 0.0
+damagefactor "ThunderClaw", 1.0
+damagefactor "ThunderClawPegHelp", 1.0
+damagefactor "ThunderClawHit", 1.0
 States
 {
 Spawn:
@@ -571,6 +584,15 @@ stop
 BRRRRRRRRRR:
 MAG3 A 0 A_SpawnItemEX("MagflyMagnetMad",0,0,0,0,0,0,0,1)
 stop
+Pain.ThunderClawHit:
+Pain.ThunderClaw:
+Pain.ThunderClawPegHelp:
+THOO A 0 A_ChangeFlag(SHOOTABLE, false)
+TNT1 A 1 ACS_ExecuteAlways(248, 0, 70)
+//TNT1 A 1 A_TakeFromTarget("YoGeekyAmmo",75)
+THOO A 0 A_ClearTarget
+THOO A 0 A_ChangeFlag(SHOOTABLE, true)
+Goto SpawnLOOP
 }
 }
 

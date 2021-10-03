@@ -1408,18 +1408,19 @@ CHANGELOG
 --AirCrash
 --QuickMetal
 -Doc Buster speed 45 > 35
+--Doc Buster damage 15 > 12
 -NEW ALTFIRE: Buster Modification
 --Requires 1/7th of user's ammo, changes based on what weapon the user is holding
 ---Heat: Shotgun of three extremely powerful Fireballs. Fireballs have very tight arc and leave lingering pillars on hitting a surface.
----Flash: Spray of weak range-limited pellets. Does high damage upon every pellet connecting.
----Crash: Singular explosive shot that travels quickly. Does a quick lingering explosion on death, but has high endlag.
+---Flash: Spray of weak pellets. Does high damage upon every pellet connecting, but loses overall dps with range.
+---Crash: Singular strong explosive shot that travels quickly. Does a quick lingering explosion on death, but has high endlag.
 ---Metal: Sawblade that rips through enemies and bounces twice on surfaces.
 -NEW RELOAD: Body Modification
 --Requires all of user's ammo, changes based on what weapon the user is holding
----Wood: 50% less speed, 50% less damage from enemy shots
+---Wood: 25% less damage from enemy shots
 ---Bubble: Grants infinite airjumps
 ---Air: Doubled jump height and speed while in the air
----Quick: 50% more speed, 50% more damage from enemy shots. 
+---Quick: 25% more passive speed. 
 --Grants user infinite uses of Buster Modification while active
 --Pressing reload while active cancels current style at the cost of any and all remaining ammo
 
@@ -1599,19 +1600,15 @@ CHANGELOG
 ==Swordman
 -No longer uses railguns for Flame Sword, reverted back to previous spawner method
 --Particle spawner now lasts 50% longer before dissipating
---Particle spawner speed reverted (as of gond beta 7)
 --Flame Sword usage now halts ammo gain
 --Flame Sword now does 16 base
 --Third Swing now does 22 base
 --Has more fx/sounds on hit
 -Removed Flame Beam
 -Fixed Sword Spin blowing enemies away
---Endlag from Sword Spin reverted (as of gond beta 7)
 --Removed Powerprotect from Flame Spin
---Flame Spin suction range 700 > 350
 -Flying Flame Spin ammo consumption 6/9/12 > 9/12/15
 -Flame Lunge recoil 50 > 40
--Fixed Swordman having 50% higher passive ammo regen than intended (as of gond beta 7)
 
 ==Clownman
 -Thunder Claw no longer inherits from Knight Crush
@@ -1838,4 +1835,4 @@ CHANGELOG
 
 ==Ra Thor (as of gond beta 7)
 -Added jump sprites
--Movespeed 0.89/0.87 > 0.8/0.78
+-Movespeed 0.89/0.87 > 0.84/0.82

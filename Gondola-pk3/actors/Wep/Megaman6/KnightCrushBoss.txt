@@ -289,8 +289,8 @@ Actor KnightmanCrusher {
 	BounceFactor 1.0
 	WallBounceFactor 1.0
 	Damage (27)
-	Radius 16
-	Height 32
+	Radius 25
+	Height 40
 	Speed 50
 	Scale 2.5
 	gravity 2.5

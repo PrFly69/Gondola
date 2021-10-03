@@ -13,8 +13,8 @@ player.startitem "CanHarvestSouls"
 //player.startitem "CanAirJump"
 //player.startitem "CanAirJumpStack", 1
 
-player.forwardmove 0.8, 0.8
-player.sidemove 0.78, 0.78
+player.forwardmove 0.84, 0.84
+player.sidemove 0.82, 0.82
 player.jumpz 14
 
 player.startitem "ThunderBeamWeakness", 1

@@ -1299,7 +1299,7 @@ states
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,350,10,2)
+TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,700,10,2)
 TNT1 A 3
 stop
 }
