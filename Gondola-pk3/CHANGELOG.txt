@@ -1190,7 +1190,6 @@ CHANGELOG
 -Reverted Thunder Wool to CCBM version
 -Reverted Rebound Striker to CCBM version
 -Ported V6 icons for maps-spawned copyweapons
-(as of gond beta 7:)
 -In team gamemodes where weapon color translations are usually unseeable, switching to a copy weapon displays that weapon's icon over your head
 -Acid Barrier fire rate 9tics -> 12tics, armor save 50% -> 30%, ammo gain multiplier .5 -> .3
 -Knight Crush vertical ammo bar restored
@@ -1256,7 +1255,7 @@ CHANGELOG
 
 ==Gutsman
 -Super Arm debris has spawns downwards on ceilings
--Guts Punch is now hitscan (range reduced 130 > 100 as of gond beta 7)
+-Guts Punch is now hitscan
 
 ==Bombman
 -Mainfire now properly has FX
@@ -1280,7 +1279,6 @@ CHANGELOG
 
 ==Yellow Devil
 -Modified from ctfpatch v04
-(As of gond beta 7:)
 -(Flagbearer:) Can pick up Auto's Wire and Item 2, but deletes them by attempting to use them
 -Now correctly drops a Copywep class upgrade on death
 -Kit reshuffled and revamped
@@ -1347,10 +1345,10 @@ CHANGELOG
 
 ==Magnetman
 -Reworked by NightFly (with assets from Greg.EXE and Trillster)
--Mainfire homing reworked, now has 2 tics of delay before doing a singular fast redirect (5 > 2 tics as of gond beta 7)
+-Mainfire homing reworked, now has 2 tics of delay before doing a singular fast redirect
 -Base damage 15 > 14, scaled damage now correctly capped at 30 rather than unbounded 
 -Speed after redirect 150% > 125% 
--Redirect maxangleturning precision increases as Magnet Missile is held (fixed as of gond beta 7)
+-Redirect maxangleturning precision increases as Magnet Missile is held
 -No longer homes/scales if tapped/released within 9 tics 
 -NEW ALTFIRE: MAG FLY
 --Can be placed in the air and increases allied players' jumpheight who are underneath it
@@ -1358,8 +1356,7 @@ CHANGELOG
 --Applies 0.75 hitstun and grounds enemies who are underneath it 
 --3 second cooldown after reversed polarity Mag Fly dies, 50 tic cooldown after regular Mag Fly dies
 --Reversed Mag Fly does 69 damage (don't you fucking dare say it)
--RETURNING RELOAD: MAGNETIC MINE (hud as of gond beta 7)
---Relative to inclusion in gond beta 4: speed 12 > 9, health 30 > 15, direct angles reduced
+-RETURNING RELOAD: MAGNETIC MINE
 -NEW ITEM: MAGFLY CANCEL
 --Manually destroy a non-crushing Mag Fly
 
@@ -1516,17 +1513,17 @@ CHANGELOG
 -Blizzard Bowl turning before moving removed 
 
 ==Knightman
--Imported ECL1P5E Patch, following are edits made to EC Patch base (damage reverted as of gond beta 7)
+-Imported ECL1P5E Patch, following are edits made to EC Patch base
 -Knight Crush can now be turned based on where the user faces
 --Knight Crush now has 25% hitstun on hit
 --Returning Knight Crush has 9 damage flat on return
 --No longer bounces on surfaces
--Mace Spin now has medium knockback (doubled as of gond beta 7)
+-Mace Spin now has medium knockback
 --Mace Spin damage 1 > 12, powerprotected for 5 tics 
 --Can now be held indefinitely 
 -Empowered Knight Crush reworked, now is Ult. Knight Crush from V-Classes
 --Can not be redirected like its uncharged counterpart
---Does 27 damage, has knockback and knockup on hit (damage buffed and explosion removed as of gond beta 7)
+--Does 27 damage, has knockback and knockup on hit
 --No longer has range limit, now acts like a standard projectile with gravity and returns on hitting a surface/player 
 --Ball is destroyed on hit and no longer returns with the chain 
 -Shield offsets cleaned up
@@ -1625,7 +1622,6 @@ CHANGELOG
 ==Coldman
 -Fixed Cold Field not dunking properly
 -Cold Field skinsprites ported from V-Classes 
-(double ammo gain removed as of gond beta 7)
 
 ==King
 -Ported from UEC
@@ -1641,7 +1637,7 @@ CHANGELOG
 ==Plugman
 -Now has jumpframes 
 -Base speed 0.75/0.73 > 0.8/0.78
--Altfire plug range increased (lasts for 3 more tics) (buff toned down as of gond beta 7)
+-Altfire plug range increased (lasts for 3 more tics)
 -Plug will now disconnect if line of sight is broken, e.g. by a wall 
 --Plugging allies gives the ally 1.25x speed and the user 1.35x speed 
 
@@ -1735,7 +1731,7 @@ CHANGELOG
 --Fat Old Sun direct damage 15 > 10
 --Fat Old Sun explosive damage 25 > 20
 --Solar Mortar now takes 1 tic before firing waves (to prevent shotgunning) 
---Ripper powerprotect duration 1 > 5 (2 > 5 as of gond beta 7)
+--Ripper powerprotect duration 1 > 5
 --Removed bouncing on Fat Old Sun 
 -Head Sun on death damage 25/20/15 > 15/10/5 
 
@@ -1772,7 +1768,7 @@ CHANGELOG
 ==Uranus
 -All skinsounds ported from vanilla
 -Uranus drops Deep Digger copy weapon now 
--Deep Digger sprite ported from vanilla (teamcolored unlike the copyweapon, of course. Done as of gond beta 7)
+-Deep Digger sprite ported from vanilla (teamcolored unlike the copyweapon, of course.)
 
 ==Pluto
 -Removed ACS delay on speed updating
@@ -1827,7 +1823,6 @@ CHANGELOG
 -Tackle damage rampup user_P*0.5+9 > 18
 --Tackle hitbox 176 > 128
 --Tackle maxdamageradius user_P*0.25+32 > 48
-(UEC suck/blow stamina implementation removed as of gond beta 7)
 
 ==Punk 
 -Weapon slots change 0 and 1 > 1 and 2 
