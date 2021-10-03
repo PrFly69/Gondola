@@ -1319,10 +1319,10 @@ CHANGELOG
 -NEW ALTFIRE: Flash Stunner
 --Basically functions like V-Classes Bright Stunner
 --Has noticeable startlag
---Timestops enemy for exactly one second, has 2 second powerprotect applied to prevent chainstunning
---Three uses before depleting (compared to 4 uses in V-Classes)
+--Timestops enemy for 1.5 seconds, has 1.5 second powerprotect applied to prevent chainstunning
+--Four uses before depleting
 -NEW RELOAD: Time Bender (with a bit less cancer)
---Still requires full ammo, timestop duration decreased to 1 second
+--Still requires full ammo, timestop duration decreased to 1.5 seconds
 --User goes invisible and leaves a fake decoy while Time Bender is active
 --Enemies can shoot while in Time Bender
 
@@ -1680,6 +1680,8 @@ CHANGELOG
 --Removed said one tic
 -When attached to walls, mainfire spread is now 6/3/0/-3/-6
 -Keeps 25% > 40% momentum on performing head slash
+-Ammo consumption on dash 5 > 3
+--Ammo consumption on dash after leaping 4 > 3
 
 ==Pumpman
 -All recent UEC changes ported
