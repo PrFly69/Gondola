@@ -1415,6 +1415,10 @@ stop
 NoPickup:
 WEA2 D 0
 fail
+
+Death:
+TNT1 A 1
+stop
 }
 }
 
