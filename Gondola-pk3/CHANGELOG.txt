@@ -1903,6 +1903,9 @@ CHANGELOG
 ==Yamatoman
 -Jumping/jumpfiring frames added
 
+==Original Duo
+-Midcharge now gains 2 ammo on completion rather than 14
+
 ==Hornetman
 -Range limit on bee homability:tm: removed
 

@@ -75,7 +75,7 @@ ODUH B 1 offset(6,29)A_JumpIfInventory("PowerRage_ST",1,1)
 ODUH A 1 offset(4,30)ACS_ExecuteAlways(991,0,DYE_ORIGINDUO)
 ODUH A 1 offset(2,31)A_JumpIfInventory("PowerRage_ST",1,1)
 ODUH A 2 A_WeaponReady(14)
-ODUH A 2 A_GiveInventory("DuoJusticeAmmo",7)
+ODUH A 2 A_GiveInventory("DuoJusticeAmmo",1)
 goto Ready1
 
 A_Fire2:
