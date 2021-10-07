@@ -34,14 +34,14 @@ BALD BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"BalladeJumping")
 Goto Spawn
 Missile:
 BALD F 0 A_JumpIfInventory("VivifyDelay8",1,"BalladeJumping")
-BALD FFFFF 1 A_JumpIf(z-floorz>0,"BalladeJumpingMissile")
-BALD GGGG 1 A_JumpIf(z-floorz>0,"BalladeJumpingMissile")
+BALD FFFFF 1 //A_JumpIf(z-floorz>0,"BalladeJumpingMissile")
+BALD GGGG 1 //A_JumpIf(z-floorz>0,"BalladeJumpingMissile")
 goto Spawn
 BalladeJumping:
 BALD Y 1 A_JumpIf(z-floorz<=0, "Spawn")
 wait
 BalladeJumpingMissile:
-BALD ZZZZZZZZZ 1 A_JumpIf(z-floorz<=0, "Missile")
+BALD ZZZZZZZZZ 1 A_JumpIf(z-floorz<=0, "Missile") //:(
 goto BalladeJumping
 ClassPain:
 BALD H 0

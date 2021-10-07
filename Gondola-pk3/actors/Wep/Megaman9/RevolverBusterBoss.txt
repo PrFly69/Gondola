@@ -296,7 +296,7 @@
 
   Actor FOMBuffer : Powerup
   {
-    Powerup.Duration 20
+    Powerup.Duration 15
   }
 
 

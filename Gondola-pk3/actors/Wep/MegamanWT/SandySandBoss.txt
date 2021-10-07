@@ -70,7 +70,7 @@ MWSH BC 2
 MWSH B 1
 MWSH A 1
 MWSH B 0 A_PlaySoundEx("weapon/pshot","Weapon")
-MWSH B 0 //A_GiveInventory("MegaWaterSMain_CI",1)
+MWSH B 0 A_GiveInventory("MegaWaterSMain_CI",1)
 MWSH BC 2
 MWSH B 1
 MWSH A 1
@@ -532,7 +532,7 @@ PROJECTILE
 Damagetype "MegaWaterS"
 Obituary "$OB_MWSHARPOON"
 
-damage (12)//(10+user_P)
+damage (10)//(10+user_P)
 radius 7
 height 10
 speed 40

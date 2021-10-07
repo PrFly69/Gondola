@@ -607,7 +607,7 @@ DOCR A 1 Offset(0,48)
 DOCR A 1 Offset(0,64)
 DOCR A 1 Offset(0,80)
 DOCR A 0 Offset(0,96)
-TNT1 A 1
+TNT1 A 5
 DOCR A 1 Offset(-245,52)
 DOCR A 1 Offset(-185,52)
 DOCR A 1 Offset(-165,42)
@@ -621,7 +621,7 @@ DOCR B 1 Offset(75,22)
 DOCR B 1 OffSet(115,32)
 DOCR A 1 Offset(155,42)
 DOCR A 1 Offset(175,52)
-TNT1 A 5 A_WeaponReady(14)
+TNT1 A 8 A_WeaponReady(14)
 DOCR A 0 Offset(0,96)
 DOCR A 1 Offset(0,80)
 DOCR A 1 Offset(0,64)
@@ -836,7 +836,7 @@ PROJECTILE
 +FORCEXYBILLBOARD
 damagetype "Buster"
 Obituary "$OB_DOCHEATBUSTER"
-damage (18)
+damage (15)
 Radius 7
 Height 7
 speed 60
@@ -899,16 +899,16 @@ Obituary "$OB_DOCHEATPILLAR"
 Height 48
 Speed 0
 Radius 8
-Damage (18)
+Damage (15)
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-QNF1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 //A_PlaySoundEx("weapon/DocHeatPillar","Body")
-QNF1 YYYYYZZZZZYYYYYZZZZZYYYYYZZZZZYYYYYZZZZZ 1 //A_PlaySoundEx("weapon/solarcharger","Body")
-QNF1 ZYXWVUTSRQPONMLKJIHGFEDCBA 1 //A_PlaySoundEx("weapon/solarcharger","Body")
+QNF1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_SpawnItemEx("OilPitIgnite",0,0,8)//A_PlaySoundEx("weapon/DocHeatPillar","Body")
+QNF1 YYYYYZZZZZYYYYYZZZZZYYYYYZZZZZYYYYYZZZZZ 1 A_SpawnItemEx("OilPitIgnite",0,0,8)//A_PlaySoundEx("weapon/solarcharger","Body")
+QNF1 ZYXWVUTSRQPONMLKJIHGFEDCBA 1 A_SpawnItemEx("OilPitIgnite",0,0,8)//A_PlaySoundEx("weapon/solarcharger","Body")
 stop
 }
 }
@@ -917,7 +917,7 @@ actor DocCrashShot
 {
 Translation "202:202=4:4", "199:199=225:225", "202:202=215:215"
 PROJECTILE
-damagetype "CrashBomb"
+damagetype "Buster"
 Obituary "$OB_DOCCRASHBUSTER"
 damage (0)
 Radius 7
@@ -932,8 +932,10 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 X_2N G 1 A_SpawnItemEx("DocCrashShotFX",0,0,0,0,0,0,0,1)
-//BASB T 0 A_SpawnItemEx("DocCrashShotFX",0,0,0,0,cos(pitch+270)*4,-sin(pitch+270)*4,0,1)
-//BASB T 0 A_SetPitch(pitch%360+30)
+X_2N G 0 ThrustThingZ(0, 7, 0, 1)
+BASB T 0 A_SpawnItemEx("DocCrashShotFX",0,0,0,0,cos(pitch+270)*4,-sin(pitch+270)*4,0,1)
+BASB T 0 A_SpawnItemEx("DocCrashShotFX",0,0,0,0,cos(pitch+90)*4,-sin(pitch+90)*4,0,1)
+BASB T 0 A_SetPitch(pitch%360+30)
 loop
 
 Death:
@@ -941,7 +943,7 @@ TNT1 A 0 A_Stop
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
 //TNT1 A 0 A_SetScale(2.5,2.5)
-TNT1 A 0 A_Explode(12,96,0,0,96)
+TNT1 A 0 A_Explode(4,96,0,0,96)
 X_2V A 1 A_PlaySound("misc/mm3explosion",0,0.85)
 TNT1 A 0 A_Explode(4,96,0,0,72)
 X_2V B 1
@@ -970,12 +972,13 @@ Height 2
 speed 0
 scale 1.0
 renderstyle add
+alpha 0.75
 States
 {
 Spawn:
-YMFX Q 1 A_Fadeout
-UMFX R 1 A_Fadeout
-UMFX S 1 A_Fadeout
+YMFX QQ 1 
+UMFX RR 1 
+UMFX SS 1 A_Fadeout
 wait
 }
 }
@@ -989,7 +992,7 @@ Obituary "$OB_DOCFLASHBUSTER"
 Damage (2)
 radius 6
 height 6
-Speed 45
+Speed 55
 scale 2.5
 States
 {
@@ -1019,7 +1022,7 @@ PROJECTILE
 +HEXENBOUNCE
 damagetype "Buster"
 Obituary "$OB_DOCMETALBUSTER"
-Damage (10)
+Damage (6)
 radius 24
 height 6
 Speed 90
@@ -1091,10 +1094,10 @@ loop
 
 actor DocWoodArmor : BasePowerPro
 {
-damagefactor "Normal", 0.75
+damagefactor "Normal", 0.65
 }
 
-actor DocWoodSlowdown : PowerSpeed
+actor DocWoodSlowdown : PowerSpeed//lol
 {
 +POWERSPEED.NOTRAIL
 Speed 0.5
@@ -1107,7 +1110,7 @@ damagefactor "Normal",1.5
 
 actor DocQuickSpeedup : PowerSpeed
 {
-Speed 1.25
+Speed 1.35
 }
 
 actor DocScanner : FastProjectile

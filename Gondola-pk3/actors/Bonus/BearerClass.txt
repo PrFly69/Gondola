@@ -578,6 +578,7 @@ Obituary "$OB_BEARMAIN2"
 damagetype "YellowDevilB"
 +DONTSPLASH
 -NOGRAVITY
++HEXENBOUNCE
 damage (5)
 Radius 8//25
 Height 8//20
@@ -588,8 +589,9 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_SetScale(ScaleX-frandom(0,1))
+YD_H JKL 1
 TNT1 A 0 A_Jump(256,1,2,3)
-YD_H JKL 3
+YD_H JKL 3 A_ChangeFlag(HEXENBOUNCE, false)
 goto Spawn+3
 Death:
 TNT1 A 1

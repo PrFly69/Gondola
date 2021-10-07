@@ -27,15 +27,21 @@ player.startitem "ScrewCrusherWeakness", 1
 States
 {
 Spawn:
-YAMM A 0 
+YAMM A 0
 YAMM B 1
-YAMM A 1
+YAMM A 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn+2
 See:
-YAMM BCDE 5
+YAMM BCDE 5 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn
 Missile:
-YAMM IJIJIJIJI 2
+YAMM JJKKJJKKJJKKJJKKJJ 1 A_JumpIf(z-floorz>0, "Banzai")
+goto Spawn+2
+Jumping:
+YAMM I 1 A_JumpIf(z-floorz<=0, "Spawn")
+wait
+Banzai:
+YAMM FFGGFFGGFFGGFFGGFF 1 A_JumpIf(z-floorz<=0, "Missile")
 goto Spawn+2
 ClassPain:
 YAMM H 0
@@ -46,5 +52,20 @@ goto DeathContinue
 ClassDeath:
 YAMM H 1
 goto MegaDeathEnd
+}
+}
+
+actor YamatoDummy : BlizzardM_WalkFX
+{
+Radius 2
+Height 2
+States
+{
+Spawn:
+QMFX S 0
+QMFX S 0 A_SetScale(ScaleX*(random(0,1)*2-1),ScaleY)
+YAMM I 3
+YAMM I 3 A_Fadeout(0.33)
+stop
 }
 }

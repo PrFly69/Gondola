@@ -712,7 +712,7 @@ PROJECTILE
 +DONTSPLASH
 damagetype "SparkSaw"
 Obituary "%k electrically stimulated %o's penis."
-damage (1)
+damage (5)
 Radius 18
 Height 18
 Speed 30
