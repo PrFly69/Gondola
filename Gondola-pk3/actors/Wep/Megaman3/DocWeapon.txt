@@ -490,7 +490,7 @@ AirFlash:
 DOCR A 0 A_JumpIfInventory("DocVirusAmmo",1,1)
 goto AirFlashEnd
 TNT1 A 0 A_TakeInventory("DocVirusAmmo",1)
-TNT1 A 0 A_GiveInventory("PowerHighJump",1)
+TNT1 A 0 A_GiveInventory("DocAirJumpthrust",1) //A_GiveInventory("PowerHighJump",1)
 TNT1 A 0 A_SpawnItemEX("DocAirBodyFX",random(32,64),0,random(8,64),0,0,frandom(0.1,1.1),random(90,270),1)
 TNT1 A 0 A_CheckFloor("P_Ground")
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,2,1)
@@ -1101,6 +1101,21 @@ actor DocWoodSlowdown : PowerSpeed//lol
 {
 +POWERSPEED.NOTRAIL
 Speed 0.5
+}
+
+actor DocAirJumpthrust : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(z-floorz<5, "End")
+TNT1 A 0 ThrustThingZ(0, 1, 0, 1)
+stop
+End:
+TNT1 A 0
+stop
+}
 }
 
 actor DocQuickWeakness : BasePowerWeak
