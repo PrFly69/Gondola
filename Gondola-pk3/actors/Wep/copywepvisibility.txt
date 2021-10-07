@@ -5,6 +5,7 @@
 actor WeaponSwappedFlag : OnceC{inventory.maxamount 1} //The ACS will give this when it needs to.
 
 const int CWVSPAWNHEIGHT = 70;
+//Is this a tremendous waste of space? Yeah, but now you don't have to change it line by line.
 
 //This formatting is absolutely required if you plan on adding more to it; CWV_ followed by the exact name of the weapon being given a display.
 
@@ -77,6 +78,90 @@ TNT1 A 0 A_JumpIfInTargetInventory("WeaponSwappedFlag",1,"Done")
 loop
 }
 }
+
+//-1 - Doc Robot, who seems to be dedicated to pissing people off at every turn.
+//This class is so fucking tall that his display has to be higher than the others.
+actor CWV_DocBusterWoodHeatWep : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("CWV_DocBusterWoodHeatWep_Vis") 
+stop
+}
+}
+actor CWV_DocBusterWoodHeatWep_Vis : CWV_Template_Vis
+{
+States
+{
+Spawn:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Done")
+DRCV A 1 A_Warp(AAPTR_TARGET,-10,0,CWVSPAWNHEIGHT+10,0,16)
+DRCV A 0 A_JumpIfInTargetInventory("WeaponSwappedFlag",1,"Done")
+loop
+}
+}
+actor CWV_DocBusterBubbleFlashWep : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("CWV_DocBusterBubbleFlashWep_Vis") 
+stop
+}
+}
+actor CWV_DocBusterBubbleFlashWep_Vis : CWV_Template_Vis
+{
+States
+{
+Spawn:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Done")
+DRCV B 1 A_Warp(AAPTR_TARGET,-10,0,CWVSPAWNHEIGHT+10,0,16)
+DRCV B 0 A_JumpIfInTargetInventory("WeaponSwappedFlag",1,"Done")
+loop
+}
+}
+actor CWV_DocBusterAirCrashWep : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("CWV_DocBusterAirCrashWep_Vis") 
+stop
+}
+}
+actor CWV_DocBusterAirCrashWep_Vis : CWV_Template_Vis
+{
+States
+{
+Spawn:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Done")
+DRCV C 1 A_Warp(AAPTR_TARGET,-10,0,CWVSPAWNHEIGHT+10,0,16)
+DRCV C 0 A_JumpIfInTargetInventory("WeaponSwappedFlag",1,"Done")
+loop
+}
+}
+actor CWV_DocBusterQuickMetalWep : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("CWV_DocBusterQuickMetalWep_Vis") 
+stop
+}
+}
+actor CWV_DocBusterQuickMetalWep_Vis : CWV_Template_Vis
+{
+States
+{
+Spawn:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Done")
+DRCV D 1 A_Warp(AAPTR_TARGET,-10,0,CWVSPAWNHEIGHT+10,0,16)
+DRCV D 0 A_JumpIfInTargetInventory("WeaponSwappedFlag",1,"Done")
+loop
+}
+}
+
 
 //0 - Iconless/Busters. Some of these are getting icons eventually, but that can wait.
 actor CWV_None:CWV_Template_Blank{} //Maestro is weird.

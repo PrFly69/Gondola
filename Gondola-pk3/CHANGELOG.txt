@@ -1889,6 +1889,8 @@ CHANGELOG
 --Hitstun removed
 --Air Body doubled jump height replaced with constant upwards thrust, a la Tornado Hold
 -Quick Body speed increase 25% > 35%
+-Now has Copywep/Maestro style overhead display
+--Slightly raised due to Doc's height
 
 ==Gravityman
 -Upwards fling damage on Gravity Sphere and Gravity Hold brought back
