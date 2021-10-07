@@ -8,7 +8,7 @@ script "CCBM_copywepvisibility" ENTER
     str lastweapon = "";
     str currentweapon = "";
     str wepparam = "";
-    if(ACS_ExecuteWithResult(975, 1) && CheckInventory("CanCopyWeapons"))
+    if(ACS_ExecuteWithResult(975, 1) && (CheckInventory("CanCopyWeapons") || CheckInventory("DocBusterWoodHeatWep")))
     {
         while(GetActorProperty(ActivatorTID(), APROP_HEALTH) > 0 && !CheckInventory("IsDead")==1)
         {
