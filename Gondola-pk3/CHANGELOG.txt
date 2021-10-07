@@ -1861,6 +1861,9 @@ CHANGELOG
 -Perfect Cube droplets now reflect off of walls instead of dying
 -Charged Devil Cube no longer softlocks on shields 
 
+==Quickman
+-Fixed bug where missing flash state made ammo drain invisible
+
 ==Flashman
 -Flash Buster damage 5 > 6
 -Flash Stunner Damage 5 > 12
