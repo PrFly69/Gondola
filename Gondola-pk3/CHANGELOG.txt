@@ -1884,6 +1884,7 @@ CHANGELOG
 -Crash Blaster damage reduced 30 > 24
 --Now has a slight upwards arc
 --Hitstun removed
+--Air Body doubled jump height replaced with constant upwards thrust, a la Tornado Hold
 -Quick Body speed increase 25% > 35%
 
 ==Gravityman
