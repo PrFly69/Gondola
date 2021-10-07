@@ -1215,7 +1215,14 @@ CHANGELOG
 ==Bass
 -Fixed stationary chargeshot spam bug
 -Regular buster impact VFX added
--Buster spread identical to vanilla buster spread, endlag included
+-Bass buster now gets more spread as you fire
+--First shot is always 100% accurate (10 tic delay)
+--lvl 1 spread: h(-3,3) v(0,0)
+--lvl 2 spread: h(-4,4) v(-1,1)
+--lvl 3 spread: h(-5,5) v(-2,2)
+--lvl 4 spread: h(-6,6) v(-3,3)
+--lvl 5 spread: h(-7,7) v(-4,4)
+--Gains 22 tic delay after going full auto
 -Added back vertical thrust on being kicked
 
 ==Duo
@@ -1506,6 +1513,7 @@ CHANGELOG
 -Max ammo 140 > 50
 -Starting ammo 28 > 10
 -Ammo regen rate 1 per 2 tics > 1 per 5 tics
+--Shield visuals are now clientside
 
 ==Blizzardman
 -Weapon tag updated and inventory icon removed 
@@ -1834,3 +1842,75 @@ CHANGELOG
 ==Ra Thor 
 -Added jump sprites
 -Movespeed 0.89/0.87 > 0.84/0.82
+
+
+
+
+=====2.4.1H
+==Copyweapons
+-Fixed Grab Buster icon not appearing
+
+==Bass
+-Endlag after going full auto reduced 22 > 16
+
+==Timeman
+-Removed immunity to Time-related attacks
+
+==Yellow Devil
+-SBAR has an eye on it :)
+-Perfect Cube droplets now reflect off of walls instead of dying
+-Charged Devil Cube no longer softlocks on shields 
+
+==Flashman
+-Flash Buster damage 5 > 6
+-Flash Stunner Damage 5 > 12
+--Flash Stunner has reduced windup
+-Time Bender now uses same timestop as Flash Stunner
+--Fixed Time Bender not giving invis
+--Time Bender now refills all mainfire ammo
+-Removed immunity to Time-related attacks
+
+==Sparkman
+-Charge Transfer hitstun removed
+--Damage dealt 1 > 5
+--Health gained 1 > 5
+
+==Doc Robot
+-HP 100 > 90
+-Speed 0.78/0.8 > 0.73/0.75
+-Wood Body damage reduction 25% > 35%
+-Atomic Buster/Pillar damage 18 > 15
+-Flash Sprayer speed 45 > 55
+-Crash Blaster damage reduced 30 > 24
+--Now has a slight upwards arc
+--Hitstun removed
+-Quick Body speed increase 25% > 35%
+
+==Gravityman
+-Upwards fling damage on Gravity Sphere and Gravity Hold brought back
+--Radius on Gravity Sphere/Hold 400 > 256
+
+==Plantman
+-Is now smoking a FAT durry
+
+==Knightman
+-Fixed impact FX happening on Knight Crusher returning
+
+==Yamatoman
+-Jumping/jumpfiring frames added
+
+==Hornetman
+-Range limit on bee homability:tm: removed
+
+==Fakeman
+-FOM Buffer reduced 20 > 15
+
+==Chillman
+-Death now has special FX
+
+==Mega Water S
+-Fixed only 2 harpoons coming out
+--Harpoons now properly do 10 damage instead of 12
+
+==Ra Thor
+-Fixed not gaining full jumpheight after a dunk

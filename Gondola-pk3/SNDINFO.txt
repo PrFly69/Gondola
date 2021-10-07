@@ -405,3 +405,6 @@ $rolloff Bee/Homing 300 1200
 
 //BumoBumo
 weapon/bumobrr BUMOCHRG
+
+//Astro
+weapon/astroclonemeteor ASTCHAR

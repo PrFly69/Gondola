@@ -13,7 +13,6 @@ texture HC_T_VAR,56,8{patch HC_T_BAR,0,0{rotate 90}}
 graphic FLASHICN,30,30{XScale 2.0 YScale 2.0 Patch RLTSA0,0,0} 
 
 //Yellow Devil. Technically this is a Megaman 11 class...
-graphic 11_Y_BAR, 8, 56 {patch B_BAR12B, 0, 0 {Translation "4:4=216:216", "192:192=216:216", "198:198=220:220"}}
 graphic 11_Y_VAR, 56, 8 {patch 11_Y_BAR, 0, 0 {Rotate 90}}
 graphic 11_Z_BAR, 8, 56 {patch B6ENER, 0, 0 {Translation "192:192=168:168", "198:198=176:176"}}
 graphic 11_Z_VAR, 56, 8 {patch 11_Z_BAR, 0, 0 {Rotate 90}}

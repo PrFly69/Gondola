@@ -8,7 +8,7 @@ Inventory.Pickupmessage "$PU_GRABBUSTER"
 Obituary "$OB_GRABBUSTER"
 Tag "$TAG_GRABBUSTER"
 weapon.ammotype "GrabBusterAmmo"
-inventory.icon "MVICN_1"
+inventory.icon "GRABBI"
 States
 {
 Spawn:

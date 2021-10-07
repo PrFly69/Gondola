@@ -50,14 +50,17 @@ ClassDeath:
 FLSM H 1
 goto MegaDeathEnd
 
-pain.TimeSlow:
+/*pain.TimeSlow:
 FLSM "]" 0 A_GiveInventory("SkipClassPainJump",1)
 goto Pain+2
 Pain.TimeStopper:
 FLSM "]" 0 A_GiveInventory("SkipClassPainJump",1)
 goto Pain+2
+pain.FlashRadius:
+FLSM "]" 0 A_GiveInventory("SkipClassPainJump",1)
+goto Pain+2
 TimeStopped:
 FLSM "]" 0 A_GiveInventory("SkipClassPainJump",1)
-goto Pain+2//Goto "Super::TimeStopped"
+goto Pain+2//Goto "Super::TimeStopped"*/
 }
 }

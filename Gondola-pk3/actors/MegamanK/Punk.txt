@@ -40,7 +40,7 @@ Missile:
 PUNK A 1
 PUNK F 0 A_JumpIfInventory("PunkSpinning",1,"PunkSpin2")
 PUNK F 0 A_JumpIfInventory("PunkSpinning2",1,"PunkFlying2")
-PUNK FFFFGGGG 1 A_JumpIf(z-floorz>0,"PunkJumpingShoot")
+PUNK FFFGGG 1 A_JumpIf(z-floorz>0,"PunkJumpingShoot")
 goto Spawn
 PunkSpin2:
 PUNK A 3
@@ -60,7 +60,7 @@ PunkJumping:
 PUNK I 1 A_JumpIf(z-floorz<=0, "Spawn")
 goto Spawn+2
 PunkJumpingShoot:
-PUNK JJJJJKKKK 1 A_JumpIf(z-floorz<=0, "Missile")
+PUNK JJJKKK 1 A_JumpIf(z-floorz<=0, "Missile")
 goto PunkJumping
 ClassPain:
 PUNK H 0

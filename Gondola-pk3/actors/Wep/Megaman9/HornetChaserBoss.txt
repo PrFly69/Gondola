@@ -393,23 +393,23 @@ HORH S 0 ACS_ExecuteAlways(259,0,1)
 HORH S 1 A_ChangeVelocity(Cos(pitch)*25,0,-sin(pitch)*25,CVF_RELATIVE)
 HORH S 0 ThrustThingZ(0,0,0,1)
 HORH S 0 ThrustThing(angle*256/360,0)
-Spawn3: 
-HORH Q 0 A_JumpIfCloser(1600,"SpawnRange1")
+/*Spawn3: 
+HORH Q 0 //A_JumpIfCloser(1600,"SpawnRange1")
 HORH T 0 A_TakeFromTarget("HornetFireFlag",2) 
 HORH T 1 //A_JumpIfInTargetInventory("BeeFlag2",1,"Home")
 Spawn32:
-HORH Q 0 A_JumpIfCloser(1600,"SpawnRange2")
+HORH Q 0 //A_JumpIfCloser(1600,"SpawnRange2")
 HORH S 0 A_TakeFromTarget("HornetFireFlag",2) 
 HORH S 1 //A_JumpIfInTargetInventory("BeeFlag2",1,"Home")
-Goto Spawn3
+Goto Spawn3*/
 SpawnRange1: 
 HORH T 0 A_GiveToTarget("HornetFireFlag",1) 
 HORH T 1 A_JumpIfInTargetInventory("BeeFlag2",1,"Home")
-Goto Spawn32
+Goto SpawnRange2
 SpawnRange2: 
 HORH S 0 A_GiveToTarget("HornetFireFlag",1) 
 HORH S 1 A_JumpIfInTargetInventory("BeeFlag2",1,"Home")
-Goto Spawn3
+Goto SpawnRange1
 Home: 
 /*HORH Q 0
 HORH Q 0 A_JumpIfClo ser(2000,"RealHome")//with the new changes this is kinda nonsense but idk i still dislike classes being able to spam from their spawn
