@@ -43,7 +43,7 @@ Missile:
 YD_B FG 5
 goto Spawn+2
 
-CustomState1:
+CustomState2:
 YD_H MNOP 3 A_JumpIfInventory("BumoEnd",1,"Spawn")
 loop
 

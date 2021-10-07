@@ -1868,7 +1868,12 @@ CHANGELOG
 -Gravity removed from uncharged Eye Laser
 -Perfect Cube droplets now reflect off of walls instead of dying
 --Random droplet size shifting removed
--Charged Devil Cube no longer softlocks on shields 
+-Charged Devil Cube no longer softlocks on shields
+--Yellow Devil (finally) becomes the cube rather than invisibly following a cube
+--Hitbox reworked from projectile ending in explosion to Blizzard Bowl style checker to increase consistency
+--Hitbox radius/height 25/40 > 45/70 to minimize missing due to 'walking' on target
+--Damage 30 > 25, can now be blocked by shields
+
 
 ==Quickman
 -Fixed bug where missing flash state made ammo drain invisible

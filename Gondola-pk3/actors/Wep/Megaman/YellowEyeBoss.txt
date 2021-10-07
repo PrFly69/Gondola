@@ -108,13 +108,13 @@ actor YellowEyeBoss : BaseMM8BDMWep_CBM
         YD_H C 0 A_TakeInventory("BumoCharge", 50)
         YD_H C 0 A_TakeInventory("BumoEnd",3)
         YD_H C 0 A_PlaySoundEx("wep/YD_Toss","weapon")
-        YD_H C 0 ACS_NamedExecute("BULL_SetState",0,1)
+        YD_H C 0 ACS_NamedExecute("BULL_SetState",0,2)
         YD_H C 0 A_GiveInventory("YellowDevilAlt2_CI",1)
         YD_H C 0 A_ChangeFlag("NOTELEPORT",1)
         YD_H C 0 A_ChangeFlag("SOLID",0)
         YD_H C 0 A_TakeInventory("UnSolid",1)
         YD_H C 0 A_Changeflag("PICKUP",0)
-        YD_H C 0 A_ChangeFlag("INVISIBLE",1)
+        //YD_H C 0 A_ChangeFlag("INVISIBLE",1)
         YD_H E 2 Offset(28,8)
         YD_H E 2 Offset(20,8)
         goto AltfireLoop
@@ -124,15 +124,23 @@ actor YellowEyeBoss : BaseMM8BDMWep_CBM
         YD_H E 0 A_SpawnItemEx("MarkedForDeathHandler")
         AltfireLoop2:
         YD_H E 0 A_GiveInventory("PowerMarkedForDeath",1)
-        YD_H E 5 Offset(12,17) 
+        YD_H E 0 A_FireCustomMissile("YellowDevilChargedDamager")
+        YD_H E 1 Offset(12,17)
         YD_H E 0 A_JumpIfInventory("BumoEnd",1,"AltfireEnd")
         loop
 
         AltfireEnd:
-        YD_H E 0 A_ChangeFlag("INVISIBLE",0)
+        //YD_H E 0 A_ChangeFlag("INVISIBLE",0)
         YD_H E 0 A_ChangeFlag("PICKUP",1)
         YD_H E 0 A_ChangeFlag("NOTELEPORT",0)
         YD_H E 0 A_SpawnItemEx("ReSolidifier")
+        YD_H E 0 A_PlaySoundEx("wep/YD_Sploosh","Weapon")
+        YD_H E 0 A_CheckCeiling("AltfireEndCeiling")
+		YD_H E 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,10,0,1)
+		YD_H E 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,10,90,1)
+		YD_H E 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,10,180,1)
+		YD_H E 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,10,270,1)
+        AltfireEnd2:
         YD_H E 1 Offset(12,17)
         YD_H E 1 Offset(2,27)
         YD_H E 18 Offset(-10,37)
@@ -141,6 +149,13 @@ actor YellowEyeBoss : BaseMM8BDMWep_CBM
         YD_H A 1 Offset(-4,34)
         YD_H A 1 Offset(-2,33)
         Goto Ready1
+
+        AltfireEndCeiling:
+		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,-10,0,1)
+		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,-10,90,1)
+		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,-10,180,1)
+		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,-10,270,1)
+        Goto AltfireEnd2
     }
 }
 
@@ -167,6 +182,12 @@ actor PowerMarkedForDeath : BasePowerWeak
 {
 damagefactor "Normal",1.35
 powerup.duration 75
+}
+
+actor YellowDevilCProtect : PowerProtection
+{
+Powerup.Duration 3
+DamageFactor "BlizzardBowl", 0.0
 }
 
 actor MarkedForDeathHandler : BasicHelper
@@ -252,9 +273,8 @@ actor YellowDevilCube
 	}
 }
 
-actor YellowDevilCubeCharged : YellowDevilCube
+actor YellowDevilCubeCharged : YellowDevilCube //This inherits solely to have identical physics.
 {
-	Obituary "$OB_YELLOWMAIN3"
 	+DONTBLAST
 	+DONTREFLECT
 	+DONTSPLASH
@@ -270,30 +290,42 @@ actor YellowDevilCubeCharged : YellowDevilCube
 		TNT1 A 12
 		Goto Spawn+3
 		Death:
-		TNT1 A 0 A_Explode(30,128,0,0,48)
+        XDeath:
 		TNT1 A 0 A_GiveToTarget("BumoEnd",1)
 		TNT1 A 0 A_GiveInventory("ProjectilePortDead",1)
 		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-		TNT1 A 0 A_PlaySoundEx("wep/YD_Sploosh","Weapon")
 		TNT1 A 1 A_Stop
-		TNT1 A 0 A_CheckCeiling("DeathCeiling")
-		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,10,0,1)
-		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,10,90,1)
-		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,10,180,1)
-		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,10,270,1)
-		stop
-		DeathCeiling:
-		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,-10,0,1)
-		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,-10,90,1)
-		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,-10,180,1)
-		TNT1 A 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,-10,270,1)
-		stop
-		XDeath:
-		TNT1 A 0 A_GiveToTarget("BumoEnd",1)
-		TNT1 A 0 A_GiveInventory("ProjectilePortDead",1)
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 		stop
 	}
+}
+
+actor YellowDevilChargedDamager
+{
+PROJECTILE
+damagetype "YellowDevilC"
+Obituary "$OB_YELLOWMAIN3"
++DONTSPLASH
++DONTBLAST
++NOEXPLODEFLOOR
++THRUGHOST
++DONTREFLECT
+damage (25)
+Radius 45
+Height 70
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 1
+stop
+Crash:
+XDeath:
+TNT1 A 1 A_GiveToTarget("BumoEnd",1)
+stop
+Death:
+TNT1 A 1 A_GiveToTarget("BumoEnd",1)
+Stop
+}
 }
 
 actor YellowDevilCubeB : YellowDevilCube{translation "192:192=205:205", "198:198=74:74"}
@@ -479,22 +511,22 @@ goto Done
 
 actor DevilMarked_CI : TeamColor_CI
 {
-	states
-	{
-		FireX:
-		TNT1 A 0 A_SpawnItemEx("MarkedVisual",0,0,100,momx,momy,momz,0,9)
-		stop
-		FireB:
-		TNT1 A 0 A_SpawnItemEx("MarkedVisualB",0,0,100,momx,momy,momz,0,9)
-		stop
-		FireR:
-		TNT1 A 0 A_SpawnItemEx("MarkedVisualR",0,0,100,momx,momy,momz,0,9)
-		stop
-		FireO:
-		TNT1 A 0 A_SpawnItemEx("MarkedVisualO",0,0,100,momx,momy,momz,0,9)
-		stop
-		FireP:
-		TNT1 A 0 A_SpawnItemEx("MarkedVisualP",0,0,100,momx,momy,momz,0,9)
-		stop
-	}
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("MarkedVisual",0,0,100,momx,momy,momz,0,9)
+stop
+FireB:
+TNT1 A 0 A_SpawnItemEx("MarkedVisualB",0,0,100,momx,momy,momz,0,9)
+stop
+FireR:
+TNT1 A 0 A_SpawnItemEx("MarkedVisualR",0,0,100,momx,momy,momz,0,9)
+stop
+FireO:
+TNT1 A 0 A_SpawnItemEx("MarkedVisualO",0,0,100,momx,momy,momz,0,9)
+stop
+FireP:
+TNT1 A 0 A_SpawnItemEx("MarkedVisualP",0,0,100,momx,momy,momz,0,9)
+stop
+}
 }
