@@ -1,0 +1,60 @@
+actor YellowDevil : ToadClassBase
+{
+Player.ScoreIcon "C_00X0X"
+player.startitem "ToadHealthBar"
+player.displayname "YellowDevil"
+player.soundclass "BearerClassC"
+
+player.startitem "YellowEyeBoss"
+player.startitem "MaximumBearAmmo",3
+player.startitem "CanUseItems"
+player.startitem "SemiStunArmor"
+
+player.startitem "ThunderBeamWeakness2", 1
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "SuperArmWeakness2", 1
+player.startitem "SuperArmWeakness", 1
+player.startitem "FireStormWeakness2", 1
+player.startitem "FireStormWeakness", 1
+player.startitem "HardKnuckleWeakness2", 1
+player.startitem "HardKnuckleWeakness", 1
+player.startitem "GyroAttackWeakness2", 1
+player.startitem "GyroAttackWeakness", 1
+//player.startitem "ChainBlastWeakness2", 1
+//player.startitem "ChainBlastWeakness", 1
+
+player.forwardmove 0.60, 0.60
+player.sidemove 0.58, 0.58
+
++NOSKIN
+PainSound "misc/ROCKHURTX"
+
+States
+{
+Spawn:
+YD_B A 0
+YD_B B 1
+YD_B A 1
+Goto Spawn+2
+See:
+YD_B BCDE 5
+Goto Spawn
+Missile:
+YD_B FG 5
+goto Spawn+2
+
+CustomState1:
+YD_H MNOP 3 A_JumpIfInventory("BumoEnd",1,"Spawn")
+loop
+
+ClassPain:
+YD_B H 0
+goto PainContinue
+DeathFix:
+YD_B H 0
+goto DeathContinue
+ClassDeath:
+YD_B H 1
+goto MegaDeathEnd
+}
+}

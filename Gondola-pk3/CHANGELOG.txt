@@ -1850,6 +1850,12 @@ CHANGELOG
 ==Copyweapons
 -Fixed Grab Buster icon not appearing
 
+==Flagbearer (Grey Devil)
+-Temporarily taking Flagbearer duty for visibility reasons
+-Mainfire for original ctfpatch flagbearer punch
+-Altfire for a weaker version of new YD M2
+-Charged altfire retained
+
 ==Bass
 -Endlag after going full auto reduced 22 > 16
 
@@ -1857,8 +1863,11 @@ CHANGELOG
 -Removed immunity to Time-related attacks
 
 ==Yellow Devil
+-Freed from Flagbearer duty for visibility reasons
 -SBAR has an eye on it :)
+-Gravity removed from uncharged Eye Laser
 -Perfect Cube droplets now reflect off of walls instead of dying
+--Random droplet size shifting removed
 -Charged Devil Cube no longer softlocks on shields 
 
 ==Quickman
