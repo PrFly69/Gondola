@@ -3,16 +3,15 @@
 #include "zcommon.acs"
 #include "8bdmlib.acs"
 
-//Yellow Devil
-script "CCBM_YellowGravity" (int x)
+//Flagbearer health reduction script, because nobody enjoys the sound of 9000 pain noises.
+script "CCBM_DevilHealthDrainer" (void)
 {
-	if(x == 1)
+	while((CheckInventory("BomuEnd") || CheckInventory("IsDead")) == false)
 	{
-		SetActorProperty(0,APROP_Gravity,0.8);
-		terminate;
+		delay(1);
+		SetActorProperty(0, APROP_HEALTH, GetActorProperty(0, APROP_HEALTH) - 2);
+		GiveInventory("BomuHeal",1);
 	}
-	SetActorProperty(0,APROP_Gravity,0.4);
-	terminate;
 }
 
 //Dark Man 4

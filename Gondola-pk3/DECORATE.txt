@@ -1,3 +1,6 @@
+#include "actors/Megaman/YellowDevil.txt"
+#include "actors/Wep/Megaman/YellowEyeBoss.txt"
+
 #include "actors/Wep/Megaman5/CrystalEyeBloatCode.txt"
 //test
 #include "actors/MegamanV/Terra.txt"

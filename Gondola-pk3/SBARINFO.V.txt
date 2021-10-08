@@ -412,9 +412,10 @@ WeaponAmmo BBA_Money{
 	IsSelected BBA_PlasmaRifle{DrawImage"BBAAMM4",4,48;DrawNumber 3,CMBHQFONT,Untranslated,Ammo1,23,59;}
 	IsSelected BBA_BFG9000{DrawImage"BBAAMM4",4,48;DrawNumber 3,CMBHQFONT,Untranslated,Ammo1,23,59;}
 	}
-IsSelected WildBearBoss{DrawImage "C_00X0X",20,0;}
 
-
+//FLAG
+IsSelected WildBearBoss{DrawBar"BEAR_BAR","BAREMPTY", BomuCharge, vertical, 16, 8;
+	InInventory BomuHeal,1{DrawBar"4H_S_BAR","NOBAR",BomuHeal,vertical,24,8;}}
 
 //MM1
 IsSelected IceStatueBoss{Drawbar"BARAMMO3","BAREMPTY",Ammo1,vertical,16,8;
@@ -431,8 +432,7 @@ IsSelected OilSliderBoss{DrawBar"BARAMMO8","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory OilSledDelay,1{DrawBar"BARFLS1","NOBAR",OilSledDelay,vertical,16,8;}
 	InInventory OilSledFlag,1{DrawBar"1H_S_BAR","NOBAR",OilSledFlag,vertical,16,8;}
 	InInventory not OilStaminaFlag,127{DrawBar"1H_R_BAR","NOBAR",OilStaminaFlag,vertical,16,8;}}
-IsSelected WildBearBoss{DrawBar"11_Y_BAR","BAREMPTY", BumoCharge, vertical, 16, 8;}
-//InInventory SpeedGearCharge{DrawBar "11_Z_BAR", "BAREMPTY", SpeedGearCharge, vertical,  8, 8;}
+IsSelected YellowEyeBoss{DrawBar"11_Y_BAR","BAREMPTY", BumoCharge, vertical, 16, 8;}
 
 //MM2
 IsSelected MetalBladeBoss{Drawbar"BARAMMO9","BAREMPTY",Ammo1,vertical,16,8;

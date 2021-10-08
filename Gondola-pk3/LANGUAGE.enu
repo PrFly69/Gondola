@@ -1,12 +1,20 @@
 [enu default]
 //Flagbearer - Yellow Devil
-TAGC_1Y = "Yellow Devil Cube Boss"; //Replacement.
-TAGC_1Y2 = "Yellow Devil Laser Boss";
-OB_BEARMAIN3 = "%o couldn't make a dent in %k's yellow one-eyed cube.";
-OB_BEARMAIN4 = "%o got mixed by %k's leftover cube.";
-OB_BEARALT = "%o was whapped by %k's perfect fist."; //Perfect.
+TAGC_BEAR = "Grey Devil Flagbearer";
+OB_BEARCLOSE = "%o was unable to understand %k's bomumu bomumumu bomu.";
+OB_BEARMAIN1 = "%o was pulverised by %k's flawed sphere.";
+OB_BEARMAIN2 = "%o was pulverised by %k's flawed cube?";
+OB_BEARMAIN3 = "%o got in the way of %k's grey one-eyed sphere.";
+OB_BEARALT = "%o was whapped by %k's flawed fist.";
 OB_BEARWIN = "%o played the objective!"; //Does this even work?
-OB_BEARLASER = "%k saw right through %o's approach.";
+
+//Yellow Devil
+TAGC_1Y = "Yellow Devil Boss";
+OB_YELLOWCLOSE = "%o was unable to understand %k's bumomo bumomomo bumo.";
+OB_YELLOWMAIN1 = "%o was pulverised by %k's perfect cube.";
+OB_YELLOWMAIN2 = "%o was pulverised by %k's perfect sphere?";
+OB_YELLOWMAIN3 = "%o couldn't make a dent in %k's yellow one-eyed cube.";
+OB_YELLOWLASER = "%k saw right through %o's approach.";
 
 //Duo
 OB_DUOCSLAM = "%o was chokeslammed by %k's grip of justice.";

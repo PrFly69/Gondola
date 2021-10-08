@@ -1850,6 +1850,18 @@ CHANGELOG
 ==Copyweapons
 -Fixed Grab Buster icon not appearing
 
+==Flagbearer (Grey Devil)
+-Temporarily taking Flagbearer duty for visibility reasons
+-Skin by Ze Robotico, projectiles by Greg.EXE, HUD recolored off of Core YD
+-Mainfire for original ctfpatch flagbearer punch
+-Altfire for a weaker version of new YD M2
+-Charged altfire retained from current YD
+--Health drain now ACS-based; no more constant pain noise :)
+--Health drain begins after idling for 0 > 10 tics
+--Health drain 10 every 5 tics > 2 every 1 tics
+--Health regain 5 every 10 tics > 1 every 2 tics
+*Yes, this means a ton of '1's over your head with damage displays on
+
 ==Bass
 -Endlag after going full auto reduced 22 > 16
 
@@ -1857,9 +1869,16 @@ CHANGELOG
 -Removed immunity to Time-related attacks
 
 ==Yellow Devil
+-Freed from Flagbearer duty for visibility reasons
 -SBAR has an eye on it :)
+-Gravity removed from uncharged Eye Laser
 -Perfect Cube droplets now reflect off of walls instead of dying
--Charged Devil Cube no longer softlocks on shields 
+--Random droplet size shifting removed
+-Charged Devil Cube no longer softlocks on shields
+--Yellow Devil (finally) becomes the cube rather than invisibly following a cube
+--Hitbox reworked from projectile ending in explosion to Blizzard Bowl style checker to increase consistency
+--Hitbox radius/height 25/40 > 45/70 to minimize missing due to 'walking' on target
+--Damage 30 > 25, can now be blocked by shields
 
 ==Quickman
 -Fixed bug where missing flash state made ammo drain invisible
