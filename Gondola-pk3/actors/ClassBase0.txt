@@ -776,6 +776,12 @@ Goto Pain
 Death.YellowDevilC:
 "----" H 0 A_GiveToTarget("BumoEnd",1)
 goto Death
+Pain.BearerDevilC:
+"----" H 0 A_GiveInventory("BearerDevilCProtect",1)
+Goto Pain
+Death.BearerDevilC:
+"----" H 0 A_GiveToTarget("BomuEnd",1)
+goto Death
 
 Pain.ShadeSuck:
 "----" H 0 A_PlaySoundEx("weapon/shadesuck","SoundSlot5")

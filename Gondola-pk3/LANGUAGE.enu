@@ -4,7 +4,7 @@ TAGC_BEAR = "Grey Devil Flagbearer";
 OB_BEARCLOSE = "%o was unable to understand %k's bomumu bomumumu bomu.";
 OB_BEARMAIN1 = "%o was pulverised by %k's flawed sphere.";
 OB_BEARMAIN2 = "%o was pulverised by %k's flawed cube?";
-OB_BEARMAIN3 = "%o couldn't make a dent in %k's grey one-eyed sphere.";
+OB_BEARMAIN3 = "%o got in the way of %k's grey one-eyed sphere.";
 OB_BEARALT = "%o was whapped by %k's flawed fist.";
 OB_BEARWIN = "%o played the objective!"; //Does this even work?
 

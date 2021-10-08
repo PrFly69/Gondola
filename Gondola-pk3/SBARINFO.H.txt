@@ -397,6 +397,10 @@ WeaponAmmo BBA_Money{
 	IsSelected BBA_BFG9000{DrawImage"BBAAMM4",84,168;DrawNumber 3,CMBHQFONT,Untranslated,Ammo1,104,180;}
 	}
 
+//FLAG
+IsSelected WildBearBoss{DrawBar"BEAR_VAR","VAREMPTY", BomuCharge, horizontal,58,184;
+	InInventory BomuHeal,1{DrawBar"4H_S_VAR","VNOBAR",BomuHeal,horizontal,58,184;}}
+
 //MM1
 IsSelected IceStatueBoss{Drawbar"VARAMMO3","VAREMPTY",Ammo1,horizontal,58,184;
 	Drawbar"ICEVAR","VAREMPTY",Ammo2,horizontal,58,176;
