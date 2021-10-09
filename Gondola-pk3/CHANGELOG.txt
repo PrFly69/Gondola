@@ -1929,6 +1929,7 @@ CHANGELOG
 
 ==Knightman
 -Fixed impact FX happening on Knight Crusher returning
+-Fixed bug where Knight Crusher/Super KC could sometimes get stuck on sky horizons
 
 ==Yamatoman
 -Jumping/jumpfiring frames added
