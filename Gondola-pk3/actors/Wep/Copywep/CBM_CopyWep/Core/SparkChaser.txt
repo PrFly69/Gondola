@@ -32,8 +32,8 @@ Fire:
 SCHS E 0 A_JumpIfNoAmmo("NoAmmo")
 SCHS E 0 A_PlaySoundEx("weapon/sparkchaser","Weapon")
 SCHS E 0 A_FireCustomMissile("SparkChaser",0,1,8,0)
-SCHS FG 6
-SCHS E 5
+SCHS FG 8
+SCHS E 6
 SCHS E 0 A_Refire
 Goto Ready+1
 NoAmmo:
