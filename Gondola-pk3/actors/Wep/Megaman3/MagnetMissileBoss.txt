@@ -422,7 +422,7 @@ HomeFlag:
 MAGB T 0 A_ChangeFlag("SCREENSEEKER",0)
 goto Home+2
 Home:
-MAGB T 0 A_JumpIf(user_P<=3,"NoHome")
+MAGB T 0 A_JumpIf(user_P<1,"NoHome")
 MAGB T 0 A_JumpIf(user_P>=12,"HomeFlag")
 MAGB T 0 //A_LogInt(user_P)
 MAGB T 0 A_ScaleVelocity(0.01)

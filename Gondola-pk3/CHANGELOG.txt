@@ -1898,6 +1898,9 @@ CHANGELOG
 --Time Bender now refills all mainfire ammo
 -Removed immunity to Time-related attacks
 
+==Magnetman
+-No longer homes/scales if tapped/released within 9 > 3 tics
+
 ==Sparkman
 -Charge Transfer hitstun removed
 --Damage dealt 1 > 5
