@@ -1853,6 +1853,7 @@ CHANGELOG
 -Time Bender was stealth nerfed due to changes to Flashman; reduced duration is now a feature
 --Lag after firing Time Bender reduced to compensate
 -Magnet Missile maxturnangle 10 > 8, targeting distance 10 > 8, fire rate 20 > 26, chance to look for targets 50/256 > 128/256
+-Spark Shock no longer chainstuns
 -Spark Chaser fire rate 17 > 22
 
 ==Flagbearer (Grey Devil)
