@@ -1938,6 +1938,9 @@ CHANGELOG
 ==Yamatoman
 -Jumping/jumpfiring frames added
 
+==Tenguman
+-Fixed HUD breakage
+
 ==Original Duo
 -Midcharge now gains 2 ammo on completion rather than 14
 
