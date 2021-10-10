@@ -394,6 +394,7 @@ actor FlashStunnerP : FlashStunner{translation "202:202=229:229", "199:199=232:2
   {
 	PowerUp.Duration 105
 	DamageFactor "TimeStop", 0.0
+  DamageFactor "FlashRadius", 0.0
   }
 
 actor FlashStunnerTrail : BasicClientSide
@@ -421,7 +422,7 @@ goto Spawn+2
 actor TimeBenderRadius : BasicExplosion
 {
 +PIERCEARMOR
-damagetype "TimeStop"
+damagetype "FlashRadius"
 Obituary "$OB_TIMEBENDER"
 States
 {
