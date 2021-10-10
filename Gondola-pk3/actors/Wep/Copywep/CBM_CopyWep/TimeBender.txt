@@ -32,17 +32,17 @@ XH0C BC 2
 XH0C A 0 A_PlaySoundEx("weapon/timestopper","Weapon")
 XH0C A 0 A_FireCustomMissile("TimeBenderRadius",0,1,0,0)
 XH0C A 0 A_SpawnItemEx("TimeStopSparkleHelper")
-XH0C D 0 A_GiveInventory("TimeBenderFlag",36)
+XH0C D 0 A_GiveInventory("TimeBenderFlag",28)
 XH0C D 1 ACS_ExecuteAlways(976,0)
 Goto TimeStop
 TimeStop:
-XH0C D 1 A_TakeInventory("TimeBenderFlag",1)
+XH0C D 2 A_TakeInventory("TimeBenderFlag",1)
 XH0C D 0 //A_JumpIfInventory("YouBrokeItAmmo",28,"Fire")
 XH0C D 0 A_JumpIfInventory("TimeBenderFlag",1,"TimeStop")
 XH0C A 0 A_Jump(256,"NoAmmo")
 Goto NoAmmo
 NoAmmo:
-XH0C A 0 A_TakeInventory("TimeBenderFlag",36)
+XH0C A 0 A_TakeInventory("TimeBenderFlag",28)
 XH0C A 1 ACS_Execute(979,0)
 Goto Ready+1
 }
@@ -51,7 +51,7 @@ Goto Ready+1
 actor TimeBenderFlag : Inventory
 {
 inventory.amount 1
-inventory.maxamount 36
+inventory.maxamount 28
 }
 
 actor YouBrokeItAmmo : Ammo
