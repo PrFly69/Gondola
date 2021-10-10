@@ -1895,6 +1895,7 @@ CHANGELOG
 --Flash Stunner has reduced windup
 -Fixed bug where Flash Stunner had 1 second of stun rather than 1.5
 --Getting hit no longer breaks players out of Flash Stunner (INCOMPLETE)
+--Shots from max ammo 4 > 3
 -Fixed Time Bender not giving invis
 --Time Bender now refills all mainfire ammo
 --Time Bender added to Flash Stunner powerprotect, and now gives it on hit
