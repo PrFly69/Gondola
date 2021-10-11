@@ -306,7 +306,7 @@ Actor KnightmanCrusher {
 			SpawnPOOP:
 			KCRB EEDDEEDD 1 A_SpawnItemEx("KnightmanCrusherStronkWire",0,0,0,0,0,0,0,1)
 			KCRB D 0 A_PlaySoundEx("weapon/knightcrushspin","Body")
-			KCRB D 0 A_JumpIfInTargetInventory("KnightFlag",1,"SpawnPOOP")
+			KCRB D 0 A_JumpIfInTargetInventory("KnightmanFlag",1,"SpawnPOOP")
 			goto Death
 		Crash:
 		XDeath:
@@ -478,8 +478,8 @@ Actor KnightmanCrusherNoRip : KnightmanCrusher {
 			TNT1 A 0 A_ChangeVelocity(cos(-pitch)*50,0,sin(-pitch)*50,3)
 			KNIA I 0 A_SpawnItemEx("KnightmanCrusherNoRipWire",0,0,0,0,0,0,0,1)
 			KNIA I 0 A_CountDown
-			KNIA I 0 A_JumpIfInTargetInventory("KnightFlag",1,"SpawnPOOP")
-			goto Death
+			KNIA I 0 //A_JumpIfInTargetInventory("KnightmanFlag",1,"SpawnPOOP")
+			loop
 			//KNIA I 0 A_TakeFromTarget("KnightFlag", 999)
 			//KNIA II 1 A_SpawnItemEx("KnightmanCrusherNoRipWire",0,0,0,0,0,0,0,1)
 			//KNIA I 0 A_SpawnItemEx("KnightmanCrusherNoRipReturn", 0, 0, 0, 0, 0, 0, 0, 1)
