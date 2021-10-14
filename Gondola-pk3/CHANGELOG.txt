@@ -1928,12 +1928,16 @@ CHANGELOG
 -Upwards fling damage on Gravity Sphere and Gravity Hold brought back
 --Radius on Gravity Sphere/Hold 400 > 256
 
+==Gyroman
+-Altfire sprites/sound ported from UEC
+
 ==Plantman
 -Is now smoking a FAT durry
 
 ==Knightman
 -Fixed impact FX happening on Knight Crusher returning
--Fixed bug where Knight Crusher/Super KC could sometimes get stuck on sky horizons
+-Fixed bug where Knight Crusher/Super Knight Crush could sometimes get stuck on sky horizons
+-Super Knight Crush gravity 2.5 > 1.5
 
 ==Yamatoman
 -Jumping/jumpfiring frames added
@@ -1952,6 +1956,10 @@ CHANGELOG
 
 ==Chillman
 -Death now has special FX
+
+==Terra
+-Removed range limit on Spark Chaser
+--Spark Chaser now has dynamic lighting
 
 ==Mega Water S
 -Fixed only 2 harpoons coming out

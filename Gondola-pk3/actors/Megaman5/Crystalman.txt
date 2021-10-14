@@ -22,8 +22,6 @@ player.startitem "SilverTomahawkWeakness", 1
 player.startitem "TenguBladeWeakness", 1
 player.startitem "WheelCutterWeakness", 1
 player.startitem "ScrewCrusherWeakness", 1
-
-player.startitem "RealClassFlag", 53
 States
 {
 Spawn:
