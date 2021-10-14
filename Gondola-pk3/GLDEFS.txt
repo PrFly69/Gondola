@@ -74,6 +74,25 @@ object BossGeminiLaserFX3 {frame GEMB {light GerminiLight}}
 object BossGeminiLaserFX4 {frame GEMB {light GerminiLight}}
 object BossGeminiLaserFX5 {frame GEMB {light GerminiLight}}
 
+pointlight TerraLightMain
+{
+color 0.1 0.2 1.0
+size 15
+}
+
+object TerraClassSparkChaser {frame TERV {light TerraLightMain}}
+object TerraClassSparkChaserTrail_Fake {frame TERS {light TerraLightMain}}
+object TerraClassSparkChaserTrail {frame TERS {light TerraLightMain}}
+
+pointlight TerraLightAlt
+{
+color 0.3 1.0 0.3
+size 15
+}
+
+object TerraClassSparkChaserAlt {frame TERS {light TerraLightAlt}}
+object TerraClassSparkChaserTrailAlt {frame TERS {light TerraLightAlt}}
+
 pointlight ElecLight
 {
 color 1.0 1.0 0.2
