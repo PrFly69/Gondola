@@ -15,8 +15,8 @@ inventory.icon "SPREI"
 +ALT_AMMO_OPTIONAL
 States
 {
-Spawn:
-SPRE X 1
+SpawnLoop:
+SPRE X -1
 loop
 Ready:
 SPRE H 0 ACS_ExecuteAlways(998,0,172)

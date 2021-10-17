@@ -12,8 +12,8 @@ weapon.ammotype "ThunderBoltAmmo"
 inventory.icon "TBOLSI"
 States
 {
-Spawn:
-WEA3 R 1
+SpawnLoop:
+WEA3 R -1
 loop
 Ready:
 TBOL S 0 ACS_ExecuteAlways(998,0,56)

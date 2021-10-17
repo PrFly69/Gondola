@@ -1,0 +1,692 @@
+actor SmallHealthC : CustomInventory replaces SmallHealth
+{
+inventory.pickupmessage "$PU_SMALLHEALTH"
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_GiveInventory("MM8BDMItemSpawnFunc",1)
+TNT1 A 1 A_Jump(256, "SpawnLoop")
+wait
+SpawnLoop:
+HBAL AB 6
+loop
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2),"HealMe")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P1A",1)
+stop
+HealMe:
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0 ACS_ExecuteAlways(CBM_FetchMyHealth,0,10,15)
+stop
+}
+}
+
+actor BigHealthC : CustomInventory replaces BigHealth
+{
+inventory.pickupmessage "$PU_LARGEHEALTH"
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_GiveInventory("MM8BDMItemSpawnFunc",1)
+TNT1 A 1 A_Jump(256, "SpawnLoop")
+wait
+SpawnLoop:
+HBAL CD 6
+loop
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2),"HealMe")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P2",1)
+stop
+HealMe:
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0 ACS_ExecuteAlways(CBM_FetchMyHealth,0,10,40)
+stop
+}
+}
+
+actor WeaponEnergyC : CustomInventory replaces WeaponEnergy
+{
+inventory.pickupmessage "$PU_SMALLENERGY"
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+EBAL A 0
+TNT1 A 1 A_GiveInventory("MM8BDMItemSpawnFunc",1)
+EBAL A 0 Thing_ChangeTID(0,999)
+SpawnLoop:
+EBAL AB 6
+Goto Spawn+2
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(984,0),"Success")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P1A",1)
+stop
+Success:
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"Success2")
+TNT1 A 0 ACS_ExecuteAlways(992,0,30)
+stop
+Success2:
+TNT1 A 0 ACS_ExecuteAlways(992,0,36)
+stop
+}
+}
+
+actor BigWeaponEnergyC : CustomInventory replaces BigWeaponEnergy
+{
+inventory.pickupmessage "$PU_LARGEENERGY"
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+EBAL A 0
+TNT1 A 1 A_GiveInventory("MM8BDMItemSpawnFunc",1)
+EBAL A 0 Thing_ChangeTID(0,999)
+SpawnLoop:
+EBAL CD 6 
+Goto Spawn+2
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(984,0),"Success")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P2",1)
+stop
+Success:
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"Success2")
+TNT1 A 0 ACS_ExecuteAlways(992,0,72)
+stop
+Success2:
+TNT1 A 0 ACS_ExecuteAlways(992,0,86)
+stop
+}
+}
+
+ACTOR TeleportFogCBM : TeleportFog replaces TeleportFog
+{
+-CLIENTSIDEONLY
++MISSILE
++THRUACTORS
++NOCLIP
+renderstyle normal
+Radius 4
+Height 4
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("JumpCancler", 1, "CheckDist")
+Goto Destination
+Destination:
+TFOG A 3 A_PlaySound("misc/teleport")
+TFOG BC 2
+Stop
+CheckDist:
+TNT1 A 0 A_JumpIfCloser(128, "Destination")
+Goto Teleport
+Teleport:
+TNT1 A 0 A_PlaySound("misc/teleport")
+TNT1 A 3 A_SpawnItemEx("TeleportFogFancyCBM")//A_GiveToTarget("TimeStopperWep",1)
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor TeleportFogFancyCBM
+{
+-SOLID
++NOGRAVITY
++NOINTERACTION
+scale 2.5
+states
+{
+Spawn:
+TFOG CB 4
+TFOG A 65 A_ChangeVelocity(0,0,13,3)
+stop
+}
+}
+/*
+actor WilyBarrel1C : WilyBarrel1 replaces WilyBarrel1
+{
+Species "DumbBarrel"
++THRUSPECIES
+}
+actor WilyBarrel2C : WilyBarrel2 replaces WilyBarrel2
+{
+Species "DumbBarrel"
++THRUSPECIES
+}
+*/
+actor FirePillarC : FirePillar replaces FirePillar
+{
+states
+{
+Pain.MegaIceBall:
+Pain.IceSlashSlow:Pain.IceSlashSlowL:
+Pain.WilyIce:
+Pain.FreezeCrackerBit:Pain.FreezeCrackerB:
+Pain.IceWaveB:
+Pain.IceWallB:Pain.IceWallC:Pain.ColdSmackDown:Pain.ColdField:
+Pain.ChillSpike:Pain.ChillmanSlow:Pain.ChillmanSpike:Pain.ChillFreeze:
+FIRP A 0
+goto Pain.IceSlasher
+}
+}
+
+actor JunkLavaPillarC : JunkLavaPillar replaces JunkLavaPillar
+{
+states
+{
+Pain.MegaIceBall:
+Pain.IceSlashSlow:Pain.IceSlashSlowL:
+Pain.WilyIce:
+Pain.FreezeCrackerB:
+Pain.IceWaveB:
+Pain.IceWallB:Pain.IceWallC:Pain.ColdSmackDown:Pain.ColdField:
+Pain.ChillSpike:Pain.ChillmanSlow:Pain.ChillmanSpike:Pain.ChillFreeze:
+TNT1 A 0
+goto Pain.IceSlasher
+}
+}
+
+actor TeruTeruC : TeruTeru replaces TeruTeru
+{
+painchance "MegaIceBall", 256
+painchance "IceSlashSlow", 256
+painchance "IceSlashSlowL", 256
+painchance "WilyIce", 256
+painchance "FreezeCrackerB", 256
+painchance "IceWaveB", 256
+painchance "IceWallB", 256
+painchance "IceWallC", 256
+painchance "ColdSmackDown", 256
+painchance "ColdField", 256
+painchance "ChillSpike", 256
+painchance "ChillmanSlow", 256
+painchance "ChillmanSpike", 256
+painchance "ChillFreeze", 256
+states
+{
+Pain.MegaIceBall:
+Pain.IceSlashSlow:Pain.IceSlashSlowL:
+Pain.WilyIce:
+Pain.FreezeCrackerB:
+Pain.IceWaveB:
+Pain.IceWallB:Pain.IceWallC:Pain.ColdSmackDown:Pain.ColdField:
+Pain.ChillSpike:Pain.ChillmanSlow:Pain.ChillmanSpike:Pain.ChillFreeze:
+TNT1 A 0
+goto Pain.IceSlasher
+}
+}
+
+actor TrainWindC : TrainWind replaces TrainWind
+{
++THRUGHOST
+}
+
+actor ThunderClawPegC : ThunderClawPeg replaces ThunderClawPeg
+{
+States
+{
+Pain.ThunderClaw:
+THOO A 0 A_ChangeFlag("SHOOTABLE",0)
+THOO A 1 ACS_NamedExecuteAlways("cbm_ClownPegSwing",0,0)
+THOO A 1
+THOO A 0 A_ClearTarget
+THOO A 0 A_ChangeFlag("SHOOTABLE",1)
+Goto Spawn2
+TargetClear:
+THOO A 0 
+THOO A 0 A_ClearTarget
+THOO A 0 A_ChangeFlag("SHOOTABLE",1)
+Goto Spawn2
+}
+}
+
+actor PirateMineC : PirateMine replaces PirateMine
+{
+damagefactor "Torrent", 1.0
+damagefactor "PiratePush", 1.0
+-NORADIUSDMG
++THRUSPECIES
+Species "PirateMine"
+States
+{
+Pain.PiratePush:
+Pain.Torrent:
+PMIN A 0
+goto Pain.WaveBurnerUW
+}
+}
+
+actor PirateMineProjectileC : PirateMineProjectile replaces PirateMineProjectile
+{
++THRUSPECIES
+Species "PirateMine"
+}
+
+actor IceWallC : IceWall replaces IceWall
+{
+damageFactor "IceWallC", 0.125
+DamageFactor "ConcreteShoulder", 0.04
+}
+
+actor MirrorBuster1C : MirrorBuster1 replaces MirrorBuster1
+{
+Species "MirrorBuster"
++THRUSPECIES
+States
+{
+Pain.Plant:
+Pain.MagPush:
+Pain.MirrorBuster:
+Pain.MirrorBuster1:
+Pain.MirrorBuster2:
+Pain.TopSpinB:
+Pain.YamatoSpin:
+Pain.BusterRodG:Pain.BusterRodGW:
+Pain.ShadeDrain:
+goto "MirrorBuster1::Pain.PharaohHold"
+}
+}
+
+actor MirrorBuster2C : MirrorBuster2 replaces MirrorBuster2
+{
+Species "MirrorBuster"
++THRUSPECIES
+States
+{
+Pain.Plant:
+Pain.MagPush:
+Pain.MirrorBuster:
+Pain.MirrorBuster1:
+Pain.MirrorBuster2:
+Pain.YamatoSpin:
+Pain.BusterRodG:Pain.BusterRodGW:
+Pain.ShadeDrain:
+goto "MirrorBuster1::Pain.PharaohHold"
+}
+}
+
+actor OilFlameC : OilFlame replaces OilFlame
+{
+damagetype "FlameBlastStage"
+}
+
+actor FSSParkSpawnerC : FSSParkSpawner replaces FSSParkSpawner
+{
+states
+{
+Spawn:
+TNT1 A 1 A_SpawnItemEx("FlameSwordSpark",Random(0,16),Random(-16, -8),8,random(50,55),random(-15,15),random(0,15),0, 1, 0)
+TNT1 A 0 A_SpawnItemEx("FlameSwordSpark",Random(0,16),0,8,random(45,55),random(-15,15),random(-15,15),0, 1, 0)
+TNT1 A 0 A_SpawnItemEx("FlameSwordSpark",Random(0,16),Random(8, 16),8,random(40,55),random(-15,15),random(0,15),0, 1, 0)
+TNT1 A 0 A_CountDown
+TNT1 A 1 A_SpawnItemEx("FlameSwordSpark2",Random(0,16),Random(-16, -8),8,random(50,55),random(-15,15),random(0,15),0, 1, 0)
+TNT1 A 0 A_SpawnItemEx("FlameSwordSpark2",Random(0,16),0,8,random(45,55),random(-15,15),random(-15,15),0, 1, 0)
+TNT1 A 0 A_SpawnItemEx("FlameSwordSpark2",Random(0,16),Random(8, 16),8,random(40,55),random(-15,15),random(0,15),0, 1, 0)
+TNT1 A 0 A_CountDown
+TNT1 A 1 A_SpawnItemEx("FlameSwordSpark3",Random(0,16),Random(-16, -8),8,random(50,55),random(-15,15),random(0,15),0, 1, 0)
+TNT1 A 0 A_SpawnItemEx("FlameSwordSpark3",Random(0,16),0,8,random(45,55),random(-15,15),random(-15,15),0, 1, 0)
+TNT1 A 0 A_SpawnItemEx("FlameSwordSpark3",Random(0,16),Random(8, 16),8,random(40,55),random(-15,15),random(0,15),0, 1, 0)
+TNT1 A 0 A_CountDown
+loop
+}
+}
+
+actor FlameSwordSpark2 : FlameSwordSpark
+{
+damagetype "FlameSwordSpark2"
+}
+
+actor FlameSwordSpark3 : FlameSwordSpark
+{
+damagetype "FlameSwordSpark3"
+}
+
+actor MegaBallC : MegaBall replaces MegaBall
+{
+states
+{
+KickOrSpring:
+MBAL C 0
+MBAL C 1 A_GiveToTarget("BallActionC",1)
+Goto Death
+}
+}
+
+actor BallActionC : BallAction
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("MegaSlide",1,"KickTheBallSlide")
+TNT1 A 0 A_JumpIfInventory("ProtoSlide",1,"KickTheBallSlide")
+TNT1 A 0 A_JumpIfInventory("BassDash",1,"KickTheBallSlide")
+TNT1 A 0 A_JumpIfInventory("DuoBash",1,"KickTheBallSlide")
+goto "Super::Pickup"
+KickTheBallSlide:
+MBAL Q 0 A_FireCustomMissile("MegaBallKicked",0,0,0,0)
+MBAL Q 0 A_TakeInventory("BallFlag",999)
+stop
+}
+}
+
+actor LeafShieldC : LeafShield replaces LeafShield
+{
++THRUGHOST
+States
+{
+Spawn:
+WOOD E 2
+WOOD E 0 A_ChangeFlag("THRUGHOST",0)
+goto Super::Spawn+1
+}
+}
+
+actor PlantBarrierWarperC : PlantBarrierWarper
+{
+Translation "192:192=4:4", "198:198=39:39"
+States
+{
+Shield:
+X_6F ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_Warp(AAPTR_TARGET, 0, 0, 0, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+X_6F EFGHIJ 1 A_Warp(AAPTR_TARGET, 0, 0, 0, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+loop
+}
+}
+
+
+actor ThunderClawDamagerC : ThunderClawDamager replaces ThunderClawDamager
+{
+damagetype "ThunderClawT"
+}
+
+actor JunkProjectileC : JunkProjectile replaces JunkProjectile
+{
+damagetype "JunkShot"
+}
+
+
+actor MirrorShotSmallC : MirrorShotSmall replaces MirrorShotSmall
+{
+Species "MirrorBuster"
++THRUSPECIES
+-THRUGHOST
+}
+
+actor MirrorShotMediumC : MirrorShotMedium replaces MirrorShotMedium
+{
+Species "MirrorBuster"
++THRUSPECIES
+-THRUGHOST
+}
+
+actor MirrorShotLargeC : MirrorShotLarge replaces MirrorShotLarge
+{
+Species "MirrorBuster"
++THRUSPECIES
+-THRUGHOST
+}
+
+
+actor CopyVisionBuffSpawner : CopyVisionSpawner
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("CopyVisionBuff",48,0,-32,0,0,0,0,0,0)
+stop
+}
+}
+
+actor CopyVisionBuff : CopyVision
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("PowerSpread_ST",1,"SpawnSpread")
+TNT1 A 0 A_PlaySoundEx("weapon/copyvision","weapon")
+TNT1 A 0 ACS_ExecuteAlways(259,0,0)
+COPY FGHI 2
+Goto Shooting
+SpawnSpread:
+TNT1 A 0 A_GiveInventory("Once",1)
+goto Spawn+2
+Shooting:
+COPY L 0 A_JumpIfInTargetInventory("CopyVisionRedirect",1,"Redirect")
+COPY L 0 A_JumpIfInventory("Once",1,"ShootingSpread")
+COPY L 0 A_CustomMissile("CopyShot",32,0,0,2,-pitch)
+COPY LLLLLL 1 A_JumpIfInTargetInventory("CopyVisionRedirect",1,"Redirect")
+COPY L 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+COPY L 0 A_Countdown
+Loop
+ShootingSpread:
+COPY L 0 A_CustomMissile("CopyShotSpread",32,0,0,2,-pitch)
+goto Shooting+2
+Redirect:
+COPY LL 1 A_GiveToTarget("TargetMarker",1)
+COPY L 0 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,32)
+COPY L 0 A_TakeFromTarget("CopyVisionRedirect",9)
+goto Shooting
+}
+}
+
+actor ProtoMachineThingC : ProtoMachineThing replaces ProtoMachineThing
+{
+Health 6666
+damagefactor "normal", 1.25
+damagefactor "DynaTag", 100.0
+damagefactor "MagicCardBF", 100.0
+damagefactor "HomingSniper", 20.0
+damagefactor "ProtoBuster", 25.0
+states
+{
+Spawn:
+GESP DEFG 4
+loop
+Pain.ProtoBuster:
+GESP D 0
+GESP D 0 A_PlaySoundEx("misc/devilpain","Voice",0,-1)
+GESP DEFG 4
+Goto Spawn
+Death:
+GESP D 0
+GESP D 1 A_Stop
+GESP GGGGGG 8 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+GESP GGGGGGGGGGGG 4 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+GESP GGGGGGGGGGGGGGGGGGGGGGGG 2 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+TNT1 A 0 A_PlaySoundEx("misc/SearchSecret","Voice",0,1)
+TNT1 A 0 ACS_ExecuteAlways(804,0,1)
+TNT1 A 0 A_SpawnItemEx("TimeStopperWepCDropped",0,0,24,0,0,15)
+TNT1 A 58 A_SpawnItemEx("SearchmanisEverywhere",0,0,70,5,5,20)
+TNT1 A 0 ACS_ExecuteAlways(804,0,0)
+TNT1 A 0 
+stop
+}
+}
+
+actor SearchmanisEverywhere 
+{
+-SOLID
+height 16
+radius 16
+States
+{
+Spawn:
+CRRM T 90
+CRRM T 0 //A_Stop
+CRRM T 1 A_ChangeFlag("NOINTERACTION",1)
+Spawn2:
+CRRM T 2 ThrustThingZ(0,1,0,1)//A_FadeOut(0.05)
+CRRM T 0 A_GiveInventory("WeaponCharge",1)
+CRRM T 0 A_JumpIfInventory("WeaponCharge",100,"Spawn3")//250
+loop
+Spawn3:
+CRRM T 2 A_SpawnItemEx("SecretObituaryThomas",0,0,17777,0,0,-10)
+CRRM T 20 A_FadeOut(0.05)
+goto Spawn3+1
+}
+}
+
+
+actor BonerManCreditsX
+{
+height 4
+radius 4
+Scale 4.0
+States
+{
+Spawn:
+CBON Y 1
+wait
+}
+}
+actor RibbonCreditsX : BonerManCreditsX
+{
++NOGRAVITY
++FLOATBOB
+Scale 0.4
+States
+{
+Spawn:
+CBON X 0 A_SetAngle(angle-90)
+CBON X 0 A_ChangeVelocity(-0.5,-0.5,0,3)
+CBON X 760
+loop
+}
+}
+actor PitchCreditsX : BonerManCreditsX
+{
+Scale 2.0
+States
+{
+Spawn:
+CBON W 0
+CBON W 0 A_PlaySound("misc/HonkHonk",CHAN_BODY)
+//A_PlaySound("classes/HonkHonk",CHAN_BODY,0.025)
+CBON W 1
+wait
+}
+}
+
+
+actor SecretObituaryThomas
+{
++NOINTERACTION
+Damagetype "Thomas"
+Obituary "%o learned Thomas is everywhere!"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1000 A_SpawnItemEx("ThomasisEverywhere",0,0,0,0,0,-25)
+TNT1 A 50
+stop
+}
+}
+
+actor ThomasisEverywhere
+{
+PROJECTILE
+Translation "192:192=69:69", "198:198=74:74"
++RIPPER
++NOINTERACTION
++DONTBLAST
++THRUGHOST
++THRUACTORS
+-NOGRAVITY
+Damagetype "Thomas"
+Obituary "%o suffered a heart attack from \cnThomas the Tank Engine\c-'s stare."
+damage (1000)
+height 64
+radius 52
+Scale 10//7.5
+//Reactiontime 10
+States
+{
+Spawn:
+CHRT B 0
+CHRT B 0 ThrustThingZ(0,10,1,1)
+CHRT BBBCCCDDDEEE 1 A_JumpIf(ceilingz-z>64, "Spawn2")
+CHRT B 0 A_JumpIf(momz==0,"Death")
+CHRT B 0 A_SetAngle(angle+15)
+Goto Spawn+1
+Spawn2:
+CHRT B 0 //A_ChangeFlag("RIPPER",0)
+CHRT B 0 A_ChangeFlag("NOINTERACTION",0)
+CHRT BBBCCCDDDEEE 1 A_SpawnItemEx("ThomasisEverywhereDamager")
+CHRT B 0 A_JumpIf(momz==0,"Death")
+CHRT B 0 A_SetAngle(angle+15)
+Goto Spawn2+2
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("SearchManCredits",1800,2856,0,0,0,0,0,2)//Penguin island
+TNT1 A 0 A_SpawnItemEx("BonerManCreditsX",1750,2526,0,0,0,0,0,2)//Penguin island
+TNT1 A 0 A_SpawnItemEx("RibbonCreditsX",-2608,1568,268,0,0,0,0,2)//Skybox
+TNT1 A 0 A_SpawnItemEx("PitchCreditsX",-888,1308,128,0,0,0,0,2)//A small hole above center
+TNT1 A 0 A_SpawnItemEx("TimeStopperWepCDropped",0,0,24,0,0,15)
+TNT1 A 0 A_Explode(25,320,0,0,321)
+TNT1 A 0 A_SpawnItemEx("ThomasisEverywhereFX")
+TNT1 A 8 A_PlaySoundEx("misc/mm3explosion","Weapon",0,1)
+stop
+}
+}
+
+actor ThomasisEverywhereDamager : ThomasisEverywhere
+{
+-NOINTERACTION
+-THRUACTORS
++NOGRAVITY
+States
+{
+Spawn:
+TNT1 A 1
+stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor ThomasisEverywhereFX
+{
++CLIENTSIDEONLY
++NOINTERACTION
++NOGRAVITY
+-SOLID
+radius 2
+height 2
+scale 2.5
+States
+{
+Spawn:
+ASEX ABCDEF 2
+stop
+}
+}

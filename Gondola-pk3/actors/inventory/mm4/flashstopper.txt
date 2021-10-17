@@ -12,8 +12,8 @@ weapon.ammotype "FlashStopperAmmo"
 inventory.icon "BRIGHSI"
 States
 {
-Spawn:
-WEA3 E 1
+SpawnLoop:
+WEA3 E -1
 loop
 Ready:
 FSTO A 0 ACS_ExecuteAlways(998,0,49)
