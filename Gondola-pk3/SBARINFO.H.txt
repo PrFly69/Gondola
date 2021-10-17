@@ -476,13 +476,13 @@ IsSelected BreakBusterAgility,BreakBusterStability{DrawBar"VARAMM14","VAREMPTY",
 	DrawBar"VARAMMO1","VAREMPTY",SnipeAmmo,horizontal,58,184;
 	DrawBar"KC_A_VAR","VNOBAR",SnipeCharge,horizontal,58,184;}}
 
-IsSelected DocBusterWoodHeatWep{DrawBar"XTR0VR_Q","VAREMPTY",DocVirusAmmo,horizontal,58,184;
+IsSelected DocBusterWoodHeatWep{DrawBar"XTR0VR_Q","DOCNOVR",DocVirusAmmo,horizontal,58,184;
 	DrawImage"DOCRICON",178,175;}
-IsSelected DocBusterBubbleFlashWep{DrawBar"XTR0VR_R","VAREMPTY",DocVirusAmmo,horizontal,58,184;
+IsSelected DocBusterBubbleFlashWep{DrawBar"XTR0VR_R","DOCNOVR",DocVirusAmmo,horizontal,58,184;
 	DrawImage"DOCRICON",178,175;}
-IsSelected DocBusterAirCrashWep{DrawBar"XTR0VR_D","VAREMPTY",DocVirusAmmo,horizontal,58,184;
+IsSelected DocBusterAirCrashWep{DrawBar"XTR0VR_D","DOCNOVR",DocVirusAmmo,horizontal,58,184;
 	DrawImage"DOCRICON",178,175;}
-IsSelected DocBusterQuickMetalWep{DrawBar"XTR0VR_F","VAREMPTY",DocVirusAmmo,horizontal,58,184;
+IsSelected DocBusterQuickMetalWep{DrawBar"XTR0VR_F","DOCNOVR",DocVirusAmmo,horizontal,58,184;
 	DrawImage"DOCRICON",178,175;}
 
 //MM4

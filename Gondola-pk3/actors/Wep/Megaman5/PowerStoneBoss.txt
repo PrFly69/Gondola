@@ -236,13 +236,13 @@ POWB F 0 A_GiveInventory("StoneQuakePickup",1)
 POWB F 0 A_Stop
 POWB F 1 SetPlayerProperty(0,1,0)
 POWB F 0 A_Stop
-POWB F 2
-POWB F 2 A_TakeInventory("StoneBossCharge",9999)
-POWB EEEEEEEE 2
+ST5H JKLM 2 A_TakeInventory("StoneBossCharge",9999)
+TNT1 A 8
 POWB F 0 SetPlayerProperty(0,0,0)
 POWB E 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//1.0 speed and jump
 POWB E 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
-POWB E 15 
+ST5H MLKJ 2
+POWB E 7
 NoAmmo:
 POWB E 0
 Goto Ready2

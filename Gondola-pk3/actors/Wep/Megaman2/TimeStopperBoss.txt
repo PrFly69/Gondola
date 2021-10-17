@@ -162,16 +162,16 @@ goto FireE
 
 FireE:
 FLSA B 3
-FLSA A 0 A_TakeInventory("ZaWarudoAmmo",1)
+FLSA A 0 //A_TakeInventory("ZaWarudoAmmo",1)
 FLSA A 0 A_GiveInventory("TimeAmmo",2)
 FLSA A 3
-FLSA A 0 A_TakeInventory("ZaWarudoAmmo",1)
+FLSA A 0 //A_TakeInventory("ZaWarudoAmmo",1)
 FLSA A 0 A_GiveInventory("TimeAmmo",2)
 FLSA A 3
-FLSA A 0 A_TakeInventory("ZaWarudoAmmo",1)
+FLSA A 0 //A_TakeInventory("ZaWarudoAmmo",1)
 FLSA A 0 A_GiveInventory("TimeAmmo",2)
 FLSA A 3
-FLSA A 0 A_TakeInventory("ZaWarudoAmmo",1)
+FLSA A 0 //A_TakeInventory("ZaWarudoAmmo",1)
 FLSA A 0 A_GiveInventory("TimeAmmo",2)
 Goto Ready1
 

@@ -46,9 +46,9 @@ COLM G 1 A_JumpIfInventory("ColdBossFireFlag",1,"MissileC")
 goto Spawn
 
 CustomState1:
-COLM N 2
-COLM M 9//6 (can't decide how many frames)
-COLM N 2
+COLM F 2
+COLM G 9//6 (can't decide how many frames)
+COLM F 2
 goto Spawn
 
 ClassPain:

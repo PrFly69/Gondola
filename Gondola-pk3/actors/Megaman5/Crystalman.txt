@@ -27,13 +27,13 @@ States
 Spawn:
 CRYM A 0
 CRYM B 1
-CRYM A 1 A_JumpIf(z-floorz>0,"Jumping")
+CRYM A 1 //A_JumpIf(z-floorz>0,"Jumping")
 Goto Spawn+2
 See:
-CRYM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"Jumping")
+CRYM BBBBBCCCCCDDDDDEEEEE 1 //A_JumpIf(z-floorz>0,"Jumping")
 Goto Spawn
 Missile:
-TNT1 A 0 A_JumpIf(z-floorz>0,"JumpingShooting")
+TNT1 A 0 //A_JumpIf(z-floorz>0,"JumpingShooting")
 CRYM FGFG 2
 goto Spawn
 

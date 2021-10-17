@@ -62,3 +62,12 @@ pic CHX1VAR tics 2
 pic CHX2VAR tics 2
 pic CHX3VAR tics 2
 pic CHX2VAR tics 2
+
+//Doc
+texture DOCNOBR
+pic DOCNOBR1 tics 4
+pic DOCNOBR2 tics 4
+
+texture DOCNOVR
+pic DOCNOVR1 tics 4
+pic DOCNOVR2 tics 4
