@@ -504,8 +504,8 @@ actor ShadowBladeCBM : ShadowBlade
 translation "202:202=4:4", "199:199=210:210"
 Damage (20)//16
 damagetype "ShadowBladeCBM"
-Radius 18
-Height 5
+Radius 7
+Height 7
 Speed 40
 Scale 3
 States
@@ -513,18 +513,15 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-TNT1 A 0 A_SetScale(scalex+0.5,scaley)
 SpawnLOOP:
-SMSB AAABBBAAABBB 1 
-SHAH M 0 A_ScaleVelocity(-1)
-SMSB AAABBBAAABBB 1
+SHAH OOOPPPOOOPPP 1
+SHAH O 0 A_ScaleVelocity(-1)
+SHAH OOOPPPOOOPPP 1
 stop
 XDeath:
 TNT1 A 1
 stop
 Death:
-TNT1 A 0 A_CheckFloor("XDeath")
-TNT1 A 0 A_CheckCeiling("XDeath")
 TNT1 A 1 A_SpawnItemEx("ShadowBladeCBMDead",0,0,0,0,0,0,0,1)
 stop
 }
@@ -539,7 +536,7 @@ actor ShadowBladeCBMDead : ShadowBladeCBM
 {
 +DONTSPLASH
 -RIPPER
-Damage (15)
+Damage (20)
 Speed 0
 States
 {
@@ -547,23 +544,23 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-SMSB A 0 
-SMSB A 1 A_Jump(256,"A","B")
+SHAH O 0 
+SHAH O 1 A_Jump(256,"A","B")
 A:
-SMSB A 105
-SMSB A 0 A_ChangeFlag("NOINTERACTION",1)
-SMSB A 0 A_ChangeFlag("MISSILE",0)
+SHAH O 105
+SHAH O 0 A_ChangeFlag("NOINTERACTION",1)
+SHAH O 0 A_ChangeFlag("MISSILE",0)
 goto End1
 B:
-SMSB B 105
-SMSB B 0 A_ChangeFlag("NOINTERACTION",1)
-SMSB B 0 A_ChangeFlag("MISSILE",0)
+SHAH P 105
+SHAH P 0 A_ChangeFlag("NOINTERACTION",1)
+SHAH P 0 A_ChangeFlag("MISSILE",0)
 goto End2
 End1:
-SMSB A 2 A_Fadeout(0.1)
+SHAH O 2 A_Fadeout(0.1)
 loop
 End2:
-SMSB B 2 A_Fadeout(0.1)
+SHAH P 2 A_Fadeout(0.1)
 loop
 Death:
 TNT1 A 1

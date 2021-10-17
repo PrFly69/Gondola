@@ -1869,7 +1869,7 @@ CHANGELOG
 *Yes, this means a ton of '1's over your head with damage displays on
 
 ==Bass
--Endlag after going full auto reduced 22 > 16
+-Can now dash after 11 tics of delay after firing
 
 ==Timeman
 -Removed immunity to Time-related attacks
@@ -1894,8 +1894,6 @@ CHANGELOG
 -Flash Stunner Damage 5 > 12
 --Flash Stunner has reduced windup
 -Fixed bug where Flash Stunner had 1 second of stun rather than 1.5
---Getting hit no longer breaks players out of Flash Stunner (INCOMPLETE)
---Shots from max ammo 4 > 3
 --Fixed bug where Flash Stunner kept original Time Bender duration when used on Flagbearers or Yellow Devil
 -Fixed Time Bender not giving invis
 --Time Bender now refills all mainfire ammo
@@ -1910,16 +1908,21 @@ CHANGELOG
 --Damage dealt 1 > 5
 --Health gained 1 > 5
 
+==Shadowman
+-Shadow Blade is now vertical, hitbox reverted to original form
+
 ==Doc Robot
 -HP 100 > 90
 -Speed 0.78/0.8 > 0.73/0.75
+-Total altfire consumption 50 > 70
+--Altfire ammo indicators now added on bar
 -Wood Body damage reduction 25% > 35%
 -Atomic Buster/Pillar damage 18 > 15
 -Flash Sprayer speed 45 > 55
 -Crash Blaster damage reduced 30 > 24
 --Now has a slight upwards arc
 --Hitstun removed
---Air Body doubled jump height replaced with constant upwards thrust, a la Tornado Hold
+--Air Body doubled jump height replaced with constant upwards thrust, a la Tornado Blow
 -Quick Body speed increase 25% > 35%
 -Now has Copywep/Maestro style overhead display
 --Slightly raised due to Doc's height
@@ -1950,6 +1953,10 @@ CHANGELOG
 
 ==Hornetman
 -Range limit on bee homability:tm: removed
+
+==Plugman
+-All changes reverted to 2.0h except for base speed buff
+(Plug will be revisited post 2.5 or something)
 
 ==Fakeman
 -FOM Buffer reduced 20 > 15

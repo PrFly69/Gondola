@@ -5,7 +5,7 @@
 //{"Invalid","Choice"},
 //};
 
-#DEFINE FLOORCOUNT 31//25
+#DEFINE FLOORCOUNT 50//25
 
 //Unknown older textures? Older maps? Custom maps?
 /*
@@ -62,7 +62,27 @@ str FLOORS[FLOORCOUNT] = {
 "VIRBG01",
 //"SHOBG06",
 "CIRBLACK",
-"PGEFALX"
+"PGEFALX",
+
+//Everything below is custom pit textures from Jam
+"JAMBLU",
+"FBLAVA",
+"BILGWAT1",
+"BILGWAT2",
+"BILGWAT3",
+"BILGWAT4",
+"SOUPPOIX",
+"OOWATX",
+"OOWAXX",
+"OOWAYX",
+"COT2FL2X",
+"CHIWATR",
+"AQSWATER",
+//Everything below is custom pit textures from Sweat
+"SAPFALL",
+"SAPWATER",
+"VLTGLW0X",
+"VLTSKY03"
 };
 //FREFLR6
 

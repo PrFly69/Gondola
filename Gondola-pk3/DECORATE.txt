@@ -231,7 +231,7 @@ stop
 }
 }
 
-Actor ThunderClawPegUEC
+Actor ThunderClawPegUEC 10632
 {
 //$Category MM8BDM-Interactive Props
 //$Arg0 Chain
