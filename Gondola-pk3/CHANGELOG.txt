@@ -1847,8 +1847,12 @@ CHANGELOG
 
 
 =====2.4.1H
+==General
+-Updated PITFIND acs to include custom pit textures in Jampack/Sweatpack maps
+-Map Thunder Pegs are now voxels again
+
 ==Copyweapons
--Overhead copy weapon display disappears for invisible players; buff to Centaur Flash
+-Overhead copy weapon display disappears for invisible players (buff to Centaur Flash)
 -Fixed Grab Buster icon not appearing
 -Time Bender was stealth nerfed to 1.5sec duration due to changes to Flashman; reduced duration is now a feature
 --Lag after firing Time Bender reduced to compensate
@@ -1931,6 +1935,9 @@ CHANGELOG
 -Upwards fling damage on Gravity Sphere and Gravity Hold brought back
 --Radius on Gravity Sphere/Hold 400 > 256
 
+==Stoneman
+-Brick breaking/reforming sprites added
+
 ==Gyroman
 -Altfire sprites/sound ported from UEC
 
@@ -1944,6 +1951,8 @@ CHANGELOG
 
 ==Yamatoman
 -Jumping/jumpfiring frames added
+-Extra HUD frame before firing updated to Heel's style
+--Fixes Spear Dive HUD cutoff in the process
 
 ==Tenguman
 -Fixed HUD breakage
@@ -1963,6 +1972,10 @@ CHANGELOG
 
 ==Chillman
 -Death now has special FX
+
+==Sheepman
+-Sheep Bolters now have minor vertical bobbing effect
+-Static Electricity Strike:tm: duration now indicated on ammo bar
 
 ==Terra
 -Removed range limit on Spark Chaser
