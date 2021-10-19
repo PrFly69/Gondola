@@ -23,13 +23,13 @@ States
 Spawn:
 FLSM A 0
 FLSM B 1
-FLSM A 1 //A_JumpIf(z-floorz>0, "Jumping")
+FLSM A 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn+2
 See:
-FLSM BBBBBCCCCCDDDDDEEEEE 1 //A_JumpIf(z-floorz>0, "Jumping")
+FLSM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn
 Missile:
-FLSM GGGGGGGGG 1 //A_JumpIf(z-floorz>0, "JumpingMissile")
+FLSM GGGGGGGGG 1 A_JumpIf(z-floorz>0, "JumpingMissile")
 Goto Spawn+1
 
 Jumping:
