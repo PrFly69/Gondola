@@ -20,6 +20,11 @@ PLUH A 0 A_GunFlash
 Goto Ready1
 
 Ready1:
+PLUH A 0 A_JumpIfInventory("GetBentDegenerateAmmo",56,"Ready2")
+PLUH A 4 A_WeaponReady(WRF_ALLOWRELOAD|WRF_NOSECONDARY)
+PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
+loop
+Ready2:
 PLUH A 4 A_WeaponReady(WRF_ALLOWRELOAD)
 PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
 loop
@@ -102,7 +107,7 @@ PLUH B 1 offset(-13,19)A_JumpIfInventory("PowerRage_ST",1,1)
 PLUH B 1 offset(-10,22)
 Goto Ready1
 
-Altfire:
+/*Altfire:
 PLUH D 0 A_JumpIfInventory("BreakDashAirFlag",2,"AltfireMeow")
 PLUH D 0 A_JumpIfInventory("GetBentDegenerateAmmo",56,"DasherStart")
 goto AltfireMeow
@@ -128,9 +133,10 @@ PLUH A 1 offset(0,40)
 PLUH A 1 offset(0,30)
 PLUH AA 1 offset(0,20)
 PLUH A 0 A_GiveInventory("GetBentDegenerateAmmo",2)
-Goto Ready1
+Goto Ready1*/
 
-DasherStart:
+//DasherStart:
+Altfire:
 PLUH B 0 A_GiveInventory("VivifyDelay8",1)
 PLUH B 0 A_Refire(1)
 PLUH B 1
