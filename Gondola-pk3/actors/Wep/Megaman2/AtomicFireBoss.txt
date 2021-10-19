@@ -163,13 +163,13 @@
 		HEHD D 0 A_Refire("ShieldUp")
 		Goto StopEverything
 		ShieldUp3:
-		HEHX H 0 A_PlaySoundEx("weapon/heat3","Weapon")
+		HEHD H 0 A_PlaySoundEx("weapon/heat3","Weapon")
 		ShieldUp3X:
-		HEHX B 1 A_GiveInventory("HeatmanDashFlag",1)
+		HEHD B 1 A_GiveInventory("HeatmanDashFlag",1)
 		HEAT J 0 ACS_ExecuteAlways(991,0,62)
-		HEHX G 1 A_GiveInventory("HeatmanDashFlag",1)
+		HEHD G 1 A_GiveInventory("HeatmanDashFlag",1)
 		HEAT G 0 ACS_ExecuteAlways(991,0,3)
-		HEHX H 0 A_Refire("ShieldUp3X")
+		HEHD H 0 A_Refire("ShieldUp3X")
 		StopEverything:
 		HEHD D 0 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH) //ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//Normal speed
 		HEHD D 0 A_TakeInventory("HeatShieldFrame",999)

@@ -54,6 +54,32 @@ dstaunt = dsnone
 gender = male
 }
 
+{
+name = "Flash-Redflash"
+sprite = FL_2
+class = Flashman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Crystal-Redflash"
+sprite = CR_5
+class = Crystalman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
 //k -redflash
 
 {

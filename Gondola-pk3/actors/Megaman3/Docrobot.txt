@@ -32,6 +32,15 @@ DOCB F 0 //ACS_ExecuteAlways(648,0,8)//Change DocRobot stats
 DOCB F 5
 DOCB G 4
 goto Spawn
+
+CustomState1:
+DOCB FG 15
+goto Spawn
+
+CustomState2:
+DOCB FG 8
+goto Spawn
+
 ClassPain:
 DOCB H 0
 goto PainContinue

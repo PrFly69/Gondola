@@ -1893,7 +1893,11 @@ CHANGELOG
 ==Quickman
 -Fixed bug where missing flash state made ammo drain invisible
 
+==Crashman
+-HUD ported from V-Classes
+
 ==Flashman
+-V-Classes skin no longer base skin, still available as an alt
 -Flash Buster damage 5 > 6
 -Flash Stunner Damage 5 > 12
 --Flash Stunner has reduced windup
@@ -1903,6 +1907,9 @@ CHANGELOG
 --Time Bender now refills all mainfire ammo
 --Time Bender added to Flash Stunner powerprotect, and now gives it on hit
 -Removed immunity to Time-related attacks
+
+==Heatman
+-Fixed HUD discoloration on charging
 
 ==Magnetman
 -No longer homes/scales if tapped/released within 9 > 3 tics
@@ -1918,8 +1925,11 @@ CHANGELOG
 ==Doc Robot
 -HP 100 > 90
 -Speed 0.78/0.8 > 0.73/0.75
+-Now has Copywep/Maestro style overhead display
+--Slightly raised due to Doc's height
 -Total altfire consumption 50 > 70
 --Altfire ammo indicators now added on bar
+--Class-sprite updated to have longer Missile sprite for Flash Sprayer/Gear Grinder 
 -Wood Body damage reduction 25% > 35%
 -Atomic Buster/Pillar damage 18 > 15
 -Flash Sprayer speed 45 > 55
@@ -1928,8 +1938,7 @@ CHANGELOG
 --Hitstun removed
 --Air Body doubled jump height replaced with constant upwards thrust, a la Tornado Blow
 -Quick Body speed increase 25% > 35%
--Now has Copywep/Maestro style overhead display
---Slightly raised due to Doc's height
+-Gear Grinder damage 10 > 6
 
 ==Gravityman
 -Upwards fling damage on Gravity Sphere and Gravity Hold brought back
@@ -1940,6 +1949,9 @@ CHANGELOG
 
 ==Gyroman
 -Altfire sprites/sound ported from UEC
+
+==Crystalman
+-V-Classes skin no longer base, still available as an alt
 
 ==Plantman
 -Is now smoking a FAT durry
@@ -1954,6 +1966,9 @@ CHANGELOG
 -Extra HUD frame before firing updated to Heel's style
 --Fixes Spear Dive HUD cutoff in the process
 
+==Turboman
+-Jumping/Jumpfiring frames added
+
 ==Tenguman
 -Fixed HUD breakage
 
@@ -1961,7 +1976,7 @@ CHANGELOG
 -Midcharge now gains 2 ammo on completion rather than 14
 
 ==Hornetman
--Range limit on bee homability:tm: removed
+-Range limit on bee homability removed
 
 ==Plugman
 -All changes reverted to 2.0h except for base speed buff
@@ -1969,13 +1984,14 @@ CHANGELOG
 
 ==Fakeman
 -FOM Buffer reduced 20 > 15
+-Spammed shot speed same as unspammed shot
 
 ==Chillman
 -Death now has special FX
 
 ==Sheepman
 -Sheep Bolters now have minor vertical bobbing effect
--Static Electricity Strike:tm: duration now indicated on ammo bar
+-Static Electricity Strike duration now indicated on ammo bar
 
 ==Terra
 -Removed range limit on Spark Chaser
@@ -1984,6 +2000,9 @@ CHANGELOG
 ==Mega Water S
 -Fixed only 2 harpoons coming out
 --Harpoons now properly do 10 damage instead of 12
+
+==Punk
+-Firing animation on skin slightly sped up
 
 ==Ra Thor
 -Fixed not gaining full jumpheight after a dunk

@@ -188,6 +188,7 @@ TNT1 A 0 A_JumpIfInventory("DocBodyBoostFlag",1,"AltfireNoAmmoConsumption")
 DOCR A 0 A_JumpIfInventory("DocVirusAmmo",70,"AltfireShot")
 Goto NoAmmo
 AltfireShot:
+DOCR A 0 ACS_NamedExecute("BULL_SetState",0,1)
 DOCR A 0 A_GunFlash("NoFlash")
 DOCR A 0 A_PlaySoundEx("weapon/rbuster","Weapon")
 DOCR A 0 A_GiveInventory("DocRobotFlashAlt_CI",1)
@@ -254,6 +255,7 @@ DOCR A 0 A_TakeInventory("DocShotAmmoStalling",1)
 DOCR A 0 A_GunFlash
 Goto Ready1
 AltfireNoAmmoConsumption:
+DOCR A 0 ACS_NamedExecute("BULL_SetState",0,1)
 DOCR A 0 A_PlaySoundEx("weapon/rbuster","Weapon")
 DOCR A 0 A_GiveInventory("DocRobotFlashAltNoTake_CI",1)
 DOCR A 0 A_GiveInventory("DocRobotFlashAltNoTake2_CI",1)
@@ -567,6 +569,7 @@ TNT1 A 0 A_JumpIfInventory("DocBodyBoostFlag",1,"AltfireNoAmmoConsumption")
 DOCR A 0 A_JumpIfInventory("DocVirusAmmo",70,"AltfireShot")
 Goto NoAmmo
 AltfireShot:
+DOCR A 0 ACS_NamedExecute("BULL_SetState",0,2)
 DOCR A 0 A_GunFlash("NoFlash")
 DOCR A 0 A_PlaySoundEx("weapon/DocMetalCharge","weapon")
 DOCR A 1 Offset(0,16)
@@ -599,6 +602,7 @@ DOCR A 1 Offset(0,16)
 DOCR A 0 A_GunFlash
 Goto Ready1
 AltfireNoAmmoConsumption:
+DOCR A 0 ACS_NamedExecute("BULL_SetState",0,2)
 DOCR A 0 //A_GunFlash("NoFlash")
 DOCR A 0 A_PlaySoundEx("weapon/DocMetalCharge","weapon")
 DOCR A 1 Offset(0,16)

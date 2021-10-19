@@ -465,7 +465,6 @@
   Actor StrayShot : RevolverShot
   {
     Damage (10)
-	Speed 60
 	States
 	{
 		Spawn:
