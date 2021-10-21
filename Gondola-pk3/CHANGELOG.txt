@@ -1853,6 +1853,7 @@ CHANGELOG
 
 ==Copyweapons
 -Overhead copy weapon display disappears for invisible players (buff to Centaur Flash)
+--Fixed bug where Duo would display Decorate errors if he used Duo Meteor with display on
 -Fixed Grab Buster icon not appearing
 -Time Bender was stealth nerfed to 1.5sec duration due to changes to Flashman; reduced duration is now a feature
 --Lag after firing Time Bender reduced to compensate

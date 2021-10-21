@@ -175,6 +175,7 @@ actor CWV_TrebleboosterWepC:CWV_Template_Blank{} //...right?
 actor CWV_HeroicDuoFistBoss:CWV_Template_Blank{}
 actor CWV_DocBusterC:CWV_Template_Blank{}
 actor CWV_MaestroNeutralBoss:CWV_Template_Blank{}
+actor CWV_DuoMeteorWepC:CWV_Template_Blank{}
 
 //1 - Maestro's nonsense
 actor CWV_MaestroHeatGuts : CustomInventory
