@@ -1877,6 +1877,10 @@ CHANGELOG
 ==Bass
 -Can now dash after 11 tics of delay after firing
 
+==Maestro
+-Can no longer acquire Vanilla buster upgrades
+--Functionally removes Proto Shield, Bass Buster, Duo Fist, Laser Buster, and Arrow Buster
+
 ==Timeman
 -Removed immunity to Time-related attacks
 
