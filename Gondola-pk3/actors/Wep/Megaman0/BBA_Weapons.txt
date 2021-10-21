@@ -963,7 +963,7 @@ actor BBA_PlasmaBallP : BBA_PlasmaBall{Translation "204:204=229:229","195:195=23
 ACTOR BBA_BFG9000 : BBA_BaseWeapon
 {
 	Tag "$TAGC_0T7"
-	dropitem "BBAMegamanWepDroppedX3"
+	dropitem "ConfettiDeathSpawner"
 	//Height 20
 	Weapon.SelectionOrder 2800
 	Weapon.AmmoUse 40

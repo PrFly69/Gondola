@@ -2012,3 +2012,6 @@ CHANGELOG
 
 ==Ra Thor
 -Fixed not gaining full jumpheight after a dunk
+
+==BBA Megaman
+-Now spawns confetti upon dying with BFG9000
