@@ -529,7 +529,7 @@ ACTOR BBA_Shotgun : BBA_BaseWeapon
 ACTOR BBA_SuperShotgun : BBA_BaseWeapon
 {
 	Tag "$TAGC_0T3"
-	dropitem "BBAMegamanWepDroppedX2"
+	dropitem "BBAMegamanWepDroppedX1"
 	Weapon.SelectionOrder 400
 	Weapon.AmmoUse 2
 	Weapon.AmmoGive 8
@@ -716,7 +716,7 @@ ACTOR BBA_Chaingun : BBA_BaseWeapon
 ACTOR BBA_RocketLauncher : BBA_BaseWeapon
 {
 	Tag "$TAGC_0T5"
-	dropitem "BBAMegamanWepDroppedX2"
+	dropitem "BBAMegamanWepDroppedX1"
 	Weapon.SelectionOrder 2500
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 8
@@ -870,7 +870,7 @@ stop
 ACTOR BBA_PlasmaRifle : BBA_BaseWeapon
 {
 	Tag "$TAGC_0T6"
-	dropitem "BBAMegamanWepDroppedX2"
+	dropitem "BBAMegamanWepDroppedX1"
 	Weapon.SelectionOrder 100
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 40
