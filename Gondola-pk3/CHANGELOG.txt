@@ -1879,7 +1879,7 @@ CHANGELOG
 
 ==Maestro
 -Can no longer acquire Vanilla buster upgrades
---Functionally removes Proto Shield, Bass Buster, Duo Fist, Laser Buster, and Arrow Buster
+*This effectively removes Proto/Bass/Duo upgrades from TLMS
 
 ==Timeman
 -Removed immunity to Time-related attacks
@@ -2014,4 +2014,6 @@ CHANGELOG
 -Fixed not gaining full jumpheight after a dunk
 
 ==BBA Megaman
+-BBA now consistently drops either Power or Jet Adaptor
+*This effectively removes Laser and Arrow Buster from TLMS
 -Now spawns confetti upon dying with BFG9000
