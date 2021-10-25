@@ -1503,7 +1503,7 @@ script "core_rushmarineflight" (void)
 //It was used for the hookshot weapon for WitchHunter
 // By IjonTichy, modified by Ivan, modified for this mod by Celebi
 
-Script "core_hookshot" (int PlayerID, int Vel, int Moving)
+/*Script "core_hookshot" (int PlayerID, int Vel, int Moving)
 {
 	int myx, myy, myz;
 	int vx, vy, vz, magnitude, nx, ny, nz;
@@ -1602,7 +1602,7 @@ Script "core_drawhookshot" (int playerTid, int density) CLIENTSIDE
 	Delay(1);
 			
 	}
-}
+}*/
 
 
 // Disable monster blocking on lines specifically to prevent bot swarming.

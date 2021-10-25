@@ -1,0 +1,47 @@
+actor Plantman : LightClassBase
+{
+Player.ScoreIcon "C_06E0X"
+player.startitem "LightHealthBar"
+player.displayname "plantman"
+player.soundclass "plantmanc"
+player.startitem "PlantBarrierBoss"
+player.startitem "PsychedelicAmmo", 28
+player.startitem "PlantmanHealAmmo", 14
+player.startitem "PlantBarrierUseItem"
+
+player.startitem "BlizzardAttackWeakness2", 1
+
+player.startitem "IceSlasherWeakness", 1
+player.startitem "BlizzardAttackWeakness", 1
+player.startitem "FreezeCrackerWeakness", 1
+player.startitem "IceWaveWeakness", 1
+player.startitem "IceWallWeakness", 1
+States
+{
+Spawn:
+PLAM A 0 
+PLAM B 1
+PLAM A 1
+Goto Spawn+2
+See:
+PLAM BCDE 5
+Goto Spawn
+Missile:
+PLAM G 0 A_JumpIfInventory("ShieldCheck",1,"Missile2")
+PLAM F 3
+PLAM G 3
+goto Spawn+2
+Missile2:
+PLAM I 7
+goto Spawn
+ClassPain:
+PLAM H 0
+goto PainContinue
+DeathFix:
+PLAM H 0
+goto DeathContinue
+ClassDeath:
+PLAM H 1
+goto MegaDeathEnd
+}
+}
