@@ -15,7 +15,7 @@ C_02 F 1
 loop
 Ready:
 FLSA A 0 ACS_ExecuteAlways(998,0,DYE_FLASHMAN)
-FLSA A 0 A_GunFlash
+FLSA A 0 //A_GunFlash
 goto Ready1
 Ready1:
 FLSA A 0 A_JumpIfInventory("TimeAmmo",28,"Ready2")
@@ -25,13 +25,13 @@ FLSA A 0 A_GiveInventory("TimeAmmo",2)
 FLSA A 0 A_GiveInventory("ZaWarudoAmmo",2)
 goto Ready1
 Ready2:
-FLSA A 0 A_JumpIfInventory("TimeAmmo",84,"Ready3")
+FLSA A 0 //A_JumpIfInventory("TimeAmmo",84,"Ready3")
 FLSA AAA 1 A_WeaponReady
 FLSA A 0 A_GiveInventory("TimeAmmo",2)
 FLSA A 0 A_GiveInventory("ZaWarudoAmmo",2)
 goto Ready1
 Ready3:
-FLSA AAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
+FLSA AAA 1 //A_WeaponReady(WRF_ALLOWRELOAD)
 FLSA A 0 A_GiveInventory("TimeAmmo",2)
 FLSA A 0 A_GiveInventory("ZaWarudoAmmo",2)
 goto Ready1
