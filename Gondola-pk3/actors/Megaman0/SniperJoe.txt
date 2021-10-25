@@ -1,0 +1,86 @@
+actor SniperJoe : ClassBase
+{
+Player.ScoreIcon "C_00J0X"
+player.displayname "SniperJoe"
+player.soundclass "sniperjoec"
+
+player.startitem "CanKillStreak"
+player.startitem "JoeKillStreakItem"
+
+player.startitem "SniperJoeBoss"
+player.startitem "JoeAmmo", 25
+player.startitem "JoeUpgradeAmmo", 105
+player.startitem "MachineGunJoeBoss"
++NOSKIN
+
+player.weaponslot 1, "SniperJoeBoss"
+player.weaponslot 2, "MachineGunJoeBoss"
+States
+{
+Spawn:
+SNIP A 0
+SNIP B 1
+SNIP A 1
+Goto Spawn+2
+See:
+SNIP BCDE 5
+Goto Spawn
+Missile:
+SNIP F 0 A_JumpIfInventory("JoeSelectTruckFlag",1,4)
+SNIP F 1
+SNIP F 4
+SNIP G 4
+goto Spawn+2
+SNIP F 0 A_JumpIfInventory("JoeTruckDashFlag",8,"ARunF")
+SNIP F 0 A_JumpIfInventory("JoeTruckDashFlag",7,"ARunE")
+SNIP F 0 A_JumpIfInventory("JoeTruckDashFlag",5,"ARunD")
+SNIP F 0 A_JumpIfInventory("JoeTruckDashFlag",3,"ARunC")
+SNIP F 0 A_JumpIfInventory("JoeTruckDashFlag",1,"ARunB")
+SNIP F 1
+SNIP F 4
+SNIP G 4
+goto Spawn+2
+
+CustomState1:
+SNIP J 4
+Goto CustomState1
+CustomState2:
+SNIP K 8
+Goto Spawn+2
+
+ARunB:
+SNIP B 2
+Goto Missile+4
+ARunC:
+SNIP C 2
+Goto Missile+4
+ARunD:
+SNIP D 2
+Goto Missile+4
+ARunE:
+SNIP E 2
+Goto Missile+4
+ARunF:
+SNIP E 2 A_TakeInventory("JoeTruckDashFlag",99)
+Goto Missile+4
+
+ClassPain:
+SNIP H 0
+goto PainContinue
+DeathFix:
+SNIP H 0//JoeSelectTruckFlag
+goto DeathContinue
+ClassDeath:
+SNIP H 1
+goto MegaDeathEnd
+}
+}
+
+
+
+actor CanKillStreak : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+

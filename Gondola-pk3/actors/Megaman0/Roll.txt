@@ -1,0 +1,57 @@
+actor RollClass : MegaClassBase
+{
+Player.ScoreIcon "C_00E0X"
+player.startitem "MegaHealthBar"
+player.displayname "Roll"
+player.soundclass "RollC"
+player.startitem "RollSwingBoss"
+player.startitem "RollBucketBoss"
+player.startitem "RollHealItem"
+player.startitem "RollFlag"
+player.startitem "CanUseItems"
+player.startitem "RollHealAmmo", 28
+player.startitem "RollHyperDashAmmo", 777
+player.forwardmove 0.825, 0.825
+player.sidemove 0.805, 0.805
+player.jumpz 11
+
+player.weaponslot 1, "RollSwingBoss"
+player.weaponslot 2, "RollBucketBoss"
+
+//player.startitem "CopyNerf"
+States
+{
+Spawn:
+ROLL A 0
+ROLL B 1
+ROLL A 1
+Goto Spawn+2
+See:
+ROLL BCDE 5
+Goto Spawn
+Missile:
+ROLL F 0 A_JumpIfInventory("RollSlide",1,"Slide")
+ROLL FFFFF 1 A_JumpIfInventory("RollSlide",1,"Slide")
+ROLL GGGG 1 A_JumpIfInventory("RollSlide",1,"Slide")
+goto Spawn+2
+Slide:
+ROLL J 20
+ROLL A 0
+goto Spawn
+ClassPain:
+ROLL H 0
+goto PainContinue
+DeathFix:
+ROLL H 0
+goto DeathContinue
+ClassDeath:
+ROLL H 1
+goto MegaDeathEnd
+}
+}
+
+actor RollFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}

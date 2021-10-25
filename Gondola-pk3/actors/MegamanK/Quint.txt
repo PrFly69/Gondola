@@ -1,0 +1,67 @@
+actor Quint : ClassBase
+{
+Player.ScoreIcon "C_0KD0X"
+player.displayname "Quint"
+player.soundclass "quintc"
+player.startitem "QuintBusterBoss"
+player.startitem "SakugarneBoss"
+player.startitem "BackToTheAmmo",14
+player.startitem "SlideLimitFlag",500
+
+player.weaponslot 1, "QuintBusterBoss"
+player.weaponslot 2, "SakugarneBoss"
+
+States
+{
+Spawn:
+QUIN A 0
+QUIN B 1
+QUIN A 1
+Goto Spawn+2
+See:
+QUIN BBBBBCCCCCDDDDDEEEEE 1
+Goto Spawn
+Missile:
+QUIN F 0 A_JumpIfInventory("VivifyDelay10",1,"Missile2")
+QUIN FFFFF 1 A_JumpIfInventory("QuintYesPogo",1,"Melee")
+QUIN G 6
+goto Spawn
+Missile2:
+QUIN K 3
+QUIN KK 1 A_JumpIfInventory("VivifyDelay10",1,"Missile2")
+goto Spawn
+Melee:
+QUIN X 0 A_JumpIfInventory("QuintNoPogo",1,"MeleeWait")
+QUIN X 0 A_JumpIfInventory("QuintIsAir",1,"MeleeAir")
+QUIN X 1 A_JumpIfInventory("QuintDive",1,"MeleeCombo")
+loop
+MeleeAir:
+QUIN Y 1 A_JumpIfInventory("VivifyDelay6",1,"MeleeCombo")
+QUIN Y 1 A_JumpIfInventory("QuintNoPogo",1,"MeleeWait")
+loop
+MeleeCombo:
+QUIN XY 6
+goto Melee
+MeleeStomp:
+QUIN X 4
+goto MeleeAir
+MeleeWait:
+QUIN L 1 A_JumpIf(momz==0,"Spawn")
+wait
+
+ClassPainPogo:
+QUIN "#" 0 A_SpawnItemEx("DelayPainFX")
+QUIN "#" 0 A_JumpIfInventory("QuintIsAir",1,"MeleeAir")
+goto Melee
+ClassPain:
+QUIN H 0 A_JumpIfInventory("QuintYesPogo",1,"ClassPainPogo")
+QUIN H 0 A_JumpIfInventory("VivifyDelay10",1,"Missile2")
+goto PainContinue
+DeathFix:
+QUIN H 0
+goto DeathContinue
+ClassDeath:
+QUIN H 1
+goto MegaDeathEnd
+}
+}

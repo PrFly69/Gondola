@@ -1850,6 +1850,7 @@ CHANGELOG
 ==General
 -Updated PITFIND acs to include custom pit textures in Jampack/Sweatpack maps
 -Map Thunder Pegs are now voxels again
+-Weapon slots updated for several classes, including Roll, Joe, Jewel, and Quint
 
 ==Copyweapons
 -Overhead copy weapon display disappears for invisible players (buff to Centaur Flash)

@@ -1,0 +1,47 @@
+actor Jewelman : ClassBase
+{
+Player.ScoreIcon "C_09E0X"
+player.displayname "Jewelman"
+player.soundclass "jewelmanc"
+player.startitem "JewelSatelliteBoss1"
+player.startitem "JewelSatelliteBoss2"
+player.startitem "JewelSatelliteBoss3"
+player.startitem "JewelSatelliteBoss4"
+player.startitem "JewelResetItem"
+player.forwardmove 0.80, 0.80
+player.sidemove 0.78, 0.78
+
+player.weaponslot 1, "JewelSatelliteBoss1"
+player.weaponslot 2, "JewelSatelliteBoss2"
+player.weaponslot 3, "JewelSatelliteBoss3"
+player.weaponslot 4, "JewelSatelliteBoss4"
+
+player.startitem "BlackHoleBombWeakness2", 1
+
+player.startitem "BlackHoleBombWeakness", 1
+player.startitem "BlackHoleWeakness", 1
+States
+{
+Spawn:
+JEWL A 0
+JEWL B 1
+JEWL A 1
+Goto Spawn+2
+See:
+JEWL BCDE 5
+Goto Spawn
+Missile:
+JEWL F 5
+JEWL G 4 
+goto Spawn
+ClassPain:
+JEWL H 0
+goto PainContinue
+DeathFix:
+JEWL H 0
+goto DeathContinue
+ClassDeath:
+JEWL H 1
+goto MegaDeathEnd
+}
+}
