@@ -2001,6 +2001,8 @@ CHANGELOG
 
 ==Terra
 -Removed range limit on Spark Chaser
+--Replaced with cap on speed gained over time, caps out after 100 tics
+*Can still get pretty fast, but at least it never becomes an actual railgun
 --Spark Chaser now has dynamic lighting
 
 ==Mega Water S
