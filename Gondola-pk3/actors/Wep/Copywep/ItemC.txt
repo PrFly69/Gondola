@@ -68,13 +68,9 @@ States
 {
 Pickup:
 TNT1 A 0 A_JumpIfInventory("MegaFlag",1,"Mega")
-TNT1 A 0 A_JumpIfInventory("GreenSupremeFlag",1,"Maestro")
 stop
 Mega:
 TNT1 A 0 A_GiveInventory("UpgradeSelectBase_Mega",1)
-stop
-Maestro:
-TNT1 A 0 A_GiveInventory("UpgradeSelectBase_Maestro",1)
 stop
 }
 }
@@ -87,16 +83,6 @@ Pickup:
 TNT1 A 0 A_GiveInventory("MegaBusterC",1)
 TNT1 A 0 A_GiveInventory("MegaBusterFlag",1)
 TNT1 A 0 A_SelectWeapon("MegaBusterC")
-stop
-}
-}
-actor UpgradeSelectBase_Maestro : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_GiveInventory("MaestroBusterBoss",1)
-TNT1 A 0 A_SelectWeapon("MaestroBusterBoss")
 stop
 }
 }
@@ -233,6 +219,35 @@ stop
 }
 }
 
+actor MegaArmUpgrade2 : MegaArmUpgrade //replaces MegaArmUpgrade
+{
+states
+{
+Use:
+TNT1 A 0 A_GiveInventory("BusterUpgradeMain_P",1)
+TNT1 A 0 A_JumpIfInventory("MegaArmC",1,"Back")
+TNT1 A 0 A_TakeInventory("BusterGiven",999)
+TNT1 A 0 A_GiveInventory("BusterGiven",8)
+TNT1 A 0 A_GiveInventory("UpgradeSelectMegaArm",1)
+stop
+Back:
+TNT1 A 0 A_GiveInventory("UpgradeSelectBase_P",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
+stop
+}
+}
+
+actor UpgradeSelectMegaArm : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("MegaArmC",1)
+TNT1 A 0 A_SelectWeapon("MegaArmC")
+stop
+}
+}
+
 actor BassUpgrade2 : BassUpgrade //replaces BassUpgrade
 {
 Inventory.RespawnTics 350
@@ -271,7 +286,7 @@ Tag "$TAG_JETADAPTOR"
 inventory.icon "JETUP"
 states
 {
-SpawnLoop:
+Spawn:
 JETB D 1
 loop
 Use:
@@ -338,7 +353,7 @@ Tag "$TAG_POWERADAPTOR"
 inventory.icon "POWUP"
 states
 {
-SpawnLoop:
+Spawn:
 POWA H 1
 loop
 Use:
@@ -496,7 +511,7 @@ actor ClassETank : ETank
 inventory.icon "ETANKCBM"
 States
 {
-SpawnLoop:
+Spawn:
 EBAL E 6
 CARY X 6
 loop
@@ -572,7 +587,7 @@ Tag "$TAG_CARRY"
 inventory.icon "CARRI"
 states
 {
-SpawnLoop:
+Spawn:
 CARY D 1
 loop
 Use:
@@ -669,9 +684,6 @@ States
 Mega:
 TNT1 A 0 A_GiveInventory("TakeBuster_Mega",1)
 stop
-Maestro:
-TNT1 A 0 A_GiveInventory("TakeBuster_Maestro",1)
-stop
 }
 }
 
@@ -686,6 +698,7 @@ Spawn:
 TNT1 A 1
 Stop
 Use:
+TNT1 A 0 A_JumpIfInventory("BusterGiven", 8, "KeepArm")
 TNT1 A 0 A_JumpIfInventory("BusterGiven", 7, "KeepTreble")
 TNT1 A 0 A_JumpIfInventory("BusterGiven", 6, "KeepDuo")
 TNT1 A 0 A_JumpIfInventory("BusterGiven", 5, "KeepArrow")
@@ -693,6 +706,18 @@ TNT1 A 0 A_JumpIfInventory("BusterGiven", 4, "KeepLaser")
 TNT1 A 0 A_JumpIfInventory("BusterGiven", 3, "KeepAdaptor")
 TNT1 A 0 A_JumpIfInventory("BusterGiven", 2, "KeepPower")
 TNT1 A 0 A_JumpIfInventory("BusterGiven", 1, "KeepJet")
+Goto Death
+KeepArm:
+TNT1 A 0 A_GiveInventory("MegaBusterFlag",1)
+TNT1 A 0 A_TakeInventory("TrebleBoostC",1)
+TNT1 A 0 A_TakeInventory("MegaBusterC",1)
+TNT1 A 0 A_TakeInventory("LaserBusterC",1)
+TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
+TNT1 A 0 A_TakeInventory("DuoFistC",1)
+TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
+TNT1 A 0 A_TakeInventory("PowerFistC",1)
+TNT1 A 0 A_TakeInventory("JetBusterC",1)
+//TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto Death
 KeepTreble:
 TNT1 A 0 A_TakeInventory("MegaBusterFlag",1)
@@ -704,6 +729,7 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("PowerFistC",1)
 TNT1 A 0 A_TakeInventory("JetBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto Death
 KeepDuo:
 TNT1 A 0 A_TakeInventory("MegaBusterFlag",1)
@@ -715,6 +741,7 @@ TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("PowerFistC",1)
 TNT1 A 0 A_TakeInventory("JetBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto Death
 KeepArrow:
 TNT1 A 0 A_GiveInventory("MegaBusterFlag",1)
@@ -726,6 +753,7 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("PowerFistC",1)
 TNT1 A 0 A_TakeInventory("JetBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto Death
 KeepLaser:
 TNT1 A 0 A_GiveInventory("MegaBusterFlag",1)
@@ -737,6 +765,7 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("PowerFistC",1)
 TNT1 A 0 A_TakeInventory("JetBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto Death
 KeepAdaptor:
 TNT1 A 0 A_TakeInventory("MegaBusterFlag",1)
@@ -748,6 +777,7 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 //TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("PowerFistC",1)
 TNT1 A 0 A_TakeInventory("JetBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto Death
 KeepPower:
 TNT1 A 0 A_TakeInventory("MegaBusterFlag",1)
@@ -759,6 +789,7 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 //TNT1 A 0 A_TakeInventory("PowerFistC",1)
 TNT1 A 0 A_TakeInventory("JetBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto Death
 KeepJet:
 TNT1 A 0 A_TakeInventory("MegaBusterFlag",1)
@@ -770,6 +801,7 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("PowerFistC",1)
 //TNT1 A 0 A_TakeInventory("JetBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto Death
 Death:
 TNT1 A 0 A_TakeInventory("BusterGiven",999)
@@ -783,6 +815,7 @@ actor TakeBuster_Maestro : CustomInventory
 States
 {
 Pickup:
+TNT1 A 0 A_JumpIfInventory("BusterGiven",8,"KeepArm")
 TNT1 A 0 A_JumpIfInventory("BusterGiven",7,"KeepTreble")
 TNT1 A 0 A_JumpIfInventory("BusterGiven",6,"KeepDuo")
 TNT1 A 0 A_JumpIfInventory("BusterGiven",5,"KeepArrow")
@@ -791,8 +824,17 @@ TNT1 A 0 A_JumpIfInventory("BusterGiven",3,"KeepAdaptor")
 TNT1 A 0 A_JumpIfInventory("BusterGiven",2,"KeepProto")
 TNT1 A 0 A_JumpIfInventory("BusterGiven",1,"KeepBass")
 Goto KeepEnd
+KeepArm:
+TNT1 A 0 A_TakeInventory("TrebleBoostC",1)
+TNT1 A 0 A_TakeInventory("LaserBusterC",1)
+TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
+TNT1 A 0 A_TakeInventory("DuoFistC",1)
+TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
+TNT1 A 0 A_TakeInventory("ProtoBusterC",1)
+TNT1 A 0 A_TakeInventory("BassBusterC",1)
+//TNT1 A 0 A_TakeInventory("MegaArmC",1)
+Goto KeepEnd
 KeepTreble:
-TNT1 A 0 A_TakeInventory("MaestroBusterBoss",1)
 //TNT1 A 0 A_TakeInventory("TrebleBoostC",1)
 TNT1 A 0 A_TakeInventory("LaserBusterC",1)
 TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
@@ -800,9 +842,9 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("ProtoBusterC",1)
 TNT1 A 0 A_TakeInventory("BassBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto KeepEnd
 KeepDuo:
-TNT1 A 0 A_TakeInventory("MaestroBusterBoss",1)
 TNT1 A 0 A_TakeInventory("TrebleBoostC",1)
 TNT1 A 0 A_TakeInventory("LaserBusterC",1)
 TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
@@ -810,9 +852,9 @@ TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("ProtoBusterC",1)
 TNT1 A 0 A_TakeInventory("BassBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto KeepEnd
 KeepArrow:
-TNT1 A 0 A_TakeInventory("MaestroBusterBoss",1)
 TNT1 A 0 A_TakeInventory("TrebleBoostC",1)
 TNT1 A 0 A_TakeInventory("LaserBusterC",1)
 //TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
@@ -820,9 +862,9 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("ProtoBusterC",1)
 TNT1 A 0 A_TakeInventory("BassBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto KeepEnd
 KeepLaser:
-TNT1 A 0 A_TakeInventory("MaestroBusterBoss",1)
 TNT1 A 0 A_TakeInventory("TrebleBoostC",1)
 //TNT1 A 0 A_TakeInventory("LaserBusterC",1)
 TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
@@ -830,9 +872,9 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("ProtoBusterC",1)
 TNT1 A 0 A_TakeInventory("BassBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto KeepEnd
 KeepAdaptor:
-TNT1 A 0 A_TakeInventory("MaestroBusterBoss",1)
 TNT1 A 0 A_TakeInventory("TrebleBoostC",1)
 TNT1 A 0 A_TakeInventory("LaserBusterC",1)
 TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
@@ -840,9 +882,9 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 //TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("ProtoBusterC",1)
 TNT1 A 0 A_TakeInventory("BassBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto KeepEnd
 KeepProto:
-TNT1 A 0 A_TakeInventory("MaestroBusterBoss",1)
 TNT1 A 0 A_TakeInventory("TrebleBoostC",1)
 TNT1 A 0 A_TakeInventory("LaserBusterC",1)
 TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
@@ -850,9 +892,9 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 //TNT1 A 0 A_TakeInventory("ProtoBusterC",1)
 TNT1 A 0 A_TakeInventory("BassBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto KeepEnd
 KeepBass:
-TNT1 A 0 A_TakeInventory("MaestroBusterBoss",1)
 TNT1 A 0 A_TakeInventory("TrebleBoostC",1)
 TNT1 A 0 A_TakeInventory("LaserBusterC",1)
 TNT1 A 0 A_TakeInventory("ArrowBusterC",1)
@@ -860,6 +902,7 @@ TNT1 A 0 A_TakeInventory("DuoFistC",1)
 TNT1 A 0 A_TakeInventory("SuperAdaptorWepC",1)
 TNT1 A 0 A_TakeInventory("ProtoBusterC",1)
 //TNT1 A 0 A_TakeInventory("BassBusterC",1)
+TNT1 A 0 A_TakeInventory("MegaArmC",1)
 Goto KeepEnd
 KeepEnd:
 TNT1 A 0 A_TakeInventory("BusterGiven",999)
