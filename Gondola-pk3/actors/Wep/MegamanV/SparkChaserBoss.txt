@@ -280,7 +280,10 @@ inventory.maxamount 80
 +INVENTORY.IGNORESKILL
 }
 
-actor SparkChaserFlag : OnceC{}
+actor SparkChaserFlag : Powerup
+{
+Powerup.Duration 5
+}
 
 actor TerraMustMelee : OnceC{}
 

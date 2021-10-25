@@ -1961,6 +1961,7 @@ CHANGELOG
 
 ==Plantman
 -Is now smoking a FAT durry
+-Second firing frame for skinsprite added
 
 ==Knightman
 -Fixed impact FX happening on Knight Crusher returning

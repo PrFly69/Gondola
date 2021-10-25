@@ -439,7 +439,7 @@ TERV A 0
 TNT1 A 0 A_GiveInventory("SparkLaserTimer",1)
 TERV A 1 A_JumpIfInTargetInventory("SparkChaserFlag",1,"Death")
 TNT1 A 0 A_GiveToTarget("SparkChaserChecker",1)
-TNT1 A 0 A_JumpIfInventory("SparkLaserTimer",80,"Death")
+TNT1 A 0 A_JumpIfInventory(user_SparkChaserAdd,40,"Death")
 TNT1 A 0 A_SetUserVar("user_SparkChaserAdd", user_SparkChaserAdd + 2)
 TNT1 A 0 ACS_NamedExecuteWithResult("CCBM_PitchAngleSetter",5)
 TNT1 A 0 A_ChangeVelocity(cos(-pitch)*18,0,sin(-pitch)*18,3)
@@ -449,7 +449,7 @@ TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail_Fake",0,0,0,momx/4,momy/4,mom
 TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail_Fake",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
 TNT1 A 0 A_GiveInventory("SparkLaserTimer",1)
 TERV A 1 A_JumpIfInTargetInventory("SparkChaserFlag",1,"Death")
-TNT1 A 0 A_JumpIfInventory("SparkLaserTimer",80,"Death")
+TNT1 A 0 A_JumpIfInventory(user_SparkChaserAdd,40,"Death")
 TNT1 A 0 A_SetUserVar("user_SparkChaserAdd", user_SparkChaserAdd + 2)
 TNT1 A 0 ACS_NamedExecuteWithResult("CCBM_PitchAngleSetter",5)
 TNT1 A 0 A_ChangeVelocity(cos(-pitch)*18,0,sin(-pitch)*18,3)
@@ -461,7 +461,7 @@ TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail_Fake",0,0,0,0,0,0,0,SXF_ABSOL
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SDeath")
 TNT1 A 0 A_GiveInventory("SparkLaserTimer",1)
 TERV B 1 A_JumpIfInTargetInventory("SparkChaserFlag",1,"Death")
-TNT1 A 0 A_JumpIfInventory("SparkLaserTimer",80,"Death")
+TNT1 A 0 A_JumpIfInventory(user_SparkChaserAdd,40,"Death")
 TNT1 A 0 A_SetUserVar("user_SparkChaserAdd", user_SparkChaserAdd + 2)
 TNT1 A 0 ACS_NamedExecuteWithResult("CCBM_PitchAngleSetter",5)
 TNT1 A 0 A_ChangeVelocity(cos(-pitch)*18,0,sin(-pitch)*18,3)
@@ -473,7 +473,7 @@ TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail_Fake",0,0,0,0,0,0,0,SXF_ABSOL
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SDeath")
 TNT1 A 0 A_GiveInventory("SparkLaserTimer",1)
 TERV B 1 A_JumpIfInTargetInventory("SparkChaserFlag",1,"Death")
-TNT1 A 0 A_JumpIfInventory("SparkLaserTimer",80,"Death")
+TNT1 A 0 A_JumpIfInventory(user_SparkChaserAdd,40,"Death")
 TNT1 A 0 A_SetUserVar("user_SparkChaserAdd", user_SparkChaserAdd + 2)
 TNT1 A 0 ACS_NamedExecuteWithResult("CCBM_PitchAngleSetter",5)
 TNT1 A 0 A_ChangeVelocity(cos(-pitch)*18,0,sin(-pitch)*18,3)
@@ -585,7 +585,7 @@ Damagetype "SparkChaserTerra"
 Obituary "$OB_SPARKCHASERBOSSX"
 Damage 0
 Speed 0
-//Reactiontime 70
+Reactiontime 70
 States
 {
 Spawn:
@@ -596,13 +596,13 @@ TNT1 A 0 A_PlaySound("weapon/sparkchasertravel",CHAN_6,0.4,FALSE)
 TNT1 A 0 A_TakeInventory("SparkChaserSoundCounter",99)
 SpawnLOOP:
 TNT1 A 0 A_JumpIfInventory("SparkChaserSoundCounter",6,"PlaySound")
-TNT1 A 1 //A_CountDown
+TNT1 A 1 A_CountDown
 TNT1 A 0 A_GiveInventory("SparkChaserSoundCounter",1)
 TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail",-momx*2/3,-momy*2/3,-momz*2/3,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
 TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail",-momx/3,-momy/3,-momz/3,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
 TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail",0,0,0,momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
 TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
-//TNT1 A 1 A_CountDown
+TNT1 A 1 A_CountDown
 //TNT1 A 0 A_StopSound(6)
 TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail",-momx*2/3,-momy*2/3,-momz*2/3,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
 TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrail",-momx/3,-momy/3,-momz/3,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
