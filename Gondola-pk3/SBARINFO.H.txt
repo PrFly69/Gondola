@@ -283,12 +283,12 @@ IsSelected TimeBenderWepC{DrawBar"VARAMMO7","VAREMPTY",Ammo1,horizontal,58,184;
 IsSelected WaveBusterWepC{Drawbar"XTR0VR_B","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected RisingFistWepC{Drawbar"XTR0VR_A","VAREMPTY",Ammo1,horizontal,58,184;}
 
-InInventory ProtoBusterBoss,1{DrawBar"00_0_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
+InInventory HeroicProtoBuster,1{DrawBar"00_0_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 InInventory MegaFlag,1{InInventory MegaBusterFlag,1{DrawBar"00_1_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 	else{DrawBar"00___VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 	InInventory MegamanX,1{DrawBar"KC_A_VAR","VNOBAR",MegamanX,horizontal,130,184;}}
 InInventory BassDoubleJump,1{DrawBar"00_4_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
-InInventory DuoBusterBoss,1{DrawBar"08_9_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
+InInventory HeroicDuoFistBoss,1{DrawBar"08_9_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 //MM0
 IsSelected JetBusterC{DrawBar"00_A_VAR","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected PowerFistC{DrawBar"00_A_VAR","VAREMPTY",Ammo1,horizontal,58,184;}

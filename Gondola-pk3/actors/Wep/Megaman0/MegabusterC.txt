@@ -1,7 +1,7 @@
 actor MegaBusterC : BaseMM8BDMWep_CBM
 {
 tag "$TAGC_0B"
-dropitem "CopyClassUpgradeDropped"
+dropitem "MegaArmUpgrade2GiverDropped"
 
 Weapon.AmmoUse 1
 Weapon.AmmoGive 3
