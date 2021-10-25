@@ -110,7 +110,7 @@ Pain.ScorchWheelB:Pain.JunkShield:
 Pain.WaterCannon:Pain.ThunderClawT:Pain.FlameSwordSpark:Pain.FlameSwordSpark2:Pain.FlameSwordSpark3:Pain.ODuoPunch:Pain.EvilFlameSword:
 Pain.JewelSatelliteB:Pain.BlackHoleBombB:Pain.HornetChaserB:
 Pain.TenguBladeB:Pain.WaveBurner:Pain.WaveBurnerUW:Pain.IceWallB:Pain.SpreadDrillB:Pain.TheKing:Pain.PiratePush:
-Pain.BubbleBombB:
+Pain.BubbleBombB:Pain.ThunderWool:
 Pain.BusterRodPole:Pain.BusterRodG:
 Pain.SakugarneB:
 

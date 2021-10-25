@@ -250,8 +250,8 @@ DOCR A 0 A_GiveInventory("DocRobotFlashAltNoTake2_CI",1)
 DOCR B 1 Offset(4,30)
 DOCR B 1 Offset(1,33)
 DOCR B 1 Offset(4,36)
+//DOCR A 0 A_Refire("Altfire")
 DOCR A 15 A_WeaponReady(14)
-DOCR A 0 A_TakeInventory("DocShotAmmoStalling",1)
 DOCR A 0 A_GunFlash
 Goto Ready1
 AltfireNoAmmoConsumption:
@@ -316,8 +316,8 @@ DOCR A 0 A_GiveInventory("DocRobotFlashAltNoTake2_CI",1)
 DOCR B 1 Offset(4,30)
 DOCR B 1 Offset(1,33)
 DOCR B 1 Offset(4,36)
+//DOCR A 0 A_Refire("Altfire")
 DOCR A 15 A_WeaponReady(14)
-DOCR A 0 A_Refire
 Goto Ready1
 Reload:
 TNT1 A 0 A_JumpIfInventory("DocBodyBoostFlag",1,"PowerKILL")
@@ -334,7 +334,7 @@ PowerKILL:
 TNT1 A 0  A_TakeInventory("DocVirusAmmo",175)
 goto Ready1
 NoAmmo:
-DOCR A 1
+DOCR A 1 
 Goto Ready1
 Flash:
 TNT1 A 0 A_JumpIfInventory("DocShotAmmoStalling",1,1)
@@ -428,6 +428,7 @@ AltfireShot:
 DOCR A 0 A_GunFlash("NoFlash")
 DOCR A 0 A_PlaySoundEx("weapon/DocCrashShot","weapon")
 DOCR A 0 A_GiveInventory("DocRobotCrashAlt_CI",1)
+DOCR B 0 A_ChangeVelocity(-12.5*cos(pitch),0,-12.5*-sin(pitch),3)
 DOCR B 1 Offset(50,80)
 DOCR B 1 Offset(60,90)
 DOCR A 1 Offset(63,93)
@@ -441,15 +442,16 @@ DOCR A 1 Offset(40,70)
 DOCR A 1 Offset(30,60)
 DOCR A 1 Offset(20,50)
 DOCR A 1 Offset(10,40)
-DOCR A 25 A_WeaponReady(14)
+//DOCR A 0 A_Refire("Altfire")
+DOCR A 35 A_WeaponReady(14)
 DOCR A 0 A_GunFlash
-DOCR A 0 A_Refire
 //DOCR DADADADAD 1
 Goto Ready1
 AltfireNoAmmoConsumption:
 DOCR A 0 //A_GunFlash("NoFlash")
 DOCR A 0 A_PlaySoundEx("weapon/DocCrashShot","weapon")
 DOCR A 0 A_GiveInventory("DocRobotCrashAltNoTake_CI",1)
+DOCR B 0 A_ChangeVelocity(-12.5*cos(pitch),0,-12.5*-sin(pitch),3)
 DOCR B 1 Offset(50,80)
 DOCR B 1 Offset(60,90)
 DOCR A 1 Offset(63,93)
@@ -463,9 +465,9 @@ DOCR A 1 Offset(40,70)
 DOCR A 1 Offset(30,60)
 DOCR A 1 Offset(20,50)
 DOCR A 1 Offset(10,40)
-DOCR A 25 A_WeaponReady(14)
+//DOCR A 0 A_Refire("Altfire")
+DOCR A 35 A_WeaponReady(14)
 DOCR A 0 //A_GunFlash
-DOCR A 0 A_Refire
 //DOCR DADADADAD 1
 Goto Ready1
 Reload:
@@ -495,7 +497,7 @@ TNT1 A 0 A_TakeInventory("DocVirusAmmo",1)
 TNT1 A 0 A_GiveInventory("DocAirJumpthrust",1) //A_GiveInventory("PowerHighJump",1)
 TNT1 A 0 A_SpawnItemEX("DocAirBodyFX",random(32,64),0,random(8,64),0,0,frandom(0.1,1.1),random(90,270),1)
 TNT1 A 0 A_CheckFloor("P_Ground")
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,2,1)
+TNT1 A 0 A_GiveInventory("DocAirControl",1)//ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,2,1)
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlashBuffer")
 TNT1 A 1 A_GiveInventory("DocBodyBoostFlag",1)
 goto AirFlash
@@ -503,11 +505,11 @@ AirFlashEnd:
 STAC A 0 A_PlaySoundEx("fuseman/hvend","body") 
 TNT1 A 0 A_TakeInventory("DocVirusAmmo",1)
 TNT1 A 0 A_TakeInventory("PowerHighJump",1)
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+TNT1 A 0 A_TakeInventory("DocAirControl",1)//ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
 TNT1 A 0 A_TakeInventory("DocBodyBoostFlag",1)
 goto Flash
 P_Ground:
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+TNT1 A 0 A_TakeInventory("DocAirControl",1)//ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlashBuffer")
 TNT1 A 1 A_GiveInventory("DocBodyBoostFlag",1)
 goto AirFlash
@@ -515,7 +517,7 @@ NoFlashBuffer:
 STAC A 0 A_PlaySoundEx("fuseman/hvend","body") 
 TNT1 A 0 A_TakeInventory("DocVirusAmmo",1)
 TNT1 A 0 A_TakeInventory("PowerHighJump",1)
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+TNT1 A 0 A_TakeInventory("DocAirControl",1)//ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
 TNT1 A 0 A_TakeInventory("DocBodyBoostFlag",1)
 goto NoFlash
 }
@@ -936,7 +938,7 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 X_2N G 1 A_SpawnItemEx("DocCrashShotFX",0,0,0,0,0,0,0,1)
-X_2N G 0 ThrustThingZ(0, 7, 0, 1)
+X_2N G 0 //ThrustThingZ(0, 7, 0, 1)
 BASB T 0 A_SpawnItemEx("DocCrashShotFX",0,0,0,0,cos(pitch+270)*4,-sin(pitch+270)*4,0,1)
 BASB T 0 A_SpawnItemEx("DocCrashShotFX",0,0,0,0,cos(pitch+90)*4,-sin(pitch+90)*4,0,1)
 BASB T 0 A_SetPitch(pitch%360+30)
@@ -946,17 +948,16 @@ Death:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
-//TNT1 A 0 A_SetScale(2.5,2.5)
-TNT1 A 0 A_Explode(4,96,0,0,96)
-X_2V A 1 A_PlaySound("misc/mm3explosion",0,0.85)
-TNT1 A 0 A_Explode(4,96,0,0,72)
-X_2V B 1
-TNT1 A 0 A_Explode(2,96,0,0,48)
-X_2V C 1
-X_2V DEFGHIJKLMNO 1 A_Explode(1,96,0,0,24)
+TNT1 A 0 A_SpawnItemEx("DocCrashDirectBoom",0,0,0,0,0,0,0,1)
 stop
 }
 }
+
+actor DocCrashDirectBoom : ClashBomb_MineDirectBoom
+{
+Obituary "$OB_DOCCRASHBUSTER"
+}
+
 actor DocCrashShotB : DocCrashShot{translation "202:202=205:205", "199:199=74:74","202:202=205:205"}
 actor DocCrashShotR : DocCrashShot{translation "202:202=171:171", "199:199=41:41","202:202=171:171"}
 actor DocCrashShotO : DocCrashShot{translation "202:202=104:104", "199:199=128:128","202:202=104:104"}
@@ -1120,6 +1121,12 @@ End:
 TNT1 A 0
 stop
 }
+}
+
+actor DocAirControl : PowerSpeed
+{
++POWERSPEED.NOTRAIL
+Speed 2.0
 }
 
 actor DocQuickWeakness : BasePowerWeak
