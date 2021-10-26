@@ -154,3 +154,16 @@ dsplpain = ROCKHURT
 dstaunt = ROCKMTAU
 gender = male
 }
+
+{
+name = "Pumpkin-action Sniper"
+sprite = DARH
+class = Darkman3
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}

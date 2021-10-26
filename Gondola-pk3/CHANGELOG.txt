@@ -1976,6 +1976,9 @@ CHANGELOG
 ==Crystalman
 -V-Classes skin no longer base, still available as an alt
 
+==Darkman3
+-Jump frames edited and added by Greg.EXE
+
 ==Blizzardman
 -Blizzard Bowl fully reverted to 2.0h (no more drifting)
 
@@ -2046,4 +2049,5 @@ CHANGELOG
 ==BBA Megaman
 -BBA now consistently drops either Power or Jet Adaptor
 *This effectively removes Laser and Arrow Buster from TLMS
--Now spawns confetti upon dying with BFG9000
+-Now drops Carry upon dying with BFG9000
+*This was confetti but apparently Greg cannot code
