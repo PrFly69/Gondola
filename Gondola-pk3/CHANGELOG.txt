@@ -1924,6 +1924,7 @@ CHANGELOG
 -V-Classes skin no longer base skin, still available as an alt
 -Flash Buster damage 5 > 6
 -Flash Stunner Damage 5 > 12
+--Windup before firing reduced
 -Fixed bug where Flash Stunner had 1 second of stun rather than 1.5
 --Fixed bug where Flash Stunner kept original Time Bender duration when used on Flagbearers or Yellow Devil
 -Time Bender removed
@@ -2024,7 +2025,6 @@ CHANGELOG
 -Removed range limit on Spark Chaser
 --Replaced with cap on speed gained over time, caps out after 100 tics
 *Can still get pretty fast, but at least it never becomes an actual railgun
---Spark Chaser now has dynamic lighting
 
 ==Venus
 -Bubble Bomb direct damage 8 > 5

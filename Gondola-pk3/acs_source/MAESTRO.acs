@@ -1,0 +1,276 @@
+#library "Maestro"
+#include "zcommon.acs"
+
+#DEFINE MAESTRO_ELEMENTX 4
+#DEFINE MAESTRO_STYLEX 3
+
+str maestro_elements[MAESTRO_ELEMENTX] =
+{
+"Heat",
+"Aqua",
+"Elec",
+"Wood",
+};
+
+str maestro_styles[MAESTRO_STYLEX] =
+{
+"Guts",
+"Custom",
+"Shield",
+//"Team",
+//"Shadow",
+//"Ground",
+//"Bug",
+};
+
+script "CCBM_GetMaestroStyle" (void)
+{
+	SetResultValue(CheckInventory("MaestroSwapStyleCount"));
+}
+
+script "CCBM_GetMaestroRandom" (void)
+{
+	SetResultValue(GetUserCVar(PlayerNumber(),"CCBM_MaestroRandom"));
+}
+
+script "CCBM_MaestroSpawned" (void)
+{
+	int pnum = PlayerNumber();
+	GiveInventory("MaestroSwapElementCount",GetUserCVar(pnum,"CCBM_MaestroElement"));
+	GiveInventory("MaestroSwapStyleCount",GetUserCVar(pnum,"CCBM_MaestroStyle"));
+}
+
+script "CCBM_MaestroStyleChange" (void)
+{
+	int UserElement = CheckInventory("MaestroSwapElementCount");
+	int UserStyle = CheckInventory("MaestroSwapStyleCount");
+
+	//Script is executed on the first frame of reload, however the MaestroIsReady
+	//flag tells it when to continue
+	while(!CheckInventory("MaestroIsReady")) {Delay(1);}
+
+	GiveInventory(MaestroInventoryPickupFunc(UserElement,UserStyle),1);
+	SetWeapon(MaestroWeaponFunc(UserElement,UserStyle));
+	Delay(3);
+	TakeInventory("MaestroNeutralBoss",1);
+}
+
+function str MaestroInventoryPickupFunc(int element, int style)
+{
+return StrParam(s:maestro_elements[element], s:maestro_styles[style], s:"pickup");
+}
+
+function str MaestroWeaponFunc(int element, int style)
+{
+return StrParam(s:"Maestro",s:maestro_elements[element], s:maestro_styles[style]);
+}
+
+script "CCBM_MaestroStyleChangeRandom" (void)
+{
+	int UserElementR = Random(0,3);
+	int UserStyleR = Random(0,2);
+
+	while(!CheckInventory("MaestroIsReady")) {Delay(1);}
+
+	GiveInventory(MaestroInventoryPickupFunc(UserElementR,UserStyleR),1);
+	SetWeapon(MaestroWeaponFunc(UserElementR,UserStyleR));
+	Delay(3);
+	TakeInventory("MaestroNeutralBoss",1);
+}
+
+//Random selection needs its own script due to the nature of how Maestro needs his weapon setup to be.
+
+script "CCBM_MaestroStyleChangeRevert" (void)
+{
+	GiveInventory("MaestroNeutralBoss",1);
+	SetWeapon("MaestroNeutralBoss");
+	Delay(3);
+	GiveInventory("MaestroResetPickup",1);
+}
+
+script "CCBM_MaestroHUD" (void) CLIENTSIDE
+{
+	int TID = ActivatorTID();
+	for(int BNCount = 0; BNCount < 2; BNCount++)
+	{
+		SetHudSize(600,380,0);
+		MaestroHUDMessageFunc("Changing style.",tid);
+		Delay(9);
+		MaestroHUDMessageFunc(" Changing style..",tid);
+		Delay(9);
+		MaestroHUDMessageFunc("  Changing style...",tid);
+		Delay(9);
+	}
+}
+
+function void MaestroHUDMessageFunc(str s, int tid)
+{
+HudMessage(s:s; HUDMSG_COLORSTRING,39000+TID,"MenuWhite",300.4,30.0,0.3,0.5);
+}
+
+/*
+Due to the menu options for Maestro being changable at any time, I need to use
+this case format so the weapons Maestro swaps to correctly say what the element 
+and style of the weapon is, instead of relying on the menu which can be changed
+to display the incorrect info otherwise.
+
+MGO
+
+*/
+
+//Case 0 is for reverting back to Maestro's base weapon.
+//Cases 1 to 4 are for debug weapons. Neutral weps cannot be selected once Maestro is finished.
+script "CCBM_MaestroStyleChangeEnd" (int Select) CLIENTSIDE
+{
+	int TID = ActivatorTID();
+	SetHudSize(600,380,0);
+	Switch(Select) {
+		Case 32:
+		MaestroStyleChangeMsg("You have changed to\nWoodBug style.",tid);
+			break;
+		Case 31:
+		MaestroStyleChangeMsg("You have changed to\nElecBug style.",tid);
+			break;
+		Case 30:
+		MaestroStyleChangeMsg("You have changed to\nAquaBug style.",tid);
+			break;
+		Case 29:
+		MaestroStyleChangeMsg("You have changed to\nHeatBug style.",tid);
+			break;
+		Case 28:
+		MaestroStyleChangeMsg("You have changed to\nWoodGround style.",tid);
+			break;
+		Case 27:
+		MaestroStyleChangeMsg("You have changed to\nElecGround style.",tid);
+			break;
+		Case 26:
+		MaestroStyleChangeMsg("You have changed to\nAquaGround style.",tid);
+			break;
+		Case 25:
+		MaestroStyleChangeMsg("You have changed to\nHeatGround style.",tid);
+			break;
+		Case 24:
+		MaestroStyleChangeMsg("You have changed to\nWoodShadow style.",tid);
+			break;
+		Case 23:
+		MaestroStyleChangeMsg("You have changed to\nElecShadow style.",tid);
+			break;
+		Case 22:
+		MaestroStyleChangeMsg("You have changed to\nAquaShadow style.",tid);
+			break;
+		Case 21:
+		MaestroStyleChangeMsg("You have changed to\nHeatShadow style.",tid);
+			break;
+		Case 20:
+		MaestroStyleChangeMsg("You have changed to\nWoodTeam style.",tid);
+			break;
+		Case 19:
+		MaestroStyleChangeMsg("You have changed to\nElecTeam style.",tid);
+			break;
+		Case 18:
+		MaestroStyleChangeMsg("You have changed to\nAquaTeam style.",tid);
+			break;
+		Case 17:
+		MaestroStyleChangeMsg("You have changed to\nHeatTeam style.",tid);
+			break;
+		Case 16:
+		MaestroStyleChangeMsg("You have changed to\nWoodShield style and got \nPlant Barrier",tid);
+			break;
+		Case 15:
+		MaestroStyleChangeMsg("You have changed to\nElecShield style and got \nMirror Buster",tid);
+			break;
+		Case 14:
+		MaestroStyleChangeMsg("You have changed to\nAquaShield style and got \nMWS Barrier",tid);
+			break;
+		Case 13:
+		MaestroStyleChangeMsg("You have changed to\nHeatShield style and got \nFlame Blast",tid);
+			break;
+		Case 12:
+		MaestroStyleChangeMsgCust("You have changed to\nWoodCustom style and got\nLeaf Shield\nSearch Snake\nPlant Trapper\nTornado Hold\nTornado Blow",tid);
+			break;
+		Case 11:
+		MaestroStyleChangeMsgCust("You have changed to\nElecCustom style and got\nThunder Beam\nSpark Shock\nThunder Bolt\nThunder Claw\nPlug Ball",tid);
+			break;
+		Case 10:
+		MaestroStyleChangeMsgCust("You have changed to\nAquaCustom style and got\nIce Slasher\nBubble Lead\nWater Balloon\nWater Shield\nSalt Water",tid);
+			break;
+		Case 9:
+		MaestroStyleChangeMsgCust("You have changed to\nHeatCustom style and got\nFire Storm\nScorch Wheel\nFlame Sword\nMagma Bazooka\nSolar Blaze",tid);
+			break;
+		Case 8:
+		MaestroStyleChangeMsg("You have changed to\nWoodGuts style.",tid);
+			break;
+		Case 7:
+		MaestroStyleChangeMsg("You have changed to\nElecGuts style.",tid);
+			break;
+		Case 6:
+		MaestroStyleChangeMsg("You have changed to\nAquaGuts style.",tid);
+			break;
+		Case 5:
+		MaestroStyleChangeMsg("You have changed to\nHeatGuts style.",tid);
+			break;
+		Case 4:
+		MaestroStyleChangeMsg("You have changed to\nWoodNeutral style and got\nWeapon 1\nWeapon 2\nWeapon 3",tid);
+			break;
+		Case 3:
+		MaestroStyleChangeMsg("You have changed to\nElecNeutral style and got\nWeapon 1\nWeapon 2\nWeapon 3",tid);
+			break;
+		Case 2:
+		MaestroStyleChangeMsg("You have changed to\nAquaNeutral style and got\nWeapon 1\nWeapon 2\nWeapon 3",tid);
+			break;
+        Case 1:
+        MaestroStyleChangeMsg("You have changed to\nHeatNeutral style and got\nWeapon 1\nWeapon 2\nWeapon 3",tid);
+            break;
+		Case 0:
+		MaestroStyleChangeMsg2("You have changed back to\nNormal style.",tid,50.0,0.5);
+			break;
+	}
+}
+
+function void MaestroStyleChangeMsg(str s, int tid)
+{
+MaestroStyleChangeMsg2(s,tid,50.0,2.0);
+}
+
+function void MaestroStyleChangeMsgCust(str s, int tid)
+{
+MaestroStyleChangeMsg2(s,tid,65.0,2.0);
+}
+
+function void MaestroStyleChangeMsg2(str s, int tid, int y, int holdtime)
+{
+HudMessage(s:s; HUDMSG_FADEOUT|HUDMSG_COLORSTRING,39000+TID,"MenuWhite",300.4,y,holdtime,0.5);
+}
+
+#define TEAM_NONE -1
+
+script "Maestro_AltfireSnatch" (int mode, int O_TID, int H_TID)
+{
+switch (mode) {
+    case 1://Solar
+        //log(s:"Hitter TID = ",i:H_TID);
+        //log(s:"Owner TID = ",i:O_TID);
+        if(H_TID == 0){
+            break;
+        }
+        if(H_TID != O_TID && ClassifyActor(H_TID) & ACTOR_PLAYER){
+            int O_TID_Team = ACS_ExecuteWithResult(143,O_TID,1);
+            int H_TID_Team = ACS_ExecuteWithResult(143,H_TID,1);
+            //log(s:"Hitter Team = ",i:H_TID_Team);
+            //log(s:"Owner Team = ",i:O_TID_Team);
+            if(H_TID_Team == TEAM_NONE || H_TID_Team != O_TID_Team){
+                switch (mode) {
+                        default:
+                            break;
+                        case 1:
+                            GiveActorInventory(O_TID,"MaestroShieldPickup",1);
+                            //log(s:"Gave SkullCounter");
+                            break;
+                }
+            }
+        }
+        break;
+    default:
+        break;
+}
+}
