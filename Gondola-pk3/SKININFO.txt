@@ -80,6 +80,19 @@ dstaunt = dsnone
 gender = male
 }
 
+{
+name = "Ice-Redflash"
+sprite = ICE2
+class = Iceman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
 //k -redflash
 
 {
