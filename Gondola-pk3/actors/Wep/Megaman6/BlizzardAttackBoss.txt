@@ -83,6 +83,7 @@ BSKI E 0 A_JumpIfInventory("BallAmmo",112,"Checking")
 goto Ready+1
 Checking:
 BSKI E 0 A_PlaySoundEx("weapon/BassCombine","Weapon")
+BSKI E 0 A_GiveInventory("SelfTotallyFrozen",1)
 BSKI E 0 A_JumpIfInventory("PowerRage_ST",1,"CheckingR")
 BSKI E 1 OffSet(0,42)
 BSKI E 1 OffSet(0,52)
@@ -103,7 +104,6 @@ BSKI E 1 OffSet(0,132)
 goto RollingPrepare
 RollingPrepare:
 TNT1 A 1 A_TakeInventory("CrackFlag",9)
-TNT1 A 0 A_GiveInventory("SelfTotallyFrozen",1)
 TNT1 A 0 A_TakeInventory("BallAmmo",112)
 TNT1 A 0 A_GiveInventory("BlizzardmanFlag",1)
 TNT1 A 0 A_TakeInventory("UnSolid",1)
