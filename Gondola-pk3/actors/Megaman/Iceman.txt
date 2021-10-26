@@ -49,14 +49,14 @@ ICEM KKKKKLLLLL 1 A_JumpIf(z-floorz>0, "JumpingMissile2")
 goto Spawn
 
 		Jumping:
-		ICE1 I 1 A_JumpIf(z-floorz<=0, "Spawn")
+		ICEM M 1 A_JumpIf(z-floorz<=0, "Spawn")
 		wait
 		
 		JumpingMissile:
-		ICE1 JJJJJKKKK 1 A_JumpIf(z-floorz<=0, "Missile")
+		ICEM NNNNNOOOO 1 A_JumpIf(z-floorz<=0, "Missile")
 		Goto Jumping
 		JumpingMissile2:
-		ICE1 KKKKKKKKKK 1 A_JumpIf(z-floorz<=0, "Missile2")
+		ICEM OOOOOOOOOO 1 A_JumpIf(z-floorz<=0, "Missile2")
 		Goto Jumping
 
 ClassPain:
