@@ -285,7 +285,7 @@ PROJECTILE
 damagetype "BubbleBomb"
 Obituary "%o was blistered by %k's Bubble Mines."
 ReactionTime 1
-damage (8)
+damage (5)
 Radius 16
 Height 16
 speed 40
@@ -309,7 +309,7 @@ Death:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_JumpIfInventory("OnceC",1,"DeathFX")
 TNT1 A 0 A_PlaySoundEx("W_Venus/GB_Boom","Weapon")
-TNT1 A 0 A_Explode(10,96,0,0,32)
+TNT1 A 0 A_Explode(15,96,0,0,32)
 X_VC FGHIJKLMNO 1
 stop
 DeathFX:

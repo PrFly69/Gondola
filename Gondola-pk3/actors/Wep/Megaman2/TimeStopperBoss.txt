@@ -177,8 +177,8 @@ Goto Ready1
 
 AltFire:
 FLSA A 0 A_PlaySoundEx("weapon/flashstunstart","Weapon")
-//FLSA A 4 Offset(10,0)
-//FLSA A 4 Offset(-10,0)
+FLSA A 4 Offset(10,0)
+FLSA A 4 Offset(-10,0)
 FLSA A 4 Offset(10,0)
 FLSA A 4 Offset(-10,0)
 FLSA B 2 Offset(10,0)
