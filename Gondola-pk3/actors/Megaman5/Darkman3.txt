@@ -33,26 +33,27 @@ Missile:
 DAR3 F 0 A_JumpIf(z-floorz>0,"JumpingMissile")
 DAR3 F 0 A_JumpIfInventory("VivifyDelay8",1,"Missile1")
 DAR3 F 0 A_JumpIfInventory("VivifyDelay6",1,"Missile2")
-DAR3 F 5
-DAR3 G 4
+Missiler:
+DAR3 FFFFF 1 A_JumpIf(z-floorz>0,"JumpingMissile")
+DAR3 GGGG 1 A_JumpIf(z-floorz>0,"JumpingMissile")
 goto Spawn
 Missile1:
-DAR3 FGFGFGFGRR 2
+DAR3 FFGGFFGGFFGGFFGG 1 A_JumpIf(z-floorz>0, "JumpingMissile1")
 goto Spawn
 Missile2:
-DAR3 RSRSR 3
+DAR3 RRRSSSRRRSSSRRR 1 A_JumpIf(z-floorz>0, "JumpingMissile2")
 goto Spawn
 
 JumpingMissile:
 DAR3 I 0 A_JumpIfInventory("VivifyDelay8",1,"JumpingMissile1")
 DAR3 I 0 A_JumpIfInventory("VivifyDelay6",1,"JumpingMissile2")
-DAR3 JJJJJKKKK 1 A_JumpIf(z-floorz<=0, "Spawn")
+DAR3 JJJJJKKKK 1 A_JumpIf(z-floorz<=0, "Missiler")
 goto Jumping
 JumpingMissile1:
-DAR3 JJKKJJKKJJKKJJKKIIII 1 A_JumpIf(z-floorz<=0, "Spawn")
+DAR3 JJKKJJKKJJKKJJKK 1 A_JumpIf(z-floorz<=0, "Missile1")
 goto Jumping
 JumpingMissile2:
-DAR3 IIITTTIIITTTIII 1 A_JumpIf(z-floorz<=0, "Spawn")
+DAR3 IIITTTIIITTTIII 1 A_JumpIf(z-floorz<=0, "Missile2")
 goto Jumping
 //If this seems horrible, that's because it is.
 
