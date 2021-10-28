@@ -253,6 +253,7 @@ actor YellowDevilCube //If you change this or the actors below, be sure to chang
 	{
 		Spawn:
 		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 		TNT1 A 0 ThrustThingZ(0,14,0,1)
 		TNT1 A 0 A_Countdown 
 		YD_H FGHI 3
@@ -354,6 +355,7 @@ States
 {
 Spawn:
 TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 YD_H JKL 1
 TNT1 A 0 A_ChangeFlag(HEXENBOUNCE, false)
 Spawn2:
@@ -379,6 +381,9 @@ actor YellowDevilEyeShot : FastProjectile
 	States
 	{
 		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
 		YD_H R 1
 		loop
 	}

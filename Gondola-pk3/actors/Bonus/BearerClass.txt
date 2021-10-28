@@ -382,6 +382,7 @@ actor YD_BearerCube
 	{
 		Spawn:
 		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 		TNT1 A 0 ThrustThingZ(0,14,0,1)
 		TNT1 A 0 A_Countdown 
 		R2GH FGHI 3
@@ -489,6 +490,7 @@ States
 {
 Spawn:
 TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 R2GH JK 1
 TNT1 A 0 A_ChangeFlag(HEXENBOUNCE, false)
 Spawn2:
