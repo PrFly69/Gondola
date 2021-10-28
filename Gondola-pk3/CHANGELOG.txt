@@ -1922,9 +1922,10 @@ CHANGELOG
 
 ==Flashman
 -V-Classes skin no longer base skin, still available as an alt
+-Now spawns with full ammo
 -Flash Buster damage 5 > 6
--Flash Stunner Damage 5 > 12
---Windup before firing reduced
+-Flash Stunner Damage 5 > 9
+--Windup before firing reduced by 12 tics
 -Fixed bug where Flash Stunner had 1 second of stun rather than 1.5
 --Fixed bug where Flash Stunner kept original Time Bender duration when used on Flagbearers or Yellow Devil
 -Time Bender removed
@@ -1950,17 +1951,16 @@ CHANGELOG
 -Speed 0.78/0.8 > 0.73/0.75
 -Now has Copywep/Maestro style overhead display
 --Slightly raised due to Doc's height
--Total altfire consumption 50 > 70
---Altfire ammo indicators now added on bar
---Class-sprite updated to have longer Missile sprite for Flash Sprayer/Gear Grinder 
+-Skinsprite updated to have longer Missile sprite for Flash Sprayer/Gear Grinder 
 -Wood Body damage reduction 25% > 35%
 -Atomic Buster/Pillar damage 18 > 15
 -Flash Sprayer speed 45 > 55
--Crash Blaster damage reduced 30 > 15
+--Horizontal and vertical spread reduced (-5,5) > (-3,3)
+-Crash Blaster damage reduced 30 > 20
 --Largely reworked, now sends Doc Back in the opposite direction of firing and has 35 tics of endlag
 --Hitstun removed, only explodes once 
 --Air Body doubled jump height replaced with constant upwards thrust, a la Tornado Blow
---Air Body no longer uses ACS for speed boost, done to prevent getting air boost while on the ground
+--Air Body no longer boosts speed while in air
 -Quick Body speed increase 25% > 35%
 -Gear Grinder damage 10 > 6
 

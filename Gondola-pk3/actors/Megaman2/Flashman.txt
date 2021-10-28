@@ -5,6 +5,7 @@ player.displayname "flashman"
 player.soundclass "flashmanc"
 player.startitem "TimeStopperBoss"
 player.startitem "ZaWarudoAmmo", 56
+player.startitem "TimeAmmo", 84
 player.startitem "CrashBombWeakness2", 1
 
 player.startitem "HyperBombWeakness", 1
