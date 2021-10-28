@@ -230,6 +230,7 @@ actor SlashThrustWall_P : CustomInventory
 States
 {
 Pickup:
+TNT1 A 0 A_JumpIfInventory("ImpairmentStack",1,"PickupI")
 TNT1 A 0 A_ChangeVelocity(cos(pitch)*40,0,-sin(pitch)*18+7,3)
 goto Pickup2
 Pickup2:
@@ -242,6 +243,21 @@ TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*1.2,momy*1.2,momz*1.2,15,9,0)
 TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*0.8,momy*0.8,momz*0.8,15,9,0)
 TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*1.2,momy*1.2,momz*1.2,-15,9,0)
 TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*0.8,momy*0.8,momz*0.8,-15,9,0)
+stop
+
+PickupI:
+TNT1 A 0 A_ChangeVelocity(cos(pitch)*(40*ACS_NamedExecuteWithResult("ImpairmentACS")/100),0,-sin(pitch)*(18+7*ACS_NamedExecuteWithResult("ImpairmentACS")/100),3)
+goto PickupI2
+PickupI2:
+TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*1.2,momy*1.2,momz*1.2,0,9,0)
+TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*0.8,momy*0.8,momz*0.8,0,9,0)
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupI2_S")
+stop
+PickupI2_S:
+TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*(1.2*ACS_NamedExecuteWithResult("ImpairmentACS")/100),momy*(1.2*ACS_NamedExecuteWithResult("ImpairmentACS")/100),momz*(1.2*ACS_NamedExecuteWithResult("ImpairmentACS")/100),15,9,0)
+TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*(0.8*ACS_NamedExecuteWithResult("ImpairmentACS")/100),momy*(0.8*ACS_NamedExecuteWithResult("ImpairmentACS")/100),momz*(0.8*ACS_NamedExecuteWithResult("ImpairmentACS")/100),15,9,0)
+TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*(1.2*ACS_NamedExecuteWithResult("ImpairmentACS")/100),momy*(1.2*ACS_NamedExecuteWithResult("ImpairmentACS")/100),momz*(1.2*ACS_NamedExecuteWithResult("ImpairmentACS")/100),-15,9,0)
+TNT1 A 0 A_SpawnItemEx("SlashGoop",0,0,8,momx*(0.8*ACS_NamedExecuteWithResult("ImpairmentACS")/100),momy*(0.8*ACS_NamedExecuteWithResult("ImpairmentACS")/100),momz*(0.8*ACS_NamedExecuteWithResult("ImpairmentACS")/100),-15,9,0)
 stop
 }
 }
@@ -354,16 +370,16 @@ States
 {
 Spawn:
 SLSA H 0
-SLSA H 1 A_Explode(Mass-0,ScaleX*27,0,0,ScaleX*27)//38
-SLSA H 1 A_Explode(Mass-1,ScaleX*27,0,0,ScaleX*27)
-SLSA I 1 A_Explode(Mass-2,ScaleX*25,0,0,ScaleX*25)//35.5
-SLSA I 1 A_Explode(Mass-3,ScaleX*25,0,0,ScaleX*25)
-SLSA J 1 A_Explode(Mass-4,ScaleX*23,0,0,ScaleX*23)//33
-SLSA J 1 A_Explode(Mass-5,ScaleX*23,0,0,ScaleX*23)
-SLSA K 1 A_Explode(Mass-6,ScaleX*21,0,0,ScaleX*21)//22
-SLSA K 1 A_Explode(Mass-7,ScaleX*21,0,0,ScaleX*21)
-SLSA L 1 A_Explode(Mass-8,ScaleX*17,0,0,ScaleX*17)//16
-SLSA L 1 A_Explode(Mass-9,ScaleX*17,0,0,ScaleX*17)
+SLSA H 1 A_Explode(Mass-0,ScaleX*25,0,0,ScaleX*26)//38
+SLSA H 1 A_Explode(Mass-1,ScaleX*25,0,0,ScaleX*26)
+SLSA I 1 A_Explode(Mass-2,ScaleX*21,0,0,ScaleX*24)//35.5
+SLSA I 1 A_Explode(Mass-3,ScaleX*21,0,0,ScaleX*22)
+SLSA J 1 A_Explode(Mass-4,ScaleX*19,0,0,ScaleX*20)//33
+SLSA J 1 A_Explode(Mass-5,ScaleX*19,0,0,ScaleX*20)
+SLSA K 1 A_Explode(Mass-6,ScaleX*17,0,0,ScaleX*20)//22
+SLSA K 1 A_Explode(Mass-7,ScaleX*17,0,0,ScaleX*18)
+SLSA L 1 A_Explode(Mass-8,ScaleX*13,0,0,ScaleX*14)//16
+SLSA L 1 A_Explode(Mass-9,ScaleX*13,0,0,ScaleX*14)
 stop
 }
 }
@@ -509,7 +525,7 @@ stop
 actor PowerSlashGoopSlow : PowerSpeed
 {
 powerup.duration 50
-speed 0.50
+speed 0.57
 }
 
 actor SlashGoop2 : SlashGoop

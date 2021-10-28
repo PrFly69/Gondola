@@ -1997,6 +1997,9 @@ CHANGELOG
 -Extra HUD frame before firing updated to Heel's style
 --Fixes Spear Dive HUD cutoff in the process
 
+==Slashman
+-Ported from UEC
+
 ==Turboman
 -Jumping/Jumpfiring frames added
 
@@ -2017,6 +2020,9 @@ CHANGELOG
 -FOM Buffer reduced 20 > 15
 -Spammed shot speed same as unspammed shot
 
+==Pumpman
+-Fixed mainfire having UEC properties instead of 2 per bubble
+
 ==Chillman
 -Death now has special FX
 
@@ -2032,6 +2038,9 @@ CHANGELOG
 ==Venus
 -Bubble Bomb direct damage 8 > 5
 --Bubble Bomb explosive damage 10 > 15
+
+==Saturn
+-Can now suck Flash Stunner and YD shots
 
 ==Pluto
 -Meowing removed from altfire, now buffers for Break Dash with not enough ammo
