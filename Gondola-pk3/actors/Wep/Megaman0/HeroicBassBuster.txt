@@ -59,8 +59,8 @@ BASB B 1 A_Raise
 Loop
 
 Fire:
-"####" "#" 0 A_Jump(256,2)
-"####" "#" 55 //dis stupid shit prevents zandrodumb from doing weapon animation desyncs
+//"####" "#" 0 A_Jump(256,2)
+//"####" "#" 55 //dis stupid shit prevents zandrodumb from doing weapon animation desyncs
 BASB B 0 A_JumpIfInventory("DickKickemCheck",1,"DickKickem")
 BASB B 0 A_JumpIfInventory("BassBusterCharge",56,"FireC")
 FireX: 
@@ -146,8 +146,8 @@ BASB B 5
 goto Ready2+2
 
 AltFire:
-"####" "#" 0 A_Jump(256,2)
-"####" "#" 55 //dis stupid shit prevents zandrodumb from doing weapon animation desyncs
+//"####" "#" 0 A_Jump(256,2)
+//"####" "#" 55 //dis stupid shit prevents zandrodumb from doing weapon animation desyncs
 BASB B 1
 BASB B 0 A_JumpIfInventory("SlideLimitFlag",100,"BassKickS")
 BASD B 0 A_Recoil(-16)
@@ -185,6 +185,8 @@ BASD B 3
 BASD A 3 
 goto Ready2+2
 DickKickem:
+BASD C 0 A_Jump(256,2)
+BASD C 555 //dis stupid shit prevents zandrodumb from doing weapon animation desyncs
 BASD C 0 A_GiveInventory("BassKickFlag",1)
 BASD B 0 A_ScaleVelocity(0.35)
 BASD B 0 A_PlaySoundEx("weapon/chargekick","Weapon")
