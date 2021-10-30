@@ -1081,6 +1081,7 @@ TNT1 A 0 A_PlaySoundEx("weapon/WireAdp","Item")
 TNT1 A 0 A_SpawnItemEx("WireAdaptorHookAuto",-2,0,32,cos(-pitch)*1,0,sin(-pitch)*1,0,0)
 fail
 
+Death:
 TooSoon:
 TNT1 A 0
 fail
@@ -1250,7 +1251,7 @@ WADP B 0 A_ScaleVelocity(75)//Speed of projectile.
 goto Spawn2
 
 Spawn2:
-WADP B 0 ACS_NamedExecuteAlways("core_drawhookshot", 0, user_PTID, 18)
+WADP B 0 ACS_NamedExecuteAlways("core_drawhookshotold", 0, user_PTID, 18)
 WADP B 0 A_GiveToTarget("WireHookShotDelay",1)
 WAD1 ABABAB 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
 WADP B 0 A_GiveToTarget("WireHookShotDelay",1)
@@ -1275,11 +1276,11 @@ WADP B 0 A_JumpIfInventory("NoHookshot",1,"Death1",AAPTR_TRACER)
 WADP B 0 A_CheckFlag("SHOOTABLE","Death2",AAPTR_TRACER)
 goto Death1
 Death1://Tracer isn't shootable (probably can't move)
-WADP B 0 ACS_NamedExecuteAlways("core_hookshot",0,user_PTID,5,0)
+WADP B 0 ACS_NamedExecuteAlways("core_hookshotold",0,user_PTID,5,0)
 WAD1 B 3
 goto DeathLoop1
 Death2://Tracer IS shootable (probably CAN move)
-WADP B 0 ACS_NamedExecuteAlways("core_hookshot",0,user_PTID,5,1)
+WADP B 0 ACS_NamedExecuteAlways("core_hookshotold",0,user_PTID,5,1)
 WAD1 B 3//Needs at least 3 tics of delay.
 goto DeathLoop2
 DeathLoop1:
@@ -1412,6 +1413,7 @@ WEA2 D 0 A_Stop
 WEA2 D 0 A_SpawnItemEx("Item2Platform", 0, 0, 0, 1)
 stop
 
+Death:
 NoPickup:
 WEA2 D 0
 fail

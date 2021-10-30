@@ -1,0 +1,1090 @@
+const int JUPITER_LASERRANGE = 16;
+
+actor ElectricShockBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_VE"
+dropitem "ElectricShockWepCDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 364
+Obituary "$OB_JUPITERBEAM"
+Inventory.Pickupmessage "Picked up a quake 3 lightning gun."
+weapon.ammotype "JupiterAmmo"
++WEAPON.NOAUTOAIM
++WEAPON.ALT_USES_BOTH
+States
+{
+Spawn:
+C_0V E 1
+loop
+Ready:
+JUPH A 0 ACS_ExecuteAlways(998,0,DYE_JUPITER)
+JUPH A 0 A_GunFlash
+goto Ready1
+
+Ready1:
+JUPH A 0 A_JumpIfInventory("JupiterLaunching",1,4)
+JUPH A 0 A_JumpIfInventory("JupiterHovering",1,"Ready2")
+JUPH A 0 A_JumpIfInventory("JupiterLaunchCD",1,"Ready3")
+JUPH A 0 A_JumpIfInventory("JupiterAmmo",130,"Ready4")
+JUPH A 1 A_WeaponReady(8)
+JUPH A 0//W
+loop
+Ready2:
+JUPH A 0 A_JumpIfInventory("JupiterHovering",1,2)
+JUPH A 0 A_JumpIfInventory("JupiterLaunchCD",1,"Ready3")
+JUPH A 1 A_WeaponReady
+JUPH A 0//X
+loop
+Ready3:
+JUPH A 0 A_JumpIfInventory("JupiterLaunchCD",1,2)
+JUPH A 0 A_JumpIfInventory("JupiterAmmo",130,"Ready4")
+JUPH A 1 A_WeaponReady(8)
+JUPH A 0//Y
+loop
+Ready4:
+JUPH A 1 A_WeaponReady//Z
+wait
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+JUPH A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+JUPH A 1 A_Raise
+Loop
+
+Fire:
+JUPH A 0 A_JumpIfInventory("JupiterHovering",1,"LaserWindup")
+JUPH B 0 A_JumpIf(1,1)
+JUPH B 3
+JUPH B 1 A_GiveInventory("JupiterCharge_RC",1)
+JUPH B 0 A_Refire("FireH")
+goto Fire1
+FireH:
+JUPH B 0 A_JumpIfInventory("JupiterCharge",24,"FireH2")
+JUPH B 1 A_GiveInventory("JupiterCharge_RC",1)
+JUPH B 0 A_Refire("FireH")
+goto Fire1
+FireH2:
+JUPH C 1 A_GiveInventory("JupiterCharge_RC",1)//A_RailWait
+JUPH C 0 A_Refire("FireH2")
+goto Fire1
+Fire1:
+JUPH C 2 A_GiveInventory("JupiterMainfire_P")
+JUPH B 2 A_ClearReFire
+JUPH A 3
+Goto Ready1
+
+LaserWindup:
+JUPH H 0 A_JumpIf(1,1)
+JUPH H 3
+JUPH H 0 A_JumpIf(1,1)
+JUPH D 4
+JUPH D 0 A_Refire("LaserHold")
+goto EndLaser
+LaserHold:
+JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
+JUPH D 0 A_SpawnItemEX("JupiterFXWarper1",0,0,42,0,0,0,0,1)
+JUPH D 0 A_GiveInventory("JupiterBigLaser_P")
+JUPH D 1 A_GiveInventory("JupiterLaser1_CI")
+JUPH D 0 A_Refire("LaserHold.a")
+goto EndLaser
+LaserHold.a:
+JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
+JUPH D 0 A_SpawnItemEX("JupiterFXWarper2",0,0,42,0,0,0,0,1)
+JUPH D 0 A_GiveInventory("JupiterBigLaser_P")
+JUPH D 1 A_GiveInventory("JupiterLaser2_CI")
+JUPH D 0 A_Refire("LaserHold.b")
+goto EndLaser
+LaserHold.b:
+JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
+JUPH D 0 A_SpawnItemEX("JupiterFXWarper3",0,0,42,0,0,0,0,1)
+JUPH D 0 A_GiveInventory("JupiterBigLaser_P")
+JUPH D 1 A_GiveInventory("JupiterLaser3_CI")
+JUPH D 0 A_Refire("LaserHold")
+goto EndLaser
+EndLaser://EFG
+JUPH H 2
+JUPH A 1
+Goto Ready1
+
+AltFire:
+JUPH A 0 A_JumpIfInventory("JupiterHovering",1,"HoverEnd")
+JUPH A 0 A_JumpIfInventory("JupiterAmmo",110,"AltFire2")
+Goto Ready1
+AltFire2:
+JUPH A 0 A_JumpIf(1,1)
+JUPH A 0 A_GiveInventory("JupiterAltfire2_P",1)
+JUPH A 0 A_PlaySoundEx("weapon/jupiterBoost","SoundSlot7")
+JUPH A 0 A_GiveInventory("JupiterAlt_CI",1)
+JUPH A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+JUPH A 0 ThrustThingZ(0,80,0,0)
+JUPH A 1 Offset(16,50)
+JUPH A 0 A_Refire("Launching")
+goto LaunchEnd
+Launching:
+JUPH A 0 A_JumpIfInventory("JupiterNeedsToLand",1,"LaunchEnd")
+JUPH A 0 A_JumpIfInventory("JupiterLaunching",31,"LaunchEnd")
+JUPH A 0 A_SpawnItemEx("JupiterBoosterFX_H15",0,0,0,0,0,0,0,1)
+JUPH A 0 A_SpawnItemEx("JupiterBoosterFX_H45",0,0,0,0,0,0,0,1)
+JUPH A 0 A_ChangeVelocity(1.8,0,0,CVF_RELATIVE)
+JUPH A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+JUPH A 0 ThrustThingZ(0,80-args[4],0,0)// +(-sin(pitch)*30) for boost aiming,probably doesn't need it
+JUPH A 0 A_SetArg(4,args[4]+2)
+JUPH A 0 A_GiveInventory("JupiterAmmoTake_P2",1)
+JUPH A 1 Offset(16,50)A_GiveInventory("JupiterLaunching",1)
+JUPH A 0 A_Refire("Launching")
+goto LaunchEnd
+LaunchEnd:
+JUPH A 0 A_GunFlash("Flash.HoverLift")
+JUPH A 2 Offset(8,41)A_SetArg(4,0)
+Goto Ready1
+HoverEnd:
+JUPH A 0 A_JumpIf(1,1)
+JUPH A 0
+JUPH A 0 A_GiveInventory("JupiterNeedsToLand",1)
+JUPH AA 2
+Goto Ready1
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 //A_JumpIfInventory("JupiterHovering",1,"Flash.HoverLift")
+TNT1 A 1 A_GiveInventory("JupiterAmmo_RC",1)
+loop
+Flash.HoverLift:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIf(momz<=0,"Flash.HoverStart")
+TNT1 A 0 A_SpawnItemEx("JupiterBoosterFX_H15",0,0,0,0,0,0,0,1)
+TNT1 A 1 A_GiveInventory("JupiterAmmoTake_P2",1)
+loop//goto Flash+2
+Flash.HoverStart:
+TNT1 A 0 A_GiveInventory("JupiterFlashHoverS_P",1)
+goto Flash.Hover
+Flash.Hover:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("JupiterHoverThrust_P",1)
+TNT1 A 0 A_GiveInventory("JupiterHoverSnd_P",1)
+TNT1 A 0 A_GiveInventory("PowerJupiterSpeed",1)
+TNT1 A 0 A_GiveInventory("JupiterAmmoTake_P1",1)
+TNT1 A 0 A_SpawnItemEx("JupiterBoosterFX_H15",0,0,0,0,0,0,0,1)
+TNT1 A 1
+TNT1 A 0 A_JumpIfInventory("JupiterNeedsToLand",1,"Flash.LandStart")
+TNT1 A 0 A_JumpIf(z-floorz<=8,"Flash.LandEnd")
+TNT1 A 0 A_JumpIfNoAmmo("Flash.LandStart")//
+loop
+//TNT1 A 0 A_JumpIfInventory("JupiterAmmo",1,"Flash.Hover")
+//goto Flash.LandStart
+
+
+
+Flash.LandStart:
+TNT1 A 0 A_GiveInventory("JupiterFlashReset_P",1)
+goto Flash.Land
+Flash.Land:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
+TNT1 A 0 A_JumpIf(momz==0,"Flash.LandZ")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_GiveInventory("JupiterFlashReset_P",1)
+loop
+Flash.LandZ:
+TNT1 A 1
+TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
+TNT1 A 0 A_JumpIf(momz==0,"Flash.LandEnd")
+goto Flash.Land+2
+Flash.LandEnd:
+TNT1 A 0 A_GiveInventory("JupiterFlashReset_P",1)
+goto Flash
+}
+}
+
+
+actor JupiterAmmo : Ammo 
+{
+inventory.amount 1
+inventory.maxamount 364
++INVENTORY.IGNORESKILL
+}
+
+actor JupiterFlagH : OnceC {}
+actor JupiterHovering : OnceC {}
+actor JupiterNeedsToLand : OnceC {}
+actor JupiterLaunching : Inventory 
+{
+inventory.amount 1
+inventory.maxamount 31
+}
+actor JupiterCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 24
+}
+
+actor PowerJupiterSpeed : PowerSpeed
+{
+powerup.duration 4
+Speed 1.8
++POWERSPEED.NOTRAIL
+}
+
+actor JupiterLaunchCD : Powerup
+{
+powerup.duration -1
+}
+
+actor JupiterHoverSnd : Powerup
+{
+powerup.duration 5
+}
+
+actor JupiterLaserDelay : Powerup
+{
+powerup.duration 3
+}
+
+actor JupiterCharge_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("JupiterCharge",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("JupiterCharge",2)
+stop
+}
+}
+
+actor JupiterAmmo_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("JupiterLaunching",1,"No")
+TNT1 A 0 A_JumpIfInventory("JupiterHovering",1,"No")
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("JupiterAmmo",2)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("JupiterAmmo",4)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor JupiterHoverThrust_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+TNT1 A 0 A_JumpIf(momz<0,"PickupH")
+TNT1 A 0
+stop
+PickupH:
+TNT1 A 0 ThrustThingZ(0,3,1,0)
+stop
+}
+}
+
+actor JupiterHoverSnd_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("JupiterHoverSnd",1,"No")
+goto Pickup2
+Pickup2:
+TNT1 A 0 A_PlaySoundEx("weapon/jupiterhover","Body")
+TNT1 A 0 A_GiveInventory("JupiterHoverSnd",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor JupiterAmmoTake_P1 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("JupiterAmmo",1)
+TNT1 A 0 A_TakeInventory("JupiterAmmo",2)
+stop
+}
+}
+actor JupiterAmmoTake_P2 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("JupiterAmmo",1)
+TNT1 A 0 A_JumpIf(args[4]==0,"Pickup2")
+goto Pickup3
+Pickup2:
+TNT1 A 0 A_TakeInventory("JupiterAmmo",2)
+stop
+Pickup3:
+TNT1 A 0 A_TakeInventory("JupiterAmmo",3)
+stop
+}
+}
+
+
+actor JupiterAltfire2_P : CustomInventory
+{
+States
+{
+Pickup:
+JUPH A 0 A_GiveInventory("NoJumpCancel",1)
+JUPH A 0 A_GiveInventory("JupiterHovering",1)
+JUPH A 0 A_GiveInventory("JupiterLaunching",1)
+JUPH A 0 A_TakeInventory("JupiterNeedsToLand",9999)
+stop
+}
+}
+
+
+actor JupiterFlashHoverS_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("JupiterAmmo",1)
+TNT1 A 0 A_TakeInventory("JupiterAmmo",1)
+TNT1 A 0 A_TakeInventory("NoJumpCancel",9999)
+TNT1 A 0 A_TakeInventory("JupiterLaunching",9999)
+stop
+}
+}
+
+actor JupiterFlashReset_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("JupiterNeedsToLand",1)
+TNT1 A 0 A_GiveInventory("JupiterLaunchCD",1)
+TNT1 A 0 A_TakeInventory("NoJumpCancel",9999)
+TNT1 A 0 A_TakeInventory("JupiterLaunching",9999)
+TNT1 A 0 A_TakeInventory("JupiterHovering",9999)
+TNT1 A 0 A_TakeInventory("PowerJupiterSpeed",9999)
+stop
+}
+}
+
+actor JupiterBigLaser_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("JupiterLaserDelay",1,"No")
+goto Pickup2
+Pickup2:
+TNT1 A 0 A_PlaySound("weapon/jupiterlaser",1,0.5)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaserDamager")
+TNT1 A 0 A_GiveInventory("JupiterLaserDelay",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+
+actor JupiterBigLaser1FX
+{
+Translation "202:202=210:210","199:199=229:229"
+PROJECTILE
+Obituary "$OB_JUPITERBEAM"
+DamageType "ElectricShockB"
++THRUACTORS
++DONTBLAST
++DONTREFLECT
++CLIENTSIDEONLY
++FORCEYBILLBOARD
++PAINLESS
+damage (0)
+Radius 8
+Height 8
+speed 30
+scale 1.5
+states
+{
+Spawn:
+ESHB A 0 
+ESHB A 0 A_SetPitch(pitch+1)
+ESHB A 0 A_JumpIf(pitch>JUPITER_LASERRANGE,"Death2")
+ESHB A 0 A_SpawnItemEx("JupiterBigLaser1FX",0,0,0,momx,momy,momz,0,553)
+ESHB A 1 A_Stop
+stop
+Death:
+ESHB A 1 A_SpawnItemEx("ElectricShockBossPuffNoise",0,0,0,0,0,0,0,33)
+stop
+Death2:
+TNT1 A 0
+TNT1 A 0 A_SetScale(2.5)
+ESHB D 1
+stop
+}
+}
+
+actor JupiterBigLaser2FX : JupiterBigLaser1FX 
+{
+states
+{
+Spawn:
+ESHB B 0
+ESHB B 0 A_SetPitch(pitch+1)
+ESHB B 0 A_JumpIf(pitch>JUPITER_LASERRANGE,"Death2")
+ESHB B 0 A_SpawnItemEx("JupiterBigLaser2FX",0,0,0,momx,momy,momz,0,553)
+ESHB B 1 A_Stop
+stop
+Death:
+ESHB B 1 A_SpawnItemEx("ElectricShockBossPuff",0,0,0,0,0,0,0,33)
+stop
+Death2:
+TNT1 A 0
+TNT1 A 0 A_SetScale(2.5)
+ESHB E 1
+stop
+}
+}
+
+actor JupiterBigLaser3FX : JupiterBigLaser1FX 
+{
+states
+{
+Spawn:
+ESHB C 0
+ESHB C 0 A_SetPitch(pitch+1)
+ESHB C 0 A_JumpIf(pitch>JUPITER_LASERRANGE,"Death2")
+ESHB C 0 A_SpawnItemEx("JupiterBigLaser3FX",0,0,0,momx,momy,momz,0,553)
+ESHB C 1 A_Stop
+stop
+Death:
+ESHB C 1 A_SpawnItemEx("ElectricShockBossPuff",0,0,0,0,0,0,0,33)
+stop
+Death2:
+TNT1 A 0
+TNT1 A 0 A_SetScale(2.5)
+TNT1 A 0 A_Jump(256,1,2)
+ESHB D 1
+stop
+ESHB E 1
+stop
+}
+}
+
+actor JupiterBigLaser1Start : JupiterBigLaser1FX
+{
++INVISIBLE
+}
+actor JupiterBigLaser2Start : JupiterBigLaser2FX
+{
++INVISIBLE
+}
+actor JupiterBigLaser3Start : JupiterBigLaser3FX
+{
++INVISIBLE
+}
+
+actor JupiterBigLaser1StartB : JupiterBigLaser1Start{Translation "202:202=205:205","199:199=74:74"}
+actor JupiterBigLaser1StartR : JupiterBigLaser1Start{Translation "202:202=171:171","199:199=41:41"}
+actor JupiterBigLaser1StartO : JupiterBigLaser1Start{Translation "202:202=104:104","199:199=128:128"}
+actor JupiterBigLaser1StartP : JupiterBigLaser1Start{Translation "202:202=229:229","199:199=232:232"}
+actor JupiterBigLaser2StartB : JupiterBigLaser2Start{Translation "202:202=205:205","199:199=74:74"}
+actor JupiterBigLaser2StartR : JupiterBigLaser2Start{Translation "202:202=171:171","199:199=41:41"}
+actor JupiterBigLaser2StartO : JupiterBigLaser2Start{Translation "202:202=104:104","199:199=128:128"}
+actor JupiterBigLaser2StartP : JupiterBigLaser2Start{Translation "202:202=229:229","199:199=232:232"}
+actor JupiterBigLaser3StartB : JupiterBigLaser1Start{Translation "202:202=205:205","199:199=74:74"}
+actor JupiterBigLaser3StartR : JupiterBigLaser3Start{Translation "202:202=171:171","199:199=41:41"}
+actor JupiterBigLaser3StartO : JupiterBigLaser3Start{Translation "202:202=104:104","199:199=128:128"}
+actor JupiterBigLaser3StartP : JupiterBigLaser3Start{Translation "202:202=229:229","199:199=232:232"}
+
+actor JupiterBigLaser1FX_T : JupiterBigLaser1FX
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetPitch(pitch+1)
+TNT1 A 0 A_JumpIf(pitch>JUPITER_LASERRANGE,2)
+TNT1 A 0 A_SpawnItemEx("JupiterBigLaser1FX_T",0,0,0,momx,momy,momz,0,553)
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istargetclient")!=1,"Death2")
+goto Spawn2
+Spawn2:
+TNT1 A 1 A_Stop
+stop
+Death2:
+ESHB A 1 A_Stop
+stop
+Death:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istargetclient")==1,"Spawn2")
+ESHB A 1 A_SpawnItemEx("ElectricShockBossPuffNoise",0,0,0,0,0,0,0,33)
+stop
+}
+}
+actor JupiterBigLaser2FX_T : JupiterBigLaser2FX
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetPitch(pitch+1)
+TNT1 A 0 A_JumpIf(pitch>JUPITER_LASERRANGE,2)
+TNT1 A 0 A_SpawnItemEx("JupiterBigLaser2FX_T",0,0,0,momx,momy,momz,0,553)
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istargetclient")!=1,"Death2")
+goto Spawn2
+Spawn2:
+TNT1 A 1 A_Stop
+stop
+Death2:
+ESHB B 1 A_Stop
+stop
+Death:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istargetclient")==1,"Spawn2")
+ESHB B 1 A_SpawnItemEx("ElectricShockBossPuff",0,0,0,0,0,0,0,33)
+stop
+}
+}
+actor JupiterBigLaser3FX_T : JupiterBigLaser3FX
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetPitch(pitch+1)
+TNT1 A 0 A_JumpIf(pitch>JUPITER_LASERRANGE,2)
+TNT1 A 0 A_SpawnItemEx("JupiterBigLaser3FX_T",0,0,0,momx,momy,momz,0,553)
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istargetclient")!=1,"Death2")
+goto Spawn2
+Spawn2:
+TNT1 A 1 A_Stop
+stop
+Death2:
+ESHB C 1 A_Stop
+stop
+Death:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istargetclient")==1,"Spawn2")
+ESHB C 1 A_SpawnItemEx("ElectricShockBossPuff",0,0,0,0,0,0,0,33)
+stop
+}
+}
+
+actor JupiterBigLaser1Start_T : JupiterBigLaser1FX_T
+{
++INVISIBLE
+-CLIENTSIDEONLY
++NONETID
+}
+actor JupiterBigLaser2Start_T : JupiterBigLaser2FX_T
+{
++INVISIBLE
+-CLIENTSIDEONLY
++NONETID
+}
+actor JupiterBigLaser3Start_T : JupiterBigLaser3FX_T
+{
++INVISIBLE
+-CLIENTSIDEONLY
++NONETID
+}
+
+actor JupiterBigLaser1Start_TB : JupiterBigLaser1Start_T{Translation "202:202=205:205","199:199=74:74"}
+actor JupiterBigLaser1Start_TR : JupiterBigLaser1Start_T{Translation "202:202=171:171","199:199=41:41"}
+actor JupiterBigLaser1Start_TO : JupiterBigLaser1Start_T{Translation "202:202=104:104","199:199=128:128"}
+actor JupiterBigLaser1Start_TP : JupiterBigLaser1Start_T{Translation "202:202=229:229","199:199=232:232"}
+actor JupiterBigLaser2Start_TB : JupiterBigLaser2Start_T{Translation "202:202=205:205","199:199=74:74"}
+actor JupiterBigLaser2Start_TR : JupiterBigLaser2Start_T{Translation "202:202=171:171","199:199=41:41"}
+actor JupiterBigLaser2Start_TO : JupiterBigLaser2Start_T{Translation "202:202=104:104","199:199=128:128"}
+actor JupiterBigLaser2Start_TP : JupiterBigLaser2Start_T{Translation "202:202=229:229","199:199=232:232"}
+actor JupiterBigLaser3Start_TB : JupiterBigLaser3Start_T{Translation "202:202=205:205","199:199=74:74"}
+actor JupiterBigLaser3Start_TR : JupiterBigLaser3Start_T{Translation "202:202=171:171","199:199=41:41"}
+actor JupiterBigLaser3Start_TO : JupiterBigLaser3Start_T{Translation "202:202=104:104","199:199=128:128"}
+actor JupiterBigLaser3Start_TP : JupiterBigLaser3Start_T{Translation "202:202=229:229","199:199=232:232"}
+
+actor ElectricShockBossPuff : BasicClientSide
+{
+Translation "202:202=210:210","199:199=229:229"
++MISSILE
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 0 A_SpawnItemEx("ElecricShockBossPuffSparkFX",0,0,0,15,0,random(-15,15),random(0,359),1)
+stop
+}
+}
+actor ElectricShockBossPuffNoise : ElectricShockBossPuff
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 0 A_SpawnItemEx("ElecricShockBossPuffSparkFX",0,0,0,15,0,random(-15,15),random(0,359),1)
+TNT1 A 10 A_PlaySound("weapon/jupiterlaser",1,0.5)
+stop
+}
+}
+
+actor ElecricShockBossPuffSparkFX
+{
++MISSILE
++DOOMBOUNCE
++THRUACTORS
++DONTBLAST
++DONTSPLASH
++FORCEXYBILLBOARD
++CLIENTSIDEONLY
+radius 2
+height 2
+scale 2.5
+states
+{
+Spawn:
+ESHB H 0
+ESHB HHHHH 1 bright A_SetScale(scalex - 0.5,scaley - 0.5)
+stop
+}
+}
+
+
+actor JupiterBigLaserDamager
+{
+PROJECTILE
+Obituary "$OB_JUPITERBEAM"
+DamageType "ElectricShockB"
++THRUACTORS
++THRUGHOST
++DONTBLAST
++DONTREFLECT
++SERVERSIDEONLY
+renderstyle none
+damage (0)
+Radius 8
+Height 8
+speed 30
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetPitch(pitch+1)
+TNT1 A 0 A_JumpIf(pitch>JUPITER_LASERRANGE,"Death")
+TNT1 A 0 A_SpawnItemEx("JupiterBigLaserDamager",0,0,0,momx,momy,momz,0,552)
+TNT1 A 0 A_Stop
+TNT1 A 1 A_Explode(3,24,0,0,24)
+stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor ElectricShockBProtect : PowerProtection
+{
+Powerup.Duration 3
+damagefactor "ElectricShockB", 0.0
+}
+
+actor ElectricShockBeamProtect : PowerProtection
+{
+Powerup.Duration 3
+damagefactor "ElectricShockBeam", 0.0
+}
+
+
+actor JupiterFXWarper : ShieldWarper_CBM
+{
++FORCEXYBILLBOARD
+states
+{
+Spawn:
+TNT1 A 0
+ESHB FFGGFFGG 1 A_Warp(AAPTR_TARGET,0,0,42,0,72)
+stop
+}
+}
+actor JupiterFXWarper1 : ShieldWarper_CBM
+{
++FORCEXYBILLBOARD
+states
+{
+Spawn:
+ESHB F 0
+ESHB F 1
+stop
+}
+}
+actor JupiterFXWarper2 : ShieldWarper_CBM
+{
++FORCEXYBILLBOARD
+states
+{
+Spawn:
+ESHB G 0
+ESHB G 1
+stop
+}
+}
+actor JupiterFXWarper3 : ShieldWarper_CBM
+{
++FORCEXYBILLBOARD
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,2)
+ESHB F 1
+stop
+ESHB G 1
+stop
+}
+}
+
+actor JupiterBoosterFX_H15 : BasicHelper
+{
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("JupiterBoosterFX2",-18,-4,36,0,0,-15,0,1)
+TNT1 A 0 A_SpawnItemEx("JupiterBoosterFX2",-18,4,36,0,0,-15,0,1)
+TNT1 A 1
+stop
+}
+}
+actor JupiterBoosterFX_H45 : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("JupiterBoosterFX",-18,-4,36,0,0,-45,0,1)
+TNT1 A 0 A_SpawnItemEx("JupiterBoosterFX",-18,4,36,0,0,-45,0,1)
+TNT1 A 1
+stop
+}
+}
+
+actor JupiterBoosterFX
+{
++MISSILE
++THRUACTORS
++CLIENTSIDEONLY
+damage 0
+Radius 2
+Height 2
+scale 2.5
+States
+{
+Spawn:
+VMFX QRS 1
+SMFX D 1
+stop
+Show:
+VMFX QRS 1
+SMFX D 1
+stop
+}
+}
+actor JupiterBoosterFX2 : JupiterBoosterFX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AA 1 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istargetclient")!=1, "Show")
+TNT1 A 1 
+stop
+}
+}
+
+actor JupiterShockWave : BasicExplosion
+{
+Translation "192:192=196:196"
+damagetype "JupiterPush"
+obituary "$OB_JUPITERJET"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Explode(9,256,0,0,32)
+TNT1 A 0 A_SpawnItemEx("JupiterShockWaveFX_H",0,0,-20,0,0,0,0,1)
+TNT1 A 3
+stop
+}
+}
+
+actor JupiterShockWaveB : JupiterShockWave{Translation "192:192=205:205"}
+actor JupiterShockWaveR : JupiterShockWave{Translation "192:192=171:171"}
+actor JupiterShockWaveO : JupiterShockWave{Translation "192:192=104:104"}
+actor JupiterShockWaveP : JupiterShockWave{Translation "192:192=229:229"}
+
+actor JupiterShockWaveFX_H : BasicClientSide
+{
+var int user_A;
+reactiontime 24
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_A",random(0,15))
+TNT1 A 0 A_SpawnItemEx("JupiterShockWaveFX",0,0,0,10,0,0,user_A,1)
+TNT1 A 0 A_SetUserVar("user_A",user_A+15)
+TNT1 A 0 A_Countdown
+goto Spawn+2
+}
+}
+
+actor JupiterShockWaveFX
+{
+PROJECTILE
++DONTBLAST
++THRUACTORS
++CLIENTSIDEONLY
+Damage (0)
+Radius 2
+Height 2
+Speed 30
+Scale 2.0
+States
+{
+Spawn:
+X_0E T 0
+X_0E T 1 A_FadeOut(0.06)
+wait
+}
+}
+
+actor JupiterSpark
+{
+Translation "202:202=210:210","199:199=229:229"
+PROJECTILE
+damagetype "ElectricShock"
+Obituary "$OB_JUPITERSHOCK"
++FORCEXYBILLBOARD
+reactiontime 10
+damage (7)
+radius 14
+height 14
+speed 40
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+ESHB HI 4 A_CountDown
+loop
+}
+}
+
+actor JupiterSparkSlow : JupiterSpark
+{
+speed 32
+}
+
+actor JupiterSparkB : JupiterSpark{Translation "202:202=205:205","199:199=74:74"}
+actor JupiterSparkR : JupiterSpark{Translation "202:202=171:171","199:199=41:41"}
+actor JupiterSparkO : JupiterSpark{Translation "202:202=104:104","199:199=128:128"}
+actor JupiterSparkP : JupiterSpark{Translation "202:202=229:229","199:199=232:232"}
+
+actor JupiterSparkSlowB : JupiterSparkSlow{Translation "202:202=205:205","199:199=74:74"}
+actor JupiterSparkSlowR : JupiterSparkSlow{Translation "202:202=171:171","199:199=41:41"}
+actor JupiterSparkSlowO : JupiterSparkSlow{Translation "202:202=104:104","199:199=128:128"}
+actor JupiterSparkSlowP : JupiterSparkSlow{Translation "202:202=229:229","199:199=232:232"}
+
+actor JupiterMainfire_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("JupiterCharge",24,"Pickup2")
+goto Pickup1
+Pickup1:
+TNT1 A 0 A_PlaySoundEx("weapon/jupitershot1","Weapon")
+TNT1 A 0 A_GiveInventory("JupiterMain_CI")
+goto End
+Pickup2:
+TNT1 A 0 A_PlaySoundEx("weapon/jupitershot2","Weapon")
+TNT1 A 0 A_GiveInventory("JupiterMain2_CI")
+goto End
+End:
+TNT1 A 0 A_TakeInventory("JupiterCharge",999)
+stop
+}
+}
+
+actor JupiterMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JupiterSparkSlow",0,0,8)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JupiterSparkSlowB",0,0,8)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JupiterSparkSlowR",0,0,8)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JupiterSparkSlowO",0,0,8)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JupiterSparkSlowP",0,0,8)
+goto Done
+}
+}
+
+actor JupiterMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+JUPH C 0 A_FireCustomMissile("JupiterSpark",3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSpark",-3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSparkSlow",-11,0,8)
+JUPH C 5 A_FireCustomMissile("JupiterSparkSlow",11,0,8)
+goto Done
+FireB:
+JUPH C 0 A_FireCustomMissile("JupiterSparkB",3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSparkB",-3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSparkSlowB",-11,0,8)
+JUPH C 5 A_FireCustomMissile("JupiterSparkSlowB",11,0,8)
+goto Done
+FireR:
+JUPH C 0 A_FireCustomMissile("JupiterSparkR",3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSparkR",-3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSparkSlowR",-11,0,8)
+JUPH C 5 A_FireCustomMissile("JupiterSparkSlowR",11,0,8)
+goto Done
+FireO:
+JUPH C 0 A_FireCustomMissile("JupiterSparkO",3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSparkO",-3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSparkSlowO",-11,0,8)
+JUPH C 5 A_FireCustomMissile("JupiterSparkSlowO",11,0,8)
+goto Done
+FireP:
+JUPH C 0 A_FireCustomMissile("JupiterSparkP",3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSparkP",-3,0,8)
+JUPH C 0 A_FireCustomMissile("JupiterSparkSlowP",-11,0,8)
+JUPH C 5 A_FireCustomMissile("JupiterSparkSlowP",11,0,8)
+goto Done
+}
+}
+
+actor JupiterLaser1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_T",0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartB",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_TB",0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartR",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_TR",0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartO",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_TO",0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartP",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_TP",0,0,0)
+goto Done
+}
+}
+
+actor JupiterLaser2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_T",0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartB",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_TB",0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartR",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_TR",0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartO",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_TO",0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartP",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_TP",0,0,0)
+goto Done
+}
+}
+
+
+actor JupiterLaser3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_T",0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartB",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_TB",0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartR",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_TR",0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartO",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_TO",0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartP",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_TP",0,0,0)
+goto Done
+}
+}
+
+actor JupiterAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JupiterShockWave",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JupiterShockWaveB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JupiterShockWaveR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JupiterShockWaveO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JupiterShockWaveP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("JupiterAmmo",70)
+stop
+}
+}
