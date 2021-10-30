@@ -1863,6 +1863,7 @@ CHANGELOG
 -Spark Shock no longer chainstuns
 -Spark Chaser fire rate 17 > 22
 -CBM versions of Triple Blade, Thunder Wool and Break Dash removed
+-V6 Thunder claw brought back, hookshot ACS updated
 -Nova Beam redone by Great Glass
 
 ==Flagbearer (Grey Devil)
@@ -1895,6 +1896,10 @@ CHANGELOG
 -Can no longer acquire Vanilla buster upgrades
 *This effectively removes Proto/Bass/Duo upgrades from TLMS
 -ACS Recoded by Jax
+
+==Auto
+-Fixed slow Wire bug
+-Fixed usages of Wire/Item2 bringing up error messages
 
 ==Iceman
 -New alternate skin by Redflash
@@ -2016,6 +2021,9 @@ CHANGELOG
 -All changes reverted to 2.0h except for base speed buff
 (Plug will be revisited post 2.5 or something)
 
+==Galaxyman
+-Removed map marker for portal
+
 ==Fakeman
 -FOM Buffer reduced 20 > 15
 -Spammed shot speed same as unspammed shot
@@ -2030,6 +2038,9 @@ CHANGELOG
 -Sheep Bolters now have minor vertical bobbing effect
 -Static Electricity Strike duration now indicated on ammo bar
 
+==Solarman
+-Solar Launcher firing straight down when jumping brought back
+
 ==Terra
 -Removed range limit on Spark Chaser
 --Replaced with cap on speed gained over time, caps out after 100 tics
@@ -2038,6 +2049,9 @@ CHANGELOG
 ==Venus
 -Bubble Bomb direct damage 8 > 5
 --Bubble Bomb explosive damage 10 > 15
+
+==Jupiter
+-Attacks recolored to reflect V6 copywep colors
 
 ==Saturn
 -Can now suck Flash Stunner and YD shots

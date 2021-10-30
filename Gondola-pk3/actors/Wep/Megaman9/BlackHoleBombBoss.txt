@@ -352,7 +352,7 @@ TNT1 A 0 A_PlaySoundEX("weapon/shieldhum","SoundSlot6")
 TNT1 A 0 A_GiveInventory("GalaxyPortFlag",1)
 TNT1 A 0 A_SpawnItemEx("GalaxyPortWatcher")
 TNT1 A 0 A_SpawnItemEx("PortChecker",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("GalaxyHoleMarker",0,0,0,0,0,0,0,1)
+//TNT1 A 0 A_SpawnItemEx("GalaxyHoleMarker",0,0,0,0,0,0,0,1)
 fail
 Take:
 TNT1 A 0 A_GiveInventory("GalaxyPortCoolDown",1)
