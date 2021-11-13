@@ -1378,7 +1378,7 @@ actor PainHSHSuckHit_P : CustomInventory
 States
 {
 Pickup:
-TNT1 A 0 A_GiveToTarget("Health",1)
+TNT1 A 0 //A_GiveToTarget("Health",1)
 stop
 }
 }

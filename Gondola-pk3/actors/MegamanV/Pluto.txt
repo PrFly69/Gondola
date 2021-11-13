@@ -66,7 +66,7 @@ PLUT G 4
 goto Spawn
 
 CustomState2:
-PLUT PQPQPQPQPQPQ 2
+PLUT PPQQPPQQPPQQPPQQPPQQPPQQ 1 A_JumpIfInventory("VivifyDelay8",1,"MissileD")
 goto Spawn
 
 ClassPainDash:

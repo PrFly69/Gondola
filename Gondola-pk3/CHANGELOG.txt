@@ -2074,3 +2074,55 @@ CHANGELOG
 *This effectively removes Laser and Arrow Buster from TLMS
 -Now drops Carry upon dying with BFG9000
 *This was confetti but apparently Greg cannot code
+
+
+
+
+=====2.4.2
+==Bass
+-Now has SBAR indicator of firing spread gain
+
+==Rock
+-Removed Powerprotect from Bomb Ball
+-Reduced Powerprotect factor on all other balls 0.1 > 0.5
+
+==Flashman
+-Ammo bars swapped
+
+==Gyroman
+-Fixed coloring issues on altfire splitting FX
+
+==Dark Man 3
+-All shots are now suckable by Saturn
+*Whoops!
+
+==Knightman
+-Special obit on first Knight Rush damager readded
+
+==Junkman
+-Junk Cube is now suckable by Saturn
+
+==Cloudman
+-Thunder Bolt is now suckable by Saturn
+
+==Plugman
+-Fixed plug still breaking off LOS
+-Fixed HUD disjoint on mainfire
+
+==Saturn
+-CBL Callback death nerfed into a mere easter egg
+--Only activated upon dying to Electric Shock (Saturn's canonical weakness)
+-Fixed White Hole Ring/Black Hole Ring flying infinitely upon user's death
+-Fixed Black Hole Ring not activating on release
+
+==Pluto
+-Now has a 50 tic delay in between meows
+--Meow sound has lower pitch than Tango meow
+--Meowing no longer cancels Break Dashing skinsprites
+
+==Hyper Storm H
+-Ammo gain/lost on suction/blowing doubled
+-Removed healing during suction
+-Trample damage 18 > 16
+--Trample ammo loss 1 > 3, 2 > 6 with rage
+--Removed ammo gain on damaging enemies with trample
