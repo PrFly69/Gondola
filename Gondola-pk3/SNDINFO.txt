@@ -411,3 +411,7 @@ weapon/astroclonemeteor ASTCHAR
 
 //Gyro
 weapon/gyrosplit GYRSPLIT
+
+//Pluto
+pluto/meowcope MEOWPLUT $volume pluto/meowcope 0.75
+pluto/copeinducer NECOPLUT

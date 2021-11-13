@@ -312,11 +312,28 @@ Spawn:
 NEPH Z 1
 loop
 Use:
+TNT1 A 0 A_JumpIfInventory("MeowCopeDelay",1,"Cope")
+TNT1 A 0 A_JumpIfInventory("CutterFlag",69,"MemeCope")
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_GiveInventory("MeowCopeDelay")
 TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,2)
-TNT1 A 0 A_PlaySoundEX("item/tango","SoundSlot6")
-TNT1 A 15
+TNT1 A 0 A_PlaySoundEX("pluto/meowcope","SoundSlot6")
+fail
+Cope:
+TNT1 A 0
+fail
+MemeCope:
+TNT1 A 0 A_TakeInventory("CutterFlag",999)
+TNT1 A 0 A_GiveInventory("MeowCopeDelay")
+TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,2)
+TNT1 A 0 A_PlaySoundEX("pluto/copeinducer","SoundSlot6")//pluto/meowcope
 fail
 }
+}
+
+actor MeowCopeDelay : Powerup
+{
+Powerup.Duration 50
 }
 
 actor PlutoDashStarter_P : CustomInventory

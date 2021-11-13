@@ -266,6 +266,9 @@ scale 2.5
 States
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
 CLOH KLMN 2 A_SpawnItemEx("CloudM_BoltFX1",0,0,0,0,0,0,0,1)
 loop
 XDeath:
@@ -342,7 +345,8 @@ scale 2.5
 States
 {
 Spawn:
-CLOH A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 CLOH QRQR 1 A_SpawnItemEx("CloudM_BoltFX2",0,0,0,0,0,0,0,1)
 CLOH Q 0 A_ChangeFlag("THRUACTORS",0)
 CLOH QR 1 A_SpawnItemEx("CloudM_BoltFX2",0,0,0,0,0,0,0,1)

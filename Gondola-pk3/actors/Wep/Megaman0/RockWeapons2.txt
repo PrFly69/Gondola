@@ -40,42 +40,42 @@ actor RockKickCP : RockKickC{translation "192:192=229:229","198:198=232:232"}
 actor MegaBallProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "MegaBall", 0.1
+DamageFactor "MegaBall", 0.5
 }
 actor CutBallProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "MegaCutBall", 0.1
+DamageFactor "MegaCutBall", 0.5
 }
 actor IceBallProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "MegaIceBall", 0.1
+DamageFactor "MegaIceBall", 0.5
 }
 actor GutsBallProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "MegaGutsBall", 0.1
+DamageFactor "MegaGutsBall", 0.5
 }
 actor ElecBallProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "MegaElecBall", 0.1
+DamageFactor "MegaElecBall", 0.5
 }
 actor BombBallProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "MegaBombBall", 0.1
+DamageFactor "MegaBombBall", 0.5
 }
 actor OilBallProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "MegaOilBall", 0.1
+DamageFactor "MegaOilBall", 0.5
 }
 actor TimeBallProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "MegaTimeBall", 0.1
+DamageFactor "MegaTimeBall", 0.5
 }
 
 actor Rock_B_M

@@ -566,10 +566,10 @@ goto XDeath
 }
 }
 
-actor GyroSplitClassB : GyroSplitClass{translation "198:198=74:74"}
-actor GyroSplitClassR : GyroSplitClass{translation "198:198=41:41"}
-actor GyroSplitClassO : GyroSplitClass{translation "198:198=128:128"}
-actor GyroSplitClassP : GyroSplitClass{translation "198:198=232:232"}
+actor GyroSplitClassB : GyroSplitClass{translation "192:192=4:4","198:198=74:74"}
+actor GyroSplitClassR : GyroSplitClass{translation "192:192=4:4","198:198=41:41"}
+actor GyroSplitClassO : GyroSplitClass{translation "192:192=4:4","198:198=128:128"}
+actor GyroSplitClassP : GyroSplitClass{translation "192:192=4:4","198:198=232:232"}
 
 actor GyroAttackClass2SplitB : GyroAttackClass2Split{translation "198:198=74:74"}
 actor GyroAttackClass2SplitR : GyroAttackClass2Split{translation "198:198=41:41"}
