@@ -2,10 +2,9 @@
 // Formatting & Cleaned by Ru5tK1ng
 //=================================
  
-  Actor Nitroman : ProtoClassBase
+  Actor Nitroman : ClassBase //75
   {
     Player.ScoreIcon "C_10G0X"
-    Player.StartItem "ProtoHealthBar"
     Player.DisplayName "Nitroman"
     Player.SoundClass "nitromanc"
     Player.StartItem "WheelCutterBoss"
@@ -21,6 +20,13 @@ player.startitem "ChillSpikeWeakness", 1
 	Player.StartItem "NitroGearToggle", 1
 	//Player.StartItem "NitroGearState", 1 //"Wow, DECORATE is easy!"
     //player.startitem "ChillSpikeWeakness2", 1
+	
+player.maxhealth 750
+health 750
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
     States
     {
         Spawn:

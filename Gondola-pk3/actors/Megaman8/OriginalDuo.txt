@@ -1,7 +1,6 @@
-actor OriginalDuo : SturdyClassBase
+actor OriginalDuo : ClassBase //125
 {
 Player.ScoreIcon "C_08J0X"
-player.startitem "SturdyHealthBar"
 player.displayname "OriginalDuo"
 player.soundclass "originalduoc"
 player.startitem "OriginalDuoBoss"
@@ -11,8 +10,11 @@ player.startitem "DuoJusticeAmmo", 42
 player.weaponslot 1, "OriginalDuoBoss"
 player.weaponslot 2, "OriginalDuoMeteorBoss"
 
-player.forwardmove 0.76, 0.76
-player.sidemove 0.74, 0.74
+player.maxhealth 1250
+health 1250
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 States
 {
 Spawn:

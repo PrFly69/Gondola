@@ -1,13 +1,17 @@
 // Credits to Dimpsy for chillman skin!
 
-actor Chillman : MegaClassBase
+actor Chillman : ClassBase //90
 {
 Player.ScoreIcon "C_10D0X"
-player.startitem "MegaHealthBar"
 player.displayname "Chillman"
 player.soundclass "chillmanc"
 
+
+player.maxhealth 900
+health 900
 player.jumpz 12
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.startitem "ChillSpikeBossC", 1
 player.startitem "ChillSprayBossC", 1

@@ -1,0 +1,622 @@
+actor GyroAttackBoss : BaseMM8BDMWep_CBM 
+{
+Tag "$TAGC_5D"
+dropitem "GyroAttackWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 56
+Obituary "$OB_GYROATTACK"
+weapon.ammotype "GyroFly"
+weapon.ammotype2 "GyroBoomerangAmmo"
+States
+{
+Spawn:
+C_05 D 1
+loop
+Ready:
+GYAR A 0 ACS_ExecuteAlways(998,0,DYE_GYROMAN)
+GYAR A 0 A_GunFlash
+goto Ready2
+Ready2:
+GYAR A 0 A_JumpIfInventory("GyroTrigger2", 1, "Ready3")
+GYAR A 0 //A_JumpIfInventory("GyroFly",1,"Ready2HasAmmo")
+GYAR A 5 A_WeaponReady//(WRF_NOSECONDARY)
+GYAR A 0 A_GiveInventory("GyroFly",1)
+GYAR A 0 A_GiveInventory("GyroBoomerangAmmo",1)
+Goto Ready2
+Ready2HasAmmo:
+GYAR A 5 A_WeaponReady
+GYAR A 0 A_GiveInventory("GyroFly",1)
+GYAR A 0 A_GiveInventory("GyroBoomerangAmmo",1)
+Goto Ready2
+Ready3:
+GYAR A 1 A_WeaponReady
+Goto Ready2
+Deselect:
+GYAR A 0 //SetPlayerProperty(0,0,3)
+GYAR A 0 A_TakeInventory("GyroTrigger",999)
+GYAR A 0 A_TakeInventory("GyroTrigger2",999)
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+GYAR A 1 A_Lower
+goto Deselect+3
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+GYAR A 1 A_Raise
+Loop
+Fire:
+//GYAR A 0 A_JumpIfInventory("GyroTrigger2", 1, "Fire2")
+GYAR A 0 A_JumpIfInventory("GyroBoomerangAmmo",2,"FireX")
+goto NoGyroAmmo
+FireX:
+GYAR A 0 A_GiveInventory("GyromanMain_CI",1)
+GYAR A 0 A_TakeInventory("GyroBoomerangAmmo",2)
+GYAR B 1
+GYAR B 1 OffSet(-70,72)
+GYAR B 2 OffSet(-121,112)
+GYAR E 2 OffSet(1,33)
+GYAR E 2 OffSet(-21,56)
+GYAR E 2 OffSet(-35,84)
+GYAR G 0 A_JumpIfInventory("GyroTrigger2",1,2)
+GYAR G 0 A_GiveInventory("GyroFly",1)
+TNT1 A 5
+GYAR A 2 OffSet(2,69)
+GYAR A 2 OffSet(1,48)
+GYAR A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+GYAR A 0 A_JumpIfInventory("GyroTrigger2",1,2)
+GYAR A 0 A_GiveInventory("GyroFly",1)
+GYAR A 0 A_Refire("Fire")
+Goto Ready2
+
+Altfire:
+GYAR A 0 A_JumpIfInventory("GyroBoomerangAmmo",2,"AltFireX")
+goto NoGyroAmmo
+AltFireX:
+//GYAR A 0 A_JumpIfInventory("GyroTrigger2", 1, "Fire2")
+GYAR A 0 A_GiveInventory("GyromanMain2_CI",1)
+GYAR A 0 A_TakeInventory("GyroBoomerangAmmo",2)
+GYAR B 1
+GYAR B 1 OffSet(-70,72)
+GYAR B 2 OffSet(-121,112)
+GYAR E 2 OffSet(1,33)
+GYAR E 2 OffSet(-21,56)
+GYAR E 2 OffSet(-35,84)
+GYAR G 0 A_JumpIfInventory("GyroTrigger2",1,2)
+GYAR G 0 A_GiveInventory("GyroFly",1)
+TNT1 A 5
+GYAR A 2 OffSet(2,69)
+GYAR A 2 OffSet(2,48)
+GYAR A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+GYAR A 0 A_JumpIfInventory("GyroTrigger2",1,2)
+GYAR A 0 A_GiveInventory("GyroFly",1)
+GYAR A 0 A_Refire
+Goto Ready2
+
+NoGyroAmmo:
+GYAR A 5 A_GiveInventory("GyroBoomerangAmmo",1)
+goto Ready2
+
+GetReady:
+GYAR J 0 A_JumpIfInventory("GyroTrigger2",1,"FallCheck")
+GYAR J 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+GYAR J 1 A_JumpIfInventory("GyroFly",1,"Fly")
+GYAR J 0
+goto Fall
+Fly:
+GYAR J 0 A_GiveInventory("GyroTrigger",1)
+GYAR J 0 A_GiveInventory("GyroTrigger2",1)
+GYAR J 0 A_SpawnItemEx("GyroAmmoHelper")
+//GYAR J 1
+GYAR J 0
+Goto Ready3
+FlyAgain:
+GYAR J 0 A_GiveInventory("GyroTrigger",1)
+GYAR J 0 
+Goto Ready3
+FlyHold:
+GYAR J 1 A_GiveInventory("GyroTriggerX",1)
+GYAR J 0 A_ReFire(2)
+GYAR J 0 A_TakeInventory("GyroTriggerX",99)
+goto Ready3
+GYAR J 0 A_TakeInventory("GyroTriggerX",99)
+goto Ready3
+FallCheck:
+GYAR J 0 A_JumpIfInventory("GyroTrigger",1,"Fall")
+GYAR J 0 A_JumpIfInventory("FlightDisableFlag",1,"Fall")
+GYAR J 0 A_JumpIfInventory("GyroFly",1,"FlyAgain")
+goto Fall
+Fall:
+GYAR J 0 SetPlayerProperty(0,0,3)
+GYAR J 0 A_TakeInventory("GyroTrigger",999)
+GYAR J 0 
+goto Ready2
+FallHold:
+GYAR J 1 A_RailWait
+GYAR J 0 A_ReFire("FallHold")
+goto Ready3
+Flash:
+TNT1 A 0 A_JumpIfInventory("GyroTrigger",1,"TimeToFly")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 SetPlayerProperty(0,0,3)
+TNT1 A 1
+loop
+TimeToFly:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+TNT1 A 0 SetPlayerProperty(0,1,3)
+TNT1 A 1
+TNT1 A 0 SetPlayerProperty(0,0,3)
+TNT1 A 0 A_JumpIfInventory("GyroFly",1,"CheckMyFlag")
+TNT1 A 0 A_TakeInventory("GyroTrigger",1)
+TNT1 A 0
+goto FAmmoDrain
+CheckMyFlag:
+TNT1 A 0 A_JumpIfInventory("GyroTrigger",1,"TimeToFly")
+goto FAmmoDrain
+FAmmoDrain:
+TNT1 A 1 A_JumpIf(z-floorz==0,"CanFlyAgain")
+TNT1 A 0 A_JumpIf(momz==0,"momzverify")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("GyroTrigger",1,"TimeToFly")
+TNT1 A 0
+loop
+momzverify:
+TNT1 A 1 A_JumpIf(z-floorz==0, "CanFlyAgain")
+TNT1 A 0 A_JumpIf(momz==0,"CanFlyAgain")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0
+goto FAmmoDrain
+CanFlyAgain:
+TNT1 A 0 A_TakeInventory("GyroTrigger",999)
+TNT1 A 0 A_TakeInventory("GyroTrigger2",999)
+goto Flash
+NoFlash:
+TNT1 A 0
+stop
+
+}
+}
+
+actor GyroFly : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL 
+}
+
+actor GyroBoomerangAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL 
+}
+
+
+actor GyroTrigger : OnceC{}
+actor GyroTrigger2 : OnceC{}
+actor GyroTriggerX : Inventory
+{
+inventory.amount 1
+inventory.maxamount 8
+}
+
+actor GyroAmmoHelper : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("GyroTrigger2",1,"AmmoCheck")
+TNT1 A 1
+stop
+AmmoCheck:
+TNT1 A 0 A_JumpIfInTargetInventory("GyroFly",1,"AmmoManage")
+TNT1 A 1
+stop
+FlySound:
+TNT1 A 0 A_JumpIfInventory("GyroTriggerX",4,2)
+TNT1 A 0 A_GiveInventory("GyroTriggerX",1)
+goto AmmoManage+1
+TNT1 A 0 A_TakeInventory("GyroTriggerX",9)
+TNT1 A 0 A_GiveToTarget("GyroFlySoundPickup",1)
+goto AmmoManage+1
+AmmoManage:
+TNT1 A 0 A_JumpIfInTargetInventory("GyroTrigger",1,"FlySound")
+TNT1 A 0 A_JumpIfInTargetInventory("GyroTriggerX",1,"AmmoManage6")
+TNT1 A 0 A_JumpIfInTargetInventory("GyroTrigger",1,"AmmoManage4")
+goto AmmoManage8
+AmmoManage0:
+TNT1 A 0 A_GiveInventory("WeaponCharge",1)
+goto Spawn
+AmmoTake:
+TNT1 A 0 A_TakeFromTarget("GyroFly",1)
+TNT1 A 0 A_TakeInventory("WeaponCharge",99)
+TNT1 A 0 A_JumpIfInTargetInventory("GyroFly",1,"Spawn")
+TNT1 A 1
+stop
+
+AmmoManage4:
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",4,"AmmoTake")
+goto AmmoManage0
+AmmoManage6:
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",6,"AmmoTake")
+goto AmmoManage0
+AmmoManage8:
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",8,"AmmoTake")
+goto AmmoManage0
+
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor GyroFlySoundPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_PlaySoundEx("Classes/Hind","Body")
+stop
+}
+}
+
+actor GyroCallbackItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "GyroIcon"
+Tag "GyroFlightItem"
+scale 2.0
+inventory.pickupmessage "Is it pronounced GY-RO or YEE-RO?"
++INVBAR
+states
+{
+Spawn:
+WINI A 1
+loop
+Use:
+TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
+TNT1 A 0 A_JumpIfInventory("GyroWillFly",1,"Faild")
+TNT1 A 0 A_GiveInventory("GyroWillFly",1)
+fail
+Faild:
+GYAR J 0 SetPlayerProperty(0,0,3)
+GYAR A 0 A_TakeInventory("GyroTrigger",999)
+GYAR A 0 A_TakeInventory("GyroTrigger2",999)
+GYAR J 0 A_ReFire("FallHold")
+goto Ready3
+fail
+}
+}
+
+actor GyroWillFly : CustomInventory
+{
+States
+{
+Pickup:
+GYAR J 0 A_JumpIfInventory("GyroTrigger2",1,"FallCheck")
+GYAR J 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+GYAR J 0 A_JumpIfInventory("GyroFly",1,"Fly")
+GYAR J 0
+goto Fall
+Fly:
+GYAR J 0 A_GiveInventory("GyroTrigger",1)
+GYAR J 0 A_GiveInventory("GyroTrigger2",1)
+GYAR J 0 A_SpawnItemEx("GyroAmmoHelper")
+//GYAR J 1
+GYAR J 0
+Goto Ready3
+FlyAgain:
+GYAR J 0 A_GiveInventory("GyroTrigger",1)
+GYAR J 0 
+Goto Ready3
+FlyHold:
+GYAR J 1 A_GiveInventory("GyroTriggerX",1)
+GYAR J 0 A_ReFire(2)
+GYAR J 0 A_TakeInventory("GyroTriggerX",99)
+goto Ready3
+GYAR J 0 A_TakeInventory("GyroTriggerX",99)
+goto Ready3
+FallCheck:
+GYAR J 0 A_JumpIfInventory("GyroTrigger",1,"Fall")
+GYAR J 0 A_JumpIfInventory("FlightDisableFlag",1,"Fall")
+GYAR J 0 A_JumpIfInventory("GyroFly",1,"FlyAgain")
+goto Fall
+Fall:
+GYAR J 0 SetPlayerProperty(0,0,3)
+GYAR J 0 A_TakeInventory("GyroTrigger",999)
+GYAR J 0 
+goto Ready2
+FallHold:
+GYAR J 1 A_RailWait
+GYAR J 0 A_ReFire("FallHold")
+goto Ready3
+Flash:
+TNT1 A 0 A_JumpIfInventory("GyroTrigger",1,"TimeToFly")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 SetPlayerProperty(0,0,3)
+TNT1 A 1
+loop
+TimeToFly:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+TNT1 A 0 SetPlayerProperty(0,1,3)
+TNT1 A 1
+TNT1 A 0 SetPlayerProperty(0,0,3)
+TNT1 A 0 A_JumpIfInventory("GyroFly",1,"CheckMyFlag")
+TNT1 A 0 A_TakeInventory("GyroTrigger",1)
+TNT1 A 0
+goto FAmmoDrain
+CheckMyFlag:
+TNT1 A 0 A_JumpIfInventory("GyroTrigger",1,"TimeToFly")
+goto FAmmoDrain
+FAmmoDrain:
+TNT1 A 1 A_JumpIf(z-floorz==0,"CanFlyAgain")
+TNT1 A 0 A_JumpIf(momz==0,"momzverify")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("GyroTrigger",1,"TimeToFly")
+TNT1 A 0
+loop
+momzverify:
+TNT1 A 1 A_JumpIf(z-floorz==0, "CanFlyAgain")
+TNT1 A 0 A_JumpIf(momz==0,"CanFlyAgain")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0
+goto FAmmoDrain
+CanFlyAgain:
+TNT1 A 0 A_TakeInventory("GyroTrigger",999)
+TNT1 A 0 A_TakeInventory("GyroTrigger2",999)
+goto Flash
+NoFlash:
+TNT1 A 0
+stop
+}
+}
+
+
+actor GyroCFlag : CustomInventory
+{
++SEEKERMISSILE
+States
+{
+Spawn:
+GYCS A 0
+GYCS A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,2)
+GYCS A 0 A_RearrangePointers(0,0,2)
+GYCS A 0 A_FaceTarget(0,0)
+GYCS A 0 A_ChangeVelocity(Cos(pitch)*40,0,sin(pitch)*40,3)
+GYCS AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+goto Super::Spawn
+Death:
+goto XDeath
+}
+}
+
+actor GyroAttackClass
+{
+Translation "198:198=104:104"
+PROJECTILE
+Radius 16
+Height 8
+scale 2.5
+damage (150)
+speed 40
+Obituary "$OB_GYROATTACK"
+damagetype "GyroAttack"
+States
+{
+Spawn:
+GYCS A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+GYCS A 0 A_PlaySoundEx("weapon/gyroattacksee","Auto")
+GYCS A 2
+GYCS B 2
+loop
+Death:
+GYRO A 0 A_JumpIf(z-floorz==0,"Floor")
+GYRO A 0 A_JumpIf(z-ceilingz==0-8, "Ceiling")
+GYRO A 0 A_SpawnItemEx("GyroAttackClass3",0,0,0,0,0,0,180,1)
+stop
+Floor:
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2",0,0,1,40,0,0,0,1)
+//GYRO A 0 A_CustomMissile("GyroAttackClass2",0,0,1,2,0)
+stop
+Ceiling:
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2",0,0,-1,40,0,0,0,1)
+//GYRO A 0 A_CustomMissile("GyroAttackClass2",0,0,-1,2,0)
+stop
+XDeath:
+GYRO A 0
+stop
+}
+}
+
+actor GyroAttackClassB : GyroAttackClass{translation "198:198=74:74"}
+actor GyroAttackClassR : GyroAttackClass{translation "198:198=41:41"}
+actor GyroAttackClassO : GyroAttackClass{translation "198:198=128:128"}
+actor GyroAttackClassP : GyroAttackClass{translation "198:198=232:232"}
+
+actor GyroAttackClass2 : GyroAttackClass
+{
+States
+{
+Death:
+goto XDeath
+}
+}
+
+actor GyroAttackClass3 : GyroAttackClass
+{
++SEEKERMISSILE
+States
+{
+Spawn:
+GYCS A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+GYCS A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,2)
+GYCS A 0 A_RearrangePointers(0,0,2)
+GYCS A 0 A_FaceTarget(0,0)
+GYCS A 0 A_ChangeVelocity(Cos(pitch)*40,0,sin(pitch)*40,3)
+GYCS AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+goto Super::Spawn
+Death:
+goto XDeath
+}
+}
+
+actor GyroSplitClass
+{
+Translation "192:192=4:4", "198:198=104:104"
+PROJECTILE
+Radius 16
+Height 8
+scale 2.5
+damage (150)
+speed 35
+Obituary "$OB_GYROATTACK"
+damagetype "GyroAttack"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+GYCS A 0 A_GiveToTarget("GyroCFlag",1)
+GYCS A 0 A_PlaySound("weapon/gyroattacksee",6,0.4)
+GYCS A 2
+GYCS B 2
+GYCS A 2
+GYCS B 2
+GYCS A 2
+GYCS B 2
+GYCS A 2
+GYCS B 2
+GYCS A 2
+GYCS B 2
+GYCS A 0 A_Stop
+GYCS A 0 A_PlaySoundEx("weapon/gyrosplit","Auto")
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2Split",0,0,0,40,0,0,15,1)
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2Split",0,0,0,40,0,0,-15,1)
+TMFX DCBAABCD 1
+stop
+Death:
+GYRO A 0 A_JumpIf(z-floorz==0,"Floor")
+GYRO A 0 A_JumpIf(z-ceilingz==0-8, "Ceiling")
+GYCS A 0 A_Stop
+GYCS A 0 A_PlaySoundEx("weapon/gyrosplit","Auto")
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2Split",0,0,0,40,0,0,15,1)
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2Split",0,0,0,40,0,0,-15,1)
+TMFX DCBAABCD 1
+stop
+Floor:
+GYCS A 0 A_Stop
+GYCS A 0 A_PlaySoundEx("weapon/gyrosplit","Auto")
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2Split",0,0,0,40,0,0,15,1)
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2Split",0,0,0,40,0,0,-15,1)
+TMFX DCBAABCD 1
+//GYRO A 0 A_CustomMissile("GyroAttackClass2",0,0,1,2,0)
+stop
+Ceiling:
+GYCS A 0 A_Stop
+GYCS A 0 A_PlaySoundEx("weapon/gyrosplit","Auto")
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2Split",0,0,0,40,0,0,15,1)
+GYRO A 0 A_SpawnItemEx("GyroAttackClass2Split",0,0,0,40,0,0,-15,1)
+TMFX DCBAABCD 1
+//GYRO A 0 A_CustomMissile("GyroAttackClass2",0,0,-1,2,0)
+stop
+XDeath:
+GYRO A 0
+stop
+}
+}
+
+actor GyroAttackClass2Split : GyroAttackClass
+{
+Translation "198:198=104:104"
+PROJECTILE
+Radius 16
+Height 8
+scale 2.5
+damage (100)
+speed 35
+Obituary "$OB_GYROATTACK"
+damagetype "GyroAttack"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+X_5D A 0 A_GiveToTarget("GyroCFlag",1)
+X_5D A 0 A_PlaySound("Classes/Hind",0,0.3)
+X_5D A 1
+X_5D B 1
+X_5D A 0 A_GiveToTarget("GyroCFlag",1)
+X_5D A 0 A_PlaySound("Classes/Hind",0,0.3)
+X_5D C 1
+X_5D D 1
+loop
+Death:
+goto XDeath
+}
+}
+
+actor GyroSplitClassB : GyroSplitClass{translation "192:192=4:4","198:198=74:74"}
+actor GyroSplitClassR : GyroSplitClass{translation "192:192=4:4","198:198=41:41"}
+actor GyroSplitClassO : GyroSplitClass{translation "192:192=4:4","198:198=128:128"}
+actor GyroSplitClassP : GyroSplitClass{translation "192:192=4:4","198:198=232:232"}
+
+actor GyroAttackClass2SplitB : GyroAttackClass2Split{translation "198:198=74:74"}
+actor GyroAttackClass2SplitR : GyroAttackClass2Split{translation "198:198=41:41"}
+actor GyroAttackClass2SplitO : GyroAttackClass2Split{translation "198:198=128:128"}
+actor GyroAttackClass2SplitP : GyroAttackClass2Split{translation "198:198=232:232"}
+
+
+actor GyromanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("GyroAttackClass",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("GyroAttackClassB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("GyroAttackClassR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("GyroAttackClassO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("GyroAttackClassP",0,0,8,0)
+goto Done
+}
+}
+
+actor GyromanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("GyroSplitClass",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("GyroSplitClassB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("GyroSplitClassR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("GyroSplitClassO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("GyroSplitClassP",0,0,8,0)
+goto Done
+}
+}

@@ -1,0 +1,154 @@
+actor Grenademan : ClassBase
+{
+Player.ScoreIcon "C_08G0X"
+player.displayname "Grenademan"
+player.soundclass "grenademanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.74, 0.74
+player.sidemove 0.72, 0.72
+
+player.startitem "FlashBombBoss"
+player.startitem "I'llPunishYouAmmo",21
+//player.startitem "ThatFeltGoodAmmo",6
+
+player.startitem "ThunderClawWeakness2", 1
+
+player.startitem "ThunderBoltWeakness", 1
+player.startitem "ThunderClawWeakness", 1
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "SparkShockWeakness", 1
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "LightningBoltWeakness", 1
+player.startitem "PlugBallWeakness", 1
+player.startitem "ThunderWoolWeakness", 1
+player.startitem "ElectricShockWeakness", 1
+
+States
+{
+Spawn:
+GREM A 0
+GREM B 1
+GREM A 1
+GREM A 174
+GREM S 76
+GREM TS 14
+Goto Spawn+5
+See:
+GREM BCDE 5
+Goto Spawn
+Missile:
+GREM F 0 A_JumpIfInventory("VivifyDelay8",1,"Missile2")
+GREM F 5
+GREM G 4
+goto Spawn
+Missile2:
+GREM P 4
+GREM Q 4
+GREM O 3
+GREM R 4
+goto Spawn
+ClassPain:
+GREM H 0
+goto PainContinue
+ClassDeath:
+GREM H 0 A_GiveInventory("ThatFeltGoodAmmo",ACS_NamedExecuteWithResult("cbm_HealthDamageRage",5))
+GREM H 0 A_JumpIfInventory("ThatFeltGoodAmmo",27,1)
+goto DeathContinue
+GREM H 0 A_SetTranslucent(1.0,0)
+GREM H 0 A_JumpIfInventory("InstagibFlag",1,7)
+GREM H 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
+GREM H 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
+
+GREM H 0 A_PlaySoundEx("misc/BombCount","Voice")
+GREM H 10 bright A_SpawnItemEx("GrenademanDeathFX_H",0,0,0,0,0,0,0,1)
+GREM H 0 A_PlaySoundEx("misc/BombCount","Voice")
+GREM H 10 bright A_SpawnItemEx("GrenademanDeathFX_H",0,0,0,0,0,0,0,1)
+GREM H 0 A_PlaySoundEx("misc/BombCount","Voice")
+GREM H 10 bright A_SpawnItemEx("GrenademanDeathFX_H",0,0,0,0,0,0,0,1)
+GREM H 0 A_SpawnItemEX("GrenademanDeathBoom",0,0,28,0,0,0,0,1)
+goto GibDeath
+
+ClassDeathR:
+GREM H 0 A_PlaySoundEx("misc/BombCount","Voice")
+GREM H 0 A_SpawnItemEx("GrenademanDeathFX_H",0,0,0,0,0,0,0,1)
+GREM H 0 A_JumpIfInventory("RiseDeathFlag2",27,"ClassDeathRX")
+GREM H 0 A_JumpIfInventory("RiseDeathFlag2",18,"ClassDeathR3")
+GREM H 0 A_JumpIfInventory("RiseDeathFlag2",9,"ClassDeathR2")
+ClassDeathR1:
+GREM H 0 A_SetArg(4,10)
+goto ClassDeathR0
+ClassDeathR2:
+GREM H 0 A_SetArg(4,20)
+goto ClassDeathR0
+ClassDeathR3:
+GREM H 0 A_SetArg(4,30)
+goto ClassDeathR0
+ClassDeathR0:
+GREM H 0 A_SpawnItemEx("FlashBombFX3_B",Random(-16,16)*random(0,1),Random(16,40)*random(-1,1),Random(-32,32)*random(0,1)+28,random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(0,359)*random(0,1),1)
+GREM H 1 ThrustThingZ(0,21,0,1)
+GREM H 0 A_JumpIf(ceilingz-z<64,"ClassDeathRE0")
+GREM H 0 A_GiveInventory("RiseDeathFlag2",1)
+GREM H 0 A_JumpIfInventory("RiseDeathFlag2",Args[4],"ClassDeathR")
+loop
+ClassDeathRE:
+GREM H 0 A_PlaySoundEx("misc/BombCount","Voice")
+GREM H 0 A_SpawnItemEx("GrenademanDeathFX_H",0,0,0,0,0,0,0,1)
+GREM H 0 A_JumpIfInventory("RiseDeathFlag2",27,"ClassDeathRX")
+GREM H 0 A_JumpIfInventory("RiseDeathFlag2",18,"ClassDeathRE3")
+GREM H 0 A_JumpIfInventory("RiseDeathFlag2",9,"ClassDeathRE2")
+ClassDeathRE1:
+GREM H 0 A_SetArg(4,10)
+goto ClassDeathRE0
+ClassDeathRE2:
+GREM H 0 A_SetArg(4,20)
+goto ClassDeathRE0
+ClassDeathRE3:
+GREM H 0 A_SetArg(4,30)
+goto ClassDeathRE0
+ClassDeathRE0:
+GREM H 0 A_Stop
+GREM H 0 A_SpawnItemEx("FlashBombFX3_B",Random(-16,16)*random(0,1),Random(16,40)*random(-1,1),Random(-32,32)*random(0,1)+28,random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(0,359)*random(0,1),1)
+GREM H 0 A_GiveInventory("RiseDeathFlag2",1)
+GREM H 0 A_JumpIfInventory("RiseDeathFlag2",Args[4],"ClassDeathRE")
+GREM H 1
+loop
+ClassDeathRX:
+GREM H 0 A_SpawnItemEX("GrenademanDeathBoom",0,0,28,0,0,0,0,1)
+goto GibDeathStop
+
+ClassDeathI:
+GREM H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
+GREM H 0 A_PlaySoundEx("CBM/freeze","Voice")
+GREM H 0 A_PlaySoundEx("misc/BombCount","Weapon")
+GREM HHHHHHHHHH 1 A_SpawnItemEx("FlashBombFX3_B",Random(-16,16)*random(0,1),Random(16,40)*random(-1,1),Random(-32,32)*random(0,1)+28,random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(0,359)*random(0,1),1)
+GREM H 0 A_PlaySoundEx("misc/BombCount","Weapon")
+GREM HHHHHHHHHH 1 A_SpawnItemEx("FlashBombFX3_B",Random(-16,16)*random(0,1),Random(16,40)*random(-1,1),Random(-32,32)*random(0,1)+28,random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(0,359)*random(0,1),1)
+GREM H 0 A_PlaySoundEx("misc/BombCount","Weapon")
+GREM HHHHHHHHHH 1 A_SpawnItemEx("FlashBombFX3_B",Random(-16,16)*random(0,1),Random(16,40)*random(-1,1),Random(-32,32)*random(0,1)+28,random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(-7,7)*random(0,1),random(0,359)*random(0,1),1)
+GREM H 0 A_PlaySoundEx("CBM/icebreak","Body")
+GREM H 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+GREM H 0 A_SpawnItemEX("GrenademanDeathBoom",0,0,28,0,0,0,0,1)
+goto DeathWait
+
+Death.Suicide:
+GREM H 0 A_GiveInventory("ThatFeltGoodAmmo")
+goto Super::Death.Suicide
+}
+}
+
+actor GrenademanDeathFX_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AA 1 bright A_SpawnItemEx("FlashBombFX1_B",0,0,28,random(-7,7),random(-7,7),random(-7,7),random(0,359),1)
+TNT1 A 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16,16),Random(-16,-40), Random(-32,32)+28,0,0,0,0,1)
+TNT1 AA 1 bright A_SpawnItemEx("FlashBombFX2_B",Random(-16,16),Random(16,40), Random(-32,32)+28,0,0,0,0,1)
+TNT1 A 1 A_SpawnItemEx("FlashBombFX1_B",0,0,28,random(-7,7),random(-7,7),random(-7,7),random(0,359),1)
+stop
+}
+}

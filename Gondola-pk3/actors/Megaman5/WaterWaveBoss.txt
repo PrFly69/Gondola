@@ -1,0 +1,734 @@
+actor WaterWaveBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_5B"
+dropitem "WaterWaveWepCDropped"
+Weapon.AmmoUse 4
+Weapon.AmmoGive 28
+Weapon.AmmoGive2 500
+Obituary "$OB_WATERWAVE"
+weapon.ammotype "WaterWaveClassAmmo"
+weapon.ammotype2 "HookshotStamina"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_05 B 1
+loop
+Ready:
+WAVA A 0 ACS_ExecuteAlways(998,0,DYE_WAVEMAN)
+WAVA A 0 A_GunFlash
+goto Ready2
+Ready1:
+WAVA A 0 A_JumpIfInventory("WaterWaveClassAmmo",4,"Ready1a")
+WAVA A 14 A_WeaponReady(WRF_NOPRIMARY)
+goto Ready2
+Ready1a:
+WAVA A 10 A_WeaponReady
+goto Ready2a
+Ready2:
+WAVA A 0 A_JumpIfInventory("IsBot",1,"Ready2a")
+WAVA A 0 A_JumpIfInventory("WaterWaveClassAmmo",4,"Ready2a")
+WAVA A 4 A_WeaponReady(WRF_NOPRIMARY)
+WAVA A 0 A_GiveInventory("WaterWaveClassAmmo",1)
+goto Ready2+1
+Ready2a:
+WAVA A 4 A_WeaponReady
+WAVA A 0 A_GiveInventory("WaterWaveClassAmmo",1)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+WAVA A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+WAVA A 1 A_Raise
+Loop
+Fire:
+WAVA A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+WAVA A 0 A_JumpIfNoAmmo("NoAmmo")
+WAVA A 0 A_GiveInventory("VivifyDelay6",1)
+WAVA A 0 A_Refire(1)
+WAVA A 0 A_PlaySoundEx("weapon/waterwave","Weapon")
+WAVA A 0 A_TakeInventory("WaterWaveClassAmmo",4)
+/*WAVA B 2 A_GiveInventory("WavemanMain_CI",1)
+WAVA C 2 A_GiveInventory("WavemanMain_CI",1)
+WAVA D 2 A_GiveInventory("WavemanMain_CI",1)*/
+WAVA B 1 A_GiveInventory("WavemanMain_CI",1)
+WAVA C 1 A_JumpIfInventory("PowerRage_ST",1,1)
+WAVA D 1 A_GiveInventory("WavemanMain_CI",1)
+WAVA D 1 A_JumpIfInventory("PowerRage_ST",1,1)
+WAVA E 1 A_GiveInventory("WavemanMain_CI",1)
+WAVA I 1 A_JumpIfInventory("PowerRage_ST",1,1)
+WAVA F 1 A_GiveInventory("WavemanMain_CI",1)
+WAVA I 1 A_JumpIfInventory("PowerRage_ST",1,1)
+WAVA F 1 A_GiveInventory("WavemanMain_CI",1)
+WAVA I 1 A_JumpIfInventory("PowerRage_ST",1,1)
+WAVA F 1 A_GiveInventory("WavemanMain_CI",1)
+WAVA I 1 A_JumpIfInventory("PowerRage_ST",1,1)
+WAVA GCB 1
+WAVA A 5 A_WeaponReady(6)
+WAVA A 0 A_Refire
+Goto Ready1
+
+Altfire:
+MWSH B 0 A_PlaySoundEx("weapon/BionicRifle","Weapon")
+WAVA A 0 A_GiveInventory("WaterWaveClassAmmo",1)
+WAVA A 0 A_GiveInventory("WavemanAlt_CI",1)
+WAVH B 2
+WAVH C 2
+WAVH D 3
+WAVH E 2
+WAVH E 1 A_GiveInventory("WaterWaveClassAmmo",1)
+WAVH F 3
+WAVH G 3
+Goto Ready2
+NoAmmo:
+WAVA A 0
+Goto Ready1
+
+BotFire:
+WAVA A 0 A_JumpIfInventory("WaterWaveClassAmmo",28,"BotFire2")
+WAVA A 0 A_Jump(128,"AltFire")
+WAVA A 0 A_JumpIfInventory("WaterWaveClassAmmo",4,"BotFire2")
+WAVA A 0 A_Jump(32,"BotFire3")
+goto Altfire
+BotFire2:
+WAVA A 0
+goto Fire+1
+BotFire3:
+WAVA A 0 A_GiveInventory("WaterWaveClassAmmo",12)
+goto Altfire
+
+/*
+AltFireHook:
+//WAVA B 0 A_JumpIfInventory("IsBot",1,"BotFire")
+WAVA B 0 A_TakeInventory("HookshotTired",9)
+WAVA B 0 A_JumpIfInventory("HookshotStamina",200,1)
+goto Altfire
+WAVA B 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+WAVA B 0 A_GiveInventory("WavemanAltDelay",1)
+WAVA B 0 A_GiveInventory("HookshotFiredFlag",1)
+WAVA B 0 A_GunFlash
+WAVA B 0 A_GiveInventory("WaterWaveClassAmmo",1)
+WAVA B 0 A_SpawnItemEx("WaveHarpoonHook",-2,8,32,cos(-pitch)*1,0,sin(-pitch)*1,0,1)
+Goto AltFire3
+AltFire3:
+WAVA B 0 A_JumpIfInventory("HookshotTired",1,"AltFireEnd")
+WAVA B 1 //A_PlaySoundEx("weapon/WireAdp","weapon")
+WAVA B 0 A_ReFire("AltFire3")
+goto AltFireEnd
+AltFireEnd:
+WAVA B 0 A_TakeInventory("HookshotFiredFlag",9)
+WAVA B 0 A_GiveInventory("HookshotTired",1)
+WAVA BC 3
+WAVA A 0 A_ClearReFire
+WAVA A 1 A_GunFlash
+Goto AltFireWait
+AltFireWait:
+WAVA A 1 A_RailWait
+WAVA A 0 A_JumpIfInventory("WavemanAltDelay",1,"AltFireWait")
+goto Ready1
+*/
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1
+TNT1 A 0 A_JumpIfInventory("WaveHookNeedLand",1,"FlashCheck")
+TNT1 A 0 A_GiveInventory("HookshotStaminaFlash_P",1)
+loop
+FlashCheck:
+TNT1 A 0 A_JumpIf(z-floorz==0,"FlashChecked")
+TNT1 A 0 A_JumpIf(momz==0,"FlashCheckZ")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1
+loop
+FlashCheckZ:
+TNT1 A 1
+TNT1 A 0 A_JumpIf(z-floorz==0,"FlashChecked")
+TNT1 A 0 A_JumpIf(momz==0,"FlashChecked")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0
+goto FlashCheck
+FlashChecked:
+TNT1 A 0 A_TakeInventory("WaveHookNeedLand",1)
+goto Flash
+}
+}
+
+actor WaterWaveClassAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor HookshotStamina : Ammo
+{
+inventory.amount 1
+inventory.maxamount 500
++INVENTORY.IGNORESKILL
+}
+
+
+actor WaveHookWasFired : OnceC {}
+
+actor WaveHookIsAlive : Powerup
+{
+Powerup.Duration 6
+}
+
+actor WaveHookNeedLand : OnceC {}
+
+actor WaveHookKillFlag : OnceC {}
+
+
+
+actor HookshotStaminaFlash_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("WaveHookNeedLand",1,"No")
+TNT1 A 0 A_JumpIfInventory("WaveHookWasFired",1,"No")
+TNT1 A 0 A_JumpIfInventory("WaveHookIsAlive",1,"No")
+TNT1 A 0 A_JumpIfInventory("HookshotStamina",500,"No")
+goto GiveAmmo
+No:
+TNT1 A 0
+stop
+GiveAmmo:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"GiveAmmoR")
+TNT1 A 0 A_GiveInventory("HookshotStamina",1)
+stop
+GiveAmmoR:
+TNT1 A 0 A_GiveInventory("HookshotStamina",2)
+stop
+}
+}
+
+
+actor WavemanHookshotItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "HARPK"
+scale 2.0
+inventory.pickupmessage "This hook is original content, do not steal."
+tag "OC Wire Adaptor"
++INVBAR
+states
+{
+Spawn:
+HARP K 1
+loop
+
+Use:
+TNT1 A 0 A_JumpIfInventory("WaveHookWasFired",1,"KillHook")
+TNT1 A 0 A_JumpIfInventory("HookshotStamina",200,"Success")
+fail
+
+Success:
+TNT1 A 0 A_JumpIfInventory("WaveHookIsAlive",1,"TooSoon")
+TNT1 A 0 A_GiveInventory("WaveHookIsAlive",1)
+TNT1 A 0 A_TakeInventory("HookshotStamina",25)
+TNT1 A 0 A_GiveInventory("WaveHookWasFired",1)
+
+TNT1 A 0 A_PlaySoundEx("weapon/BionicArm1","Weapon")
+
+TNT1 A 0 A_SpawnItemEx("WaveHarpoonHook_Helper")
+TNT1 A 0 A_SpawnItemEx("WaveHarpoonHook",-2,8,32,cos(-pitch)*110,0,sin(-pitch)*110,0,1)
+fail
+KillHook:
+TNT1 A 0 A_TakeInventory("WaveHookWasFired",9)
+TNT1 A 0 A_GiveInventory("WaveHookKillFlag",1)
+fail
+TooSoon:
+TNT1 A 0
+fail
+
+}
+}
+
+actor WaveHarpoonHook_Helper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("WaveHookWasFired",1,"Check")
+stop
+Check:
+TNT1 A 0 A_JumpIfInTargetInventory("WaveHookIsAlive",1,"Spawn")
+TNT1 A 0 A_TakeFromTarget("WaveHookWasFired",1)
+stop
+}
+}
+
+actor WaveHarpoonHook
+{
+var int user_PTID;
+Translation "202:202=202:202","199:199=193:193"
+PROJECTILE
+damagetype "ClassPainLess2"
+Obituary "$OB_WAVEHOOKSHOT"
++DONTBLAST
++DONTREFLECT
+//+PAINLESS
+//+SKYEXPLODE
++THRUGHOST
++NOTIMEFREEZE
++HITTRACER
+ReactionTime 70
+Damage (40)
+Radius 8
+Height 8
+Speed 1
+scale 2.5
+states
+{
+Spawn:
+HARP H 0
+HARP H 0 A_SetUserVar("user_PTID",ACS_ExecuteWithResult(257,0))
+HARP H 0 A_GiveInventory("WeaponCharge",1)
+HARP H 0 ACS_NamedExecuteAlways("cbm_WaveHookshotFX", 0, user_PTID, ACS_ExecuteWithResult(143,0))
+HARP H 0 A_TakeFromTarget("WaveHookKillFlag",1)
+goto Spawn2
+
+Spawn2:
+HARP H 0 A_GiveToTarget("WaveHookIsAlive",1)
+HARP H 0 A_JumpIfInTargetInventory("WaveHookKillFlag",1,"SpawnX")
+HARP H 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+HARP I 0 A_CountDown
+HARP I 0 A_JumpIfInTargetInventory("WaveHookKillFlag",1,"SpawnX")
+HARP I 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+HARP I 0 A_CountDown
+loop
+
+SpawnX:
+"####" "#" 0 A_PlaySoundEx("S3_K/MetalSpark","Weapon")
+HARP H 0 A_GiveToTarget("WaveHookACSSound",1)
+"####" "#" 0 A_GiveInventory("WaveHookKillFlag",1)
+"####" "#" 0 A_ChangeFlag("HITTRACER",0)
+"####" "#" 0 A_ChangeFlag("NOGRAVITY",0)
+"####" "#" 0 A_GiveInventory("ResyncPickup",1)
+"####" "#" 1
+wait
+Death:
+HARP I 0 A_JumpIfInventory("WaveHookKillFlag",1,"SuperDeath")
+HARP I 0 A_JumpIfInTargetInventory("FlightDisableFlag",1,"SuperDeath")
+TNT1 A 0 A_PlaySoundEx("weapon/BionicArm2","Weapon")
+HARP H 0 A_GiveToTarget("WaveHookLatchACSSound",1)
+HARP I 0 A_GiveToTarget("WavemanHookshotStart_P",1)
+HARP I 0 A_JumpIfInventory("NoHookshot",1,"Death1",AAPTR_TRACER)
+HARP I 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerplayer")==1,"Death3")
+HARP I 0 A_CheckFlag("SHOOTABLE","Death2",AAPTR_TRACER)
+goto Death1
+Death1:
+HARP I 0 ACS_NamedExecuteAlways("cbm_WaveHookshot",0,user_PTID,3,0)
+HARP I 3
+goto DeathLoop1
+Death2:
+HARP I 0 ACS_NamedExecuteAlways("cbm_WaveHookshot",0,user_PTID,3,1)
+HARP I 3
+goto DeathLoop2
+Death3:
+HARP I 0 ACS_NamedExecuteAlways("cbm_WaveHookshot",0,user_PTID,3,1)
+HARP I 3//Needs at least 3 tics of delay.
+goto DeathLoop3
+DeathLoop1://Sit
+HARP I 0 A_GiveToTarget("WaveHookIsAlive",1)
+HARP I 0 A_JumpIfInTargetInventory("WaveHookKillFlag",1,"SuperDeath")
+HARP I 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+loop
+DeathLoop2://Stick
+HARP I 0 A_Warp(AAPTR_TRACER,-4,0,28)
+HARP I 0 A_GiveToTarget("WaveHookIsAlive",1)
+HARP I 0 A_JumpIfInTargetInventory("WaveHookKillFlag",1,"SuperDeath")
+HARP I 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+HARP I 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists",1)==0,"SuperDeath")
+loop
+DeathLoop3://Stick to player but stop when they don't exist
+HARP I 0 A_Warp(AAPTR_TRACER,-4,0,28)
+HARP I 0 A_GiveToTarget("WaveHookIsAlive",1)
+HARP I 0 A_JumpIfInTargetInventory("WaveHookKillFlag",1,"SuperDeath")
+HARP I 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"SuperDeath")
+HARP I 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists",1)==0,"DeathLoop1")
+loop
+SuperDeath:
+HARP I 0
+stop
+}
+}
+
+actor WaveHookACSSound : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteWithResult("WaveHookAcsSound")
+stop
+}
+}
+
+actor WaveHookLatchACSSound : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteWithResult("WaveHookLatchAcsSound")
+stop
+}
+}
+
+actor WaveM_TakeHookshotAmmo_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("HookshotStamina",2,1)
+stop
+}
+}
+
+Actor HookshotFX-1 : BasicClientSide
+{
+Translation "202:202=202:202","199:199=193:193"
+States
+{
+Spawn:
+HARP F 0
+HARP F 1
+stop
+}
+}
+
+actor HookshotFX0 : HookshotFX-1{translation "202:202=205:205","199:199=74:74"}
+actor HookshotFX1 : HookshotFX-1{translation "202:202=171:171","199:199=41:41"}
+actor HookshotFX2 : HookshotFX-1{translation "202:202=104:104","199:199=128:128"}
+actor HookshotFX3 : HookshotFX-1{translation "202:202=229:229","199:199=232:232"}
+
+actor WavemanHookshotStart_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 //A_Stop
+TNT1 A 0
+stop
+}
+}
+
+actor WaveHarpoon 
+{
+Translation "199:199=193:193"
+PROJECTILE 
+Damagetype "ClassPainSemi"
+Obituary "$OB_WAVEHARPOON" 
++FORCEXYBILLBOARD
+damage (150)
+Radius 8
+Height 8
+speed 40
+scale 3.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+HARP A 1
+loop
+}
+}
+
+actor WaveHarpoonB : WaveHarpoon{translation "199:199=74:74"}
+actor WaveHarpoonR : WaveHarpoon{translation "199:199=41:41"}
+actor WaveHarpoonO : WaveHarpoon{translation "199:199=128:128"}
+actor WaveHarpoonP : WaveHarpoon{translation "199:199=232:232"}
+
+actor PinpointWaterWaveSpawner : FastProjectile
+{
+Translation "199:199=193:193"
+Height 16
+Radius 6
+speed 1000
+//+RIPPER
+//+THRUGHOST
++DONTBLAST
++SKYEXPLODE
++THRUACTORS
+damage (0)
+reactiontime 5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 1 A_CountDown
+loop
+Death:
+TNT1 A 0 A_CheckFloor("Forward")
+TNT1 A 0 A_SpawnItemEx("WaterWaveSpawnerB",0,0,0,0,0,0,180,1)
+stop
+Forward:
+TNT1 A 0 A_SpawnItemEx("WaterWaveSpawnerB2",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor PinpointWaterWaveSpawnerB : PinpointWaterWaveSpawner{translation "199:199=74:74"}
+actor PinpointWaterWaveSpawnerR : PinpointWaterWaveSpawner{translation "199:199=41:41"}
+actor PinpointWaterWaveSpawnerO : PinpointWaterWaveSpawner{translation "199:199=128:128"}
+actor PinpointWaterWaveSpawnerP : PinpointWaterWaveSpawner{translation "199:199=232:232"}
+
+
+actor WaterWaveSpawnerB
+{
+PROJECTILE
++DONTBLAST
+Height 40
+Radius 6
+scale 2.5
+damage (0)
+//+RIPPER
+//+THRUGHOST
++THRUACTORS
++FLOORHUGGER
+
+reactiontime 30
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/WaveSummon","Weapon")
+Spawn2:
+TNT1 AA 1 A_CountDown
+HARP BBBBCCBBBB 1 A_CountDown
+loop
+Death:
+TNT1 A 0 A_JumpIfCloser(64,"Launch")
+Wave:
+TNT1 A 0 A_SpawnItemEx("WaterWaveB",0,0,0,20,0,0,0,1)//A_CustomMissile("WaterWaveB",0,0,0,2,0)
+stop
+Launch:
+TNT1 A 0 A_JumpIf(z!=floorz,"Wave")
+TNT1 A 0 A_GiveToTarget("WaterWaveLaunch",1)
+goto Wave
+}
+}
+
+actor WaterWaveSpawnerB2 : WaterWaveSpawnerB
+{
+ReactionTime 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/WaveSummon","Weapon")
+TNT1 A 0 A_JumpIfCloser(100,"Spawn8")
+TNT1 A 0 //A_LOG("Too far 100")
+TNT1 A 0 A_JumpIfCloser(250,"Spawn7")
+TNT1 A 0 //A_LOG("Too far 250")
+TNT1 A 0 A_JumpIfCloser(400,"Spawn6")
+TNT1 A 0 //A_LOG("Too far 400")
+TNT1 A 0 A_JumpIfCloser(550,"Spawn5")
+TNT1 A 0 //A_LOG("Too far 550")
+TNT1 A 0 A_JumpIfCloser(700,"Spawn4")
+TNT1 A 0 //A_LOG("Too far 700")
+TNT1 A 0 A_JumpIfCloser(850,"Spawn3")
+TNT1 A 0 //A_LOG("Too far 850")
+Spawn2:
+HARP ZZBBB 1
+Spawn3:
+HARP BCCBB 1
+Spawn4:
+HARP BBZZB 1
+Spawn5:
+HARP BBBCC 1
+Spawn6:
+HARP BBBBZ 1
+Spawn7:
+HARP ZBBBB 1
+SpawnW:
+HARP B 1 A_CountDown
+wait
+Spawn8:
+HARP B 1
+HARP B 1 A_CountDown
+wait
+}
+}
+
+actor WaterWaveLaunch : CustomInventory
+{
+states
+{
+Pickup2:
+TNT1 A 0 ThrustThingZ(0,60,0,0)
+stop
+Pickup:
+TNT1 A 0 A_JumpIf(z-floorz==0||momz>=0,"Ground")
+goto Air
+Air:
+TNT1 A 0 ThrustThingZ(0,10,0,1)
+stop
+Ground:
+TNT1 A 0 ThrustThingZ(0,60,0,0)
+stop
+}
+}
+
+/*actor WaterWaveSpawnerB : WaterWaveSpawner
+{
+Translation "196:200=192:192"
+States
+{
+Death:
+TNT1 A 0 A_CustomMissile("WaterWaveB",0,0,0,2,0)
+stop
+}
+}*/
+
+actor WaterWaveB
+{
+PROJECTILE
+damagetype "WaterWave"
+Obituary "$OB_WATERWAVE"
+-NOGRAVITY
++DONTSPLASH
++NOEXPLODEFLOOR
++STEPMISSILE
+maxstepheight 16
+
+Bouncetype Classic
+-BOUNCEONWALLS
+-BOUNCEONFLOORS
+-BOUNCEONCEILINGS
+-ALLOWBOUNCEONACTORS
++NOEXPLODEFLOOR
+BounceFactor 1.0
+WallBounceFactor 0.0
+
+gravity 500.0
+Damage (80)
+Radius 6
+Height 40
+speed 20
+Scale 2.5
+reactiontime 350
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+HARP B 1
+HARP B 0 A_GiveInventory("ResyncPickup",1)
+HARP BBB 1 A_Countdown
+HARP CCCCDDDDEEEEDDDDCCCCBBBB 1 A_Countdown
+Goto SpawnLOOP+2
+Crash:
+XDeath:
+TNT1 A 0
+stop
+Death:
+TNT1 A 0 //A_JumpIfInventory("Once",1,"Continue")
+TNT1 A 1
+stop
+Continue:
+TNT1 A 0 A_SpawnItemEx("WaterWaveB",0,0,0,20,0,0,0,1)//A_CustomMissile("WaterWaveB",0,0,0,2,0)
+TNT1 A 1
+stop
+}
+}
+
+
+
+actor WaterWaveB_XXX
+{
+PROJECTILE
+damagetype "WaterWave"
+Obituary "$OB_WATERWAVE"
+-NOGRAVITY
+//+NOEXPLODEFLOOR
+//+STEPMISSILE//Not yet
+//maxstepheight 7
+Damage (80)
+Radius 6
+Height 40
+speed 20
+Scale 2.5
+gravity 900.0
+reactiontime 350
+States
+{
+Spawn:
+HARP B 1
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+HARP B 0 A_GiveInventory("Once",1)
+HARP BBB 1 A_Countdown
+HARP CCCCDDDDEEEEDDDDCCCCBBBB 1 A_Countdown
+Goto SpawnLOOP+2
+Crash:
+XDeath:
+TNT1 A 0
+stop
+Death:
+TNT1 A 0 A_JumpIfInventory("Once",1,"Continue")
+TNT1 A 1
+stop
+Continue:
+TNT1 A 0 A_SpawnItemEx("WaterWaveB",0,0,0,20,0,0,0,1)//A_CustomMissile("WaterWaveB",0,0,0,2,0)
+TNT1 A 1
+stop
+}
+}
+
+actor WavemanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PinpointWaterWaveSpawner",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PinpointWaterWaveSpawnerB",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PinpointWaterWaveSpawnerR",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PinpointWaterWaveSpawnerO",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PinpointWaterWaveSpawnerP",0,0,-8,0)
+goto Done
+}
+}
+
+actor WavemanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("WaveHarpoon",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("WaveHarpoonB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("WaveHarpoonR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("WaveHarpoonO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("WaveHarpoonP",0,0,8,0)
+goto Done
+}
+}

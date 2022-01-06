@@ -1,16 +1,18 @@
-actor Quickman : ProtoClassBase
+actor Quickman : ClassBase //75
 {
 Player.ScoreIcon "C_02D0X"
-player.startitem "ProtoHealthBar"
 player.displayname "quickman"
 player.soundclass "quickmanc"
 player.startitem "QuickBoomerangBoss"
 player.startitem "FastAmmo", 50
 player.startitem "CanWallJump"
-//player.startitem "CanWallJumpStack", 6
+player.startitem "CanWallJumpStack", 99
 player.startitem "QuickTrailItem"
-player.forwardmove 1.35, 1.35
-player.sidemove 1.35, 1.35
+
+player.maxhealth 750
+health 750
+player.forwardmove 1.10, 1.10
+player.sidemove 1.08, 1.08
 player.jumpz 12
 
 player.startitem "TimestopperWeakness2", 1

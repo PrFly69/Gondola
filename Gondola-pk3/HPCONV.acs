@@ -1,0 +1,36 @@
+// Dumb script by Trillster
+#library "HPCONV"
+#include "zcommon.acs"
+
+Script "HPConvert" OPEN CLIENTSIDE
+{
+int cpn = ConsolePlayerNumber();
+while(true) {
+	HPConvertFunc(cpn);
+	delay(1);
+}
+}
+
+function void HPConvertFunc(int cpn) {
+	int cam = CheckPlayerCamera(cpn);
+	if(cam>0) {
+		SetActorInventory(cam,"AboveDecimalHP",GetActorProperty(cam,APROP_Health)/10);
+		SetActorInventory(cam,"BelowDecimalHP",GetActorProperty(cam,APROP_Health)%10);
+		SetActorInventory(cam,"AboveDecimalArmor",CheckActorInventory(cam,"BasicArmor")/10);
+		SetActorInventory(cam,"BelowDecimalArmor",CheckActorInventory(cam,"BasicArmor")%10);
+	}
+}
+
+function void SetActorInventory(int tid, str inventory_item, int amount)
+{
+SetActorInventory2(tid,inventory_item,amount,CheckActorInventory(tid,inventory_item));
+}
+
+function void SetActorInventory2(int tid, str inventory_item, int amount, int currentamount)
+{
+if(amount>currentAmount) {
+	GiveActorInventory(tid,inventory_item,amount-currentAmount);
+} else if(amount<currentAmount) {
+	TakeActorInventory(tid,inventory_item,currentAmount-amount);
+}
+}

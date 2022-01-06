@@ -1,17 +1,69 @@
-#include "actors/Megaman/YellowDevil.txt"
-#include "actors/Wep/Megaman/YellowEyeBoss.txt"
+//#include "actors/Megaman0/ProtomanHero.txt"
+#include "actors/Megaman0/BassHero.txt"
+#include "actors/Megaman0/DuoHero.txt"
 
-#include "actors/Wep/Megaman5/CrystalEyeBloatCode.txt"
+#include "actors/Megaman0/HeroicProtoBuster.txt"
+#include "actors/Megaman0/HeroicBassBuster.txt"
+#include "actors/Megaman0/HeroicDuoFist.txt"
+
+
+#include "actors/Megaman0/AutoClass.dec"
+#include "actors/Megaman0/AutoBoltBoss.dec"
+#include "actors/Megaman0/AutoBoltBloatCode.dec"
+
+#include "actors/Wep/ProjectilePickups.dec"
+#include "actors/Wep/Copywep/baseweapon_s.txt"
+
+#include "actors/Megaman0/MaestroBuster.txt"
+#include "actors/Megaman0/MaestroGuts.txt"
+#include "actors/Megaman0/MaestroCustom.txt"
+#include "actors/Megaman0/MaestroShield.txt"
+//#include "actors/Wep/Megaman0/MaestroTeam.txt"
+
+//#include "actors/Megaman3/Breakman.txt"
+//#include "actors/Wep/Megaman3/BreakBusterBoss.txt"
+
+#include "actors/Megaman5/DarkTwoShieldBoss.txt"
+#include "actors/Megaman5/DarkFourBusterBoss.txt"
+
+#include "actors/Megaman10/Strikeman.txt"
+#include "actors/Megaman10/ReboundStrikeBoss.txt"
+#include "actors/Megaman10/ReboundStrikeBloatCode.txt"
+
+#include "actors/Megaman10/Solarman.dec"
+#include "actors/Megaman10/SolarBlazeBoss.dec"
+#include "actors/Wep/Megaman10/SolarBlazeBloatCode.dec"
+
+#include "actors/Megaman10/Sheepman.txt"
+#include "actors/Megaman10/ThunderWoolBoss.txt"
+#include "actors/Megaman10/ThunderWoolBloatCode.txt"
+
+#include "actors/MegamanV/Saturn.txt"
+#include "actors/MegamanV/BlackHoleBoss.txt"
+
+#include "actors/Wep/MegamanWT/PigsyBoss.txt"
+#include "actors/Wep/MegamanWT/SandySandBoss.txt"
+
+//MM11
+#include "actors/Megaman11/Fuseman.txt"
+//#include "actors/Megaman11/Blastman.txt"
+#include "actors/Megaman11/ScrambleThunderBossC.dec"
+//#include "actors/Wep/Megaman11/ChainBlastBoss.txt"
+
+#include "actors/Megaman/YellowDevil.txt"
+#include "actors/Megaman/YellowEyeBoss.txt"
+
+#include "actors/Megaman5/CrystalEyeBloatCode.txt"
 //test
 #include "actors/MegamanV/Terra.txt"
-#include "actors/Wep/MegamanV/SparkChaserBoss.txt"
-#include "actors/Wep/MegamanV/SparkChaserBloatCode.txt"
+#include "actors/MegamanV/SparkChaserBoss.txt"
+#include "actors/MegamanV/SparkChaserBloatCode.txt"
 
 #include "actors/Megaman11/Torchman.txt"
-#include "actors/Wep/Megaman11/BlazingTorchBoss.txt"
+#include "actors/Megaman11/BlazingTorchBoss.txt"
 
 #include "actors/Megaman11/Acidman.txt"
-#include "actors/Wep/Megaman11/AcidBarrierBoss.txt"
+#include "actors/Megaman11/AcidBarrierBoss.txt"
 
 #include "actors/Wep/Copywep/BlazingTorch.txt"
 #include "actors/Wep/Copywep/ScrambleThunder.txt"
@@ -22,12 +74,21 @@
 #include "actors/ClassBaseTID.txt"
 
 #include "actors/MegamanV/Sunstar.txt"
-#include "actors/Wep/MegamanV/NovaBeamBoss.txt"
+#include "actors/MegamanV/NovaBeamBoss.txt"
 #include "actors/Wep/CopyWep/NovaBeam.txt"
 #include "actors/Megaman11/Blastman.txt"
-#include "actors/Wep/Megaman11/ChainBlastBoss.txt"
+#include "actors/Megaman11/ChainBlastBoss.txt"
 
 #include "actors/Wep/copywepvisibility.txt"
+
+actor AboveDecimalHP : Inventory
+{
+inventory.amount 1
+inventory.maxamount 0x7FFFFFFD
+}
+actor BelowDecimalHP : AboveDecimalHP {}
+actor AboveDecimalArmor : AboveDecimalHP {}
+actor BelowDecimalArmor : AboveDecimalHP {}
 
 actor CopyNerf : PowerDamage
 {
@@ -1114,3 +1175,101 @@ actor Maestro_MapMarker_2 : Maestro_MapMarker_D {translation "192:192=104:104", 
 actor Maestro_MapMarker_3 : Maestro_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
 #include "MAPICONS.txt"
+
+/*actor ProtoMachineThingG : ProtoMachineThing replaces ProtoMachineThing
+{
+Health 6666
+damagefactor "normal", 1.25
+damagefactor "DynaTag", 100.0
+damagefactor "MagicCardBF", 100.0
+damagefactor "HomingSniper", 20.0
+damagefactor "ProtoBuster", 25.0
+damagefactor "HeroProtoBuster3", 25.0
+states
+{
+Spawn:
+GESP DEFG 4
+loop
+Pain.ProtoBuster:
+GESP D 0
+GESP D 0 A_PlaySoundEx("misc/devilpain","Voice",0,-1)
+GESP DEFG 4
+Goto Spawn
+Death:
+GESP D 0
+GESP D 1 A_Stop
+GESP GGGGGG 8 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+GESP GGGGGGGGGGGG 4 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+GESP GGGGGGGGGGGGGGGGGGGGGGGG 2 A_SpawnItemEx("FlashBombFX2",Random(-16, 16),Random(-40, 40), Random(90, 120),0,0,0,0)
+TNT1 A 0 A_PlaySoundEx("misc/SearchSecret","Voice",0,1)
+TNT1 A 0 ACS_ExecuteAlways(804,0,1)
+TNT1 A 0 A_SpawnItemEx("TimeStopperWepCDropped",0,0,24,0,0,15)
+TNT1 A 58 A_SpawnItemEx("SearchmanisEverywhere",0,0,70,5,5,20)
+TNT1 A 0 ACS_ExecuteAlways(804,0,0)
+TNT1 A 0 
+stop
+}
+}*/
+
+actor ThomasisEverywhere
+{
+PROJECTILE
+Translation "192:192=69:69", "198:198=74:74"
++RIPPER
++NOINTERACTION
++DONTBLAST
++THRUGHOST
++THRUACTORS
+-NOGRAVITY
+Damagetype "Thomas"
+Obituary "%o suffered a heart attack from \cnThomas the Tank Engine\c-'s stare."
+damage (1000)
+height 64
+radius 52
+Scale 10//7.5
+//Reactiontime 10
+States
+{
+Spawn:
+CHRT B 0
+CHRT B 0 ThrustThingZ(0,10,1,1)
+CHRT BBBCCCDDDEEE 1 A_JumpIf(ceilingz-z>64, "Spawn2")
+CHRT B 0 A_JumpIf(momz==0,"Death")
+CHRT B 0 A_SetAngle(angle+15)
+Goto Spawn+1
+Spawn2:
+CHRT B 0 //A_ChangeFlag("RIPPER",0)
+CHRT B 0 A_ChangeFlag("NOINTERACTION",0)
+CHRT BBBCCCDDDEEE 1 A_SpawnItemEx("ThomasisEverywhereDamager")
+CHRT B 0 A_JumpIf(momz==0,"Death")
+CHRT B 0 A_SetAngle(angle+15)
+Goto Spawn2+2
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("SearchManCredits",1800,2856,0,0,0,0,0,2)//Penguin island
+TNT1 A 0 A_SpawnItemEx("BonerManCreditsX",1750,2526,0,0,0,0,0,2)//Penguin island
+TNT1 A 0 A_SpawnItemEx("RibbonCreditsX",-2608,1568,268,0,0,0,0,2)//Skybox
+TNT1 A 0 A_SpawnItemEx("GibusCreditsX",-2608,1568,268,0,0,0,180,2)//hehehehehehehehehehehe
+TNT1 A 0 A_SpawnItemEx("PitchCreditsX",-888,1308,128,0,0,0,0,2)//A small hole above center
+TNT1 A 0 A_SpawnItemEx("BlackHoleWepCDropped",0,0,24,0,0,15)
+TNT1 A 0 A_Explode(25,320,0,0,321)
+TNT1 A 0 A_SpawnItemEx("ThomasisEverywhereFX")
+TNT1 A 8 A_PlaySoundEx("misc/mm3explosion","Weapon",0,1)
+stop
+}
+}
+
+actor GibusCreditsX : BonerManCreditsX
+{
++NOGRAVITY
++FLOATBOB
+Scale 0.4
+States
+{
+Spawn:
+GIBU S 0 A_SetAngle(angle-90)
+GIBU S 0 A_ChangeVelocity(-0.5,-0.5,0,3)
+GIBU S 760
+loop
+}
+}

@@ -8,7 +8,13 @@ player.startitem "ReboundStrikeBoss"
 player.startitem "ReboundStrikeItem"
 player.startitem "ReboundStrikerLimit", 175
 player.startitem "ReboundStrikerPower", 14
+
+
+player.maxhealth 1000
+health 1000
 player.jumpz 14
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.weaponslot 1, "ReboundStrikerBoss"
 player.weaponslot 2, "ReboundStrikeBoss"

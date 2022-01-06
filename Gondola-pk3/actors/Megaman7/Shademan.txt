@@ -1,0 +1,143 @@
+actor ShadeMan : ClassBase
+{
+Player.ScoreIcon "C_07G0X"
+player.displayname "Shademan"
+player.soundclass "shademanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "NoiseCrushBoss"
+player.startitem "MakeSomeNoiseAmmo", 42
+
+player.startitem "WildCoilWeakness2", 1
+
+player.startitem "WildCoilWeakness", 1
+player.startitem "LeafShieldWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "WaterWaveWeakness", 1
+player.startitem "SilverTomahawkWeakness", 1
+player.startitem "JewelSatelliteWeakness", 1
+player.startitem "ReboundStrikerWeakness", 1
+player.startitem "MirrorBusterWeakness", 1
+
+States
+{
+Spawn:
+SHDE A 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE I 1 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE A 0 A_JumpIfInventory("Shademan_Flight_Power",1,2)
+SHDE P -1 A_JumpIf(z-floorz>0,"Flying")
+SHDE PPPPPPPPQQQQQQQQRRRRRRSSSSSSSSRRRRTTTTUUUURRRRRRRRRRQQQQQQQQP 1 A_JumpIf(z-floorz>0,"Flying")
+wait//goto Spawn+64
+See:
+SHDE A 0 A_JumpIf(z-floorz>0,"Flying")
+SHDE IIIIIJJJJJKKKKKJJJJJ 1 A_JumpIf(z-floorz>0,"Flying")
+Goto Spawn
+
+FlyingX:
+SHDE E 4 A_PlaySound("weapon/shadewing",1,0.5)
+SHDE E 0 A_JumpIf(z-floorz>0,"Flying")
+Goto Spawn
+FlyingS:
+"----" "#" 0 A_GiveInventory("Shademan_Flight_Power",1)
+goto Spawn+2
+Flying:
+//SHDE BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz==0,"Spawn")
+SHDE B 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+
+SHDE B 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE B 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE B 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE B 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE B 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE B 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE B 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE B 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE B 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE B 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+
+SHDE C 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE C 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE C 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE C 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE C 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE C 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE C 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE C 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE C 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE C 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+
+SHDE D 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE D 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE D 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE D 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE D 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE D 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE D 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE D 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE D 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE D 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+
+SHDE E 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE E 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE E 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE E 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE E 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE E 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE E 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE E 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE E 1 A_JumpIf(z-floorz==0,"FlyingS")
+SHDE E 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+
+SHDE D 0 A_PlaySound("weapon/shadewing",1,0.5)
+SHDE B 1 A_JumpIf(z-floorz>0,"Flying")
+Goto FlyingS
+Missile:
+SHDE B 0 A_JumpIfInventory("ShademanIsFlying",1,"MissileX")
+SHDE FFFFF 1
+SHDE GGGGG 1
+goto Spawn
+MissileX:
+SHDE F 0 A_JumpIfInventory("ShadeWing",1,"FlyingX")
+SHDE FFFFF 1 A_JumpIfInventory("ShadeWing",1,"FlyingX")
+SHDE GGGGG 1 A_JumpIfInventory("SwoopSafeGuard",1,"M_Swoop")//ShadeDrainPower
+goto Spawn
+
+CustomState1:
+SHDE M 0 A_Jump(256,"M_Swoop")
+goto M_Swoop
+M_Swoop:
+SHDE L 1 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+SHDE LL 1 A_JumpIfInventory("SwoopSafeGuard",1,"M_Swoop")//ShadeDrainPower
+goto Spawn
+
+M_SwoopX:
+SHDE MMMMNNNNOOOONNNN 1 A_JumpIfInventory("ShadeIsDoneC",1,"FlyingX")
+SHDE M 0 A_PlaySound("weapon/shadewing",1,0.5)
+loop
+ClassPainSwoop:
+SHDE "#" 0 A_SpawnItemEx("DelayPainFX")
+SHDE "#" 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
+goto M_Swoop
+
+ClassPain:
+SHDE H 0 A_JumpIfInventory("ShadeGrabFlight",1,"ClassPainSwoop")
+SHDE H 0 A_JumpIfInventory("SwoopSafeGuard",1,"ClassPainSwoop")
+goto PainContinue
+DeathFix:
+SHDE H 0
+goto DeathContinue
+ClassDeath:
+SHDE H 1
+goto MegaDeathEnd
+}
+}
+
+actor Shademan_Flight_Power : Powerup
+{
+Powerup.Duration 10
+}

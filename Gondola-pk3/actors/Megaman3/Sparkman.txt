@@ -5,6 +5,10 @@ player.displayname "sparkman"
 player.soundclass "sparkmanc"
 player.startitem "SparkShockBoss"
 player.startitem "SparkHealAmmo", 14
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
 player.forwardmove 0.85, 0.85
 player.sidemove 0.83, 0.83
 

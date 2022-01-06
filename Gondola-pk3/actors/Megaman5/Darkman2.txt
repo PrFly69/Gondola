@@ -1,12 +1,15 @@
-actor Darkman2 : DuoClassBase
+actor Darkman2 : ClassBase //115
 {
 Player.ScoreIcon "C_05J0X"
-player.startitem "DuoHealthBar"
 player.displayname "darkman2"
 player.soundclass "darkman2c"
 player.startitem "DarkShieldBoss"
 player.startitem "DarkShieldAmmo",28
 player.startitem "Darkman2ShieldAmmo", 500
+
+player.maxhealth 1150
+health 1150
+player.jumpz 10
 player.forwardmove 0.810, 0.810
 player.sidemove 0.808, 0.808
 //damagefactor "CrystalEye", 1.5

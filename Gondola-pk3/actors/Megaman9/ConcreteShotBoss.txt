@@ -1,0 +1,1653 @@
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
+
+  Actor ConcreteShotBoss : BaseMM8BDMWep_CBM
+  {
+    Tag "$TAGC_9A"
+	DropItem "ConcreteShotWepCDropped"
+	Weapon.AmmoUse 2
+	Weapon.AmmoGive 28
+	Obituary "$OB_CONCRETESHOT"
+	Inventory.Pickupmessage "$PU_CONCRETESHOT"
+	Weapon.ammotype "ConcreteShotBossAmmo"
+	States
+	{
+		Spawn:
+		C_09 A 1
+		Loop
+
+		Ready:
+		CONH A 0 ACS_ExecuteAlways(998,0,DYE_CONCRETEMAN)
+		Goto Ready1
+
+		Ready1:
+		CONH A 0 A_JumpIfInventory("ConcreteBlockReady",1,"Ready3")
+		Goto Ready2
+
+		Ready2:
+		CONH A 1 A_WeaponReady
+		Loop
+
+		Ready2a:
+		CONH AAAAA 1 A_WeaponReady(WRF_NOFIRE)
+		CONH AAAAA 1 A_WeaponReady(WRF_NOPRIMARY)
+		Goto Ready2
+
+		Ready3:
+		CONH Q 1 A_WeaponReady
+		Loop
+
+		Ready3a:
+		CONH QQQQQ 1 A_WeaponReady(WRF_NOFIRE)
+		CONH QQQQQ 1 A_WeaponReady(WRF_NOPRIMARY)
+		Goto Ready3
+
+		Deselect:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+		CONH A 1 A_Lower
+		Loop
+		
+		Select:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+		CONH A 1 A_Raise
+		Loop
+
+		Fire:
+		CONH A 0 A_JumpIfInventory("ConcreteBlockReady",1,"FireBlock")
+		CONH A 0 A_JumpIfInventory("StaminaFlag",1,"Fire2")
+		COHN A 1
+		Goto FireX
+		
+		Fire2:
+		CONH B 0 A_PlaySoundEx("weapon/concreteshot","Weapon")
+		CONH B 0 A_GiveInventory("ConcretemanMain_CI",1)
+		//CONH BC 5
+		//CONH A 10 //20
+		CONH A 1 Offset(10,0)
+		CONH A 1 Offset(15,5)
+		CONH A 1 Offset(25,10)
+		CONH A 1 Offset(30,12)
+		CONH AA 1 Offset(20,15)
+		CONH AA 1 Offset(10,20)
+		CONH AA 1 Offset(0,25)
+		CONH BB 1 Offset(-10,35)
+		CONH B 1 Offset(-20,45)
+		CONH C 2 Offset(-30,50)
+		CONH A 2 Offset(-20,45)
+		CONH A 2 Offset(-10,35)
+		//CONH A 25
+		Goto Ready2a
+		
+		FireX:
+		CONH B 0 A_PlaySoundEx("weapon/concreteshot","Weapon")
+		CONH B 0 A_GiveInventory("ConcretemanMainX_CI",1)
+		//CONH BC 5
+		//CONH A 10 //20
+		CONH BC 2 Offset(0,40)
+		CONH CC 1 Offset(0,35)
+		CONH CC 1 Offset(0,30)
+		CONH CC 1 Offset(0,25)
+		CONH CC 1 Offset(0,20)
+		CONH BA 1 Offset(0,15)
+		CONH A 6 Offset(0,10)
+		Goto Ready2a
+
+		FireBlock:
+		CONH Q 0 A_JumpIfInventory("StaminaFlag",1,"Fire2Block")
+		Goto FireXBlock
+		
+		Fire2Block:
+		CONH R 0 A_PlaySoundEx("weapon/concreteshot","Weapon")
+		CONH R 0 A_GiveInventory("ConcretemanMain_CI",1)
+		//CONH RS 5
+		//CONH Q 10 //20
+		CONH RS 2
+		CONH SSSSSSSSRQ 1
+		CONH Q 6
+		Goto Ready3a
+		
+		FireXBlock:
+		CONH R 0 A_PlaySoundEx("weapon/concreteshot","Weapon")
+		CONH R 0 A_GiveInventory("ConcretemanMainX_CI",1)
+		//CONH RS 5
+		//CONH Q 10 //20
+		CONH RS 2
+		CONH SSSSSSSSRQ 1
+		CONH Q 6
+		Goto Ready3a
+
+		AltFire:
+		CONH A 0 A_JumpIfInventory("CementAni_Leap",1,"CrashLanding")
+		CONH A 0 A_JumpIfInventory("ConcreteBlockReady",1,"AltBlockCharge1")
+		CONH A 0 A_JumpIfInventory("ConcreteBlockFlag",1,"AltFirePickup")
+		Goto AltfireH1
+		
+		AltFireH1:
+		CONH G 1 A_GiveInventory("ConcreteChargeFlag_RC",1)
+		CONH G 1 A_Refire("AltFireH2")
+		CONH G 0 A_TakeInventory("ConcreteGrabbingFlag",999)
+		Goto Dash
+		
+		AltFireH2:
+		CONH G 0 A_GiveInventory("ConcreteGrabbingFlag",1)
+		CONH G 0 A_JumpIfInventory("PowerRage_ST",1,"AltFireH3")
+		CONH G 1 A_GiveInventory("ConcreteChargeFlag_RC",1)
+		CONH G 1 A_Refire("AltFireH3")
+		CONH G 0 A_TakeInventory("ConcreteGrabbingFlag",999)
+		Goto Dash
+		
+		AltFireH3:
+		CONH H 0 A_JumpIfInventory("ConcreteBlockFlag",1,"AltFirePickup")
+		CONH H 1 A_GiveInventory("ConcreteChargeFlag_RC",1)
+		CONH H 1 A_Refire("AltFireH4")
+		CONH H 0 A_TakeInventory("ConcreteGrabbingFlag",999)
+		Goto Dash
+		
+		AltFireH4:
+		CONH H 0 A_JumpIfInventory("PowerRage_ST",1,"AltFireH5")
+		CONH H 0 A_JumpIfInventory("ConcreteBlockFlag",1,"AltFirePickup")
+		CONH H 1 A_GiveInventory("ConcreteChargeFlag_RC",1)
+		CONH H 1 A_Refire("AltFireH5")
+		CONH H 0 A_TakeInventory("ConcreteGrabbingFlag",999)
+		Goto Dash
+		
+		AltFireH5:
+		CONH I 0 A_JumpIfInventory("ConcreteBlockFlag",1,"AltFirePickup")
+		CONH I 0 A_JumpIfInventory("ConcreteChargeFlag",35,"AltFireH6")
+		CONH J 1 A_GiveInventory("ConcreteChargeFlag_RC",1)
+		CONH J 1 A_Refire("AltFireH5")
+		CONH I 0 A_TakeInventory("ConcreteGrabbingFlag",999)
+		Goto Dash
+		
+		AltFireH6:
+		CONH I 0 A_JumpIfInventory("ConcreteBlockFlag",1,"AltFirePickup")
+		CONH K 1 A_GiveInventory("ConcreteChargeFlag_RC",1)
+		CONH K 1 A_Refire("AltFireH6")
+		CONH I 0 A_TakeInventory("ConcreteGrabbingFlag",999)
+		Goto Dash
+
+		AltBlockCharge1:
+		CONH T 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,75,100)
+		CONH T 0 A_PlaySound("weapon/conc_chargestart",1,0.5)
+		Goto AltBlockCharge2
+		
+		AltBlockCharge2:
+		CONH T 0 A_JumpIfInventory("ConcreteChargeFlag",35,"AltBlockCharge3")
+		CONH T 1 A_GiveInventory("ConcreteChargeFlag_RC",1)
+		CONH T 0 A_Refire("AltBlockCharge2")
+		Goto BlockStuffWeak
+		
+		AltBlockCharge3:
+		CONH T 0 ACS_ExecuteAlways(998,0,DYE_CONCRETEMAN_CHARGE,7)
+		CONH T 1 A_GiveInventory("ConcreteChargeSnd_P",1)
+		CONH T 0 A_Refire("AltBlockCharge3.a")
+		Goto BlockStuffWeak
+		
+		AltBlockCharge3.a:
+		CONH T 0 A_JumpIfInventory("PowerRage_ST",1,"AltBlockCharge3.b")
+		CONH T 1 A_GiveInventory("ConcreteChargeSnd_P",1)
+		CONH T 0 A_Refire("AltBlockCharge3.b")
+		Goto BlockStuffWeak
+		
+		AltBlockCharge3.b:
+		CONH U 0 ACS_ExecuteAlways(998,0,DYE_CONCRETEMAN,6)
+		CONH U 1 A_GiveInventory("ConcreteChargeSnd_P",1)
+		CONH U 0 A_Refire("AltBlockCharge3.c")
+		Goto BlockStuffWeak
+		
+		AltBlockCharge3.c:
+		CONH U 0 A_JumpIfInventory("PowerRage_ST",1,"AltBlockCharge3")
+		CONH U 1 A_GiveInventory("ConcreteChargeSnd_P",1)
+		CONH U 0 A_Refire("AltBlockCharge3")
+		Goto BlockStuffWeak
+
+
+		Leap:
+		CONH J 0 A_JumpIfInventory("ConcreteChargeFlag",14,"Leap2")
+		CONH J 0 A_TakeInventory("ConcreteChargeFlag",999)
+		Goto Ready1
+		
+		Leap2:
+		CONH J 0 A_JumpIfInventory("ConcreteBlockReady",1,"AltBlockCharge1")
+		CONH J 0 A_GiveInventory("CementAni_Leap",1)
+		CONH J 0 A_TakeInventory("ConcreteBlockFlag",999)
+		CONH J 0 A_PlaySoundEx("weapon/buttleap","Weapon")
+		CONH J 0 A_GiveInventory("NoJumpCancel",1)
+		CONH J 0 A_GiveInventory("LadderDisable",1)
+		CONH J 0 A_Recoil(-15)
+		CONH J 0 ThrustThingZ(0,60,0,0)
+		CONH J 2
+		CONH K 12
+		Goto Ready2Stomp
+
+		Ready2Stomp:
+		CONH K 1 A_WeaponReady(WRF_NOPRIMARY)
+		CONH K 0 A_GiveInventory("QuakingRageCheck",1)
+		CONH K 0 A_SpawnItemEx("ConcreteButt",0,0,-10,0,0,-15)
+		CONH K 0 A_JumpIf(z-floorz==0,"Landing")
+		CONH K 0 A_JumpIf(momz==0,"Ready2StompV")
+		CONH K 0
+		Loop
+		
+		Ready2StompV:
+		CONH K 1 A_WeaponReady(WRF_NOPRIMARY)
+		CONH K 0 A_GiveInventory("QuakingRageCheck",1)
+		CONH K 0 A_SpawnItemEx("ConcreteButt",0,0,-10,0,0,-15)
+		CONH K 0 A_JumpIf(z-floorz==0,"Landing")
+		CONH K 0 A_JumpIf(momz==0,"Landing")
+		CONH K 0
+		Goto Ready2Stomp
+
+		Ready2Stomp2:
+		CONH K 1 ThrustThingZ(0,-10,0,1)
+		CONH K 0 A_GiveInventory("QuakingRageCheck",1)
+		CONH K 0 A_SpawnItemEx("ConcreteButt2",0,0,-10,0,0,-15)
+		CONH K 0 A_JumpIf(z-floorz==0,"Landing")
+		CONH K 0 A_JumpIf(momz==0,"Ready2Stomp2V")
+		CONH K 0
+		Loop
+		
+		Ready2Stomp2V:
+		CONH K 1 ThrustThingZ(0,-10,0,1)
+		CONH K 0 A_GiveInventory("QuakingRageCheck",1)
+		CONH K 0 A_SpawnItemEx("ConcreteButt2",0,0,-10,0,0,-15)
+		CONH K 0 A_JumpIf(z-floorz==0,"Landing")
+		CONH K 0 A_JumpIf(momz==0,"Landing")
+		CONH K 0
+		Goto Ready2Stomp2
+
+		CrashLanding:
+		CONH L 0 A_JumpIfInventory("ConcreteBlockReady",1,"AltBlockCharge1")
+		CONH L 0 A_Stop
+		CONH L 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
+		CONH L 0 SetPlayerProperty(0,1,3)
+		CONH L 10
+		CONH L 0 ThrustThingZ(0,-250,0,0)
+		CONH L 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+		CONH L 0 SetPlayerProperty(0,0,3)
+		Goto Ready2Stomp2
+		
+		Landing:
+		CONH M 0 A_PlaySoundEx("weapon/buttstomp","Weapon")
+		CONH M 0 A_GiveInventory("ConcreteShockLanding_P",1)
+		CONH M 0 A_GiveInventory("CementAni_LeapStop",1)
+		CONH M 0 A_TakeInventory("CementAni_Leap",999)
+		CONH M 0 A_TakeInventory("ConcreteChargeFlag",999)
+		CONH M 1 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
+		CONH M 0 A_TakeInventory("NoJumpCancel",1)
+		CONH M 0 A_GiveInventory("LadderEnable",1)
+		CONH M 8 A_GiveInventory("ConcreteCleanResetFlags",1)
+		CONH IHG 2
+		CONH A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+		Goto Ready2
+
+		Dash:
+		CONH D 0 A_ClearRefire
+		CONH D 0 A_JumpIfInventory("ConcreteBlockReady",1,"AltBlockCharge1")
+		CONH D 0 A_JumpIfInventory("ConcreteBlockFlag",1,"AltFirePickup")
+		CONH D 0 A_JumpIfInventory("ConcreteChargeFlag",35,"Dash2")
+		Goto DashEnd
+		
+		Dash2:
+		CONH D 0 A_GiveInventory("CementAni_Dash",1)
+		CONH D 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
+		CONH D 0 A_SetUserVar("user_wepangle", angle)
+		Goto DashStart
+		
+		DashStart:
+		CONH D 0 A_SpawnItemEx("CementDash_Helper")
+		DashStart2:
+		CONH F 0 A_GiveInventory("ConcreteShoulder_P",1)
+		CONH F 0 A_PlaySoundEx("weapon/shoulderbash","Weapon")
+		CONH F 0 A_GiveInventory("ConcreteDashThrust22",1)
+		CONH F 1 A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH F 0 A_GiveInventory("ConcreteDashThrust22",1)
+		CONH F 1 A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH F 0 A_GiveInventory("ConcreteShoulder_P",1)
+		CONH E 0 A_GiveInventory("ConcreteDashThrust22",1)
+		CONH E 1 A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH E 0 A_GiveInventory("ConcreteDashThrust22",1)
+		CONH E 1 A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH D 0 A_GiveInventory("BashTimer",1)
+		// makes bash time consistent
+		//CONH D 0 A_CheckFloor("InTheZone")
+		Goto InTheAir
+		/*
+		DashStart1:
+		CONH E 0 A_GiveInventory("ConcreteShoulder_P",1)
+		CONH E 0 A_PlaySoundEx("weapon/shoulderbash","Weapon")
+		CONH E 0 A_GiveInventory("ConcreteDashThrust22",1)
+		CONH E 1 A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH E 0 A_GiveInventory("ConcreteDashThrust22",1)
+		CONH E 1 A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		Goto InTheZone+7
+		*/
+		
+		InTheAir:
+		CONH D 0 A_GiveInventory("ConcreteShoulder_P",1)
+		CONH D 0 A_PlaySoundEx("weapon/shoulderbash","Weapon")
+		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)
+		CONH D 1 Offset(-2,0)A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)
+		CONH D 1 Offset(2,0)A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH F 0 A_GiveInventory("ConcreteShoulder_P",1)
+		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)
+		CONH D 1 Offset(-2,0)A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)
+		CONH D 1 Offset(2,0)A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH F 0 A_GiveInventory("ConcreteShoulder_P",1)
+		CONH D 0 A_GiveInventory("BashTimer",1)
+		CONH D 0 A_JumpIfInventory("BashTimer",17,"End")
+		//CONH D 0 A_CheckFloor("ShortTransition")
+		Loop
+		
+		End:
+		CONH D 0 A_TakeInventory("CementAni_Dash",999)
+		CONH D 0 A_GiveInventory("CementAni_DashStop",1)
+		CONH D 0 A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
+		CONH D 1 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+		CONH D 1 Offset(0,30)
+		CONH D 1 Offset(0,40)
+		CONH D 1 Offset(0,50)
+		CONH D 1 Offset(0,60)
+		CONH D 1 Offset(0,70)
+		CONH D 1 Offset(0,80)
+		CONH D 1 Offset(0,90)
+		CONH D 1 Offset(0,100)
+		CONH D 1 Offset(0,110)
+		CONH D 1 Offset(0,120)
+		CONH D 1 Offset(0,130)
+		CONH D 1 Offset(0,140)
+		CONH D 1 Offset(0,150)
+		CONH D 1 Offset(0,160)
+		CONH D 1 Offset(0,170)
+		CONH D 1 Offset(0,180)
+		CONH D 1 Offset(0,190)
+		CONH B 1 Offset(0,50)
+		CONH B 1 Offset(0,35)
+		CONH B 1 Offset(0,40)
+		CONH B 1 Offset(0,35)
+		CONH B 1 Offset(0,30)
+		CONH B 1 Offset(0,25)
+		CONH AA 1 Offset(0,20)
+		Goto DashEnd
+		
+		Rebound:
+		CONH D 0 A_TakeInventory("CementAni_Dash",999)
+		CONH D 0 A_GiveInventory("CementAni_DashStop",1)
+		CONH D 0 A_GiveInventory("NoJumpCancel",1)
+		CONH D 0 A_PlaySoundEx("weapon/shoulderhit","Weapon")
+		CONH D 0 A_PlaySoundEx("weapon/shoulderhit","Body")
+		CONH D 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+		CONH D 0 A_GiveInventory("ConcreteDashThrustEnd",1)
+		CONH D 10
+		CONH A 0 A_TakeInventory("NoJumpCancel",999)
+		Waitin:
+		CONH DD 1
+		CONH D 1 Offset(0,20)
+		CONH D 1 Offset(0,30)
+		CONH D 1 Offset(0,40)
+		CONH D 1 Offset(0,50)
+		CONH D 1 Offset(0,60)
+		CONH D 1 Offset(0,70)
+		CONH D 1 Offset(0,80)
+		CONH D 1 Offset(0,90)
+		CONH D 1 Offset(0,100)
+		CONH D 1 Offset(0,110)
+		CONH D 1 Offset(0,120)
+		CONH D 1 Offset(0,130)
+		CONH D 1 Offset(0,140)
+		CONH D 1 Offset(0,150)
+		CONH D 1 Offset(0,160)
+		CONH D 1 Offset(0,170)
+		CONH D 1 Offset(0,180)
+		CONH D 1 Offset(0,190)
+		CONH B 1 Offset(0,50)
+		CONH B 1 Offset(0,35)
+		CONH B 1 Offset(0,40)
+		CONH B 1 Offset(0,35)
+		CONH B 1 Offset(0,30)
+		CONH B 1 Offset(0,25)
+		CONH AA 1 Offset(0,20)
+		CONH AA 1 A_CheckFloor("DashEnd")
+		Goto DashEnd
+		DashEnd:
+		CONH A 1 A_GiveInventory("ConcreteCleanResetFlags",1)
+		Goto Ready2
+
+		BlockStuffWeak:
+		CONH A 0 ACS_ExecuteAlways(998,0,DYE_CONCRETEMAN,1)
+		CONH A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+		CONH A 0 A_GiveInventory("CementAni_Throw",1)
+		CONH A 0 A_PlaySound("weapon/conc_throw",1,0.45)
+		CONH A 0 A_TakeInventory("ConcreteBlockFlag",999)
+		CONH A 0 A_TakeInventory("ConcreteBlockReady",999)
+		CONH A 0 A_TakeInventory("BashTimer",999)
+		CONH A 0 A_JumpIfInventory("ConcreteChargeFlag",35,"BlockStuffStronk")
+		CONH A 0 A_GiveInventory("ConcretemanAlt2_CI",1)
+		CONH VW 2
+		CONH A 0 ACS_ExecuteAlways(998,0,DYE_CONCRETEMAN,1)
+		CONH XY 2
+		CONH A 14
+		CONH A 1 A_GiveInventory("ConcreteCleanResetFlags",1)
+		CONH A 1
+		Goto Ready2
+
+		BlockStuffStronk:
+		CONH A 0 A_GiveInventory("ConcretemanAlt3_CI",1)
+		CONH VW 2
+		CONH A 0 ACS_ExecuteAlways(998,0,DYE_CONCRETEMAN,1)
+		CONH XY 2
+		CONH A 14
+		CONH A 1 A_GiveInventory("ConcreteCleanResetFlags",1)
+		CONH A 1
+		Goto Ready2
+
+		AltFirePickup:
+		CONH N 0 A_ClearReFire
+		CONH N 0 A_TakeInventory("ConcreteGrabbingFlag",999)
+		CONH N 0 A_GiveInventory("CementAni_Pickup",1)
+		CONH N 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
+		CONH N 0 A_PlaySoundEx("weapon/concreteraise","Weapon")
+		CONH N 0 A_GiveInventory("ConcreteBlockReady",1)
+		CONH N 2 A_SpawnItemEx("ConcretemanBlockWarper",32,0,8,0,0,0,0,1)
+		CONH O 2
+		CONH P 0 A_TakeInventory("ConcreteChargeFlag",999)
+		CONH PQ 2
+		CONH Q 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+		CONH Q 16
+		Goto Ready3
+	}
+  }
+
+
+//=========================
+// Ammo & Inventory Items
+//-------------------------
+//=========================
+
+  Actor ConcreteShotBossAmmo : Ammo
+  {
+    Inventory.Amount 1
+	Inventory.MaxAmount 28
+	+INVENTORY.IGNORESKILL
+  }
+
+
+  Actor ConcreteChargeFlag : Inventory
+  {
+    Inventory.Amount 1
+	Inventory.MaxAmount 35
+  }
+
+
+  Actor BashTimer : Inventory
+  {
+    Inventory.Amount 1
+	Inventory.MaxAmount 28
+  }
+
+
+  Actor ConcStaminaDelay : Powerup { Powerup.Duration -3 }
+
+  Actor ConcreteGrabbingFlag : OnceC {}
+  Actor ConcreteBlockFlag : OnceC {}
+  Actor ConcreteBlockReady : OnceC {}
+  Actor ConcreteBashFlag : OnceC {}
+
+  Actor CementAni_Pickup : Powerup { Powerup.Duration 8 }
+
+  Actor CementAni_Dash : OnceC {}
+  Actor CementAni_DashStop : CementAni_Pickup {}
+  Actor CementAni_Leap : OnceC {}
+  Actor CementAni_LeapStop : CementAni_Pickup {}
+  Actor CementAni_Throw : CementAni_Pickup {}
+
+
+//========================
+// Charge & Dash Items
+//------------------------
+//========================
+
+  Actor ConcreteChargeSnd : Powerup
+  {
+    +INVENTORY.ADDITIVETIME
+	Powerup.Duration 9
+  }
+
+
+  Actor ConcreteChargeFlag_RC : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+		TNT1 A 0 A_GiveInventory("ConcreteChargeFlag",1)
+		Stop
+		
+		PickupR:
+		TNT1 A 0 A_GiveInventory("ConcreteChargeFlag",2)
+		Stop
+	}
+  }
+
+
+  Actor ConcreteCleanResetFlags : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0 A_TakeInventory("ConcreteChargeFlag",999)
+		TNT1 A 0 A_TakeInventory("BashTimer",999)
+
+		TNT1 A 0 A_TakeInventory("ConcreteGrabbingFlag",999)
+		TNT1 A 0 A_TakeInventory("ConcreteBlockFlag",999)
+		TNT1 A 0 A_TakeInventory("ConcreteBlockReady",999)
+		TNT1 A 0 A_TakeInventory("ConcreteBashFlag",999)
+		TNT1 A 0 A_TakeInventory("CementAni_Dash",999)
+		TNT1 A 0 A_TakeInventory("CementAni_Leap",999)
+		TNT1 A 0 A_TakeInventory("CementAni_Throw",999)
+
+		TNT1 A 0 A_TakeInventory("CementAni_Pickup",999)
+		TNT1 A 0 A_TakeInventory("CementAni_DashStop",999)
+		TNT1 A 0 A_TakeInventory("CementAni_LeapStop",999)
+		Stop
+	}
+  }
+
+
+  Actor ConcreteChargeSnd_P : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0 A_JumpIfInventory("ConcreteChargeSnd",1,"No")
+		Goto P_Snd
+		
+		P_Snd:
+		TNT1 A 0 A_PlaySound("weapon/conc_chargeLoop",1,0.9)
+		TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"P_Snd_R")
+		TNT1 A 0 A_GiveInventory("ConcreteChargeSnd",1)
+		Goto P_Snd_R
+		
+		P_Snd_R:
+		TNT1 A 0 A_GiveInventory("ConcreteChargeSnd",1)
+		Stop
+		No:
+		TNT1 A 0
+		Stop
+	}
+  }
+
+
+  Actor ConcreteDashThrust16 : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0 A_SetUserVar("user_wepangle", ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,3))
+		TNT1 A 0 A_ChangeVelocity(16*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),16*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
+		Stop
+	}
+  }
+
+
+  Actor ConcreteDashThrust22 : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0 A_SetUserVar("user_wepangle", ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,4))
+		TNT1 A 0 A_ChangeVelocity(22*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),22*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
+		Stop
+	}
+  }
+
+
+  Actor ConcreteDashThrustEnd : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0 A_CheckFloor("PickupF")
+		Goto PickupA
+		
+		PickupF:
+		TNT1 A 0 ThrustThingZ(0,40,0,0)
+		TNT1 A 0 ThrustThing(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)*256/360,-36,1,0)
+		Stop
+		
+		PickupA:
+		TNT1 A 0 ThrustThingZ(0,40,0,0)
+		TNT1 A 0 ThrustThing(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)*256/360,-28,1,0)
+		Stop
+	}
+  }
+
+
+actor ConcretemanBlockWarper : ShieldWarper_CBM
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_clientwarper",0,91)
+Goto Shield
+Shield:
+Y_9A X 1 A_Warp(AAPTR_TARGET,32,0,8,0,24)
+Y_9A X 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+Y_9A X 1 A_Warp(AAPTR_TARGET,28,5,14,0,24)
+Y_9A X 1 A_Warp(AAPTR_TARGET,24,10,20,0,24)
+Y_9A X 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+Y_9A X 1 A_Warp(AAPTR_TARGET,20,15,26,0,24)
+Y_9A X 1 A_Warp(AAPTR_TARGET,16,20,32,0,24)
+Y_9A X 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+Y_9A X 1 A_Warp(AAPTR_TARGET,12,25,38,0,24)
+Y_9A X 1 A_Warp(AAPTR_TARGET,8,30,44,0,24)
+Y_9A X 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+Y_9A X 1 A_Warp(AAPTR_TARGET,4,35,50,0,24)
+Y_9A X 1 A_Warp(AAPTR_TARGET,0,40,56,0,24)
+wait
+}
+}
+
+
+  Actor CementDash_Helper : BasicHelper
+  {
+    States
+	{
+		Spawn:
+		TNT1 A 1
+		Goto Spawn2
+		
+		Spawn2:
+		TNT1 A 1 A_TakeFromTarget("ConcreteChargeFlag",1)
+		TNT1 A 0 A_JumpIfInTargetInventory("ConcreteBashFlag",1,"Death")
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+		TNT1 A 0 A_JumpIfInTargetInventory("ConcreteChargeFlag",1,"Spawn2")
+		Stop
+	}
+  }
+
+
+//=========================
+// Block & Dash Attacks
+//-------------------------
+//=========================
+
+  Actor ConcreteShotgun
+  {
+    Translation "202:202=88:88", "199:199=95:95"
+	PROJECTILE
+	DamageType "ConcreteM_Shot"
+	Obituary "$OB_CONCRETESHOT"
+	Species "ConcreteShot"
+	-NOGRAVITY
+	+THRUSPECIES
+	Damage (100)	
+	Radius 16
+	Height 32
+	Speed 33
+	Scale 2.5
+	States
+	{
+		Spawn:
+		Y_9A A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		Y_9A A 0 ThrustThingZ(0,4,0,1)
+		Goto Spawn2
+		
+		Spawn2:
+		Y_9A AB 2
+		Loop
+XDeath:
+TNT1 A 1 A_PlaySoundEx("weapon/concreteblock","Weapon")
+stop
+Death:
+Y_9A W 0 A_ChangeFlag(NOGRAVITY,1)
+Y_9A W 4
+Y_9A W 0 A_JumpIfCloser(48,"XDeath")
+Y_9A W 0 A_SpawnItemEx("ConcreteShotgunBlock",0,0,0,0,0,0,0,5)
+Y_9A X 0 A_PlaySoundEx("weapon/concreteblock","Weapon")
+stop
+}
+}
+
+  Actor ConcreteShotgunB : ConcreteShotgun{translation"202:202=205:205","199:199=74:74"}
+  Actor ConcreteShotgunR : ConcreteShotgun{translation"202:202=171:171","199:199=41:41"}
+  Actor ConcreteShotgunO : ConcreteShotgun{translation"202:202=104:104","199:199=128:128"}
+  Actor ConcreteShotgunP : ConcreteShotgun{translation"202:202=229:229","199:199=232:232"}
+
+
+  Actor ConcreteShotgunX : ConcreteShotgun
+  {
+    var int user_S;
+	States
+	{
+		Death:
+		Y_9A W 0 A_SetUserVar("user_S",random(0,3))
+		Y_9A W 0 A_ChangeFlag(NOGRAVITY,1)
+		Y_9A W 4
+		Y_9A W 0 A_SpawnItemEx("ConcreteShotgunXFX",0,0,0,-2-user_S/3,2+user_S/3,5+user_S,0,1)
+		Y_9A W 0 A_SpawnItemEx("ConcreteShotgunXFX",0,0,0,-2-user_S/3,-2-user_S/3,5+user_S,0,1)
+		Y_9A W 0 A_SpawnItemEx("ConcreteShotgunXFX",0,0,0,-2-user_S/3,2+user_S/3,3+user_S,0,1)
+		Y_9A W 0 A_SpawnItemEx("ConcreteShotgunXFX",0,0,0,-2-user_S/3,-2-user_S/3,3+user_S,0,1)
+		Y_9A X 0 A_PlaySoundEx("weapon/concreteblock","Weapon")
+		Stop
+	}
+  }
+
+
+  Actor ConcreteShotgunXB : ConcreteShotgunX{translation "202:202=205:205", "199:199=74:74"}
+  Actor ConcreteShotgunXR : ConcreteShotgunX{translation "202:202=171:171", "199:199=41:41"}
+  Actor ConcreteShotgunXO : ConcreteShotgunX{translation "202:202=104:104", "199:199=128:128"}
+  Actor ConcreteShotgunXP : ConcreteShotgunX{translation "202:202=229:229", "199:199=232:232"}
+
+
+  Actor ConcreteShotgunXFX
+  {
+    +MISSILE
+	+THRUACTORS
+	+CLIENTSIDEONLY
+	+NOPAIN
+	-SOLID
+	Damage (0)
+	Radius 2
+	Height 2
+	Scale 2.5
+	States
+	{
+		Spawn:
+		
+		TNT1 A 1
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8)
+		
+		Spawn2:
+		CONC PQRS 2
+		Loop
+		
+		Spawn3:
+		CONC PSRQ 2
+		Loop
+	}
+  }
+
+
+actor ConcreteShotgunBlock
+{
++FORCEYBILLBOARD
++GHOST
++NOGRAVITY
++DONTRIP
++CANTSEEK
++MISSILE
++TOUCHY
++SHOOTABLE
++NOTAUTOAIMED
++NOBLOOD
++DONTBLAST
++DONTDRAIN
++NOTARGETSWITCH
++THRUSPECIES
+damagefactor "ConcreteShot", 0.0
+damagefactor "ConcreteM_Shot", 0.0
+damagefactor "ConcreteM_Bash", 5.0
+damagefactor "VehicleHazard", 9999.0
+
+DamageFactor "ColdM_WallFloor", 0.125
+DamageFactor "ColdM_WallAir", 0.125
+species "ConcreteShot"//MovingPlatform
+Health 300
+Mass 9999
+radius 16
+height 32
+scale 2.0
+States
+{
+Spawn://Y_9A minus one letter
+Y_9A W 0
+Y_9A W 0
+Y_9A W 1 A_SetArg(3,20)
+Y_9A W 0 A_ChangeFlag("TOUCHY",0)
+Y_9A W 0 A_ChangeFlag("MISSILE",0)
+Y_9A W 0 A_ChangeFlag("SOLID",1)
+goto SpawnL
+SpawnL:
+Y_9A X 0 A_JumpIfInventory("WeaponCharge",64,"SpawnL2")
+Y_9A X 1 A_GiveInventory("WeaponCharge",1)
+Y_9A X 0 A_JumpIfInTargetInventory("ConcreteGrabbingFlag",1,"Spawn_Check")
+loop
+SpawnL2:
+Y_9A Y 1 A_CountDownArg(3)
+Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteGrabbingFlag",1,"Spawn_Check2")
+loop
+Spawn_Check:
+Y_9A X 0 A_JumpIfInTargetInventory("ConcreteBlockReady",1,"SpawnL")
+Y_9A X 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL")
+Y_9A X 0 A_JumpIfCloser(64,"Give")
+goto SpawnL
+Give:
+Y_9A X 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL")
+Y_9A X 0 A_GiveToTarget("ConcreteBlockFlag",1)
+TNT1 A 0 A_NoBlocking
+TNT1 A 1
+stop
+Spawn_Check2:
+Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteBlockReady",1,"SpawnL2")
+Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL2")
+Y_9A Y 0 A_JumpIfCloser(64,"Give2")
+goto SpawnL2
+Give2:
+Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL2")
+Y_9A Y 0 A_GiveToTarget("ConcreteBlockFlag",1)
+TNT1 A 0 A_NoBlocking
+TNT1 A 1
+stop
+Death:
+Y_9A Y 1 A_ChangeFlag("NOGRAVITY",1)
+Y_9A Y 2 A_NoBlocking
+Y_9A Z 3
+stop
+}
+}
+
+
+  Actor ConcreteShoulder
+  {
+    Translation "202:202=88:88", "199:199=95:95"
+	PROJECTILE
+	DamageType "ConcreteM_Bash"
+	Obituary "$OB_CONCRETESHOULDER"
+	RenderStyle translucent
+	Alpha 0.4
+	ReactionTime 1
+	Damage (400)
+	Radius 14
+	Height 25
+	Speed 40
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		X_5F DEF 1 A_JumpIfInTargetInventory("ConcreteBashFlag",1,"Cease")
+		stop
+		
+		Cease:
+		TNT1 A 1 A_CountDown
+		Wait
+		
+		Death:
+		TNT1 A 1
+		Stop
+	}
+  }
+
+
+  Actor ConcreteShoulderChecker
+  {
+    PROJECTILE
+	+DONTBLAST
+	+DONTREFLECT
+	+THRUSPECIES
+	Species "Megaman"
+	Damage (0)
+	Radius 4
+	Height 4
+	Speed 20
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 AA 1 A_JumpIfInTargetInventory("ConcreteBashFlag",1,"Cease")
+		Stop
+		
+		XDeath:
+		Death:
+		TNT1 A 0 A_GiveToTarget("ConcreteBashFlag",1)
+		
+		Crash:
+		Cease:
+		TNT1 A 1
+		Stop
+	}
+  }
+
+
+	actor ConcreteM_BashProtect : PowerProtection
+	{
+	Powerup.Duration 6
+	DamageFactor "ConcreteM_Bash", 0.0
+	}
+
+
+  Actor ConcreteShoulder_P : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0
+		//TNT1 A 0 A_SpawnItemEx("ConcreteShoulder",2,0,36,32,0,0,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)-angle,1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteShoulder",2,0,36,32,0,0,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)-angle,1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteShoulder",2,0,0,32,0,0,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)-angle,1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteShoulder",2,-28,36,32,0,0,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)-angle,1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteShoulder",2,-28,0,32,0,0,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)-angle,1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteShoulder",2,28,36,32,0,0,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)-angle,1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteShoulder",2,28,0,32,0,0,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)-angle,1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteShoulderChecker",2,0,32,20,0,0,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)-angle,1)
+		Stop
+	}
+  }
+
+
+  Actor ConcreteButt
+  {
+    PROJECTILE
+	DamageType "ClassPainLess2"
+	Obituary "$OB_CONCRETEBUTT"
+	+DONTBLAST
+	RenderStyle none
+	Damage (10)
+	Radius 15
+	Height 2
+	States
+	{
+		Spawn:
+		TNT1 A 1
+		Stop
+	}
+  }
+
+
+  Actor ConcreteButt2 : ConcreteButt { Damage (20) }
+
+
+  Actor ConcreteShockLanding : BasicExplosion
+  {
+    DamageType "NeutralShock"
+	Obituary "$OB_CONCRETESLAM"
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("ConcreteShockLandingFX",128,0,0,0,0,0,random(0,360),5)
+		TNT1 A 2 A_Explode(20,192,0,0,32)
+		Stop
+	}
+  }
+
+
+  Actor ConcreteShockLanding_P : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0 A_JumpIfInventory("Quaking",70,"QuakeCrash5")
+		TNT1 A 0 A_JumpIfInventory("Quaking",60,"QuakeCrash4")
+		TNT1 A 0 A_JumpIfInventory("Quaking",50,"QuakeCrash4")
+		TNT1 A 0 A_JumpIfInventory("Quaking",40,"QuakeCrash3")
+		TNT1 A 0 A_JumpIfInventory("Quaking",30,"QuakeCrash2")
+		Goto QuakeCrash1
+		
+		QuakeCrash6:
+		TNT1 A 0 A_GiveInventory("ConcretemanQuake6_CI",1)
+		Goto QuakeEnd
+		
+		QuakeCrash5:
+		TNT1 A 0 A_GiveInventory("ConcretemanQuake5_CI",1)
+		Goto QuakeEnd
+		
+		QuakeCrash4:
+		TNT1 A 0 A_GiveInventory("ConcretemanQuake4_CI",1)
+		Goto QuakeEnd
+		
+		QuakeCrash3:
+		TNT1 A 0 A_GiveInventory("ConcretemanQuake3_CI",1)
+		Goto QuakeEnd
+		
+		QuakeCrash2:
+		TNT1 A 0 A_GiveInventory("ConcretemanQuake2_CI",1)
+		Goto QuakeEnd
+		
+		QuakeCrash1:
+		TNT1 A 0 A_GiveInventory("ConcretemanQuake1_CI",1)
+		Goto QuakeEnd
+		
+		QuakeEnd:
+		TNT1 A 0 //A_LOGINT(ACS_ExecuteWithResult(C_CHECK_TARGET_ITEM,1,2))
+		TNT1 A 0 A_TakeInventory("Quaking",9999)
+		Stop
+	}
+  }
+
+
+//=================
+// Quake Attack
+//-----------------
+//=================
+
+  Actor Conc_Quake1
+  {
+    Translation "202:202=88:88"
+	+NOGRAVITY
+	+DONTBLAST
+	//+MISSILE
+	+SKYEXPLODE
+	+NOINTERACTION
+	+NOCLIP
+	//+RIPPER
+	+THRUACTORS
+	+THRUGHOST
+	+DONTREFLECT
+	Height 2
+	Radius 200
+	Damage (10)
+	DamageType "NeutralShock"
+	Obituary "$OB_CONCRETESLAM"
+	-SOLID
+	+THRUSPECIES
+	Species "DumbBarrel"
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ConcreteShockLandingFX",random(-200,200),random(-200,200),0,0,0,0,0,5)
+		Goto Spawn2
+		
+		Spawn2:
+		TNT1 A 0
+		TNT1 A 0 A_ChangeFlag("NOCLIP",0)
+		TNT1 A 0 A_ChangeFlag("NOINTERACTION",0)
+		TNT1 A 0 A_ChangeFlag("THRUACTORS",0)
+		TNT1 A 0 A_ChangeFlag("RIPPER",1)
+		TNT1 A 0 A_ChangeFlag("MISSILE",1)
+		TNT1 A 1
+		TNT1 A 0
+		Stop
+	}
+  }
+
+
+  Actor Conc_Quake2 : Conc_Quake1
+  {
+    Radius 250
+	Damage (14)
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ConcreteShockLandingFX",random(-250,250),random(-250,250),0,0,0,0,0,5)
+		Goto Spawn2
+	}
+  }
+  
+  
+  Actor Conc_Quake3 : Conc_Quake1
+  {
+    Radius 300
+	Damage (18)
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ConcreteShockLandingFX",random(-300,300),random(-300,300),0,0,0,0,0,5)
+		Goto Spawn2
+	}
+  }
+  
+  
+  Actor Conc_Quake4 : Conc_Quake1
+  {
+    Radius 350
+	Damage (22)
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ConcreteShockLandingFX",random(-350,350),random(-350,350),0,0,0,0,0,5)
+		Goto Spawn2
+	}
+  }
+  
+  
+  Actor Conc_Quake5 : Conc_Quake1
+  {
+    Radius 400
+	Damage (26)
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ConcreteShockLandingFX",random(-400,400),random(-400,400),0,0,0,0,0,5)
+		Goto Spawn2
+	}
+  }
+  
+  
+  Actor Conc_Quake6 : Conc_Quake1
+  {
+    Radius 450
+	Damage (30)
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ConcreteShockLandingFX",random(-450,450),random(-450,450),0,0,0,0,0,5)
+		Goto Spawn2
+	}
+  }
+
+
+  Actor ConcreteShockLandingFX : BasicClientSide
+  {
+    States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(256,1,2)
+		CONC T 1
+		Goto Spawn2
+		CONC U 1
+		Goto Spawn2
+		Spawn2:
+		"####" "#" 3
+		Stop
+	}
+  }
+
+
+  Actor Conc_Quake1B : Conc_Quake1{translation "202:202=205:205"}
+  Actor Conc_Quake1R : Conc_Quake1{translation "202:202=171:171"}
+  Actor Conc_Quake1O : Conc_Quake1{translation "202:202=104:104"}
+  Actor Conc_Quake1P : Conc_Quake1{translation "202:202=229:229"}
+  Actor Conc_Quake2B : Conc_Quake2{translation "202:202=205:205"}
+  Actor Conc_Quake2R : Conc_Quake2{translation "202:202=171:171"}
+  Actor Conc_Quake2O : Conc_Quake2{translation "202:202=104:104"}
+  Actor Conc_Quake2P : Conc_Quake2{translation "202:202=229:229"}
+  Actor Conc_Quake3B : Conc_Quake3{translation "202:202=205:205"}
+  Actor Conc_Quake3R : Conc_Quake3{translation "202:202=171:171"}
+  Actor Conc_Quake3O : Conc_Quake3{translation "202:202=104:104"}
+  Actor Conc_Quake3P : Conc_Quake3{translation "202:202=229:229"}
+  Actor Conc_Quake4B : Conc_Quake4{translation "202:202=205:205"}
+  Actor Conc_Quake4R : Conc_Quake4{translation "202:202=171:171"}
+  Actor Conc_Quake4O : Conc_Quake4{translation "202:202=104:104"}
+  Actor Conc_Quake4P : Conc_Quake4{translation "202:202=229:229"}
+  Actor Conc_Quake5B : Conc_Quake5{translation "202:202=205:205"}
+  Actor Conc_Quake5R : Conc_Quake5{translation "202:202=171:171"}
+  Actor Conc_Quake5O : Conc_Quake5{translation "202:202=104:104"}
+  Actor Conc_Quake5P : Conc_Quake5{translation "202:202=229:229"}
+  Actor Conc_Quake6B : Conc_Quake6{translation "202:202=205:205"}
+  Actor Conc_Quake6R : Conc_Quake6{translation "202:202=171:171"}
+  Actor Conc_Quake6O : Conc_Quake6{translation "202:202=104:104"}
+  Actor Conc_Quake6P : Conc_Quake6{translation "202:202=229:229"}
+
+
+
+//====================
+// Blocks & Effects
+//--------------------
+//====================
+
+  Actor WeakConcreteBlock
+  {
+    Translation "202:202=88:88", "199:199=95:95"
+	PROJECTILE
+	DamageType "ConcreteM_Toss"
+	Obituary "$OB_CONCRETETOSS"
+	-NOGRAVITY
+	Damage (300)
+	Radius 16
+	Height 16
+	Speed 34
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		Y_9A X 0
+		Y_9A X 0 ThrustThingZ(0,20,0,1)
+		Y_9A X 1
+		Wait
+		
+		Death:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_PlaySoundEx("weapon/concreteblockw","Weapon")
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+		Y_9A YZ 3
+		Stop
+	}
+  }
+
+
+  Actor WeakConcreteBlockB : WeakConcreteBlock{translation "202:202=205:205", "199:199=74:74"}
+  Actor WeakConcreteBlockR : WeakConcreteBlock{translation "202:202=171:171", "199:199=41:41"}
+  Actor WeakConcreteBlockO : WeakConcreteBlock{translation "202:202=104:104", "199:199=128:128"}
+  Actor WeakConcreteBlockP : WeakConcreteBlock{translation "202:202=229:229", "199:199=232:232"}
+
+
+  Actor StronkConcreteBlock
+  {
+    Translation "202:202=88:88", "199:199=95:95"
+	PROJECTILE
+	DamageType "SparkM_Shock"
+	Obituary "$OB_CONCRETETOSS2"
+	Damage (200)
+	Radius 16
+	Height 16
+	Speed 80
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		Y_9A X 1 A_SpawnItemEx("StronkConcreteBlockFX",0,0,0,0,0,0,0,1)
+		Wait
+		
+		Death:
+		TNT1 A 0 A_JumpIf(ceilingz-z<=16,"Ceiling")
+		TNT1 AA 0 A_SpawnItemEx("ConcreteDebFX",0,0,8,random(5,9),0,7,random(0,360),1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteDebFX",0,0,8,random(7,12),0,7,random(0,90),1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteDebFX",0,0,8,random(7,12),0,7,random(90,180),1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteDebFX",0,0,8,random(7,12),0,7,random(180,270),1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteDebFX",0,0,8,random(7,12),0,7,random(270,360),1)
+		TNT1 AA 0 A_SpawnItemEx("ConcreteDebFX",0,0,8,random(12,15),0,7,random(0,360),1)
+		Goto DeathEnd
+		
+		Ceiling:
+		TNT1 AA 0 A_SpawnItemEx("ConcreteDebFX",0,0,-8,random(5,9),0,0,random(0,360),1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteDebFX",0,0,-8,random(7,12),0,0,random(0,90),1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteDebFX",0,0,-8,random(7,12),0,0,random(90,180),1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteDebFX",0,0,-8,random(7,12),0,0,random(180,270),1)
+		TNT1 A 0 A_SpawnItemEx("ConcreteDebFX",0,0,-8,random(7,12),0,0,random(270,360),1)
+		TNT1 AA 0 A_SpawnItemEx("ConcreteDebFX",0,0,-8,random(12,15),0,0,random(0,360),1)
+		Goto DeathEnd
+		
+		DeathEnd:
+		TNT1 A 0 A_PlaySoundEx("weapon/concreteblocks","Voice")
+		TNT1 A 2 A_SpawnItemEx("StronkConcreteBlockBoom",0,0,8,0,0,0,0,1)
+		Stop
+	}
+  }
+
+
+  Actor StronkConcreteBlockB : StronkConcreteBlock{translation "202:202=205:205", "199:199=74:74"}
+  Actor StronkConcreteBlockR : StronkConcreteBlock{translation "202:202=171:171", "199:199=41:41"}
+  Actor StronkConcreteBlockO : StronkConcreteBlock{translation "202:202=104:104", "199:199=128:128"}
+  Actor StronkConcreteBlockP : StronkConcreteBlock{translation "202:202=229:229", "199:199=232:232"}
+
+
+  Actor StronkConcreteBlockBoom : BasicExplosion
+  {
+	damagetype "ConcreteM_TossBit"
+	Obituary "$OB_CONCRETETOSS2"
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Explode(150,128,0,0,16)
+		TNT1 A 2 A_SpawnItemEx("BasicBoom6FX_Y3",0,0,0,0,0,0,0,1+32)
+		Stop
+	}
+  }
+
+
+  Actor StronkConcreteBlockFX : BasicClientSide
+  {
+    RenderStyle translucent
+	Alpha 0.6
+	States
+	{
+		Spawn:
+		TNT1 A 1
+		Y_9A D 1 A_FadeOut(0.125)
+		Wait
+	}
+  }
+
+
+  Actor ConcreteDeb
+  {
+    PROJECTILE
+	DamageType "Concrete"
+	Obituary "$OB_CONCRETETOSS2"
+	-NOGRAVITY
+	Damage (9)
+	Radius 8
+	Height 8
+	Scale 2.5
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		Y_5C A 1
+		Loop
+		
+		Death:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+		UMFX CD 4
+		Stop
+	}
+  }
+
+
+  Actor ConcreteDebFX
+  {
+    +MISSILE
+	+DONTBLAST
+	+THRUACTORS
+	+CLIENTSIDEONLY
+	+FLOORCLIP
+	+DONTSPLASH
+	Damage (0)
+	Height 4
+	Radius 4
+	Scale 2.5
+	States
+	{
+		Spawn:
+		Y_5C A 1
+		Wait
+		
+		Death:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+		UMFX CD 4
+		Stop
+	}
+  }
+
+
+  Actor ConcreteStamina_P : CustomInventory
+  {
+    States
+	{
+		Pickup:
+		TNT1 A 0 A_CheckFloor("End")
+		Goto P_Stam
+		
+		P_Stam:
+		TNT1 A 0 A_JumpIfInventory("ConcStaminaDelay",1,"P_StamX")
+		TNT1 A 0 A_GiveInventory("ConcStaminaDelay",1)
+		Stop
+		
+		P_StamX:
+		TNT1 A 0 A_JumpIfInventory("StaminaFlag",500,"P_StamXY")
+		TNT1 A 0 A_TakeInventory("StaminaFlag",10)
+		Goto P_Stam+1
+		
+		P_StamXY:
+		TNT1 A 0 A_SpawnItemEx("ConcreteStaminaHelper")
+		Goto P_StamX+1
+		
+		End:
+		TNT1 A 0
+		Stop
+	}
+  }
+
+
+  Actor ConcreteStaminaHelper : BasicHelper
+  {
+    States
+	{
+		Spawn:
+		TNT1 A 1
+		Goto SpawnWait
+		
+		Spawn2:
+		TNT1 A 0 A_GiveToTarget("StaminaFlag",1)
+		TNT1 A 1
+		TNT1 A 0 A_JumpIfInTargetInventory("StaminaFlag",500,"Death")
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+		TNT1 A 0 A_JumpIfInTargetInventory("ConcStaminaDelay",1,"SpawnWait")
+		Loop
+		
+		SpawnWait:
+		TNT1 A 1
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+		TNT1 A 0 A_JumpIfInTargetInventory("ConcStaminaDelay",1,"SpawnWait")
+		Goto Spawn2
+	}
+  }
+
+
+//================
+// Attack Items
+//----------------
+//================
+
+  Actor ConcretemanMain_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgun",0,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgun",-9,0,8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgun",9,0,8,0,0,3)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunB",0,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunB",-9,0,8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunB",9,0,8,0,0,3)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunR",0,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunR",-9,0,8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunR",9,0,8,0,0,3)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunO",0,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunO",-9,0,8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunO",9,0,8,0,0,3)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunP",0,0,8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunP",-9,0,8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunP",9,0,8,0,0,3)
+		Goto Done
+		
+		Done:
+		TNT1 A 0 A_GiveInventory("ConcreteStamina_P",1)
+		Stop
+	}
+  }
+
+
+  Actor ConcretemanMainX_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunX",0,0,-8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunX",-9,0,-8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunX",9,0,-8,0,0,3)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXB",0,0,-8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXB",-9,0,-8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXB",9,0,-8,0,0,3)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXR",0,0,-8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXR",-9,0,-8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXR",9,0,-8,0,0,3)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXO",0,0,-8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXO",-9,0,-8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXO",9,0,-8,0,0,3)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXP",0,0,-8,0)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXP",-9,0,-8,0,0,3)
+		TNT1 A 0 A_FireCustomMissile("ConcreteShotgunXP",9,0,-8,0,0,3)
+		Goto Done
+		
+		Done:
+		TNT1 A 0 A_GiveInventory("ConcreteStamina_P",1)
+		Stop
+	}
+  }
+
+
+  Actor ConcretemanAlt2_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("WeakConcreteBlock",0,0,0,56)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("WeakConcreteBlockB",0,0,0,56)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("WeakConcreteBlockR",0,0,0,56)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("WeakConcreteBlockO",0,0,0,56)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("WeakConcreteBlockP",0,0,0,56)
+		Goto Done
+	}
+  }
+
+
+  Actor ConcretemanAlt3_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("StronkConcreteBlock",0,0,0,16)
+		Goto Done
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("StronkConcreteBlockB",0,0,0,16)
+		Goto Done
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("StronkConcreteBlockR",0,0,0,16)
+		Goto Done
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("StronkConcreteBlockO",0,0,0,16)
+		Goto Done
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("StronkConcreteBlockP",0,0,0,16)
+		Goto Done
+	}
+  }
+
+
+  Actor ConcretemanQuake1_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:
+		TNT1 A 0 A_FireCustomMissile("Conc_Quake1",0,0,0,0)
+		Goto Done
+		
+		FireB:
+		TNT1 A 0 A_FireCustomMissile("Conc_Quake1B",0,0,0,0)
+		Goto Done
+		
+		FireR:
+		TNT1 A 0 A_FireCustomMissile("Conc_Quake1R",0,0,0,0)
+		Goto Done
+		
+		FireO:
+		TNT1 A 0 A_FireCustomMissile("Conc_Quake1O",0,0,0,0)
+		Goto Done
+		
+		FireP:
+		TNT1 A 0 A_FireCustomMissile("Conc_Quake1P",0,0,0,0)
+		Goto Done
+	}
+  }
+  
+  
+  Actor ConcretemanQuake2_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:TNT1 A 0 A_FireCustomMissile("Conc_Quake2",0,0,0,0)Goto Done
+		FireB:TNT1 A 0 A_FireCustomMissile("Conc_Quake2B",0,0,0,0)Goto Done
+		FireR:TNT1 A 0 A_FireCustomMissile("Conc_Quake2R",0,0,0,0)Goto Done
+		FireO:TNT1 A 0 A_FireCustomMissile("Conc_Quake2O",0,0,0,0)Goto Done
+		FireP:TNT1 A 0 A_FireCustomMissile("Conc_Quake2P",0,0,0,0)Goto Done
+	}
+  }
+ 
+ 
+  Actor ConcretemanQuake3_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:TNT1 A 0 A_FireCustomMissile("Conc_Quake3",0,0,0,0)Goto Done
+		FireB:TNT1 A 0 A_FireCustomMissile("Conc_Quake3B",0,0,0,0)Goto Done
+		FireR:TNT1 A 0 A_FireCustomMissile("Conc_Quake3R",0,0,0,0)Goto Done
+		FireO:TNT1 A 0 A_FireCustomMissile("Conc_Quake3O",0,0,0,0)Goto Done
+		FireP:TNT1 A 0 A_FireCustomMissile("Conc_Quake3P",0,0,0,0)Goto Done
+	}
+  }
+  
+  
+  Actor ConcretemanQuake4_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:TNT1 A 0 A_FireCustomMissile("Conc_Quake4",0,0,0,0)Goto Done
+		FireB:TNT1 A 0 A_FireCustomMissile("Conc_Quake4B",0,0,0,0)Goto Done
+		FireR:TNT1 A 0 A_FireCustomMissile("Conc_Quake4R",0,0,0,0)Goto Done
+		FireO:TNT1 A 0 A_FireCustomMissile("Conc_Quake4O",0,0,0,0)Goto Done
+		FireP:TNT1 A 0 A_FireCustomMissile("Conc_Quake4P",0,0,0,0)Goto Done
+	}
+  }
+  
+  
+  Actor ConcretemanQuake5_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:TNT1 A 0 A_FireCustomMissile("Conc_Quake5",0,0,0,0)Goto Done
+		FireB:TNT1 A 0 A_FireCustomMissile("Conc_Quake5B",0,0,0,0)Goto Done
+		FireR:TNT1 A 0 A_FireCustomMissile("Conc_Quake5R",0,0,0,0)Goto Done
+		FireO:TNT1 A 0 A_FireCustomMissile("Conc_Quake5O",0,0,0,0)Goto Done
+		FireP:TNT1 A 0 A_FireCustomMissile("Conc_Quake5P",0,0,0,0)Goto Done
+	}
+  }
+
+
+  Actor ConcretemanQuake6_CI : TeamColor_CI
+  {
+    States
+	{
+		FireX:TNT1 A 0 A_FireCustomMissile("Conc_Quake6",0,0,0,0)Goto Done
+		FireB:TNT1 A 0 A_FireCustomMissile("Conc_Quake6B",0,0,0,0)Goto Done
+		FireR:TNT1 A 0 A_FireCustomMissile("Conc_Quake6R",0,0,0,0)Goto Done
+		FireO:TNT1 A 0 A_FireCustomMissile("Conc_Quake6O",0,0,0,0)Goto Done
+		FireP:TNT1 A 0 A_FireCustomMissile("Conc_Quake6P",0,0,0,0)Goto Done
+	}
+}

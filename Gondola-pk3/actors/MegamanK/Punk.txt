@@ -6,6 +6,10 @@ player.soundclass "punkc"
 player.startitem "ScrewCrusherBoss"
 player.startitem "BounceCrusherBoss"
 player.startitem "ScrewCrushAmmo", 14
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
 player.forwardmove 0.75, 0.75
 player.sidemove 0.7, 0.7
 

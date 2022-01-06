@@ -1,7 +1,6 @@
-actor BearerClass : HardClassBase
+actor BearerClass : ClassBase //200
 {
 Player.ScoreIcon "C_00X0X"
-player.startitem "HardHealthBar"
 player.displayname "BearerClass"
 player.soundclass "BearerClassC"
 

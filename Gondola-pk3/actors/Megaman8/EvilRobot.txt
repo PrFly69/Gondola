@@ -1,0 +1,369 @@
+actor Trio : ClassBase //115
+{
+Player.ScoreIcon "C_08K0X"
+player.displayname "EvilRobot"
+player.soundclass "Evilrobotc"
+player.startitem "EvilFistC"
+player.startitem "NoAmmoPickup"
+player.startitem "EvilRotateItem"
+
+player.maxhealth 1150
+health 1150
+player.jumpz 10
+player.forwardmove 0.73, 0.73
+player.sidemove 0.71, 0.71
+States
+{
+Spawn:
+EROB A 0
+EROB B 1
+EROB ALMNMLA 7
+Goto Spawn+2
+See:
+EROB BCDE 5
+Goto Spawn
+Missile:
+//EROB FF 1 A_JumpIfInventory("TrioFireFlag",1,"Missile2")
+//EROB F 5
+//EROB G 4
+EROB F 9
+goto Spawn
+/*Missile2:
+EROB I 1
+EROB I 1 A_JumpIfInventory("TrioFireFlag",1,1)
+goto Missile
+EROB I 1
+EROB I 1 A_JumpIfInventory("TrioFireFlag",1,1)
+goto Missile
+EROB I 1
+EROB I 1 A_JumpIfInventory("TrioFireFlag",1,1)
+goto Missile
+EROB J 1
+EROB J 1 A_JumpIfInventory("TrioFireFlag",1,1)
+goto Missile
+EROB J 1
+EROB J 1 A_JumpIfInventory("TrioFireFlag",1,1)
+goto Missile
+EROB J 1
+EROB J 1 A_JumpIfInventory("TrioFireFlag",1,"Missile2")
+goto Missile*/
+
+//Rage T-Pose Animation
+CustomState1:
+EROB K 20
+goto Spawn
+
+CustomState2:
+EROB G 5
+EROB F 4
+goto Spawn
+
+CustomState3:
+EROB I 3
+goto Missile
+
+CustomState4:
+EROB J 3
+goto Missile
+
+CustomState5:
+EROB F 2
+goto Spawn
+
+CustomState6:
+EROB K 9
+Goto Spawn
+
+ClassPain:
+EROB H 0
+goto PainContinue
+DeathFix:
+EROB H 0 A_Jump(256,2)//32
+EROB H 0 A_JumpIfInventory("TrioRuneFlag",1,2)
+goto DeathContinue
+EROB H 0 A_GiveInventory("SpecialDeathFlag",1)
+goto DeathContinue
+EROB H 0 A_Jump(256,1)//32
+goto DeathContinue
+EROB H 0 A_GiveInventory("SpecialDeathFlag",1)
+goto DeathContinue
+ClassDeath:
+EROB H 0 A_JumpIfInventory("InstagibFlag",1,"ClassDeathM")
+EROB H 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
+EROB H 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
+EROB H 19
+goto ClassDeathM
+ClassDeathM:
+EROB H 0 A_SpawnItemEx("TrioRareDeathHelper",0,0,0,momx,momy,momz,0,9)
+goto MegaDeathEnd
+ClassDeathR:
+EROB H 1 ThrustThingZ(0,21,0,1)
+EROB H 0 A_JumpIf(ceilingz-z<64,"ClassDeathM")
+EROB H 0 A_GiveInventory("RiseDeathFlag2",1)
+EROB H 0 A_JumpIfInventory("RiseDeathFlag2",25,"ClassDeathM")
+loop
+ClassDeathI:
+EROB H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
+EROB H 1 A_PlaySoundEx("CBM/freeze","Voice")
+EROB HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
+EROB H 0 A_PlaySoundEx("CBM/icebreak","Body")
+EROB H 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+EROB H 0 A_SpawnItemEx("TrioRareDeathHelper",0,0,0,momx,momy,momz,0,9)
+goto DeathWait
+
+
+}
+}
+
+actor TrioExodiaFlag : OnceC{}
+actor TrioExodiaFlag1 : OnceC{}
+actor TrioExodiaFlag2 : OnceC{}
+actor TrioExodiaFlag3 : OnceC{}
+actor TrioExodiaFlag4 : OnceC{}
+actor TrioExodiaFlag5 : OnceC{}
+actor TrioExodiaFlag6 : OnceC{}
+
+actor TrioRareDeathHelper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,"S_1","S_2","S_3","S_4","S_5","S_6")
+goto S_1
+S_1:
+TNT1 A 1 A_SpawnItemEx("TrioExodia_P1",0,0,40,momx+random(2,3),momy+frandom(-1,1),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_2:
+TNT1 A 1 A_SpawnItemEx("TrioExodia_P2",0,0,28,momx+random(1,3),momy+frandom(-1,1),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_3:
+TNT1 A 1 A_SpawnItemEx("TrioExodia_P3",0,0,30,momx+random(1,4),momy+frandom(-2,2),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_4:
+TNT1 A 1 A_SpawnItemEx("TrioExodia_P4",0,0,30,momx+random(1,4),momy+frandom(-2,2),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_5:
+TNT1 A 1 A_SpawnItemEx("TrioExodia_P5",0,0,6,momx+random(1,4),momy+frandom(-2,2),momz+frandom(2,6),random(-2,2),41,0)
+stop
+S_6:
+TNT1 A 1 A_SpawnItemEx("TrioExodia_P6",0,0,6,momx+random(1,4),momy+frandom(-2,2),momz+frandom(2,6),random(-2,2),41,0)
+stop
+}
+}
+
+actor TrioExodia_PFX : BasicClientSide
+{
+renderstyle translucent
+alpha 0.8
+Scale 0.25
+States
+{
+Spawn:
+EVFL XXYYZZ 2 ThrustThingZ(0,random(1,3),0,1)
+Spawn2:
+EVFL Z 1 ThrustThingZ(0,random(1,3),0,1)
+EVFL Z 1 A_FadeOut(0.185)
+wait
+}
+}
+
+actor TrioExodia_P1 : CustomInventory
+{
+inventory.pickupmessage "\ctPicked up the Head of the \cgForbidden One\ct."
+inventory.amount 1
+inventory.maxamount 1
+scale 2.5
+States
+{
+Spawn:
+ERO9 M 1
+goto Spawn2
+Spawn2:
+//300 * 5 // A_SpawnItemEx("TrioExodia_PFX",random(0,4),0,random(6,24),random(0,1),0,random(1,3),random(0,359),1)
+"----" "############################################################################################################################################################################################################################################################################################################" 5 A_SpawnItemEx("TrioExodia_PFX",random(4,10),0,random(6,24),random(-1,1),0,random(0,2),random(0,359),1)
+"----" "#" 1 A_FadeOut(0.05)
+wait
+Pickup:
+TNT1 A 0 A_GiveInventory("TrioExodiaFlag1",1)
+goto End
+End:
+TNT1 A 0 A_PlaySoundEx("GNT/Treasure","Item")
+TNT1 A 0 A_GiveInventory("TrioExodia_PX",1)
+stop
+}
+}
+
+actor TrioExodia_P2 : TrioExodia_P1
+{
+inventory.pickupmessage "\ctPicked up the Body of the \cgForbidden One\ct."
+States
+{
+Spawn:
+ERO9 N 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("TrioExodiaFlag2",1)
+goto End
+}
+}
+actor TrioExodia_P3 : TrioExodia_P1
+{
+inventory.pickupmessage "\ctPicked up the Right Arm of the \cgForbidden One\ct."
+States
+{
+Spawn:
+ERO9 O 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("TrioExodiaFlag3",1)
+goto End
+}
+}
+actor TrioExodia_P4 : TrioExodia_P1
+{
+inventory.pickupmessage "\ctPicked up the Left Arm of the \cgForbidden One\ct."
+States
+{
+Spawn:
+ERO9 P 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("TrioExodiaFlag4",1)
+goto End
+}
+}
+actor TrioExodia_P5 : TrioExodia_P1
+{
+inventory.pickupmessage "\ctPicked up the Right Leg of the \cgForbidden One\ct."
+States
+{
+Spawn:
+ERO9 Q 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("TrioExodiaFlag5",1)
+goto End
+}
+}
+actor TrioExodia_P6 : TrioExodia_P1
+{
+inventory.pickupmessage "\ctPicked up the Left Leg of the \cgForbidden One\ct."
+States
+{
+Spawn:
+ERO9 R 1
+goto Spawn2
+Pickup:
+TNT1 A 0 A_GiveInventory("TrioExodiaFlag6",1)
+goto End
+}
+}
+
+actor TrioExodia_PX : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag1",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag2",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag3",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag4",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag5",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag6",1,1)
+stop
+TNT1 A 0 A_GiveInventory("TrioExodia_PZ")
+stop
+}
+}
+
+actor TrioExodia_PZ : CustomInventory
+{
+inventory.pickupmessage "\ctYou have collected all six pieces of the \cgForbidden One\ct!"
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("SpreadRune_ST")
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag",1,2)
+TNT1 A 0 A_SpawnItemEx("TrioExodiaFollow",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_GiveInventory("TrioExodiaFlag")
+stop
+}
+}
+
+actor TrioExodiaFollow : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/TrioCharge0","Weapon")
+TNT1 AA 1 A_GiveToTarget("TrioExodia_PF",1)
+TNT1 A 2
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+goto Spawn+2
+}
+}
+
+actor TrioExodia_PF : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("TrioExodiaFollowFX",0,0,84,momx,momy,momz,0,9)
+stop
+}
+}
+
+actor TrioExodiaFollowFX : BasicClientSide
+{
+States
+{
+Spawn:
+EVFL J 0
+EVFL J 1
+stop
+}
+}
+
+actor TrioExodiaDropPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag",1,"No")
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag1",1,"P_1")
+goto P_1+1
+No:
+TNT1 A 0
+stop
+P_1:
+TNT1 A 0 A_SpawnItemEx("TrioExodia_P1",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag2",1,"P_2")
+goto P_2+1
+P_2:
+TNT1 A 0 A_SpawnItemEx("TrioExodia_P2",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag3",1,"P_3")
+goto P_3+1
+P_3:
+TNT1 A 0 A_SpawnItemEx("TrioExodia_P3",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag4",1,"P_4")
+goto P_4+1
+P_4:
+TNT1 A 0 A_SpawnItemEx("TrioExodia_P4",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag5",1,"P_5")
+goto P_5+1
+P_5:
+TNT1 A 0 A_SpawnItemEx("TrioExodia_P5",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+TNT1 A 0 A_JumpIfInventory("TrioExodiaFlag6",1,"P_6")
+goto No
+P_6:
+TNT1 A 0 A_SpawnItemEx("TrioExodia_P6",0,0,8,random(2,6),0,random(4,9),random(0,359),1)
+stop
+}
+}

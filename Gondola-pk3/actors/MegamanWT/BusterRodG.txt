@@ -1,0 +1,424 @@
+actor BusterRodG : ClassBase
+{
+Player.ScoreIcon "C_WTA0X"
+player.displayname "BusterRodG"
+player.soundclass "busterrodgc"
+
+player.maxhealth 850
+health 850
+player.jumpz 13
+player.forwardmove 1.0, 1.0
+player.sidemove 0.98, 0.98
+
+player.startitem "MonkeyKingBoss"
+player.startitem "MonkeyMagicAmmo", 35
+player.startitem "BRG_CloneItem"
+player.startitem "CanWallJump"
+player.startitem "CanWallJumpStack", 99
+
+//player.startitem "BusterRodGWeakness", 1
+//player.startitem "MegaWaterSWeakness", 1
+//player.startitem "HyperStormHWeakness", 1
+
+States
+{
+Spawn:
+BRGZ A 0
+BRGZ B 1 A_GiveInventory("FrameBGive",1)
+BRGZ A 1 A_GiveInventory("FrameAGive",1)
+Goto Spawn+2
+See:
+BRGZ B 5 A_GiveInventory("FrameBGive",1)
+BRGZ C 5 A_GiveInventory("FrameCGive",1)
+BRGZ D 5 A_GiveInventory("FrameDGive",1)
+BRGZ E 5 A_GiveInventory("FrameEGive",1)
+Goto Spawn
+
+Missile:
+BRGZ J 0 A_JumpIfInventory("BRGSpinFlag",1,"Missile2")
+BRGZ J 1 A_GiveInventory("FrameJGive",1)
+BRGZ J 0 A_JumpIfInventory("BRGSpinFlag",1,"Missile2")
+BRGZ J 3 A_GiveInventory("FrameJGive",1)
+BRGZ K 8 A_GiveInventory("FrameKGive",1)
+BRGZ J 8 A_GiveInventory("FrameJGive",1)
+goto Spawn
+Missile2:
+BRGZ F 2 A_GiveInventory("FrameFGive",1)
+BRGZ G 2 A_GiveInventory("FrameGGive",1)
+BRGZ F 2 A_GiveInventory("FrameFGive",1)
+BRGZ G 2 A_GiveInventory("FrameGGive",1)
+BRGZ F 2 A_GiveInventory("FrameFGive",1)
+BRGZ G 2 A_GiveInventory("FrameGGive",1)
+goto Spawn
+ClassPain:
+BRGZ H 0 A_GiveInventory("FrameHGive",1)
+goto PainContinue
+ClassDeath:
+BRGZ H 0 //A_GiveInventory("FrameHGive",1)
+goto DeathContinue
+}
+}
+
+actor Frame : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor FrameA : Frame {}
+actor FrameB : Frame {}
+actor FrameC : Frame {}
+actor FrameD : Frame {}
+actor FrameE : Frame {}
+actor FrameF : Frame {}
+actor FrameG : Frame {}
+actor FrameH : Frame {}
+
+actor FrameJ : Frame {}
+actor FrameK : Frame {}
+
+actor FramesTake : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("FrameA", 1)
+TNT1 A 0 A_TakeInventory("FrameB", 1)
+TNT1 A 0 A_TakeInventory("FrameC", 1)
+TNT1 A 0 A_TakeInventory("FrameD", 1)
+TNT1 A 0 A_TakeInventory("FrameE", 1)
+TNT1 A 0 A_TakeInventory("FrameF", 1)
+TNT1 A 0 A_TakeInventory("FrameG", 1)
+TNT1 A 0 A_TakeInventory("FrameH", 1)
+TNT1 A 0 A_TakeInventory("FrameJ", 1)
+TNT1 A 0 A_TakeInventory("FrameK", 1)
+stop
+}
+}
+
+actor FrameAGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameA", 1)
+stop
+}
+}
+
+actor FrameBGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameB", 1)
+stop
+}
+}
+
+actor FrameCGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameC", 1)
+stop
+}
+}
+
+actor FrameDGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameD", 1)
+stop
+}
+}
+
+actor FrameEGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameE", 1)
+stop
+}
+}
+
+actor FrameFGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameF", 1)
+stop
+}
+}
+
+actor FrameGGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameG", 1)
+stop
+}
+}
+
+actor FrameHGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameH", 1)
+stop
+}
+}
+
+actor FrameJGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameJ", 1)
+stop
+}
+}
+
+actor FrameKGive : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FramesTake", 1)
+TNT1 A 0 A_GiveInventory("FrameK", 1)
+stop
+}
+}
+
+
+actor DoubleTeamSpawner : CustomInventory
+{
+states
+{
+pickup:
+TNT1 A 0 A_JumpIfInventory("FrameA", 1, "A")
+TNT1 A 0 A_JumpIfInventory("FrameB", 1, "B")
+TNT1 A 0 A_JumpIfInventory("FrameC", 1, "C")
+TNT1 A 0 A_JumpIfInventory("FrameD", 1, "D")
+TNT1 A 0 A_JumpIfInventory("FrameE", 1, "E")
+TNT1 A 0 A_JumpIfInventory("FrameF", 1, "F")
+TNT1 A 0 A_JumpIfInventory("FrameG", 1, "G")
+TNT1 A 0 A_JumpIfInventory("FrameH", 1, "H")
+TNT1 A 0 A_JumpIfInventory("FrameJ", 1, "J")
+TNT1 A 0 A_JumpIfInventory("FrameK", 1, "K")
+stop
+A:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameA",0,0,0,0,0,0,0,1,0)//SXF_TRANSFERTRANSLATION
+stop
+B:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameB",0,0,0,0,0,0,0,1,0)
+stop
+C:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameC",0,0,0,0,0,0,0,1,0)
+stop
+D:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameD",0,0,0,0,0,0,0,1,0)
+stop
+E:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameE",0,0,0,0,0,0,0,1,0)
+stop
+F:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameF",0,0,0,0,0,0,0,1,0)
+stop
+G:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameG",0,0,0,0,0,0,0,1,0)
+stop
+H:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameH",0,0,0,0,0,0,0,1,0)
+stop
+J:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameJ",0,0,0,0,0,0,0,1,0)
+stop
+K:
+TNT1 A 0 A_SpawnItemEx("BRGDTFrameK",0,0,0,0,0,0,0,1,0)
+stop
+}
+}
+
+actor BRGDTFrame 
+{
+scale 2.5
+-SOLID
++NOGRAVITY
+//+CLIENTSIDEONLY
+//+NONETID
++NOTIMEFREEZE
++DONTBLAST
+}
+
+actor BRGDTFramePre : BRGDTFrame
+{
+RenderStyle "Translucent"
+Alpha 0.75
+states
+{
+Spawn:
+BRGZ A 0
+BRGZ A 35
+TNT1 A 1
+BRGZ A 35
+TNT1 A 1
+stop
+}
+}
+
+actor BRGDTFrameA : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ A 1
+TNT1 A 35
+BRGZ A 1
+stop
+}
+}
+
+actor BRGDTFrameB : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ B 1
+TNT1 A 35
+BRGZ B 1
+stop
+}
+}
+
+actor BRGDTFrameC : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ C 1
+TNT1 A 35
+BRGZ C 1
+stop
+}
+}
+
+actor BRGDTFrameD : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ D 1
+TNT1 A 35
+BRGZ D 1
+stop
+}
+}
+
+actor BRGDTFrameE : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ E 1
+TNT1 A 35
+BRGZ E 1
+stop
+}
+}
+
+actor BRGDTFrameF : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ F 1
+TNT1 A 35
+BRGZ F 1
+stop
+}
+}
+
+actor BRGDTFrameG : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ G 1
+TNT1 A 35
+BRGZ G 1
+stop
+}
+}
+
+actor BRGDTFrameH : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ H 1
+TNT1 A 35
+BRGZ H 1
+stop
+}
+}
+
+actor BRGDTFrameJ : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ J 1
+TNT1 A 35
+BRGZ J 1
+stop
+}
+}
+
+actor BRGDTFrameK : BRGDTFrame
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 35
+BRGZ K 1
+TNT1 A 35
+BRGZ K 1
+stop
+}
+}

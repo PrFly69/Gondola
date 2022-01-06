@@ -415,3 +415,303 @@ weapon/gyrosplit GYRSPLIT
 //Pluto
 pluto/meowcope MEOWPLUT $volume pluto/meowcope 0.75
 pluto/copeinducer NECOPLUT
+
+
+//Replacements
+weapon/tornadoblowboss TORN1
+weapon/tornadoblowhold TORBHOLD
+weapon/tornadoblowend TORBEND
+weapon/waveburneruw wavebund
+weapon/wheelshotbounce S_M10GX
+weapon/wheelshotthrow S_M10GW
+weapon/MetalMelee CHNBLADE
+weapon/brightspark BRIGSPAK
+weapon/sparkreset SPARKRES
+weapon/saturnthrow SATURNTR
+weapon/saturnquake SATURNRT
+weapon/blackhole	BLCKHOL
+$volume weapon/blackhole 0.5
+weapon/saturnnothing XDXDXDXD
+weapon/reversepcharge PROTCHRE
+weapon/saturnfire SATFIREX
+
+//Maestro
+weapon/MaestroFuzz FLTELE
+weapon/lflcharge MMBNCHRG
+weapon/lflready MMBNREDY
+weapon/maestroshield MAESHIEL
+
+//LADD SPENCER
+weapon/BionicArm1 BCARM1
+weapon/BionicArm2 BCARM2
+weapon/BionicRifle BCFIRE
+classes/WaveDies BCDEAD
+
+$volume weapon/BionicArm1 0.3
+$volume weapon/BionicArm2 0.3
+$volume weapon/BionicRifle 0.3
+$volume weapon/WaveDies 0.3
+
+//Proto
+weapon/protoshieldpickup SHIELDP
+
+//Napalm
+weapon/napalmtread NAPTREAD
+
+//Charge
+weapon/Train CHUGGA $limit weapon/Train 0
+weapon/chugga	CHUG
+
+//Fire
+weapon/firemanshot2 FIRESHT2
+
+$volume weapon/Train 1
+$volume weapon/chugga 1
+
+//Ice
+weapon/icemansnow POCKICE
+weapon/icemandetonate ICEDETN
+
+//Megaman
+weapon/XStart X1FIRE
+weapon/XCont X2FIRE
+
+//Spark
+weapon/SparkShocker S_M9_D1
+$volume weapon/SparkShocker 0.5
+
+//Pharaoh
+weapon/pharaohpunchswing PHAPPUN
+weapon/pharaohpunchhit PHAPHIT
+weapon/pharaohpunchko PHAPKO
+
+//Dark2
+
+weapon/darkcharge1 DARCHA1
+weapon/darkcharge2 DARCHA2
+weapon/darkcharge3 DARCHA3
+weapon/darkblast2 DARBLA2
+weapon/darkblast2explode DARBLA2X
+weapon/darkblast3 DARBLA3
+weapon/darkblast3loop DARBLA3P
+weapon/darkblast3explode DARBLA3E
+weapon/darkblast3stop DSNONE
+
+//MM8
+weapon/TenguTHold S_M8_A0 $limit weapon/TenguTHold 0
+weapon/searchdash SRCHDASH
+weapon/searchdstorm SRCHDEST
+
+
+//MM10
+weapon/chillshot CHILSHOT
+weapon/chillspike CHILSPIK $limit weapon/chillspike 0
+weapon/chillbreak CHILBRAK $limit weapon/chillbreak 0
+weapon/CSlide1 CHILLSL1
+weapon/CSlide2 CHILLSL2
+$volume weapon/CSlide1 0.5
+$volume weapon/CSlide2 0.5
+classes/gasgasgas BIKEOVRD
+
+weapon/reboundweak SRKTHROW
+weapon/reboundgrab DSBW43
+weapon/reboundstartup DSBW46
+weapon/reboundbunt DSBW53
+weapon/reboundbounce SRKBOUNC
+weapon/reboundcheer SRKCHEER
+weapon/reboundprojectile REBN
+
+weapon/woolshock RAINLTNG
+weapon/woolrise THNDWOL
+weapon/woolfire THDWOLE
+weapon/pumprefill STRKCHRG
+
+weapon/RaThorPew THORSND0 $limit weapon/RaThorPew 0
+weapon/RaThorPewX THORSND1 $limit weapon/RaThorPewX 0
+weapon/RaThorPewZ THORSND2 $limit weapon/RaThorPewZ 0
+
+weapon/RaThorSwayin THORSND3 $limit weapon/RaThorSwayin 0
+weapon/RaThorSparky THORSND4 $limit weapon/RaThorSparky 0
+
+weapon/RaThorGrabZ THORSNDZ $limit weapon/RaThorGrabZ 0
+
+weapon/RaThorThrow THORSND5 $limit weapon/RaThorThrow 0
+weapon/RaThorSlam THORSND6 $limit weapon/RaThorSlam 0
+item/RaThorSoul THORSND7 $limit item/RaThorSoul 0
+item/RaThorUse THORSND8 $limit item/RaThorUse 0//ASTPLT1
+
+weapon/RaThorSinistarX ERPOSSES $limit weapon/RaThorSinistarX 0
+weapon/RaThorSinistar RTHRTAUS $limit weapon/RaThorSinistar 0
+
+//Desert Demolition
+DesDemo/CoyoteLeap DS_DD_81 $limit DesDemo/CoyoteLeap 0
+
+//MMWT
+$playersound	hyperstormhc	male	*land		quake
+$playersound	hyperstormhc	male	*usefail	quake
+
+//Sound Changes
+weapon/tomahawkboss TOMAHAWB
+$volume weapon/tomahawkboss 0.5
+weapon/tomahawkfeathers TOMAFEAT
+$volume weapon/tomahawkfeathers 0.5
+
+weapon/gyroattacksee GYROAT
+$volume weapon/gyroattacksee 0.5
+
+$volume weapon/tornadoblow 0.7
+$volume weapon/ColdField 0.5
+$volume weapon/ColdFrozen 0.5
+$volume classes/bladeleap 0.7
+$volume weapon/grabbuster 0.7
+$volume classes/DynamoTag 0.8
+$volume weapon/FlameWave 0.5
+$volume weapon/darktread 0.8
+$volume weapon/jupiterlaser 0.9
+$volume weapon/BRGStaff 0.8
+$volume weapon/ShortRain 0.8
+$volume weapon/BigRain 0.4
+$volume W_Venus/GB_Boom 0.4
+$volume W_Venus/JumpBoost 0.4
+$volume weapon/freezefloor 0.4
+$volume weapon/AquaCharge 0.6
+$volume weapon/AquaCharge2 0.6
+$volume class/SearchBush 0.7
+$volume weapon/WoodTower 0.4
+$volume weapon/jewelexplode 0.6
+$volume weapon/jewelexplodebit 0.6
+$volume weapon/TopTwist 0.7
+$volume classes/SkullShieldBuzz 0.6
+$volume weapon/Ice_Cloud 0.6
+$volume weapon/Snakecommand 0.8
+$volume weapon/KnightReturn 0.7
+$volume W_Venus/BubbPop 0.5
+
+//copyweps
+weapon/MMVShot2 MMVSSND2
+weapon/bubblebomb BBBMSND
+weapon/MMVExplode BBOMEXP
+weapon/grabbuster GRABBUS
+weapon/wheelcutter wheelsta
+weapon/wheelshot wheelsho
+
+$playersound	rathorc	male	*death		MEGADEAT
+$playersound	rathorc	male	*xdeath		MEGADEAT
+$playersound	rathorc	male	*gibbed		MEGADEAT
+$playersound	rathorc	male	*pain100	MM3PAIN
+$playersound	rathorc	male	*pain75		MM3PAIN
+$playersound	rathorc	male	*pain50		MM3PAIN
+$playersound	rathorc	male	*pain25		MM3PAIN
+$playersound	rathorc	male	*grunt		dsnone
+$playersound	rathorc	male	*land		MM6JUMP
+$playersound	rathorc	male	*jump		dsnone
+$playersound	rathorc	male	*fist		dsnone
+$playersound	rathorc	male	*usefail	MM6JUMP
+
+$playersound	autoclassc	 male	*death		MEGADEAT
+$playersound	autoclassc	 male	*xdeath		MEGADEAT
+$playersound	autoclassc	 male	*gibbed		MEGADEAT
+$playersound	autoclassc	 male	*pain100	MEGAPAIN
+$playersound	autoclassc	 male	*pain75		MEGAPAIN
+$playersound	autoclassc	 male	*pain50		MEGAPAIN
+$playersound	autoclassc	 male	*pain25		MEGAPAIN
+$playersound	autoclassc	 male	*grunt		dsnone
+$playersound	autoclassc	 male	*land		LAND
+$playersound	autoclassc	 male	*jump		dsnone
+$playersound	autoclassc	 male	*fist		dsnone
+$playersound	autoclassc	 male	*usefail	LAND
+
+//MM10
+weapon/sunparry SOLBLZ
+weapon/solarblazex SOLBLAX
+$volume weapon/solarblazex 1
+weapon/solarwave SOLWAVE
+$volume weapon/solarwave 0.6
+weapon/solarwavex  SOLWAVX
+$volume weapon/solarwavex 0.75
+
+
+$playersound	fusemanc	male	*death		MEGADEAT
+$playersound	fusemanc	male	*xdeath		MEGADEAT
+$playersound	fusemanc	male	*gibbed		MEGADEAT
+$playersound	fusemanc	male	*pain100	MM3PAIN
+$playersound	fusemanc	male	*pain75		MM3PAIN
+$playersound	fusemanc	male	*pain50		MM3PAIN
+$playersound	fusemanc	male	*pain25		MM3PAIN
+$playersound	fusemanc	male	*grunt		dsnone
+$playersound	fusemanc	male	*land		MM6JUMP
+$playersound	fusemanc	male	*jump		dsnone
+$playersound	fusemanc	male	*fist		dsnone
+$playersound	fusemanc	male	*usefail	MM6JUMP
+
+fuseman/melee PMELEE
+fuseman/nope PULSNOP
+fuseman/hvoltage VTKER
+fuseman/hvend PULSEND
+fuseman/telestart FTELEST
+fuseman/teleport FTELEPT
+fuseman/voltage FVOLT
+weapon/fusedashdown FUSEDOWN
+
+$volume fuseman/melee 0.5
+$volume fuseman/nope 0.5
+$volume fuseman/hvoltage 0.5
+$volume fuseman/hvend 0.5
+$volume fuseman/telestart 0.5
+$volume fuseman/teleport 0.5
+$volume fuseman/voltage 0.5
+$volume weapon/fusedashdown 0.5
+
+// Patch 21 //
+weapon/lightningold LITBOLD
+weapon/bigdustbreak DUSTBRK2 
+weapon/plantbuster PLNTBUST
+weapon/windstormboss WSTRMBOS
+weapon/windgyroboss WGYROBOS
+weapon/bubblemanlead BUBBLBOS
+weapon/wheelbreak TURBBRK
+$volume weapon/wheelbreak 0.7
+weapon/wheeltrail TURBTRAI
+$volume weapon/wheeltrail 0.15
+weapon/turbomanthrow TURBTHRO
+$volume weapon/wheelgogogo 0.4
+weapon/punkbash PUNKBASH
+
+$playersound	alienc	male	*land		dsnone
+
+$playersound	cloudmanc	male	*land		dsnone
+$playersound	cloudmanc	female	*land		dsnone
+$playersound	cloudmanc	other	*land		dsnone
+
+$playersound	astromanc	male	*land		dsnone
+$playersound	astromanc	female	*land		dsnone
+$playersound	astromanc	other	*land		dsnone
+
+// Breakman //
+$playersound	breakmanc	male	*death		MEGADEAT
+$playersound	breakmanc	male	*xdeath		MEGADEAT
+$playersound	breakmanc	male	*gibbed		MEGADEAT
+$playersound	breakmanc	male	*pain100	MM3PAIN
+$playersound	breakmanc	male	*pain75		MM3PAIN
+$playersound	breakmanc	male	*pain50		MM3PAIN
+$playersound	breakmanc	male	*pain25		MM3PAIN
+$playersound	breakmanc	male	*grunt		dsnone
+$playersound	breakmanc	male	*land		LAND
+$playersound	breakmanc	male	*jump		dsnone
+$playersound	breakmanc	male	*fist		dsnone
+$playersound	breakmanc	male	*usefail	LAND
+$playersound	breakmanc	male	*taunt 	    BREKTAU
+
+weapon/breaksnipershoot BRAILSHO
+weapon/breaksniperhit BRAILHIT
+weapon/breaksnipercharged BRAILCHG
+weapon/breaksniperready BRSNIRDY
+$volume weapon/breaksniperready 0.5
+weapon/breakescape BREKESCP
+
+//Oil
+weapon/oilcharge BALMIN
+weapon/oilcharge2 BALMIN2
+
+//Venus
+weapon/bubblebomb BUBBO

@@ -1,0 +1,2178 @@
+actor LaserTridentBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_9C"
+dropitem "LaserTridentWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Obituary "$OB_LASERTRIDENT"
+Inventory.Pickupmessage "Splash"
+weapon.ammotype "SplashingAboutAmmo"
+weapon.ammotype2 "CrabHealingAmmo"
+inventory.icon "SPLSH_I1"
+States
+{
+Spawn:
+C_09 C 1
+loop
+Ready:
+9C_I A 0 ACS_ExecuteAlways(998,0,DYE_SPLASHWOMAN)
+9C_I A 0 A_GunFlash("Flash.Start",GFF_NOEXTCHANGE)
+Goto Ready1
+Ready1:
+"####" A 0 A_JumpIfInventory("SplashingAboutAmmo",28,"Ready2")
+"####" A 8 A_WeaponReady(8)
+"####" A 0 A_GiveInventory("SplashingAboutAmmo",1)
+loop
+Ready2:
+"####" A 8 A_WeaponReady
+"####" A 0 A_GiveInventory("SplashingAboutAmmo",1)
+loop
+Deselect:
+9C_I AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+9C_I A 1 A_Lower
+Loop
+Select:
+9C_I AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+9C_I A 1 A_Raise
+Loop
+
+Fire:
+"####" A 0 A_JumpIfNoAmmo("NoAmmo")
+"####" A 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
+"####" A 1 offset(40,35)
+"####" A 1 offset(80,38)
+"####" A 1 offset(120,38)
+"####" B 1 offset(-40,25)
+"####" B 1 offset(-20,28)
+"####" B 1 offset(1,31)
+"####" C 0 A_PlaySoundEx("weapon/lasertrident","Weapon")
+"####" C 0 A_GiveInventory("SplashMainSinewyCheck_P",1)
+"####" C 4 offset(10,38)
+goto FireEnd
+FireR:
+"####" A 1 offset(70,38)
+"####" B 1 offset(-40,25)
+"####" B 1 offset(1,31)
+"####" C 0 A_PlaySoundEx("weapon/lasertrident","Weapon")
+"####" C 0 A_GiveInventory("SplashMainSinewyCheck_P",1)
+"####" CC 1 offset(10,38)
+goto FireEnd
+FireEnd:
+"####" C 1 offset(2,53)A_JumpIfInventory("PowerRage_ST",1,1)
+"####" C 1 offset(-4,68)
+"####" S 6 A_GiveInventory("SplashingAboutAmmo",1)
+"####" A 1 offset(120,95)
+"####" A 1 offset(100,85)A_JumpIfInventory("PowerRage_ST",1,1)
+"####" A 1 offset(80,75)
+"####" A 1 offset(60,65)A_JumpIfInventory("PowerRage_ST",1,1)
+"####" A 1 offset(40,55)
+"####" A 1 offset(20,45)A_JumpIfInventory("PowerRage_ST",1,1)
+"####" A 0 A_GiveInventory("SplashingAboutAmmo",1)
+Goto Ready1
+
+Flash.Start:
+TNT1 A 0 A_JumpIfInventory("SplashDabbleEnd",1,"Flash.Land")
+goto Flash.Ammo
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("IsTreadingWater",1,"Flash.Swim")
+TNT1 A 1
+TNT1 A 0 A_GiveInventory("SplashW_FlashAmmo_P")
+loop
+Flash.Ammo:
+TNT1 A 0 A_JumpIfInventory("SplashDabbleAmmo",280,"Flash")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("IsTreadingWater",1,"Flash.Swim")
+TNT1 A 1
+TNT1 A 0 A_GiveInventory("SplashDabbleAmmo_RC",1)
+loop
+
+Flash.Swim:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_GiveInventory("SplashSwimFlash_P",1)
+TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
+TNT1 A 0 A_JumpIfInventory("SplashDabbleAmmo",1,"Flash.Swim")
+TNT1 A 0 SetPlayerProperty(0,0,3)
+TNT1 A 0 A_GiveInventory("SplashDabbleEnd",1)
+goto Flash.Land
+
+Flash.Land:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
+TNT1 A 0 A_JumpIf(momz==0,"Flash.LandZ")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_GiveInventory("SplashW_FlashAmmo_P")
+loop
+Flash.LandZ:
+TNT1 A 1 A_GiveInventory("SplashW_FlashAmmo_P")
+TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
+TNT1 A 0 A_JumpIf(momz==0,"Flash.LandEnd")
+goto Flash.Land+2
+Flash.LandEnd:
+TNT1 A 1 A_GiveInventory("SplashSwimFlashEnd_P",1)
+goto Flash.Ammo
+
+NoAmmo:
+"####" A 1
+Goto Ready1
+
+AltFire:
+9C_I A 0 A_JumpIfInventory("SplashingAboutAmmo",28,"AltFire1")
+Goto Ready1
+Altfire1:
+9C_I A 1 offset(0,62)A_GiveInventory("SplashWarbleFlag",1)
+9C_I A 1 offset(0,92)
+9C_I D 1 offset(0,104)
+goto AltfireH
+
+AltfireH:
+"####" D 0 A_JumpIfInventory("SplashSingCharge",2,"AltfireH1")
+"####" D 1 offset(0,104)A_GiveInventory("SplashSingCharge_RC",1)
+"####" D 0 A_Refire("AltfireH")
+goto AltfireSing
+AltfireH1:
+"####" D 0 A_JumpIfInventory("SplashSingCharge",4,"AltfireH2")
+"####" D 1 offset(0,101)A_GiveInventory("SplashSingCharge_RC",1)
+"####" D 0 A_Refire("AltfireH1")
+goto AltfireSing
+AltfireH2:
+"####" D 0 A_JumpIfInventory("SplashSingCharge",6,"AltfireH3")
+"####" D 1 offset(0,98)A_GiveInventory("SplashSingCharge_RC",1)
+"####" D 0 A_Refire("AltfireH2")
+goto AltfireSing
+AltfireH3:
+"####" D 0 A_JumpIfInventory("SplashSingCharge",8,"AltfireH4")
+"####" D 1 offset(0,95)A_GiveInventory("SplashSingCharge_RC",1)
+"####" D 0 A_Refire("AltfireH3")
+goto AltfireSing
+AltfireH4:
+"####" D 0 A_JumpIfInventory("SplashSingCharge",10,"AltfireH5")
+"####" D 1 offset(0,92)A_GiveInventory("SplashSingCharge_RC",1)
+"####" D 0 A_Refire("AltfireH4")
+goto AltfireSing
+AltfireH5:
+"####" D 0 A_JumpIfInventory("SplashSingCharge",12,"AltfireH6")
+"####" D 1 offset(0,89)A_GiveInventory("SplashSingCharge_RC",1)
+"####" D 0 A_Refire("AltfireH5")
+goto AltfireSing
+AltfireH6:
+"####" D 0 A_JumpIfInventory("SplashSingCharge",14,"AltfireSingAura")
+"####" D 1 offset(0,86)A_GiveInventory("SplashSingCharge_RC",1)
+"####" D 0 A_Refire("AltfireH6")
+goto AltfireSing
+
+AltfireSingAura:
+"####" D 0 A_SpawnItemEx("SplashSingingWarper",288,0,56,0,0,0,0,1)
+"####" D 0 A_SpawnItemEx("SplashSingingWarper",288,0,56,0,0,0,180,1)
+"####" D 2 offset(0,86)A_GiveInventory("AltfireSingAuraStart_P",1)
+"####" D 0 A_Refire(1)
+"####" D 0 A_Jump(128,1)
+goto AH_Sing1
+"####" D 0
+goto AH_Sing2
+AH_Sing1:
+"####" D 2 offset(2,86)
+"####" D 0 A_Refire("AH_Sing1.a")
+goto AH_SingEnd
+AH_Sing1.a:
+"####" D 2 offset(5,85)
+"####" D 0 A_Refire("AH_Sing1.b")
+goto AH_SingEnd
+AH_Sing1.b:
+"####" D 2 offset(8,84)
+"####" D 0 A_Refire("AH_Sing1.c")
+goto AH_SingEnd
+AH_Sing1.c:
+"####" D 2 offset(11,83)
+"####" D 0 A_Refire("AH_Sing1.d")
+goto AH_SingEnd
+AH_Sing1.d:
+"####" D 2 offset(13,81)
+"####" D 0 A_Refire("AH_Sing1.e")
+goto AH_SingEnd
+AH_Sing1.e:
+"####" D 2 offset(15,79)
+"####" D 0 A_Refire("AH_Sing1.f")
+goto AH_SingEnd
+AH_Sing1.f:
+"####" D 2 offset(17,77)
+"####" D 0 A_Refire("AH_Sing1.g")
+goto AH_SingEnd
+AH_Sing1.g:
+"####" D 2 offset(18,74)
+"####" D 0 A_Refire("AH_Sing1.h")
+goto AH_SingEnd
+AH_Sing1.h:
+"####" D 2 offset(19,71)
+"####" D 0 A_Refire("AH_Sing1.i")
+goto AH_SingEnd
+AH_Sing1.i:
+"####" D 2 offset(20,68)
+"####" D 0 A_Refire("AH_Sing1.j")
+goto AH_SingEnd
+AH_Sing1.j:
+"####" D 2 offset(20,66)A_TakeInventory("SplashingAboutAmmo",2,1)
+"####" D 0 A_Refire("AH_Sing1.k")
+goto AH_SingEnd
+AH_Sing1.k:
+"####" D 2 offset(20,68)
+"####" D 0 A_Refire("AH_Sing1.l")
+goto AH_SingEnd
+AH_Sing1.l:
+"####" D 2 offset(19,71)
+"####" D 0 A_Refire("AH_Sing1.m")
+goto AH_SingEnd
+AH_Sing1.m:
+"####" D 2 offset(18,74)
+"####" D 0 A_Refire("AH_Sing1.n")
+goto AH_SingEnd
+AH_Sing1.n:
+"####" D 2 offset(17,77)
+"####" D 0 A_Refire("AH_Sing1.o")
+goto AH_SingEnd
+AH_Sing1.o:
+"####" D 2 offset(15,79)
+"####" D 0 A_Refire("AH_Sing1.p")
+goto AH_SingEnd
+AH_Sing1.p:
+"####" D 2 offset(13,81)
+"####" D 0 A_Refire("AH_Sing1.q")
+goto AH_SingEnd
+AH_Sing1.q:
+"####" D 2 offset(11,83)
+"####" D 0 A_Refire("AH_Sing1.r")
+goto AH_SingEnd
+AH_Sing1.r:
+"####" D 2 offset(8,84)
+"####" D 0 A_Refire("AH_Sing1.s")
+goto AH_SingEnd
+AH_Sing1.s:
+"####" D 2 offset(5,85)
+"####" D 0 A_Refire("AH_Sing1.t")
+goto AH_SingEnd
+AH_Sing1.t:
+"####" D 2 offset(2,86)
+"####" D 0 A_Refire("AH_Sing1.u")
+goto AH_SingEnd
+AH_Sing1.u:
+"####" D 0 A_WeaponReady(14)
+"####" D 2 offset(0,86)A_TakeInventory("SplashingAboutAmmo",2,1)
+"####" D 0 A_Refire("AH_Sing1.v")
+goto AH_SingEnd
+AH_Sing1.v:
+"####" D 0 A_JumpIfInventory("SplashSwapFlag",2,2)
+"####" D 0 A_JumpIfInventory("SplashSwapFlag",1,2)
+"####" D 0 A_JumpIfInventory("SplashingAboutAmmo",1,"AH_Sing2")
+goto AH_SingEnd+1
+"####" D 0 A_JumpIfInventory("CrabHealingAmmo",1,1)
+goto AH_SingEnd
+"####" D 0 A_JumpIfInventory("SplashingAboutAmmo",1,"AH_Sing2")
+goto AH_SingEnd+1
+
+AH_Sing2:
+"####" D 2 offset(-2,86)
+"####" D 0 A_Refire("AH_Sing2.a")
+goto AH_SingEnd
+AH_Sing2.a:
+"####" D 2 offset(-5,85)
+"####" D 0 A_Refire("AH_Sing2.b")
+goto AH_SingEnd
+AH_Sing2.b:
+"####" D 2 offset(-8,84)
+"####" D 0 A_Refire("AH_Sing2.c")
+goto AH_SingEnd
+AH_Sing2.c:
+"####" D 2 offset(-11,83)
+"####" D 0 A_Refire("AH_Sing2.d")
+goto AH_SingEnd
+AH_Sing2.d:
+"####" D 2 offset(-13,81)
+"####" D 0 A_Refire("AH_Sing2.e")
+goto AH_SingEnd
+AH_Sing2.e:
+"####" D 2 offset(-15,79)
+"####" D 0 A_Refire("AH_Sing2.f")
+goto AH_SingEnd
+AH_Sing2.f:
+"####" D 2 offset(-17,77)
+"####" D 0 A_Refire("AH_Sing2.g")
+goto AH_SingEnd
+AH_Sing2.g:
+"####" D 2 offset(-18,74)
+"####" D 0 A_Refire("AH_Sing2.h")
+goto AH_SingEnd
+AH_Sing2.h:
+"####" D 2 offset(-19,71)
+"####" D 0 A_Refire("AH_Sing2.i")
+goto AH_SingEnd
+AH_Sing2.i:
+"####" D 2 offset(-20,68)
+"####" D 0 A_Refire("AH_Sing2.j")
+goto AH_SingEnd
+AH_Sing2.j:
+"####" D 2 offset(-20,66)A_TakeInventory("SplashingAboutAmmo",2,1)
+"####" D 0 A_Refire("AH_Sing2.k")
+goto AH_SingEnd
+AH_Sing2.k:
+"####" D 2 offset(-20,68)
+"####" D 0 A_Refire("AH_Sing2.l")
+goto AH_SingEnd
+AH_Sing2.l:
+"####" D 2 offset(-19,71)
+"####" D 0 A_Refire("AH_Sing2.m")
+goto AH_SingEnd
+AH_Sing2.m:
+"####" D 2 offset(-18,74)
+"####" D 0 A_Refire("AH_Sing2.n")
+goto AH_SingEnd
+AH_Sing2.n:
+"####" D 2 offset(-17,77)
+"####" D 0 A_Refire("AH_Sing2.o")
+goto AH_SingEnd
+AH_Sing2.o:
+"####" D 2 offset(-15,79)
+"####" D 0 A_Refire("AH_Sing2.p")
+goto AH_SingEnd
+AH_Sing2.p:
+"####" D 2 offset(-13,81)
+"####" D 0 A_Refire("AH_Sing2.q")
+goto AH_SingEnd
+AH_Sing2.q:
+"####" D 2 offset(-11,83)
+"####" D 0 A_Refire("AH_Sing2.r")
+goto AH_SingEnd
+AH_Sing2.r:
+"####" D 2 offset(-8,84)
+"####" D 0 A_Refire("AH_Sing2.s")
+goto AH_SingEnd
+AH_Sing2.s:
+"####" D 2 offset(-5,85)
+"####" D 0 A_Refire("AH_Sing2.t")
+goto AH_SingEnd
+AH_Sing2.t:
+"####" D 2 offset(-2,86)
+"####" D 0 A_Refire("AH_Sing2.u")
+goto AH_SingEnd
+AH_Sing2.u:
+"####" D 0 A_WeaponReady(14)
+"####" D 2 offset(0,86)A_TakeInventory("SplashingAboutAmmo",2,1)
+"####" D 0 A_Refire("AH_Sing2.v")
+goto AH_SingEnd
+AH_Sing2.v:
+"####" D 0 A_JumpIfInventory("SplashSwapFlag",2,2)
+"####" D 0 A_JumpIfInventory("SplashSwapFlag",1,2)
+"####" D 0 A_JumpIfInventory("SplashingAboutAmmo",1,"AH_Sing1")
+goto AH_SingEnd+1
+"####" D 0 A_JumpIfInventory("CrabHealingAmmo",1,1)
+goto AH_SingEnd
+"####" D 0 A_JumpIfInventory("SplashingAboutAmmo",1,"AH_Sing1")
+goto AH_SingEnd+1
+
+
+AH_SingEnd:
+"####" D 0 A_GiveInventory("AltfireSingAuraEnd_P",1)
+"####" D 0 A_WeaponReady(14)
+"####" D 2 offset(0,84)A_TakeInventory("SplashWarbleFlag",9)
+"####" D 2 offset(0,82)A_TakeInventory("SplashingAboutAmmo",6,1)
+"####" D 2 offset(0,79)
+"####" D 2 offset(0,76)A_TakeInventory("SplashIsSinging",99)
+"####" D 2 offset(0,70)A_GiveInventory("SplashEndSinging",1)
+"####" E 2 offset(0,60)
+"####" F 2 offset(0,54)
+"####" G 2 offset(0,48)
+"####" H 2 offset(0,42)
+"####" I 2 offset(0,36)
+"####" J 2 offset(0,30)
+"####" S 6
+"####" A 2 offset(20,92)A_TakeInventory("SplashSwapFlag",9)
+"####" A 2 offset(10,62)A_TakeInventory("SplashSwapFlag",9)
+Goto Ready1
+
+AltfireSing:
+"####" D 0 A_JumpIfInventory("SplashSwapFlag",2,"AltfireSingX")
+"####" D 0 A_JumpIfInventory("SplashSwapFlag",1,"AltfireSingCheck")
+goto AltfireSingX
+AltfireSingCheck:
+"####" A 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0),"AltfireSingX")
+"####" A 2 offset(20,92)A_TakeInventory("SplashWarbleFlag",1)
+"####" A 0 A_TakeInventory("SplashSwapFlag",9)
+"####" A 2 offset(10,62)A_TakeInventory("SplashSingCharge",99)
+goto Ready1
+AltfireSingX:
+"####" D 0 offset(0,80)A_SpawnItemEx("SplashSelfAuraFX_Helper",0,0,0,0,0,0,0,1)
+"####" D 2 offset(0,80)A_GiveInventory("AltfireSingAuraQ_P",1)
+"####" D 2 offset(0,70)A_GiveInventory("AltfireSingAuraFX_Pickup",1)
+"####" E 2 offset(0,60)A_SpawnItemEx("SplashSelfAuraFX_Helper",0,0,0,0,0,0,0,1)
+"####" F 2 offset(0,54)A_GiveInventory("AltfireSingAuraFX_Pickup",1)
+"####" G 2 offset(0,48)A_SpawnItemEx("SplashSelfAuraFX_Helper",0,0,0,0,0,0,0,1)
+"####" H 2 offset(0,42)A_GiveInventory("AltfireSingAuraFX_Pickup",1)
+"####" I 2 offset(0,36)A_SpawnItemEx("SplashSelfAuraFX_Helper",0,0,0,0,0,0,0,1)
+"####" J 2 offset(0,30)A_TakeInventory("SplashWarbleFlag",1)
+"####" S 2 A_TakeInventory("SplashIsSinging",99)
+"####" A 2 offset(20,92)A_TakeInventory("SplashSwapFlag",9)
+"####" A 2 offset(10,62)A_TakeInventory("SplashSwapFlag",9)
+Goto Ready1
+}
+}
+
+actor LaserTridentBoss2 : LaserTridentBoss
+{
+tag "$TAGC_9C2"
+inventory.icon "SPLSH_I2"
+States
+{
+Ready:
+9C_J A 0 ACS_ExecuteAlways(998,0,DYE_SPLASHWOMAN)
+9C_J A 0 A_GunFlash("Flash.Start",GFF_NOEXTCHANGE)
+Goto Ready1
+
+Deselect:
+9C_J AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+9C_J A 1 A_Lower
+Loop
+Select:
+9C_J AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+9C_J A 1 A_Raise
+Loop
+
+AltFire:
+9C_J A 0 A_JumpIfInventory("SplashingAboutAmmo",28,"AltFire1")
+Goto Ready1
+Altfire1:
+9C_J A 0 A_JumpIfInventory("CrabHealingAmmo",1,"AltFire2")
+9C_J A 1
+goto Ready1
+AltFire2:
+9C_J A 1 offset(0,62)A_GiveInventory("SplashWarbleFlag",1)
+9C_J A 1 offset(0,92)A_GiveInventory("SplashSwapFlag",1)
+9C_J D 1 offset(0,104)
+goto AltfireH
+}
+}
+
+actor LaserTridentBoss3 : LaserTridentBoss
+{
+tag "$TAGC_9C3"
+inventory.icon "SPLSH_I3"
+States
+{
+Ready:
+9C_K A 0 ACS_ExecuteAlways(998,0,DYE_SPLASHWOMAN)
+9C_K A 0 A_GunFlash("Flash.Start",GFF_NOEXTCHANGE)
+Goto Ready1
+
+Deselect:
+9C_K AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+9C_K A 1 A_Lower
+Loop
+Select:
+9C_K AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+9C_K A 1 A_Raise
+Loop
+
+AltFire:
+9C_K A 0 A_JumpIfInventory("SplashingAboutAmmo",28,"AltFire1")
+Goto Ready1
+Altfire1:
+9C_K A 1 offset(0,62)A_GiveInventory("SplashWarbleFlag",1)
+9C_K A 1 offset(0,92)A_GiveInventory("SplashSwapFlag",2)
+9C_K D 1 offset(0,104)
+goto AltfireH
+}
+}
+
+actor SplashingAboutAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+actor CrabHealingAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor SplashDabbleAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 280
++INVENTORY.IGNORESKILL
+}
+
+actor SplashW_AmmoRegenDelay : Inventory
+{
+inventory.amount 1
+inventory.maxamount 28
+}
+
+actor SplashDabbleEnd : OnceC{}
+
+actor SplashDabbleAmmo_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("SplashW_FlashAmmo_P")
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("SplashDabbleAmmo",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("SplashDabbleAmmo",2)
+stop
+}
+}
+
+actor SplashW_FlashAmmo_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SplashWarbleFlag",1,3)
+TNT1 A 0 A_JumpIfInventory("SplashW_AmmoRegenDelay",28,"Give")
+TNT1 A 0 A_GiveInventory("SplashW_AmmoRegenDelay",1)
+TNT1 A 0
+stop
+Give:
+TNT1 A 0 A_GiveInventory("CrabHealingAmmo",0)//bozo
+TNT1 A 0 A_TakeInventory("SplashW_AmmoRegenDelay")
+stop
+}
+}
+
+actor SplashSwimFlash_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("SplashW_FlashAmmo_P")
+TNT1 A 0 A_JumpIfInventory("SplashDabbleAmmo",1,"SwimCheck")
+TNT1 A 0 SetPlayerProperty(0,0,3)
+stop
+SwimCheck:
+TNT1 A 0 A_JumpIfInventory("HasFeetInWater",1,"Swim")
+TNT1 A 0 A_JumpIfInventory("IsUnderWater",1,"Swim")
+TNT1 A 0 A_JumpIfInventory("PowerBubbleFlood",1,"Swim")//IsUnderBubbleWater
+TNT1 A 0 SetPlayerProperty(0,0,3)
+stop
+Swim:
+TNT1 A 0 A_TakeInventory("SplashDabbleAmmo",1,1)
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"SwimNo")
+TNT1 A 0 SetPlayerProperty(0,1,3)
+stop
+SwimNo:
+TNT1 A 0 SetPlayerProperty(0,0,3)
+stop
+}
+}
+actor SplashSwimFlashEnd_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("SplashDabbleEnd",99)
+TNT1 A 0 A_TakeInventory("IsTreadingWater",99)
+TNT1 A 0 SetPlayerProperty(0,0,3)
+stop
+}
+}
+
+actor SplashWarbleFlag : OnceC{}
+
+actor SplashSwapFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 2
+}
+
+actor SplashIsSinging : Inventory
+{
+inventory.amount 1
+inventory.maxamount 10
+}
+
+actor SplashEndSinging : OnceC{}
+actor SplashGutsyEtude : OnceC{}
+
+actor SplashAuraBoomDelay : Powerup
+{
++INVENTORY.ADDITIVETIME
+powerup.duration 5
+}
+
+actor SplashAuraBoomDelay_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 AA 0 A_GiveInventory("SplashAuraBoomDelay",1)
+goto PickupR
+PickupR:
+TNT1 AA 0 A_GiveInventory("SplashAuraBoomDelay",1)
+stop
+}
+}
+
+actor SplashSingCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 14
+}
+
+actor SplashSingCutOff : Powerup
+{
+Powerup.duration 112
+}
+//Gutsy
+actor PowerSplashSinewyEtude : BasePowerDamage
+{
+powerup.duration 70
+damagefactor "normal", 1.35
+}
+actor PowerSplashSinewyEtudeX : BasePowerDamage
+{
+powerup.duration 175
+damagefactor "normal", 1.35
+damagefactor "SplashW_Laser", 1.0
+damagefactor "SplashW_Laser2", 1.0
+}
+
+actor PowerSplashMightyMarch : Powerup//PowerRegeneration
+{
+powerup.duration 7//70
+//Powerup.Strength 4
+}
+actor PowerSplashMightyMarchX : Powerup//PowerRegeneration
+{
+powerup.duration 196//160
+//Powerup.Strength 4
+}
+
+actor MightyMarchPainDelay : Powerup
+{
+Powerup.duration 20
+}
+
+actor PowerSplashSwiftSong : PowerSpeed
+{
+powerup.duration 35
+Speed 1.4
+}
+actor PowerSplashSwiftSongX : PowerSplashSwiftSong
+{
+powerup.duration 175
+}
+
+actor SplashSingCharge_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("SplashSingCharge",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("SplashSingCharge",2)
+stop
+}
+}
+
+actor AltfireSingAuraStart_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("SplashIsSinging",2)
+TNT1 A 0 A_GiveInventory("SplashSingCutOff",1)
+TNT1 A 0 A_TakeInventory("SplashEndSinging",9)
+TNT1 A 0 A_TakeInventory("SplashSingCharge",99)
+TNT1 A 0 A_TakeInventory("SplashingAboutAmmo",2)
+
+TNT1 A 0 A_JumpIfInventory("SplashSwapFlag",2,"Pickup3")
+TNT1 A 0 A_JumpIfInventory("SplashSwapFlag",1,"Pickup2")
+goto Pickup1
+Pickup1:
+TNT1 A 0 A_SpawnItemEx("SplashAuraBuff_H1")
+TNT1 A 0 A_JumpIfInventory("SplashGutsyEtude",1,"Pickup1.b")
+TNT1 A 0 A_PlaySound("weapon/SplashSing1A",4,0.8)
+TNT1 A 0 A_GiveInventory("SplashGutsyEtude",1)
+stop
+Pickup1.b:
+TNT1 A 0 A_PlaySound("weapon/SplashSing1B",4,0.8)
+TNT1 A 0 A_TakeInventory("SplashGutsyEtude",1)
+stop
+Pickup2:
+TNT1 A 0 A_PlaySound("weapon/SplashSing2",4,0.8)
+TNT1 A 0 A_SpawnItemEx("SplashAuraBuff_H2")
+stop
+Pickup3:
+TNT1 A 0 A_PlaySound("weapon/SplashSing3",4,0.8)
+TNT1 A 0 A_SpawnItemEx("SplashAuraBuff_H3")
+stop
+}
+}
+
+actor AltfireSingAuraQ_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_TakeInventory("SplashSingCharge",99)
+TNT1 A 0 A_GiveInventory("SplashIsSinging",1)
+TNT1 A 0 A_JumpIfInventory("SplashSwapFlag",2,"Pickup3")
+TNT1 A 0 A_JumpIfInventory("SplashSwapFlag",1,"Pickup2")
+goto Pickup1
+Pickup1:
+TNT1 A 0 A_PlaySound("weapon/SplashSing1Q",4,0.9)
+TNT1 A 0 A_GiveInventory("PowerSplashSinewyEtudeX",1)
+TNT1 A 0 A_TakeInventory("SplashingAboutAmmo",28,1)
+stop
+Pickup2:
+TNT1 A 0 A_PlaySound("weapon/SplashSing2Q",4,0.9)
+TNT1 A 0 A_GiveInventory("PowerSplashMightyMarchX",1)
+TNT1 A 0 A_SpawnItemEx("AltfireSingAuraQ2_H")
+stop
+Pickup3:
+TNT1 A 0 A_PlaySound("weapon/SplashSing3Q",4,0.9)
+TNT1 A 0 A_GiveInventory("PowerSplashSwiftSongX",1)
+TNT1 A 0 A_TakeInventory("SplashingAboutAmmo",28,1)
+stop
+}
+}
+actor AltfireSingAuraQ2_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetArg(2,CallACS("cbm_getTIDPointerhealth",2,1)-CallACS("cbm_getTIDPointerhealth",2,0))//MaxHP-CurrentHP
+TNT1 A 1 A_SetArg(3,CallACS("cbm_countinv_acs",92,2))
+TNT1 A 0 A_JumpIf(Args[3]>28,"SpawnAmmo")
+TNT1 A 0 A_JumpIf(Args[2]<28,"SpawnHP")
+goto SpawnStart
+SpawnAmmo:
+TNT1 A 0 A_SetArg(3,28)
+TNT1 A 0 A_JumpIf(Args[2]<28,"SpawnHP")
+goto SpawnStart
+SpawnHP:
+TNT1 A 0 A_SetArg(3,Args[2])
+goto SpawnStart
+SpawnStart:
+TNT1 A 0 A_TakeFromTarget("CrabHealingAmmo",Args[3],1)
+TNT1 A 0 A_TakeFromTarget("SplashingAboutAmmo",Args[3],1)
+TNT1 A 0 A_SetArg(3,Args[3]-1)
+goto SpawnL
+SpawnL:
+TNT1 A 3 A_GiveToTarget("AltfireSingAuraQ2_P",1)
+TNT1 A 4 A_JumpIfInTargetInventory("PowerRage_ST",1,1)
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+TNT1 A 0 A_CountDownArg(3)
+loop
+Death:
+TNT1 A 2
+TNT1 A 1 A_TakeFromTarget("PowerSplashMightyMarchX",99)
+stop
+}
+}
+actor AltfireSingAuraQ2_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("CBM_HealThing10_P")
+stop
+}
+}
+
+
+actor AltfireSingAuraEnd_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SplashSingCutOff",1,"Pickup0")
+stop
+Pickup0:
+TNT1 A 0 A_TakeInventory("SplashSingCutOff",99)
+TNT1 A 0 A_JumpIfInventory("SplashSwapFlag",2,"Pickup3")
+TNT1 A 0 A_JumpIfInventory("SplashSwapFlag",1,"Pickup2")
+goto Pickup1
+Pickup1:
+TNT1 A 0 A_PlaySound("weapon/SplashSing1C",4,1.0)
+stop
+Pickup2:
+TNT1 A 0 A_PlaySound("weapon/SplashSing2C",4,1.0)
+stop
+Pickup3:
+TNT1 A 0 A_PlaySound("weapon/SplashSing3C",4,1.0)
+stop
+}
+}
+actor AltfireSingAuraFX_Pickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("SplashSwapFlag",2,"Pickup3")
+TNT1 A 0 A_JumpIfInventory("SplashSwapFlag",1,"Pickup2")
+goto Pickup1
+Pickup1:
+TNT1 A 0 A_SpawnItemEx("SplashAura1FX_Helper",0,0,0,0,0,0,0,1)
+stop
+Pickup2:
+TNT1 A 0 A_SpawnItemEx("SplashAura2FX_Helper",0,0,0,0,0,0,0,1)
+stop
+Pickup3:
+TNT1 A 0 A_SpawnItemEx("SplashAura3FX_Helper",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+
+
+actor SplashAuraBuff_H1 : BasicHelper
+{
+ReactionTime 86
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("AltfireSingAuraFX_Pickup",1)
+TNT1 A 1 A_GiveToTarget("SplashwomanOther1_CI",1)
+TNT1 A 0 //A_CountDown
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"DeathEndSing")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+TNT1 A 1 A_GiveToTarget("SplashwomanOther1_CI",1)
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"DeathEndSing")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+loop
+DeathEndSing:
+TNT1 A 1 A_TakeFromTarget("PowerSplashSinewyEtude",99)
+stop
+}
+}
+
+actor SplashAuraBuff_H2 : SplashAuraBuff_H1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_TakeFromTarget("CrabHealingAmmo",1,1)
+TNT1 A 0 A_GiveToTarget("SplashAuraBuff_H2_FXP",1)
+TNT1 A 1 A_GiveToTarget("SplashAuraBuff_H2_P",1)
+TNT1 A 0 //A_CountDown
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+TNT1 A 1 A_GiveToTarget("SplashAuraBuff_H2_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+
+TNT1 A 0 A_GiveToTarget("SplashAuraBuff_H2_FXP",1)
+TNT1 A 1 A_GiveToTarget("SplashAuraBuff_H2_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+TNT1 A 1 A_GiveToTarget("SplashAuraBuff_H2_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+
+TNT1 A 0 A_GiveToTarget("SplashAuraBuff_H2_FXP",1)
+TNT1 A 1 A_GiveToTarget("SplashAuraBuff_H2_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+TNT1 A 1 A_GiveToTarget("SplashAuraBuff_H2_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"Death")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+loop
+}
+}
+actor SplashAuraBuff_H2_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("CrabHealingAmmo",1,"Pickup2")
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("SplashwomanOther2_CI",1)
+stop
+}
+}
+actor SplashAuraBuff_H2_FXP : SplashAuraBuff_H2_P
+{
+States
+{
+Pickup2:
+TNT1 A 0 A_GiveInventory("AltfireSingAuraFX_Pickup",1)
+stop
+}
+}
+
+actor SplashAuraBuff_H3 : SplashAuraBuff_H1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("AltfireSingAuraFX_Pickup",1)
+TNT1 A 1 A_GiveToTarget("SplashwomanOther3_CI",1)
+TNT1 A 0 //A_CountDown
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"DeathEndSing")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+TNT1 A 1 A_GiveToTarget("SplashwomanOther3_CI",1)
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"DeathEndSing")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+loop
+DeathEndSing:
+TNT1 A 1 A_TakeFromTarget("PowerSplashSwiftSong",99)
+stop
+}
+}
+
+actor SplashAuraBuff_P1 : CustomInventory
+{
+States
+{
+Pickup:
+Pickup2:
+TNT1 A 0 A_GiveInventory("PowerSplashSinewyEtude",1)
+stop
+}
+}
+actor SplashAuraBuff_P1B : SplashAuraBuff_P1
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"Pickup2")
+stop
+}
+}
+actor SplashAuraBuff_P1R : SplashAuraBuff_P1{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"Pickup2")stop}}
+actor SplashAuraBuff_P1O : SplashAuraBuff_P1{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"Pickup2")stop}}
+actor SplashAuraBuff_P1P : SplashAuraBuff_P1{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"Pickup2")stop}}
+
+actor SplashAuraBuff_P2 : CustomInventory
+{
+States
+{
+Pickup:
+Pickup2:
+TNT1 A 0 A_JumpIfInventory("PowerSplashMightyMarch",1,"No")
+TNT1 A 0 A_GiveInventory("PowerSplashMightyMarch",1)
+TNT1 A 0 A_GiveInventory("CBM_HealThing10_P")
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+actor SplashAuraBuff_P2B : SplashAuraBuff_P2{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"Pickup2")stop}}
+actor SplashAuraBuff_P2R : SplashAuraBuff_P2{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"Pickup2")stop}}
+actor SplashAuraBuff_P2O : SplashAuraBuff_P2{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"Pickup2")stop}}
+actor SplashAuraBuff_P2P : SplashAuraBuff_P2{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"Pickup2")stop}}
+
+actor SplashAuraBuff_P3 : CustomInventory
+{
+States
+{
+Pickup:
+Pickup2:
+TNT1 A 0 A_GiveInventory("PowerSplashSwiftSong",1)
+stop
+}
+}
+actor SplashAuraBuff_P3B : SplashAuraBuff_P3{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==0,"Pickup2")stop}}
+actor SplashAuraBuff_P3R : SplashAuraBuff_P3{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==1,"Pickup2")stop}}
+actor SplashAuraBuff_P3O : SplashAuraBuff_P3{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==2,"Pickup2")stop}}
+actor SplashAuraBuff_P3P : SplashAuraBuff_P3{States{Pickup:TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_getplayerteam",-1)==3,"Pickup2")stop}}
+
+
+
+actor SplashSingingWarper : ShieldWarper_CBM
+{
+Translation "202:202=202:202","199:199=197:197"
++NOTIMEFREEZE
+States
+{
+//SPLQ M 1
+//SPLQ N 1
+//SPLQ R 1
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(975,1)==0,"SpawnDM")
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_clientwarper",0,93)
+Goto Shield
+SpawnDM:
+TNT1 A 1
+stop
+Shield:
+SPLQ O 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR1")
+SPLQ OOPPQQ 1 A_Warp(AAPTR_TARGET,288,0,56,4,28)
+loop
+ShieldR1:
+SPLQ OPQ 1 A_Warp(AAPTR_TARGET,288,0,56,8,28)
+goto Shield
+}
+}
+
+actor SplashAura1FX_Helper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 0 A_SpawnItemEx("SplashAura1FX",random(16,32),0,random(48,56),random(1,3),0,random(4,5),10*random(0,35),1)
+TNT1 A 2
+stop
+}
+}
+actor SplashAura1FX_HelperB : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura1FX_B",random(32,288),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+actor SplashAura1FX_HelperR : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura1FX_R",random(32,288),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+actor SplashAura1FX_HelperO : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura1FX_O",random(32,288),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+actor SplashAura1FX_HelperP : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura1FX_P",random(32,288),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+
+actor SplashAura2FX_Helper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 0 A_SpawnItemEx("SplashAura2FX",random(16,32),0,random(48,56),random(1,3),0,random(4,5),10*random(0,35),1)
+TNT1 A 2
+stop
+}
+}
+actor SplashAura2FX_HelperB : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura2FX_B",random(32,256),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+actor SplashAura2FX_HelperR : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura2FX_R",random(32,256),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+actor SplashAura2FX_HelperO : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura2FX_O",random(32,256),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+actor SplashAura2FX_HelperP : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura2FX_P",random(32,256),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+
+actor SplashAura3FX_Helper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 0 A_SpawnItemEx("SplashAura3FX",random(16,32),0,random(48,56),random(1,3),0,random(4,5),10*random(0,35),1)
+TNT1 A 2
+stop
+}
+}
+actor SplashAura3FX_HelperB : BasicHelper
+{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura3FX_B",random(32,256),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+actor SplashAura3FX_HelperR : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura3FX_R",random(32,256),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+actor SplashAura3FX_HelperO : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura3FX_O",random(32,256),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+actor SplashAura3FX_HelperP : BasicHelper{States{Spawn:TNT1 A 0
+TNT1 AA 0 A_SpawnItemEx("SplashAura3FX_P",random(32,256),0,random(-64,16),0,0,random(4,5),random(0,359),1)
+TNT1 A 2
+stop}}
+
+actor SplashSelfAuraFX_Helper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 0 A_SpawnItemEx("SplashSelfAuraFX",random(16,32),0,random(48,56),random(1,3),0,random(4,5),10*random(0,35),1)
+TNT1 A 2
+stop
+}
+}
+
+actor SplashSelfAuraFX : BasicClientSide
+{
++MISSILE
+Speed 30
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(2,"Spawn0")
+TNT1 A 0 A_Jump(32,"Spawn3")
+TNT1 A 0 A_Jump(128,"Spawn2")
+TNT1 A 0 A_Jump(2,"Spawn0")
+TNT1 A 0 A_Jump(256,"Spawn1")
+goto Spawn0
+Spawn0:
+SPLR SSSTTT 1 A_FadeOut(0.05)
+loop
+Spawn1:
+TNT1 A 0 A_Jump(64,"Spawn1C")
+TNT1 A 0 A_Jump(128,"Spawn1B")
+goto Spawn1A
+Spawn1A:
+SPLR AAABBB 1 A_FadeOut(0.05)
+loop
+Spawn1B:
+SPLR CCCDDD 1 A_FadeOut(0.05)
+loop
+Spawn1C:
+SPLR EEEFFF 1 A_FadeOut(0.05)
+loop
+Spawn2:
+TNT1 A 0 A_Jump(64,"Spawn2C")
+TNT1 A 0 A_Jump(128,"Spawn2B")
+goto Spawn2A
+Spawn2A:
+SPLR GGGHHH 1 A_FadeOut(0.05)
+loop
+Spawn2B:
+SPLR IIIJJJ 1 A_FadeOut(0.05)
+loop
+Spawn2C:
+SPLR KKKLLL 1 A_FadeOut(0.05)
+loop
+Spawn3:
+TNT1 A 0 A_Jump(64,"Spawn3C")
+TNT1 A 0 A_Jump(128,"Spawn3B")
+goto Spawn3A
+Spawn3A:
+SPLR MMMNNN 1 A_FadeOut(0.05)
+loop
+Spawn3B:
+SPLR OOOPPP 1 A_FadeOut(0.05)
+loop
+Spawn3C:
+SPLR QQQRRR 1 A_FadeOut(0.05)
+loop
+}
+}
+
+actor SplashAura1FX : BasicClientSide
+{
++MISSILE
+Speed 20
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(64,"Spawn3")
+TNT1 A 0 A_Jump(128,"Spawn2")
+goto Spawn1
+Spawn1:
+SPLQ AAABBB 1 A_FadeOut(0.05)
+loop
+Spawn2:
+SPLQ CCCDDD 1 A_FadeOut(0.05)
+loop
+Spawn3:
+SPLQ EEEFFF 1 A_FadeOut(0.05)
+loop
+}
+}
+actor SplashAura1FX_B : SplashAura1FX{VisibleToTeam 0}
+actor SplashAura1FX_R : SplashAura1FX{VisibleToTeam 1}
+actor SplashAura1FX_O : SplashAura1FX{VisibleToTeam 2}
+actor SplashAura1FX_P : SplashAura1FX{VisibleToTeam 3}
+
+actor SplashAura2FX : BasicClientSide
+{
++MISSILE
+Speed 20
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(64,"Spawn3")
+TNT1 A 0 A_Jump(128,"Spawn2")
+goto Spawn1
+Spawn1:
+Y_0C AAABBB 1 A_FadeOut(0.05)
+loop
+Spawn2:
+Y_0C CCCDDD 1 A_FadeOut(0.05)
+loop
+Spawn3:
+Y_0C EEEFFF 1 A_FadeOut(0.05)
+loop
+}
+}
+actor SplashAura2FX_B : SplashAura2FX{VisibleToTeam 0}
+actor SplashAura2FX_R : SplashAura2FX{VisibleToTeam 1}
+actor SplashAura2FX_O : SplashAura2FX{VisibleToTeam 2}
+actor SplashAura2FX_P : SplashAura2FX{VisibleToTeam 3}
+
+actor SplashAura3FX : BasicClientSide
+{
++MISSILE
+Speed 20
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(64,"Spawn3")
+TNT1 A 0 A_Jump(128,"Spawn2")
+goto Spawn1
+Spawn1:
+SPLQ GGGHHH 1 A_FadeOut(0.05)
+loop
+Spawn2:
+SPLQ IIIJJJ 1 A_FadeOut(0.05)
+loop
+Spawn3:
+SPLQ KKKLLL 1 A_FadeOut(0.05)
+loop
+}
+}
+actor SplashAura3FX_B : SplashAura3FX{VisibleToTeam 0}
+actor SplashAura3FX_R : SplashAura3FX{VisibleToTeam 1}
+actor SplashAura3FX_O : SplashAura3FX{VisibleToTeam 2}
+actor SplashAura3FX_P : SplashAura3FX{VisibleToTeam 3}
+
+
+actor SplashW_LaserProtect : PowerProtection
+{
+Powerup.Duration 4
+damagefactor "SplashW_Laser", 0.0
+}
+
+actor SplashLaserT_Spawner
+{
+Translation "202:202=161:161","199:199=74:74"
+PROJECTILE
+Damagetype "SplashW_Laser"
+Obituary "$OB_LASERTRIDENT"
++SKYEXPLODE
++EXPLODEONWATER
++DONTBLAST
++DONTREFLECT
++THRUACTORS
++NOINTERACTION
+RenderStyle "None"
+ReactionTime 6
+Damage (0)
+radius 2
+height 2
+Speed 1
+Scale 1.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,"Spawn2","Spawn3")
+TNT1 A 0 A_Jump(256,1,3,5,7,9,11,13,15)
+Y_9C A 1 A_SpawnItemEx("SplashLaserT_1",0,0,0,momx*50,momy*50,momz*50,0,41)
+Y_9C A 0 A_CountDown
+Y_9C A 1 A_SpawnItemEx("SplashLaserT_2",0,0,0,momx*50,momy*50,momz*50,0,41)
+Y_9C A 0 A_CountDown
+Y_9C A 1 A_SpawnItemEx("SplashLaserT_3",0,0,0,momx*50,momy*50,momz*50,0,41)
+Y_9C A 0 A_CountDown
+Y_9C A 1 A_SpawnItemEx("SplashLaserT_4",0,0,0,momx*50,momy*50,momz*50,0,41)
+Y_9C A 0 A_CountDown
+Y_9C B 1 A_SpawnItemEx("SplashLaserT_5",0,0,0,momx*50,momy*50,momz*50,0,41)
+Y_9C B 0 A_CountDown
+Y_9C B 1 A_SpawnItemEx("SplashLaserT_6",0,0,0,momx*50,momy*50,momz*50,0,41)
+Y_9C B 0 A_CountDown
+Y_9C B 1 A_SpawnItemEx("SplashLaserT_7",0,0,0,momx*50,momy*50,momz*50,0,41)
+Y_9C B 0 A_CountDown
+Y_9C B 1 A_SpawnItemEx("SplashLaserT_8",0,0,0,momx*50,momy*50,momz*50,0,41)
+Y_9C B 0 A_CountDown
+goto Spawn+3
+Spawn2:
+Y_9C AAAABB 1 A_SpawnItemEx("SplashLaserT_1",0,0,0,momx*50,momy*50,momz*50,0,41)
+stop
+Spawn3:
+Y_9C BBAAAA 1 A_SpawnItemEx("SplashLaserT_5",0,0,0,momx*50,momy*50,momz*50,0,41)
+stop
+}
+}
+
+actor SplashLaserT_SpawnerB : SplashLaserT_Spawner{Translation "202:202=205:205","199:199=74:74"}
+actor SplashLaserT_SpawnerR : SplashLaserT_Spawner{Translation "202:202=171:171","199:199=41:41"}
+actor SplashLaserT_SpawnerO : SplashLaserT_Spawner{Translation "202:202=104:104","199:199=128:128"}
+actor SplashLaserT_SpawnerP : SplashLaserT_Spawner{Translation "202:202=229:229","199:199=232:232"}
+
+actor SplashLaserT_0
+{
+PROJECTILE
+Damagetype "SplashW_Laser"
+Obituary "$OB_LASERTRIDENT"
++RIPPER
++DONTREFLECT
+//RenderStyle Translucent
+//Alpha 0.5
+Damage (100)//350
+radius 12
+height 20
+Speed 50
+scale 2.5
+States
+{
+Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+Spawn2:
+Y_9C AAAABBBB 1
+loop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor SplashLaserT_1 : SplashLaserT_0
+{
+States
+{
+Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+1
+}
+}
+actor SplashLaserT_2 : SplashLaserT_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+2}}
+actor SplashLaserT_3 : SplashLaserT_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+3}}
+actor SplashLaserT_4 : SplashLaserT_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+4}}
+actor SplashLaserT_5 : SplashLaserT_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+5}}
+actor SplashLaserT_6 : SplashLaserT_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+6}}
+actor SplashLaserT_7 : SplashLaserT_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+7}}
+actor SplashLaserT_8 : SplashLaserT_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2}}
+
+actor SplashW_Laser2Protect : PowerProtection
+{
+Powerup.Duration 4
+damagefactor "SplashW_Laser2", 0.0
+}
+
+actor SplashLaserTSE_Spawner
+{
+Translation "250:250=210:210", "249:249=41:41"
+PROJECTILE
+Damagetype "SplashW_Laser2"
+Obituary "$OB_LASERTRIDENT"
++SKYEXPLODE
++EXPLODEONWATER
++DONTBLAST
++DONTREFLECT
++THRUACTORS
++NOINTERACTION
++BRIGHT
+RenderStyle "None"
+ReactionTime 7
+Damage (0)
+radius 2
+height 2
+Speed 1
+Scale 1.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,"Spawn2","Spawn3")
+TNT1 A 0 A_Jump(256,1,3,5,7,9,11)
+SPLP Y 1 A_SpawnItemEx("SplashLaserTSE_1",0,0,0,momx*50,momy*50,momz*50,0,41)
+SPLP Y 0 A_CountDown
+SPLP Y 1 A_SpawnItemEx("SplashLaserTSE_2",0,0,0,momx*50,momy*50,momz*50,0,41)
+SPLP Y 0 A_CountDown
+SPLP Y 1 A_SpawnItemEx("SplashLaserTSE_3",0,0,0,momx*50,momy*50,momz*50,0,41)
+SPLP Y 0 A_CountDown
+SPLP Z 1 A_SpawnItemEx("SplashLaserTSE_4",0,0,0,momx*50,momy*50,momz*50,0,41)
+SPLP Z 0 A_CountDown
+SPLP Z 1 A_SpawnItemEx("SplashLaserTSE_5",0,0,0,momx*50,momy*50,momz*50,0,41)
+SPLP Z 0 A_CountDown
+SPLP Z 1 A_SpawnItemEx("SplashLaserTSE_6",0,0,0,momx*50,momy*50,momz*50,0,41)
+SPLP Z 0 A_CountDown
+goto Spawn+3
+Spawn2:
+SPLP YYYZZZY 1 A_SpawnItemEx("SplashLaserTSE_1",0,0,0,momx*50,momy*50,momz*50,0,41)
+stop
+Spawn3:
+SPLP ZZZYYYZ 1 A_SpawnItemEx("SplashLaserTSE_5",0,0,0,momx*50,momy*50,momz*50,0,41)
+stop
+}
+}
+
+actor SplashLaserTSE_SpawnerB : SplashLaserTSE_Spawner{translation "250:250=196:196","249:249=199:199"}
+actor SplashLaserTSE_SpawnerR : SplashLaserTSE_Spawner{translation "250:250=170:170","249:249=43:43"}
+actor SplashLaserTSE_SpawnerO : SplashLaserTSE_Spawner{translation "250:250=138:138","249:249=131:131"}
+actor SplashLaserTSE_SpawnerP : SplashLaserTSE_Spawner{translation "250:250=214:214","249:249=223:223"}
+
+actor SplashLaserTSE_0 : SplashLaserT_0
+{
+Damagetype "SplashW_Laser2"
+Damage (120)
+radius 14
+height 20
+Speed 60
+Scale 3.0
+States
+{
+Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+Spawn2:
+SPLP YYYZZZ 1
+loop
+}
+}
+
+actor SplashLaserTSE_1 : SplashLaserTSE_0
+{
+States
+{
+Spawn:
+goto Spawn2+1
+}
+}
+actor SplashLaserTSE_2 : SplashLaserTSE_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+2}}
+actor SplashLaserTSE_3 : SplashLaserTSE_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+3}}
+actor SplashLaserTSE_4 : SplashLaserTSE_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+4}}
+actor SplashLaserTSE_5 : SplashLaserTSE_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2+5}}
+actor SplashLaserTSE_6 : SplashLaserTSE_0{States{Spawn:
+Y_9C A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+goto Spawn2}}
+
+actor SplashAuraExplode0 : BasicExplosion
+{
+Damagetype "SplashW_Sing"//SplashLull
+Obituary "$OB_SPLASHSING0"
+Mass 40
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 3 A_Explode(Mass,256,0,0,128)
+stop
+}
+}
+actor SplashAuraExplode1 : SplashAuraExplode0
+{
+Obituary "$OB_SPLASHSING1"
+}
+actor SplashAuraExplode2 : SplashAuraExplode0
+{
+Obituary "$OB_SPLASHSING2"
+Mass 70//To counteract the healing enemies
+}
+actor SplashAuraExplode3 : SplashAuraExplode0
+{
+Obituary "$OB_SPLASHSING3"
+}
+
+
+actor SplashFishSummonFX_Helper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 0 A_SpawnItemEx("SplashFishSummonFX",random(16,32),0,random(48,56),random(1,3),0,random(4,5),10*random(0,35),1)
+TNT1 A 2
+stop
+}
+}
+
+actor SplashFishSummonFX : BasicClientSide
+{
++MISSILE
+Speed 10
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3")
+goto Spawn1
+Spawn1:
+SPLP AAABBB 1 A_FadeOut(0.05)
+loop
+Spawn2:
+SPLP CCCDDD 1 A_FadeOut(0.05)
+loop
+Spawn3:
+SPLP EEEFFF 1 A_FadeOut(0.05)
+loop
+}
+}
+
+//cbm_SplashRedFishButtonCheck
+
+actor SplashW_GabgyoTracker_H : BasicHelper
+{
+var int user_Fishy[63];
+Damagetype "SplashW_Sing"
+Obituary "$OB_SPLASHSING0"
+Height 64
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetArg(0,ACS_ExecuteWithResult(257,0))
+TNT1 A 0 Thing_Remove(-8200+Args[0]*-1)
+TNT1 A 0 Thing_ChangeTID(0,-8200+Args[0]*-1)
+SpawnL:
+TNT1 A 0 A_Warp(2,0,0,0,0,8)
+TNT1 A 2 ACS_NamedExecuteAlways("cbm_SplashW_RedFishGiver",0,Args[0],288)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("SplashEndSinging",1,"SpawnL2")
+loop
+SpawnL2:
+TNT1 A 10 //ACS_NamedExecuteAlways("",0)
+TNT1 A 2
+TNT1 A 70//Delay for online??
+stop
+Death:
+TNT1 A 4
+stop
+}
+}
+
+actor SplashFishSummon1_H
+{
+var int user_A;
+Translation "250:250=210:210", "249:249=41:41"
+PROJECTILE
+Damagetype "SplashW_Fish1"
+Obituary "$OB_SPLASHFISH1"
++DONTREFLECT
++THRUGHOST
++THRUACTORS
++NOEXPLODEFLOOR
++BOUNCEONFLOORS
++BOUNCEONWALLS
++BOUNCEONCEILINGS
++ALLOWBOUNCEONACTORS
++CANBOUNCEWATER
+renderstyle translucent
+Alpha 0.0
+Damage (0)
+Radius 12
+Height 12
+Speed 15
+Scale 0.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(259,0,0)//Change pitch to player pitch
+TNT1 A 0 A_SetUserVar("user_A",ACS_ExecuteWithResult(259,4)*360/256)//Record player angle
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_JumpIfInventory("CutterFlag",4,"Spawn3")
+TNT1 A 1 A_Recoil(1.5)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+loop
+Spawn3:
+TNT1 A 0 A_Stop
+TNT1 A 1 A_GiveInventory("ResyncPickup",1)
+goto Spawn4
+Spawn4:
+SPLP P 0 A_JumpIfInventory("CutterFlag",14,"SpawnEnd")
+SPLP P 0 A_SetScale(ScaleX+0.2,ScaleY+0.2)
+SPLP P 0 A_FadeIn(0.1)
+SPLP P 1 A_GiveInventory("CutterFlag",1)
+loop
+SpawnEnd:
+SPLP T 0 A_SpawnItemEx("SplashFishSummon1",0,0,0,cos(-pitch)*14,0,sin(-pitch)*14,user_A,5)
+stop
+Death:
+TNT1 A 0 A_SetScale(3.0,3.0)
+XMFX QS 1
+WMFX ABCD 1
+stop
+}
+}
+actor SplashFishSummon1_HB : SplashFishSummon1_H{translation "250:250=196:196","249:249=199:199"}
+actor SplashFishSummon1_HR : SplashFishSummon1_H{translation "250:250=170:170","249:249=43:43"}
+actor SplashFishSummon1_HO : SplashFishSummon1_H{translation "250:250=138:138","249:249=131:131"}
+actor SplashFishSummon1_HP : SplashFishSummon1_H{translation "250:250=214:214","249:249=223:223"}
+
+actor SplashFishSummon1//Gabgyo
+{
+PROJECTILE
+Damagetype "SplashW_Fish1"
+Obituary "$OB_SPLASHFISH1"
++DONTSEEKINVISIBLE//
++SEEKERMISSILE
+reactiontime 10
+Damage (180)
+radius 12
+height 12
+Speed 21
+scale 2.5
+States
+{
+Spawn:
+SPLP MMMNNNMMMNNNOOOPPPOOOPPP 1 A_SeekerMissile(1,4,3,64,3)
+SPLP M 0 A_CountDown
+loop
+Death:
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon1FX",0,0,30,0,0,0,0,1)
+stop
+}
+}
+actor SplashFishSummon1FX : BasicClientSide
+{
+Scale 3.0
+States
+{
+Spawn:
+XMFX Q 0
+XMFX QS 1
+WMFX ABCD 1
+stop
+}
+}
+
+actor SplashFishSummon2_H : BasicHelper
+{
+Translation "204:204=4:4", "195:195=106:106"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon2_H2",2,0,0,15,0,0,random(10,20),1)
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon2_H2",2,0,0,15,0,0,random(-10,-20),1)
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon2_H2",2,0,0,15,0,0,random(40,50),1)
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon2_H2",2,0,0,15,0,0,random(-40,-50),1)
+TNT1 A 2
+stop
+}
+}
+actor SplashFishSummon2_HB : SplashFishSummon2_H{translation "204:204=205:205","195:195=74:74"}
+actor SplashFishSummon2_HR : SplashFishSummon2_H{translation "204:204=171:171","195:195=41:41"}
+actor SplashFishSummon2_HO : SplashFishSummon2_H{translation "204:204=104:104","195:195=128:128"}
+actor SplashFishSummon2_HP : SplashFishSummon2_H{translation "204:204=229:229","195:195=232:232"}
+
+actor SplashFishSummon2_H2 : SplashFishSummon1_H
+{
+Damagetype "SplashW_Fish2"
+Obituary "$OB_SPLASHFISH2"
+States
+{
+Spawn:
+TNT1 A 2
+goto Spawn3
+Spawn3:
+TNT1 A 0 A_Stop
+TNT1 A 1 A_GiveInventory("ResyncPickup",1)
+goto Spawn4
+Spawn4:
+SPLP S 0 A_JumpIfInventory("CutterFlag",10,"SpawnEnd")
+SPLP S 0 A_SetScale(ScaleX+0.2,ScaleY+0.2)
+SPLP S 0 A_FadeIn(0.1)
+SPLP S 1 A_GiveInventory("CutterFlag",1)
+loop
+SpawnEnd:
+SPLP T 0 A_SpawnItemEx("SplashFishSummon2Start",0,0,0,5,0,10,0,1)
+stop
+Death:
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon2Start",0,0,25,0,0,0,0,1)
+stop
+}
+}
+actor SplashFishSummon2_H2FX : BasicClientSide
+{
+States
+{
+Spawn:
+XMFX S 0
+XMFX S 1
+WMFX ABCD 3
+stop
+}
+}
+
+actor SplashFishSummon2Start
+{
+PROJECTILE
+Damagetype "SplashW_Fish2"
+Obituary "$OB_SPLASHFISH2"
++DONTBLAST
++DONTREFLECT
+-NOGRAVITY
+//+BOUNCEONFLOORS
++BOUNCEONWALLS
++BOUNCEONCEILINGS
+//+ALLOWBOUNCEONACTORS
++CANBOUNCEWATER
++DONTSPLASH
+BounceCount 4
+Damage (120)
+Radius 10
+Height 12
+speed 40
+scale 2.5
+States
+{
+Spawn:
+SPLP S 0
+SPLP S 2 ThrustThingZ(0,0,0,1)
+goto Spawn2
+Spawn2:
+SPLP QR 4
+loop
+Death:
+SPLP S 0 A_SpawnItemEx("SplashFishSummon2Start2",0,0,5,4,0,0,0,1)
+stop
+XDeath:
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon2DeathFX",0,0,25,0,0,0,0,1)
+stop
+}
+}
+
+actor SplashFishSummon2Start2 : SplashFishSummon2Start
+{
+States
+{
+Spawn:
+SPLP S 0
+SPLP S 4 ThrustThingZ(0,32,0,0)
+goto Spawn2
+Death:
+SPLP S 0 A_SpawnItemEx("SplashFishSummon2Start3",0,0,5,3,0,0,0,1)
+stop
+}
+}
+
+actor SplashFishSummon2Start3 : SplashFishSummon2Start
+{
+States
+{
+Spawn:
+SPLP S 0
+SPLP S 2 ThrustThingZ(0,16,0,0)
+goto Spawn2
+Death:
+SPLP S 0
+SPLP S 0 A_SpawnItemEx("SplashFishSummon2",0,0,0,20,0,0,0,1)
+stop
+}
+}
+
+actor SplashFishSummon2DeathFX : BasicClientSide
+{
+States
+{
+Spawn:
+XMFX S 0
+XMFX S 1
+VMFX ABCD 3
+stop
+}
+}
+
+actor SplashFishSummon2//Claw
+{
+PROJECTILE
+Damagetype "SplashW_Fish2"
+Obituary "$OB_SPLASHFISH2"
+-NOGRAVITY
++DONTREFLECT
++EXPLODEONWATER
++DONTSPLASH
++NOEXPLODEFLOOR
++STEPMISSILE
+maxstepheight 24
+BounceFactor 1.0
+WallBounceFactor 1.0//0.0
+BounceCount 13
+reactiontime 20
+Damage (120)
+Radius 12
+Height 12
+Speed 20
+scale 2.5
+States
+{
+Spawn:
+SPLP Q 0
+SPLP QR 4
+SPLP Q 0 A_CountDown
+loop
+Death:
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon2DeathFX",0,0,25,0,0,0,0,1)
+stop
+}
+}
+actor SplashFishSummon2X : SplashFishSummon2
+{
+BounceCount 2
+}
+
+actor SplashFishSummon3_H : BasicHelper
+{
+Translation "202:202=161:161"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon3_H2",2,0,0,15,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon3_H2",2,0,0,15,random(16,32),random(-4,12),0,1)
+TNT1 A 0 A_SpawnItemEx("SplashFishSummon3_H2",2,0,0,15,random(-16,-32),random(-4,12),0,1)
+TNT1 A 2
+stop
+}
+}
+actor SplashFishSummon3_HB : SplashFishSummon3_H{translation "202:202=205:205"}
+actor SplashFishSummon3_HR : SplashFishSummon3_H{translation "202:202=171:171"}
+actor SplashFishSummon3_HO : SplashFishSummon3_H{translation "202:202=104:104"}
+actor SplashFishSummon3_HP : SplashFishSummon3_H{translation "202:202=229:229"}
+
+actor SplashFishSummon3_H2 : SplashFishSummon1_H
+{
+Translation "202:202=161:161"
+Obituary "$OB_SPLASHFISH3"
+States
+{
+Spawn3:
+TNT1 A 0 A_Stop
+TNT1 A 1 A_GiveInventory("ResyncPickup",1)
+goto Spawn4
+Spawn4:
+SPLP T 0 A_JumpIfInventory("CutterFlag",14,"SpawnEnd")
+SPLP T 0 A_SetScale(ScaleX+0.2,ScaleY+0.2)
+SPLP T 0 A_FadeIn(0.1)
+//SPLP T 0 A_FadeIn(0.1)
+SPLP T 1 A_GiveInventory("CutterFlag",1)
+loop
+SpawnEnd:
+SPLP T 0 A_SpawnItemEx("SplashFishSummon3",0,0,0,cos(-pitch)*64,0,sin(-pitch)*64,user_A,5)
+stop
+Death:
+XMFX S 1 A_SetScale(2.5,2.5)
+XMFX SSS 1 A_SetScale(ScaleX-0.5,ScaleY-0.5)
+stop
+}
+}
+
+actor SplashFishSummon3//Flounders?
+{
+PROJECTILE
+Damagetype "SplashW_Fish3"
+Obituary "$OB_SPLASHFISH3"
++DONTREFLECT
+Damage (20)
+radius 12
+height 12
+Speed 64
+scale 2.5
+States
+{
+Spawn:
+SPLP TU 6
+loop
+Death:
+TNT1 A 0 A_Explode(150,96,0,0,16)
+TNT1 A 0 A_SetScale(2.25,2.25)
+TNT1 A 1 A_PlaySoundEx("misc_L/mm3explosion","Weapon")
+TNT1 A 0 A_SpawnItemEx("BasicBoom6FX_Y3",0,0,0,0,0,0,0,1+32+16384)
+TNT1 A 1
+stop
+}
+}
+
+
+
+
+actor SplashMainSinewyCheck_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PowerSplashSinewyEtudeX",1,"Pickup2")
+TNT1 A 0 A_GiveInventory("SplashwomanMain_CI",1)
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("SplashwomanMain2_CI",1)
+stop
+
+}
+}
+
+actor SplashwomanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SplashLaserT_Spawner",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SplashLaserT_SpawnerB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SplashLaserT_SpawnerR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SplashLaserT_SpawnerO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SplashLaserT_SpawnerP",0,1,8,0)
+goto Done
+}
+}
+
+actor SplashwomanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SplashLaserTSE_Spawner",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SplashLaserTSE_SpawnerB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SplashLaserTSE_SpawnerR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SplashLaserTSE_SpawnerO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SplashLaserTSE_SpawnerP",0,1,8,0)
+goto Done
+}
+}
+
+actor SplashwomanAlt1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon1_H",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon1_HB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon1_HR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon1_HO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon1_HP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("SplashingAboutAmmo",14,1)
+stop
+}
+}
+actor SplashwomanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon2_H",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon2_HB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon2_HR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon2_HO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon2_HP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("SplashingAboutAmmo",14,1)
+stop
+}
+}
+actor SplashwomanAlt3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon3_H",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon3_HB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon3_HR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon3_HO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SplashFishSummon3_HP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("SplashingAboutAmmo",14,1)
+stop
+}
+}
+
+actor SplashwomanOther1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("SplashAura1FX_HelperB",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P1B",288,2)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("SplashAura1FX_HelperR",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P1R",288,2)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("SplashAura1FX_HelperO",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P1O",288,2)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("SplashAura1FX_HelperP",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P1P",288,2)
+goto Done
+Done:
+TNT1 A 0 A_GiveInventory("SplashAuraBuff_P1",1)
+TNT1 A 0 A_JumpIfInventory("SplashAuraBoomDelay",1,"End")
+TNT1 A 0 A_GiveInventory("SplashAuraBoomDelay_RC",1)
+TNT1 AA 0 A_SpawnItemEx("SplashSelfAuraFX_Helper",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_FireCustomMissile("SplashAuraExplode1",0,0,0,0)
+stop
+End:
+TNT1 A 0 
+stop
+}
+}
+actor SplashwomanOther2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P2",288,2)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("SplashAura2FX_HelperB",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P2",288,2)//SplashAuraBuff_P2B
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("SplashAura2FX_HelperR",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P2",288,2)//SplashAuraBuff_P2R
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("SplashAura2FX_HelperO",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P2",288,2)//SplashAuraBuff_P2O
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("SplashAura2FX_HelperP",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P2",288,2)//SplashAuraBuff_P2P
+goto Done
+Done:
+TNT1 A 0 A_GiveInventory("SplashAuraBuff_P2",1)
+TNT1 A 0 A_JumpIfInventory("SplashAuraBoomDelay",1,"End")
+TNT1 A 0 A_GiveInventory("SplashAuraBoomDelay_RC",1)
+TNT1 AA 0 A_SpawnItemEx("SplashSelfAuraFX_Helper",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_FireCustomMissile("SplashAuraExplode2",0,0,0,0)
+stop
+End:
+TNT1 A 0
+stop
+}
+}
+actor SplashwomanOther3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("SplashAura3FX_HelperB",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P3B",288,2)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("SplashAura3FX_HelperR",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P3R",288,2)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("SplashAura3FX_HelperO",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P3O",288,2)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("SplashAura3FX_HelperP",0,0,28,0,0,0,0,1)
+TNT1 A 0 A_RadiusGive("SplashAuraBuff_P3P",288,2)
+goto Done
+Done:
+TNT1 A 0 A_GiveInventory("SplashAuraBuff_P3",1)
+TNT1 A 0 A_JumpIfInventory("SplashAuraBoomDelay",1,"End")
+TNT1 A 0 A_GiveInventory("SplashAuraBoomDelay_RC",1)
+TNT1 AA 0 A_SpawnItemEx("SplashSelfAuraFX_Helper",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_FireCustomMissile("SplashAuraExplode3",0,0,0,0)
+stop
+End:
+TNT1 A 0
+stop
+}
+}

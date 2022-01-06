@@ -1,12 +1,14 @@
-actor Terra : ProtoClassBase
+actor Terra : ClassBase //75
 {
-player.startitem "ProtoHealthBar"
 Player.ScoreIcon "C_0VA0X"
 player.displayname "terra"
 player.soundclass "terrac"
 player.startitem "SparkChaserBoss"
 player.startitem "ShonenAmmo", 500
 player.startitem "ShojoAmmo", 56
+
+player.maxhealth 750
+health 750
 player.forwardmove 0.9, 0.9
 player.sidemove 0.88, 0.88
 player.jumpz 12

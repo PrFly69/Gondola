@@ -4,6 +4,12 @@ Player.ScoreIcon "C_00J0X"
 player.displayname "SniperJoe"
 player.soundclass "sniperjoec"
 
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
 player.startitem "CanKillStreak"
 player.startitem "JoeKillStreakItem"
 

@@ -2088,6 +2088,10 @@ CHANGELOG
 
 ==Flashman
 -Ammo bars swapped
+-Fixed bot crashout bug after stunning an enemy
+
+==Magnetman
+-Magnet Mines removed
 
 ==Gyroman
 -Fixed coloring issues on altfire splitting FX
@@ -2095,6 +2099,7 @@ CHANGELOG
 ==Dark Man 3
 -All shots are now suckable by Saturn
 *Whoops!
+-Fully charged ping sound reverted to core sound
 
 ==Knightman
 -Special obit on first Knight Rush damager readded
@@ -2109,6 +2114,15 @@ CHANGELOG
 -Fixed plug still breaking off LOS
 -Fixed HUD disjoint on mainfire
 
+==Pumpman
+-Bubbles now have +GHOST property
+
+==Sheepman
+-Sheep Bolters that are spawned via Thunder Wool no longer wool-colored, now are properly yellow in non-team settings
+
+==Strikeman
+-No longer gains ammo on any given Semi-Powered Rebound Striker, now functions as it does in CCBM 2.0h
+
 ==Saturn
 -CBL Callback death nerfed into a mere easter egg
 --Only activated upon dying to Electric Shock (Saturn's canonical weakness)
@@ -2116,7 +2130,7 @@ CHANGELOG
 -Fixed Black Hole Ring not activating on release
 
 ==Pluto
--Now has a 50 tic delay in between meows
+-Now has a 5 tic delay in between meows
 --Meow sound has lower pitch than Tango meow
 --Meowing no longer cancels Break Dashing skinsprites
 
@@ -2126,3 +2140,79 @@ CHANGELOG
 -Trample damage 18 > 16
 --Trample ammo loss 1 > 3, 2 > 6 with rage
 --Removed ammo gain on damaging enemies with trample
+
+=====2.5
+==NOW FULLY COMPATIBLE WITH CBM!
+*Uses Trillster's HP decimal system :)
+
+==Megaman
+-MM4 Sprite Chargeshot damage 25 > 30
+*No clue what to call it lmao
+
+==Rock
+-Ported classes-v9fk.pk3 Mega Ball visuals
+
+==Roll
+-Ported classes-v9fh.pk3 visuals
+
+==Gutsman
+-Rock sprite ported from classes-v9fh.pk3
+
+==Bombman
+-Hyper Bomb Explosion FX ported from classes-v9fh.pk3
+
+==Flashman
+-Flash Stunner windup reverted to original version
+
+==Quickman
+-Movespeed 1.33/1.35 > 1.08/1.10
+
+==Doc Robot
+-Health 900 > 1000
+-Gear Grinder RoF lowered by 10 tics
+--Gear Grinder bouncecount 3 > 2
+--Gear Grinder speed 90 > 69
+
+==Centaurman
+-Centaur Arrow requires 2 ammo
+--Fires singular Centaur Buster shot without sufficient ammo
+
+==Knightman
+-Hitstun on Knight Crush reduced 0.75 > 0.9
+-Spinning Mace knockback increased 8 > 12
+-Super Knight Crush sprite now reflects hitbox
+
+==Plantman
+-Health 850 > 900
+-Plant Buster shots bounce off of walls with reduced velocity
+
+==Windman
+-Weapon ammo capacity 28 > 32
+--Wind Storm ammo usage 14 > 16
+
+==Coldman
+-Ice Wall health 950 > 500
+
+==Magicman
+-Ported Magic Ball from classes-v9fh.pk3
+--Damage 110 > 90
+
+==Concreteman
+-Sniper Concrete Block direct damage 50 > 200
+--Sniper Concrete Block explosive damage 350 > 150
+
+==Fakeman
+-FOM Buffer 15 > 12
+
+==Sheepman
+-Health 850 > 900
+
+==Solarman
+-Health 900 > 1000
+
+==Enker
+-Ported V-Classes HUD
+
+==Ballade
+-Ballade Cracker spins faster depending on speed, based on classes-v9fh.pk3
+-Ballade Mine flashes before exploding, based on classes-v9fh.pk3

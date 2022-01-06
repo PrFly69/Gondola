@@ -1,11 +1,14 @@
-actor Darkman4 : SturdyClassBase
+actor Darkman4 : ClassBase //125
 {
 Player.ScoreIcon "C_05L0X"
-player.startitem "SturdyHealthBar"
 player.displayname "darkman4"
 player.soundclass "darkman4c"
 player.startitem "DarkBlasterBoss"
 player.startitem "DarkBlasterAmmo",28
+
+player.maxhealth 1250
+health 1250
+player.jumpz 10
 player.forwardmove 0.7, 0.7
 player.sidemove 0.68, 0.68
 

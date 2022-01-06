@@ -1,13 +1,16 @@
-actor Shadowman : ProtoClassBase
+actor Shadowman : ClassBase //75
 {
 Player.ScoreIcon "C_03H0X"
-player.startitem "ProtoHealthBar"
 player.displayname "Shadowman"
 player.soundclass "Shadowmanc"
 player.startitem "ShadowBladeBoss"
 player.startitem "ShadowBladerBoss"
 player.startitem "CloakAmmo", 28
 player.startitem "CanWallJump"
+player.startitem "CanWallJumpStack", 99
+
+player.maxhealth 750
+health 750
 player.jumpz 15
 player.forwardmove 0.9, 0.9
 player.sidemove 0.88,0.88

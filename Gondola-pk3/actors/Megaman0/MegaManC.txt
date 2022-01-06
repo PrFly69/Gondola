@@ -1,29 +1,35 @@
-actor MegamanC : MegaClassBase replaces Megaman
+actor MegamanC : ClassBase replaces Megaman
 {
 Player.ScoreIcon "C_00B0X"
-player.startitem "MegaHealthBar"
-player.displayname "megaman"
+player.displayname "Megaman"
 player.soundclass "megamanc"
-player.startitem "MegaBusterC"
-player.startitem "BusterAmmo", 3
+
+player.maxhealth 900
+health 900
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "MegaBusterBoss"
+player.startitem "BaseWepAltOverride_F", 1
 player.startitem "CanCopyWeapons"
 player.startitem "CanUseItems"
 player.startitem "MegaFlag"
 player.startitem "MegaBusterFlag"
-player.startitem "CanWallJump"
-
 player.startitem "SlideLimitFlag", 500
 player.startitem "CopyNerf"
+player.startitem "CanWallJump"
+player.startitem "CanWallJumpStack", 99
 +NOSKIN
 States
 {
 Spawn:
 MEGM A 0
 MEGM B 1
-MEGM A 1 //A_TakeInventory("SexoBradFlag",1)
-//90
-//10
-Goto Spawn+2
+MEGM A 1
+MEGM A 55//90 9
+MEGM Y 5
+goto Spawn+3
 See:
 MEGM BCDE 5 //A_GiveInventory("SexoBradFlag",1)
 Goto Spawn

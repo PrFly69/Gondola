@@ -765,3 +765,38 @@ Script "core_drawhookshot" (int playerTid, int density) CLIENTSIDE
 			
 	}
 }
+
+script "cbm_CheckForRealMovementInput" (void)
+{
+	int Is_Moving = 1;
+	int Move = checkForMovement(GetPlayerInput(-1, INPUT_BUTTONS));
+	if(Move == 1 || Move == 7 || Move == 25 || Move == 31){
+		Is_Moving = -1;
+	}
+	SetResultValue(Is_Moving);
+}
+
+script 850 (void)
+{
+//SetResultValue(checkForJump(GetPlayerInput(-1, INPUT_BUTTONS)));
+SetResultValue(checkForMovement(GetPlayerInput(-1, INPUT_BUTTONS)));
+}
+
+function bool checkForMovement(int buttons) {
+	int result = 1;
+
+	if (buttons & BT_MOVERIGHT){
+		result+=2;
+	}
+	if (buttons & BT_MOVELEFT){
+		result+=4;
+	}
+	if (buttons & BT_BACK){
+		result+=8;
+	}
+	if (buttons & BT_FORWARD){
+		result+=16;
+	}
+
+	return(result);
+}

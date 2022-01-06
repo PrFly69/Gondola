@@ -1,0 +1,635 @@
+actor ChargeKickBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_5F"
+dropitem "ChargeKickWepCDropped"
+Weapon.AmmoUse 4
+Weapon.AmmoGive 0
+Obituary "$OB_CHARGERAM"
+weapon.ammotype "ChargeManIsEveryWhereAmmo"
+weapon.ammotype2 "BlackHotAmmo"
++WEAPON.NOAUTOAIM
+Weapon.KickBack 400
+States
+{
+Spawn:
+C_05 F 1
+loop
+Ready:
+CHAH A 0 ACS_ExecuteAlways(998,0,DYE_CHARGEMAN)
+CHAH A 0 A_JumpIfInventory("ChargemanOnceC",1,3)
+CHAH A 0 A_GiveInventory("ChargemanOnceC",1)
+CHAH A 0 A_SpawnItemEx("ChargemanArmorWatcher_H")
+CHAH A 0 //A_JumpIf(ACS_ExecuteWithResult(975,1)==1 && ACS_NamedExecuteWithResult("cbm_FetchServerCVar",6)==0,"ReadyT")
+goto Ready0
+Ready0:
+CHAH A 0 A_GunFlash
+goto Ready1
+ReadyT:
+CHAH A 0 A_SpawnItemEx("ChargeCarryHelper")
+CHAH A 0 A_GunFlash("FlashT")
+goto Ready1
+Ready1a:
+CHAH A 0 A_JumpIfInventory("ChargeManIsEveryWhereAmmo",4,"Ready2a")
+CHAH A 14 A_WeaponReady(WRF_NOFIRE)
+goto Ready1
+Ready1:
+CHAH A 0 A_JumpIfInventory("ChargeManIsEveryWhereAmmo",4,"Ready2")
+CHAH A 1 A_WeaponReady(WRF_NOFIRE)
+CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+loop
+Ready2a:
+CHAH A 0 A_JumpIfInventory("ChargeManIsEveryWhereAmmo",4,"Ready3a")
+CHAH A 14 A_WeaponReady(WRF_NOSECONDARY)
+goto Ready2
+Ready2:
+CHAH A 0 A_JumpIfInventory("ChargeManIsEveryWhereAmmo",17,"Ready3")
+CHAH A 1 A_WeaponReady(WRF_NOSECONDARY)
+CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+loop
+Ready3a:
+CHAH A 14 A_WeaponReady
+goto Ready2
+Ready3:
+//CHAH A 0 A_JumpIfInventory("BlackHotAmmo",300,"Ready4Sound")
+CHAH A 1 A_WeaponReady
+CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+loop
+Ready4Sound:
+CHAH A 0 A_GiveInventory("AmmoChooChoo",1)
+Ready4:
+CHAH A 1 A_WeaponReady
+CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+CHAH A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+CHAH A 1 A_Raise
+Loop
+Fire:
+CHAH A 0 A_GiveInventory("StunArmor",1)
+CHAH A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+CHAH A 0 A_GiveInventory("ChargeDashFlag",1)
+CHAH A 0 SetPlayerProperty(0,1,0)
+CHAH A 0 A_ReFire("FireH")
+goto FireH
+BotFire:
+CHAH A 0 A_Jump(64,"CoalAttack")
+CHAH A 0 A_GiveInventory("ChargeDashFlag",1)
+goto FireH
+FireH:
+CHAH B 0 A_JumpIfNoAmmo("NoAmmoX")
+CHAH B 0 A_PlaySound("weapon/train",0,1)
+CHAH B 1 A_GiveInventory("ChargeTrainDash",1)
+CHAH C 1
+CHAH B 0 A_FireCustomMissile("ChargeTrainClip",0,0,0,0)
+CHAH B 0 A_GiveInventory("ChargemanMain_CI",1)
+CHAH B 0 A_GiveInventory("ChargeDashFlag",1)
+CHAH B 0 A_ReFire(1)
+CHAH D 1 A_GiveInventory("ChargeTrainDash",1)
+CHAH C 1
+CHAH B 0 A_GiveInventory("ChargeDashFlag",1)
+CHAH B 0 A_ReFire(1)
+CHAH B 1 A_GiveInventory("ChargeTrainDash",1)
+CHAH B 0 A_ReFire("FireH2")
+Goto NoAmmoX
+FireH2:
+CHAH B 0 A_JumpIfNoAmmo("NoAmmoX")
+CHAH B 0 A_PlaySound("weapon/train",0,1)
+CHAH B 1 A_GiveInventory("ChargeTrainDash",1)
+CHAH B 0 A_GiveInventory("ChargeDashFlag",1)
+CHAH B 0 A_ReFire(1)
+CHAH C 1 A_JumpIfInventory("PowerRage_ST",1,1)//
+CHAH B 0 A_FireCustomMissile("ChargeTrainClip",0,0,0,0)
+CHAH B 0 A_GiveInventory("ChargemanMain_CI",1)
+CHAH D 1 A_GiveInventory("ChargeTrainDash",1)
+CHAH B 0 A_GiveInventory("ChargeDashFlag",1)
+CHAH B 0 A_ReFire(1)
+CHAH C 1 A_JumpIfInventory("PowerRage_ST",1,1)//
+CHAH B 1 A_GiveInventory("ChargeTrainDash",1)
+CHAH B 0 A_GiveInventory("ChargeDashFlag",1)
+CHAH B 0 A_ReFire("FireH")
+Goto NoAmmoX
+
+NoAmmoX:
+CHAH B 0 SetPlayerProperty(0,0,0)
+CHAH B 0 A_ClearReFire
+CHAH B 0 A_TakeInventory("StunArmor",999)
+CHAH B 0 A_TakeInventory("ChargeDashFlag",999)
+CHAH B 0 A_JumpIfInventory("IsBot",1,"NoAmmoBot")
+Goto Ready1a
+NoAmmoBot:
+CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",75)
+CHAH A 70 SetPlayerProperty(0,1,0)
+CHAH A 0 SetPlayerProperty(0,0,0)
+CHAH B 0 A_ClearReFire
+Goto Ready1
+
+Altfire:
+CHAH A 0 A_JumpIfInventory("BlackHotAmmo",100,"CoalAttack")
+Goto NoAmmoAlt
+CoalAttack:
+CHAH C 0 A_GiveInventory("ChargeAltfireResync_P",1)
+CHAH C 0 A_PlaySoundEx("weapon/chugga","weapon")
+//CHAH C 0 A_GunFlash
+//CHAH C 0 A_SpawnItemEx("TrainSteam",0,0,120,0,0,0,0,1)
+CHAH C 0 A_SpawnItemEx("CoalSpawner",0,0,56,0,0,0,0,1)
+CHAH C 0 A_FireCustomMissile("ChargeAltRadius",0,0,0,0)
+CHAH C 0 A_GiveInventory("ChargemanAlt_CI",1)
+CHAH OOPPQQRR 1 A_TakeInventory("BlackHotAmmo",10)
+CHAH E 0 ACS_ExecuteAlways(998,0,DYE_CHARGEMAN,1)
+CHAH E 0 A_GiveInventory("InvulnerableOff_Pickup",1)
+TNT1 A 0 A_TakeInventory("ChargeTrollageFlag",1)
+CHAH E 0 A_TakeInventory("BlackHotAmmo",10)
+CHAH SSSSRRQQPPOO 1
+CHAH A 4
+Goto Ready1
+
+NoAmmoAlt:
+CHAH A 1
+CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+goto Ready1
+
+/*
+FlashT:
+TNT1 AAAAAAAAAAAAAAAAAA 2 A_SpawnItemEx("TrainGrabber",0,0,56,1,0,1)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_SpawnItemEx("TrainSteam",0,0,120,0,0,0,0,1)
+loop
+*/
+
+Flash:
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_SpawnItemEx("TrainSteam",0,0,120,0,0,0,0,1)
+loop
+}
+}
+
+actor ChargeManIsEveryWhereAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 80
++INVENTORY.IGNORESKILL 
+}
+
+actor BlackHotAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 300
++INVENTORY.IGNORESKILL 
+}
+
+actor ChargemanOnceC : OnceC{}
+
+actor ChargeDashFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 5
+}
+
+actor ChargemanArmorDelay : Powerup
+{
+Powerup.Duration 35
+}
+
+actor AmmoChooChoo : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteWithResult("AmmoChooChooSound")
+stop
+}
+}
+
+/*actor ChargemanArmorBonus : BasicArmorBonus
+{
+Armor.SavePercent 50
+Armor.Saveamount 11
+Armor.Maxsaveamount 115
+Armor.Maxbonus 11//This doesn't do anything???
+Armor.Maxbonusmax 50
+}*/
+
+
+actor ChargeManLink : Inventory 
+{
+inventory.amount 1
+Inventory.MaxAmount 1064
+}
+actor TrainBuffer : Inventory
+{
+inventory.amount 1
+inventory.maxamount 999
+}
+actor ChargeManJumpBuffer : Powerup
+{
+powerup.duration -1
+}
+actor ChargeWildRideFlag : OnceC {}
+
+actor ChargeTrollageFlag : OnceC {}
+
+actor ChargeTrainDash : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
+goto Air
+Air:
+TNT1 A 0 A_JumpIfInventory("ImpairmentStack",1,2)
+TNT1 A 0 A_Recoil(-1.75f)//-4
+stop
+TNT1 A 0 A_Recoil(-1.75f*ACS_NamedExecuteWithResult("ImpairmentACS")/100)//-4
+stop
+Ground:
+TNT1 A 0 A_JumpIfInventory("ImpairmentStack",1,2)
+TNT1 A 0 A_Recoil(-4.5f)//-12
+stop
+TNT1 A 0 A_Recoil(-4.5f*ACS_NamedExecuteWithResult("ImpairmentACS")/100)//-12
+stop
+//CHAH B 2 A_Recoil(-12)//A_Recoil(-5)
+//CHAH B 2// A_Recoil(-5)
+//CHAH B 1// A_Recoil(-3)
+}
+}
+
+actor ChargeAltfireResync_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 ACS_ExecuteAlways(998,0,DYE_CHARGEMANHOT,5)
+TNT1 A 0 A_GiveInventory("InvulnerableOn_Pickup",1)
+TNT1 A 0 A_GiveInventory("ChargeTrollageFlag",1)
+TNT1 A 0 A_TakeInventory("BlackHotAmmo",10)
+stop
+}
+}
+
+actor ChargeCarryHelper : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 1 A_JumpIfInTargetInventory("ChargeManLink",1,"Coop")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Coop:
+TNT1 A 1 ACS_NamedExecuteAlways("cbm_traingrab",0,ACS_NamedExecuteWithResult("cbm_gettrainpassenger"))
+TNT1 A 0 A_JumpIfInTargetInventory("ChargeManLink",1,"Coop")
+Goto Spawn
+}
+}
+
+actor TrainGrabber
+{
+PROJECTILE
++DONTBLAST
++DONTREFLECT
++HITTRACER
+renderstyle none
+radius 34
+height 32
+speed 1
+states
+{
+Spawn:
+PLAY A 4
+stop
+XDeath:
+PUNK H 0 A_JumpIfInTargetInventory("ChargeManJumpBuffer",1,"No")
+PUNK H 0 A_JumpIfInventory("ChargeManLink",1,"No",8)
+PUNK H 0 A_JumpIfInventory("ChargeWildRideFlag",1,"No",8)
+PUNK H 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerally")==1,"DeathLink")
+goto No
+DeathLink:
+BASS H 4 ACS_NamedExecuteAlways("cbm_chargemanlink", 0, ACS_ExecuteWithResult(147,0), ACS_ExecuteWithResult(147,1))
+stop
+No:
+Death:
+PUNK H 4
+stop
+}
+}
+
+actor ChargeTrainClip : BasicExplosion
+{
+damagetype "ChargeM_Ram2"
+Obituary "$OB_CHARGERAM"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(60,80,0,0,24)
+stop
+}
+}
+
+actor ChargemanArmorWatcher_H : BasicHelper
+{
++SERVERSIDEONLY
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 5
+TNT1 A 0 A_GiveToTarget("ChargeM_BasicArmorBonus_P",1)
+TNT1 A 0 A_SetArg(1,CallACS("cbm_Fetch_GetArmorInfo",1,2))
+TNT1 A 0 A_GiveToTarget("DynamicArmorDosage_F",Args[1])
+TNT1 A 0 A_TakeFromTarget("BasicArmor")
+TNT1 A 1
+TNT1 A 0 A_SetArg(1,(Args[1]<100)+Args[1]/100)
+SpawnIdle:
+PLAY A 1
+PLAY A 0 A_JumpIfInTargetInventory("BasicArmor",1,"Spawn_Wait")
+PLAY A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Spawn_Wait:
+BASS A 1
+BASS A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+BASS A 0 A_JumpIfInTargetInventory("ChargemanArmorDelay",1,"Spawn_Wait")
+goto Spawn_Take
+Spawn_Take:
+BASS F 1 A_TakeFromTarget("BasicArmor",Args[1])
+BASS F 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+BASS F 0 A_JumpIfInTargetInventory("ChargemanArmorDelay",1,"Spawn_Wait")
+BASS F 0 A_JumpIfInTargetInventory("BasicArmor",1,"Spawn_Take")
+BASS H 1 A_TakeFromTarget("BasicArmor")
+goto SpawnIdle+1
+Death:
+ROLL H 1
+stop
+}
+}
+
+actor ChargeTrain
+{
+Translation "198:198=225:225", "192:192=4:4"
+PROJECTILE
+damagetype "ChargeM_Ram"
+Obituary "$OB_CHARGERAM"
++DONTBLAST
++DONTREFLECT
++HITTRACER
++BOUNCEONFLOORS
++BOUNCEONWALLS
++BOUNCEONCEILINGS
++CANBOUNCEWATER
++NOEXPLODEFLOOR
+Bouncecount 2
+BounceFactor 1.0
+WallBounceFactor 1.0
+damage (60)
+Radius 16
+Height 28
+speed 80
+scale 2.5
+States
+{
+Spawn:
+STEA M 1 A_SpawnItemEx("ChargeRamFX1",0,0,0,0,0,0,0,1)
+STEA N 1 A_SpawnItemEx("ChargeRamFX2",0,0,0,0,0,0,0,1)
+stop
+Crash:
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedexecuteWithResult("cbm_istracerenemy")==1,"Death_Give")
+Goto Death
+Death_Give:
+TNT1 A 0 A_GiveToTarget("ChargeM_BasicArmorBonus_P",1)
+TNT1 A 0 A_GiveToTarget("ChargemanArmorDelay",1)
+Goto Death
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor ChargeTrainB : ChargeTrain{translation "198:198=74:74","192:192=205:205"}
+actor ChargeTrainR : ChargeTrain{translation "198:198=41:41","192:192=171:171"}
+actor ChargeTrainO : ChargeTrain{translation "198:198=128:128","192:192=104:104"}
+actor ChargeTrainP : ChargeTrain{translation "198:198=232:232","192:192=229:229"}
+
+actor ChargeRamFX1 : BasicClientSide
+{
+States
+{
+Spawn:
+TNT1 A 0
+STEA M 1
+stop
+}
+}
+
+actor ChargeRamFX2 : BasicClientSide
+{
+States
+{
+Spawn:
+TNT1 A 0
+STEA N 1
+stop
+}
+}
+
+actor CoalSpawner
+{
+PROJECTILE
+-SOLID
++NOINTERACTION
+damage 0
+radius 1
+height 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,30,0,5.5,0,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,30,0,5.5,45,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,30,0,5.5,90,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,30,0,5.5,135,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,30,0,5.5,180,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,30,0,5.5,-45,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,30,0,5.5,-90,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,30,0,5.5,-135,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,26,0,16,27.5,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,26,0,16,72.5,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,26,0,16,117.5,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,26,0,16,162.5,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,26,0,16,-27.5,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,26,0,16,-72.5,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,26,0,16,-117.5,1)
+TNT1 A 0 A_SpawnItemEx("RisingCoal",0,0,0,26,0,16,-162.5,1)
+TNT1 A 1
+stop
+}
+}
+
+actor ChargeAltRadius : BasicExplosion
+{
+Obituary "$OB_COALRAIN"
+Damagetype "Coal"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(110,96,0,0,96)
+stop
+}
+}
+
+actor ChargeCoalShot
+{
+var int user_P;
+Translation "198:198=225:225", "202:202=210:210"
+PROJECTILE
+Obituary "$OB_COALRAIN"
+Damagetype "Coal"
+-NOGRAVITY
+damage (100)
+Radius 7
+Height 7
+speed 45
+scale 3.0
+States
+{
+Spawn:
+COAL G 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+COAL GHIJ 2
+COAL G 0 A_JumpIf(user_P>=6,"Spawn2")
+COAL G 0 A_SetUserVar("user_P",user_P+1)
+goto SpawnLOOP
+Spawn2:
+COAL G 0 //A_SetScale(3.5)
+COAL GHIJ 2
+goto Spawn2+1
+Death:
+//TNT1 A 0 A_LOGINT(user_P)
+TNT1 A 0 A_Stop
+TNT1 A 0 A_PlaySoundEx("weapon/napalm","weapon")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 //A_SpawnItemEx("CoalSpawner",0,0,56,0,0,0)
+TNT1 A 0 A_Explode(100,96,0,0,48)
+TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
+stop
+}
+}
+
+actor ChargeCoalShotB : ChargeCoalShot{translation "198:198=74:74","202:202=205:205"}
+actor ChargeCoalShotR : ChargeCoalShot{translation "198:198=41:41","202:202=171:171"}
+actor ChargeCoalShotO : ChargeCoalShot{translation "198:198=128:128","202:202=104:104"}
+actor ChargeCoalShotP : ChargeCoalShot{translation "198:198=232:232","202:202=229:229"}
+
+actor RisingCoal
+{
+PROJECTILE
+Obituary "$OB_COALRAIN"
+Damagetype "Coal"
++DONTBLAST
+//+SHOOTABLE
+Radius 8
+Height 10
+Damage (20)
+speed 30
+scale 2.5
+States
+{
+Spawn:
+COAL DEF 1
+goto Death
+Death:
+COAL D 0 A_SpawnItemEx("FallingCoal",0,0,0,0,0,0,0,1)
+stop
+XDeath:
+TNT1 A 0
+stop
+}
+}
+
+actor FallingCoal : RisingCoal
+{
+-NOGRAVITY
+Gravity 3
+damage (40)//30
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+COAL ABC 1
+loop
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+stop
+}
+}
+
+actor TrainSteam : BasicExplosion
+{
+scale 2.5
+States
+{
+Spawn:
+STEA ABCDE 1
+STEA FGHII 3
+stop
+}
+}
+
+actor ChargemanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("ChargeTrain",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ChargeTrainB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ChargeTrainR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ChargeTrainO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ChargeTrainP",0,1,0,0)
+goto Done
+}
+}
+
+actor ChargemanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("ChargeCoalShot",0,0,0,24)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ChargeCoalShotB",0,0,0,24)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ChargeCoalShotR",0,0,0,24)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ChargeCoalShotO",0,0,0,24)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ChargeCoalShotP",0,0,0,24)
+goto Done
+}
+}

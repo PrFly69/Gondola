@@ -174,7 +174,7 @@ script "CCBM_MaestroStyleChangeEnd" (int Select) CLIENTSIDE
 		MaestroStyleChangeMsg("You have changed to\nHeatTeam style.",tid);
 			break;
 		Case 16:
-		MaestroStyleChangeMsg("You have changed to\nWoodShield style and got \nPlant Barrier",tid);
+		MaestroStyleChangeMsg("You have changed to\nWoodShield style and got \nLeaf Shield",tid);
 			break;
 		Case 15:
 		MaestroStyleChangeMsg("You have changed to\nElecShield style and got \nMirror Buster",tid);

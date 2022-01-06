@@ -1,13 +1,15 @@
-actor LightRyu : MegaClassBase
-{//LightHealthBar ha ha ha get it?
+actor LightRyu : ClassBase //90
+{//LightHealthBar ha ha ha get it? //yes. yes i did.
 Player.ScoreIcon "C_00R0X"
-player.startitem "MegaHealthBar"
 player.displayname "DrLight"
 player.soundclass "lightc"
 player.startitem "ShotokanLightBoss"
 player.startitem "RyuSuperItem"
 player.startitem "SuperComboGauge",6
 player.startitem "DrRightAmmo",500
+
+player.maxhealth 900
+health 900
 player.forwardmove 0.825, 0.825
 player.sidemove 0.805, 0.805
 player.jumpz 12

@@ -1,7 +1,6 @@
-actor RockClass : MegaClassBase
+actor RockClass : ClassBase //90
 {
 Player.ScoreIcon "C_00D0X"
-player.startitem "MegaHealthBar"
 player.displayname "Rock"
 player.soundclass "rockc"
 player.startitem "MegaBallBoss"
@@ -9,6 +8,9 @@ player.startitem "LMSRockBallPickup"
 player.startitem "RockFlag"
 player.startitem "CanUseItems"
 player.startitem "BallsOfSteelAmmo", 444
+
+player.maxhealth 900
+health 900
 player.forwardmove 0.825, 0.825
 player.sidemove 0.805, 0.805
 player.jumpz 11
@@ -52,4 +54,46 @@ ClassDeath:
 ROCK H 1
 goto MegaDeathEnd
 }
+}
+
+//protects
+actor MegaBallProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MegaBall", 0.5
+}
+actor CutBallProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MegaCutBall", 0.5
+}
+actor IceBallProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MegaIceBall", 0.5
+}
+actor GutsBallProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MegaGutsBall", 0.5
+}
+actor ElecBallProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MegaElecBall", 0.5
+}
+actor BombBallProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MegaBombBall", 0.5
+}
+actor OilBallProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MegaOilBall", 0.5
+}
+actor TimeBallProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MegaTimeBall", 0.5
 }

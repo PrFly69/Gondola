@@ -1,0 +1,522 @@
+actor PlugBallBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_9D"
+dropitem "PlugBallWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 14
+Obituary "$OB_PLUGITIN"
+Inventory.Pickupmessage "It's just like out of one of my japanese animes! :B"
+weapon.ammotype "PlugBallAmmoBoss"
+States
+{
+Spawn:
+C_09 D 1
+loop
+Ready:
+PLGH A 0 ACS_ExecuteAlways(998,0,DYE_PLUGMAN)
+goto Ready1
+Ready1:
+PLGH A 0 A_JumpIfInventory("PlugBallAmmoBoss",2,"Ready2")
+PLGH A 7 A_WeaponReady(WRF_NOPRIMARY)
+PLGH A 0 A_GiveInventory("PlugBallAmmoBoss",1)
+loop
+Ready2:
+PLGH A 7 A_WeaponReady
+PLGH A 0 A_GiveInventory("PlugBallAmmoBoss",1)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+PLGH A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+PLGH A 1 A_Raise
+Loop
+Fire:
+PLGH A 0 A_JumpIfInventory("PlugmanLatch",2,"AllyPlug")
+PLGH A 0 A_JumpIfInventory("PlugmanLatch",1,"EnemyPlug")
+PLGH A 0 A_JumpIfNoAmmo("NoAmmo")
+PLGH A 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
+PLGH BCDBC 1
+goto FireEnd
+FireR:
+PLGH BCD 1
+goto FireEnd
+FireEnd:
+PLGH A 0 A_GiveInventory("PlugmanMain_CI",1)
+PLUG A 0 A_PlaySoundEx("weapon/Plugball","Weapon")
+PLGH A 0 A_JumpIfInventory("PowerRage_ST",1,"FireEndR")
+PLGH A 1 offset(3,35)
+PLGH A 1 offset(8,40)
+PLGH A 1 offset(13,45)
+PLGH A 2 offset(18,50)
+PLGH A 1 offset(13,45)
+PLGH A 1 offset(8,40)
+PLGH A 1 offset(3,35)
+Goto Ready1
+FireEndR:
+PLGH A 1 offset(4,36)
+PLGH A 1 offset(10,42)
+PLGH A 1 offset(18,50)
+PLGH A 1 offset(10,42)
+PLGH A 1 offset(4,36)
+Goto Ready1
+
+NoAmmo:
+PLGH A 0
+Goto Ready1
+
+Altfire:
+PLGH A 0 A_JumpIfInventory("PlugmanLatch",1,"UnPlug")
+PLGH A 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
+PLGH F 0 A_SpawnItemEx("PlugManPlugShot",0,8,28,cos(-pitch)*38,0,sin(-pitch)*38,0,1)
+PLGH F 0 A_JumpIfInventory("PowerRage_ST",1,"AltfireR")
+PLGH F 1 offset(3,35)
+PLGH F 1 offset(8,40)
+PLGH F 1 offset(13,45)
+PLGH F 1 offset(18,50)
+PLGH F 1 offset(13,45)
+PLGH F 1 offset(8,40)
+PLGH F 1 offset(3,35)
+Goto AltfireCheck
+AltfireR:
+PLGH F 1 offset(4,36)
+PLGH F 1 offset(10,42)
+PLGH F 1 offset(18,50)
+PLGH F 1 offset(10,42)
+PLGH F 1 offset(4,36)
+Goto AltfireCheck
+AltfireCheck:
+PLGH F 0 A_WeaponReady(14)
+PLGH F 0 A_JumpIfInventory("PowerRage_ST",1,"AltfireCheckR")
+PLGH FFFFFFFFFFFFF 1 A_JumpIfInventory("PlugmanLatch",1,"Plugged")
+PLGH A 6 A_PlaySoundEx("weapon/adapterreturn","Body")
+Goto Ready1
+AltfireCheckR:
+PLGH FFFFFFFFFFF 1 A_JumpIfInventory("PlugmanLatch",1,"Plugged")
+PLGH A 4 A_PlaySoundEx("weapon/adapterreturn","Body")
+Goto Ready1
+
+Plugged:
+PLGH F 8 A_WeaponReady(12)
+PluggedReady0:
+PLGH F 0 A_JumpIfInventory("PlugmanLatch",2,"PluggedReady2")
+PLGH FFF 1 A_JumpIfInventory("PlugmanLatch",1,"PluggedReady1")
+Goto UnPlug
+PluggedReady1:
+PLGH F 12 A_WeaponReady
+PLGH F 0 A_GiveInventory("PlugBallAmmoBoss",1)
+PLGH FFF 1 A_JumpIfInventory("PlugmanLatch",1,"PluggedReady1")
+Goto UnPlug
+PluggedReady2:
+PLGH F 0 A_JumpIfInventory("PlugBallAmmoBoss",2,"PluggedReady1")
+PLGH F 12 A_WeaponReady(WRF_NOPRIMARY)
+PLGH F 0 A_GiveInventory("PlugBallAmmoBoss",1)
+PLGH FFF 1 A_JumpIfInventory("PlugmanLatch",1,"PluggedReady2")
+Goto UnPlug
+
+EnemyPlug:
+PLGH F 0 A_PlaySoundEx("weapon/PlugShock","Body")
+PLGH F 0 A_GiveInventory("PlugManEnemyInventory",1,AAPTR_TRACER)
+PLGH F 0 A_GiveInventory("PluggedEnemySlow",1)
+PLGH F 0 A_GiveInventory("PlugmanIsShocking",1)
+PLGH F 2 A_GiveInventory("PlugBallAmmoBoss",4)
+PLGH O 2 ACS_NAmedExecuteAlways("cbm_PlugHealthDrain",0)
+PLGH F 0 A_PlaySoundEx("weapon/PlugShock","Body")
+PLGH F 0 A_GiveInventory("PlugManEnemyInventory",1,AAPTR_TRACER)
+PLGH F 0 A_GiveInventory("PluggedEnemySlow",1)
+PLGH F 0 A_GiveInventory("PlugmanIsShocking",1)
+PLGH F 2 A_GiveInventory("PlugBallAmmoBoss",4)
+PLGH O 2 ACS_NAmedExecuteAlways("cbm_PlugHealthDrain",0)
+PLGH FF 1 A_JumpIfInventory("PlugmanLatch",1,"PluggedReady1")
+Goto UnPlug
+
+AllyPlugAmmoCheck:
+PLGH F 0 A_JumpIfInventory("PlugBallAmmoBoss",1,"AllyPlug")
+PLGH F 1
+PLGH F 12 A_WeaponReady(WRF_NOPRIMARY)
+Goto PluggedReady0
+AllyPlug:
+PLGH F 1 A_JumpIfInventory("PlugmanLatch",1,"AllyPlugFire")
+Goto Unplug
+AllyPlugFire:
+PLGH F 0 A_PlaySoundEx("weapon/PlugShock", "Body")
+PLGH F 0 A_GiveInventory("PlugManAllyInventory", 1, AAPTR_TRACER)
+PLGH F 0 A_GiveInventory("PlugmanIsShocking",1)
+PLGH F 2 A_TakeInventory("PlugBallAmmoBoss", 1)
+PLGH O 2
+PLGH F 0 A_PlaySoundEx("weapon/PlugShock", "Body")
+PLGH F 0 A_GiveInventory("PlugManAllyInventory", 1, AAPTR_TRACER)
+PLGH F 2 A_GiveInventory("PlugmanIsShocking",1)
+PLGH O 2
+PLGH F 0 A_PlaySoundEx("weapon/PlugShock", "Body")
+PLGH F 0 A_GiveInventory("PlugManAllyInventory", 1, AAPTR_TRACER)
+PLGH F 2 A_GiveInventory("PlugmanIsShocking",1)
+PLGH O 2
+PLGH F 0 A_Refire("AllyPlugAmmoCheck")
+PLGH F 4 A_WeaponReady(WRF_NOPRIMARY)
+Goto PluggedReady0
+
+UnPlug:
+PLGH A 0 A_TakeInventory("PlugmanLatch",999)
+PLGH A 4 A_PlaySoundEx("weapon/adapterreturn","Body")
+PLGH A 4 A_WeaponReady(WRF_NOSECONDARY)
+Goto Ready1
+}
+}
+
+actor PlugBallAmmoBoss : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor PlugmanLatch : Inventory
+{
+inventory.amount 1
+inventory.maxamount 2
+}
+
+actor PlugmanIsShocking : Powerup
+{
+powerup.duration 5
+}
+
+actor PlugmanRageFlag : Powerup
+{
+powerup.duration 8
+//damagefactor "normal", 1.07
+}
+
+actor PluggedEnemySlow : PowerSpeed
+{
++POWERSPEED.NOTRAIL
+powerup.duration 8
+speed 0.85
+}
+
+actor PlugManEnemyInventory : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("Plugman_PlugEnemy_H",0,0,0,0,0,0,0,32)
+TNT1 A 0 //A_GiveInventory("PluggedEnemySlow",1)
+stop
+}
+}
+
+actor PlugManAllyInventory : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("Plugman_PlugAlly_H",0,0,0,0,0,0,0,32)
+TNT1 A 0 A_JumpIfInventory("PlugmanRageFlag",1,"Pickup2")
+TNT1 A 0 A_GiveInventory("RageRune_ST",1)
+TNT1 A 0 A_GiveInventory("PlugmanRageFlag",1)
+TNT1 A 0 A_SpawnItemEx("Plugman_PowerRage_ST_Watcher")
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("PlugmanRageFlag",1)
+stop
+}
+}
+
+actor Plugman_PowerRage_ST_Watcher : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("PlugmanRageFlag",1,"Spawn")
+goto SpawnEnd
+SpawnEnd:
+TNT1 A 0 A_TakeFromTarget("PlugmanRageFlag",9)
+TNT1 A 0 A_TakeFromTarget("PowerRage_ST",9)
+stop
+}
+}
+
+actor Plugman_PlugEnemy_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 5 A_PlaySoundEx("weapon/PlugShock","SoundSlot7")
+stop
+}
+}
+
+actor Plugman_PlugAlly_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("PlugPowerFX",0,0,0,0,0,0,0,32)
+TNT1 A 5 A_PlaySoundEx("weapon/PlugShock","SoundSlot7")
+stop
+}
+}
+
+actor PlugPowerFX : BasicClientSide
+{
++FORCEXYBILLBOARD
+States
+{
+Spawn:
+PLGH L 0
+PLGH LLMM 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_COPYINTERPOLATION)
+stop
+}
+}
+
+actor PlugManPlugShot
+{
+//Translation "204:204=89:89", "195:195=95:95"
+var int user_PTID;
+PROJECTILE
+damagetype "PlugM_Prong"
+Obituary "$o's was tripped by %k's Plug Ball."
++HITTRACER
++THRUGHOST
++DONTREFLECT
++DONTBLAST
+Damage (100)
+Height 26
+Radius 26
+speed 38
+scale 2.5
+states
+{
+Spawn:
+PLGH G 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+PLGH G 0 A_SetUserVar("user_PTID",ACS_ExecuteWithResult(257,0))
+PLGH GGGGGGGGGGGGGGGG 1 ACS_NamedExecuteAlways("cbm_DrawPlugCable",0,0,user_PTID,0)
+stop
+Death:
+TNT1 A 1 A_JumpIfInventory("IsInGame",1,"DeathCheck",8)
+stop
+DeathCheck:
+TNT1 A 1 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists",1)!=0,"DeathLatch")
+stop
+DeathLatch:
+TNT1 A 35 ACS_NamedExecuteAlways("cbm_PlugLatch",0)
+stop
+}
+}
+
+Actor PlugCableFX-1 : BasicClientSide
+{
+Translation "204:204=89:89", "195:195=95:95", "250:250=4:4", "249:249=228:228"
++MISSILE
+States
+{
+Spawn:
+PLGH H 0
+PLGH H 2 A_JumpIf(angle>0, "Woah")
+stop
+Woah:
+PLGH H 0 A_Jump(100, "FX2", "FX3")
+FX1:
+PLGH H 2
+stop
+FX2:
+PLGH I 2
+stop
+FX3:
+PLGH J 2
+stop
+}
+}
+
+actor PlugCableFX0 : PlugCableFX-1{Translation "204:204=205:205","195:195=74:74","250:250=196:196","249:249=199:199"}
+actor PlugCableFX1 : PlugCableFX-1{Translation "204:204=171:171","195:195=41:41","250:250=170:170","249:249=43:43"}
+actor PlugCableFX2 : PlugCableFX-1{Translation "204:204=104:104","195:195=128:128","250:250=138:138","249:249=131:131"}
+actor PlugCableFX3 : PlugCableFX-1{Translation "204:204=229:229","195:195=232:232","250:250=214:214","249:249=223:223"}
+
+actor PlugmanFinshingPlugHit
+{
+PROJECTILE
+damagetype "PlugM_Plugged"
+Obituary "$OB_PLUGITIN"
++DONTREFLECT
++DONTBLAST
+damage (100)
+speed 1
+States
+{
+Spawn:
+TNT1 A 1
+stop
+}
+}
+
+actor PluggedEnemyFinalHit : BasicExplosion
+{
+damagetype "PlugM_Plugged"
+Obituary "$OB_PLUGITIN"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 3 A_Explode(100,15,0,0,15)
+stop
+}
+}
+
+
+actor PlugBallStartClass
+{
+Translation "202:202=4:4", "199:199=228:228"
+PROJECTILE
+damagetype "PlugM_Ball"
+Obituary "$OB_PLUGBALL"
+-NOGRAVITY
++FORCEXYBILLBOARD
+Gravity 1.0
+reactiontime 20
+Damage (100)
+Height 32
+Radius 17
+speed 35
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_9D ABCD 1
+loop
+XDeath:
+Crash:
+TNT1 A 0
+stop
+Death:
+TNT1 A 0 //A_SpawnItemEx("PlugBallClass",0,0,0,0,0,0,0,33)
+TNT1 A 0 A_SpawnItemEx("PlugBallClass",0,0,0,24,0,0,0,33)
+stop
+}
+}
+
+actor PlugBallStartClassB : PlugBallStartClass{Translation "202:202=205:205","199:199=74:74"}
+actor PlugBallStartClassR : PlugBallStartClass{Translation "202:202=171:171","199:199=41:41"}
+actor PlugBallStartClassO : PlugBallStartClass{Translation "202:202=104:104","199:199=128:128"}
+actor PlugBallStartClassP : PlugBallStartClass{Translation "202:202=229:229","199:199=232:232"}
+
+actor PlugBallClass
+{
+var int user_x;
+var int user_y;
+PROJECTILE
+damagetype "PlugM_Ball"
+Obituary "$OB_PLUGBALL"
+-NOGRAVITY
++DONTSPLASH//
++BOUNCEONWALLS
++DONTREFLECT
++FORCEXYBILLBOARD
++STEPMISSILE
++NOEXPLODEFLOOR
++BRIGHT
+maxstepheight 15
+bouncecount 30
+bouncefactor 1.0
+wallbouncefactor 1.0
+gravity 4.0
+reactiontime 47
+Damage (100)//180
+Radius 16
+Height 32
+Speed 24
+Scale 2.5
+States
+{
+Spawn:
+Y_9D A 0
+Y_9D A 0 A_SetUserVar(user_x,x)
+Y_9D A 0 A_SetUserVar(user_y,y)
+Y_9D A 0 A_GiveInventory("ReSyncPickup",1)
+SpawnL:
+Y_9D A 0
+Y_9D A 1 A_JumpIf(z-floorz>0,"SpawnFA")
+Y_9D B 1 A_JumpIf(z-floorz>0,"SpawnFB")
+Y_9D C 1 A_JumpIf(z-floorz>0,"SpawnFC")
+Y_9D D 1 A_JumpIf(z-floorz>0,"SpawnFD")
+Y_9D A 0 A_CountDown
+
+Y_9D A 0 A_JumpIf((user_x-x < 2 && user_x-x > -2) && (user_y-y < 2 && user_y-y > -2), "Death2")
+Y_9D A 0 A_SetUserVar(user_x, x)
+Y_9D A 0 A_SetUserVar(user_y, y)
+loop
+
+SpawnFA:
+Y_9D A 0 A_GiveInventory("PlugBallClassFall_P")
+goto SpawnF+1
+SpawnFB:
+Y_9D B 0 A_GiveInventory("PlugBallClassFall_P")
+goto SpawnF+2
+SpawnFC:
+Y_9D C 0 A_GiveInventory("PlugBallClassFall_P")
+goto SpawnF+3
+SpawnFD:
+Y_9D D 0 A_GiveInventory("PlugBallClassFall_P")
+goto SpawnF+4
+SpawnF:
+Y_9D A 0
+Y_9D A 1 A_JumpIf(z-floorz==0,"SpawnLA")
+Y_9D B 1 A_JumpIf(z-floorz==0,"SpawnLB")
+Y_9D C 1 A_JumpIf(z-floorz==0,"SpawnLC")
+Y_9D D 1 A_JumpIf(z-floorz==0,"SpawnLD")
+Y_9D A 0 A_CountDown
+loop
+SpawnLA:
+Y_9D A 1 A_GiveInventory("PlugBallClassForward_P")
+goto SpawnL+2
+SpawnLB:
+Y_9D B 1 A_GiveInventory("PlugBallClassForward_P")
+goto SpawnL+3
+SpawnLC:
+Y_9D C 1 A_GiveInventory("PlugBallClassForward_P")
+goto SpawnL+4
+SpawnLD:
+Y_9D D 1 A_GiveInventory("PlugBallClassForward_P")
+goto SpawnL+5
+Death2:
+TNT1 A 1 A_CountDownArg(0)
+wait
+Death:
+TNT1 A 1
+stop
+}
+}
+
+
+actor PlugmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PlugBallStartClass",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PlugBallStartClassB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PlugBallStartClassR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PlugBallStartClassO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PlugBallStartClassP",0,1,8,0)
+goto Done
+}
+}

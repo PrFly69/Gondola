@@ -1,13 +1,18 @@
-actor Plantman : LightClassBase
+actor Plantman : ClassBase //85 ought to be 90
 {
 Player.ScoreIcon "C_06E0X"
-player.startitem "LightHealthBar"
 player.displayname "plantman"
 player.soundclass "plantmanc"
 player.startitem "PlantBarrierBoss"
 player.startitem "PsychedelicAmmo", 28
 player.startitem "PlantmanHealAmmo", 14
 player.startitem "PlantBarrierUseItem"
+
+player.maxhealth 900
+health 900
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.startitem "BlizzardAttackWeakness2", 1
 

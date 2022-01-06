@@ -1,7 +1,6 @@
-actor Pluto : ProtoClassBase
+actor Pluto : ClassBase //75
 {
 Player.ScoreIcon "C_0VH0X"
-player.startitem "ProtoHealthBar"
 player.displayname "Pluto"
 player.soundclass "plutoc"
 
@@ -10,6 +9,11 @@ player.startitem "GetBentDegenerateAmmo", 56
 player.startitem "CanWallJump"
 player.startitem "CanWallJumpStack", 6
 player.startitem "PlutoMeowItem"
+
+player.maxhealth 750
+health 750
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 player.jumpz 11
 
 //Doesn't like Cold temps

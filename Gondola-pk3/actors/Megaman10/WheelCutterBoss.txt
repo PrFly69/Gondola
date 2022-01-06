@@ -1,0 +1,1067 @@
+//=================================
+// Formatted & Cleaned by Ru5tK1ng
+// --------------------------------
+//=================================
+ 
+  Actor WheelCutterBoss : BaseMM8BDMWep_CBM
+  {
+    Tag "$TAGC_10G"
+    DropItem "WheelCutterWepCDropped"
+    Weapon.AmmoUse 0
+    Weapon.AmmoUse2 1
+    Weapon.AmmoGive 90
+    Obituary "$OB_NITROMAIN"
+    Inventory.Pickupmessage "Picked up Nitro Man's bike??"
+    Weapon.AmmoType "WheelCutterBossAmmo"
+    Weapon.AmmoType2 "WheelCutterBossAmmo"
+    States
+    {
+        Spawn:
+        C_10 G 1
+        Loop
+       
+        Ready:
+        NITR B 0 ACS_ExecuteAlways(998,0,DYE_NITROMAN)
+        Goto Ready1
+       
+        Ready1:
+        NITR B 0 A_TakeInventory("NitroBikeWallBoostAttack",999)
+        NITR B 0 A_GiveInventory("LadderEnable", 1)
+        Goto Ready1b
+       
+        Ready1b:
+        NITR B 0 A_JumpIfInventory("WheelCutterBossAmmo",20,"Ready2")
+        NITR B 2 A_WeaponReady(WRF_NOSECONDARY)
+        NITR B 0 A_JumpIf(z-floorz > 0,"Ready1b")
+        NITR B 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        Goto Ready1c
+		
+		Ready1b2:
+        NITR B 2 A_WeaponReady
+        NITR B 0 A_JumpIf(z-floorz > 0,"Ready1b2")
+        NITR B 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        Goto Ready1c
+       
+        Ready1c:
+        NITR B 0 A_JumpIfInventory("WheelCutterBossAmmo",20,"Ready2")
+        NITR B 2 A_WeaponReady(WRF_NOSECONDARY)
+        NITR B 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        Loop
+ 
+        Ready2:
+        NITR B 2 A_WeaponReady
+        NITR B 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        NITR B 0 A_JumpIfInventory("WheelCutterBossAmmo", 90, "Ready3")
+        Loop
+ 
+        Ready3:
+        NITR B 2 A_WeaponReady
+        Loop
+ 
+        ReadyAir:
+        NITR B 1 A_WeaponReady
+        NITR B 0 A_JumpIfInventory("NitroBikeWallBoostAttack",8,"ReadyAir")
+        NITR B 0 A_GiveInventory("LadderEnable",1)
+        Goto Ready1
+ 
+        Deselect:
+        TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+        NITR B 1 A_Lower
+        Loop
+ 
+        Select:
+        TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+        NITR B 1 A_Raise
+        Loop
+ 
+        Fire:
+		NITR B 0 A_JumpIfInventory("NitroGearState",1,"FireGear")
+        NITR B 0 A_JumpIfInventory("NitroBikeWallBoostAttack",8,"FireAir")
+		FireGear:
+		NITR B 0 A_JumpIfInventory("NitroBikeWallBoostAttack",8,"FireAir2")
+        NITR B 0 A_PlaySoundEx("weapon/wheelshotthrow","Weapon")
+        NITR B 0 A_GiveInventory("NitromanMain_CI",1)
+        NITR C 1
+        NITR C 1 OffSet(-70,72)
+        NITR C 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        NITR C 2 OffSet(-121,112)
+        NITR C 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        NITR F 2 OffSet(1,33)
+        NITR F 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        NITR F 2 OffSet(-21,56)
+        NITR F 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        NITR F 2 OffSet(-35,84)
+        NITR F 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        TNT1 AA 2  A_GiveInventory("WheelCutterBossAmmo",1)
+        NITR B 2 OffSet(2,69)
+        NITR A 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        NITR B 2 OffSet(1,48)
+        NITR A 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        NITR B 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        NITR A 0 A_GiveInventory("WheelCutterBossAmmo",1)
+        NITR B 0 A_Refire
+        Goto Ready1
+ 
+        FireAir:
+        NITR B 0 A_PlaySoundEx("weapon/wheelshotthrow","Weapon")
+		NITR B 0 A_PlaySoundEx("weapon/wheelshort","SoundSlot7")
+        NITR B 0 A_GiveInventory("NitromanMain2_CI",1)
+        NITR C 1
+        NITR C 1 OffSet(-70,72)
+        NITR C 0 A_GiveInventory("NitromanMain3_CI",1)
+        NITR C 1 OffSet(-121,112)
+        NITR F 2 OffSet(1,33)
+        NITR F 2 OffSet(-21,56)
+        NITR F 2 OffSet(-35,84)
+        TNT1 A 1
+        NITR B 1 OffSet(2,69)
+        NITR B 1 OffSet(1,48)
+        NITR B 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        NITR B 0 A_JumpIfInventory("NitroBikeWallBoostAttack",8,"ReadyAir")
+        NITR B 2 A_GiveInventory("LadderEnable",1)
+        Goto Ready1
+		
+		FireAir2:
+        NITR B 0 A_PlaySoundEx("weapon/wheelshotthrow","Weapon")
+        NITR B 0 A_GiveInventory("NitromanMain4_CI",1)
+        NITR C 1
+        NITR C 1 OffSet(-70,72)
+        NITR C 1 OffSet(-121,112)
+        NITR F 1 OffSet(1,33)
+        NITR F 1 OffSet(-21,56)
+        NITR F 1 OffSet(-35,84)
+        TNT1 A 1
+        NITR B 1 OffSet(2,69)
+        NITR B 1 OffSet(1,48)
+        NITR B 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        NITR B 0 A_Refire
+        Goto Ready1b2
+ 
+        Altfire:
+		NITR B 0 A_JumpIfInventory("NitroAltEndDelay",1,"NoAmmo")
+        NITR B 0 A_JumpIfInventory("WheelCutterBossAmmo", 10, "BikeStart")
+        Goto Ready1
+		
+        BikeStart:
+		NITR B 0 A_JumpIfInventory("NitroGearState",1,"BikeStart2")
+        NITR B 0 A_JumpIfInventory("NitroBikeWallBoostAttack",8,"BikeStartInAir")
+        //NITR B 0 A_JumpIf(z-floorz==0,"BikeStart2")
+        //NITR B 0 A_JumpIf(velx==0,"BikeStart1")
+        Goto BikeStart2
+ 
+        BikeStart1:
+        NITR B 1
+        NITR B 0 A_JumpIf(z-floorz==0,"BikeStart2")
+        NITR B 0 A_JumpIf(momx==0,"BikeStart2")
+        Goto Ready1
+       
+        BikeStart2:
+        NITR B 0 A_GiveInventory("NitroBikeState",1)
+        NITR B 0 A_GiveInventory("LadderDisable",1)
+        NITR I 1
+        NITR I 2 OffSet(0,38)ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
+        NITR I 2 OffSet(0,44)
+        NITR I 0 A_PlaySoundEx("classes/bikestart","Body")
+        Goto BikePreRide
+ 
+        BikePreRide:
+        NITR I 0 A_SpawnItemEx("NitroBikeWallClimber",12,0,32,1+velx,0,0,0,40, 0, TID+9000)
+       
+        BikeRide:
+        NITR I 0 A_JumpIfNoAmmo("BikeEnd")
+        NITR I 0 A_JumpIfInventory("Shocked",1,"BikeEnd")
+        NITR I 0 A_JumpIfInventory("CutterFlag",1,"WallClimbStart")
+        NITR I 0 A_SpawnItemEx("NitroBikeMelee",4,0,28,momx,momy,momz,0,8)
+        NITR I 0 A_TakeInventory("HihgSpeed",999)
+        NITR I 1 A_GiveInventory("NitroBikeThrust_P",1)
+        NITR I 0 A_Refire("BikeRide")
+        Goto BikeEnd
+ 
+        BikeEnd:
+        NITR I 0 ACS_ExecuteAlways(991,0,DYE_NITROMAN)
+        NITR I 1 A_GiveInventory("NitroBikeEnd_P", 1)
+        TNT1 A 0 Thing_Remove(TID+9000)
+        NITR I 0 ACS_ExecuteAlways(991,0,DYE_NITROMAN)
+        NITR I 0 A_JumpIf(Z - FloorZ > 0, 2)
+        NITR I 0 A_PlaySoundEx("classes/bikebrake","Weapon")
+        NITR I 0 A_JumpIfInventory("NitroBikeWallBoostAttack",8,"BikeEndBoost")
+        NITR I 3 OffSet(0,44) A_GiveInventory("LadderEnable",1)
+        NITR I 3 OffSet(0,40) A_TakeInventory("HihgSpeed",999)
+        NITR I 2 OffSet(0,36)
+        Goto Ready1
+ 
+        BikeEndBoost:
+        TNT1 A 0 Thing_Remove(TID+9000)
+        NITR I 0 ACS_ExecuteAlways(991,0,DYE_NITROMAN)
+        NITR I 2 OffSet(0,40)
+        NITR I 0 ACS_ExecuteAlways(991,0,DYE_NITROMAN)
+        NITR I 1 OffSet(0,36)
+        NITR I 0 //A_JumpIfInventory("FlightDisableFlag",1,2)
+        NITR I 0 //A_SetGravity(0.5)
+        NITR I 1 A_GunFlash
+        Goto ReadyAir
+       
+        BikeStartInAir:
+        NITR B 0 A_JumpIfInventory("HihgSpeed",1,"BikeStartInAir2")
+        NITR B 1 A_ChangeVelocity(Cos(pitch)*24,0,-sin(pitch)*3,1)
+        NITR B 0 A_GiveInventory("NitroBikeState",1)
+        NITR B 0 A_GiveInventory("LadderDisable",1)
+        NITR I 1
+        NITR I 2 OffSet(0,38)ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
+        NITR L 2 OffSet(0,44)A_GiveInventory("HihgSpeed",1)
+        NITR I 0 A_PlaySound("classes/gasgasgas", CHAN_AUTO)
+        Goto BikeRide2
+       
+        BikeStartInAir2:
+        NITR B 0 A_GiveInventory("NitroBikeState",1)
+        NITR B 0 A_GiveInventory("LadderDisable",1)
+        NITR I 1
+        NITR I 2 OffSet(0,38)ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
+        NITR L 2 OffSet(0,44)A_GiveInventory("HihgSpeed",1)
+        NITR I 0 A_PlaySound("classes/gasgasgas", CHAN_AUTO)
+        Goto BikeRide2
+       
+        BikeRide2:
+        NITR I 0 A_JumpIfNoAmmo("BikeEnd")
+        NITR I 0 A_JumpIfInventory("Shocked",1,"BikeEnd")////
+        NITR I 0 A_JumpIfInventory("CutterFlag",1,"WallClimbStart")
+        NITR I 0 A_SpawnItemEx("NitroBikeWallClimber", 12, 0, 32, 1+velx, 0, 0, 0, 40, 0, TID+9000)
+        NITR I 0 A_SpawnItemEx("NitroBikeMelee",4,0,28,momx,momy,momz,0,8)
+        NITR I 0 A_GiveInventory("PowerNitroAirRage",1)
+        NITR L 1 OffSet(0,36)A_GiveInventory("NitroBikeThrust2_P",1)
+        NITR I 0 ACS_ExecuteAlways(991,0,62)
+        NITR I 0 A_Refire("BikeRide3")
+        Goto BikeEnd
+       
+        BikeRide3:
+        NITR I 0 A_JumpIfNoAmmo("BikeEnd")
+        NITR I 0 A_JumpIfInventory("Shocked",1,"BikeEnd")////
+        NITR I 0 A_JumpIfInventory("CutterFlag",1,"WallClimbStart")
+        //NITR I 0 A_SpawnItemEx("NitroBikeWallClimber",12,0,32,1+velx,0,0,0,40)
+        NITR I 0 A_SpawnItemEx("NitroBikeMelee",4,0,28,momx,momy,momz,0,8)
+        NITR I 1 OffSet(0,40)A_GiveInventory("NitroBikeThrust2_P",1)
+        NITR I 0 ACS_ExecuteAlways(991,0,DYE_NITROMAN)
+        NITR I 0 A_Refire("BikeRide2")
+        Goto BikeEnd
+ 
+        WallClimbStart:
+        NITR I 0 A_PlaySoundEx("classes/bikebrake","Weapon")
+        NITR I 0 ACS_ExecuteAlways(991,0,DYE_NITROMAN)
+        NITR I 0 A_Stop
+        NITR I 1 OffSet(0,38)ThrustThingZ(0,2,0,0)
+        NITR I 0 ThrustThingZ(TID+9000,2,0,0)
+        Goto WallClimb
+ 
+        WallClimb:
+        NITR I 0 A_JumpIfNoAmmo("BikeSlowDown")
+        NITR I 0 A_GiveInventory("NitroBikeState",1)
+        NITR I 0 A_JumpIf(ceilingz-z-56==0,"WallClimbCeiling")
+        NITR I 1 OffSet(0,38)A_GiveInventory("NitroWallJumping_P",1)
+        NITR I 0 A_Refire("WallClimbCheck")
+        Goto BikeSlowDown
+ 
+        WallClimbCheck:
+        NITR I 0 A_JumpIfInventory("WallS",1,"BikeWallSouth")
+        NITR I 0 A_JumpIfInventory("WallE",1,"WallClimb")
+        NITR I 0 A_JumpIfInventory("WallW",1,"WallClimb")
+        NITR I 0 A_JumpIfInventory("WallN",1,"WallClimb")
+        goto BikeWallEnd
+ 
+        WallClimbCeiling:
+        NITR I 0 A_GiveInventory("NitroWallEnd_P",1)
+        NITR I 1 OffSet(0,44)A_Recoil(25)
+        NITR I 1 A_TakeInventory("CutterFlag",999)
+        NITR I 0 A_Refire("BikeRide")
+        Goto BikeEnd
+       
+        BikeWallSouth:
+        NITR I 0 A_GiveInventory("NitroWallEnd_P",1)
+        NITR I 0 ThrustThingZ(0,8,0,1)
+        NITR I 1 OffSet(0,44)A_Recoil(-25)
+        NITR I 0 A_TakeInventory("CutterFlag",999)
+        NITR I 0 A_Refire("BikeRide")
+        Goto BikeEnd
+       
+        BikeWallEnd:
+        NITR I 0 A_GiveInventory("NitroWallEnd_P",1)
+        NITR I 0 ThrustThingZ(0,8,0,1)
+        NITR I 1 OffSet(0,44)A_Recoil(-17)
+        NITR I 0 A_TakeInventory("CutterFlag",999)
+        NITR I 0 A_Refire("BikeRide")
+        Goto BikeEnd
+ 
+        BikeSlowDown:
+        NITR I 0 A_ScaleVelocity(0.8)
+        NITR I 0 A_Recoil(-17)
+        TNT1 A 0 Thing_Remove(TID+9000)
+        NITR I 1 OffSet(0,44)A_GiveInventory("NitroBikeEnd_P",1)
+        NITR I 0 A_JumpIfInventory("NitroBikeWallBoostAttack",8,"BikeSlowDownBoost")
+        NITR I 3 OffSet(0,44)
+        NITR I 3 OffSet(0,40)
+        NITR I 2 OffSet(0,36)
+        Goto Ready1
+   
+        BikeSlowDownBoost:
+        NITR I 1 OffSet(0,40) A_GiveInventory("LadderEnable",1)
+        NITR I 1 OffSet(0,36)
+        NITR I 0 //A_JumpIfInventory("FlightDisableFlag",1,2)
+        NITR I 0 //A_SetGravity(0.5)
+        NITR I 1 A_GunFlash//A_SpawnItemEx("NitroFloorchecker")
+        Goto ReadyAir
+       
+ 
+        Flash:
+        TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+        TNT1 A 0 A_GiveInventory("PowerNitroAirSpeed",1)
+        TNT1 A 1 A_SpawnItemEx("NitroFloorchecker",0,0,-2)
+        TNT1 A 0 A_JumpIfInventory("NitroBikeWallBoostAttack",8,"Flash")
+        Stop
+		
+		NoAmmo:
+        NITR B 2
+        NITR B 0 A_GiveInventory("WheelCutterBossAmmo",1)
+		goto Ready1
+		
+        }
+    }
+ 
+ 
+//==========================
+// Ammo & Inventory Items
+//--------------------------
+//==========================
+ 
+ 
+  Actor WheelCutterBossAmmo : Ammo
+  {
+    Inventory.Amount 1
+    Inventory.MaxAmount 90
+    +INVENTORY.IGNORESKILL
+  }
+ 
+  Actor NitroBikeState : Inventory
+  {
+    Inventory.Amount 1
+    Inventory.MaxAmount 5
+  }
+  
+  Actor NitroGearState : Inventory
+  {
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+  }
+ 
+  Actor NitroBikeWallBoostAttack : Inventory
+  {
+    Inventory.Amount 1
+    Inventory.MaxAmount 8
+  }
+ 
+  Actor HihgSpeed : Inventory
+  {
+    Inventory.Amount 1
+    Inventory.MaxAmount 1
+  }
+ 
+  Actor NitroAirTimeFlag : OnceC {}
+ 
+  Actor NitroBreakSndDelay : Powerup
+  {
+    Powerup.Duration 5
+  }
+ 
+  Actor PowerNitroAirSpeed : PowerSpeed
+  {
+    Speed 1.5
+    Powerup.Duration 3
+    +POWERSPEED.NOTRAIL
+  }
+ 
+  Actor PowerNitroAirRage : PowerSpeed
+  {
+    Speed 2
+    Powerup.Duration 3
+  }
+  
+  Actor NitroAltEndDelay : Powerup
+  {
+    Powerup.Duration -2
+  }
+  
+  Actor NitroGearToggle : CustomInventory
+  {
+  inventory.amount 1
+  inventory.maxamount 1
+  inventory.icon "NITRICON"
+  inventory.pickupmessage "\cgDo you even drive manual?"
+  scale 2.0
+  +INVBAR
+  states
+    {
+    Spawn:
+    NITR Y 1
+    wait
+    Use:
+	TNT1 A 0 A_JumpIfInventory("NitroGearState",1,"Use2")
+	TNT1 A 0 A_PlaySoundEx("weapon/noammo","Item")
+	TNT1 A 0 A_GiveInventory("NitroGearState",1)
+	fail
+	Use2:
+	TNT1 A 0 A_PlaySoundEx("item/refill","Item")
+	TNT1 A 0 A_TakeInventory("NitroGearState",999)
+	fail
+    }
+  }
+ 
+ 
+ 
+//===============================
+// State Change Items & Checkers
+//-------------------------------
+//===============================
+ 
+ 
+  Actor NitroBikeThrust_P : CustomInventory
+  {
+    States
+    {
+        Pickup:
+        NITR I 0 A_GiveInventory("NitroBikeState",1)
+        NITR I 0 A_JumpIf(z-floorz>0,"BikeAir")
+        Goto BikeLand
+ 
+        BikeLand:
+        TNT1 A 0 A_TakeInventory("WheelCutterBossAmmo",1)
+        TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"BikeLand_R")
+        TNT1 A 0 A_Recoil(-3)
+        TNT1 A 0 A_JumpIfInventory("NitroAirTimeFlag",1,"BikeSnd")
+        Stop
+ 
+        BikeLand_R:
+        TNT1 A 0 A_Recoil(-4.5)
+        TNT1 A 0 A_JumpIfInventory("NitroAirTimeFlag",1,"BikeSnd")
+        Stop
+ 
+        BikeAir:
+        TNT1 A 0 A_TakeInventory("WheelCutterBossAmmo",1)
+        TNT1 A 0 A_GiveInventory("NitroAirTimeFlag",1)
+        TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"BikeAir_R")
+        TNT1 A 0 A_Recoil(-1)
+        Stop
+ 
+        BikeAir_R:
+        TNT1 A 0 A_Recoil(-1.5)
+        Stop
+ 
+        BikeSnd:
+        TNT1 A 0 A_TakeInventory("NitroAirTimeFlag",1)
+        TNT1 A 0 A_GiveInventory("BikeBrakeSnd_P",1)
+        Stop
+       
+        No:
+        TNT1 A 0
+        Stop
+    }
+  }
+ 
+ 
+  Actor NitroBikeThrust2_P : CustomInventory
+  {
+    States
+    {
+        Pickup:
+        NITR I 0 A_GiveInventory("NitroBikeState",1)
+        NITR I 0 A_JumpIf(z-floorz>0,"BikeAir")
+        Goto BikeLand
+ 
+        BikeLand:
+        TNT1 A 0 A_TakeInventory("WheelCutterBossAmmo",1)
+        TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"BikeLand_R")
+        TNT1 A 0 A_Recoil(-6)
+		TNT1 A 0 A_GiveInventory("NitroAltEndDelay")
+        TNT1 A 0 A_JumpIfInventory("NitroAirTimeFlag",1,"BikeSnd")
+        Stop
+ 
+        BikeLand_R:
+        TNT1 A 0 A_Recoil(-9)
+		TNT1 A 0 A_GiveInventory("NitroAltEndDelay")
+        TNT1 A 0 A_JumpIfInventory("NitroAirTimeFlag",1,"BikeSnd")
+        Stop
+ 
+        BikeAir:
+        TNT1 A 0 A_TakeInventory("WheelCutterBossAmmo",1)
+        TNT1 A 0 A_GiveInventory("NitroAirTimeFlag",1)
+        TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"BikeAir_R")
+		TNT1 A 0 A_GiveInventory("NitroAltEndDelay")
+        TNT1 A 0 A_Recoil(-2)
+        Stop
+ 
+        BikeAir_R:
+		TNT1 A 0 A_GiveInventory("NitroAltEndDelay")
+        TNT1 A 0 A_Recoil(-3)
+        Stop
+       
+        BikeSnd:
+        TNT1 A 0 A_TakeInventory("NitroAirTimeFlag",1)
+        TNT1 A 0 A_GiveInventory("BikeBrakeSnd_P",1)
+        Stop
+ 
+        No:
+        TNT1 A 0
+        Stop
+    }
+  }
+ 
+ 
+  Actor NitroWallJumping_P : CustomInventory
+  {
+    States
+    {
+        Pickup:
+        TNT1 A 0 A_TakeInventory("WallN",999)
+        TNT1 A 0 A_TakeInventory("WheelCutterBossAmmo",1)
+        TNT1 A 0 A_SpawnItemEx("WallCheckN",23,0,8,momx,momy,0,0,8,0)//momz
+        TNT1 A 0 A_SpawnItemEx("WallCheckS",-23,0,8,momx,momy,0,0,8,0)
+        TNT1 A 0 A_SpawnItemEx("WallCheckE",0,23,8,momx,momy,0,0,8,0)
+        TNT1 A 0 A_SpawnItemEx("WallCheckW",0,-23,8,momx,momy,0,0,8,0)
+        TNT1 A 0 A_SpawnItemEx("NitroBikeMelee",0,0,42,momx,momy,momz,0,8)
+        TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+        TNT1 A 0 A_GiveInventory("NitroBikeWallBoostAttack",1)
+        TNT1 A 0 ThrustThingZ(0,8,0,1)
+        stop
+       
+        PickupR:
+        TNT1 A 0 A_GiveInventory("NitroBikeWallBoostAttack",2)
+        TNT1 A 0 ThrustThingZ(0,12,0,1)
+        Stop
+    }
+  }
+ 
+ 
+  Actor NitroBikeEnd_P : CustomInventory
+  {
+    States
+    {
+        Pickup:
+        TNT1 A 0 A_TakeInventory("WallN",999)
+        TNT1 A 0 A_TakeInventory("WallE",999)
+        TNT1 A 0 A_TakeInventory("WallS",999)
+        TNT1 A 0 A_TakeInventory("WallW",999)
+        TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+        TNT1 A 0 A_TakeInventory("NitroBikeState",999)
+        TNT1 A 0 A_TakeInventory("CutterFlag",999)
+        TNT1 A 0 A_TakeInventory("NitroAirTimeFlag",999)
+        Stop
+    }
+  }
+ 
+ 
+  Actor NitroWallEnd_P : CustomInventory
+  {
+    States
+    {
+        Pickup:
+        TNT1 A 0 A_TakeInventory("WallN",999)
+        TNT1 A 0 A_TakeInventory("WallE",999)
+        TNT1 A 0 A_TakeInventory("WallS",999)
+        TNT1 A 0 A_TakeInventory("WallW",999)
+        TNT1 A 0 A_TakeInventory("CutterFlag",999)
+        TNT1 A 0 A_TakeInventory("NitroAirTimeFlag",999)
+        Stop
+    }
+  }
+ 
+ 
+  Actor BikeBrakeSnd_P: CustomInventory
+  {
+    States
+    {
+        Pickup:
+        TNT1 A 0 A_JumpIfInventory("NitroBreakSndDelay",1,"No")
+        TNT1 A 0 A_GiveInventory("NitroBreakSndDelay",1)
+        TNT1 A 0 A_PlaySoundEx("classes/bikebrake","Weapon")
+        Stop
+ 
+        No:
+        TNT1 A 0
+        Stop
+    }
+  }
+ 
+ 
+actor NitroM_RamProtect : PowerProtection
+{
+Damagefactor "NitroM_Ram", 0.0
+Powerup.duration 35//70
+}
+ 
+ 
+  Actor NitroFloorChecker
+  {
+    PROJECTILE
+    +DONTREFLECT
+    +DONTBLAST
+    RenderStyle "None"
+    Damage (0)
+    Radius 16
+    Height 2
+    States
+    {
+        Spawn:
+        PLAY A 1//2 //A_Warp(AAPTR_TARGET, 0, 0, -2, 0, WARPF_NOCHECKPOSITION )
+        Stop
+ 
+        Death:
+        TNT1 A 0 A_TakeFromTarget("NitroBikeWallBoostAttack",9999)
+        TNT1 A 0 //A_GiveToTarget("EnvironmentGravity",1)
+        TNT1 A 5 A_TakeFromTarget("PowerNitroAirSpeed",1)
+        Stop
+    }
+  }
+ 
+ 
+  Actor NitroBikeWallClimber
+  {
+    PROJECTILE
+    +THRUACTORS
+    +DONTBLAST
+    +USEBOUNCESTATE
+    BounceType "Hexen"
+    WallBounceFactor 1.0
+    BounceFactor 1.0
+    //renderstyle none
+    Damage (0)
+    Radius 16
+    Height 16
+    States
+    {
+        Spawn:
+        TNT1 A 1 A_Warp(AAPTR_TARGET, 12, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_WARPINTERPOLATION)
+        Loop
+ 
+        Bounce.Wall:
+        TNT1 A 1 A_GiveToTarget("CutterFlag", 1)
+        Goto Spawn
+ 
+        Bounce.Floor:
+        Goto Spawn
+ 
+        Death:
+        TNT1 A 1 A_GiveToTarget("CutterFlag", 1)
+        Goto Spawn
+ 
+    }
+  }
+ 
+ 
+//========================
+// Attacks & Projectiles
+//------------------------
+//========================
+ 
+ 
+  Actor NitroBikeMelee : BasicExplosion
+  {
+    DamageType "NitroM_Ram"
+    Obituary "$OB_NITROALT"
+    //radius 32
+    //height 32
+    States
+    {
+        Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerNitroAirRage",1,"Spawn_S")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"Spawn_S")
+        TNT1 A 2 A_Explode(150,36,0,0,37)
+        Stop
+ 
+        Spawn_S:
+        TNT1 A 2 A_Explode(250,36,0,0,37)
+        Stop
+    }
+  }
+ 
+ 
+  Actor NitroWheelBouncer
+  {
+    Translation "202:202=168:168", "199:199=95:95", "204:204=215:215"
+    Projectile
+    DamageType "WheelCutter"
+    Obituary "$OB_NITROMAIN"
+    -NOGRAVITY
+    +HITTRACER
+    +BOUNCEONFLOORS
+    BounceFactor 1.0
+    BounceCount 10
+	BounceSound "weapon/wheelshotbounce"
+	SeeSound "weapon/wheelshort"
+    Gravity 1.25
+    Damage (160)
+    Radius 10
+    Height 12
+    Speed 38
+    Scale 2.5
+    States
+    {
+        Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnL:
+        Y_AG CD 3
+		Loop
+       
+        XDeath:
+        XMFX R 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1, "DeathAmmo")
+        Goto DeathFX
+       
+        DeathAmmo:
+        TNT1 A 0 A_GiveToTarget("WheelCutterBossAmmo", 16)
+        Goto DeathFX
+       
+        Death:
+        TNT1 A 0 //A_SpawnItemEx("NitroWheelBouncer",0,0,10,40,0,0,0,1)
+        goto DeathFX
+		
+DeathFX:
+TNT1 A 2 A_SpawnItemEx("NitroWheelBouncerDeathFX",0,0,25,0,0,0,0,1)
+stop
+
+    }
+  }
+ 
+  Actor NitroWheelBouncerB : NitroWheelBouncer{translation "202:202=205:205", "199:199=74:74", "204:204=205:205"}
+  Actor NitroWheelBouncerR : NitroWheelBouncer{translation "202:202=171:171", "199:199=41:41", "204:204=171:171"}
+  Actor NitroWheelBouncerO : NitroWheelBouncer{translation "202:202=104:104", "199:199=128:128", "204:204=104:104"}
+  Actor NitroWheelBouncerP : NitroWheelBouncer{translation "202:202=229:229", "199:199=232:232", "204:204=229:229"}
+ 
+ 
+  Actor NitroWheelBouncerFast : FastProjectile
+  {
+    Translation "202:202=168:168", "199:199=95:95", "204:204=215:215"
+    Projectile
+    DamageType "WheelCutter"
+    Obituary "$OB_NITROMAIN"
+    -NOGRAVITY
+    +HITTRACER
+    Gravity 0.5
+    Damage (100)
+    Radius 12
+    Height 14
+    Speed 85
+    Scale 2.5
+    States
+    {
+        Spawn:
+		TNT1 A 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnL:
+        Y_AG CD 3
+        Loop
+       
+        XDeath:
+        TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"DeathAmmo")
+        Goto DeathFX
+       
+DeathFX:
+TNT1 A 2 A_SpawnItemEx("NitroWheelBouncerDeathFX",0,0,25,0,0,0,0,1)
+stop
+       
+        Death:
+        TNT1 A 0 A_SpawnItemEx("WheelCutterFast",0,0,0,40,0,0,0,1)
+        Stop
+       
+        DeathAmmo:
+        TNT1 A 0 A_GiveToTarget("WheelCutterBossAmmo",12)
+        Goto DeathFX
+    }
+  }
+ 
+  Actor NitroWheelBouncerFastB : NitroWheelBouncerFast{translation "202:202=205:205", "199:199=74:74", "204:204=205:205"}
+  Actor NitroWheelBouncerFastR : NitroWheelBouncerFast{translation "202:202=171:171", "199:199=41:41", "204:204=171:171"}
+  Actor NitroWheelBouncerFastO : NitroWheelBouncerFast{translation "202:202=104:104", "199:199=128:128", "204:204=104:104"}
+  Actor NitroWheelBouncerFastP : NitroWheelBouncerFast{translation "202:202=229:229", "199:199=232:232", "204:204=229:229"}
+ 
+ 
+  Actor NitroWheelCutter
+  {
+    Projectile
+    -NOGRAVITY
+    -BOUNCEONWALLS
+    -BOUNCEONFLOORS
+    -BOUNCEONCEILINGS
+    -ALLOWBOUNCEONACTORS
+    +DONTSPLASH
+    +NOEXPLODEFLOOR
+    +STEPMISSILE
+    +HITTRACER
+    DamageType "WheelCutter"
+    Obituary "$OB_NITROMAIN"
+    Bouncetype Classic
+    MaxStepHeight 32
+    BounceFactor 1.0
+    WallBounceFactor 0.0
+    Damage (200)
+    Radius 10
+    Height 12
+    Speed 40
+    Scale 2.5
+    States
+    {
+        Spawn:
+        Y_AG C 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+        Y_AG C 0 A_GiveInventory("ResyncPickup",1)
+        TNT1 A 0 A_PlaySoundEx("weapon/wheelshot", CHAN_Weapon)
+        Y_AG CCCDDD 1 A_CheckFlag("BLASTED","NewShotX")
+        Goto Spawn+4
+ 
+        XDeath:
+        TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"DeathAmmo")
+        Goto DeathFX
+ 
+        DeathAmmo:
+        TNT1 A 0 A_GiveToTarget("WheelCutterBossAmmo",8)
+        Goto DeathFX
+		
+DeathFX:
+TNT1 A 2 A_SpawnItemEx("NitroWheelBouncerDeathFX",0,0,25,0,0,0,0,1)
+stop
+ 
+        NewShotX:
+        TNT1 A 0 A_SpawnItemEx("NitroWheelCutter",0,0,0,momx,momy,momz,0,9)
+        Stop
+    }
+  }
+ 
+ 
+  Actor WheelCutterFast : NitroWheelCutter
+  {
+    Damage (100)
+    Radius 12
+    Height 14
+    States
+    {
+        NewShotX:
+        TNT1 A 0 A_SpawnItemEx("WheelCutterFast",0,0,0,momx,momy,momz,0,9)
+        Stop
+    }
+  }
+  
+  Actor NitroWheelRoller 
+  {
+    Translation "202:202=168:168", "199:199=95:95", "204:204=215:215"
+    PROJECTILE
+    damagetype "WheelCutter"
+    Obituary "$OB_NITROMAIN"
+    -NOGRAVITY
+    +HITTRACER
+	SeeSound "weapon/wheelshort"
+    Damage (80)
+    Radius 10
+    Height 12
+    speed 38
+    scale 2.5
+    States
+    {
+      Spawn:
+      TNT1 A 0 
+      TNT1 A 0 ThrustThingZ(0,4,0,1)
+      goto Spin
+      Spin:
+      Y_AG CD 3
+      loop
+      XDeath:
+      XMFX R 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1, "DeathFX")
+      goto DeathFX
+DeathFX:
+TNT1 A 2 A_SpawnItemEx("NitroWheelBouncerDeathFX",0,0,25,0,0,0,0,1)
+stop
+      Death:
+      TNT1 A 0 A_SpawnItemEx("NitroWheelRoller2",0,0,5,10,0,0,0,1)
+      stop
+    }
+  }
+  
+  Actor NitroWheelRollerDos : NitroWheelRoller
+  {
+	speed 19
+  }
+ 
+actor NitroWheelRollerB : NitroWheelRoller{translation "202:202=205:205", "199:199=74:74", "204:204=205:205"}
+actor NitroWheelRollerR : NitroWheelRoller{translation "202:202=171:171", "199:199=41:41", "204:204=171:171"}
+actor NitroWheelRollerO : NitroWheelRoller{translation "202:202=104:104", "199:199=128:128", "204:204=104:104"}
+actor NitroWheelRollerP : NitroWheelRoller{translation "202:202=229:229", "199:199=232:232", "204:204=229:229"}
+actor NitroWheelRollerDosB : NitroWheelRollerDos{translation "202:202=205:205", "199:199=74:74", "204:204=205:205"}
+actor NitroWheelRollerDosR : NitroWheelRollerDos{translation "202:202=171:171", "199:199=41:41", "204:204=171:171"}
+actor NitroWheelRollerDosO : NitroWheelRollerDos{translation "202:202=104:104", "199:199=128:128", "204:204=104:104"}
+actor NitroWheelRollerDosP : NitroWheelRollerDos{translation "202:202=229:229", "199:199=232:232", "204:204=229:229"}
+
+  Actor NitroWheelRoller2 : NitroWheelRoller
+  {
+  States
+    {
+      Spawn:
+      TNT1 A 0
+      TNT1 A 0 ThrustThingZ(0,15,0,0)
+      goto Spin
+      Death:
+      Y_AG C 0 A_SpawnItemEx("NitroWheelRoller3",0,0,5,5,0,0,0,1)
+      stop
+    }
+  }
+  
+  Actor NitroWheelRoller3 : NitroWheelRoller
+  {
+  States
+    {
+      Spawn:
+      TNT1 A 0
+      TNT1 A 0 ThrustThingZ(0,10,0,0)
+      goto Spin
+      Death:
+	  Y_AG C 0
+      Y_AG C 0 A_SpawnItemEx("NitroWheelRoller4",0,0,5,40,0,0,0,1)
+      stop
+    }
+  }
+  
+  Actor NitroWheelRoller4 : NitroWheelCutter
+  {
+  Damage (80)
+  }
+  
+//==================
+// Attack Items
+//------------------
+//==================
+ 
+ actor NitroWheelBouncerDeathFX : BasicExplosion
+{
+Scale 2.5
+States
+{
+Spawn:
+XMFX Q 0
+XMFX QS 2
+VMFX JK 2
+XMFX D 2
+stop
+}
+}
+ 
+  Actor NitromanMain_CI : TeamColor_CI
+  {
+    States
+    {
+        FireX:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncer", 0, 1, 8, 0, 0, 6.328125)
+        Goto Done
+ 
+        FireB:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerB", 0, 1, 8, 0, 0, 6.328125)
+        Goto Done
+ 
+        FireR:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerR", 0, 1, 8, 0, 0, 6.328125)
+        Goto Done
+ 
+        FireO:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerO", 0, 1, 8, 0, 0, 6.328125)
+        Goto Done
+ 
+        FireP:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerP", 0, 1, 8, 0, 0, 6.328125)
+        Goto Done
+    }
+  }
+ 
+ 
+  Actor NitromanMain2_CI : TeamColor_CI
+  {
+    States
+    {
+        FireX:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFast",-4,1,8,0)
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFast",4,1,8,0)
+        Goto Done
+ 
+        FireB:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastB",-4,1,8,0)
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastB",4,1,8,0)
+        Goto Done
+ 
+        FireR:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastR",-4,1,8,0)
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastR",4,1,8,0)
+        Goto Done
+ 
+        FireO:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastO",-4,1,8,0)
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastO",4,1,8,0)
+        Goto Done
+ 
+        FireP:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastP",-4,1,8,0)
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastP",4,1,8,0)
+        Goto Done
+    }
+  }
+ 
+ 
+  Actor NitromanMain3_CI : TeamColor_CI
+  {
+    States
+    {
+        FireX:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFast",0,1,8,0)
+        Goto Done
+ 
+        FireB:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastB",0,1,8,0)
+        Goto Done
+ 
+        FireR:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastR",0,1,8,0)
+        Goto Done
+ 
+        FireO:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastO",0,1,8,0)
+        Goto Done
+ 
+        FireP:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelBouncerFastP",0,1,8,0)
+        Goto Done
+    }
+  }
+  
+   Actor NitromanMain4_CI : TeamColor_CI
+  {
+    States
+    {
+        FireX:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelRoller",0,1,8,0,0,6.328125)
+		TNT1 A 0 A_FireCustomMissile("NitroWheelRollerDos",0,1,8,0,0,6.328125)
+        Goto Done
+ 
+        FireB:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelRollerB",0,1,8,0,0,6.328125)
+		TNT1 A 0 A_FireCustomMissile("NitroWheelRollerDosB",0,1,8,0,0,6.328125)
+        Goto Done
+ 
+        FireR:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelRollerR",0,1,8,0,0,6.328125)
+		TNT1 A 0 A_FireCustomMissile("NitroWheelRollerDosR",0,1,8,0,0,6.328125)
+        Goto Done
+ 
+        FireO:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelRollerO",0,1,8,0,0,6.328125)
+		TNT1 A 0 A_FireCustomMissile("NitroWheelRollerDosO",0,1,8,0,0,6.328125)
+        Goto Done
+ 
+        FireP:
+        TNT1 A 0 A_FireCustomMissile("NitroWheelRollerP",0,1,8,0,0,6.328125)
+		TNT1 A 0 A_FireCustomMissile("NitroWheelRollerDosP",0,1,8,0,0,6.328125)
+        Goto Done
+    }
+  }
+ 

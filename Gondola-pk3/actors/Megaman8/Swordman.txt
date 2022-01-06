@@ -1,12 +1,15 @@
-actor Swordman : ToadClassBase
+actor Swordman : ClassBase //155, maybe consider 185?
 {
 Player.ScoreIcon "C_08C0X"
-player.startitem "ToadHealthBar"
 player.displayname "Swordman"
 player.soundclass "swordmanc"
 player.startitem "FlameSwordBoss"
 player.startitem "OrdersAmmo"
 player.startitem "SwordSpinnyAmmo"
+
+player.maxhealth 1550
+health 1550
+player.jumpz 10
 player.forwardmove 0.6, 0.6
 player.sidemove 0.58, 0.58
 //Height 84

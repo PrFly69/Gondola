@@ -1,0 +1,1375 @@
+actor SpreadDrillBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_BC"
+dropitem "SpreadDrillWepCDropped"
+Weapon.AmmoUse 8
+Weapon.AmmoGive 0
+inventory.pickupmessage "*Sonic 2 Boss theme*"
+Obituary "$OB_SPREADDIG"
+weapon.ammotype "GroundFuryAmmo"
+weapon.ammotype2 "SandAngerAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_0B C 1
+loop
+Ready:
+GRDH A 0 A_JumpIfInventory("GroundWasCeilX",1,"ReadyC")
+GRDH A 0 A_JumpIfInventory("GroundWasDigX",1,"ReadyD")
+GRDH A 0 A_JumpIfInventory("GroundWasTankX",1,"ReadyT")
+GRDH A 0 ACS_ExecuteAlways(998,0,DYE_GROUNDMAN)
+goto Ready1
+Ready1:
+GRDH A 0 A_JumpIfInventory("GroundFuryAmmo",8,"Ready2")
+GRDH A 2 A_WeaponReady(4)
+GRDH A 0 A_GiveInventory("GroundFuryAmmo",1)
+GRDH A 0 A_GiveInventory("SandAngerAmmo",4)
+loop
+Ready2:
+GRDH A 2 A_WeaponReady
+GRDH A 0 A_GiveInventory("GroundFuryAmmo",1)
+GRDH A 0 A_GiveInventory("SandAngerAmmo",4)
+loop
+
+ReadyC:
+GRDH D 2 offset(0,52)
+GRDH D 2 offset(0,50)
+GRDH D 2 offset(0,48)
+GRDH D 2 offset(0,46)
+GRDH C 2 offset(0,44)
+GRDH C 2 offset(0,42)
+GRDH B 2 offset(0,40)
+GRDH B 2 offset(0,38)
+GRDH A 2 offset(0,36)
+GRDH A 2 offset(0,34)
+Goto ReadyX
+ReadyD:
+GRDH F 2 Offset(0,82)
+GRDH E 2 Offset(0,76)
+GRDH F 2 Offset(0,70)
+GRDH E 2 Offset(0,64)
+GRDH F 2 Offset(0,58)
+GRDH E 2 Offset(0,52)
+GRDH F 2 Offset(0,46)
+GRDH E 2 Offset(0,40)
+GRDH D 2 offset(0,38)
+GRDH C 2 offset(0,36)
+GRDH B 2 offset(0,34)
+Goto ReadyX
+ReadyT:
+GRDH D 2 offset(0,38) A_TakeInventory("SandAngerAmmo",8)
+GRDH C 2 offset(0,36) A_TakeInventory("SandAngerAmmo",8)
+GRDH B 2 offset(0,34) A_TakeInventory("SandAngerAmmo",8)
+Goto ReadyX
+ReadyX:
+TNT1 A 0 A_TakeInventory("GroundWasCeilX",99)
+TNT1 A 0 A_TakeInventory("GroundWasDigX",99)
+TNT1 A 0 A_TakeInventory("GroundWasTankX",99)
+goto Ready+3
+
+Deselect:
+TNT1 A 0 A_GiveInventory("GroundWasTankX",1)
+TNT1 A 0 A_GiveInventory("GroundWasDigX",1)
+TNT1 A 0 A_GiveInventory("GroundWasCeilX",1)
+TNT1 A 0 A_JumpIfInventory("GroundInCeiling",1,"CeilingDone")
+TNT1 A 0 A_TakeInventory("GroundWasCeilX",99)
+TNT1 A 0 A_JumpIfInventory("GroundInGround",1,"DigRelease")
+TNT1 A 0 A_TakeInventory("GroundWasDigX",99)
+TNT1 A 0 A_JumpIfInventory("GroundIsATank",1,"AltfireB")
+TNT1 A 0 A_TakeInventory("GroundWasTankX",99)
+goto DeselectX
+DeselectX:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+GRDH A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+GRDH A 1 A_Raise
+Loop
+
+NoAmmo:
+GRDH A 0
+Goto Ready1
+
+BotFire2:
+GRDH A 0 A_Jump(52,"Fire2")
+goto Fire+12
+
+BotAmmo:
+GRDH A 0 A_GiveInventory("SandAngerAmmo",400)
+GRDH A 25 SetPlayerProperty(0,1,0)
+GRDH A 0 SetPlayerProperty(0,0,0)
+Goto Ready1
+
+Fire:
+GRDH A 0 A_JumpIfInventory("GroundInCeiling",1,"FireCeiling")
+GRDH A 0 A_JumpIfInventory("GroundInGround",1,"CeilingDigStart")//"DigRelease")
+GRDH A 0 A_JumpIfInventory("GroundIsATank",1,"AltDownCheck")//"AltfireB")
+GRDH B 2 A_GiveInventory("SandAngerAmmo",4)
+GRDH B 1 A_GiveInventory("SandAngerAmmo",4)
+GRDH C 1
+GRDH C 2 A_GiveInventory("SandAngerAmmo",4)
+GRDH D 0 A_PlaySoundEx("weapon/spreaddrill1","Weapon")
+GRDH D 0 A_GiveInventory("GroundmanMain_CI",1)
+GRDH D 2 A_GiveInventory("SandAngerAmmo",4)
+GRDH D 1 A_GiveInventory("SandAngerAmmo",4)
+GRDH C 1
+GRDH C 2 A_GiveInventory("SandAngerAmmo",4)
+GRDH B 2 A_GiveInventory("SandAngerAmmo",4)
+GRDH B 1 A_GiveInventory("SandAngerAmmo",4)
+GRDH A 1
+GRDH AAA 2 A_GiveInventory("SandAngerAmmo",4)
+Goto Ready1
+
+FireCeiling:
+TNT1 A 0 A_PlaySoundEx("weapon/GroundBigDrill","SoundSlot7")
+TNT1 A 0 A_SpawnItemEx("GiantCeilingDrill",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_GiveInventory("GroundHoldFlag",1)
+TNT1 A 0 A_TakeInventory("SandAngerAmmo",15)
+goto FireCeilingH
+
+FireCeilingH:
+TNT1 A 0 ThrustThingZ(0,4,0,1)
+TNT1 A 0 A_SetTranslucent(0.0,0)
+GRDH E 3 Offset(0,50)A_TakeInventory("SandAngerAmmo",7)
+TNT1 A 0 A_PlaySound("weapon/GroundDig",1,1.0)
+TNT1 A 0 A_JumpIfInventory("GroundInCeiling",1,1)
+goto CeilingDone
+GRDH E 1 Offset(0,50)A_ReFire(2)
+TNT1 A 0 A_GiveInventory("GroundCMainFlag_RC",1)
+goto FireCeilingD
+TNT1 A 0 A_JumpIfInventory("SandAngerAmmo",1,1)
+goto CeilingDone
+GRDH F 3 Offset(0,50)A_TakeInventory("SandAngerAmmo",7)
+TNT1 A 0 A_PlaySound("weapon/GroundDig",1,1.0)
+TNT1 A 0 A_JumpIfInventory("GroundInCeiling",1,1)
+goto CeilingDone
+GRDH F 1 Offset(0,50)A_ReFire(2)
+TNT1 A 0 A_GiveInventory("GroundCMainFlag_RC",1)
+goto FireCeilingD
+TNT1 A 0 A_JumpIfInventory("SandAngerAmmo",1,"FireCeilingH")
+goto CeilingDone
+
+
+
+Altfire:
+GRDH A 0 A_JumpIfInventory("GroundInCeiling",1,"CeilingDone")
+GRDH A 0 A_JumpIfInventory("GroundInGround",1,"DigRelease")
+GRDH A 0 A_JumpIfInventory("GroundIsATank",1,"AltfireB")
+GRDH B 0 A_JumpIfInventory("SandAngerAmmo",400,"TankTime")
+GRDH B 1
+goto SplitMyDrills
+SplitMyDrills:
+GRDH C 1 A_GiveInventory("SandAngerAmmo",2)
+GRDH C 1 A_Refire("SplitMyDrills")
+GRDH B 1
+Goto Ready1
+
+AltfirePast:
+GRDH A 0 A_JumpIfInventory("GroundInCeiling",1,"CeilingDigging")
+GRDH B 0 A_JumpIf(z-floorz==0,2)
+GRDH B 0 A_Jump(256,"MyPeopleNeedMe")
+GRDH BC 3
+GRDH C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
+goto AltfireA
+
+
+
+TankTime:
+GRDH B 0 A_PlaySoundEX("item/ItemUseMM9","SoundSlot7")
+GRDH B 3
+GRDH C 3 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,7,1)//Half jump
+GRDH C 0 A_GiveInventory("GroundTankTime_AP",1)
+goto AltfireA
+AltfireA:
+GRDH E 0 A_GiveInventory("GroundTankThrust_P",1)
+GRDH E 0 A_GiveInventory("GroundTankTrack_F",1)
+GRDH E 0 A_JumpIfInventory("PowerRage_ST",1,2)
+GRDH E 1 A_WeaponReady
+GRDH E 0 A_GiveInventory("GroundTankTrack_F",1)
+GRDH E 1 A_WeaponReady
+GRDH E 0 A_GiveInventory("GroundTankTrack_F",1)
+GRDH E 1 A_WeaponReady
+GRDH E 0 A_GiveInventory("GroundFuryAmmo",1)
+GRDH E 0 A_JumpIfInventory("SandAngerAmmo",1,"AltfireAA")
+Goto AltfireB
+AltfireAA:
+GRDH F 0 A_GiveInventory("GroundTankThrust_P",1)
+GRDH F 0 A_GiveInventory("GroundTankTrack_F",1)
+GRDH F 0 A_JumpIfInventory("PowerRage_ST",1,2)
+GRDH F 1 A_WeaponReady
+GRDH F 0 A_GiveInventory("GroundTankTrack_F",1)
+GRDH F 1 A_WeaponReady
+GRDH F 0 A_GiveInventory("GroundTankTrack_F",1)
+GRDH F 1 A_WeaponReady
+GRDH F 0 A_GiveInventory("GroundFuryAmmo",1)
+GRDH F 0 A_TakeInventory("GroundTankTrack_F",99)
+GRDH F 0 A_JumpIfInventory("SandAngerAmmo",1,"AltfireA")
+Goto AltfireB
+AltDownCheck:
+GRDH F 0 A_JumpIfInventory("GroundTankTrack_F",6,"AltDownCheck6")
+GRDH F 0 A_JumpIfInventory("GroundTankTrack_F",5,"AltDownCheck5")
+GRDH F 0 A_JumpIfInventory("GroundTankTrack_F",4,"AltDownCheck4")
+GRDH E 0 A_JumpIfInventory("GroundTankTrack_F",3,"AltDownCheck3")
+GRDH E 0 A_JumpIfInventory("GroundTankTrack_F",2,"AltDownCheck2")
+GRDH E 0 A_JumpIfInventory("GroundTankTrack_F",1,"AltDownCheck1")
+AltDownCheck1:
+GRDH E 1 A_JumpIf(z-floorz==0, "AltDig")
+goto AltfireA+8
+AltDownCheck2:
+GRDH E 1 A_JumpIf(z-floorz==0, "AltDig")
+goto AltfireA+10
+AltDownCheck3:
+GRDH E 1 A_JumpIf(z-floorz==0, "AltDig")
+goto AltfireA+12
+
+AltDownCheck4:
+GRDH F 1 A_JumpIf(z-floorz==0, "AltDig")
+goto AltfireAA+8
+AltDownCheck5:
+GRDH F 1 A_JumpIf(z-floorz==0, "AltDig")
+goto AltfireAA+10
+AltDownCheck6:
+GRDH F 1 A_JumpIf(z-floorz==0, "AltDig")
+goto AltfireAA+12
+
+AltfireB:
+GRDH D 0 A_PlaySoundEX("item/ItemUseMM9","SoundSlot7")
+GRDH F 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//1.0x speed
+GRDH A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)//Normal Jump
+GRDH A 0 A_JumpIfInventory("GroundWasTankX",1,"DeselectX")
+GRDH D 2 //A_TakeInventory("SandAngerAmmo",8)
+GRDH A 0 A_GiveInventory("GroundTankTimeEnd_AP",1)
+GRDH C 2 //A_TakeInventory("SandAngerAmmo",8)
+GRDH B 2 //A_TakeInventory("SandAngerAmmo",8)
+Goto Ready1
+
+
+
+AltDownCheckE:
+GRDH E 0 //A_JumpIf(pitch>45 && pitch<=90, "AltDownCheckE")
+GRDH E 0 A_JumpIf(z-floorz==0, "AltDig")
+goto AltfireA+5
+AltDownCheckF:
+GRDH F 0 A_JumpIf(z-floorz==0, "AltDig")
+GRDH F 0 //A_JumpIf(pitch>45 && pitch<=90, "AltDownCheckF")
+goto AltfireA+12
+
+AltDig:
+GRDH E 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)//No jump
+GRDH E 0 A_TakeInventory("GroundTankTrack_F",99)
+GRDH E 0 A_GiveInventory("GroundTankFlag",1)
+GRDH E 0 A_GiveInventory("GroundInGround",1)
+GRDH E 0 A_Stop
+GRDH E 0 SetPlayerProperty(0,1,0)
+GRDH E 2 Offset(0,36) A_GiveInventory("GroundRocksSpawner",1)
+GRDH F 2 Offset(0,42) A_GiveInventory("GroundRocksSpawner",1)
+GRDH E 2 Offset(0,48) A_GiveInventory("GroundRocksSpawner",1)
+GRDH F 2 Offset(0,54) A_GiveInventory("GroundRocksSpawner",1)
+GRDH E 2 Offset(0,60) A_GiveInventory("GroundRocksSpawner",1)
+GRDH F 2 Offset(0,66) A_GiveInventory("GroundRocksSpawner",1)
+GRDH E 2 Offset(0,72) A_GiveInventory("GroundRocksSpawner",1)
+GRDH F 2 Offset(0,78) A_GiveInventory("GroundRocksSpawner",1)
+GRDH F 0 A_SpawnItemEx("GroundVisualHelper")
+GRDH F 0 A_TakeInventory("GroundTankFlag",99)
+GRDH F 0 A_TakeInventory("UnSolid",1)
+GRDH F 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,140,100)//1.40x speed
+GRDH F 0 A_ChangeFlag("SOLID",0)
+GRDH F 0 A_GiveInventory("InvulnerableOn_Pickup",1)
+GRDH F 0 A_ChangeFlag("NONSHOOTABLE",1)
+GRDH F 0 A_ChangeFlag("PICKUP",0)
+GRDH F 0 A_ChangeFlag("FLOORHUGGER",1)
+GRDH F 0 A_SetTranslucent(0.0,0)
+GRDH F 0 A_Stop
+GRDH F 0 SetPlayerProperty(0,0,0)
+goto AltDiggingX
+
+AltDiggingX:
+TNT1 A 0 A_SetTranslucent(0.0,0)
+TNT1 A 0 A_TakeInventory("SandAngerAmmo",6)
+TNT1 A 0 ThrustThingZ(0,0,1,0)//Fix running over fans/bubbles
+TNT1 A 3 A_PlaySound("weapon/GroundDig",1,1.0)
+TNT1 A 0 A_GiveInventory("GroundFuryAmmo",1)
+TNT1 A 0 A_ReFire(1)
+goto AltDigging
+TNT1 A 0 A_JumpIfInventory("SandAngerAmmo",1,"AltDiggingX")
+goto DigRelease
+
+AltDigging:
+TNT1 A 0 A_SetTranslucent(0.0,0)
+TNT1 A 0 ThrustThingZ(0,0,1,0)//Fix running over fans/bubbles
+TNT1 A 0 A_TakeInventory("SandAngerAmmo",6)
+TNT1 A 0 A_PlaySound("weapon/GroundDig",1,1.0)
+TNT1 A 0 A_JumpIfInventory("GroundInCeiling",1,"CeilingDigStart")
+TNT1 A 3 A_WeaponReady(1)
+TNT1 A 0 A_GiveInventory("GroundFuryAmmo",1)
+TNT1 A 0 A_JumpIfInventory("SandAngerAmmo",1,"AltDigging")
+Goto DigRelease
+DigRelease:
+TNT1 A 0 A_TakeInventory("BlackHoleBombCBMProtect")
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GroundRocksX",0,0,8,random(-8,8),random(-8,8),random(2,8),random(0,359),1)
+TNT1 A 0 A_TakeInventory("StunArmor",99)
+TNT1 A 0 A_TakeInventory("GroundIsATank",999)
+TNT1 A 0 A_TakeInventory("GroundInGround",999)
+TNT1 A 0 //A_Stop
+TNT1 A 0 A_SetTranslucent(1.0,0)
+TNT1 A 0 A_PlaySound("classes/drillout",1,1.0)
+TNT1 A 0 A_ChangeFlag("NONSHOOTABLE",0)
+TNT1 A 0 A_ChangeFlag("FLOORHUGGER",0)
+TNT1 A 0 A_ChangeFlag("PICKUP",1)
+TNT1 A 0 A_GiveInventory("InvulnerableOff_Pickup",1)
+TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//1.0x speed
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)//Normal Jump
+TNT1 A 0 ThrustThingZ(0,1,0,1)
+TNT1 A 0 A_FireCustomMissile("GroundDigUpDamage",0,0,0,0)
+TNT1 A 0 A_JumpIfInventory("GroundWasDigX",1,"DeselectX")
+GRDH F 2 Offset(0,82)
+TNT1 A 0 A_GiveInventory("GroundTankTimeFloorEnd_AP",1)
+GRDH E 2 Offset(0,76)
+GRDH F 2 Offset(0,70)A_GiveInventory("GroundFuryAmmo",1)
+GRDH E 2 Offset(0,64)
+GRDH F 2 Offset(0,58)A_GiveInventory("GroundFuryAmmo",1)
+GRDH E 2 Offset(0,52)
+GRDH F 2 Offset(0,46)A_GiveInventory("GroundFuryAmmo",1)
+GRDH E 2 Offset(0,40)
+GRDH D 2 offset(0,38)A_GiveInventory("GroundFuryAmmo",1)
+GRDH C 2 offset(0,36)
+GRDH B 2 offset(0,34)A_GiveInventory("GroundFuryAmmo",1)
+Goto Ready1
+MyPeopleNeedMe:
+GRDH B 0 A_Stop
+GRDH B 0 SetPlayerProperty(0,1,0)
+GRDH B 0 //A_ChangeFlag("NOGRAVITY",1)
+GRDH BC 2
+GRDH B 0 SetPlayerProperty(0,0,0)
+Goto BoostMeUp
+BoostMeUp:
+GRDH D 0 A_PlaySoundEX("weapon/superboost", "Weapon")
+GRDH D 0 A_SpawnItemEX("BoosterFX",0,-10,0,0,0,0,0,0)
+GRDH D 0 A_SpawnItemEX("BoosterFX",0,10,0,0,0,0,0,0)
+GRDH D 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+GRDH D 0 ThrustThingZ(0, 75, 0, 0)
+GRDH D 0
+GRDH D 2 A_JumpIf(ceilingz-z<=64,"CeilingDigStart")
+GRDH D 0 A_Refire("BoostMeUp")
+GRDH D 0 //A_ChangeFlag("NOGRAVITY",0)
+Goto Ready1
+
+
+CeilingDigStart:
+GRDH F 0 A_GiveInventory("GroundInCeiling",1)
+GRDH F 0 A_TakeInventory("UnSolid",1)
+GRDH F 0 A_TakeInventory("GroundInGround",99)
+GRDH F 0 A_TakeInventory("ConcreteTime",999)//
+GRDH F 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,245,100)//2.45x speed
+GRDH F 0 A_ChangeFlag("FLOORHUGGER",0)
+GRDH F 0 A_SetGravity(-0.8)//A_ChangeFlag("NOGRAVITY",1)
+GRDH F 0 A_ChangeFlag("SOLID",0)
+GRDH F 0 A_GiveInventory("InvulnerableOn_Pickup",1)
+GRDH F 0 A_ChangeFlag("NONSHOOTABLE",1)
+GRDH F 0 A_ChangeFlag("PICKUP",0)
+GRDH F 0 A_ChangeFlag("CEILINGHUGGER",1)
+GRDH F 0 ThrustThing(angle*256/360,1)
+GRDH F 0 A_SetTranslucent(0.0,0)
+GRDH F 0 A_SpawnItemEx("GroundRocksCeilingBoost",0,0,0,0,0,0,0,1)//A_Stop
+GRDH F 0 SetPlayerProperty(0,0,0)
+goto CeilingDiggingX
+
+CeilingDiggingX:
+TNT1 A 0 ThrustThingZ(0,4,0,1)
+TNT1 A 0 A_SetTranslucent(0.0,0)
+TNT1 A 0 A_TakeInventory("SandAngerAmmo",6)
+TNT1 A 3 A_PlaySound("weapon/GroundDig",1,1.0)
+TNT1 A 0 A_GiveInventory("GroundFuryAmmo",1)
+TNT1 A 0 A_ReFire(1)
+goto CeilingDigging
+TNT1 A 0 A_JumpIfInventory("SandAngerAmmo",1,"CeilingDiggingX")
+goto CeilingDone
+
+CeilingDigging:
+TNT1 A 0 ThrustThingZ(0,4,0,1)
+TNT1 A 0 A_SetTranslucent(0.0,0)
+TNT1 A 0 A_TakeInventory("SandAngerAmmo",6)
+TNT1 A 0 A_PlaySound("weapon/GroundDig",1,1.0)
+goto CeilingDiggingA
+CeilingDiggingA:
+TNT1 A 0 A_JumpIfInventory("GroundCMainFlag",1,"FireCeilingDA")
+goto CeilingDiggingAmmo
+CeilingDiggingAmmo:
+TNT1 A 3 A_WeaponReady(1)
+TNT1 A 0 A_GiveInventory("GroundFuryAmmo",1)
+TNT1 A 0 A_JumpIfInventory("SandAngerAmmo",1,"CeilingDigging")
+goto CeilingDone
+
+
+FireCeilingD:
+TNT1 A 0 ThrustThingZ(0,4,0,1)
+TNT1 A 0 A_SetTranslucent(0.0,0)
+TNT1 A 0 A_TakeInventory("SandAngerAmmo",6)
+TNT1 A 0 A_TakeInventory("GroundCMainFlag",1)
+TNT1 A 0 A_PlaySound("weapon/GroundDig",1,1.0)
+goto FireCeilingDA
+FireCeilingDA:
+TNT1 A 0 A_JumpIfInventory("GroundCMainFlag",1,"FireCeilingDAmmo")
+goto CeilingDiggingAmmo
+FireCeilingDAmmo:
+TNT1 A 3 A_WeaponReady(5)
+TNT1 A 0 A_GiveInventory("GroundFuryAmmo",1)
+TNT1 A 0 A_JumpIfInventory("SandAngerAmmo",1,"FireCeilingD")
+goto CeilingDone
+
+
+AltFireCeiling:
+GRDH E 0 A_GiveInventory("GroundCAltFlag_RC",1)
+GRDH E 0 A_PlaySoundEx("weapon/GroundBigDrill","SoundSlot7")
+GRDH E 0 A_GiveInventory("GroundmanAlt_CI",1)
+GRDH EFEFEF 1 Offset(0,50) A_TakeInventory("SandAngerAmmo",3)
+goto AFireCeilingD
+
+
+CeilingDone:
+TNT1 A 0 A_TakeInventory("BlackHoleBombCBMProtect")
+GRDH F 0 A_TakeInventory("GroundCMainFlag",99)
+GRDH F 0 A_TakeInventory("GroundCAltFlag",99)
+GRDH F 0 A_TakeInventory("GroundHoldFlag",99)
+GRDH F 0 A_TakeInventory("StunArmor",99)
+GRDH F 0 A_TakeInventory("GroundIsATank",99)
+GRDH F 0 A_TakeInventory("GroundInCeiling",99)
+GRDH FFFFFFFFFFFFFFFFFFFFFFFF 0 A_SpawnItemEx("GroundRocksX",0,0,8,random(-20,20),random(-20,20),random(-5,-30),random(0,359),1)
+GRDH F 0 A_ClearRefire
+GRDH F 0 //A_Stop
+GRDH F 0 A_SetTranslucent(1.0,0)
+GRDH F 0
+GRDH F 0 A_PlaySound("classes/drillout",1,1.0)
+GRDH F 0 A_ChangeFlag("NONSHOOTABLE",0)
+GRDH F 0 A_ChangeFlag("CEILINGHUGGER",0)
+GRDH F 0 A_ChangeFlag("PICKUP",1)
+GRDH F 0 A_GiveInventory("InvulnerableOff_Pickup",1)
+GRDH F 0 A_GiveInventory("EnvironmentGravity",1)//A_SetGravity(0.8)//A_ChangeFlag("NOGRAVITY",0)
+GRDH F 0 A_SpawnItemEx("ReSolidifier")
+GRDH F 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//1.0x speed
+GRDH F 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)//Normal Jump
+GRDH D 0 offset(0,54)ThrustThingZ(0,75,1,0)
+GRDH DD 0 A_FireCustomMissile("GroundDigUpDamage",0,0,0,0)
+GRDH D 0 A_JumpIfInventory("GroundWasCeilX",1,"DeselectX")
+GRDH D 2 offset(0,52)
+GRDH F 0 A_GiveInventory("GroundTankTimeCeilingEnd_AP")
+GRDH D 2 offset(0,50)A_GiveInventory("GroundFuryAmmo",1)
+GRDH D 2 offset(0,48)
+GRDH D 2 offset(0,46)A_GiveInventory("GroundFuryAmmo",1)
+GRDH C 2 offset(0,44)
+GRDH C 2 offset(0,42)A_GiveInventory("GroundFuryAmmo",1)
+GRDH B 2 offset(0,40)
+GRDH B 2 offset(0,38)A_GiveInventory("GroundFuryAmmo",1)
+GRDH A 2 offset(0,36)
+GRDH A 2 offset(0,34)A_GiveInventory("GroundFuryAmmo",1)
+Goto Ready1
+}
+}
+
+actor GroundFuryAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor SandAngerAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 400
++INVENTORY.IGNORESKILL
+}
+
+actor GroundTankTrack_F : Inventory
+{
+inventory.amount 1
+inventory.maxamount 10
+}
+
+actor GroundTankFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 2
+}
+
+actor GroundHoldFlag :OnceC{}
+
+actor GroundCMainFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 10
+}
+actor GroundCAltFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 10
+}
+
+actor GroundTankThrust_P : CustomInventory
+{
+States
+{
+Pickup:
+GRDH E 0 A_TakeInventory("SandAngerAmmo",3)
+GRDH E 0 A_SpawnItemEx("GroundTankDustFXR",-2, 24,0,-2,0,0,0,129)
+GRDH E 0 A_SpawnItemEx("GroundTankDustFXL",-2,-24,0,-2,0,0,0,129)
+GRDH E 0 A_FireCustomMissile("GroundTankMelee",0,0,0,0)
+TNT1 A 0 A_JumpIf(CallACS("cbm_CheckForwardBackInput")==1,"Pickup_Forward")
+TNT1 A 0 A_JumpIf(CallACS("cbm_CheckForwardBackInput")==-1,"Pickup_Back")
+goto Pickup_None
+Pickup_None:
+TNT1 A 0
+stop
+Pickup_Forward:
+TNT1 A 0 A_GiveInventory("GroundTankThrustCheckF_P",1)
+stop
+Pickup_Back:
+TNT1 A 0 A_GiveInventory("GroundTankThrustCheckB_P",1)
+stop
+}
+}
+actor GroundTankThrustCheckF_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
+TNT1 A 0 A_JumpIf(1,"Air")
+stop
+Air:
+TNT1 A 0 A_Recoil(-1.75)
+stop
+Ground:
+TNT1 A 0 A_Recoil(-2.1)
+stop
+}
+}
+actor GroundTankThrustCheckB_P : GroundTankThrustCheckF_P
+{
+States
+{
+Air:
+TNT1 A 0 A_Recoil(0.4375)
+stop
+Ground:
+TNT1 A 0 A_Recoil(0.525)
+stop
+}
+}
+
+actor GroundCMainFlag_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("GroundCMainFlag",10)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("GroundCMainFlag",5)
+stop
+}
+}
+actor GroundCAltFlag_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("GroundCAltFlag",10)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("GroundCAltFlag",5)
+stop
+}
+}
+
+actor GroundBossSplitItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "GrndIcon"
+Inventory.Pickupmessage "I hate blue sand, it reminds me of a hedgehog."
+scale 2.0
++INVBAR
+states
+{
+Spawn:
+GRDH I 1
+loop
+Use:
+TNT1 A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot6")
+TNT1 A 1 A_GiveInventory("GroundSplitFlag",1)
+fail
+No:
+TNT1 A 0
+fail
+}
+}
+
+actor GroundCoolDown :OnceC{}
+actor GroundIsATank :OnceC{}
+actor GroundInGround :OnceC{}
+actor GroundInCeiling :OnceC{}
+
+actor GroundSplitFlag : Powerup
+{
+Powerup.Duration 3
+}
+
+
+actor GroundWasTankX :OnceC{}
+actor GroundWasDigX :OnceC{}
+actor GroundWasCeilX :OnceC{}
+
+
+actor GroundTankMelee
+{
+PROJECTILE
++DONTBLAST
+Radius 14
+Height 16
+DamageType "GroundM_Stab"
+Obituary "$OB_SPREADDIG"
+speed 40
+damage (40)
+reactiontime 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+goto Spawn+1
+Death:
+TNT1 A 0 A_Explode(40,94,0,0,32)
+goto XDeath
+XDeath:
+TNT1 A 0 A_Stop
+TNT1 A 1
+stop
+}
+}
+
+actor GroundTankMeleeE : BasicExplosion
+{
+DamageType "GroundM_Stab"
+Obituary "$OB_SPREADDIG"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(40,94,0,0,32)
+stop
+}
+}
+
+actor GroundTankDustFXL
+{
+Scale 1.0
++NOINTERACTION
++NOGRAVITY
++CLIENTSIDEONLY
+States
+{
+Spawn:
+HSHH P 0
+HSHH PQR 5 A_SpawnItemEx("GroundTankDustFX2",random(8,48),random(-8,-24),random(8,48),-1,frandom(-1,0),0,0,1)
+stop
+}
+}
+actor GroundTankDustFXR : GroundTankDustFXL
+{
+States
+{
+Spawn:
+HSHH P 0
+HSHH PQR 5 A_SpawnItemEx("GroundTankDustFX2",random(8,48),random(8,24),random(8,48),-1,frandom(0,1),0,0,1)
+stop
+}
+}
+
+actor GroundTankDustFX2 : BasicClientSide
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,2)
+X_9A G 5
+stop
+X_9A H 5
+stop
+}
+}
+
+
+
+
+actor GroundDigUpDamage : BasicExplosion
+{
+Damagetype "GroundM_DigUp"
+Obituary "$OB_SPREADDIG"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 1 A_Explode(50,86,0,0,86)
+stop
+}
+}
+
+
+actor SpreadDrillC
+{
+Translation "199:199=76:76","202:202=71:71"
+PROJECTILE
+DamageType "GroundM_Shot1"
+Obituary "$OB_SPREADDRILL"
++RIPPER
+damage (150)//25
+radius 32
+height 16
+speed 20//13
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("GroundIsATank",1)
+Y_BE AAFF 1 A_JumpIfInTargetInventory("GroundSplitFlag",1,"Spread")
+goto Spawn+2
+Spread:
+TNT1 A 0 A_SpawnItemEx("LargeDrillShellC",-8,0,0,5,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1C",0,0,0,20,13,0,0,1)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1C",0,0,0,20,-13,0,0,1)
+stop
+Death:
+TNT1 A 0 A_JumpIfInventory("GroundIsATank",1,"Death2")
+goto Spread
+Death2:
+TNT1 A 0
+stop
+Death:
+TNT1 A 0 A_JumpIf(z-floorz<=2,"DeathF")
+TNT1 A 0 A_JumpIf(ceilingz-z<=16,"DeathC")
+TNT1 A 0 A_JumpIfInventory("GroundIsATank",1,"Death2")
+goto Spread
+DeathF:
+TNT1 A 0
+goto Spread
+DeathC:
+TNT1 A 0
+goto Spread
+}
+}
+
+
+actor SpreadDrillCB : SpreadDrillC{translation "202:202=205:205", "199:199=74:74"}
+actor SpreadDrillCR : SpreadDrillC{translation "202:202=171:171", "199:199=41:41"}
+actor SpreadDrillCO : SpreadDrillC{translation "202:202=104:104", "199:199=128:128"}
+actor SpreadDrillCP : SpreadDrillC{translation "202:202=229:229", "199:199=232:232"}
+
+actor MediumDrill1C : SpreadDrillC
+{
+radius 18
+scale 2.5
+damage (100)
+DamageType "GroundM_Shot2"
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+GRD7 B 0
+Y_BE CB 2
+Goto Death
+Death:
+TNT1 A 0 A_SpawnItemEx("MediumDrill2C",0,0,0,28,0,0,0,1)
+TNT1 A 0 //A_CustomMissile("MediumDrill2C",0,0,0, 2,0)
+TNT1 A 0 //A_CustomMissile("MediumDrill2C",0,0,0, 2,0)
+stop
+}
+}
+
+actor MediumDrill2C : SpreadDrillC
+{
+radius 16
+scale 2.5
+Speed 28//20
+DamageType "GroundM_Shot2"
+damage (100)
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_BE CCBB 1 A_JumpIfInTargetInventory("GroundSplitFlag",1,"Spread")
+loop
+Spread:
+TNT1 A 0 A_SpawnItemEx("MediumDrillShellC",-4,0,0,5,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallDrill1C",0,0,0,20,8,0,0,1)
+TNT1 A 0 A_SpawnItemEx("SmallDrill1C",0,0,0,20,-8,0,0,1)
+stop
+Death:
+TNT1 A 0 
+stop
+}
+}
+
+actor SmallDrill1C : MediumDrill1C
+{
+radius 10
+height 8
+damage (80)
+DamageType "GroundM_Shot3"
+states
+{
+Spawn:
+Y_BE D 0
+Y_BE ED 2
+Goto Death
+Death:
+TNT1 A 0 A_SpawnItemEx("SmallDrill2C",0,0,0,28,0,0,0,1)//A_CustomMissile("SmallDrill2C",0,0,0, 2,0)
+stop
+}
+}
+
+actor SmallDrill2C : MediumDrill2C
+{
+radius 8
+height 8
+damage (80)
+Speed 28
+DamageType "GroundM_Shot3"
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_BE ED 2
+loop
+Death:
+TNT1 A 0 
+stop
+}
+}
+
+actor LargeDrillShellC
+{
++MISSILE
++RIPPER
++NOCLIP
+Radius 1
+Height 1
+scale 2.5
+Gravity 0.3
+States
+{
+Spawn:
+TNT1 A 0
+Y_BE G 1 A_PlaySoundEx("weapon/spreaddrill2","Weapon")
+TNT1 A 1 
+Spawn2:
+Y_BE G 1
+TNT1 A 1 A_CheckFloor("Death")
+loop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor MediumDrillShellC : LargeDrillShellC
+{
+States
+{
+Spawn:
+
+TNT1 A 0 
+Y_BE H 1 A_PlaySoundEx("weapon/spreaddrill3","Weapon")
+TNT1 A 1 
+Spawn2:
+Y_BE H 1
+TNT1 A 1 A_CheckFloor("Death")
+loop
+}
+}
+
+
+actor LargeDrillShellCeiling : LargeDrillShellC
+{
+States
+{
+Spawn:
+TNT1 A 0
+Y_BE Y 1 A_PlaySoundEx("weapon/spreaddrill2","Weapon")
+TNT1 A 1 
+Spawn2:
+Y_BE Y 1
+TNT1 A 1 A_CheckFloor("Death")
+loop
+}
+}
+
+actor CeilingDrillSpawner
+{
+Translation "199:199=76:76","202:202=71:71"
+PROJECTILE
++NOINTERACTION
+height 1
+radius 1
+Speed 0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("CeilingSpreadDrillC",0,0,-32,0,0,-16,0,1)
+stop
+}
+}
+
+actor CeilingDrillSpawnerB : CeilingDrillSpawner{translation "202:202=205:205", "199:199=74:74"}
+actor CeilingDrillSpawnerR : CeilingDrillSpawner{translation "202:202=171:171", "199:199=41:41"}
+actor CeilingDrillSpawnerO : CeilingDrillSpawner{translation "202:202=104:104", "199:199=128:128"}
+actor CeilingDrillSpawnerP : CeilingDrillSpawner{translation "202:202=229:229", "199:199=232:232"}
+
+actor CeilingSpreadDrillC
+{
+PROJECTILE
+-NOGRAVITY
+radius 28
+height 28
+speed 1
+DamageType "GroundM_ShotCeil"
+Obituary "$OB_SPREADDRILL"
+damage (250)
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+GRD6 WX 2
+Loop
+Crash:
+XDeath:
+GRD6 X 0 A_Stop
+GRD6 X 0 A_ChangeFlag("NOGRAVITY",1)
+GRD6 X 0
+GRD6 X 1
+TNT1 A 1
+GRD6 X 1
+TNT1 A 1
+GRD6 W 1
+TNT1 A 1
+GRD6 W 1
+TNT1 A 1
+GRD6 X 1
+TNT1 A 1
+GRD6 X 1
+TNT1 A 1
+GRD6 W 1
+TNT1 A 1
+GRD6 W 1
+TNT1 A 1
+stop
+Death:
+//TNT1 A 1 ACS_ExecuteAlways(259,0,1)
+TNT1 A 0 A_SpawnItemEx("LargeDrillShellCeiling",0,0,8,1,0,2,0,1)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1C",0,16,32,20,11,0,90,1)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1C",0,-16,32,20,-11,0,90,1)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1C",0,16,32,20,11,0,180,1)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1C",0,-16,32,20,-11,0,180,1)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1C",0,16,32,20,11,0,-90,1)
+TNT1 A 0 A_SpawnItemEx("MediumDrill1C",0,-16,32,20,-11,0,-90,1)
+
+TNT1 A 0 A_SpawnItemEx("MediumDrill1C",0,16,32,20,11,0,0,1)
+TNT1 A 1 A_SpawnItemEx("MediumDrill1C",0,-16,32,20,-11,0,0,1)
+stop
+
+}
+}
+
+actor GiantCeilingDrill
+{
+PROJECTILE
+Radius 12
+Height 18
+Damage (50)
++DONTBLAST
++RIPPER
++DONTREFLECT
++THRUGHOST
++SPAWNCEILING
++CEILINGHUGGER
+DamageType "GroundM_GigaDrill"
+Obituary "$OB_SPREADBIGC"
+Speed 0
+scale 2.5
+States
+{
+Spawn:
+GRD6 A 1 A_SpawnItemEx("GCDExplode",0,0,-47)
+GRD6 B 1
+GRD6 C 1 A_SpawnItemEx("GCDExplode",0,0,-142)
+GRD6 D 1
+GRD6 E 1 A_SpawnItemEx("GCDExplode",0,0,-237)
+GRD6 F 1
+GRD6 G 1 A_SpawnItemEx("GCDExplode",0,0,-332)
+GRD6 L 1
+goto Spawn2
+Spawn2:
+GRD6 KLM 2 A_SpawnItemEx("GCDExplode",0,0,-380)
+Spawn2a:
+GRD6 LKLM 2 A_SpawnItemEx("GCDExplode",0,0,-380)
+GRD6 L 0 A_JumpIfInTargetInventory("GroundCMainFlag",1,"Spawn3")
+GRD6 L 1 A_JumpIfInTargetInventory("GroundHoldFlag",1,"Spawn2a")
+goto Spawn3
+Spawn3:
+GRD6 L 1
+GRD6 G 1 A_SpawnItemEx("GCDExplode",0,0,-332)
+GRD6 F 1
+GRD6 E 1 A_SpawnItemEx("GCDExplode",0,0,-237)
+GRD6 D 1
+GRD6 C 1 A_SpawnItemEx("GCDExplode",0,0,-142)
+GRD6 B 1
+GRD6 A 0 A_SpawnItemEx("GCDExplode",0,0,-47)
+GRD6 A 0 A_PlaySoundEx("weapon/spreaddrill1","Weapon")
+GRD6 A 1 A_SpawnItemEx("CeilingDrillSpawner",0,0,0,0,0,15,0,1)
+stop
+}
+}
+
+actor GCDExplode : BasicExplosion
+{
+-NOINTERACTION
++THRUACTORS
++NOCLIP
+DamageType "GroundM_GigaDrill"
+Obituary "$OB_SPREADBIGC"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_Explode(60,48,0,0,48)
+stop
+}
+}
+
+
+actor GroundRocksX : DrillRocks
+{
+States
+{
+//GRD6 OPQRSTU 30
+Spawn:
+TNT1 A 0
+TNT1 A 0// A_ChangeFlag("NOCLIP",0)
+TNT1 A 0 A_Jump(256,"P","Q","R","S","T","U")
+P:
+GRD6 P 10
+goto END
+Q:
+GRD6 Q 10
+goto END
+R:
+GRD6 R 10
+goto END
+S:
+GRD6 S 10
+goto END
+T:
+GRD6 T 10
+goto END
+U:
+GRD6 U 10
+goto END
+END:
+GRD6 O 10
+stop
+}
+}
+
+actor GroundRocksCeilingBoost : BasicHelper
+{
++FLOORHUGGER
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 AAAAAAAAAAAAAAA 0 A_SpawnItemEx("GroundRocksX",0,0,16,random(-3,3),random(-3,3),random(6,18),random(0,359),1)
+TNT1 A 1
+stop
+}
+}
+
+
+
+actor GroundVisualHelper : BasicHelper
+{
+ReactionTime 2000 //Backup
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_JumpIfInTargetInventory("GroundInCeiling",1,"SpawnC")
+TNT1 A 0 A_JumpIfInTargetInventory("GroundInGround",1,"SpawnA")
+goto Death
+SpawnA:
+TNT1 A 0 A_GiveToTarget("GroundRocksSpawner",1)
+TNT1 A 1 A_GiveToTarget("GroundVisualSpawner",1)
+TNT1 A 0
+TNT1 A 0 A_CountDown
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+goto Spawn2
+SpawnC:
+TNT1 A 0 A_GiveToTarget("GroundRocksSpawnerC",1)
+TNT1 A 1 A_GiveToTarget("GroundVisualSpawnerC",1)
+TNT1 A 0
+TNT1 A 0 A_CountDown
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+goto Spawn2
+}
+}
+
+actor GroundRocksSpawner : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 AA 0 A_SpawnItemEx("GroundRocksX",0,0,8,random(-10,10),random(-10,10),random(2,10),random(0,359),1)
+stop
+}
+}
+
+actor GroundRocksSpawnerC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 AA 0 A_SpawnItemEx("GroundRocksX",0,0,48,random(-10,10),random(-10,10),random(0,-10),random(0,359),1)
+stop
+}
+}
+
+actor GroundVisualSpawner : DrillVisualSpawner
+{
+States
+{
+Blue:
+TNT1 A 0 A_SpawnItemEx("GroundVisualB",0,0,54,momx,momy,momz,0,9,0)
+stop
+Red:
+TNT1 A 0 A_SpawnItemEx("GroundVisualR",0,0,54,momx,momy,momz,0,9,0)
+stop
+Orange:
+TNT1 A 0 A_SpawnItemEx("GroundVisualO",0,0,54,momx,momy,momz,0,9,0)
+stop
+Purple:
+TNT1 A 0 A_SpawnItemEx("GroundVisualP",0,0,54,momx,momy,momz,0,9,0)
+stop
+}
+}
+
+actor GroundVisualSpawnerC : DrillVisualSpawner
+{
+States
+{
+Blue:
+TNT1 A 0 A_SpawnItemEx("GroundVisualBC",0,0,16,momx,momy,momz,0,9,0)
+stop
+Red:
+TNT1 A 0 A_SpawnItemEx("GroundVisualRC",0,0,16,momx,momy,momz,0,9,0)
+stop
+Orange:
+TNT1 A 0 A_SpawnItemEx("GroundVisualOC",0,0,16,momx,momy,momz,0,9,0)
+stop
+Purple:
+TNT1 A 0 A_SpawnItemEx("GroundVisualPC",0,0,16,momx,momy,momz,0,9,0)
+stop
+}
+}
+
+actor GroundVisualB : CloakVisualB
+{
+states
+{
+Spawn:
+GROU J 0
+GROU J 1
+stop
+}
+}
+
+actor GroundVisualR : CloakVisualR{states{Spawn:
+GROU J 0
+GROU J 1
+stop}}
+actor GroundVisualO : CloakVisualO{states{Spawn:
+GROU J 0
+GROU J 1
+stop}}
+actor GroundVisualP : CloakVisualP{states{Spawn:
+GROU J 0
+GROU J 1
+stop}}
+
+actor GroundVisualBC : GroundVisualB
+{
+states
+{
+Spawn:
+GROU K 0
+GROU K 1
+stop
+}
+}
+
+actor GroundVisualRC : CloakVisualR{states{Spawn:
+GROU K 0
+GROU K 1
+stop}}
+actor GroundVisualOC : CloakVisualO{states{Spawn:
+GROU K 0
+GROU K 1
+stop}}
+actor GroundVisualPC : CloakVisualP{states{Spawn:
+GROU K 0
+GROU K 1
+stop}}
+
+
+actor GroundM_DrillProtect : PowerProtection
+{
+Powerup.Duration 3
+DamageFactor "GroundM_Shot1", 0.2
+DamageFactor "GroundM_Shot2", 0.5
+DamageFactor "GroundM_Shot3", 0.5
+}
+
+
+actor GroundmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SpreadDrillC",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SpreadDrillCB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SpreadDrillCR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SpreadDrillCO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SpreadDrillCP",0,1,0,0)
+goto Done
+}
+}
+
+
+actor GroundmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CeilingDrillSpawner",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CeilingDrillSpawnerB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CeilingDrillSpawnerR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CeilingDrillSpawnerO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CeilingDrillSpawnerP",0,0,0,0)
+goto Done
+}
+}
+
+actor GroundTankTime_AP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("StunArmor",1)
+TNT1 A 0 A_GiveInventory("GroundIsATank",1)
+TNT1 A 0 A_GiveInventory("GroundTankFlag",1)
+stop
+}
+}
+
+actor GroundTankTimeEnd_AP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_TakeInventory("StunArmor",99)
+TNT1 A 0 A_TakeInventory("GroundIsATank",99)
+TNT1 A 0 A_TakeInventory("GroundTankFlag",99)
+TNT1 A 0 A_TakeInventory("GroundTankTrack_F",99)
+TNT1 A 0 A_TakeInventory("SandAngerAmmo",24)
+stop
+}
+}
+
+actor GroundTankTimeFloorEnd_AP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_TakeInventory("SandAngerAmmo",100)
+stop
+}
+}
+
+actor GroundTankTimeCeilingEnd_AP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_TakeInventory("SandAngerAmmo",150)
+stop
+}
+}
+
+actor GroundBasicReady_AP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_TakeInventory("StunArmor",99)
+TNT1 A 0 A_TakeInventory("GroundInCeiling",99)
+TNT1 A 0 A_TakeInventory("GroundIsATank",999)
+TNT1 A 0 A_TakeInventory("GroundInGround",999)
+TNT1 A 0 A_GiveInventory("GroundFuryAmmo",1)
+TNT1 A 0 A_GiveInventory("SandAngerAmmo",4)
+stop
+}
+}

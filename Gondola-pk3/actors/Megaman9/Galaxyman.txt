@@ -1,12 +1,17 @@
-actor Galaxyman : LightClassBase
+actor Galaxyman : ClassBase //85
 {
 Player.ScoreIcon "C_09H0X"
-player.startitem "LightHealthBar"
 player.displayname "Galaxyman"
 player.soundclass "galaxymanc"
 player.startitem "BlackholebombBoss"
 player.startitem "SpaceTravelAmmo", 112
 player.startitem "PortalItem",1
+
+player.maxhealth 850
+health 850
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.startitem "ConcreteShotWeakness2", 1
 
@@ -17,7 +22,6 @@ player.startitem "AstroCrushWeakness", 1
 player.startitem "SpreadDrillWeakness", 1
 player.startitem "ConcreteShotWeakness", 1
 player.startitem "DeepDiggerWeakness", 1
-player.startitem "RealClassFlag", 98
 States
 {
 Spawn:

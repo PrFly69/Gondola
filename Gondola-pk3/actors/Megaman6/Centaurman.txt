@@ -1,0 +1,56 @@
+actor Centaurman : ClassBase
+{
+Player.ScoreIcon "C_06B0X"
+player.displayname "Centaurman"
+player.soundclass "centaurmanc"
+
+player.maxhealth 850
+health 850
+player.jumpz 10
+player.forwardmove 1.0, 1.0
+player.sidemove 0.6, 0.6
+//Player.AttackZOffset 30
+//Player.ViewHeight 50
+
+MaxStepHeight 32//24
+MaxDropOffHeight 32//24
+
+player.startitem "CentaurFlashBoss"
+player.startitem "ClipClopAmmo", 21
+player.startitem "WarpItem"
+
+player.startitem "KnightCrushWeakness2", 1
+
+player.startitem "KnightCrushWeakness", 1
+player.startitem "ThunderClawWeakness", 1
+
+States
+{
+Spawn:
+CENT A 0
+CENT B 1
+CENT A 1
+Goto Spawn+2
+See:
+CENT B 5
+CENT C 5 //A_PlaySound("weapon/centaurstomp", 2 , 0.3)
+CENT D 5 A_PlaySound("weapon/centaurstomp", CHAN_BODY , 0.3)
+CENT E 5 //A_PlaySound("weapon/centaurstomp", 2 , 0.3)
+CENT B 0
+Goto Spawn+2
+Missile:
+CENT G 0 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
+CENT G 9
+goto Spawn+2
+Missile2:
+CENT F 5
+CENT F 4
+goto Spawn+2
+ClassPain:
+CENT H 0
+goto PainContinue
+ClassDeath:
+CENT H 0
+goto DeathContinue
+}
+}

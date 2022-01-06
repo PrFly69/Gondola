@@ -5,7 +5,7 @@
 #DEFINE C_JAX_SUCKRECODE2 423
 
 #DEFINE TEAM_NONE -1
-#DEFINE MAX_PLAYERS 63 //0-31//0-63
+#DEFINE MAX_PLAYERS 64 //0-31//0-63
 #DEFINE MAX_PLAYERSX 64
 
 script 147 (int Swap)
@@ -74,50 +74,50 @@ script C_JAX_SUCKRECODE (int distRange, int angleRange, int type)
 								GiveActorInventory(1000+i,"HomingLockGiver",1);
 								break;
 							case 11:
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								ThrustThing((angle >> 8), 2, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 							case 10:
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								GiveActorInventory(1000+i,"IcemanSlowPickup",1);
 								ThrustThing((angle >> 8)+128, 1, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 9://MWS Blow
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								ThrustThing((angle >> 8), 40, 1, 1000+i);
 								break;
 							case 8://HSH Blow Weak
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								ThrustThing((angle >> 8), 1, 1, 1000+i);
 								break;
 							case 7://HSH Blow Hot
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								ThrustThing((angle >> 8), 4, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 6://HSH Blow
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								ThrustThing((angle >> 8), 3, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 5://HSH Suck Weak
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								ThrustThing((angle >> 8)+128, 1, 1, 1000+i);
 								break;
 							case 4://HSH Suck Cold
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								GiveActorInventory(1000+i,"IcemanSlowPickup",1);
 								ThrustThing((angle >> 8)+128, 3, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 3://HSH Suck
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								ThrustThing((angle >> 8)+128, 3, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 2://Dust Suck
-								GiveActorInventory(1000+i,"TempPitProtect",1);
+								//GiveActorInventory(1000+i,"TempPitProtect",1);
 								if(ACS_NamedExecuteWithResult("cbm_IsPlayerAlive",i+1000)){
 									GiveActorInventory(owner,"CrushEmAmmo",2);
 								}
@@ -200,7 +200,7 @@ script "cbm_legacyDustPull" (int Range, int Power)
 		for(int i=0; i<MAX_PLAYERS; i++) {
 			if (owner != 1000 + i) {
 				if(push2Val(x,y,z,angle, 1000 +i, Power, Range)) {
-					GiveActorInventory(1000 + i, "TempPitProtect", 1);
+					//GiveActorInventory(1000 + i, "TempPitProtect", 1);
 				}
 			}
 		}	
@@ -210,7 +210,7 @@ script "cbm_legacyDustPull" (int Range, int Power)
 			if (owner != 1000 + j) {
 				if (isDifferentTeams(team,j)) {
 					if(push2Val(x,y,z,angle, 1000 +j, Power, Range)) {
-						GiveActorInventory(1000 + j, "TempPitProtect", 1);
+						//GiveActorInventory(1000 + j, "TempPitProtect", 1);
 					}
 				}
 			}
@@ -460,4 +460,27 @@ function bool push2Val (int x, int y, int z, int angle, int pushee, int force, i
 script "cbm_Re_SetThingSpecial" (int Thing0, int Thing1, int Thing2, int Thing3)
 {
 	SetThingSpecial(0,0,Thing0,Thing1,Thing2,Thing3);
+}
+
+function int F_GetTIDVelocity (int TID, bool incZ)
+{
+	int x, y, z, speed, result;
+	x = GetActorVelX(TID);
+	y = GetActorVelY(TID);
+	if(incZ){z = GetActorVelZ(TID);}
+	else{z = 0;}
+	speed = FixedMul(x, x)+FixedMul(y,y)+FixedMul(z,z);
+
+	result = fixedSqrt(speed)>>16;
+	//Log(s:"F_GetTIDVelocity = ",i:result);
+	return result;
+}
+function int F_GetTIDVelocityZ (int TID)
+{
+	int z, speed, result;
+	z = GetActorVelZ(TID);
+	speed = FixedMul(z,z);
+	result = fixedSqrt(speed)>>16;
+	//Log(s:"F_GetTIDVelocityZ = ",i:result);
+	return result;
 }

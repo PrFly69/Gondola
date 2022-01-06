@@ -1,12 +1,52 @@
-actor ClassBase : ClassBase1
+actor ClassBase : ClassBase3
 {
 states
 {
+//yo modders, replace this txt file and put your additional pain states here [Jaxof7]
+
+//Example
+//Pain.MegamanXBuster:
+//"----" H 0 A_SpawnItemEx("FlashyMegamanX_FX")
+//goto Pain
+
+Pain.DMGNoHitstun:
+"----" H 0
+Goto Pain+2
+
+Pain.BrightM_Bulb:Pain.FlashBulb:
+"----" H 0 
+"----" H 0 A_JumpIfInventory("BrightBlind", 1,3)
+"----" H 0 A_GiveInventory("BrightBlind",125)
+"----" H 0 ACS_NamedExecuteAlways("CCBM_BrightNewBlind", 0)
+Goto Pain+2
+"----" H 0 A_GiveInventory("BrightBlind",55)
+Goto Pain+2
+
+Pain.MadMagFly:
+"----" H 0 A_ScaleVelocity(0.75)
+"----" H 0 A_GiveInventory("MadMagFlyProtection",1)
+Goto Pain.ColdM_Down
+
+Pain.GutsPunch:
+"----" H 0 A_GiveInventory("GutsPunch_PowerProtect",1)
+Goto Pain+1
 
 Pain.HardKnuckleClass:
 "----" H 0 A_PlaySoundEx("weapon/hknucklehit","Body")
 "----" H 0 A_SpawnItemEx("HardKnuckleHitFX",0,0,32,0,0,0,0,0)
 Goto Pain+2
+
+Pain.Punk_Ram:
+"----" H 0 A_GiveInventory("Punk_RamProtect",1)
+//"----" H 0 A_SpawnItemEx("PainScrewCrusherMHit",1)
+"----" H 0 A_SpawnItemEx("PainConcreteShoulderHit",1)
+"----" H 0 A_PlaySoundEx("weapon/punkbash","Body")
+goto Pain+2
+
+Death.Punk_Ram:
+"----" H 0 A_SpawnItemEx("PainConcreteShoulderHit",1)
+"----" H 0 A_PlaySoundEx("weapon/punkbash","Body")
+goto Death
 
 Pain.KnightBonk:
 "----" H 0 A_GiveInventory("KnightBonkProtect",1)
@@ -26,12 +66,34 @@ Death.KnightBonk:
 "----" H 0 A_SpawnItemEx("PainKnightBonkHit")
 Goto FlingDeath
 
+Pain.TimeStopper:
+"----" H 0 A_GiveInventory("TimeStopActivatorC",1)//ClaseBaseFlags.txt
+Goto Pain+2
+
+Pain.ClassPainTimeStop:
+Pain.TimeStop:
+"----" H 0 A_GiveInventory("TimeStopProtector")
+"----" H 0 A_GiveInventory("TimeStoppedTF",1)
+"----" H 0 A_SpawnItemEx("AntiTimeStopFreezeHelper")
+"----" H 0 A_Jump(256, "TimeStopped")
+Goto TimeStopped
+TimeStopped:
+//"----" AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Stop
+"####" "]" 0 A_PlaySoundEx("weapon/timestopper","Body")
+"####" "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]" 1 A_Stop
+//TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TimeStopGFXSmall", random(8, 64), 0, random(0, 64), 0, 0, 0, random(0, 359))
+Goto Pain+2
+TimeStoppedX:
+"####" "####################################################" 1 A_Stop
+//TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TimeStopGFXSmall", random(8, 64), 0, random(0, 64), 0, 0, 0, random(0, 359))
+Goto Pain+2
+
 Death.KnightBonk2:
 "----" H 0 A_SpawnItemEx("PainKnightRushHit")
 Goto FlingDeath
 
 Pain.KnightCrushNoisy:
-"----" H 0 A_ChangeVelocity(momz*3/4,momy*3/4,momz,CVF_REPLACE)
+"----" H 0 A_ScaleVelocity(0.9)
 "----" H 0 A_PlaySoundEx("weapon/knightcrushhit","SoundSlot5")
 Goto Pain+2
 Death.KnightCrushNoisy:
@@ -380,15 +442,16 @@ Pain.ChargeBusterC:
 "----" H 0 A_GiveInventory("PainScaleVelocityFlashBombC",1)
 Goto Pain+1
 
-Pain.HyperBombRecoil:
-"----" H 0 A_SpawnItemEx("PainHyperBombRecoil",1)
-Goto Pain
+//Pain.HyperBombRecoil:
+//"----" H 0 A_SpawnItemEx("PainHyperBombRecoil",1)
+//Goto Pain 
+//lol
 
 Pain.SparkSaw:
 //"----" H 0 A_ScaleVelocity(0.9)
-"----" H 0 A_GiveToTarget("Health",5)
+"----" H 0 A_GiveToTarget("Health",50)
 "----" H 0 A_GiveInventory("ShockChainsawProtect",1)
-Goto Pain
+Goto Pain+2
 
 Pain.SparkShot1:
 "----" H 0 A_Stop
@@ -521,9 +584,16 @@ Pain.StrikeBall2:
 "----" H 0 A_SpawnItemEx("PainStrikeBallHit2",1)
 goto Pain+2
 
-Pain.MaxMetal:
+/*Pain.MaxMetal:
 "----" H 0 A_GiveInventory("MetalRipperProtection",1)
-Goto Pain
+Goto Pain*/ //never again
+
+Pain.PharaohPunch:
+"----" H 0
+"----" H 0 A_SpawnItemEx("PainPharaohPunchHit",1)
+"----" H 0 ThrustThingZ(0,20,0,0)
+"----" H 0 A_PlaySoundEx("weapon/pharaohpunchhit", "SoundSlot7", 0)
+Goto Pain+1
 
 Death.StrikeBall2:
 "----" H 0 ThrustThingZ(0,120,0,0)
@@ -538,16 +608,16 @@ goto Pain+2
 
 Pain.SaturnWhiteRing1:
 "----" H 0 A_GiveInventory("SaturnProtect1",1)
-goto Pain
+goto Pain+2
 
 Pain.SaturnWhiteRing2:
 "----" H 0 A_GiveInventory("SaturnProtect1",1)
-goto Pain
+goto Pain+2
 
 Pain.SaturnShot:
 //"----" H 0 A_GiveInventory("SaturnShotProtect",1)
 "----" H 0 A_SpawnItemEx("PainConcreteShoulderHit",1)
-goto Pain
+goto Pain+2
 
 Death.SaturnShot:
 Death.SaturnWhiteRing1:
@@ -617,7 +687,7 @@ pain.ProtomanHeroShieldBash:
 goto Pain+2
 
 Pain.KnightRush:
-"----" H 0 A_SpawnItemEx("PainKnightRushHit")
+"----" H 0 A_SpawnItemEx("PainKnightM_PushHit")
 Goto Pain.SparkShock
 
 death.ProtomanHeroShieldBash:
@@ -676,6 +746,32 @@ Goto Pain+2
 Pain.GravitySmackUpNoSlam:
 "----" H 0 HealThing(1)
 //"----" H 0 A_GiveInventory("GmanSmackU_DelayF",1)
+"----" H 0 A_JumpIfInventory("GmanSmackD_DelayF",1,4)
+"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,70,0,0)
+"----" H 0
+goto Pain+2
+"----" H 0 A_TakeInventory("GmanSmackD_DelayF",1)
+"----" H 0 //A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,105,0,0)
+"----" H 0
+Goto Pain+2
+
+Pain.GravitySmackDown:
+"----" H 0 A_GiveInventory("GmanSmackD_DelayF",1)
+"----" H 0 A_JumpIfInventory("GmanSmackU_DelayF",1,5)
+"----" H 0 A_SpawnItemEx("PainGravitySmackDown_H")
+"----" H 0 A_CheckFloor(2)
+"----" H 0 ThrustThingZ(0,70,1,0)
+"----" H 0
+goto Pain+2
+"----" H 0 A_TakeInventory("GmanSmackU_DelayF",1)
+"----" H 0 A_SpawnItemEx("PainGravitySlamHit")
+Goto Pain+2
+
+Pain.GravitySmackUp:
+"----" H 0 A_GiveInventory("Shocked_18",1)
+"----" H 0 A_GiveInventory("GmanSmackU_DelayF",1)
 "----" H 0 A_JumpIfInventory("GmanSmackD_DelayF",1,4)
 "----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
 "----" H 0 ThrustThingZ(0,70,0,0)

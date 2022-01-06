@@ -1,0 +1,147 @@
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
+
+	actor Enker : ClassBase
+	{
+	Player.ScoreIcon "C_0KA0X"
+	player.displayname "Enker"
+	player.soundclass "enkerc"
+
+	player.maxhealth 1250
+	health 1250
+	player.jumpz 10
+	player.forwardmove 0.94, 0.94
+	player.sidemove 0.92, 0.92
+	Player.StartItem "MirrorBusterBoss"
+	Player.StartItem "EnkerSwapItem1"
+	Player.StartItem "MirrorChargeAmmo", 11
+	Player.StartItem "BigShot", 1
+	Player.StartItem "BalladeCrackerWeakness2", 1
+	Player.StartItem "HyperBombWeakness", 1
+	Player.StartItem "CrashBombWeakness", 1
+	Player.StartItem "DrillBombWeakness", 1
+	Player.StartItem "NapalmBombWeakness", 1
+	Player.StartItem "DangerWrapWeakness", 1
+	Player.StartItem "FlashBombWeakness", 1
+	Player.StartItem "RemoteMineWeakness", 1
+	Player.StartItem "LaserTridentWeakness", 1
+	Player.StartItem "BalladeCrackerWeakness", 1
+	Player.StartItem "BubbleBombWeakness", 1
+	States
+	{
+		Spawn:
+		ENKR A 0
+		ENKR B 1
+		ENKR A 0
+		ENKR A 1 A_JumpIf(z-floorz>0,"SeeJ")
+		Goto Spawn+2
+
+		See:
+		ENKR BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"SeeJ")
+		Goto Spawn
+
+		SeeJ:
+		ENKR I 1 A_JumpIf(z-floorz<=0,"Spawn")
+		Wait
+
+		Missile:
+		ENKR F 0 A_JumpIf(z-floorz>0,"MissileJ")
+		ENKR F 0 A_JumpIfInventory("VivifyDelay6",1,"MissileSwipe")
+		ENKR F 1 A_JumpIfInventory("EnkerAbsorbCount",1,"MissileAmmo")
+		ENKR F 0 A_JumpIfInventory("EnkerAbsorbCount",1,"MissileAmmo")
+		ENKR F 6
+		ENKR G 0 A_JumpIf(z-floorz>0,"MissileJ2")
+		Goto Missile2
+
+		Missile2:
+		ENKR G 6
+		ENKR G 0 A_JumpIf(z-floorz>0,"SeeJ")
+		Goto Spawn
+
+		MissileJ:
+		ENKR W 0 A_JumpIfInventory("VivifyDelay6",1,"MissileSwipeJ")
+		ENKR W 1 A_JumpIfInventory("EnkerAbsorbCount",1,"MissileAmmoJ")
+		ENKR W 0 A_JumpIfInventory("EnkerAbsorbCount",1,"MissileAmmoJ")
+		ENKR W 6
+		ENKR W 0 A_JumpIf(z-floorz>0,"MissileJ2")
+		Goto Missile2
+
+		MissileJ2:
+		ENKR W 6
+		ENKR W 0 A_JumpIf(z-floorz>0,"SeeJ")
+		Goto Spawn
+	
+		MissileSwipe:
+		ENKR J 4
+		ENKR K 2
+		ENKR L 0 A_JumpIf(z-floorz>0,"MissileSwipeJ2")
+		Goto MissileSwipe2
+
+		MissileSwipe2:
+		ENKR L 6
+		ENKR L 0 A_JumpIf(z-floorz>0,"MissileSwipeJ3")
+		Goto MissileSwipe3
+
+		MissileSwipe3:
+		ENKR L 6
+		ENKR L 0 A_JumpIf(z-floorz>0,"SeeJ")
+		Goto Spawn
+
+		MissileSwipeJ:
+		ENKR M 4
+		ENKR N 2
+		ENKR O 0 A_JumpIf(z-floorz>0,"MissileSwipeJ2")
+		Goto MissileSwipe2
+
+		MissileSwipeJ2:
+		ENKR O 6
+		ENKR O 0 A_JumpIf(z-floorz>0,"MissileSwipeJ3")
+		Goto MissileSwipe3
+
+		MissileSwipeJ3:
+		ENKR O 6
+		ENKR O 0 A_JumpIf(z-floorz>0,"SeeJ")
+		Goto Spawn
+
+		MissileAmmoGet:
+		ENKR Y 0 A_PlaySoundEx("weapon/mirrorabsorb","Voice")
+		ENKR Y 0 A_GiveInventory("EnkerAltCombo_F",1)
+		ENKR Y 0 A_GiveInventory("MirrorChargeAmmo",3)
+		ENKR Y 0 ACS_NamedExecuteWithResult("cbm_EnkerArmorGiver")
+		ENKR Y 0 A_JumpIf(z-floorz>0,"MissileAmmoJ")
+		ENKR Y 0 A_Jump(256,"MissileAmmo")
+
+		MissileAmmo:
+		ENKR Y 1
+
+		MissileAmmo2:
+		ENKR YY 1 A_JumpIf(z-floorz>0,"MissileAmmoJ")
+		ENKR YY 1 A_JumpIfInventory("EnkerAbsorbCount",1,"MissileAmmo2")
+		ENKR Y 0 A_JumpIf(z-floorz>0,"SeeJ")
+		Goto Spawn
+
+		MissileAmmoJ:
+		ENKR X 1
+
+		MissileAmmoJ2:
+		ENKR XX 1 A_JumpIf(z-floorz<=0,"MissileAmmo")
+		ENKR XX 1 A_JumpIfInventory("EnkerAbsorbCount",1,"MissileAmmoJ2")
+		ENKR X 0 A_JumpIf(z-floorz>0,"SeeJ")
+		Goto Spawn
+
+		ClassPain:
+		//ENKR H 0 A_GiveInventory("MirrorChargeAmmo",3)
+		ENKR H 0 A_JumpIfInventory("EnkerAbsorbCount",1,"MissileAmmoGet")
+		Goto PainContinue
+
+		DeathFix:
+		ENKR H 0
+		Goto DeathContinue
+
+		ClassDeath:
+		ENKR H 1
+		Goto MegaDeathEnd
+	}
+  }

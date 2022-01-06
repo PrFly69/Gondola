@@ -1,8 +1,7 @@
-actor DrWily : LightClassBase
+actor DrWily : ClassBase //85
 {
 Player.ScoreIcon "C_02I0X"
 //player.startitem "GlassHealthBar"
-player.startitem "LightHealthBar"
 player.displayname "DrWily"
 player.soundclass "wilyc"
 player.startitem "WilyGunBoss"
@@ -12,6 +11,12 @@ player.startitem "WilySkullSuitItem"
 
 player.weaponslot 1, "WilyCapsuleFireBoss"
 player.weaponslot 2, "WilyCapsuleIceBoss"
+
+player.maxhealth 850
+health 850
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.startitem "ThunderBeamWeakness", 1
 player.startitem "BubbleLeadWeakness", 1
@@ -24,9 +29,8 @@ player.startitem "FlashBombWeakness", 1
 player.startitem "MagicCardWeakness", 1
 player.startitem "PlugBallWeakness", 1
 player.startitem "ChillSpikeWeakness", 1
-player.startitem "SaltWaterWeakness", 1//SparkChaser
+player.startitem "SparkChaserWeakness", 1//SparkChaser
 
-//player.startitem "RealClassFlag", 9
 +NOSKIN
 States
 {

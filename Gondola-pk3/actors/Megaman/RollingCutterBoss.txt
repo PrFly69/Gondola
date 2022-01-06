@@ -1,0 +1,467 @@
+actor RollingCutterBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_1A"
+dropitem "RollingCutterWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+Obituary "$OB_ROLLINGCUTTER"
+weapon.ammotype "KFCAmmo"
++WEAPON.ALT_AMMO_OPTIONAL
+
+States
+{
+Spawn:
+C_01 A 1
+loop
+Ready:
+CUTA A 0 ACS_ExecuteAlways(998,0,DYE_CUTMAN)
+CUTA A 0
+CUTA A 1 A_WeaponReady
+Goto Ready+2
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+CUTA A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+CUTA A 1 A_Raise
+Loop
+Fire:
+CUTA A 0 A_JumpIfNoAmmo("NoAmmo")
+CUTA A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+CUTA A 0 A_GiveInventory("CutmanMain_CI",1)
+CUTA A 0 A_TakeInventory("RollingCutterFlag",99)
+TNT1 A 0 A_TakeInventory("CutterReturned",99)
+TNT1 C 2 A_GiveInventory("CutterFlagX",1)
+CUTA C 1
+CUTA C 1 OffSet(-70,72)
+CUTA C 1 OffSet(-121,112)
+CUTA F 2 OffSet(1,33)
+CUTA F 2 OffSet(-21,56)
+CUTA F 2 OffSet(-35,84)
+TNT1 A 5
+Goto Check
+Check:
+TNT1 A 0 A_JumpIfInventory("RollingCutterFlag",1,"Return")
+TNT1 A 1 A_GiveInventory("MissingCutter",1)
+TNT1 A 0 A_JumpIfInventory("MissingCutter",50,"Return")
+loop
+Return:
+TNT1 A 0 A_TakeInventory("MissingCutter",999)
+TNT1 A 0 A_TakeInventory("RollingCutterFlag",99)
+TNT1 A 0 A_TakeInventory("CutterFlagX",99)
+TNT1 A 0 A_GiveInventory("CutterReturned",1)
+TNT1 A 0 A_PlaySoundEx("weapon/CutterCatch","Weapon")
+CUTS A 2 Offset(-26,146)
+CUTS A 2 Offset(-4,95)
+CUTS A 2 Offset(1,32)
+TNT1 A 16 OffSet(110,69) A_TakeInventory("MissingCutter",999)
+CUTA A 1 OffSet(110,69)
+CUTA A 1 OffSet(55,48)
+Goto Ready+1
+
+
+Altfire:
+CUTA A 0 A_PlaySoundEx("weapon/CutMelee","weapon")
+CUTS A 1 //A_GiveInventory("CutmanAlt1_CI",1)
+CUTS A 1 offset(-9,59)A_JumpIfInventory("PowerRage_ST",1,1)
+CUTS A 1 offset(-20,96) A_GiveInventory("CutmanAlt2_CI",1)
+CUTS A 1 offset(-33,119)A_JumpIfInventory("PowerRage_ST",1,1)
+CUTS A 1 offset(-48,147) A_GiveInventory("CutmanAlt3_CI",1)
+CUTS A 1 offset(-65,180)A_JumpIfInventory("PowerRage_ST",1,1)
+CUTS A 1 offset(-83,220) A_GiveInventory("CutmanAlt4_CI",1)
+CUTS A 1 offset(-102,241)A_JumpIfInventory("PowerRage_ST",1,1)
+CUTS A 1 offset(-122,276) A_GiveInventory("CutmanAlt5_CI",1)
+CUTS A 1 offset(-143,291)A_JumpIfInventory("PowerRage_ST",1,1)
+
+CUTA A 1 offset(-64,89)//A_GiveInventory("KFCAmmo",1)
+CUTA A 1 offset(-50,77)A_JumpIfInventory("PowerRage_ST",1,1)
+CUTA A 1 offset(-36,66)//A_GiveInventory("KFCAmmo",1)
+CUTA A 1 offset(-24,56)A_JumpIfInventory("PowerRage_ST",1,1)
+CUTA A 1 offset(-14,47)//A_GiveInventory("KFCAmmo",1)
+CUTA A 1 offset(-6,39)A_JumpIfInventory("PowerRage_ST",1,1)
+CUTA A 0
+Goto Ready+1
+
+NoAmmo:
+CUTA A 0
+Goto Ready+1
+
+
+BotFire:
+CUTA A 0 A_JumpIfCloser(500,"BotFire2")
+CUTA A 1 //A_GiveInventory("BotRevert",1)
+goto Ready+1
+BotFire2:
+CUTA A 0 A_JumpIfCloser(200,"BotAltFire")
+CUTA C 2 A_FireCustomMissile("CutmanCutterFast",0,0,8,0)
+BotThrow:
+BUSH T 0 A_TakeInventory("RollingCutterFlag", 1)
+//CUTA A 0 A_TakeInventory("KFCAmmo",3)
+TNT1 A 0 A_TakeInventory("CutterReturned",999)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+CUTS AEFGH 2
+TNT1 A 4
+CUTA C 0 A_Jump(128,"JumpingBotCheck")
+Goto BotCheck
+BotCheck:
+TNT1 A 0 A_JumpIfCloser(1200,"Retreat")
+TNT1 A 0 A_TakeInventory("BotRetreatFlag",999)
+TNT1 A 1 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",200,"BotReturn")
+TNT1 A 0 A_JumpIfInventory("RollingCutterFlag",1,"BotReturn")
+goto BotCheck
+Retreat:
+TNT1 A 0 A_GiveInventory("BotRetreatFlag",1)
+goto BotCheck+2
+JumpingBotCheck:
+TNT1 A 0 A_Jump(200,2)
+TNT1 A 0 A_GiveInventory("BotJumpC",1)
+TNT1 A 1 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",200,"BotReturn")
+TNT1 A 0 A_JumpIfInventory("RollingCutterFlag",1,"BotReturn")
+loop
+BotReturn:
+TNT1 A 0 A_TakeInventory("BotRetreatFlag",1)
+TNT1 A 0 A_TakeInventory("CutterFlag",999)
+TNT1 A 0 A_TakeInventory("RollingCutterFlag",1)
+TNT1 A 0 A_GiveInventory("CutterReturned",1)
+TNT1 A 0 A_PlaySoundEx("weapon/CutterCatch","Weapon")
+CUTS CBA 2
+TNT1 A 14 A_TakeInventory("MissingCutter",999)
+CUTA IJ 2
+CUTA A 0 A_Refire
+Goto Ready+1
+BotAltFire:
+CUTA A 0 A_GiveInventory("BotHugFlag",1)
+CUTA A 0 A_PlaySoundEx("weapon/CutMelee","weapon")
+CUTS ABCDE 3 A_FireCustomMissile("CutSlice",0,0,8,0)
+CUTA A 4
+CUTA A 0 A_TakeInventory("BotHugFlag",999)
+CUTA A 0 A_Refire
+Goto Ready+1
+}
+}
+
+actor CutterReturned : OnceC{}
+
+actor CutterFlagX : OnceC{}
+
+actor KFCAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor MissingCutter : Inventory
+{
+inventory.amount 1
+inventory.maxamount 50
+}
+
+actor CutterDisappearFlag : OnceC{}
+
+actor CutSlice
+{
+Translation "202:202=96:96"
+PROJECTILE
+Obituary "$OB_CUTTERSLICE"
+//damagetype "Cut"
+Damagetype "CutM_Slice"
++THRUGHOST
++DONTBLAST
++RIPPER
++DONTSPLASH
++BOUNCEONWALLS
++BOUNCEONCEILINGS
+//-BOUNCEONFLOORS
++NOEXPLODEFLOOR
+Bouncecount 2
+BounceFactor 1.0
+WallBounceFactor 0.01//1.0
+Damage (0)
+Radius 5
+Height 5
+speed 35
+Scale 2.5
+States
+{
+Spawn://Y_7F CCDD 1
+PLUH Q 1
+PLUH R 1 A_Explode(40,52,0,0,52)
+PLUH S 1
+PLUH T 1 A_Explode(30,52,0,0,52)
+stop
+}
+}
+
+actor CutSliceB : CutSlice{translation "202:202=205:205", "199:199=74:74"}
+actor CutSliceR : CutSlice{translation "202:202=171:171", "199:199=41:41"}
+actor CutSliceO : CutSlice{translation "202:202=104:104", "199:199=128:128"}
+actor CutSliceP : CutSlice{translation "202:202=229:229", "199:199=232:232"}
+
+
+actor CutmanCutterFast
+{
+Translation "192:192=4:4"
+PROJECTILE
+Obituary "$OB_ROLLINGCUTTER"
+damagetype "DMGNoHitstun"
++DONTSPLASH
++HEXENBOUNCE
++RIPPER
++NOTARGETSWITCH
++SKYEXPLODE
+bouncefactor 1.0
+wallbouncefactor 1.0
+reactiontime 48
+damage (20)//0
+Radius 8
+Height 8
+scale 2.5
+speed 33//22
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+RCTC A 0
+RCTC A 0 A_PlaySound("weapon/FastCutter",1)
+RCTC AAABBB 1 A_SpawnItemEx("RollingCutterDamagerB",0,0,0,momx,momy,momz,0,8)
+RCTC A 0 A_PlaySound("weapon/FastCutter",1)
+RCTC CCCDDD 1 A_SpawnItemEx("RollingCutterDamagerB",0,0,0,momx,momy,momz,0,8)
+RCTC A 0 A_TakeFromTarget("MissingCutter",999)
+RCTC A 0 A_PlaySound("weapon/FastCutter",1)
+RCTC AAABBB 1 A_SpawnItemEx("RollingCutterDamagerB",0,0,0,momx,momy,momz,0,8)
+RCTC A 0 A_PlaySound("weapon/FastCutter",1)
+RCTC CCCDDD 1 A_SpawnItemEx("RollingCutterDamagerB",0,0,0,momx,momy,momz,0,8)
+
+RCTC A 0 A_SpawnItemEx("ReturningCutterFast",0,0,0,0,0,0,0,1)
+//RCTC A 0 A_CustomMissile("ReturningCutterFast",0,0,0,0)
+stop
+Death2:
+RCTC A 0 A_GiveToTarget("RollingCutterFlag",1)
+stop
+Death:
+RCTC A 0 A_GiveToTarget("RollingCutterFlag",1)
+stop
+}
+}
+
+
+actor CutmanCutterFastB : CutmanCutterFast{translation "192:192=205:205"}
+actor CutmanCutterFastR : CutmanCutterFast{translation "192:192=171:171"}
+actor CutmanCutterFastO : CutmanCutterFast{translation "192:192=104:104"}
+actor CutmanCutterFastP : CutmanCutterFast{translation "192:192=229:229"}
+
+
+actor ReturningCutterFast : CutmanCutterFast
+{
++NOINTERACTION
++SEEKERMISSILE
+ReactionTime 87//about 30 seconds
+damage (0)
+speed 33
+States
+{
+Spawn:
+RCTC A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+RCTC A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+RCTC A 0 A_RearrangePointers(AAPTR_DEFAULT,AAPTR_DEFAULT,AAPTR_TARGET)//Target >> Tracer
+RCTC A 0 A_FaceTarget
+goto Spawn2
+Spawn2:
+RCTC A 0 A_TakeFromTarget("MissingCutter",50)
+RCTC A 0 A_JumpIfCloser(58,"Death")
+RCTC A 0 A_PlaySound("weapon/FastCutter",1)
+RCTC AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+RCTC A 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+RCTC A 0 A_JumpIfCloser(58,"Death")
+RCTC A 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+RCTC A 0 A_JumpIfCloser(58,"Death")
+RCTC A 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+
+RCTC B 0 A_JumpIfCloser(58,"Death")
+RCTC BB 0 A_SeekerMissile(90,90,SMF_PRECISE)
+RCTC B 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+RCTC B 0 A_JumpIfCloser(58,"Death")
+RCTC B 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+RCTC B 0 A_JumpIfCloser(58,"Death")
+RCTC B 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+
+RCTC C 0 A_JumpIfCloser(58,"Death")
+RCTC C 0 A_PlaySound("weapon/FastCutter",1)
+RCTC CC 0 A_SeekerMissile(90,90,SMF_PRECISE)
+RCTC C 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+RCTC C 0 A_JumpIfCloser(58,"Death")
+RCTC C 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+RCTC C 0 A_JumpIfCloser(58,"Death")
+RCTC C 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+
+RCTC D 0 A_JumpIfCloser(58,"Death")
+RCTC DD 0 A_SeekerMissile(90,90,SMF_PRECISE)
+RCTC D 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+RCTC D 0 A_JumpIfCloser(58,"Death")
+RCTC D 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+RCTC D 0 A_JumpIfCloser(58,"Death")
+RCTC D 1 A_SpawnItemEx("RollingCutterDamagerBF",0,0,0,momx,momy,momz,0,8)
+RCTC A 0 A_CountDown
+RCTC A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+loop
+
+}
+}
+
+
+actor RollingCutterDamagerB : RollingCutterDamager
+{
+damagetype "DMGNoHitstun"
++DONTBLAST
+damage (60)
+}
+actor RollingCutterDamagerBF : RollingCutterDamager
+{
+damagetype "DMGNoHitstun"
++DONTBLAST
+damage (70)
+}
+
+
+actor CutmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CutmanCutterFast",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CutmanCutterFastB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CutmanCutterFastR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CutmanCutterFastO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CutmanCutterFastP",0,1,8,0)
+goto Done
+}
+}
+
+actor CutmanAlt1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CutSlice",-40,0,16,16,0,10)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CutSliceB",-40,0,16,16,0,10)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CutSliceR",-40,0,16,16,0,10)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CutSliceO",-40,0,16,16,0,10)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CutSliceP",-40,0,16,16,0,10)
+goto Done
+}
+}
+
+actor CutmanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CutSlice",-25,0,8,10,0,5)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CutSliceB",-25,0,8,10,0,5)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CutSliceR",-25,0,8,10,0,5)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CutSliceO",-25,0,8,10,0,5)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CutSliceP",-25,0,8,10,0,5)
+goto Done
+}
+}
+
+actor CutmanAlt3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CutSlice",-10,0,0,4,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CutSliceB",-10,0,0,4,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CutSliceR",-10,0,0,4,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CutSliceO",-10,0,0,4,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CutSliceP",-10,0,0,4,0,0)
+goto Done
+}
+}
+
+actor CutmanAlt4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CutSlice",5,0,-2,-2,0,-5)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CutSliceB",5,0,-2,-2,0,-5)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CutSliceR",5,0,-2,-2,0,-5)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CutSliceO",5,0,-2,-2,0,-5)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CutSliceP",5,0,-2,-2,0,-5)
+goto Done
+}
+}
+
+actor CutmanAlt5_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("CutSlice",15,0,-8,-6,0,-10)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("CutSliceB",15,0,-8,-6,0,-10)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("CutSliceR",15,0,-8,-6,0,-10)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("CutSliceO",15,0,-8,-6,0,-10)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("CutSliceP",15,0,-8,-6,0,-10)
+goto Done
+}
+}
+
+

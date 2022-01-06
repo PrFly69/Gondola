@@ -1,7 +1,6 @@
-actor Saturn : DocToadClassBase
+actor Saturn : ClassBase //135
 {
 Player.ScoreIcon "C_0VF0X"
-player.startitem "DocToadHealthBar"
 player.displayname "Saturn"
 player.soundclass "saturnc"
 player.startitem "BlackHoleBoss"
@@ -10,6 +9,9 @@ player.startitem "BlackerHoleBoss"
 player.startitem "BlackVortexAmmo", 14
 player.startitem "WhiteHoleAmmo", 350
 player.startitem "SaturnHoldAmmo", 280
+
+player.maxhealth 1350
+health 1350
 player.forwardmove 0.65, 0.65
 player.sidemove 0.63, 0.63
 player.jumpz 12
@@ -60,10 +62,12 @@ ClassDeath:
 SATU H 1
 goto MegaDeathEnd
 Death.ElectricShockB:
-SATU H 65 A_PlaySoundEX("weapon/saturndeath","weapon")
-goto DeathContinue
+SATU H 0 A_PlaySoundEX("weapon/saturndeath","weapon")
+SATU H 65
+goto MegaDeathEnd
 Death.ElectricShock:
-SATU H 65 A_PlaySoundEX("weapon/saturndeath","weapon")
-goto DeathContinue
+SATU H 0 A_PlaySoundEX("weapon/saturndeath","weapon")
+SATU H 65
+goto MegaDeathEnd
 }
 }

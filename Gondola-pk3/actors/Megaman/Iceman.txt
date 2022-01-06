@@ -28,6 +28,12 @@ player.startitem "CommandoBombWeakness", 1
 player.startitem "PhotonMissileWeakness", 1
 player.startitem "BalladeCrackerWeakness", 1
 
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
 //player.startitem "ThunderBeamWeakness2", 1
 States
 {

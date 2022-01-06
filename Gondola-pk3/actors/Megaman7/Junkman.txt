@@ -1,7 +1,6 @@
-actor Junkman : SturdyClassBase
+actor Junkman : ClassBase //125
 {
 Player.ScoreIcon "C_07B0X"
-player.startitem "SturdyHealthBar"
 player.displayname "junkman"
 player.soundclass "junkmanc"
 player.startitem "JunkShieldBoss"
@@ -9,6 +8,9 @@ player.startitem "JunkShieldUseItem"
 player.startitem "JunkLeakSpawner"
 //player.startitem "JunkShielderBoss"
 player.startitem "TrunkAmmo",600
+
+player.maxhealth 1250
+health 1250
 player.forwardmove 0.6, 0.6
 player.sidemove 0.58, 0.58
 player.jumpz 11
@@ -111,6 +113,173 @@ Pickup2:
 DUST B 0 A_TakeInventory("LeakStock",10)
 DUST B 0 A_SpawnItemEx("JunkSpewerB",0,0,0,0,0,0,0,1)
 goto Pickup+1
+}
+}
+
+actor JunkBits1 : ScrapMetalBase
+{
++INVENTORY.QUIET
+States
+{
+Spawn2:
+JUCT H 500
+stop
+}
+}
+
+actor JunkBits2 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT I 500
+stop
+}
+}
+
+actor JunkBits3 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT J 500
+stop
+}
+}
+
+actor JunkBits4 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT K 500
+stop
+}
+}
+
+actor JunkBits5 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT L 500
+stop
+}
+}
+
+actor JunkBits6 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT M 500
+stop
+}
+}
+
+actor JunkBits7 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT N 500
+stop
+}
+}
+
+actor JunkBits8 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT O 500
+stop
+}
+}
+
+actor JunkBits9 : JunkBits1
+{
+States
+{
+Spawn2:
+JUCT P 500
+stop
+}
+}
+
+actor JunkBitsX : JunkBits1
+{
+States
+{
+Spawn2:
+TNT1 A 0 A_Jump(256,"S_1","S_2","S_3","S_4","S_5","S_6","S_7","S_8","S_9")
+TNT1 A 1
+loop
+S_1:
+JUCT H 500
+stop
+S_2:
+JUCT I 500
+stop
+S_3:
+JUCT J 500
+stop
+S_4:
+JUCT K 500
+stop
+S_5:
+JUCT L 500
+stop
+S_6:
+JUCT M 500
+stop
+S_7:
+JUCT N 500
+stop
+S_8:
+JUCT O 500
+stop
+S_9:
+JUCT P 500
+stop
+}
+}
+
+actor ClassJunkBit : ScrapMetalBase
+{
+States
+{
+Spawn2:
+TNT1 A 0 A_Jump(256,"S_3","S_4","S_5","S_6","S_7","S_8","S_9")
+TNT1 A 1
+loop
+S_1:
+JUCT H 500
+stop
+S_2:
+JUCT I 500
+stop
+S_3:
+JUCT J 500
+stop
+S_4:
+JUCT K 500
+stop
+S_5:
+JUCT L 500
+stop
+S_6:
+JUCT M 500
+stop
+S_7:
+JUCT N 500
+stop
+S_8:
+JUCT O 500
+stop
+S_9:
+JUCT P 500
+stop
 }
 }
 

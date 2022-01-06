@@ -1,12 +1,18 @@
-actor Magicman : MegaClassBase
+actor Magicman : ClassBase
 {
 Player.ScoreIcon "C_0BF0X"
-player.startitem "MegaHealthBar"
 player.displayname "Magicman"
-player.soundclass "MagicmanC"
+player.soundclass "magicmanc"
+
+player.maxhealth 900
+health 900
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
 player.startitem "MagicCardBoss"
 player.startitem "MagicCardBosB"
-player.startitem "SnortSnortAmmo",600
+player.startitem "SnortSnortAmmo",500
 
 player.weaponslot 1, "MagicCardBoss"
 player.weaponslot 2, "MagicCardBosB"
@@ -19,11 +25,10 @@ player.startitem "ShadowBladeWeakness", 1
 player.startitem "GyroAttackWeakness", 1
 player.startitem "SilverTomahawkWeakness", 1
 player.startitem "TenguBladeWeakness", 1
-//player.startitem "WheelCutterWeakness", 1
-player.startitem "ScrewCrusherWeakness", 1
+player.startitem "WheelCutterWeakness", 1
 player.startitem "PhotonMissileWeakness", 1
+player.startitem "ScrewCrusherWeakness", 1
 
-player.startitem "RealClassFlag", 89
 States
 {
 Spawn:
@@ -35,22 +40,14 @@ See:
 MGIC BCDE 5
 Goto Spawn
 Missile:
-MGIC F 5
-MGIC G 4
-goto Spawn
-CustomState1:
-MGIC F 5
-MGIC G 4
+MGIC FG 5
 goto Spawn
 ClassPain:
 MGIC H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 MGIC H 0 A_SpawnItemEx("MagicmanDeathTrick_H",0,0,0,0,0,0,0,1)
 goto DeathContinue
-ClassDeath:
-MGIC H 1 A_SpawnItemEx("MagicmanDeathTrick_H",0,0,0,0,0,0,0,1)
-goto MegaDeathEnd
 }
 }
 
@@ -102,6 +99,7 @@ actor MagicMDeath_Confetti
 {
 +MISSILE
 +DONTBLAST
++DONTREFLECT
 +CLIENTSIDEONLY
 +LOWGRAVITY
 +THRUACTORS
@@ -195,3 +193,112 @@ goto Spawn2
 }
 }
 
+actor MagicM_KillTrick_H : MagicmanDeathTrick_H
+{
+States
+{
+Spawn:
+TNT1 A 0
+//TNT1 A 0 A_Jump(96,"")
+TNT1 A 0 A_Jump(128,"Romper")
+TNT1 A 0 A_Jump(96,"CardDeath")
+TNT1 A 0 A_Jump(16,"Uno")
+TNT1 A 1 A_Jump(256,"ConfettiDeath")
+stop
+Uno:
+TNT1 A 1 A_SpawnItemEx("MagicM_UnoKillTrick",0,0,32,0,0,1,0,1)
+stop
+Romper:
+TNT1 A 1 A_SpawnItemEx("MagicM_RomperKillTrick",0,0,16,0,0,0,random(0,35)*10,9)
+stop
+}
+}
+
+actor MagicM_RomperKillTrick
+{
+-SOLID
++CANPASS
++THRUACTORS
++NOBLOCKMONST
+//+CLIENTSIDEONLY
+radius 6
+height 6
+speed 4
+scale 2.0
+Args 8
+States
+{
+Spawn:
+MGB7 A 0
+MGB7 A 8
+MGB7 AAAAAAAA 0 A_Wander
+MGB7 A 0 A_Jump(1,"RomperF1")
+MGB7 A 0 A_Jump(2,"RomperF2")
+MGB7 A 0 A_Jump(153,"Romper3")
+MGB7 A 0 A_Jump(77,"Romper2")
+MGB7 A 0 A_Jump(1,"Romper_T")
+Romper1:
+MGB7 ABAC 12 A_Wander
+MGB7 A 0 A_CountDownArg(0)
+loop
+Romper2://A_SetSpeed(8)
+MGB7 ABACABAC 6 A_Wander
+MGB7 A 0 A_CountDownArg(0)
+loop
+Romper3://A_SetSpeed(6)
+MGB7 ABACAB 8 A_Wander
+MGB7 A 0 A_CountDownArg(0)
+MGB7 ACABAC 8 A_Wander
+MGB7 A 0 A_CountDownArg(0)
+loop
+RomperF:
+MGB7 ABACABACABACABACABACABACABACABACABACABACABACABAC 1 A_Wander
+MGB7 A 0 A_CountDownArg(0)
+loop
+RomperF2:
+MGB7 ABACABACABACABACABACABAC 2 A_Wander
+MGB7 A 0 A_CountDownArg(0)
+loop
+Romper_T:
+MGB7 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander
+MGB7 A 0 A_CountDownArg(0)
+loop
+Death:
+TNT1 A 1
+stop
+}
+}
+actor MagicM_RomperKillTrickX :  MagicM_RomperKillTrick
+{
+Args 24
+States
+{
+Spawn:
+MGB7 A 0
+MGB7 A 8
+MGB7 AAAAAAAA 0 A_Wander
+MGB7 A 0 A_Jump(64,"RomperF1")
+MGB7 A 0 A_Jump(128,"RomperF2")
+goto Romper_T
+}
+}
+
+actor MagicM_UnoKillTrick : BasicClientSide
+{
+ReactionTime 17
+Scale 1.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,"Spawn1","Spawn2")
+Spawn1:
+MGB7 U 1
+TNT1 A 1 A_CountDown
+loop
+Spawn2:
+MGB7 V 1
+TNT1 A 1 A_CountDown
+loop
+}
+}

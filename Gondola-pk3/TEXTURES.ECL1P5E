@@ -1,0 +1,16 @@
+//Bubbleman Item Indicator
+
+graphic BUBFLODA,30,30{XScale 1 YScale 1 patch BUBFA0,0,0{Translation"192:192=200:200","195:195=205:205"}}
+texture BUBFLOD1,30,30{XScale 1 YScale 1 patch BUBFA0,0,0{Translation"192:192=200:200","195:195=205:205"}}
+texture BUBFLOD2,30,30{XScale 1 YScale 1 patch BUBFB0,0,0{Translation"192:192=200:200","195:195=205:205"}}
+texture BUBFLOD3,30,30{XScale 1 YScale 1 patch BUBFC0,0,0{Translation"192:192=200:200","195:195=205:205"}}
+
+//Magmaman Item Indicator
+
+graphic MAGFLOWA,420,72{XScale 0.8 YScale 1 patch MAGXJ0,0,0{Translation"192:192=200:200","195:195=205:205"}}
+texture MAGFLOW1,420,52{XScale 0.8 YScale 1 patch MAGXH0,0,0{Translation"192:192=200:200","195:195=205:205"}}
+texture MAGFLOW2,420,64{XScale 0.8 YScale 1 patch MAGXI0,0,0{Translation"192:192=200:200","195:195=205:205"}}
+texture MAGFLOW3,420,72{XScale 0.8 YScale 1 patch MAGXJ0,0,0{Translation"192:192=200:200","195:195=205:205"}}
+
+//Fake Megaman Skin for Doc Robot - Face
+graphic EMEST00,32,32{XScale 4.0 YScale 4.0 Patch FACE00X7,0,0}

@@ -1,9 +1,11 @@
-actor Sunstar : SturdyClassBase
+actor Sunstar : ClassBase //125
 {
 Player.ScoreIcon "C_VSUN0X"
 player.displayname "Sunstar"
 player.soundclass "sunstarc"
 
+player.maxhealth 1250
+health 1250
 player.jumpz 11
 player.forwardmove 0.76, 0.76
 player.sidemove 0.74, 0.74

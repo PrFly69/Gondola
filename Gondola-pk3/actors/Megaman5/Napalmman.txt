@@ -6,6 +6,10 @@ player.soundclass "napalmmanc"
 player.startitem "NapalmBombBoss"
 player.startitem "NapalmClassAmmo", 168
 player.startitem "OverHeater", 0
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
 player.forwardmove 0.89, 0.89
 player.sidemove 0.5, 0.5
 

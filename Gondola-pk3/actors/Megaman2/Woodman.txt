@@ -1,0 +1,53 @@
+actor Woodman : ClassBase
+{
+Player.ScoreIcon "C_02H0X"
+player.displayname "Woodman"
+player.soundclass "woodmanc"
+
+player.maxhealth 1250
+health 1250
+player.jumpz 10
+player.forwardmove 0.67, 0.67
+player.sidemove 0.65, 0.65
+
+player.startitem "LeafShieldBoss"
+player.startitem "IncredibleAmmo", 70
+player.startitem "WoodSlamFlag", 1
+player.startitem "WoodmanShieldItem", 1
+
+player.startitem "AtomicFireWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "FlameSwordWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+
+States
+{
+Spawn:
+WODM A 0
+WODM B 1
+WODM A 300
+WODM IJ 5
+Goto Spawn+3
+See:
+WODM BCDE 5
+Goto Spawn
+Missile:
+WODM F 5
+WODM G 4
+WODM G 1 A_JumpIfInventory("WoodSlamFlag",1,"Spawn")
+goto Missile+2
+ClassPain:
+WODM H 0
+goto PainContinue
+ClassDeath:
+WODM H 0
+goto DeathContinue
+}
+}

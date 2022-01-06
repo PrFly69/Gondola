@@ -5,6 +5,9 @@ player.displayname "Springman"
 player.soundclass "springmanc"
 player.startitem "WildCoilBoss"
 player.startitem "GumAmmo", 28
+
+player.maxhealth 1000
+health 1000
 player.forwardmove 0.76, 0.76
 player.sidemove 0.74, 0.74
 player.jumpz 20

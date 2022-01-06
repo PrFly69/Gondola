@@ -1,7 +1,6 @@
-actor Acidman : MegaClassBase
+actor Acidman : ClassBase //90
 {
 Player.ScoreIcon "C_11H0X"
-player.startitem "MegaHealthBar"
 player.displayname "Acidman"
 player.soundclass "acidmanc"
 player.jumpz 12

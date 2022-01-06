@@ -14,10 +14,44 @@ script "CCBM_DevilHealthDrainer" (void)
 	}
 }
 
+// Flash Stopper Script
+Script "CCBM_BrightNewBlind" (void) 
+{
+int BrightBlindCount;
+FadeTo(45,45,45,1.0,0.05);
+Delay(10);
+While(CheckInventory("BrightBlind")>0)
+	{
+	BrightBlindCount=CheckInventory("BrightBlind");
+	if(BrightBlindCount>100){BrightBlindCount=100;}
+	FadeTo(45,45,45,FixedDiv(BrightBlindCount,100),0.0);
+	TakeInventory("BrightBlind",1);
+	Delay(1);
+	}
+FadeTo(45,45,45,0.0,0.0);
+}
+
+ Script "Enker_Passive" (void)
+ {
+   int health = GetActorProperty(ActivatorTID(), APROP_Health);
+   
+   if(health < 1)
+	  Terminate;
+		
+	while( health > 1 && CheckInventory("MirrorChargeAmmo") < 11 )
+	{
+		GiveInventory("MirrorChargeAmmo", 1);
+		Delay(35);
+	}
+	
+	Delay(35);
+	Restart;
+ }
+
 //Dark Man 4
 script "CCBM_Dark4Shield" (void)
 {
-		int shielddiff = 50 - GetActorProperty(0,APROP_HEALTH);
+		int shielddiff = 500 - GetActorProperty(0,APROP_HEALTH);
 		SetActivatorToTarget(0);
 		TakeInventory("DarkBlasterAmmo",shielddiff);
 }
@@ -56,7 +90,7 @@ Switch(PitchAngle)
 	}
 }
 
-//Rocketjump
+/*//Rocketjump
 script "cbm_MarsRocketJump" (int thrust, int radius, int zOffset)
 {
 	int target = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2);
@@ -72,7 +106,7 @@ script "cbm_MarsRocketJump" (int thrust, int radius, int zOffset)
 script "cbm_Re_SetThingSpecial" (int Thing0, int Thing1, int Thing2, int Thing3)
 {
 	SetThingSpecial(0,0,Thing0,Thing1,Thing2,Thing3);
-}
+}*/
 
 //From Trillster's Magnet concept
 script "Trill_MagnetJumpBooster" (int maxRange)
@@ -436,7 +470,7 @@ script "AcidmanGearAmmo" (int AcidMult)
 	int AcidH = max(GetActorProperty(TracerSave,APROP_HEALTH),0);
 	int AcidDiff = CheckActorInventory(TracerSave,"AcidLastHealthFlag") - AcidH;
 	If(AcidDiff != 0){GiveActorInventory(TargetSave,"AcidGearUpSound_P",1);};
-		GiveActorInventory(TargetSave,"AcidGearAmmo",AcidDiff*AcidMult);
+		GiveActorInventory(TargetSave,"AcidGearAmmo",AcidDiff*AcidMult/10);
 		TakeActorInventory(TracerSave,"AcidLastHealthFlag",999);
 		GiveActorInventory(TracerSave,"AcidLastHealthFlag",AcidH);
 }
@@ -447,7 +481,7 @@ script "AcidmanGearAmmoSelf" (int AcidMult)
 	int AcidH = max(PlayerHealth(),0);
 	int AcidDiff = CheckInventory("AcidLastHealthFlag") - AcidH;
 	If(AcidDiff != 0){GiveInventory("AcidGearUpSound_P",1);};
-		GiveInventory("AcidGearAmmo",AcidDiff*AcidMult);
+		GiveInventory("AcidGearAmmo",AcidDiff*AcidMult/10);
 		TakeInventory("AcidLastHealthFlag",999);
 		GiveInventory("AcidLastHealthFlag",AcidH);
 }
@@ -612,4 +646,31 @@ Script "WaveHookAcsSound" (void)
 Script "WaveHookLatchAcsSound" (void)
 {
 	LocalAmbientSound("weapon/BionicArm2",128);
+}
+
+#define BALLADE_BASE_SPEED 20
+#define BALLADE_SPEED_PER_METER 2
+
+ Script "CCBM Ballade Speed" (void) {
+    // this is a projectile
+    int owner = GetActorProperty(0, APROP_TARGETTID);
+   
+    int ang = GetActorAngle(owner);
+    int pitch = GetActorPitch(owner);
+   
+    int base = BALLADE_BASE_SPEED + (BALLADE_SPEED_PER_METER * CheckActorInventory(owner, "BalladeChargeFlag"));
+	SetActorVelocity(0, base * FixedMul(cos(ang), cos(pitch)), base * FixedMul(sin(ang), cos(pitch)), -base * sin(pitch), false, false);
+    TakeActorInventory(owner, "BalladeChargeFlag", 99);
+}
+
+ Script "CCBM Knight Shield Check" (void) {
+	SetActivatorToTarget(0);
+	SetResultValue(ActivatorTID() && !CheckInventory("IsDead"));
+ }
+ 
+  //Ecl1p5e ACS Scripts
+ 
+ script "ccbm_AutoToggleMethod" (void)
+{
+	SetResultValue(GetUserCVar(PlayerNumber(),"CCBM_AutoToggleMethod"));
 }

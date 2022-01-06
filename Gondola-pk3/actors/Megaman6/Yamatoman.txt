@@ -1,16 +1,18 @@
-actor Yamatoman : DuoClassBase
+actor Yamatoman : ClassBase //115
 {
 Player.ScoreIcon "C_06H0X"
-player.startitem "DuoHealthBar"
 player.displayname "Yamatoman"
 player.soundclass "yamatomanc"
 player.startitem "YamatoSpearBoss"
 player.startitem "YamatoClassAmmo", 28
 player.startitem "YamatoLeapAmmo", 28
+
+player.maxhealth 1150
+health 1150
 player.forwardmove 0.666, 0.666
 player.sidemove 0.646, 0.646
 player.jumpz 13
-//Player.AttackZOffset 18
+//Player.AttackZOffset 18 what is this LOL
 //Player.AttackZOffset 30
 //Player.ViewHeight 50
 player.startitem "SilverTomahawkWeakness2", 1

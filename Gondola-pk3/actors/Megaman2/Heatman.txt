@@ -3,9 +3,9 @@
 //------------------------------------
 //====================================
 
-  Actor Heatman : LightClassBase
+  Actor Heatman : ClassBase //90
   {
-    Player.ScoreIcon "C_02B0X"
+    Player.ScoreIcon "C_02G0X"
 	Player.DisplayName "heatman"
 	Player.SoundClass "heatmanc"
 	Player.StartItem "AtomicDashBoss"
@@ -20,6 +20,13 @@
 	Player.StartItem "WaterWaveWeakness", 1
 	Player.StartItem "WaterBalloonWeakness", 1
 	Player.StartItem "SaltWaterWeakness", 1
+	
+	player.maxhealth 900
+	health 900
+	player.jumpz 10
+	player.forwardmove 0.8, 0.8
+	player.sidemove 0.78, 0.78
+	
 	States
 	{
 		Spawn:

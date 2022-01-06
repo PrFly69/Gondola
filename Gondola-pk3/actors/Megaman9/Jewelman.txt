@@ -8,6 +8,10 @@ player.startitem "JewelSatelliteBoss2"
 player.startitem "JewelSatelliteBoss3"
 player.startitem "JewelSatelliteBoss4"
 player.startitem "JewelResetItem"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
 player.forwardmove 0.80, 0.80
 player.sidemove 0.78, 0.78
 

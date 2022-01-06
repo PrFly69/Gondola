@@ -1,12 +1,15 @@
-actor Needleman : ToadClassBase
+actor Needleman : ClassBase //155
 {
 Player.ScoreIcon "C_03A0X"
-player.startitem "ToadHealthBar"
 player.displayname "needleman"
 player.soundclass "needlemanc"
 player.startitem "NeedleCannonBoss"
 //player.startitem "NeedlePokerBoss"
 player.startitem "NoodleAmmo", 28
+
+player.maxhealth 1550
+health 1550
+player.jumpz 10
 player.forwardmove 0.7, 0.7
 player.sidemove 0.68, 0.68
 

@@ -127,3 +127,86 @@ script "ImpairmentACS" (void)
 {
 SetResultValue(100-CheckInventory("ImpairmentStack"));
 }
+
+Script "cbm_ClownPegSwing" (int timeout)
+{
+
+	int TargetTID = ACS_ExecuteWithResult(147,0);
+
+	If(CheckActorInventory(TargetTID,"RushJetCounter") >= 5){terminate;}
+	//If(CheckActorInventory(TargetTID,"YoGeekyAmmo") < 75 && CheckActorInventory(TargetTID,"ThunderClawBoss") == 1){terminate;}
+	
+
+	int hookx = GetActorX(0);
+	int hooky = GetActorY(0);
+	int hookz = GetActorZ(0);
+	int playerx = GetActorX(TargetTID);
+	int playery = GetActorY(TargetTID);
+	int thrust;
+	int zthrust;
+	int ThrustTimeOut=0;
+
+	if(timeout > 0){ThrustTimeOut = timeout;}
+
+	//SetActorState(0,"TargetClear",1);
+
+	//TakeActorInventory(TargetTID,"YoGeekyAmmo",75);
+	TakeActorInventory(TargetTID,"JumpCancler",1);
+	TakeActorInventory(TargetTID,"ClownShockUpPeg2",1);
+	GiveActorInventory(TargetTID,"ClownShockUpPeg",1);
+
+	If(GetActorZ(TargetTID) - GetActorFloorZ(TargetTID)<8)
+		{
+		ThrustThingZ(TargetTID,35,0,0);
+		Delay(2);
+		}
+	While(GetActorZ(TargetTID) >= (hookz-64.0) && ThrustTimeOut < 105)
+		{
+		ThrustThingZ(TargetTID,8,1,1);
+		ThrustThing(VectorAngle(hookx - playerx, hooky - playery)>>8,1,1,TargetTID);
+		playerx=GetActorX(TargetTID);
+		playery=GetActorY(TargetTID);
+		ThrustTimeOut++;
+		Delay(1);
+		}
+
+	thrust = xyDistance(0,TargetTID)/10;//Clown_xyDistance(hookx, hooky, TargetTID)/10;
+	zthrust = zDistance(0,TargetTID)/13;//Clown_zDistance(hookz, TargetTID)/13;
+	//if(thrust < 10){thrust=10;}
+	//if(thrust > 50){thrust=50;}
+	//Log(s:"ThrustTimeOut = ",i:ThrustTimeOut,s:" thrust = ",i:thrust,s:" zthrust = ",i:zthrust);
+
+	ThrustThing(VectorAngle(hookx - playerx, hooky - playery)>>8,thrust*(100-CheckActorInventory(TargetTID,"ImpairmentStack"))/100,1,TargetTID);
+	ThrustThingZ(TargetTID,0,0,0);
+	ThrustThingZ(TargetTID,zthrust*(100-CheckActorInventory(TargetTID,"ImpairmentStack"))/100,0,1);
+	Delay(5);
+	ThrustThingZ(TargetTID,10*(100-CheckActorInventory(TargetTID,"ImpairmentStack"))/100,0,1);
+	Delay(2);
+	ThrustThingZ(TargetTID,14*(100-CheckActorInventory(TargetTID,"ImpairmentStack"))/100,0,1);
+	Delay(2);
+	ThrustThingZ(TargetTID,18*(100-CheckActorInventory(TargetTID,"ImpairmentStack"))/100,0,1);
+	Delay(2);
+	ThrustThingZ(TargetTID,20*(100-CheckActorInventory(TargetTID,"ImpairmentStack"))/100,0,1);
+	Delay(2);
+	ThrustThingZ(TargetTID,22*(100-CheckActorInventory(TargetTID,"ImpairmentStack"))/100,0,1);
+
+	SpawnForced("ClownmanGrabSounder",GetActorX(0),GetActorY(0),GetActorZ(0));
+	TakeActorInventory(TargetTID,"ClownShockUpPeg",1);
+	GiveActorInventory(TargetTID,"ClownShockUpPeg2",1);
+}
+
+function int Clown_xyDistance (int tid1_x, int tid1_y, int tid2)
+{
+	int x, y, d;
+	x = tid1_x - GetActorX(tid2) >> 16;
+	y = tid1_y - GetActorY(tid2) >> 16;
+	d = sqrt8( x*x + y*y );
+	return d;
+}
+
+function int Clown_zdistance (int tid1_z, int tid2)
+{
+	int z;
+	z = tid1_z - GetActorZ(tid2) >> 16;
+	return z;
+}

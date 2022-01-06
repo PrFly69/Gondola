@@ -670,7 +670,7 @@ Height 15
 DamageType "HyperStormH"
 Obituary "$OB_HSHBULLET"
 scale 3.0
-Damage (13)//15
+Damage (130)//15
 speed 39//38
 States
 {
@@ -678,7 +678,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-BASB T -1
+W_0D B -1
 loop
 }
 }
@@ -698,7 +698,7 @@ Height 16
 DamageType "HSHFire"
 Obituary "$OB_HSHHOTBULLET"
 scale 2.0
-Damage (18)//20
+Damage (180)//20
 speed 47//46
 States
 {
@@ -706,7 +706,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-HSHH TUV 2
+Y_1E ABC 2
 loop
 Death:
 TNT1 A 0
@@ -739,7 +739,7 @@ States
 Spawn:
 TNT1 A 1
 TNT1 A 0 A_Stop
-TNT1 A 1 A_Explode(5,96,0,0,32)//10
+TNT1 A 1 A_Explode(50,96,0,0,32)//10
 stop
 }
 }
@@ -753,7 +753,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("HSHDustFX",-5,0,-28,-3,0,0,0,1)
-TNT1 A 1 A_Explode(10,112,0,0,32)
+TNT1 A 1 A_Explode(100,112,0,0,32)
 stop
 }
 }
@@ -774,7 +774,7 @@ TNT1 A 0// A_LOGINT(user_P)
 goto SpawnDone
 SpawnDone://A_Explode(user_P*0.65+10,user_P/3+112,0)
 TNT1 A 0 A_SpawnItemEx("HSHDustFX",-2,0,-28,-2,0,0,0,1)
-TNT1 A 1 A_Explode(16,128,0,0,64)
+TNT1 A 1 A_Explode(160,128,0,0,64)
 stop
 SpawnAdd:
 TNT1 A 0 A_SetUserVar("user_P",user_P+1)
@@ -810,7 +810,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(7,112,0,0,16)
+TNT1 A 1 A_Explode(70,112,0,0,16)
 stop
 }
 }

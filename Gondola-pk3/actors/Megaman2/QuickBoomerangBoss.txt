@@ -1,0 +1,328 @@
+actor QuickBoomerangBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_2D"
+dropitem "QuickBoomerangWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 90
+Obituary "$OB_QUICKBOOMERANG"
+weapon.ammotype "FastAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_02 D 1
+loop
+Ready:
+QUIH A 0 ACS_ExecuteAlways(998,0,DYE_QUICKMAN)
+goto Ready1
+Ready1:
+QUIH A 0 A_JumpIfInventory("QuickManTrail",1,"Ready2")
+QUIH A 1 A_WeaponReady
+QUIH A 0 A_GiveInventory("FastAmmo_RC",1)
+goto Ready1
+Ready2:
+QUIH G 1 A_WeaponReady
+QUIH H 1 A_WeaponReady
+QUIH I 1 A_WeaponReady
+QUIH J 1 A_WeaponReady
+QUIH K 1 A_WeaponReady
+QUIH L 1 A_WeaponReady
+goto Ready1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+QUIH A 1 A_Lower
+loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+QUIH A 1 A_Raise
+Loop
+Fire:
+QUIH A 0 A_JumpIfInventory("QuickManTrail",1,"Fire2")
+goto Fire1
+Fire1:
+QUIH A 0 A_PlaySoundEx("weapon/pshot","weapon")
+QUIH A 0 A_GiveInventory("QuickmanMain_CI",1)
+QUIH B 1 Offset(10,40) A_GiveInventory("FastAmmo",1)
+QUIH B 0 A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH B 1 Offset(15,45)
+QUIH A 1 Offset(22,52)
+QUIH A 1 Offset(24,54)
+
+QUIH A 1 Offset(25,55) A_GiveInventory("FastAmmo",1)
+QUIH B 0 A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH A 1 Offset(25,55)
+QUIH A 1 Offset(25,55)
+QUIH A 1 Offset(24,54)
+QUIH A 1 Offset(22,52) A_GiveInventory("FastAmmo",1)
+QUIH B 0 A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH A 1 Offset(13,43)
+QUIH A 1 Offset(10,40)
+QUIH A 1 Offset(7,37)
+
+QUIH A 1 Offset(4,34)
+QUIH A 0 A_GiveInventory("FastAmmo",1)
+QUIH A 2 A_WeaponReady(14)
+Goto Ready1
+
+Fire2:
+QUIH A 0 A_PlaySoundEx("weapon/pshot","weapon")
+QUIH A 0 A_GiveInventory("QuickmanMain_CI",1)
+QUIH B 1 Offset(10,40)A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH A 1 Offset(22,52)
+QUIH A 1 Offset(25,55)A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH A 1 Offset(25,55)
+QUIH A 1 Offset(22,52)A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH A 1 Offset(10,40)
+QUIH A 1 Offset(7,37)A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH A 1 Offset(4,34)
+QUIH A 1 A_WeaponReady(14)
+Goto Ready1
+
+Altfire:
+QUIH A 0 A_JumpIfInventory("QuickManTrail",1,"Altfire2")
+goto Altfire1
+
+Altfire1:
+QUIH A 0 A_GiveInventory("FastAmmo",2)
+QUIH A 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+QUIH A 0 A_GiveInventory("QuickmanMain2_CI",1)
+QUIH D 1 A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH E 1
+QUIH F 1 A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH A 3 A_WeaponReady(14)
+Goto Ready1
+
+Altfire2:
+QUIH A 0 A_PlaySoundEx("weapon/rbuster","Weapon")
+QUIH A 0 A_GiveInventory("QuickmanMain2_CI",1)
+QUIH D 1 A_JumpIfInventory("PowerRage_ST",1,1)
+QUIH E 1
+QUIH F 1
+Goto Ready1
+
+}
+}
+
+actor FastAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 210
++INVENTORY.IGNORESKILL
+}
+
+actor FastAmmo_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("FastAmmo",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("FastAmmo",2)
+stop
+}
+}
+
+actor QuickManTrail : PowerSpeed
+{
+Speed 1.5
+Powerup.Duration 105
+}
+
+actor QuickTrailItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "QuiIcon"
+scale 2.0
+inventory.pickupmessage "Five hour energy packed into less than five seconds."
++INVBAR
+states
+{
+Spawn:
+QUII A 1
+loop
+Use:
+Use:
+TNT1 A 0 A_JumpIfInventory("FastAmmo",210,"Success")
+fail
+Success:
+QUIK N 0 A_PlaySoundEx("Class/QuickRun","SoundSlot6")
+TNT1 A 0 A_GiveInventory("QuickManTrail",1)
+TNT1 A 0 A_SpawnItemEx("QuickManAmmoDrainer") //You know, so the SBAR actually works.
+fail
+}
+}
+
+
+actor QuickManAmmoDrainer : BasicHelper
+{
+reactiontime 105 //Quickman trail duration.
+States
+{
+Spawn:
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_TakeFromTarget("FastAmmo",2)
+TNT1 A 0 A_CountDown
+TNT1 A 1
+goto Spawn
+}
+}
+
+
+actor Quickbossrangs1 : QuickBoomerang
+{
+translation "192:192=229:229"
+damage (60)
+bouncecount 2
+Radius 7
+Speed 60
++USEBOUNCESTATE
++DOOMBOUNCE
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+QUIK Q 0 A_CountDown
+QUIK QQRRSSTT 1 A_ChangeVelocity(-4.0,0,0,CVF_RELATIVE)
+loop
+Bounce:
+QUIK Q 0 A_PlaySound("wep/shieldtink",1,0.3)
+QUIK Q 0 A_SpawnItemEx("QuickBoomerangDeathFX",0,0,0,random(2,8),random(-8,8),random(2,8),0,1)
+stop
+Bounce.Ceiling:
+QUIK Q 0 A_PlaySound("wep/shieldtink",1,0.3)
+QUIK Q 0 A_SpawnItemEx("QuickBoomerangDeathFX",0,0,0,random(-8,8),random(-8,8),random(-2,-8),0,1)
+stop
+}
+}
+
+actor Quickbossrangs1B : Quickbossrangs1{translation "192:192=205:205"}
+actor Quickbossrangs1R : Quickbossrangs1{translation "192:192=171:171"}
+actor Quickbossrangs1O : Quickbossrangs1{translation "192:192=104:104"}
+actor Quickbossrangs1P : Quickbossrangs1{translation "192:192=229:229"}
+
+actor Quickbossrangs2 : Quickbossrangs1
+{
+reactiontime 7
+damage (60)
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+QUIK Q 0 A_CountDown
+QUIK QQRR 1 A_ChangeVelocity(-3.5,0,0,CVF_RELATIVE)
+QUIK Q 0 A_CountDown
+QUIK SSTT 1 A_ChangeVelocity(-3.5,0,0,CVF_RELATIVE)
+loop
+Bounce:
+QUIK Q 0 A_PlaySound("wep/shieldtink",1,0.6)
+QUIK Q 0 A_SpawnItemEx("QuickBoomerangDeathFX",0,0,0,random(2,8),random(-8,8),random(2,8),0,1)
+stop
+Bounce.Ceiling:
+QUIK Q 0 A_PlaySound("wep/shieldtink",1,0.6)
+QUIK Q 0 A_SpawnItemEx("QuickBoomerangDeathFX",0,0,0,random(-8,8),random(-8,8),random(-2,-8),0,1)
+stop
+/*
+Death:
+TNT1 A 0 A_JumpIf((z-floorz<=7||z-ceilingz>=-7),"XDeath")
+TNT1 A 0 A_SpawnItemEx("Quickbossrangs2Return",0,0,0,-Cos(pitch)*50,0,-sin(pitch)*50,0,513)
+XDeath:
+TNT1 A 0
+stop
+*/
+}
+}
+
+actor Quickbossrangs2B : Quickbossrangs2{translation "192:192=205:205"}
+actor Quickbossrangs2R : Quickbossrangs2{translation "192:192=171:171"}
+actor Quickbossrangs2O : Quickbossrangs2{translation "192:192=104:104"}
+actor Quickbossrangs2P : Quickbossrangs2{translation "192:192=229:229"}
+
+actor QuickBoomerangDeathFX
+{
++MISSILE
++THRUACTORS
++CLIENTSIDEONLY
+Gravity 1.25
+Radius 2
+Height 2
+scale 2.5
+States
+{
+Spawn:
+QUIK T 1 A_Fadeout(0.05)
+//TNT1 A 1
+loop
+}
+}
+
+actor Quickbossrangs2Return : Quickbossrangs2
+{
+States
+{
+Death:
+goto XDeath
+}
+}
+
+actor QuickmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2",-15,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2B",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2B",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2B",-15,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2R",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2R",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2R",-15,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2O",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2O",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2O",-15,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2P",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2P",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2P",-15,1,8,0)
+goto Done
+}
+}
+
+actor QuickmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1B",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1R",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1O",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1P",0,1,8,0)
+goto Done
+}
+}
+
+

@@ -1,0 +1,1668 @@
+//Ze Robotico - Acid Barrier Sprite
+//Interessant - Skin
+//Pegg - Mugshot
+//MGO/A3 devs - Base Mainfire Weapon state Code + M1 Projectile Sprites + Old HUD (Now replaced by Cowsha's with an edit to V-Classes arm)
+//Clock - All Other Code
+
+actor AcidBarrierBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_11D"
+dropitem "AcidBarrierWepCDropped"
+Inventory.Pickupmessage "Sharing is caring!"
+Obituary "$OB_ACIDSHOT"
+weapon.ammotype "FriendBarrierAmmo"
+weapon.ammotype2 "SelfishBarrierAmmo"
+States
+{
+Spawn:
+C_00 F 1
+loop
+Ready:
+ACIE A 0 ACS_ExecuteAlways(981,0,0)
+ACIE A 0 ACS_ExecuteAlways(998,0,10972)
+ACIE A 0 A_SpawnItemEx("AcidBoostWatcher")
+ACIE A 7
+Goto Ready2
+Ready2:
+ACIE A 0 A_JumpIfInventory("FriendBarrierAmmo",56,"Ready3")
+ACIE A 0 A_JumpIfInventory("SelfishBarrierAmmo",196,"Ready2R")
+ACIE A 0 A_JumpIfInventory("AcidShotAmmoDelay",1,"Ready2N")
+ACIE A 1 A_WeaponReady(WRF_NOSECONDARY)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready2R:
+ACIE A 0 A_JumpIfInventory("AcidShotAmmoDelay",1,"Ready2RN")
+ACIE A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready2RN:
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay0",1,"Ready2RNSkip")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay44",1,"Ready2RNV1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay4",1,"Ready2RNV1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay43",1,"Ready2RNV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay33",1,"Ready2RNV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay3",1,"Ready2RNV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay42",1,"Ready2RNV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay32",1,"Ready2RNV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay22",1,"Ready2RNV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay2",1,"Ready2RNV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay41",1,"Ready2RNV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay31",1,"Ready2RNV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay21",1,"Ready2RNV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay11",1,"Ready2RNV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay1",1,"Ready2RNV4")
+Ready2RNSkip:
+ACIE J 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready2N:
+ACIE A 0 A_JumpIfInventory("SelfishBarrierAmmo",196,"Ready2RN")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay0",1,"Ready2NSkip")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay44",1,"Ready2NV1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay4",1,"Ready2NV1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay43",1,"Ready2NV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay33",1,"Ready2NV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay3",1,"Ready2NV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay42",1,"Ready2NV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay32",1,"Ready2NV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay22",1,"Ready2NV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay2",1,"Ready2NV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay41",1,"Ready2NV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay31",1,"Ready2NV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay21",1,"Ready2NV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay11",1,"Ready2NV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay1",1,"Ready2NV4")
+Ready2NSkip:
+ACIE J 1 A_WeaponReady(WRF_NOFIRE)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Ready2RNV1:
+ACIE I 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready2NV1:
+ACIE I 1 A_WeaponReady(WRF_NOFIRE)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Ready2RNV2:
+ACIE H 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+ACIE H 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready2NV2:
+ACIE H 1 A_WeaponReady(WRF_NOFIRE)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Ready2RNV3:
+ACIE G 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready2NV3:
+ACIE G 1 A_WeaponReady(WRF_NOFIRE)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Ready2RNV4:
+ACIE F 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready2NV4:
+ACIE F 1 A_WeaponReady(WRF_NOFIRE)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Ready3:
+ACIE A 0 A_JumpIfInventory("SelfishBarrierAmmo",196,"Ready3R")
+ACIE A 0 A_JumpIfInventory("AcidShotAmmoDelay",1,"Ready3N")
+ACIE A 1 A_WeaponReady
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready3R:
+ACIE A 0 A_JumpIfInventory("AcidShotAmmoDelay",1,"Ready3RN")
+ACIE A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready3RN:
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay0",1,"Ready3RNSkip")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay44",1,"Ready3RNV1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay4",1,"Ready3RNV1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay43",1,"Ready3RNV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay33",1,"Ready3RNV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay3",1,"Ready3RNV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay42",1,"Ready3RNV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay32",1,"Ready3RNV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay22",1,"Ready3RNV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay2",1,"Ready3RNV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay41",1,"Ready3RNV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay31",1,"Ready3RNV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay21",1,"Ready3RNV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay11",1,"Ready3RNV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay1",1,"Ready3RNV4")
+Ready3RNSkip:
+ACIE J 1 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready3N:
+ACIE A 0 A_JumpIfInventory("SelfishBarrierAmmo",196,"Ready3RN")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay0",1,"Ready3NSkip")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay44",1,"Ready3NV1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay4",1,"Ready3NV1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay43",1,"Ready3NV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay33",1,"Ready3NV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay3",1,"Ready3NV2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay42",1,"Ready3NV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay32",1,"Ready3NV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay22",1,"Ready3NV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay2",1,"Ready3NV3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay41",1,"Ready3NV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay31",1,"Ready3NV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay21",1,"Ready3NV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay11",1,"Ready3NV4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay1",1,"Ready3NV4")
+Ready3NSkip:
+ACIE J 1 A_WeaponReady(WRF_NOPRIMARY)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Ready3RNV1:
+ACIE I 1 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready3NV1:
+ACIE I 1 A_WeaponReady(WRF_NOPRIMARY)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Ready3RNV2:
+ACIE H 1 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready3NV2:
+ACIE H 1 A_WeaponReady(WRF_NOPRIMARY)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Ready3RNV3:
+ACIE G 1 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready3NV3:
+ACIE G 1 A_WeaponReady(WRF_NOPRIMARY)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Ready3RNV4:
+ACIE F 1 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+Ready3NV4:
+ACIE F 1 A_WeaponReady(WRF_NOPRIMARY)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+ACIE A 1 A_Lower
+goto Deselect+1
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+ACIE A 1 A_Raise
+Loop
+Fire:
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE A 0 A_GiveInventory("AcidmanMain_CI",1)
+ACIE A 0 A_GunFlash
+ACIE F 1 Offset(10,40) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE F 1 Offset(15,45)
+ACIE F 1 Offset(22,52)
+ACIE F 1 Offset(24,54) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE F 1 Offset(25,55)
+ACIE F 1 Offset(24,54)
+ACIE F 1 Offset(22,52) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE F 1 Offset(13,43) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE F 1 A_Refire("Fire2")
+goto FireEndEarly1
+Fire2:
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE A 0 A_GiveInventory("AcidmanMain2_CI",1)
+ACIE A 0 A_GunFlash
+ACIE G 1 Offset(10,40) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE G 1 Offset(15,45)
+ACIE G 1 Offset(22,52)
+ACIE G 1 Offset(24,54) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE G 1 Offset(25,55)
+ACIE G 1 Offset(24,54)
+ACIE G 1 Offset(22,52) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE G 1 Offset(13,43) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE G 1 A_Refire("Fire3")
+goto FireEndEarly2
+Fire3:
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE A 0 A_GiveInventory("AcidmanMain3_CI",1)
+ACIE A 0 A_GunFlash
+ACIE H 1 Offset(10,40) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE H 1 Offset(15,45)
+ACIE H 1 Offset(22,52)
+ACIE H 1 Offset(24,54) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE H 1 Offset(25,55)
+ACIE H 1 Offset(24,54)
+ACIE H 1 Offset(22,52) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE H 1 Offset(13,43) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE H 1 A_Refire("Fire4")
+goto FireEndEarly3
+Fire4:
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE A 0 A_GiveInventory("AcidmanMain4_CI",1)
+ACIE A 0 A_GunFlash
+ACIE I 1 Offset(10,40) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE I 1 Offset(15,45)
+ACIE I 1 Offset(22,52)
+ACIE I 1 Offset(24,54) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE I 1 Offset(25,55)
+ACIE I 1 Offset(24,54)
+ACIE I 1 Offset(22,52) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE I 1 Offset(13,43) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE I 1 A_Refire("Fire5")
+goto FireEndEarly4
+Fire5:
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE A 0 A_GiveInventory("AcidmanMain5_CI",1)
+ACIE A 0 A_GunFlash
+ACIE J 1 Offset(10,40) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE J 1 Offset(15,45)
+ACIE J 1 Offset(22,52)
+ACIE J 1 Offset(24,54) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE J 1 Offset(25,55)
+ACIE J 1 Offset(24,54)
+ACIE J 1 Offset(22,52) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE J 1 Offset(13,43)
+ACIE J 1 Offset(10,40)
+ACIE J 1 Offset(7,37) A_GiveInventory("AcidmanAmmoGive_P",1)
+FireEnd:
+ACIE J 1 Offset(4,34)
+ACIE J 2 A_GiveInventory("AcidShot5CD_SyncP",1)
+Goto Ready2
+FireEndEarly1:
+ACIE F 1 Offset(4,34)
+ACIE F 2 A_GiveInventory("AcidShot1CD_SyncP",1)
+Goto Ready2
+FireEndEarly2:
+ACIE G 1 Offset(4,34)
+ACIE G 2 A_GiveInventory("AcidShot2CD_SyncP",1)
+Goto Ready2
+FireEndEarly3:
+ACIE H 1 Offset(4,34)
+ACIE H 2 A_GiveInventory("AcidShot3CD_SyncP",1)
+Goto Ready2
+FireEndEarly4:
+ACIE I 1 Offset(4,34)
+ACIE I 2 A_GiveInventory("AcidShot4CD_SyncP",1)
+Goto Ready2
+
+NoAmmo:
+ACIE A 1
+goto Ready2
+
+Altfire:
+ACIE A 0 A_JumpIfInventory("FriendBarrierAmmo",56,"AltfireContinue")
+goto NoAmmo
+AltfireContinue:
+ACIE A 0 A_GiveInventory("AcidmanBarrF_CI",1)
+ACIE A 0 A_GiveInventory("AcidBarrierAllyFX_P",1)
+ACIE A 0 A_JumpIfInventory("AcidShotAmmoDelay",1,"AltfireContinue0")
+ACIE A 1 OffSet(10,42) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE A 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE A 1 A_GiveInventory("AcidBarrierAllyFX_P",1)
+ACIE A 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE B 0 A_JumpIfInventory("FriendBarrierAmmo",10,"Ready2")
+goto AltFireSuccess
+
+AltfireContinue0:
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay0",1,"AltfireContinueSkip")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay44",1,"AltfireContinue1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay4",1,"AltfireContinue1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay43",1,"AltfireContinue2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay33",1,"AltfireContinue2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay3",1,"AltfireContinue2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay42",1,"AltfireContinue3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay32",1,"AltfireContinue3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay22",1,"AltfireContinue3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay2",1,"AltfireContinue3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay41",1,"AltfireContinue3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay31",1,"AltfireContinue4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay21",1,"AltfireContinue4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay11",1,"AltfireContinue4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay1",1,"AltfireContinue4")
+AltFireContinueSkip:
+ACIE J 1 OffSet(10,42) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE J 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE J 1 A_GiveInventory("AcidBarrierAllyFX_P",1)
+ACIE J 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE B 0 A_JumpIfInventory("FriendBarrierAmmo",10,"Ready2")
+goto AltFireSuccess0
+AltFireContinue1:
+ACIE I 1 OffSet(10,42) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE I 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE I 1 A_GiveInventory("AcidBarrierAllyFX_P",1)
+ACIE I 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE B 0 A_JumpIfInventory("FriendBarrierAmmo",10,"Ready2")
+goto AltFireSuccess1
+AltFireContinue2:
+ACIE H 1 OffSet(10,42) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE H 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE H 1 A_GiveInventory("AcidBarrierAllyFX_P",1)
+ACIE H 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE B 0 A_JumpIfInventory("FriendBarrierAmmo",10,"Ready2")
+goto AltFireSuccess2
+AltFireContinue3:
+ACIE G 1 OffSet(10,42) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE G 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE G 1 A_GiveInventory("AcidBarrierAllyFX_P",1)
+ACIE G 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE B 0 A_JumpIfInventory("FriendBarrierAmmo",10,"Ready2")
+goto AltFireSuccess3
+AltFireContinue4:
+ACIE F 1 OffSet(10,42) A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE F 0 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE F 1 A_GiveInventory("AcidBarrierAllyFX_P",1)
+ACIE F 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE B 0 A_JumpIfInventory("FriendBarrierAmmo",10,"Ready2")
+goto AltFireSuccess4
+
+
+AltFireSuccess:
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE AAAA 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE A 0 A_WeaponReady(14)
+ACIE AA 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+AltFireSuccess0:
+ACIE A 0 A_GunFlash("Flash2")
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE JJJJ 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACUE J 0 A_WeaponReady(14)
+ACIE JJ 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+AltFireSuccess1:
+ACIE A 0 A_GunFlash("Flash2")
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE IIII 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE I 0 A_WeaponReady(14)
+ACIE II 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+AltFireSuccess2:
+ACIE A 0 A_GunFlash("Flash2")
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE HHHH 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE H 0 A_WeaponReady(14)
+ACIE HH 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+AltFireSuccess3:
+ACIE A 0 A_GunFlash("Flash2")
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE GGGG 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE G 0 A_WeaponReady(14)
+ACIE GG 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+AltFireSuccess4:
+ACIE A 0 A_GunFlash("Flash2")
+ACIE A 0 A_PlaySound("weapon/acidfire",CHAN_WEAPON)
+ACIE FFFF 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE F 0 A_WeaponReady(14)
+ACIE FF 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Reload:
+ACIE A 0 A_JumpIfInventory("SelfishBarrierAmmo",196,"ReloadContinue")
+goto NoAmmo
+ReloadContinue:
+ACIE A 0 A_JumpIfInventory("AcidBarrierVisualBar",1,"NoAmmo")
+goto ReloadSuccess
+ReloadSuccess:
+ACIE A 0 A_PlaySound("weapon/acidbarrier",CHAN_WEAPON)
+ACIE A 0 A_GiveInventory("AcidmanBarrS_CI",1)
+ACIE A 0 A_GunFlash("Flash3")
+ACIE A 0 A_JumpIfInventory("AcidShotAmmoDelay",1,"ReloadSuccessEmpty")
+ACIE A 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE A 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE A 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE A 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+ReloadSuccessEmpty:
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay0",1,"ReloadSuccessEmpty0")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay44",1,"ReloadSuccessEmpty1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay4",1,"ReloadSuccessEmpty1")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay43",1,"ReloadSuccessEmpty2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay33",1,"ReloadSuccessEmpty2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay3",1,"ReloadSuccessEmpty2")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay42",1,"ReloadSuccessEmpty3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay32",1,"ReloadSuccessEmpty3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay22",1,"ReloadSuccessEmpty3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay2",1,"ReloadSuccessEmpty3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay41",1,"ReloadSuccessEmpty3")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay31",1,"ReloadSuccessEmpty4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay21",1,"ReloadSuccessEmpty4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay11",1,"ReloadSuccessEmpty4")
+ACIE J 0 A_JumpIfInventory("AcidmanVisualDelay1",1,"ReloadSuccessEmpty4")
+ReloadSuccessEmpty0:
+ACIE J 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE J 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE J 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE J 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+ReloadSuccessEmpty1:
+ACIE I 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE I 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE I 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE I 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+ReloadSuccessEmpty2:
+ACIE H 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE H 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE H 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE H 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+ReloadSuccessEmpty3:
+ACIE G 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE G 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE G 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE G 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+ReloadSuccessEmpty4:
+ACIE F 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE F 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE F 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+ACIE F 1 A_GiveInventory("AcidmanAmmoGive_P",1)
+Goto Ready2
+
+Flash:
+ACIE B 1 Offset(10,40) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE B 1 Offset(15,45)
+ACIE C 1 Offset(22,52)
+ACIE C 1 Offset(24,54) A_JumpIfInventory("RageRune_ST",1,1)
+ACIE D 1 Offset(25,55)
+stop
+
+Flash2:
+ACIE BBCC 1
+ACIE D 1
+stop
+
+Flash3:
+ACIE K 1
+ACIE L 1
+ACIE M 1
+ACIE N 1
+ACIE O 1
+stop
+}
+}
+
+actor FriendBarrierAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor SelfishBarrierAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 196
++INVENTORY.IGNORESKILL
+}
+
+actor AcidAltHUDFlag : OnceC {}
+
+actor AcidHUDCvar_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("uec_AcidmanHUD"),"Pickup0")
+goto Pickup1
+Pickup0:
+TNT1 A 0 A_JumpIfInventory("AcidAltHUDFlag",1,"No")
+TNT1 A 0 A_GiveInventory("AcidAltHUDFlag",1)
+stop
+Pickup1:
+TNT1 A 0 A_TakeInventory("AcidAltHUDFlag",99)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor AcidmanAmmoGive_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("AcidBarrierAmmoCD",1,"DontDoIt")
+goto DoIt
+DoIt:
+TNT1 A 0 A_GiveInventory("FriendBarrierAmmo",3)
+TNT1 A 0 A_GiveInventory("SelfishBarrierAmmo",6)
+TNT1 A 0 A_GiveInventory("AcidBarrierAmmoCD",1)
+DontDoIt:
+TNT1 A 0
+stop
+}
+}
+
+actor AcidBarrierAmmoCD : PowerUp
+{
+Powerup.Duration 7
+}
+
+actor AcidShotAmmoDelay : PowerUp
+{
+Powerup.Duration 25
++INVENTORY.ADDITIVETIME
+}
+
+actor AcidmanVisualDelay1 : PowerUp{Powerup.Duration 90}
+actor AcidmanVisualDelay2 : PowerUp{Powerup.Duration 64}
+actor AcidmanVisualDelay3 : PowerUp{Powerup.Duration 48}
+actor AcidmanVisualDelay4 : PowerUp{Powerup.Duration 32}
+actor AcidmanVisualDelay0 : PowerUp{Powerup.Duration 16}
+
+actor AcidmanVisualDelay11 : PowerUp{Powerup.Duration 16}
+
+actor AcidmanVisualDelay21 : PowerUp{Powerup.Duration 36}
+actor AcidmanVisualDelay22 : PowerUp{Powerup.Duration 16}
+
+actor AcidmanVisualDelay31 : PowerUp{Powerup.Duration 52}
+actor AcidmanVisualDelay32 : PowerUp{Powerup.Duration 32}
+actor AcidmanVisualDelay33 : PowerUp{Powerup.Duration 16}
+
+actor AcidmanVisualDelay41 : PowerUp{Powerup.Duration 70}
+actor AcidmanVisualDelay42 : PowerUp{Powerup.Duration 48}
+actor AcidmanVisualDelay43 : PowerUp{Powerup.Duration 32}
+actor AcidmanVisualDelay44 : PowerUp{Powerup.Duration 16}
+
+Actor AcidmanMainSplashFX
+{
++MISSILE
+-NOGRAVITY
++DONTBLAST
++THRUACTORS
++DONTSPLASH
++CLIENTSIDEONLY
+Damage (0)
+Height 2
+Radius 2
+Speed 5
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 1
+MRCR AC 2
+Goto Spawn+1
+		
+Death:
+MRCR A 0 A_SetScale(scaleX-0.15) 
+MRCR A 1 A_FadeOut(0.1)
+MRCR C 0 A_SetScale(scaleX-0.15) 
+MRCR C 1 A_FadeOut(0.1)
+Loop
+}
+}
+  
+actor AcidMeltEnemyFX : BasicClientSide
+{
+Scale 2.0
+States
+{
+Spawn:
+TNT1 A 1
+ACIA MNOPQ 3
+stop
+}
+}
+
+actor AcidMeltEnemy : BasicExplosion
+{
+Scale 2.0
+DamageType "AcidGas"
+Obituary "$OB_ACIDMELT"
+States
+{
+Spawn:
+TNT1 A 1
+ACIA MNOPQ 3 A_Explode(20,24,0,0,24)
+stop
+DontSpawn:
+TNT1 A 0
+stop
+}
+}
+
+actor AcidGasProtection : PowerProtection
+{
+Powerup.Duration 4
+DamageFactor "AcidGas", 0.0
+}
+
+Actor AcidmanShot
+{
+Translation "4:4=100:100","192:192=104:104","198:198=110:110","249:249=130:130","202:202=110:110","199:199=110:110"
+Projectile
+DamageType "AcidManBoss"
+Obituary "$OB_ACIDSHOT"
+BounceSound "Weapon/BubbleBounce"
+-NOEXPLODEFLOOR
+-NOGRAVITY
++DONTREFLECT
++NOTARGETSWITCH
++THRUSPECIES
+/*+BOUNCEONWALLS
++BOUNCEONFLOORS
++BOUNCEONCEILINGS
+-BOUNCEONACTORS
++CANBOUNCEWATER
++USEBOUNCESTATE*/
++HITTRACER
+//bouncefactor 1
+//wallbouncefactor 1
+Species "Acidman"
+//BounceCount 2
+Damage (60)
+Radius 14
+Height 14
+Speed 42
+Scale 2.75
+var int user_angle;
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+TNT1 A 0 ThrustThingZ(0,4,0,1)
+SpawnLOOP:
+X_AD AA 1 A_SpawnItemEx("AcidmanShotFX",0,0,0,0,0,0,0,1)
+X_AD BB 1 A_SpawnItemEx("AcidmanShotFX2",0,0,0,0,0,0,0,1)
+X_AD CC 1 A_SpawnItemEx("AcidmanShotFX3",0,0,0,0,0,0,0,1)
+Loop
+	
+/*Bounce:
+DSHO A 0 A_PlaySoundEx("weapon/acidmelt","Weapon")
+DSHO A 0 A_SpawnItemEx("AcidmanSplashRadius",0,0,12,0,0,0,0,1)
+Goto SpawnLOOP*/
+
+Death:
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",TRUE)
+TNT1 A 0 A_Stop
+TNT1 A 0 A_JumpIf(z-floorz<5,"FloorStart")
+TNT1 A 0 A_JumpIf(z-ceilingz==0-14,"Ceilingstart")
+goto Wall
+
+CeilingStart:
+TNT1 A 0 A_Jump(128,"CeilingAlt")
+goto Ceiling
+Ceiling:
+TNT1 A 0 Thing_ChangeTID(0, 0)
+TNT1 A 0 A_PlaySound("weapon/acidmelt",CHAN_WEAPON,0.6,0,2)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,0,16,1,0,-3,user_angle,1)
+TNT1 A 8 A_SetUserVar(user_angle,user_angle+40)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",11,"RealDeath")
+loop
+CeilingAlt:
+TNT1 A 0 Thing_ChangeTID(0, 0)
+TNT1 A 0 A_PlaySound("weapon/acidmelt",CHAN_WEAPON,0.6,0,2)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,0,16,1,0,-3,user_angle,1)
+TNT1 A 8 A_SetUserVar(user_angle,user_angle-40)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",11,"RealDeath")
+loop
+
+Wall:
+TNT1 A 0 A_Jump(128,"WallAlt")
+TNT1 A 0 A_SetUserVar(user_angle,-3)
+Wall2:
+TNT1 A 0 Thing_ChangeTID(0, 0)
+TNT1 A 0 A_PlaySound("weapon/acidmelt",CHAN_WEAPON,0.6,0,2)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,0,0,-1,user_angle,2,0,1)
+TNT1 A 8 A_SetUserVar(user_angle,user_angle+1)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",11,"RealDeath")
+TNT1 A 0 A_JumpIf(user_angle == 3,"Wall3")
+loop
+Wall3:
+TNT1 A 0 Thing_ChangeTID(0, 0)
+TNT1 A 0 A_PlaySound("weapon/acidmelt",CHAN_WEAPON,0.6,0,2)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,0,0,-1,user_angle,3,0,1)
+TNT1 A 8 A_SetUserVar(user_angle,user_angle-1)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",11,"RealDeath")
+loop
+
+WallAlt:
+TNT1 A 0 A_SetUserVar(user_angle,3)
+AltWall2:
+TNT1 A 0 Thing_ChangeTID(0, 0)
+TNT1 A 0 A_PlaySound("weapon/acidmelt",CHAN_WEAPON,0.6,0,2)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,0,0,-1,user_angle,3,0,1)
+TNT1 A 8 A_SetUserVar(user_angle,user_angle-1)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",11,"RealDeath")
+TNT1 A 0 A_JumpIf(user_angle == -3,"AltWall3")
+loop
+AltWall3:
+TNT1 A 0 Thing_ChangeTID(0, 0)
+TNT1 A 0 A_PlaySound("weapon/acidmelt",CHAN_WEAPON,0.6,0,2)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,0,0,-1,user_angle,3,0,1)
+TNT1 A 8 A_SetUserVar(user_angle,user_angle+1)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",11,"RealDeath")
+loop
+
+FloorStart:
+TNT1 A 0 A_ChangeFlag("FLOORHUGGER",TRUE)
+TNT1 A 0 A_Jump(128,"FloorAlt")
+goto Floor
+Floor:
+TNT1 A 0 Thing_ChangeTID(0, 0)
+TNT1 A 0 A_PlaySound("weapon/acidmelt",CHAN_WEAPON,0.6,0,2)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,0,16,1,0,3,user_angle,1)
+TNT1 A 8 A_SetUserVar(user_angle,user_angle+40)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",11,"RealDeath")
+loop
+FloorAlt:
+TNT1 A 0 Thing_ChangeTID(0, 0)
+TNT1 A 0 A_PlaySound("weapon/acidmelt",CHAN_WEAPON,0.6,0,2)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,0,16,1,0,3,user_angle,1)
+TNT1 A 8 A_SetUserVar(user_angle,user_angle-40)
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",11,"RealDeath")
+loop
+
+RealDeath:
+TNT1 A 0
+stop
+
+Crash:
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"XDeathConfirm")
+goto Death
+XDeathConfirm:
+TNT1 A 0 A_GiveInventory("AcidmanSlow",1,AAPTR_Tracer)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltExplosionSpawn",0,0,0)//A_Explode(2,32,0,0,33)
+TNT1 A 1
+stop
+}
+}
+
+actor AcidmanShotB : AcidmanShot{translation "4:4=201:201","192:192=205:205","198:198=74:74","249:249=199:199","202:202=74:74","199:199=74:74"}
+actor AcidmanShotR : AcidmanShot{translation "4:4=170:170","192:192=171:171","198:198=41:41","249:249=43:43","202:202=41:41","199:199=41:41"}
+actor AcidmanShotO : AcidmanShot{translation "4:4=100:100","192:192=104:104","198:198=128:128","249:249=131:131","202:202=128:128","199:199=128:128"}
+actor AcidmanShotP : AcidmanShot{translation "4:4=213:213","192:192=229:229","198:198=232:232","249:249=223:223","202:202=229:229","199:199=232:232"}
+
+actor Acidmanshot2 : AcidmanShot
+{
+States
+{
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"XDeathConfirm")
+goto Death
+XDeathConfirm:
+TNT1 A 0 A_GiveInventory("AcidmanSlow2",1,AAPTR_Tracer)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltExplosionSpawn",0,0,0)//A_Explode(2,32,0,0,33)
+TNT1 A 1
+stop
+}
+}
+
+actor AcidmanShot2B : AcidmanShot2{translation "4:4=201:201","192:192=205:205","198:198=74:74","249:249=199:199","202:202=74:74","199:199=74:74"}
+actor AcidmanShot2R : AcidmanShot2{translation "4:4=170:170","192:192=171:171","198:198=41:41","249:249=43:43","202:202=41:41","199:199=41:41"}
+actor AcidmanShot2O : AcidmanShot2{translation "4:4=100:100","192:192=104:104","198:198=128:128","249:249=131:131","202:202=128:128","199:199=128:128"}
+actor AcidmanShot2P : AcidmanShot2{translation "4:4=213:213","192:192=229:229","198:198=232:232","249:249=223:223","202:202=229:229","199:199=232:232"}
+
+actor Acidmanshot3 : AcidmanShot
+{
+States
+{
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"XDeathConfirm")
+goto Death
+XDeathConfirm:
+TNT1 A 0 A_GiveInventory("AcidmanSlow3",1,AAPTR_Tracer)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltExplosionSpawn",0,0,0)//A_Explode(2,32,0,0,33)
+TNT1 A 1
+stop
+}
+}
+
+actor AcidmanShot3B : AcidmanShot3{translation "4:4=201:201","192:192=205:205","198:198=74:74","249:249=199:199","202:202=74:74","199:199=74:74"}
+actor AcidmanShot3R : AcidmanShot3{translation "4:4=170:170","192:192=171:171","198:198=41:41","249:249=43:43","202:202=41:41","199:199=41:41"}
+actor AcidmanShot3O : AcidmanShot3{translation "4:4=100:100","192:192=104:104","198:198=128:128","249:249=131:131","202:202=128:128","199:199=128:128"}
+actor AcidmanShot3P : AcidmanShot3{translation "4:4=213:213","192:192=229:229","198:198=232:232","249:249=223:223","202:202=229:229","199:199=232:232"}
+
+actor Acidmanshot4 : AcidmanShot
+{
+States
+{
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"XDeathConfirm")
+goto Death
+XDeathConfirm:
+TNT1 A 0 A_GiveInventory("AcidmanSlow4",1,AAPTR_Tracer)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltExplosionSpawn",0,0,0)//A_Explode(2,32,0,0,33)
+TNT1 A 1
+stop
+}
+}
+
+actor AcidmanShot4B : AcidmanShot4{translation "4:4=201:201","192:192=205:205","198:198=74:74","249:249=199:199","202:202=74:74","199:199=74:74"}
+actor AcidmanShot4R : AcidmanShot4{translation "4:4=170:170","192:192=171:171","198:198=41:41","249:249=43:43","202:202=41:41","199:199=41:41"}
+actor AcidmanShot4O : AcidmanShot4{translation "4:4=100:100","192:192=104:104","198:198=128:128","249:249=131:131","202:202=128:128","199:199=128:128"}
+actor AcidmanShot4P : AcidmanShot4{translation "4:4=213:213","192:192=229:229","198:198=232:232","249:249=223:223","202:202=229:229","199:199=232:232"}
+
+actor Acidmanshot5 : AcidmanShot
+{
+States
+{
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"XDeathConfirm")
+goto Death
+XDeathConfirm:
+TNT1 A 0 A_GiveInventory("AcidmanSlow5",1,AAPTR_Tracer)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemyFX",0,0,16,random(-4,4),random(-4,4),4,0,1)
+TNT1 AAAAAAAAAA 1 A_Warp(AAPTR_Tracer,0,0,32,0,WARPF_NoCheckPosition)
+TNT1 A 0 A_SpawnItemEx("AcidMeltExplosionSpawn",0,0,0)//A_Explode(2,32,0,0,33)
+TNT1 A 1
+stop
+}
+}
+
+actor AcidmanShot5B : AcidmanShot5{translation "4:4=201:201","192:192=205:205","198:198=74:74","249:249=199:199","202:202=74:74","199:199=74:74"}
+actor AcidmanShot5R : AcidmanShot5{translation "4:4=170:170","192:192=171:171","198:198=41:41","249:249=43:43","202:202=41:41","199:199=41:41"}
+actor AcidmanShot5O : AcidmanShot5{translation "4:4=100:100","192:192=104:104","198:198=128:128","249:249=131:131","202:202=128:128","199:199=128:128"}
+actor AcidmanShot5P : AcidmanShot5{translation "4:4=213:213","192:192=229:229","198:198=232:232","249:249=223:223","202:202=229:229","199:199=232:232"}
+
+actor AcidmanSlow : PowerSpeed
+{
+Speed 0.96
+powerup.duration 30
++POWERSPEED.NOTRAIL
+}
+
+actor AcidmanSlow2 : AcidmanSlow {}
+actor AcidmanSlow3 : AcidmanSlow {}
+actor AcidmanSlow4 : AcidmanSlow {}
+actor AcidmanSlow5 : AcidmanSlow {}
+
+actor AcidMeltExplosionSpawn : BasicExplosion
+{
+Damagetype "AcidManBossMelt"
+Obituary "$OB_ACIDSHOT"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(30,32,0,0,32)
+stop
+}
+}
+  
+actor AcidmanShotFX : BasicClientSide
+{
+RenderStyle Add
+Alpha 1.0
+Scale 2.25
+States
+{
+Spawn:
+X_AD AAAAA 1 A_FadeOut(0.20)
+Stop
+}
+}
+
+actor AcidmanShotFX2 : BasicClientSide
+{
+RenderStyle Add
+Alpha 1.0
+Scale 2.25
+States
+{
+Spawn:
+X_AD BBBBB 1 A_FadeOut(0.20)
+Stop
+}
+}
+
+actor AcidmanShotFX3 : BasicClientSide
+{
+RenderStyle Add
+Alpha 1.0
+Scale 2.25
+States
+{
+Spawn:
+X_AD CCCCC 1 A_FadeOut(0.20)
+Stop
+}
+}
+
+actor AcidBarrierAlly : BasicHelper
+{
+Translation "4:4=100:100","192:192=104:104","198:198=110:110","249:249=130:130","202:202=110:110","199:199=110:110"
+RenderStyle "Normal"
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteWithResult(423,950,6)
+//TNT1 A 0 ACS_ExecuteAlways(422,0,950,6,25)
+TNT1 A 2
+TNT1 A 1 A_JumpIfInventory("AcidBarrierFind",1,"BarrierOn")
+//TNT1 A 0 A_JumpIfInventory("AcidBarrierFindE",1,"BarrierOnEnemy")
+goto Death
+BarrierOn:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoUpdate",0)
+ACBA A 0 A_PlaySound("weapon/acidbarrier",CHAN_WEAPON,1,0,10)
+ACBA A 0 A_TakeFromTarget("FriendBarrierAmmo",999)
+ACBA A 0 A_GiveInventory("AcidBarrierVisualBar",19,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanBarrierProtectAlly")
+ACBA ABBB 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",10)
+ACBA A 0 A_SetTranslucent(0.9,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER) //Done through ACS because this doesn't work due to zandro
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",6.7)
+ACBA CCCD 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.85,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",5)
+ACBA DDBB 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.80,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",4)
+ACBA BCCC 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.75,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",3.33)
+ACBA DDDB 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.70,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",2.9)
+ACBA BBCC 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.65,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",2.5)
+ACBA CDDD 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.60,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",2.2)
+ACBA BBBC 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.55,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",2)
+ACBA CCDD 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.50,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",1.8)
+ACBA DBBB 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.45,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",1.7)
+ACBA CCCD 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.40,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",1.67)
+ACBA DDBB 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.35,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",1.43)
+ACBA BCCC 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.30,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",1.34)
+ACBA DDDB 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.25,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",1.25)
+ACBA BBCC 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.20,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",1.18)
+ACBA CDDD 1 A_Warp(AAPTR_TRACER,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.15,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",1.12)
+ACBA BBBC 1 A_Warp(AAPTR_TRACER,0,0,0)
+ACBA A 0 A_SetTranslucent(0.10,0)
+//ACBA A 0 A_TakeInventory("AcidBarrierVisualBar",1,AAPTR_TRACER)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmo",1.06)
+goto DeathPop
+DeathPop:
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",30,0,8,Random(1,3),Random(1,3),3,0,1)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",-30,0,8,Random(1,3),Random(1,3),3,0,1)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,30,8,Random(1,3),Random(1,3),3,0,1)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,-30,8,Random(1,3),Random(1,3),3,0,1)
+TNT1 A 1
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor AcidBarrierAllyB : AcidBarrierAlly{translation "4:4=201:201","192:192=205:205","198:198=74:74","249:249=199:199","202:202=74:74","199:199=74:74"}
+actor AcidBarrierAllyR : AcidBarrierAlly{translation "4:4=170:170","192:192=171:171","198:198=41:41","249:249=43:43","202:202=41:41","199:199=41:41"}
+actor AcidBarrierAllyO : AcidBarrierAlly{translation "4:4=100:100","192:192=104:104","198:198=128:128","249:249=131:131","202:202=128:128","199:199=128:128"}
+actor AcidBarrierAllyP : AcidBarrierAlly{translation "4:4=213:213","192:192=229:229","198:198=232:232","249:249=223:223","202:202=229:229","199:199=232:232"}
+
+
+actor AcidBarrierVisualBar : Ammo
+{
+inventory.amount 1
+inventory.maxamount 17
++INVENTORY.IGNORESKILL
+}
+
+actor AcidGearAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 100
++INVENTORY.IGNORESKILL
+}
+
+actor AcidLastHealthFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 200
+}
+
+actor AcidBarrierFind : OnceC {}
+
+actor AcidBarrierAllyFX_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper0",cos(-pitch)*50,0,((sin(-pitch)*50)+(35)))
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper",cos(-pitch)*150,0,((sin(-pitch)*150)+(35)))
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper2",cos(-pitch)*250,0,((sin(-pitch)*250)+(35)))
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper2",cos(-pitch)*350,0,((sin(-pitch)*350)+(35)))
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper3",cos(-pitch)*450,0,((sin(-pitch)*450)+(35)))
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper3",cos(-pitch)*550,0,((sin(-pitch)*550)+(35)))
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper4",cos(-pitch)*650,0,((sin(-pitch)*650)+(35)))
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper4",cos(-pitch)*750,0,((sin(-pitch)*750)+(35)))
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper5",cos(-pitch)*850,0,((sin(-pitch)*850)+(35)))
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFXHelper5",cos(-pitch)*950,0,((sin(-pitch)*950)+(35)))
+stop
+}
+}
+
+actor AcidBarrierAllyFXHelper : BasicHelper
+{
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 4 A_JumpIf(CallACS("IsTargetClient")==1,"Spawn2")
+goto Death
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFX1")
+TNT1 A 1 //A_JumpIf(CallACS("core_targetexists")==0,"Death")
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor AcidBarrierAllyFX1 : GutPunch
+{
++CLIENTSIDEONLY
++FORCEXYBILLBOARD
++DONTSPLASH
+Translation "192:192=117:117","198:198=117:117"
+Alpha 1
+RenderStyle "Translucent"
+damage (0)
+Speed 0
+Scale 0.9
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 a 0
+goto Death
+NoneDeath:
+TNT1 A 0
+stop
+XDeath:
+Crash:
+Death:
+ACBA B 0 A_Stop
+X_1G F 1
+stop
+}
+}
+
+actor AcidBarrierAllyFXHelper0 : BasicHelper
+{
++DONTSPLASH
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 4 A_JumpIf(CallACS("IsTargetClient")==1,"Spawn2")
+goto Death
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFX0")
+TNT1 A 1 //A_JumpIf(CallACS("core_targetexists")==0,"Death")
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor AcidBarrierAllyFX0 : AcidBarrierAllyFX1 {Scale 0.5}
+
+actor AcidBarrierAllyFXHelper2 : AcidBarrierAllyFXHelper
+{
+States
+{
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFX2")
+TNT1 A 1 //A_JumpIf(CallACS("core_targetexists")==0,"Death")
+stop
+}
+}
+
+actor AcidBarrierAllyFX2 : AcidBarrierAllyFX1 {Scale 1.3}
+
+actor AcidBarrierAllyFXHelper3 : AcidBarrierAllyFXHelper
+{
+States
+{
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFX3")
+TNT1 A 1 //A_JumpIf(CallACS("core_targetexists")==0,"Death")
+stop
+}
+}
+
+actor AcidBarrierAllyFX3 : AcidBarrierAllyFX1 {Scale 1.7}
+
+actor AcidBarrierAllyFXHelper4 : AcidBarrierAllyFXHelper
+{
+States
+{
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFX4")
+TNT1 A 1 //A_JumpIf(CallACS("core_targetexists")==0,"Death")
+stop
+}
+}
+
+actor AcidBarrierAllyFX4 : AcidBarrierAllyFX1 {Scale 2.0}
+
+actor AcidBarrierAllyFXHelper5 : AcidBarrierAllyFXHelper
+{
+States
+{
+Spawn2:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyFX5")
+TNT1 A 1 //A_JumpIf(CallACS("core_targetexists")==0,"Death")
+stop
+}
+}
+
+actor AcidBarrierAllyFX5 : AcidBarrierAllyFX1 {Scale 2.3}
+
+actor AcidBoostWatcher : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 1 A_JumpIfInTargetInventory("AcidGearAmmo",1,"DrainDelay")
+loop
+DrainDelay:
+TNT1 AAAAAAAA 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+goto DrainLoop
+DrainLoop:
+TNT1 AAAAAAAA 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 1 A_JumpIfInTargetInventory("AcidGearAmmo",1,"Drain")
+goto Spawn
+Drain:
+TNT1 A 0 A_GiveToTarget("AcidGearBoost",1)
+TNT1 A 0 A_TakeFromTarget("AcidGearAmmo",1)
+goto DrainLoop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor AcidGearBoost : PowerSpeed
+{
+Speed 1.2
+powerup.duration 10
++POWERSPEED.NOTRAIL
+}
+
+actor AcidBarrierSelf : BasicHelper
+{
+Translation "4:4=100:100","192:192=104:104","198:198=110:110","249:249=130:130","202:202=110:110","199:199=110:110"
+RenderStyle "Normal"
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelfUpdate",0)
+ACBA A 0 A_TakeFromTarget("SelfishBarrierAmmo",999)
+ACBA A 0 A_PlaySound("weapon/acidbarrier",CHAN_WEAPON,1,0,10)
+ACBA A 0 A_GiveToTarget("AcidBarrierVisualBar",19)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanBarrierProtect")
+ACBA ABBB 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",10)
+ACBA A 0 A_SetTranslucent(0.9,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)//But it works here because funny zandro
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",6.7)
+ACBA CCCD 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.85,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",5)
+ACBA DDBB 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.80,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",4)
+ACBA BCCC 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.75,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",3.33)
+ACBA DDDB 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.70,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",2.9)
+ACBA BBCC 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.65,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",2.5)
+ACBA CDDD 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.60,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",2.2)
+ACBA BBBC 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.55,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",2)
+ACBA CCDD 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.50,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",1.8)
+ACBA DBB 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.45,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",1.7)
+ACBA BCC 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.40,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",1.67)
+ACBA CDDD 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.35,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",1.43)
+ACBA BBBC 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.30,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",1.34)
+ACBA CCDD 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.25,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",1.25)
+ACBA DBBB 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.20,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",1.18)
+ACBA CCCD 1 A_Warp(AAPTR_TARGET,0,0,0)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"DeathPop")
+ACBA A 0 A_SetTranslucent(0.15,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",1.12)
+ACBA DDBB 1 A_Warp(AAPTR_TARGET,0,0,0)
+ACBA A 0 A_SetTranslucent(0.10,0)
+ACBA A 0 A_TakeFromTarget("AcidBarrierVisualBar",1)
+ACBA A 0 ACS_NamedExecuteWithResult("AcidmanGearAmmoSelf",1.06)
+goto DeathPop
+DeathPop:
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",30,0,8,Random(1,3),Random(1,3),3,0,1)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",-30,0,8,Random(1,3),Random(1,3),3,0,1)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,30,8,Random(1,3),Random(1,3),3,0,1)
+TNT1 A 0 A_SpawnItemEx("AcidMeltEnemy",0,-30,8,Random(1,3),Random(1,3),3,0,1)
+TNT1 A 1
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor AcidBarrierSelfB : AcidBarrierSelf{translation "4:4=201:201","192:192=205:205","198:198=74:74","249:249=199:199","202:202=74:74","199:199=74:74"}
+actor AcidBarrierSelfR : AcidBarrierSelf{translation "4:4=170:170","192:192=171:171","198:198=41:41","249:249=43:43","202:202=41:41","199:199=41:41"}
+actor AcidBarrierSelfO : AcidBarrierSelf{translation "4:4=100:100","192:192=104:104","198:198=128:128","249:249=131:131","202:202=128:128","199:199=128:128"}
+actor AcidBarrierSelfP : AcidBarrierSelf{translation "4:4=213:213","192:192=229:229","198:198=232:232","249:249=223:223","202:202=229:229","199:199=232:232"}
+
+
+actor AcidmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("AcidmanShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("AcidmanShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("AcidmanShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("AcidmanShotP",0,0,8,0)
+goto Done
+Done:
+TNT1 A 0 A_GiveInventory("AcidShotAmmoDelay",1)
+stop
+}
+}
+
+actor AcidmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot2",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot2B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot2R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot2O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot2P",0,0,8,0)
+goto Done
+Done:
+TNT1 A 0 A_GiveInventory("AcidShotAmmoDelay",1)
+stop
+}
+}
+
+actor AcidmanMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot3",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot3B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot3R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot3O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot3P",0,0,8,0)
+goto Done
+Done:
+TNT1 A 0 A_GiveInventory("AcidShotAmmoDelay",1)
+stop
+}
+}
+
+actor AcidmanMain4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot4",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot4B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot4R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot4O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot4P",0,0,8,0)
+goto Done
+Done:
+TNT1 A 0 A_GiveInventory("AcidShotAmmoDelay",1)
+stop
+}
+}
+
+actor AcidmanMain5_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot5",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot5B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot5R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot5O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("AcidmanShot5P",0,0,8,0)
+goto Done
+Done:
+TNT1 A 0 A_GiveInventory("AcidShotAmmoDelay",1)
+stop
+}
+}
+
+actor AcidmanBarrF_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAlly",20,0,28)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyB",20,0,28)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyR",20,0,28)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyO",20,0,28)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierAllyP",20,0,28)
+goto Done
+}
+}
+
+actor AcidmanBarrS_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierSelf",20,0,28)
+goto Done
+FireB:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierSelfB",20,0,28)
+goto Done
+FireR:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierSelfR",20,0,28)
+goto Done
+FireO:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierSelfO",20,0,28)
+goto Done
+FireP:
+TNT1 A 0 A_SpawnItemEx("AcidBarrierSelfP",20,0,28)
+goto Done
+}
+}
+
+actor AcidShot1CD_SyncP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay11",1)
+stop
+}
+}
+
+actor AcidShot2CD_SyncP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay21",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay22",1)
+stop
+}
+}
+
+actor AcidShot3CD_SyncP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay31",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay32",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay33",1)
+stop
+}
+}
+
+actor AcidShot4CD_SyncP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay41",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay42",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay43",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay44",1)
+stop
+}
+}
+
+actor AcidShot5CD_SyncP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay1",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay2",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay3",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay4",1)
+TNT1 A 0 A_GiveInventory("AcidmanVisualDelay5",1)
+stop
+}
+}
+
+actor AcidGearUpSound_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_PlaySound("weapon/acidboost",CHAN_7,1)
+stop
+}
+}

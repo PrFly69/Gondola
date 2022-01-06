@@ -1,0 +1,46 @@
+actor Airman : ClassBase
+{
+Player.ScoreIcon "C_02B0X"
+player.displayname "airman"
+player.soundclass "airmanc"
+player.startitem "AirShooterBoss"
+player.startitem "Can'tDefeatAmmo", 28
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.86, 0.86
+player.sidemove 0.84, 0.84
+
+player.startitem "LeafShieldWeakness2", 1
+
+player.startitem "LeafShieldWeakness", 1
+player.startitem "PlantBarrierWeakness", 1
+States
+{
+Spawn:
+AIRM A 0
+AIRM B 1
+AIRM A 1
+Goto Spawn+2
+See:
+AIRM BCDE 5
+Goto Spawn
+Missile:
+AIRM F 0 A_JumpIfInventory("VivifyDelay6",1,"Missile2")
+AIRM FGFG 3
+goto Spawn
+Missile2:
+AIRM RSRSRS 3
+goto Spawn
+ClassPain:
+AIRM H 0
+goto PainContinue
+DeathFix:
+AIRM H 0
+goto DeathContinue
+ClassDeath:
+AIRM H 1
+goto MegaDeathEnd
+}
+}

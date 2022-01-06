@@ -7,8 +7,6 @@
 #include "zcommon.acs"
 //#include "8bdmlib.acs"//$CBM [Celebi] See `JumpStatus` near bottom
 
-
-
 // [Mike]/[Mess] Jump Canceling script. 
 //
 script "core_jumpcancel" ENTER//$CBM
@@ -73,7 +71,7 @@ while (GetActorProperty(ActivatorTID(), APROP_HEALTH) > 0)
 			}
 		}
 		if(CheckInventory("CanAirJump") && !Hit_Jump) {
-			if(CheckInventory("JumpCancler")==0) {
+			if(CheckInventory("JumpCancler")==0 && CheckInventory("CanAirJumpLimit")>0) {
 				if (!CheckInventory("SelfTotallyFrozenFlag")) {
 					GiveInventory("AirJumpBoost_P",1);
 					Hit_Jump = true;
@@ -81,7 +79,7 @@ while (GetActorProperty(ActivatorTID(), APROP_HEALTH) > 0)
 			}
 		}
 		if(CheckInventory("CanWallJump") && !Hit_Jump) {
-			if(CheckInventory("JumpCancler")==0) {
+			if(CheckInventory("JumpCancler")==0 && CheckInventory("CanWallJumpLimit")>0) {
 				GiveInventory("WallJumping_P",1);
 				Hit_Jump = true;
 			}

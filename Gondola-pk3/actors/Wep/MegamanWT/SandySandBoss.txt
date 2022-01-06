@@ -374,17 +374,15 @@ actor MWS_ItemForceFail : OnceC{}
 
 actor MWS_Armour : BasicArmorPickup
 {
-armor.saveamount 25
+armor.saveamount 250
 armor.savepercent 40.001
 }
 
-actor MWS_ShieldItem : CustomInventory
+actor MWS_ShieldItem : BasicClassItem
 {
-inventory.amount 1
-inventory.maxamount 1
-inventory.icon "XTR0WI_R"
+inventory.icon "MWSHIELD"
 inventory.pickupmessage "My shield is better than Pumpman's!"
-scale 2.0
+Tag "MWS Barrier Trigger"
 +INVBAR
 states
 {
@@ -471,7 +469,7 @@ stop
 actor MWSPush : BasicExplosion
 {
 var int user_P;
-damagetype "MegaWaterBarrier"
+damagetype "MWS_Barrier"
 Obituary "$OB_MWSPUSH"
 States
 {
@@ -479,7 +477,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 A_SetUserVar("user_P",1)
 TNT1 A 0 A_JumpIfInTargetInventory("MWSShieldCharge",user_P,"SpawnAdd")
-TNT1 A 1 A_Explode(user_P/6*2,user_P/6*20+199,0)
+TNT1 A 1 A_Explode(user_P/6*20,user_P/6*20+199,0)
 stop
 SpawnAdd:
 TNT1 A 0 A_SetUserVar("user_P",user_P+1)
@@ -529,10 +527,10 @@ Translation "198:198=116:116"
 PROJECTILE
 +NOGRAVITY
 +SKYEXPLODE
-Damagetype "MegaWaterS"
+Damagetype "MWS_Shot"
 Obituary "$OB_MWSHARPOON"
 
-damage (10)//(10+user_P)
+damage (100)//(10+user_P)
 radius 7
 height 10
 speed 40
@@ -559,7 +557,7 @@ PROJECTILE
 Damagetype "MWSHookPull"
 Obituary "$OB_MWSHARPOON2"
 
-damage (15)//(10+user_P)
+damage (150)//(10+user_P)
 radius 8
 height 12
 speed 60
@@ -595,18 +593,13 @@ actor MWS_Harpoon2R : MWS_Harpoon2{translation "198:198=41:41"}
 actor MWS_Harpoon2O : MWS_Harpoon2{translation "198:198=128:128"}
 actor MWS_Harpoon2P : MWS_Harpoon2{translation "198:198=232:232"}
 
-actor MWS_WaterBlower
+actor MWS_WaterBlower : BasicHelper
 {
-PROJECTILE
-+NOINTERACTION
-height 0
-radius 0
-speed 0
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,11,9)//22
+TNT1 A 0 ACS_ExecuteWithResult(C_JAX_SUCKRECODE,625,11,1,0)
 TNT1 A 3
 stop
 }
@@ -617,21 +610,18 @@ actor MWS_Water
 Translation "199:199=204:204", "202:202=202:202"
 PROJECTILE
 +SKYEXPLODE
++EXPLODEONWATER
 +DONTBLAST
 +DONTREFLECT
-Damage (1)
+Damage (10)
 height 16
 radius 16
 Scale 1.5
 Speed 40
 ReactionTime 8
-Obituary "$OB_MWSWATER"
 States
 {
 Spawn:
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
 TNT1 A 1
 TNT1 A 0 A_Jump(256,1,4,7)
 Spawn2:
@@ -645,11 +635,11 @@ Loop
 Crash:
 XDeath:
 TNT1 A 0 A_Stop
-TNT1 A 3 ACS_NamedExecuteAlways("cbm_legacyDustPull",0,88,15)
+TNT1 A 3 ACS_NamedExecuteAlways("cbm_legacyDustPull",0,88,20)
 goto Death
 Death:
 TNT1 A 0 A_Stop
-//TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,120,22,9)
+//TNT1 A 0 ACS_ExecuteWithResult(C_JAX_SUCKRECODE,120,22,40,-1)
 //TNT1 A 3
 TNT1 A 1
 stop
@@ -789,7 +779,7 @@ PROJECTILE
 radius 4
 height 12
 scale 0.80
-damagetype "MWSLift"
+damagetype "MWS_Lift"
 Obituary "$OB_MWSLIFT"
 damage (0)
 
@@ -818,7 +808,7 @@ TNT1 A 1 A_GiveInventory("WeaponCharge",1)
 TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MWS_SplashFX2",0,0,0,random(-10,10),random(-10,10),15,0,1)
 MWSX A 0 A_PlaySound("weapon/WaveSummonGo2",4,0.55)
 MWSX A 1 A_SpawnItemEx("MWS_LaunchCheck",0,0,32)
-MWSX B 0 A_Explode(8,48,0,0,48)
+MWSX B 0 A_Explode(80,48,0,0,48)
 MWSX BCDEFG 1 A_SpawnItemEx("MWS_LaunchCheck",0,0,32)
 Burst:
 MWSX H 0 A_SpawnItemEx("MWS_SpoutDamageF",0,0,35)
@@ -875,22 +865,22 @@ stop
 
 actor MWS_SpoutDamageF : BasicExplosion
 {
-damagetype "MWSLift"
+damagetype "MWS_Lift"
 Obituary "$OB_MWSLIFT"
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(5,48,0,0,48)
+TNT1 A 1 A_Explode(50,48,0,0,48)
 stop
 }
 }
 
 
-actor MWSLiftProtect : PowerProtection
+actor MWS_LiftProtect : PowerProtection
 {
 Powerup.Duration 14
-DamageFactor "MWSLift", 0.5
+DamageFactor "MWS_Lift", 0.5
 }
 
 actor MWS_SplashFX

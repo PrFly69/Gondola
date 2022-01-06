@@ -1,7 +1,6 @@
-actor Snakeman : LightClassBase
+actor Snakeman : ClassBase //85
 {
 Player.ScoreIcon "C_03F0X"
-player.startitem "LightHealthBar"
 player.displayname "snakeman"
 player.soundclass "snakemanc"
 player.startitem "SearchSnakeBoss"
@@ -9,6 +8,9 @@ player.startitem "SnakeManAmmo", 28
 player.startitem "SnakeCommandAmmo", 28
 player.startitem "SnakemanClimbingItem"
 
+player.maxhealth 850
+health 850
+player.jumpz 10
 player.forwardmove 1.0, 1.0
 player.sidemove 0.98, 0.98
 

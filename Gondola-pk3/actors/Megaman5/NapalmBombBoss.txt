@@ -1,0 +1,279 @@
+actor NapalmBombBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_5G"
+dropitem "NapalmBombWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 168
+Obituary "$OB_NAPALMBOMB"
+weapon.ammotype "NapalmClassAmmo"
+weapon.ammotype2 "OverHeaterAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_05 G 1
+loop
+Ready:
+NBOH A 0 ACS_ExecuteAlways(998,0,DYE_NAPALMMAN)
+NBOH A 0 A_Gunflash
+NBOH A 0 A_JumpIfInventory("NapalmClassAmmo",6,"Ready2")
+NBOH A 1 A_WeaponReady(WRF_NOFIRE)
+NBOH A 0 A_GiveInventory("NapalmClassAmmo",1)
+goto Ready+1
+Ready2:
+TNT1 A 0 A_JumpIfInventory("OverHeaterAmmo",1,"FireEnd")
+NBOH A 0 A_JumpIfInventory("NapalmClassAmmo",24,"Ready3")
+NBOH A 1 A_WeaponReady(WRF_NOSECONDARY)
+NBOH A 0 A_GiveInventory("NapalmClassAmmo",1)
+loop
+Ready3:
+NBOH A 1 A_WeaponReady
+TNT1 A 0 A_JumpIfInventory("OverHeaterAmmo",1,"FireEnd")
+NBOH A 0 A_GiveInventory("NapalmClassAmmo",1)
+loop
+NBOH A 1
+goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+NBOH A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+NBOH A 1 A_Raise
+Loop
+Fire:
+NBOH A 4 A_JumpIfInventory("OverHeaterAmmo",1,"FireEnd")
+FireContinue:
+NBOH A 0 A_JumpIfInventory("NapalmClassAmmo",6,"FireContinueX")
+goto FireEnd
+FireContinueX:
+NBOH A 0 A_GiveInventory("OverHeating",1)
+NBOH A 0 A_PlaySoundEx("weapon/dustbit","Weapon")
+NBOH A 0 A_TakeInventory("NapalmClassAmmo",6)
+//NBOH A 0 A_GiveInventory("OverHeaterAmmo",4)
+NBOH A 0 A_JumpIfInventory("NapalmClassFireFlag",1,"Fire2")
+NBOH A 0 A_GiveInventory("NapalmmanMain_CI",1)
+NBOH BC 2
+NBOH DEA 1 A_GiveInventory("NapalmClassFireFlag",1)
+NBOH AA 2 A_Refire("FireContinue")
+FireEnd:
+NBOH A 0 A_TakeInventory("OverHeating",1)
+TNT1 A 0 A_JumpIfInventory("OverHeaterAmmo",1,"CoolingDown")
+goto Ready+1
+CoolingDown:
+NBOH A 1 A_WeaponReady(WRF_NOBOB)
+NBOH A 0 A_GiveInventory("NapalmClassAmmo",1)
+NBOH A 0 A_TakeInventory("OverHeaterAmmo",2)
+NBOH A 0 Offset(0,50)
+TNT1 A 0 A_SpawnItemEx("UranusRageFX",10,-20,60,0,0,3)
+TNT1 A 0 A_SpawnItemEx("UranusRageFX",10,20,60,0,0,3)
+Goto FireEnd
+Fire2:
+NBOH A 0 A_GiveInventory("NapalmmanMain2_CI",1)
+NBOH FG 2
+NBOH HIA 1 A_TakeInventory("NapalmClassFireFlag",77)
+NBOH AA 2 A_Refire("FireContinue")
+Goto FireEnd
+Altfire:
+NBOH A 0 A_JumpIfInventory("NapalmClassAmmo",24,"MissileLaunch")
+goto Ready2
+MissileLaunch:
+NBOH A 0 A_GunFlash
+NBOH A 0 SetPlayerProperty(0,1,0)
+NBOH A 3 Offset(0,80)
+NBOH A 0 A_TakeInventory("NapalmClassAmmo",24)
+NBOH A 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
+NBOH A 0 A_GiveInventory("NapalmmanAlt_CI",1)
+NBOH A 0 A_SpawnItemEx("HardKnuckleFX",16,0,60)
+NBOH A 4
+NBOH A 2
+NBOH A 0 SetPlayerProperty(0,0,0)
+NBOH A 0 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+NBOH AAA 2 A_Refire
+TNT1 A 0 A_JumpIfInventory("OverHeaterAmmo",1,"FireEnd")
+Goto Ready+1
+NoAmmo:
+NBOH A 0
+Goto Ready3
+Flash:
+TNT1 A 1 A_JumpIfInventory("OverHeating",1,"Flash.Overheat")
+loop
+Flash.Overheat:
+TNT1 A 1 A_GiveInventory("OverHeaterAmmo",3)
+goto Flash
+}
+}
+
+actor NapalmClassAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 168
++INVENTORY.IGNORESKILL
+}
+
+actor OverHeaterAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 280
++INVENTORY.IGNORESKILL
+}
+
+actor OverHeating : OnceC {}
+
+actor OverheatHelper : BasicHelper
+{
+reactiontime 57
+States
+{
+Spawn:
+TNT1 A 5
+TNT1 A 0 A_TakeFromTarget("OverHeaterAmmo",1)
+TNT1 A 1 A_Countdown
+loop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor NapalmClassFireFlag : OnceC {}
+
+actor NapalmMissileClass
+{
+translation "199:199=41:41","202:202=210:210"
+PROJECTILE
+damagetype "NapalmBomb"
+Obituary "$OB_NAPALMMISSILE"
+Damage (20)
+Radius 12
+Height 12
+Speed 36//30
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+NAPC M 0
+NAPC M 0 A_PlaySoundEx("weapon/drillfly","Weapon")
+NAPC M 10
+loop
+Death:
+NAPC M 0 A_Stop
+NAPC M 0 A_PlaySoundEx("weapon/drillexplode", "Weapon")
+NAPC M 0 A_Explode(180,128,0,0,32)
+TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
+stop
+}
+}
+
+actor NapalmMissileClassB : NapalmMissileClass{translation "199:199=74:74","202:202=205:205"}
+actor NapalmMissileClassR : NapalmMissileClass{translation "199:199=41:41","202:202=171:171"}
+actor NapalmMissileClassO : NapalmMissileClass{translation "199:199=128:128","202:202=104:229"}
+actor NapalmMissileClassP : NapalmMissileClass{translation "199:199=232:232","202:202=229:229"}
+
+actor NapalmBombClass : NapalmBomb
+{
+translation "192:192=216:216","198:198=75:75","202:202=210:210"
+damagetype "NapalmBombB"
+Damage (10)
+Radius 11
+Height 12
+speed 28//25
+bouncefactor 0.7//0.6
+wallbouncefactor 0.5
+bouncecount 3
+States
+{
+Spawn:
+NAPC A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+NAPC A 0 ThrustThingZ(0,25,0,1)
+NAPC A 0 A_CountDown
+NAPC ABCD 4
+Goto Spawn+2
+Death:
+TN_B E 0 A_Stop
+TN_B E 0 A_PlaySoundEx("weapon/napalm", "Weapon")
+TN_B E 0 A_ChangeFlag("NOGRAVITY",1)
+TN_B E 0 A_Explode(140,128,0,0,32)
+TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
+stop
+}
+}
+
+actor NapalmBombClassB : NapalmBombClass{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor NapalmBombClassR : NapalmBombClass{translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor NapalmBombClassO : NapalmBombClass{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor NapalmBombClassP : NapalmBombClass{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+
+
+
+actor NapalmmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClass",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClassB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClassR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClassO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClassP",0,1,8,0)
+goto Done
+}
+}
+
+actor NapalmmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClass",0,1,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClassB",0,1,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClassR",0,1,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClassO",0,1,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("NapalmBombClassP",0,1,-8,0)
+goto Done
+}
+}
+
+actor NapalmmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("NapalmMissileClass",0,0,0,32)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("NapalmMissileClassB",0,0,0,32)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("NapalmMissileClassR",0,0,0,32)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("NapalmMissileClassO",0,0,0,32)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("NapalmMissileClassP",0,0,0,32)
+goto Done
+}
+}

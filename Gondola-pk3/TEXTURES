@@ -1,0 +1,401 @@
+//Reload Icons
+graphic AUTRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOA0,0,0}
+graphic TIMRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOB0,0,0}
+graphic HETRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOC0,0,0}
+graphic SDWRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOD0,0,0}
+graphic SPKRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOE0,0,0}
+graphic DVERICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOF0,0,0}
+graphic PHRRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOG0,0,0}
+graphic SDERICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOH0,0,0}
+graphic ATRRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOI0,0,0}
+graphic SRCRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOJ0,0,0}
+graphic FKERICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOK0,0,0}
+graphic SEPRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOL0,0,0}
+graphic SLRRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOM0,0,0}
+graphic STRRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHON0,0,0}
+graphic BUNRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOO0,0,0}
+graphic MRCRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOP0,0,0}
+graphic PUTRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOQ0,0,0}
+graphic PUMRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOR0,0,0}
+graphic MSTRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOS0,0,0}
+graphic DUORICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOT0,0,0}
+graphic CLDRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHOU0,0,0}
+graphic PLANTICN,30,30{XScale 2.0 YScale 2.0 Patch RSHOV0,0,0}
+graphic ODUOICNR,30,30{XScale 2.0 YScale 2.0 Patch RSHOW0,0,0}
+graphic CLOWNICR,30,30{XScale 2.0 YScale 2.0 Patch RSHOX0,0,0}
+graphic SATRNICN,30,30{XScale 2.0 YScale 2.0 Patch RSHOY0,0,0}
+graphic FUSERICN,30,30{XScale 2.0 YScale 2.0 Patch RSHOZ0,0,0}
+graphic PIRATICN,30,30{XScale 2.0 YScale 2.0 Patch "RSHO]0",0,0}
+
+graphic STYSCBM6,3,7{XScale 1.25 YScale 1.25 Patch STYS8BDD,0,0{translation "0:0=5:5", "4:4=93:93"}}
+
+//Metalman
+graphic MetlIcon,30,30{XScale 2.0 YScale 2.0 Patch MEGRZ0,0,0}
+
+//CWep
+graphic M10ICNN1,30,30{XScale 2.0 YScale 2.0 Patch CWA5Z0,0,0}
+sprite CWA5A0, 116, 96 {Offset -184, -94  Patch BUSTB0, 0, 0 {Translation "192:192=248:248","198:198=95:95"}}
+sprite CWA5B0, 124, 96 {Offset -184, -98  Patch BUSTC0, 0, 0 {Translation "192:192=248:248","198:198=95:95"}}
+sprite CWA5C0, 128, 92 {Offset -188, -102 Patch BUSTD0, 0, 0 {Translation "192:192=248:248","198:198=95:95"}}
+
+graphic M10ICNN2,30,30{XScale 2.0 YScale 2.0 Patch CWA6Z0,0,0}
+sprite CWA6A0, 116, 96 {Offset -184, -94  Patch BUSTB0, 0, 0 {Translation "192:192=38:38","198:198=251:251"}}
+sprite CWA6B0, 124, 96 {Offset -184, -98  Patch BUSTC0, 0, 0 {Translation "192:192=38:38","198:198=251:251"}}
+sprite CWA6C0, 128, 92 {Offset -188, -102 Patch BUSTD0, 0, 0 {Translation "192:192=38:38","198:198=251:251"}}
+
+graphic MMVICNN1,30,30{XScale 2.0 YScale 2.0 Patch CWV5Z0,0,0}
+sprite CWV5A0, 116, 96 {Offset -184, -94  Patch BUSTB0, 0, 0 {Translation "192:192=209:209","198:198=235:235"}}
+sprite CWV5B0, 124, 96 {Offset -184, -98  Patch BUSTC0, 0, 0 {Translation "192:192=209:209","198:198=235:235"}}
+sprite CWV5C0, 128, 92 {Offset -188, -102 Patch BUSTD0, 0, 0 {Translation "192:192=209:209","198:198=235:235"}}
+
+
+//Mercury
+graphic MERCLOOT,16,16{XScale 1.6 YScale 1.6 Patch MRCHX0,0,0}
+
+//Bomb
+//Maestro
+texture M1_B_BAR,8,56{patch B_3BARSB,0,0{Translation "192:192=4:4","198:198=110:110","202:202=4:4","199:199=110:110","204:204=4:4","195:195=110:110"}}
+texture M1_B_VAR,56,8{patch M1_B_BAR,0,0{rotate 90}}
+
+//Ice
+graphic ICEMANI1,30,30{XScale 2.0 YScale 2.0 Patch ICEIA0,0,0}
+graphic ICEMANI2,30,30{XScale 2.0 YScale 2.0 Patch ICEIB0,0,0}
+
+//Fake
+graphic FAKBUM,30,30{XScale 2.0 YScale 2.0 Patch FAKRZ0,0,0}
+
+//New Armor Bar By Ecl1p5e
+graphic ITEMARMA,26,26{XScale 1 YScale 1 Patch ITEMARM1,0,0}
+graphic ITEMARMB,26,26{XScale 1 YScale 1 Patch ITEMARM0,0,0}
+graphic ITEMARMC,26,26{XScale 1 YScale 1 Patch ITEMARM2,0,0}
+graphic ITEMAR40,26,26{XScale 1.5 YScale 1.5 Patch ITMARM40,0,0}
+graphic ITEMAR50,26,26{XScale 1.5 YScale 1.5 Patch ITMARM50,0,0}
+graphic ITEMAR65,26,26{XScale 1.5 YScale 1.5 Patch ITMARM65,0,0}
+graphic ITEMAR90,26,26{XScale 1.5 YScale 1.5 Patch ITMARM90,0,0}
+
+//Maestro
+texture MT_H_BAR,8,56{patch B_3BARSB,0,0{Translation"192:192=176:176","198:198=180:180","202:202=176:176","199:199=180:180","204:204=176:176","195:195=180:180"}}
+texture MT_H_VAR,56,8{patch MT_H_BAR,0,0{rotate 90}}
+texture MT_H2BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=176:176","198:198=176:176"}}
+texture MT_H2VAR,56,8{patch MT_H2BAR,0,0{rotate 90}}
+texture MT_H3BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=183:183","198:198=183:183"}}
+texture MT_H3VAR,56,8{patch MT_H3BAR,0,0{rotate 90}}
+texture MT_H4BAR,8,56{patch B_3BARSB,0,0{Translation"192:192=197:197", "198:198=198:198","202:202=197:197","199:199=198:198","204:204=197:197","195:195=198:198"}}
+texture MT_H4VAR,56,8{patch MT_H4BAR,0,0{rotate 90}}
+texture MT_H5BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=205:205","198:198=205:205"}}
+texture MT_H5VAR,56,8{patch MT_H5BAR,0,0{rotate 90}}
+texture MT_H6BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=199:199","198:198=199:199"}}
+texture MT_H6VAR,56,8{patch MT_H6BAR,0,0{rotate 90}}
+texture MT_H7BAR,8,56{patch B_3BARSB,0,0{Translation"192:192=161:161", "198:198=229:229","202:202=161:161","199:199=229:229","204:204=161:161","195:195=229:229"}}
+texture MT_H7VAR,56,8{patch MT_H7BAR,0,0{rotate 90}}
+texture MT_H8BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=160:160","198:198=160:160"}}
+texture MT_H8VAR,56,8{patch MT_H8BAR,0,0{rotate 90}}
+texture MT_H9BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=162:162","198:198=162:162"}}
+texture MT_H9VAR,56,8{patch MT_H9BAR,0,0{rotate 90}}
+texture MT_HABAR,8,56{patch B_3BARSB,0,0{Translation"192:192=128:128", "198:198=130:130","202:202=128:128","199:199=130:130","204:204=128:128","195:195=130:130"}}
+texture MT_HAVAR,56,8{patch MT_HABAR,0,0{rotate 90}}
+texture MT_HBBAR,8,56{patch B_BAR01C,0,0{Translation"192:192=110:110","198:198=110:110"}}
+texture MT_HBVAR,56,8{patch MT_HBBAR,0,0{rotate 90}}
+texture MT_HCBAR,8,56{patch B_BAR01C,0,0{Translation"192:192=129:129","198:198=129:129"}}
+texture MT_HCVAR,56,8{patch MT_HCBAR,0,0{rotate 90}}
+
+//Weapon Icons for Iceman
+graphic ICESTORM,30,30{XScale 2.0 YScale 2.0 Patch ICEIA0,0,0} //Pocket Ice
+graphic ICESTATU,30,30{XScale 2.0 YScale 2.0 Patch ICEIB0,0,0} //Statue
+
+//Weapon Icons for Pharaohman
+graphic PHAHOVER,30,30{XScale 2.0 YScale 2.0 Patch PHAIA0,0,0} //Hover
+graphic PHAPUNCH,30,30{XScale 2.0 YScale 2.0 Patch PHAIB0,0,0} //Punch
+
+//Shadowman Item/Icons
+graphic ShadIcon,30,30{XScale 2.0 YScale 2.0 Patch SHAHI0,0,0}
+graphic Sha1Icon,30,30{XScale 2.0 YScale 2.0 Patch SHAHK0,0,0}
+graphic Sha2Icon,30,30{XScale 2.0 YScale 2.0 Patch "SHAHL0",0,0}
+graphic Sha3Icon,30,30{XScale 2.0 YScale 2.0 Patch "SHAH]0",0,0}
+
+//Caltrop
+sprite SHAXO0,9,9{offset 4,8 patch SHAXY0,0,0{Rotate 90}}
+sprite SHAXP0,9,9{offset 4,8 patch SHAXZ0,0,0{Rotate 90}}
+sprite SHAXQ0,9,9{offset 4,8 patch SHAXY0,0,0{Rotate 180}}
+sprite SHAXR0,9,9{offset 4,8 patch SHAXZ0,0,0{Rotate 180}}
+sprite SHAXS0,9,9{offset 4,8 patch SHAXY0,0,0{Rotate 270}}
+sprite SHAXT0,9,9{offset 4,8 patch SHAXZ0,0,0{Rotate 270}}
+
+//Replaced Wily Capsule Weapon 2
+sprite WICHO0,294,126{offset -13,-74 patch WICHK0,0,0{Translation"43:43=193:193"}}
+sprite WICHP0,294,126{offset -13,-74 patch WICHL0,0,0{Translation"43:43=193:193"}}
+sprite WICHQ0,294,126{offset -13,-74 patch WICHM0,0,0{Translation"43:43=193:193"}}
+
+//Gyroman Item
+graphic GyroIcon,30,30{XScale 2.0 YScale 2.0 Patch WEA2I0,0,0}
+
+//Blademan Item
+graphic BldeIcon,30,30{XScale 2.0 YScale 2.0 Patch BLDXY0,0,0}
+
+//Pluto
+sprite PLUHF0,308,212{Offset 232,39 Patch PLUHD0,0,0{FlipX}}
+sprite PLUHG0,320,112{Offset 98,-115 Patch PLUHE0,0,0{FlipX}}
+
+//Quint Slide
+texture 0K_4_BAR,8,56{patch B_5BARSA,0,0{Translation"198:198=130:130","192:192=138:138","199:199=130:130","202:202=138:138","195:195=130:130","204:204=138:138","119:119=130:130","118:118=138:138","95:95=130:130","89:89=138:138"}}
+texture 0K_4_VAR,56,8{patch 0K_4_BAR,0,0{rotate 90}}
+
+//Enker Flash hud
+sprite ENKAG0,159,144{offset 38,-121 patch ENKAB0,0,0}
+sprite ENKAH0,159,144{offset 53,-127 patch ENKAB0,0,0}
+sprite ENKAI0,159,144{offset 68,-135 patch ENKAB0,0,0}
+sprite ENKAJ0,159,144{offset 83,-143 patch ENKAB0,0,0}
+sprite ENKAK0,159,144{offset 93,-151 patch ENKAB0,0,0}
+graphic BMirIcon,30,30{XScale 2.0 YScale 2.0 Patch WEA3H0,0,0}
+graphic SMirIcon,30,30{XScale 2.0 YScale 2.0 Patch BGMRA0,0,0}
+
+//Astroman Weapons
+graphic ASTCLONE,30,30{XScale 2.0 YScale 2.0 Patch ASTIY0,0,0} //Clones
+graphic ASTCRUSH,30,30{XScale 2.0 YScale 2.0 Patch ASTIZ0,0,0} //Crush
+
+//Gyroman Item
+graphic GyroIcon,30,30{XScale 2.0 YScale 2.0 Patch GYRIX0,0,0}
+graphic GyrIcon1,30,30{XScale 2.0 YScale 2.0 Patch GYRIX0,0,0}
+graphic GyrIcon2,30,30{XScale 2.0 YScale 2.0 Patch GYRIY0,0,0}
+
+//Windman Item
+graphic WindIcon,30,30{XScale 2.0 YScale 2.0 Patch WINIX0,0,0}
+graphic WinIcon1,30,30{XScale 2.0 YScale 2.0 Patch WINIX0,0,0}
+graphic WinIcon2,30,30{XScale 2.0 YScale 2.0 Patch WINIY0,0,0}
+
+sprite  C_0KE0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE05K, 0, 0}//RaThor
+texture C_0KE0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE05K, 0, 0}
+
+texture 0K_E_BAR,8,56{patch BARENERG,0,0{Translation"192:192=248:248","198:198=3:3"}}
+texture 0K_E_VAR,56,8{patch 0K_E_BAR,0,0{rotate 90}}
+texture 0K_5_BAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=57:57"}}
+texture 0K_5_VAR,56,8{patch 0K_5_BAR,0,0{rotate 90}}
+
+graphic RATHRICO,30,30{XScale 2.0 YScale 2.0 Patch "RA_H[0",0,0}
+graphic SOUCOUNT,16,16{XScale 1.6 YScale 1.6 Patch RA_HX0,0,0{Translation"192:192=4:4","198:198=57:57"}}
+
+texture THORSINS,136,46{patch TNT1A0,0,0}
+
+graphic SINTHOR0,51,51{patch TNT1A0,0,0}
+graphic SINTHOR1,59,62{XScale 2.5 YScale 2.5 Patch THORSIN1,0,0}
+graphic SINTHOR2,59,62{XScale 2.5 YScale 2.5 Patch THORSIN2,0,0}
+graphic SINTHOR3,59,62{XScale 2.5 YScale 2.5 Patch THORSIN3,0,0}
+graphic SINTHOR4,59,62{XScale 2.5 YScale 2.5 Patch THORSIN4,0,0}
+graphic SINTHOR5,59,62{XScale 2.5 YScale 2.5 Patch THORSIN5,0,0}
+graphic SINTHOR6,59,62{XScale 2.5 YScale 2.5 Patch THORSIN6,0,0}
+graphic SINTHOR7,51,51{XScale 2.5 YScale 2.5 Patch SINIS0,0,0{Translation"192:192=176:176","198:198=182:182"}}
+graphic SINTHOR8,51,51{XScale 2.5 YScale 2.5 Patch SINIT0,0,0{Translation"192:192=176:176","198:198=182:182"}}
+graphic SINTHOR9,51,51{XScale 2.5 YScale 2.5 Patch SINIU0,0,0{Translation"192:192=176:176","198:198=182:182"}}
+
+//EvilRobot
+texture 08_P_BAR,8,56{patch BARENERG,0,0{Translation"192:192=239:239","198:198=246:246"}}
+texture 08_P_VAR,56,8{patch 08_P_BAR,0,0{rotate 90}}
+
+//Original Duo
+texture 08_O_BAR,8,56{patch BARENRG2,0,0{Translation"192:192=4:4","198:198=192:192","199:199=240:240"}}
+texture 08_O_VAR,56,8{patch 08_O_BAR,0,0{rotate 90}}
+
+//MegaWaterS
+texture WT_B_BAR,8,56{patch BARENERG,0,0{Translation"192:192=218:218","198:198=116:116"}}
+texture WT_B_VAR,56,8{patch WT_B_BAR,0,0{rotate 90}}
+texture WT_2_BAR,8,56{patch BARENERG,0,0{Translation"192:192=202:202","198:198=206:206"}}
+texture WT_2_VAR,56,8{patch WT_2_BAR,0,0{rotate 90}}
+
+//BBA
+graphic BBHWEP4A,91,16{XScale 2.0 YScale 2.0 Patch BBVWEP4A,0,0}
+graphic BBHWEP5A,91,16{XScale 2.0 YScale 2.0 Patch BBVWEP5A,0,0}
+
+//Venus
+sprite VENBD0,128,100{Offset -12,-89 Patch VENBA0,0,0{Translation "229:229=220:220","160:160=229:229","117:117=70:70"}}
+sprite VENBE0,140,112{Offset 5,-92 Patch VENBB0,0,0{Translation "229:229=220:220","160:160=229:229","117:117=70:70"}}
+sprite VENBF0,152,120{Offset 25,-96 Patch VENBC0,0,0{Translation "229:229=220:220","160:160=229:229","117:117=70:70"}}
+
+//Jewel
+texture J_BAR10A,8,56{patch B_BAR10A,0,0{Translation"198:198=168:168"}}
+texture J_VAR10A,56,8{patch J_BAR10A,0,0{rotate 90}}
+texture J_BAR10B,8,56{patch B_BAR10B,0,0{Translation"198:198=168:168"}}
+texture J_VAR10B,56,8{patch J_BAR10B,0,0{rotate 90}}
+texture J_BAR10C,8,56{patch B_BAR10C,0,0{Translation"198:198=168:168"}}
+texture J_VAR10C,56,8{patch J_BAR10C,0,0{rotate 90}}
+texture J_BAR10D,8,56{patch B_BAR10D,0,0{Translation"198:198=168:168"}}
+texture J_VAR10D,56,8{patch J_BAR10D,0,0{rotate 90}}
+texture J_BAR10E,8,56{patch B_BAR10E,0,0{Translation"198:198=168:168"}}
+texture J_VAR10E,56,8{patch J_BAR10E,0,0{rotate 90}}
+texture J_BAR10F,8,56{patch B_BAR10F,0,0{Translation"198:198=168:168"}}
+texture J_VAR10F,56,8{patch J_BAR10F,0,0{rotate 90}}
+texture J_BAR10G,8,56{patch B_BAR10G,0,0{Translation"198:198=168:168"}}
+texture J_VAR10G,56,8{patch J_BAR10G,0,0{rotate 90}}
+
+
+//Auto
+texture 00_G_BAR,8,56{patch BARENERG,0,0{Translation"192:192=208:208","198:198=128:128"}}
+texture 00_G_VAR,56,8{patch 00_G_BAR,0,0{rotate 90}}
+
+texture 00_GA_BR,8,1{patch TNT1A0,0,0}
+texture 00_GA_VR,1,8{patch TNT1A0,0,0}
+texture 00_GB_BR,8,1{patch B_BAR02J,0,0{Translation"192:192=196:196","198:198=197:197"}}
+texture 00_GB_VR,1,8{patch 00_GB_BR,0,0{rotate 90}}
+
+Graphic AUTOIT0, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4A0, 0, 0
+}
+
+Graphic AUTOIT1, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4B0, 0, 0
+}
+
+Graphic AUTOIT2, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4C0, 0, 0
+}
+
+Graphic AUTOIT3, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4D0, 0, 0
+}
+
+Graphic AUTOIT4, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4E0, 0, 0
+}
+
+Graphic AUTOIT5, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4F0, 0, 0
+}
+
+Graphic AUTOIT6, 30, 30
+{
+	XScale 2.0
+	YScale 2.0
+	Patch AUT4G0, 0, 0
+}
+
+graphic AutoIcon,30,30{XScale 2.0 YScale 2.0 Patch AUT4Z0,0,0}
+
+//Strike Recall Icon
+graphic RBDSJ,30,30{XScale 2.0 YScale 2.0 Patch RBD3A0,0,0}
+
+//Strike Mugshot
+sprite  C_10F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE121Y, 0, 0}
+texture C_10F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE121Y, 0, 0}
+
+//Strike Bar
+texture 10_4_BAR,8,56{patch B5ENER,0,0{Translation"192:192=38:38","198:198=251:251","202:202=38:38","199:199=251:251","204:204=38:38","195:195=251:251"}}
+texture 10_4_VAR,56,8{patch 10_4_BAR,0,0{rotate 90}}
+texture 10_4_BA2,8,56{patch B_BAR10B,0,0{Translation"198:198=220:220"}}
+texture 10_4_VA2,56,8{patch 10_4_BA2,0,0{rotate 90}}
+texture 10_4_BA3,8,56{patch BARENERG,0,0{Translation "192:192=217:217", "198:198=42:42"}}
+texture 10_4_VA3,56,8{patch 10_4_BA3,0,0{rotate 90}}
+texture 00_E_BAR,8,56{patch B_7BARSC,0,0{Translation "192:192=248:248", "198:198=222:222"}}
+texture 00_E_VAR,56,8{patch 00_E_BAR,0,0{rotate 90}}
+texture 00_F_BAR,8,56{patch B_7BARSC,0,0{Translation "192:192=229:229", "198:198=218:218"}}
+texture 00_F_VAR,56,8{patch 00_F_BAR,0,0{rotate 90}}
+sprite  C_10E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE999X, 0, 0}//Solar
+texture C_10E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE999X, 0, 0}
+graphic SOLSUNS,30,30{XScale 2.0 YScale 2.0 Patch SOSUA0,0,0}
+
+//Sheepman
+texture SHPCLO, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch SPCLO0, 0, 0
+}
+
+texture 10_S_BAR,8,56{patch B4ENERG,0,0{Translation "192:192=4:4", "198:198=36:36"}}
+texture 10_S_VAR,56,8{patch 10_S_BAR,0,0{rotate 90}}
+
+sprite  C_10E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE120X, 0, 0}
+texture C_10E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE120X, 0, 0}
+
+graphic SHEST00,32,32{XScale 4.0 YScale 4.0 Patch FAC120X2,0,0}
+
+//Solar
+sprite  C_10H0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE121X, 0, 0}
+texture C_10H0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE121X, 0, 0}
+
+//Pumpman
+texture 10_P_BAR,8,56{patch B4ENER,0,0{Translation "192:192=197:197", "198:198=199:199"}}
+texture 10_P_VAR,56,8{patch 10_P_BAR,0,0{rotate 90}}
+
+//Saturn
+texture MV_S_BAR,8,56{patch B5ENER,0,0{Translation "192:192=215:215", "198:198=223:223"}}
+texture MV_S_VAR,56,8{patch MV_S_BAR,0,0{rotate 90}}
+
+texture MV_B_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=59:59","198:198=62:62"}}
+texture MV_B_VAR,56,8{patch MV_B_BAR,0,0{rotate 90}}
+texture MV_C_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=59:59","198:198=62:62"}}
+texture MV_C_VAR,56,8{patch MV_C_BAR,0,0{rotate 90}}
+texture MV_D_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=62:62","198:198=59:59"}}
+texture MV_D_VAR,56,8{patch MV_D_BAR,0,0{rotate 90}}
+texture MV_E_BAR,8,56{patch B_BAR01D,0,0{Translation"192:192=62:62","198:198=59:59"}}
+texture MV_E_VAR,56,8{patch MV_E_BAR,0,0{rotate 90}}
+texture MV_A_BAR,8,56{patch TNT1A0,0,0}
+texture MV_A_VAR,56,8{patch TNT1A0,0,0}
+texture MVSF_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=59:59","198:198=59:59"}}
+texture MVSF_VAR,56,8{patch MVSF_BAR,0,0{rotate 90}}
+
+sprite  C_0VF0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0V05, 0, 0}
+texture C_0VF0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE0V05, 0, 0}
+
+texture SATITE, 30, 30
+{
+   XScale 2.0
+   YScale 2.0
+   Patch SARIF0, 0, 0
+}
+sprite ERO7W0,192,284{Offset -204,68 Patch TGUHH0,0,0{FlipX Translation"98:98=58:58","103:103=61:61","117:117=63:63","4:4=41:41","200:200=43:43","86:86=249:249","93:93=245:245","183:183=162:162","229:229=176:176","230:230=182:182"}}
+sprite ERO7X0,212,236{Offset -54,61 Patch TGUHH0,0,0{FlipX Translation"98:98=58:58","103:103=61:61","117:117=63:63","200:200=43:43","93:93=245:245""230:230=182:182"}}
+sprite ERO7Y0,280,76{Offset -10,-100 Patch TGUHJ0,0,0{FlipX Translation"98:98=58:58","103:103=61:61","117:117=63:63","4:4=41:41","200:200=43:43","86:86=249:249","93:93=245:245","229:229=176:176","230:230=182:182"}}
+
+//Breakman Mugshot
+sprite  C_03J0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE00X8, 0, 0}
+texture C_03J0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE00X8, 0, 0}
+
+graphic BBASHOP,30,30{XScale 2.0 YScale 2.0 Patch BBABZ0,0,0}
+graphic CrasIcon,30,30{XScale 2.0 YScale 2.0 Patch CRAAX0,0,0}
+graphic BubIconN,30,30{XScale 2.0 YScale 2.0 Patch BUBAW0,0,0}
+graphic DYNCSI,30,30{XScale 2.0 YScale 2.0 Patch "DYPJ[0",0,0}
+graphic FAKELOOT,16,16{XScale 1.6 YScale 1.6 Patch FAKRX0,0,0}
+graphic GemIconN,30,30{XScale 2.0 YScale 2.0 Patch GEMBZ0,0,0}
+graphic HornIcon,30,30{XScale 2.0 YScale 2.0 Patch HORHI0,0,0}
+graphic PIRASI,30,30{XScale 2.0 YScale 2.0 Patch PRBUU0,0,0}
+graphic JEWRES,30,30{XScale 2.0 YScale 2.0 Patch JEWHZ0,0,0}
+graphic SNAAZ,30,30{XScale 2.0 YScale 2.0 Patch SNABZ0,0,0}
+graphic TenIcon,30,30{XScale 2.0 YScale 2.0 Patch TGUHX0,0,0}
+
+graphic MWS1Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPA0,0,0}
+graphic MWS2Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPB0,0,0}
+graphic Str2Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPC0,0,0}
+graphic Str1Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPD0,0,0}
+graphic Mar2Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPE0,0,0}
+graphic Mar1Icon,30,30{XScale 2.0 YScale 2.0 Patch RSHPF0,0,0}
+
+graphic MaesNIco,30,30{XScale 2.0 YScale 2.0 Patch RSHPG0,0,0}
+graphic MaesHGIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPH0,0,0}
+graphic MaesAGIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPI0,0,0}
+graphic MaesEGIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPJ0,0,0}
+graphic MaesWGIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPK0,0,0}
+graphic MaesHCIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPL0,0,0}
+graphic MaesACIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPM0,0,0}
+graphic MaesECIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPN0,0,0}
+graphic MaesWCIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPO0,0,0}
+graphic MaesHSIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPP0,0,0}
+graphic MaesASIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPQ0,0,0}
+graphic MaesESIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPR0,0,0}
+graphic MaesWSIc,30,30{XScale 2.0 YScale 2.0 Patch RSHPS0,0,0}

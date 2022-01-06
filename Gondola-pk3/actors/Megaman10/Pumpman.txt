@@ -1,0 +1,84 @@
+actor Pumpman : ClassBase
+{
+Player.ScoreIcon "C_10B0X"
+player.displayname "Pumpman"
+player.soundclass "pumpmanc"
+player.startitem "WaterShieldBoss"
+player.startitem "PumpSluggerAmmo", 196
+player.startitem "PumpPressureAmmo", 56
+player.startitem "PumpExplodeItem", 1
+
+player.maxhealth 1000
+health 1000
+player.forwardmove 0.78, 0.78
+player.sidemove 0.76, 0.76
+player.jumpz 13
+
+//player.startitem "ThunderWoolWeakness2", 1
+
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "CrashBombWeakness", 1
+player.startitem "SparkShockWeakness", 1
+player.startitem "ThunderBoltWeakness", 1
+player.startitem "ThunderClawWeakness", 1
+player.startitem "LightningBoltWeakness", 1
+player.startitem "PlugBallWeakness", 1
+//player.startitem "ThunderWoolWeakness", 1
+player.startitem "ElectricShockWeakness", 1
+States
+{
+Spawn:
+PUMM A 0
+PUMM B 1
+PUMM A -1
+wait
+
+See:
+PUMM BCDE 5
+Goto Spawn
+SeeC:
+PUMM QRST 5
+Goto Spawn+2
+
+Melee:
+PUMM GF 3
+goto Spawn+2
+
+Missile:
+PUMM F 5
+PUMM G 4
+PUMM F 5
+goto Spawn+1
+MissileU:
+PUMM U 9
+goto Spawn
+
+CustomState1:
+PUMM F 2
+PUMM V 7
+goto Spawn+2
+
+CustomState2:
+PUMM F 3
+PUMM FGFGFGFGFG 4
+goto Spawn
+
+ClassPain:
+PUMM H 0
+goto PainContinue
+
+PUMM W 0
+goto PainContinue
+
+DeathFix:
+PUMM H 0
+goto DeathContinue
+
+PUMM W 0
+goto DeathContinue
+
+ClassDeath:
+PUMM H 1
+goto MegaDeathEnd
+}
+}

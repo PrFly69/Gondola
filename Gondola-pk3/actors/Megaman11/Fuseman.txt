@@ -1,10 +1,9 @@
 // Credits to Dimpsy for Fuseman skin!
 // Credits to Redflash for the better Fuseman skin!
 
-actor Fuseman : LightClassBase
+actor Fuseman : ClassBase //85
 {
 	Player.ScoreIcon "C_11F0X"
-	player.startitem "LightHealthBar"
 	player.displayname "Fuseman"
 	player.soundclass "fusemanc"
 	player.jumpz 14

@@ -1,13 +1,16 @@
-actor Gyroman : LightClassBase
+actor Gyroman : ClassBase //85
 {
 Player.ScoreIcon "C_05D0X"
-player.startitem "LightHealthBar"
 player.displayname "gyroman"
 player.soundclass "gyromanc"
 player.startitem "GyroAttackBoss"
 player.startitem "GyroFly", 56
 player.startitem "GyroBoomerangAmmo", 28
 player.startitem "GyroCallbackItem"
+
+player.maxhealth 850
+health 850
+player.jumpz 10
 player.forwardmove 0.87, 0.87
 player.sidemove 0.85, 0.85
 

@@ -1,0 +1,3681 @@
+actor MegaBallBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_0D"
+dropitem "MegaBallWepCDropped"
+Weapon.AmmoUse 0//111
+Weapon.AmmoGive 0
+//Weapon.SlotNumber 2
+Inventory.Pickupmessage "Mega Multiball!"
+Obituary "$OB_ROCKKICK"
+weapon.ammotype1 "BallsOfSteelAmmo"
+weapon.ammotype2 "RockmanSoccerAmmo"
+inventory.icon "MEGABALI"
+States
+{
+Spawn:
+C_00 D 1
+loop
+
+Deselect:
+H0RK PPPPPPPPPPPPPPPPPPPPPP 0 A_Lower//offset(1,60)
+H0RK P 1 A_Lower
+Loop
+Select:
+H0RK PPPPPPPPPPPPPPPPPPPPPP 0 A_Raise//offset(1,60)
+H0RK P 1 A_Raise
+Loop
+
+Ready:
+H0RK A 0 ACS_ExecuteAlways(998,0,DYE_ROCKC)
+H0RK A 0 A_GunFlash
+goto ReadyBall
+ReadyBall:
+H0RK A 0 A_JumpIfInventory("BallsOfSteelAmmo",111,"ReadyBall2")
+H0RK A 2 A_WeaponReady(4)
+H0RK A 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+ReadyBall2:
+H0RK A 2 A_WeaponReady
+H0RK A 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+
+Fire:
+H0RK A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+H0RK A 0 A_JumpIfInventory("RockmanSoccerAmmo",7,"Fire1")
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 A_WeaponReady(7)
+H0RK A 0 A_Refire("Fire")
+goto OldFire
+Fire1:
+H0RK A 0 A_JumpIfInventory("RockmanSoccerAmmo",14,"Fire2")
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,34)A_WeaponReady(7)
+H0RK A 0 A_Refire("Fire1")
+goto OldFire
+Fire2:
+H0RK A 0 A_JumpIfInventory("RockmanSoccerAmmo",28,"Fire3")
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,36)A_WeaponReady(7)
+H0RK A 0 A_Refire("Fire2")
+goto OldFire
+Fire3:
+H0RK A 0 A_JumpIfInventory("RockmanSoccerAmmo",42,"Fire4")
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,40)A_WeaponReady(7)
+H0RK A 0 A_Refire("Fire3")
+goto OldFire
+Fire4:
+H0RK A 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Fire5")
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,44)A_WeaponReady(7)
+H0RK A 0 A_Refire("Fire4")
+goto OldFire
+Fire5:
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,45)A_WeaponReady(7)
+H0RK A 0 A_Refire(1)
+goto OldFire
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,46)A_WeaponReady(7)
+H0RK A 0 A_Refire(1)
+goto OldFire
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,47)A_WeaponReady(7)
+H0RK A 0 A_Refire(1)
+goto OldFire
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,48)A_WeaponReady(7)
+H0RK A 0 A_Refire(1)
+goto OldFire
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,48)A_WeaponReady(7)
+H0RK A 0 A_Refire(1)
+goto OldFire
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,47)A_WeaponReady(7)
+H0RK A 0 A_Refire(1)
+goto OldFire
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,46)A_WeaponReady(7)
+H0RK A 0 A_Refire(1)
+goto OldFire
+H0RK A 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK A 1 offset(0,45)A_WeaponReady(7)
+H0RK A 0 A_Refire("Fire5")
+goto OldFire
+
+
+OldFire:
+H0RK J 0 A_GiveInventory("RockBallDropM_P",1)
+goto FireAni
+FireAni:
+H0RK J 1 offset(0,33)A_JumpIfInventory("PowerRage_ST",1,1)
+H0RK J 1 offset(0,33)A_WeaponReady(7)
+H0RK J 2 offset(0,51)A_WeaponReady(7)
+H0RK J 2 offset(0,69)A_WeaponReady(7)
+H0RK J 2 offset(0,87)A_WeaponReady(7)
+H0RK A 0 A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK A 2 offset(0,86)A_WeaponReady(7)
+H0RK A 2 offset(0,68)A_WeaponReady(7)
+H0RK A 2 offset(0,50)A_WeaponReady(7)
+Goto ReadyBall
+
+Altfire:
+H0RK K 0 A_GiveInventory("RockKickFlag",1)
+H0RK K 1 offset(12,38)A_GiveInventory("Rock_M_Pickup_X",1)
+H0RK L 3 offset(8,36)A_GiveInventory("BallsOfSteelAmmo",42)
+H0RK M 8 offset(8,22)A_GiveInventory("RockBallKick_P",1)
+H0RK N 5 offset(8,8)A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK K 4 offset(12,38)
+H0RK K 0 offset(12,38)A_TakeInventory("RockKickFlag",1)
+Goto ReadyBall
+
+NoAmmo:
+H0RK J 1
+Goto ReadyBall
+
+BotFire:
+H0RK J 6 A_GiveInventory("Rock_Bot_Pickup_X",1)
+Goto ReadyBall
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("RockStaminaInAir_F",1,"Flash.LandStart")
+TNT1 A 1
+TNT1 A 0 A_GiveInventory("RockBallJumpStamina_RC",1)
+loop
+Flash.LandStart:
+TNT1 A 1
+goto Flash.Land
+Flash.Land:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
+TNT1 A 0 A_JumpIf(momz==0,"Flash.LandZ")
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1
+loop
+Flash.LandZ:
+TNT1 A 1
+TNT1 A 0 A_JumpIf(z-floorz==0,"Flash.LandEnd")
+TNT1 A 0 A_JumpIf(momz==0,"Flash.LandEnd")
+goto Flash.Land+2
+Flash.LandEnd:
+TNT1 A 0 A_TakeInventory("RockStaminaInAir_F",999)
+goto Flash
+}
+}
+
+actor MegaCutBallBoss : MegaBallBoss
+{
+tag "$TAGC_0D1"
+//Weapon.SlotNumber 4
+Inventory.Pickupmessage "Cut Multiball!"
+inventory.icon "RCUTSI"
+States
+{
+Ready:
+H0RK B 0 ACS_ExecuteAlways(998,0,DYE_ROCK_CUT)
+H0RK B 0 A_GunFlash
+goto ReadyBall
+ReadyBall:
+H0RK B 0 A_JumpIfInventory("BallsOfSteelAmmo",111,"ReadyBall2")
+H0RK B 2 A_WeaponReady(4)
+H0RK B 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+ReadyBall2:
+H0RK B 2 A_WeaponReady
+H0RK B 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+
+
+Fire:
+H0RK B 0 A_JumpIfInventory("IsBot",1,"BotFire")
+H0RK B 0 A_JumpIfInventory("RockmanSoccerAmmo",7,"Fire1")
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 A_WeaponReady(7)
+H0RK B 0 A_Refire("Fire")
+goto OldFire
+Fire1:
+H0RK B 0 A_JumpIfInventory("RockmanSoccerAmmo",14,"Fire2")
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,34)A_WeaponReady(7)
+H0RK B 0 A_Refire("Fire1")
+goto OldFire
+Fire2:
+H0RK B 0 A_JumpIfInventory("RockmanSoccerAmmo",28,"Fire3")
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,36)A_WeaponReady(7)
+H0RK B 0 A_Refire("Fire2")
+goto OldFire
+Fire3:
+H0RK B 0 A_JumpIfInventory("RockmanSoccerAmmo",42,"Fire4")
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,40)A_WeaponReady(7)
+H0RK B 0 A_Refire("Fire3")
+goto OldFire
+Fire4:
+H0RK B 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Fire5")
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,44)A_WeaponReady(7)
+H0RK B 0 A_Refire("Fire4")
+goto OldFire
+Fire5:
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,45)A_WeaponReady(7)
+H0RK B 0 A_Refire(1)
+goto OldFire
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,46)A_WeaponReady(7)
+H0RK B 0 A_Refire(1)
+goto OldFire
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,47)A_WeaponReady(7)
+H0RK B 0 A_Refire(1)
+goto OldFire
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,48)A_WeaponReady(7)
+H0RK B 0 A_Refire(1)
+goto OldFire
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,48)A_WeaponReady(7)
+H0RK B 0 A_Refire(1)
+goto OldFire
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,47)A_WeaponReady(7)
+H0RK B 0 A_Refire(1)
+goto OldFire
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,46)A_WeaponReady(7)
+H0RK B 0 A_Refire(1)
+goto OldFire
+H0RK B 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK B 1 offset(0,45)A_WeaponReady(7)
+H0RK B 0 A_Refire("Fire5")
+goto OldFire
+
+OldFire:
+H0RK J 0 A_GiveInventory("RockBallDropC_P",1)
+goto FireAni
+FireAni:
+H0RK J 1 offset(0,33)A_JumpIfInventory("PowerRage_ST",1,1)
+H0RK J 1 offset(0,33)A_WeaponReady(7)
+H0RK J 2 offset(0,51)A_WeaponReady(7)
+H0RK J 2 offset(0,69)A_WeaponReady(7)
+H0RK J 2 offset(0,87)A_WeaponReady(7)
+H0RK B 0 A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK B 2 offset(0,86)A_WeaponReady(7)
+H0RK B 2 offset(0,68)A_WeaponReady(7)
+H0RK B 2 offset(0,50)A_WeaponReady(7)
+Goto ReadyBall
+
+Altfire:
+H0RK K 0 A_GiveInventory("RockKickFlag",1)
+H0RK K 1 offset(12,38)A_GiveInventory("Rock_C_Pickup_X",1)
+H0RK L 3 offset(8,36)A_GiveInventory("BallsOfSteelAmmo",42)
+H0RK M 8 offset(8,22)A_GiveInventory("RockBallKick_P",1)
+H0RK N 5 offset(8,8)A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK K 4 offset(12,38)
+H0RK K 0 offset(12,38)A_TakeInventory("RockKickFlag",1)
+Goto ReadyBall
+
+NoAmmo:
+H0RK J 1
+Goto ReadyBall
+
+BotFire:
+H0RK J 1 A_GiveInventory("Rock_Bot_Pickup_X",1)
+Goto ReadyBall
+}
+}
+
+actor MegaGutsBallBoss : MegaBallBoss
+{
+tag "$TAGC_0D2"
+//Weapon.SlotNumber 5
+Inventory.Pickupmessage "Guts Multiball!"
+inventory.icon "SARMSI"
+States
+{
+Ready:
+H0RK C 0 ACS_ExecuteAlways(998,0,DYE_ROCK_GUTS)
+H0RK C 0 A_GunFlash
+goto ReadyBall
+ReadyBall:
+H0RK C 0 A_JumpIfInventory("BallsOfSteelAmmo",111,"ReadyBall2")
+H0RK C 2 A_WeaponReady(4)
+H0RK C 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+ReadyBall2:
+H0RK C 2 A_WeaponReady
+H0RK C 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+
+
+Fire:
+H0RK C 0 A_JumpIfInventory("IsBot",1,"BotFire")
+H0RK C 0 A_JumpIfInventory("RockmanSoccerAmmo",7,"Fire1")
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 A_WeaponReady(7)
+H0RK C 0 A_Refire("Fire")
+goto OldFire
+Fire1:
+H0RK C 0 A_JumpIfInventory("RockmanSoccerAmmo",14,"Fire2")
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,34)A_WeaponReady(7)
+H0RK C 0 A_Refire("Fire1")
+goto OldFire
+Fire2:
+H0RK C 0 A_JumpIfInventory("RockmanSoccerAmmo",28,"Fire3")
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,36)A_WeaponReady(7)
+H0RK C 0 A_Refire("Fire2")
+goto OldFire
+Fire3:
+H0RK C 0 A_JumpIfInventory("RockmanSoccerAmmo",42,"Fire4")
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,40)A_WeaponReady(7)
+H0RK C 0 A_Refire("Fire3")
+goto OldFire
+Fire4:
+H0RK C 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Fire5")
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,44)A_WeaponReady(7)
+H0RK C 0 A_Refire("Fire4")
+goto OldFire
+Fire5:
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,45)A_WeaponReady(7)
+H0RK C 0 A_Refire(1)
+goto OldFire
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,46)A_WeaponReady(7)
+H0RK C 0 A_Refire(1)
+goto OldFire
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,47)A_WeaponReady(7)
+H0RK C 0 A_Refire(1)
+goto OldFire
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,48)A_WeaponReady(7)
+H0RK C 0 A_Refire(1)
+goto OldFire
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,48)A_WeaponReady(7)
+H0RK C 0 A_Refire(1)
+goto OldFire
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,47)A_WeaponReady(7)
+H0RK C 0 A_Refire(1)
+goto OldFire
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,46)A_WeaponReady(7)
+H0RK C 0 A_Refire(1)
+goto OldFire
+H0RK C 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK C 1 offset(0,45)A_WeaponReady(7)
+H0RK C 0 A_Refire("Fire5")
+goto OldFire
+
+OldFire:
+H0RK J 0 A_GiveInventory("RockBallDropG_P",1)
+goto FireAni
+FireAni:
+H0RK J 1 offset(0,33)A_JumpIfInventory("PowerRage_ST",1,1)
+H0RK J 1 offset(0,33)A_WeaponReady(7)
+H0RK J 2 offset(0,51)A_WeaponReady(7)
+H0RK J 2 offset(0,69)A_WeaponReady(7)
+H0RK J 2 offset(0,87)A_WeaponReady(7)
+H0RK C 0 A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK C 2 offset(0,86)A_WeaponReady(7)
+H0RK C 2 offset(0,68)A_WeaponReady(7)
+H0RK C 2 offset(0,50)A_WeaponReady(7)
+Goto ReadyBall
+
+Altfire:
+H0RK K 0 A_GiveInventory("RockKickFlag",1)
+H0RK K 1 offset(12,38)A_GiveInventory("Rock_G_Pickup_X",1)
+H0RK L 3 offset(8,36)A_GiveInventory("BallsOfSteelAmmo",42)
+H0RK M 8 offset(8,22)A_GiveInventory("RockBallKick_P",1)
+H0RK N 5 offset(8,8)A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK K 4 offset(12,38)
+H0RK K 0 offset(12,38)A_TakeInventory("RockKickFlag",1)
+Goto ReadyBall
+
+NoAmmo:
+H0RK J 1
+Goto ReadyBall
+
+BotFire:
+H0RK J 1 A_GiveInventory("Rock_Bot_Pickup_X",1)
+Goto ReadyBall
+}
+}
+
+actor MegaIceBallBoss : MegaBallBoss
+{
+tag "$TAGC_0D3"
+//Weapon.SlotNumber 3
+Inventory.Pickupmessage "Ice Multiball!"
+inventory.icon "ICESI"
+States
+{
+Ready:
+H0RK D 0 ACS_ExecuteAlways(998,0,DYE_ROCK_ICE)
+H0RK D 0 A_GunFlash
+goto ReadyBall
+ReadyBall:
+H0RK D 0 A_JumpIfInventory("BallsOfSteelAmmo",111,"ReadyBall2")
+H0RK D 2 A_WeaponReady(4)
+H0RK D 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+ReadyBall2:
+H0RK D 2 A_WeaponReady
+H0RK D 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+
+
+Fire:
+H0RK D 0 A_JumpIfInventory("IsBot",1,"BotFire")
+H0RK D 0 A_JumpIfInventory("RockmanSoccerAmmo",7,"Fire1")
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 A_WeaponReady(7)
+H0RK D 0 A_Refire("Fire")
+goto OldFire
+Fire1:
+H0RK D 0 A_JumpIfInventory("RockmanSoccerAmmo",14,"Fire2")
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,34)A_WeaponReady(7)
+H0RK D 0 A_Refire("Fire1")
+goto OldFire
+Fire2:
+H0RK D 0 A_JumpIfInventory("RockmanSoccerAmmo",28,"Fire3")
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,36)A_WeaponReady(7)
+H0RK D 0 A_Refire("Fire2")
+goto OldFire
+Fire3:
+H0RK D 0 A_JumpIfInventory("RockmanSoccerAmmo",42,"Fire4")
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,40)A_WeaponReady(7)
+H0RK D 0 A_Refire("Fire3")
+goto OldFire
+Fire4:
+H0RK D 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Fire5")
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,44)A_WeaponReady(7)
+H0RK D 0 A_Refire("Fire4")
+goto OldFire
+Fire5:
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,45)A_WeaponReady(7)
+H0RK D 0 A_Refire(1)
+goto OldFire
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,46)A_WeaponReady(7)
+H0RK D 0 A_Refire(1)
+goto OldFire
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,47)A_WeaponReady(7)
+H0RK D 0 A_Refire(1)
+goto OldFire
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,48)A_WeaponReady(7)
+H0RK D 0 A_Refire(1)
+goto OldFire
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,48)A_WeaponReady(7)
+H0RK D 0 A_Refire(1)
+goto OldFire
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,47)A_WeaponReady(7)
+H0RK D 0 A_Refire(1)
+goto OldFire
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,46)A_WeaponReady(7)
+H0RK D 0 A_Refire(1)
+goto OldFire
+H0RK D 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK D 1 offset(0,45)A_WeaponReady(7)
+H0RK D 0 A_Refire("Fire5")
+goto OldFire
+
+OldFire:
+H0RK J 0 A_GiveInventory("RockBallDropI_P",1)
+goto FireAni
+FireAni:
+H0RK J 1 offset(0,33)A_JumpIfInventory("PowerRage_ST",1,1)
+H0RK J 1 offset(0,33)A_WeaponReady(7)
+H0RK J 2 offset(0,51)A_WeaponReady(7)
+H0RK J 2 offset(0,69)A_WeaponReady(7)
+H0RK J 2 offset(0,87)A_WeaponReady(7)
+H0RK D 0 A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK D 2 offset(0,86)A_WeaponReady(7)
+H0RK D 2 offset(0,68)A_WeaponReady(7)
+H0RK D 2 offset(0,50)A_WeaponReady(7)
+Goto ReadyBall
+
+Altfire:
+H0RK K 0 A_GiveInventory("RockKickFlag",1)
+H0RK K 1 offset(12,38)A_GiveInventory("Rock_I_Pickup_X",1)
+H0RK L 3 offset(8,36)A_GiveInventory("BallsOfSteelAmmo",42)
+H0RK M 8 offset(8,22)A_GiveInventory("RockBallKick_P",1)
+H0RK N 5 offset(8,8)A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK K 4 offset(12,38)
+H0RK K 0 offset(12,38)A_TakeInventory("RockKickFlag",1)
+Goto ReadyBall
+
+NoAmmo:
+H0RK J 1
+Goto ReadyBall
+
+BotFire:
+H0RK J 1 A_GiveInventory("Rock_Bot_Pickup_X",1)
+Goto ReadyBall
+}
+}
+
+actor MegaBombBallBoss : MegaBallBoss
+{
+tag "$TAGC_0D4"
+//Weapon.SlotNumber 5
+Inventory.Pickupmessage "Bomb Multiball!"
+inventory.icon "BOMBSI"
+States
+{
+Ready:
+H0RK E 0 ACS_ExecuteAlways(998,0,DYE_ROCK_BOMB)
+H0RK E 0 A_GunFlash
+goto ReadyBall
+ReadyBall:
+H0RK E 0 A_JumpIfInventory("BallsOfSteelAmmo",111,"ReadyBall2")
+H0RK E 2 A_WeaponReady(4)
+H0RK E 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+ReadyBall2:
+H0RK E 2 A_WeaponReady
+H0RK E 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+
+Fire:
+H0RK E 0 A_JumpIfInventory("IsBot",1,"BotFire")
+H0RK E 0 A_JumpIfInventory("RockmanSoccerAmmo",7,"Fire1")
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 A_WeaponReady(7)
+H0RK E 0 A_Refire("Fire")
+goto OldFire
+Fire1:
+H0RK E 0 A_JumpIfInventory("RockmanSoccerAmmo",14,"Fire2")
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,34)A_WeaponReady(7)
+H0RK E 0 A_Refire("Fire2")
+goto OldFire
+Fire2:
+H0RK E 0 A_JumpIfInventory("RockmanSoccerAmmo",28,"Fire3")
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,36)A_WeaponReady(7)
+H0RK E 0 A_Refire("Fire2")
+goto OldFire
+Fire3:
+H0RK E 0 A_JumpIfInventory("RockmanSoccerAmmo",42,"Fire4")
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,40)A_WeaponReady(7)
+H0RK E 0 A_Refire("Fire3")
+goto OldFire
+Fire4:
+H0RK E 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Fire5")
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,44)A_WeaponReady(7)
+H0RK E 0 A_Refire("Fire4")
+goto OldFire
+Fire5:
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,45)A_WeaponReady(7)
+H0RK E 0 A_Refire(1)
+goto OldFire
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,46)A_WeaponReady(7)
+H0RK E 0 A_Refire(1)
+goto OldFire
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,47)A_WeaponReady(7)
+H0RK E 0 A_Refire(1)
+goto OldFire
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,48)A_WeaponReady(7)
+H0RK E 0 A_Refire(1)
+goto OldFire
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,48)A_WeaponReady(7)
+H0RK E 0 A_Refire(1)
+goto OldFire
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,47)A_WeaponReady(7)
+H0RK E 0 A_Refire(1)
+goto OldFire
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,46)A_WeaponReady(7)
+H0RK E 0 A_Refire(1)
+goto OldFire
+H0RK E 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK E 1 offset(0,45)A_WeaponReady(7)
+H0RK E 0 A_Refire("Fire5")
+goto OldFire
+
+OldFire:
+H0RK J 0 A_GiveInventory("RockBallDropB_P",1)
+goto FireAni
+FireAni:
+H0RK J 1 offset(0,33)A_JumpIfInventory("PowerRage_ST",1,1)
+H0RK J 1 offset(0,33)A_WeaponReady(7)
+H0RK J 2 offset(0,51)A_WeaponReady(7)
+H0RK J 2 offset(0,69)A_WeaponReady(7)
+H0RK J 2 offset(0,87)A_WeaponReady(7)
+H0RK E 0 A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK E 2 offset(0,86)A_WeaponReady(7)
+H0RK E 2 offset(0,68)A_WeaponReady(7)
+H0RK E 2 offset(0,50)A_WeaponReady(7)
+Goto ReadyBall
+
+Altfire:
+H0RK K 0 A_GiveInventory("RockKickFlag",1)
+H0RK K 1 offset(12,38)A_GiveInventory("Rock_B_Pickup_X",1)
+H0RK L 3 offset(8,36)A_GiveInventory("BallsOfSteelAmmo",42)
+H0RK M 8 offset(8,22)A_GiveInventory("RockBallKick_P",1)
+H0RK N 5 offset(8,8)A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK K 4 offset(12,38)
+H0RK K 0 offset(12,38)A_TakeInventory("RockKickFlag",1)
+Goto ReadyBall
+
+NoAmmo:
+H0RK J 1
+Goto ReadyBall
+
+BotFire:
+H0RK J 1 A_GiveInventory("Rock_Bot_Pickup_X",1)
+Goto ReadyBall
+}
+}
+
+actor MegaFireBallBoss : MegaBallBoss
+{
+tag "$TAGC_0D5"
+//Weapon.SlotNumber 2
+Inventory.Pickupmessage "Fire Multiball!"
+inventory.icon "FIRESI"
+States
+{
+Ready:
+H0RK F 0 ACS_ExecuteAlways(998,0,DYE_ROCK_FIRE)
+H0RK F 0 A_GunFlash
+goto ReadyBall
+ReadyBall:
+H0RK F 0 A_JumpIfInventory("BallsOfSteelAmmo",111,"ReadyBall2")
+H0RK F 2 A_WeaponReady(4)
+H0RK F 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+ReadyBall2:
+H0RK F 2 A_WeaponReady
+H0RK F 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+
+Fire:
+H0RK F 0 A_JumpIfInventory("IsBot",1,"BotFire")
+H0RK F 0 A_JumpIfInventory("RockmanSoccerAmmo",7,"Fire1")
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 A_WeaponReady(7)
+H0RK F 0 A_Refire("Fire")
+goto OldFire
+Fire1:
+H0RK F 0 A_JumpIfInventory("RockmanSoccerAmmo",14,"Fire2")
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,34)A_WeaponReady(7)
+H0RK F 0 A_Refire("Fire2")
+goto OldFire
+Fire2:
+H0RK F 0 A_JumpIfInventory("RockmanSoccerAmmo",28,"Fire3")
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,36)A_WeaponReady(7)
+H0RK F 0 A_Refire("Fire2")
+goto OldFire
+Fire3:
+H0RK F 0 A_JumpIfInventory("RockmanSoccerAmmo",42,"Fire4")
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,40)A_WeaponReady(7)
+H0RK F 0 A_Refire("Fire3")
+goto OldFire
+Fire4:
+H0RK F 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Fire5")
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,44)A_WeaponReady(7)
+H0RK F 0 A_Refire("Fire4")
+goto OldFire
+Fire5:
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,45)A_WeaponReady(7)
+H0RK F 0 A_Refire(1)
+goto OldFire
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,46)A_WeaponReady(7)
+H0RK F 0 A_Refire(1)
+goto OldFire
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,47)A_WeaponReady(7)
+H0RK F 0 A_Refire(1)
+goto OldFire
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,48)A_WeaponReady(7)
+H0RK F 0 A_Refire(1)
+goto OldFire
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,48)A_WeaponReady(7)
+H0RK F 0 A_Refire(1)
+goto OldFire
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,47)A_WeaponReady(7)
+H0RK F 0 A_Refire(1)
+goto OldFire
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,46)A_WeaponReady(7)
+H0RK F 0 A_Refire(1)
+goto OldFire
+H0RK F 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK F 1 offset(0,45)A_WeaponReady(7)
+H0RK F 0 A_Refire("Fire5")
+goto OldFire
+
+OldFire:
+H0RK J 0 A_GiveInventory("RockBallDropF_P",1)
+goto FireAni
+FireAni:
+H0RK J 1 offset(0,33)A_JumpIfInventory("PowerRage_ST",1,1)
+H0RK J 1 offset(0,33)A_WeaponReady(7)
+H0RK J 2 offset(0,51)A_WeaponReady(7)
+H0RK J 2 offset(0,69)A_WeaponReady(7)
+H0RK J 2 offset(0,87)A_WeaponReady(7)
+H0RK F 0 A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK F 2 offset(0,86)A_WeaponReady(7)
+H0RK F 2 offset(0,68)A_WeaponReady(7)
+H0RK F 2 offset(0,50)A_WeaponReady(7)
+Goto ReadyBall
+
+Altfire:
+H0RK K 0 A_GiveInventory("RockKickFlag",1)
+H0RK K 1 offset(12,38)A_GiveInventory("Rock_F_Pickup_X",1)
+H0RK L 3 offset(8,36)A_GiveInventory("BallsOfSteelAmmo",42)
+H0RK M 8 offset(8,22)A_GiveInventory("RockBallKick_P",1)
+H0RK N 5 offset(8,8)A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK K 4 offset(12,38)
+H0RK K 0 offset(12,38)A_TakeInventory("RockKickFlag",1)
+Goto ReadyBall
+
+NoAmmo:
+H0RK J 1
+Goto ReadyBall
+
+BotFire:
+H0RK J 1 A_GiveInventory("Rock_Bot_Pickup_X",1)
+Goto ReadyBall
+}
+}
+
+actor MegaElecBallBoss : MegaBallBoss
+{
+tag "$TAGC_0D6"
+//Weapon.SlotNumber 2
+Inventory.Pickupmessage "Elec Multiball!"
+inventory.icon "THUNSI"
+States
+{
+Ready:
+H0RK G 0 ACS_ExecuteAlways(998,0,DYE_ROCK_ELEC)
+H0RK G 0 A_GunFlash
+goto ReadyBall
+ReadyBall:
+H0RK G 0 A_JumpIfInventory("BallsOfSteelAmmo",111,"ReadyBall2")
+H0RK G 2 A_WeaponReady(4)
+H0RK G 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+ReadyBall2:
+H0RK G 2 A_WeaponReady
+H0RK G 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+
+Fire:
+H0RK G 0 A_JumpIfInventory("IsBot",1,"BotFire")
+H0RK G 0 A_JumpIfInventory("RockmanSoccerAmmo",7,"Fire1")
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 A_WeaponReady(7)
+H0RK G 0 A_Refire("Fire")
+goto OldFire
+Fire1:
+H0RK G 0 A_JumpIfInventory("RockmanSoccerAmmo",14,"Fire2")
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,34)A_WeaponReady(7)
+H0RK G 0 A_Refire("Fire1")
+goto OldFire
+Fire2:
+H0RK G 0 A_JumpIfInventory("RockmanSoccerAmmo",28,"Fire3")
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,36)A_WeaponReady(7)
+H0RK G 0 A_Refire("Fire2")
+goto OldFire
+Fire3:
+H0RK G 0 A_JumpIfInventory("RockmanSoccerAmmo",42,"Fire4")
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,40)A_WeaponReady(7)
+H0RK G 0 A_Refire("Fire3")
+goto OldFire
+Fire4:
+H0RK G 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Fire5")
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,44)A_WeaponReady(7)
+H0RK G 0 A_Refire("Fire4")
+goto OldFire
+Fire5:
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,45)A_WeaponReady(7)
+H0RK G 0 A_Refire(1)
+goto OldFire
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,46)A_WeaponReady(7)
+H0RK G 0 A_Refire(1)
+goto OldFire
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,47)A_WeaponReady(7)
+H0RK G 0 A_Refire(1)
+goto OldFire
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,48)A_WeaponReady(7)
+H0RK G 0 A_Refire(1)
+goto OldFire
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,48)A_WeaponReady(7)
+H0RK G 0 A_Refire(1)
+goto OldFire
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,47)A_WeaponReady(7)
+H0RK G 0 A_Refire(1)
+goto OldFire
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,46)A_WeaponReady(7)
+H0RK G 0 A_Refire(1)
+goto OldFire
+H0RK G 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK G 1 offset(0,45)A_WeaponReady(7)
+H0RK G 0 A_Refire("Fire5")
+goto OldFire
+
+OldFire:
+H0RK J 0 A_GiveInventory("RockBallDropE_P",1)
+goto FireAni
+FireAni:
+H0RK J 1 offset(0,33)A_JumpIfInventory("PowerRage_ST",1,1)
+H0RK J 1 offset(0,33)A_WeaponReady(7)
+H0RK J 2 offset(0,51)A_WeaponReady(7)
+H0RK J 2 offset(0,69)A_WeaponReady(7)
+H0RK J 2 offset(0,87)A_WeaponReady(7)
+H0RK G 0 A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK G 2 offset(0,86)A_WeaponReady(7)
+H0RK G 2 offset(0,68)A_WeaponReady(7)
+H0RK G 2 offset(0,50)A_WeaponReady(7)
+Goto ReadyBall
+
+Altfire:
+H0RK K 0 A_GiveInventory("RockKickFlag",1)
+H0RK K 1 offset(12,38)A_GiveInventory("Rock_E_Pickup_X",1)
+H0RK L 3 offset(8,36)A_GiveInventory("BallsOfSteelAmmo",42)
+H0RK M 8 offset(8,22)A_GiveInventory("RockBallKick_P",1)
+H0RK N 5 offset(8,8)A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK K 4 offset(12,38)
+H0RK K 0 offset(12,38)A_TakeInventory("RockKickFlag",1)
+Goto ReadyBall
+
+NoAmmo:
+H0RK J 1
+Goto ReadyBall
+
+BotFire:
+H0RK J 1 A_GiveInventory("Rock_Bot_Pickup_X",1)
+Goto ReadyBall
+}
+}
+
+actor MegaTimeBallBoss : MegaBallBoss
+{
+tag "$TAGC_0D7"
+//Weapon.SlotNumber 6
+Inventory.Pickupmessage "Time Multiball!"
+inventory.icon "TIMMI2"
+States
+{
+Ready:
+H0RK H 0 ACS_ExecuteAlways(998,0,DYE_ROCK_TIME)
+H0RK H 0 A_GunFlash
+goto ReadyBall
+ReadyBall:
+H0RK H 0 A_JumpIfInventory("BallsOfSteelAmmo",111,"ReadyBall2")
+H0RK H 2 A_WeaponReady(4)
+H0RK H 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+ReadyBall2:
+H0RK H 2 A_WeaponReady
+H0RK H 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+
+
+Fire:
+H0RK H 0 A_JumpIfInventory("IsBot",1,"BotFire")
+H0RK H 0 A_JumpIfInventory("RockmanSoccerAmmo",7,"Fire1")
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 A_WeaponReady(7)
+H0RK H 0 A_Refire("Fire")
+goto OldFire
+Fire1:
+H0RK H 0 A_JumpIfInventory("RockmanSoccerAmmo",14,"Fire2")
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,34)A_WeaponReady(7)
+H0RK H 0 A_Refire("Fire1")
+goto OldFire
+Fire2:
+H0RK H 0 A_JumpIfInventory("RockmanSoccerAmmo",28,"Fire3")
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,36)A_WeaponReady(7)
+H0RK H 0 A_Refire("Fire2")
+goto OldFire
+Fire3:
+H0RK H 0 A_JumpIfInventory("RockmanSoccerAmmo",42,"Fire4")
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,40)A_WeaponReady(7)
+H0RK H 0 A_Refire("Fire3")
+goto OldFire
+Fire4:
+H0RK H 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Fire5")
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,44)A_WeaponReady(7)
+H0RK H 0 A_Refire("Fire4")
+goto OldFire
+Fire5:
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,45)A_WeaponReady(7)
+H0RK H 0 A_Refire(1)
+goto OldFire
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,46)A_WeaponReady(7)
+H0RK H 0 A_Refire(1)
+goto OldFire
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,47)A_WeaponReady(7)
+H0RK H 0 A_Refire(1)
+goto OldFire
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,48)A_WeaponReady(7)
+H0RK H 0 A_Refire(1)
+goto OldFire
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,48)A_WeaponReady(7)
+H0RK H 0 A_Refire(1)
+goto OldFire
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,47)A_WeaponReady(7)
+H0RK H 0 A_Refire(1)
+goto OldFire
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,46)A_WeaponReady(7)
+H0RK H 0 A_Refire(1)
+goto OldFire
+H0RK H 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK H 1 offset(0,45)A_WeaponReady(7)
+H0RK H 0 A_Refire("Fire5")
+goto OldFire
+
+OldFire:
+H0RK J 0 A_GiveInventory("RockBallDropT_P",1)
+goto FireAni
+FireAni:
+H0RK J 1 offset(0,33)A_JumpIfInventory("PowerRage_ST",1,1)
+H0RK J 1 offset(0,33)A_WeaponReady(7)
+H0RK J 2 offset(0,51)A_WeaponReady(7)
+H0RK J 2 offset(0,69)A_WeaponReady(7)
+H0RK J 2 offset(0,87)A_WeaponReady(7)
+H0RK H 0 A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK H 2 offset(0,86)A_WeaponReady(7)
+H0RK H 2 offset(0,68)A_WeaponReady(7)
+H0RK H 2 offset(0,50)A_WeaponReady(7)
+Goto ReadyBall
+
+Altfire:
+H0RK K 0 A_GiveInventory("RockKickFlag",1)
+H0RK K 1 offset(12,38)A_GiveInventory("Rock_T_Pickup_X",1)
+H0RK L 3 offset(8,36)A_GiveInventory("BallsOfSteelAmmo",42)
+H0RK M 8 offset(8,22)A_GiveInventory("RockBallKick_P",1)
+H0RK N 5 offset(8,8)A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK K 4 offset(12,38)
+H0RK K 0 offset(12,38)A_TakeInventory("RockKickFlag",1)
+Goto ReadyBall
+
+NoAmmo:
+H0RK J 1
+Goto ReadyBall
+
+BotFire:
+H0RK J 1 A_GiveInventory("Rock_Bot_Pickup_X",1)
+Goto ReadyBall
+}
+}
+
+actor MegaOilBallBoss : MegaBallBoss
+{
+tag "$TAGC_0D8"
+//Weapon.SlotNumber 4
+Inventory.Pickupmessage "Oil Multiball!"
+inventory.icon "OILLI"
+States
+{
+Ready:
+H0RK I 0 ACS_ExecuteAlways(998,0,DYE_ROCK_OIL)
+H0RK I 0 A_GunFlash
+goto ReadyBall
+ReadyBall:
+H0RK I 0 A_JumpIfInventory("BallsOfSteelAmmo",111,"ReadyBall2")
+H0RK I 2 A_WeaponReady(4)
+H0RK I 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+ReadyBall2:
+H0RK I 2 A_WeaponReady
+H0RK I 0 A_GiveInventory("BallsOfSteelAmmo",10)
+loop
+
+
+Fire:
+H0RK I 0 A_JumpIfInventory("IsBot",1,"BotFire")
+H0RK I 0 A_JumpIfInventory("RockmanSoccerAmmo",7,"Fire1")
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 A_WeaponReady(7)
+H0RK I 0 A_Refire("Fire")
+goto OldFire
+Fire1:
+H0RK I 0 A_JumpIfInventory("RockmanSoccerAmmo",14,"Fire2")
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,34)A_WeaponReady(7)
+H0RK I 0 A_Refire("Fire1")
+goto OldFire
+Fire2:
+H0RK I 0 A_JumpIfInventory("RockmanSoccerAmmo",28,"Fire3")
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,36)A_WeaponReady(7)
+H0RK I 0 A_Refire("Fire2")
+goto OldFire
+Fire3:
+H0RK I 0 A_JumpIfInventory("RockmanSoccerAmmo",42,"Fire4")
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,40)A_WeaponReady(7)
+H0RK I 0 A_Refire("Fire3")
+goto OldFire
+Fire4:
+H0RK I 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Fire5")
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,44)A_WeaponReady(7)
+H0RK I 0 A_Refire("Fire4")
+goto OldFire
+Fire5:
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,45)A_WeaponReady(7)
+H0RK I 0 A_Refire(1)
+goto OldFire
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,46)A_WeaponReady(7)
+H0RK I 0 A_Refire(1)
+goto OldFire
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,47)A_WeaponReady(7)
+H0RK I 0 A_Refire(1)
+goto OldFire
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,48)A_WeaponReady(7)
+H0RK I 0 A_Refire(1)
+goto OldFire
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,48)A_WeaponReady(7)
+H0RK I 0 A_Refire(1)
+goto OldFire
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,47)A_WeaponReady(7)
+H0RK I 0 A_Refire(1)
+goto OldFire
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,46)A_WeaponReady(7)
+H0RK I 0 A_Refire(1)
+goto OldFire
+H0RK I 0 A_GiveInventory("RockKickCharge_RC",1)
+H0RK I 1 offset(0,45)A_WeaponReady(7)
+H0RK I 0 A_Refire("Fire5")
+goto OldFire
+
+OldFire:
+H0RK J 0 A_GiveInventory("RockBallDropO_P",1)
+goto FireAni
+FireAni:
+H0RK J 1 offset(0,33)A_JumpIfInventory("PowerRage_ST",1,1)
+H0RK J 1 offset(0,33)A_WeaponReady(7)
+H0RK J 2 offset(0,51)A_WeaponReady(7)
+H0RK J 2 offset(0,69)A_WeaponReady(7)
+H0RK J 2 offset(0,87)A_WeaponReady(7)
+H0RK I 0 A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK I 2 offset(0,86)A_WeaponReady(7)
+H0RK I 2 offset(0,68)A_WeaponReady(7)
+H0RK I 2 offset(0,50)A_WeaponReady(7)
+Goto ReadyBall
+
+Altfire:
+H0RK K 0 A_GiveInventory("RockKickFlag",1)
+H0RK K 1 offset(12,38)A_GiveInventory("Rock_O_Pickup_X",1)
+H0RK L 3 offset(8,36)A_GiveInventory("BallsOfSteelAmmo",42)
+H0RK M 8 offset(8,22)A_GiveInventory("RockBallKick_P",1)
+H0RK N 5 offset(8,8)A_TakeInventory("RockmanSoccerAmmo",200)
+H0RK K 4 offset(12,38)
+H0RK K 0 offset(12,38)A_TakeInventory("RockKickFlag",1)
+Goto ReadyBall
+
+NoAmmo:
+H0RK J 1
+Goto ReadyBall
+
+BotFire:
+H0RK J 1 A_GiveInventory("Rock_Bot_Pickup_X",1)
+Goto ReadyBall
+}
+}
+
+actor BallsOfSteelAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 777
++INVENTORY.IGNORESKILL
+}
+
+actor RockmanSoccerAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor RockBallJumpStamina : Inventory
+{
+inventory.amount 1
+inventory.maxamount 500
+}
+actor RockStaminaInAir_F :OnceC{}
+
+actor RockKickCharge_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("BallsOfSteelAmmo",2)
+TNT1 A 0 A_GiveInventory("RockmanSoccerAmmo",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("BallsOfSteelAmmo",4)
+TNT1 A 0 A_GiveInventory("RockmanSoccerAmmo",2)
+stop
+}
+}
+
+actor RockBallJumpStamina_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("RockBallJumpStamina",1,1)
+stop
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_TakeInventory("RockBallJumpStamina",2)
+stop
+PickupR:
+TNT1 A 0 A_TakeInventory("RockBallJumpStamina",4)
+stop
+}
+}
+
+actor RockKickFlag :OnceC{}
+
+actor RockKickDelay : PowerUp
+{
+powerup.duration 8
+}
+actor RockJumpDelay : RockKickDelay{}
+
+actor RockMultiDelay : PowerUp
+{
+powerup.duration 2
+}
+actor RockKickBoostChance : PowerUp
+{
+powerup.duration 14
+}
+
+
+actor RockBallKick_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("RockmanSoccerAmmo",1,"No")
+TNT1 A 0 A_GiveInventory("RockBallAlt_CI",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor RockBallJump_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("RockBallJumpStamina",500,"P_JumpNo")
+TNT1 A 0 A_GiveInventory("RockBallJumpStamina",50)
+TNT1 A 0 ThrustThingZ(0,44,0,0)
+goto P_Take
+P_JumpNo:
+TNT1 A 0 ThrustThingZ(0,0,0,0)
+goto P_Take
+P_Take:
+TNT1 A 0 A_GiveInventory("RockStaminaInAir_F",1)
+TNT1 A 0 A_TakeInventory("RockmanSoccerAmmo",200)
+stop
+}
+}
+actor RockBallJump_P2 : RockBallJump_P
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("RockBallJumpStamina",500,"P_JumpNo")
+TNT1 A 0 A_GiveInventory("RockBallJumpStamina",25)
+TNT1 A 0 ThrustThingZ(0,60,0,0)
+goto P_Take
+}
+}
+
+actor RockBallWeapons : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("MegaBallBoss",1)
+TNT1 A 0 A_GiveInventory("MegaCutBallBoss",1)
+TNT1 A 0 A_GiveInventory("MegaGutsBallBoss",1)
+TNT1 A 0 A_GiveInventory("MegaIceBallBoss",1)
+TNT1 A 0 A_GiveInventory("MegaBombBallBoss",1)
+TNT1 A 0 A_GiveInventory("MegaFireBallBoss",1)
+TNT1 A 0 A_GiveInventory("MegaElecBallBoss",1)
+TNT1 A 0 A_GiveInventory("MegaTimeBallBoss",1)
+TNT1 A 0 A_GiveInventory("MegaOilBallBoss",1)
+stop
+}
+}
+
+actor LMSRockBallPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(975)==2,"Yes")
+stop
+Yes:
+TNT1 A 0 A_Jump(256,"Yes1","Yes2","Yes3","Yes4","Yes5","Yes6","Yes7","Yes8")
+goto Yes0
+Yes0:
+TNT1 A 0 A_GiveInventory("MegaBallBoss",1)
+stop
+
+Yes1:
+TNT1 A 0 A_GiveInventory("MegaCutBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB2","YesB3","YesB4","YesB5","YesB6","YesB7","YesB8")
+stop
+Yes2:
+TNT1 A 0 A_GiveInventory("MegaGutsBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB3","YesB4","YesB5","YesB6","YesB7","YesB8")
+stop
+Yes3:
+TNT1 A 0 A_GiveInventory("MegaIceBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB4","YesB5","YesB6","YesB7","YesB8")
+stop
+Yes4:
+TNT1 A 0 A_GiveInventory("MegaBombBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB5","YesB6","YesB7","YesB8")
+stop
+Yes5:
+TNT1 A 0 A_GiveInventory("MegaFireBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB4","YesB6","YesB7","YesB8")
+stop
+Yes6:
+TNT1 A 0 A_GiveInventory("MegaElecBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB4","YesB5","YesB7","YesB8")
+stop
+Yes7:
+TNT1 A 0 A_GiveInventory("MegaTimeBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB4","YesB5","YesB6","YesB8")
+stop
+Yes8:
+TNT1 A 0 A_GiveInventory("MegaOilBallBoss",1)
+TNT1 A 0 A_Jump(256,"YesB1","YesB2","YesB3","YesB4","YesB5","YesB6","YesB7")
+stop
+
+YesB1:
+TNT1 A 0 A_GiveInventory("MegaCutBallBoss",1)
+stop
+YesB2:
+TNT1 A 0 A_GiveInventory("MegaGutsBallBoss",1)
+stop
+YesB3:
+TNT1 A 0 A_GiveInventory("MegaIceBallBoss",1)
+stop
+YesB4:
+TNT1 A 0 A_GiveInventory("MegaBombBallBoss",1)
+stop
+YesB5:
+TNT1 A 0 A_GiveInventory("MegaFireBallBoss",1)
+stop
+YesB6:
+TNT1 A 0 A_GiveInventory("MegaElecBallBoss",1)
+stop
+YesB7:
+TNT1 A 0 A_GiveInventory("MegaTimeBallBoss",1)
+stop
+YesB8:
+TNT1 A 0 A_GiveInventory("MegaOilBallBoss",1)
+stop
+}
+}
+
+
+///////////////////////////////////////////////////////////////////
+//  ___   _   _    _    ___    ___  ___   ___ _____ ___ ___ _    //
+// | _ ) /_\ | |  | |  / __|  / _ \| __| / __|_   _| __| __| |   //
+// | _ \/ _ \| |__| |__\__ \ | (_) | _|  \__ \ | | | _|| _|| |__ //
+// |___/_/ \_\____|____|___/  \___/|_|   |___/ |_| |___|___|____|//
+//                                                               //
+///////////////////////////////////////////////////////////////////
+
+//Projectiles
+
+actor RockKickC
+{
+Translation "192:192=247:247","198:198=225:225"//225 208
+PROJECTILE
+damagetype "Rock_Kick"
+Obituary "$OB_ROCKKICK"
+RenderStyle "translucent"
+Alpha 0.70
+ReactionTime 1
+damage (0)
+Radius 12
+Height 20
+speed 40
+scale 2.0
+States
+{
+Spawn:
+X_5F D 0
+X_5F D 0 A_SpawnItemEx("WaterGush_Torrent")
+X_5F DEF 2
+TNT1 A 1 A_CountDown
+wait
+Death:
+TNT1 A 0 A_SpawnItemEx("WaterGush_Torrent")
+TNT1 A 2 A_Explode(180,56,0,0,24)
+stop
+}
+}
+
+actor RockKickCB : RockKickC{Translation "192:192=205:205","198:198=74:74"}
+actor RockKickCR : RockKickC{Translation "192:192=171:171","198:198=41:41"}
+actor RockKickCO : RockKickC{Translation "192:192=104:104","198:198=128:128"}
+actor RockKickCP : RockKickC{Translation "192:192=229:229","198:198=232:232"}
+
+actor Rock_MMFX
+{
+-SOLID
++FORCEXYBILLBOARD
++BRIGHT
++NOGRAVITY
++NOINTERACTION
+radius 2
+height 2
+Scale 2.5
+States
+{
+Spawn:
+VMFX A 0
+VMFX ABCD 2
+stop
+}
+}
+
+actor Rock_VMFX_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Rock_VMFX",0,0,0,0,0,0,0,33)
+stop
+}
+}
+
+actor Rock_VMFX : BasicClientSide
+{
++FORCEXYBILLBOARD
++BRIGHT
+States
+{
+Spawn:
+VMFX A 0
+VMFX ABCD 2
+stop
+}
+}
+
+actor Rock_SuperKickFX_H : BasicExplosion
+{
++FORCEXYBILLBOARD
++BRIGHT
+Speed 20
+Scale 2.5
+States
+{
+Spawn:
+H6RK U 0
+H6RK UVWX 2
+stop
+}
+}
+
+actor Rock_B_M_StartFX : BasicClientSide
+{
++FORCEXYBILLBOARD
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+H6RK A 1
+goto Spawn2
+H6RK B 1
+goto Spawn2
+H6RK C 1
+goto Spawn2
+H6RK D 1
+goto Spawn2
+H6RK E 1
+goto Spawn2
+H6RK F 1
+goto Spawn2
+H6RK G 1
+goto Spawn2
+H6RK H 1
+goto Spawn2
+H6RK I 1
+goto Spawn2
+H6RK J 1
+goto Spawn2
+H6RK K 1
+goto Spawn2
+H6RK L 1
+goto Spawn2
+H6RK M 1
+goto Spawn2
+H6RK N 1
+goto Spawn2
+H6RK O 1
+goto Spawn2
+H6RK P 1
+goto Spawn2
+Spawn2:
+H6RK "#" 0 A_SpawnItemEx("Rock_VMFX",0,0,10,0,0,0,0,33)
+stop
+}
+}
+
+actor Rock_B_M_Start
+{
++MISSILE
+damagetype "Rock_MegaBall"
+Obituary "$OB_ROCKBALL"
++DONTREFLECT
++STEPMISSILE
+maxstepheight 48
+damage (120)
+radius 16
+height 12
+speed 0
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+TNT1 A 0 A_SpawnItemEx("Rock_B_M",0,0,0,momx*100,momy*100,-1,0,9)
+stop
+Death:
+TNT1 A 0 A_SpawnItemEx("Rock_B_M_StartFX",0,0,0,0,0,0,0,1)
+TNT1 A 2
+stop
+}
+}
+actor Rock_B_C_Start : Rock_B_M_Start
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Rock_B_C",0,0,0,momx*100,momy*100,-1,0,9)
+stop
+}
+}
+actor Rock_B_G_Start : Rock_B_M_Start
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Rock_B_G",0,0,0,momx*100,momy*100,-1,0,9)
+stop
+}
+}
+actor Rock_B_I_Start : Rock_B_M_Start
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Rock_B_I",0,0,0,momx*100,momy*100,-1,0,9)
+stop
+}
+}
+actor Rock_B_B_Start : Rock_B_M_Start
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Rock_B_B",0,0,0,momx*100,momy*100,-1,0,9)
+stop
+}
+}
+actor Rock_B_F_Start : Rock_B_M_Start
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Rock_B_F",0,0,0,momx*100,momy*100,-1,0,9)
+stop
+}
+}
+actor Rock_B_E_Start : Rock_B_M_Start
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Rock_B_E",0,0,0,momx*100,momy*100,-1,0,9)
+stop
+}
+}
+actor Rock_B_T_Start : Rock_B_M_Start
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Rock_B_T",0,0,0,momx*100,momy*100,-1,0,9)
+stop
+}
+}
+actor Rock_B_O_Start : Rock_B_M_Start
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Rock_B_O",0,0,0,momx*100,momy*100,-1,0,9)
+stop
+}
+}
+
+actor Rock_B_M
+{
+Translation "204:204=203:203","195:195=61:61","249:249=215:215"
+PROJECTILE
+damagetype "Rock_MegaBall"
+Obituary "$OB_ROCKBALL"
+-NOGRAVITY
++NOBLOOD
++DONTSPLASH
++FORCEXYBILLBOARD
++DONTREFLECT
++HITTRACER
++NOEXPLODEFLOOR
++BOUNCEONFLOORS
++BOUNCEONWALLS
++BOUNCEONCEILINGS
++USEBOUNCESTATE
+BounceFactor 0.5
+WallBounceFactor 0.65//0.01
+mass 99999
+ReactionTime 75//150
+damage (120)
+radius 16
+height 12
+speed 0
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H6RK A 0 ThrustThingZ(0,1,0,1)//Sync
+H6RK A 0 ThrustThing(angle*256/360,0)
+Spawn0:
+"----" B 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
+//H6RK HGFEDCB 2 A_JumpIf(z-floorz < 8, "Spawn2")
+SpawnFall:
+H6RK A 1 A_JumpIfCloser(34,"KCA")
+H6RK B 1 A_JumpIfCloser(34,"KCB")
+H6RK C 1 A_JumpIfCloser(34,"KCC")
+H6RK D 1 A_JumpIfCloser(34,"KCD")
+H6RK E 1 A_JumpIfCloser(34,"KCE")
+H6RK F 1 A_JumpIfCloser(34,"KCF")
+H6RK G 1 A_JumpIfCloser(34,"KCG")
+H6RK H 1 A_JumpIfCloser(34,"KCH")
+
+H6RK I 1 A_JumpIfCloser(34,"KCI")
+H6RK J 1 A_JumpIfCloser(34,"KCJ")
+H6RK K 1 A_JumpIfCloser(34,"KCK")
+H6RK L 1 A_JumpIfCloser(34,"KCL")
+H6RK M 1 A_JumpIfCloser(34,"KCM")
+H6RK N 1 A_JumpIfCloser(34,"KCN")
+H6RK O 1 A_JumpIfCloser(34,"KCO")
+H6RK P 1 A_JumpIfCloser(34,"KCP")
+loop
+KCA:
+H6RK A 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK A 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK A 0 A_Jump(256,"KickOrSpring2")
+H6RK A 1
+Goto SpawnFall+1
+KCB:
+H6RK B 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK B 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK B 0 A_Jump(256,"KickOrSpring2")
+H6RK B 1
+Goto SpawnFall+2
+KCC:
+H6RK C 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK C 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK C 0 A_Jump(256,"KickOrSpring2")
+H6RK C 1
+Goto SpawnFall+3
+KCD:
+H6RK D 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK D 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK D 0 A_Jump(256,"KickOrSpring2")
+H6RK D 1
+Goto SpawnFall+4
+KCE:
+H6RK E 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK E 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK E 0 A_Jump(256,"KickOrSpring2")
+H6RK E 1
+Goto SpawnFall+5
+KCF:
+H6RK F 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK F 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK F 0 A_Jump(256,"KickOrSpring2")
+H6RK F 1
+Goto SpawnFall+6
+KCG:
+H6RK G 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK G 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK G 0 A_Jump(256,"KickOrSpring2")
+H6RK G 1
+Goto SpawnFall+7
+KCH:
+H6RK H 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK H 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK H 0 A_Jump(256,"KickOrSpring2")
+H6RK H 1
+Goto SpawnFall+8
+KCI:
+H6RK I 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK I 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK I 0 A_Jump(256,"KickOrSpring2")
+H6RK I 1
+Goto SpawnFall+9
+KCJ:
+H6RK J 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK J 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK J 0 A_Jump(256,"KickOrSpring2")
+H6RK J 1
+Goto SpawnFall+10
+KCK:
+H6RK K 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK K 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK K 0 A_Jump(256,"KickOrSpring2")
+H6RK K 1
+Goto SpawnFall+11
+KCL:
+H6RK L 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK L 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK L 0 A_Jump(256,"KickOrSpring2")
+H6RK L 1
+Goto SpawnFall+12
+KCM:
+H6RK M 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK M 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK M 0 A_Jump(256,"KickOrSpring2")
+H6RK M 1
+Goto SpawnFall+13
+KCN:
+H6RK N 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK N 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK N 0 A_Jump(256,"KickOrSpring2")
+H6RK N 1
+Goto SpawnFall+14
+KCO:
+H6RK O 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK O 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK O 0 A_Jump(256,"KickOrSpring2")
+H6RK O 1
+Goto SpawnFall+15
+KCP:
+H6RK P 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK P 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK P 0 A_Jump(256,"KickOrSpring2")
+H6RK P 1
+Goto SpawnFall
+
+KC_Null://Done so online is at least a different sprite other than A
+"----" B 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+"----" B 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+"----" B 0 A_Jump(256,"KickOrSpring2")
+"----" B 1
+SpawnFallen:
+"----" B 1 A_JumpIfCloser(34,"KC_Null")
+loop
+
+Bounce.Floor:
+"----" B 0 A_JumpIf(sqrt(momx*momx+momy*momy+momz*momz)<=1,"Spawn3Start")
+"----" B 0 A_GiveInventory("RockKickFlag",1)
+goto SpawnFallen//Spawn0
+
+Spawn3Start:
+H6RK "#" 0 A_ChangeFlag("USEBOUNCESTATE",0)
+H6RK "#" 0 A_ChangeFlag("BOUNCEONFLOORS",0)
+H6RK "#" 0 A_ChangeVelocity(0,0,0,2)
+H6RK "#" 0 ThrustThing(angle*256/360,0)//Sync
+H6RK "#" 0 ThrustThingZ(0,0,0,1)
+H6RK "##" 1 A_JumpIfCloser(34,"KickCheck_S")
+H6RK "#" 0 A_ChangeFlag("BOUNCEONFLOORS",1)
+H6RK "#" 0
+goto Spawn2
+Spawn2:
+H6RK "#" 0 A_JumpIfCloser(34,"KickCheck")
+H6RK "#" 1 A_CountDown
+loop
+
+KickCheck_S:
+H6RK "#" 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK "#" 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK "#" 0 A_Jump(256,"KickOrSpring")
+H6RK "#" 1
+Goto Spawn3Start+5
+KickCheck:
+H6RK "#" 0 A_JumpIfInTargetInventory("RockJumpDelay",1,3)
+H6RK "#" 0 A_JumpIfInTargetInventory("RockKickDelay",1,2)
+H6RK "#" 0 A_Jump(256,"KickOrSpring")
+H6RK "#" 0
+Goto Spawn2+1
+KickOrSpring:
+H6RK "#" 0 A_GiveToTarget("Rock_M_Pickup",1)
+goto DeathArg
+KickOrSpring2:
+H6RK "#" 0 A_JumpIfInventory("RockKickFlag",1,"KickOrSpring")
+H6RK "#" 0 A_GiveToTarget("Rock_M_PickupA",1)
+goto DeathArg2
+DeathArg:
+H6RK "#" 0 A_JumpIfInTargetInventory("RockKickFlag",1,"DeathKicked")
+goto DeathArgh
+DeathArg2:
+H6RK "#" 0 A_ChangeFlag("USEBOUNCESTATE",0)
+H6RK "#" 0 A_JumpIfInTargetInventory("RockKickFlag",1,"DeathKicked")
+goto DeathArgh
+DeathArgh:
+H6RK "#" 1 A_CountdownArg(0)
+wait
+AllyKick:
+TNT1 A 0 A_JumpIfInventory("RockKickDelay",1,2,8)
+TNT1 A 0 A_GiveInventory("Rock_M_Pickup",1,8)
+TNT1 A 0
+Goto Death+1
+Death:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerally")==1,"AllyKick")
+TNT1 A 1 A_SpawnItemEx("Rock_VMFX_H",0,0,10,0,0,0,0,33)
+stop
+DeathKicked:
+TNT1 A 0 A_SpawnItemEx("Rock_SuperKickFX_H",0,0,10,0,0,0,0,33)
+stop
+}
+}
+actor Rock_B_MB:Rock_B_M{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_B_MR:Rock_B_M{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_B_MO:Rock_B_M{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_B_MP:Rock_B_M{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_B_C : Rock_B_M
+{
+Translation "204:204=4:4","195:195=94:94","249:249=41:41"
+States
+{
+KickOrSpring:
+H6RK "#" 0 A_GiveToTarget("Rock_C_Pickup",1)
+goto DeathArg
+KickOrSpring2:
+H6RK "#" 0 A_JumpIfInventory("RockKickFlag",1,"KickOrSpring")
+H6RK "#" 0 A_GiveToTarget("Rock_C_PickupA",1)
+goto DeathArg2
+AllyKick:
+TNT1 A 0 A_JumpIfInventory("RockKickDelay",1,2,8)
+TNT1 A 0 A_GiveInventory("Rock_C_Pickup",1,8)
+TNT1 A 0
+Goto Death+1
+}
+}
+actor Rock_B_CB:Rock_B_C{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_B_CR:Rock_B_C{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_B_CO:Rock_B_C{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_B_CP:Rock_B_C{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_B_G : Rock_B_M
+{
+Translation "204:204=4:4","195:195=220:220","249:249=216:216"
+States
+{
+KickOrSpring:
+H6RK "#" 0 A_GiveToTarget("Rock_G_Pickup",1)
+goto DeathArg
+KickOrSpring2:
+H6RK "#" 0 A_JumpIfInventory("RockKickFlag",1,"KickOrSpring")
+H6RK "#" 0 A_GiveToTarget("Rock_G_PickupA",1)
+goto DeathArg2
+AllyKick:
+TNT1 A 0 A_JumpIfInventory("RockKickDelay",1,2,8)
+TNT1 A 0 A_GiveInventory("Rock_G_Pickup",1,8)
+TNT1 A 0
+Goto Death+1
+}
+}
+actor Rock_B_GB:Rock_B_G{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_B_GR:Rock_B_G{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_B_GO:Rock_B_G{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_B_GP:Rock_B_G{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_B_I : Rock_B_M
+{
+Translation "204:204=4:4","195:195=203:203","249:249=205:205"
+States
+{
+KickOrSpring:
+H6RK "#" 0 A_GiveToTarget("Rock_I_Pickup",1)
+goto DeathArg
+KickOrSpring2:
+H6RK "#" 0 A_JumpIfInventory("RockKickFlag",1,"KickOrSpring")
+H6RK "#" 0 A_GiveToTarget("Rock_I_PickupA",1)
+goto DeathArg2
+AllyKick:
+TNT1 A 0 A_JumpIfInventory("RockKickDelay",1,2,8)
+TNT1 A 0 A_GiveInventory("Rock_I_Pickup",1,8)
+TNT1 A 0
+Goto Death+1
+}
+}
+actor Rock_B_IB:Rock_B_I{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_B_IR:Rock_B_I{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_B_IO:Rock_B_I{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_B_IP:Rock_B_I{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_B_B : Rock_B_M
+{
+Translation "204:204=4:4","195:195=110:110","249:249=105:105"
+States
+{
+KickOrSpring:
+H6RK "#" 0 A_GiveToTarget("Rock_B_Pickup",1)
+goto DeathArg
+KickOrSpring2:
+H6RK "#" 0 A_JumpIfInventory("RockKickFlag",1,"KickOrSpring")
+H6RK "#" 0 A_GiveToTarget("Rock_B_PickupA",1)
+goto DeathArg2
+AllyKick:
+TNT1 A 0 A_JumpIfInventory("RockKickDelay",1,2,8)
+TNT1 A 0 A_GiveInventory("Rock_B_Pickup",1,8)
+TNT1 A 0
+Goto Death+1
+}
+}
+actor Rock_B_BB:Rock_B_B{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_B_BR:Rock_B_B{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_B_BO:Rock_B_B{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_B_BP:Rock_B_B{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_B_F : Rock_B_M
+{
+Translation "204:204=229:229","195:195=227:227","249:249=217:217"
+States
+{
+KickOrSpring:
+H6RK "#" 0 A_GiveToTarget("Rock_F_Pickup",1)
+goto DeathArg
+KickOrSpring2:
+H6RK "#" 0 A_JumpIfInventory("RockKickFlag",1,"KickOrSpring")
+H6RK "#" 0 A_GiveToTarget("Rock_F_PickupA",1)
+goto DeathArg2
+AllyKick:
+TNT1 A 0 A_JumpIfInventory("RockKickDelay",1,2,8)
+TNT1 A 0 A_GiveInventory("Rock_F_Pickup",1,8)
+TNT1 A 0
+Goto Death+1
+}
+}
+actor Rock_B_FB:Rock_B_F{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_B_FR:Rock_B_F{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_B_FO:Rock_B_F{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_B_FP:Rock_B_F{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_B_E : Rock_B_M
+{
+Translation "204:204=4:4","195:195=215:215","249:249=164:164"
+States
+{
+KickOrSpring:
+H6RK "#" 0 A_GiveToTarget("Rock_E_Pickup",1)
+goto DeathArg
+KickOrSpring2:
+H6RK "#" 0 A_JumpIfInventory("RockKickFlag",1,"KickOrSpring")
+H6RK "#" 0 A_GiveToTarget("Rock_E_PickupA",1)
+goto DeathArg2
+AllyKick:
+TNT1 A 0 A_JumpIfInventory("RockKickDelay",1,2,8)
+TNT1 A 0 A_GiveInventory("Rock_E_Pickup",1,8)
+TNT1 A 0
+Goto Death+1
+}
+}
+actor Rock_B_EB:Rock_B_E{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_B_ER:Rock_B_E{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_B_EO:Rock_B_E{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_B_EP:Rock_B_E{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_B_T : Rock_B_M
+{
+Translation "204:204=34:34","195:195=239:239","249:249=217:217"
+States
+{
+KickOrSpring:
+H6RK "#" 0 A_GiveToTarget("Rock_T_Pickup",1)
+goto DeathArg
+KickOrSpring2:
+H6RK "#" 0 A_JumpIfInventory("RockKickFlag",1,"KickOrSpring")
+H6RK "#" 0 A_GiveToTarget("Rock_T_PickupA",1)
+goto DeathArg2
+AllyKick:
+TNT1 A 0 A_JumpIfInventory("RockKickDelay",1,2,8)
+TNT1 A 0 A_GiveInventory("Rock_T_Pickup",1,8)
+TNT1 A 0
+Goto Death+1
+}
+}
+actor Rock_B_TB:Rock_B_T{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_B_TR:Rock_B_T{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_B_TO:Rock_B_T{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_B_TP:Rock_B_T{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_B_O : Rock_B_M
+{
+Translation "204:204=68:68","195:195=47:47","249:249=3:3"
+States
+{
+KickOrSpring:
+H6RK "#" 0 A_GiveToTarget("Rock_O_Pickup",1)
+goto DeathArg
+KickOrSpring2:
+H6RK "#" 0 A_JumpIfInventory("RockKickFlag",1,"KickOrSpring")
+H6RK "#" 0 A_GiveToTarget("Rock_O_PickupA",1)
+goto DeathArg2
+AllyKick:
+TNT1 A 0 A_JumpIfInventory("RockKickDelay",1,2,8)
+TNT1 A 0 A_GiveInventory("Rock_O_Pickup",1,8)
+TNT1 A 0
+Goto Death+1
+}
+}
+actor Rock_B_OB:Rock_B_O{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_B_OR:Rock_B_O{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_B_OO:Rock_B_O{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_B_OP:Rock_B_O{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK_M
+{
+Translation "204:204=203:203","195:195=61:61","249:249=215:215"
+seesound "weapon/megaball"
+PROJECTILE
+damagetype "Rock_MegaBall"
+Obituary "$OB_MEGABALL"
+-NOGRAVITY
++FORCEXYBILLBOARD
++BOUNCEONFLOORS
++BOUNCEONWALLS
++BOUNCEONCEILINGS
++CANBOUNCEWATER
++ALLOWBOUNCEONACTORS
+bouncecount 11
+bouncefactor 0.9
+wallbouncefactor 0.9
+Gravity 0.50
+damage(210)
+radius 16
+height 16
+speed 40
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H6RK A 2
+H6RK A 0 ThrustThingZ(0,20,0,1)
+H6RK ABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_MFX",0,0,0,0,0,0,0,1)
+Goto Spawn+4
+Death:
+TNT1 A 1 A_SpawnItemEx("Rock_VMFX",0,0,10,0,0,0,0,33)
+stop
+}
+}
+
+actor Rock_BK_MB:Rock_BK_M{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK_MR:Rock_BK_M{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK_MO:Rock_BK_M{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK_MP:Rock_BK_M{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK2_M : Rock_BK_M
+{
+//+NOGRAVITY
+bouncefactor 1.0
+wallbouncefactor 1.0
+damage(230)
+speed 50
+}
+
+actor Rock_BK2_MB:Rock_BK2_M{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK2_MR:Rock_BK2_M{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK2_MO:Rock_BK2_M{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK2_MP:Rock_BK2_M{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK_C : Rock_BK_M
+{
+Translation "204:204=4:4","195:195=94:94","249:249=41:41"
+damagetype "MegaCutBall"
+Obituary "$OB_MEGACUTBALL"
++NOGRAVITY
+bouncecount 7
+bouncefactor 1.0
+wallbouncefactor 1.0
+Gravity 1.0
+damage(250)
+speed 35
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+H6RK ABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_CFX",0,0,0,0,0,0,0,1)
+loop
+}
+}
+actor Rock_BK2_C : Rock_BK_C{bouncecount 8 damage(270) speed 40}
+
+actor Rock_BK_CB:Rock_BK_C{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK_CR:Rock_BK_C{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK_CO:Rock_BK_C{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK_CP:Rock_BK_C{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK2_CB:Rock_BK2_C{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK2_CR:Rock_BK2_C{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK2_CO:Rock_BK2_C{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK2_CP:Rock_BK2_C{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK_G_Bit
+{
+PROJECTILE
+damagetype "MegaGutsBall"
+Obituary "$OB_MEGAGUTSBALL"
++NOEXPLODEFLOOR
+Damage (140)
+radius 12
+height 12
+Speed 25
+scale 2.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H7RK F 10
+Stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor Rock_BK_G_BitFX
+{
++MISSILE
+-NOGRAVITY
++CLIENTSIDEONLY
++HEXENBOUNCE
++THRUACTORS
++DONTSPLASH
+Radius 2
+Height 2
+damage (0)
+scale 2.0
+scale 2.5
+States
+{
+Spawn:
+H7RK F 2
+TNT1 A 2
+H7RK F 2
+TNT1 A 2
+H7RK F 2
+TNT1 A 2
+H7RK F 2
+TNT1 A 2
+H7RK F 2
+TNT1 A 2
+stop
+}
+}
+
+actor Rock_BK_G : Rock_BK_M
+{
+Translation "204:204=4:4","195:195=220:220","249:249=216:216"
+damagetype "MegaGutsBall"
+Obituary "$OB_MEGAGUTSBALL"
+damage(260)
+bouncecount 1
+Gravity 1.25
+speed 35
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H6RK A 2
+H6RK A 0 ThrustThingZ(0,20,0,1)
+H6RK ABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_GFX",0,0,0,0,0,0,0,1)
+Goto Spawn+4
+XDeath:
+Crash:
+TNT1 AAAA 0 A_SpawnItemEx("Rock_BK_G_BitFX",0,0,0,random(-10,10),random(-10,10),random(5,10),random(0,359),1)
+TNT1 A 2 A_PlaySoundEx("weapon/superarmhit","Voice")
+stop
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_PlaySoundEx("weapon/superarmhit","Voice")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+/*
+TNT1 A 0 A_JumpIf(z-floorz<=4,"DeathFloorC")
+TNT1 A 0 A_JumpIf(ceilingz-z<=16,"DeathFloorC")
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",0,0,0,20,0,10,45,33)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",0,0,0,20,0,10,-45,33)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",0,0,0,20,0,10,225,33)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",0,0,0,20,0,10,-225,33)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",0,0,0,20,0,-10,45,33)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",0,0,0,20,0,-10,-45,33)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",0,0,0,20,0,-10,225,33)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",0,0,0,20,0,-10,-225,33)
+goto DeathEnd
+DeathFloorC:
+*/
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",10,0,0,25,0,0,60,1)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",10,0,0,25,0,0,-60,1)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",10,0,0,25,0,0,120,1)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",10,0,0,25,0,0,-120,1)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",10,0,0,25,0,0,180,1)
+TNT1 A 0 A_SpawnItemEx("Rock_BK_G_Bit",10,0,0,25,0,0,0,1)
+goto DeathEnd
+
+DeathEnd:
+TNT1 A 1 A_SpawnItemEx("Rock_VMFX",0,0,10,0,0,0,0,33)
+stop
+}
+}
+actor Rock_BK2_G : Rock_BK_G{damage(300) speed 45}
+
+actor Rock_BK_GB:Rock_BK_G{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK_GR:Rock_BK_G{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK_GO:Rock_BK_G{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK_GP:Rock_BK_G{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK2_GB:Rock_BK2_G{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK2_GR:Rock_BK2_G{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK2_GO:Rock_BK2_G{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK2_GP:Rock_BK2_G{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK_I : Rock_BK_M
+{
+Translation "204:204=4:4","195:195=203:203","249:249=205:205"
+damagetype "MegaIceBall"
+Obituary "$OB_MEGAICEBALL"
+bouncecount 8
+bouncefactor 0.85
+wallbouncefactor 0.90
+Gravity 0.65
+damage(170)
+speed 31
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H6RK A 2
+H6RK A 0 ThrustThingZ(0,20,0,1)
+H6RK ABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_IFX",0,Random(-18,18),random(12,-2),0,0,0,0,1)
+Goto Spawn+4
+}
+}
+actor Rock_BK2_I : Rock_BK_I{damage(180) speed 39}
+
+actor Rock_BK_IB:Rock_BK_I{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK_IR:Rock_BK_I{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK_IO:Rock_BK_I{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK_IP:Rock_BK_I{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK2_IB:Rock_BK2_I{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK2_IR:Rock_BK2_I{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK2_IO:Rock_BK2_I{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK2_IP:Rock_BK2_I{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK_B : Rock_BK_M
+{
+//Translation "247:247=249:249"//239
+Translation "204:204=4:4","195:195=110:110","202:202=215:215","249:249=105:105"
+damagetype "MegaBombBall"
+Obituary "$OB_MEGABOMBBALL"
+bouncecount 1
+bouncefactor 1.0
+wallbouncefactor 1.0
+Gravity 1.25
+damage(20)
+speed 35
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H6RK A 2
+H6RK A 0 ThrustThingZ(0,28,0,1)
+H6RK ABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_BFX",0,0,0,0,0,0,0,1)
+Goto Spawn+4
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/hyperbomb","Weapon")
+TNT1 A 0 A_Explode(200,128,0,0,12)
+TNT1 A 1 A_SpawnItemEx("BasicBoom1FX_Y2",0,0,16,0,0,0,0,33)
+stop
+}
+}
+
+actor Rock_BK_BB:Rock_BK_B{Translation"204:204=205:205","195:195=74:74","202:202=205:205","249:249=199:199"}
+actor Rock_BK_BR:Rock_BK_B{Translation"204:204=171:171","195:195=41:41","202:202=171:171","249:249=43:43"}
+actor Rock_BK_BO:Rock_BK_B{Translation"204:204=104:104","195:195=128:128","202:202=104:104","249:249=131:131"}
+actor Rock_BK_BP:Rock_BK_B{Translation"204:204=229:229","195:195=232:232","202:202=229:229","249:249=223:223"}
+
+actor Rock_BK2_B : Rock_BK_B{bouncecount 2 damage(40) speed 45 States{
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/hyperbomb","Weapon")
+TNT1 A 0 A_Explode(210,128,0,0,56)
+TNT1 A 1 A_SpawnItemEx("BasicBoom1FX_Y2",0,0,16,0,0,0,0,33)
+stop}}
+
+actor Rock_BK2_BB:Rock_BK2_B{Translation"204:204=205:205","195:195=74:74","202:202=205:205","249:249=199:199"}
+actor Rock_BK2_BR:Rock_BK2_B{Translation"204:204=171:171","195:195=41:41","202:202=171:171","249:249=43:43"}
+actor Rock_BK2_BO:Rock_BK2_B{Translation"204:204=104:104","195:195=128:128","202:202=104:104","249:249=131:131"}
+actor Rock_BK2_BP:Rock_BK2_B{Translation"204:204=229:229","195:195=232:232","202:202=229:229","249:249=223:223"}
+
+actor Rock_BK_F : Rock_BK_M
+{
+Translation "204:204=229:229","195:195=227:227","192:192=229:229","198:198=227:227","249:249=217:217"
+damagetype "MegaFireBall"
+Obituary "$OB_MEGAFIREBALL"
++HITTRACER
++USEBOUNCESTATE
++BRIGHT
+bouncecount 5
+bouncefactor 0.99
+wallbouncefactor 0.85
+damage(150)
+speed 55
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H6RK A 2
+H6RK A 0 ThrustThingZ(0,20,0,1)
+H6RK ABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_FFX",0,0,0,0,0,0,0,1)
+Goto Spawn+4
+Bounce:
+"####" "#" 1 A_SpawnItemEx("Rock_CBM_OilPitIgnite",0,0,8)
+goto Spawn+4
+
+Crash:
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerplayer")==1,"DeathBurnCheck")
+goto Death
+DeathBurnCheck:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(975,1)==1,"DeathBurnCheckT")
+goto DeathBurnChance
+DeathBurnCheckT:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,CallACS("cbm_GetPointerTID_147",2),1) != ACS_ExecuteWithResult(143,CallACS("cbm_GetPointerTID_147",8),1),"DeathBurnChance")
+//If Target team != Tracer team
+goto Death
+DeathBurnChance:
+TNT1 A 0 A_JumpIfInventory("PowerOilBallCoat",1,"DeathBurning",8)
+goto Death
+DeathBurning:
+TNT1 A 0 A_SpawnItemEx("PainMegaFireBallHit",0,0,0,0,0,0,0,1025)
+goto Death
+}
+}
+
+actor RockFireBallBurn : BasicExplosion
+{
+damagetype "MegaFireBallBurn"
+Obituary "$OB_MEGAFIREBALLX"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(30,15,0,0,15)
+stop
+}
+}
+
+actor Rock_BK2_F : Rock_BK_F
+{
+bouncecount 6
+speed 70
+}
+
+
+actor Rock_BK_FB:Rock_BK_F{Translation"204:204=205:205","195:195=74:74","192:192=205:205","198:198=74:74","249:249=199:199"}
+actor Rock_BK_FR:Rock_BK_F{Translation"204:204=171:171","195:195=41:41","192:192=171:171","198:198=41:41","249:249=43:43"}
+actor Rock_BK_FO:Rock_BK_F{Translation"204:204=104:104","195:195=128:128","192:192=104:104","198:198=128:128","249:249=131:131"}
+actor Rock_BK_FP:Rock_BK_F{Translation"204:204=229:229","195:195=232:232","192:192=229:229","198:198=232:232","249:249=223:223"}
+
+actor Rock_BK2_FB:Rock_BK2_F{Translation"204:204=205:205","195:195=74:74","192:192=205:205","198:198=74:74","249:249=199:199"}
+actor Rock_BK2_FR:Rock_BK2_F{Translation"204:204=171:171","195:195=41:41","192:192=171:171","198:198=41:41","249:249=43:43"}
+actor Rock_BK2_FO:Rock_BK2_F{Translation"204:204=104:104","195:195=128:128","192:192=104:104","198:198=128:128","249:249=131:131"}
+actor Rock_BK2_FP:Rock_BK2_F{Translation"204:204=229:229","195:195=232:232","192:192=229:229","198:198=232:232","249:249=223:223"}
+
+actor Rock_BK_E : Rock_BK_M
+{
+Translation "204:204=4:4","195:195=215:215","249:249=164:164"
+damagetype "MegaElecBall"
+Obituary "$OB_MEGAELECBALL"
++RIPPER
++BRIGHT
+bouncecount 7
+bouncefactor 0.975
+wallbouncefactor 0.975
+Gravity 0.85
+damage(90)
+speed 35
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H6RK A 2
+H6RK A 0 ThrustThingZ(0,20,0,1)
+H6RK ABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_EFX",0,0,0,0,0,0,0,1)
+Goto Spawn+4
+}
+}
+actor Rock_BK2_E : Rock_BK_E{damage(100) speed 40}
+
+actor Rock_BK_EB:Rock_BK_E{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK_ER:Rock_BK_E{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK_EO:Rock_BK_E{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK_EP:Rock_BK_E{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK2_EB:Rock_BK2_E{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK2_ER:Rock_BK2_E{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK2_EO:Rock_BK2_E{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK2_EP:Rock_BK2_E{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK_T : Rock_BK_M
+{
+Translation "204:204=34:34","195:195=239:239","249:249=217:217"
+damagetype "MegaTimeBall"
+Obituary "$OB_MEGATIMEBALL"
+bouncecount 3
+bouncefactor 0.80
+wallbouncefactor 0.80
+Gravity 0.0083333
+damage(160)
+Speed 10
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H6RK A 2
+H6RK A 0 ThrustThingZ(0,2,0,1)//3
+SpawnLOOP:
+H6RK ABCDEFGHIJKLMNOP 3 A_SpawnItemEx("Rock_BK_TFX",0,Random(-18,18),random(4,16),0,0,0,0,1)
+loop
+}
+}
+actor Rock_BK2_T : Rock_BK_T{bouncecount 5 damage(170) speed 12}
+
+actor Rock_BK_TB:Rock_BK_T{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK_TR:Rock_BK_T{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK_TO:Rock_BK_T{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK_TP:Rock_BK_T{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK2_TB:Rock_BK2_T{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
+actor Rock_BK2_TR:Rock_BK2_T{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
+actor Rock_BK2_TO:Rock_BK2_T{Translation"204:204=104:104","195:195=128:128","249:249=131:131"}
+actor Rock_BK2_TP:Rock_BK2_T{Translation"204:204=229:229","195:195=232:232","249:249=223:223"}
+
+actor Rock_BK_O_Bit
+{
+PROJECTILE
+damagetype "MegaOilBall"
+Obituary "$OB_MEGAOILBALL"
+-NOGRAVITY
+Damage (150)
+Radius 8
+Height 5
+speed 28
+Scale 2.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H7RK U 0 ThrustThingZ(0,1,0,1)
+H7RK U 5
+wait
+Crash:
+XDeath:
+H7RK U 1
+stop
+Death:
+H7RK U 0 
+H7RK U 0 A_JumpIf(z-floorz<=0,"Death2")
+H7RK U 1 A_GiveInventory("CutterFlag",1)
+H7RK U 0 A_JumpIfInventory("CutterFlag",175,"Xdeath")
+loop
+Death2:
+H7RK U 1 A_SpawnItemEx("Rock_BK_O_Bit2",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor Rock_BK_O_Bit2
+{
+damagetype "MegaOilBall"
+Obituary "$OB_MEGAOILBALL1"
++MISSILE
++NODAMAGETHRUST
++NONSHOOTABLE
++DONTDRAIN
++NOBLOOD
++DONTSPLASH
++BOUNCEONCEILINGS
++NOEXPLODEFLOOR
++NOTARGETSWITCH
+//+DONTTHRUST
+painchance 256
+damagefactor "Ignition", 1.0
+mass 99999
+Health 10000
+reactiontime 175
+Damage (100)
+Radius 8
+Height 10
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H7RK W 1 A_SetArg(2,ReactionTime)
+H7RK W 0 A_ChangeFlag("SHOOTABLE",1)
+Goto Spawn2
+pain.Ignition:
+H7RK V 0 A_ChangeFlag("NOPAIN",true)
+H7RK V 1 A_SpawnItemEx("Rock_BK_O_Bit3",0,0,0,0,0,0,0,1)
+H7RK V 0 A_Jump(256,"Death")
+stop
+Spawn2:
+H7RK V 1 A_Stop
+Goto SlideWait
+SlideWait:
+H7RK V 1 A_CountDownArg(2)
+H7RK V 0 A_JumpIf(abs(z*100000-floorz*100000)>50,"NewShot")
+loop
+NewShot:
+//H7RK V 0 A_CheckFlag("BLASTED","NewShotX")
+H7RK V 0 A_SpawnItemEx("Rock_BK_O_Bit",0,0,0,momx,momy,momz,0,9)
+Goto Death
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor Rock_BK_O_Bit3 
+{
+PROJECTILE
+damagetype "MegaOilBall"
+Obituary "$OB_MEGAOILBALL2"
+-NOGRAVITY
++NODAMAGETHRUST
++NOBLOOD
++DOOMBOUNCE
++DONTSPLASH
++FLOORHUGGER
++DONTBLAST
++BRIGHT
+mass 99999
+reactiontime 100
+Damage (200)
+Radius 8
+Height 48
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H7RK X 1 A_ChangeFlag("DOOMBOUNCE",0)
+H7RK X 0 A_SpawnItemEx("Rock_CBM_OilPitIgnite",0,0,8)
+H7RK XY 3 A_CountDown
+goto Spawn+5
+Death: 
+TNT1 A 1
+stop
+}
+}
+
+actor Rock_CBM_OilPitIgnite : CBM_OilPitIgnite
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("OilPitFlag",1)
+TNT1 A 0 A_Explode(1,140,1,0,140)
+TNT1 A 1 A_JumpIf(z-floorz<=16,"Flame")
+stop
+}
+}
+
+actor Rock_BK_O : Rock_BK_M
+{
+Translation "204:204=68:68","195:195=47:47","202:202=218:218","199:199=43:43","249:249=3:3"
+damagetype "MegaOilBall"
+Obituary "$OB_MEGAOILBALL"
++USEBOUNCESTATE
++HITTRACER
+bouncecount 5
+bouncefactor 0.75
+wallbouncefactor 0.75
+Gravity 1.0
+ReactionTime 4
+damage(100)
+speed 35
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+H6RK A 2
+H6RK A 0 ThrustThingZ(0,20,0,1)
+spawnLOOP:
+H6RK ABCDEFGHIJKLMNOPABCDEFGH 1 A_SpawnItemEx("Rock_BK_OFX",frandom(-16,16),frandom(-16,16),frandom(2,24),0,0,frandom(-1,-3),0,1)
+H6RK I 0 A_SpawnItemEx("Rock_BK_O_Bit",0,0,0,0,0,0,0,1)
+H6RK I 0 A_CountDown
+H6RK IJKLMNOPABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_OFX",frandom(-16,16),frandom(-16,16),frandom(2,24),0,0,frandom(-1,-3),0,1)
+H6RK A 0 A_SpawnItemEx("Rock_BK_O_Bit",0,0,0,0,0,0,0,1)
+H6RK A 0 A_CountDown
+Goto spawnloop
+Bounce:
+"####" "#" 1 A_SpawnItemEx("Rock_BK_O_Bit",0,0,0,0,0,0,0,1)
+"####" "#" 0 A_CountDown
+goto spawnloop
+
+Death:
+TNT1 A 0 A_SpawnItemEx("Rock_BK_O_Bit",0,0,0,0,0,0,0,1)
+TNT1 A 0
+goto Super::Death
+
+Crash:
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerplayer")==1,"DeathOilCheck")
+goto Death+1
+DeathOilCheck:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(975,1)==1,"DeathOilCheckT")
+goto DeathOilSpawn
+DeathOilCheckT:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,CallACS("cbm_GetPointerTID_147",2),1) != ACS_ExecuteWithResult(143,CallACS("cbm_GetPointerTID_147",8),1),"DeathOilSpawn")
+//If Target team != Tracer team
+goto Death+1
+DeathOilSpawn:
+TNT1 A 0 A_GiveInventory("OilBallCoat_P",1,8)
+goto Death+1
+}
+}
+actor Rock_BK2_O : Rock_BK_O{bouncecount 6 damage(120) speed 40}
+
+actor Rock_BK_OB:Rock_BK_O{Translation"204:204=205:205","195:195=74:74","202:202=205:205","199:199=74:74","249:249=199:199"}
+actor Rock_BK_OR:Rock_BK_O{Translation"204:204=171:171","195:195=41:41","202:202=171:171","199:199=41:41","249:249=43:43"}
+actor Rock_BK_OO:Rock_BK_O{Translation"204:204=104:104","195:195=128:128","202:202=104:104","199:199=128:128","249:249=131:131"}
+actor Rock_BK_OP:Rock_BK_O{Translation"204:204=229:229","195:195=232:232","202:202=229:229","199:199=232:232","249:249=223:223"}
+
+actor Rock_BK2_OB:Rock_BK2_O{Translation"204:204=205:205","195:195=74:74","202:202=205:205","199:199=74:74","249:249=199:199"}
+actor Rock_BK2_OR:Rock_BK2_O{Translation"204:204=171:171","195:195=41:41","202:202=171:171","199:199=41:41","249:249=43:43"}
+actor Rock_BK2_OO:Rock_BK2_O{Translation"204:204=104:104","195:195=128:128","202:202=104:104","199:199=128:128","249:249=131:131"}
+actor Rock_BK2_OP:Rock_BK2_O{Translation"204:204=229:229","195:195=232:232","202:202=229:229","199:199=232:232","249:249=223:223"}
+
+actor PowerOilBallCoatG : BasicPowerupGiver
+{
+powerup.type "PowerOilBallCoat"
+}
+
+actor PowerOilBallCoat : PowerUp
+{
+Powerup.Duration 175
+}
+
+actor OilBallCoat_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 2 A_GiveToTarget("OilBallCoat_P1",1)
+TNT1 A 1 A_JumpIfInTargetInventory("PowerOilBallCoat",1,1)
+stop
+TNT1 A 2 A_GiveToTarget("OilBallCoat_P1",1)
+TNT1 A 1 A_JumpIfInTargetInventory("PowerOilBallCoat",1,1)
+stop
+TNT1 A 2 A_GiveToTarget("OilBallCoat_P1",1)
+TNT1 A 1 A_JumpIfInTargetInventory("PowerOilBallCoat",1,1)
+stop
+TNT1 A 2 A_GiveToTarget("OilBallCoat_P2",1)
+TNT1 A 1 A_JumpIfInTargetInventory("PowerOilBallCoat",1,"Spawn")
+stop
+}
+}
+
+actor OilBallCoat_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PowerOilBallCoat",1,2)
+TNT1 A 0 A_SpawnItemEx("OilBallCoat_H",0,0,24)//,0,0,0,0,1)
+TNT1 A 0 A_GiveInventory("PowerOilBallCoatG",1)
+stop
+}
+}
+
+actor OilBallCoat_P1 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEX("OilBallCoat_Drip",random(-24,24),random(-24,24),random(8,32))
+stop
+}
+}
+
+actor OilBallCoat_P2 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEX("OilBallCoat_Drip2",random(-24,24),random(-24,24),random(8,32))
+stop
+}
+}
+
+actor OilBallCoat_Drip
+{
+Translation "195:195=226:226", "204:204=167:167"
++MISSILE
++DONTBLAST
++THRUACTORS
++DONTSPLASH
+-NOGRAVITY
++CLIENTSIDEONLY
+ReactionTime 4
+Radius 4
+Height 4
+Speed 10
+Scale 1.0
+States
+{
+Spawn:
+H7RK Z 4 A_CountDown
+loop
+Death:
+H7RK "[" 0 A_ChangeFlag("NOGRAVITY",1)
+H7RK "[" 0 A_Stop
+H7RK "[]" 5
+stop
+}
+}
+
+actor OilBallCoat_Drip2 : OilBallCoat_Drip
+{
+States
+{
+Death:
+ACID U 0 A_PlaySound("wep_L/OilShot",2,0.25)
+goto Super::Death
+}
+}
+
+
+actor Rock_BK_BaseFX : BasicClientSide
+{
+RenderStyle "Translucent"
+Alpha 0.70
+}
+
+actor Rock_BK_MFX : Rock_BK_BaseFX
+{
++FORCEXYBILLBOARD
+States
+{
+Spawn:
+TNT1 A 2
+H6RK QRST 2 A_FadeOut
+stop
+}
+}
+actor Rock_BK_CFX : Rock_BK_BaseFX
+{
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 2
+TNT1 A 0 A_Jump(256,1,2,3,4)
+H7RK ABCD 2 A_FadeOut
+goto Spawn+3
+}
+}
+actor Rock_BK_GFX : Rock_BK_BaseFX
+{
+Scale 1.0
+States
+{
+Spawn:
+TNT1 A 2
+H7RK EEEE 2 A_FadeOut
+stop
+}
+}
+actor Rock_BK_IFX : Rock_BK_BaseFX
+{
+Alpha 0.85
+Scale 2.25
+States
+{
+Spawn:
+TNT1 A 2
+//TNT1 A 0 A_Jump(256,"Spawn1","Spawn2")
+//Spawn1:
+H7RK G 1 A_FadeOut(0.05)
+H7RK G 0 A_SetScale(2.15)
+H7RK G 1 A_FadeOut(0.05)
+H7RK H 0 A_SetScale(2.05)
+H7RK H 1 A_FadeOut(0.05)
+H7RK H 0 A_SetScale(1.95)
+H7RK H 1 A_FadeOut(0.05)
+H7RK G 0 A_SetScale(1.85)
+H7RK G 1 A_FadeOut(0.05)
+H7RK G 0 A_SetScale(1.75)
+H7RK G 1 A_FadeOut(0.05)
+H7RK H 0 A_SetScale(1.65)
+H7RK H 1 A_FadeOut(0.05)
+H7RK H 0 A_SetScale(1.55)
+H7RK H 1 A_FadeOut(0.05)
+H7RK G 0 A_SetScale(1.45)
+H7RK G 1 A_FadeOut(0.05)
+H7RK G 0 A_SetScale(1.35)
+H7RK G 1 A_FadeOut(0.05)
+H7RK H 0 A_SetScale(1.25)
+H7RK H 1 A_FadeOut(0.05)
+H7RK H 0 A_SetScale(1.15)
+H7RK H 1 A_FadeOut(0.05)
+stop
+Spawn2:
+H7RK HGHGH 2 A_FadeOut
+stop
+//H6RK NNOOO 2 A_FadeOut
+//H6RK PPQQQ 2 A_FadeOut
+}
+}
+actor Rock_BK_BFX : Rock_BK_BaseFX
+{
+Scale 2.0
+States
+{
+Spawn:
+TNT1 A 2//COLOR 249
+H7RK IIII 2 A_FadeOut
+stop
+}
+}
+actor Rock_BK_FFX : Rock_BK_BaseFX
+{
++BRIGHT
+Alpha 0.85
+Scale 1.75
+States
+{
+Spawn:
+TNT1 A 2
+H7RK JKL 3 A_FadeOut
+stop
+}
+}
+actor Rock_BK_EFX : Rock_BK_BaseFX
+{
++BRIGHT
+Scale 1.5
+States
+{
+Spawn:
+TNT1 A 2
+TNT1 A 0 A_Jump(256,1,5,9,13)
+H7RK MNOP 2 A_FadeOut
+stop 
+H7RK NOPM 2 A_FadeOut
+stop
+H7RK OPMN 2 A_FadeOut
+stop
+H7RK PMNO 2 A_FadeOut
+stop
+}
+}
+actor Rock_BK_TFX : Rock_BK_BaseFX
+{
++BRIGHT
+Scale 1.5
+States
+{
+Spawn:
+TNT1 A 2
+TNT1 A 0 A_Jump(256,1,5,9,13)
+H7RK QRST 2 A_FadeOut
+stop
+H7RK RSTQ 2 A_FadeOut
+stop
+H7RK STQR 2 A_FadeOut
+stop
+H7RK TQRS 2 A_FadeOut
+stop
+}
+}
+
+actor Rock_BK_OFX : OilBallCoat_Drip
+{
+RenderStyle "Translucent"
+Alpha 0.85
+ReactionTime 1
+Scale 0.75
+States
+{
+Spawn:
+TNT1 A 0
+H7RK Z 70
+H7RK Z 4 A_CountDown
+loop
+}
+}
+
+actor Rock_M_Pickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/RockBall","SoundSlot7")
+TNT1 A 0 A_JumpIfInventory("RockKickFlag",1,"Kicker_S")
+TNT1 A 0 A_JumpIf(z-floorz==0,"Kicker")
+TNT1 A 0 A_GiveInventory("RockJumpDelay",1)
+TNT1 A 0 A_GiveInventory("RockBallJump_P2",1)
+TNT1 A 0 A_TakeInventory("JumpCancler",1)
+stop
+Kicker:
+TNT1 A 0 A_GiveInventory("RockKickDelay",1)
+TNT1 A 0 A_Jump(256,"Kick")
+goto Kick
+Kick:
+TNT1 A 0 A_GiveInventory("RockBall_CI",1)
+stop
+Kicker_S:
+TNT1 A 0 A_JumpIfInventory("RockMultiDelay",1,"Kick_S2")
+TNT1 A 0 A_GiveInventory("RockMultiDelay",1)
+TNT1 A 0 A_Jump(256,"Kick_S")
+goto Kick_S
+Kick_S:
+TNT1 A 0 A_GiveInventory("RockBall2_CI",1)
+stop
+Kick_S2:
+TNT1 A 0 A_GiveInventory("RockBall3_CI",1)
+stop
+}
+}
+
+actor Rock_M_PickupA : Rock_M_Pickup
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_PlaySoundEx("weapon/RockBall","SoundSlot7")
+TNT1 A 0 A_JumpIfInventory("RockKickFlag",1,"Kicker_S")
+TNT1 A 0 A_GiveInventory("RockKickDelay",1)
+TNT1 A 0 A_Jump(256,"Kick")
+goto Kick
+Kick:
+TNT1 A 0 A_GiveInventory("RockBall_CI",1)
+stop
+Kick_S:
+TNT1 A 0
+TNT1 A 0 A_GiveInventory("RockBall2_CI",1)
+stop
+}
+}
+
+actor Rock_C_Pickup : Rock_M_Pickup{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallC_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallC2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallC3_CI",1)stop}}
+actor Rock_C_PickupA : Rock_M_PickupA{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallC_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallC2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallC3_CI",1)stop}}
+
+actor Rock_G_Pickup : Rock_M_Pickup{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallG_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallG2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallG3_CI",1)stop}}
+actor Rock_G_PickupA : Rock_M_PickupA{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallG_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallG2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallG3_CI",1)stop}}
+
+actor Rock_I_Pickup : Rock_M_Pickup{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallI_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallI2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallI3_CI",1)stop}}
+actor Rock_I_PickupA : Rock_M_PickupA{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallI_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallI2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallI3_CI",1)stop}}
+
+actor Rock_B_Pickup : Rock_M_Pickup{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallB_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallB2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallB3_CI",1)stop}}
+actor Rock_B_PickupA : Rock_M_PickupA{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallB_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallB2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallB3_CI",1)stop}}
+
+actor Rock_F_Pickup : Rock_M_Pickup{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallF_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallF2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallF3_CI",1)stop}}
+actor Rock_F_PickupA : Rock_M_PickupA{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallF_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallF2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallF3_CI",1)stop}}
+
+actor Rock_E_Pickup : Rock_M_Pickup{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallE_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallE2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallE3_CI",1)stop}}
+actor Rock_E_PickupA : Rock_M_PickupA{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallE_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallE2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallE3_CI",1)stop}}
+
+actor Rock_T_Pickup : Rock_M_Pickup{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallT_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallT2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallT3_CI",1)stop}}
+actor Rock_T_PickupA : Rock_M_PickupA{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallT_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallT2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallT3_CI",1)stop}}
+
+actor Rock_O_Pickup : Rock_M_Pickup{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallO_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallO2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallO3_CI",1)stop}}
+actor Rock_O_PickupA : Rock_M_PickupA{States{
+Kick:TNT1 A 0 A_GiveInventory("RockBallO_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallO2_CI",1)stop
+Kick_S2:TNT1 A 0 A_GiveInventory("RockBallO3_CI",1)stop}}
+
+actor Rock_Bot_Pickup_X : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_PlaySoundEx("weapon/RockBall","SoundSlot7")
+TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9)
+TNT1 A 0 A_GiveInventory("RockBallX2_CI",1)
+stop
+TNT1 A 0 A_GiveInventory("RockBallCX2_CI",1)
+stop
+TNT1 A 0 A_GiveInventory("RockBallGX2_CI",1)
+stop
+TNT1 A 0 A_GiveInventory("RockBallIX2_CI",1)
+stop
+TNT1 A 0 A_GiveInventory("RockBallBX2_CI",1)
+stop
+TNT1 A 0 A_GiveInventory("RockBallFX2_CI",1)
+stop
+TNT1 A 0 A_GiveInventory("RockBallEX2_CI",1)
+stop
+TNT1 A 0 A_GiveInventory("RockBallTX2_CI",1)
+stop
+TNT1 A 0 A_GiveInventory("RockBallOX2_CI",1)
+stop
+}
+}
+
+actor Rock_M_Pickup_X : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("RockmanSoccerAmmo",1,"KickCheck")
+TNT1 A 0 A_PlaySoundEx("weapon/chargekick","Weapon")
+TNT1 A 0 A_JumpIfInventory("RockKickBoostChance",1,"Slide")
+stop
+Slide:
+TNT1 A 0 A_JumpIf(z-floorz==0,"SlideG")
+TNT1 A 0 A_Recoil(-8.5f)
+TNT1 A 0 //ThrustThingZ(0,1,0,1)
+stop
+SlideG:
+TNT1 A 0 A_Recoil(-10)
+TNT1 A 0 //ThrustThingZ(0,4,0,1)
+stop
+
+KickCheck:
+TNT1 A 0 A_TakeInventory("BallsOfSteelAmmo",111,1)
+TNT1 A 0 A_PlaySoundEx("weapon/RockBall","SoundSlot7")
+TNT1 A 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"Kick_S")
+TNT1 A 0 A_JumpIfInventory("RockmanSoccerAmmo",1,"Kick")
+stop
+
+Kick:
+TNT1 A 0 A_GiveInventory("RockBallX_CI",1)
+stop
+Kick_S:
+TNT1 A 0 A_GiveInventory("RockBallX2_CI",1)
+stop
+}
+}
+
+actor Rock_C_Pickup_X : Rock_M_Pickup_X{States{Kick:TNT1 A 0 A_GiveInventory("RockBallCX_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallCX2_CI",1)stop}}
+
+actor Rock_G_Pickup_X : Rock_M_Pickup_X{States{Kick:TNT1 A 0 A_GiveInventory("RockBallGX_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallGX2_CI",1)stop}}
+
+actor Rock_I_Pickup_X : Rock_M_Pickup_X{States{Kick:TNT1 A 0 A_GiveInventory("RockBallIX_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallIX2_CI",1)stop}}
+
+actor Rock_B_Pickup_X : Rock_M_Pickup_X{States{Kick:TNT1 A 0 A_GiveInventory("RockBallBX_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallBX2_CI",1)stop}}
+
+actor Rock_F_Pickup_X : Rock_M_Pickup_X{States{Kick:TNT1 A 0 A_GiveInventory("RockBallFX_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallFX2_CI",1)stop}}
+
+actor Rock_E_Pickup_X : Rock_M_Pickup_X{States{Kick:TNT1 A 0 A_GiveInventory("RockBallEX_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallEX2_CI",1)stop}}
+
+actor Rock_T_Pickup_X : Rock_M_Pickup_X{States{Kick:TNT1 A 0 A_GiveInventory("RockBallTX_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallTX2_CI",1)stop}}
+
+actor Rock_O_Pickup_X : Rock_M_Pickup_X{States{Kick:TNT1 A 0 A_GiveInventory("RockBallOX_CI",1)stop
+Kick_S:TNT1 A 0 A_GiveInventory("RockBallOX2_CI",1)stop}}
+
+
+actor RockBallAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("RockKickC",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("RockKickCB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("RockKickCR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("RockKickCO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("RockKickCP",0,0,8,0)
+goto Done
+}
+}
+
+actor RockBallDropM_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+TNT1 A 0 A_JumpIf(pitch>=45 && pitch<=90,"FireDown")
+TNT1 A 0 A_Jump(256,"FireB")
+goto FireB
+FireDown:
+TNT1 A 0 A_JumpIf(z-floorz==0,"FireB")
+TNT1 A 0 A_PlaySoundEx("weapon/RockBall","SoundSlot7")
+TNT1 A 0 A_SpawnItemEx("Rock_MMFX",16,0,-22,0,0,0,0,1)
+TNT1 A 0 A_JumpIfInventory("RockmanSoccerAmmo",56,"FireDownX")
+TNT1 A 0 A_GiveInventory("RockBallJump_P",1)
+stop
+FireDownX:
+TNT1 A 0 A_GiveInventory("RockBallJump_P2",1)
+stop
+
+FireB:
+TNT1 A 0 A_SpawnItemEx("Rock_B_M_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireB_S")
+goto End
+FireB_S:
+TNT1 A 0 A_SpawnItemEx("Rock_B_M_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,15,9)
+TNT1 A 0 A_SpawnItemEx("Rock_B_M_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,-15,9)
+goto End
+End:
+TNT1 A 0 A_GiveInventory("RockKickBoostChance",1)
+TNT1 A 0 A_TakeInventory("RockmanSoccerAmmo",200)
+TNT1 A 0 A_TakeInventory("BallsOfSteelAmmo",111,1)
+stop
+}
+}
+
+actor RockBall_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_M",0,0,0,-16)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_MB",0,0,0,-16)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_MR",0,0,0,-16)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_MO",0,0,0,-16)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_MP",0,0,0,-16)
+goto Done
+}
+}
+
+actor RockBall2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_M",0,0,0,-16)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MB",0,0,0,-16)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MR",0,0,0,-16)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MO",0,0,0,-16)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MP",0,0,0,-16)
+goto Done
+Done:
+TNT1 A 0 //A_SpawnItemEx("Rock_SuperKickFX_H",cos(-pitch)*16,0,16+(sin(-pitch)*28),0,0,0,0,33)
+stop
+}
+}
+
+
+actor RockBallX_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_M",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_MB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_MR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_MO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Rock_BK_MP",0,0,0,0)
+goto Done
+}
+}
+
+actor RockBallX2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_M",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_SpawnItemEx("Rock_SuperKickFX_H",cos(-pitch)*16,0,36+(sin(-pitch)*28),0,0,0,0,33)
+stop
+}
+}
+
+actor RockBall3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_M",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MB",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MR",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MO",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Rock_BK2_MP",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))
+goto Done
+}
+}
+
+actor RockBallDropC_P : RockBallDropM_P
+{
+States
+{
+FireB:
+TNT1 A 0 A_SpawnItemEx("Rock_B_C_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireB_S")
+goto End
+FireB_S:
+TNT1 A 0 A_SpawnItemEx("Rock_B_C_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,15,9)
+TNT1 A 0 A_SpawnItemEx("Rock_B_C_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,-15,9)
+goto End
+}
+}
+actor RockBallC_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_C",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_CB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_CR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_CO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_CP",0,0,0,-16)goto Done}}
+actor RockBallC2_CI : RockBall2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_C",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CP",0,0,0,-16)goto Done}}
+actor RockBallCX_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_C",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_CB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_CR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_CO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_CP",0,0,0,0)goto Done}}
+actor RockBallCX2_CI : RockBallX2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_C",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CP",0,0,0,0)goto Done}}
+actor RockBallC3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_C",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CB",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CR",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CO",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_CP",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done}}
+
+actor RockBallDropG_P : RockBallDropM_P
+{
+States
+{
+FireB:
+TNT1 A 0 A_SpawnItemEx("Rock_B_G_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireB_S")
+goto End
+FireB_S:
+TNT1 A 0 A_SpawnItemEx("Rock_B_G_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,15,9)
+TNT1 A 0 A_SpawnItemEx("Rock_B_G_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,-15,9)
+goto End
+}
+}
+actor RockBallG_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_G",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_GB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_GR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_GO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_GP",0,0,0,-16)goto Done}}
+actor RockBallG2_CI : RockBall2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_G",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GP",0,0,0,-16)goto Done}}
+actor RockBallGX_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_G",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_GB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_GR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_GO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_GP",0,0,0,0)goto Done}}
+actor RockBallGX2_CI : RockBallX2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_G",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GP",0,0,0,0)goto Done}}
+actor RockBallG3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_G",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GB",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GR",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GO",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_GP",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done}}
+
+actor RockBallDropI_P : RockBallDropM_P
+{
+States
+{
+FireB:
+TNT1 A 0 A_SpawnItemEx("Rock_B_I_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireB_S")
+goto End
+FireB_S:
+TNT1 A 0 A_SpawnItemEx("Rock_B_I_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,15,9)
+TNT1 A 0 A_SpawnItemEx("Rock_B_I_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,-15,9)
+goto End
+}
+}
+actor RockBallI_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_I",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_IB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_IR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_IO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_IP",0,0,0,-16)goto Done}}
+actor RockBallI2_CI : RockBall2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_I",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IP",0,0,0,-16)goto Done}}
+actor RockBallIX_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_I",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_IB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_IR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_IO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_IP",0,0,0,0)goto Done}}
+actor RockBallIX2_CI : RockBallX2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_I",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IP",0,0,0,0)goto Done}}
+actor RockBallI3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_I",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IB",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IR",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IO",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_IP",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done}}
+
+actor RockBallDropB_P : RockBallDropM_P
+{
+States
+{
+FireB:
+TNT1 A 0 A_SpawnItemEx("Rock_B_B_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireB_S")
+goto End
+FireB_S:
+TNT1 A 0 A_SpawnItemEx("Rock_B_B_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,15,9)
+TNT1 A 0 A_SpawnItemEx("Rock_B_B_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,-15,9)
+goto End
+}
+}
+actor RockBallB_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_B",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_BB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_BR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_BO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_BP",0,0,0,-16)goto Done}}
+actor RockBallB2_CI : RockBall2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_B",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BP",0,0,0,-16)goto Done}}
+actor RockBallBX_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_B",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_BB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_BR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_BO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_BP",0,0,0,0)goto Done}}
+actor RockBallBX2_CI : RockBallX2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_B",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BP",0,0,0,0)goto Done}}
+actor RockBallB3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_B",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BB",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BR",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BO",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_BP",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done}}
+
+actor RockBallDropF_P : RockBallDropM_P
+{
+States
+{
+FireB:
+TNT1 A 0 A_SpawnItemEx("Rock_B_F_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireB_S")
+goto End
+FireB_S:
+TNT1 A 0 A_SpawnItemEx("Rock_B_F_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,15,9)
+TNT1 A 0 A_SpawnItemEx("Rock_B_F_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,-15,9)
+goto End
+}
+}
+actor RockBallF_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_F",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_FB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_FR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_FO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_FP",0,0,0,-16)goto Done}}
+actor RockBallF2_CI : RockBall2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_F",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FP",0,0,0,-16)goto Done}}
+actor RockBallFX_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_F",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_FB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_FR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_FO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_FP",0,0,0,0)goto Done}}
+actor RockBallFX2_CI : RockBallX2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_F",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FP",0,0,0,0)goto Done}}
+actor RockBallF3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_F",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FB",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FR",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FO",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_FP",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done}}
+
+actor RockBallDropE_P : RockBallDropM_P
+{
+States
+{
+FireB:
+TNT1 A 0 A_SpawnItemEx("Rock_B_E_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireB_S")
+goto End
+FireB_S:
+TNT1 A 0 A_SpawnItemEx("Rock_B_E_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,15,9)
+TNT1 A 0 A_SpawnItemEx("Rock_B_E_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,-15,9)
+goto End
+}
+}
+actor RockBallE_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_E",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_EB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_ER",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_EO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_EP",0,0,0,-16)goto Done}}
+actor RockBallE2_CI : RockBall2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_E",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_EB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_ER",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_EO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_EP",0,0,0,-16)goto Done}}
+actor RockBallEX_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_E",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_EB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_ER",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_EO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_EP",0,0,0,0)goto Done}}
+actor RockBallEX2_CI : RockBallX2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_E",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_EB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_ER",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_EO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_EP",0,0,0,0)goto Done}}
+actor RockBallE3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_E",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_EB",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_ER",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_EO",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_EP",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done}}
+
+actor RockBallDropT_P : RockBallDropM_P
+{
+States
+{
+FireB:
+TNT1 A 0 A_SpawnItemEx("Rock_B_T_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireB_S")
+goto End
+FireB_S:
+TNT1 A 0 A_SpawnItemEx("Rock_B_T_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,15,9)
+TNT1 A 0 A_SpawnItemEx("Rock_B_T_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,-15,9)
+goto End
+}
+}
+actor RockBallT_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_T",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_TB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_TR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_TO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_TP",0,0,0,-16)goto Done}}
+actor RockBallT2_CI : RockBall2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_T",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TP",0,0,0,-16)goto Done}}
+actor RockBallTX_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_T",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_TB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_TR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_TO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_TP",0,0,0,0)goto Done}}
+actor RockBallTX2_CI : RockBallX2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_T",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TP",0,0,0,0)goto Done}}
+actor RockBallT3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_T",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TB",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TR",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TO",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_TP",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done}}
+
+actor RockBallDropO_P : RockBallDropM_P
+{
+States
+{
+FireB:
+TNT1 A 0 A_SpawnItemEx("Rock_B_O_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,0,9)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireB_S")
+goto End
+FireB_S:
+TNT1 A 0 A_SpawnItemEx("Rock_B_O_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,15,9)
+TNT1 A 0 A_SpawnItemEx("Rock_B_O_Start",cos(-pitch)*64,0,32+(sin(-pitch)*64),momx*0.01,momy*0.01,0,-15,9)
+goto End
+}
+}
+actor RockBallO_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_O",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_OB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_OR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_OO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_OP",0,0,0,-16)goto Done}}
+actor RockBallO2_CI : RockBall2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_O",0,0,0,-16)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OB",0,0,0,-16)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OR",0,0,0,-16)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OO",0,0,0,-16)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OP",0,0,0,-16)goto Done}}
+actor RockBallOX_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK_O",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK_OB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK_OR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK_OO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK_OP",0,0,0,0)goto Done}}
+actor RockBallOX2_CI : RockBallX2_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_O",0,0,0,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OB",0,0,0,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OR",0,0,0,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OO",0,0,0,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OP",0,0,0,0)goto Done}}
+actor RockBallO3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("Rock_BK2_O",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OB",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OR",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OO",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("Rock_BK2_OP",(random(0,1)*2-1)*random(1,7),0,0,-16,0,random(-5,5))goto Done}}

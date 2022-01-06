@@ -1,14 +1,18 @@
-actor Blademan : LightClassBase
+actor Blademan : ClassBase //85
 {
 Player.ScoreIcon "C_10A0X"
-player.startitem "LightHealthBar"
 player.displayname "Blademan"
 player.soundclass "blademanc"
 player.startitem "TripleBladeBoss"
 player.startitem "TripleBladeBoss2"
 player.startitem "TripleBladeBossAmmo", 20
 player.startitem "BladeDropItem"
+
+player.maxhealth 850
+health 850
 player.jumpz 13
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.weaponslot 1, "TripleBladeBoss"
 player.weaponslot 2, "TripleBladeBoss2"

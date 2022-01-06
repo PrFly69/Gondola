@@ -1,0 +1,21 @@
+//Chillman
+sprite  C_10D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch M10FCHIL, 0, 0}//Chillman
+texture C_10D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch M10FCHIL, 0, 0}
+graphic CHILICON,30,30{XScale 2.0 YScale 2.0 Patch CHLIA0,0,0}
+graphic CHILWEP1,30,30{XScale 2.0 YScale 2.0 Patch CHLIB0,0,0}
+graphic CHILWEP2,30,30{XScale 2.0 YScale 2.0 Patch ICEIC0,0,0}
+
+//BBA Fix
+graphic BBBWEP4B,16,91{XScale 2.0 YScale 2.0 Patch BBAWEP4A,0,0}
+graphic BBBWEP5B,16,91{XScale 2.0 YScale 2.0 Patch BBAWEP5A,0,0}
+
+// Fuseman
+graphic 11_I_BAR, 8, 56 {patch BARENERG, 0, 0 {Translation "192:192=138:138", "198:198=139:139"}}
+graphic 11_I_VAR, 56, 8 {patch 11_I_BAR, 0, 0 {Rotate 90}}
+graphic 11_H_BAR, 8, 56 {patch BARENERG, 0, 0 {Translation "192:192=160:160", "198:198=162:162"}}
+graphic 11_H_VAR, 56, 8 {patch 11_H_BAR, 0, 0 {Rotate 90}}
+
+graphic FUSEBATI, 32, 32{XScale 2.0 YScale 2.0 Patch FUSEBATT,0,0{Translation "192:192=138:138", "198:198=139:139"}}
+
+sprite  C_11F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0111, 0, 0}
+texture C_11F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE0111, 0, 0}

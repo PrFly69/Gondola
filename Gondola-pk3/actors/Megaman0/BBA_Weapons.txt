@@ -1,0 +1,1553 @@
+actor BBA_ShopItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "BBASHOP"
+inventory.pickupmessage "Roll: Good luck, MEGA MAN!"
+scale 2.0
++INVBAR
+states
+{
+Spawn:
+BBAB Z -1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("BBA_Money",600,"BFG")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",500,"RocketLauncher")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",400,"PlasmaRifle")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",300,"SuperShotgun")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",200,"Chaingun")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",100,"Shotgun")
+fail
+Shotgun:
+TNT1 A 0 A_JumpIfInventory("BBA_Shotgun",1,"AmmoRefill")
+TNT1 A 0 A_GiveInventory("BBA_Shotgun",1)
+TNT1 A 0 A_SpawnItemEx("BBA_Shop1_H")//A_SelectWeapon("BBA_Shotgun")
+TNT1 A 0 A_TakeInventory("BBA_Money",100)
+Goto NewWeapon
+Chaingun:
+TNT1 A 0 A_JumpIfInventory("BBA_Chaingun",1,"AmmoRefill")
+TNT1 A 0 A_GiveInventory("BBA_Chaingun",1)
+TNT1 A 0 A_GiveInventory("BBA_Clip",40)
+TNT1 A 0 A_SpawnItemEx("BBA_Shop2_H")
+TNT1 A 0 A_TakeInventory("BBA_Money",200)
+Goto NewWeapon
+SuperShotgun:
+TNT1 A 0 A_JumpIfInventory("BBA_SuperShotgun",1,"AmmoRefill")
+TNT1 A 0 A_GiveInventory("BBA_SuperShotgun",1)
+TNT1 A 0 A_SpawnItemEx("BBA_Shop3_H")
+TNT1 A 0 A_TakeInventory("BBA_Money",300)
+Goto NewWeapon
+PlasmaRifle:
+TNT1 A 0 A_JumpIfInventory("BBA_PlasmaRifle",1,"AmmoRefill")
+TNT1 A 0 A_GiveInventory("BBA_PlasmaRifle",1)
+TNT1 A 0 A_SpawnItemEx("BBA_Shop4_H")
+TNT1 A 0 A_TakeInventory("BBA_Money",400)
+Goto NewWeapon
+RocketLauncher:
+TNT1 A 0 A_JumpIfInventory("BBA_RocketLauncher",1,"AmmoRefill")
+TNT1 A 0 A_GiveInventory("BBA_RocketLauncher",1)
+TNT1 A 0 A_SpawnItemEx("BBA_Shop5_H")
+TNT1 A 0 A_TakeInventory("BBA_Money",500)
+Goto NewWeapon
+BFG:
+TNT1 A 0 A_JumpIfInventory("BBA_BFG9000",1,"AmmoRefill")
+TNT1 A 0 A_GiveInventory("BBA_BFG9000",1)
+TNT1 A 0 A_SpawnItemEx("BBA_Shop6_H")
+TNT1 A 0 A_TakeInventory("BBA_Money",600)
+Goto NewWeapon
+NewWeapon:
+TNT1 A 0 A_PlaySound("BBA_Snd/weapon","SoundSlot6")
+fail
+AmmoRefill:
+TNT1 A 0 A_PlaySound("BBA_Snd/ammo","SoundSlot6",0.95)
+TNT1 A 0 A_GiveInventory("BBA_Clip",100)
+TNT1 A 0 A_GiveInventory("BBA_Shell",20)
+TNT1 A 0 A_GiveInventory("BBA_Rockets",20)
+TNT1 A 0 A_GiveInventory("BBA_Cell",120)
+TNT1 A 0 A_TakeInventory("BBA_Money",100)
+fail
+No:
+TNT1 A 0
+fail
+}
+}
+
+actor BBA_Shop1_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 1 A_GiveToTarget("BBA_Shop1_P",1)
+stop
+}
+}
+actor BBA_Shop2_H : BasicHelper{States{Spawn:TNT1 A 1
+TNT1 A 1 A_GiveToTarget("BBA_Shop2_P",1)stop}}
+actor BBA_Shop3_H : BasicHelper{States{Spawn:TNT1 A 1
+TNT1 A 1 A_GiveToTarget("BBA_Shop3_P",1)stop}}
+actor BBA_Shop4_H : BasicHelper{States{Spawn:TNT1 A 1
+TNT1 A 1 A_GiveToTarget("BBA_Shop4_P",1)stop}}
+actor BBA_Shop5_H : BasicHelper{States{Spawn:TNT1 A 1
+TNT1 A 1 A_GiveToTarget("BBA_Shop5_P",1)stop}}
+actor BBA_Shop6_H : BasicHelper{States{Spawn:TNT1 A 1
+TNT1 A 1 A_GiveToTarget("BBA_Shop6_P",1)stop}}
+
+actor BBA_Shop1_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SelectWeapon("BBA_Shotgun")
+stop
+}
+}
+actor BBA_Shop2_P : CustomInventory{States{Pickup:TNT1 A 0 A_SelectWeapon("BBA_Chaingun")stop}}
+actor BBA_Shop3_P : CustomInventory{States{Pickup:TNT1 A 0 A_SelectWeapon("BBA_SuperShotgun")stop}}
+actor BBA_Shop4_P : CustomInventory{States{Pickup:TNT1 A 0 A_SelectWeapon("BBA_PlasmaRifle")stop}}
+actor BBA_Shop5_P : CustomInventory{States{Pickup:TNT1 A 0 A_SelectWeapon("BBA_RocketLauncher")stop}}
+actor BBA_Shop6_P : CustomInventory{States{Pickup:TNT1 A 0 A_SelectWeapon("BBA_BFG9000")stop}}
+
+actor BBAWeapons : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("BBA_Pistol",1)
+TNT1 A 0 A_GiveInventory("BBA_Shotgun",1)
+TNT1 A 0 A_GiveInventory("BBA_SuperShotgun",1)
+TNT1 A 0 A_GiveInventory("BBA_Chaingun",1)
+TNT1 A 0 A_GiveInventory("BBA_PlasmaRifle",1)
+TNT1 A 0 A_GiveInventory("BBA_RocketLauncher",1)
+TNT1 A 0 A_GiveInventory("BBA_BFG9000",1)
+stop
+}
+}
+
+actor BBAMegamanWepDroppedX1 : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,2)
+TNT1 A 1 A_SpawnItemEx("PowerUpgradeGiverDropped")
+stop
+TNT1 A 1 A_SpawnItemEx("JetUpgradeGiverDropped")
+stop
+}
+}
+actor BBAMegamanWepDroppedX2 : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,2)
+TNT1 A 1 A_SpawnItemEx("ArrowBusterUpgrade2GiverDropped")
+stop
+TNT1 A 1 A_SpawnItemEx("LaserBusterUpgrade2GiverDropped")
+stop
+}
+}
+actor BBAMegamanWepDroppedX3 : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+stop
+}
+}
+
+ACTOR BBA_BaseWeapon : BaseMM8BDMWep_CBM
+{
+	Tag "$TAGC_0T"
+	dropitem "CarryDropped"
+	Obituary "$OB_BBAPUNCH"
+	Weapon.AmmoType2 "BBA_Money"
+
+	-WEAPON.DONTBOB
+	states
+	{
+	Flash:
+		PUNG B 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG B 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG B 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG C 0 A_GiveInventory("BBAAlt_CI",1)
+		PUNG C 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG C 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG C 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG D 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG D 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG D 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG D 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG D 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG D 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG D 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG D 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG D 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG D 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG D 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG C 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG C 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG C 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG C 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG C 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG C 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG C 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG B 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG B 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG B 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG B 0 A_JumpIfInventory("PowerRage_ST",1,2)
+		PUNG B 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+		PUNG B 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+	stop
+	Spawn:
+		C_00 T -1
+	Stop
+
+	NoAmmo:
+		"----" A 12 A_PlaySoundEx("weapon/fakeempty","SoundSlot6")
+		"----" A 1 A_Jump(256,"Ready")
+	wait
+	}
+}
+
+actor BBA_Clip : Ammo
+{
+inventory.maxamount 150
++INVENTORY.IGNORESKILL
+}
+
+actor BBA_Shell : Ammo
+{
+inventory.maxamount 40
++INVENTORY.IGNORESKILL
+}
+
+actor BBA_Rockets : Ammo
+{
+inventory.maxamount 40
++INVENTORY.IGNORESKILL
+}
+
+actor BBA_Cell : Ammo
+{
+inventory.maxamount 300
++INVENTORY.IGNORESKILL
+}
+
+actor BBA_Money : Ammo
+{
+inventory.maxamount 600
++INVENTORY.IGNORESKILL
+}
+
+actor BBA_MoneyGiver : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 1
+TNT1 A 1 A_JumpIfInTargetInventory("PowerRage_ST",1,1)
+TNT1 A 1
+TNT1 A 1 A_JumpIfInTargetInventory("PowerRage_ST",1,1)
+TNT1 A 1
+TNT1 A 1 A_JumpIfInTargetInventory("PowerRage_ST",1,1)
+TNT1 A 1
+TNT1 A 1 A_JumpIfInTargetInventory("PowerRage_ST",1,1)
+TNT1 A 1
+TNT1 A 1 A_JumpIfInTargetInventory("PowerRage_ST",1,1)
+TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_GiveToTarget("BBA_MoneyGiver_P",1)
+TNT1 A 0 A_JumpIfInTargetInventory("BBA_Pistol",1,"Spawn")
+goto Death
+}
+}
+
+actor BBA_MoneyGiver_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("BBA_Shotgun",1,"Chaingun")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",100,"No")
+Goto GiveCash
+Chaingun:
+TNT1 A 0 A_JumpIfInventory("BBA_Chaingun",1,"SuperShotgun")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",200,"No")
+Goto GiveCash
+SuperShotgun:
+TNT1 A 0 A_JumpIfInventory("BBA_SuperShotgun",1,"RocketLauncher")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",300,"No")
+Goto GiveCash
+RocketLauncher:
+TNT1 A 0 A_JumpIfInventory("BBA_RocketLauncher",1,"PlasmaRifle")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",400,"No")
+Goto GiveCash
+PlasmaRifle:
+TNT1 A 0 A_JumpIfInventory("BBA_PlasmaRifle",1,"GiveCash")
+TNT1 A 0 A_JumpIfInventory("BBA_Money",500,"No")
+Goto GiveCash
+No:
+TNT1 A 0
+stop
+GiveCash:
+TNT1 A 0 A_GiveInventory("BBA_Money",1)
+stop
+}
+}
+
+actor BBAPunch
+{
+Translation "202:202=210:210"
+seesound "BBA_Snd/throwpunch"
+PROJECTILE
+damagetype "BBA_Mega"
+Obituary "$OB_BBAPUNCH"
++DONTBLAST
++DONTREFLECT
++HITTRACER
+reactiontime 1
+Damage (180)
+Radius 20
+Height 20
+speed 75
+scale 1.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+wait
+Death:
+UMFX R 0
+goto FXDeath
+Crash:
+XDeath:
+UMFX R 0 A_PlaySoundEx("BBA_Snd/punch","SountSlot7")
+UMFX R 0 A_Stop
+UMFX R 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"Give")
+Goto FXDeath
+Give:
+UMFX R 0 A_GiveToTarget("BBA_Money",100)
+Goto FXDeath
+FXDeath:
+UMFX J 2
+XMFX S 2
+UMFX JK 2
+stop
+}
+}
+actor BBAPunchB : BBAPunch{Translation "202:202=205:205"}
+actor BBAPunchR : BBAPunch{Translation "202:202=171:171"}
+actor BBAPunchO : BBAPunch{Translation "202:202=104:104"}
+actor BBAPunchP : BBAPunch{Translation "202:202=229:229"}
+
+ACTOR BBA_Pistol : BBA_BaseWeapon
+{
+	Tag "$TAGC_0T1"
+	Weapon.SelectionOrder 1900
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 20
+	Weapon.AmmoType "BBA_Clip"
+	//Obituary "$OB_BBAPISTOL"
+	+WEAPON.WIMPY_WEAPON
+	Inventory.Pickupmessage "Power Up! Trusty Sidearm!"
+
+	States
+	{
+	Ready:
+		PISG A 0 A_JumpifInventory("OnceC",1,"Ready0")
+		PISG A 0 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_BULLET)
+		PISG A 0 A_GiveInventory("OnceC",1)
+		PISG A 0 A_SpawnItemEx("BBA_MoneyGiver")
+	Ready0:
+		PISG A 0 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_BULLET,-1)
+		PISG A 1 A_WeaponReady
+	Wait
+	Deselect:
+		PISG A 0 A_Lower
+		PISG A 1 A_Lower
+	Loop
+	Select:
+		PISG A 0 A_Raise
+		PISG A 1 A_Raise
+	Loop
+	Fire:
+		PISG A 0 A_JumpIfNoAmmo("NoAmmo")
+		PISG A 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
+		PISG A 4
+		PISG C 0 A_PlaySound("BBA_Snd/shot",1,0.9)
+		PISG C 1 Offset(0, 32)A_GiveInventory("BBAPistol_CI",1)//A_FirePistol
+		PISG D 1 Offset(0, 32)
+		PISG D 1 Offset(0, 40)
+		PISG D 1 Offset(0, 40)
+		PISG D 1 Offset(0, 39)
+		PISG D 1 Offset(0, 38)
+		PISG D 1 Offset(0, 37)
+		PISG D 1 Offset(0, 36)
+		PISG A 1 Offset(0, 35)
+		PISG A 1 A_WeaponReady(14)
+		PISG A 5 A_ReFire
+	Goto Ready0+1
+	FireR:
+		PISG A 0 A_JumpIfNoAmmo("NoAmmo")
+		PISG A 2
+		PISG C 0 A_PlaySound("BBA_Snd/shot",1,0.9)
+		PISG C 1 Offset(0, 32)A_GiveInventory("BBAPistol_CI",1)//A_FirePistol
+		PISG D 1 Offset(0, 40)
+		PISG D 1 Offset(0, 39)
+		PISG D 1 Offset(0, 37)
+		PISG A 1 Offset(0, 35)
+		PISG A 2 A_WeaponReady(14)
+		PISG A 4 A_ReFire	
+	Goto Ready0+1
+	Altfire:
+		PISG A 0 A_GiveInventory("VivifyDelay5",1)
+		PISG A 0 A_Refire(1)
+		PISG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		PISG A 1 OffSet(-45,62)
+	Fist:
+		PISG A 19 OffSet(-45,152)A_GunFlash("Flash")
+		PISG A 0 A_GiveInventory("VivifyDelay5",1)
+		PISG A 0 A_Refire("Fist")
+		PISG A 1 OffSet(-45,152)
+		PISG A 1 OffSet(-45,114)A_JumpIfInventory("PowerRage_ST",1,1)
+		PISG A 1 OffSet(-45,72)A_TakeInventory("VivifyDelay5",99)
+		PISG A 1 OffSet(-45,62)A_JumpIfInventory("PowerRage_ST",1,1)
+		PISG A 1 OffSet(-30,52)
+		PISG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		PISG A 0
+	goto Ready0+1
+	}
+}
+
+ACTOR BBA_Shotgun : BBA_BaseWeapon
+{
+	Tag "$TAGC_0T2"
+	dropitem "BBAMegamanWepDroppedX1"
+	Weapon.SelectionOrder 1300
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 8
+	Weapon.AmmoType "BBA_Shell"
+	Inventory.PickupMessage "Power up! Spread Gun"
+	//Obituary "$OB_BBASHOTGUN"
+
+	States
+	{
+	Ready:
+		SHTG A 0 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_BULLET,-1)
+		SHTG A 1 A_WeaponReady
+	Wait
+	Deselect:
+		SHTG A 0 A_Lower
+		SHTG A 1 A_Lower
+	Loop
+	Select:
+		SHTG A 0 A_Raise
+		SHTG A 1 A_Raise
+	Loop
+	Fire:
+		SHTG A 3 A_JumpIfNoAmmo("NoAmmo")
+		SHTG A 0 A_TakeInventory("BBA_Shell",1)
+		SHTG A 0 A_PlayWeaponSound("BBA_Snd/shotgun")
+		SHTG A 0 A_GiveInventory("BBAShotgun_CI",1)
+		//SHTG B 4 
+		//SHTG C 3
+		//SHTG D 8 //15
+		SHTG BC 1 
+		SHTG D 1 Offset(0,36)
+		SHTG D 1 Offset(0,42)
+		SHTG D 1 Offset(0,50)
+		SHTG D 1
+		SHTG D 1 Offset(0,48)
+		SHTG D 1 Offset(0,46)
+		SHTG D 1 Offset(0,44)
+		SHTG D 1 Offset(0,42)
+		SHTG D 1 Offset(0,40)
+		SHTG D 1 Offset(0,38)
+		SHTG D 1 Offset(0,36)
+		SHTG D 1 Offset(0,34) //12
+		SHTG D 1 A_WeaponReady(14)
+		
+		SHTG E 0 A_PlaySound("BBA_Snd/shotgun_r",6)
+		//SHTG E 4
+		//SHTG FG 2
+		//SHTG H 4
+		//SHTG A 3 //15
+		
+		/*SHTG D 1 Offset(0,33)
+		SHTG D 1 Offset(0,34)
+		SHTG E 1 Offset(0,38)
+		SHTG E 1 Offset(0,40)
+		SHTG F 1 Offset(0,41)
+		SHTG G 1 Offset(0,42)
+		SHTG H 1 Offset(0,41)
+		SHTG H 1 Offset(0,40)
+		SHTG A 1 Offset(0,38)
+		SHTG A 1 Offset(0,37)
+		SHTG A 1 Offset(0,36)
+		SHTG A 1 Offset(0,35)
+		SHTG A 1 Offset(0,34)
+		SHTG A 1 Offset(0,33)
+		SHTG A 1 A_WeaponReady(14)*/ //15
+		
+		SHTG E 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
+		SHTG EFFFFFGHHH 1
+		SHTG A 4
+		SHTG A 7 A_ReFire("Fire")
+		//SHTG A 7 A_ReFire
+	Goto Ready+1
+	FireR:
+		SHTG EFFGHH 1
+		SHTG A 7 A_ReFire("Fire")
+	Goto Ready+1
+		
+	Altfire:
+		SHTG A 0 A_GiveInventory("VivifyDelay5",1)
+		SHTG A 0 A_Refire(1)
+		SHTG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHTG A 1 OffSet(-45,62)
+	Fist:
+		SHTG A 19 OffSet(-45,152)A_GunFlash("Flash")
+		SHTG A 0 A_GiveInventory("VivifyDelay5",1)
+		SHTG A 0 A_Refire("Fist")
+		SHTG A 1 OffSet(-45,152)
+		SHTG A 1 OffSet(-45,114)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHTG A 1 OffSet(-45,72)A_TakeInventory("VivifyDelay5",99)
+		SHTG A 1 OffSet(-45,62)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHTG A 1 OffSet(-30,52)
+		SHTG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHTG A 0
+	goto Ready+1
+	}
+}
+
+ACTOR BBA_SuperShotgun : BBA_BaseWeapon
+{
+	Tag "$TAGC_0T3"
+	dropitem "BBAMegamanWepDroppedX1"
+	Weapon.SelectionOrder 400
+	Weapon.AmmoUse 2
+	Weapon.AmmoGive 8
+	Weapon.AmmoType "BBA_Shell"
+	Inventory.PickupMessage "Power up! Super Spread Gun!"
+	//Obituary "$OB_BBASUPERSHOTGUN"
+
+	States
+	{
+	Ready:
+		SHT2 A 0 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_BULLET,-1)
+		SHT2 A 1 A_WeaponReady
+	Wait
+	Deselect:
+		SHT2 A 0 A_Lower
+		SHT2 A 1 A_Lower
+	Loop
+	Select:
+		SHT2 A 0 A_Raise
+		SHT2 A 1 A_Raise
+	Loop
+	Fire3333:
+		SHT2 A 3 A_JumpIfNoAmmo("NoAmmo")
+		SHT2 A 0 A_TakeInventory("BBA_Shell",2)
+		SHT2 A 0 A_PlayWeaponSound("BBA_Snd/ssg")
+		SHT2 A 0 A_GiveInventory("BBASSG_CI",1)
+		SHT2 B 3 //A_FireShotgun2//A_CheckReload//A_OpenShotgun2//A_LoadShotgun2//A_CloseShotgun2
+		SHT2 CD 6
+		SHT2 E 13
+		SHT2 F 10 Offset(0,40)
+		SHT2 F 10 Offset(0,36)
+		SHT2 F 6 A_WeaponReady(14)
+		SHT2 A 5 A_ReFire
+	Goto Ready+1
+	Fire:
+		SHT2 A 3 A_JumpIfNoAmmo("NoAmmo")
+		SHT2 A 0 A_TakeInventory("BBA_Shell",2)
+		SHT2 A 0 A_PlayWeaponSound("BBA_Snd/ssg")
+		SHT2 A 0 A_GiveInventory("BBASSG_CI",1)
+		//SHT2 B 4
+		//SHT2 C 3
+		//SHT2 D 3
+		//SHT2 E 4
+		//SHT2 F 4 Offset(0,38) //18
+		SHT2 BC 1
+		SHT2 D 1 Offset(0,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 D 1 Offset(0,52)
+		SHT2 D 1 Offset(0,53)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 E 1 Offset(0,51)
+		SHT2 E 1 Offset(0,49)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 F 1 Offset(0,47)
+		SHT2 F 1 Offset(0,45)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 F 1 Offset(0,43)
+		SHT2 F 1 Offset(0,41)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 F 1 Offset(0,39)
+		SHT2 F 1 Offset(0,37)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 F 1 Offset(0,35)
+		SHT2 F 0 A_PlaySound("BBA_Snd/ssg_r1",6)
+		SHT2 F 6 A_WeaponReady(14)//29
+		SHT2 F 6 A_GunFlash("Flash.SSG")
+		SHT2 A 0 A_PlaySound("BBA_Snd/ssg_r2",6)
+		SHT2 A 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
+		SHT2 AFAF 2
+		SHT2 G 4
+		SHT2 A 6 A_PlaySound("BBA_Snd/ssg_r3",6)
+		SHT2 A 2
+		SHT2 A 5 A_ReFire//51
+	Goto Ready+1
+	FireR:
+		SHT2 AFAF 1
+		SHT2 G 2
+		SHT2 A 3 A_PlaySound("BBA_Snd/ssg_r3",6)
+		SHT2 A 1
+		SHT2 A 3 A_ReFire//51
+	Goto Ready+1
+	//A_PlaySound("BBA_Snd/ssg_1",6)
+	//A_PlaySound("BBA_Snd/ssg_2",6)
+	//A_PlaySound("BBA_Snd/ssg_3",6)
+	Flash.SSG:
+		PUNG HIJJJJIIHH 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+	Stop
+	Altfire:
+		SHT2 A 0 A_GiveInventory("VivifyDelay5",1)
+		SHT2 A 0 A_Refire(1)
+		SHT2 A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 A 1 OffSet(-45,62)
+	Fist:
+		SHT2 A 19 OffSet(-45,152)A_GunFlash("Flash")
+		SHT2 A 0 A_GiveInventory("VivifyDelay5",1)
+		SHT2 A 0 A_Refire("Fist")
+		SHT2 A 1 OffSet(-45,152)
+		SHT2 A 1 OffSet(-45,114)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 A 1 OffSet(-45,72)A_TakeInventory("VivifyDelay5",99)
+		SHT2 A 1 OffSet(-45,62)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 A 1 OffSet(-30,52)
+		SHT2 A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		SHT2 A 0
+	goto Ready+1
+	}
+}
+
+
+ACTOR BBA_Chaingun : BBA_BaseWeapon
+{
+	Tag "$TAGC_0T4"
+	dropitem "BBAMegamanWepDroppedX1"
+	Weapon.SelectionOrder 700
+	Weapon.AmmoUse 2
+	Weapon.AmmoGive 20
+	Weapon.AmmoType "BBA_Clip"
+	Inventory.PickupMessage "Power up! Vulcan Repeater!"
+	//Obituary "$OB_BBACHAINGUN"
+
+	States
+	{
+	Ready:
+		CHGG A 0 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_BULLET,-1)
+		CHGG A 1 A_WeaponReady
+	Wait
+	Deselect:
+		CHGG A 0 A_Lower
+		CHGG A 1 A_Lower
+	Loop
+	Select:
+		CHGG A 0 A_Raise
+		CHGG A 1 A_Raise
+	Loop
+	Fire:
+		CHGG A 0 A_JumpIfNoAmmo("NoAmmo")
+		CHGG B 0 A_PlaySound("BBA_Snd/shot",1,0.9)
+		CHGG B 0 A_TakeInventory("BBA_Clip",1)
+		CHGG B 2 A_GiveInventory("BBAChaingunX_CI",1)//A_FireCGun
+		CHGG B 2
+		CHGG B 0 A_PlaySound("BBA_Snd/shot",1,0.9)
+		CHGG B 0 A_TakeInventory("BBA_Clip",1)
+		CHGG D 2 A_GiveInventory("BBAChaingunX_CI",1)//A_FireCGun
+		CHGG D 2
+		CHGG GF 4 A_ReFire("Fire2")
+	Goto Ready+1
+	Fire1:
+		CHGG A 0 A_JumpIfNoAmmo("NoAmmo")
+		CHGG B 0 A_PlaySound("BBA_Snd/shot",1,0.9)
+		CHGG B 0 A_TakeInventory("BBA_Clip",1)
+		CHGG B 2 A_GiveInventory("BBAChaingun_CI",1)
+		CHGG B 2
+		CHGG B 0 A_PlaySound("BBA_Snd/shot",1,0.9)
+		CHGG B 0 A_TakeInventory("BBA_Clip",1)
+		CHGG D 2 A_GiveInventory("BBAChaingun_CI",1)
+		CHGG D 2
+		CHGG GF 4 A_ReFire("Fire2")
+	Goto Ready+1
+	Fire2:
+		CHGG A 0 A_JumpIfNoAmmo("NoAmmo")
+		CHGG B 0 A_PlaySound("BBA_Snd/shot",1,0.9)
+		CHGG B 0 A_TakeInventory("BBA_Clip",1)
+		CHGG B 2 A_GiveInventory("BBAChaingun_CI",1)
+		CHGG B 2
+		CHGG B 0 A_PlaySound("BBA_Snd/shot",1,0.9)
+		CHGG B 0 A_TakeInventory("BBA_Clip",1)
+		CHGG D 2 A_GiveInventory("BBAChaingun_CI",1)
+		CHGG D 2
+		CHGG GF 4 A_ReFire("Fire1")
+	Goto Ready+1
+	Altfire:
+		CHGG A 0 A_GiveInventory("VivifyDelay5",1)
+		CHGG A 0 A_Refire(1)
+		CHGG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		CHGG A 1 OffSet(-45,62)
+	Fist:
+		CHGG A 19 OffSet(-45,152)A_GunFlash("Flash")
+		CHGG A 0 A_GiveInventory("VivifyDelay5",1)
+		CHGG A 0 A_Refire("Fist")
+		CHGG A 1 OffSet(-45,152)
+		CHGG A 1 OffSet(-45,114)A_JumpIfInventory("PowerRage_ST",1,1)
+		CHGG A 1 OffSet(-45,72)A_TakeInventory("VivifyDelay5",99)
+		CHGG A 1 OffSet(-45,62)A_JumpIfInventory("PowerRage_ST",1,1)
+		CHGG A 1 OffSet(-30,52)
+		CHGG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		CHGG A 0
+	goto Ready+1
+	}
+}
+
+ACTOR BBA_RocketLauncher : BBA_BaseWeapon
+{
+	Tag "$TAGC_0T5"
+	dropitem "BBAMegamanWepDroppedX1"
+	Weapon.SelectionOrder 2500
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 8
+	Weapon.AmmoType "BBA_Rockets"
+	//+WEAPON.NOAUTOFIRE
+	Inventory.PickupMessage "Power Up! Heavy Cannon!"
+
+	States
+	{
+	Ready:
+		MISG A 0 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_ROCKET,-1)
+		MISG A 1 A_WeaponReady
+	Wait
+	Deselect:
+		MISG A 0 A_Lower
+		MISG A 1 A_Lower
+	Loop
+	Select:
+		MISG A 0 A_Raise
+		MISG A 1 A_Raise
+	Loop
+	Fire:
+		MISG A 4 A_JumpIfNoAmmo("NoAmmo")
+		MISG AD 2
+		MISG D 0 //A_PlaySound("BBA_Snd/rocketfire",1,1.0)
+		MISG D 0 A_GiveInventory("BBARocketLauncher_CI",1)//A_FireMissile
+		MISG DE 2
+		MISG FC 2
+		MISG BA 2
+		MISG B 0 A_ReFire
+	Goto Ready+1
+	Altfire:
+		MISG A 0 A_GiveInventory("VivifyDelay5",1)
+		MISG A 0 A_Refire(1)
+		MISG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		MISG A 1 OffSet(-45,62)
+	Fist:
+		MISG A 19 OffSet(-45,152)A_GunFlash("Flash")
+		MISG A 0 A_GiveInventory("VivifyDelay5",1)
+		MISG A 0 A_Refire("Fist")
+		MISG A 1 OffSet(-45,152)
+		MISG A 1 OffSet(-45,114)A_JumpIfInventory("PowerRage_ST",1,1)
+		MISG A 1 OffSet(-45,72)A_TakeInventory("VivifyDelay5",99)
+		MISG A 1 OffSet(-45,62)A_JumpIfInventory("PowerRage_ST",1,1)
+		MISG A 1 OffSet(-30,52)
+		MISG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		MISG A 0
+	goto Ready+1
+	}
+}
+
+actor BBA_Rocket
+{
+Translation "199:199=95:95","204:204=216:216","195:195=176:176","250:250=228:228","249:249=44:44"
+SeeSound "BBA_Snd/rocketfire"
+DeathSound "BBA_Snd/rocket"
+PROJECTILE
+damagetype "BBA_Mega"
+Obituary "$OB_BBAROCKET"
++HITTRACER
+//+DEHEXPLOSION
+//+ROCKETTRAIL
+ReactionTime 7
+Damage (50)
+Radius 11
+Height 8
+Speed 35
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnL:
+MISL AAAAAABBBBBB 1 A_SpawnItemEx("BBA_RocketFX0",0,0,0,0,0,0,0,1)
+loop
+Death:
+//MISL C 0 A_PlaySound("BBA_Snd/rocket",2,0.95)
+MISL C 4 A_SpawnItemEx("BBA_RocketExplode")//A_Explode(30,128,0)
+MISL DEFGHI 4
+stop
+XDeath:
+Crash:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"Give")
+Goto Death
+Give:
+TNT1 A 0 A_GiveToTarget("BBA_Money",reactiontime)
+Goto Death
+}
+}
+actor BBA_RocketB : BBA_Rocket{Translation "199:199=74:74","204:204=205:205","195:195=74:74","250:250=196:196","249:249=75:75"}
+actor BBA_RocketR : BBA_Rocket{Translation "199:199=41:41","204:204=171:171","195:195=41:41","250:250=170:170","249:249=43:43"}
+actor BBA_RocketO : BBA_Rocket{Translation "199:199=128:128","204:204=104:104","195:195=128:128","250:250=138:138","249:249=131:131"}
+actor BBA_RocketP : BBA_Rocket{Translation "199:199=232:232","204:204=229:229","195:195=232:232","250:250=214:214","249:249=223:223"}
+
+actor BBA_RocketFX0 : BasicClientSide
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAA 0 A_SpawnItemEx("BBA_RocketFX1",-15,random(-1,1),random(0,3),0,frandom(-1.0f,1.0f),0,0,1)
+TNT1 A 0 A_SpawnItemEx("BBA_RocketFX2",-15,random(-1,1),random(-1,0),0,frandom(-1.0f,1.0f),0,0,1)
+stop
+}
+}
+
+actor BBA_RocketFX1 : BasicClientSide
+{
+RenderStyle Translucent
+Alpha 1.0
+ReactionTime 4
+Scale 0.25
+States
+{
+Spawn:
+UMFX L 1
+UMFX L 0 ThrustThingZ(0,1,0,1)
+UMFX LLL 1 A_FadeOut(frandom(0.05f,0.075f))
+UMFX L 0 A_CountDown
+goto Spawn+1
+}
+}
+actor BBA_RocketFX2 : BBA_RocketFX1
+{
+States
+{
+Spawn:
+WMFX D 1
+WMFX D 0 ThrustThingZ(0,1,1,1)
+WMFX DDD 1 A_FadeOut(frandom(0.05f,0.075f))
+WMFX D 0 A_CountDown
+goto Spawn+1
+}
+}
+
+actor BBA_RocketExplode : BasicExplosion
+{
+damagetype "BBA_MegaR"
+obituary "$OB_BBAR_SPLASH"
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 4 A_Explode(320,96,0,0,12)
+stop
+}
+}
+
+
+ACTOR BBA_PlasmaRifle : BBA_BaseWeapon
+{
+	Tag "$TAGC_0T6"
+	dropitem "BBAMegamanWepDroppedX1"
+	Weapon.SelectionOrder 100
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 40
+	Weapon.AmmoType "BBA_Cell"
+	Inventory.PickupMessage "Power Up! Energy Lancer!"
+
+	States
+	{
+	Ready:
+		PLSG A 0 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_PLASMA,-1)
+		PLSG A 1 A_WeaponReady
+	Wait
+	Deselect:
+		PLSG A 0 A_Lower
+		PLSG A 1 A_Lower
+	Loop
+	Select:
+		PLSG A 0 A_Raise
+		PLSG A 1 A_Raise
+	Loop
+	Fire:
+		PLSG A 0 A_JumpIfNoAmmo("NoAmmo")
+		PLSG B 0 A_PlayWeaponSound("BBA_Snd/plasma")
+		PLSG B 1 A_GiveInventory("BBAPlasmarifle_CI",1)//A_FirePlasma
+		PLSG A 1 A_JumpIfInventory("PowerRage_ST",1,1)
+		PLSG C 1
+		PLSG A 1 A_ReFire
+		PLSG D 19
+	Goto Ready+1
+	Altfire:
+		PLSG A 0 A_GiveInventory("VivifyDelay5",1)
+		PLSG A 0 A_Refire(1)
+		PLSG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		PLSG A 1 OffSet(-45,62)
+	Fist:
+		PLSG A 19 OffSet(-45,152)A_GunFlash("Flash")
+		PLSG A 0 A_GiveInventory("VivifyDelay5",1)
+		PLSG A 0 A_Refire("Fist")
+		PLSG A 1 OffSet(-45,152)
+		PLSG A 1 OffSet(-45,114)A_JumpIfInventory("PowerRage_ST",1,1)
+		PLSG A 1 OffSet(-45,72)A_TakeInventory("VivifyDelay5",99)
+		PLSG A 1 OffSet(-45,62)A_JumpIfInventory("PowerRage_ST",1,1)
+		PLSG A 1 OffSet(-30,52)
+		PLSG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		PLSG A 0
+	goto Ready+1
+	}
+}
+
+actor BBA_PlasmaBall
+{
+Translation "204:204=69:69","195:195=199:199"
+PROJECTILE
+damagetype "BBA_Mega"
+obituary "$OB_BBAPLASMARIFLE"
++FORCEXYBILLBOARD
++RANDOMIZE
++HITTRACER
+reactiontime 12
+Damage (70)//5
+Radius 13
+Height 10//8
+Speed 26
+scale 1.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnL:
+PLSS AB 6
+loop
+Death:
+PLSE ABC 4
+stop
+XDeath:
+Crash:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"Give")
+Goto Death
+Give:
+TNT1 A 0 A_GiveToTarget("BBA_Money",reactiontime)
+Goto Death
+}
+}
+actor BBA_PlasmaBallB : BBA_PlasmaBall{Translation "204:204=205:205","195:195=74:74"}
+actor BBA_PlasmaBallR : BBA_PlasmaBall{Translation "204:204=171:171","195:195=41:41"}
+actor BBA_PlasmaBallO : BBA_PlasmaBall{Translation "204:204=104:104","195:195=128:128"}
+actor BBA_PlasmaBallP : BBA_PlasmaBall{Translation "204:204=229:229","195:195=232:232"}
+
+ACTOR BBA_BFG9000 : BBA_BaseWeapon
+{
+	Tag "$TAGC_0T7"
+	dropitem "CarryDropped"
+	//Height 20
+	Weapon.SelectionOrder 2800
+	Weapon.AmmoUse 40
+	Weapon.AmmoGive 50
+	Weapon.AmmoType "BBA_Cell"
+	//+WEAPON.NOAUTOFIRE
+	//+WEAPON.NOLMS
+	Inventory.PickupMessage "Power Up! BFG90XX!"
+
+	States
+	{
+	Spawn:
+		BFGG A 1
+		wait
+	Ready:
+		BFGG A 0 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_PLASMA,-1)
+		BFGG A 1 A_WeaponReady
+	Wait
+	Deselect:
+		BFGG A 0 A_Lower
+		BFGG A 1 A_Lower
+	Loop
+	Select:
+		BFGG A 0 A_Raise
+		BFGG A 1 A_Raise
+	Loop
+	Fire:
+		BFGG A 0 A_JumpIfNoAmmo("NoAmmo")
+		BFGG A 0 A_PlaySound("BBA_Snd/bfgcharge",1,0.75)//A_BFGSound
+		BFGG BABA 5
+		BFGG ABABA 2
+		BFGG C 0 A_PlayWeaponSound("BBA_Snd/bfgfire")//A_FireBFG
+		BFGG C 0 A_GiveInventory("BBABFG_CI",1)
+		//BFGG CB 3
+		BFGG C 1 Offset(0,36)
+		BFGG C 1 Offset(0,42)
+		BFGG C 1 Offset(0,50)
+		BFGG B 1
+		BFGG B 1 Offset(0,48)
+		BFGG B 1 Offset(0,46)
+		BFGG D 1 Offset(0,44)
+		BFGG D 1 Offset(0,42)
+		BFGG D 1 Offset(0,40)
+		BFGG D 1 Offset(0,38)
+		BFGG D 1 Offset(0,36)
+		BFGG D 1 Offset(0,34)
+		BFGG D 18 A_WeaponReady(14)
+		BFGG A 4 A_ReFire
+	Goto Ready+1
+	Altfire:
+		BFGG A 0 A_GiveInventory("VivifyDelay5",1)
+		BFGG A 0 A_Refire(1)
+		BFGG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		BFGG A 1 OffSet(-45,62)
+	Fist:
+		BFGG A 19 OffSet(-45,152)A_GunFlash("Flash")
+		BFGG A 0 A_GiveInventory("VivifyDelay5",1)
+		BFGG A 0 A_Refire("Fist")
+		BFGG A 1 OffSet(-45,152)
+		BFGG A 1 OffSet(-45,114)A_JumpIfInventory("PowerRage_ST",1,1)
+		BFGG A 1 OffSet(-45,72)A_TakeInventory("VivifyDelay5",99)
+		BFGG A 1 OffSet(-45,62)A_JumpIfInventory("PowerRage_ST",1,1)
+		BFGG A 1 OffSet(-30,52)
+		BFGG A 1 OffSet(-15,42)A_JumpIfInventory("PowerRage_ST",1,1)
+		BFGG A 0
+	goto Ready+1
+	}
+}
+
+actor BBA_BFGBall
+{
+Translation "204:204=69:69","195:195=199:199","249:249=216:216","250:250=75:75"
+PROJECTILE
+damagetype "BBA_Mega"
+obituary "$OB_BBABFG"
++SKYEXPLODE
++DONTREFLECT
+Damage (300)
+Radius 13
+height 13
+speed 25
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnL:
+BFS1 AAAABBBB 1 A_SpawnItemEx("BBA_BFGBallFX",0,random(-32,32),random(-32,32),-1,0,0,0,1)
+loop
+Death:
+BFE1 A 0 A_PlaySound("BBA_Snd/bfg",7,0.95)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 0,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 1,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 2,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 3,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 4,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 5,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 6,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 7,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 8,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 9,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 10,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 11,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 12,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 13,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 14,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 15,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 16,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 17,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 18,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 19,1)
+BFE1 AAAAA 0 A_SpawnItemEx("BBA_BFGBallFX",0,0,0,15,0,random(-90,90),18 * 20,1)
+BFE1 AB 4
+BFE1 C 0 ACS_NamedExecuteAlways("cbm_bbabfg",0,500) // Scan for players in range
+BFE1 C 4 A_Explode(200,300,0,0,24)
+BFE1 DEF 4
+stop
+}
+}
+
+actor BBA_BFGBallB : BBA_BFGBall{Translation "204:204=205:205","195:195=74:74","250:250=196:196","249:249=75:75"}
+actor BBA_BFGBallR : BBA_BFGBall{Translation "204:204=171:171","195:195=41:41","250:250=170:170","249:249=43:43"}
+actor BBA_BFGBallO : BBA_BFGBall{Translation "204:204=104:104","195:195=128:128","250:250=138:138","249:249=131:131"}
+actor BBA_BFGBallP : BBA_BFGBall{Translation "204:204=229:229","195:195=232:232","250:250=214:214","249:249=223:223"}
+
+actor BBA_BFGBallFX : BasicClientSide
+{
+States
+{
+Spawn:
+BFS1 CD 3
+BFS1 E 2 A_ScaleVelocity(1.15)
+BFS1 E 1 A_Fadeout(0.2)
+goto Spawn+2
+}
+}
+
+actor BBA_BFGTracerSpawner_-1 : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("BBA_BFGTracer",0,0,8,0,0,0,0,33)
+stop
+}
+}
+actor BBA_BFGTracerSpawner_0 : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("BBA_BFGTracer0",0,0,8,0,0,0,0,33)stop}}
+actor BBA_BFGTracerSpawner_1 : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("BBA_BFGTracer1",0,0,8,0,0,0,0,33)stop}}
+actor BBA_BFGTracerSpawner_2 : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("BBA_BFGTracer2",0,0,8,0,0,0,0,33)stop}}
+actor BBA_BFGTracerSpawner_3 : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("BBA_BFGTracer3",0,0,8,0,0,0,0,33)stop}}
+
+
+actor BBA_BFGTracer : BasicExplosion
+{
+damagetype "BBA_Mega"
+obituary "$OB_BBABFGZAP"
++SEEKERMISSILE
++LOOKALLAROUND
+renderstyle none
+//reactiontime 0
+speed 0
+states
+{
+Spawn:
+PLAY A 0
+PLAY A 2 ACS_ExecuteAlways(C_SET_POINTER,0,8,ACS_NamedExecuteWithREsult("cbm_getfixedangle")+1000) // Set Tracer field to scanned player
+PLAY C 1 A_JumpIfTargetInLOS("SpawnGive",0,1) // Check if can actually see the player
+stop
+SpawnGive: 
+TNT1 A 0 A_JumpIfInTargetInventory("LightTeamFlag",1,"LTeam")
+TNT1 A 0 A_JumpIfInTargetInventory("WilyTeamFlag",1,"WTeam")
+TNT1 A 0 A_JumpIfInTargetInventory("CossackTeamFlag",1,"CTeam")
+TNT1 A 0 A_JumpIfInTargetInventory("KingTeamFlag",1,"KTeam")
+goto NoTeam
+NoTeam:
+BASS A 0 A_ReArrangePointers(8,1,2)
+BASS A 1 A_JumpIf(IsPointerEqual(AAPTR_TARGET,AAPTR_TRACER),"StopThis")
+BASS A 0 A_CustomRailgun(0,0,0,0,RGF_SILENT|RGF_NOPIERCING,1,40,"none",0,0,1000,0,1.0,0,"BBA_BFGFX",0) // Zap FX
+goto SpawnBoom
+LTeam:
+BASS A 0 A_ReArrangePointers(8,1,2)
+TNT1 A 0 A_JumpIfInTargetInventory("LightTeamFlag",1,"StopThis")
+BASS A 1 A_CustomRailgun(0,0,0,0,RGF_SILENT|RGF_NOPIERCING,1,40,"none",0,0,1000,0,1.0,0,"BBA_BFGFX0",0) // Zap FX
+goto SpawnBoom
+WTeam:
+BASS A 0 A_ReArrangePointers(8,1,2)
+TNT1 A 0 A_JumpIfInTargetInventory("WilyTeamFlag",1,"StopThis")
+BASS A 1 A_CustomRailgun(0,0,0,0,RGF_SILENT|RGF_NOPIERCING,1,40,"none",0,0,1000,0,1.0,0,"BBA_BFGFX1",0) // Zap FX
+goto SpawnBoom
+CTeam:
+BASS A 0 A_ReArrangePointers(8,1,2)
+TNT1 A 0 A_JumpIfInTargetInventory("CossackTeamFlag",1,"StopThis")
+BASS A 1 A_CustomRailgun(0,0,0,0,RGF_SILENT|RGF_NOPIERCING,1,40,"none",0,0,1000,0,1.0,0,"BBA_BFGFX2",0) // Zap FX
+goto SpawnBoom
+KTeam:
+BASS A 0 A_ReArrangePointers(8,1,2)
+TNT1 A 0 A_JumpIfInTargetInventory("KingTeamFlag",1,"StopThis")
+BASS A 1 A_CustomRailgun(0,0,0,0,RGF_SILENT|RGF_NOPIERCING,1,40,"none",0,0,1000,0,1.0,0,"BBA_BFGFX3",0) // Zap FX
+goto SpawnBoom
+SpawnBoom:
+BASS A 0 A_ReArrangePointers(8,1,2)
+BASS A 0 A_Warp(8,0,0,28,0,8)
+BASS A 0 A_Explode(200,14,0,0,14)
+BASS A 3 //A_GiveToTarget("BBA_Money",0)
+stop
+StopThis:
+TNT1 A 0
+stop
+}
+}
+
+actor BBA_BFGTracer0 : BBA_BFGTracer
+{
+states
+{
+SpawnGive:
+BASS A 0 A_ReArrangePointers(8,1,2)
+BASS A 1 A_CustomRailgun(0,0,0,0,3,1,40,"none",0,0,1000,0,1.0,0,"BBA_BFGFX0",0)
+goto SpawnBoom
+}
+}
+actor BBA_BFGTracer1 : BBA_BFGTracer
+{
+states
+{
+SpawnGive:
+BASS A 0 A_ReArrangePointers(8,1,2)
+BASS A 1 A_CustomRailgun(0,0,0,0,3,1,40,"none",0,0,1000,0,1.0,0,"BBA_BFGFX1",0)
+goto SpawnBoom
+}
+}
+actor BBA_BFGTracer2 : BBA_BFGTracer
+{
+states
+{
+SpawnGive:
+BASS A 0 A_ReArrangePointers(8,1,2)
+BASS A 1 A_CustomRailgun(0,0,0,0,3,1,40,"none",0,0,1000,0,1.0,0,"BBA_BFGFX2",0)
+goto SpawnBoom
+}
+}
+actor BBA_BFGTracer3 : BBA_BFGTracer
+{
+states
+{
+SpawnGive:
+BASS A 0 A_ReArrangePointers(8,1,2)
+BASS A 1 A_CustomRailgun(0,0,0,0,3,1,40,"none",0,0,1000,0,1.0,0,"BBA_BFGFX3",0)
+goto SpawnBoom
+}
+}
+
+actor BBA_BFGFX
+{
+Translation "204:204=69:69","250:250=75:75"
++NOINTERACTION
++CLIENTSIDEONLY
+Radius 2
+Height 2
+scale 0.25
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,1,3)
+YMFX K 2
+YMFX K 1 A_FadeOut(0.1)
+wait
+Spawn2:
+YMFX O 2
+YMFX O 1 A_FadeOut(0.25)
+loop
+}
+}
+
+actor BBA_BFGFX0 : BBA_BFGFX{Translation "204:204=205:205","250:250=196:196"}
+actor BBA_BFGFX1 : BBA_BFGFX{Translation "204:204=171:171","250:250=170:170"}
+actor BBA_BFGFX2 : BBA_BFGFX{Translation "204:204=104:104","250:250=138:138"}
+actor BBA_BFGFX3 : BBA_BFGFX{Translation "204:204=229:229","250:250=214:214"}
+
+
+actor BBA_PistolShot : Fastprojectile
+{
+Translation "204:204=4:4","195:195=215:215"
+PROJECTILE
+damagetype "BBA_Mega"
+Obituary "$OB_BBAPISTOL"
+Damage (50)
+radius 6
+height 7
++FORCEXYBILLBOARD
+Speed 150
+scale 2.5
++HITTRACER
+reactiontime 25
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+Goto Fly
+Fly:
+BBAB A 1 //A_SpawnItemEx("RevolverShotFX",0,0,0,0,0,0,0,1)
+loop
+XDeath:
+Crash:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"Give")
+Goto Death
+Give:
+TNT1 A 0 A_GiveToTarget("BBA_Money",reactiontime)
+Goto Death
+Death:
+BBAB BCD 2
+stop
+}
+}
+actor BBA_PistolShotB : BBA_PistolShot{Translation "204:204=205:205","195:195=74:74"}
+actor BBA_PistolShotR : BBA_PistolShot{Translation "204:204=171:171","195:195=41:41"}
+actor BBA_PistolShotO : BBA_PistolShot{Translation "204:204=104:104","195:195=128:128"}
+actor BBA_PistolShotP : BBA_PistolShot{Translation "204:204=229:229","195:195=232:232"}
+
+actor BBA_ChaingunShot : BBA_PistolShot
+{
+Obituary "$OB_BBACHAINGUN"
+reactiontime 8
+Damage (50)
+}
+actor BBA_ChaingunShotB : BBA_ChaingunShot{Translation "204:204=205:205","195:195=74:74"}
+actor BBA_ChaingunShotR : BBA_ChaingunShot{Translation "204:204=171:171","195:195=41:41"}
+actor BBA_ChaingunShotO : BBA_ChaingunShot{Translation "204:204=104:104","195:195=128:128"}
+actor BBA_ChaingunShotP : BBA_ChaingunShot{Translation "204:204=229:229","195:195=232:232"}
+
+actor BBA_ShotgunShot : BBA_PistolShot
+{
+Obituary "$OB_BBASHOTGUN"
+reactiontime 12
+Speed 100
+}
+actor BBA_ShotgunShotB : BBA_ShotgunShot{Translation "204:204=205:205","195:195=74:74"}
+actor BBA_ShotgunShotR : BBA_ShotgunShot{Translation "204:204=171:171","195:195=41:41"}
+actor BBA_ShotgunShotO : BBA_ShotgunShot{Translation "204:204=104:104","195:195=128:128"}
+actor BBA_ShotgunShotP : BBA_ShotgunShot{Translation "204:204=229:229","195:195=232:232"}
+
+actor BBA_SuperShotgunShot : BBA_PistolShot
+{
+Obituary "$OB_BBASUPERSHOTGUN"
+reactiontime 7
+Damage (30)
+speed 120
+}
+actor BBA_SuperShotgunShotB : BBA_SuperShotgunShot{Translation "204:204=205:205","195:195=74:74"}
+actor BBA_SuperShotgunShotR : BBA_SuperShotgunShot{Translation "204:204=171:171","195:195=41:41"}
+actor BBA_SuperShotgunShotO : BBA_SuperShotgunShot{Translation "204:204=104:104","195:195=128:128"}
+actor BBA_SuperShotgunShotP : BBA_SuperShotgunShot{Translation "204:204=229:229","195:195=232:232"}
+
+
+actor BBAAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BBAPunch",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BBAPunchB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BBAPunchR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BBAPunchO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BBAPunchP",0,0,0,0)
+goto Done
+}
+}
+
+actor BBAPistol_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BBA_PistolShot",0,1,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BBA_PistolShotB",0,1,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BBA_PistolShotR",0,1,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BBA_PistolShotO",0,1,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BBA_PistolShotP",0,1,0)
+goto Done
+}
+}
+actor BBAChaingun_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShot",frandom(-4,4),0,0,0,0,frandom(-1,1))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShotB",frandom(-4,4),0,0,0,0,frandom(-1,1))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShotR",frandom(-4,4),0,0,0,0,frandom(-1,1))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShotO",frandom(-4,4),0,0,0,0,frandom(-1,1))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShotP",frandom(-4,4),0,0,0,0,frandom(-1,1))
+goto Done
+}
+}
+actor BBAChaingunX_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShot",0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShotB",0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShotR",0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShotO",0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BBA_ChaingunShotP",0,0,0)
+goto Done
+}
+}
+
+actor BBAShotgun_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShot",-6,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShot",-4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShot",-2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShot",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShot",2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShot",4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShot",6,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotB",-6,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotB",-4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotB",-2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotB",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotB",2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotB",4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotB",6,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotR",-6,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotR",-4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotR",-2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotR",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotR",2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotR",4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotR",6,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotO",-6,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotO",-4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotO",-2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotO",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotO",2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotO",4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotO",6,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotP",-6,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotP",-4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotP",-2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotP",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotP",2,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotP",4,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BBA_ShotgunShotP",6,0,0,0)
+goto Done
+}
+}
+
+actor BBASSG_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BBA_SuperShotgunShot",0,0,0,0)
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_FireCustomMissile("BBA_SuperShotgunShot",frandom(-7,7),0,0,0,0,frandom(-5,5))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BBA_SuperShotgunShotB",0,0,0,0)
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_FireCustomMissile("BBA_SuperShotgunShotB",frandom(-7,7),0,0,0,0,frandom(-5,5))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BBA_SuperShotgunShotR",0,0,0,0)
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_FireCustomMissile("BBA_SuperShotgunShotR",frandom(-7,7),0,0,0,0,frandom(-5,5))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BBA_SuperShotgunShotO",0,0,0,0)
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_FireCustomMissile("BBA_SuperShotgunShotO",frandom(-7,7),0,0,0,0,frandom(-5,5))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BBA_SuperShotgunShotP",0,0,0,0)
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_FireCustomMissile("BBA_SuperShotgunShotP",frandom(-7,7),0,0,0,0,frandom(-5,5))
+goto Done
+}
+}
+
+actor BBARocketLauncher_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BBA_Rocket",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BBA_RocketB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BBA_RocketR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BBA_RocketO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BBA_RocketP",0,1,0,0)
+goto Done
+}
+}
+
+actor BBAPlasmarifle_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BBA_PlasmaBall",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BBA_PlasmaBallB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BBA_PlasmaBallR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BBA_PlasmaBallO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BBA_PlasmaBallP",0,1,0,0)
+goto Done
+}
+}
+
+actor BBABFG_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BBA_BFGBall",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BBA_BFGBallB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BBA_BFGBallR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BBA_BFGBallO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BBA_BFGBallP",0,1,0,0)
+goto Done
+}
+}

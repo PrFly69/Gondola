@@ -1,9 +1,14 @@
-actor Maestro : LightClassBase
+actor Maestro : ClassBase //85
 {
 Player.ScoreIcon "C_00C0X"
-player.startitem "LightHealthBar"
 player.displayname "Maestro"
 player.soundclass "rockmanc"
+
+player.maxhealth 850
+health 850
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.startitem "MaestroNeutralBoss"
 player.startitem "VanillaAmmo", 3
@@ -13,6 +18,7 @@ player.startitem "CanCopyWeapons"
 player.startitem "CanUseItems"
 player.startitem "MaestroHasSpawned", 1
 player.startitem "CopyNerf"
++NOSKIN
 States
 {
 Spawn:

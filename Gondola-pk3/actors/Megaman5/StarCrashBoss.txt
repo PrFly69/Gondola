@@ -1,0 +1,407 @@
+actor StarCrashBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_5E"
+dropitem "StarCrashWepCDropped"
+weapon.ammouse 1
+Weapon.AmmoGive 0
+Obituary "$OB_STARCRASH"
+weapon.ammotype "SuperStarPowerAmmo"
++WEAPON.ALT_AMMO_OPTIONAL
+States
+{
+Spawn:
+C_05 E 1
+loop
+Ready:
+STAC A 0 ACS_ExecuteAlways(998,0,DYE_STARMAN)
+STAC A 0 //A_GunFlash
+STAC A 0 A_ClearRefire
+STAC A 0 A_JumpIfInventory("SuperStarPowerAmmo",7,"Ready2")
+STAC A 7 A_WeaponReady(WRF_NOFIRE)
+STAC A 0 A_GiveInventory("SuperStarPowerAmmo",2)
+Goto Ready+3
+Ready2:
+STAC A 0 A_JumpIfInventory("SuperStarPowerAmmo",10,"Ready3")
+STAC A 7 A_WeaponReady(WRF_NOSECONDARY)
+STAC A 0 A_GiveInventory("SuperStarPowerAmmo",2)
+loop
+Ready3:
+STAC A 7 A_WeaponReady
+STAC A 0 A_GiveInventory("SuperStarPowerAmmo",2)
+loop
+Deselect:
+STAC A 0 A_JumpIfInventory("ShieldCheck",1,24)
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+STAC A 1 A_Lower
+Goto Deselect+1
+STAC A 0
+STAC A 0 A_TakeInventory("ShieldCheck",99)
+STAC A 0 A_TakeInventory("GuardUpFlag",99)
+STAC A 0 A_TakeInventory("StarArmorPower",99)
+STAC A 0 //A_FireCustomMissile("StarCrash",0,0,0,0)
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+Goto Deselect+1
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+STAC A 1 A_Raise
+Loop
+Fire:
+STAC A 1 A_JumpIfInventory("ShieldCheck",1,"ShieldThrow")
+//STAC A 0 A_JumpIfInventory("SuperStarPowerAmmo",14,"ShieldActive")
+
+STAC A 0 A_JumpIfNoAmmo("NoAmmo")
+//STAC A 0 A_TakeInventory("SuperStarPowerAmmo",1)
+STAC A 0 A_PlaySoundEx("weapon/StarMain","Weapon")
+STAC A 0 A_GiveInventory("SemiStunArmor",1)
+STAC A 0 A_GiveInventory("GuardUpFlag",1)
+STAC A 0 A_GiveInventory("StarArmorPower",1)
+STAC A 0 A_GiveInventory("ShieldCheck",1)
+goto ShieldActive
+
+ShieldActive:
+STAC A 0 A_SpawnItemEx("StarmanShieldWarper",0,0,28,0,0,0,0,1,0)
+STAC B 1 offset(-12,22)
+STAC B 1 offset(-24,12)
+STAC B 2 offset(-36,2)
+STAC B 0 A_FireCustomMissile("SMStarRadius",0,0,0,0)
+STAC C 1 offset(-48,-10)
+STAC C 1 offset(-60,-18)
+STAC C 1 offset(-68,-26)
+STAC K 1 offset(-72,-34)
+STAC B 0 A_FireCustomMissile("SMStarRadius",0,0,0,0)
+goto Shield
+Shield:
+STAC LM 2 offset(-72,-34) A_WeaponReady(WRF_NOBOB)
+STAC B 0 A_FireCustomMissile("SMStarRadius",0,0,0,0)
+STAC NC 2 offset(-72,-34) A_WeaponReady(WRF_NOBOB)
+STAC B 0 A_FireCustomMissile("SMStarRadius",0,0,0,0)
+STAC B 0 A_TakeInventory("SuperStarPowerAmmo",1)
+STAA A 0 A_JumpIfNoAmmo("ShieldThrow")
+loop
+
+ShieldThrow:
+STAC A 0 A_TakeInventory("ShieldCheck",999)
+STAC C 1 offset(-72,-34)
+STAC C 1 offset(-60,-18)
+STAC C 1 offset(-48,-10)
+STAC B 1 offset(-36,2)
+STAC B 1 offset(-23,12)
+STAC A 0 A_GiveInventory("StarmanMain_CI",1)
+STAC A 0 A_TakeInventory("SemiStunArmor",99)
+STAC A 0 A_TakeInventory("GuardUpFlag",99)
+STAC A 0 A_TakeInventory("StarArmorPower",99)
+STAC B 1 offset(-14,22)
+STAC A 24 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+goto Ready+2
+
+AltFire:
+STAC A 1 A_JumpIfInventory("ShieldCheck",1,"ShieldThrowSlow")
+//STAC A 0 A_JumpIfInventory("SuperStarPowerAmmo",6,1)
+//goto NoAmmo
+STAC A 0 A_PlaySoundEx("weapon/StarMain","Weapon")
+STAC A 0 A_GiveInventory("StarmanAlt_CI",1)
+STAC B 1 offset(-12,22)
+STAC B 1 offset(-24,12)
+STAC B 1 offset(-36,2)
+STAC C 1 offset(-48,-10)
+STAC K 2 offset(-60,-18)
+STAC L 2 offset(-68,-26)
+STAC M 2 offset(-72,-34)
+STAC N 2 offset(-68,-26)
+STAC C 2 offset(-48,-10)
+STAC B 2 offset(-36,2)
+STAC B 2 offset(-24,12)
+STAC B 1 offset(-12,22)
+STAC A 8 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+goto Ready+2
+
+ShieldThrowSlow:
+STAC A 0 A_TakeInventory("ShieldCheck",999)
+STAC C 1 offset(-72,-34)
+STAC C 1 offset(-60,-18)
+STAC C 1 offset(-48,-10)
+STAC B 1 offset(-36,2)
+STAC B 1 offset(-23,12)
+STAC A 0 A_GiveInventory("StarmanMain2_CI",1)
+STAC A 0 A_TakeInventory("SemiStunArmor",99)
+STAC A 0 A_TakeInventory("GuardUpFlag",99)
+STAC A 0 A_TakeInventory("StarArmorPower",99)
+STAC B 1 offset(-14,22)
+STAC A 24 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+goto Ready+2
+
+NoAmmo:
+STAC A 0 A_TakeInventory("ShieldCheck",999)
+STAC A 0 A_TakeInventory("GuardUpFlag",99)
+STAC A 0 A_TakeInventory("StarArmorPower",99)
+goto Ready+2
+Flash:
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+TNT1 A 0
+TNT1 A 1 
+stop
+}
+}
+
+actor SuperStarPowerAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor StarArmorPower : BasePowerPro
+{
+damagefactor "Normal", 0.75
+}
+
+
+actor StarmanShieldWarper : ShieldWarper_CBM
+{
++NOTIMEFREEZE
+States
+{
+Shield:
+STAC D 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR")
+STAC DDEEFFGG 1 A_Warp(AAPTR_TARGET,0,0,28,0,24)
+loop
+ShieldR:
+STAC DEFG 1 A_Warp(AAPTR_TARGET,0,0,28,0,24)
+goto Shield
+}
+}
+
+
+actor SMStarRadius : BasicExplosion
+{
+Damagetype "StarcrashB"
+Obituary "$OB_STARCRASH"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(80,160,0)
+stop
+}
+}
+
+actor StarShieldRadius : SMStarRadius
+{
+//Damagetype "StarCrashB"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(120,90,0)
+stop
+}
+}
+
+actor StarShieldRadiusFast : SMStarRadius
+{
+//Damagetype "StarCrashB"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(60,90,0)
+stop
+}
+}
+
+actor StarFlurryLauncher
+{
+Translation "192:192=217:217","198:198=222:222"
+var int user_C;
+var int user_S;
+PROJECTILE
++THRUACTORS
+-SOLID
+-NOGRAVITY
++NOINTERACTION
+//+DONTBLAST
++FORCEXYBILLBOARD
+damage (0)
+radius 2
+height 2
+speed 0
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+STAC D 0
+STAC D 0 ACS_ExecuteAlways(259,0,1)
+STAC D 14
+STAC DDDDEEEEFFFFGGGDDDEEEFFGGDDEFGDEFG 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"StopFlurry")
+STAC D 0 A_PlaySoundEx("weapon/StarDakka","Weapon")
+STAC D 0 A_SetUserVar("user_C",cos(-pitch)*4)
+Shoot:
+STAC H 1 A_SpawnItemEx("StarFlurryShot",user_C+sin(-pitch)*(0),36,8+cos(-pitch)*(4+0),cos(-pitch)*30,0,sin(-pitch)*30,0,1)
+STAC I 1 A_SpawnItemEx("StarFlurryShot",user_C+sin(-pitch)*(-25),25,8+cos(-pitch)*(4+25),cos(-pitch)*30,0,sin(-pitch)*30,0,1)
+STAC H 1 A_SpawnItemEx("StarFlurryShot",user_C+sin(-pitch)*(-36),0,8+cos(-pitch)*(4+36),cos(-pitch)*30,0,sin(-pitch)*30,0,1)
+STAC I 1 A_SpawnItemEx("StarFlurryShot",user_C+sin(-pitch)*(-25),-25,8+cos(-pitch)*(4+25),cos(-pitch)*30,0,sin(-pitch)*30,0,1)
+STAC H 1 A_SpawnItemEx("StarFlurryShot",user_C+sin(-pitch)*(0),-36,8+cos(-pitch)*(4+0),cos(-pitch)*30,0,sin(-pitch)*30,0,1)
+STAC I 1 A_SpawnItemEx("StarFlurryShot",user_C+sin(-pitch)*(25),-25,8+cos(-pitch)*(4-25),cos(-pitch)*30,0,sin(-pitch)*30,0,1)
+STAC H 1 A_SpawnItemEx("StarFlurryShot",user_C+sin(-pitch)*(36),0,8+cos(-pitch)*(4-36),cos(-pitch)*30,0,sin(-pitch)*30,0,1)
+STAC I 1 A_SpawnItemEx("StarFlurryShot",user_C+sin(-pitch)*(25),25,8+cos(-pitch)*(4-25),cos(-pitch)*30,0,sin(-pitch)*30,0,1)
+STAC D 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"StopFlurry")
+STAC D 0 A_GiveInventory("WeaponCharge",1)
+STAC D 0 A_JumpIfInventory("WeaponCharge",8,"StopFlurry")
+loop
+StopFlurry:
+STAC D 0
+stop
+}
+}
+
+actor StarFlurryLauncherB : StarFlurryLauncher{translation "192:192=205:205", "198:198=74:74"}
+actor StarFlurryLauncherR : StarFlurryLauncher{translation "192:192=171:171", "198:198=41:41"}
+actor StarFlurryLauncherO : StarFlurryLauncher{translation "192:192=104:104", "198:198=128:128"}
+actor StarFlurryLauncherP : StarFlurryLauncher{translation "192:192=229:229", "198:198=232:232"}
+
+actor StarFlurryShot
+{
+PROJECTILE
+Damagetype "StarCrashB"
+Obituary "$OB_STARFLURRY"
++DONTSPLASH
+Damage (50)
+Radius 10
+Height 10
+Speed 20
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+STAP ABCD 2 
+loop
+}
+}
+
+actor StarmanShield : StarCrash
+{
+Translation "192:192=217:217","198:198=222:222"
++RIPPER
++FORCEXYBILLBOARD
+Damage (20)
+Speed 30
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+STAC D 1
+STAC E 1 A_SpawnItemEx("StarShieldRadiusFast",0,0,0)
+STAC F 1
+STAC G 1 A_SpawnItemEx("StarShieldRadiusFast",0,0,0)
+loop
+}
+}
+
+actor StarmanShieldSlow : StarmanShield {
+Speed 15
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+STAC D 2
+STAC E 2 A_SpawnItemEx("StarShieldRadius",0,0,0)
+STAC F 2
+STAC G 2 A_SpawnItemEx("StarShieldRadius",0,0,0)
+loop
+}
+}
+
+actor StarmanShieldB : StarmanShield{translation "192:192=205:205", "198:198=74:74"}
+actor StarmanShieldR : StarmanShield{translation "192:192=171:171", "198:198=41:41"}
+actor StarmanShieldO : StarmanShield{translation "192:192=104:104", "198:198=128:128"}
+actor StarmanShieldP : StarmanShield{translation "192:192=229:229", "198:198=232:232"}
+
+actor StarmanShieldSlowB : StarmanShieldSlow{translation "192:192=205:205", "198:198=74:74"}
+actor StarmanShieldSlowR : StarmanShieldSlow{translation "192:192=171:171", "198:198=41:41"}
+actor StarmanShieldSlowO : StarmanShieldSlow{translation "192:192=104:104", "198:198=128:128"}
+actor StarmanShieldSlowP : StarmanShieldSlow{translation "192:192=229:229", "198:198=232:232"}
+
+actor StarmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("StarmanShield",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("StarmanShieldB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("StarmanShieldR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("StarmanShieldO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("StarmanShieldP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("SuperStarPowerAmmo",7)
+stop
+}
+}
+
+actor StarmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("StarmanShieldSlow",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("StarmanShieldSlowB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("StarmanShieldSlowR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("StarmanShieldSlowO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("StarmanShieldSlowP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("SuperStarPowerAmmo",7)
+stop
+}
+}
+
+actor StarmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("StarFlurryLauncher",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("StarFlurryLauncherB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("StarFlurryLauncherR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("StarFlurryLauncherO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("StarFlurryLauncherP",0,0,0,0)
+goto Done
+Done:
+TNT1 A 0 A_TakeInventory("SuperStarPowerAmmo",10)
+stop
+}
+}

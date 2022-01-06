@@ -1,12 +1,14 @@
-actor Clownman : MegaClassBase
+actor Clownman : ClassBase //90
 {
 Player.ScoreIcon "C_08D0X"
-player.startitem "MegaHealthBar"
 player.displayname "Clownman"
 player.soundclass "clownmanc"
 player.startitem "ThunderClawBoss"
 //player.startitem "ThunderClawBosT"
 player.startitem "YoGeekyAmmo", 200
+
+player.maxhealth 900
+health 900
 player.forwardmove 0.93, 0.93
 player.sidemove 0.91, 0.91
 player.jumpz 12

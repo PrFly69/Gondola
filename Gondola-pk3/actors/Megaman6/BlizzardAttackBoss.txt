@@ -1,0 +1,573 @@
+actor BlizzardAttackBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_6A"
+dropitem "BlizzardAttackWepCDropped"
+Weapon.AmmoUse1 2
+Weapon.AmmoUse2 100
+Weapon.AmmoGive 0
+//Weapon.SlotNumber 1
+Obituary "$OB_BLIZZARDBOWL"
+weapon.ammotype1 "BallAmmo"
+weapon.ammotype2 "BallAmmo"
++WEAPON.ALT_AMMO_OPTIONAL
++WEAPON.NOAUTOAIM
+//inventory.icon "BSKIY"
+States
+{
+Spawn:
+C_06 A 1
+loop
+Ready:
+BSKI E 0 ACS_ExecuteAlways(998,0,DYE_BLIZZARDMAN)
+BSKI E 0 A_JumpIfInventory("BallAmmo",112,"Ready2")
+BSKI E 3 A_WeaponReady
+BSKI E 0 A_GiveInventory("BallAmmo",2)
+Goto Ready+1
+Ready2:
+BSKI E 1 A_WeaponReady(WRF_ALLOWRELOAD)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+BSKI E 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+BSKI E 1 A_Raise
+Loop
+Fire:
+BSKI E 0 A_PlaySoundEx("weapon/blizzboss","Weapon")
+BSKI E 0 A_GiveInventory("BlizzardmanMain_CI",1)
+BSKI F 2
+BSKI G 2 
+BSKI H 2
+BSKI I 2
+BSKI J 2
+BSKI K 2 
+BSKI L 2
+BSKI M 2 
+BSKI N 2
+BSKI E 18
+Goto Ready+1
+
+Altfire:
+BSKI A 0 A_PlaySoundEx("weapon/blizzboss","Weapon")
+BSKI A 0 A_JumpIfInventory("BlizFireFlag",1,"Fire2")
+BSKI A 0 A_GiveInventory("BlizFireFlag",1)
+BSKI A 0 A_GiveInventory("BlizzardmanMain2_CI",1)
+BSKI B 2 OffSet(4,32)
+BSKI B 2 OffSet(8,32)A_GiveInventory("BallAmmo",1)
+BSKI B 2 OffSet(12,32)
+BSKI B 2 OffSet(12,32)A_GiveInventory("BallAmmo",1)
+BSKI B 2 OffSet(8,32)
+BSKI A 2 OffSet(4,32)A_GiveInventory("BallAmmo",1)
+//BSKI A 0 A_GiveInventory("BallAmmo",1)
+BSKI A 0 A_ReFire
+Goto Ready+1
+Fire2:
+BSKI A 0 A_TakeInventory("BlizFireFlag",1)
+BSKI A 0 A_GiveInventory("BlizzardmanMain3_CI",1)
+BSKI C 2 OffSet(-4,32)
+BSKI C 2 OffSet(-8,32)A_GiveInventory("BallAmmo",1)
+BSKI C 2 OffSet(-12,32)
+BSKI C 2 OffSet(-12,32)A_GiveInventory("BallAmmo",1)
+BSKI C 2 OffSet(-8,32)
+BSKI A 2 OffSet(-4,32)A_GiveInventory("BallAmmo",1)
+//BSKI BCDE 3
+//BSKI A 16
+//BSKI A 0 A_GiveInventory("BallAmmo",1)
+BSKI A 0 A_ReFire
+Goto Ready+1
+
+Reload:
+BSKI E 0 A_JumpIfInventory("BallAmmo",112,"Checking")
+goto Ready+1
+Checking:
+BSKI E 0 A_PlaySoundEx("weapon/BassCombine","Weapon")
+BSKI E 0 A_GiveInventory("SelfTotallyFrozen",1)
+BSKI E 0 A_JumpIfInventory("PowerRage_ST",1,"CheckingR")
+BSKI E 1 OffSet(0,42)
+BSKI E 1 OffSet(0,52)
+BSKI E 1 OffSet(0,62)
+BSKI E 1 OffSet(0,72)
+BSKI E 1 OffSet(0,82)
+BSKI E 1 OffSet(0,92)
+BSKI E 1 OffSet(0,102)
+BSKI E 1 OffSet(0,112)
+BSKI E 1 OffSet(0,122)
+goto RollingPrepare
+CheckingR:
+BSKI E 1 OffSet(0,52)
+BSKI E 1 OffSet(0,72)
+BSKI E 1 OffSet(0,92)
+BSKI E 1 OffSet(0,112)
+BSKI E 1 OffSet(0,132)
+goto RollingPrepare
+RollingPrepare:
+TNT1 A 1 A_TakeInventory("CrackFlag",9)
+TNT1 A 0 A_TakeInventory("BallAmmo",112)
+TNT1 A 0 A_GiveInventory("BlizzardmanFlag",1)
+TNT1 A 0 A_TakeInventory("UnSolid",1)
+TNT1 A 0 A_ChangeFlag("SOLID",0)
+TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
+TNT1 A 0 A_GiveInventory("InvulnerableOn_Pickup",1)
+goto Rolling
+Rolling:
+TNT1 A 0 A_PlaySoundEx("weapon/blizzbowl","Body")
+TNT1 A 0 A_GiveInventory("BowlRecoilPickup")
+TNT1 A 0 A_SpawnItemEX("BlizzardBallFX1",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEX("BlizzardBallCheck",0,0,8,momx,momy,momz,0,8)
+TNT1 A 1 A_SpawnItemEX("BlizzardBallBox",0,0,8,momx,momy,momz,0,8,0)
+TNT1 A 0 A_JumpIfInventory("CrackFlag",1,"RollingSlam")
+
+TNT1 A 0 A_GiveInventory("BowlRecoilPickup")
+TNT1 A 0 A_SpawnItemEX("BlizzardBallFX2",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEX("BlizzardBallCheck",0,0,8,momx,momy,momz,0,8)
+TNT1 A 1 A_SpawnItemEX("BlizzardBallBox",0,0,8,momx,momy,momz,0,8,0)
+TNT1 A 0 A_JumpIfInventory("CrackFlag",1,"RollingSlam")
+
+TNT1 A 0 A_GiveInventory("BowlRecoilPickup")
+TNT1 A 0 A_SpawnItemEX("BlizzardBallFX3",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEX("BlizzardBallCheck",0,0,8,momx,momy,momz,0,8)
+TNT1 A 1 A_SpawnItemEX("BlizzardBallBox",0,0,8,momx,momy,momz,0,8,0)
+
+TNT1 A 0 A_GiveInventory("BallTimer",1)
+TNT1 A 0 A_JumpIfInventory("BallTimer",40,"RollingStop")
+TNT1 A 0 A_JumpIfInventory("CrackFlag",1,"RollingSlam")
+loop
+RollingSlam:
+TNT1 A 0 A_GiveInventory("SelfTotallyUnfrozen",1)
+TNT1 A 0 A_Stop
+TNT1 A 0 ThrustThingZ(0,70,0,0)
+TNT1 A 0 ThrustThing(angle*256/360+128,40,1,0)
+TNT1 A 0 A_PlaySoundEx("weapon/blizzstrike","Body")
+TNT1 A 0 A_TakeInventory("CrackFlag",999)
+TNT1 A 0 A_GiveInventory("InvulnerableOff_Pickup",1)
+TNT1 A 2 A_TakeInventory("BallTimer",999)
+goto RollEnd
+RollingStop:
+TNT1 A 0 A_GiveInventory("SelfTotallyUnfrozen",1)
+TNT1 A 0 A_TakeInventory("CrackFlag",999)
+TNT1 A 0 A_GiveInventory("InvulnerableOff_Pickup",1)
+TNT1 A 2 A_TakeInventory("BallTimer",999)
+goto RollEnd
+RollEnd:
+BSKI E 1 OffSet(0,122)
+BSKI E 1 OffSet(0,107)
+BSKI E 1 OffSet(0,92)
+BSKI E 1 OffSet(0,77)A_TakeInventory("BlizzardmanFlag",1)
+BSKI E 1 OffSet(0,62)
+BSKI E 0 A_ChangeFlag("THRUACTORS",0)
+BSKI E 0 A_SpawnItemEx("ReSolidifier")
+BSKI E 1 OffSet(0,47)
+Goto Ready+1
+NoAmmo:
+BSKI E 1
+Goto Ready+1
+}
+}
+
+actor BallAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 112
++INVENTORY.IGNORESKILL
+}
+
+
+actor BlizzardmanFlag : OnceC{}
+actor BlizFireFlag : OnceC{}
+
+actor CrackFlag : OnceC{}
+
+actor BallTimer : Inventory
+{
+inventory.amount 1
+inventory.maxamount 999
+}
+
+actor BowlRecoilPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
+goto Air
+Air:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+TNT1 A 0 A_Recoil(-2.5)
+stop
+TNT1 A 0 A_Recoil(-3.75)
+stop
+Ground:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+TNT1 A 0 A_Recoil(-7)
+stop
+TNT1 A 0 A_Recoil(-10.5)
+stop
+}
+}
+
+
+actor BlizzardAttackAim
+{
+Translation "198:198=193:193"
+PROJECTILE
++DONTSEEKINVISIBLE//
++SEEKERMISSILE
++SCREENSEEKER
+Radius 8
+Height 8
+scale 2.5
+damage (60)
+Obituary "$OB_BLIZZARDATTACK"
+damagetype "BlizzardAttack"
+speed 32
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+ICEB XXXXXX 1 A_SeekerMissile(2,10,3,72,6)
+ICEB X 3
+ICEB Y 10
+Fly:
+ICEB Z 1
+loop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor BlizzardAttackAimB : BlizzardAttackAim{translation "198:198=74:74"}
+actor BlizzardAttackAimR : BlizzardAttackAim{translation "198:198=41:41"}
+actor BlizzardAttackAimO : BlizzardAttackAim{translation "198:198=128:128"}
+actor BlizzardAttackAimP : BlizzardAttackAim{translation "198:198=232:232"}
+
+actor BlizzardBossAttack
+{
+Translation "198:198=193:193"
+PROJECTILE
+damagetype "BlizzardAttack"
+Obituary "$OB_BLIZZARDATTACK"
+Damage (70)//10//Legacy
+Height 12//10
+Radius 12//10
+Speed 32
+Scale 3.0
+var int user_DIRECTION;
+var int user_SPEED;
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_DIRECTION",-1)
+TNT1 A 0 A_SetUserVar("user_SPEED", 3)
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnStart:
+ICEB ZZ 1 A_Changevelocity(0, -(user_SPEED/2)*user_DIRECTION,0,1)
+ICEB Z 0 A_Changevelocity(0, 3*user_SPEED*user_DIRECTION,0,1)
+goto SpawnLOOP
+SpawnLOOP:
+ICEB ZZZ 2
+ICEB ZZ 3 A_Changevelocity(0,-user_SPEED*user_DIRECTION,0,1)
+ICEB ZZ 3 A_Changevelocity(0,-user_SPEED*user_DIRECTION,0,1)
+ICEB ZZZ 2 
+ICEB ZZ 3 A_Changevelocity(0,user_SPEED*user_DIRECTION,0,1)
+ICEB ZZ 3 A_Changevelocity(0,user_SPEED*user_DIRECTION,0,1)
+loop
+}
+}
+
+actor BlizzardBossAttack2 : BlizzardBossAttack
+{
+    States
+    {
+    Spawn:
+        TNT1 A 1
+        TNT1 A 0 A_SetUserVar("user_DIRECTION",-1)
+        TNT1 A 0 A_SetUserVar("user_SPEED", 0)
+        goto SpawnStart
+    }
+}
+
+actor BlizzardBossAttackX : BlizzardBossAttack
+{
+    States
+    {
+    Spawn:
+        TNT1 A 1
+        TNT1 A 0 A_SetUserVar("user_DIRECTION",1)
+        TNT1 A 0 A_SetUserVar("user_SPEED", 3)
+        goto SpawnStart
+    }
+}
+
+actor BlizzardBossAttackX2 : BlizzardBossAttack
+{
+    States
+    {
+    Spawn:
+        TNT1 A 1
+        TNT1 A 0 A_SetUserVar("user_DIRECTION",1)
+        TNT1 A 0 A_SetUserVar("user_SPEED", 0)
+        goto SpawnStart
+    }
+}
+
+actor BlizzardBossAttackB : BlizzardBossAttack{translation "198:198=74:74"}
+actor BlizzardBossAttackR : BlizzardBossAttack{translation "198:198=41:41"}
+actor BlizzardBossAttackO : BlizzardBossAttack{translation "198:198=128:128"}
+actor BlizzardBossAttackP : BlizzardBossAttack{translation "198:198=232:232"}
+
+actor BlizzardBossAttack2B : BlizzardBossAttack2{translation "198:198=74:74"}
+actor BlizzardBossAttack2R : BlizzardBossAttack2{translation "198:198=41:41"}
+actor BlizzardBossAttack2O : BlizzardBossAttack2{translation "198:198=128:128"}
+actor BlizzardBossAttack2P : BlizzardBossAttack2{translation "198:198=232:232"}
+
+actor BlizzardBossAttackXB : BlizzardBossAttackX{translation "198:198=74:74"}
+actor BlizzardBossAttackXR : BlizzardBossAttackX{translation "198:198=41:41"}
+actor BlizzardBossAttackXO : BlizzardBossAttackX{translation "198:198=128:128"}
+actor BlizzardBossAttackXP : BlizzardBossAttackX{translation "198:198=232:232"}
+
+actor BlizzardBossAttackX2B : BlizzardBossAttackX2{translation "198:198=74:74"}
+actor BlizzardBossAttackX2R : BlizzardBossAttackX2{translation "198:198=41:41"}
+actor BlizzardBossAttackX2O : BlizzardBossAttackX2{translation "198:198=128:128"}
+actor BlizzardBossAttackX2P : BlizzardBossAttackX2{translation "198:198=232:232"}
+
+actor BlizzardM_BowlProtect : PowerProtection
+{
+Powerup.Duration 3
+DamageFactor "BlizzardM_Bowl", 0.0
+}
+
+actor BlizzardBallBox
+{
+PROJECTILE
+Damagetype "BlizzardM_Bowl"
+Obituary "$OB_BLIZZARDBOWL"
++DONTSPLASH
++DONTBLAST
++NOEXPLODEFLOOR
++THRUGHOST
++DONTREFLECT
+damage (400)
+Radius 52
+Height 76
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 1
+stop
+Crash:
+XDeath:
+TNT1 A 1 //A_GiveToTarget("CrackFlag",1)
+stop
+Death:
+TNT1 A 1
+Stop
+}
+}
+
+actor BlizzardBallCheck
+{
+PROJECTILE
+Damagetype "BlizzardM_Bowl"
+Obituary "$OB_BLIZZARDBOWL"
++DONTSPLASH
++DONTBLAST
++DONTREFLECT
++NOEXPLODEFLOOR
++THRUGHOST
++DONTREFLECT
++SKYEXPLODE
++STEPMISSILE
+maxstepheight 22
+Damage (0)
+radius 14//18
+height 48//58
+Speed 2
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+stop
+Crash:
+XDeath:
+TNT1 A 1
+stop
+Death:
+TNT1 A 1 A_GiveToTarget("CrackFlag",1)
+stop
+}
+}
+
+actor BlizzardBallFX1 : BasicExplosion
+{
+radius 72
+height 72
+Scale 2.5
+States
+{
+Spawn:
+BLZZ R 2
+stop
+}
+}
+actor BlizzardBallFX2 : BlizzardBallFX1
+{
+States
+{
+Spawn:
+BLZZ S 2
+stop
+}
+}
+
+actor BlizzardBallFX3 : BlizzardBallFX1
+{
+States
+{
+Spawn:
+BLZZ T 2
+stop
+}
+}
+
+
+actor BounceRangeChecker : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2
+TNT1 A 1 A_JumpIfCloser(30,"Stopped")
+stop
+Stopped:
+TNT1 A 1 A_GiveToTarget("BallTimer",99)
+stop
+}
+}
+
+actor BlizzardmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAim",-9,0,-48,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAim",-3,0,-16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAim",3,0,16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAim",9,0,48,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimB",-9,0,-48,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimB",-3,0,-16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimB",3,0,16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimB",9,0,48,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimR",-9,0,-48,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimR",-3,0,-16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimR",3,0,16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimR",9,0,48,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimO",-9,0,-48,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimO",-3,0,-16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimO",3,0,16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimO",9,0,48,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimP",-9,0,-48,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimP",-3,0,-16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimP",3,0,16,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardAttackAimP",9,0,48,0)
+goto Done
+}
+}
+
+actor BlizzardmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack",-9,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackB",-9,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackB",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackR",-9,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackR",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackO",-9,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackO",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackP",-9,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackP",0,0,-8,0)
+goto Done
+}
+}
+
+actor BlizzardmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack2",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackB",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack2B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackR",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack2R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackO",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack2O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackP",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack2P",0,0,8,0)
+goto Done
+}
+}
+
+actor BlizzardmanMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackX",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackX2",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackXB",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackX2B",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackXR",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackX2R",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackXO",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackX2O",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackXP",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackX2P",0,0,-8,0)
+goto Done
+}
+}

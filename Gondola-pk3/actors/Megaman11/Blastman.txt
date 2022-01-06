@@ -1,13 +1,13 @@
-actor Blastman : MegaClassBase
+actor Blastman : ClassBase //90
 {
 player.scoreicon "C_11B0X"
-player.startitem "MegaHealthBar"
 player.displayname "blastman"
 player.soundclass "blastmanc"
 player.startitem "ChainBlastBoss"
 player.startitem "BlastGearItem"
 player.startitem "CatalyzerAmmo", 84
 player.startitem "CanWallJump"
+player.startitem "CanWallJumpStack", 99
 player.forwardmove 0.92, 0.92
 player.sidemove 0.90, 0.90
 player.jumpz 12

@@ -1,4 +1,4 @@
-actor Darkman3 : LightClassBase
+actor Darkman3 : ClassBase //85
 {
 Player.ScoreIcon "C_05K0X"
 player.displayname "Darkman3"

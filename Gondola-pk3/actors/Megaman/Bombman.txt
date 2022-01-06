@@ -1,11 +1,12 @@
-actor Bombman : SturdyClassBase
+actor Bombman : ClassBase
 {
 Player.ScoreIcon "C_01D0X"
-player.startitem "SturdyHealthBar"
 player.displayname "Bombman"
 player.soundclass "bombmanc"
 player.startitem "HyperBombBoss"
 Player.StartItem "GigaAmmo", 106
+player.maxhealth 1250
+health 1250
 player.forwardmove 0.65, 0.65
 player.sidemove 0.63, 0.63
 player.jumpz 13

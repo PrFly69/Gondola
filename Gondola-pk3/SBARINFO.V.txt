@@ -19,14 +19,32 @@ InInventory SkullShieldCheck,1{DrawBar"4H_A_BAR","NOBAR",SkullShieldCheck,vertic
 InInventory SkullBarrierProtection,1{DrawBar"4H_A_BAR","NOBAR",SkullShieldCheck,vertical,24,8;}
 //InInventory BasicArmor,1{DrawBar"BARAMT31","NOBAR",Armor,vertical,24,8;}
 
+PlayerClass Maestro{
+	//InInventory AmmoNumberFlag,1{
+		WeaponAmmo BusterAmmo{}
+		else WeaponAmmo not VanillaAmmo{DrawNumber 5,"8BDMAFONT",Untranslated,Ammo1,alignment(right),15,31;}
+	//}
+}
 //InInventory HealthNumberFlag,1{
-	DrawNumber 5,"8BDMAFONT",Untranslated,Health,alignment(left),31,31;
+	DrawNumber 3, "8BDMAFONT", Untranslated, AboveDecimalHP, alignment(left), 31, 31;
+	DrawImage "STYS8BDD", 37, 31;
+	DrawNumber 3, "8BDMAFONT", Untranslated, BelowDecimalHP, alignment(left), 39, 31;
+	InInventory AboveDecimalHP, 10{
+		DrawNumber 3, "8BDMAFONT", Untranslated, AboveDecimalHP, alignment(left), 31, 31;
+		DrawImage "STYS8BDD", 42, 31;
+		DrawNumber 3, "8BDMAFONT", Untranslated, BelowDecimalHP, alignment(left), 44, 31;
+		}
+	InInventory AboveDecimalHP, 100{
+		DrawNumber 3, "8BDMAFONT", Untranslated, AboveDecimalHP, alignment(left), 31, 31;
+		DrawImage "STYS8BDD", 47, 31;
+		DrawNumber 3, "8BDMAFONT", Untranslated, BelowDecimalHP, alignment(left), 49, 31;
+		}
 //}
 
-
-InInventory CanAirJump,1{}
-InInventory CanWallJump,1{}
-
+DrawImage"EmptIcon",24,64;
+DrawSelectedInventory INDEXFONT,24,64,37,64,white;
+DrawImage weaponicon,16,64;
+}//NoHealthBar End
 
 }
 
@@ -265,10 +283,22 @@ else InInventory GuardUpFlag,1{DrawBar"0H_R_BAR","NOBAR",Health,vertical,24,8;}
 else InInventory GuardDownFlag,1{DrawBar"0H_W_BAR","NOBAR",Health,vertical,24,8;}
 
 InInventory BasicArmor,1{
-	DrawNumber 4,CMBHRFONT,Gray,Armor,alignment(left),31,40;
-	DrawNumber 4,CMBHRFONT,DarkGray,SavePercent,alignment(left),31,46;
-	InInventory BossBasicArmorAmount,1{DrawBar"BARAMT31","NOBAR",Armor BossBasicArmorAmount,vertical,24,8;}
-	else{DrawBar"BARAMT31","NOBAR",Armor,vertical,24,8;}}
+    DrawNumber 3,CMBHRFONT,DarkGray,AboveDecimalArmor,alignment(left),31,40;
+    DrawImage "STYSCBM6", 36, 40;
+    DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),37,40;
+    InInventory BasicArmor, 100{
+        DrawNumber 3,CMBHRFONT,DarkGray,AboveDecimalArmor,alignment(left),31,40;
+        DrawImage "STYSCBM6", 40, 40;
+        DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),41,40;
+        }
+    InInventory BasicArmor, 1000{
+        DrawNumber 3,CMBHRFONT,DarkGray,AboveDecimalArmor,alignment(left),31,40;
+        DrawImage "STYSCBM6", 44, 40;
+        DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),45,40;
+        }
+    DrawNumber 4,CMBHRFONT,DarkGray,SavePercent,alignment(left),31,46;
+    InInventory BossBasicArmorAmount,1{DrawBar"BARAMT31","NOBAR",Armor BossBasicArmorAmount,vertical,24,8;}
+    else{DrawBar"BARAMT31","NOBAR",Armor,vertical,24,8;}}
 
 }
 
@@ -276,28 +306,31 @@ InInventory BasicArmor,1{
 
 
 //Extra Copy Weapons
-IsSelected HyperStormHWepC{Drawbar"XTR0BR_S","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected MegaWaterSWepC, MegaWaterSWepCMaestro{Drawbar"XTR0BR_R","BAREMPTY",Ammo1,vertical,16,8;
+IsSelected HyperStormHWepC{Drawbar"XTR0BR_U","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected MegaWaterSWepC{Drawbar"XTR0BR_T","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory MWSShieldCharge,1{DrawBar"BARFLS1","NOBAR",MWSShieldCharge,vertical,16,8;}}
-IsSelected BusterRodGWepC{Drawbar"XTR0BR_Q","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected FakeRepeaterWepC{DrawBar"XTR0BR_P","BAREMPTY",Ammo1,vertical,16,8;
+IsSelected BusterRodGWepC{Drawbar"XTR0BR_S","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected FakeRepeaterWepC{DrawBar"XTR0BR_R","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory RepeaterChamber,1{DrawBar"BARFLS1","NOBAR",RepeaterChamber,vertical,16,8;}}
 IsSelected RainbowGalaxyWepC{DrawBar"BARAMM66","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected DynamoTendrilWepC{Drawbar"XTR0BR_N","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected PlantTrapperWepC, PlantTrapperWepCMaestro{Drawbar"XTR0BR_M","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected DynamoTendrilWepC{Drawbar"XTR0BR_P","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected PlantTrapperWepC{Drawbar"XTR0BR_O","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected CentaurArrowWepC{DrawBar"BARAMM26","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected DarkShieldWepC{DrawBar"BARAMMO1","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected GravitySphereWepC{DrawBar"BARAMM18","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected SkullSniperWepC{DrawBar"BARAMM21","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected DiveSonarWepC{Drawbar"BARAMM10","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected FlashBulbWepC{DrawBar"BARAMM18","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected DocScannerWepC{Drawbar"XTR0BR_F","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected DocScannerWepC{Drawbar"XTR0BR_H","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected TopTwistWepC{Drawbar"BARAMM17","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected BoobeamBarrierWepC{Drawbar"XTR0BR_D","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected BoobeamBarrierWepC{Drawbar"XTR0BR_F","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected TimeBenderWepC{DrawBar"BARAMMO7","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory TimeBenderFlag,1{DrawBar"BARFLS1","NOBAR",TimeBenderFlag,vertical,16,8;}}
-IsSelected WaveBusterWepC{Drawbar"XTR0BR_B","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected RisingFistWepC{Drawbar"XTR0BR_A","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected FragBomberWepC{DrawBar"XTR0BR_D","BAREMPTY",Ammo1,vertical,16,8;
+	InInventory FragBomberCharge,1{DrawBar"BARFLS1","NOBAR",FragBomberCharge,vertical,16,8;}}
+IsSelected WaveBusterWepC{Drawbar"XTR0BR_C","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected RisingFistWepC{Drawbar"XTR0BR_B","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected RollSweepWepC{Drawbar"XTR0BR_A","BAREMPTY",Ammo1,vertical,16,8;}
 
 InInventory HeroicProtoBuster,1{DrawBar"00_0_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
 InInventory MegaFlag,1{InInventory MegaBusterFlag,1{DrawBar"00_1_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
@@ -470,8 +503,6 @@ IsSelected AlienTrapBoss{Drawbar"02_A_BAR","BAREMPTY",Ammo1,vertical,16,8;}
 WeaponAmmo NoodleAmmo{Drawbar"BARAMMO2","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage"NEEDRCON",32,55;}
 IsSelected MagnetMissileBoss{DrawBar"MAGNBAR","BAREMPTY",MagnetFlag,vertical,16,8;
-	DrawImage"MAGNICON",32,55;
-	Drawbar"BARTOKX","BAREMPTY",Ammo1,vertical,8,8;
 	InInventory MagFlyIsOut, 1{Drawbar"BARFLS1","NOBAR",MagFlyIsOut,vertical,24,8;}
 	InInventory MagFlyDelay, 1{Drawbar"BARFLS1","NOBAR",MagFlyDelay,vertical,24,8;}
 	InInventory MagFlyDelayFast, 1{Drawbar"BARFLS1","NOBAR",MagFlyDelayFast,vertical,24,8;}}
@@ -495,13 +526,13 @@ IsSelected BreakBusterAgility,BreakBusterStability{DrawBar"BARAMM14","BAREMPTY",
 	DrawBar"BARAMMO1","BAREMPTY",SnipeAmmo,vertical,8,8;
 	DrawBar"KC_A_BAR","NOBAR",SnipeCharge,vertical,8,8;}
 
-IsSelected DocBusterWoodHeatWep{DrawBar"XTR0BR_Q","BAREMPTY",DocVirusAmmo,vertical,16,8;
+IsSelected DocBusterWoodHeatWep{DrawBar"XTR0BR_S","BAREMPTY",DocVirusAmmo,vertical,16,8;
 DrawImage"DOCRICON",32,55;}
-IsSelected DocBusterBubbleFlashWep{DrawBar"XTR0BR_R","BAREMPTY",DocVirusAmmo,vertical,16,8;
+IsSelected DocBusterBubbleFlashWep{DrawBar"BARAMM26","BAREMPTY",DocVirusAmmo,vertical,16,8;
 DrawImage"DOCRICON",32,55;}
-IsSelected DocBusterAirCrashWep{DrawBar"XTR0BR_D","BAREMPTY",DocVirusAmmo,vertical,16,8;
+IsSelected DocBusterAirCrashWep{DrawBar"XTR0BR_F","BAREMPTY",DocVirusAmmo,vertical,16,8;
 DrawImage"DOCRICON",32,55;}
-IsSelected DocBusterQuickMetalWep{DrawBar"XTR0BR_F","BAREMPTY",DocVirusAmmo,vertical,16,8;
+IsSelected DocBusterQuickMetalWep{DrawBar"XTR0BR_C","BAREMPTY",DocVirusAmmo,vertical,16,8;
 DrawImage"DOCRICON",32,55;}
 
 //MM4
@@ -735,9 +766,9 @@ IsSelected RevolverBusterBoss{DrawBar"BARAMM10","BAREMPTY",FakemanDashCounter,ve
 }
 
 //MM10
-IsSelected TripleBladeBoss,TripleBladeBoss2{Drawbar"BAMMO100","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected TripleBladeBoss,TripleBladeBoss2{Drawbar"BARAMM6A","BAREMPTY",Ammo1,vertical,16,8;}
 
-IsSelected WaterShieldBoss{Drawbar"BAMMO101","BAREMPTY",Ammo2,vertical,8,8;
+IsSelected WaterShieldBoss{Drawbar"BARAMM69","BAREMPTY",Ammo2,vertical,8,8;
 	DrawImage"PUMRICON",32,55;
 	DrawBar"10_P_BAR","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory PumpWeaponCharge,1{DrawBar"BARFLS1","NOBAR",PumpWeaponCharge,vertical,24,8;}
@@ -783,13 +814,13 @@ IsSelected CommandoBombBoss,CommandoMineBoss{DrawBar"10_3_BAR","BAREMPTY",Ammo1,
 
 IsSelected WheelCutterBoss
 	{
-	Drawbar"BAMMO106","BAREMPTY",Ammo1,vertical,16,8;
+	Drawbar"BARAMM74","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory NitroBikeWallBoostAttack,8{DrawBar"BARFLS1","NOBAR",Ammo1,vertical,16,8;}
 	InInventory NitroGearState,1{DrawImage"NITROFFC",296,32;}
 	Else {DrawImage"NITRONC",296,32;}
 	}
 
-IsSelected ChillSpikeBossC, ChillSprayBossC{Drawbar"BAMMO103","BAREMPTY",ChillSpikeBossAmmo,vertical,16,8;
+IsSelected ChillSpikeBossC, ChillSprayBossC{Drawbar"BARAMM71","BAREMPTY",Ammo1,vertical,16,8;
     Drawbar"BARAMMO3","BAREMPTY",ChillSlideBossAmmo,vertical,8,8;
     InInventory ChillSlideBossAmmo,56{Drawbar"BARAMM31","NOBAR",ChillSlideBossAmmo,vertical,8,8;}
     }
@@ -838,9 +869,8 @@ IsSelected KingAxeBoss,KingShieldBoss{Drawbar"0B_K_BAR","BAREMPTY",Ammo1,vertica
 
 //MMWT
 IsSelected MonkeyKingBoss{Drawbar"WT_A_BAR","BAREMPTY",ammo1,vertical,16,8;}
-IsSelected SandySandBoss,SandySanderBoss{Drawbar"WT_B_BAR","BAREMPTY",ammo1,vertical,16,8;
-	//DrawImage"KAPPICON",32,55;
-	Drawbar"WT_2_BAR","BAREMPTY",ammo2,vertical,8,8;
+IsSelected SandySandBoss,SandySanderBoss{Drawbar"WT_B_BAR","BAREMPTY",KappaMikeyAmmo,vertical,16,8;
+	Drawbar"WT_2_BAR","BAREMPTY",KappaBarrierAmmo,vertical,8,8;
 	InInventory MWSShieldCharge,1{DrawBar"BARFLS1","NOBAR",MWSShieldCharge,vertical,8,8;}}
 IsSelected PigsyBoss{DrawBar"WT_C_BAR","BAREMPTY",HyperStormHeat,vertical,16,8;
 DrawBar"WT_3_BAR","NOBAR",HyperStormCold,vertical,16,8;
@@ -874,7 +904,7 @@ PlayerClass Mercury{Drawbar"BARAMM19","BAREMPTY",MercuryClassAmmo,vertical,16,8;
 IsSelected PhotonVulcanBoss,PhotonMissileBoss{DrawBar"0V_D_BAR","BAREMPTY",Ammo1,vertical,16,8;
 	Drawbar"0V_3_BAR","BAREMPTY",Ammo2,vertical,8,8;
 	InInventory MarsIsATank,1{DrawBar"VD_S_BAR","NOBAR",MarsTankFuel_F,vertical,16,8;}
-	else InInventory not MarsTankFuel_F,250{DrawBar"VD_R_BAR","NOBAR",MarsTankFuel_F,vertical,16,8;}}
+	else InInventory not MarsTankFuel_F,500{DrawBar"VD_R_BAR","NOBAR",MarsTankFuel_F,vertical,16,8;}}
 
 IsSelected BubbleBombBoss{Drawbar"BARAMMO4","BAREMPTY",BubbleCrabbyAmmo,vertical,16,8;
 	Drawbar"CRABBAR","BAREMPTY",CrabbyBubbleAmmo,vertical,8,8;
@@ -943,15 +973,13 @@ InInventory PowerDiveSonarLockon{DrawImage"DIVLOCN",150,8;}
 InInventory ChargeManLink,1{DrawImage"CHRGM_R3",235,2;}
 InInventory ChargeWildRideFlag,1{DrawImage"CHRGM_R4",235,2;}
 InInventory HomingLockedVision,1{DrawImage"HomVisA",0,0;}
-InInventory PowerSplashSinewyEtude,1||PowerSplashSinewyEtudeX{DrawImage"SPLWBUF1",302,55;}
-InInventory PowerSplashMightyMarch,1||PowerSplashMightyMarchX{DrawImage"SPLWBUF2",302,74;}
-InInventory PowerSplashSwiftSong,1||PowerSplashSwiftSongX{DrawImage"SPLWBUF3",300,92;}
+InInventory PowerSplashSinewyEtude,1||PowerSplashSinewyEtudeX{DrawImage"SPLWBUF1",302,79;}
+InInventory PowerSplashMightyMarch,1||PowerSplashMightyMarchX{DrawImage"SPLWBUF2",302,98;}
+InInventory PowerSplashSwiftSong,1||PowerSplashSwiftSongX{DrawImage"SPLWBUF3",300,116;}
 InInventory PlugmanRageFlag,1{DrawImage"PLUGBUFF",249,3;}
-//InInventory PowerTornadoSlow,1{DrawImage"T_BLOW_H",304,38;}
-InInventory DynamoTagged{DrawImage"DYNATAG",174,2;}
-InInventory VenusBlastJumpFlag,1{DrawImage"VENJUMP1",301,40;}
+InInventory DynamoM_IsTagged{DrawImage"DYNATAG",174,2;}
+InInventory VenusBlastJumpFlag,1{DrawImage"VENJUMP1",301,64;}
 InInventory AcidBarrierVisualBar,1{DrawBar"ACIDBARR","NOBAR",AcidBarrierVisualBar,vertical,24,8;}
-InInventory SolarPowerSTR,1{DrawImage"SUNCROWN",32,20;}
 
 
 InInventory ProtoJetCounter,1{InInventory ProtoJetCounter,5{DrawImage"PJETF0",290,8;}
@@ -972,7 +1000,7 @@ InInventory BassMarineCounter,1{InInventory IsUnderWater,1{
 
 //InInventory FloodMyHudTest_F,1{DrawImage"TESTHUDX",0,30;}
 
-InInventory MegamanUpgradeFlag,1{DrawImage"MEGAUPGZ",24,72;}
+InInventory MegamanUpgradeFlag,1{DrawImage"MEGAUPGD",24,72;}
 InInventory RockmanUpgradeFlag,1{DrawImage"ROCKUPGD",24,72;}
 InInventory ProtomanUpgradeFlag,1{DrawImage"PROTUPGD",24,72;}
 InInventory BassUpgradeFlag,1{DrawImage"BASSUPGD",24,72;}

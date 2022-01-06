@@ -1,0 +1,1313 @@
+actor PharaohShotBoss : BaseMM8BDMWep_CBM 
+{
+Tag "$TAGC_4D"
+dropitem "PharaohshotWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Weapon.SlotNumber 1
+Obituary "$OB_PHARAOHSHOT"
+Inventory.Pickupmessage "Power up! Pharaoh Shot!"
+weapon.ammotype "ManInGauseAmmo"
+inventory.icon "NULLICON" //PHAHOVER
+States
+{
+Spawn:
+C_04 D 1
+loop
+Ready:
+	PHSH A 0 ACS_ExecuteAlways(998,0,DYE_PHARAOHMAN)
+PHSH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+Goto Ready+1
+Deselect:
+TNT1 A 0 A_TakeInventory("ManInGauseAmmo",999)
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+PHSH A 1 A_Lower
+Loop
+Select:
+TNT1 A 0 A_TakeInventory("ManInGauseAmmo",999)
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+PHSH A 1 A_Raise
+Loop
+Fire:
+TNT1 A 0 A_TakeInventory("ManInGauseAmmo",999)
+//TNT1 A 0 A_TakeInventory("PharaohHover",100)
+PHSH A 0
+Goto Hold2
+
+Hold2:
+PHSH A 0 A_JumpIfInventory("PharaohSpamFlag",1,"MainSpam")
+PHSH A 0 A_GiveInventory("PharaohSpamFlag",1)
+PHSH A 1
+PHSH A 0 A_Refire("Hold2")
+Goto Throw1
+MainSpam:
+PHSH B 0 A_GiveInventory("PharaohSpamRageCheck",1)
+PHSH B 0 A_JumpIfInventory("PharaohSpamFlag",9,"Hold2End")
+PHSH B 0 A_JumpIfInventory("PharaohSpamFlag",8,"Hold2e")
+PHSH B 0 A_JumpIfInventory("PharaohSpamFlag",6,"Hold2d")
+PHSH B 0 A_JumpIfInventory("PharaohSpamFlag",4,"Hold2c")
+PHSH B 0 A_JumpIfInventory("PharaohSpamFlag",2,"Hold2b")
+
+Hold2b:
+PHSH B 1
+PHSH B 0 A_Refire("MainSpam")
+Goto Throw1
+Hold2c:
+PHSH C 1
+PHSH C 0 A_Refire("MainSpam")
+Goto Throw1
+Hold2d:
+PHSH D 1
+PHSH D 0 A_Refire("MainSpam")
+Goto Throw1
+Hold2e:
+PHSH E 1
+PHSH E 0 A_Refire("MainSpam")
+Goto Throw1
+Hold2End:
+PHSH F 1
+PHSH E 0 A_SpawnItemEx("PharaohFXB")
+PHSH E 0 A_TakeInventory("PharaohSpamFlag",999)
+PHSH E 0 A_Refire("Hold3")
+Goto Throw1
+
+Hold3:
+PHSH E 0 A_JumpIfInventory("ManInGauseAmmo",78,"Hold4")
+PHSH F 1 A_GiveInventory("PharaohmanRageCheck",1)
+PHSH E 0 A_Refire("Hold3")
+PHSH E 0 A_JumpIfInventory("ManInGauseAmmo",78,"Throw3")
+PHSH E 0 A_JumpIfInventory("ManInGauseAmmo",33,"Throw2")
+Goto Throw1
+Hold4:
+PHSH E 0 A_GiveInventory("ManInGauseAmmo",1)
+PHSH F 1 A_WeaponReady(6)
+PHSH E 0 A_JumpIfInventory("IsBot",1,"Botfire")
+PHSH E 0 A_Refire("Hold4")
+Goto Throw3
+Botfire:
+PHAA E 0 A_Jump(16,"Throw3","ThrowW")
+PHAA E 0 A_Refire("Hold4")
+Goto Throw3
+
+Throw1:
+PHAA F 0 A_PlaySoundEx("weapon/pharaoh1","Weapon")
+PHAA F 0 A_GiveInventory("PharaohmanMain1_CI",1)
+PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
+PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
+//PHAA FGHIJK 1
+PHAA F 1 A_JumpIfInventory("PowerRage_ST",1,1)
+PHAA F 1 OffSet(-70,72)
+PHAA F 1 OffSet(-121,112) A_JumpIfInventory("PowerRage_ST",1,1)
+PHAA I 1 OffSet(1,33)
+PHAA I 1 OffSet(-21,56) A_JumpIfInventory("PowerRage_ST",1,1)
+PHAA I 1 OffSet(-35,84)
+TNT1 A 1 A_ClearRefire
+PHAA A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+Goto Ready+1
+Throw2:
+PHAA F 0 A_PlaySoundEx("weapon/pharaoh1","Weapon")
+PHAA F 0 A_GiveInventory("PharaohmanMain2_CI",1)
+PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
+PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
+//PHAA FGHIJK 1
+PHAA F 1
+PHAA F 1 OffSet(-70,72)
+PHAA F 1 OffSet(-121,112)
+PHAA I 1 OffSet(1,33)
+PHAA I 1 OffSet(-21,56)
+PHAA I 1 OffSet(-35,84)
+TNT1 A 7 A_ClearRefire
+PHAA A 1 OffSet(0,69)
+PHAA A 1 OffSet(0,48)
+PHAA A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+Goto Ready+1
+Throw3:
+PHAA F 0 A_PlaySoundEx("weapon/pharaoh2","Weapon")
+PHAA F 0 A_GiveInventory("PharaohmanMain3_CI",1)
+PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
+PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
+//PHAA FGHIJK 2
+PHAA F 1 A_JumpIfInventory("PowerRage_ST",1,1)
+PHAA F 1 OffSet(-70,72)
+PHAA F 1 OffSet(-121,112) A_JumpIfInventory("PowerRage_ST",1,1)
+PHAA I 1 OffSet(1,33)
+PHAA I 1 OffSet(-21,56) A_JumpIfInventory("PowerRage_ST",1,1)
+PHAA I 1 OffSet(-35,84)
+TNT1 A 10 A_ClearRefire
+TNT1 A 0 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+PHAP LM 2
+Goto Ready+1
+ThrowW:
+PHAB C 1
+PHAA F 0 A_PlaySoundEx("weapon/pharaoh1","Body")
+PHAA F 0 A_PlaySoundEx("weapon/pharaoh5","Weapon")
+PHAA F 0 A_GiveInventory("PharaohmanAlt1_CI",1)
+PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
+PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,1)
+PHAB EHGF 2
+PHAA F 0 A_PlaySoundEx("weapon/pharaoh5","Weapon")
+PHAA F 0 A_GiveInventory("PharaohmanAlt2_CI",1)
+PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
+PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,1)
+PHAB EHGF 2
+PHAA F 0 A_PlaySoundEx("weapon/pharaoh5","Weapon")
+PHAA F 0 A_GiveInventory("PharaohmanAlt3_CI",1)
+PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
+PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,1)
+PHAB EHGF 2
+PHAA F 0 A_PlaySoundEx("weapon/pharaoh5","Weapon")
+PHAA F 0 A_GiveInventory("PharaohmanAlt4_CI",1)
+PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
+PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,1)
+PHAB EHGF 2
+PHAB ECBA 2 A_ClearRefire
+PHAP LM 2
+Goto Ready+1
+
+Altfire:
+TNT1 A 0 A_JumpIfInventory("ManInGauseAmmo",78,"ThrowW")
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"HoverFinish")
+TNT1 A 0 A_JumpIfInventory("PharaohHover",14,"HoverFinish")
+TNT1 A 0 A_JumpIfInventory("PharaohHoverFlag",1,8)
+TNT1 A 1 A_GiveInventory("PharaohHoverFlag",1)
+TNT1 A 1
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,3)
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 SetPlayerProperty(0,1,0)
+//PHAA NO 4
+//PHAH BBCCDDED 1
+PHAH FHJKLMNO 1
+TNT1 A 0 ThrustThingZ(0,1,0,1)
+
+HoverHold:
+TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,3)
+TNT1 A 0 A_JumpIfInventory("PharaohHover",14,"HoverFinish")
+PHAH P 1
+TNT1 A 0 A_PlaySoundEx("classes/float","Weapon")
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+PHAH P 2 A_Recoil(-12)
+PHAH Q 2
+TNT1 A 0 A_GiveInventory("PharaohHover",1)
+TNT1 A 0 A_SpawnItemEx("PharaohAfterImage",0,0,0,0,0,0,0,1)
+PHAH R 2 
+PHAH N 2 A_SpawnItemEx("PharaohAura",0,0,28)
+TNT1 A 0 A_Refire("HoverHold")
+TNT1 A 0 A_SpawnItemEx("PharaohAura",0,0,28)
+goto HoverFinish
+HoverFinish:
+PHAH O 2// A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)
+TNT1 A 0 SetPlayerProperty(0,0,0)
+TNT1 A 0 A_TakeInventory("PharaohHoverFlag",99)
+TNT1 A 0 A_TakeInventory("PharaohHover",99)
+//PHAA NA 4
+//PHAH DCB 2
+PHAH NMLKJHF 1
+TNT1 A 9 Offset(96,0)
+TNT1 A 0 A_Refire("AltFireEnd")
+Goto Ready+1
+AltFireEnd:
+TNT1 A 1 A_RailWait
+Goto Ready+1
+
+Reload:
+PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
+TNT1 A 1 Offset(311, 147)
+PHAP A 1 Offset(284, 136)
+PHAP A 1 Offset(227, 116)
+PHAP A 1 Offset(161, 91)
+PH4W A 0 ACS_NamedExecute("BULL_SetState",0,2)
+PHAP A 0 A_PlaySoundEx("Weapon/pharaohpunchswing","Weapon")
+PHAP A 0 A_GiveInventory("PharaohManAlt_CI",1)
+PHAP A 1 Offset(161, 91)
+PHAP A 0 A_Quake(2,14,0,8,"none")
+PHAP B 1 Offset(103, 98)
+PHAP B 1 Offset(89, 120)
+PHAP B 1 Offset(76, 143)
+PHAP B 1 Offset(69, 168)
+PHAP B 1 Offset(63, 198)
+TNT1 A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+TNT1 A 22
+PHAP LM 2 //38 frames
+Goto Ready+1
+}
+}
+
+actor ManInGauseAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 78//38
++INVENTORY.IGNORESKILL 
+}
+
+actor PharaohSpamFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 10
+}
+
+actor PharaohHover : Inventory
+{
+inventory.amount 1
+inventory.maxamount 14
+}
+
+actor PharaohHoverFlag : OnceC {}
+
+actor PharaohSpamRageCheck : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("PharaohSpamFlag",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("PharaohSpamFlag",2)
+stop
+}
+}
+
+actor PharaohmanRageCheck : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("ManInGauseAmmo",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("ManInGauseAmmo",2)
+stop
+}
+}
+
+
+
+actor PharaohAfterImage
+{
++NOINTERACTION
+radius 1
+height 1
+Scale 2.5
+renderstyle Translucent
+alpha 0.75
+States
+{
+Spawn:
+PHAR JK 5
+PHAR LLLLL 1 A_FadeOut(0.12)
+stop
+}
+}
+
+actor PharaohAura : BasicExplosion
+{
+damagetype "ClassPainLess"
+Obituary "$OB_PHARAOHAURA"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(100, 80,0)
+stop
+}
+}
+
+
+actor Pharaohshot1B : Pharaohshot1
+{
+Translation "192:192=4:4", "198:198=216:216"
+Radius 10
+Height 10
+damage (120)
+speed 35
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+X_4D A 4
+loop
+Death:
+X_4D A 1 A_FadeOut(.25)
+X_4D A 0 A_SetScale(ScaleX+0.5)
+X_4D A 1 A_FadeOut(.25)
+X_4D A 0 A_SetScale(ScaleX+0.5)
+X_4D A 1 A_FadeOut(.25)
+X_4D A 0 A_SetScale(ScaleX+0.5)
+X_4D A 1 A_FadeOut(.25)
+X_4D A 0 A_SetScale(ScaleX+0.5)
+stop
+}
+}
+
+actor Pharaohshot1BB : Pharaohshot1B{translation "192:192=205:205", "198:198=74:74"}
+actor Pharaohshot1BR : Pharaohshot1B{translation "192:192=171:171", "198:198=41:41"}
+actor Pharaohshot1BO : Pharaohshot1B{translation "192:192=104:104", "198:198=128:128"}
+actor Pharaohshot1BP : Pharaohshot1B{translation "192:192=229:229", "198:198=232:232"}
+
+actor Pharaohshot2B : Pharaohshot2
+{
+Translation "192:192=4:4", "198:198=216:216"
+Radius 14//10
+Height 14//10
+damage(150)//damage (40)
+//speed 35
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+X_4D H 4
+loop
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+TNT1 A 0 A_Explode(100,64,0,0,16)//A_Explode(65,128,0)
+//X_4D PQRSTYVWXY 1
+X_4D H 1 A_FadeOut(.125)
+X_4D H 0 A_SetScale(ScaleX+0.8)
+X_4D H 1 A_FadeOut(.125)
+X_4D H 0 A_SetScale(ScaleX+0.8)
+X_4D H 1 A_FadeOut(.125)
+X_4D H 0 A_SetScale(ScaleX+0.8)
+X_4D H 1 A_FadeOut(.125)
+X_4D H 0 A_SetScale(ScaleX+0.8)
+X_4D H 1 A_FadeOut(.125)
+X_4D H 0 A_SetScale(ScaleX+0.8)
+X_4D H 1 A_FadeOut(.125)
+X_4D H 0 A_SetScale(ScaleX+0.8)
+stop
+}
+}
+
+actor Pharaohshot2BB : Pharaohshot2B{translation "192:192=205:205", "198:198=74:74"}
+actor Pharaohshot2BR : Pharaohshot2B{translation "192:192=171:171", "198:198=41:41"}
+actor Pharaohshot2BO : Pharaohshot2B{translation "192:192=104:104", "198:198=128:128"}
+actor Pharaohshot2BP : Pharaohshot2B{translation "192:192=229:229", "198:198=232:232"}
+
+actor Pharaohshot3B : Pharaohshot3
+{
+Translation "192:192=4:4", "198:198=216:216"
+Radius 16//10
+Height 16//10
+damage(100)
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+X_4D JK 4
+loop
+Death:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+TNT1 A 0 A_Explode(300,128,0,0,16)//A_Explode(65,128,0)
+//X_4D PQRSTYVWXY 1
+X_4D LMNO 2
+stop
+}
+}
+
+actor Pharaohshot3BB : Pharaohshot3B{translation "192:192=205:205", "198:198=74:74"}
+actor Pharaohshot3BR : Pharaohshot3B{translation "192:192=171:171", "198:198=41:41"}
+actor Pharaohshot3BO : Pharaohshot3B{translation "192:192=104:104", "198:198=128:128"}
+actor Pharaohshot3BP : Pharaohshot3B{translation "192:192=229:229", "198:198=232:232"}
+
+actor PharaohshotWaveB1 : Pharaohshot2
+{
+Translation "192:192=4:4", "198:198=216:216"
+var int user_P;
+Obituary "$OB_PHARAOHWAVE"
+damagetype "Pharaohshot3"
+Damage(150)
+Radius 10
+Height 32
+speed 80
+Reactiontime 36
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+PHAA W 1 A_CountDown
+loop
+Death:
+PHAA W 0
+PHAA W 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+PHAA W 0 A_Fadeout(0.2)
+//PHAA W 1 A_SetScale(2.8,2.8)
+PHAA W 1 A_SetScale(2.6,2.6)
+PHAA W 0 A_Fadeout(0.2)
+//PHAA W 1 A_SetScale(2.4,2.4)
+PHAA W 1 A_SetScale(2.2,2.2)
+PHAA W 0 A_Fadeout(0.2)
+//PHAA W 1 A_SetScale(2.0,2.0)
+PHAA W 1 A_SetScale(1.8,1.8)
+PHAA W 0 A_Fadeout(0.2)
+//PHAA W 1 A_SetScale(1.6,1.6)
+PHAA W 1 A_SetScale(1.4,1.4)
+PHAA W 0 A_Fadeout(0.2)
+//PHAA W 1 A_SetScale(1.2,1.2)
+PHAA W 1 A_SetScale(1.0,1.0)
+PHAA W 0 A_Fadeout(0.2)
+//PHAA W 1 A_SetScale(0.8,0.8)
+PHAA W 1 A_SetScale(0.6,0.6)
+PHAA W 0 A_Fadeout(0.2)
+//PHAA W 1 A_SetScale(0.4,0.4)
+PHAA W 1 A_SetScale(0.2,0.2)
+PHAA W 0 A_Fadeout(0.2)
+stop
+}
+}
+
+actor PharaohshotWaveB1B : PharaohshotWaveB1{translation "192:192=205:205", "198:198=74:74"}
+actor PharaohshotWaveB1R : PharaohshotWaveB1{translation "192:192=171:171", "198:198=41:41"}
+actor PharaohshotWaveB1O : PharaohshotWaveB1{translation "192:192=104:104", "198:198=128:128"}
+actor PharaohshotWaveB1P : PharaohshotWaveB1{translation "192:192=229:229", "198:198=232:232"}
+
+actor PharaohshotWaveB2 : PharaohshotWaveB1
+{
+Damage(150)
+Reactiontime 29
+}
+
+actor PharaohshotWaveB2B : PharaohshotWaveB2{translation "192:192=205:205", "198:198=74:74"}
+actor PharaohshotWaveB2R : PharaohshotWaveB2{translation "192:192=171:171", "198:198=41:41"}
+actor PharaohshotWaveB2O : PharaohshotWaveB2{translation "192:192=104:104", "198:198=128:128"}
+actor PharaohshotWaveB2P : PharaohshotWaveB2{translation "192:192=229:229", "198:198=232:232"}
+
+actor PharaohshotWaveB3 : PharaohshotWaveB1
+{
+Damage(150)
+Reactiontime 16
+}
+
+actor PharaohshotWaveB3B : PharaohshotWaveB3{translation "192:192=205:205", "198:198=74:74"}
+actor PharaohshotWaveB3R : PharaohshotWaveB3{translation "192:192=171:171", "198:198=41:41"}
+actor PharaohshotWaveB3O : PharaohshotWaveB3{translation "192:192=104:104", "198:198=128:128"}
+actor PharaohshotWaveB3P : PharaohshotWaveB3{translation "192:192=229:229", "198:198=232:232"}
+
+actor PharaohshotWaveB4 : PharaohshotWaveB1
+{
+Damage(150)
+Reactiontime 7
+}
+
+actor PharaohshotWaveB4B : PharaohshotWaveB4{translation "192:192=205:205", "198:198=74:74"}
+actor PharaohshotWaveB4R : PharaohshotWaveB4{translation "192:192=171:171", "198:198=41:41"}
+actor PharaohshotWaveB4O : PharaohshotWaveB4{translation "192:192=104:104", "198:198=128:128"}
+actor PharaohshotWaveB4P : PharaohshotWaveB4{translation "192:192=229:229", "198:198=232:232"}
+
+actor PharaohshotWaveBContainer1 : PharaohshotWaveB1
+{
+Damage (0)
+Alpha 0.4
+scale 2.3
+RenderStyle translucent
+States
+{
+Spawn:
+PHAA W 0
+PHAA WWW 0 A_SpawnItemEx("PharaohshotWaveBContainerTrail",-8,random(-16,16),random(-32,32),0,0,0,0,SXF_TRANSFERTRANSLATION)
+PHAA W 1 Bright A_CountDown
+loop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor PharaohshotWaveBContainer1B : PharaohshotWaveBContainer1{translation "192:192=205:205", "198:198=74:74"}
+actor PharaohshotWaveBContainer1R : PharaohshotWaveBContainer1{translation "192:192=171:171", "198:198=41:41"}
+actor PharaohshotWaveBContainer1O : PharaohshotWaveBContainer1{translation "192:192=104:104", "198:198=128:128"}
+actor PharaohshotWaveBContainer1P : PharaohshotWaveBContainer1{translation "192:192=229:229", "198:198=232:232"}
+
+actor PharaohshotWaveBContainer2 : PharaohshotWaveBContainer1
+{
+Reactiontime 29
+}
+
+actor PharaohshotWaveBContainer2B : PharaohshotWaveBContainer2{translation "192:192=205:205", "198:198=74:74"}
+actor PharaohshotWaveBContainer2R : PharaohshotWaveBContainer2{translation "192:192=171:171", "198:198=41:41"}
+actor PharaohshotWaveBContainer2O : PharaohshotWaveBContainer2{translation "192:192=104:104", "198:198=128:128"}
+actor PharaohshotWaveBContainer2P : PharaohshotWaveBContainer2{translation "192:192=229:229", "198:198=232:232"}
+
+actor PharaohshotWaveBContainer3 : PharaohshotWaveBContainer1
+{
+Reactiontime 16
+}
+
+actor PharaohshotWaveBContainer3B : PharaohshotWaveBContainer3{translation "192:192=205:205", "198:198=74:74"}
+actor PharaohshotWaveBContainer3R : PharaohshotWaveBContainer3{translation "192:192=171:171", "198:198=41:41"}
+actor PharaohshotWaveBContainer3O : PharaohshotWaveBContainer3{translation "192:192=104:104", "198:198=128:128"}
+actor PharaohshotWaveBContainer3P : PharaohshotWaveBContainer3{translation "192:192=229:229", "198:198=232:232"}
+
+actor PharaohshotWaveBContainer4 : PharaohshotWaveBContainer1
+{
+Reactiontime 7
+}
+
+actor PharaohshotWaveBContainer4B : PharaohshotWaveBContainer4{translation "192:192=205:205", "198:198=74:74"}
+actor PharaohshotWaveBContainer4R : PharaohshotWaveBContainer4{translation "192:192=171:171", "198:198=41:41"}
+actor PharaohshotWaveBContainer4O : PharaohshotWaveBContainer4{translation "192:192=104:104", "198:198=128:128"}
+actor PharaohshotWaveBContainer4P : PharaohshotWaveBContainer4{translation "192:192=229:229", "198:198=232:232"}
+
+actor PharaohshotWaveBContainerTrail : BasicClientSide
+{
++FORCEXYBILLBOARD
+renderstyle translucent
+scale 0.8
+States
+{
+Spawn:
+GIGO RST 1 A_Fadeout(0.06)
+loop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck1 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck1B : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1B",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1B",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1B",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1B",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1B",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1B",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck1R : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1R",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1R",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1R",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1R",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1R",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1R",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck1O : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1O",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1O",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1O",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1O",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1O",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1O",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck1P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1P",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1P",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1P",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB1P",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer1P",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck2 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck2B : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2B",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2B",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2B",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2B",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2B",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2B",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck2R : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2R",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2R",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2R",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2R",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2R",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2R",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck2O : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2O",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2O",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2O",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2O",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2O",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2O",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck2P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2P",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2P",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2P",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB2P",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer2P",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck3 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck3B : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3B",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3B",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3B",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3B",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3B",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3B",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck3R : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3R",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3R",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3R",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3R",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3R",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3R",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck3O : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3O",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3O",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3O",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3O",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3O",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3O",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck3P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3P",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3P",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3P",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB3P",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer3P",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck4 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck4B : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4B",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4B",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4B",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4B",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4B",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4B",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck4R : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4R",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4R",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4R",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4R",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4R",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4R",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck4O : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4O",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4O",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4O",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4O",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4O",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4O",0,8,0,0,0,0)
+stop
+}
+}
+
+actor PharaohshotWaveBSpreadCheck4P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"PickupS")
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4P",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4P",0,0,0,0,0,0)
+stop
+PickupS:
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4P",0,-8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveB4P",0,8,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PharaohshotWaveBContainer4P",0,8,0,0,0,0)
+stop
+}
+}
+
+
+actor PharaohFXB : BasicHelper
+{
+States
+{
+Spawn:
+PLAY A 0
+PLAY A 0 A_JumpIfInTargetInventory("ManInGauseAmmo",78,"Give2")
+PLAY A 0 A_JumpIfInTargetInventory("ManInGauseAmmo",1,"Give")
+stop
+Give:
+PLAY A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+PLAY A 1 A_GiveToTarget("PharaohFXGiveB",1)
+Goto Spawn
+Give2:
+PLAY A 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Death")
+PLAY A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+PLAY AAA 1 A_GiveToTarget("PharaohFXGive2B",1)
+PLAY A 0 A_JumpIfInTargetInventory("ManInGauseAmmo",78,"Give3")
+stop
+Give3:
+PLAY A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,2)
+PLAY AAA 1 A_GiveToTarget("PharaohFXGive3B",1)
+PLAY A 0 A_JumpIfInTargetInventory("ManInGauseAmmo",78,"Give2")
+stop
+}
+}
+
+actor PharaohFXGiveB : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickR")
+TNT1 A 0 A_GiveInventory("ManInGauseAmmo",1)
+goto Pick2
+PickR:
+TNT1 A 0 A_GiveInventory("ManInGauseAmmo",2)
+goto Pick2
+Pick2:
+TNT1 A 0 A_JumpIfInventory("ManInGauseAmmo", 69, "FX8")
+TNT1 A 0 A_JumpIfInventory("ManInGauseAmmo", 60, "FX7")
+TNT1 A 0 A_JumpIfInventory("ManInGauseAmmo", 51, "FX6")
+TNT1 A 0 A_JumpIfInventory("ManInGauseAmmo", 43, "FX5")
+TNT1 A 0 A_JumpIfInventory("ManInGauseAmmo", 33, "FX4")
+TNT1 A 0 A_JumpIfInventory("ManInGauseAmmo", 24, "FX3")
+TNT1 A 0 A_JumpIfInventory("ManInGauseAmmo", 15, "FX2")
+TNT1 A 0 A_JumpIfInventory("ManInGauseAmmo", 6, "FX1")
+stop
+FX1:
+TNT1 A 0 A_SpawnItemEx("PharaohFX1B",0,0,90,0,0,0,0,1)
+stop
+FX2:
+TNT1 A 0 A_SpawnItemEx("PharaohFX2B",0,0,90,0,0,0,0,1)
+stop
+FX3:
+TNT1 A 0 A_SpawnItemEx("PharaohFX3B",0,0,90,0,0,0,0,1)
+stop
+FX4:
+TNT1 A 0 A_SpawnItemEx("PharaohFX4B",0,0,90,0,0,0,0,1)
+stop
+FX5:
+TNT1 A 0 A_SpawnItemEx("PharaohFX5B",0,0,90,0,0,0,0,1)
+stop
+FX6:
+TNT1 A 0 A_SpawnItemEx("PharaohFX6B",0,0,90,0,0,0,0,1)
+stop
+FX7:
+TNT1 A 0 A_SpawnItemEx("PharaohFX7B",0,0,90,0,0,0,0,1)
+stop
+FX8:
+TNT1 A 0 A_SpawnItemEx("PharaohFX8B",0,0,90,0,0,0,0,1)
+stop
+}
+}
+
+actor PharaohFXGive2B : PharaohFXGive2
+{
+states
+{
+Use:
+TNT1 A 0 A_SpawnItemEx("PharaohFX9B",0,0,90,0,0,0,0,1)
+stop
+}
+}
+
+actor PharaohFXGive3B : PharaohFXGive3
+{
+states
+{
+Use:
+TNT1 A 0 A_SpawnItemEx("PharaohFX10B",0,0,90,0,0,0,0,1)
+stop
+}
+}
+
+actor PharaohFX1B
+{
+-SOLID
++DONTBLAST
++NOGRAVITY
++FORCEXYBILLBOARD
+Scale 2.5
+States
+{
+Spawn:
+X_4D B 2
+stop
+}
+}
+
+actor PharaohFX2B : PharaohFX1B{States{Spawn:X_4D C 2
+stop}}
+actor PharaohFX3B : PharaohFX1B{States{Spawn:X_4D D 2
+stop}}
+actor PharaohFX4B : PharaohFX1B{States{Spawn:X_4D E 2
+stop}}
+actor PharaohFX5B : PharaohFX1B{States{Spawn:X_4D F 2
+stop}}
+actor PharaohFX6B : PharaohFX1B{States{Spawn:X_4D G 2
+stop}}
+actor PharaohFX7B : PharaohFX1B{States{Spawn:X_4D H 2
+stop}}
+actor PharaohFX8B : PharaohFX1B{States{Spawn:X_4D I 2
+stop}}
+actor PharaohFX9B : PharaohFX1B{States{Spawn:X_4D J 2
+stop}}
+
+actor PharaohFX10B : PharaohFX1B
+{
+damagetype "PharaohHold"
+Obituary "$OB_PHARAOHSHOT"
+States
+{
+Spawn:
+X_4D K 0
+X_4D K 2 A_Explode(50,64,0)
+stop
+}
+}
+
+actor PharaohmanMain1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot1B",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot1BB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot1BR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot1BO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot1BP",0,1,8,0)
+goto Done
+}
+}
+
+actor PharaohPunch
+{
+translation "202:202=210:210"
+PROJECTILE
+damagetype "PharaohPunch"
+Obituary "$OB_PHARAOHPUNCH"
++DONTBLAST
+reactiontime 1
+damage (300)
+Radius 15
+Height 15
+speed 60
+scale 2.0
+States
+{
+Spawn:
+UMFX R 0
+UMFX R 1 A_CountDown
+wait
+Death:
+UMFX J 0 A_Explode(300,28,0)
+goto XDeath
+XDeath:
+UMFX J 0 A_Stop
+UMFX J 2
+XMFX S 2
+UMFX JK 2
+stop
+}
+}
+
+actor PharaohPunchB : PharaohPunch{translation "202:202=205:205"}
+actor PharaohPunchR : PharaohPunch{translation "202:202=171:171"}
+actor PharaohPunchO : PharaohPunch{translation "202:202=104:104"}
+actor PharaohPunchP : PharaohPunch{translation "202:202=229:229"}
+
+
+actor PharaohmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot2B",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot2BB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot2BR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot2BO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot2BP",0,1,8,0)
+goto Done
+}
+}
+
+actor PharaohmanMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot3B",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot3BB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot3BR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot3BO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Pharaohshot3BP",0,1,8,0)
+goto Done
+}
+}
+
+actor PharaohmanAlt1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck1",1)
+goto Done
+FireB:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck1B",1)
+goto Done
+FireR:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck1R",1)
+goto Done
+FireO:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck1O",1)
+goto Done
+FireP:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck1P",1)
+goto Done
+}
+}
+
+actor PharaohmanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck2",1)
+goto Done
+FireB:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck2B",1)
+goto Done
+FireR:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck2R",1)
+goto Done
+FireO:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck2O",1)
+goto Done
+FireP:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck2P",1)
+goto Done
+}
+}
+
+actor PharaohmanAlt3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck3",1)
+goto Done
+FireB:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck3B",1)
+goto Done
+FireR:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck3R",1)
+goto Done
+FireO:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck3O",1)
+goto Done
+FireP:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck3P",1)
+goto Done
+}
+}
+
+actor PharaohmanAlt4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck4",1)
+goto Done
+FireB:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck4B",1)
+goto Done
+FireR:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck4R",1)
+goto Done
+FireO:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck4O",1)
+goto Done
+FireP:
+TNT1 A 0 A_GiveInventory("PharaohshotWaveBSpreadCheck4P",1)
+goto Done
+}
+}
+
+actor PharaohManAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("PharaohPunch",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("PharaohPunchB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("PharaohPunchR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("PharaohPunchO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("PharaohPunchP",0,0,0,0)
+goto Done
+}
+}

@@ -16,6 +16,9 @@ OB_YELLOWMAIN2 = "%o was pulverised by %k's perfect sphere?";
 OB_YELLOWMAIN3 = "%o couldn't make a dent in %k's yellow one-eyed cube.";
 OB_YELLOWLASER = "%k saw right through %o's approach.";
 
+TAGC_WTB1 = "Mega Water Stream";
+TAGC_WTB2 = "Mega Water Spout";
+
 //Duo
 OB_DUOCSLAM = "%o was chokeslammed by %k's grip of justice.";
 OB_DUOWAVE = "%o lost %p footing to %k's Justice Shockwave.";
@@ -71,6 +74,7 @@ OB_PLANTDRAINX = "%o was wrapped into %k's Plant Feijoada.";
 OB_TOMAHAWKFEATHERX = "%o could not handle the spiciness of %k's Wings.";
 //Centaur
 OB_CENTAURFLASHX = "%k's Centaur Flash turned %o into a fucking Falafel.";
+//OB_CENTAURARROW = "%k's Centaur Flash turned %o into a fucking Falafel.";
 //Flame
 OB_FLAMEBURST = "%k's Flame Burst skewered %o.";
 OB_FLAMEBURSTX = "%k's Flame Burst skewered %o's body into shawarma.";
@@ -190,3 +194,280 @@ TAG_AUTOSWITCH6 = "\cm[\cg7\cm] \cfEddie Bomber \cm[\cg7\cm]";
 
 //Flash
 OB_TIMESTUNNER = "%o's optics blew out from %k's Flash Stunner.";
+
+QUITMSG31 = "Yes Yes Yes Yes Yes Yes";
+QUITMSG32 = "Don't make us stop production on version 9c...";
+
+//The Banner
+STARTUP1 = "";
+STARTUP2 = "";   
+
+STARTUP3 = " ";
+STARTUP4 = " ";
+STARTUP5 = "\cvFeel free to leave any suggestion/complaint at link present in the help screen! \n  \ck-CCBM Developers\n";
+
+//STARTUP6 = "\c[MollyPink]_$$$$$$___$$$$$$$___$$_______$$\n$$____$$__$$____$$__$$$_____$$$\n$$________$$____$$__$$$$___$$$$\n$$________$$$$$$$___$$_$$_$$_$$\n$$________$$____$$__$$__$$$__$$\n$$____$$__$$____$$__$$___$___$$\n_$$$$$$___$$$$$$$___$$_______$$";
+
+/*
+\cd\n
+_#####___#####__######__#_____#_\n
+#_____#_#_____#_#_____#_##___##_\n
+#_______#_______#_____#_#_#_#_#_\n
+#_______#_______######__#__#__#_\n
+#_______#_______#_____#_#_____#_\n
+#_____#_#_____#_#_____#_#_____#_\n
+_#####___#####__######__#_____#_"; 
+                                    
+
+*/
+
+//RYULIGHT
+OB_RYUL_M3 = "%o was shown the ultimate wave motion attack by %k's Shinku Hadoken.";
+
+//MWS
+
+//ICE
+OB_ICEBLOCKBIT = "%o felt the faint cold chill of a piece of %k's Ice Block.";
+OB_ICEBLOCK = "%o felt the chilling blast of %k's Ice Impact.";
+OB_ICELASERX = "%k's Ice Lance chilled %o to the very core.";
+OB_ICELASER = "%o had a cold reboot forced on them by %k's Ice Lance.";
+OB_ICERAIN = "%o was impaled by the frozen ridges of %k's Icicle Rain.";
+
+//Crashman
+OB_CRASHBOMB = "%o was crashed by %k's Crash Bomb.";
+OB_CLASHBOMB = "%o was clashed by %k's Clash Bomb.";
+
+//Metalman
+OB_CHAINBLADE = "%o was \c[t1]ripped and torn\c- by %k's Metal Chainsaw.";
+
+//Magma
+OB_MAGMABAZOOKA2 = "%o couldn't handle the heat of %k's Magma Force.";
+
+//Splash
+OB_SPLASHSING0 = "%o was lulled by %k's Splash Voice.";
+OB_SPLASHSING1 = "%o was lulled by %k's Strength Aria.";
+OB_SPLASHSING2 = "%o was lulled by %k's Healing Melody.";
+OB_SPLASHSING3 = "%o was lulled by %k's Swift Shanty.";
+
+//MWS
+OB_MWSHARPOON2 = "%o was dragged over to %k.";
+OB_MWSWATER = "%k shoved %o inside Davy Jones' Locker.";
+
+//Pharaoh
+OB_PHARAOHPUNCH = "%k decked %o in the jaw for trying to get %p power.";
+
+//==Weapon Tags
+
+//Ice
+TAGC_1C2 = "Iceman Sprayer";
+TAGC_1C3 = "Iceman Statues";
+
+//Pharaoh
+TAGC_4D2 = "Pharaohman Hover";
+TAGC_4D3 = "Pharaohman Punch";
+
+//Shadow
+TAGC_3H3 = "Shadowman Kunai";
+
+//Needle
+OB_NEEDLEHAMMER = "%o was brutally punctured by %k's Needle Hammer.";
+
+//Shadow
+OB_SHADOWKUNAI = "%o was executed by %k's Kunai.";
+
+//Darkman2
+OB_DARKBLAST1 = "%o was grimly electrocuted by %k's Dark Spark.";
+OB_DARKBLAST2 = "%o was engulfed in the darkness of %k's Dark Blast.";
+OB_DARKBLAST2SPARK = "%o was given a wild shock from %k's Dark Blast.";
+OB_DARKBLAST3 = "%o got caught in the explosion of %k's Electromagnetic Net.";
+OB_DARKBLAST3NET = "%o was captured and shocked by %k's Electromagnetic Net.";
+
+
+//Yamato
+OB_YAMATOSPIN = "%o was shredded into ramen by %k's Yamato Spin.";
+
+//Tomahawk
+OB_TOMAHAWKFEATHER = "%o was gently ripped apart by %k's Feather Sweep.";
+
+//Junk
+OB_JUNKPUNCH = "%o didn't feel so good from %k's Junk Gauntlet.";
+
+//Astro
+TAGC_8B3 = "Astroman Crush";
+
+//Plug
+OB_PLUGITIN = "%k plugged %pself into %o without permission.";
+
+//Punk
+TAGC_KB = "Punk Straight Attacks";
+TAGC_KB2 = "Punk Lobbed Attacks";
+
+//Ra Thor
+OB_RATHOR1 = "%o was putrified by %k's Dark Discs.";
+OB_RATHOR2 = "%o was nullified by %k's Thor Coils.";
+OB_RATHOR3 = "%o was petrified by %k's Elec Balls.";
+OB_RATHOR4 = "%o was assimilated into %k's Shadow Sphere.";
+OB_RATHOR4X = "%o was swept from %p feet by %k's Shadow Wave.";
+OB_RATHOR5 = "%k tossed %o aside.";
+OB_RATHOR6 = "%o got plonked by %k.";
+OB_RATHOR7 = "%o could not escape from %k's grasp.";
+
+// Patch 21 //
+//Mega
+ TAGC_0B = "Megaman Hero";
+
+//Proto
+ TAGC_0A = "Protoman Hero";
+
+//Bass
+ TAGC_0F = "Bass Hero";
+
+//Duo
+ TAGC_8I = "Duo Hero";
+ 
+//Joe
+ TAGC_0J = "Sniper Joe Buster % Grenade";
+ TAGC_0J2 = "Sniper Joe Machinegun & Launcher";
+ TAGC_0J3 = "Sniper Joe Crate";
+ TAGC_0J4 = "Sniper Joe Truck";
+ TAGC_0J5 = "Sniper Joe Apache";
+ TAGC_0R = "Dr. Light Technique";
+
+//Cut
+ TAGC_1A = "Cutman Boss";
+ 
+//Fire 
+OB_FIRESTORMW = "%o was apprehended by %k's Flames of Justice.";
+OB_FIRESTORMS = "%o was smouldered by %k's Fire Storm Shield.";
+OB_FIRESTORMG = "%o suffered burns from stepping on %k's Lingering Fire.";
+
+//Time
+ TAGC_1G = "Timeman Boss";
+
+//Metalman
+OB_CHAINBLADE = "%o was ripped and torn by %k's Metal Chainsaw.";
+
+//Heat
+ TAGC_2G = "Heatman Boss";
+OB_ATOMICFIRE2 = "%o was roasted over %k's Atomic Pillars.";
+
+//Needle
+ TAGC_3A = "Needleman Boss";
+
+//Doc
+ TAGC_3I = "Doc Robot Buster";
+
+//Dive
+ TAGC_4G = "Diveman Boss";
+
+//Star
+ TAGC_5E = "Starman Boss";
+ 
+OB_CRYSTALEYEBIG = "%k's Crystal Eye showed %o %p final glimpse into the dark future.";
+OB_CRYSTALEYESHOT = "%o did not expect to get hit by %k's Crystal Eye.";
+
+//Dark1
+ TAGC_5I = "Darkman1 Boss";
+
+//Dark2
+ TAGC_5J = "Darkman2 Boss";
+
+//Dark4
+ TAGC_5L = "Darkman4 Boss";
+
+//Tomahawk
+ TAGC_6F = "Tomahawkman Boss";
+
+//Junk
+OB_JUNKPUNCH = "%o got a solid left hook for talking trash about %k.";
+
+//Cloud
+OB_THUNDERBOLTB = "%o's experiment of standing under %k's Thunder Rain was given a thunderous conclusion.";
+OB_THUNDERBOLTC = "%k's Thunder Spark ran wild all over %o.";
+OB_THUNDERBOLTD = "%o was unable to conduct %k's Thunder Charge.";
+
+//Shade
+ TAGC_7G = "Shademan Boss";
+
+//Astro
+TAGC_8B2 = "Astroman Boss";
+
+//Ice
+TAGC_1C3 = "Iceman Boss";
+
+//Frost
+OB_ICECRUSH = "%o was turned into frosting by %k's Ice Crush.";
+
+//Fake
+TAGC_9I = "Fakeman Boss";
+
+//Plug
+ TAGC_9D = "Plugman Boss";
+OB_PLUGITIN = "%k plugged themself into %o without permission.";
+
+//Nitro
+ TAGC_10G = "Nitroman Boss";
+
+//Mercury
+ TAGC_VB = "Mercury Boss";
+
+//Jupiter
+ TAGC_VE = "Jupiter Boss";
+
+//Venus
+ TAGC_VC = "Venus Boss";
+ 
+//Punk
+OB_PUNKRAM = "%o suffered a concussion from %k's Punk Ram.";
+
+//Breakman
+TAGC_3J1 = "Breakman Buster";
+TAGC_3J2 = "Breakman Sniper";
+OB_BREAKSHOT = "%o was bombed by %k's Break Buster.";
+OB_BREAKSHOTWEAK = "%o failed to continue %p pursuit through %k's Break Hail."; //Unused
+OB_BREAKRAIL = "%k's Break Sniper left a clean bullet hole through %o.";
+OB_BREAKSNIPER = "%o caught themself in the sights of %k's Break Sniper.";
+OB_BREAKMARKER = "%o fainted from finding themselves scoped at by %k.";
+OB_BREAKESCAPE = "%k's Break Escape helped them phase right through %o.";
+
+//Sniper Joe
+TAGC_0J = "Sniper Joe Buster & Grenade";
+
+//Bombman
+OB_HYPERBOMBSPLIT = "%o was blown to pieces by %k's Cluster Bomb.";
+OB_HYPERBOMBSPLITX = "%o was blown to smithereens by %k's Cluster Bomb.";
+
+//Elecman
+OB_THUNDERZAP = "%o was zapped by %k's Zap Dash.";
+
+//Oilman
+OB_OILSLED = "%o crashed and slipped from %k's Oil Sled.";
+
+//Sparkman
+OB_SPARKSUPLEX = "%k's Spark Tazer soldered %o's circuits into malfunction.";
+OB_SPARKSHOCKALT = "%o was left stunned by %k's Spark Spread.";
+
+//Strikeman
+OB_STRIKEBALL = "%o failed to catch %k's Rebound Striker.";
+OB_STRIKEBALLX = "%o hurt themself trying to catch %k's Power Rebound Striker.";
+OB_STRIKEBAT = "%k scored a perfect home run with %o.";
+OB_STRIKEBOUNCE = "%o was knocked out of the field by %k's Rebound Bouncer.";
+
+//Fuseman
+OB_FUSESLAP = "%o was given a power cut by %k's Electro Chop.";
+OB_FUSEBATTERY = "%o was electrified by the radiations from %k's Tesseract.";
+OB_FUSESHOT = "%o received a center-shock from %k's Scramble Ray.";
+OB_FUSETHUNDER = "%o was jolted down to ground zero by %k's Scramble Thunder.";
+OB_FUSETRAIL = "%o proved to be a superconductor for %k's Tesseract.";
+
+//Venus
+TAGC_VC1 = "Venus Ticker";
+TAGC_VC2 = "Venus Bomber";
+
+//Search
+OB_HOMINGSNIPERYDS = "%o was deceived and ambushed by %k's Deadly Storm.";
+
+//Solar
+OB_SOLARWAVE = "%o suffered before the light of %k's Solar Wave.";
+OB_SOLARBLAZEX = "%o was sun-blasted by %k's Solar Blaze.";
+OB_SOLARWAVEX = "%o vanquished before the light of %k's Solar Wave.";

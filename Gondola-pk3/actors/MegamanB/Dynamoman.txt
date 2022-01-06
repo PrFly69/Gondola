@@ -1,7 +1,6 @@
-actor Dynamoman : LightClassBase
+actor Dynamoman : ClassBase //85
 {
 Player.ScoreIcon "C_0BA0X"
-player.startitem "LightHealthBar"
 player.displayname "Dynamoman"
 player.soundclass "dynamomanC"
 player.startitem "LightningBoltBoss"
@@ -10,6 +9,9 @@ player.startitem "DynamoHealAmmo", 25
 player.startitem "DynamoStaminaFlag", 500
 //player.startitem "DynamoRecharger"
 
+player.maxhealth 850
+health 850
+player.jumpz 10
 player.forwardmove 0.85, 0.85
 player.sidemove 0.83, 0.83
 

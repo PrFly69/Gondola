@@ -1,0 +1,1018 @@
+actor TopSpinBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_3E"
+dropitem "TopTwistWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+Obituary "$OB_TOPSPIN"
+weapon.ammotype "DiscoTopAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_03 E 1
+loop
+Ready:
+XTOP A 0 ACS_ExecuteAlways(998,0,DYE_TOPMAN)
+XTOP A 0 A_TakeInventory("SpinTime",1)
+XTOP A 1 A_WeaponReady
+wait
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XTOP A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XTOP A 1 A_Raise
+Loop
+AltFire:
+XTOP F 0 A_PlaySoundEx("weapon/topmanshot","weapon")
+XTOP F 0 A_GiveInventory("TopmanAlt_CI",1)
+/*XTOP G 2 Offset(-1,33)
+XTOP G 2 Offset(-70,72)
+XTOP G 2 Offset(-121,112)
+XTOP K 2 Offset(1,31)
+XTOP K 2 Offset(-21,56)
+XTOP K 2 Offset(-33,84)
+TNT1 A 8 A_ClearRefire
+XTOP A 2 Offset(-2,69)
+XTOP A 2 Offset(-1,48)
+XTOP A 2 A_WeaponReady(14) //26*/
+XTOP B 2
+XTOP CD 1
+XTOP D 1 Offset(-4,68)
+XTOP D 1 Offset(-6,128)
+XTOP D 1 Offset(-8,188)
+TNT1 A 5 
+TNT1 A 10 A_ClearRefire
+/*XTOP A 1 offset(150,44)
+XTOP A 1 offset(100,40) 
+XTOP A 1 offset(60,36) 
+XTOP A 1 offset(30,32)
+XTOP A 1 A_WeaponReady(14)*/
+TNT1 A 1 Offset(-2,69)
+XTOP A 1 Offset(-2,69)
+XTOP A 1 Offset(-1,48)
+XTOP A 1 A_WeaponReady(14)
+Goto Ready+1
+BotFire:
+XTOP A 0 A_Jump(128,"AltFire")
+XTOP A 0 A_GiveInventory("Top_Charge",70)
+goto Fire+1
+
+//NEW TOP SPIN HUD ANIMATION : Recoded by Ecl1p5e
+
+Fire:
+XTOP A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+XTOP A 0 A_JumpIfInventory("SpinTime",1,"SpinEnd")
+//XTOP A 0 A_JumpIfInventory("IsBot",1,"BotFire")
+XTOP A 0 A_GiveInventory("TopDashFlag",1)
+TNT1 A 1 Offset(245,32)ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,92,100)
+//XTOP A 1 A_JumpIf(momz==0, "NoAmmo")
+//XTOP A 0
+
+XTOP O 0 A_GiveInventory("Topman_Flag",1)
+XTOP O 0 A_GunFlash("FlashCharge")
+Goto FireCharge//Spin
+
+FlashCharge:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 Offset(245,32)A_GiveInventory("Top_ChargePickup",1)
+TNT1 A 0 A_JumpIfInventory("Topman_Flag",1,"FlashCharge")
+stop
+
+FireCharge:
+//TNT1 A 0 A_JumpIfInventory("IsBot",1,"BotFireCharge")
+TNT1 A 1 Offset(245,32)
+TNT1 A 0 A_ReFire("HandCheck_Right")
+goto Spin
+
+HandCheck_Right:
+TNT1 A 0 A_JumpIfInventory("TopmanSpinSwap",1,"HandCheck_Left")
+XTOP B 0 A_GiveInventory("TopmanSpinSwap",1)
+TNT1 A 0 A_JumpIfInventory("Top_Charge",105,"FireCharge_Level4R")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",60,"FireCharge_Level3R")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",36,"FireCharge_Level2R")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",15,"FireCharge_Level1R")
+Goto FireCharge_Level0R
+HandCheck_Left:
+TNT1 A 0 A_JumpIfInventory("TopmanSpinSwap",1,1)
+Goto HandCheck_Right
+XTOP B 0 A_TakeInventory("TopmanSpinSwap",1)
+TNT1 A 0 A_JumpIfInventory("Top_Charge",105,"FireCharge_Level4L")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",60,"FireCharge_Level3L")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",36,"FireCharge_Level2L")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",15,"FireCharge_Level1L")
+Goto FireCharge_Level0L
+
+FireCharge_Level0R:
+TNT1 A 1 Offset(245,32)
+XTOP E 0 Offset(245,32)
+Goto FireCharge_Level0
+FireCharge_Level0L:
+TNT1 A 1 Offset(245,32)
+XTOP F 0 Offset(245,32)
+Goto FireCharge_Level0
+FireCharge_Level0:
+XTOP "#" 1 Offset(245,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(225,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(205,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(185,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(165,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(145,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(125,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(105,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(85,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(65,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(45,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(25,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(5,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-15,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-35,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-55,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-75,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-95,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-115,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-135,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-155,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-175,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-195,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-215,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-235,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-255,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-265,32)
+Goto HandCheck_Right
+
+FireCharge_Level1R:
+TNT1 A 1 Offset(245,32)
+XTOP G 0 Offset(245,32)
+Goto FireCharge_Level1
+FireCharge_Level1L:
+TNT1 A 1 Offset(245,32)
+XTOP H 0 Offset(245,32)
+Goto FireCharge_Level1
+FireCharge_Level1:
+XTOP "#" 1 Offset(245,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(205,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(165,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(125,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(85,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(45,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(5,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-35,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-75,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-115,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-155,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-195,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-235,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-265,32)
+Goto HandCheck_Right
+
+FireCharge_Level2R:
+TNT1 A 1 Offset(245,32)
+XTOP I 0 Offset(245,32)
+Goto FireCharge_Level2
+FireCharge_Level2L:
+TNT1 A 1 Offset(245,32)
+XTOP J 0 Offset(245,32)
+Goto FireCharge_Level2
+FireCharge_Level2:
+XTOP "#" 1 Offset(245,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(165,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(85,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(5,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-75,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-155,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-235,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-365,32)
+Goto HandCheck_Right
+
+FireCharge_Level3R:
+TNT1 A 1 Offset(245,32)
+XTOP J 0 Offset(245,32)
+Goto FireCharge_Level3
+FireCharge_Level3L:
+TNT1 A 1 Offset(245,32)
+XTOP I 0 Offset(245,32)
+Goto FireCharge_Level3
+FireCharge_Level3:
+XTOP "#" 1 Offset(245,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(165,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(85,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(5,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-75,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-155,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-235,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-265,32)
+Goto HandCheck_Right
+
+FireCharge_Level4R:
+TNT1 A 1 Offset(245,32)
+XTOP L 0 Offset(245,32)
+Goto FireCharge_Level4
+FireCharge_Level4L:
+TNT1 A 1 Offset(245,32)
+XTOP L 0 Offset(245,32)
+Goto FireCharge_Level4
+FireCharge_Level4:
+XTOP "#" 1 Offset(245,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(85,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-75,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-235,32)
+XTOP "#" 0 A_Refire(1) Goto Spin
+XTOP "#" 1 Offset(-365,32)
+Goto HandCheck_Right
+
+Spin:
+XTOP B 0 A_TakeInventory("Topman_Flag",1)
+XTOP B 0 A_GiveInventory("TopmanTimer2",21)
+XTOP B 0 A_PlaySoundEx("weapon/topspin","Weapon")
+
+XTOP B 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,50,100)
+XTOP B 0 //A_Recoil(-60)
+XTOP B 0 //A_ChangeVelocity(75,0,momz,3)
+XTOP B 0 //A_GiveInventory("SpinTime",1)
+XTOP B 0 A_WeaponReady(14)//Reset Offsets
+
+XTOP B 0 A_TakeInventory("UnSolid",1)
+XTOP B 0 A_ChangeFlag("SOLID",0)
+
+XTOP B 0 A_GiveInventory("Top_ChargeBoostPickup",1)
+XTOP B 0 A_JumpIfInventory("PowerRage_ST",1,"Spin_R")
+XTOP KMLKMLKM 1 A_GiveInventory("TopManRadius11_P",1)
+//XTOP LQMQKQLQ 1 A_GiveInventory("TopManRadius11_P",1)
+XTOP LNO 1 A_GiveInventory("TopManRadius11_P",1)
+XTOP P 1 offset(-30,32) A_GiveInventory("TopManRadius11_P",1)
+XTOP P 1 offset(-60,36) A_GiveInventory("TopManRadius11_P",1)
+XTOP P 1 offset(-100,40) A_GiveInventory("TopManRadius11_P",1)
+XTOP P 1 offset(-150,44) A_GiveInventory("TopManRadius11_P",1)
+XTOP P 1 offset(-210,48) A_GiveInventory("TopManRadius11_P",1)
+goto SpinLoop
+Spin_R:
+XTOP KQMQ 1 A_GiveInventory("TopManRadius11_P",1)
+XTOP L 1 offset(-30,32) A_GiveInventory("TopManRadius11_P",1)
+XTOP N 1 offset(-100,40) A_GiveInventory("TopManRadius11_P",1)
+XTOP O 1 offset(-210,48) A_GiveInventory("TopManRadius11_P",1)
+TNT1 A 1 offset(-210,48) A_GiveInventory("TopManRadius11_P",1)
+goto SpinLoop
+
+SpinLoop:
+TNT1 A 1 A_GiveInventory("TopManRadius_P",1)
+XTOP E 0 A_JumpIfInventory("TopmanTimer",1,"SpinLoop")
+goto SpinLoopD1
+SpinLoopD1:
+TNT1 A 0 A_GiveInventory("UnhittableOff_Pickup",1)
+goto SpinLoopD2
+SpinLoopD2:
+TNT1 A 1 A_GiveInventory("TopmanTimer2RageCheck",1)
+TNT1 A 0 A_JumpIfInventory("TopmanTimer2",1,"SpinLoopD2")
+goto SpinEnd
+
+SpinEnd:
+TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+TNT1 A 0 A_GiveInventory("TopDash_End",1)
+TNT1 A 0 A_TakeInventory("TopDashFlag",999)
+TNT1 A 0 A_TakeInventory("Top_Charge",999)
+TNT1 A 0 A_TakeInventory("TopmanTimer",999)
+TNT1 A 0 A_TakeInventory("TopmanTimer2",999)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+goto DelayOffset
+
+DelayOffset:
+//XTOP A 3 offset(0,112)
+//XTOP A 3 offset(0,92)
+//XTOP A 3 offset(0,72)
+//XTOP A 3 offset(0,52)A_TakeInventory("TopDash_End",999)
+TNT1 A 5 offset(150,44)
+XTOP A 1 offset(150,44)
+XTOP A 1 offset(100,40) 
+XTOP A 1 offset(60,36) 
+XTOP A 1 offset(30,32)
+XTOP A 0 A_TakeInventory("TopDash_End",999)
+XTOP A 3 A_WeaponReady(14)
+Goto Ready+1
+}
+}
+
+actor DiscoTopAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor TopmanSpinSwap : OnceC {}
+
+actor Topman_Flag : OnceC {}
+
+actor Top_ChargeD6 : Powerup
+{
+Powerup.Duration 6
+}
+actor Top_ChargeD5 : Powerup
+{
+Powerup.Duration 5
+}
+actor Top_ChargeD4 : Powerup
+{
+Powerup.Duration 4
+}
+actor Top_ChargeD3 : Powerup
+{
+Powerup.Duration 3
+}
+actor Top_ChargeD2 : Powerup
+{
+Powerup.Duration 2
+}
+
+actor Top_ChargeS6 : Top_ChargeD6{}
+actor Top_ChargeS5 : Top_ChargeD5{}
+actor Top_ChargeS4 : Top_ChargeD4{}
+actor Top_ChargeS3 : Top_ChargeD3{}
+actor Top_ChargeS2 : Top_ChargeD2{}
+actor Top_ChargeS1 : Powerup
+{
+Powerup.Duration 1
+}
+
+
+actor TopDashFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 9
+}
+actor TopDash_End : OnceC {}
+
+actor Top_Charge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 105
+}
+
+actor TopmanTimer : Inventory
+{
+inventory.amount 1
+inventory.maxamount 99
+}
+actor TopmanTimer2 : TopmanTimer{}
+
+
+actor TopmanTimer2RageCheck : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_TakeInventory("TopmanTimer2",1)
+stop
+PickupR:
+TNT1 A 0 A_TakeInventory("TopmanTimer2",2)
+stop
+}
+}
+
+actor Top_ChargePickup : CustomInventory
+{
+States
+{
+Pickup:
+//TNT1 A 0 A_JumpIfInventory("Topman_Flag",1,"1")
+//stop
+TNT1 A 0 A_JumpIfInventory("Top_Charge",105,"P_D")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",139,"P_S4")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",106,"P_D")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",105,"P_S3")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",71,"P_D")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",70,"P_S2")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",36,"P_D")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",35,"P_S1")
+goto P_D
+P_S1:
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,84,100)
+goto P_D
+P_S2:
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,76,100)
+goto P_D
+P_S3:
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,68,100)
+goto P_D
+P_S4:
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,60,100)
+goto P_D
+
+P_D:
+TNT1 A 0 A_GiveInventory("Top_ChargePickupFlag",1)
+TNT1 A 0 A_JumpIfInventory("Top_ChargeD6",1,"P_End")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeD5",1,"P_End")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeD4",1,"P_End")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeD3",1,"P_End")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeD2",1,"P_End")
+goto P_DCheck
+P_DCheck:
+TNT1 A 0 A_JumpIfInventory("Top_Charge",105,"P_D4")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",105,"P_D3")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",70,"P_D2")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",35,"P_D1")
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_GiveInventory("Top_ChargeD6")
+goto P_Dam2
+P_D1:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_GiveInventory("Top_ChargeD5")
+goto P_Dam2
+P_D2:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_GiveInventory("Top_ChargeD4")
+goto P_Dam2
+P_D3:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_GiveInventory("Top_ChargeD3")
+goto P_Dam2
+P_D4:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+TNT1 A 0 A_GiveInventory("Top_ChargeD3")
+goto P_Dam3
+P_D5:
+TNT1 A 0 A_GiveInventory("Top_ChargeD2")
+goto P_Dam3
+
+P_Dam2:
+TNT1 A 0 A_SpawnItemEx("TopManChargeSpin2",0,0,28,momx,momy,momz,0,11,0)
+goto P_End
+P_Dam3:
+TNT1 A 0 A_SpawnItemEx("TopManChargeSpin3",0,0,28,momx,momy,momz,0,11,0)
+goto P_End
+
+P_End:
+TNT1 A 0 A_GiveInventory("Top_ChargePickupSnd",1)
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"P_EndR")
+TNT1 A 0 A_GiveInventory("Top_Charge",1)
+stop
+P_EndR:
+TNT1 A 0 A_GiveInventory("Top_Charge",2)
+stop
+}
+}
+
+
+actor Top_ChargePickupFlag : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 //A_JumpIfInventory("Top_Charge",105,"P_Flag")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS6",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS5",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS4",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS3",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS2",1,"No")
+goto P_Flag
+P_Flag:
+TNT1 A 0 A_GiveInventory("TopDashFlag",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor Top_ChargePickupSnd : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS6",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS5",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS4",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS3",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS2",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_ChargeS1",1,"No")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",105,"P_S4")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",70,"P_S3")//105
+TNT1 A 0 A_JumpIfInventory("Top_Charge",35,"P_S2")//70
+TNT1 A 0 //A_JumpIfInventory("Top_Charge",35,"P_S1")
+goto P_S1//0
+P_S0:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_GiveInventory("Top_ChargeS6",1)
+goto P_Snd
+P_S1:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_GiveInventory("Top_ChargeS5",1)
+goto P_Snd
+P_S2:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_GiveInventory("Top_ChargeS4",1)
+goto P_Snd
+P_S3:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,3)
+TNT1 A 0 A_GiveInventory("Top_ChargeS3",1)
+goto P_Snd
+P_S4:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+TNT1 A 0 A_GiveInventory("Top_ChargeS2",1)
+goto P_Snd
+P_S5:
+TNT1 A 0 A_GiveInventory("Top_ChargeS1",1)
+goto P_Snd
+P_Snd:
+TNT1 A 0 A_PlaySoundEx("weapon/BRGSpin","Weapon")
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor Top_ChargeBoostPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("Top_Charge",105,"Spin140")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",91,"Spin122")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",78,"Spin105")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",65,"Spin87")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",52,"Spin70")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",39,"Spin52")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",26,"Spin35")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",13,"Spin17")
+goto Spin0
+Spin0:
+TNT1 A 0 A_ChangeVelocity(15,0,-2.5,1)
+TNT1 A 0 A_GiveInventory("TopmanTimer",1)
+stop
+Spin17:
+TNT1 A 0 A_ChangeVelocity(30,0,-2.5,1)
+TNT1 A 0 A_GiveInventory("TopmanTimer",4)
+stop
+Spin35:
+TNT1 A 0 A_ChangeVelocity(45,0,-2.5,1)
+TNT1 A 0 A_GiveInventory("TopmanTimer",5)
+stop
+Spin52:
+TNT1 A 0 A_ChangeVelocity(50,0,-2.5,1)
+TNT1 A 0 A_GiveInventory("TopmanTimer",6)
+stop
+Spin70:
+TNT1 A 0 A_ChangeVelocity(55,0,momz-2.5,3)
+TNT1 A 0 A_GiveInventory("TopmanTimer",7)
+stop
+Spin87:
+TNT1 A 0 A_ChangeVelocity(60,0,momz-2.5,3)
+TNT1 A 0 A_GiveInventory("TopmanTimer",8)
+stop
+Spin105:
+TNT1 A 0 A_ChangeVelocity(65,0,momz-2.5,3)
+TNT1 A 0 A_GiveInventory("TopmanTimer",9)
+goto SpinP
+Spin122:
+TNT1 A 0 A_ChangeVelocity(70,0,momz-2.5,3)
+TNT1 A 0 A_GiveInventory("TopmanTimer",10)
+goto SpinP
+Spin140:
+TNT1 A 0 A_ChangeVelocity(75,0,momz-2.5,3)
+TNT1 A 0 A_GiveInventory("TopmanTimer",12)
+goto SpinP
+SpinP:
+TNT1 A 0 A_GiveInventory("UnhittableOn_Pickup",1)
+stop
+}
+}
+
+actor Spintop
+{
+Translation "198:198=225:225"
+PROJECTILE
+Radius 10
+Height 10
+scale 2.5
+damage (100)
+speed 35
+//damagetype "TopThrow"
+Damagetype "ClassPainLess"
+Obituary "$OB_TOPTHROW"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+XTOP TUV 3
+loop
+}
+}
+
+actor SpintopB : Spintop{translation "198:198=74:74"}
+actor SpintopR : Spintop{translation "198:198=41:41"}
+actor SpintopO : Spintop{translation "198:198=128:128"}
+actor SpintopP : Spintop{translation "198:198=232:232"}
+
+
+
+actor TopManRadius_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_TakeInventory("TopmanTimer",1)
+TNT1 A 0 A_GiveInventory("TopmanTimer2RageCheck",1)
+TNT1 A 0 A_SpawnItemEx("TopManRadius",random(-4,4),random(-4,4),28,momx,momy,momz,0,11,0)
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"Pickup_S")
+stop
+PickupR:
+TNT1 A 0 A_TakeInventory("TopmanTimer",1)
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"Pickup_RS")
+TNT1 A 0 A_SpawnItemEx("TopManRadius",random(-4,4),random(-4,4),28,momx,momy,momz,0,11,0)
+stop
+Pickup_RS:
+TNT1 AAAA 0 A_SpawnItemEx("TopManRadius",random(-4,4),random(-4,4),28,momx,momy,momz,0,11,0)
+stop
+Pickup_S:
+TNT1 AA 0 A_SpawnItemEx("TopManRadius",random(-4,4),random(-4,4),28,momx,momy,momz,0,11,0)
+stop
+}
+}
+
+actor TopManRadius : BasicExplosion
+{
+Obituary "$OB_TOPSPIN"
+damagetype "TopSpinB"
+Scale 3.0
+States
+{
+Spawn:
+TNT1 A 0
+TOPX D 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*2.675+10,96,0,0,24)
+stop
+}
+}
+
+actor TopManRadius11_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"Pickup_S")
+TNT1 A 0 A_SpawnItemEx("TopManRadius11",random(-4,4),random(-4,4),28,momx,momy,momz,0,11,0)
+stop
+PickupR:
+TNT1 A 0 A_JumpIfInventory("PowerSpread_ST",1,"Pickup_RS")
+TNT1 AA 0 A_SpawnItemEx("TopManRadius11",random(-4,4),random(-4,4),28,momx,momy,momz,0,11,0)
+stop
+Pickup_RS:
+TNT1 AAAAAA 0 A_SpawnItemEx("TopManRadius11",random(-4,4),random(-4,4),28,momx,momy,momz,0,11,0)
+stop
+Pickup_S:
+TNT1 AAA 0 A_SpawnItemEx("TopManRadius11",random(-4,4),random(-4,4),28,momx,momy,momz,0,11,0)
+stop
+}
+}
+
+actor TopManRadius11 : TopManRadius
+{
+damagetype "TopSpinC"
+States
+{
+Spawn:
+TNT1 A 0
+TOPX D 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*2.675+20,96,0,0,24)
+stop
+}
+}
+
+actor TopSpinCProtect : PowerProtection
+{
+Powerup.Duration 12
+DamageFactor "TopSpinC", 0.6
+}
+
+actor TopManChargeSpin2 : BasicExplosion
+{
+Obituary "$OB_TOPSPIN"
+damagetype "TopSpinB"
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TOPX D 2 A_Explode(20,88,0,0,32)
+stop
+}
+}
+actor TopManChargeSpin3 : TopManChargeSpin2
+{
+States
+{
+Spawn:
+TNT1 A 0
+TOPX D 2 A_Explode(30,88,0,0,32)
+stop
+}
+}
+
+actor TopmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("SpinTop",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTop",5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTop",-5,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SpinTopB",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTopB",5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTopB",-5,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SpinTopR",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTopR",5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTopR",-5,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SpinTopO",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTopO",5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTopO",-5,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SpinTopP",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTopP",5,0,8,0)
+TNT1 A 0 A_FireCustomMissile("SpinTopP",-5,0,8,0)
+goto Done
+}
+}
+
+//WARNING: BIG FOREHEAD CODE BELOW
+
+
+/*BotFireCharge:
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,2)
+XTOP "#" 0 A_Jump(32,"Spin")
+goto FireCharge+1
+XTOP "#" 0 A_Jump(96,"Spin")
+goto FireCharge+1
+FireCharge:
+XTOP "#" 0 A_JumpIfInventory("IsBot",1,"BotFireCharge")
+XTOP "#" 1 OffSet(-5,32)
+XTOP "#" 0 A_ReFire(1)
+goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,16)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,12)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,8)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-15,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0
+XTOP "#" 1 OffSet(-25,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-35,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,6)
+XTOP "#" 1 OffSet(-45,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-55,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,7)
+XTOP "#" 1 OffSet(-65,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,8)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-75,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,7)
+XTOP "#" 1 OffSet(-85,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-95,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,6)
+XTOP "#" 1 OffSet(-105,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-115,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,12)
+XTOP "#" 1 OffSet(-125,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,12)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,8)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-135,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0
+XTOP "#" 1 OffSet(-145,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-155,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,6)
+XTOP "#" 1 OffSet(-165,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-175,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,8)
+XTOP "#" 1 OffSet(-185,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,8)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-195,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0
+XTOP "#" 1 OffSet(-205,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-215,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,6)
+XTOP "#" 1 OffSet(-225,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-235,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,6)
+XTOP "#" 1 OffSet(-245,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,12)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,8)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-255,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,13)
+XTOP "#" 1 OffSet(-265,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-275,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,6)
+XTOP "#" 1 OffSet(-285,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-295,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,9)
+XTOP "#" 1 OffSet(-305,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,17)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,8)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-315,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0
+XTOP "#" 1 OffSet(-325,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-335,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,9)
+XTOP "#" 1 OffSet(-345,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+
+//XTOP O 1 OffSet(-352,32)
+
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(-400,32)
+XTOP "#" 0 A_ReFire(1)
+goto Spin
+XTOP "#" 0
+XTOP "#" 1 OffSet(-400,32)
+XTOP "#" 0 A_ReFire(1)
+goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,6)
+XTOP "#" 1 OffSet(-400,32)
+XTOP "#" 0 A_ReFire(1)
+goto Spin
+XTOP "#" 0
+XTOP "#" 1 OffSet(-400,32)
+XTOP "#" 0 A_ReFire(1)
+goto Spin
+XTOP "#" 1 OffSet(-400,32)
+XTOP "#" 0 A_JumpIfInventory("TopmanSpinSwap",1,2)
+XTOP "#" 0 A_ReFire(3)
+goto Spin
+XTOP O 1 OffSet(-400,32)A_TakeInventory("TopmanSpinSwap",1)
+XTOP O 0 A_ReFire(3)
+goto Spin
+XTOP P 1 OffSet(-400,32)A_GiveInventory("TopmanSpinSwap",1)
+XTOP P 0 A_ReFire(1)
+goto Spin
+//XTOP O 1 OffSet(160,32)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,6)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,2)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,4)
+XTOP "#" 1 OffSet(155,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(145,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,6)
+XTOP "#" 1 OffSet(135,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(125,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,9)
+XTOP "#" 1 OffSet(115,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,12)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,8)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(105,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0
+XTOP "#" 1 OffSet(95,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(85,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,6)
+XTOP "#" 1 OffSet(75,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(65,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,6)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",60,8)
+XTOP "#" 1 OffSet(55,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,8)
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(45,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",105,"FireCharge")
+XTOP "#" 1 OffSet(35,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,3)
+XTOP "#" 1 OffSet(25,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",36,"FireCharge")
+XTOP "#" 1 OffSet(15,32)
+XTOP "#" 0 A_ReFire(1)goto Spin
+XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,"FireCharge")
+XTOP "#" 1 OffSet(5,32)
+XTOP "#" 0 A_ReFire("FireCharge")goto Spin*/

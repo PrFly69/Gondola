@@ -1,9 +1,12 @@
-actor HyperStormH : HardClassBase
+actor HyperStormH : ClassBase //200
 {
 Player.ScoreIcon "C_WTC0X"
-player.startitem "HardHealthBar"
 player.displayname "HyperStormH"
 player.soundclass "hyperstormhc"
+
+player.maxhealth 2000
+health 2000
+player.jumpz 10
 player.forwardmove 0.50, 0.50
 player.sidemove 0.48, 0.48
 player.startitem "PigsyBoss"

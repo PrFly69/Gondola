@@ -14,6 +14,10 @@
 	Player.StartItem "FakemanDashItem"
 	Player.StartItem "IsTheLaw"
 	//Player.StartItem "CanSnatch_F"
+	
+	player.maxhealth 1000
+	health 1000
+	player.jumpz 10
 	Player.ForwardMove 0.9, 0.9
 	Player.SideMove 0.88, 0.88
 	States

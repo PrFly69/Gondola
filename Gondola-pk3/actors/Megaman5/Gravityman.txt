@@ -7,6 +7,11 @@ player.startitem "GravityHoldBoss"
 player.startitem "ScrewGravityAmmo", 140
 player.startitem "GroundFlag"
 player.startitem "GravitySwitchItem"
+
+player.maxhealth 1000
+health 1000
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 player.jumpz 15
 
 player.startitem "StarCrashWeakness2", 1

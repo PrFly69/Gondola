@@ -1,0 +1,1177 @@
+actor HornetChaserBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_9F"
+dropitem "HornetChaserWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Obituary "$OB_HORNETCHASER"
+Inventory.Pickupmessage "NOT THE BEES"
+weapon.ammotype "NotTheHornetsAmmo"
+weapon.ammotype2 "HornetHoverAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_09 F 1
+loop
+Ready:
+HORH A 0 ACS_ExecuteAlways(998,0,DYE_HORNETMAN)
+HORH A 0 A_GunFlash
+HORH A 0 A_JumpIfInventory("NotTheHornetsAmmo",6,"Ready2")
+HORH A 0 A_StopSound(CHAN_5)
+HORH A 6 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
+HORH A 0 A_GiveInventory("NotTheHornetsAmmo",1)
+Goto Ready+2
+Ready2:
+HORH A 0 A_StopSound(CHAN_5)
+HORH A 6 A_WeaponReady(WRF_ALLOWRELOAD)
+HORH A 0 A_GiveInventory("NotTheHornetsAmmo",1)
+loop
+Ready3:
+HORH A 6 A_WeaponReady
+HORH A 0 A_GiveInventory("NotTheHornetsAmmo",1)
+Goto Ready2
+Deselect:
+HORH A 0 A_StopSound(CHAN_5)
+HORH AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+HORH A 1 A_Lower
+Loop
+Select:
+HORH AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+HORH A 1 A_Raise
+Loop
+Fire:
+HORH A 0 A_JumpIfNoAmmo("NoAmmo")
+HORH A 0 //A_GiveInventory("HornetFireFlag",1) //took this away cuz not gud
+//HORH A 3 Offset(24,52)
+//HORH A 3 Offset(46,75)
+HORH D 1 Offset(17, 33)
+HORH D 1 Offset(45, 35)
+HORH D 1 Offset(67, 41)
+HORH D 1 Offset(93, 41)
+HORH D 1 Offset(125, 45)
+HORH F 1 Offset(125, 45)
+HORH A 0 A_PlaySoundEx("weapon/hornetchaser","Weapon")
+HORH A 0 A_GiveInventory("HornetmanMain1_CI",1)
+HORH F 1
+HORH E 2 Offset(125, 45)
+HORH A 0 A_GiveInventory("HornetmanMain2_CI",1)
+HORH E 3 Offset(125, 45)
+HORH A 0 A_GiveInventory("HornetmanMain3_CI",1)
+HORH E 6 Offset(125, 45)
+goto Fire2
+
+Fire1:
+HORH E 1 Offset(125, 45)A_GiveInventory("NotTheHornetsAmmoGive_RC",1)
+HORH A 0 A_Refire("Fire2")
+goto FireEnd
+Fire2:
+HORH E 1 Offset(125, 45)A_RailWait
+HORH A 0 A_Refire("Fire3")
+goto FireEnd
+Fire3:
+HORH E 1 Offset(125, 45)A_RailWait
+HORH A 0 A_Refire("Fire4")
+goto FireEnd
+Fire4:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire5")goto FireEnd
+Fire5:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire6")goto FireEnd
+Fire6:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire7")goto FireEnd
+Fire7:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire8")goto FireEnd
+Fire8:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire9")goto FireEnd
+Fire9:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire10")goto FireEnd
+Fire10:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire11")goto FireEnd
+Fire11:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire12")goto FireEnd
+Fire12:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire13")goto FireEnd
+Fire13:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire14")goto FireEnd
+Fire14:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire15")goto FireEnd
+Fire15:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire16")goto FireEnd
+Fire16:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire17")goto FireEnd
+Fire17:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire18")goto FireEnd
+Fire18:HORH E 1 Offset(125, 45)A_RailWait HORH A 0 A_Refire("Fire1")goto FireEnd
+
+
+FireEnd:
+//HORH A 3 Offset(46,75)A_GiveInventory("BeeFlag1",1)
+//HORH A 3 Offset(24,52)
+HORH F 1 Offset(125, 45)A_GiveInventory("BeeFlag1",1)
+HORH F 1 Offset(125, 45)
+HORH D 1 Offset(93, 41)
+HORH D 1 Offset(67, 41)
+HORH D 1 Offset(45, 35)
+HORH A 1 Offset(17, 33)
+HORH A 0 A_TakeInventory("BeeFlag1",999)
+Goto Ready+2
+AltFire:
+HORH A 1 
+HORH A 0 A_Refire("AltFireSound")
+Goto lvl 
+AltFireSound:
+HORH A 0 A_PlaySound("Bee/Charge",CHAN_5)
+AltfireCharge:
+HORH A 0 A_JumpIfInventory("HoneyLevel",125,"Lvl3")
+HORH A 0 A_JumpIfInventory("HoneyLevel",75,"AltFire3")
+HORH A 0 A_JumpIfInventory("HoneyLevel",50,"AltFire2")
+HORH A 0 A_JumpIfInventory("HoneyLevel",25,"AltFire1")
+HORH D 1 Offset(0, 12)
+HORH D 1 Offset(5, 17)
+HORH A 0 A_GiveInventory("HoneyLevel",2)
+HORH A 0 A_Refire("AltfireCharge")
+Goto lvl 
+AltFire1: 
+HORH D 1 Offset(10, 22)
+HORH D 1 Offset(15, 27)
+HORH A 0 A_GiveInventory("HoneyLevel",2)
+HORH A 0 A_Refire("AltfireCharge")
+Goto lvl 
+AltFire2: 
+HORH D 1 Offset(20, 37)
+HORH D 1 Offset(25, 32)
+HORH A 0 A_GiveInventory("HoneyLevel",2)
+HORH A 0 A_Refire("AltfireCharge")
+Goto lvl 
+AltFire3: 
+HORH D 1 Offset(30, 47)
+HORH D 1 Offset(35, 42)
+HORH A 0 A_GiveInventory("HoneyLevel",2)
+HORH A 0 A_Refire("AltfireCharge")
+Goto lvl 
+lvl: 
+HORH A 0 A_JumpIfInventory("HoneyLevel",75,"Lvl3")
+HORH A 0 A_JumpIfInventory("HoneyLevel",50,"Lvl2")
+HORH A 0 A_JumpIfInventory("HoneyLevel",25,"Lvl1")
+Goto lvl0 
+Lvl0:  
+HORH A 0 A_GiveInventory("HornetmanAlt_CI",1)
+Goto AltFireAnim  
+Lvl1: 
+HORH A 0 A_GiveInventory("HornetmanAlt1_CI",1)
+Goto AltFireAnim  
+Lvl2: 
+HORH A 0 A_GiveInventory("HornetmanAlt2_CI",1)
+Goto AltFireAnim  
+Lvl3:
+HORH A 0 A_GiveInventory("HornetmanAlt3_CI",1)
+Goto AltFireAnim  
+AltFireAnim:
+HORH A 0 A_TakeInventory("HoneyLevel",999)
+HORH A 0 A_StopSound(CHAN_5)
+HORH A 0 A_PlaySoundEx("item/ItemUseAA","Weapon") 
+HORH B 1 OffSet(-3,29)
+HORH B 1 OffSet(-14,17)
+HORH B 1 OffSet(-23,10)
+HORH B 2 OffSet(-29,-1)
+HORH A 0 A_StopSound(CHAN_5)//idiotic zandro, thats why
+HORH B 2 OffSet(-23,10)
+HORH B 1 OffSet(-15,17)
+HORH B 1 OffSet(-12,20)
+HORH B 1 OffSet(-9,23)
+HORH D 1 OffSet(-6,26)
+HORH D 1 OffSet(-3,29) 
+HORH A 0 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH) 
+HORH D 4 A_GiveInventory("NotTheHornetsAmmo",1)
+HORH D 4 A_WeaponReady(14) 
+HORH D 4 A_GiveInventory("NotTheHornetsAmmo",1) 
+HORH A 0 A_Refire("lvl0")
+HORH A 0 A_WeaponReady(WRF_NOSECONDARY)
+Goto Ready+1
+Reload:
+"####" "#" 0 A_Jump(256,2)
+"####" "#" 555 //dis stupid shit prevents zandrodumb from doing weapon animation desyncs
+HORH A 0 
+HORH A 0 A_JumpIfInventory("HornetFireFlag",1,"AltfireBee")   
+//HORH A 0 A_GunFlash
+HORH A 0 A_JumpIfInventory("NotTheHornetsAmmo",6,"Ready3")
+HORH A 8 A_WeaponReady(WRF_NOPRIMARY)
+HORH A 0 A_GiveInventory("NotTheHornetsAmmo",1)
+Goto Ready+2
+AltfireBee:
+HORH A 0 A_GiveInventory("BeeFlag2",1)  
+HORH A 0 A_GiveInventory("BeePokeFlag",1)  
+HORH A 2 Offset(-16,18) 
+HORH C 0 A_FireCustomMissile("HornetmanMeleePoke",0,0,0,0)
+HORH C 2 Offset(-16,18) A_PlaySoundEx("weapon/hornetcommand","Weapon")
+HORH C 2 Offset(-18,16)
+HORH C 2 Offset(-16,18)
+HORH C 2 Offset(-18,16)
+HORH C 2 Offset(-16,18)
+HORH C 2 Offset(-18,16)
+HORH A 0 A_TakeInventory("BeePokeFlag",99) 
+HORH A 0 A_TakeInventory("BeeFlag2",999)
+HORH C 2 Offset(-16,18)
+HORH A 2 A_WeaponReady(14)
+HORH A 2 A_TakeInventory("HornetFireFlag",99)  
+HORH A 0 A_GunFlash
+HORH A 0 A_JumpIfInventory("NotTheHornetsAmmo",6,"Ready3")
+HORH A 8 A_WeaponReady(WRF_NOPRIMARY)
+HORH A 0 A_GiveInventory("NotTheHornetsAmmo",1)
+Goto Ready+2
+Flash:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"Flash1FD")
+TNT1 A 0 A_JumpIfInventory("HornetHoverAmmo",1,2)
+TNT1 A 0 A_Jump(256,2)
+TNT1 A 0 A_JumpIfInventory("HornetFlagH",1,"HoverCheck1")
+TNT1 A 0
+Flash1:
+//TNT1 A 0 A_GiveInventory("EnvironmentGravity",1)
+Flash1FD:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("HornetHoverAmmo",2)
+TNT1 A 1 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+goto Flash
+HoverCheck1:
+TNT1 A 0 A_JumpIf(momz<0,"Hover")
+goto Flash1
+Hover:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_TakeInventory("HornetHoverAmmo",1)
+TNT1 A 0 A_GiveInventory("BetterHornetHover",1)//ThrustThingZ(0,3,1,0) 
+TNT1 A 0 A_GiveInventory("HornetHoverSound_P",1)
+TNT1 A 1 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,185,100)
+goto FlashB
+FlashB:
+TNT1 A 0 A_JumpIf(z-floorz<=0,"FoundGround")
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"Flash2FD")
+TNT1 A 0 A_JumpIfInventory("HornetHoverAmmo",1,2)
+TNT1 A 0 A_Jump(256,2)
+TNT1 A 0 A_JumpIfInventory("HornetFlagH",1,"HoverCheck2")
+TNT1 A 0
+Flash2:
+//TNT1 A 0 A_GiveInventory("EnvironmentGravity",1)
+Flash2FD:
+TNT1 A 1 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+goto FlashB
+HoverCheck2:
+TNT1 A 0 A_JumpIf(momz<0,"Hover")
+goto Flash2
+FoundGround:
+TNT1 A 0
+goto Flash+1
+
+NoAmmo:  
+HORH A 1 ACS_Execute(979,0)
+Goto Ready+2
+}
+}
+
+actor HoneyLevel : Inventory
+{
+ Inventory.maxamount 125
+ -invbar
+}
+
+actor NotTheHornetsAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 24
++INVENTORY.IGNORESKILL
+}
+
+actor HornetHoverAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 336
++INVENTORY.IGNORESKILL
+}
+
+actor HornetFireFlag :OnceC{}
+actor HornetFlagH :OnceC{}
+actor BeeFlag1 :OnceC{}
+actor BeeFlag2 :OnceC{}
+actor BeePokeFlag :OnceC{}
+
+actor HornetHoverSoundDelay : Powerup
+{
+Powerup.Duration 11
+}
+
+actor HornetHoverItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "HornIcon"
+scale 2.0
+inventory.pickupmessage "AGH, I'M FULL OF BEES!"
++INVBAR
+states
+{
+Spawn:
+HORH I 1
+loop
+Use:
+TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
+TNT1 A 0 A_JumpIfInventory("HornetFlagH",1,"Take")
+TNT1 A 0 A_GiveInventory("HornetFlagH",1)
+fail
+Take:
+TNT1 A 0 A_TakeInventory("HornetFlagH",999)
+fail
+}
+}
+
+actor NotTheHornetsAmmoGive_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("NotTheHornetsAmmo",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("NotTheHornetsAmmo",2)
+stop
+}
+}
+
+actor HornetHoverSound_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("HornetHoverSoundDelay",1,"No")
+TNT1 A 0 A_PlaySoundEx("weapon/hornetfly","Body")
+TNT1 A 0 A_GiveInventory("HornetHoverSoundDelay",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+} 
+
+actor BetterHornetHover : CustomInventory
+{
+States
+{
+Pickup: 
+TNT1 A 0 ThrustThingZ(0,3,1,0)
+stop 
+}
+} 
+
+actor HornetChaserB
+{//Cute bees C:
+Translation "198:198=248:248", "202:202=215:215"
+var int user_H;
+species "BeeStuff"
+PROJECTILE
+damagetype "HornetChaserB"
+Obituary "$OB_HORNETCHASER"
++DONTSEEKINVISIBLE//REMOVE THIS PLZ
++SEEKERMISSILE
++THRUSPECIES
++SKYEXPLODE
++SCREENSEEKER
++DONTREFLECT
+reactiontime 10
+damage (120-user_H)
+Radius 16
+Height 16
+speed 20//25
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+HORH S 0
+HORH S 0 A_JumpIfInTargetInventory("PowerRage_ST",1,3)
+HORH STST 1
+HORH S 0 A_Stop
+HORH S 0 ThrustThingZ(0,0,0,1)
+HORH S 0 ThrustThing(angle*256/360,0)
+Check:
+HORH S 0 A_GiveToTarget("CBM_TargetMarker",1)
+HORH S 0 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100)
+HORH ST 1 A_JumpIfInTargetInventory("BeeFlag1",1,"Cont")
+HORH S 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Cont:
+
+HORH S 0 ACS_ExecuteAlways(259,0,1)
+HORH S 1 A_ChangeVelocity(Cos(pitch)*25,0,-sin(pitch)*25,CVF_RELATIVE)
+HORH S 0 ThrustThingZ(0,0,0,1)
+HORH S 0 ThrustThing(angle*256/360,0)
+/*Spawn3: 
+HORH Q 0 //A_JumpIfCloser(1600,"SpawnRange1")
+HORH T 0 A_TakeFromTarget("HornetFireFlag",2) 
+HORH T 1 //A_JumpIfInTargetInventory("BeeFlag2",1,"Home")
+Spawn32:
+HORH Q 0 //A_JumpIfCloser(1600,"SpawnRange2")
+HORH S 0 A_TakeFromTarget("HornetFireFlag",2) 
+HORH S 1 //A_JumpIfInTargetInventory("BeeFlag2",1,"Home")
+Goto Spawn3*/
+SpawnRange1: 
+HORH T 0 A_GiveToTarget("HornetFireFlag",1) 
+HORH T 1 A_JumpIfInTargetInventory("BeeFlag2",1,"Home")
+Goto SpawnRange2
+SpawnRange2: 
+HORH S 0 A_GiveToTarget("HornetFireFlag",1) 
+HORH S 1 A_JumpIfInTargetInventory("BeeFlag2",1,"Home")
+Goto SpawnRange1
+Home: 
+/*HORH Q 0
+HORH Q 0 A_JumpIfClo ser(2000,"RealHome")//with the new changes this is kinda nonsense but idk i still dislike classes being able to spam from their spawn
+HORH S 1  
+HORH T 1 
+HORH S 0 A_GiveToTarget("HornetFireFlag",1) 
+HORH S 1 A_JumpIfInTargetInventory("BeeFlag2",1,"Home")
+Goto Spawn3*/
+RealHome: 
+HORH Q 0 A_RearrangePointers(0,0,1)
+HORH Q 0 ThrustThingZ(0,0,0,1)
+HORH Q 0 ThrustThing(angle*256/360,0)
+HORH QRST 1 A_ScaleVelocity(0.75)
+HORH Q 0 ThrustThingZ(0,0,0,1)
+HORH Q 0 ThrustThing(angle*256/360,0)
+HORH QRST 1 A_ScaleVelocity(0.75)
+HORH /*QQQQ*/Q 0 A_SeekerMissile(2,10,3,256,8)//chances raised to 100% but only seeks once to prevent bees from sometimes not doing anything at all
+HORH Q 1
+HORH Q 0 A_JumpIfInventory("IsInGame",1,"Spawn4",AAPTR_TRACER)
+HORH Q 0 A_ChangeVelocity(Cos(pitch)*9, 0, -sin(pitch)*9,CVF_RELATIVE)
+HORH Q 0 ThrustThingZ(0,0,0,1)
+HORH Q 0 ThrustThing(angle*256/360,0)
+HORH Q 0
+goto Spawn2
+Spawn2:
+HORH RQ 1
+loop
+Spawn4:
+HORH Q 0 A_SetUserVar("user_H",60) 
+HORH Q 0 A_PlaySound("Bee/Homing",CHAN_5)  
+HORH RQRQRQRQRQRQRQRQRQRQRQ 1 A_GiveInventory("HornyChase",1)   
+Goto Spawn2  
+Death:
+TNT1 A 0 A_TakeFromTarget("HornetFireFlag",99)
+TNT1 A 0 A_StopSound(CHAN_5)
+TNT1 A 1 A_SpawnItemEx("HardKnuckleFX",0,0,0,0,0,0)
+stop
+}
+}
+
+actor HornyChase : CustomInventory
+{
+States
+{
+Pickup: 
+TNT1 A 0 A_JumpIfInventory("PowerIceHornet",1,"Lvl2",AAPTR_TRACER) 
+TNT1 A 0 A_JumpIfInventory("PowerIceHornet1",1,"Lvl2",AAPTR_TRACER) 
+TNT1 A 0 A_JumpIfInventory("PowerIceHornet2",1,"Lvl2",AAPTR_TRACER) 
+TNT1 A 0 A_JumpIfInventory("PowerIceHornet3",1,"Lvl2",AAPTR_TRACER) 
+TNT1 A 0 A_SeekerMissile(1,5,SMF_LOOK|SMF_PRECISE,256,0.25)//similar to dynamo stats
+stop 
+Lvl2: 
+TNT1 A 0 A_SeekerMissile(2,10,SMF_LOOK|SMF_PRECISE,256,0.25)//CCBM stats
+stop 
+}
+}
+
+actor HornetChaserBB : HornetChaserB{translation "202:202=205:205", "198:198=74:74"}
+actor HornetChaserBR : HornetChaserB{translation "202:202=171:171", "198:198=41:41"}
+actor HornetChaserBO : HornetChaserB{translation "202:202=104:104", "198:198=128:128"}
+actor HornetChaserBP : HornetChaserB{translation "202:202=229:229", "198:198=232:232"}
+  
+actor HornetNectarHive
+{
+species "BeeStuff"
+Translation "199:199=248:248", "202:202=215:215"
+PROJECTILE
+damagetype "HornetHoney"
+Obituary "$OB_HORNETHONEY"
++HITTRACER
+-NOGRAVITY
+Damage (50)
+Radius 12
+Height 10
+speed 25
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+HORH K 0
+HORH K 0 ThrustThingZ(0,12,0,1)
+HORH K 1
+wait 
+Death:
+TNT1 A 0 A_JumpIf(ceilingz-z<=10, "Ceiling") 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(3,5),0,random(4,10),random(0,360),1) 
+Goto RealDeath
+Ceiling: 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(3,5),0,random(-1,-7),random(0,360),1) 
+Goto RealDeath
+XDeath:
+TNT1 A 0 A_GiveInventory("PowerIceGiverHornet",1,AAPTR_TRACER)
+RealDeath:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_PlaySoundEx("weapon/hornetcomb","Weapon")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_SetDamageType("HornetChaserB") 
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,-3,10,0,-5,6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX2",0,3,10,0,5,6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,3,4,0,5,-6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX2",0,-3,4,0,-5,-6,0,1)
+TNT1 A 0 A_SetScale(2.75)
+HORH L 2
+HORH MN 3
+stop
+}
+}
+
+actor HornetNectarHive1 : HornetNectarHive
+{ 
+damagetype "HornetHoney1"
+Damage (50) 
+speed 30 
+Scale 3.0//2.7
+States
+{ 
+Death:
+TNT1 A 0 A_JumpIf(ceilingz-z<=10, "Ceiling") 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(3,5),0,random(4,10),random(0,360),1) 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(6,10),0,random(4,10),random(-35,35),1) 
+Goto RealDeath
+Ceiling: 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(3,5),0,random(-1,-7),random(0,360),1) 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(6,10),0,random(-1,-7),random(-35,35),1) 
+Goto RealDeath
+XDeath:
+TNT1 A 0 A_GiveInventory("PowerIceGiverHornet1",1,AAPTR_TRACER)
+RealDeath:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_PlaySoundEx("weapon/hornetcomb","Weapon")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_SetDamageType("HornetChaserB")
+TNT1 A 0 A_Explode(50,80,0,0,16)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,-3,10,0,-5,6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX2",0,3,10,0,5,6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,3,4,0,5,-6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX2",0,-3,4,0,-5,-6,0,1)
+TNT1 A 0 A_SetScale(3.25)//2.95)
+HORH L 2
+HORH MN 3
+stop
+}
+}
+ 
+actor HornetNectarHive2 : HornetNectarHive
+{
+damagetype "HornetHoney2"
+Damage (50) 
+speed 35 
+Scale 3.5//2.9
+States
+{ 
+Death:
+TNT1 A 0 A_JumpIf(ceilingz-z<=10, "Ceiling") 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(6,10),0,random(4,10),random(-35,35),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(6,10),0,random(4,10),random(55,125),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(6,10),0,random(4,10),random(-55,-125),1) 
+Goto RealDeath
+Ceiling: 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(6,10),0,random(-1,-7),random(-35,35),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(6,10),0,random(-1,-7),random(55,125),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(6,10),0,random(-1,-7),random(-55,-125),1) 
+Goto RealDeath
+XDeath:
+TNT1 A 0 A_GiveInventory("PowerIceGiverHornet2",1,AAPTR_TRACER)
+RealDeath:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_PlaySoundEx("weapon/hornetcomb","Weapon")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_SetDamageType("HornetChaserB")
+TNT1 A 0 A_Explode(100,80,0,0,16)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,-3,10,0,-5,6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX2",0,3,10,0,5,6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,3,4,0,5,-6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX2",0,-3,4,0,-5,-6,0,1)
+TNT1 A 0 A_SetScale(3.75)//3.15)
+HORH L 2
+HORH MN 3
+stop
+}
+}
+
+
+actor HornetNectarHive3 : HornetNectarHive
+{
+damagetype "HornetHoney3"
+Damage (50) 
+speed 40 
+Scale 4.0//3.1 
+States
+{ 
+Death:
+TNT1 A 0 A_JumpIf(ceilingz-z<=10, "Ceiling") 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(6,10),0,random(4,10),random(-35,35),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(6,10),0,random(4,10),random(55,125),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(6,10),0,random(4,10),random(-55,-125),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,8,random(6,10),0,random(4,10),random(155,225),1)
+Goto RealDeath
+Ceiling: 
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(6,10),0,random(-1,-7),random(-35,35),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(6,10),0,random(-1,-7),random(55,125),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(6,10),0,random(-1,-7),random(-55,-125),1)
+TNT1 A 0 A_SpawnItemEx("NectarTrapShot",0,0,-8,random(6,10),0,random(-1,-7),random(155,225),1)
+Goto RealDeath
+XDeath:
+TNT1 A 0 A_GiveInventory("PowerIceGiverHornet3",1,AAPTR_TRACER)
+RealDeath:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_PlaySoundEx("weapon/hornetcomb","Weapon")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_SetDamageType("HornetChaserB")
+TNT1 A 0 A_Explode(100,80,0,0,16)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,-3,10,0,-5,6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX2",0,3,10,0,5,6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,3,4,0,5,-6,0,1)
+TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX2",0,-3,4,0,-5,-6,0,1)
+TNT1 A 0 A_SetScale(4.25)//3.35)
+HORH L 2
+HORH MN 3
+stop
+}
+}
+
+actor HornetNectarHiveB : HornetNectarHive{translation "202:202=205:205", "199:199=74:74"}
+actor HornetNectarHiveR : HornetNectarHive{translation "202:202=171:171", "199:199=41:41"}
+actor HornetNectarHiveO : HornetNectarHive{translation "202:202=104:104", "199:199=128:128"}
+actor HornetNectarHiveP : HornetNectarHive{translation "202:202=229:229", "199:199=232:232"}
+
+actor HornetNectarHive1B : HornetNectarHive1{translation "202:202=205:205", "199:199=74:74"}
+actor HornetNectarHive1R : HornetNectarHive1{translation "202:202=171:171", "199:199=41:41"}
+actor HornetNectarHive1O : HornetNectarHive1{translation "202:202=104:104", "199:199=128:128"}
+actor HornetNectarHive1P : HornetNectarHive1{translation "202:202=229:229", "199:199=232:232"}
+ 
+actor HornetNectarHive2B : HornetNectarHive2{translation "202:202=205:205", "199:199=74:74"}
+actor HornetNectarHive2R : HornetNectarHive2{translation "202:202=171:171", "199:199=41:41"}
+actor HornetNectarHive2O : HornetNectarHive2{translation "202:202=104:104", "199:199=128:128"}
+actor HornetNectarHive2P : HornetNectarHive2{translation "202:202=229:229", "199:199=232:232"}
+ 
+actor HornetNectarHive3B : HornetNectarHive3{translation "202:202=205:205", "199:199=74:74"}
+actor HornetNectarHive3R : HornetNectarHive3{translation "202:202=171:171", "199:199=41:41"}
+actor HornetNectarHive3O : HornetNectarHive3{translation "202:202=104:104", "199:199=128:128"}
+actor HornetNectarHive3P : HornetNectarHive3{translation "202:202=229:229", "199:199=232:232"}
+
+actor HornetNectarHiveFX1
+{
++MISSILE
++DONTBLAST
++THRUACTORS
++DONTSPLASH
++CLIENTSIDEONLY
+ReactionTime 1
+Radius 2
+Height 2
+Scale 2.5
+States
+{
+Spawn:
+HORH O 18
+HORH O 1 A_CountDown
+wait
+}
+}
+actor HornetNectarHiveFX2 : HornetNectarHiveFX1
+{
+States
+{
+Spawn:
+HORH P 18
+HORH P 1 A_CountDown
+wait
+}
+}
+
+
+actor NectarTrapShot
+{
+species "BeeStuff"
+Translation "199:199=248:248", "202:202=215:215"
+PROJECTILE
+damagetype "HornetHoney"
+Obituary "$OB_HORNETHONEY"
++HITTRACER
+-NOGRAVITY
+Damage (50)
+Radius 12
+Height 10
+speed 25
+Scale 2.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_1H U 0
+Y_1H U 0 ThrustThingZ(0,1,0,1)
+Y_1H U 1
+loop
+Crash:
+TNT1 A 0 A_GiveInventory("PowerIceGiverHornet",1,AAPTR_TRACER)
+Y_1H U 1
+stop
+XDeath:
+TNT1 A 0 A_GiveInventory("PowerIceGiverHornet",1,AAPTR_TRACER)
+Y_1H U 1
+stop
+Death:
+Y_1H U 0 
+Y_1H U 0 A_JumpIf(z-floorz<=0,"Death2")
+Y_1H U 1 A_GiveInventory("CutterFlag",1)
+Y_1H U 0 A_JumpIfInventory("CutterFlag",175,"Xdeath")
+loop
+Death2:
+Y_1H U 1 A_SpawnItemEx("NectarTrapBlob",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+Actor NectarTrapBlob
+{
+species "BeeStuff"
+damagetype "HornetHoney"
+Obituary "$OB_HORNETHONEY"
++MISSILE
++DONTSPLASH
++NOEXPLODEFLOOR
++HITTRACER
+reactiontime 100
+Damage (50)
+Radius 12
+Height 10
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_1H W 0
+Y_1H W 1
+Y_1H W 1 A_Stop
+goto SpawnW
+SpawnW:
+Y_1H V 1
+Y_1H V 0 A_JumpIf(z-floorz>0,"NewShot")
+Y_1H V 0 A_CountDown
+loop
+NewShot:
+Y_1H V 0 A_CheckFlag("BLASTED","NewShotX")
+Goto Death
+NewShotX:
+Y_1H V 0 A_SpawnItemEx("NectarTrapBlob",0,0,0,momx,momy,momz,0,8)
+Goto Death
+Death:
+TNT1 A 0
+stop 
+XDeath:
+TNT1 A 0 A_GiveInventory("PowerIceGiverHornet",1,AAPTR_TRACER)
+stop 
+}
+}
+
+actor HornetmanSlowPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("PowerIceHornet",1,"Nada")
+TNT1 A 0 A_JumpIfInTargetInventory("PowerIceHornet1",1,"Nada")
+TNT1 A 0 A_JumpIfInTargetInventory("PowerIceHornet2",1,"Nada")
+TNT1 A 0 A_JumpIfInTargetInventory("PowerIceHornet3",1,"Nada")
+TNT1 A 0 A_SpawnItemEx("HoneySlowWatcher")
+stop
+Nada:
+TNT1 A 0 //A_GiveInventory("PowerIceGiverHornet",1)
+stop
+}
+}
+
+actor HoneySlowWatcher : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 3 A_GiveToTarget("HoneySlowFX",1)
+TNT1 A 0 A_JumpIfInTargetInventory("PowerIceHornet3",1,"Spawn")
+TNT1 A 0 A_JumpIfInTargetInventory("PowerIceHornet2",1,"Spawn")
+TNT1 A 0 A_JumpIfInTargetInventory("PowerIceHornet1",1,"Spawn")
+TNT1 A 0 A_JumpIfInTargetInventory("PowerIceHornet",1,"Spawn")
+stop
+}
+}
+ 
+actor PowerIceGiverHornet : BasicPowerupGiver
+{
+Powerup.Type "PowerIceHornet"
+}
+ 
+actor PowerIceGiverHornet1 : BasicPowerupGiver
+{
+Powerup.Type "PowerIceHornet1"
+}
+ 
+actor PowerIceGiverHornet2 : BasicPowerupGiver
+{
+Powerup.Type "PowerIceHornet2"
+}
+ 
+actor PowerIceGiverHornet3 : BasicPowerupGiver
+{
+Powerup.Type "PowerIceHornet3"
+}
+
+actor PowerIceHornet : PowerSpeed
+{ 
+Speed 0.75
+powerup.duration 100
+} 
+ 
+actor PowerIceHornet1 : PowerSpeed
+{ 
+Speed 0.75
+powerup.duration 125
+} 
+ 
+actor PowerIceHornet2 : PowerSpeed
+{ 
+Speed 0.75
+powerup.duration 150
+} 
+
+actor PowerIceHornet3 : PowerSpeed
+{ 
+Speed 0.75
+powerup.duration 175
+} 
+
+actor HoneySlowFX : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 //proper colors when not playing team-games
+TNT1 A 0 A_GiveInventory("HoneyStuffs_CI",1)//A_SpawnItemEX("StickyStuffs_Drip",random(-24,24),random(-24,24),random(8,32),0,0,0,0,1)
+stop
+}
+} 
+
+actor StickyStuffs_Drip
+{
+BounceFactor 0.1 
+Wallbouncefactor 0.1
+Radius 4
+Height 4
+Speed 10
+Scale 2.5 //it was kinda hard to see from afar
+Translation "192:192=215:215","198:198=248:248"
++MISSILE
++BOUNCEONWALLS
++BOUNCEONCEILINGS
++DONTBLAST
++THRUACTORS
++DONTSPLASH
++LOWGRAVITY
+-NOGRAVITY
++CLIENTSIDEONLY 
+States
+{
+Spawn:
+BKUM A 10
+BKUM B 3 A_SetScale(ScaleX - 0.3)
+BKUM B 3 A_SetScale(ScaleX - 0.3)
+BKUM B 3 A_SetScale(ScaleX - 0.3)
+BKUM B 3 A_SetScale(ScaleX - 0.3)
+BKUM B 2 A_SetScale(ScaleX - 0.3)
+BKUM B 2 A_SetScale(ScaleX - 0.3)
+BKUM B 1 A_SetScale(ScaleX - 0.3)
+Stop
+Death: 
+BKUM C 3 
+BKUM C 3 A_SetScale(ScaleX - 0.3)
+BKUM C 3 A_SetScale(ScaleX - 0.3)
+BKUM C 3 A_SetScale(ScaleX - 0.3)
+BKUM C 3 A_SetScale(ScaleX - 0.3)
+BKUM C 2 A_SetScale(ScaleX - 0.3)
+BKUM C 2 A_SetScale(ScaleX - 0.3)
+BKUM C 1 A_SetScale(ScaleX - 0.3)
+stop
+}
+}
+
+actor HornetmanMeleePoke
+{//SECRET REVEALED!
+PROJECTILE
+Damagetype "ClassPainSemi"
+Obituary "$OB_SNAKEPOKE"
+reactiontime 3 
+damage (50)
+Radius 7
+Height 7
+speed 30
+scale 2.5
++HITTRACER
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+wait
+Death:
+TNT1 A 0 A_Explode(50,52,0)
+goto XDeath
+XDeath:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_GiveInventory("HornetPokeDeath",1,AAPTR_TRACER)
+TNT1 A 2
+stop
+}
+}
+
+actor HornetPokeDeath : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(Health>0,"No") 
+TNT1 A 0 ThrustThingZ(0,80,0,0)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor HornetmanMain1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HornetChaserB",24,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBB",24,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBR",24,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBO",24,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBP",24,1,0,0)
+goto Done
+}
+}
+
+actor HornetmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HornetChaserB",0,1,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBB",0,1,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBR",0,1,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBO",0,1,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBP",0,1,0,0)
+goto Done
+}
+}
+
+actor HornetmanMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HornetChaserB",-24,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBB",-24,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBR",-24,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBO",-24,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HornetChaserBP",-24,1,8,0)
+goto Done
+}
+}
+
+actor HornetmanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHiveB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHiveR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHiveO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHiveP",0,0,0,0)
+goto Done
+} 
+}
+
+actor HornetmanAlt1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive1",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive1B",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive1R",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive1O",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive1P",0,0,0,0)
+goto Done
+} 
+}
+
+actor HornetmanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive2",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive2B",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive2R",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive2O",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive2P",0,0,0,0)
+goto Done
+} 
+}
+
+actor HornetmanAlt3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive3",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive3B",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive3R",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive3O",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("HornetNectarHive3P",0,0,0,0)
+goto Done
+} 
+}
+ 
+actor HoneyStuffs_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_GiveInventory("HoneySlowFXX",1)
+goto Done
+FireB:
+TNT1 A 0 A_GiveInventory("HoneySlowFXB",1)
+goto Done
+FireR:
+TNT1 A 0 A_GiveInventory("HoneySlowFXR",1)
+goto Done
+FireO:
+TNT1 A 0 A_GiveInventory("HoneySlowFXO",1)
+goto Done
+FireP:
+TNT1 A 0 A_GiveInventory("HoneySlowFXP",1)
+goto Done
+}
+}
+
+actor HoneySlowFXX : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 0 A_SpawnItemEX("StickyStuffs_Drip",random(-24,24),random(-24,24),random(8,32),0,0,0,0,0)
+stop
+}
+} 
+actor HoneySlowFXB : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 0 A_SpawnItemEX("StickyStuffs_Drip",random(-24,24),random(-24,24),random(8,32),0,0,0,0,1)
+stop
+}
+} 
+actor HoneySlowFXR : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 0 A_SpawnItemEX("StickyStuffs_Drip",random(-24,24),random(-24,24),random(8,32),0,0,0,0,1)
+stop
+}
+} 
+actor HoneySlowFXO : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 0 A_SpawnItemEX("StickyStuffs_Drip",random(-24,24),random(-24,24),random(8,32),0,0,0,0,1)
+stop
+}
+} 
+actor HoneySlowFXP : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 0 A_SpawnItemEX("StickyStuffs_Drip",random(-24,24),random(-24,24),random(8,32),0,0,0,0,1)
+stop
+}
+} 

@@ -1,0 +1,626 @@
+actor AlienTrapBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_2J"
+dropitem "BoobeamBarrierWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+Obituary "$OB_ALIENBUSTER"
+Inventory.Pickupmessage "I'm not saying its Aliens, but its probably Aliens."
+weapon.ammotype "AlienTrapAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_02 J 1
+loop
+Ready:
+ALIF A 0 ACS_ExecuteAlways(998,0,DYE_ALIEN)
+ALIF A 0 A_GunFlash
+ALIF A 0 A_ClearRefire
+ALIF A 0 A_JumpIfInventory("AlienTrapAmmo",2,"Ready2")
+ALIF A 3 A_WeaponReady(WRF_NOFIRE)
+ALIF A 0 A_GiveInventory("AlienTrapAmmo",1)
+Goto Ready+3
+Ready2:
+ALIF A 0 A_JumpIfInventory("AlienTrapAmmo",14,"Ready3")
+ALIF A 6 A_WeaponReady(WRF_NOSECONDARY)
+ALIF A 0 A_GiveInventory("AlienTrapAmmo",2)
+loop
+Ready3:
+ALIF A 6 A_WeaponReady
+ALIF A 0 A_GiveInventory("AlienTrapAmmo",2)
+loop
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+ALIF A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+ALIF A 1 A_Raise
+Loop
+Fire:
+ALIF B 0 A_JumpIfInventory("AlienTrapAmmo",2,1)
+goto NoAmmo
+ALIF B 0 A_PlaySoundEx("weapon/AlienFire","Weapon")
+ALIF G 0 A_TakeInventory("AlienTrapAmmo",2)
+ALIF B 0 A_GiveInventory("AlienMain_CI",1)
+ALIF B 1 Offset(0,35) A_GiveInventory("CBM_TargetMarker",1)
+ALIF B 1 Offset(0,39)A_GiveInventory("AlienFiredFlag",1)
+ALIF D 1 A_GiveInventory("AlienFiredFlag",1)
+ALIF D 0 A_TakeInventory("AlienFiredFlag",1)
+ALIF D 1 A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF D 1
+ALIF C 1 A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF C 1 Offset(0,39)
+ALIF G 1 Offset(0,35)A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF A 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+Goto Ready+3
+AltFire:
+ALIF A 0 A_JumpIfInventory("AlienTrapAmmo",14,"AltFire2")
+goto NoAmmo
+AltFire2:
+ALIF G 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+ALIF G 0 A_TakeInventory("AlienTrapAmmo",14)
+ALIF G 0 A_GiveInventory("AlienAlt_CI",1)
+ALIF B 1 Offset(0,35)A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF B 1 Offset(0,39)
+ALIF C 1 A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF E 1
+ALIF E 1 A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF E 1
+ALIF F 1 A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF F 1
+ALIF F 1 A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF C 1
+ALIF C 1 A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF G 1 Offset(0,39)
+ALIF G 1 Offset(0,35)A_JumpIfInventory("PowerRage_ST",1,1)
+ALIF A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+//ALIF BCBCB 2
+//ALIF A 6
+Goto Ready+3
+NoAmmo:
+ALIF A 0
+Goto Ready+3
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"NoFlight")
+TNT1 A 0 A_JumpIfInventory("AlienFlightFlag",1,"Flight")
+goto NoFlight
+Flight:
+TNT1 A 0 A_JumpIf(z-floorz>=160,"NoFlight")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(107,0)==1,"MaybeFlight")
+YesFlight:
+TNT1 A 1 SetPlayerProperty(0,1,3)
+TNT1 A 0 A_JumpIfInventory("StaminaFlag",500,"Flash")
+TNT1 A 0 A_JumpIf(z-floorz==0,"Recharge")
+goto Flash
+MaybeFlight:
+TNT1 A 0 A_TakeInventory("StaminaFlag",20)
+TNT1 A 0 A_JumpIfInventory("StaminaFlag",1,"YesFlight")
+goto NoFlight
+NoFlight:
+TNT1 A 1 SetPlayerProperty(0,0,3)
+TNT1 A 0 A_JumpIfInventory("StaminaFlag",500,"Flash")
+TNT1 A 0 A_JumpIf(z-floorz==0,"Recharge")
+Goto Flash
+Recharge:
+TNT1 A 0 A_GiveInventory("StaminaFlag",4)
+Goto Flash
+}
+}
+
+actor AlienTrapAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 56
++INVENTORY.IGNORESKILL
+}
+
+actor AlienFlightFlag : OnceC {}
+
+actor AlienFiredFlag : OnceC {}
+
+actor AlienFlightItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.pickupmessage "Is such a thing even possible? Yes it is."
+inventory.icon "ALIFZ"
+scale 2.0
++INVBAR
+states
+{
+Spawn:
+ALIF Z 1
+loop
+Use:
+TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
+TNT1 A 0 A_JumpIfInventory("AlienFlightFlag",1,"Take")
+TNT1 A 0 A_GiveInventory("AlienFlightFlag",1)
+fail
+Take:
+TNT1 A 0 A_TakeInventory("AlienFlightFlag",999)
+fail
+}
+}
+
+actor AlienShot
+{
+Translation "204:204=210:210"
+PROJECTILE
+damagetype "Buster"
+Obituary "$OB_ALIENBUSTER"
+Speed 52
+Damage (90)
+radius 12
+height 12
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+//BASB T 1
+W_0D B 1
+wait
+}
+}
+
+actor AlienShotB : AlienShot{translation "204:204=205:205"}
+actor AlienShotR : AlienShot{translation "204:204=171:171"}
+actor AlienShotO : AlienShot{translation "204:204=104:104"}
+actor AlienShotP : AlienShot{translation "204:204=229:229"}
+
+actor AlienBoobeamShot
+{
+PROJECTILE
+damagetype "Buster"
+Obituary "$OB_ALIENBOOBEAM"
+Damage (60)
+radius 12
+height 12
+Speed 52
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_2N G 1
+wait
+
+XDeath:
+X_2N G 0
+stop
+Death:
+X_2N G 0 A_JumpIf(z-floorz==0,"Floor")
+X_2N G 0
+stop
+Floor:
+X_2N G 0 A_SpawnItemEx("AlienBoobeamShotF",0,0,1,50,0,0,0,1)
+stop
+}
+}
+
+actor AlienBoobeamShotF : AlienBoobeamShot
+{
+Damage (60)
+States
+{
+Death:
+goto XDeath
+}
+}
+
+actor AlienBoobeamShotX : AlienBoobeamShot
+{
+Obituary "$OB_ALIENBOOBEAMX"
++DONTSEEKINVISIBLE//
++SEEKERMISSILE
++SCREENSEEKER
+ReactionTime 85
+Damage (60)
+radius 6
+height 6
+Speed 35
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+X_2N G 0 A_SpawnItemEx("AlienBoobeamShotXFX",0,0,0,0,0,0,0,1)
+X_2N GG 1 A_SeekerMissile(0,1,1,88,7)
+X_2N G 0 A_CountDown
+loop
+}
+}
+
+actor AlienBoobeamShotXFX : BasicClientSide
+{
+States
+{
+Spawn:
+X_2N G 1 A_FadeOut(0.15)
+wait
+}
+}
+
+actor AlienBoobeamTrapSpawner
+{
+translation "199:199=198:198","202:202=192:192","4:4=39:39","208:208=39:39"
+PROJECTILE
+damagetype "Buster"
+Obituary "$OB_ALIENBOOBEAMX"
++DONTSPLASH
++DONTREFLECT
+Damage (120)
+Height 10
+Radius 10
+speed 40
+Scale 2.5
+States
+{
+Spawn:
+X_2N G 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+X_2N G 4// ThrustThingZ(0,8,0,1)
+X_2N G 1// A_ChangeFlag("NOGRAVITY",0)
+X_2N G 1
+wait
+Death:
+TNT1 A 0 A_PlaySound("weapon/crashland")
+TNT1 A 0 A_JumpIf(z-floorz<5,"Floor")
+TNT1 A 0 A_JumpIf(z-ceilingz==0-10,"Ceiling")
+TNT1 A 0 A_SpawnItemEx("AlienBoobeamTrap",0,0,0,0,0,0,0,1)
+XDeath:
+TNT1 A 2
+stop
+Floor:
+TNT1 A 0 A_SpawnItemEx("AlienBoobeamTrapF",0,0,0,0,0,0,0,1)
+goto XDeath
+Ceiling:
+TNT1 A 0 A_SpawnItemEx("AlienBoobeamTrapC",0,0,0,0,0,0,0,1)
+goto XDeath
+}
+}
+
+
+actor AlienBoobeamTrapSpawnerB : AlienBoobeamTrapSpawner{translation "199:199=74:74","202:202=205:205"}
+actor AlienBoobeamTrapSpawnerR : AlienBoobeamTrapSpawner{translation "199:199=41:41","202:202=171:171"}
+actor AlienBoobeamTrapSpawnerO : AlienBoobeamTrapSpawner{translation "199:199=128:128","202:202=104:104"}
+actor AlienBoobeamTrapSpawnerP : AlienBoobeamTrapSpawner{translation "199:199=232:232","202:202=229:229"}
+
+actor AlienBoobeamTrap
+{
+PROJECTILE
+damagetype "Buster"
+Obituary "$OB_ALIENBOOBEAM"
++NOCLIP
++THRUACTORS
++DONTBLAST
++DONTREFLECT
+reactiontime 350
+Damage (0)
+Radius 9
+Height 9
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+//TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+X_2N AA 3
+X_2N FAFAFAFA 3 A_PlaySoundEx("weapon/BoobeamBeep","Body")
+Goto Waiting
+Waiting:
+X_2N B 1 A_CountDown
+X_2N B 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N B 1 A_CountDown
+X_2N B 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N B 1 A_CountDown
+X_2N C 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N C 1 A_CountDown
+X_2N C 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N C 1 A_CountDown
+X_2N C 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N C 1 A_CountDown
+X_2N D 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N D 1 A_CountDown
+X_2N D 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N D 1 A_CountDown
+X_2N D 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N D 1 A_CountDown
+X_2N E 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N E 1 A_CountDown
+X_2N E 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N E 1 A_CountDown
+X_2N E 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N E 1 A_CountDown
+X_2N B 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N B 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+
+Delay1:
+X_2N F 1 A_SpawnItemEx("AlienBoobeamTrapX1",0,0,0,0,0,0,0,1)
+goto FireTime+2
+Delay2:
+X_2N F 0 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+X_2N F 2 A_SpawnItemEx("AlienBoobeamTrapX2",0,0,0,0,0,0,0,1)
+goto FireTime+2
+Delay3:
+X_2N F 1 A_SpawnItemEx("AlienBoobeamTrapX3",0,0,0,0,0,0,0,1)
+X_2N F 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+Delay4:
+X_2N F 0 A_SpawnItemEx("AlienBoobeamTrapX4",0,0,0,0,0,0,0,1)
+X_2N FA 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+
+FireTime:
+X_2N F 0 A_Jump(256,1,"Delay1","Delay2","Delay3","Delay4")
+X_2N F 0 A_SpawnItemEx("AlienBoobeamTrapX",0,0,0,0,0,0,0,1)
+X_2N FA 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+X_2N F 1
+X_2N F 0
+X_2N F 1
+X_2N FFFFFFFF 0 A_CountDown
+X_2N FFAAAAAA 1 A_CountDown
+Goto Waiting
+Death:
+UMFX ABCD 2
+stop
+}
+}
+
+actor AlienBoobeamTrapX : BasicExplosion
+{
+damagetype "Buster"
+Obituary "$OB_ALIENBOOBEAM"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,0)
+goto Spawn2
+Spawn2:
+TNT1 A 4
+TNT1 A 1 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,0)
+TNT1 A 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
+TNT1 A 0 //A_Jump(16,"SpawnX")
+TNT1 A 5 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+stop
+SpawnX:
+TNT1 A 5 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+stop
+
+}
+}
+
+actor AlienBoobeamTrapX1 : AlienBoobeamTrapX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,0)
+goto Spawn2
+}
+}
+actor AlienBoobeamTrapX2 : AlienBoobeamTrapX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,0)
+goto Spawn2
+}
+}
+actor AlienBoobeamTrapX3 : AlienBoobeamTrapX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 3 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,0)
+goto Spawn2
+}
+}
+actor AlienBoobeamTrapX4 : AlienBoobeamTrapX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 4 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,0)
+goto Spawn2
+}
+}
+
+actor AlienBoobeamTrapF : AlienBoobeamTrap
+{
+States
+{
+Spawn:
+X_2N HH 3
+X_2N LHLHLHLH 3 A_PlaySoundEx("weapon/BoobeamBeep","Body")
+Goto Waiting
+Waiting:
+X_2N I 1 A_CountDown
+X_2N I 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N I 1 A_CountDown
+X_2N I 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N I 1 A_CountDown
+X_2N J 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N J 1 A_CountDown
+X_2N J 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N J 1 A_CountDown
+X_2N J 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N J 1 A_CountDown
+X_2N K 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N K 1 A_CountDown
+X_2N K 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N K 1 A_CountDown
+X_2N K 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N K 1 A_CountDown
+X_2N H 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N H 1 A_CountDown
+X_2N H 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N H 1 A_CountDown
+X_2N H 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N H 1 A_CountDown
+X_2N I 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Delay1:
+X_2N L 1
+goto FireTime+2
+Delay2:
+X_2N L 2
+goto FireTime+2
+Delay3:
+X_2N L 1
+X_2N L 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+Delay4:
+X_2N LH 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+FireTime:
+X_2N L 0 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,10)
+X_2N L 0 A_Jump(256,1,"Delay1","Delay2","Delay3","Delay4")
+X_2N LH 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+X_2N L 1 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,10)
+X_2N L 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
+X_2N L 0 //A_Jump(16,"FireTimeX")
+X_2N L 1 A_SpawnItemEx("AlienBoobeamShot",0,0,10,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+X_2N LLLLLLLL 0 A_CountDown
+X_2N LLHHHHHH 1 A_CountDown
+goto Waiting
+FireTimeX:
+X_2N L 1 A_SpawnItemEx("AlienBoobeamShotX",0,0,10,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+goto FireTime+8
+
+Death:
+UMFX ABCD 2
+stop
+}
+}
+
+actor AlienBoobeamTrapC : AlienBoobeamTrap
+{
+States
+{
+Spawn:
+X_2N MM 3
+X_2N QMQMQMQM 3 A_PlaySoundEx("weapon/BoobeamBeep","Body")
+Goto Waiting
+Waiting:
+X_2N N 1 A_CountDown
+X_2N N 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N N 1 A_CountDown
+X_2N N 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N N 1 A_CountDown
+X_2N O 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N O 1 A_CountDown
+X_2N O 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N O 1 A_CountDown
+X_2N O 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N O 1 A_CountDown
+X_2N P 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N P 1 A_CountDown
+X_2N P 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N P 1 A_CountDown
+X_2N P 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N P 1 A_CountDown
+X_2N M 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N M 1 A_CountDown
+X_2N M 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N M 1 A_CountDown
+X_2N M 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N M 1 A_CountDown
+X_2N N 0 A_JumpIfInTargetInventory("AlienFiredFlag",1,"FireTime")
+X_2N N 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Delay1:
+X_2N Q 1
+goto FireTime+2
+Delay2:
+X_2N Q 2
+goto FireTime+2
+Delay3:
+X_2N Q 1
+X_2N Q 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+Delay4:
+X_2N QM 2
+goto FireTime+2
+FireTime:
+X_2N Q 0 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,-8)
+X_2N Q 0 A_Jump(256,1,"Delay1","Delay2","Delay3","Delay4")
+X_2N QM 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+X_2N Q 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
+X_2N Q 0 //A_Jump(16,"FireTimeX")
+X_2N Q 1 A_SpawnItemEx("AlienBoobeamShot",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+X_2N QQQQQQQQ 0 A_CountDown
+X_2N QQMMMMMM 1 A_CountDown
+goto Waiting
+FireTimeX:
+X_2N Q 1 A_SpawnItemEx("AlienBoobeamShotX",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+goto FireTime+7
+Death:
+UMFX ABCD 2
+stop
+}
+}
+
+
+
+actor AlienMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("AlienShot",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("AlienShotB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("AlienShotR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("AlienShotO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("AlienShotP",0,0,0,0)
+goto Done
+}
+}
+
+actor AlienAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("AlienBoobeamTrapSpawner",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("AlienBoobeamTrapSpawnerB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("AlienBoobeamTrapSpawnerR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("AlienBoobeamTrapSpawnerO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("AlienBoobeamTrapSpawnerP",0,0,0,0)
+goto Done
+}
+}

@@ -1,14 +1,23 @@
-actor MegaWaterS : MegaClassBase
+actor MegaWaterS : ClassBase //90
 {
 Player.ScoreIcon "C_WTB0X"
-player.startitem "MegaHealthBar"
 player.displayname "MegaWaterS"
 player.soundclass "megawatersc"
 player.startitem "SandySandBoss"
 player.startitem "SandySanderBoss"
-player.startitem "KappaMikeyAmmo", 15
+player.startitem "KappaMikeyAmmo", 21
+player.startitem "KappaBarrierAmmo", 4
 player.startitem "MWS_ShieldItem"
 
+player.maxhealth 900
+health 900
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+
+player.weaponslot 1, "SandySandBoss"
+player.weaponslot 2, "SandySanderBoss"
 //player.startitem "BusterRodGWeakness", 1
 //player.startitem "MegaWaterSWeakness", 1
 //player.startitem "HyperStormHWeakness", 1

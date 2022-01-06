@@ -1,0 +1,958 @@
+actor FlashBombBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_8G"
+dropitem "FlashBombWepCDropped"
+Weapon.AmmoUse 4
+Weapon.AmmoGive 35
+Obituary "$OB_FLASHBOMB"
+Inventory.Pickupmessage "CRUSH EVERYONE, HA HA HA"
+weapon.ammotype "FBOMBBOSSAMMO"
+weapon.ammotype2 "THATFELTGOODAMMO"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_08 G 1
+loop
+Ready:
+GRHU A 0 ACS_ExecuteAlways(998,0,DYE_GRENADEMAN)
+GRHU A 0 A_GiveInventory("THATFELTGOOD_Pickup",1)
+GRHU A 0 A_GunFlash
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",4,"Ready1")
+GRHU A 10 A_WeaponReady(4)
+Goto Ready2
+Ready1:
+GRHU A 10 A_WeaponReady
+Goto Ready3
+Ready2:
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",4,"Ready3")
+GRHU A 5 A_WeaponReady(4)
+GRHU A 0 A_GiveInventory("FBOMBBOSSAMMO",1)
+loop
+Ready3:
+GRHU A 5 A_WeaponReady
+GRHU A 0 A_GiveInventory("FBOMBBOSSAMMO",1)
+loop
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+GRHU A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+GRHU A 1 A_Raise
+Loop
+
+Fire:
+GRHU A 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
+GRHU A 0 A_JumpIfInventory("CuteBombDrain",1,6)
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",36,"5RageFire")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",35,"4RageFire")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",25,"3RageFire")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",15,"2RageFire")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",5,"1RageFire")
+GRHU A 0 A_GiveInventory("GrenademanMain_CI",1)
+goto FireEnd
+FireEnd:
+GRHU B 1 Offset(50,80)
+GRHU B 1 Offset(60,90)
+GRHU A 1 Offset(63,93)
+GRHU A 1 Offset(65,95)
+GRHU A 1 Offset(66,96)
+GRHU A 1 Offset(65,95)
+GRHU A 1 Offset(63,93)
+GRHU A 1 Offset(60,90)
+GRHU A 1 Offset(50,80)
+GRHU A 1 Offset(40,70)
+GRHU A 1 Offset(30,60)
+GRHU A 1 Offset(20,50)
+GRHU A 1 Offset(10,40)
+GRHU A 13 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+Goto Ready+3
+1RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain1_CI",1)
+goto FireEnd
+2RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain2_CI",1)
+goto FireEnd
+3RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain3_CI",1)
+goto FireEnd
+4RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain4_CI",1)
+goto FireEnd
+5RageFire:
+GRHU A 0 A_GiveInventory("GrenademanMain4_CI",1)
+goto FireEnd
+
+Altfire:
+//GRHU A 0 A_JumpIfNoAmmo("NoAmmo")
+
+GRHU A 0 A_JumpIfInventory("CuteBombDrain",1,5)
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",36,"7Grenades")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",27,"6Grenades")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",18,"5Grenades")
+GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",9,"4Grenades")
+3Grenades:
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(-37, 64)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(6, 3)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade2",1)
+GRHU A 1 Offset(94, -25)
+GRHU A 1 Offset(129, -44) A_TakeInventory("FBOMBBOSSAMMO",1)
+GRHU A 1 Offset(158, -69)
+/*GRHU DE 2 A_GiveInventory("ShootGrrnade3",1)
+GRHU F 2 A_GiveInventory("ShootGrrnade2",1)
+GRHU G 2 A_TakeInventory("FBOMBBOSSAMMO",1)*/
+goto AltfireEnd
+AltfireEnd:
+TNT1 A 5 OffSet(110,69)
+GRHU A 1 OffSet(110,69)
+GRHU A 1 OffSet(55,48)
+GRHU A 7 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+GRHU A 0 A_Refire
+Goto Ready+3
+
+4Grenades:
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",2,1)
+goto 3Grenades
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-37, 64)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(6, 3)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(94, -25) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(129, -44) A_TakeInventory("FBOMBBOSSAMMO",2)
+GRHU A 1 Offset(158, -69)
+goto AltfireEnd
+5Grenades:
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",4,1)
+goto 4Grenades
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-37, 64)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(6, 3) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(94, -25) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 0 
+GRHU A 1 Offset(129, -44) A_TakeInventory("FBOMBBOSSAMMO",4)
+GRHU A 1 Offset(158, -69)
+goto AltfireEnd
+6Grenades:
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",6,1)
+goto 5Grenades
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-37, 64) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(6, 3) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(94, -25) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 0
+GRHU A 1 Offset(129, -44) A_TakeInventory("FBOMBBOSSAMMO",6)
+GRHU A 1 Offset(158, -69)
+goto AltfireEnd
+7Grenades:
+GRHU A 0 A_JumpIfInventory("FBOMBBOSSAMMO",7,1)
+goto 6Grenades
+GRHU A 1 Offset(-5,52)
+GRHU A 1 Offset(-10,72)
+GRHU A 1 Offset(-15,92)
+GRHU A 1 Offset(-25,112)
+GRHU A 1 Offset(-35,132)
+
+GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade5",1)
+GRHU A 1 Offset(-37, 64) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(6, 3) A_GiveInventory("ShootGrrnade4",1)
+GRHU A 1 Offset(43, -15) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(94, -25) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(129, -44) A_GiveInventory("ShootGrrnade3",1)
+GRHU A 1 Offset(158, -69) A_TakeInventory("FBOMBBOSSAMMO",7)
+goto AltfireEnd
+
+NoAmmo:
+GRHU A 1
+Goto Ready+3
+
+Flash:
+TNT1 A 0 A_GiveInventory("THATFELTGOOD_Pickup",1)
+TNT1 A 1 ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,4)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("THATFELTGOODAMMO",36,"FlashR")
+loop
+FlashR:
+TNT1 A 0 A_PlaySoundEx("classes/skullabs","Body")
+TNT1 A 0 A_TakeInventory("THATFELTGOODFlag",99)
+TNT1 A 0 A_GiveInventory("FBOMBBOSSAMMO",28)
+TNT1 A 0 A_GiveInventory("CuteBombFlag",500)
+TNT1 A 1 ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,4)
+goto FlashR2
+FlashR2:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_SpawnItemEx("BasicHardQuakeFX",random(16,38),0,Random(42,56),random(0,1),0,1,random(0,359),0,64)
+TNT1 A 1 A_TakeInventory("CuteBombFlag",1)
+TNT1 A 0 A_JumpIfInventory("CuteBombFlag",1,"FlashR2")
+goto FlashRD
+FlashRD:
+TNT1 A 0 A_GiveInventory("CuteBombDrain",1)
+TNT1 A 0 A_TakeInventory("CuteBombFlag",999)
+goto FlashRD2
+FlashRD2:
+TNT1 A 0 A_TakeInventory("THATFELTGOODAMMO",1)
+TNT1 A 1 ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,4)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("THATFELTGOODAMMO",1,"FlashRD2")
+goto FlashRD3
+FlashRD3:
+TNT1 A 0 A_TakeInventory("CuteBombDrain",9)
+TNT1 A 0 A_TakeInventory("THATFELTGOODAMMO",50)
+TNT1 A 0 A_TakeInventory("CuteBombFlag",999)
+goto Flash
+}
+}
+
+actor THATFELTGOODAMMO : Ammo
+{
++INVENTORY.IGNORESKILL
+inventory.amount 1
+inventory.maxamount 36
+}
+
+
+actor CuteBombDrain : OnceC {}
+
+actor CuteBombFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 500
+}
+
+actor THATFELTGOODFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 40
+}
+
+
+actor FBOMBBOSSAMMO : Ammo
+{
++INVENTORY.IGNORESKILL
+inventory.amount 1
+inventory.maxamount 28
+}
+
+actor GrenadeHealth : Inventory
+{
+inventory.amount 1
+inventory.maxamount 100
+}
+
+
+actor THATFELTGOOD_Pickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("THATFELTGOODAMMO",1,"Pickup0")
+TNT1 A 0 A_TakeInventory("THATFELTGOODFlag",99)
+stop
+Pickup0:
+TNT1 A 0 A_JumpIfInventory("THATFELTGOODFlag",40,"Pickup2")
+goto Pickup1
+Pickup1:
+TNT1 A 0 A_GiveInventory("THATFELTGOODFlag",1)
+stop
+Pickup2:
+TNT1 A 0 A_TakeInventory("THATFELTGOODAMMO",1)
+TNT1 A 0 A_TakeInventory("THATFELTGOODFlag",99)
+stop
+}
+}
+
+actor GrrnadeRageFX
+{
++MISSILE
++NOGRAVITY
++THRUACTORS
++DONTBLAST
++CLIENTSIDEONLY
+damage 0
+Radius 2
+Height 2
+scale 2.5
+States
+{
+Spawn:
+SMFX XYZ 3
+stop
+}
+}
+
+
+actor ShootGrrnade : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==0,"PickupB")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==1,"PickupR")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==2,"PickupO")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==3,"PickupP")
+TNT1 A 0 A_Jump(256,"s18","s20","s22","s24","s26","s28","s30","s32","s34")
+stop
+PickupB:
+TNT1 A 0 A_Jump(256,"b18","b20","b22","b24","b26","b28","b30","b32","b34")
+stop
+PickupR:
+TNT1 A 0 A_Jump(256,"r18","r20","r22","r24","r26","r28","r30","r32","r34")
+stop
+PickupO:
+TNT1 A 0 A_Jump(256,"o18","o20","o22","o24","o26","o28","o30","o32","o34")
+stop
+PickupP:
+TNT1 A 0 A_Jump(256,"p18","p20","p22","p24","p26","p28","p30","p32","p34")
+stop
+}
+}
+//This right here is a PRIME example of transfer translation being VERY useful in the future
+actor ShootGrrnade2 : ShootGrrnade
+{
+states
+{
+s18:TNT1 A 0 A_FireCustomMissile("Grrnade18",random(-2,2),0,8,0,0,random(-2,2))stop
+s20:TNT1 A 0 A_FireCustomMissile("Grrnade20",random(-2,2),0,8,0,0,random(-2,2))stop
+s22:TNT1 A 0 A_FireCustomMissile("Grrnade22",random(-2,2),0,8,0,0,random(-2,2))stop
+s24:TNT1 A 0 A_FireCustomMissile("Grrnade24",random(-2,2),0,8,0,0,random(-2,2))stop
+s26:TNT1 A 0 A_FireCustomMissile("Grrnade26",random(-2,2),0,8,0,0,random(-2,2))stop
+s28:TNT1 A 0 A_FireCustomMissile("Grrnade28",random(-2,2),0,8,0,0,random(-2,2))stop
+s30:TNT1 A 0 A_FireCustomMissile("Grrnade30",random(-2,2),0,8,0,0,random(-2,2))stop
+s32:TNT1 A 0 A_FireCustomMissile("Grrnade32",random(-2,2),0,8,0,0,random(-2,2))stop
+s34:TNT1 A 0 A_FireCustomMissile("Grrnade34",random(-2,2),0,8,0,0,random(-2,2))stop
+
+b18:TNT1 A 0 A_FireCustomMissile("Grrnade18B",random(-2,2),0,8,0,0,random(-2,2))stop
+b20:TNT1 A 0 A_FireCustomMissile("Grrnade20B",random(-2,2),0,8,0,0,random(-2,2))stop
+b22:TNT1 A 0 A_FireCustomMissile("Grrnade22B",random(-2,2),0,8,0,0,random(-2,2))stop
+b24:TNT1 A 0 A_FireCustomMissile("Grrnade24B",random(-2,2),0,8,0,0,random(-2,2))stop
+b26:TNT1 A 0 A_FireCustomMissile("Grrnade26B",random(-2,2),0,8,0,0,random(-2,2))stop
+b28:TNT1 A 0 A_FireCustomMissile("Grrnade28B",random(-2,2),0,8,0,0,random(-2,2))stop
+b30:TNT1 A 0 A_FireCustomMissile("Grrnade30B",random(-2,2),0,8,0,0,random(-2,2))stop
+b32:TNT1 A 0 A_FireCustomMissile("Grrnade32B",random(-2,2),0,8,0,0,random(-2,2))stop
+b34:TNT1 A 0 A_FireCustomMissile("Grrnade34B",random(-2,2),0,8,0,0,random(-2,2))stop
+
+r18:TNT1 A 0 A_FireCustomMissile("Grrnade18R",random(-2,2),0,8,0,0,random(-2,2))stop
+r20:TNT1 A 0 A_FireCustomMissile("Grrnade20R",random(-2,2),0,8,0,0,random(-2,2))stop
+r22:TNT1 A 0 A_FireCustomMissile("Grrnade22R",random(-2,2),0,8,0,0,random(-2,2))stop
+r24:TNT1 A 0 A_FireCustomMissile("Grrnade24R",random(-2,2),0,8,0,0,random(-2,2))stop
+r26:TNT1 A 0 A_FireCustomMissile("Grrnade26R",random(-2,2),0,8,0,0,random(-2,2))stop
+r28:TNT1 A 0 A_FireCustomMissile("Grrnade28R",random(-2,2),0,8,0,0,random(-2,2))stop
+r30:TNT1 A 0 A_FireCustomMissile("Grrnade30R",random(-2,2),0,8,0,0,random(-2,2))stop
+r32:TNT1 A 0 A_FireCustomMissile("Grrnade32R",random(-2,2),0,8,0,0,random(-2,2))stop
+r34:TNT1 A 0 A_FireCustomMissile("Grrnade34R",random(-2,2),0,8,0,0,random(-2,2))stop
+
+o18:TNT1 A 0 A_FireCustomMissile("Grrnade18O",random(-2,2),0,8,0,0,random(-2,2))stop
+o20:TNT1 A 0 A_FireCustomMissile("Grrnade20O",random(-2,2),0,8,0,0,random(-2,2))stop
+o22:TNT1 A 0 A_FireCustomMissile("Grrnade22O",random(-2,2),0,8,0,0,random(-2,2))stop
+o24:TNT1 A 0 A_FireCustomMissile("Grrnade24O",random(-2,2),0,8,0,0,random(-2,2))stop
+o26:TNT1 A 0 A_FireCustomMissile("Grrnade26O",random(-2,2),0,8,0,0,random(-2,2))stop
+o28:TNT1 A 0 A_FireCustomMissile("Grrnade28O",random(-2,2),0,8,0,0,random(-2,2))stop
+o30:TNT1 A 0 A_FireCustomMissile("Grrnade30O",random(-2,2),0,8,0,0,random(-2,2))stop
+o32:TNT1 A 0 A_FireCustomMissile("Grrnade32O",random(-2,2),0,8,0,0,random(-2,2))stop
+o34:TNT1 A 0 A_FireCustomMissile("Grrnade34O",random(-2,2),0,8,0,0,random(-2,2))stop
+
+p18:TNT1 A 0 A_FireCustomMissile("Grrnade18P",random(-2,2),0,8,0,0,random(-2,2))stop
+p20:TNT1 A 0 A_FireCustomMissile("Grrnade20P",random(-2,2),0,8,0,0,random(-2,2))stop
+p22:TNT1 A 0 A_FireCustomMissile("Grrnade22P",random(-2,2),0,8,0,0,random(-2,2))stop
+p24:TNT1 A 0 A_FireCustomMissile("Grrnade24P",random(-2,2),0,8,0,0,random(-2,2))stop
+p26:TNT1 A 0 A_FireCustomMissile("Grrnade26P",random(-2,2),0,8,0,0,random(-2,2))stop
+p28:TNT1 A 0 A_FireCustomMissile("Grrnade28P",random(-2,2),0,8,0,0,random(-2,2))stop
+p30:TNT1 A 0 A_FireCustomMissile("Grrnade30P",random(-2,2),0,8,0,0,random(-2,2))stop
+p32:TNT1 A 0 A_FireCustomMissile("Grrnade32P",random(-2,2),0,8,0,0,random(-2,2))stop
+p34:TNT1 A 0 A_FireCustomMissile("Grrnade34P",random(-2,2),0,8,0,0,random(-2,2))stop
+}
+}
+
+actor ShootGrrnade3 : ShootGrrnade
+{
+states
+{
+s18:TNT1 A 0 A_FireCustomMissile("Grrnade18",random(-3,3),0,8,0,0,random(-3,3))stop
+s20:TNT1 A 0 A_FireCustomMissile("Grrnade20",random(-3,3),0,8,0,0,random(-3,3))stop
+s22:TNT1 A 0 A_FireCustomMissile("Grrnade22",random(-3,3),0,8,0,0,random(-3,3))stop
+s24:TNT1 A 0 A_FireCustomMissile("Grrnade24",random(-3,3),0,8,0,0,random(-3,3))stop
+s26:TNT1 A 0 A_FireCustomMissile("Grrnade26",random(-3,3),0,8,0,0,random(-3,3))stop
+s28:TNT1 A 0 A_FireCustomMissile("Grrnade28",random(-3,3),0,8,0,0,random(-3,3))stop
+s30:TNT1 A 0 A_FireCustomMissile("Grrnade30",random(-3,3),0,8,0,0,random(-3,3))stop
+s32:TNT1 A 0 A_FireCustomMissile("Grrnade32",random(-3,3),0,8,0,0,random(-3,3))stop
+s34:TNT1 A 0 A_FireCustomMissile("Grrnade34",random(-3,3),0,8,0,0,random(-3,3))stop
+
+b18:TNT1 A 0 A_FireCustomMissile("Grrnade18B",random(-3,3),0,8,0,0,random(-3,3))stop
+b20:TNT1 A 0 A_FireCustomMissile("Grrnade20B",random(-3,3),0,8,0,0,random(-3,3))stop
+b22:TNT1 A 0 A_FireCustomMissile("Grrnade22B",random(-3,3),0,8,0,0,random(-3,3))stop
+b24:TNT1 A 0 A_FireCustomMissile("Grrnade24B",random(-3,3),0,8,0,0,random(-3,3))stop
+b26:TNT1 A 0 A_FireCustomMissile("Grrnade26B",random(-3,3),0,8,0,0,random(-3,3))stop
+b28:TNT1 A 0 A_FireCustomMissile("Grrnade28B",random(-3,3),0,8,0,0,random(-3,3))stop
+b30:TNT1 A 0 A_FireCustomMissile("Grrnade30B",random(-3,3),0,8,0,0,random(-3,3))stop
+b32:TNT1 A 0 A_FireCustomMissile("Grrnade32B",random(-3,3),0,8,0,0,random(-3,3))stop
+b34:TNT1 A 0 A_FireCustomMissile("Grrnade34B",random(-3,3),0,8,0,0,random(-3,3))stop
+
+r18:TNT1 A 0 A_FireCustomMissile("Grrnade18R",random(-3,3),0,8,0,0,random(-3,3))stop
+r20:TNT1 A 0 A_FireCustomMissile("Grrnade20R",random(-3,3),0,8,0,0,random(-3,3))stop
+r22:TNT1 A 0 A_FireCustomMissile("Grrnade22R",random(-3,3),0,8,0,0,random(-3,3))stop
+r24:TNT1 A 0 A_FireCustomMissile("Grrnade24R",random(-3,3),0,8,0,0,random(-3,3))stop
+r26:TNT1 A 0 A_FireCustomMissile("Grrnade26R",random(-3,3),0,8,0,0,random(-3,3))stop
+r28:TNT1 A 0 A_FireCustomMissile("Grrnade28R",random(-3,3),0,8,0,0,random(-3,3))stop
+r30:TNT1 A 0 A_FireCustomMissile("Grrnade30R",random(-3,3),0,8,0,0,random(-3,3))stop
+r32:TNT1 A 0 A_FireCustomMissile("Grrnade32R",random(-3,3),0,8,0,0,random(-3,3))stop
+r34:TNT1 A 0 A_FireCustomMissile("Grrnade34R",random(-3,3),0,8,0,0,random(-3,3))stop
+
+o18:TNT1 A 0 A_FireCustomMissile("Grrnade18O",random(-3,3),0,8,0,0,random(-3,3))stop
+o20:TNT1 A 0 A_FireCustomMissile("Grrnade20O",random(-3,3),0,8,0,0,random(-3,3))stop
+o22:TNT1 A 0 A_FireCustomMissile("Grrnade22O",random(-3,3),0,8,0,0,random(-3,3))stop
+o24:TNT1 A 0 A_FireCustomMissile("Grrnade24O",random(-3,3),0,8,0,0,random(-3,3))stop
+o26:TNT1 A 0 A_FireCustomMissile("Grrnade26O",random(-3,3),0,8,0,0,random(-3,3))stop
+o28:TNT1 A 0 A_FireCustomMissile("Grrnade28O",random(-3,3),0,8,0,0,random(-3,3))stop
+o30:TNT1 A 0 A_FireCustomMissile("Grrnade30O",random(-3,3),0,8,0,0,random(-3,3))stop
+o32:TNT1 A 0 A_FireCustomMissile("Grrnade32O",random(-3,3),0,8,0,0,random(-3,3))stop
+o34:TNT1 A 0 A_FireCustomMissile("Grrnade34O",random(-3,3),0,8,0,0,random(-3,3))stop
+
+p18:TNT1 A 0 A_FireCustomMissile("Grrnade18P",random(-3,3),0,8,0,0,random(-3,3))stop
+p20:TNT1 A 0 A_FireCustomMissile("Grrnade20P",random(-3,3),0,8,0,0,random(-3,3))stop
+p22:TNT1 A 0 A_FireCustomMissile("Grrnade22P",random(-3,3),0,8,0,0,random(-3,3))stop
+p24:TNT1 A 0 A_FireCustomMissile("Grrnade24P",random(-3,3),0,8,0,0,random(-3,3))stop
+p26:TNT1 A 0 A_FireCustomMissile("Grrnade26P",random(-3,3),0,8,0,0,random(-3,3))stop
+p28:TNT1 A 0 A_FireCustomMissile("Grrnade28P",random(-3,3),0,8,0,0,random(-3,3))stop
+p30:TNT1 A 0 A_FireCustomMissile("Grrnade30P",random(-3,3),0,8,0,0,random(-3,3))stop
+p32:TNT1 A 0 A_FireCustomMissile("Grrnade32P",random(-3,3),0,8,0,0,random(-3,3))stop
+p34:TNT1 A 0 A_FireCustomMissile("Grrnade34P",random(-3,3),0,8,0,0,random(-3,3))stop
+}
+}
+
+actor ShootGrrnade4 : ShootGrrnade
+{
+states
+{
+s18:TNT1 A 0 A_FireCustomMissile("Grrnade18",random(-4,4),0,8,0,0,random(-4,4))stop
+s20:TNT1 A 0 A_FireCustomMissile("Grrnade20",random(-4,4),0,8,0,0,random(-4,4))stop
+s22:TNT1 A 0 A_FireCustomMissile("Grrnade22",random(-4,4),0,8,0,0,random(-4,4))stop
+s24:TNT1 A 0 A_FireCustomMissile("Grrnade24",random(-4,4),0,8,0,0,random(-4,4))stop
+s26:TNT1 A 0 A_FireCustomMissile("Grrnade26",random(-4,4),0,8,0,0,random(-4,4))stop
+s28:TNT1 A 0 A_FireCustomMissile("Grrnade28",random(-4,4),0,8,0,0,random(-4,4))stop
+s30:TNT1 A 0 A_FireCustomMissile("Grrnade30",random(-4,4),0,8,0,0,random(-4,4))stop
+s32:TNT1 A 0 A_FireCustomMissile("Grrnade32",random(-4,4),0,8,0,0,random(-4,4))stop
+s34:TNT1 A 0 A_FireCustomMissile("Grrnade34",random(-4,4),0,8,0,0,random(-4,4))stop
+
+b18:TNT1 A 0 A_FireCustomMissile("Grrnade18B",random(-4,4),0,8,0,0,random(-4,4))stop
+b20:TNT1 A 0 A_FireCustomMissile("Grrnade20B",random(-4,4),0,8,0,0,random(-4,4))stop
+b22:TNT1 A 0 A_FireCustomMissile("Grrnade22B",random(-4,4),0,8,0,0,random(-4,4))stop
+b24:TNT1 A 0 A_FireCustomMissile("Grrnade24B",random(-4,4),0,8,0,0,random(-4,4))stop
+b26:TNT1 A 0 A_FireCustomMissile("Grrnade26B",random(-4,4),0,8,0,0,random(-4,4))stop
+b28:TNT1 A 0 A_FireCustomMissile("Grrnade28B",random(-4,4),0,8,0,0,random(-4,4))stop
+b30:TNT1 A 0 A_FireCustomMissile("Grrnade30B",random(-4,4),0,8,0,0,random(-4,4))stop
+b32:TNT1 A 0 A_FireCustomMissile("Grrnade32B",random(-4,4),0,8,0,0,random(-4,4))stop
+b34:TNT1 A 0 A_FireCustomMissile("Grrnade34B",random(-4,4),0,8,0,0,random(-4,4))stop
+
+r18:TNT1 A 0 A_FireCustomMissile("Grrnade18R",random(-4,4),0,8,0,0,random(-4,4))stop
+r20:TNT1 A 0 A_FireCustomMissile("Grrnade20R",random(-4,4),0,8,0,0,random(-4,4))stop
+r22:TNT1 A 0 A_FireCustomMissile("Grrnade22R",random(-4,4),0,8,0,0,random(-4,4))stop
+r24:TNT1 A 0 A_FireCustomMissile("Grrnade24R",random(-4,4),0,8,0,0,random(-4,4))stop
+r26:TNT1 A 0 A_FireCustomMissile("Grrnade26R",random(-4,4),0,8,0,0,random(-4,4))stop
+r28:TNT1 A 0 A_FireCustomMissile("Grrnade28R",random(-4,4),0,8,0,0,random(-4,4))stop
+r30:TNT1 A 0 A_FireCustomMissile("Grrnade30R",random(-4,4),0,8,0,0,random(-4,4))stop
+r32:TNT1 A 0 A_FireCustomMissile("Grrnade32R",random(-4,4),0,8,0,0,random(-4,4))stop
+r34:TNT1 A 0 A_FireCustomMissile("Grrnade34R",random(-4,4),0,8,0,0,random(-4,4))stop
+
+o18:TNT1 A 0 A_FireCustomMissile("Grrnade18O",random(-4,4),0,8,0,0,random(-4,4))stop
+o20:TNT1 A 0 A_FireCustomMissile("Grrnade20O",random(-4,4),0,8,0,0,random(-4,4))stop
+o22:TNT1 A 0 A_FireCustomMissile("Grrnade22O",random(-4,4),0,8,0,0,random(-4,4))stop
+o24:TNT1 A 0 A_FireCustomMissile("Grrnade24O",random(-4,4),0,8,0,0,random(-4,4))stop
+o26:TNT1 A 0 A_FireCustomMissile("Grrnade26O",random(-4,4),0,8,0,0,random(-4,4))stop
+o28:TNT1 A 0 A_FireCustomMissile("Grrnade28O",random(-4,4),0,8,0,0,random(-4,4))stop
+o30:TNT1 A 0 A_FireCustomMissile("Grrnade30O",random(-4,4),0,8,0,0,random(-4,4))stop
+o32:TNT1 A 0 A_FireCustomMissile("Grrnade32O",random(-4,4),0,8,0,0,random(-4,4))stop
+o34:TNT1 A 0 A_FireCustomMissile("Grrnade34O",random(-4,4),0,8,0,0,random(-4,4))stop
+
+p18:TNT1 A 0 A_FireCustomMissile("Grrnade18P",random(-4,4),0,8,0,0,random(-4,4))stop
+p20:TNT1 A 0 A_FireCustomMissile("Grrnade20P",random(-4,4),0,8,0,0,random(-4,4))stop
+p22:TNT1 A 0 A_FireCustomMissile("Grrnade22P",random(-4,4),0,8,0,0,random(-4,4))stop
+p24:TNT1 A 0 A_FireCustomMissile("Grrnade24P",random(-4,4),0,8,0,0,random(-4,4))stop
+p26:TNT1 A 0 A_FireCustomMissile("Grrnade26P",random(-4,4),0,8,0,0,random(-4,4))stop
+p28:TNT1 A 0 A_FireCustomMissile("Grrnade28P",random(-4,4),0,8,0,0,random(-4,4))stop
+p30:TNT1 A 0 A_FireCustomMissile("Grrnade30P",random(-4,4),0,8,0,0,random(-4,4))stop
+p32:TNT1 A 0 A_FireCustomMissile("Grrnade32P",random(-4,4),0,8,0,0,random(-4,4))stop
+p34:TNT1 A 0 A_FireCustomMissile("Grrnade34P",random(-4,4),0,8,0,0,random(-4,4))stop
+}
+}
+
+actor ShootGrrnade5 : ShootGrrnade
+{
+states
+{
+s18:TNT1 A 0 A_FireCustomMissile("Grrnade18",random(-5,5),0,8,0,0,random(-5,5))stop
+s20:TNT1 A 0 A_FireCustomMissile("Grrnade20",random(-5,5),0,8,0,0,random(-5,5))stop
+s22:TNT1 A 0 A_FireCustomMissile("Grrnade22",random(-5,5),0,8,0,0,random(-5,5))stop
+s24:TNT1 A 0 A_FireCustomMissile("Grrnade24",random(-5,5),0,8,0,0,random(-5,5))stop
+s26:TNT1 A 0 A_FireCustomMissile("Grrnade26",random(-5,5),0,8,0,0,random(-5,5))stop
+s28:TNT1 A 0 A_FireCustomMissile("Grrnade28",random(-5,5),0,8,0,0,random(-5,5))stop
+s30:TNT1 A 0 A_FireCustomMissile("Grrnade30",random(-5,5),0,8,0,0,random(-5,5))stop
+s32:TNT1 A 0 A_FireCustomMissile("Grrnade32",random(-5,5),0,8,0,0,random(-5,5))stop
+s34:TNT1 A 0 A_FireCustomMissile("Grrnade34",random(-5,5),0,8,0,0,random(-5,5))stop
+
+b18:TNT1 A 0 A_FireCustomMissile("Grrnade18B",random(-5,5),0,8,0,0,random(-5,5))stop
+b20:TNT1 A 0 A_FireCustomMissile("Grrnade20B",random(-5,5),0,8,0,0,random(-5,5))stop
+b22:TNT1 A 0 A_FireCustomMissile("Grrnade22B",random(-5,5),0,8,0,0,random(-5,5))stop
+b24:TNT1 A 0 A_FireCustomMissile("Grrnade24B",random(-5,5),0,8,0,0,random(-5,5))stop
+b26:TNT1 A 0 A_FireCustomMissile("Grrnade26B",random(-5,5),0,8,0,0,random(-5,5))stop
+b28:TNT1 A 0 A_FireCustomMissile("Grrnade28B",random(-5,5),0,8,0,0,random(-5,5))stop
+b30:TNT1 A 0 A_FireCustomMissile("Grrnade30B",random(-5,5),0,8,0,0,random(-5,5))stop
+b32:TNT1 A 0 A_FireCustomMissile("Grrnade32B",random(-5,5),0,8,0,0,random(-5,5))stop
+b34:TNT1 A 0 A_FireCustomMissile("Grrnade34B",random(-5,5),0,8,0,0,random(-5,5))stop
+
+r18:TNT1 A 0 A_FireCustomMissile("Grrnade18R",random(-5,5),0,8,0,0,random(-5,5))stop
+r20:TNT1 A 0 A_FireCustomMissile("Grrnade20R",random(-5,5),0,8,0,0,random(-5,5))stop
+r22:TNT1 A 0 A_FireCustomMissile("Grrnade22R",random(-5,5),0,8,0,0,random(-5,5))stop
+r24:TNT1 A 0 A_FireCustomMissile("Grrnade24R",random(-5,5),0,8,0,0,random(-5,5))stop
+r26:TNT1 A 0 A_FireCustomMissile("Grrnade26R",random(-5,5),0,8,0,0,random(-5,5))stop
+r28:TNT1 A 0 A_FireCustomMissile("Grrnade28R",random(-5,5),0,8,0,0,random(-5,5))stop
+r30:TNT1 A 0 A_FireCustomMissile("Grrnade30R",random(-5,5),0,8,0,0,random(-5,5))stop
+r32:TNT1 A 0 A_FireCustomMissile("Grrnade32R",random(-5,5),0,8,0,0,random(-5,5))stop
+r34:TNT1 A 0 A_FireCustomMissile("Grrnade34R",random(-5,5),0,8,0,0,random(-5,5))stop
+
+o18:TNT1 A 0 A_FireCustomMissile("Grrnade18O",random(-5,5),0,8,0,0,random(-5,5))stop
+o20:TNT1 A 0 A_FireCustomMissile("Grrnade20O",random(-5,5),0,8,0,0,random(-5,5))stop
+o22:TNT1 A 0 A_FireCustomMissile("Grrnade22O",random(-5,5),0,8,0,0,random(-5,5))stop
+o24:TNT1 A 0 A_FireCustomMissile("Grrnade24O",random(-5,5),0,8,0,0,random(-5,5))stop
+o26:TNT1 A 0 A_FireCustomMissile("Grrnade26O",random(-5,5),0,8,0,0,random(-5,5))stop
+o28:TNT1 A 0 A_FireCustomMissile("Grrnade28O",random(-5,5),0,8,0,0,random(-5,5))stop
+o30:TNT1 A 0 A_FireCustomMissile("Grrnade30O",random(-5,5),0,8,0,0,random(-5,5))stop
+o32:TNT1 A 0 A_FireCustomMissile("Grrnade32O",random(-5,5),0,8,0,0,random(-5,5))stop
+o34:TNT1 A 0 A_FireCustomMissile("Grrnade34O",random(-5,5),0,8,0,0,random(-5,5))stop
+
+p18:TNT1 A 0 A_FireCustomMissile("Grrnade18P",random(-5,5),0,8,0,0,random(-5,5))stop
+p20:TNT1 A 0 A_FireCustomMissile("Grrnade20P",random(-5,5),0,8,0,0,random(-5,5))stop
+p22:TNT1 A 0 A_FireCustomMissile("Grrnade22P",random(-5,5),0,8,0,0,random(-5,5))stop
+p24:TNT1 A 0 A_FireCustomMissile("Grrnade24P",random(-5,5),0,8,0,0,random(-5,5))stop
+p26:TNT1 A 0 A_FireCustomMissile("Grrnade26P",random(-5,5),0,8,0,0,random(-5,5))stop
+p28:TNT1 A 0 A_FireCustomMissile("Grrnade28P",random(-5,5),0,8,0,0,random(-5,5))stop
+p30:TNT1 A 0 A_FireCustomMissile("Grrnade30P",random(-5,5),0,8,0,0,random(-5,5))stop
+p32:TNT1 A 0 A_FireCustomMissile("Grrnade32P",random(-5,5),0,8,0,0,random(-5,5))stop
+p34:TNT1 A 0 A_FireCustomMissile("Grrnade34P",random(-5,5),0,8,0,0,random(-5,5))stop
+}
+}
+
+actor Grrnade
+{
+translation "198:198=194:194","192:192=4:4","202:202=215:215"
+PROJECTILE
+damagetype "GrenadeM_Nade"
+Obituary "$OB_CARPETBOMB"
+-NOGRAVITY
+
++BOUNCEONWALLS
++BOUNCEONCEILINGS
+BounceFactor 0.0
+WallBounceFactor 0.0
+
+reactiontime 15
+Damage(20)
+Radius 6
+Height 7
+speed 20
+scale 2.5
+States
+{
+Spawn:
+XH0D Q 0
+XH0D Q 0 ThrustThingZ(0,25,0,1)
+XH0D QRST 4
+Goto Spawn+2
+Death:
+XH0D QRST 4
+XH0D QRST 4
+XH0D QRST 4
+//Goto XDeath
+TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
+TNT1 A 0 A_Explode(100,128,0)
+TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
+stop
+XDeath:
+TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
+TNT1 A 0 A_Explode(80,128,0)
+TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
+stop
+}
+}
+
+actor GrrnadeB : Grrnade{translation "198:198=74:74","192:192=205:205","202:202=205:205"}
+actor GrrnadeR : Grrnade{translation "198:198=41:41","192:192=171:171","202:202=171:171"}
+actor GrrnadeO : Grrnade{translation "198:198=128:128","192:192=104:104","202:202=104:104"}
+actor GrrnadeP : Grrnade{translation "198:198=232:232","192:192=229:229","202:202=229:229"}
+
+actor GrrnadeB : Grrnade{translation "198:198=74:74","192:192=205:205","202:202=205:205"}
+actor GrrnadeR : Grrnade{translation "198:198=41:41","192:192=171:171","202:202=171:171"}
+actor GrrnadeO : Grrnade{translation "198:198=128:128","192:192=104:104","202:202=104:104"}
+actor GrrnadeP : Grrnade{translation "198:198=232:232","192:192=229:229","202:202=229:229"}
+
+actor Grrnade18 : Grrnade {speed 18}actor Grrnade18B : GrrnadeB {speed 18}actor Grrnade18R : GrrnadeR {speed 18}actor Grrnade18O : GrrnadeO {speed 18}actor Grrnade18P : GrrnadeP {speed 18}
+actor Grrnade20 : Grrnade {}actor Grrnade20B : GrrnadeB {}actor Grrnade20R : GrrnadeR {}actor Grrnade20O : GrrnadeO {}actor Grrnade20P : GrrnadeP {}
+actor Grrnade22 : Grrnade {speed 22}actor Grrnade22B : GrrnadeB {speed 22}actor Grrnade22R : GrrnadeR {speed 22}actor Grrnade22O : GrrnadeO {speed 22}actor Grrnade22P : GrrnadeP {speed 22}
+actor Grrnade24 : Grrnade {speed 24}actor Grrnade24B : GrrnadeB {speed 24}actor Grrnade24R : GrrnadeR {speed 24}actor Grrnade24O : GrrnadeO {speed 24}actor Grrnade24P : GrrnadeP {speed 24}
+actor Grrnade26 : Grrnade {speed 26}actor Grrnade26B : GrrnadeB {speed 26}actor Grrnade26R : GrrnadeR {speed 26}actor Grrnade26O : GrrnadeO {speed 26}actor Grrnade26P : GrrnadeP {speed 26}
+actor Grrnade28 : Grrnade {speed 28}actor Grrnade28B : GrrnadeB {speed 28}actor Grrnade28R : GrrnadeR {speed 28}actor Grrnade28O : GrrnadeO {speed 28}actor Grrnade28P : GrrnadeP {speed 28}
+actor Grrnade30 : Grrnade {speed 30}actor Grrnade30B : GrrnadeB {speed 30}actor Grrnade30R : GrrnadeR {speed 30}actor Grrnade30O : GrrnadeO {speed 30}actor Grrnade30P : GrrnadeP {speed 30}
+actor Grrnade32 : Grrnade {speed 32}actor Grrnade32B : GrrnadeB {speed 32}actor Grrnade32R : GrrnadeR {speed 32}actor Grrnade32O : GrrnadeO {speed 32}actor Grrnade32P : GrrnadeP {speed 32}
+actor Grrnade34 : Grrnade {speed 34}actor Grrnade34B : GrrnadeB {speed 34}actor Grrnade34R : GrrnadeR {speed 34}actor Grrnade34O : GrrnadeO {speed 34}actor Grrnade34P : GrrnadeP {speed 34}
+
+actor GrenadeBoom : BasicExplosion
+{
+damagetype "GrenadeSD"
+Obituary "$OB_THATFELTGOOD"
+scale 5.0
+States
+{
+Spawn:
+
+TN_B E 0
+TN_B E 0 A_Stop
+TN_B E 0 A_PlaySoundEx("misc/hugequake", "Weapon")
+TN_B E 0 A_Explode(40,500,0,0,96)
+TN_B EFGHIJKLMNOPQRS 2
+stop
+}
+}
+
+
+
+actor FlashBombPBoss
+{
+translation "198:198=194:194","192:192=4:4","199:199=194:194","202:202=215:215"
+PROJECTILE
+damagetype "FlashBombB2"
+Obituary "$OB_FLASHBOMB"
++FORCEXYBILLBOARD
+damage (60)//0
+Radius 8//6
+Height 8//7
+speed 26
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+GRHU O 0
+GRHU O 0 A_Jump(256,1,2,3,4)
+GRHU OPQR 3 A_SpawnItemEx("FlashBombPBossFX",0,0,0,frandom(-1,1),frandom(-1,1),frandom(5,6),0,1)
+goto SpawnLOOP+2
+Death:
+GRGR A 0 A_Stop
+GRGR A 0 A_PlaySoundEx("weapon/flashbomb","Weapon")
+GRGR A 1 A_SpawnItemEx("FlashBombExplosionBoss",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor FlashBombPBossFX : BasicClientSide
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+GRHU LMN 3
+stop
+}
+}
+
+
+actor FlashBombPBossB : FlashBombPBoss{translation "198:198=74:74","192:192=205:205","199:199=74:74","202:202=205:205"}
+actor FlashBombPBossR : FlashBombPBoss{translation "198:198=41:41","192:192=171:171","199:199=41:41","202:202=171:171"}
+actor FlashBombPBossO : FlashBombPBoss{translation "198:198=128:128","192:192=104:104","199:199=128:128","202:202=104:104"}
+actor FlashBombPBossP : FlashBombPBoss{translation "198:198=232:232","192:192=229:229","199:199=232:232","202:202=229:229"}
+
+
+actor FlashBombPBoss1 : FlashBombPBoss{speed 29}
+actor FlashBombPBoss1B : FlashBombPBossB{speed 29}
+actor FlashBombPBoss1R : FlashBombPBossR{speed 29}
+actor FlashBombPBoss1O : FlashBombPBossO{speed 29}
+actor FlashBombPBoss1P : FlashBombPBossP{speed 29}
+
+actor FlashBombPBoss2 : FlashBombPBoss{speed 32}
+actor FlashBombPBoss2B : FlashBombPBossB{speed 32}
+actor FlashBombPBoss2R : FlashBombPBossR{speed 32}
+actor FlashBombPBoss2O : FlashBombPBossO{speed 32}
+actor FlashBombPBoss2P : FlashBombPBossP{speed 32}
+
+actor FlashBombPBoss3 : FlashBombPBoss{speed 35}
+actor FlashBombPBoss3B : FlashBombPBossB{speed 35}
+actor FlashBombPBoss3R : FlashBombPBossR{speed 35}
+actor FlashBombPBoss3O : FlashBombPBossO{speed 35}
+actor FlashBombPBoss3P : FlashBombPBossP{speed 35}
+
+actor FlashBombPBoss4 : FlashBombPBoss{speed 38}
+actor FlashBombPBoss4B : FlashBombPBossB{speed 38}
+actor FlashBombPBoss4R : FlashBombPBossR{speed 38}
+actor FlashBombPBoss4O : FlashBombPBossO{speed 38}
+actor FlashBombPBoss4P : FlashBombPBossP{speed 38}
+
+
+actor FlashBombExplosionBoss : FlashBombPBoss
+{
+var int user_Flash;
+damagetype "GrenadeM_Bomb"
++NOCLIP
++DONTBLAST
++DONTSPLASH
++BRIGHT
+Reactiontime 5
+Scale 3.5
+States
+{
+Spawn:
+Y_8G A 0
+Y_8G A 0 A_SetUserVar("user_Flash",5)
+Y_8G AB 1 
+Y_8G CD 1
+Y_8G A 0 A_Explode(150,80,0)
+Y_8G EE 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random(-32, 32),0,0,0,0,1)
+Y_8G EF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
+Y_8G EE 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random(-32, 32),0,0,0,0,1)
+Y_8G GF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
+Y_8G A 0 A_Explode(100,80,0)
+Goto Pattern1
+Pattern1:
+Y_8G EF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
+Y_8G E 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-16, -40), Random(-32, 32),0,0,0,0,1)
+Y_8G GF 1 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(16, 40), Random(-32, 32),0,0,0,0,1)
+Y_8G G 0 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
+Goto DamageNow
+Pattern2:
+Y_8G EF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
+Y_8G E 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(32, 64), Random(-32, 40),0,0,0,0,1)
+Y_8G E 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-32, -64), Random(-32, 40),0,0,0,0,1)
+Y_8G EF 1 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random(-32, 32),0,0,0,0,1)
+Y_8G G 0 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
+Goto DamageNow
+DamageNow:
+Y_8G A 0 A_Explode(90+user_Flash*10,80,0)
+Goto Continue
+Continue:
+Y_8G A 0 A_CountDown
+Y_8G A 0 A_SetUserVar("user_Flash",user_Flash-1)
+Y_8G A 0 A_GiveInventory("CutterFlag",1)
+Y_8G A 0 A_Jump(256,"Pattern1","Pattern2")
+Goto Death
+Death:
+Y_8G A 0 A_Changeflag("NOGRAVITY",1)
+Y_8G G 1
+TNT1 A 1 
+Y_8G D 1
+TNT1 A 1 
+Y_8G D 1
+TNT1 A 1 
+Y_8G N 1
+stop
+}
+}
+
+
+actor FlashBombFX1_B
+{
++NOINTERACTION
+-SOLID
++NOGRAVITY
++FORCEXYBILLBOARD
++CLIENTSIDEONLY
++BRIGHT
+Scale 2.5
+States
+{
+Spawn:
+Y_8G C 0 bright
+Y_8G C 2 bright A_Jump(64, 2)
+Y_8G H 2 bright A_Jump(8,"End")
+Y_8G M 1 bright A_Jump(8,"End")
+TNT1 A 2 A_Jump(8,"End")
+Y_8G L 1 bright
+Goto End
+End:
+TNT1 A 0
+stop
+}
+}
+
+actor FlashBombFX2_B : FlashBombFX1_B
+{
+States
+{
+Spawn:
+Y_8G C 0 bright
+Y_8G C 0 bright A_Jump(240,"Spawn2")
+Goto "FlashBombFX1_B::Spawn"
+Spawn2:
+Y_8G BCH 1 bright
+Y_8G H 0 A_Jump(64,"Spawn3")
+TNT1 A 1 
+Y_8G H 1 bright
+TNT1 A 1 
+Y_8G C 1 bright
+TNT1 A 1 
+Y_8G C 1 bright
+Goto End
+Spawn3:
+Y_8G H 1 bright
+TNT1 A 1 
+Y_8G E 1 bright
+TNT1 A 1 
+Y_8G D 1 bright
+Goto End
+}
+}
+
+actor FlashBombFX3_B : FlashBombFX2_B
+{
+States
+{
+Spawn:
+Y_8G C 0 bright
+Y_8G C 0 bright A_Jump(128,"Spawn2")
+Goto "FlashBombFX1_B::Spawn"
+}
+}
+
+
+actor GrenademanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBossB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBossR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBossO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBossP",0,1,8,0)
+goto Done
+}
+}
+
+actor GrenademanMain1_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss1",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss1B",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss1R",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss1O",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss1P",0,1,8,0)
+goto Done
+}
+}
+
+actor GrenademanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss2",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss2B",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss2R",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss2O",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss2P",0,1,8,0)
+goto Done
+}
+}
+
+actor GrenademanMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss3",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss3B",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss3R",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss3O",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss3P",0,1,8,0)
+goto Done
+}
+}
+
+actor GrenademanMain4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss4",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss4B",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss4R",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss4O",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("FlashBombPBoss4P",0,1,8,0)
+goto Done
+}
+}

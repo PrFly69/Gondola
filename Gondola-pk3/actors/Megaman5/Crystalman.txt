@@ -1,12 +1,14 @@
-actor Crystalman : LightClassBase2
+actor Crystalman : ClassBase //110
 {
 Player.ScoreIcon "C_05H0X"
-player.startitem "LightClassBar"
 
 player.displayname "crystalman"
 player.soundclass "crystalmanc"
 player.startitem "CustomBossAmmoBar"
 player.startitem "CrystalEyeBoss"
+
+player.maxhealth 1100
+health 1100
 player.forwardmove 0.7, 0.7
 player.sidemove 0.68, 0.68
 player.jumpz 13

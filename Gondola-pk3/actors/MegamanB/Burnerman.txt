@@ -1,13 +1,18 @@
-actor BurnerMan : GlassClassBase
+actor BurnerMan : ClassBase //70
 {
 Player.ScoreIcon "C_0BE0X"
-player.startitem "GlassHealthBar"
 player.displayname "Burnerman"
 player.soundclass "burnermanc"
 player.startitem "WaveBurnerBoss"
 player.startitem "BossBurnerAmmo", 84
 player.startitem "BossBurnerAmmo2", 42
 //player.startitem "TrapUse"
+
+player.maxhealth 700
+health 700
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 //player.startitem "SpikeWallManWeakness", 1
 player.startitem "IceWallWeakness2", 1

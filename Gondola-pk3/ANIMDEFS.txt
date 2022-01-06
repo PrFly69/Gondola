@@ -71,3 +71,85 @@ pic DOCNOBR2 tics 4
 texture DOCNOVR
 pic DOCNOVR1 tics 4
 pic DOCNOVR2 tics 4
+
+//ccbm
+//Gyroman Icon
+texture GyroIcon
+pic GyrIcon1 tics 3
+pic GyrIcon2 tics 3
+
+//Windman Icon
+texture WindIcon
+pic WinIcon1 tics 3
+pic WinIcon2 tics 3
+
+//Auto
+texture 00_GA_BR
+pic 00_GB_BR tics 6
+pic TNT1A0 tics 6
+
+texture 00_GA_VR
+pic 00_GB_VR tics 6
+pic TNT1A0 tics 6
+
+texture KC_B_BAR
+pic 00_F_BAR tics 1
+pic TNT1A0 tics 1
+
+texture KC_B_VAR
+pic 00_F_VAR tics 1
+pic TNT1A0 tics 1
+
+//Saturn
+texture MV_A_BAR
+pic MV_B_BAR tics 4
+pic MV_C_BAR tics 4
+pic MV_D_BAR tics 4
+pic MV_E_BAR tics 4
+
+texture MV_A_VAR
+pic MV_B_VAR tics 4
+pic MV_C_VAR tics 4
+pic MV_D_VAR tics 4
+pic MV_E_VAR tics 4
+
+//Jewel
+texture M9_J_BAR
+/*pic J_BAR10A tics 4
+pic J_BAR10B tics 4
+pic J_BAR10C tics 4
+pic J_BAR10D tics 4
+pic J_BAR10E tics 4
+pic J_BAR10F tics 4
+pic J_BAR10G tics 4
+pic TNT1A0 tics 4*/
+pic B_BAR10A tics 4
+pic B_BAR10B tics 4
+pic B_BAR10C tics 4
+pic B_BAR10D tics 4
+pic B_BAR10E tics 4
+pic B_BAR10F tics 4
+pic B_BAR10G tics 4
+pic B_BAR10H tics 4
+
+texture M9_J_VAR
+pic J_VAR10A tics 4
+pic J_VAR10B tics 4
+pic J_VAR10C tics 4
+pic J_VAR10D tics 4
+pic J_VAR10E tics 4
+pic J_VAR10F tics 4
+pic J_VAR10G tics 4
+pic TNT1A0 tics 4
+
+//Bubbleman Item Indicator
+texture BUBFLODA
+pic BUBFLOD1 tics 4
+pic BUBFLOD2 tics 4
+pic BUBFLOD3 tics 4
+
+//Magmaman Item Indicator
+texture MAGFLOWA
+pic MAGFLOW1 tics 2
+pic MAGFLOW2 tics 2
+pic MAGFLOW3 tics 2

@@ -1,6 +1,8 @@
 user bool ccbm_allyhealthbar = true;
 user bool ccbm_mapmarker = true;
 
+//LMSGAS
+
 //Should the copywep display be on?
 server bool SV_COPYDISPLAY = true;
 

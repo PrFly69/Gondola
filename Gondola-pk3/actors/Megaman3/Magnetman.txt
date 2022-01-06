@@ -6,6 +6,11 @@ player.soundclass "magnetmanc"
 player.startitem "MagnetMissileBoss"
 player.startitem "MagFlyDeleteItem"
 player.startitem "MagnetFlag", 15
+
+player.maxhealth 1000
+health 1000
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 player.jumpz 12
 
 player.startitem "SparkShockWeakness2", 1
@@ -18,7 +23,6 @@ player.startitem "LightningBoltWeakness", 1
 player.startitem "PlugBallWeakness", 1
 player.startitem "ElectricShockWeakness", 1
 
-player.startitem "RealClassFlag", 29
 States
 {
 Spawn:

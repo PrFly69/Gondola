@@ -1,4 +1,4 @@
-actor RaThor : DuoClassBase
+actor RaThor : ClassBase //115
 {
 Player.ScoreIcon "C_0KE0X"
 player.displayname "RaThor"
@@ -13,6 +13,8 @@ player.startitem "CanHarvestSouls"
 //player.startitem "CanAirJump"
 //player.startitem "CanAirJumpStack", 1
 
+player.maxhealth 1150
+health 1150
 player.forwardmove 0.84, 0.84
 player.sidemove 0.82, 0.82
 player.jumpz 14
