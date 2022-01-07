@@ -3,7 +3,7 @@ actor GeminiLaserBoss : BaseMM8BDMWep_CBM
 Tag "$TAGC_3C"
 dropitem "GeminiLaserWepCDropped"
 Weapon.AmmoUse 0
-Weapon.AmmoGive 28
+Weapon.AmmoGive 100
 Obituary "$OB_GEMINILASER"
 weapon.ammotype "SeeingDoubleAmmo"
 States
@@ -17,10 +17,10 @@ GEMB A 0 ACS_ExecuteAlways(998,0,DYE_GEMINIMAN)
 Ready1:
 GEMB A 0 A_JumpIfInventory("CloneSpawned",1,"FullReady")
 GEMB A 0 A_JumpIfInventory("CloneSpawning",1,"FullReady")
-GEMB A 0 A_JumpIfInventory("SeeingDoubleAmmo",28,"FullReady")
+GEMB A 0 A_JumpIfInventory("SeeingDoubleAmmo",100,"FullReady")
 GEMB A 7 A_WeaponReady
 GEMB A 0 A_JumpIfInventory("CloneSpawned",1,"FullReady")
-GEMB A 0 A_GiveInventory("SeeingDoubleAmmo",1)
+GEMB A 0 A_GiveInventory("SeeingDoubleAmmo",4)
 Goto Ready1+1
 FullReady:
 GEMB A 1 A_WeaponReady
@@ -43,7 +43,7 @@ GEMB BC 2
 GEMB CCBA 1
 GEMB A 8
 GEMB A 0 A_JumpIfInventory("CloneSpawned",1,2)
-GEMB A 0 A_GiveInventory("SeeingDoubleAmmo",1)
+GEMB A 0 A_GiveInventory("SeeingDoubleAmmo",4)
 GEMB A 0 A_ReFire
 Goto Ready1+1
 
@@ -52,7 +52,7 @@ GEMB A 0 A_Jump(8,2)
 GEMB A 0 A_Jump(96,"GeminiLaser")
 goto Fire+1
 GEMB A 0 A_JumpIfInventory("CloneSpawned",1,4)
-GEMB A 1 A_GiveInventory("SeeingDoubleAmmo",28)
+GEMB A 1 A_GiveInventory("SeeingDoubleAmmo",100)
 GEMB A 2 A_GiveInventory("GemSpawnerAuto",1)
 GEMB A 12 A_TakeInventory("GemSpawnerAuto",1)
 goto AltFire
@@ -64,7 +64,7 @@ AltFire:
 //TNT1 A 0 A_JumpIfInventory("GeminiItemSet",1,"NoAmmo")
 //TNT1 A 0 A_JumpIfInventory("GeminiItemUnSet",1,"NoAmmo")
 GEMB A 0 A_JumpIfInventory("CloneSpawned",1,"Set")
-GEMM A 0 A_JumpIfInventory("SeeingDoubleAmmo",4,"GeminiLaser")
+GEMM A 0 A_JumpIfInventory("SeeingDoubleAmmo",14,"GeminiLaser")
 goto NoAmmo
 GeminiLaser:
 GEMB A 0 A_TakeInventory("SpawningMisfire",1)
@@ -97,7 +97,7 @@ GEMB A 0 A_TakeInventory("SpawningMisfire",1)
 Goto Ready1+1
 NoAmmo:
 GEMB A 8
-GEMB A 0 A_GiveInventory("SeeingDoubleAmmo",1)
+GEMB A 0 A_GiveInventory("SeeingDoubleAmmo",4)
 Goto Ready1+1
 
 Flash:
@@ -443,7 +443,7 @@ FireP:
 TNT1 A 0 A_FireCustomMissile("BossGeminiLaserP",0,1,8,0)
 goto Done
 Done:
-TNT1 A 0 A_TakeInventory("SeeingDoubleAmmo",4)
+TNT1 A 0 A_TakeInventory("SeeingDoubleAmmo",14)
 stop
 }
 }
@@ -464,7 +464,7 @@ loop
 Use:
 TNT1 A 0 A_JumpIfInventory("CloneSpawning",1,"BugFix")
 TNT1 A 0 A_JumpIfInventory("CloneSpawned",1,"Success2")
-TNT1 A 0 A_JumpIfInventory("SeeingDoubleAmmo",28,"Success")
+TNT1 A 0 A_JumpIfInventory("SeeingDoubleAmmo",100,"Success")
 fail
 Success:
 //TNT1 A 0 A_SpawnItemEx("GemClone",0,0,28,0,0,0,0,0)//SXF_SETMASTER
@@ -505,7 +505,7 @@ TNT1 A 0 A_PlaySoundEx("S3_K/MetalSpark","Voice")
 fail
 BugPatch:
 TNT1 A 0
-TNT1 A 0 A_TakeInventory("SeeingDoubleAmmo",14)
+TNT1 A 0 A_TakeInventory("SeeingDoubleAmmo",50)
 TNT1 A 0 A_TakeInventory("CloneSpawning",999)
 TNT1 A 0 A_TakeInventory("CloneAngle",999)
 TNT1 A 0 A_TakeInventory("CloneDistance",999)
@@ -1165,7 +1165,7 @@ actor SeeingDoubleAmmo : Ammo
 {
 +INVENTORY.IGNORESKILL 
 inventory.amount 1
-inventory.maxamount 28
+inventory.maxamount 100
 }
 
 actor CloneSpawning : Inventory
