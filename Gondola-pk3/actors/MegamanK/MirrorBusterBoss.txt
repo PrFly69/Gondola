@@ -86,9 +86,9 @@
 
 		Fire_AltReset:
 		ENKA A 0 A_TakeInventory("EnkerAbsorbCount",1)
-		ENKA A 0 A_TakeInventory("StunArmor",99)
-		ENKA A 0 A_TakeInventory("BasicArmor",999)
-		ENKA A 0 A_TakeInventory("LastArmorCount",999)
+		ENKA A 0 A_TakeInventory("StunArmor",990)
+		ENKA A 0 A_TakeInventory("BasicArmor",9990)
+		ENKA A 0 A_TakeInventory("LastArmorCount",9990)
 		ENKA A 0 SetPlayerProperty(0,0,0)
 		ENKA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
 		ENKA A 0 A_GiveInventory("EnkerAltCooldown_RC",1)
@@ -119,8 +119,9 @@
 		AltFire:
 		ENKA A 0 A_GiveInventory("EnkerAbsorbCount",1)
 		ENKA A 0 A_GiveInventory("EnkerArmor",1)
+		ENKA A 0 A_GiveInventory("SetDynamicArmorDosage_P",1)
 		ENKA A 0 A_GiveInventory("StunArmor",1)
-		ENKA A 0 A_GiveInventory("LastArmorCount",100)
+		ENKA A 0 A_GiveInventory("LastArmorCount",1000)
 		ENKA A 0 SetPlayerProperty(0,1,0)
 		ENKA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
 		ENKA A 0 A_PlaySoundEx("weapon/mirrorabsorb","Weapon")
@@ -196,6 +197,7 @@
 		AltfireEnd:
 		ENKA A 0 A_TakeInventory("EnkerAbsorbCount",1)
 		ENKA A 0 A_TakeInventory("EnkerAltCombo_F",99)
+		ENKA A 0 A_TakeInventory("DynamicArmorDosage_F")
 		ENKA A 0// A_TakeInventory("StunArmor",99)
 		ENKA A 0// A_TakeInventory("BasicArmor",999)
 		ENKA A 0// A_TakeInventory("LastArmorCount",999)
@@ -226,7 +228,7 @@
 		AltFireBot:
 		ENKA A 0 A_GiveInventory("EnkerAbsorbCount",1)
 		ENKA A 0 A_GiveInventory("EnkerArmor",1)
-		ENKA A 0 A_GiveInventory("LastArmorCount",100)
+		ENKA A 0 A_GiveInventory("LastArmorCount",1000)
 		ENKA A 0 SetPlayerProperty(0,1,0)
 		ENKA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
 		ENKA A 0
@@ -235,8 +237,8 @@
 		ENKA E 29
 		ENKA DC 3
 		ENKA A 0 A_TakeInventory("EnkerAbsorbCount",1)
-		ENKA A 0 A_TakeInventory("BasicArmor",999)
-		ENKA A 0 A_TakeInventory("LastArmorCount",999)
+		ENKA A 0 A_TakeInventory("BasicArmor",9990)
+		ENKA A 0 A_TakeInventory("LastArmorCount",9990)
 		ENKA A 0 SetPlayerProperty(0,0,0)
 		ENKA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
 		Goto Fire+1
@@ -318,10 +320,10 @@ fail
 		Spawn:
 		TNT1 A 1 A_Countdown
 		Looping:
-		TNT1 A 0 A_TakeFromTarget("StunArmor",8)
-		TNT1 A 0 A_TakeFromTarget("BasicArmor",8)
-		TNT1 A 0 A_TakeFromTarget("BossBasicArmorAmount",8)
-		TNT1 A 0 A_TakeFromTarget("LastArmorCount",8)
+		TNT1 A 0 A_TakeFromTarget("StunArmor",80)
+		TNT1 A 0 A_TakeFromTarget("BasicArmor",80)
+		TNT1 A 0 A_TakeFromTarget("BossBasicArmorAmount",80)
+		TNT1 A 0 A_TakeFromTarget("LastArmorCount",80)
 		TNT1 A 1 A_Countdown
 		goto Looping
 		
@@ -339,9 +341,9 @@ fail
 		Spawn:
 		TNT1 A 1 A_Countdown
 		Looping:
-		TNT1 A 0 A_TakeFromTarget("StunArmor",16)
-		TNT1 A 0 A_TakeFromTarget("BasicArmor",16)
-		TNT1 A 0 A_TakeFromTarget("LastArmorCount",16)
+		TNT1 A 0 A_TakeFromTarget("StunArmor",160)
+		TNT1 A 0 A_TakeFromTarget("BasicArmor",160)
+		TNT1 A 0 A_TakeFromTarget("LastArmorCount",160)
 		TNT1 A 1 A_Countdown
 		goto Looping
 		
@@ -367,7 +369,7 @@ fail
   Actor EnkerArmor : BasicArmorPickup
   {
     Armor.Savepercent 95.005
-	Armor.Saveamount 100
+	Armor.Saveamount 1000
   }
 
 
@@ -387,7 +389,7 @@ fail
   Actor LastArmorCount : Inventory
   {
     Inventory.Amount 1
-	Inventory.MaxAmount 100
+	Inventory.MaxAmount 1000
   }
 
 

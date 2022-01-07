@@ -500,7 +500,7 @@ Alpha 0.35
 Translation "192:192=85:85", "198:198=227:227"
 Height 56
 Radius 30
-health 50
+health 500
 States
 {
 Spawn:
