@@ -166,6 +166,7 @@ loop
 //0 - Iconless/Busters. Some of these are getting icons eventually, but that can wait.
 actor CWV_None:CWV_Template_Blank{} //Maestro is weird.
 actor CWV_MegaBusterC:CWV_Template_Blank{}
+actor CWV_MegaBusterBoss:CWV_Template_Blank{} //Fuck.
 actor CWV_JetBusterC:CWV_Template_Blank{} //Has wings.
 actor CWV_PowerFistC:CWV_Template_Blank{} //Has pads.
 actor CWV_HeroicProtoBuster:CWV_Template_Blank{}

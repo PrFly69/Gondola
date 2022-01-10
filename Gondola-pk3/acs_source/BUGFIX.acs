@@ -100,7 +100,7 @@ script CBM_HealMyThing (int Which, int HPBoost)
 
 script "CBM_MainOpen" OPEN
 {
-	//IsTeamGame = ACS_ExecuteWithResult(975,1);
+	//IsTeamGame = ACS_ExecuteWithResult(975,1); //Whoever did this: for what reason?
 	//ServerMAX = GetMaxPlayers();
 }
 
@@ -719,7 +719,7 @@ script "cbm_missileyank" (int maxRange)
 		{
 			continue;
 		}
-		if(IsTeamGame)
+		if(ACS_ExecuteWithResult(975,1))
 		{
 			if(userTeam == GetPlayerInfo(p, PLAYERINFO_TEAM))
 			{
@@ -750,7 +750,7 @@ script "cbm_GalaxyBHB_ACS" (int maxforce, int maxforceZ, int maxRange)
 		if(!PlayerInGame(p)){
 			continue;
 		}
-		if(isTeamGame){
+		if(ACS_ExecuteWithResult(975,1)){
 			if(userTeam == GetPlayerInfo(p,PLAYERINFO_TEAM)){
 				continue;
 			}
@@ -848,7 +848,7 @@ script "cbm_GalaxyBHB_ACSEnd" (int maxRange)
 		if(!PlayerInGame(p)){
 			continue;
 		}
-		if(isTeamGame){
+		if(ACS_ExecuteWithResult(975,1)){
 			if(userTeam == GetPlayerInfo(p,PLAYERINFO_TEAM)){
 				continue;
 			}
