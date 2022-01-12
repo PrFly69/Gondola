@@ -1,0 +1,51 @@
+actor Frostman : ClassBase
+{
+Player.ScoreIcon "C_08F0X"
+player.displayname "Frostman"
+player.soundclass "frostmanc"
+
+player.maxhealth 2000
+health 2000
+player.jumpz 10
+player.forwardmove 0.5, 0.5
+player.sidemove 0.48, 0.48
+
+player.startitem "IceWaveBoss"
+player.startitem "SemiStunArmor"
+
+player.startitem "FlashBombWeakness2", 1
+
+player.startitem "HyperBombWeakness", 1
+player.startitem "CrashBombWeakness", 1
+player.startitem "DrillBombWeakness", 1
+player.startitem "NapalmBombWeakness", 1
+player.startitem "DangerWrapWeakness", 1
+player.startitem "FlashBombWeakness", 1
+player.startitem "RemoteMineWeakness", 1
+player.startitem "LaserTridentWeakness", 1
+player.startitem "CommandoBombWeakness", 1
+player.startitem "BubbleBombWeakness", 1
+player.startitem "BalladeCrackerWeakness", 1
+
+States
+{
+Spawn:
+AFRO A 0 
+AFRO B 1
+AFRO A 1
+Goto Spawn+2
+See:
+AFRO BCDE 5
+Goto Spawn
+Missile:
+AFRO F 5
+AFRO G 4
+goto Spawn
+ClassPain:
+AFRO H 0
+goto PainContinue
+ClassDeath:
+AFRO H 0
+goto DeathContinue
+}
+}

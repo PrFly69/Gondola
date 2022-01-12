@@ -1,0 +1,68 @@
+actor Burstman : ClassBase
+{
+Player.ScoreIcon "C_07C0X"
+player.displayname "Burstman"
+player.soundclass "burstmanc"
+
+player.maxhealth 1100
+health 1100
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "DangerWrapBoss"
+player.startitem "BurstBursterBurstestAmmo", 24
+player.startitem "BurstBombStock",2
+player.startitem "BurstStockItem"
+
+player.startitem "ScorchWheelWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "FlameSwordWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+
+States
+{
+Spawn:
+BURS A 0
+BURS B 1 A_JumpIfInventory("DangerFly",1,"SeeBubb")
+BURS A 1 A_JumpIfInventory("DangerFly",1,"SeeBubb")
+Goto Spawn+2
+See:
+BURS BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("DangerFly",1,"SeeBubb")
+Goto Spawn
+SeeBubb:
+BURS S 1
+BURS SS 1 A_JumpIfInventory("DangerFly",1,"SeeBubb")
+goto Spawn+1
+Missile:
+BURS F 0 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
+BURS F 0 A_JumpIfInventory("DangerFly",1,"MissileBubb")
+BURS F 5
+BURS G 4
+goto Spawn+1
+Missile2:
+BURS R 0 A_JumpIfInventory("DangerFly",1,"MissileBubb2")
+BURS R 8
+goto Spawn+1
+MissileBubb:
+BURS T 0 A_JumpIfInventory("VivifyDelay5",1,"MissileBubb2")
+BURS T 8
+goto SeeBubb+1
+MissileBubb2:
+BURS U 8
+goto SeeBubb+1
+ClassPain:
+BURS H 0
+goto PainContinue
+ClassDeath:
+BURS H 0 A_SpawnItemEx("BurstmanBubblePopDeath_H",0,0,0,0,0,0,0,1)
+goto DeathContinue
+}
+}

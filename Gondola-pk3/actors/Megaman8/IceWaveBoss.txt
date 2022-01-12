@@ -233,7 +233,7 @@ PROJECTILE
 BounceFactor 1.0
 WallBounceFactor 1.0
 BounceCount 5
-Damagetype "IceWave"
+Damagetype "FrostM_Shot"
 Obituary "$OB_ICECRUSH"
 Radius 15
 Height 15
@@ -269,7 +269,7 @@ actor FrostPunchIcicle
 PROJECTILE
 +DONTBLAST
 -RIPPER
-Damagetype "IceWave"
+Damagetype "FrostM_Shot"
 Obituary "$OB_ICECRUSH"
 Radius 15
 Height 15
@@ -396,7 +396,7 @@ PROJECTILE
 +DONTBLAST
 +DONTREFLECT
 -NOGRAVITY
-Damagetype "IceWaveB"
+Damagetype "FrostM_Iced"
 Obituary "$OB_ICEWAVEDROP"
 Height 10
 Radius 10
@@ -426,7 +426,7 @@ PROJECTILE
 +DONTREFLECT
 +DONTBLAST
 Damage (30)
-Damagetype "IceWaveB"
+Damagetype "FrostM_Iced"
 Obituary "$OB_ICEWAVE"
 Speed 30
 Height 48
@@ -456,7 +456,7 @@ actor IceWaveDownB : IceWaveDown
 {
 +DONTBLAST
 Damage (30)
-Damagetype "IceWaveB"
+Damagetype "FrostM_Iced"
 States
 {
 Spawn:
@@ -473,7 +473,7 @@ actor IceWaveUpB : IceWaveUp
 {
 +DONTBLAST
 Damage (30)
-Damagetype "IceWaveB"
+Damagetype "FrostM_Iced"
 States
 {
 Spawn:
@@ -498,7 +498,7 @@ actor IceWaveIcicleB : IceWaveB
 {
 -RIPPER
 Damage (80)
-Damagetype "IceWaveB"
+Damagetype "FrostM_Iced"
 States
 {
 Spawn:
@@ -531,7 +531,7 @@ stop
 actor IceWaveIcicleWallB : IceWaveIcicleB
 {
 Damage (80)
-Damagetype "IceWaveB"
+Damagetype "FrostM_Iced"
 States
 {
 Spawn:

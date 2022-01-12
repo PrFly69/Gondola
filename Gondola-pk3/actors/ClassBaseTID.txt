@@ -227,6 +227,23 @@ stop
 }
 }
 
+actor PainGravityM_SlamHit : BasicSlamBase//Gravityman - this is the real one.
+{
+States
+{
+Collide:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEX("GravitySmackDownCollide",0,0,28,0,0,0,0,16384)
+TNT1 A 2
+stop
+CollideX:
+TNT1 A 0 Thing_Move(0,user_HIT,1)
+TNT1 A 2 A_SpawnItemEX("GravitySmackDownCollideX",0,0,28,0,0,0,0,16384)
+TNT1 A 2
+stop
+}
+}
+
 actor PainTenguM_SlamHit : BasicSlamBase//Tenguman
 {
 States

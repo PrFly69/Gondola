@@ -365,7 +365,7 @@ actor TenguSmash
 {
 Translation "192:192=4:4","199:199=112:112"
 PROJECTILE
-damagetype "G_TenguSlam"
+damagetype "TenguM_Slam"
 Obituary "$OB_TENGUSMASH"
 +DONTBLAST
 +THRUACTORS
@@ -393,7 +393,7 @@ actor TenguSmashP : TenguSmash{translation "192:192=229:229", "199:199=232:232"}
 
 actor TenguSmash2 : TenguSmash
 {
-damagetype "GravityB2"
+damagetype "TenguM_Dunked"
 states
 {
 Spawn:

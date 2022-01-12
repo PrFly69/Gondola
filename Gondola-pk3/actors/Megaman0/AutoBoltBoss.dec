@@ -907,7 +907,7 @@ SeeSound "weapon/dustbit"
 //+DONTBLAST
 damagetype "ClassPainLess2"
 Speed 60
-Damage (7)
+Damage (70)
 radius 16
 height 16
 scale 2.5

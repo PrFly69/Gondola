@@ -1,0 +1,53 @@
+actor Magmaman : ClassBase
+{
+Player.ScoreIcon "C_09G0X"
+player.displayname "Magmaman"
+player.soundclass "magmamanc"
+
+player.maxhealth 1350
+health 1350
+player.jumpz 14
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+player.startitem "MagmaBazookaBoss"
+player.startitem "VolcanicBreakfastAmmo", 48
+player.startitem "MagmaIgnition"
+
+player.startitem "TornadoBlowWeakness2", 1
+
+player.startitem "AirShooterWeakness", 1
+player.startitem "WindStormWeakness", 1
+player.startitem "TornadoHoldWeakness", 1
+player.startitem "TenguBladeWeakness", 1
+player.startitem "TornadoBlowWeakness", 1
+player.startitem "WaterShieldWeakness", 1
+player.startitem "SaltWaterWeakness", 1
+
+States
+{
+Spawn:
+MGMA A 0
+MGMA B 1 A_JumpIfInventory("MagmaItemFlag",1,"Missile2")
+MGMA A 1 A_JumpIfInventory("MagmaItemFlag",1,"Missile2")
+wait
+See:
+MGMA BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("MagmaItemFlag",1,"Missile2")
+Goto Spawn
+Missile:
+MGMA F 4
+MGMA F 1 A_JumpIfInventory("MagmaItemFlag",1,"Missile2")
+MGMA G 5
+goto Spawn
+Missile2:
+MGMA FG 2
+MGMA FG 2 A_JumpIfInventory("MagmaItemFlag",1,"Missile2")
+goto Spawn
+ClassPain:
+MGMA H 0
+goto PainContinue
+ClassDeath:
+MGMA H 0
+goto DeathContinue
+}
+}

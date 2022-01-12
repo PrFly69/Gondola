@@ -1,7 +1,7 @@
 actor DeepDiggerBoss : BaseMM8BDMWep_CBM
 {
 tag "$TAGC_VG"
-dropitem "CopyClassUpgradeDropped"
+dropitem "DeepDiggerWepCDropped"
 Weapon.AmmoUse 0
 Weapon.AmmoGive 0
 Obituary "$OB_URANUSGORE"
@@ -876,7 +876,7 @@ stop
 actor UranusGroundSlam : BasicExplosion
 {
 Translation "192:192=216:216","198:198=42:42"
-damagetype "ClassPainLess2"
+damagetype "Uranus_Flat"
 Obituary "$OB_URANUSSLAM"
 states
 {
@@ -903,7 +903,7 @@ actor UranusGroundSlamP : UranusGroundSlam{Translation "192:192=229:229","198:19
 
 actor UranusGroundSlamLift : UranusGroundSlam
 {
-damagetype "UranusLift"
+damagetype "Uranus_Lift"
 Obituary "$OB_URANUSSLAM"
 states
 {
@@ -945,7 +945,7 @@ actor UranusDeepDigger
 {
 Translation "192:192=216:216","198:198=42:42","202:202=4:4","199:199=215:215"
 PROJECTILE
-damagetype "UranusDeepDigger"
+damagetype "Uranus_ShotDown"
 Obituary "$OB_URANUSDIGGER"
 damage (200)
 radius 22
@@ -1020,7 +1020,7 @@ loop
 actor UranusDeepDiggerCrushed : BasicExplosion
 {
 Translation "192:192=216:216","198:198=42:42","202:202=4:4","199:199=215:215"
-damagetype "UranusDeepDigger"
+damagetype "Uranus_ShotDown"
 Obituary "$OB_URANUSDIGGER"
 Scale 2.5
 Speed 1
@@ -1049,7 +1049,7 @@ actor UranusDeepDiggerCrushedP : UranusDeepDiggerCrushed{Translation "192:192=22
 actor UranusDeepDiggerBit
 {
 PROJECTILE
-damagetype "DeepDigger"
+damagetype "Uranus_ShotBit"
 Obituary "$OB_URANUSDIGGER"
 -NOGRAVITY
 gravity 0.3
@@ -1287,15 +1287,15 @@ stop
 }
 
 
-actor UranusChargeProtection : PowerProtection
+actor Uranus_StampedeProtect : PowerProtection
 {
-damagefactor "UranusCharge",0.0
+damagefactor "Uranus_Stampede",0.0
 powerup.duration 4
 }
 
 actor UranusChargeRadius : BasicExplosion
 {
-damagetype "UranusCharge"
+damagetype "Uranus_Stampede"
 Obituary "$OB_URANUSTRAMPLE"
 states
 {
@@ -1308,7 +1308,7 @@ stop
 
 actor UranusPlayerRadius : UranusChargeRadius
 {
-damagetype "ClassPainLess2"
+damagetype "Uranus_Gored"
 Obituary "$OB_URANUSGORE"
 scale 2.5
 states
