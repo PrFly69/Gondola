@@ -121,44 +121,44 @@
     States
 	{	
 		Select:
-        TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-        TNT1 A 1 A_Raise
+        MRCH AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+        MRCH A 1 A_Raise
         Loop
 		
 		Deselect:
-        TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-        TNT1 A 1 A_Lower
+        MRCH AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+        MRCH A 1 A_Lower
         Loop
 		
 		Ready:
 		//TNT1 A 0 A_GiveInventory("MercuryBlobFormWeakness",1)
 		//TNT1 A 0 A_GiveInventory("GuardDownFlag",1)
-        TNT1 A 0 ACS_ExecuteAlways(998,0,DYE_MERCURY, 1)
-        TNT1 A 0 A_GunFlash
-		TNT1 A 0 A_TakeInventory("GrabBusterBoss", 99)
+        MRCH P 0 ACS_ExecuteAlways(998,0,DYE_MERCURY, 1)
+        MRCH P 0 A_GunFlash
+		MRCH P 0 A_TakeInventory("GrabBusterBoss", 99)
         Goto BlobReadyNoReload//ReadyBlob
 		
 		BlobReadyNoReload:
-		TNT1 A 2 A_WeaponReady(WRF_NOFIRE)
+		MRCH P 2 A_WeaponReady(WRF_NOFIRE)
 		BlobReadyNoReload2:		
-		TNT1 A 1 A_WeaponReady
-        TNT1 A 0 A_TakeInventory("MercuryBlobFormAmmo",2)
-		TNT1 A 0 A_JumpIfInventory("MercuryBlobFormAmmo",1,"ReadyBlob")
+		MRCH P 1 A_WeaponReady
+        MRCH P 0 A_TakeInventory("MercuryBlobFormAmmo",2)
+		MRCH P 0 A_JumpIfInventory("MercuryBlobFormAmmo",1,"ReadyBlob")
 		Goto Reload
 		
 		ReadyBlob:
-        TNT1 A 0 A_JumpIfInventory("MercuryClassAmmo",4,"ReadyBlob2")
-        TNT1 AA 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
-        TNT1 A 0 A_TakeInventory("MercuryBlobFormAmmo",2)
-        TNT1 A 0 A_JumpIfInventory("MercuryBlobFormAmmo",2,"ReadyBlob")
-		TNT1 A 1
+        MRCH P 0 A_JumpIfInventory("MercuryClassAmmo",4,"ReadyBlob2")
+        MRCH PP 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+        MRCH P 0 A_TakeInventory("MercuryBlobFormAmmo",2)
+        MRCH P 0 A_JumpIfInventory("MercuryBlobFormAmmo",2,"ReadyBlob")
+		MRCH P 1
         Goto Reload
 		
         ReadyBlob2:
-        TNT1 AA 1 A_WeaponReady(WRF_ALLOWRELOAD)
-        TNT1 A 0 A_TakeInventory("MercuryBlobFormAmmo",2)
-        TNT1 A 0 A_JumpIfInventory("MercuryBlobFormAmmo",1,"ReadyBlob2")
-		TNT1 A 1
+        MRCH PP 1 A_WeaponReady(WRF_ALLOWRELOAD)
+        MRCH P 0 A_TakeInventory("MercuryBlobFormAmmo",2)
+        MRCH P 0 A_JumpIfInventory("MercuryBlobFormAmmo",1,"ReadyBlob2")
+		MRCH P 1
         Goto Reload
 		
 		Fire:
@@ -166,13 +166,13 @@
 		Goto ReadyBlob
 		
 		FireGo:
-        TNT1 A 0 A_PlaySoundEx("Weapon/GameBoyFire","Weapon")
-		TNT1 A 1
-		TNT1 A 2 
-		TNT1 A 0 A_TakeInventory("MercuryClassAmmo",4)
-        TNT1 A 0 A_GiveInventory("MercuryMain2_CI",1)
-        TNT1 AAAAAAA 2 A_TakeInventory("MercuryBlobFormAmmo",2)
-        TNT1 A 0 A_JumpIfInventory("MercuryBlobFormAmmo",1,"ReadyBlob")
+        MRCH G 0 A_PlaySoundEx("Weapon/GameBoyFire","Weapon")
+		MRCH F 1
+		MRCH F 2 
+		MRCH E 0 A_TakeInventory("MercuryClassAmmo",4)
+        MRCH E 0 A_GiveInventory("MercuryMain2_CI",1)
+        MRCH EQQEFGG 2 A_TakeInventory("MercuryBlobFormAmmo",2)
+        MRCH P 0 A_JumpIfInventory("MercuryBlobFormAmmo",1,"ReadyBlob")
         Goto Reload
 		
 		AltFire:
@@ -180,83 +180,83 @@
 		Goto ReadyBlob
 		
 		AltFireGo:	
-        TNT1 A 0 A_PlaySoundEx("Weapon/WoodLeap","Weapon")
-        TNT1 A 0 A_ChangeVelocity(cos(pitch)*36,0,-sin(pitch)*20+4,3)
-        TNT1 A 0 A_GiveInventory("MercuryAltBlobSync_P",1)
-        TNT1 A 0 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
-        TNT1 A 1 //A_JumpIfInventory("Merc_BlobOff_F",1,"BlobAltXX")
-        TNT1 A 0 A_JumpIf(z-floorz==0,"BlobAltEnd")
-        TNT1 A 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
-        TNT1 A 0 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
-		TNT1 A 1 // A_JumpIfInventory("Merc_BlobOff_F",1,"BlobAltX")
-        TNT1 A 0 A_JumpIf(z-floorz==0,"BlobAltEnd1")
-        TNT1 A 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
-        TNT1 A 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
-        TNT1 A 0 A_JumpIf(z-floorz==0,"BlobAltEnd1")
-        TNT1 A 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
-        TNT1 A 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
-        TNT1 A 0 A_JumpIf(z-floorz==0,"BlobAltEnd2")
-        TNT1 A 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
-        TNT1 A 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
-        TNT1 A 0 A_JumpIf(z-floorz==0,"BlobAltEnd2")
-        TNT1 A 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
-        TNT1 A 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
-        TNT1 A 0 A_JumpIf(z-floorz==0,"BlobAltEnd3")
-        TNT1 A 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
-        TNT1 A 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
-        TNT1 A 0 A_JumpIf(z-floorz==0,"BlobAltEnd3")
-        TNT1 A 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
-        TNT1 A 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+        MRCH R 0 A_PlaySoundEx("Weapon/WoodLeap","Weapon")
+        MRCH R 0 A_ChangeVelocity(cos(pitch)*36,0,-sin(pitch)*20+4,3)
+        MRCH R 0 A_GiveInventory("MercuryAltBlobSync_P",1)
+        MRCH R 0 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+        MRCH R 1 //A_JumpIfInventory("Merc_BlobOff_F",1,"BlobAltXX")
+        MRCH R 0 A_JumpIf(z-floorz==0,"BlobAltEnd")
+        MRCH R 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
+        MRCH R 0 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+		MRCH R 1 // A_JumpIfInventory("Merc_BlobOff_F",1,"BlobAltX")
+        MRCH R 0 A_JumpIf(z-floorz==0,"BlobAltEnd1")
+        MRCH R 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
+        MRCH R 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+        MRCH R 0 A_JumpIf(z-floorz==0,"BlobAltEnd1")
+        MRCH R 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
+        MRCH R 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+        MRCH R 0 A_JumpIf(z-floorz==0,"BlobAltEnd2")
+        MRCH R 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
+        MRCH R 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+        MRCH R 0 A_JumpIf(z-floorz==0,"BlobAltEnd2")
+        MRCH R 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
+        MRCH R 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+        MRCH R 0 A_JumpIf(z-floorz==0,"BlobAltEnd3")
+        MRCH R 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
+        MRCH R 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+        MRCH R 0 A_JumpIf(z-floorz==0,"BlobAltEnd3")
+        MRCH R 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
+        MRCH R 1 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
         //TNT1 A 0 A_GiveInventory("SnakeClimbing")
         //TNT1 A 0 A_JumpIf(momz==0,"BlobAltEnd4")
         Goto BlobAltLoop
        
         BlobAltLoop:
-        TNT1 A 0 A_JumpIf(z-floorz==0,"BlobAltH")
-        TNT1 A 0 A_JumpIf(momz==0,"BlobAltLoopZ")
-		TNT1 A 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
-        TNT1 A 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
-        TNT1 A 0 A_JumpIfInventory("SnakeOnWall",1,"BlobAltEnd4")
-        TNT1 A 0 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+        MRCH R 0 A_JumpIf(z-floorz==0,"BlobAltH")
+        MRCH R 0 A_JumpIf(momz==0,"BlobAltLoopZ")
+		MRCH R 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+        MRCH R 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
+        MRCH R 0 A_JumpIfInventory("SnakeOnWall",1,"BlobAltEnd4")
+        MRCH R 0 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+        MRCH R 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
         Loop
        
         BlobAltLoopZ:
-        TNT1 A 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
-        TNT1 A 0 A_JumpIfInventory("SnakeOnWall",1,"BlobAltEnd4")
-        TNT1 A 0 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
-        TNT1 A 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
-        TNT1 A 0 A_JumpIf(z-floorz==0,"BlobAltH")
-        TNT1 A 0 A_JumpIf(momz==0,"BlobAltH")
+        MRCH R 0 A_JumpIfInventory("MercuryLanded",1,"BlobAltH")
+        MRCH R 0 A_JumpIfInventory("SnakeOnWall",1,"BlobAltEnd4")
+        MRCH R 0 A_SpawnItemEX("MercuryCollider",0,0,-8,momx,momy,momz,0,8,0)
+        MRCH R 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+        MRCH R 0 A_JumpIf(z-floorz==0,"BlobAltH")
+        MRCH R 0 A_JumpIf(momz==0,"BlobAltH")
         Goto BlobAltLoop+3
  
         BlobAltH:
-        TNT1 A 0 A_PlaySoundEx("classes/burstpop","Weapon")
-		TNT1 A 0 A_GiveInventory("MercuryAlt_CI",1)
-        TNT1 A 2 A_ScaleVelocity(0.5)//AAA 1 0.25
+        MRCH S 0 A_PlaySoundEx("classes/burstpop","Weapon")
+		MRCH S 0 A_GiveInventory("MercuryAlt_CI",1)
+        MRCH S 2 A_ScaleVelocity(0.5)//AAA 1 0.25
         Goto BlotAltEnd2
 	   
         BlobAltEnd1:
-		TNT1 A 1
+		MRCH S 1
         Goto BlobAltEnd+1
        
         BlobAltEnd2:
-		TNT1 A 0
+		MRCH S 0
         Goto BlobAltEnd+2
        
         BlobAltEnd3:
-		TNT1 A 0
+		MRCH S 0
         Goto BlobAltEnd+3
        
         BlobAltEnd4:
-		TNT1 A 0
+		MRCH S 0
         Goto BlobAltEnd+4
        
         BlobAltEnd:
-        TNT1 AAAA 2
+        TNT1 SSHP 2
 		BlotAltEnd2:
-        TNT1 A 15 //A_GiveInventory("SnakeClimbing")
-        TNT1 A 0 A_JumpIfInventory("MercuryBlobFormAmmo",1,"BlobReadyNoReload2")
+        MRCH T 15 //A_GiveInventory("SnakeClimbing") 
+        MRCH H 0 Offset(4,38) A_JumpIfInventory("MercuryBlobFormAmmo",1,"BlobReadyNoReload2")
         Goto Reload
 		
 		Reload:

@@ -226,7 +226,7 @@ PROC D 0// ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,2,10)
 PROC D 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
 PROC J 0 A_GiveInventory("ProtoShieldBashFlag",1)
 PROC J 0 A_GiveInventory("CopySlidePickup",1)
-PROC J 0 A_SpawnItemEx("ShieldBashFXSpawner",0,0,0,0,0,0,0,1)
+//PROC J 0 A_SpawnItemEx("ShieldBashFXSpawner",0,0,0,0,0,0,0,1) //code seemingly causes servers to violently combust so i commented this out in the hopes that once we find a fix we can just add it back in
 PROC J 1 Offset(16,32) A_SpawnItemEx("ProtomanHeroShieldBasher")
 PROC J 1 Offset(38,32) A_SpawnItemEx("ProtomanHeroShieldBasher")
 PROC J 1 Offset(54,32) A_SpawnItemEx("ProtomanHeroShieldBasher")
@@ -553,7 +553,7 @@ scale 2.5
 +MISSILEMORE
 +MISSILEEVENMORE
 Species "ProtomanHeroStupidShield"
-Health 100
+Health 1000
 speed 0
 Radius 16
 Height 32

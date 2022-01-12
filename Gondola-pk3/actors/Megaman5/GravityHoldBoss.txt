@@ -567,7 +567,7 @@ stop
 actor GravityManHold1 : BasicExplosion
 {
 Translation "192:192=4:4", "198:198=41:41"
-damagetype "GravitySmackDown"
+damagetype "GravityM_Down"
 Obituary "$OB_GRAVITYHOLD_D"
 States
 {
@@ -841,7 +841,7 @@ actor GravitymanSphereUP : GravitymanSphereU{translation "192:192=229:229", "198
 
 actor GravitymanSphereD_Boom : BasicExplosion
 {
-damagetype "GravitySmackDown"//GravityB1
+damagetype "GravityM_Down"//GravityB1
 Obituary "$OB_GRAVITYBALL_D"
 States
 {

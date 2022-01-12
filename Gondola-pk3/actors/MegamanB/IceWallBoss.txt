@@ -908,7 +908,7 @@ TNT1 A 0 A_PlaySound("weapon/ColdField",1,1.0)
 goto SpawnX
 SpawnX:
 CLDW F 3 A_Explode(20,56,0,0,56)
-CLDW G 0 A_SetDamageType("ColdSmackDown")
+CLDW G 0 A_SetDamageType("ColdM_Down")
 CLDW GEFG 3 A_Explode(20,56,0,0,56)
 CLDW E 0 
 CLDW E 1 A_CountDown
