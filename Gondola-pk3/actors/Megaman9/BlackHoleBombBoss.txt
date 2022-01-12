@@ -118,6 +118,7 @@ Goto Ready0
 Fire2:
 GALH V 0 A_JumpIfInventory("MissingBlackHole",1,"Fire2Reset")
 GALH V 0 A_GiveInventory("BlackHoleFlagD",1)
+GALH V 0 A_GiveInventory("Blackholecooldownindicatorbar",1)
 GALH V 0 A_GiveInventory("MissingBlackHole",1)
 goto Fire2Wait
 Fire2Reset:
@@ -282,6 +283,17 @@ goto Ready0
 }
 }
 
+actor Blackholecooldownindicatorbar2 : Powerup
+{ 
+}
+  
+actor Blackholecooldownindicatorbar : PowerupGiver
+{ 
+powerup.type "Blackholecooldownindicatorbar2"
+Powerup.Duration 120 
++INVENTORY.AUTOACTIVATE   
+} 
+
 actor SpaceTravelAmmo : Ammo
 {
 inventory.amount 1
@@ -355,6 +367,7 @@ TNT1 A 0 A_SpawnItemEx("PortChecker",0,0,0,0,0,0,0,1)
 //TNT1 A 0 A_SpawnItemEx("GalaxyHoleMarker",0,0,0,0,0,0,0,1)
 fail
 Take:
+TNT1 A 0 A_PlaySoundEX("misc/astroplatformappear","SoundSlot6")
 TNT1 A 0 A_GiveInventory("GalaxyPortCoolDown",1)
 TNT1 A 0 A_TakeInventory("GalaxyPortFlag",999)
 fail
@@ -417,7 +430,7 @@ TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"SuperDeath")
 TNT1 A 0 A_JumpIfInTargetInventory("GalaxyPortFlag",1,"Spawn2")
 goto SuperDeath
 SuperDeath:
-TNT1 A 0 A_PlaySoundEx("misc/astroplatformappear","Body")
+TNT1 A 0 //A_PlaySoundEx("misc/astroplatformappear","Body")
 //TNT1 A 0 A_TakeFromTarget("GalaxyPortFlag",999)
 BLKT WWXXYYZZ 1 A_FadeOut(0.1)
 TNT1 A 0 A_JumpIfInTargetInventory("GalaxyPortFlag",1,"EmergancyRecoveryMode")
@@ -434,7 +447,7 @@ States
 {
 Pickup:
 TNT1 A 0 A_GiveInventory("GalaxyPortCoolDown",1)
-TNT1 A 0 A_PlaySoundEX("weapon/shieldhum","SoundSlot6")
+TNT1 A 0 A_PlaySoundEx("misc/astroplatformappear","Body")//A_PlaySoundEX("weapon/shieldhum","SoundSlot6")
 stop
 }
 }
