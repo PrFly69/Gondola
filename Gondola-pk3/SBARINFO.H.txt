@@ -566,7 +566,7 @@ IsSelected CrystalEyeBoss{Drawbar"VARAMM25","VAREMPTY",CrystalEyeCharge,horizont
 	InInventory CrystalEyeDelay,1{DrawBar"VARFLS1","VNOBAR",CrystalEyeDelay,horizontal,58,184;}}
 IsSelected DarkTankBoss{DrawBar"VARAMMO4","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"VARAMMO1","VAREMPTY",Ammo2,horizontal,58,176;}
-IsSelected DarkShieldBoss{DrawBar"VARAMMO1","VAREMPTY",Ammo1,vertical,58,184;}
+IsSelected DarkShieldBoss{DrawBar"VARAMMO1","VAREMPTY",Darkman2ShieldAmmo,vertical,58,184;}
 IsSelected DarkSniperBoss{DrawBar"VARAMM51","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory DarkSniperCharge,1{DrawBar"5K_B_VAR","VNOBAR",DarkSniperCharge,horizontal,58,184;}
 	DrawBar"05_D3VAR","VAREMPTY",Ammo2,horizontal,58,176;}

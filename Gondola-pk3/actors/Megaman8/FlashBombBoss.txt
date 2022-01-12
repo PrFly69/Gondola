@@ -87,7 +87,7 @@ goto FireEnd
 
 Altfire:
 //GRHU A 0 A_JumpIfNoAmmo("NoAmmo")
-
+GRHU A 0 A_GiveInventory("VivifyDelay8",1)
 GRHU A 0 A_JumpIfInventory("CuteBombDrain",1,5)
 GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",36,"7Grenades")
 GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",27,"6Grenades")
@@ -99,7 +99,6 @@ GRHU A 1 Offset(-10,72)
 GRHU A 1 Offset(-15,92)
 GRHU A 1 Offset(-25,112)
 GRHU A 1 Offset(-35,132)
-
 GRHU A 1 Offset(40, 92) A_GiveInventory("ShootGrrnade3",1)
 GRHU A 1 Offset(-37, 64)
 GRHU A 1 Offset(-19, 29) A_GiveInventory("ShootGrrnade3",1)

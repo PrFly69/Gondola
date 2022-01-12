@@ -921,7 +921,7 @@ damagefactor "IceSlashBlock", 1.0
 damagefactor "Fire", 0.1 //MageStaff
 damageFactor "ConcreteShoulder", 0.04
 mass 99999
-Health 50
+Health 500
 Reactiontime 1
 Damage (0)
 Radius 28

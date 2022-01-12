@@ -467,6 +467,8 @@ actor DM2ShieldWatcher2 : DM2ShieldWatcher
 	+RIPPER
 	-NOINTERACTION
 	+DONTBLAST
+	-NOEXPLODEFLOOR
+	-NOCLIP
 	Radius 4
 	Height 4
 	States
