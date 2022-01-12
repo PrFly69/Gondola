@@ -1034,6 +1034,7 @@ IsSelected HeroicProtoBuster{DrawBar"00_0_BAR","BAREMPTY",SlideLimitFlag,vertica
 IsSelected HeroBassBusterBoss{
 	DrawBar "BARAMM68", "BAREMPTY", BassBusterCharge, vertical, 16,8;
 	DrawBar "MV_A_BAR", "NOBAR", BassBusterClassRage, vertical, 16,8;
+	DrawBar"00_4_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;
 	}
 IsSelected HeroicDuoFistBoss{
 	DrawImage"DUORICON",32,55;
