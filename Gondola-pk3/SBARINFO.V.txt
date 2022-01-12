@@ -750,9 +750,32 @@ IsSelected HornetChaserBoss{
 	DrawImage"HORNEICN",32,55;
     InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
 	InInventory HornetFlagH,1{DrawImage"HORNJETA",290,8;}}
-IsSelected BlackHoleBombBoss{Drawbar"GALBAR","BAREMPTY",Ammo1,vertical,16,8;
+	
+	
+IsSelected BlackHoleBombBoss
+{
+    Drawbar"GALBAR","BAREMPTY",Ammo1,vertical,16,8;
+	DrawBar "MV_A_BAR", "NOBAR",PowerupTime Blackholecooldownindicatorbar, vertical, 16,8;
+	
+	ininventory BlackHoleFlag 
+	{
+	drawimage "MV_A_BAR", 16,8; 
+	}
+	
+	InInventory GalaxyPortFlag
+	{
+	DrawImage "G4LR1C0N",32,55;
+	}
+	
+	InInventory not GalaxyPortFlag
+	{
 	DrawImage "GALRICON",32,55;
-	DrawImage "C_09H0X",20,0;}
+	}
+	
+	DrawImage "C_09H0X",20,0;
+	}
+	
+	
 IsSelected RevolverBusterBoss{DrawBar"BARAMM10","BAREMPTY",FakemanDashCounter,vertical,16,8;
 	InInventory RevolverbusterAmmoBoss,6{DrawImage"9FAKK6",0,28;}
 	else InInventory RevolverbusterAmmoBoss,5{DrawImage"9FAKK5",0,28;}
