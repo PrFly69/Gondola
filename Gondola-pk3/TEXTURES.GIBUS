@@ -220,6 +220,7 @@ texture ICEVAR,56,8{patch ICEBAR,0,0{rotate 90}}//jaja iceman
 //New Galaxyman Item Icon
 texture GALCON8,30,30{XScale 2.0 YScale 2.0 patch GLCNA0,0,0}
 graphic GALRICON,30,30{XScale 2.0 YScale 2.0 Patch "RLGAL0",0,0}
+graphic G4LR1C0N,30,30{XScale 2.0 YScale 2.0 Patch "RLG4L0",0,0}
 
 //Acid Reload Icon
 texture ACIDRCON,30,30{XScale 2.0 YScale 2.0 Patch RSH1W0,0,0}
