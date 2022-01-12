@@ -636,7 +636,7 @@ actor TheKingSlash1
 {
 Translation "192:192=215:215", "198:198=220:220"
 PROJECTILE
-damagetype "TheKing"
+damagetype "King_Slash"
 Obituary "$OB_KINGSLASH1"
 +THRUACTORS
 +DONTBLAST
@@ -709,7 +709,7 @@ actor TheKingSlash2P : TheKingSlash2{translation "192:192=229:229","198:198=232:
 
 actor TheKingSpinAlt : BasicExplosion
 {
-Damagetype "ClassPainLess2"
+Damagetype "King_AxeSpin"
 Obituary "$OB_KINGSPIN"
 States
 {

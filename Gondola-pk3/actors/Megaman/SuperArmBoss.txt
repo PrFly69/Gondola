@@ -264,7 +264,7 @@ WallBounceFactor 0.0//Desync fix?
 ReactionTime 1
 
 mass 99999
-Health 75
+Health 750
 damagefactor "SuperArm", 0.0
 damagefactor "GutsPunch", 0.0
 damagefactor "Fire", 0.1 //MageStaff

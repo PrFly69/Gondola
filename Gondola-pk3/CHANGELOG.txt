@@ -2181,6 +2181,7 @@ CHANGELOG
 -Hitstun on Knight Crush reduced 0.75 > 0.9
 -Spinning Mace knockback increased 8 > 12
 -Super Knight Crush sprite now reflects hitbox
+--Now has explosive hitbox around impact, does not do knockup (only does knockup on direct)
 
 ==Plantman
 -Health 850 > 900
@@ -2189,6 +2190,10 @@ CHANGELOG
 ==Windman
 -Weapon ammo capacity 28 > 32
 --Wind Storm ammo usage 14 > 16
+
+==Shademan
+-Hyper Speed Shade glitch patched out
+-Holding charge shot now grants 1.2x speed to the user, gets removed once fired
 
 ==Coldman
 -Ice Wall health 950 > 500

@@ -388,7 +388,7 @@ actor PlantShield
 Translation "199:199=41:41", "202:202=248:248", "198:198=41:41", "202:202=248:248"
 PROJECTILE
 +HITTRACER
-
++FORCEALLYCOLLISION
 Obituary "$OB_PLANTBARRIER"
 Damagetype "PlantDrain"
 Damage (80)

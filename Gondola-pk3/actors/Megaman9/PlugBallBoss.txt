@@ -282,6 +282,7 @@ PROJECTILE
 damagetype "PlugM_Prong"
 Obituary "$o's was tripped by %k's Plug Ball."
 +HITTRACER
++FORCEALLYCOLLISION
 +THRUGHOST
 +DONTREFLECT
 +DONTBLAST
