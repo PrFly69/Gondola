@@ -368,7 +368,7 @@ fail
 
   Actor EnkerArmor : BasicArmorPickup
   {
-    Armor.Savepercent 95.005
+    Armor.Savepercent 90.005
 	Armor.Saveamount 1000
   }
 

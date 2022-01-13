@@ -9,7 +9,7 @@ actor ArchWoolReload
 	+NOINTERACTION
 	+NOCLIP
 	Obituary "%o was galvanized by %k's Archs of Wool."
-	DamageType "ClassPainLess2"
+	DamageType "DMGNoHitstun"
 	Radius 15
 	Height 12
 	scale 2.5
@@ -101,7 +101,7 @@ actor ArchWoolReload2
 	+NOINTERACTION
 	+NOCLIP
 	Obituary "%o was galvanized by %k's Archs of Wool."
-	DamageType "ClassPainLess2"
+	DamageType "DMGNoHitstun"
 	Radius 15
 	Height 12
 	scale 2.5
@@ -192,7 +192,7 @@ actor ArchWoolReload3
 	+NOINTERACTION
 	+NOCLIP
 	Obituary "%o was galvanized by %k's Archs of Wool."
-	DamageType "ClassPainLess2"
+	DamageType "DMGNoHitstun"
 	Radius 15
 	Height 12
 	scale 2.5
@@ -283,7 +283,7 @@ actor ArchWoolReload4
 	+NOINTERACTION
 	+NOCLIP
 	Obituary "%o was galvanized by %k's Archs of Wool."
-	DamageType "ClassPainLess2"
+	DamageType "DMGNoHitstun"
 	Radius 15
 	Height 12
 	scale 2.5
@@ -370,7 +370,7 @@ PROJECTILE
 Renderstyle Translucent
 Alpha 0.5
 Obituary "%o was scrambled by %k's static electricity."
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 +THRUSPECIES
 +NOCLIP
 +NOINTERACTION
@@ -438,7 +438,7 @@ actor SheepBolter : FastProjectile
 {
 PROJECTILE
 Translation "199:199=218:218", "202:202=212:212"
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Obituary "%o was scrambled by %k's static electricity."
 Damage (60)
 radius 8
@@ -781,7 +781,7 @@ actor ArchWoolProjectileEndExplode
 Translation "199:199=218:218", "202:202=212:212"
 PROJECTILE
 Obituary "%o was cast down by %k's static electricity strike."
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 +THRUACTORS
 +THRUSPECIES
 +DONTBLAST
@@ -822,7 +822,7 @@ actor ArchWoolProjectileEndExplode2
 Translation "199:199=218:218", "202:202=212:212"
 PROJECTILE
 Obituary "%o was cast down by %k's static electricity strike."
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 +THRUACTORS
 +THRUSPECIES
 +DONTBLAST

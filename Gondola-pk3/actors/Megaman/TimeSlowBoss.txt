@@ -241,7 +241,7 @@
 	Scale 2.5
 	Speed 32
 	Obituary "$OB_TIMEARROW"
-	DamageType "DMGNoHitstun"
+	DamageType "TimeM_Arrow"
 	//damagetype "TimeArrow"
 	States
 	{
@@ -277,7 +277,7 @@
   Actor TimeManSlow : BasicExplosion
   {
 	Translation "192:192=65:65", "198:198=61:61"
-	damagetype "TimeSlow"
+	damagetype "TimeM_Slow"
 	Obituary "$OB_TIMESLOW"
 	Scale 2.5
 	States

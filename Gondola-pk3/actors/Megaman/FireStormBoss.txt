@@ -278,7 +278,7 @@ actor FiremanStormShot
 var int user_P;
 translation "202:202=248:248", "199:199=41:41","192:192=248:248", "198:198=41:41"
 PROJECTILE
-damagetype "FireStorm"
+damagetype "FireM_Storm"
 Obituary "$OB_FIRESTORM"
 Alpha 0.4
 +BRIGHT
@@ -339,7 +339,7 @@ actor FiremanStormShotBit
 {
 PROJECTILE
 Obituary "$OB_FIRESTORMG"
-damagetype "FireSpin"
+damagetype "FireM_StormBit"
 +DONTBLAST
 +DONTREFLECT
 +BRIGHT
@@ -485,7 +485,7 @@ actor FireManWaveD
 {
 PROJECTILE
 Obituary "$OB_FIRESTORMW"
-damagetype "FireSpin"
+damagetype "FireM_Wave"
 +DONTBLAST
 +DONTREFLECT
 +BRIGHT
@@ -557,7 +557,7 @@ actor FireManWave2D
 {
 PROJECTILE
 Obituary "$OB_FIRESTORMW"
-damagetype "Buster"
+damagetype "FireM_Wave"
 +DONTBLAST
 +DONTREFLECT
 +BRIGHT
@@ -587,7 +587,7 @@ stop
 
 actor FiremanStormShieldFX : BasicExplosion
 {
-damagetype "FireSpin"
+damagetype "FireM_Spin"
 +FORCEXYBILLBOARD
 Obituary "$OB_FIRESTORMS"
 renderstyle translucent
@@ -611,7 +611,7 @@ stop
 actor FiremanStormShield : BasicExplosion
 {
 Obituary "$OB_FIRESTORMS"
-damagetype "FireSpin"
+damagetype "FireM_Spin"
 States
 {
 Spawn:

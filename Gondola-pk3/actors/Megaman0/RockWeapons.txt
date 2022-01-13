@@ -1630,7 +1630,7 @@ BounceFactor 0.5
 WallBounceFactor 0.65//0.01
 mass 99999
 ReactionTime 75//150
-damage (120)
+damage (140)
 radius 16
 height 12
 speed 0
@@ -2078,7 +2078,7 @@ actor Rock_BK2_M : Rock_BK_M
 //+NOGRAVITY
 bouncefactor 1.0
 wallbouncefactor 1.0
-damage(230)
+damage(210)
 speed 50
 }
 
@@ -2097,7 +2097,7 @@ bouncecount 7
 bouncefactor 1.0
 wallbouncefactor 1.0
 Gravity 1.0
-damage(250)
+damage(50)
 speed 35
 States
 {
@@ -2109,7 +2109,7 @@ H6RK ABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_CFX",0,0,0,0,0,0,0,1)
 loop
 }
 }
-actor Rock_BK2_C : Rock_BK_C{bouncecount 8 damage(270) speed 40}
+actor Rock_BK2_C : Rock_BK_C{bouncecount 8 damage(60) speed 40}
 
 actor Rock_BK_CB:Rock_BK_C{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
 actor Rock_BK_CR:Rock_BK_C{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
@@ -2180,7 +2180,7 @@ actor Rock_BK_G : Rock_BK_M
 Translation "204:204=4:4","195:195=220:220","249:249=216:216"
 damagetype "MegaGutsBall"
 Obituary "$OB_MEGAGUTSBALL"
-damage(260)
+damage(200)
 bouncecount 1
 Gravity 1.25
 speed 35
@@ -2229,7 +2229,7 @@ TNT1 A 1 A_SpawnItemEx("Rock_VMFX",0,0,10,0,0,0,0,33)
 stop
 }
 }
-actor Rock_BK2_G : Rock_BK_G{damage(300) speed 45}
+actor Rock_BK2_G : Rock_BK_G{damage(250) speed 45}
 
 actor Rock_BK_GB:Rock_BK_G{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
 actor Rock_BK_GR:Rock_BK_G{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
@@ -2250,7 +2250,7 @@ bouncecount 8
 bouncefactor 0.85
 wallbouncefactor 0.90
 Gravity 0.65
-damage(170)
+damage(150)
 speed 31
 States
 {
@@ -2263,7 +2263,7 @@ H6RK ABCDEFGHIJKLMNOP 1 A_SpawnItemEx("Rock_BK_IFX",0,Random(-18,18),random(12,-
 Goto Spawn+4
 }
 }
-actor Rock_BK2_I : Rock_BK_I{damage(180) speed 39}
+actor Rock_BK2_I : Rock_BK_I{damage(200) speed 39}
 
 actor Rock_BK_IB:Rock_BK_I{Translation"204:204=205:205","195:195=74:74","249:249=199:199"}
 actor Rock_BK_IR:Rock_BK_I{Translation"204:204=171:171","195:195=41:41","249:249=43:43"}
@@ -2332,7 +2332,7 @@ Obituary "$OB_MEGAFIREBALL"
 bouncecount 5
 bouncefactor 0.99
 wallbouncefactor 0.85
-damage(150)
+damage(100)
 speed 55
 States
 {

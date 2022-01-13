@@ -446,7 +446,7 @@ actor PlutoFireBall
 translation "192:192=65:65", "198:198=60:60"
 PROJECTILE
 Obituary "$OB_PLUTOSHOT"
-Damagetype "ClassPainSemi"
+Damagetype "Pluto_Shot"
 ReactionTime 1
 damage (70)
 Radius 10
@@ -499,7 +499,7 @@ actor PlutoFurySwipes
 {
 translation "202:202=210:210", "199:199=210:210"
 PROJECTILE
-damagetype "PlutoClaw"
+damagetype "Pluto_Swipe"
 Obituary "$OB_PLUTOSWIPE"
 +THRUACTORS
 +DONTBLAST
@@ -541,16 +541,16 @@ actor PlutoFurySwipes2R : PlutoFurySwipes2{Translation"202:202=171:171","199:199
 actor PlutoFurySwipes2O : PlutoFurySwipes2{Translation"202:202=104:104","199:199=128:128"}
 actor PlutoFurySwipes2P : PlutoFurySwipes2{Translation"202:202=229:229","199:199=232:232"}
 
-actor BreakDashPProtect : PowerProtection
+actor Pluto_Dash1Protect : PowerProtection
 {
 Powerup.Duration 20
-DamageFactor "BreakDashP", 0.08
+DamageFactor "Pluto_Dash1", 0.08
 }
 
 actor PlutoBreakDashDamager : BasicExplosion
 {
 obituary "$OB_PLUTODASH"
-Damagetype "BreakDashP"
+Damagetype "Pluto_Dash1"
 States
 {
 Spawn:

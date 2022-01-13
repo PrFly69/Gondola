@@ -612,8 +612,8 @@ TNT1 A 1 A_GiveToTarget("CrystalmanEyeEnd_P",1)
 stop
 
 DeathBoom:
-XMFX QQ 1
-VMFX QQQRRRSSSDDD 1
+XMFX QQ 1 bright
+VMFX IIIJJJKKKDDD 1 bright
 stop
 
 Death2:
@@ -681,7 +681,7 @@ Y_5H FQHSJPF 4
 Y_5H F 0 A_CountDown
 loop
 Death:
-VMFX QRSD 2 A_Stop
+VMFX IJKD 2 bright
 stop
 }
 }
