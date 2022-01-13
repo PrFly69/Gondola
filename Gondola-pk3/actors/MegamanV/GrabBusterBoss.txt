@@ -413,7 +413,7 @@ powerup.duration 15
   Actor MercurySnatchDamager
   {
     Projectile
-	DamageType "GrabBuster"
+	DamageType "Mercury_Swipe"
 	Obituary "$OB_MERCURYSWIPE"
 	+THRUSPECIES
 	+DONTREFLECT
@@ -491,7 +491,7 @@ powerup.duration 15
   Actor MercurySnatchBlockD
   {
     Projectile
-	DamageType "GrabBuster"
+	DamageType "Mercury_Swipe"
 	Obituary "$OB_MERCURYSWIPE"
 	+DONTBLAST
 	+DONTREFLECT
@@ -523,7 +523,7 @@ powerup.duration 15
     var int user_pTID;
 	var int user_eTID;
 	Projectile
-	DamageType "GrabBuster"
+	DamageType "Mercury_Swipe"
 	Obituary "$OB_MERCURYSWIPE"
 	-NOBLOCKMAP
 	-SOLID
@@ -600,7 +600,7 @@ powerup.duration 15
   {
     Translation "192:192=104:104","198:198=110:110"
 	Projectile
-	DamageType "GrabBusterB"
+	DamageType "Mercury_Shot"
 	Obituary "$OB_MERCURYGRAB"
 	+DONTREFLECT
 	+HITTRACER

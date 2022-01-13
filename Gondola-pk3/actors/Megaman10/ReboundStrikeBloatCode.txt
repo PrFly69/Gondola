@@ -8,7 +8,7 @@ Actor ReboundStriker
 {
 Translation "198:198=251:251", "192:192=38:38"
 PROJECTILE
-Damagetype "ClassPainLess2"
+Damagetype "DMGNoHitstun"
 Obituary "$OB_STRIKEBALL"
 +DONTSPLASH
 +HEXENBOUNCE
@@ -329,7 +329,7 @@ Actor ReboundStrikerPowerball
 Translation "198:198=251:251", "192:192=38:38"
 PROJECTILE
 SeeSound "weapon/reboundprojectile"
-Damagetype "ClassPainLess2"
+Damagetype "DMGNoHitstun"
 Obituary "$OB_STRIKEBALLX"
 +DONTSPLASH
 +HEXENBOUNCE
@@ -406,7 +406,7 @@ Actor ReboundStrikerPowerball2
 Translation "198:198=251:251", "192:192=38:38"
 PROJECTILE
 SeeSound "weapon/reboundprojectile"
-Damagetype "ClassPainLess2"
+Damagetype "DMGNoHitstun"
 Obituary "$OB_STRIKEBALLX"
 +DONTSPLASH
 +HEXENBOUNCE
@@ -462,7 +462,7 @@ Actor ReboundStrikerPowerballAlt
 Translation "198:198=251:251", "192:192=38:38"
 PROJECTILE
 SeeSound "weapon/reboundprojectile"
-Damagetype "ClassPainLess2"
+Damagetype "DMGNoHitstun"
 Obituary "$OB_STRIKEBALLX"
 +DONTSPLASH
 +HEXENBOUNCE

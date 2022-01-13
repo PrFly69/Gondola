@@ -109,7 +109,7 @@ actor ElecmanThunderCheckX
 PROJECTILE
 +DONTBLAST
 Obituary "$OB_THUNDERZAP"
-damagetype "ThunderBeam"
+damagetype "ElecM_Zap"
 Radius 1
 Height 20
 scale 2.5
@@ -134,7 +134,7 @@ scale 2.5
 +DONTBLAST
 -NOGRAVITY
 Obituary "$OB_THUNDERZAP"
-damagetype "ThunderBeam"
+damagetype "ElecM_Zap"
 Speed 40
 Radius 6
 Height 20
@@ -151,7 +151,7 @@ stop
 actor ElecmanThunderDamageX : BasicExplosion
 {
 Obituary "$OB_THUNDERZAP"
-damagetype "ThunderBeam"
+damagetype "ElecM_Zap"
 States
 {
 Spawn:
@@ -164,7 +164,7 @@ stop
 actor ElecmanTeleportDamage : BasicExplosion
 {
 Obituary "$OB_THUNDERZAP"
-damagetype "ThunderBeam"
+damagetype "ElecM_TeleZap"
 States
 {
 Spawn:
@@ -194,7 +194,7 @@ Damage(150)
 +FORCEXYBILLBOARD
 Height 12
 scale 2
-damagetype "ClassPainLess2"
+damagetype "ElecM_Beam"
 States
 {
 Spawn:

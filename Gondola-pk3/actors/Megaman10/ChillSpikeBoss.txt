@@ -339,7 +339,7 @@ actor ChillmanSpikeShot
 {
 	Obituary "%o was icebound by %k's chill spike."
 	Translation "192:192=202:202", "198:198=207:207"
-	DamageType "ChillSpikeBoss"
+	DamageType "DMGNoHitstun"
 	PROJECTILE
 	+SKYEXPLODE
 	-NOGRAVITY
@@ -474,7 +474,7 @@ actor ChillCeilingSpikeSpawner
 actor ChillFloorSpike
 {
 	Obituary "%o tripped over %k's chill spike."
-	DamageType "ClassPainLess2"
+	DamageType "DMGNoHitstun"
 	PROJECTILE
 	+FLOORHUGGER
 	+THRUACTORS
@@ -585,7 +585,7 @@ actor ChillCloudyCloud
 	Speed 20
 	Damage (0)
 	Health 10
-	Damagetype "ChillSpikeBoss"
+	Damagetype "DMGNoHitstun"
 	Obituary "%o somehow died tried to ride %k's frozen sled."
 	Scale 2.5
 	
@@ -656,7 +656,7 @@ actor ChillCloudyCloudW : ChillCloudyCloud
 {
 	-NOINTERACTION
 	Renderstyle Translucent
-	DamageType "ChillSpikeBoss"
+	DamageType "DMGNoHitstun"
 	Obituary "%o's body reached sub-zero from %k's chilling spray."
 	Alpha 0.45
 	Radius 10
@@ -692,7 +692,7 @@ actor ChillCloudyCloudWX : ChillCloudyCloud
 {
 	-NOINTERACTION
 	Renderstyle Translucent
-	DamageType "ClassPainLess2"
+	DamageType "DMGNoHitstun"
 	Obituary "%o's body reached sub-zero from %k's chilling spray."
 	Alpha 0.45
 	Radius 10

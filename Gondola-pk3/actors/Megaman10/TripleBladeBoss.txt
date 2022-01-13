@@ -642,7 +642,7 @@ actor BladeSlash
 {
 Translation "192:192=4:4","198:198=251:251"
 PROJECTILE
-damagetype "TripleBlade"
+damagetype "BladeM_Swipe"
 Obituary "$OB_BLADESLASH"
 +THRUACTORS
 +DONTBLAST

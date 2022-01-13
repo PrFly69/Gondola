@@ -279,7 +279,7 @@ Powerup.Duration 11
 actor IceSlasherB : IceSlasher
 {
 Translation "198:198=197:197"
-damagetype "ClassPainLess2Ice"
+damagetype "IceM_Slasher"
 damage (100)
 speed 30
 States
@@ -288,8 +288,9 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-ICEB TU 3 A_ScaleVelocity(1.025)
-loop
+ICEB TUTU 3 A_ScaleVelocity(1.025)
+ICEB TU 3
+wait
 }
 }
 
@@ -306,7 +307,7 @@ scale 2.5
 +RIPPER
 Obituary "$OB_ICECOOLGUY"
 Speed 22
-damagetype "ClassPainLess2Ice"
+damagetype "IceM_Slow"
 Radius 6
 Height 6
 Damage (20)
@@ -409,7 +410,7 @@ actor IceBaFLaser
 {
 Translation "192:192=4:4","198:198=197:197","202:202=197:197","199:199=198:198","204:204=202:202","195:195=204:204","250:250=80:80","249:249=86:86"
 PROJECTILE
-damagetype "IceSlashSlowL"
+damagetype "IceM_Slow"
 Obituary "$OB_ICELASERX"
 +SKYEXPLODE
 +FORCEXYBILLBOARD
@@ -457,7 +458,7 @@ wait
 
 actor IceBaFLaser2 : IceBaFLaser
 {
-damagetype "IceSlashSlowB"
+damagetype "IceM_Slow"
 Obituary "$OB_ICELASER"
 Damage (0)
 States
@@ -502,7 +503,7 @@ stop
 
 actor IceBaFLaserFX2 : BasicExplosion
 {
-damagetype "IceSlashSlowL"
+damagetype "IceM_Slow"
 Obituary "$OB_ICECOOLLASER"
 States
 {
@@ -625,7 +626,7 @@ actor IceBaFIcicle
 PROJECTILE
 -NOGRAVITY
 +THRUGHOST
-damagetype "IceSlashSlow"
+damagetype "IceM_Icicle"
 Obituary "$OB_ICERAIN"
 gravity 2.0
 Damage (0)
@@ -871,7 +872,7 @@ loop
 actor IceBaF_SculptBase
 {
 PROJECTILE
-damagetype "IceSlashSlow"
+damagetype "IceM_Sculpt"
 Obituary "$OB_ICEBLOCK"
 
 +DONTRIP
@@ -1096,7 +1097,7 @@ stop
 
 actor IceBaF_SculptBaseDeath : BasicExplosion
 {
-damagetype "IceSlashBlock"
+damagetype "IceM_Sculpt"
 Obituary "$OB_ICEBLOCK"
 States
 {
@@ -1210,7 +1211,7 @@ stop
 actor IceBaF_SculptBit
 {
 PROJECTILE
-damagetype "IceSlashSlow"
+damagetype "IceM_Sculpt"
 Obituary "$OB_ICEBLOCKBIT"
 -NOGRAVITY
 Damage (80)

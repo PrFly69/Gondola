@@ -205,7 +205,7 @@ stop
 actor SolidGutrock1
 {
 PROJECTILE
-damagetype "SuperArm"
+damagetype "GutsM_Rock"
 Obituary "$OB_SUPERARM"
 +NOINTERACTION
 Radius 30
@@ -230,7 +230,7 @@ stop
 actor SolidGutrock2
 {
 PROJECTILE
-damagetype "SuperArm"
+damagetype "GutsM_Rock"
 Obituary "$OB_SUPERARM"
 +DONTRIP
 +DONTBLAST

@@ -152,7 +152,7 @@ actor HyperBombThrow
 {
 Translation "192:192=216:216", "199:199=0:0", "202:202=215:215", "198:198=41:41"
 PROJECTILE
-damagetype "HyperBomb"
+damagetype "BombM_Boom"
 Obituary "$OB_HYPERBOMBSPLITX"
 +SKYEXPLODE
 +BOUNCEONWALLS
@@ -307,7 +307,7 @@ actor HyperBombB
 {
 Translation "192:192=216:216", "199:199=0:0", "202:202=215:215"
 PROJECTILE
-damagetype "HyperBomb"
+damagetype "BombM_Boom"
 Obituary "$OB_HYPERBOMB"
 -NOGRAVITY
 +HEXENBOUNCE
@@ -570,7 +570,7 @@ actor HyperBombMineP : HyperBombMine{translation "192:192=229:229", "199:199=232
 
 actor HyperBombBX : BasicExplosion
 {
-damagetype "HyperBomb"
+damagetype "BombM_Boom"
 Obituary "$OB_HYPERBOMB"
 Scale 2.5
 States
@@ -614,7 +614,7 @@ actor HyperBombThrowAlt
 {
 Translation "192:192=216:216", "199:199=0:0", "202:202=215:215", "198:198=41:41"
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "BombM_Boom"
 Obituary "$OB_HYPERBOMB"
 +SKYEXPLODE
 +BOUNCEONWALLS

@@ -597,7 +597,7 @@ actor OilShotB
 {
 Translation "192:192=68:68","198:198=78:78","250:250=218:218","249:249=43:43"
 PROJECTILE
-damagetype "OilSlider"
+damagetype "OilM_Shot"
 Obituary "$OB_OILSLIDER"
 -NOGRAVITY
 +THRUSPECIES
@@ -715,7 +715,7 @@ actor OilSpillXP : OilSpillX{Translation"192:192=229:229","198:198=232:232","250
 
 Actor OilmanBlob
 {
-damagetype "OilSlider"
+damagetype "OilM_Shot"
 Obituary "$OB_OilmanBlob"
 +MISSILE
 +NODAMAGETHRUST
@@ -906,7 +906,7 @@ PROJECTILE
 +FLOORHUGGER
 +DONTBLAST
 Damage (20)
-damagetype "OilFlame"
+damagetype "OilM_Flame"
 Obituary "$OB_OILSLIDER2"
 +THRUSPECIES
 
@@ -965,7 +965,7 @@ Scale 2.0
 
 actor SliderDamagerB : BasicExplosion
 {
-damagetype "OilSliderX"
+damagetype "OilM_Slider"
 Obituary "$OB_OILSLIDER"
 States
 {
@@ -998,7 +998,7 @@ actor OilmanFingerSnapBoom
 {
 Translation "250:250=218:218", "249:249=43:43"
 PROJECTILE
-damagetype "OilFlame"
+damagetype "OilM_Snap"
 Obituary "$OB_OILFINGERSNAP"
 +THRUACTORS
 +DONTBLAST
@@ -1056,7 +1056,7 @@ actor OilSliderBShot
 {
 translation "192:192=78:78"
 PROJECTILE
-damagetype "OilSlider"
+damagetype "OilM_Shot"
 Obituary "$OB_OILSLED"
 -NOGRAVITY
 +NOEXPLODEFLOOR

@@ -503,7 +503,7 @@
   {
 	Translation "198:198=41:41", "195:195=110:110", "199:199=210:210", "202:202=198:198", "204:204=104:104"
 	PROJECTILE
-	Damagetype "RemoteMine"
+	Damagetype "PirateM_Mine"
 	Obituary "$OB_REMOTEMINE"
 	+SKYEXPLODE
 	+DONTSPLASH
@@ -603,7 +603,7 @@
   Actor PirateRMinePlace 
   {
     PROJECTILE
-	Damagetype "RemoteMineB2"
+	Damagetype "PirateM_Mine"
 	Obituary "$OB_REMOTEMINE"
 	+SKYEXPLODE
 	+DONTSPLASH
@@ -744,7 +744,7 @@
 
   Actor PirateRMineExplosion : BasicExplosion
   {
-    Damagetype "RemoteMineB"
+    Damagetype "PirateM_Boom"
 	Obituary "$OB_REMOTEMINE"
 	States
 	{
@@ -785,11 +785,11 @@
   }
 
 
-  Actor RemoteMineBProtect : PowerProtection
-  {
-    Powerup.Duration 16
-	DamageFActor "RemoteMineB", 0.5
-  }
+actor PirateM_BoomProtect : PowerProtection
+{
+Powerup.Duration 16
+DamageFactor "PirateM_Boom", 0.5
+}
 
 
 //=============================
@@ -802,7 +802,7 @@
     Translation "199:199=198:198", "202:202=198:198"
 	PROJECTILE
 	Obituary "$OB_PIRATEWATER"
-	DamageType "PiratePush"
+	DamageType "PirateM_Hose"
 	//+RIPPER
 	RenderStyle Translucent
 	Alpha 0.75
@@ -952,7 +952,7 @@
   Actor BubbleDashExplode : BasicExplosion
   {
     Obituary "$OB_PIRATEBUBBLE"
-	Damagetype "ClassPainLess"
+	Damagetype "PirateM_BubbleRam"
 	States
 	{
 		Spawn:
@@ -967,7 +967,7 @@
   {
 	PROJECTILE
 	Obituary "$OB_PIRATEBUBBLE"
-	Damagetype "ClassPainLess"
+	Damagetype "PirateM_BubbleRam"
 	+DONTSPLASH
 	+DONTBLAST
 	+NOEXPLODEFLOOR
