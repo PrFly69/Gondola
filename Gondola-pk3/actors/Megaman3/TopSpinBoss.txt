@@ -648,7 +648,7 @@ scale 2.5
 damage (100)
 speed 35
 //damagetype "TopThrow"
-Damagetype "ClassPainLess"
+Damagetype "TopM_Toss"
 Obituary "$OB_TOPTHROW"
 States
 {
@@ -697,7 +697,7 @@ stop
 actor TopManRadius : BasicExplosion
 {
 Obituary "$OB_TOPSPIN"
-damagetype "TopSpinB"
+damagetype "TopM_Spin2"
 Scale 3.0
 States
 {
@@ -733,7 +733,7 @@ stop
 
 actor TopManRadius11 : TopManRadius
 {
-damagetype "TopSpinC"
+damagetype "TopM_Spin"
 States
 {
 Spawn:
@@ -743,16 +743,16 @@ stop
 }
 }
 
-actor TopSpinCProtect : PowerProtection
+actor TopM_SpinProtect : PowerProtection
 {
 Powerup.Duration 12
-DamageFactor "TopSpinC", 0.6
+DamageFactor "TopM_Spin", 0.6
 }
 
 actor TopManChargeSpin2 : BasicExplosion
 {
 Obituary "$OB_TOPSPIN"
-damagetype "TopSpinB"
+damagetype "TopM_Windup"
 Scale 2.5
 States
 {

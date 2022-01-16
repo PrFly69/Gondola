@@ -350,7 +350,7 @@ damage (20)
 Radius 15
 Height 2
 Obituary "$OB_WINDQUAKE"
-damagetype "ClassPainLess2"
+damagetype "WindM_Crush"
 renderstyle none
 States
 {
@@ -467,7 +467,7 @@ actor WindGyro
 translation "202:202=108:108"
 PROJECTILE
 Damage (100)
-damagetype "WindGyro"
+damagetype "WindM_Shot"
 Obituary "$OB_WINDGYRO"
 Height 16
 Radius 16
@@ -498,7 +498,7 @@ actor WindGyro2
 translation "202:202=108:108"
 PROJECTILE
 Damage (100)
-damagetype "WindGyro"
+damagetype "WindM_Shot"
 Obituary "$OB_WINDGYRO"
 Height 16
 Radius 16

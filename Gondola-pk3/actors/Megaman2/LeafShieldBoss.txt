@@ -559,7 +559,7 @@ actor Leaf
 {
 PROJECTILE
 Obituary "$OB_LEAFSHIELD"
-damagetype "LeafShield"
+damagetype "WoodM_Leaf"
 +NOGRAVITY
 Damage (20)
 Radius 8
@@ -637,7 +637,7 @@ actor WoodmanLeafFall
 {
 PROJECTILE
 Obituary "$OB_LEAFRAIN"
-damagetype "LeafFall"
+damagetype "WoodM_LeafRain"
 -NOGRAVITY
 +DONTBLAST
 //+NOCLIP
@@ -662,17 +662,17 @@ loop
 }
 }
 
-actor LeafFallProtect : PowerProtection
+actor WoodM_LeafRainProtect : PowerProtection
 {
 Powerup.Duration 12
-DamageFactor "LeafFall", 0.25
+DamageFactor "WoodM_LeafRain", 0.25
 }
 
 actor WoodmanShieldThrow
 {
 Translation "199:199=104:104"
 PROJECTILE
-damagetype "LeafShield"
+damagetype "WoodM_Shield"
 Obituary "$OB_LEAFSHIELD"
 Damage (220)
 Radius 14
@@ -700,7 +700,7 @@ actor WoodmanShieldThrowP : WoodmanShieldThrow{translation "199:199=232:232"}
 actor WoodSlamCheck
 {
 PROJECTILE
-Damagetype "ClassPain"
+Damagetype "WoodM_Slam"
 Obituary "$OB_WOODSLAM"
 +NOGRAVITY
 +SKYEXPLODE
@@ -731,7 +731,7 @@ Stop
 actor WoodSlam : BasicExplosion
 {
 //damagetype "LeafShield"
-Damagetype "ClassPain"
+Damagetype "WoodM_Slam"
 Obituary "$OB_WOODSLAM"
 States
 {

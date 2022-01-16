@@ -150,7 +150,7 @@ actor AlienShot
 {
 Translation "204:204=210:210"
 PROJECTILE
-damagetype "Buster"
+damagetype "Alien_Shot"
 Obituary "$OB_ALIENBUSTER"
 Speed 52
 Damage (90)
@@ -176,7 +176,7 @@ actor AlienShotP : AlienShot{translation "204:204=229:229"}
 actor AlienBoobeamShot
 {
 PROJECTILE
-damagetype "Buster"
+damagetype "Alien_BooShot"
 Obituary "$OB_ALIENBOOBEAM"
 Damage (60)
 radius 12
@@ -252,7 +252,7 @@ actor AlienBoobeamTrapSpawner
 {
 translation "199:199=198:198","202:202=192:192","4:4=39:39","208:208=39:39"
 PROJECTILE
-damagetype "Buster"
+damagetype "Alien_Boobeam"
 Obituary "$OB_ALIENBOOBEAMX"
 +DONTSPLASH
 +DONTREFLECT
@@ -298,7 +298,7 @@ actor AlienBoobeamTrapSpawnerP : AlienBoobeamTrapSpawner{translation "199:199=23
 actor AlienBoobeamTrap
 {
 PROJECTILE
-damagetype "Buster"
+damagetype "Alien_Boobeam"
 Obituary "$OB_ALIENBOOBEAM"
 +NOCLIP
 +THRUACTORS
@@ -380,7 +380,7 @@ stop
 
 actor AlienBoobeamTrapX : BasicExplosion
 {
-damagetype "Buster"
+damagetype "Alien_Boobeam"
 Obituary "$OB_ALIENBOOBEAM"
 States
 {

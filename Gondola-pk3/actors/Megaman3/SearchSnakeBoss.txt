@@ -235,7 +235,7 @@ stop
 actor SnakemanMeleePoke
 {
 PROJECTILE
-Damagetype "ClassPainSemi"//damagetype "Snake"
+Damagetype "SnakeM_Poke"//damagetype "Snake"
 Obituary "$OB_SNAKEPOKE"
 reactiontime 3
 damage (80)

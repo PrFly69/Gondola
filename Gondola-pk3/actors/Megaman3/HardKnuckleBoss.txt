@@ -421,7 +421,7 @@ damage (150)
 Radius 15
 Height 2
 Obituary "$OB_HARDCRUSH"
-damagetype "ClassPainLess2"
+damagetype "HardM_Flat"
 renderstyle none
 States
 {
@@ -435,7 +435,7 @@ stop
 actor Hardman_FloorQuakeSpawn : BasicExplosion
 {
 Obituary "$OB_HARDQUAKE"
-damagetype "NeutralShock"
+damagetype "HardM_Shock"
 Renderstyle None
 States
 {
@@ -455,7 +455,7 @@ stop
 actor Hardman_FloorQuakeBoom : BasicExplosion
 {
 Obituary "$OB_HARDQUAKE"
-damagetype "NeutralShock"
+damagetype "HardM_Shock"
 States
 {
 Spawn:

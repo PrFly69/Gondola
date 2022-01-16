@@ -150,7 +150,7 @@ PROJECTILE
 Radius 16
 Height 7
 scale 2.5
-damagetype "SilverTomahawk"
+damagetype "TomahawkM_Shot"
 Obituary "$OB_SILVERTOMAHAWK"
 
 
@@ -281,7 +281,7 @@ PROJECTILE
 +RIPPER
 +NOEXPLODEFLOOR
 //damagetype "SilverTomahawk"
-Damagetype "ClassPainSemi"
+Damagetype "TomahawkM_Feather"
 Obituary "$OB_TOMAHAWKFEATHERX"
 Radius 7
 Height 7

@@ -497,7 +497,7 @@ stop
 actor NeedleBoss : Needle
 {
 translation "202:202=209:209","199:199=210:210"
-Damagetype "NeedleCannonB"
+Damagetype "NeedleM_Shot"
 damage (80)//10
 speed 52
 States
@@ -548,7 +548,7 @@ actor PokerDamage : FastProjectile
 {
 translation "202:202=209:209","199:199=210:210"
 PROJECTILE
-Damagetype "ClassPain"
+Damagetype "NeedleM_Stab"
 Obituary "$OB_NEEDLEHAMMER"
 +EXPLODEONWATER
 damage (450)//60

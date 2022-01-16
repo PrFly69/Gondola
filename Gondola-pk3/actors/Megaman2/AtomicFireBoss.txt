@@ -512,7 +512,7 @@ actor AtomicFireBoss : AtomicDashBoss
   {
     Translation "192:192=229:229", "198:198=41:41"
 	PROJECTILE
-	DamageType "AtomicFire1"
+	DamageType "HeatM_Toss"
 	Obituary "$OB_ATOMICFIRE2"
 	-NOGRAVITY
 	Damage (70)
@@ -577,7 +577,7 @@ actor AtomicFireBoss : AtomicDashBoss
   {
     +NOEXPLODEFLOOR
 	Obituary "$OB_ATOMICFIRE2"
-	DamageType "AtomicfireB"
+	DamageType "HeatM_Pillar"
 	Damage (7)
 	Speed 0
 	States
@@ -689,7 +689,7 @@ actor AtomicFireBoss : AtomicDashBoss
 
   Actor HeatAtomicTackleBoom1 : BasicExplosion
   {
-	DamageType "AtomicfireB"
+	DamageType "HeatM_Tackle"
 	Obituary "$OB_ATOMICTACKLE"
 	States
 	{
@@ -703,7 +703,7 @@ actor AtomicFireBoss : AtomicDashBoss
 
   Actor HeatAtomicTackleBoom2 : HeatAtomicTackleBoom1
   {
-    DamageType "AtomicfireB"
+    DamageType "HeatM_Tackle"
 	States
 	{
 		Spawn:
@@ -723,7 +723,7 @@ actor AtomicFireBoss : AtomicDashBoss
   {
 	Translation "192:192=229:229", "198:198=41:41"
 	PROJECTILE
-	damagetype "AtomicFire1"
+	damagetype "HeatM_Shot"
 	Obituary "$OB_ATOMICFIRE"
 	damage (150)
 	Radius 6
@@ -976,7 +976,7 @@ actor AtomicFireBoss : AtomicDashBoss
   Actor HeatFX
   {
     PROJECTILE
-	DamageType "AtomicfireB"
+	//DamageType "AtomicfireB"
 	Obituary "$OB_ATOMICTACKLE"
 	+DONTBLAST
 	+THRUACTORS

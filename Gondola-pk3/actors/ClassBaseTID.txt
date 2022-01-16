@@ -441,7 +441,7 @@ states
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_GiveToTarget("TempPitProtect_P",1)
+TNT1 A 0 //A_GiveToTarget("TempPitProtect_P",1)
 Spawn2:
 TNT1 A 0
 TNT1 A 0 A_SetUserVar("user_HIT", ACS_ExecuteWithResult(257,0))
@@ -899,6 +899,7 @@ States
 {
 Pickup:
 TNT1 A 0 A_GiveToTarget("ConcreteBashFlag",1)
+TNT1 A 0 A_GiveInventory("PainConcreteShoulderHit",1)
 stop
 }
 }

@@ -390,7 +390,7 @@ PROJECTILE
 +HITTRACER
 +FORCEALLYCOLLISION
 Obituary "$OB_PLANTBARRIER"
-Damagetype "PlantDrain"
+Damagetype "PlantM_Barrier"
 Damage (80)
 Speed 20
 Radius 16
@@ -697,7 +697,7 @@ Translation "204:204=210:210"
 PROJECTILE
 -NOGRAVITY
 +HITTRACER
-damagetype "PlantBuster"
+damagetype "PlantM_Shot"
 Obituary "%o was germinated by %k's Plant Buster."
 Speed 43
 Damage (50)
@@ -738,7 +738,7 @@ actor PlantShotP : PlantShot{translation "204:204=229:229"}
 
 actor PlantDrainer1 : BasicExplosion
 {
-Damagetype "PlantDrain"
+Damagetype "PlantM_Barrier"
 Obituary "$OB_PLANTDRAIN"
 States
 {
@@ -751,7 +751,7 @@ stop
 
 actor PlantDrainer2 : BasicExplosion
 {
-Damagetype "PlantDrain"
+Damagetype "PlantM_Barrier"
 Obituary "$OB_PLANTDRAINX"
 States
 {

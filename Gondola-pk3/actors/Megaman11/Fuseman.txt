@@ -6,8 +6,13 @@ actor Fuseman : ClassBase //85
 	Player.ScoreIcon "C_11F0X"
 	player.displayname "Fuseman"
 	player.soundclass "fusemanc"
-	player.jumpz 14
 	player.startitem "ScrambleThunderBossC", 1
+	
+	player.maxhealth 850
+	health 850
+	player.jumpz 14
+	Player.ForwardMove 0.8, 0.8
+	Player.SideMove 0.78, 0.78
 
 	States
 	{

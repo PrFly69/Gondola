@@ -8,6 +8,9 @@ player.startitem "BlastGearItem"
 player.startitem "CatalyzerAmmo", 84
 player.startitem "CanWallJump"
 player.startitem "CanWallJumpStack", 99
+
+player.maxhealth 900
+health 900
 player.forwardmove 0.92, 0.92
 player.sidemove 0.90, 0.90
 player.jumpz 12

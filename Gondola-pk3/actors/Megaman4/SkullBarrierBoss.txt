@@ -471,7 +471,7 @@ actor SkullShot : FastProjectile
 var int user_POWER;
 Translation "192:192=196:196","198:198=197:197","204:204=215:215"
 PROJECTILE
-damagetype "SkullSniper"
+damagetype "SkullM_Shot"
 Obituary "$OB_SKULLBUSTER"
 Speed 150
 Damage (100-user_POWER)
@@ -515,7 +515,7 @@ loop
 actor SkullShotRage : SkullShot
 {
 scale 1
-damagetype "SkullSniperX"
+damagetype "SkullM_ShotX"
 Damage (150)
 States
 {

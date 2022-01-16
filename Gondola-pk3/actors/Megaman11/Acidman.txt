@@ -3,16 +3,18 @@ actor Acidman : ClassBase //90
 Player.ScoreIcon "C_11H0X"
 player.displayname "Acidman"
 player.soundclass "acidmanc"
-player.jumpz 12
 player.startitem "AcidBarrierBoss", 1
 player.startitem "AcidBarrierAmmoBoss", 28
 player.startitem "FriendBarrierAmmo", 14
 player.startitem "SelfishBarrierAmmo", 98
 player.startitem "CanTreadWater", 1
 player.startitem "AcidHUDCvar_P", 1
+
+player.maxhealth 900
+health 900
+player.jumpz 12
 Player.ForwardMove 0.89, 0.89
 Player.SideMove 0.87, 0.87
-
 
 //player.startitem "RealClassFlag", 130
 

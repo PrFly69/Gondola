@@ -568,17 +568,17 @@ stop
 }
 }
 
-actor ShadowBladeCBMProtect : PowerProtection
+actor ShadowM_Blade1Protect : PowerProtection
 {
 Powerup.Duration 3
-DamageFactor "ShadowBladeCBM", 0.2
+DamageFactor "ShadowM_Blade1", 0.2
 }
 
 actor ShadowKunaiBlade
 {
 Translation "250:250=87:87","249:249=93:93"
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "ShadowM_Blade1"
 Obituary "$OB_SHADOWKUNAI"
 Damage (60)
 Radius 8
@@ -607,13 +607,7 @@ stop
 }
 }
 
-actor ShadowBladeCBMProtect : PowerProtection
-{
-Powerup.Duration 3
-DamageFactor "ShadowBladeCBM", 0.20
-}
-
-actor ShadowNoReturnBlade : ShadowBlade
+actor ShadowNoReturnBlade : ShadowKunaiBlade
 {
 translation "192:192=4:4"
 //damage (8)
@@ -777,7 +771,7 @@ actor ShadowCaltropTossX_HP : ShadowCaltropTossX_H{translation "202:202=229:229"
 actor ShadowCaltropToss
 {
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "ShadowM_Caltrop"
 Obituary "$OB_SHADOWCALTROPX"
 -NOGRAVITY
 //+THRUACTORS
@@ -826,7 +820,7 @@ stop
 actor ShadowCaltropTossX
 {
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "ShadowM_Caltrop"
 Obituary "$OB_SHADOWCALTROP"
 -NOGRAVITY
 +THRUGHOST
@@ -872,7 +866,7 @@ stop
 actor ShadowCaltropTossInvis
 {
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "ShadowM_Caltrop"
 Obituary "$OB_SHADOWCALTROPX"
 -NOGRAVITY
 //+THRUACTORS
@@ -921,7 +915,7 @@ stop
 actor ShadowCaltropTossInvisX
 {
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "ShadowM_Caltrop"
 Obituary "$OB_SHADOWCALTROP"
 -NOGRAVITY
 +THRUGHOST
