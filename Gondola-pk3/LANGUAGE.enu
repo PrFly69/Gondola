@@ -1,4 +1,8 @@
 [enu default]
+
+//Shademan
+OB_SHADESWOOP = "%o was scraped and licked by %k's Shade Swoop.";
+
 //Flagbearer - Yellow Devil
 TAGC_BEAR = "Grey Devil Flagbearer";
 OB_BEARCLOSE = "%o was unable to understand %k's bomumu bomumumu bomu.";
