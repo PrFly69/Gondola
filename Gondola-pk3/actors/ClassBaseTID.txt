@@ -919,7 +919,6 @@ States
 {
 Pickup:
 TNT1 A 0 A_GiveToTarget("ConcreteBashFlag",1)
-TNT1 A 0 A_GiveInventory("PainConcreteShoulderHit",1)
 stop
 }
 }

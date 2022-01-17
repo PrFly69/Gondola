@@ -863,7 +863,7 @@ stop
 	DamageType "ConcreteM_Bash"
 	Obituary "$OB_CONCRETESHOULDER"
 	RenderStyle translucent
-	Alpha 0.4
+	Alpha 0.15
 	ReactionTime 1
 	Damage (400)
 	Radius 14
