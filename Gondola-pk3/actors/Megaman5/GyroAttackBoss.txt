@@ -403,7 +403,7 @@ scale 2.5
 damage (150)
 speed 40
 Obituary "$OB_GYROATTACK"
-damagetype "GyroAttack"
+damagetype "GyroM_Shot"
 States
 {
 Spawn:
@@ -479,7 +479,7 @@ scale 2.5
 damage (150)
 speed 35
 Obituary "$OB_GYROATTACK"
-damagetype "GyroAttack"
+damagetype "GyroM_Shot"
 States
 {
 Spawn:
@@ -545,7 +545,7 @@ scale 2.5
 damage (100)
 speed 35
 Obituary "$OB_GYROATTACK"
-damagetype "GyroAttack"
+damagetype "GyroM_Shot"
 States
 {
 Spawn:

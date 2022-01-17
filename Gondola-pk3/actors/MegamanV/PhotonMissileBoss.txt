@@ -412,7 +412,7 @@ actor MarsVulcanShot : FastProjectile
 
 Translation "204:204=4:4","195:195=70:70"
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "Mars_Shot"
 Obituary "$OB_MARSVULCAN"
 Damage (50)
 radius 6
@@ -491,7 +491,7 @@ actor MarsPhotonMissile
 {
 Translation "202:202=210:210","195:195=70:70","249:249=42:42"
 PROJECTILE
-damagetype "PhotonMissileStart"
+damagetype "Mars_Photon"
 Obituary "$OB_MARSMISSILE"
 +THRUGHOST
 ReactionTime 1
@@ -654,7 +654,7 @@ actor MarsMortar_HP : MarsMortar_H{Translation"202:202=229:229","195:195=232:232
 actor MarsMortar
 {
 PROJECTILE
-damagetype "PhotonMissileStart"
+damagetype "Mars_Mortar"
 Obituary "$OB_MARSMORTAR"
 -NOGRAVITY
 +BOUNCEONWALLS

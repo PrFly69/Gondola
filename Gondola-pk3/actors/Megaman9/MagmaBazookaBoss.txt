@@ -50,48 +50,56 @@ MAGX D 1 A_Raise
 Loop
 
 Fire:
-MAGX D 0 A_JumpIfInventory("MagmaIgniteFlag",1,"FinishIgnitionX")
-MAGX D 0 A_PlaySoundEx("weapon/magmabazooka","Weapon")
-MAGX D 0 A_GiveInventory("MagmaMainCool",34)
-MAGX D 0 A_GiveInventory("MagmamanMain_P",1)
-FireLeft:
-MAGX F 0 A_JumpIfInventory("MagmaAltCool",1,"FireX")
-MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
-MAGX F 1 A_WeaponReady(6)
-MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
-MAGX F 1 A_WeaponReady(6)
+MAGX A 0 A_JumpIfInventory("MagmaItemFlag",1,"FinishIgnitionX")
+MAGX A 0 A_PlaySoundEx("weapon/magmabazooka","Weapon")
+MAGX A 0 A_GiveInventory("MagmamanMain_P",1)
+MAGX A 0 A_GiveInventory("MagmaMainCool_RC",1)
+MAGX A 0 A_JumpIfInventory("MagmaAltCool",1,"FireX")
+MAGX A 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX E 1 A_WeaponReady(WRF_NOPRIMARY)
+MAGX A 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX E 1 A_WeaponReady(WRF_NOPRIMARY)
 MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
-MAGX E 1 A_WeaponReady(6)
-MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
-MAGX E 1 A_WeaponReady(6)
-MAGX E 0 A_TakeInventory("MagmaMainFlag",99)
+MAGX F 1 A_WeaponReady(WRF_NOPRIMARY)
+MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX F 1 A_WeaponReady(WRF_NOPRIMARY)
+MAGX F 0 A_TakeInventory("MagmaMainFlag",99)
 goto Ready1
 
 FireX:
-MAGX F 1 A_GiveInventory("MagmaMainFlag",1)
-MAGX F 0 A_JumpIfInventory("MagmaAltCool",1,1)
-goto FireLeft+3
-MAGX F 1 A_GiveInventory("MagmaMainFlag",1)
-MAGX F 0 A_JumpIfInventory("MagmaAltCool",1,1)
-goto FireLeft+5
-MAGX E 1 A_GiveInventory("MagmaMainFlag",1)
-MAGX E 0 A_JumpIfInventory("MagmaAltCool",1,1)
-goto FireLeft+7
-MAGX E 1 A_TakeInventory("MagmaMainFlag",99)
+MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX E 1
+MAGX E 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.a")
+goto Fire+7
+FireX.a:
+MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX E 1
+MAGX E 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.b")
+goto Fire+9
+FireX.b:
+MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX F 1
+MAGX F 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.c")
+goto Fire+11
+FireX.c:
+MAGX F 1 A_TakeInventory("MagmaMainFlag",99)
 goto Ready1
 
 Altfire:
-MAGX D 0 A_JumpIfInventory("MagmaIgniteFlag",1,"FinishIgnitionX")
+MAGX D 0 A_JumpIfInventory("MagmaItemFlag",1,"FinishIgnitionX")
+MAGX D 0 A_GiveInventory("MagmaAltCool_RC",1)
 MAGX D 0 A_GiveInventory("MagmaAltFlag",1)
 MAGX D 0 A_JumpIfInventory("MagmaMainFlag",1,"AltfireX")
-MAGX D 0
 Goto Ready1
 AltfireX:
-MAGX F 0 A_JumpIfInventory("MagmaMainFlag",4,6)
-MAGX E 0 A_JumpIfInventory("MagmaMainFlag",3,4)
-MAGX E 0 A_JumpIfInventory("MagmaMainFlag",2,2)
-MAGX FFEE 1
-MAGX E 0 A_TakeInventory("MagmaMainFlag",99)
+MAGX E 0 A_JumpIfInventory("MagmaMainFlag",4,6)
+MAGX F 0 A_JumpIfInventory("MagmaMainFlag",3,4)
+MAGX F 0 A_JumpIfInventory("MagmaMainFlag",2,2)
+MAGX E 1
+MAGX E 1
+MAGX F 1
+MAGX F 1
+MAGX F 0 A_TakeInventory("MagmaMainFlag",99)
 goto Ready1
 
 Flash.Begin:
@@ -270,6 +278,35 @@ TNT1 A 0 A_GiveInventory("VolcanicBreakfastAmmo",1)
 stop
 PickupR:
 TNT1 A 0 A_GiveInventory("VolcanicBreakfastAmmo",2)
+stop
+}
+}
+
+actor MagmaMainCool_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("MagmaMainCool",34)
+goto PickupR
+PickupR:
+TNT1 A 0 A_GiveInventory("MagmaMainCool",17)
+stop
+}
+}
+actor MagmaAltCool_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("MagmaAltCool",1)
+goto PickupR
+PickupR:
+TNT1 A 0 A_GiveInventory("MagmaAltCool",1)
 stop
 }
 }

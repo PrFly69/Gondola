@@ -167,7 +167,7 @@ actor DarkClassShot
 Translation "202:202=216:216","199:199=219:219"
 var int user_P;
 PROJECTILE
-damagetype "DarkShot"
+damagetype "DM4_Shot"
 Obituary "$OB_DARK4BUSTER"
 +THRUGHOST
 +DONTREFLECT
@@ -225,7 +225,7 @@ actor Dark4SniperShot
 {
 Translation "202:202=216:216","199:199=219:219"
 PROJECTILE
-damagetype "DarkShot"
+damagetype "DM4_Shot"
 Obituary "$OB_DARK4BUSTER"
 Damage (200+pitch)
 radius 10
@@ -379,7 +379,7 @@ goto SpawnL
 actor DarkShield4Segment
 {
 Translation "202:202=216:216"
-damagetype "DarkShield"
+damagetype "DM4_Shield"
 Obituary "$OB_DARK2SHIELD"
 +MISSILE
 +NOGRAVITY
@@ -606,7 +606,7 @@ RenderStyle "translucent"
 Alpha 0.45
 Translation "192:192=85:85", "198:198=227:227"
 PROJECTILE
-damagetype "DarkShield"
+damagetype "DM4_TossSpin"
 Obituary "$OB_DARK2SHIELD"
 Height 56
 Radius 30

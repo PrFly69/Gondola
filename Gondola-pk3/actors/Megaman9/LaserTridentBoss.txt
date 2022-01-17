@@ -534,7 +534,7 @@ TNT1 A 0 A_GiveInventory("SplashW_AmmoRegenDelay",1)
 TNT1 A 0
 stop
 Give:
-TNT1 A 0 A_GiveInventory("CrabHealingAmmo",0)//bozo
+TNT1 A 0 //A_GiveInventory("CrabHealingAmmo",0)//bozo
 TNT1 A 0 A_TakeInventory("SplashW_AmmoRegenDelay")
 stop
 }

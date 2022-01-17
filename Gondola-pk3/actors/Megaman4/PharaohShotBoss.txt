@@ -310,7 +310,7 @@ stop
 
 actor PharaohAura : BasicExplosion
 {
-damagetype "ClassPainLess"
+damagetype "PharaohM_Aura"
 Obituary "$OB_PHARAOHAURA"
 States
 {
@@ -325,6 +325,7 @@ stop
 actor Pharaohshot1B : Pharaohshot1
 {
 Translation "192:192=4:4", "198:198=216:216"
+damagetype "PharaohM_Shot1"
 Radius 10
 Height 10
 damage (120)
@@ -358,6 +359,7 @@ actor Pharaohshot1BP : Pharaohshot1B{translation "192:192=229:229", "198:198=232
 actor Pharaohshot2B : Pharaohshot2
 {
 Translation "192:192=4:4", "198:198=216:216"
+damagetype "PharaohM_Shot"
 Radius 14//10
 Height 14//10
 damage(150)//damage (40)
@@ -399,6 +401,7 @@ actor Pharaohshot2BP : Pharaohshot2B{translation "192:192=229:229", "198:198=232
 actor Pharaohshot3B : Pharaohshot3
 {
 Translation "192:192=4:4", "198:198=216:216"
+damagetype "PharaohM_Shot3"
 Radius 16//10
 Height 16//10
 damage(100)
@@ -430,7 +433,7 @@ actor PharaohshotWaveB1 : Pharaohshot2
 Translation "192:192=4:4", "198:198=216:216"
 var int user_P;
 Obituary "$OB_PHARAOHWAVE"
-damagetype "Pharaohshot3"
+damagetype "PharaohM_Wave"
 Damage(150)
 Radius 10
 Height 32
@@ -1088,7 +1091,7 @@ stop}}
 
 actor PharaohFX10B : PharaohFX1B
 {
-damagetype "PharaohHold"
+damagetype "PharaohM_Hold"
 Obituary "$OB_PHARAOHSHOT"
 States
 {
