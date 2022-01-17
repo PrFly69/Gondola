@@ -428,7 +428,7 @@ actor CrystalEyeC
 var int user_D;
 Translation "199:199=193:193", "202:202=0:0", "204:204=210:210"
 PROJECTILE
-damagetype "CrystalEye"
+damagetype "CrystalM_Eye"
 Obituary "$OB_CRYSTALEYEBIG"
 //+EXPLODEONWATER
 +SKYEXPLODE
@@ -652,7 +652,7 @@ actor CrystalShot
 Translation "199:199=193:193", "202:202=0:0", "204:204=210:210"
 
 PROJECTILE
-damagetype "CrystalEyeBitB"
+damagetype "CrystalM_EyeShot"
 Obituary "$OB_CRYSTALEYESHOT"
 +SKYEXPLODE
 +DOOMBOUNCE
@@ -694,7 +694,7 @@ actor CrystalShotP : CrystalShot{translation"202:202=229:229","199:199=232:232",
 
 actor CrystalShot2 : CrystalShot
 {
-damagetype "CrystalEyeBitC"
+damagetype "CrystalM_EyeShot"
 Obituary "$OB_CRYSTALEYE"
 BounceCount 10
 reactiontime 6

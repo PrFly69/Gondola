@@ -471,7 +471,7 @@ Goto Ready1
 actor BossPunkArmor : BasicArmorPickup
 {
 Armor.Savepercent 50.001
-Armor.Saveamount 50
+Armor.Saveamount 500
 //Armor.MaxSaveAmount 20
 }
 

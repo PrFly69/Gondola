@@ -142,7 +142,7 @@ actor NapalmMissileClass
 {
 translation "199:199=41:41","202:202=210:210"
 PROJECTILE
-damagetype "NapalmBomb"
+damagetype "NapalmM_Missile"
 Obituary "$OB_NAPALMMISSILE"
 Damage (20)
 Radius 12
@@ -176,7 +176,7 @@ actor NapalmMissileClassP : NapalmMissileClass{translation "199:199=232:232","20
 actor NapalmBombClass : NapalmBomb
 {
 translation "192:192=216:216","198:198=75:75","202:202=210:210"
-damagetype "NapalmBombB"
+damagetype "NapalmM_Bomb"
 Damage (10)
 Radius 11
 Height 12

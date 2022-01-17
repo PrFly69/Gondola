@@ -888,7 +888,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 Y_VE DE 4 A_CountDown
-stop
+wait
 }
 }
 

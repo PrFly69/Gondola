@@ -477,7 +477,7 @@ stop
 actor ChargeAltRadius : BasicExplosion
 {
 Obituary "$OB_COALRAIN"
-Damagetype "Coal"
+Damagetype "ChargeM_Coal"
 States
 {
 Spawn:
@@ -493,7 +493,7 @@ var int user_P;
 Translation "198:198=225:225", "202:202=210:210"
 PROJECTILE
 Obituary "$OB_COALRAIN"
-Damagetype "Coal"
+Damagetype "ChargeM_Coal"
 -NOGRAVITY
 damage (100)
 Radius 7
@@ -536,7 +536,7 @@ actor RisingCoal
 {
 PROJECTILE
 Obituary "$OB_COALRAIN"
-Damagetype "Coal"
+Damagetype "ChargeM_Coal"
 +DONTBLAST
 //+SHOOTABLE
 Radius 8

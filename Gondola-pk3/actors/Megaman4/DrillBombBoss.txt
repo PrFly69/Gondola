@@ -378,7 +378,7 @@ stop
 	{
 		Spawn:
 		TNT1 A 0
-		TNT1 A 3 A_Explode(5,72,0,0,72)
+		TNT1 A 3 A_Explode(50,72,0,0,72)
 		Stop
 	}
   }

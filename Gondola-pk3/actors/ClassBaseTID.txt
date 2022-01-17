@@ -278,6 +278,26 @@ stop
 }
 }
 
+actor PainScrewCrusherMHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("PainScrewCrusherMHit_P",1)
+stop
+}
+}
+actor PainScrewCrusherMHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("PunkMeleeStopPickup",1)
+stop
+}
+}
+
 //Flings
 actor PainBaseFlingHit : BasicHitBaseF
 {
