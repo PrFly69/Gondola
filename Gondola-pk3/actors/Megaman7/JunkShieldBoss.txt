@@ -1144,20 +1144,17 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",14,"Spawn3")
-TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",7,"Spawn2")
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",CallACS("cbm_Fetch_GetArmorInfo",1,2)*7/10,"Spawn3")
+TNT1 A 0 A_JumpIfInTargetInventory("BasicArmor",CallACS("cbm_Fetch_GetArmorInfo",1,2)*7/20,"Spawn2")
 goto Spawn1
 Spawn3:
-TNT1 A 0
-TNT1 A 2 A_Explode(70,160,0)
+TNT1 A 2 A_Explode(50,160,0,0,16)
 stop
 Spawn2:
-TNT1 A 0
-TNT1 A 2 A_Explode(60,160,0)
+TNT1 A 2 A_Explode(40,160,0,0,16)
 stop
 Spawn1:
-TNT1 A 0
-TNT1 A 2 A_Explode(50,160,0)
+TNT1 A 2 A_Explode(30,160,0,0,16)
 stop
 }
 }

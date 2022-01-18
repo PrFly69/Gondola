@@ -501,7 +501,7 @@ actor BlackHoleBombPewPew
 {
 Translation "192:192=59:59","198:198=62:62"
 PROJECTILE
-damagetype "BlackHoleBomb"
+damagetype "GalaxyM_Shot"
 Obituary "$OB_BLACKHOLEPEW"
 +FORCEXYBILLBOARD
 +THRUSPECIES
@@ -652,7 +652,7 @@ actor BlackHoleBombXBotP : BlackHoleBombXBot{translation "192:192=229:229","198:
 actor BlackHoleBombXDeath : BasicExplosion
 {
 Obituary "$OB_BLACKHOLEBOMBX"
-damagetype "BlackHoleBombB"
+damagetype "GalaxyM_Shot"
 ReactionTime 5
 Scale 2.5
 States
@@ -875,7 +875,7 @@ stop
 
 actor GalaxyRam : BasicExplosion
 {
-damagetype "BlackHoleBombB"
+damagetype "GalaxyM_Ram"
 Obituary "$OB_GALAXYRAM"
 States
 {

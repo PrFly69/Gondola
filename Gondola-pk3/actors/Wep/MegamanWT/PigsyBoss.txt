@@ -667,7 +667,7 @@ Translation "204:204=215:215"
 PROJECTILE
 Radius 15
 Height 15
-DamageType "HyperStormH"
+DamageType "HSH_Shot"
 Obituary "$OB_HSHBULLET"
 scale 3.0
 Damage (130)//15
@@ -695,7 +695,7 @@ translation "199:199=227:227", "202:202=229:229"
 PROJECTILE
 Radius 16
 Height 16
-DamageType "HSHFire"
+DamageType "HSH_ShotHot"
 Obituary "$OB_HSHHOTBULLET"
 scale 2.0
 Damage (180)//20
@@ -722,7 +722,7 @@ actor HSHBulletHeatP : HSHBulletHeat{translation "202:202=229:229", "199:199=232
 
 actor HSHSuckExplode// : BasicExplosion
 {
-DamageType "HSHSuck"
+DamageType "HSH_Drain"
 Obituary "$OB_HSHCOLDSUCK"
 +DROPOFF
 -SOLID
@@ -746,7 +746,7 @@ stop
 
 actor HSHDashExplodeStart : BasicExplosion
 {
-DamageType "ClassPainless2"
+DamageType "HSH_Wallop"
 Obituary "$OB_HSHCOLDRAM"
 States
 {
@@ -804,7 +804,7 @@ goto Spawn+5
 
 actor HSHExplodeHeat : BasicExplosion
 {
-DamageType "HSHFire"
+DamageType "HSH_Booster"
 Obituary "$OB_HSHHOTAIR"
 States
 {

@@ -174,7 +174,7 @@ goto Shield
 
 actor SMStarRadius : BasicExplosion
 {
-Damagetype "StarcrashB"
+Damagetype "StarM_Crash"
 Obituary "$OB_STARCRASH"
 States
 {
@@ -265,7 +265,7 @@ actor StarFlurryLauncherP : StarFlurryLauncher{translation "192:192=229:229", "1
 actor StarFlurryShot
 {
 PROJECTILE
-Damagetype "StarCrashB"
+Damagetype "StarM_Flurry"
 Obituary "$OB_STARFLURRY"
 +DONTSPLASH
 Damage (50)

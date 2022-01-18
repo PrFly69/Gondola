@@ -215,7 +215,7 @@ actor WilderCoil
 {
 Translation "202:202=56:56","204:204=215:215"
 PROJECTILE
-damagetype "WildCoil"
+damagetype "SpringM_Coil"
 Obituary "$OB_WILDCOIL"
 -NOGRAVITY
 +USEBOUNCESTATE
@@ -344,7 +344,7 @@ actor SpringFist
 {
 Translation "202:202=56:56","192:192=4:4","198:198=40:40"
 PROJECTILE
-damagetype "WildCoil2"
+damagetype "SpringM_Fist"
 Obituary "$OB_SPRINGFIST"
 //+SKYEXPLODE//Causes Desync sadly
 +DONTBLAST

@@ -306,7 +306,7 @@ HARP I 0 A_CountDown
 loop
 
 SpawnX:
-"####" "#" 0 A_PlaySoundEx("S3_K/MetalSpark","Weapon")
+"####" "#" 0 //A_PlaySoundEx("S3_K/MetalSpark","Weapon")
 HARP H 0 A_GiveToTarget("WaveHookACSSound",1)
 "####" "#" 0 A_GiveInventory("WaveHookKillFlag",1)
 "####" "#" 0 A_ChangeFlag("HITTRACER",0)
