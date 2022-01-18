@@ -4,7 +4,7 @@ Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
 PROJECTILE
 SeeSound "weapon/dustbit"
 //+DONTBLAST
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 60
 -NOGRAVITY
 +HITTRACER
@@ -323,7 +323,7 @@ Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
 PROJECTILE
 SeeSound "weapon/dustbit"
 //+DONTBLAST
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 60
 -NOGRAVITY
 +HITTRACER
@@ -675,7 +675,7 @@ Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
 PROJECTILE
 SeeSound "weapon/dustbit"
 //+DONTBLAST
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 60
 -NOGRAVITY
 Gravity 1.2
@@ -986,7 +986,7 @@ Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
 PROJECTILE
 SeeSound "weapon/dustbit"
 //+DONTBLAST
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 60
 -NOGRAVITY
 +HITTRACER
@@ -1316,7 +1316,7 @@ Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
 PROJECTILE
 SeeSound "weapon/dustbit"
 //+DONTBLAST
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 60
 -NOGRAVITY
 +HITTRACER
@@ -1559,7 +1559,7 @@ Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
 PROJECTILE
 SeeSound "weapon/dustbit"
 //+DONTBLAST
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 60
 -NOGRAVITY
 +HITTRACER
@@ -1961,7 +1961,7 @@ Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"
 PROJECTILE
 SeeSound "weapon/dustbit"
 //+DONTBLAST
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 60
 -NOGRAVITY
 +HITTRACER

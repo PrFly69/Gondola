@@ -178,10 +178,14 @@ texture SWORVARX,56,8{patch SWORBARX,0,0{rotate 90}}//Sword
 
 
 graphic TERRICON,30,30{XScale 2.0 YScale 2.0 Patch RSH1E0,0,0}
-texture BAMM1_V0,8,56{patch B_5BARSB,0,0{Translation"192:192=196:196","198:198=198:198"}}
+texture BAMM1_V0,8,56{patch B_5BARSB,0,0{Translation"192:192=4:4","198:198=198:198"}}
 texture VAMM1_V0,56,8{patch BAMM1_V0,0,0{rotate 90}}
+texture BAMM1_VX,8,56{patch B_5BARSB,0,0{Translation"192:192=107:107","198:198=198:198"}}
+texture VAMM1_VX,56,8{patch BAMM1_VX,0,0{rotate 90}}
 texture BAMM2_V0,8,56{patch B_4BARSX,0,0{Translation"192:192=132:132","198:198=135:135","202:202=130:130","199:199=132:132","204:204=128:128","195:195=130:130","118:118=108:108","119:119=128:128"}}
 texture VAMM2_V0,56,8{patch BAMM2_V0,0,0{rotate 90}}//Terra Ammobars
+texture BARMTERR,8,56{patch TNT1A0,0,0}
+texture VARMTERR,56,8{patch TNT1A0,0,0}
 
 
 sprite  C_11T0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0112, 0, 0}

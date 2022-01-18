@@ -220,7 +220,7 @@ Height 8
 scale 2.5
 damage (60)
 Obituary "$OB_BLIZZARDATTACK"
-damagetype "BlizzardAttack"
+damagetype "BlizzardM_Shot"
 speed 32
 States
 {
@@ -249,7 +249,7 @@ actor BlizzardBossAttack
 {
 Translation "198:198=193:193"
 PROJECTILE
-damagetype "BlizzardAttack"
+damagetype "BlizzardM_Shot"
 Obituary "$OB_BLIZZARDATTACK"
 Damage (70)//10//Legacy
 Height 12//10

@@ -26,7 +26,6 @@ player.startitem "LightningBoltWeakness", 1
 player.startitem "PlugBallWeakness", 1
 player.startitem "ElectricShockWeakness", 1
 
-player.startitem "RealClassFlag", 67
 States
 {
 Spawn:
@@ -106,7 +105,7 @@ actor JunkLeak : CustomInventory
 States
 {
 Pickup:
-DUST B 0 ACS_ExecuteAlways(648,0,13)
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,13)
 DUST B 0 A_JumpIfInventory("LeakStock",10, "Pickup2") 
 stop
 Pickup2:

@@ -67,12 +67,12 @@ goto Fire1
 Fire1:
 5A_H A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
 5A_H A 0 A_GiveInventory("GravitymanMain_CI",1)
-5A_H BCBAA 3 A_GiveInventory("ScrewGravityAmmoFire_P",1)
+5A_H BCBAA 4 A_GiveInventory("ScrewGravityAmmoFire_P",1)
 goto Ready1
 Fire2:
 5A_H D 0 A_PlaySoundEx("weapon/mbuster","Weapon")
 5A_H D 0 A_GiveInventory("GravitymanMain2_CI",1)
-5A_H EFEDD 3 A_GiveInventory("ScrewGravityAmmoFire_P",1)
+5A_H EFEDD 4 A_GiveInventory("ScrewGravityAmmoFire_P",1)
 goto ReadyUp1
 
 Altfire:
@@ -494,7 +494,7 @@ Obituary "$OB_GRAVITYBUSTER"
 Damage (150)
 radius 8
 height 8
-Speed 60
+Speed 48
 scale 2.5
 States
 {
@@ -567,7 +567,7 @@ stop
 actor GravityManHold1 : BasicExplosion
 {
 Translation "192:192=4:4", "198:198=41:41"
-damagetype "GravityM_Down"
+damagetype "GravitySmackDown"
 Obituary "$OB_GRAVITYHOLD_D"
 States
 {
@@ -841,7 +841,7 @@ actor GravitymanSphereUP : GravitymanSphereU{translation "192:192=229:229", "198
 
 actor GravitymanSphereD_Boom : BasicExplosion
 {
-damagetype "GravityM_Down"//GravityB1
+damagetype "GravitySmackDown"//GravityB1
 Obituary "$OB_GRAVITYBALL_D"
 States
 {

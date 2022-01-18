@@ -421,7 +421,7 @@ actor WilyNoShot
 {
 Translation "192:192=228:228","198:198=253:253"
 PROJECTILE
-damagetype "Buster"
+damagetype "DrWily_Wave"
 Obituary "$OB_WILYSHOT"
 //+DONTSEEKINVISIBLE//
 //+SEEKERMISSILE
@@ -554,7 +554,7 @@ actor WilyShot1
 {
 Translation "192:192=228:228","198:198=253:253"
 PROJECTILE
-damagetype "Buster"
+damagetype "DrWily_Suit"
 Obituary "$OB_WILYSKULL"
 Speed 26
 Damage (240)
@@ -644,7 +644,7 @@ actor WilyShotX
 {
 translation "202:202=4:4","199:199=215:215"
 PROJECTILE
-Damagetype "ClassPain"
+Damagetype "DrWily_Pan"
 Obituary "$OB_WILYPAN"
 +DONTSPLASH
 +DONTBLAST
@@ -886,7 +886,7 @@ stop
 actor CapsuleLightningX
 {
 Translation "195:195=212:212", "204:204=218:218"
-damagetype "WilyLightning"
+damagetype "DrWily_Elec"
 Obituary "$OB_WILYELEC"
 PROJECTILE
 +RIPPER
@@ -913,7 +913,7 @@ goto Spawn+3
 }
 }
 
-actor CapsuleLightningXX : CapsuleLightningX{BounceCount 5 Damage (80) Obituary "$OB_WILYELECX"}
+actor CapsuleLightningXX : CapsuleLightningX{BounceCount 5 Damage (8) Obituary "$OB_WILYELECX"}//uh oh
 
 actor CapsuleLightningXXB : CapsuleLightningXX{translation "204:204=205:205", "195:195=74:74"}
 actor CapsuleLightningXXR : CapsuleLightningXX{translation "204:204=171:171", "195:195=41:41"}
@@ -925,7 +925,7 @@ actor CapsuleFireX : CapsuleLightningX
 {
 Translation "199:199=221:221", "202:202=218:218"
 Obituary "$OB_WILYFIRE"
-damagetype "WilyFireB1"
+damagetype "DrWily_Fire"
 -RIPPER
 states
 {
@@ -1014,7 +1014,7 @@ actor CapsuleIceX : CapsuleLightningX
 {
 Translation "199:199=4:4", "202:202=69:69"
 Obituary "$OB_WILYICE"
-damagetype "WilyIce"
+damagetype "DrWily_Ice"
 -RIPPER
 BounceType None
 BounceCount 0
@@ -1045,7 +1045,7 @@ damagefactor "WilyFireB1", 0.25
 actor WilyCapsuleGroundSplitX
 {
 Translation "195:195=69:69", "204:204=212:212"
-damagetype "WilyLightning"
+damagetype "DrWily_Elec"
 Obituary "$OB_WILYELEC"
 PROJECTILE
 +RIPPER
@@ -1081,7 +1081,7 @@ actor WilyCapsuleGroundSplitXP : WilyCapsuleGroundSplitX{translation "204:204=22
 actor WilyCapsuleGroundLitX
 {
 PROJECTILE
-damagetype "WilyLightning"
+damagetype "DrWily_Elec"
 Obituary "$OB_WILYELEC"
 +FLOORHUGGER
 +RIPPER

@@ -345,7 +345,7 @@ actor SpringFist
 Translation "202:202=56:56","192:192=4:4","198:198=40:40"
 PROJECTILE
 damagetype "SpringM_Fist"
-Obituary "$OB_SPRINGFIST"
+Obituary "$OB_SPRINGFISTX"
 //+SKYEXPLODE//Causes Desync sadly
 +DONTBLAST
 +NOGRAVITY
@@ -417,6 +417,7 @@ actor SpringFistWeak : SpringFist
 {
 reactiontime 15
 speed 48
+Obituary "$OB_SPRINGFIST"
 States
 {
 Death:

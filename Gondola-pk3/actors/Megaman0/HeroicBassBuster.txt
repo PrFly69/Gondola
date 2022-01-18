@@ -249,7 +249,7 @@ actor BassShotB : FastProjectile
 Translation "204:204=215:215","202:202=4:4","199:199=215:215"
 PROJECTILE
 +FORCEXYBILLBOARD
-damagetype "BassBuster"
+damagetype "Bass_Shot"
 Obituary "$OB_BASSBUSTER"
 Damage (50)
 Speed 64

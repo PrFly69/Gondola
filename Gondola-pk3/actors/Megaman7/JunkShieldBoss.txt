@@ -450,12 +450,16 @@ Species "JunkCubeThing"
 mass 99999
 Health 2000
 damagefactor "JunkShield", 0.0
-damagefactor "JunkPunch", 0.0
-damagefactor "JunkPunch2", 0.0
+damagefactor "JunkM_Shield", 0.0
+damagefactor "JunkM_Shot", 0.0
+damagefactor "JunkM_Shock", 0.0
+damagefactor "JunkM_Punch", 0.0
+damagefactor "JunkM_Cube", 0.0
 damagefactor "Fire", 0.1 //MageStaff
 
-DamageFactor "IceWallC", 0.125
-DamageFactor "ConcreteShoulder", 0.04
+DamageFactor "ColdM_WallFloor", 0.125
+DamageFactor "ColdM_WallAir", 0.125
+DamageFactor "ConcreteM_Bash", 0.04
 
 
 Args 0,0,29,0,0
@@ -610,14 +614,18 @@ Species "JunkCubeThing"
 BounceFactor 1.0
 
 mass 9999999
-Health 200
+Health 2000
 damagefactor "JunkShield", 0.0
-damagefactor "JunkPunch", 0.0
-damagefactor "JunkPunch2", 0.0
+damagefactor "JunkM_Shield", 0.0
+damagefactor "JunkM_Shot", 0.0
+damagefactor "JunkM_Shock", 0.0
+damagefactor "JunkM_Punch", 0.0
+damagefactor "JunkM_Cube", 0.0
 damagefactor "Fire", 0.1 //MageStaff
 
-DamageFactor "IceWallC", 0.125
-DamageFactor "ConcreteShoulder", 0.04
+DamageFactor "ColdM_WallFloor", 0.125
+DamageFactor "ColdM_WallAir", 0.125
+DamageFactor "ConcreteM_Bash", 0.04
 
 
 ReactionTime 124

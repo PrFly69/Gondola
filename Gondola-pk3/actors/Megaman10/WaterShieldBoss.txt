@@ -400,10 +400,10 @@ Gravity 2
 Renderstyle Translucent
 Alpha 0.75
 var int user_power;
-Damage (20)
+Damage (25)
 radius 16
 height 16
-Speed 90
+Speed 60
 scale 2.5
 States
 {

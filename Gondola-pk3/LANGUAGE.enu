@@ -1,5 +1,9 @@
 [enu default]
 
+//Springman
+OB_SPRINGFISTX = "%o was springtrapped by %k's Super Spring Punch.";
+OB_SPRINGFIST = "%o was thwacked by %k's Spring Punch.";
+
 //Shademan
 OB_SHADESWOOP = "%o was scraped and licked by %k's Shade Swoop.";
 

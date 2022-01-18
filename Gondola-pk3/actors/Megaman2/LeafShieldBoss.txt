@@ -444,10 +444,10 @@ stop
 }
 }
 
-actor LeafTrapB : LeafTrap{Translation"204:204=205:205","195:195=74:74","250:250=196:196","249:249=199:199"}
-actor LeafTrapR : LeafTrap{Translation"204:204=171:171","195:195=41:41","250:250=170:170","249:249=43:43"}
-actor LeafTrapO : LeafTrap{Translation"204:204=104:104","195:195=128:128","250:250=138:138","249:249=131:131"}
-actor LeafTrapP : LeafTrap{Translation"204:204=229:229","195:195=232:232","250:250=214:214","249:249=223:223"}
+actor LeafTrapB : LeafTrap{Translation"192:192=205:205","198:198=74:74"}
+actor LeafTrapR : LeafTrap{Translation"192:192=171:171","198:198=41:41"}
+actor LeafTrapO : LeafTrap{Translation"192:192=104:104","198:198=128:128"}
+actor LeafTrapP : LeafTrap{Translation"192:192=229:229","198:198=232:232"}
 
 actor LeafTrap2 : LeafTrap
 {

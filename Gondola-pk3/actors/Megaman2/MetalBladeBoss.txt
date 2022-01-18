@@ -238,7 +238,7 @@ actor MetalManBlade
 {
 Translation "199:199=4:4"
 PROJECTILE
-damagetype "MetalBlade"
+damagetype "MetalM_Blade"
 Obituary "$OB_METALBLADE"
 +RIPPER
 Damage (140)
@@ -373,7 +373,7 @@ actor MetalManChainBlade
 {
 Translation "199:199=4:4"
 PROJECTILE
-Damagetype "MetalBlade" 
+Damagetype "MetalM_Chain" 
 Obituary "$OB_CHAINBLADE"
 +DONTBLAST
 +DONTREFLECT

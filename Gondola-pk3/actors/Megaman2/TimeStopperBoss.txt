@@ -327,7 +327,7 @@ actor FlashBullet
 {
 Translation "204:204=215:215"
 PROJECTILE
-damagetype "Buster"
+damagetype "FlashM_Shot"
 Obituary "$OB_TIMEBUSTER"
 Damage (60)
 radius 6

@@ -68,32 +68,45 @@ DUSB A 2
 DUSB A 0 A_ReFire
 goto Ready2
 AltFire:
-DUSB D 2 A_GunFlash("Flash")
+DUSB M 1 A_GunFlash("Flash")
+DUSB N 1
 goto AltSuck
 AltSuck:
-//DUSA D 2 A_FireBullets (20, 20, 1, 0, "DustSucker", 0, 400)
-DUSB E 2 A_GiveInventory("DustmanAltSuction_P",1)
-DUSB E 0 A_Refire("AltSuck2")
-DUSB D 1
+//DUSB D 2 A_FireBullets (20, 20, 1, 0, "DustSucker", 0, 400)
+DUSB M 0 A_FireCustomMissile("DustSucker",0,0,0,0)
+DUSB M 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+DUSB MMM 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+DUSB N 3
+DUSB M 0 A_Refire("AltSuck2")
+DUSB N 2
 Goto AltSuckEnd
 AltSuck2:
-DUSB F 2 A_GiveInventory("DustmanAltSuction_P",1)
-DUSB F 0 A_Refire("AltSuck3")
-DUSB D 1
+DUSB M 0 A_FireCustomMissile("DustSucker",0,0,0,0)
+DUSB M 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+DUSB MMM 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+DUSB O 3
+DUSB M 0 A_Refire("AltSuck3")
+DUSB O 2
 Goto AltSuckEnd
 AltSuck3:
-DUSB G 2 A_GiveInventory("DustmanAltSuction_P",1)
-DUSB G 0 A_Refire("AltSuck4")
-DUSB D 1
+DUSB M 0 A_FireCustomMissile("DustSucker",0,0,0,0)
+DUSB M 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+DUSB MMM 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+DUSB P 3
+DUSB M 0 A_Refire("AltSuck4")
+DUSB P 2
 Goto AltSuckEnd
 AltSuck4:
-DUSB F 2 A_GiveInventory("DustmanAltSuction_P",1)
-DUSB F 0 A_Refire("AltSuck")
-DUSB D 1
+DUSB M 0 A_FireCustomMissile("DustSucker",0,0,0,0)
+DUSB M 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+DUSB MMM 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+DUSB O 3
+DUSB M 0 A_Refire("AltSuck")
+DUSB O 2
 Goto AltSuckEnd
 AltSuckEnd:
 DUSB D 0 A_GunFlash("NoFlash")
-DUSB D 1 A_StopSound(4)
+DUSB D 0 //A_StopSound(4)
 Goto Ready2
 
 Flash:
@@ -177,31 +190,45 @@ DUSB A 0 A_ReFire
 goto Ready2
 
 AltFire:
-DUSA D 2 A_GunFlash("Flash")
+DUSB T 1 A_GunFlash("Flash")
+DUSB U 1
 goto AltSuck
 AltSuck:
-DUSA E 2 A_GiveInventory("DustmanAltSuction_P",1)
-DUSA E 0 A_Refire("AltSuck2")
-DUSA D 1
+//DUSB D 2 A_FireBullets (20, 20, 1, 0, "DustSucker", 0, 400)
+DUSB T 0 A_FireCustomMissile("DustSucker",0,0,0,0)
+DUSB T 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+DUSB TTT 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+DUSB U 3
+DUSB T 0 A_Refire("AltSuck2")
+DUSB U 2
 Goto AltSuckEnd
 AltSuck2:
-DUSA F 2 A_GiveInventory("DustmanAltSuction_P",1)
-DUSA F 0 A_Refire("AltSuck3")
-DUSA D 1
+DUSB T 0 A_FireCustomMissile("DustSucker",0,0,0,0)
+DUSB T 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+DUSB TTT 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+DUSB V 3
+DUSB T 0 A_Refire("AltSuck3")
+DUSB V 2
 Goto AltSuckEnd
 AltSuck3:
-DUSA G 2 A_GiveInventory("DustmanAltSuction_P",1)
-DUSA G 0 A_Refire("AltSuck4")
-DUSA D 1
+DUSB T 0 A_FireCustomMissile("DustSucker",0,0,0,0)
+DUSB T 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+DUSB TTT 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+DUSB W 3
+DUSB T 0 A_Refire("AltSuck4")
+DUSB W 2
 Goto AltSuckEnd
 AltSuck4:
-DUSA F 2 A_GiveInventory("DustmanAltSuction_P",1)
-DUSA F 0 A_Refire("AltSuck")
-DUSA D 1
+DUSB T 0 A_FireCustomMissile("DustSucker",0,0,0,0)
+DUSB T 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+DUSB TTT 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
+DUSB V 3
+DUSB T 0 A_Refire("AltSuck")
+DUSB V 2
 Goto AltSuckEnd
 AltSuckEnd:
-DUSA D 0 A_GunFlash("NoFlash")
-DUSA D 1 A_StopSound(4)
+DUSB D 0 A_GunFlash("NoFlash")
+DUSB D 0 //A_StopSound(4)
 Goto Ready2
 
 Flash:

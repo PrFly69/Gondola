@@ -154,6 +154,7 @@ actor AirShotBW : AirShot
 {
 damage (150)
 speed 35//22
+damagetype "AirM_Shot"
 States
 {
 Spawn:
@@ -201,6 +202,7 @@ actor AirWall : AirShotB
 {
 -NOEXPLODEFLOOR
 damage (60)
+damagetype "AirM_Wall"
 speed 0
 States
 {
@@ -222,6 +224,7 @@ stop
 actor AirWall2 : AirWall
 {
 speed 22
+damagetype "AirM_Wall"
 damage (150)
 States
 {
@@ -233,6 +236,12 @@ SpawnLOOP:
 AIRS AABBCC 1 A_ScaleVelocity(1.03)
 loop
 }
+}
+
+actor AirM_WallProtect : PowerProtection
+{
+Powerup.Duration 4
+DamageFactor "AirM_Wall", 0.19
 }
 
 actor AirmanMain_CI : TeamColor_CI

@@ -335,6 +335,7 @@ actor PainProtoShieldBashHit : PainBaseFlingHit{Mass 28}
 actor PainBassKickHit : PainBaseFlingHit{Mass 32}
 actor PainBassKickHitEx : PainBaseFlingHit{Mass 48}
 actor PainMaestroAquaGuts : PainBaseFlingHit{Mass 6}
+actor SolarVentHit : PainBaseFlingHit{Mass 16}
 
 actor DeathLightRyu_ShoryuHit : DeathBaseFlingHit{Mass 15}
 

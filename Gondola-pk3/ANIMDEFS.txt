@@ -72,6 +72,14 @@ texture DOCNOVR
 pic DOCNOVR1 tics 4
 pic DOCNOVR2 tics 4
 
+texture BARMTERR
+pic BAMM1_V0 tics 2
+pic BAMM1_VX tics 2
+
+texture VARMTERR
+pic VAMM1_V0 tics 2
+pic VAMM1_VX tics 2
+
 //ccbm
 //Gyroman Icon
 texture GyroIcon

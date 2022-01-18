@@ -445,7 +445,7 @@ Actor KnightmanCrusherReturn : KnightmanCrusher {
 
 Actor KnightmanCrusherReturnDamager {
 	PROJECTILE
-	Damagetype "KnightReturn"
+	Damagetype "DMGNoHitstun"
 	Obituary "$OB_KNIGHTCRUSHX"
 	+RIPPER
 	+DONTBLAST
@@ -564,7 +564,7 @@ Actor KnightmanCrusherNoRipReturn : KnightmanCrusherNoRip {
 
 Actor KnightmanCrusherNoRipReturnDamager {
 	PROJECTILE
-	Damagetype "KnightReturn"
+	Damagetype "DMGNoHitstun"
 	Obituary "$OB_KNIGHTCRUSHZ"
 	+RIPPER
 	+DONTBLAST
@@ -799,7 +799,7 @@ Actor KnightShieldDeathFX : BasicClientSide {
 }
 
 Actor KnightRush : BasicExplosion {
-	Damagetype "KnightRush"
+	Damagetype "KnightM_Push"
 	Obituary "$OB_KNIGHTRUSH"
 	States {
 		Spawn:

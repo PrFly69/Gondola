@@ -339,7 +339,7 @@ actor YamatoSpearBFirerP : YamatoSpearBFirer{Translation "192:192=229:229","198:
 actor YamatoSpearB
 {
 PROJECTILE
-damagetype "YamatoSpear"
+damagetype "YamatoM_Shot"
 Obituary "$OB_YAMATOSPEAR"
 damage (100)
 Radius 5
@@ -457,7 +457,7 @@ loop
 
 actor YamatoAlt : BasicExplosion
 {
-Damagetype "ClassPainLess2"//"YamatoSpin"
+Damagetype "YamatoM_Spin"//"YamatoSpin"
 Obituary "$OB_YAMATOSPIN"
 States
 {
