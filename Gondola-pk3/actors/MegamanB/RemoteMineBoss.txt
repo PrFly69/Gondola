@@ -621,25 +621,16 @@
 	+THRUSPECIES
 	Species "DumbPirateMine"
 
-	PainChance 0
-	PainChance "WaveBurner", 256
-	PainChance "WaveBurnerUW", 256
-	PainChance "RockKick", 256
-	PainChance "RollSwing", 256
-	PainChance "RollSwing2", 256
-	PainChance "PiratePush", 256
-	PainChance "RemoteMineB",256
-	DamageFactor "RemoteMineB", 256
-	
-	//(Deal 1 Damage about)
-	DamageFactor "WaveBurnerUW", 0.28
-	DamageFactor "WaveBurner", 0.28
-	DamageFactor "PiratePush", 0.5
-	DamageFactor "RockKick", 0.125
-	DamageFactor "RollSwing", 0.125
-	DamageFactor "RollSwing2", 0.125
+painchance 0
+painchance "Torrent", 256
+
+//(Deal 1 damage about)
+damagefactor "Normal", 1.0
+damagefactor "PirateM_Hose", 1.0
+damagefactor "BurnerM_Shot2", 1.0
+damagefactor "PirateM_Boom", 10.0
 	Mass 99999
-	Health 35
+	Health 350
 	ReactionTime 1
 	Damage (20)
 	Radius 14
@@ -682,10 +673,7 @@
 
 		Pain.WaveBurner:
 		Pain.WaveBurnerUW:
-		Pain.RockKick:
-		Pain.RollSwing:
-		Pain.RollSwing2:
-		Pain.PiratePush:
+		Pain.PirateM_Hose:
 		RPMI C 0 A_PlaySoundEx("S3_K/Beep","Voice")
 		RPMI C 0 A_GiveInventory("PRemoteFlag",1)
 		RPMI C 1 ACS_ExecuteAlways(259,0,1)
