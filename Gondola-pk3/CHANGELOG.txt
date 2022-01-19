@@ -2217,7 +2217,8 @@ CHANGELOG
 -FOM Buffer 15 > 12
 
 ==Pumpman
--Bubble damage 20 > 25 (total damage 25.0
+-Bubble damage 20 > 25 (total damage 25.0)
+--Projectile speed 90 > 60
 
 ==Sheepman
 -Health 85.0 > 90.0
