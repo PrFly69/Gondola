@@ -927,6 +927,7 @@ actor WaveBurnUWBoss : WaveBurnUW
 {
 Speed 34//26
 Damage (40)
+damagetype "BurnerM_Shot2"
 translation "199:199=195:195", "202:202=193:193"
 States
 {

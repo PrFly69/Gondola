@@ -221,7 +221,7 @@ $playersound	flashmanc	male	*land		MM2LAND
 $playersound	alienc	male	*death		M1_DIED
 $playersound	alienc	male	*pain100	MM2PAIN
 $playersound	alienc	male	*weakpain	M2_WEAK
-$playersound	alienc	male	*land		MM2LAND
+$playersound	alienc	male	*land		DSNONE
 //MM3/////////////////////////////////////////////////////////////
 $playersound	magnetmanc	male	*death		MEGADEAT
 $playersound	magnetmanc	male	*pain100	MM3PAIN
@@ -426,7 +426,7 @@ $playersound	burstmanc	male	*land		MM6JUMP
 $playersound	cloudmanc	male	*death		MEGADEAT
 $playersound	cloudmanc	male	*pain100	MM4PAIN
 $playersound	cloudmanc	male	*weakpain	M4_WEAK
-$playersound	cloudmanc	male	*land		LAND
+$playersound	cloudmanc	male	*land		DSNONE
 
 $playersound	freezemanc	male	*death		MEGADEAT
 $playersound	freezemanc	male	*pain100	MM4PAIN
@@ -461,7 +461,7 @@ $playersound	tengumanc	male	*land		MM6JUMP
 $playersound	astromanc	male	*death		MEGADEAT
 $playersound	astromanc	male	*pain100	MM4PAIN
 $playersound	astromanc	male	*weakpain	M4_WEAK
-$playersound	astromanc	male	*land		LAND
+$playersound	astromanc	male	*land		DSNONE
 
 $playersound	swordmanc	male	*death		MEGADEAT
 $playersound	swordmanc	male	*pain100	MM4PAIN

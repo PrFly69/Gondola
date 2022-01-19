@@ -2146,7 +2146,7 @@ CHANGELOG
 *Uses Trillster's HP decimal system :)
 
 ==Megaman
--MM4 Sprite Chargeshot damage 25 > 30
+-Second Tier Chargeshot damage 25.0 > 30.0
 *No clue what to call it lmao
 
 ==Rock
@@ -2168,10 +2168,14 @@ CHANGELOG
 -Movespeed 1.33/1.35 > 1.08/1.10
 
 ==Doc Robot
--Health 900 > 1000
+-Health 90.0 > 100.0
 -Gear Grinder RoF lowered by 10 tics
 --Gear Grinder bouncecount 3 > 2
 --Gear Grinder speed 90 > 69
+
+==Gravityman
+-Gravity Buster speed 60 > 48
+--Gravity Buster rate of fire decreased by 5 tics
 
 ==Centaurman
 -Centaur Arrow requires 2 ammo
@@ -2184,39 +2188,52 @@ CHANGELOG
 --Now has explosive hitbox around impact, does not do knockup (only does knockup on direct)
 
 ==Plantman
--Health 850 > 900
+-Health 85.0 > 90.0
 -Plant Buster shots bounce off of walls with reduced velocity
 
 ==Windman
 -Weapon ammo capacity 28 > 32
 --Wind Storm ammo usage 14 > 16
 
+==Springman
+-Now has unique obit for Super Spring Punch
+
 ==Shademan
 -Hyper Speed Shade glitch patched out
 -Holding charge shot now grants 1.2x speed to the user, gets removed once fired
 
 ==Coldman
--Ice Wall health 950 > 500
+-Ice Wall health 95.0 > 50.0
 
 ==Magicman
 -Ported Magic Ball from classes-v9fh.pk3
---Damage 110 > 90
+--Damage 11.0 > 9.0
 
 ==Concreteman
--Sniper Concrete Block direct damage 50 > 200
---Sniper Concrete Block explosive damage 350 > 150
+-Sniper Concrete Block direct damage 5.0 > 20.0
+--Sniper Concrete Block explosive damage 35.0 > 15.0
 
 ==Fakeman
 -FOM Buffer 15 > 12
 
+==Pumpman
+-Bubble damage 20 > 25 (total damage 25.0)
+--Projectile speed 90 > 60
+
 ==Sheepman
--Health 850 > 900
+-Health 85.0 > 90.0
 
 ==Solarman
--Health 900 > 1000
+-Health 90.0 > 100.0
+
+==Terra
+-Ported CBM HUD
+
+==Venus
+-Ported CBM SFX
 
 ==Enker
--Ported V-Classes HUD
+-New M2 HUD sprite by Honootorch
 
 ==Ballade
 -Ballade Cracker spins faster depending on speed, based on classes-v9fh.pk3
