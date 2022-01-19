@@ -1243,7 +1243,7 @@ actor MaestroAquaShot : FastProjectile
 {
 PROJECTILE
 Translation "192:192=200:200", "198:198=75:75"
-Damagetype "ClassPainLess2"
+Damagetype "DMGNoHitstun"
 Obituary "%o's data was rinsed out by %k's aqua bubbler."
 +DONTREFLECT
 Gravity 2
@@ -1299,7 +1299,7 @@ PROJECTILE
 +NOCLIP
 +CLIENTSIDEONLY
 Gravity 1.5
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 0
 Damage (0)
 radius 16
@@ -1363,7 +1363,7 @@ PROJECTILE
 -BOUNCEONACTORS
 +SKYEXPLODE
 Gravity 1
-Damagetype "ClassPainLess2"
+Damagetype "DMGNoHitstun"
 Obituary "%o was germinated by %k's wood seeds."
 Damage (100)
 radius 8
@@ -1420,7 +1420,7 @@ actor MaestroWoodenShot
 Translation "192:192=168:168", "198:198=128:128"
 PROJECTILE
 Obituary "%o was twisted by %k's wood tornado."
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 +NOINTERACTION
 +RIPPER
 +THRUGHOST

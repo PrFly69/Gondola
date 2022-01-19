@@ -286,7 +286,7 @@ PROJECTILE
 Obituary "$OB_ASTROSHOT"
 Speed 40
 Damage (120)
-DamageType "CopyVision"
+DamageType "AstroM_Shot"
 radius 5
 height 5
 scale 2.5
@@ -392,6 +392,7 @@ height 12
 radius 24
 Damage (0)
 Scale 2
+Damagetype "AstroM_Meteor"
 Reactiontime 30
 States
 {
