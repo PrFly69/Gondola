@@ -3,7 +3,7 @@ actor MaestroShotGuts : FastProjectile
 
 Translation "204:204=4:4","195:195=215:215"
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Obituary "%o was gunned down by %k's guts buster."
 Damage (30)
 radius 6
@@ -363,7 +363,7 @@ PROJECTILE
 +RIPPER
 +PIERCEARMOR
 Obituary "%o's data was roasted by %k's heat flamethrower."
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Damage (0)
 Radius 10
 Height 10
@@ -427,7 +427,7 @@ Powerup.Duration 18
 
 actor MaestroAfterburn : BasicExplosion
 {
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Obituary "%o's data was burned to ashes by %k's afterburn."
 States
 {
@@ -1479,7 +1479,7 @@ actor MaestroWoodenShotGuts
 Translation "192:192=168:168", "198:198=128:128"
 PROJECTILE
 Obituary "%o was twisted by %k's wood tornado."
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 +NOINTERACTION
 +RIPPER
 +THRUGHOST

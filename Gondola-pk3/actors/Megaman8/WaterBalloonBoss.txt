@@ -265,7 +265,7 @@ actor WaterBalloonBoss4
 {
 //Translation "204:204=198:198"
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "AquaM_Shot"
 Obituary "$OB_WATERBALLOON"
 -DONTSPLASH
 -NOGRAVITY

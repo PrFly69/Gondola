@@ -443,7 +443,7 @@ stop
 actor DivineWind
 {
 PROJECTILE
-damagetype "TenguBladeB"
+damagetype "TenguM_Shot"
 Obituary "$OB_DIVINEWIND"
 +THRUACTORS
 +HEXENBOUNCE
@@ -495,7 +495,7 @@ actor TenguTHoldPod
 {
 Translation "192:192=4:4","199:199=112:112"
 PROJECTILE
-damagetype "TornadoHold"
+damagetype "TenguM_Pod"
 Obituary "$OB_TORNADOHOLD"
 -NOGRAVITY
 +HEXENBOUNCE
@@ -565,7 +565,7 @@ actor TenguTHoldPod2P : TenguTHoldPod2{translation "192:192=229:229", "199:199=2
 
 actor TenguTHoldFloor
 {
-damagetype "TornadoHold"
+damagetype "TenguM_Pod"
 Obituary "$OB_TORNADOHOLD"
 +MISSILE
 +RIPPER
@@ -650,7 +650,7 @@ goto FloorSit
 actor TenguHoldingTornado
 {
 PROJECTILE
-damagetype "TenguTornadoHeld"
+damagetype "TenguM_THold"
 Obituary "$OB_TORNADOHOLD"
 +DONTREFLECT
 damage(120) 
