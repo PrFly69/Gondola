@@ -586,7 +586,7 @@ actor ODuoMidFist
 {
 Translation "198:198=192:192", "192:192=4:4"
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "ODuo_Shot"
 Obituary "$OB_ODUOFIST2"
 +SKYEXPLODE
 reactiontime 1
@@ -662,7 +662,7 @@ actor ODuoPunchP : ODuoPunch{translation "192:192=229:229","198:198=232:232"}
 
 actor ODuo_MeteorProtect : PowerProtection
 {
-Powerup.Duration 4
+Powerup.Duration 10
 DamageFactor "ODuo_Meteor", 0.0
 }
 
