@@ -503,7 +503,7 @@ actor ShadowBladeCBM : ShadowBlade
 {
 translation "202:202=4:4", "199:199=210:210"
 Damage (200)//16
-damagetype "ShadowBladeCBM"
+damagetype "ShadowM_Blade1"
 Radius 7
 Height 7
 Speed 40
