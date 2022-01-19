@@ -2217,8 +2217,9 @@ CHANGELOG
 -FOM Buffer 15 > 12
 
 ==Pumpman
--Bubble damage 20 > 25 (total damage 25.0)
+-Bubble Spray damage 2.0 > 2.5 (total damage 25.0)
 --Projectile speed 90 > 60
+-Ammo taken 56 > 999
 
 ==Sheepman
 -Health 85.0 > 90.0
@@ -2231,6 +2232,9 @@ CHANGELOG
 
 ==Venus
 -Ported CBM SFX
+
+==Saturn
+-New HUD sprites, provided by Pegg
 
 ==Enker
 -New M2 HUD sprite by Honootorch
