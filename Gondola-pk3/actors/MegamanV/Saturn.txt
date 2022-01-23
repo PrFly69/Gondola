@@ -55,15 +55,12 @@ goto Spawn
 ClassPain:
 SATU H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 SATU H 0
 goto DeathContinue
-ClassDeath:
-SATU H 1
-goto MegaDeathEnd
 Death.Jupiter_Beam:
 SATU H 0 A_PlaySoundEX("weapon/saturndeath","weapon")
 SATU H 85
-goto MegaDeathEnd
+goto DeathContinue
 }
 }

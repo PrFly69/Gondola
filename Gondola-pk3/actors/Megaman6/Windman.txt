@@ -48,11 +48,8 @@ goto Spawn
 ClassPain:
 WINM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 WINM H 0
 goto DeathContinue
-ClassDeath:
-WINM H 1
-goto MegaDeathEnd
 }
 }

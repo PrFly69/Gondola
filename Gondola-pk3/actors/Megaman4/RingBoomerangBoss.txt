@@ -574,7 +574,7 @@ goto Return
 actor RingBoomerangDamagerB
 {
 PROJECTILE
-damagetype "RingBoomerangB"
+damagetype "RingM_Ring1"
 Obituary "$OB_RINGBOOMERANG"
 +DONTBLAST
 damage (150)

@@ -133,7 +133,7 @@ actor YellowEyeBoss : BaseMM8BDMWep_CBM
         //YD_H E 0 A_ChangeFlag("INVISIBLE",0)
         YD_H E 0 A_ChangeFlag("PICKUP",1)
         YD_H E 0 A_ChangeFlag("NOTELEPORT",0)
-        YD_H E 0 A_SpawnItemEx("ReSolidifier")
+        YD_H E 0 A_SpawnItemEx("ResolidifyPlayer_H")
         YD_H E 0 A_PlaySoundEx("wep/YD_Sploosh","Weapon")
         YD_H E 0 A_CheckCeiling("AltfireEndCeiling")
 		YD_H E 0 A_SpawnItemEx("YellowDevilCubeBit",4,0,12,8,0,10,0,1)

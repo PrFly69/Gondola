@@ -56,7 +56,7 @@ script CBM_FetchMyHealth (int Which, int HPBoost)
 				SetResultValue(HPBoost);
 			}
 			else{
-				SetResultValue(round(HPBoost * 0.01 * Spawn_H));
+				SetResultValue(roundOld(HPBoost * 0.01 * Spawn_H));
 			}
 			break;
 		Case 2://Return false if max health
@@ -86,7 +86,7 @@ script CBM_HealMyThing (int Which, int HPBoost)
 				HealThing(HPBoost,Spawn_H);
 			}
 			else{
-				HealThing(round(HPBoost * 0.01 * Spawn_H),Spawn_H);
+				HealThing(roundOld(HPBoost * 0.01 * Spawn_H),Spawn_H);
 			}
 			break;
 		Case 0://Basic Heal

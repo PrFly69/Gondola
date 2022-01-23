@@ -52,11 +52,8 @@ loop
 ClassPain:
 YD_B H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 YD_B H 0
 goto DeathContinue
-ClassDeath:
-YD_B H 1
-goto MegaDeathEnd
 }
 }

@@ -267,23 +267,23 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-DUSA T 0
-DUSA T 0 A_Jump(256,"T","U","V","W")
-T:
-DUSA T 0 
-DUSA T 1 //A_SpawnItemEx("DustCrusherDustFXT",0,0,0,0,0,0,0,1)
+4DST A 0
+4DST A 0 A_Jump(256,"A","B","C","D")
+A:
+4DST A 0 
+4DST A 1 //A_SpawnItemEx("DustCrusherDustFXT",0,0,0,0,0,0,0,1)
 loop
-U:
-DUSA [ 0
-DUSA [ 1 //A_SpawnItemEx("DustCrusherDustFXU",0,0,0,0,0,0,0,1)
+B:
+4DST B 0 
+4DST B 1 //A_SpawnItemEx("DustCrusherDustFXU",0,0,0,0,0,0,0,1)
 loop
-V:
-DUSA ] 0 
-DUSA ] 1 //A_SpawnItemEx("DustCrusherDustFXV",0,0,0,0,0,0,0,1)
+C:
+4DST C 0 
+4DST C 1 //A_SpawnItemEx("DustCrusherDustFXV",0,0,0,0,0,0,0,1)
 loop
-W:
-DUSA ^ 0
-DUSA ^ 1 //A_SpawnItemEx("DustCrusherDustFXW",0,0,0,0,0,0,0,1)
+D:
+4DST D 0 
+4DST D 1 //A_SpawnItemEx("DustCrusherDustFXW",0,0,0,0,0,0,0,1)
 loop
 Crash:
 XDeath:

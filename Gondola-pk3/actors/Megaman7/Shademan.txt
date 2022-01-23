@@ -128,12 +128,9 @@ ClassPain:
 SHDE H 0 A_JumpIfInventory("ShadeGrabFlight",1,"ClassPainSwoop")
 SHDE H 0 A_JumpIfInventory("SwoopSafeGuard",1,"ClassPainSwoop")
 goto PainContinue
-DeathFix:
+ClassDeath:
 SHDE H 0
 goto DeathContinue
-ClassDeath:
-SHDE H 1
-goto MegaDeathEnd
 }
 }
 

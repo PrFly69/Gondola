@@ -1353,6 +1353,46 @@ stop
 }
 }
 
+actor LMSRockBallPickup2 : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(975)==2,"Yes")
+stop
+Yes:
+TNT1 A 0 A_Jump(256,"Yes1","Yes2","Yes3","Yes4","Yes5","Yes6","Yes7","Yes8")
+goto Yes1
+Yes0:
+TNT1 A 0 A_GiveInventory("MegaBallBoss",1)
+stop
+Yes1:
+TNT1 A 0 A_GiveInventory("MegaCutBallBoss",1)
+stop
+Yes2:
+TNT1 A 0 A_GiveInventory("MegaGutsBallBoss",1)
+stop
+Yes3:
+TNT1 A 0 A_GiveInventory("MegaIceBallBoss",1)
+stop
+Yes4:
+TNT1 A 0 A_GiveInventory("MegaBombBallBoss",1)
+stop
+Yes5:
+TNT1 A 0 A_GiveInventory("MegaFireBallBoss",1)
+stop
+Yes6:
+TNT1 A 0 A_GiveInventory("MegaElecBallBoss",1)
+stop
+Yes7:
+TNT1 A 0 A_GiveInventory("MegaTimeBallBoss",1)
+stop
+Yes8:
+TNT1 A 0 A_GiveInventory("MegaOilBallBoss",1)
+stop
+}
+}
+
 
 ///////////////////////////////////////////////////////////////////
 //  ___   _   _    _    ___    ___  ___   ___ _____ ___ ___ _    //
@@ -2359,9 +2399,6 @@ TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,CallACS("cbm_GetPointerTID_147",2),1
 //If Target team != Tracer team
 goto Death
 DeathBurnChance:
-TNT1 A 0 A_JumpIfInventory("PowerOilBallCoat",1,"DeathBurning",8)
-goto Death
-DeathBurning:
 TNT1 A 0 A_SpawnItemEx("PainMegaFireBallHit",0,0,0,0,0,0,0,1025)
 goto Death
 }

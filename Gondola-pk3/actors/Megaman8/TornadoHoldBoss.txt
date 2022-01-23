@@ -411,33 +411,14 @@ stop
 
 actor G_TenguSlamCollide : BasicCollideSlam
 {
+damagetype "TenguM_Dunked"
 Obituary "$OB_TENGUSMASH"
-Mass 1
-Meleerange 120
-
-states
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 A_Explode(Meleerange+Args[0]/8,15,0,0,15)
-TNT1 A 3
-stop
-}
 }
 
 actor G_TenguSlamCollideX : BasicCollideSlam
 {
+damagetype "TenguM_Dunked"
 Obituary "$OB_TENGUSMASHX"
-Mass 1
-Meleerange 120
-states
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 A_Explode(Meleerange+Args[0]/8,15,0,0,15)
-TNT1 A 3
-stop
-}
 }
 
 actor DivineWind

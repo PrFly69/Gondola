@@ -86,11 +86,8 @@ goto Missile+6
 ClassPain:
 BURN H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 BURN H 0
 goto DeathContinue
-ClassDeath:
-BURN H 1
-goto MegaDeathEnd
 }
 }

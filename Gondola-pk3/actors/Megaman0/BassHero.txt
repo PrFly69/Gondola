@@ -73,11 +73,8 @@ goto Spawn
 ClassPain:
 BASS H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 BASS H 0
 goto DeathContinue
-ClassDeath:
-BASS H 1
-goto MegaDeathEnd
 }
 }

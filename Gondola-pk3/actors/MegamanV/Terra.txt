@@ -60,11 +60,8 @@ Goto Missile
 ClassPain:
 TRRA H 0
 goto PainContinue
-DeathFix:
-TRRA H 0 //A_ChangeFlag(FLOATBOB, false)
-goto DeathContinue
 ClassDeath:
-TRRA H 1 //A_ChangeFlag(FLOATBOB, false)
-goto MegaDeathEnd
+TRRA H 0
+goto DeathContinue
 }
 }

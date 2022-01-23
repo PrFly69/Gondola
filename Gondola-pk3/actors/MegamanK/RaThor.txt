@@ -103,7 +103,7 @@ RATH H 19
 goto ClassDeathM
 ClassDeathM:
 RATH H 0 A_SpawnItemEx("RaThorRareDeathHelper",0,0,0,momx,momy,momz,0,9)
-goto MegaDeathEnd
+goto DeathContinue
 ClassDeathR:
 RATH H 1 ThrustThingZ(0,21,0,1)
 RATH H 0 A_JumpIf(ceilingz-z<64,"ClassDeathM")

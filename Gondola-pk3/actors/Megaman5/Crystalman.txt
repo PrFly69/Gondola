@@ -50,11 +50,8 @@ goto Jumping
 ClassPain:
 CRYM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 CRYM H 0
 goto DeathContinue
-ClassDeath:
-CRYM H 1
-goto MegaDeathEnd
 }
 }

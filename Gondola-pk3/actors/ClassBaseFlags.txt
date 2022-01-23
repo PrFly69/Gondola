@@ -1,0 +1,885 @@
+//These are actors used for ClassBase0
+
+//Since 'Player.StartItem' can't be inherited, this is given via ACS
+actor CBM_StarterSpawnInventory_P : CustomInventory
+{
+States
+{
+Pickup:
+
+//Core Inventory
+TNT1 A 0 A_GiveInventory("MM8BDMPlayer",1)
+TNT1 A 0 A_GiveInventory("CanBeGrabBustered",1)
+TNT1 A 0 A_GiveInventory("CanBeMegaArmed",1)
+
+//CBM Inventory
+TNT1 A 0 A_GiveInventory("IsInGame",1)
+TNT1 A 0 A_GiveInventory("CBM_NoGravityFix_P")
+TNT1 A 0 A_GiveInventory("StaminaFlag",500)
+TNT1 A 0 A_GiveInventory("ResolidifyPlayer_SpawnTele_P")
+stop
+}
+}
+
+actor PowerNoGravityFixOld : PowerFlight
+{//Makes class hop on spawn
++NOGRAVITY
+Powerup.Duration 1
+}
+
+actor CBM_NoGravityFix_P : CustomInventory
+{//Classes spawn with NOGRAVITY to allow usage
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(CallACS("cbm_NoGravitySpawnHop"),"PickupOld")
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)
+stop
+PickupOld:
+TNT1 A 0 A_GiveInventory("PowerNoGravityFixOld")
+stop
+}
+}
+
+actor CBM_CritDeathCheck_P : CustomInventory
+{//DrLight
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("CriticalDeath",1,1)
+stop
+TNT1 A 0 A_GiveInventory("CriticalDeathGiver")
+stop
+}
+}
+actor CBM_CritDeathCheck_Snd_P : CustomInventory
+{//ClassBase0 BBA
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("CriticalDeath",1,2)
+TNT1 A 0 A_PlaySoundEx("*death","Voice")
+stop
+TNT1 A 0 A_GiveInventory("CriticalDeathGiver")
+stop
+}
+}
+
+actor DeadClassBundle : CustomInventory
+{
+States
+{
+Pickup:
+
+//Core Flags
+PLY1 H 0 ACS_NamedExecuteWithResult("core_decdmg_begin")
+PLY1 H 0 A_TakeInventory("WeaponCharge")
+PLY1 H 0 A_TakeInventory("ConcreteTime")
+PLY1 H 0 A_GiveInventory("CutterFlag",999)
+PLY1 H 0 A_GiveInventory("IsDead",1)
+PLY1 H 0 A_GiveToTarget("KilledMeStock",1)
+PLY1 H 0 A_GiveToTarget("KilledMe",1)
+
+//TNT1 A 0 A_TakeInventory("PharaohCharge",999)
+//TNT1 A 0 A_TakeInventory("PharaohChargeC",999)
+TNT1 A 0 A_TakeInventory("UnSolid",999)
+
+TNT1 A 0 A_GiveInventory("EndBossFlashStoppered",1)
+
+TNT1 A 0 A_TakeInventory("WilyBurnTimer",999)
+
+TNT1 A 0 A_JumpIfInventory("SpawnTeleFragFlag",1,3)
+TNT1 A 0 A_SpawnItemEx("ScrewSpewer",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_GiveInventory("TrioExodiaDropper_P",1)//EvilRobot actor
+TNT1 A 0 A_GiveInventory("RaThorSinistarDropper_P",1)//RaThor actor
+TNT1 A 0 SetPlayerProperty(0,0,4)
+TNT1 A 0 A_NoBlocking
+TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
+//TNT1 A 0 A_ChangeFlag("SOLID",0)
+//TNT1 A 0 A_JumpIfInventory("NoStopDeathFlag",1,2)
+//TNT1 A 0 A_Stop
+TNT1 A 0 //ACS_ExecuteAlways(999,0,0)//Old fade cancel script
+goto SpecialDrops
+
+SpecialDrops:
+TNT1 A 0 A_JumpIfInventory("JoeHitFlag",1,"ScoreBall")
+TNT1 A 0 A_JumpIfInventory("RaThorHitFlag",1,"RaThorSoul")
+TNT1 A 0 A_JumpIfInventory("JunkDeathDropFlag",1,"JunkDrop")
+TNT1 A 0
+goto FinalCheck
+FinalCheck:
+TNT1 A 0 A_JumpIfInventory("RiseDeathFlag",1,"Rising")
+TNT1 A 0 A_JumpIfInventory("InstagibFlag",1,"Bonus")
+TNT1 A 0 A_JumpIfInventory("FallingFlag",1,"Bonus")
+stop
+
+Bonus:
+TNT1 A 0 A_SetTranslucent(0.0,0)
+TNT1 A 0 //A_GiveInventory("",1)//Could do something
+stop
+Rising:
+TNT1 A 0 //A_Stop
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+stop
+ScoreBall:
+TNT1 A 0 A_SpawnItemEx("ScoreBallPickUp",0,0,32,random(1,3),0,10,random(0,359),1)
+goto SpecialDrops+1
+RaThorSoul:
+TNT1 A 0 A_SpawnItemEX("ThorSoul",0,0,0,random(-4,4),random(-4,4),frandom(2,3),random(0,359),1)
+goto SpecialDrops+2
+JunkDrop:
+TNT1 AAA 0 A_SpawnItemEx("ClassJunkMetalBit",0,0,0,random(1,10),0,random(3,12),random(0,359),1)
+goto SpecialDrops+3
+}
+}
+
+
+actor FrozenDeathFXC : FrozenDeathFX{Radius 16 Height 56}
+
+actor FrozenDeathBitFX : BasicClientSide
+{
+Translation "192:192=4:4", "198:198=201:201", "3:8=72:72", "243:247=72:72", "208:215=4:4"
+Scale 1.25
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6")
+Spawn1:
+BLIZ A 3 bright
+TNT1 A 1
+BLIZ B 3 bright
+TNT1 A 1
+BLIZ C 2 bright
+stop
+Spawn2:
+TNT1 A 0 A_Jump(128,"Spawn2a")
+MRFA QPO 3 bright
+stop
+Spawn2a:
+MRFA OPQ 3 bright
+stop
+Spawn3:
+TNT1 A 0 A_Jump(128,"Spawn3a")
+X_2F DBF 3 bright
+stop
+Spawn3a:
+X_2F USW 3 bright
+stop
+Spawn4:
+TNT1 A 0 A_Jump(128,"Spawn4a")
+X_2F DEF 3 bright
+stop
+Spawn4a:
+X_2F AEC 3 bright
+stop
+Spawn5:
+X_7A F 3 bright
+TNT1 A 1
+X_7A F 3 bright
+TNT1 A 1
+X_7A F 3 bright
+stop
+Spawn6:
+X_7A GHI 3 bright
+stop
+End:
+TNT1 A 0
+stop
+}
+}
+
+actor ConfettiDeath : Confetti{+THRUGHOST}
+
+actor ConfettiDeathSpawner : ConfettiSpawner{ReactionTime 9 States{
+Spawn:
+TNT1 AAA 0 A_SpawnItemEx("ConfettiDeath",random(-16, 16),random(-16, 16),Random(8, 16),random(-3,3), random(-3,3), random(1,-1),0)
+TNT1 A 1 A_CountDown
+Loop}}
+
+actor FakeDeathFX_CBM : BasicHelper
+{
+Translation "192:129=4:4","198:198=210:210"
+States
+{
+Spawn:
+TNT1 A 1
+PLY1 Z 0 A_SpawnItemEx("DeathFX1",0,0,0,0, 1.0,  0.0,0,8193)//SXF_MULTIPLYSPEED = 8192
+PLY1 Z 0 A_SpawnItemEx("DeathFX1",0,0,0,0, 0.7,  0.7,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX1",0,0,0,0, 0.0,  1.0,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX1",0,0,0,0,-0.7,  0.7,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX1",0,0,0,0,-1.0,  0.0,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX1",0,0,0,0,-0.7, -0.7,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX1",0,0,0,0, 0.0, -1.0,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX1",0,0,0,0, 0.7, -0.7,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX2",0,0,0,0, 1.0,  0.0,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX2",0,0,0,0, 0.7,  0.7,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX2",0,0,0,0, 0.0,  1.0,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX2",0,0,0,0,-0.7,  0.7,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX2",0,0,0,0,-1.0,  0.0,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX2",0,0,0,0,-0.7, -0.7,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX2",0,0,0,0, 0.0, -1.0,0,8193)
+PLY1 Z 0 A_SpawnItemEx("DeathFX2",0,0,0,0, 0.7, -0.7,0,8193)
+TNT1 A 1
+stop
+}
+}
+
+actor DelayPainFX : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAAA 2 A_GiveToTarget("PainFXItem",1)
+stop
+}
+}
+
+actor PainFXItem : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("PainFX_CBM",-5,0,3,0,0,0)
+stop
+}
+}
+
+actor CBM_ArtiTeleportCheck_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(tid!=0,"Yes")
+stop
+Yes://If a Voodoo/Summoned player gets this. Game Crash!
+TNT1 A 0 A_GiveInventory("TeleportFX_Flag6",1)
+TNT1 A 0 A_GiveInventory("PowerFallingRespawnSpeed",1)
+TNT1 A 0 A_GiveInventory("CBM_ArtiTeleport_P",1)
+stop
+}
+}
+
+actor PainHitstun_75_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,"No")
+TNT1 A 0 A_JumpIfInventory("SemiStunArmor",1,"Pickup2")
+TNT1 A 0 A_ScaleVelocity(0.75)
+stop
+Pickup2:
+TNT1 A 0 A_ScaleVelocity(0.875)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor PainHitstun_80_P : PainHitstun_75_P 
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,"No")
+TNT1 A 0 A_JumpIfInventory("SemiStunArmor",1,"Pickup2")
+TNT1 A 0 A_ScaleVelocity(0.80)
+stop
+Pickup2:
+TNT1 A 0 A_ScaleVelocity(0.90)
+stop
+}
+}
+
+actor PainHitstun_85_P : PainHitstun_75_P 
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,"No")
+TNT1 A 0 A_JumpIfInventory("SemiStunArmor",1,"Pickup2")
+TNT1 A 0 A_ScaleVelocity(0.85)
+stop
+Pickup2:
+TNT1 A 0 A_ScaleVelocity(0.925)
+stop
+}
+}
+
+actor PainHitstun_90_P : PainHitstun_75_P 
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,"No")
+TNT1 A 0 A_JumpIfInventory("SemiStunArmor",1,"Pickup2")
+TNT1 A 0 A_ScaleVelocity(0.90)
+stop
+Pickup2:
+TNT1 A 0 A_ScaleVelocity(0.95)
+stop
+}
+}
+
+actor PainStopC : PainHitstun_75_P 
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,"No")
+TNT1 A 0 A_JumpIfInventory("SemiStunArmor",1,"Pickup2")
+TNT1 A 0 A_Stop
+stop
+Pickup2:
+TNT1 A 0 A_ScaleVelocity(0.50)
+stop
+}
+}
+
+actor PainRecoilC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("RecoilPowerC",1,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("StunArmor",1,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("SemiStunArmor",1,"Pickup2")
+TNT1 A 0 A_Recoil(1)
+TNT1 A 0 A_GiveInventory("RecoilPowerC",1)
+stop
+Pickup2:
+TNT1 A 0
+stop
+}
+}
+
+actor RecoilPowerC : Powerup
+{
+Powerup.Duration 1
+}
+
+actor TimeBenderPain_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_Stop
+TNT1 A 0 A_SpawnItemEx("FlashM_GenesisSparkleFX",random(16,64),0,random(4,64),0,0,0,random(0,71)*5)
+stop
+}
+}
+
+actor TimeStopActivatorC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("TimeStoppedCounter",1,"No")
+TNT1 A 0 A_Stop
+TNT1 A 0 A_GiveInventory("TimeStoppedCounter",1)
+TNT1 A 0 ACS_NamedExecuteAlways("core_freezeplayer",0,0,1)
+TNT1 A 0 SetPlayerProperty(0,1,4)//
+TNT1 A 0 ACS_ExecuteAlways(806,0)//
+TNT1 A 0 A_GiveInventory("TotallyFrozenLook",1)//
+TNT1 A 0 A_SpawnItemEx("TimeStoppedWatcherC")
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+actor TimeStoppedWatcherC : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Warp(2,0,0,0,0,WARPF_NOCHECKPOSITION)
+TNT1 A 0 A_SpawnItemEx("TimeStopGFX",random(8,64),0,random(0,64),0,0,0,random(0,359))
+TNT1 A 0 A_JumpIfInTargetInventory("TimeStoppedCounter",1,"Spawn")
+TNT1 A 5 A_GiveToTarget("TimeUnstoppedC")
+stop
+}
+}
+actor TimeUnstoppedC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteAlways("core_flyplayer",0,0,0)
+TNT1 A 0 A_GiveInventory("CoreTimeStopUnfreeze",1)
+stop
+}
+}
+
+actor SelfTotallyFrozen : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("SelfTotallyFrozenFlag",1)
+TNT1 A 0 SetPlayerProperty(0,1,4)
+stop
+}
+}
+
+actor SelfTotallyFrozenFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor SelfStoppedTFFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor TotallyFrozenLook : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor TotallyFrozenLookOnce : TotallyFrozenLook {}
+
+actor SelfStoppedTF : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("SelfStoppedTFFlag",1)
+TNT1 A 0 SetPlayerProperty(0,1,4)
+TNT1 A 0 ACS_ExecuteAlways(806,0)
+TNT1 A 0 A_GiveInventory("TotallyFrozenLook",1)
+stop
+}
+}
+
+actor TimeStoppedTF : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("TimeStoppedTFDelay",1,2)
+TNT1 A 0 A_SpawnItemEx("TimeStoppedTF_H")
+TNT1 A 0 A_GiveInventory("TimeStoppedTFDelay",1)
+TNT1 A 0 A_GiveInventory("TimeStoppedTFFlag",1)
+TNT1 A 0 SetPlayerProperty(0,1,4)
+TNT1 A 0 ACS_ExecuteAlways(806,0)
+TNT1 A 0 A_GiveInventory("TotallyFrozenLook",1)
+stop
+}
+}
+
+actor TimeStoppedTFFlag : SelfTotallyFrozenFlag {}
+actor TimeStoppedTFDelay : Powerup
+{
+Powerup.Duration 131
+}
+
+actor TimeStoppedTF_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("TimeStoppedTFDelay",1,"Spawn")
+goto Spawn2
+Spawn2:
+TNT1 A 0
+TNT1 A 2 A_GiveToTarget("TimeStoppedUnfreeze",1)
+stop
+}
+}
+
+
+actor WilyIceTotallyFrozen : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("WilyIceTFFlag",1)
+TNT1 A 0 SetPlayerProperty(0,1,4)
+TNT1 A 0 ACS_ExecuteAlways(806,0)
+TNT1 A 0 A_GiveInventory("TotallyFrozenLook",1)
+stop
+}
+}
+
+actor WilyIceTFFlag : SelfTotallyFrozenFlag {}
+
+actor Unfreeze : CustomInventory
+{
+States
+{
+Pickup1:
+TNT1 A 0 A_JumpIfInventory("SelfTotallyFrozenFlag",1,"PickupNo")
+TNT1 A 0 A_JumpIfInventory("TimeStoppedTFFlag",1,"PickupNo")
+TNT1 A 0 A_JumpIfInventory("WilyIceTFFlag",1,"PickupNo")
+TNT1 A 0 A_JumpIfInventory("SelfStoppedTFFlag",1,"PickupNo")
+TNT1 A 0 A_JumpIfInventory("TimeStoppedCounter",1,"PickupNo")
+TNT1 A 0 A_TakeInventory("TotallyFrozenLook",1)
+TNT1 A 0 SetPlayerProperty(0,0,4)
+stop
+PickupNo:
+TNT1 A 0
+stop
+}
+}
+
+actor SelfTotallyUnfrozen : Unfreeze
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("SelfTotallyFrozenFlag",1)
+goto Pickup1
+}
+}
+
+actor TimeStoppedUnfreeze : Unfreeze
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("TimeStoppedTFFlag",1,"Pickup0")
+goto PickupNo
+Pickup0:
+TNT1 A 0 A_TakeInventory("TimeStoppedTFFlag",1)
+goto Pickup1
+}
+}
+
+actor WilyIceUnfreeze : Unfreeze
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("WilyIceTFFlag",1)
+goto Pickup1
+}
+}
+
+actor SelfStoppedUnfreeze : Unfreeze
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("SelfStoppedTFFlag",1)
+goto Pickup1
+}
+}
+
+actor CoreTimeStopUnfreeze : Unfreeze
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("TimeStoppedCounter",1)
+goto Pickup1
+}
+}
+
+actor TempPitProtect_P : CustomInventory
+{//ClassBaseTID, ClassBase1, Shade, Uranus, RaThor
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchServerCVar",4)>=1,"No")
+TNT1 A 0 A_JumpIfInventory("PowerTempPitProtect",1,"Pickup2")
+TNT1 A 0 A_ChangeFlag("NOBLOCKMONST",0)
+TNT1 A 0 A_SpawnItemEx("TempPitProtect_H")
+Pickup2:
+TNT1 A 0 A_GiveInventory("PowerTempPitProtect",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor PowerTempPitProtect : Powerup
+{
+Powerup.Duration 35
+}
+
+actor TempPitProtect_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+Spawn2:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("PowerTempPitProtect",1,"Spawn2")
+TNT1 A 0 A_GiveToTarget("TempPitProtectEnd_P",1)
+stop
+}
+}
+
+actor TempPitProtectEnd_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("IsBot",1,"Pickup2")
+TNT1 A 0 A_ChangeFlag("NOBLOCKMONST",1)
+Pickup2:
+TNT1 A 0
+stop
+}
+}
+
+actor EndBossFlashStoppered : Powerup
+{
+Powerup.Duration -1
+}
+
+actor ScrewSpewer : BasicHelper
+{
+States
+{
+Spawn:
+PLAY A 0
+PLAY A 0 A_Jump(128,2)
+PLAY A 0 A_SpawnItemEx("ScrewBoltBigPickup",0,0,0,random(1,3),0,random(10,15),random(0,359),1)
+stop
+PLAY AA 0 A_SpawnItemEx("ScrewBoltPickup",0,0,0,random(1,6),0,random(5,10),random(0,359),1)
+stop
+}
+}
+
+//Pain Locations
+//ClassBase0, Stoneman, BearerClass
+actor PainFX_CBM : PainFX
+{
+Renderstyle Normal
+Radius 2
+Height 2
+speed 1000
+States
+{
+Spawn:
+MMFX A 0
+MMFX A 0 A_JumpIfInTargetInventory("SuperEffective",1,"Super")
+MMFX A 1
+stop
+Super:
+MMFX A 0 A_SetScale(3.5)
+MMFX A 1
+stop
+}
+}
+
+actor CBMPainSound_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SuperEffective",1,"No")
+TNT1 A 0 A_GiveInventory("CBMPainSoundSync1_P")
+stop
+No:
+TNT1 A 0 A_GiveInventory("CBMPainSoundSync2_P")
+stop
+}
+}
+actor CBMPainSoundSync1_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_Pain//A_PlaySoundEx("*pain100","Voice")
+stop
+}
+}
+actor CBMPainSoundSync2_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_PlaySoundEx("*weakpain","Voice")
+stop
+}
+}
+
+actor WeakPain_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("SuperEffective",2)
+TNT1 A 0 A_SpawnItemEx("PainFX_CBM",-5,0,3,0,0,0)
+stop
+}
+}
+
+actor ImFrozenC : ImFrozen replaces ImFrozen
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_GiveToTarget("WasFrozenTodayFX",1)
+TNT1 A 1 A_GiveToTarget("ImNotFrozenNowC",1)
+stop
+}
+}
+
+actor ImNotFrozenNowC : ImNotFrozenNow replaces ImNotFrozenNow
+{
+States
+{
+Spawn:
+TNT1 A 0
+stop
+Pickup:
+TNT1 A 0 A_GiveInventory("WilyIceUnfreeze",1)
+TNT1 A 0 A_GiveInventory("PowerWilyIceUnfreeze",1)
+TNT1 A 0 A_TakeInventory("IceVision",1)
+stop
+}
+}
+
+actor WasFrozenTodayFX : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("WasFrozenToday",0,0,36,0,0,0,0,1)
+stop
+}
+}
+
+actor WasFrozenToday
+{
+RenderStyle "Translucent"
+scale 5.0
+Alpha 0.5
+- SOLID
++NOGRAVITY
++CLIENTSIDEONLY
+States
+{
+Spawn:
+MRFA N 0
+MRFA N 1
+stop
+}
+}
+/*
+ACTOR TeleportFogC : TeleportFog2 replaces TeleportFog2
+{
+  States
+  {
+  Spawn:
+    TFOG A 0
+	TFOG A 0 A_SpawnItemEx("SpawnProtect")
+	TFOG A 3 A_PlaySound("misc/teleport")
+    TFOG BC 2
+    Stop
+}
+}
+
+actor SpawnProtect
+{
++SOLID
+//+CLIENTSIDEONLY
++SHOOTABLE
++DONTRIP
++NODAMAGE
++NOBLOOD
+health 99999
++DONTBLAST
+height 56
+radius 16
+scale 2.5
+speed 0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+stop
+}
+}
+*/
+
+actor SuperEffective : Inventory
+{
+inventory.amount 1
+inventory.maxamount 2
+}
+
+//Specific states for deaths on the following classes
+//DrLight, BBA, DrWily, Alien, Gravity, Flame*, Grenade, EvilRobot, Galaxy, Fake, Bearer
+
+//actor SpecialDeathFlag :OnceC{}
+//actor NoStopDeathFlag :OnceC{}
+actor FlattenDeathFlag :OnceC{}
+actor FlingDeathFlag :OnceC{}
+actor IceDeathFlag :OnceC{}
+actor RiseDeathFlag :OnceC{}
+actor RiseDeathFlag2 : Inventory
+{
+inventory.amount 1
+inventory.maxamount 35
+}
+actor InstagibFlag : OnceC{}
+actor FallingFlag : OnceC{}
+actor SpawnTeleFragFlag : OnceC{}
+actor NoFallingRespawn_F : OnceC{}
+
+actor PowerFallingRespawnSpeed : PowerSpeed
+{
+powerup.duration 4
+Speed 1.01
++POWERSPEED.NOTRAIL
+}
+
+actor StunArmor : OnceC{}
+actor SemiStunArmor : StunArmor {}
+
+actor DontPushMyFlagBro : OnceC{}
+
+//actor StayLocked : OnceC{}
+
+actor SpawningMisfire : OnceC{}
+actor SpawningMisfired : OnceC{}
+
+actor CustomBossAmmoBar : OnceC{}
+
+actor JunkDeathDropFlag :OnceC{}
+
+/*
+actor Shocked2 : Shocked
+{
+powerup.duration 45
+}
+*/
+
+actor Shocked_18 : PowerSpeed
+{
+powerup.duration 18
+Speed 0.0
+}
+
+actor IsInPain : PowerUp
+{
+Powerup.Duration 3
+}
+actor SkipClassPainJump : PowerUp
+{
+Powerup.Duration 1
+}
+
+actor SinglePlayerStateFlag : Powerup
+{
+powerup.duration 3
+}

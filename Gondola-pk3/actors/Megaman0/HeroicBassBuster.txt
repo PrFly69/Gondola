@@ -96,26 +96,19 @@ BASB B 0 A_GiveInventory("BassMain4_CI",1)
 goto Anim
 Anim:
 BASB B 0 A_GiveInventory("BassBusterClassRage", 1)
-BASB CCD 1
+BASB B 0 A_JumpIfInventory("PowerRage_ST",1,1)
+BASB C 1
+BASB C 1
+BASB B 0 A_JumpIfInventory("PowerRage_ST",1,1)
+BASB D 1
 BASB B 1
 BASB B 0 A_Refire("FireX")
 Cooldown:
-BASB A 0 A_TakeInventory("BassBusterClassRage",999)
-BASB D 11 //A_WeaponReady(WRF_NOPRIMARY) //gibus is no fun //lol. lmao//ok FINE
-BASB C 11 A_WeaponReady(WRF_NOPRIMARY)
+BASB DDDDD 2 A_TakeInventory("BassBusterClassRage",8)//A_WeaponReady(WRF_NOPRIMARY) //gibus is no fun //lol. lmao//ok FINE
+BASB B 0 A_JumpIfInventory("PowerRage_ST",1,1)
+BASB C 6 A_WeaponReady(WRF_NOPRIMARY)
+BASB C 6 A_WeaponReady(WRF_NOPRIMARY)
 goto Ready2+2 
-
-
-
-
-
-
-
-
-
-
-
-
 FireXUP:
 BASB B 0 A_PlaySoundEx("weapon/pshot","Weapon")
 BASB B 0 A_GiveInventory("BassMainUP_CI")

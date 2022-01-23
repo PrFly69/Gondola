@@ -61,12 +61,8 @@ goto PainContinue
 ClassPainCloud:
 SHPC J 0
 goto PainContinue
-
-DeathFix:
+ClassDeath:
 SHPM H 0
 goto DeathContinue
-ClassDeath:
-SHPM H 1
-goto MegaDeathEnd
 }
 }

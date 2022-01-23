@@ -1108,11 +1108,13 @@ Powerup.duration -9
 DamageFactor "Melee", 2.0
 }
 
-actor StoneScriptStarter : CustomInventory
+actor StonemanSpawnStart_P : CustomInventory
 {
-states
+States
 {
 Pickup:
+TNT1 A 0 //A_GiveInventory("LMSCheckPickup")
+TNT1 A 0 A_GiveInventory("BuckshotCheckPickup")
 TNT1 A 0 SetPlayerProperty(0,1,16)
 TNT1 A 0 A_GiveInventory("StoneCoreBuddha",1)
 stop
@@ -1124,7 +1126,8 @@ actor StoneCoreFlag_P : CustomInventory
 states
 {
 Pickup:
-TNT1 A 0 A_JumpIfInventory("IsLMSFlag",1,"Pickup2")
+TNT1 A 0 //A_JumpIfInventory("IsLMSFlag",1,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("IsBuckShotFlag",1,"Pickup2")
 goto Pickup1
 Pickup1:
 TNT1 A 0 A_GiveInventory("StoneCoreFlag",2)
@@ -1140,7 +1143,8 @@ actor StoneCoreFlagX_P : CustomInventory
 states
 {
 Pickup:
-TNT1 A 0 A_JumpIfInventory("IsLMSFlag",1,"Pickup2")
+TNT1 A 0 //A_JumpIfInventory("IsLMSFlag",1,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("IsBuckShotFlag",1,"Pickup2")
 goto Pickup1
 Pickup1:
 TNT1 A 0 A_GiveInventory("StoneCoreFlagX",2)
@@ -1224,7 +1228,7 @@ TNT1 A 0 A_SpawnItemEx("StoneRebornFX",0,0,0,0,0,0,0,1)
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_StonemanACS",0,850,250)
 //TNT1 A 0 A_GiveInventory("StonemanDeathCounter",1)
 
-TNT1 A 0 A_GiveInventory("StoneScriptStarter",1)//Buddha on
+TNT1 A 0 A_GiveInventory("StonemanSpawnStart_P",1)//Buddha on
 TNT1 A 0 A_GiveInventory("PowerStoneBoss",1)
 
 TNT1 A 0 A_TakeInventory("StoneCoreFlag",99)
@@ -1569,7 +1573,7 @@ TNT1 A 0 A_SpawnItemEx("StoneRebornFX",0,0,0,0,0,0,0,1)
 
 //TNT1 A 0 ACS_NamedExecuteAlways("StoneFakeHealthRestore",0)
 
-TNT1 A 0 A_GiveInventory("StoneScriptStarter",1)//Buddha on
+TNT1 A 0 A_GiveInventory("StonemanSpawnStart_P",1)//Buddha on
 TNT1 A 0 A_GiveInventory("PowerStoneBoss",1)
 
 TNT1 A 0 A_TakeInventory("StoneCoreFlagXF",99)

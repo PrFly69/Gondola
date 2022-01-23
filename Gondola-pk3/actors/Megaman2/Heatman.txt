@@ -60,13 +60,9 @@
 		HEAM H 0// A_JumpIfInventory("PainFlagA",1,"LiftOff")
 		Goto PainContinue
 		
-		DeathFix:
-		HEAM H 0
-		Goto DeathContinue
-		
 		ClassDeath:
-		HEAM H 1
-		Goto MegaDeathEnd
+		HEAM H 0
+		goto DeathContinue
 		
 		Liftoff:
 		HEAM H 0 A_GiveInventory("PainFlagB")

@@ -45,11 +45,8 @@ goto Spawn
 ClassPain:
 NEED H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 NEED H 0
 goto DeathContinue
-ClassDeath:
-NEED H 1
-goto MegaDeathEnd
 }
 }

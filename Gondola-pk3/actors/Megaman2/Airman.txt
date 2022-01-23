@@ -36,11 +36,8 @@ goto Spawn
 ClassPain:
 AIRM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 AIRM H 0
 goto DeathContinue
-ClassDeath:
-AIRM H 1
-goto MegaDeathEnd
 }
 }

@@ -47,11 +47,8 @@ goto BalladeJumping
 ClassPain:
 BALD H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 BALD H 0
 goto DeathContinue
-ClassDeath:
-BALD H 1
-goto MegaDeathEnd
 }
 }

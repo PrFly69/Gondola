@@ -7,7 +7,7 @@ player.soundclass "plutoc"
 player.startitem "BreakDashBoss"
 player.startitem "GetBentDegenerateAmmo", 56
 player.startitem "CanWallJump"
-player.startitem "CanWallJumpStack", 6
+player.startitem "CanWallJumpStack", 99
 player.startitem "PlutoMeowItem"
 
 player.maxhealth 750
@@ -79,11 +79,8 @@ goto MissileD+2
 ClassPain:
 PLUT H 0 A_JumpIfInventory("VivifyDelay8",1,"ClassPainDash")
 goto PainContinue
-DeathFix:
+ClassDeath:
 PLUT H 0
 goto DeathContinue
-ClassDeath:
-PLUT H 1
-goto MegaDeathEnd
 }
 }

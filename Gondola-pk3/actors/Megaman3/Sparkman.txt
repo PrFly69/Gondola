@@ -59,11 +59,9 @@ goto Spawn
 ClassPain:
 SPAR H 0
 goto PainContinue
-DeathFix:
+
+ClassDeath:
 SPAR H 0
 goto DeathContinue
-ClassDeath:
-SPAR H 1
-goto MegaDeathEnd
 }
 }

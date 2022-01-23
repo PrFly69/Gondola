@@ -42,12 +42,9 @@ goto Spawn+2
 ClassPain:
 PLY1 H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 PLY1 H 0
 goto DeathContinue
-ClassDeath:
-PLY1 H 1
-goto MegaDeathEnd
 }
 }
 

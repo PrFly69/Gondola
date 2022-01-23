@@ -61,12 +61,8 @@ goto PainContinue
 ClassPainBall:
 SRKC I 0
 goto PainContinue
-
-DeathFix:
+ClassDeath:
 STKM H 0
 goto DeathContinue
-ClassDeath:
-STKM H 1
-goto MegaDeathEnd
 }
 }

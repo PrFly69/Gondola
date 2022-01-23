@@ -50,12 +50,9 @@ goto Spawn+2
 ClassPain:
 BLZZ H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 BLZZ H 0
 goto DeathContinue
-ClassDeath:
-BLZZ H 1
-goto MegaDeathEnd
 }
 }
 

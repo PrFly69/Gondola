@@ -136,12 +136,8 @@
 		ENKR H 0 A_JumpIfInventory("EnkerAbsorbCount",1,"MissileAmmoGet")
 		Goto PainContinue
 
-		DeathFix:
-		ENKR H 0
-		Goto DeathContinue
-
 		ClassDeath:
-		ENKR H 1
-		Goto MegaDeathEnd
+		ENKR H 0
+		goto DeathContinue
 	}
   }

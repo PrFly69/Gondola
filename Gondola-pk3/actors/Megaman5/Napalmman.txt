@@ -47,11 +47,8 @@ Goto Jumping
 ClassPain:
 NAPM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 NAPM H 0
 goto DeathContinue
-ClassDeath:
-NAPM H 1
-goto MegaDeathEnd
 }
 }

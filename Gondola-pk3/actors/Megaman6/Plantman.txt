@@ -42,11 +42,8 @@ goto Spawn
 ClassPain:
 PLAM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 PLAM H 0
 goto DeathContinue
-ClassDeath:
-PLAM H 1
-goto MegaDeathEnd
 }
 }

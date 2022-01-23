@@ -182,6 +182,4 @@ alias menu_CH_NumHelp "cbm_SetCHelpNum"
 alias +rapidattackc "+user1; +altattack"
 alias -rapidattackc "-user1; -altattack"
 
-addkeysection "CCBM Reload Key" MM8BDMSpecials
-//addmenukey "Turbo Attack" +rapidattackc
-
+addmenukey "Reload/Extra Attack" +reload

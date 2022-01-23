@@ -51,12 +51,9 @@ Goto Jumping
 ClassPain:
 FLSM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 FLSM H 0
 goto DeathContinue
-ClassDeath:
-FLSM H 1
-goto MegaDeathEnd
 
 /*pain.TimeSlow:
 FLSM "]" 0 A_GiveInventory("SkipClassPainJump",1)

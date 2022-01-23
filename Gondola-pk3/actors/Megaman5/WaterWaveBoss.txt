@@ -423,7 +423,7 @@ actor WaveHarpoon
 {
 Translation "199:199=193:193"
 PROJECTILE 
-Damagetype "ClassPainSemi"
+Damagetype "ClassPainLess2"
 Obituary "$OB_WAVEHARPOON" 
 +FORCEXYBILLBOARD
 damage (150)
@@ -595,7 +595,7 @@ stop
 actor WaterWaveB
 {
 PROJECTILE
-damagetype "WaterWave"
+damagetype "ClassPainLess2"
 Obituary "$OB_WATERWAVE"
 -NOGRAVITY
 +DONTSPLASH
@@ -650,7 +650,7 @@ stop
 actor WaterWaveB_XXX
 {
 PROJECTILE
-damagetype "WaterWave"
+damagetype "ClassPainLess2"
 Obituary "$OB_WATERWAVE"
 -NOGRAVITY
 //+NOEXPLODEFLOOR

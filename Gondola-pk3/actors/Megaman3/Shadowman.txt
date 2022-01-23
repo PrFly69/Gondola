@@ -58,11 +58,8 @@ goto Spawn
 ClassPain:
 SHAM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 SHAM H 0
 goto DeathContinue
-ClassDeath:
-SHAM H 1
-goto MegaDeathEnd
 }
 }

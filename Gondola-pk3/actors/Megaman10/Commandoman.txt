@@ -48,9 +48,6 @@ loop
 Leap2:
 CMDM S 8
 goto Spawn
-ClassPain:
-CMDM H 0
-goto PainContinue
 ClassDeath:
 CMDM H 0
 goto DeathContinue

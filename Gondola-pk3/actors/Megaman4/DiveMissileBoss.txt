@@ -115,6 +115,7 @@
 		Goto Ready1
 		
 		AltFire:
+		DIVA E 0 A_JumpIfInventory("DiveTackleCooldown",1,"AltFire2")
 		DIVA E 0 A_JumpIfInventory("DiveTackleAmmo",140,"AltFire2")
 		goto Ready1
 		AltFire2:
@@ -159,12 +160,14 @@
 		DIVA D 0 A_ChangeVelocity(-15,0,16,3)
 		goto AltTackleE+2
 		AltTackleE:
-		DIVA D 0 SetPlayerProperty(0,0,0)
-		DIVA C 0 A_TakeInventory("DiveTackleFrame",999)
-		DIVA C 3
-		DIVA B 0 ACS_ExecuteWithResult(CORE_ACS_191,APROP_JumpZ,10,1)
+		DIVA H 0 //A_ScaleVelocity(0.8)
+		DIVA H 0 //ThrustThingZ(0,40,0,0)
+		DIVA H 0 SetPlayerProperty(0,0,0)
+		DIVA G 0 A_TakeInventory("DiveTackleFrame",999)
+		DIVA DCB 1
+		DIVA F 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
 		DIVA B 3
-		DIVA A 6 A_GiveInventory("DiveTackleCooldown",1)
+		DIVA A 15 A_GiveInventory("DiveTackleCooldown",1)
 		Goto Ready1
 
 		Reload:

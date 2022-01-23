@@ -53,11 +53,8 @@ wait
 ClassPain:
 MWSZ H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 MWSZ H 0
 goto DeathContinue
-ClassDeath:
-MWSZ H 1
-goto MegaDeathEnd
 }
 }

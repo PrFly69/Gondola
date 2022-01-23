@@ -649,7 +649,7 @@ IsSelected ScorchWheelBoss{Drawbar"BARAMM38","BAREMPTY",Ammo1,vertical,16,8;
 IsSelected TornadoHoldBoss{Drawbar"BARAMM40","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage"TNGUICON",32,55;
 	Drawbar"TNGUBAR","BAREMPTY",Ammo2,vertical,8,8;
-	InInventory TenguFlagH,1{DrawImage"TENJETA",290,8;}}
+	InInventory TenguHoverFlag,1{DrawImage"TENJETA",290,8;}}
 IsSelected AstroCrushBoss{Drawbar"BARAMM52","BAREMPTY",Ammo1,vertical,16,8;
 						  DrawImage"ATRRICON",32,55;
 	Drawbar"BARAMM41","BAREMPTY",Ammo2,vertical,8,8;}
@@ -749,7 +749,7 @@ IsSelected HornetChaserBoss{
 	DrawBar"09_6_BAR","BAREMPTY",Ammo2,vertical,8,8;
 	DrawImage"HORNEICN",32,55;
     InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
-	InInventory HornetFlagH,1{DrawImage"HORNJETA",290,8;}}
+	InInventory HornetIsHovering,1{DrawImage"HORNJETA",290,8;}}
 	
 	
 IsSelected BlackHoleBombBoss

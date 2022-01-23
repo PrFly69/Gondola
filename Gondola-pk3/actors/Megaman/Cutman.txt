@@ -6,7 +6,7 @@ player.soundclass "cutmanc"
 
 player.maxhealth 850
 health 850
-player.jumpz 12.5
+player.jumpz 12
 player.forwardmove 1.0, 1.0
 player.sidemove 0.98, 0.98
 

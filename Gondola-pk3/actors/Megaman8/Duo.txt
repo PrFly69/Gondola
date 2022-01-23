@@ -52,11 +52,8 @@ loop
 ClassPain:
 DUO7 H 0 A_JumpIfInventory("DuoMeteor",1,"Rise")
 goto PainContinue
-DeathFix:
+ClassDeath:
 DUO7 H 0
 goto DeathContinue
-ClassDeath:
-DUO7 H 1
-goto MegaDeathEnd
 }
 }

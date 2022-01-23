@@ -67,12 +67,9 @@
 		PIRA H 0
 		Goto PainContinue
 		
-		DeathFix:
-		PIRA H 0
-		Goto DeathContinue
 		
 		ClassDeath:
-		PIRA H 1
-		Goto MegaDeathEnd
+		PIRA H 0
+		goto DeathContinue
 	}
   }

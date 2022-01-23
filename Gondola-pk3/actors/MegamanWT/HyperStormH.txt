@@ -89,12 +89,9 @@ wait
 ClassPain:
 HSHZ H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 HSHZ H 0
 goto DeathContinue
-ClassDeath:
-HSHZ H 1
-goto MegaDeathEnd
 
 }
 }

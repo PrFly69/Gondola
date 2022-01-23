@@ -66,11 +66,8 @@ goto Spawn
 ClassPain:
 SEAR H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 SEAR H 0
 goto DeathContinue
-ClassDeath:
-SEAR H 1
-goto MegaDeathEnd
 }
 }

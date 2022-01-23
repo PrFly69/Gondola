@@ -48,12 +48,9 @@ goto Spawn+2
 ClassPain:
 YAMM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 YAMM H 0
 goto DeathContinue
-ClassDeath:
-YAMM H 1
-goto MegaDeathEnd
 }
 }
 
