@@ -388,7 +388,7 @@ stop
 PickupSnd:
 TNT1 A 0 A_JumpIfInventory("VivifyDelay10",1,"No")
 TNT1 A 0 A_GiveInventory("VivifyDelay10",1)
-TNT1 A 0 A_PlaySoundEX("weapon/shieldhum","Body")
+//TNT1 A 0 A_PlaySoundEX("weapon/shieldhum","Body")
 stop
 No:
 TNT1 A 0
