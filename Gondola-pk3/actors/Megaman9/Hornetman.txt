@@ -1,0 +1,69 @@
+actor Hornetman : ClassBase
+{
+Player.ScoreIcon "C_09F0X"
+player.displayname "Hornetman"
+player.soundclass "hornetmanc"
+
+player.maxhealth 900
+health 900
+player.jumpz 13
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "HornetChaserBoss"
+player.startitem "NotTheHornetsAmmo", 21
+player.startitem "HornetHoverAmmo", 168
+player.startitem "HornetHoverItem"
+
+player.startitem "MagmaBazookaWeakness2", 1
+
+player.startitem "FireStormWeakness", 1
+player.startitem "AtomicFireWeakness", 1
+player.startitem "PharaohShotWeakness", 1
+player.startitem "FlameBlastWeakness", 1
+player.startitem "ScorchWheelWeakness", 1
+player.startitem "FlameSwordWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "MagmaBazookaWeakness", 1
+player.startitem "SolarBlazeWeakness", 1
+player.startitem "BreakDashWeakness", 1
+
+States
+{
+Spawn:
+HORM A 0
+HORM B 1
+HORM A 1 A_JumpIf(z-floorz>0,"SeeHover")
+Goto Spawn+2
+See:
+HORM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"SeeHover")
+Goto Spawn
+SeeHover:
+HORM K 0 A_JumpIfInventory("HornetIsHovering",1,"SeeHover2")
+HORM K 1 A_JumpIf(z-floorz<=0,"Spawn")
+loop
+SeeHover2:
+HORM KKKKLLLL 1 A_JumpIf(z-floorz<=0,"Spawn")
+HORM K 0 A_JumpIfInventory("HornetIsHovering",1,"SeeHover2")
+goto SeeHover
+Missile:
+HORM F 0 A_JumpIf(z-floorz>0,"Missile2")
+HORM F 1 A_JumpIf(z-floorz>0,"Missile2")
+HORM F 4
+HORM G 4 
+goto Spawn
+Missile2:
+HORM M 8 A_JumpIfInventory("HornetIsHovering",1,2)
+HORM M 0 A_JumpIf(z-floorz>0,"SeeHover")
+goto Spawn+2
+HORM NM 4
+HORM M 0 A_JumpIf(z-floorz>0,"SeeHover")
+goto Spawn+2
+ClassPain:
+HORM H 0
+goto PainContinue
+ClassDeath:
+HORM H 0
+goto DeathContinue
+}
+}

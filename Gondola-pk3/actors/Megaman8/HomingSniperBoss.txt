@@ -1153,7 +1153,7 @@ actor HomingSniperB
 {
 Translation "192:192=105:105","198:198=230:230","204:204=215:215"
 PROJECTILE
-Damagetype "HomingSniper"
+Damagetype "SearchM_Shot"
 Obituary "$OB_HOMINGSNIPERYD"
 +DONTSEEKINVISIBLE//
 +SEEKERMISSILE
@@ -1262,7 +1262,7 @@ actor HomingSniperB1
 var int user_B;
 Translation "192:192=105:105","198:198=230:230","204:204=215:215"
 PROJECTILE
-Damagetype "HomingSniper"
+Damagetype "SearchM_LockShot"
 Obituary "$OB_HOMINGSNIPERYD"
 +DONTBLAST
 +DONTREFLECT
@@ -1387,7 +1387,7 @@ actor HomingSniperStorm
 {
 Translation "192:192=105:105","198:198=230:230", "202:202=210:210", "204:204=215:215"
 PROJECTILE
-Damagetype "ClassPainLess2"
+Damagetype "DMGNoHitstun"
 Obituary "$OB_HOMINGSNIPERYDS"
 +DONTBLAST
 +DONTREFLECT
@@ -1442,7 +1442,7 @@ actor SearchFrisbee
 {
 Translation "204:204=215:215","195:195=73:73"
 PROJECTILE
-Damagetype "ClassPain"
+Damagetype "SearchM_Disc"
 Obituary "$OB_SEARCHDISC"
 //SeeSound "item/protoreflect"
 BounceSound "wep_L/SearchDiscBounce"//item/protoreflect

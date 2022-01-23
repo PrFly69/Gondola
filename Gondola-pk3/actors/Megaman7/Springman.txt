@@ -66,11 +66,8 @@ loop
 ClassPain:
 SPNG H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 SPNG H 0
 goto DeathContinue
-ClassDeath:
-SPNG H 1
-goto MegaDeathEnd
 }
 }

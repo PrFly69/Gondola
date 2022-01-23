@@ -54,11 +54,8 @@ goto Spawn
 ClassPain:
 TENG H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 TENG H 0
 goto DeathContinue
-ClassDeath:
-TENG H 1
-goto MegaDeathEnd
 }
 }

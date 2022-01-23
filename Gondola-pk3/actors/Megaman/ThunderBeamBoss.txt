@@ -82,7 +82,7 @@ TNT1 A 1 A_SetTranslucent(0.0,0)
 ELEA C 0 A_ChangeVelocity(16,0,momz,3)
 ELEA C 0 //A_ScaleVelocity(0.03)//A_Stop
 ELEA C 0 A_ChangeFlag("FLOORHUGGER",0)
-ELEA C 0 A_SpawnItemEx("ReSolidifier")
+ELEA C 0 A_SpawnItemEx("ResolidifyPlayer_H")
 ELEA C 0 ThrustThingZ(0,1,0,1)
 ELEA CCC 0 A_SetTranslucent(1.0,0)
 ELEA C 0 A_SpawnItemEx("ElecmanTeleportDamage2",0,0,28,momx,momy,momz,0,8)

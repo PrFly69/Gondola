@@ -85,11 +85,11 @@ ICWB F 0 A_Refire("FireH4")
 goto Unhold
 
 FireH5:
-ICWB F 1 Offset(-1,-66)A_WeaponReady(7)
+ICWB F 1 Offset(-2,-76)A_WeaponReady(7)
 ICWB F 0 A_Refire("FireH5.a")
 goto IceWave
 FireH5.a:
-ICWB F 1 Offset(1,-66)A_WeaponReady(7)
+ICWB F 1 Offset(2,-76)A_WeaponReady(7)
 ICWB F 0 A_Refire("FireH5")
 goto IceWave
 

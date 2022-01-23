@@ -3,7 +3,7 @@ actor Stoneman : ClassBase //155
 Player.ScoreIcon "C_05C0X"
 player.displayname "stoneman"
 player.soundclass "stonemanc"
-player.startitem "StoneScriptStarter"
+player.startitem "StonemanSpawnStart_P"
 player.startitem "PowerStoneBoss"
 player.startitem "CantStopTheRockAmmo", 3
 player.startitem "SemiStunArmor"
@@ -104,12 +104,9 @@ goto SpawnCore
 DeathFix://SpecialDeathFlag
 STOM H 0 A_JumpIfInventory("StoneCoreFlag",1,"DeathFixCore")
 goto DeathContinue
-DeathFixCore:
-STOM R 0
-goto DeathContinue
 ClassDeath:
-STOM H 1
-goto MegaDeathEnd
+STOM H 0
+goto DeathContinue
 
 TimeStopped:
 STOM H 0 A_JumpIfInventory("StoneCoreFlag",1,"TimeStoppedCore")

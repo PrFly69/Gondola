@@ -43,11 +43,8 @@ goto Spawn
 ClassPain:
 FIRM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 FIRM H 0
 goto DeathContinue
-ClassDeath:
-FIRM H 1
-goto MegaDeathEnd
 }
 }

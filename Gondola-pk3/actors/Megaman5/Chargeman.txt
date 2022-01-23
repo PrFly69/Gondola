@@ -64,11 +64,8 @@ Goto ARunB
 ClassPain:
 CHRM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 CHRM H 0
 goto DeathContinue
-ClassDeath:
-CHRM H 1
-goto MegaDeathEnd
 }
 }

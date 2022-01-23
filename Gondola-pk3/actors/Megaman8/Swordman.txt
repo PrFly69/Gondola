@@ -61,7 +61,7 @@ CustomState2:
 FHUB VWXY 2
 FHUB VWXY 3
 goto Spawn
-DeathFix:
+ClassDeath:
 SWOM H 0
 goto DeathContinue
 /*

@@ -68,11 +68,8 @@ goto Spawn
 ClassPain:
 ICEM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 ICEM H 0
 goto DeathContinue
-ClassDeath:
-ICEM H 1
-goto MegaDeathEnd
 }
 }

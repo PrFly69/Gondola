@@ -67,12 +67,9 @@ goto Spawn+2
 ClassPain:
 MEGM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 MEGM H 0
 goto DeathContinue
-ClassDeath:
-MEGM H 1
-goto MegaDeathEnd
 }
 }
 

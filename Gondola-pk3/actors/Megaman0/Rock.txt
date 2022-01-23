@@ -5,6 +5,7 @@ player.displayname "Rock"
 player.soundclass "rockc"
 player.startitem "MegaBallBoss"
 player.startitem "LMSRockBallPickup"
+player.startitem "LMSRockBallPickup2"
 player.startitem "RockFlag"
 player.startitem "CanUseItems"
 player.startitem "BallsOfSteelAmmo", 444
@@ -47,12 +48,9 @@ goto Spawn
 ClassPain:
 ROCK H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 ROCK H 0
 goto DeathContinue
-ClassDeath:
-ROCK H 1
-goto MegaDeathEnd
 }
 }
 

@@ -710,7 +710,7 @@ PROJECTILE
 +SKYEXPLODE
 +DONTBLAST
 +BRIGHT
-Damagetype "ClassPainless2"
+Damagetype "DMGNoHitstun"
 Speed 90
 Damage (50)
 radius 8

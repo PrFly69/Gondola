@@ -61,11 +61,8 @@ goto Missile+2
 ClassPain:
 ASTM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 ASTM H 0
 goto DeathContinue
-ClassDeath:
-ASTM H 1
-goto MegaDeathEnd
 }
 }

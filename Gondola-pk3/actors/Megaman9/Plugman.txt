@@ -50,11 +50,8 @@ goto Spawn
 ClassPain:
 PLUM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 PLUM H 0
 goto DeathContinue
-ClassDeath:
-PLUM H 1
-goto MegaDeathEnd
 }
 }

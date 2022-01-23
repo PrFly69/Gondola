@@ -639,7 +639,8 @@ T_RE H 1 A_JumpIfInTargetInventory("IsDead",1,"Death")
 loop
 Death:
 TNT1 A 0 A_PlaySoundEx("weapon/crackerexplode", "Voice", 0)
-TN_B EFGHIJKLMNOPQRS 2
+TNT1 A 0 A_SpawnItemEx("BasicBoom6FX_Y3",0,0,0,0,0,0,0,1+32)
+TNT1 A 25
 stop
 Exit:
 TNT1 A 0

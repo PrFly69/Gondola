@@ -63,9 +63,6 @@ goto Clinging
 ClassPain:
 BLDM H 0 A_JumpIfInventory("BladeWallCling",1,"ClingPain")
 goto PainContinue
-DeathFix:
-BLDM H 0
-goto DeathContinue
 ClassDeath:
 BLDM H 0
 goto DeathContinue

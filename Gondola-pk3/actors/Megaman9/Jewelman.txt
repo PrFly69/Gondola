@@ -41,11 +41,8 @@ goto Spawn
 ClassPain:
 JEWL H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 JEWL H 0
 goto DeathContinue
-ClassDeath:
-JEWL H 1
-goto MegaDeathEnd
 }
 }

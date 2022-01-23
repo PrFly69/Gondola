@@ -77,8 +77,8 @@ DeathFix:
 SNIP H 0//JoeSelectTruckFlag
 goto DeathContinue
 ClassDeath:
-SNIP H 1
-goto MegaDeathEnd
+SNIP H 0
+goto DeathContinue
 }
 }
 

@@ -77,11 +77,8 @@ goto Spawn
 ClassPain:
 AUT6 H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 AUT6 H 0
 goto DeathContinue
-ClassDeath:
-AUT6 H 1
-goto MegaDeathEnd
 }
 }

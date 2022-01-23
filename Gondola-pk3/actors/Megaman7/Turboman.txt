@@ -69,11 +69,8 @@ goto Jump
 ClassPain:
 TURB H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 TURB H 0
 goto DeathContinue
-ClassDeath:
-TURB H 1
-goto MegaDeathEnd
 }
 }

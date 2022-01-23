@@ -95,7 +95,7 @@ EROB H 19
 goto ClassDeathM
 ClassDeathM:
 EROB H 0 A_SpawnItemEx("TrioRareDeathHelper",0,0,0,momx,momy,momz,0,9)
-goto MegaDeathEnd
+goto DeathContinue
 ClassDeathR:
 EROB H 1 ThrustThingZ(0,21,0,1)
 EROB H 0 A_JumpIf(ceilingz-z<64,"ClassDeathM")

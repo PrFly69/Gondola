@@ -52,11 +52,8 @@ goto Jumping
 ClassPain:
 QUIM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 QUIM H 0
 goto DeathContinue
-ClassDeath:
-QUIM H 1
-goto MegaDeathEnd
 }
 }

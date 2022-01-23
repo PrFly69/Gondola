@@ -815,7 +815,7 @@ PROJECTILE
 SeeSound "BBA_Snd/rocketfire"
 DeathSound "BBA_Snd/rocket"
 //+DONTBLAST
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 35
 Damage (100)
 radius 16
@@ -884,7 +884,7 @@ actor AutoRocketManP : AutoRocketMan{Translation"202:202=229:229","199:199=232:2
 actor AutoRocketBoomMan : BasicExplosion
 {
 Translation"202:202=215:215","199:199=218:218"//214
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Obituary "%o was blown to pieces by %k's Rocket Launcher."
 Scale 2.0
 States
@@ -905,7 +905,7 @@ Obituary "%o was converted into nuts and bolts by %k's Bolt Repeater."
 PROJECTILE
 SeeSound "weapon/dustbit"
 //+DONTBLAST
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Speed 60
 Damage (70)
 radius 16

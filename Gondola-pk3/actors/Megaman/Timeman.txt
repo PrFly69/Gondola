@@ -56,13 +56,9 @@
 		NTIM H 0
 		Goto PainContinue
 		
-		DeathFix:
-		NTIM H 0
-		Goto DeathContinue
-		
 		ClassDeath:
-		NTIM H 1
-		Goto MegaDeathEnd
+		NTIM H 0
+		goto DeathContinue
 
 		Pain.TimeSlow:
 		NTIM ] 0 A_GiveInventory("SkipClassPainJump",1)

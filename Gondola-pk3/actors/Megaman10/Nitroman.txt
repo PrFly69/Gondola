@@ -69,15 +69,11 @@ player.sidemove 0.78, 0.78
         NITB H 0
         Goto PainContinue
  
-        DeathFix:
-        TNT1 A 0 Thing_Remove(TID+9000)
-        NITB H 0
-        Goto DeathContinue
  
         ClassDeath:
         TNT1 A 0 Thing_Remove(TID+9000)
-        NITB H 1
-        Goto MegaDeathEnd
+        NITB H 0
+		goto DeathContinue
        
         Death.Falling:
         "----" H 0 Thing_Remove(TID+9000)

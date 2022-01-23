@@ -45,11 +45,6 @@ goto Spawn
 ClassPain:
 GALX H 0
 goto PainContinue
-DeathFix:
-GALX H 0 A_JumpIfInventory("GalaxyAltFlag",1,1)
-goto DeathContinue
-GALX H 0 A_GiveInventory("SpecialDeathFlag")
-goto DeathContinue
 
 ClassDeath:
 GALX H 0

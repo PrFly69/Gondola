@@ -137,11 +137,8 @@ goto SunStarJumping
 ClassPain:
 VSGD H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 VSGD H 0
 goto DeathContinue
-ClassDeath:
-VSGD H 1
-goto MegaDeathEnd
 }
 }

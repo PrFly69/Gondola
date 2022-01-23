@@ -32,11 +32,8 @@ goto Spawn
 ClassPain:
 DAR4 H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 DAR4 H 0
 goto DeathContinue
-ClassDeath:
-DAR4 H 1
-goto MegaDeathEnd
 }
 }

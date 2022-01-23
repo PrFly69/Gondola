@@ -44,12 +44,9 @@ goto Spawn
 ClassPain:
 SOLM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 SOLM H 0
 goto DeathContinue
-ClassDeath:
-SOLM H 1
-goto MegaDeathEnd
 
 CustomState1:
 SOLM IIJJ 1

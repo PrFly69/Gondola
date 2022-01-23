@@ -74,11 +74,8 @@ Goto Flight//Missile+5
 ClassPain:
 GYRM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 GYRM H 0
 goto DeathContinue
-ClassDeath:
-GYRM H 1
-goto MegaDeathEnd
 }
 }

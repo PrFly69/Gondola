@@ -66,11 +66,8 @@ goto Spawn+4
 ClassPain:
 BOMM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 BOMM H 0
 goto DeathContinue
-ClassDeath:
-BOMM H 1
-goto MegaDeathEnd
 }
 }

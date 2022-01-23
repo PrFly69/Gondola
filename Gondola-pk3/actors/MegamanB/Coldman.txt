@@ -56,11 +56,8 @@ goto Spawn
 ClassPain:
 COLM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 COLM H 0
 goto DeathContinue
-ClassDeath:
-COLM H 1
-goto MegaDeathEnd
 }
 }

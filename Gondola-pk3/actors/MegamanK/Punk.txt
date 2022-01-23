@@ -69,11 +69,8 @@ goto PunkJumping
 ClassPain:
 PUNK H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 PUNK H 0
 goto DeathContinue
-ClassDeath:
-PUNK H 1
-goto MegaDeathEnd
 }
 }

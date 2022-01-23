@@ -50,11 +50,8 @@ goto Jumping
 ClassPain:
 METM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 METM H 0
 goto DeathContinue
-ClassDeath:
-METM H 1
-goto MegaDeathEnd
 }
 }

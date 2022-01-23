@@ -74,11 +74,8 @@ ClassPain:
 ODUO H 0 A_JumpIfInventory("ODuoMeteorFlag",1,"MissileRise_Pain")
 ODUO H 0 A_JumpIfInventory("ODuoRamFlag",1,"Missile2_Pain")
 goto PainContinue
-DeathFix:
+ClassDeath:
 ODUO H 0
 goto DeathContinue
-ClassDeath:
-ODUO H 1
-goto MegaDeathEnd
 }
 }

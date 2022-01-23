@@ -51,11 +51,8 @@ Actor Knightman : ClassBase //115
         ClassPain:
             KNIM H 0 A_JumpIfInventory("KnightmanFlag", 1, "MissileH")
         Goto PainContinue
-        DeathFix:
-            KNIM H 0
-        Goto DeathContinue
         ClassDeath:
-            KNIM H 1
-        Goto MegaDeathEnd
+            KNIM H 0
+		goto DeathContinue
     }
 }

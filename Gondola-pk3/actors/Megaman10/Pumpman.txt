@@ -70,15 +70,8 @@ goto PainContinue
 PUMM W 0
 goto PainContinue
 
-DeathFix:
+ClassDeath:
 PUMM H 0
 goto DeathContinue
-
-PUMM W 0
-goto DeathContinue
-
-ClassDeath:
-PUMM H 1
-goto MegaDeathEnd
 }
 }

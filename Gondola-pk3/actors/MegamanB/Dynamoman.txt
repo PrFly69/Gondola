@@ -75,11 +75,8 @@ goto Spawn
 ClassPain:
 DYNA H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 DYNA H 0
 goto DeathContinue
-ClassDeath:
-DYNA H 1
-goto MegaDeathEnd
 }
 }
