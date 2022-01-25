@@ -115,7 +115,7 @@
 		Goto Ready1
 		
 		AltFire:
-		DIVA E 0 A_JumpIfInventory("DiveTackleCooldown",1,"AltFire2")
+		DIVA E 0 A_JumpIfInventory("DiveTackleCooldown",1,"Ready1")
 		DIVA E 0 A_JumpIfInventory("DiveTackleAmmo",140,"AltFire2")
 		goto Ready1
 		AltFire2:

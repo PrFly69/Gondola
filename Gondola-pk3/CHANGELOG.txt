@@ -2235,6 +2235,9 @@ CHANGELOG
 
 ==Saturn
 -New HUD sprites, provided by Pegg
+-Removed M2 duration reduction on sucking shots
+-Armor gained per sucked projectile 1 > 2
+--Gained 4 armor if BlackHoleAmmo is full
 
 ==Enker
 -New M2 HUD sprite by Honootorch

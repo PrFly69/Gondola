@@ -6,6 +6,7 @@ player.soundclass "bassc"
 player.startitem "HeroBassBusterBoss"
 player.startitem "BusterAmmo", 3
 player.startitem "TrebleBoostAmmo", 30
+player.startitem "BaseWepAltOverride_F", 1
 player.startitem "CanAirJump"
 player.startitem "BassDoubleJump"
 player.startitem "BassFlag"

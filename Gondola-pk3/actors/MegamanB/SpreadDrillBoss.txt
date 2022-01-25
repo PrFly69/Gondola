@@ -319,7 +319,7 @@ TNT1 A 0 A_ChangeFlag("NONSHOOTABLE",0)
 TNT1 A 0 A_ChangeFlag("FLOORHUGGER",0)
 TNT1 A 0 A_ChangeFlag("PICKUP",1)
 TNT1 A 0 A_GiveInventory("InvulnerableOff_Pickup",1)
-TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//1.0x speed
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)//Normal Jump
 TNT1 A 0 ThrustThingZ(0,1,0,1)
@@ -448,7 +448,7 @@ GRDH F 0 A_ChangeFlag("CEILINGHUGGER",0)
 GRDH F 0 A_ChangeFlag("PICKUP",1)
 GRDH F 0 A_GiveInventory("InvulnerableOff_Pickup",1)
 GRDH F 0 A_GiveInventory("EnvironmentGravity",1)//A_SetGravity(0.8)//A_ChangeFlag("NOGRAVITY",0)
-GRDH F 0 A_SpawnItemEx("ReSolidifier")
+GRDH F 0 A_SpawnItemEx("ResolidifyPlayer_H")
 GRDH F 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//1.0x speed
 GRDH F 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)//Normal Jump
 GRDH D 0 offset(0,54)ThrustThingZ(0,75,1,0)

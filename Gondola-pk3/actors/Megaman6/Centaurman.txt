@@ -16,7 +16,7 @@ MaxStepHeight 32//24
 MaxDropOffHeight 32//24
 
 player.startitem "CentaurFlashBoss"
-player.startitem "ClipClopAmmo", 21
+player.startitem "CentaurAmmo", 21
 player.startitem "WarpItem"
 
 player.startitem "KnightCrushWeakness2", 1

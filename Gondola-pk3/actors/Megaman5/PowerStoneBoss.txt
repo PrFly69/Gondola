@@ -1221,7 +1221,7 @@ states
 Pickup:
 TNT1 A 0 A_ChangeFlag("NOTELEPORT",0)
 TNT1 A 0 A_ChangeFlag("PICKUP",1)
-TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TNT1 A 0 A_SpawnItemEx("StoneRebornFX",0,0,0,0,0,0,0,1)
 
 //TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,7,85)//Set Hp to 85
@@ -1568,7 +1568,7 @@ states
 {
 Pickup:
 TNT1 A 0 A_ChangeFlag("PICKUP",1)
-TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TNT1 A 0 A_SpawnItemEx("StoneRebornFX",0,0,0,0,0,0,0,1)
 
 //TNT1 A 0 ACS_NamedExecuteAlways("StoneFakeHealthRestore",0)

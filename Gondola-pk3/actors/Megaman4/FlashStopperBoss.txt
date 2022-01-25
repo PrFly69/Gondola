@@ -61,7 +61,7 @@ FSTB I 4 A_GunFlash("Flash.BulbToss",GFF_NOEXTCHANGE)
 FSTB JJJI 4
 Goto Ready1
 FlashStopper:
-FSTB I 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
+//FSTB I 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
 FSTB I 0 SetPlayerProperty(0,1,0)
 FSTB I 0 A_PlaySoundEx("weapon/flashstopper","Weapon")
 FSTB I 0 A_GiveInventory("BrightmanOther_CI",1)
@@ -74,7 +74,7 @@ FSTB I 2 A_TakeInventory("BrightIdeasAmmo",28,1)
 FSTB I 2
 FSTB I 0 A_TakeInventory("BrightIdeasAmmo",28,1)
 FSTB I 0 A_TakeInventory("BrightFlashStock",99)
-FSTB I 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+//FSTB I 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
 FSTB I 0 SetPlayerProperty(0,0,0)
 goto Ready1
 Flash:

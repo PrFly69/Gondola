@@ -741,7 +741,7 @@ PROJECTILE
 -NOGRAVITY
 +HITTRACER
 Gravity 0.5
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Obituary "$OB_BLASTBOMB"
 Damage (20)
 radius 8
@@ -1104,7 +1104,7 @@ actor BlastJumpFX
 {
 Translation "192:192=4:4", "198:198=227:227", "202:202=210:210"
 PROJECTILE
-damagetype "DrillBomb"
+damagetype "DMGNoHitstun"
 Obituary "$OB_DRILLBOMB"
 +EXPLODEONWATER
 +NOCLIP

@@ -325,7 +325,7 @@ TNT1 A 0 A_JumpIfInventory("TopmanTimer2",1,"SpinLoopD2")
 goto SpinEnd
 
 SpinEnd:
-TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TNT1 A 0 A_GiveInventory("TopDash_End",1)
 TNT1 A 0 A_TakeInventory("TopDashFlag",999)
 TNT1 A 0 A_TakeInventory("Top_Charge",999)
