@@ -1,0 +1,1208 @@
+actor MonkeyKingBoss : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_WTA"
+dropitem "BusterRodGWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 0
+Obituary "$OB_BRGROD"
+Inventory.Pickupmessage "Get your hands off this, you damn dirty ape!"
+weapon.ammotype "MonkeyMagicAmmo"
+States
+{
+Spawn:
+C_WT A 1
+loop
+Ready:
+BROG A 0 ACS_ExecuteAlways(998,0,DYE_BUSTERRODG)
+BROG A 0 A_GunFlash
+BROG A 0
+Ready2:
+BROG A 0 A_JumpIfInventory("BRGCloneFlag",1,"ReadyC")
+BROG A 0 A_JumpIfInventory("MonkeyMagicAmmo",2,"Ready3")
+BROG A 6 A_WeaponReady(WRF_NOSECONDARY)
+BROG A 0 A_GiveInventory("MonkeyMagicAmmo",1)
+goto Ready2
+Ready3:
+BROG A 6 A_WeaponReady
+BROG A 0 A_JumpIfInventory("BRGCloneFlag",1,"ReadyC")
+BROG A 0 A_GiveInventory("MonkeyMagicAmmo",1)
+Goto Ready3
+ReadyC:
+BROG A 1 A_WeaponReady
+goto Ready2
+
+Deselect:
+BROG AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+BROG A 1 A_Lower
+Loop
+Select:
+BROG AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+BROG A 1 A_Raise
+Loop
+Fire:
+BROG A 1 offset(10,32)A_JumpIfInventory("PowerRage_ST",1,"Fire_R")
+BROG A 1 offset(20,35)
+BROG A 1 offset(30,38)
+BROG A 0 A_SetUserVar("user_wepangle",angle)
+BROG A 0 A_SetUserVar("user_weppitch",pitch)
+BROG A 0 A_SpawnItemEx("BRGSoundHelper")
+BROG A 0 A_PlaySoundEx("weapon/BRGStaff","Weapon")
+BROG E 1 offset(0,32)A_GiveInventory("BusterRodGMain1_CI",1)
+BROG E 1 offset(1,32)A_GiveInventory("BusterRodGMain2_CI",1)
+BROG E 1 offset(2,32)A_GiveInventory("BusterRodGMain3_CI",1)
+BROG E 1 offset(3,32)A_GiveInventory("BusterRodGMain4_CI",1)
+BROG E 1 offset(4,32)A_GiveInventory("BusterRodGMain5_CI",1)
+BROG E 1 offset(5,32)A_GiveInventory("BusterRodGMain6_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain7_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain8_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain8_CI",1)
+BROG E 0 A_GiveInventory("BRG_AmmoGiveTake_P")
+BROG E 1 A_GiveInventory("BusterRodGMain7_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain6_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain5_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain4_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain3_CI",1)
+BROG D 1 A_GiveInventory("BusterRodGMain2_CI",1)
+BROG D 1 A_GiveInventory("BusterRodGMain1_CI",1)
+BROG D 1 offset(5,47)
+BROG D 1 offset(4,62)
+BROG D 0 A_GiveInventory("BRG_AmmoGiveTake_P")
+BROG D 1 offset(3,77)
+BROG D 1 offset(2,92)
+BROG D 1 offset(1,107)
+BROG D 1 offset(-1,122)
+BROG D 1 offset(-3,137)
+BROG A 1 offset(-13,137)
+BROG A 1 offset(-12,122)
+BROG A 1 offset(-11,107)
+BROG A 1 offset(-10,92)
+BROG A 0 A_GiveInventory("BRG_AmmoGiveTake_P")
+BROG A 1 offset(-9,77)
+BROG A 1 offset(-8,62)
+BROG A 1 offset(-7,47)
+
+BROG A 1 offset(-6,37)
+BROG A 1 offset(-5,36)
+BROG A 1 offset(-4,35)
+BROG A 1 offset(-3,34)
+BROG A 1 offset(-2,33)
+BROG A 1 offset(-1,32)
+//36
+
+Goto Ready+2
+
+Fire_R:
+BROG A 1 offset(20,35)
+BROG A 0 A_SetUserVar("user_wepangle",angle)
+BROG A 0 A_SetUserVar("user_weppitch",pitch)
+BROG A 0 A_SpawnItemEx("BRGSoundHelper")
+BROG A 0 A_PlaySoundEx("weapon/BRGStaff","Weapon")
+BROG E 0 A_GiveInventory("BusterRodGMain1_CI",1)
+BROG E 1 offset(1,32)A_GiveInventory("BusterRodGMain2_CI",1)
+BROG E 0 A_GiveInventory("BusterRodGMain3_CI",1)
+BROG E 1 offset(3,32)A_GiveInventory("BusterRodGMain4_CI",1)
+BROG E 0 A_GiveInventory("BusterRodGMain5_CI",1)
+BROG E 1 offset(5,32)A_GiveInventory("BusterRodGMain6_CI",1)
+BROG E 0 A_GiveInventory("BusterRodGMain7_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain8_CI",1)
+BROG E 0 A_GiveInventory("BusterRodGMain8_CI",1)
+BROG E 0 A_GiveInventory("BRG_AmmoGiveTake_P")
+BROG E 1 A_GiveInventory("BusterRodGMain7_CI",1)
+BROG E 0 A_GiveInventory("BusterRodGMain6_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain5_CI",1)
+BROG E 0 A_GiveInventory("BusterRodGMain4_CI",1)
+BROG E 1 A_GiveInventory("BusterRodGMain3_CI",1)
+BROG D 0 A_GiveInventory("BusterRodGMain2_CI",1)
+BROG D 1 A_GiveInventory("BusterRodGMain1_CI",1)
+BROG D 1 offset(5,47)
+BROG D 0 A_GiveInventory("BRG_AmmoGiveTake_P")
+BROG D 1 offset(3,77)
+BROG D 1 offset(1,107)
+BROG D 1 offset(-1,137)
+BROG A 1 offset(-12,122)
+BROG A 1 offset(-10,92)
+BROG A 0 A_GiveInventory("BRG_AmmoGiveTake_P")
+BROG A 1 offset(-8,62)
+
+BROG A 1 offset(-6,37)
+BROG A 1 offset(-4,35)
+BROG A 1 offset(-2,33)
+
+Goto Ready+2
+
+
+AltFire:
+BROG A 0 A_JumpIfInventory("MonkeyMagicAmmo",1,"AltFire2")
+Goto Ready2
+AltFire2:
+BROG A 0 A_GiveInventory("BRGSpinFlag",1)
+BROG B 1 offset(4,32)A_JumpIfInventory("PowerRage_ST",1,1)
+BROG B 1 offset(2,32)A_TakeInventory("StopShield",1)
+BROG C 1 offset(4,32)A_JumpIfInventory("PowerRage_ST",1,1)
+BROG C 1 offset(2,32)A_TakeInventory("StopShield",1)
+BROG F 0 A_GiveInventory("BRGShieldHitbox_P",1)
+goto SpinToWin
+
+SpinToWin:
+BROG F 0 A_JumpIfInventory("MonkeyMagicAmmo",1,"SpinToWin2")
+goto AltFireEnd
+SpinToWin2:
+BROG F 0 A_TakeInventory("MonkeyMagicAmmo",1,1)
+BROG F 0 A_FireCustomMissile("BRGSoundHelperAlt",0,0,0,0)
+BROG F 0 A_FireCustomMissile("BRGSpinBoom",0,0,-8,0)
+BROG F 0 A_PlaySoundEx("weapon/BRGSpin","Weapon")
+BROG F 1 offset(1,32)
+BROG G 1 offset(1,32)A_JumpIfInventory("PowerRage_ST",1,"SpinToWin2_R")
+BROG G 0 A_Refire("SpinToWin")
+goto AltFireEnd
+
+SpinToWin2_R:
+BROG G 0 A_PlaySoundEx("weapon/BRGSpin","Weapon")
+BROG G 0 A_FireCustomMissile("BRGSoundHelperAlt",0,0,0,0)
+BROG G 0 A_FireCustomMissile("BRGSpinBoom",0,0,-8,0)
+BROG G 1 offset(1,32)
+BROG G 0 A_Refire("SpinToWin")
+goto AltFireEnd
+
+AltFireEnd:
+BROG F 0 A_PlaySoundEx("weapon/topspin","Weapon")
+BROG F 0 A_GiveInventory("StopShield",1)
+BROG FG 2 offset(1,32)
+BROG F 0 A_TakeInventory("BRGSpinFlag",99)
+BROG FG 3 offset(1,32)
+BROG C 1 offset(2,32)
+BROG C 1 offset(4,32)A_JumpIfInventory("PowerRage_ST",1,1)
+BROG C 1 offset(6,32)
+BROG B 1 offset(2,32)A_JumpIfInventory("PowerRage_ST",1,1)
+BROG B 1 offset(4,32)
+BROG B 1 offset(6,32)A_JumpIfInventory("PowerRage_ST",1,1)
+BROG A 1 offset(-6,32)
+BROG A 1 offset(-4,32)A_JumpIfInventory("PowerRage_ST",1,1)
+BROG A 1 offset(-2,32)
+Goto Ready+2
+
+Flash:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("BRGCloneFlag",1,1)
+goto Flash
+TNT1 A 0 A_GiveInventory("DoubleTeamSpawner",1)
+goto Flash
+NoFlash:
+TNT1 A 0
+stop
+}
+}
+
+actor MonkeyMagicAmmo : Ammo
+{
++INVENTORY.IGNORESKILL
+inventory.amount 1
+inventory.maxamount 50
+}
+
+actor BRGSpinFlag : OnceC{}
+actor BRGCloneFlag : OnceC{}
+
+
+actor BRG_CloneItem : BasicClassItem
+{
+inventory.icon "BRG_ITEM"
+inventory.pickupmessage "\ckKing: \cdYou... you can't do this you... monkey butt!"
+Tag "BRG Clone Trigger"
+states
+{
+Spawn:
+BROG I 1
+loop
+Use:
+TNT1 A 1 A_JumpIfInventory("BRGCloneFlag",1,"Use2")
+TNT1 A 1 A_JumpIfInventory("MonkeyMagicAmmo",50,"Use1")
+fail
+Use1:
+TNT1 A 0 A_PlaySound("classes/BRGClone",7,0.7)//SoundSlot7
+TNT1 A 0 A_SpawnItemEx("BRG_CloneWatcher")
+TNT1 A 0 A_SpawnItemEx("BRGDTFramePre",0,0,0,0,0,0,0,1,0)
+TNT1 A 0 A_GiveInventory("BRGCloneFlag",1)
+TNT1 A 0 A_TakeInventory("MonkeyMagicAmmo",2)
+fail
+Use2:
+//TNT1 A 0 A_PlaySoundEX("item/ItemUseMM9","SoundSlot7")
+TNT1 A 0 A_PlaySound("classes/BRGClone",7,0.7)//SoundSlot7
+TNT1 A 0 A_TakeInventory("BRGCloneFlag",99)
+TNT1 A 0 A_TakeInventory("MonkeyMagicAmmo",2)
+fail
+}
+}
+
+actor BRG_CloneWatcher : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",22,7)
+TNT1 A 0 A_JumpIfInTargetInventory("BRGCloneFlag",1,2)
+TNT1 A 1 A_TakeFromTarget("BRGCloneFlag",99)
+stop
+TNT1 A 0 A_JumpIfInTargetInventory("MonkeyMagicAmmo",1,3)
+TNT1 A 0 A_GiveToTarget("BRGCloneSoundItem",1)
+TNT1 A 1 A_TakeFromTarget("BRGCloneFlag",99)
+stop
+TNT1 A 0 A_GiveInventory("WeaponCharge",1)
+goto Spawn
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TNT1 A 0 A_TakeFromTarget("MonkeyMagicAmmo",1,1)
+TNT1 A 0 A_TakeInventory("WeaponCharge",99)
+TNT1 A 0 A_JumpIfInTargetInventory("MonkeyMagicAmmo",1,"Spawn")
+TNT1 A 0 A_GiveToTarget("BRGCloneSoundItem",1)
+TNT1 A 1 A_TakeFromTarget("BRGCloneFlag",99)
+stop
+Death:
+TNT1 A 1 A_TakeFromTarget("BRGCloneFlag",99)
+stop
+}
+}
+
+actor BRGCloneSoundItem : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_PlaySound("classes/BRGClone",7,0.7)//SoundSlot7
+stop
+}
+}
+
+actor BRGSoundHelper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("BRGCloneFlag",1,1)
+stop
+TNT1 A 1// A_PlaySound("weapon/BRGStaff",4)
+TNT1 A 35
+TNT1 A 1 A_PlaySound("weapon/BRGStaff",4)
+TNT1 A 35
+TNT1 A 1 A_PlaySoundEx("weapon/BRGStaff",4)
+stop
+}
+}
+
+actor BRG_AmmoGiveTake_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("BRGCloneFlag",1,"Lose")
+TNT1 A 0 A_GiveInventory("MonkeyMagicAmmo",1)
+TNT1 A 0
+stop
+Lose:
+TNT1 A 0 A_TakeInventory("MonkeyMagicAmmo",1,1)
+stop
+}
+}
+
+//The day will come when A_FireCustomMissile supports translations
+actor BusterRodGMain1_CI : CustomInventory//TeamColor_CI
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("BRGCloneFlag",1,"PickupD")
+TNT1 A 0 A_JumpIfInventory("LightTeamFlag",1,"FireB")
+TNT1 A 0 A_JumpIfInventory("WilyTeamFlag",1,"FireR")
+TNT1 A 0 A_JumpIfInventory("CossackTeamFlag",1,"FireO")
+TNT1 A 0 A_JumpIfInventory("KingTeamFlag",1,"FireP")
+TNT1 A 0 A_JumpIfInventory("IsInGame",1,"FireX")
+TNT1 A 0
+Done:
+TNT1 A 0
+stop
+PickupD:
+TNT1 A 0 A_JumpIfInventory("LightTeamFlag",1,"DFireB")
+TNT1 A 0 A_JumpIfInventory("WilyTeamFlag",1,"DFireR")
+TNT1 A 0 A_JumpIfInventory("CossackTeamFlag",1,"DFireO")
+TNT1 A 0 A_JumpIfInventory("KingTeamFlag",1,"DFireP")
+TNT1 A 0 A_JumpIfInventory("IsInGame",1,"DFireX")
+TNT1 A 0
+goto Done
+
+FireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd1",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireX2:
+TNT1 A 0
+stop
+FireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd1B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireB2:
+TNT1 A 0
+stop
+FireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd1R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireR2:
+TNT1 A 0
+stop
+FireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd1O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireO2:
+TNT1 A 0
+stop
+FireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd1P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireP2:
+TNT1 A 0
+stop
+
+DFireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD1",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireX2:
+TNT1 A 0
+stop
+DFireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD1B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireB2:
+TNT1 A 0
+stop
+DFireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD1R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireR2:
+TNT1 A 0
+stop
+DFireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD1O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireO2:
+TNT1 A 0
+stop
+DFireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD1P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireP2:
+TNT1 A 0
+stop
+}
+}
+
+
+actor BusterRodGMain2_CI : BusterRodGMain1_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd2",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRod1",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireX2"
+FireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd2B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRod1B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireB2"
+FireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd2R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRod1R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireR2"
+FireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd2O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRod1O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireO2"
+FireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd2P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRod1P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireP2"
+
+DFireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD2",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD1",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireX2"
+DFireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD2B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD1B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireB2"
+DFireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD2R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD1R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireR2"
+DFireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD2O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD1O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireO2"
+DFireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD2P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD1P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireP2"
+}
+}
+
+actor BusterRodGMain3_CI : BusterRodGMain2_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd3",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRod2",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireX2"
+FireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd3B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRod2B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireB2"
+FireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd3R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRod2R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireR2"
+FireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd3O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRod2O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireO2"
+FireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd3P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRod2P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireP2"
+
+DFireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD3",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD2",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireX2"
+DFireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD3B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD2B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireB2"
+DFireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD3R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD2R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireR2"
+DFireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD3O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD2O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireO2"
+DFireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD3P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD2P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireP2"
+}
+}
+
+actor BusterRodGMain4_CI : BusterRodGMain3_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd4",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRod3",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireX2"
+FireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd4B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRod3B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireB2"
+FireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd4R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRod3R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireR2"
+FireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd4O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRod3O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireO2"
+FireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd4P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRod3P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireP2"
+
+DFireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD4",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD3",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireX2"
+DFireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD4B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD3B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireB2"
+DFireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD4R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD3R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireR2"
+DFireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD4O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD3O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireO2"
+DFireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD4P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD3P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireP2"
+}
+}
+
+actor BusterRodGMain5_CI : BusterRodGMain4_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd5",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRod4",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireX2"
+FireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd5B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRod4B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireB2"
+FireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd5R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRod4R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireR2"
+FireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd5O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRod4O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireO2"
+FireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd5P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRod4P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireP2"
+
+DFireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD5",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD4",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireX2"
+DFireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD5B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD4B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireB2"
+DFireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD5R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD4R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireR2"
+DFireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD5O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD4O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireO2"
+DFireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD5P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD4P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireP2"
+}
+}
+
+actor BusterRodGMain6_CI : BusterRodGMain5_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd6",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRod5",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireX2"
+FireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd6B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRod5B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireB2"
+FireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd6R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRod5R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireR2"
+FireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd6O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRod5O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireO2"
+FireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd6P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRod5P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireP2"
+
+DFireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD6",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD5",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireX2"
+DFireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD6B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD5B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireB2"
+DFireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD6R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD5R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireR2"
+DFireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD6O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD5O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireO2"
+DFireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD6P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD5P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireP2"
+}
+}
+
+actor BusterRodGMain7_CI : BusterRodGMain6_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd7",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRod6",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireX2"
+FireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd7B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRod6B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireB2"
+FireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd7R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRod6R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireR2"
+FireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd7O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRod6O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireO2"
+FireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd7P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRod6P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireP2"
+
+DFireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD7",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD6",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireX2"
+DFireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD7B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD6B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireB2"
+DFireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD7R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD6R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireR2"
+DFireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD7O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD6O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireO2"
+DFireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD7P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD6P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireP2"
+}
+}
+
+actor BusterRodGMain8_CI : BusterRodGMain7_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd8",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRod7",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireX2"
+FireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd8B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRod7B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireB2"
+FireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd8R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRod7R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireR2"
+FireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd8O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRod7O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireO2"
+FireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEnd8P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+FireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRod7P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::FireP2"
+
+DFireX:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD8",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireX2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD7",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireX2"
+DFireB:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD8B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireB2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD7B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireB2"
+DFireR:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD8R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireR2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD7R",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireR2"
+DFireO:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD8O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireO2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD7O",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireO2"
+DFireP:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndD8P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+DFireP2:
+TNT1 A 0 A_FireCustomMissile("BusterRodD7P",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::DFireP2"
+}
+}
+
+actor BusterRod
+{
+Translation "192:192=218:218","198:198=221:221","202:202=212:212"
+PROJECTILE
++NOCLIP
++NOINTERACTION
+//+THRUGHOST
++DONTBLAST
++DONTREFLECT
+//+NOTIMEFREEZE
++NONETID
+Height 6
+Radius 6
+scale 2.5
+Damage (0)
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+BRGX N 1
+stop
+}
+}
+
+actor BusterRodEnd : BusterRod
+{
+Obituary "$OB_BRGROD"
+Damagetype "BRG_Bash"
+}
+
+actor BusterRodEndO : BusterRodEnd
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+BRGX O 1 A_Explode(60,40,0,0,40)
+stop
+}
+}
+
+actor BusterRodEndP : BusterRodEnd
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+BRGX P 1 A_Explode(60,40,0,0,40)
+stop
+}
+}
+
+actor BusterRodD : BusterRod
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+BRGX N 1
+TNT1 A 35
+BRGX N 1
+TNT1 A 35
+BRGX N 1
+stop
+}
+}
+
+actor BusterRodEndOD : BusterRodEnd
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+BRGX O 1 A_Explode(60,40,0,0,40)
+TNT1 A 35
+BRGX O 1 A_Explode(60,40,0,0,40)
+TNT1 A 35
+BRGX O 1 A_Explode(60,40,0,0,40)
+stop
+}
+}
+
+actor BusterRodEndPD : BusterRodEnd
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+BRGX P 1 A_Explode(60,40,0,0,40)
+TNT1 A 35
+BRGX P 1 A_Explode(60,40,0,0,40)
+TNT1 A 35
+BRGX P 1 A_Explode(60,40,0,0,40)
+stop
+}
+}
+
+actor BusterRodB : BusterRod{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor BusterRodR : BusterRod{translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor BusterRodO : BusterRod{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor BusterRodP : BusterRod{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+actor BusterRodDB : BusterRodD{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor BusterRodDR : BusterRodD{translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor BusterRodDO : BusterRodD{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor BusterRodDP : BusterRodD{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+actor BusterRodEndOB : BusterRodEndO{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor BusterRodEndOR : BusterRodEndO{translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor BusterRodEndOO : BusterRodEndO{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor BusterRodEndOP : BusterRodEndO{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+actor BusterRodEndPB : BusterRodEndP{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor BusterRodEndPR : BusterRodEndP{translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor BusterRodEndPO : BusterRodEndP{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor BusterRodEndPP : BusterRodEndP{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+actor BusterRodEndODB : BusterRodEndOD{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor BusterRodEndODR : BusterRodEndOD{translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor BusterRodEndODO : BusterRodEndOD{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor BusterRodEndODP : BusterRodEndOD{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+actor BusterRodEndPDB : BusterRodEndPD{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor BusterRodEndPDR : BusterRodEndPD{translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor BusterRodEndPDO : BusterRodEndPD{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor BusterRodEndPDP : BusterRodEndPD{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+
+actor BusterRod1:BusterRod{speed 22}
+actor BusterRod2:BusterRod{speed 44}
+actor BusterRod3:BusterRod{speed 66}
+actor BusterRod4:BusterRod{speed 88}
+actor BusterRod5:BusterRod{speed 110}
+actor BusterRod6:BusterRod{speed 132}
+actor BusterRod7:BusterRod{speed 154}
+actor BusterRod8:BusterRod{speed 176}
+actor BusterRod1B:BusterRodB{speed 22}//
+actor BusterRod2B:BusterRodB{speed 44}
+actor BusterRod3B:BusterRodB{speed 66}
+actor BusterRod4B:BusterRodB{speed 88}
+actor BusterRod5B:BusterRodB{speed 110}
+actor BusterRod6B:BusterRodB{speed 132}
+actor BusterRod7B:BusterRodB{speed 154}
+actor BusterRod8B:BusterRodB{speed 176}
+actor BusterRod1R:BusterRodR{speed 22}//
+actor BusterRod2R:BusterRodR{speed 44}
+actor BusterRod3R:BusterRodR{speed 66}
+actor BusterRod4R:BusterRodR{speed 88}
+actor BusterRod5R:BusterRodR{speed 110}
+actor BusterRod6R:BusterRodR{speed 132}
+actor BusterRod7R:BusterRodR{speed 154}
+actor BusterRod8R:BusterRodR{speed 176}
+actor BusterRod1O:BusterRodO{speed 22}//
+actor BusterRod2O:BusterRodO{speed 44}
+actor BusterRod3O:BusterRodO{speed 66}
+actor BusterRod4O:BusterRodO{speed 88}
+actor BusterRod5O:BusterRodO{speed 110}
+actor BusterRod6O:BusterRodO{speed 132}
+actor BusterRod7O:BusterRodO{speed 154}
+actor BusterRod8O:BusterRodO{speed 176}
+actor BusterRod1P:BusterRodP{speed 22}//
+actor BusterRod2P:BusterRodP{speed 44}
+actor BusterRod3P:BusterRodP{speed 66}
+actor BusterRod4P:BusterRodP{speed 88}
+actor BusterRod5P:BusterRodP{speed 110}
+actor BusterRod6P:BusterRodP{speed 132}
+actor BusterRod7P:BusterRodP{speed 154}
+actor BusterRod8P:BusterRodP{speed 176}
+
+actor BusterRodD1:BusterRodD{speed 22}
+actor BusterRodD2:BusterRodD{speed 44}
+actor BusterRodD3:BusterRodD{speed 66}
+actor BusterRodD4:BusterRodD{speed 88}
+actor BusterRodD5:BusterRodD{speed 110}
+actor BusterRodD6:BusterRodD{speed 132}
+actor BusterRodD7:BusterRodD{speed 154}
+actor BusterRodD8:BusterRodD{speed 176}
+actor BusterRodD1B:BusterRodDB{speed 22}//
+actor BusterRodD2B:BusterRodDB{speed 44}
+actor BusterRodD3B:BusterRodDB{speed 66}
+actor BusterRodD4B:BusterRodDB{speed 88}
+actor BusterRodD5B:BusterRodDB{speed 110}
+actor BusterRodD6B:BusterRodDB{speed 132}
+actor BusterRodD7B:BusterRodDB{speed 154}
+actor BusterRodD8B:BusterRodDB{speed 176}
+actor BusterRodD1R:BusterRodDR{speed 22}//
+actor BusterRodD2R:BusterRodDR{speed 44}
+actor BusterRodD3R:BusterRodDR{speed 66}
+actor BusterRodD4R:BusterRodDR{speed 88}
+actor BusterRodD5R:BusterRodDR{speed 110}
+actor BusterRodD6R:BusterRodDR{speed 132}
+actor BusterRodD7R:BusterRodDR{speed 154}
+actor BusterRodD8R:BusterRodDR{speed 176}
+actor BusterRodD1O:BusterRodDO{speed 22}//
+actor BusterRodD2O:BusterRodDO{speed 44}
+actor BusterRodD3O:BusterRodDO{speed 66}
+actor BusterRodD4O:BusterRodDO{speed 88}
+actor BusterRodD5O:BusterRodDO{speed 110}
+actor BusterRodD6O:BusterRodDO{speed 132}
+actor BusterRodD7O:BusterRodDO{speed 154}
+actor BusterRodD8O:BusterRodDO{speed 176}
+actor BusterRodD1P:BusterRodDP{speed 22}//
+actor BusterRodD2P:BusterRodDP{speed 44}
+actor BusterRodD3P:BusterRodDP{speed 66}
+actor BusterRodD4P:BusterRodDP{speed 88}
+actor BusterRodD5P:BusterRodDP{speed 110}
+actor BusterRodD6P:BusterRodDP{speed 132}
+actor BusterRodD7P:BusterRodDP{speed 154}
+actor BusterRodD8P:BusterRodDP{speed 176}
+
+
+actor BusterRodEnd1:BusterRodEndO{speed 22}
+actor BusterRodEnd2:BusterRodEndO{speed 44}
+actor BusterRodEnd3:BusterRodEndP{speed 66}
+actor BusterRodEnd4:BusterRodEndP{speed 88}
+actor BusterRodEnd5:BusterRodEndO{speed 110}
+actor BusterRodEnd6:BusterRodEndO{speed 132}
+actor BusterRodEnd7:BusterRodEndP{speed 154}
+actor BusterRodEnd8:BusterRodEndP{speed 176}
+actor BusterRodEnd1B:BusterRodEndOB{speed 22}//
+actor BusterRodEnd2B:BusterRodEndOB{speed 44}
+actor BusterRodEnd3B:BusterRodEndPB{speed 66}
+actor BusterRodEnd4B:BusterRodEndPB{speed 88}
+actor BusterRodEnd5B:BusterRodEndOB{speed 110}
+actor BusterRodEnd6B:BusterRodEndOB{speed 132}
+actor BusterRodEnd7B:BusterRodEndPB{speed 154}
+actor BusterRodEnd8B:BusterRodEndPB{speed 176}
+actor BusterRodEnd1R:BusterRodEndOR{speed 22}//
+actor BusterRodEnd2R:BusterRodEndOR{speed 44}
+actor BusterRodEnd3R:BusterRodEndPR{speed 66}
+actor BusterRodEnd4R:BusterRodEndPR{speed 88}
+actor BusterRodEnd5R:BusterRodEndOR{speed 110}
+actor BusterRodEnd6R:BusterRodEndOR{speed 132}
+actor BusterRodEnd7R:BusterRodEndPR{speed 154}
+actor BusterRodEnd8R:BusterRodEndPR{speed 176}
+actor BusterRodEnd1O:BusterRodEndOO{speed 22}//
+actor BusterRodEnd2O:BusterRodEndOO{speed 44}
+actor BusterRodEnd3O:BusterRodEndPO{speed 66}
+actor BusterRodEnd4O:BusterRodEndPO{speed 88}
+actor BusterRodEnd5O:BusterRodEndOO{speed 110}
+actor BusterRodEnd6O:BusterRodEndOO{speed 132}
+actor BusterRodEnd7O:BusterRodEndPO{speed 154}
+actor BusterRodEnd8O:BusterRodEndPO{speed 176}
+actor BusterRodEnd1P:BusterRodEndOP{speed 22}//
+actor BusterRodEnd2P:BusterRodEndOP{speed 44}
+actor BusterRodEnd3P:BusterRodEndPP{speed 66}
+actor BusterRodEnd4P:BusterRodEndPP{speed 88}
+actor BusterRodEnd5P:BusterRodEndOP{speed 110}
+actor BusterRodEnd6P:BusterRodEndOP{speed 132}
+actor BusterRodEnd7P:BusterRodEndPP{speed 154}
+actor BusterRodEnd8P:BusterRodEndPP{speed 176}
+
+actor BusterRodEndD1:BusterRodEndOD{speed 22}
+actor BusterRodEndD2:BusterRodEndOD{speed 44}
+actor BusterRodEndD3:BusterRodEndPD{speed 66}
+actor BusterRodEndD4:BusterRodEndPD{speed 88}
+actor BusterRodEndD5:BusterRodEndOD{speed 110}
+actor BusterRodEndD6:BusterRodEndOD{speed 132}
+actor BusterRodEndD7:BusterRodEndPD{speed 154}
+actor BusterRodEndD8:BusterRodEndPD{speed 176}
+actor BusterRodEndD1B:BusterRodEndODB{speed 22}//
+actor BusterRodEndD2B:BusterRodEndODB{speed 44}
+actor BusterRodEndD3B:BusterRodEndPDB{speed 66}
+actor BusterRodEndD4B:BusterRodEndPDB{speed 88}
+actor BusterRodEndD5B:BusterRodEndODB{speed 110}
+actor BusterRodEndD6B:BusterRodEndODB{speed 132}
+actor BusterRodEndD7B:BusterRodEndPDB{speed 154}
+actor BusterRodEndD8B:BusterRodEndPDB{speed 176}
+actor BusterRodEndD1R:BusterRodEndODR{speed 22}//
+actor BusterRodEndD2R:BusterRodEndODR{speed 44}
+actor BusterRodEndD3R:BusterRodEndPDR{speed 66}
+actor BusterRodEndD4R:BusterRodEndPDR{speed 88}
+actor BusterRodEndD5R:BusterRodEndODR{speed 110}
+actor BusterRodEndD6R:BusterRodEndODR{speed 132}
+actor BusterRodEndD7R:BusterRodEndPDR{speed 154}
+actor BusterRodEndD8R:BusterRodEndPDR{speed 176}
+actor BusterRodEndD1O:BusterRodEndODO{speed 22}//
+actor BusterRodEndD2O:BusterRodEndODO{speed 44}
+actor BusterRodEndD3O:BusterRodEndPDO{speed 66}
+actor BusterRodEndD4O:BusterRodEndPDO{speed 88}
+actor BusterRodEndD5O:BusterRodEndODO{speed 110}
+actor BusterRodEndD6O:BusterRodEndODO{speed 132}
+actor BusterRodEndD7O:BusterRodEndPDO{speed 154}
+actor BusterRodEndD8O:BusterRodEndPDO{speed 176}
+actor BusterRodEndD1P:BusterRodEndODP{speed 22}//
+actor BusterRodEndD2P:BusterRodEndODP{speed 44}
+actor BusterRodEndD3P:BusterRodEndPDP{speed 66}
+actor BusterRodEndD4P:BusterRodEndPDP{speed 88}
+actor BusterRodEndD5P:BusterRodEndODP{speed 110}
+actor BusterRodEndD6P:BusterRodEndODP{speed 132}
+actor BusterRodEndD7P:BusterRodEndPDP{speed 154}
+actor BusterRodEndD8P:BusterRodEndPDP{speed 176}
+
+
+
+actor BRGShieldHitbox_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("BRGShieldHitbox1",28,-16,8,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BRGShieldHitbox2",28,-8,8,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BRGShieldHitbox3",28,0,8,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BRGShieldHitbox4",28,8,8,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BRGShieldHitbox5",28,16,8,0,0,0,0,1)
+stop
+}
+}
+
+actor BRGShieldHitbox1 : BasicShieldHitbox
+{
+Meleerange 28
+Accuracy -16
+Mass 8
+States
+{
+Pain:
+TNT1 A 0 A_SpawnItemEx("BRGShieldDeathFX")
+TNT1 A 0 A_PlaySound("item/protoreflect")
+goto Spawn
+}
+}
+actor BRGShieldHitbox2 : BRGShieldHitbox1
+{
+Accuracy -8
+}
+actor BRGShieldHitbox3 : BRGShieldHitbox1
+{
+Accuracy 0
+}
+actor BRGShieldHitbox4 : BRGShieldHitbox1
+{
+Accuracy 8
+}
+actor BRGShieldHitbox5 : BRGShieldHitbox1
+{
+Accuracy 16
+}
+
+actor BRGShieldHitboxClone : BRGShieldHitbox1
+{
+Radius 25
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2
+stop
+Pain:
+TNT1 A 0 A_SpawnItemEx("BRGShieldDeathFX",0,random(-16,16),4)
+TNT1 A 1 A_PlaySound("item/protoreflect")
+stop
+}
+}
+
+actor BRGShieldDeathFX : BasicClientSide
+{
+alpha 0.9
+renderstyle add
+Scale 2.0
+states
+{
+Spawn:
+PROC M 0 A_SetScale(scaleX + 0.1, 2.5) 
+PROC M 1 A_FadeOut(0.05)
+loop
+}
+}
+
+
+
+actor BRGSpinBoom : BasicExplosion
+{
+Obituary "$OB_BRGSPIN"
+Damagetype "BRG_Spin"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_Explode(30,128,0,0,16)
+stop
+}
+}
+
+actor BRGSoundHelperAlt : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("BRGCloneFlag",1,1)
+stop
+TNT1 A 1// A_PlaySound("weapon/topspin",4)
+TNT1 A 35
+TNT1 A 1 A_SpawnItemEx("BRGShieldHitboxClone",16,-8,-24)
+TNT1 A 0 A_PlaySoundEx("weapon/BRGSpin","Weapon")
+TNT1 A 0 A_SpawnItemEx("BRGSpinBoom",8,-8,2)
+TNT1 A 0 A_SpawnItemEx("BRGShieldHitboxClone",16,-8,-24)
+TNT1 A 35
+TNT1 A 1 A_SpawnItemEx("BRGShieldHitboxClone",16,-8,-24)
+TNT1 A 0 A_PlaySoundEx("weapon/BRGSpin","Weapon")
+TNT1 A 0 A_SpawnItemEx("BRGSpinBoom",8,-8,2)
+TNT1 A 1 A_SpawnItemEx("BRGShieldHitboxClone",16,-8,-24)
+stop
+}
+}

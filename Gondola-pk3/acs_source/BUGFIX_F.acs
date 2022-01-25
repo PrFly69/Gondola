@@ -74,50 +74,50 @@ script C_JAX_SUCKRECODE (int distRange, int angleRange, int type)
 								GiveActorInventory(1000+i,"HomingLockGiver",1);
 								break;
 							case 11:
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								ThrustThing((angle >> 8), 2, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 							case 10:
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								GiveActorInventory(1000+i,"IcemanSlowPickup",1);
 								ThrustThing((angle >> 8)+128, 1, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 9://MWS Blow
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								ThrustThing((angle >> 8), 40, 1, 1000+i);
 								break;
 							case 8://HSH Blow Weak
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								ThrustThing((angle >> 8), 1, 1, 1000+i);
 								break;
 							case 7://HSH Blow Hot
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								ThrustThing((angle >> 8), 4, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 6://HSH Blow
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								ThrustThing((angle >> 8), 3, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 5://HSH Suck Weak
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								ThrustThing((angle >> 8)+128, 1, 1, 1000+i);
 								break;
 							case 4://HSH Suck Cold
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								GiveActorInventory(1000+i,"IcemanSlowPickup",1);
 								ThrustThing((angle >> 8)+128, 3, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 3://HSH Suck
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								ThrustThing((angle >> 8)+128, 3, 1, 1000+i);
 								//GiveActorInventory(owner,"HyperStormLungStamina",1);
 								break;
 							case 2://Dust Suck
-								//GiveActorInventory(1000+i,"TempPitProtect",1);
+								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								if(ACS_NamedExecuteWithResult("cbm_IsPlayerAlive",i+1000)){
 									GiveActorInventory(owner,"CrushEmAmmo",2);
 								}

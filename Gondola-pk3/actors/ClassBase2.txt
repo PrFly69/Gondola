@@ -1,0 +1,36 @@
+actor ClassBase2 : ClassBase1
+{
+damagefactor "Drowning", 10.0
+damagefactor "Slime", 10.0
+damagefactor "Fire", 10.0
+damagefactor "Falling", 10.0
+damagefactor "Ice", 10.0
+damagefactor "Spiney", 10.0
+damagefactor "Crush", 10.0
+damagefactor "Beam", 10.0
+damagefactor "PressBall", 10.0
+damagefactor "BurnWave", 10.0
+states
+{
+//Modders, if you want to replace Core or CBM damagetypes, put them here.
+//This will allow the entire weakness checks in 'ClassBase3' to work without issue.
+//[Celebi]
+
+//Pain.TornadoM_Lift:
+//"----" H 0 ThrustThingZ(0,22222,0,1)
+//goto Pain+2
+
+Pain.Drowning:Pain.Slime:Pain.Fire:Pain.Falling:Pain.Ice:
+"----" H 0
+"----" H 0 A_JumpIfInventory("BeatCallCheck",1,"BeatAssist")
+Pain.Spiney:
+"----" H 0 A_JumpIfInventory("ShieldHits",1,"Pain1")
+Pain.Crush:Pain.Beam:Pain.PressBall:Pain.BurnWave:
+"----" H 0 A_JumpIfInventory("NoFallingRespawn_F",1,"Pain1")
+//"----" H 0 A_GiveInventory("CBM_ArtiTeleportCheck_P")
+Goto Pain+1
+}
+}
+
+
+

@@ -6,6 +6,7 @@ player.soundclass "protomanc"
 player.startitem "HeroicProtoBuster"
 player.startitem "BusterAmmo", 3
 player.startitem "ProtomanHeroShieldTossItem"
+player.startitem "BaseWepAltOverride_F", 1
 player.startitem "CanCopyWeapons"
 //player.startitem "CanUseItems"
 

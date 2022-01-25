@@ -354,7 +354,7 @@
 		DashEnd:
 		TNT1 A 0 A_GiveInventory("SelfTotallyUnfrozen",1)
 		TNT1 A 0 A_ChangeFlag("THRUSPECIES",0)
-		TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+		TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 		TNT1 A 0 //A_SetTranslucent(1.0)
 		TNT1 A 0 A_TakeInventory("WetRogerAmmo",999)
 		TNT1 A 0 A_TakeInventory("PirateBDashFlag",999)
@@ -366,7 +366,7 @@
 		TNT1 A 0 A_GiveInventory("SelfTotallyUnfrozen",1)
 		TNT1 A 0 A_ChangeVelocity(-20,0,10,3)
 		TNT1 A 0 A_ChangeFlag("THRUSPECIES",0)
-		TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+		TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 		TNT1 A 0 //A_SetTranslucent(1.0)
 		TNT1 A 0 A_TakeInventory("WetRogerAmmo",999)
 		TNT1 A 0 A_TakeInventory("PirateBubblePopped",999)
@@ -622,7 +622,9 @@
 	Species "DumbPirateMine"
 
 painchance 0
-painchance "Torrent", 256
+painchance "PirateM_Hose", 256
+painchance "BurnerM_Shot2", 256
+painchance "PirateM_Boom", 256
 
 //(Deal 1 damage about)
 damagefactor "Normal", 1.0

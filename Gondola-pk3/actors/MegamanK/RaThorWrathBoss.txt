@@ -434,7 +434,7 @@ TNT1 A 0 A_TakeInventory("RaThorHoldFlag",999)
 
 TNT1 A 0 A_CheckFlag("SOLID","No")
 TNT1 A 0 A_ChangeFlag("THRUSPECIES",0)
-TNT1 A 0 A_SpawnItemEx("ReSolidifier")
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 stop
 No:
 TNT1 A 0

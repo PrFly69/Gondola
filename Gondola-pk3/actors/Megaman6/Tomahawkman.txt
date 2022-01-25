@@ -1,0 +1,49 @@
+actor Tomahawkman : ClassBase
+{
+Player.ScoreIcon "C_06F0X"
+player.displayname "Tomahawkman"
+player.soundclass "tomahawkmanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.89, 0.89
+player.sidemove 0.87, 0.87
+
+player.startitem "SilverTomahawkBoss"
+player.startitem "TomahawkClassAmmo", 28
+
+player.startitem "PlantBarrierWeakness2", 1
+
+player.startitem "LeafShieldWeakness", 1
+player.startitem "SearchSnakeWeakness", 1
+player.startitem "PlantBarrierWeakness", 1
+player.startitem "HornetChaserWeakness", 1
+
+States
+{
+Spawn:
+TOMM A 0 
+TOMM B 1
+TOMM A 1
+Goto Spawn+2
+See:
+TOMM BCDE 5
+Goto Spawn
+Missile:
+TOMM F 0 A_JumpIfInventory("VivifyDelay7",1,"Missile2")
+TOMM F 5
+TOMM G 4
+goto Spawn
+Missile2:
+TOMM F 3
+TOMM M 7
+goto Spawn
+ClassPain:
+TOMM H 0
+goto PainContinue
+ClassDeath:
+TOMM H 0
+goto DeathContinue
+}
+}

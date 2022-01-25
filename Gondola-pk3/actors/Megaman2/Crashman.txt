@@ -1,0 +1,45 @@
+actor Crashman : ClassBase
+{
+Player.ScoreIcon "C_02E0X"
+player.displayname "Crashman"
+player.soundclass "crashmanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 13
+player.forwardmove 0.86, 0.86
+player.sidemove 0.84, 0.84
+
+player.startitem "CrashbombBoss"
+player.startitem "ClashAmmo", 14
+player.startitem "CrashDetonateItem"
+
+player.startitem "AirShooterWeakness2", 1
+
+player.startitem "AirShooterWeakness", 1
+player.startitem "WindStormWeakness", 1
+player.startitem "TornadoHoldWeakness", 1
+player.startitem "TornadoBlowWeakness", 1
+
+States
+{
+Spawn:
+CRAM A 0
+CRAM B 1
+CRAM A 1
+Goto Spawn+2
+See:
+CRAM BCDE 5
+Goto Spawn
+Missile:
+CRAM F 5
+CRAM G 4
+goto Spawn
+ClassPain:
+CRAM H 0
+goto PainContinue
+ClassDeath:
+CRAM H 0
+goto DeathContinue
+}
+}

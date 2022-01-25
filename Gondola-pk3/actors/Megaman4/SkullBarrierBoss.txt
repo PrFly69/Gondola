@@ -396,7 +396,7 @@ stop
 }
 }
 
-actor SkullHyperDeathPickup : SkullCounter {}
+actor SkullM_CounterRefresh_P : SkullCounter {}
 
 actor SkullBarrierCounter : CustomInventory
 {

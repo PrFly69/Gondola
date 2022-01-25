@@ -1,0 +1,51 @@
+actor Flameman : ClassBase
+{
+Player.ScoreIcon "C_06C0X"
+player.displayname "Flameman"
+player.soundclass "flamemanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 12
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "FlameBlastBoss"
+player.startitem "YogaInfernoAmmo", 56
+player.startitem "YogaBurnerAmmo", 28
+
+player.startitem "WindStormWeakness2", 1
+
+player.startitem "AirShooterWeakness", 1
+player.startitem "WindStormWeakness", 1
+player.startitem "TornadoHoldWeakness", 1
+player.startitem "TornadoBlowWeakness", 1
+player.startitem "MirrorBusterWeakness", 1
+
+States
+{
+Spawn:
+FLAM A 0 
+FLAM B 1
+FLAM A 1
+Goto Spawn+2
+See:
+FLAM BCDE 5
+Goto Spawn
+Missile:
+FLAM F 0 A_JumpIfInventory("VivifyDelay8",1,"Missile2")
+FLAM F 4
+FLAM G 4
+goto Spawn
+Missile2:
+FLAM IJ 2
+FLAM IJIJIJIJIJ 1
+goto Spawn
+ClassPain:
+FLAM H 0
+goto PainContinue
+ClassDeath:
+FLAM H 0
+goto DeathContinue
+}
+}
