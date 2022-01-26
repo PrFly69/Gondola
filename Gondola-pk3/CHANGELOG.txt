@@ -2174,8 +2174,7 @@ CHANGELOG
 --Gear Grinder speed 90 > 69
 
 ==Gravityman
--Gravity Buster speed 60 > 48
---Gravity Buster rate of fire decreased by 5 tics
+-Gravity Buster speed 60 > 45
 
 ==Centaurman
 -Centaur Arrow requires 2 ammo
@@ -2230,11 +2229,15 @@ CHANGELOG
 ==Terra
 -Ported CBM HUD
 
+==Mercury
+-Ported CBM Blob HUD
+-Blob dropped when using tackle now resembles old large blob
+
 ==Venus
 -Ported CBM SFX
 
 ==Jupiter
--Powerprotect 
+-Powerprotect duration 3 tics > 4 tics
 
 ==Saturn
 -New HUD sprites, provided by Pegg
@@ -2246,7 +2249,7 @@ CHANGELOG
 --Gained 4 armor if BlackHoleAmmo is full
 
 ==Pluto
--Break Shot duration 84 > 36
+-Break Shot duration ported from CBM
 
 ==Enker
 -New M2 HUD sprite by Honootorch
@@ -2254,3 +2257,6 @@ CHANGELOG
 ==Ballade
 -Ballade Cracker spins faster depending on speed, based on classes-v9fh.pk3
 -Ballade Mine flashes before exploding, based on classes-v9fh.pk3
+
+==BBA Megaman
+-All A_PlayWeaponSound instances have been replaced with A_PlaySoundEx
