@@ -336,11 +336,11 @@ stop
   {
     PROJECTILE
 	+DONTBLAST
-	Damage (4)
+	Damage (40)
 	Radius 15
 	Height 2
 	Obituary "$OB_DRILLDIG"
-	DamageType "ClassPainLess2"
+	DamageType "DrillM_Stab"
 	RenderStyle none
 	States
 	{
@@ -372,7 +372,7 @@ stop
 
   Actor DrillDamager : BasicExplosion
   {
-    Damagetype "ClassPainSemi"
+    Damagetype "DrillM_DigUp"
 	Obituary "$OB_DRILLDIG"
 	States
 	{

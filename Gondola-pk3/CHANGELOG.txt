@@ -2233,11 +2233,20 @@ CHANGELOG
 ==Venus
 -Ported CBM SFX
 
+==Jupiter
+-Powerprotect 
+
 ==Saturn
 -New HUD sprites, provided by Pegg
+-Fixed WhiteHoleAmmo regen slowing down
+-SBars swapped
+--BlackVortexAmmo segmented into 4 bars
 -Removed M2 duration reduction on sucking shots
 -Armor gained per sucked projectile 1 > 2
 --Gained 4 armor if BlackHoleAmmo is full
+
+==Pluto
+-Break Shot duration 84 > 36
 
 ==Enker
 -New M2 HUD sprite by Honootorch

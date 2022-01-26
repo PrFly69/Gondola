@@ -20,6 +20,78 @@ states
 //"----" H 0 ThrustThingZ(0,22222,0,1)
 //goto Pain+2
 
+Pain.YellowDevilB:
+Pain.FragBomber:Pain.SkullSniper:Pain.CentaurArrow:Pain.PlantTrapper2:Pain.DynamoTendrilZap:Pain.RainbowGalaxy:
+
+Pain.ProtoM_Shot2:Pain.ProtoM_Shot3:Pain.MegaM_Shot3:Pain.MegaM_PowerFist2:Pain.MegaM_PowerFist3:
+Pain.Duo_Fist1:Pain.Duo_Fist2:Pain.Duo_Fist3:
+Pain.Rock_MegaBall:Pain.MegaCutBall:Pain.MegaGutsBall:/*Pain.MegaIceBall:*/Pain.MegaBombBall:Pain.MegaFireBall:Pain.MegaElecBall:/*Pain.MegaTimeBall:*/Pain.MegaOilBall:
+
+Pain.CutM_Cutter:Pain.GutsM_Rock:Pain.GutsM_RockBit:Pain.BombM_Boom:Pain.FireM_Storm:Pain.FireM_StormBit:
+Pain.ElecM_Beam:Pain.ElecM_Zap:Pain.ElecM_TeleZap:Pain.OilM_Flame:Pain.OilM_Snap:
+
+Pain.MetalM_Blade:Pain.MetalM_Chain:Pain.AirM_Shot:Pain.BubbleM_Lead:
+Pain.HeatM_Toss:Pain.HeatM_Shot:Pain.WoodM_Leaf:Pain.WoodM_Shield:Pain.WoodM_Slam:
+Pain.DrWily_Pan:Pain.DrWily_Elec:Pain.Alien_Boobeam:
+
+Pain.NeedleM_Stab:Pain.GeminiM_Laser:Pain.HardM_Knuckle:
+Pain.SnakeM_Snake:Pain.SnakeM_Snake2:Pain.ShadowM_Caltrop:
+
+Pain.ToadM_Rain:Pain.DrillM_Bomb:Pain.PharaohM_Shot:Pain.PharaohM_Shot3:Pain.PharaohM_Wave:
+Pain.DustM_Crush:Pain.DustM_CrushBit:Pain.DiveM_Tackle:Pain.SkullM_Shot:Pain.SkullM_ShotX:
+
+Pain.WaveM_Water:Pain.StoneM_Hand:Pain.GyroM_Shot:Pain.ChargeM_Coal:
+Pain.NapalmM_Missile:Pain.CrystalM_Eye:Pain.CrystalM_EyeShot:Pain.DM3_Shot:Pain.DM4_Shot:
+
+Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FlameM_Shot:Pain.KnightM_Mace:
+Pain.PlantM_Toss:Pain.TomahawkM_Shot:
+
+Pain.FreezeM_Shot:Pain.FreezeM_SpikeC:Pain.BurstM_Shot:Pain.BurstM_Boom:
+Pain.CloudM_Shot:Pain.CloudM_Zapper:Pain.CloudM_Spark:Pain.CloudM_Charge:
+Pain.SpringM_Fist:Pain.ShadeM_Shot:Pain.ShadeM_Shot2:
+
+Pain.AstroM_Meteor:Pain.SearchM_Shot:Pain.SearchM_LockShot:Pain.SearchM_Disc:
+Pain.FrostM_Shot:Pain.GrenadeM_Kamikaze:
+Pain.Trio_Shot2:Pain.Trio_Shot3:Pain.TrioAstroCrush:Pain.TrioHomingSniper:Pain.TrioIceWave:
+
+Pain.ConcreteM_TossBit:Pain.SplashW_Fish1:Pain.SplashW_Fish2:Pain.SplashW_Fish3:
+Pain.PlugM_Ball:Pain.PlugM_Prong:Pain.PlugM_Plugged:Pain.MagmaM_Shot1:Pain.MagmaM_Shot2:
+Pain.GalaxyM_Shot:
+
+Pain.PumpM_ShieldToss:Pain.CommandoM_Shot:Pain.CommandoM_Mine:Pain.NitroM_Shot:
+
+Pain.AstroM_Shot:Pain.AstroM_CloneShot:Pain.DynamoM_Orb:Pain.DynamoM_Bolt:
+Pain.DynamoM_TaggedBolt:Pain.DynamoM_DishZap:Pain.MagicM_Orb:Pain.MagicM_Ball:Pain.King_ShieldDrop:
+
+Pain.Mercury_Swipe:Pain.Mercury_Swipe2:Pain.Mercury_Blob:Pain.Mercury_Slam:
+Pain.Venus_Bomb:Pain.Venus_Acid:Pain.Venus_BoomJump:Pain.Mars_Photon:Pain.Mars_Mortar:
+Pain.Uranus_ShotBit:Pain.Neptune_Shot:Pain.Neptune_ShotBit:
+
+Pain.HSH_ShotHot:
+
+Pain.Enker_Shot:Pain.Enker_Shot2:Pain.Punk_Shot:Pain.Ballade_Shot:Pain.Ballade_Mine:
+Pain.Quint_SakuLand:
+
+"----" H 0
+Goto Pain+2
+
+Pain.Pluto_Swipe:
+"----" H 0 A_PlaySoundEx("weapon/slashclawhit","SoundSlot5")
+Goto Pain+2
+
+//0.9x Hitstun
+Pain.MegaM_Shot2:
+Pain.SnakeM_Poke:
+Pain.DrillM_DigUp:
+Pain.WaveM_Shot:
+Pain.TomahawkM_Feather:
+Pain.AquaM_Shot:Pain.AquaM_TowerBit:Pain.AquaM_CannonBit:Pain.TrioWaterBalloon:
+Pain.DynamoM_Dish:Pain.DynamoTendril:Pain.GroundM_DigUp:Pain.PirateM_Mine:
+Pain.NitroM_Shot2:
+Pain.Pluto_Shot:
+"----" H 0
+Goto Pain+2
+
 Pain.Drowning:Pain.Slime:Pain.Fire:Pain.Falling:Pain.Ice:
 "----" H 0
 "----" H 0 A_JumpIfInventory("BeatCallCheck",1,"BeatAssist")

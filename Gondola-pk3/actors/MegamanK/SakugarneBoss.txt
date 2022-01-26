@@ -951,6 +951,7 @@ States
 {
 Spawn:
 TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 TNT1 A 1
 TNT1 A 0 A_Jump(256,"Debris3","Debris4")
 Debris3:
@@ -1060,7 +1061,8 @@ scale 2.5
 States
 {
 Spawn:
-TNT1 A 2
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 W_0B B 1
 wait
 Death:
