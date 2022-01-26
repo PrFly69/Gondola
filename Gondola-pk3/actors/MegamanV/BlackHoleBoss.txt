@@ -1057,7 +1057,7 @@ inventory.maxamount 15
 actor SaturnProtect1 : PowerProtection
 {
 Powerup.Duration 15
-DamageFactor "SaturnWhiteRing1", 0.2111
+DamageFactor "SaturnWhiteRing1", 0.205
 }
 
 actor SaturnShotProtect : PowerProtection

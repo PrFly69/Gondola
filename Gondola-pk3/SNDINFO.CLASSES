@@ -18,7 +18,7 @@ $playersound	player	male	*land		LAND
 $playersound	player	male	*jump		dsnone
 $playersound	player	male	*fist		dsnone
 //$playersound	player	male	*fistgrunt	dsnone
-$playersound	player	male	*usefail	DG_NOPOT
+$playersound	player	male	*usefail	*land
 //$playersound	player	male	*evillaugh	dsnone
 //$playersound	player	male	*weaponlaugh	dsnone
 //$playersound	player	male	*puzzfail	dsnone
