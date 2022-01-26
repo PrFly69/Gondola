@@ -903,7 +903,8 @@ IsSelected BubbleBomberBoss{Drawbar"CRABVAR","VAREMPTY",CrabbyBubbleAmmo,horizon
 
 IsSelected ElectricShockBoss{Drawbar"0V_E_VAR","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"VARFLS1","VNOBAR",JupiterCharge,horizontal,58,184;}
-IsSelected BlackHoleBoss,BlackerHoleBoss{Drawbar"0V_7_VAR","VAREMPTY",Ammo1,horizontal,58,184;
+IsSelected BlackHoleBoss,BlackerHoleBoss{Drawbar"SATNVAR","VAREMPTY",Ammo1,horizontal,58,184;
+	InInventory BlackVortexAmmo,7{DrawBar"SATYVAR","VNOBAR",Ammo1,horizontal,58,184;}
 	DrawImage"SATRNICN",178,175;
 	Drawbar"VARAMM22","VAREMPTY",Ammo2,horizontal,58,176;
 	InInventory SaturnHoldAmmo,140{DrawBar"MV_A_VAR","VNOBAR",SaturnHoldAmmo,horizontal,130,184;}
