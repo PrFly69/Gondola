@@ -110,12 +110,6 @@ stop
 }
 }
 
-actor CanCopyWeapons : Inventory
-{
-inventory.amount 1
-inventory.maxamount 1
-}
-
 actor HeroNoSpawn : Inventory
 {
 inventory.amount 1
@@ -128,12 +122,6 @@ inventory.amount 1
 inventory.maxamount 1
 }
 
-actor CanUseItems : Inventory
-{
-inventory.amount 1
-inventory.maxamount 1
-}
-
 actor MegaBusterFlag : Inventory //Sliding
 {
 inventory.amount 1
@@ -141,12 +129,6 @@ inventory.maxamount 1
 }
 
 actor MegaFlag : Inventory
-{
-inventory.amount 1
-inventory.maxamount 1
-}
-
-actor NoAmmoPickup : Inventory
 {
 inventory.amount 1
 inventory.maxamount 1

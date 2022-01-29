@@ -4,15 +4,15 @@ inventory.amount 1
 inventory.maxamount 1
 }
 
-actor Auto : ClassBase
+actor AutoClass : ClassBase
 {
 Player.ScoreIcon "C_00G0X"
-player.startitem "MegaHealthBar"
+//player.startitem "MegaHealthBar"
 player.displayname "auto"
 player.soundclass "autoc"
 player.startitem "IsAuto"
 //player.startitem "AutoToggler"
-player.startitem "AutoBoltBoss"
+player.startitem "AutoBolterBoss"
 //player.startitem "AutoBoltBoltDistribute"
 //player.startitem "AutoBoltAmmoSmall"
 //player.startitem "AutoBoltTheWire"

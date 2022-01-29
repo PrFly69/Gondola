@@ -1,8 +1,8 @@
 clearplayerclasses
 addplayerclass MegamanC nomenu
-addplayerclass ProtomanHero nomenu
-addplayerclass BassHero nomenu
-addplayerclass DuoHero nomenu
+addplayerclass Protoman nomenu
+addplayerclass Bass nomenu
+addplayerclass Duo nomenu
 //addplayerclass Protoman nomenu
 //addplayerclass Bass nomenu
 //addplayerclass Duo nomenu

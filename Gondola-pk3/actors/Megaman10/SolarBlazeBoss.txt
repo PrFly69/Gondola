@@ -1,5 +1,5 @@
 //Base Weapon for Solarman.
-#include "actors/Wep/Megaman10/SolarBlazeBloatCode.dec"
+//#include "actors/Wep/Megaman10/SolarBlazeBloatCode.dec"
 
 actor SolarBlazeBoss : BaseMM8BDMWep_CBM 
 {

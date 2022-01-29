@@ -4,7 +4,7 @@ inventory.amount 1
 inventory.maxamount 100
 } //UEC
 
-Actor ReboundStriker
+Actor StrikeM_ReboundStriker
 {
 Translation "198:198=251:251", "192:192=38:38"
 PROJECTILE
@@ -81,10 +81,10 @@ stop
 }
 }
 
-actor ReboundStrikerB : ReboundStriker {translation "192:192=205:205", "198:198=74:74"}
-actor ReboundStrikerR : ReboundStriker {translation "192:192=171:171", "198:198=41:41"}
-actor ReboundStrikerO : ReboundStriker {translation "192:192=104:104", "198:198=128:128"}
-actor ReboundStrikerP : ReboundStriker {translation "192:192=229:229", "198:198=232:232"}
+actor StrikeM_ReboundStrikerB : StrikeM_ReboundStriker {translation "192:192=205:205", "198:198=74:74"}
+actor StrikeM_ReboundStrikerR : StrikeM_ReboundStriker {translation "192:192=171:171", "198:198=41:41"}
+actor StrikeM_ReboundStrikerO : StrikeM_ReboundStriker {translation "192:192=104:104", "198:198=128:128"}
+actor StrikeM_ReboundStrikerP : StrikeM_ReboundStriker {translation "192:192=229:229", "198:198=232:232"}
 
 actor ReboundStrikeItem : CustomInventory
 {
@@ -109,7 +109,7 @@ fail
 }
 }
 
-Actor ReboundStrikerReturner : ReboundStriker { 
+Actor ReboundStrikerReturner : StrikeM_ReboundStriker { 
 	+NOINTERACTION
 	+SEEKERMISSILE
 	ReactionTime 87//about 10 seconds
@@ -151,7 +151,7 @@ Actor ReboundStrikerReturner : ReboundStriker {
 	}
 }
 
-Actor ReboundStrikerReturnerPowered : ReboundStriker { 
+Actor ReboundStrikerReturnerPowered : StrikeM_ReboundStriker { 
 	+NOINTERACTION
 	+SEEKERMISSILE
 	ReactionTime 87//about 10 seconds

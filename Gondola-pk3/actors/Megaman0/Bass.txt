@@ -1,9 +1,9 @@
-actor BassHero : ClassBase //90
+actor Bass : ClassBase //90
 {
 Player.ScoreIcon "C_00F0X"
 player.displayname "Bass"
 player.soundclass "bassc"
-player.startitem "HeroBassBusterBoss"
+player.startitem "BassBusterBoss"
 player.startitem "BusterAmmo", 3
 player.startitem "TrebleBoostAmmo", 30
 player.startitem "BaseWepAltOverride_F", 1

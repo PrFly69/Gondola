@@ -1017,16 +1017,16 @@ InInventory RaThorSinistarFlag,1{DrawImage"SINTHOR0",298,42;}
 		InInventory RaThorSinistarFlag6,1{DrawImage"SINTHOR6",296,40;}
 }
 
-IsSelected HeroicProtoBuster{DrawBar"00_0_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;
+IsSelected ProtoBusterBoss{DrawBar"00_0_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;
 	InInventory ShieldCooldown,1{DrawBar"VARFLS1","VNOBAR",ShieldCooldown,horizontal,130,184;}
 	InInventory ShieldCooldownEx,1{DrawBar"VARFLS1","VNOBAR",ShieldCooldownEx,horizontal,130,184;}
 	}
-IsSelected HeroBassBusterBoss{
+IsSelected BassBusterBoss{
 	DrawBar "VARAMM68", "BAREMPTY", BassBusterCharge, horizontal, 58,184;
 	DrawBar "MV_A_VAR", "VNOBAR", BassBusterClassRage, horizontal, 58,184;
 	DrawBar"00_4_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;
 	}
-IsSelected HeroicDuoFistBoss{
+IsSelected DuoFistBoss{
 	DrawImage"DUORICON",178,175;
 	DrawBar "VARAMM46", "VAREMPTY", Ammo2, horizontal, 58,184;
 	DrawBar "08_9_VAR", "VAREMPTY", SlideLimitFlag, horizontal, 58,176;

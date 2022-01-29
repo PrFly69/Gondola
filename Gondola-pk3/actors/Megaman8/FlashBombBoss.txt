@@ -612,11 +612,6 @@ actor GrrnadeR : Grrnade{translation "198:198=41:41","192:192=171:171","202:202=
 actor GrrnadeO : Grrnade{translation "198:198=128:128","192:192=104:104","202:202=104:104"}
 actor GrrnadeP : Grrnade{translation "198:198=232:232","192:192=229:229","202:202=229:229"}
 
-actor GrrnadeB : Grrnade{translation "198:198=74:74","192:192=205:205","202:202=205:205"}
-actor GrrnadeR : Grrnade{translation "198:198=41:41","192:192=171:171","202:202=171:171"}
-actor GrrnadeO : Grrnade{translation "198:198=128:128","192:192=104:104","202:202=104:104"}
-actor GrrnadeP : Grrnade{translation "198:198=232:232","192:192=229:229","202:202=229:229"}
-
 actor Grrnade18 : Grrnade {speed 18}actor Grrnade18B : GrrnadeB {speed 18}actor Grrnade18R : GrrnadeR {speed 18}actor Grrnade18O : GrrnadeO {speed 18}actor Grrnade18P : GrrnadeP {speed 18}
 actor Grrnade20 : Grrnade {}actor Grrnade20B : GrrnadeB {}actor Grrnade20R : GrrnadeR {}actor Grrnade20O : GrrnadeO {}actor Grrnade20P : GrrnadeP {}
 actor Grrnade22 : Grrnade {speed 22}actor Grrnade22B : GrrnadeB {speed 22}actor Grrnade22R : GrrnadeR {speed 22}actor Grrnade22O : GrrnadeO {speed 22}actor Grrnade22P : GrrnadeP {speed 22}

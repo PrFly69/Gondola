@@ -182,12 +182,6 @@ inventory.maxamount 157
 
 actor FlyinJamFlag : OnceC {}
 
-actor SheepWeaponCharge : Inventory
-{
-inventory.amount 1
-inventory.maxamount 157
-}
-
 actor StaticScourgeItem : CustomInventory
 {
 inventory.amount 1

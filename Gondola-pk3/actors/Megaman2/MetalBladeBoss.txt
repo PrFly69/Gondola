@@ -455,17 +455,6 @@ stop
 }
 }
 
-actor WheelCutterClimbFX : BasicGraphicEffect
-{
-    +BRIGHT
-    States
-    {
-    Spawn:
-        MTTT LLMMNN 1 ThrustThingZ(0, 3, 1, 1)
-        stop
-    }
-}
-
 actor MetalDelay : Powerup {powerup.duration 20}
 
 actor MetalmanMain_CI : TeamColor_CI

@@ -37,7 +37,7 @@ AUTH H 0 A_TakeInventory("AutoToggler",999)
 Goto Finish
 
 GiveItemScroll:
-AUTH H 0 A_GiveInventory("AutoBoltBoss",1)
+AUTH H 0 A_GiveInventory("AutoBolterBoss",1)
 AUTH H 0 A_GiveInventory("AutoCycleItem",1)
 AUTH H 0 A_TakeInventory("AutoToggler",999)
 Goto Finish
@@ -58,7 +58,7 @@ Goto Ready
 //--------------------------------|Auto Weapons: Item Switch Method|------------
 //[+]========================================================================[+]
 
-actor AutoBoltBoss : BaseMM8BDMWep_CBM
+actor AutoBolterBoss : BaseMM8BDMWep_CBM
 {
 tag "Auto Rocket & Bolt"
 dropitem "CopyClassUpgradeDropped"
@@ -95,7 +95,7 @@ AUTH H 0 A_GiveInventory("AutoBoltTheAutoBeat",1)
 AUTH H 0 A_GiveInventory("AutoBoltTheAutoEddie",1)
 AUTH H 0 A_GiveInventory("AutoBoltBoltDistribute",1)
 AUTH H 0 A_TakeInventory("AutoCycleItem",999)
-AUTH H 0 A_TakeInventory("AutoBoltBoss",999)
+AUTH H 0 A_TakeInventory("AutoBolterBoss",999)
 Goto Deselect
 
 Deselect:
