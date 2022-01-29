@@ -19,12 +19,6 @@ InInventory SkullShieldCheck,1{DrawBar"4H_A_VAR","VNOBAR",SkullShieldCheck,horiz
 InInventory SkullBarrierProtection,1{DrawBar"4H_A_VAR","VNOBAR",SkullShieldCheck,horizontal,130,184;}
 //InInventory BasicArmor,1{DrawBar"VARAMT31","VNOBAR",Armor,horizontal,130,184;}
 
-PlayerClass Maestro{
-	//InInventory AmmoNumberFlag,1{
-		WeaponAmmo BusterAmmo{}
-		else WeaponAmmo not VanillaAmmo{DrawNumber 5,"8BDMAFONT",Untranslated,Ammo1,alignment(left),80,177;}
-	//}
-}
 //InInventory HealthNumberFlag,1{
 	DrawNumber 3, "8BDMAFONT", Untranslated, AboveDecimalHP, alignment(left), 152, 177;
 	DrawImage "STYS8BDD", 158, 177;
@@ -252,15 +246,15 @@ InInventory not NoHealthBar,1{
 DrawImage playericon,188,185;
 DrawMugShot 1,188,185;
 
-InInventory StaminaFlag||UnSolid,1{InInventory PinkStaminaBar,1{DrawBar"BARSTAMX","NOBAR",StaminaFlag,vertical,24,8;}
-	else InInventory ForceStaminaFlag{InInventory not StaminaFlag,500{
-		InInventory StaminaFlag,1{DrawImage"ARCSTAM",2,94;}
-		else{DrawImage"ARCSTAMX",2,94;}
-		DrawNumber 3,CMBHPFONT,Untranslated,StaminaFlag,alignment(right),fillzeros,30,97;}}
+InInventory StaminaFlag||UnSolid,1{
+	InInventory ForceStaminaFlag{InInventory not StaminaFlag,500{
+		InInventory StaminaFlag,1{DrawImage"ARCSTAM",2,113;}
+		else{DrawImage"ARCSTAMX",2,113;}//94
+		DrawNumber 3,CMBHPFONT,Untranslated,StaminaFlag,alignment(right),fillzeros,30,116;}}
 	else{InInventory not StaminaFlag,250{
-		InInventory StaminaFlag,1{DrawImage"ARCSTAM",2,94;}
-		else{DrawImage"ARCSTAMX",2,94;}
-		DrawNumber 3,CMBHPFONT,Untranslated,StaminaFlag,alignment(right),fillzeros,30,97;}}
+		InInventory StaminaFlag,1{DrawImage"ARCSTAM",2,113;}
+		else{DrawImage"ARCSTAMX",2,113;}
+		DrawNumber 3,CMBHPFONT,Untranslated,StaminaFlag,alignment(right),fillzeros,30,116;}}
 }
 
 InInventory IsInvunFlag,1{DrawBar"0H_I_VAR","VNOBAR",Health,horizontal,130,184;
@@ -306,12 +300,12 @@ IsSelected WaveBusterWepC{Drawbar"XTR0VR_C","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected RisingFistWepC{Drawbar"XTR0VR_B","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected RollSweepWepC{Drawbar"XTR0VR_A","VAREMPTY",Ammo1,horizontal,58,184;}
 
-InInventory HeroicProtoBuster,1{DrawBar"00_0_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
+InInventory ProtoBusterWep,1{DrawBar"00_0_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 InInventory MegaFlag,1{InInventory MegaBusterFlag,1{DrawBar"00_1_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 	else{DrawBar"00___VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 	InInventory MegamanX,1{DrawBar"KC_A_VAR","VNOBAR",MegamanX,horizontal,130,184;}}
 InInventory BassDoubleJump,1{DrawBar"00_4_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
-InInventory HeroicDuoFistBoss,1{DrawBar"08_9_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
+InInventory DuoFistBoss,1{DrawBar"08_9_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 //MM0
 IsSelected JetBusterC{DrawBar"00_A_VAR","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected PowerFistC{DrawBar"00_A_VAR","VAREMPTY",Ammo1,horizontal,58,184;}
@@ -973,7 +967,7 @@ InInventory AcidBarrierVisualBar,1{DrawBar"ACIDVARR","VNOBAR",AcidBarrierVisualB
 
 //InInventory FloodMyHudTest_F,1{DrawImage"TESTHUDX",0,30;}
 
-InInventory ProtoJetCounter,1{InInventory ProtoJetCounter,5{DrawImage"PJETF0",290,8;}
+/*InInventory ProtoJetCounter,1{InInventory ProtoJetCounter,5{DrawImage"PJETF0",290,8;}
 else InInventory ProtoJetCounter,1{DrawImage"PJETE0",290,8;}}
 
 InInventory ProtoMarineCounter,1{InInventory IsUnderWater,1{
@@ -987,7 +981,7 @@ else InInventory BassJetCounter,1{DrawImage"TRBL10",282,12;}}
 InInventory BassMarineCounter,1{InInventory IsUnderWater,1{
 		InInventory BassMarineCounter,20{DrawImage"TRBLY0",298,20;}
 		else InInventory BassMarineCounter,1{DrawImage"TRBLX0",298,20;}}
-	InInventory Not IsUnderWater,1{DrawImage"TRBLZ0",298,20;}}
+	InInventory Not IsUnderWater,1{DrawImage"TRBLZ0",298,20;}}*/
 
 //InInventory FloodMyHudTest_F,1{DrawImage"TESTHUDX",0,30;}
 
