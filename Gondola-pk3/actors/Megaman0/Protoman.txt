@@ -1,9 +1,9 @@
-actor ProtomanHero : ClassBase //85
+actor Protoman : ClassBase //85
 {
 Player.ScoreIcon "C_00A0X"
 player.displayname "Protoman"
 player.soundclass "protomanc"
-player.startitem "HeroicProtoBuster"
+player.startitem "ProtoBusterBoss"
 player.startitem "BusterAmmo", 3
 player.startitem "ProtomanHeroShieldTossItem"
 player.startitem "BaseWepAltOverride_F", 1

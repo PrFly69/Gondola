@@ -491,32 +491,6 @@ goto Done
 }
 }
 
-actor BlizzardmanMain2_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack",-9,0,-8,0)
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttack",0,0,-8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackB",-9,0,-8,0)
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackB",0,0,-8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackR",-9,0,-8,0)
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackR",0,0,-8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackO",-9,0,-8,0)
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackO",0,0,-8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackP",-9,0,-8,0)
-TNT1 A 0 A_FireCustomMissile("BlizzardBossAttackP",0,0,-8,0)
-goto Done
-}
-}
 
 actor BlizzardmanMain2_CI : TeamColor_CI
 {

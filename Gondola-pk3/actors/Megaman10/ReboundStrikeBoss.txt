@@ -529,19 +529,19 @@ actor StrikemanMain_CI : TeamColor_CI
 States
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("ReboundStriker",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("StrikeM_ReboundStriker",0,0,8,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("ReboundStrikerB",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("StrikeM_ReboundStrikerB",0,0,8,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("ReboundStrikerR",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("StrikeM_ReboundStrikerR",0,0,8,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("ReboundStrikerO",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("StrikeM_ReboundStrikerO",0,0,8,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("ReboundStrikerP",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("StrikeM_ReboundStrikerP",0,0,8,0)
 goto Done
 }
 }

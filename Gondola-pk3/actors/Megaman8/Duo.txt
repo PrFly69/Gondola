@@ -3,13 +3,18 @@ actor Duo : ClassBase //115
 Player.ScoreIcon "C_08I0X"
 player.displayname "Duo"
 player.soundclass "Duoc"
-player.startitem "DuoBusterBoss"
+player.startitem "DuoFistBoss"
 player.startitem "BusterAmmo", 3
+player.startitem "DuoMeteorAmmo", 150
 player.startitem "CanCopyWeapons"
 player.startitem "CanUseItems"
+player.startitem "DuoFlag"
 
 player.startitem "SlideLimitFlag", 500
 player.startitem "CopyNerf"
+player.startitem "RealClassFlag", 3
+
+player.weaponslot 1, "DuoFistBoss"
 
 player.maxhealth 1150
 health 1150
@@ -30,6 +35,7 @@ Missile:
 DUO7 F 0 A_JumpIfInventory("DuoMeteor",1,"Rise")
 DUO7 F 0 A_JumpIfInventory("DuoBash",1,"Slide")
 DUO7 FFFFF 1 A_JumpIfInventory("DuoBash",1,"Slide")
+DUO7 G 0 A_JumpIfInventory("DuoHandMassage",1,"Missile")
 DUO7 GGGG 1 A_JumpIfInventory("DuoBash",1,"Slide")
 goto Spawn
 Slide:
@@ -39,7 +45,6 @@ Rise:
 DUO7 MMNNOO 1 A_JumpIfInventory("DuoMeteorGo",1,"Ball")
 loop
 Ball:
-//DUO7 P 0 A_SpawnItemEX("GigaFistFXLefty",0,0,28,0,0,0,0,1)
 DUO7 PPQQ 1 A_JumpIfInventory("DuoMeteorEnd",1,"Fall")
 loop
 Fall:
@@ -49,6 +54,21 @@ Fall2:
 DUO7 M 0 A_JumpIfInventory("DuoMeteor",1,"Rise")
 DUO7 M 1 A_JumpIf(z-floorz<=0, "Spawn")
 loop
+CustomState1:
+DUO7 MMNNOOMMNNOOMMNNOOMMNNOO 1
+goto Spawn+2
+CustomState2:
+DUO7 FFFFFFFFFFFFFFFFFFFFF 1
+goto Spawn+2
+CustomState3:
+DUO7 FGFGFGFGFGFGFGFGFGFGFGFG 1
+goto Spawn+2
+CustomState4:
+DUO7 R 1 A_JumpIfInventory("DuoSlamAnimFlag",1,"EndSlam")
+loop
+EndSlam:
+DUO7 S 6
+goto Spawn+2
 ClassPain:
 DUO7 H 0 A_JumpIfInventory("DuoMeteor",1,"Rise")
 goto PainContinue

@@ -23,11 +23,6 @@ actor MaestroShieldBlock : Powerup
 powerup.duration 1
 }
 
-actor MaestroShieldBlock : Powerup
-{
-powerup.duration 1
-}
-
 actor MaestroShieldAmmo : Inventory
 {
 inventory.amount 1
@@ -1318,5 +1313,3 @@ TNT1 A 0
 stop
 }
 }
-
-actor LeafShieldWepCMaestro : LeafShieldWepC{Weapon.AmmoGive 0}

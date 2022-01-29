@@ -584,8 +584,6 @@ goto Ready2+2
 }
 }
 
-#include "actors/Wep/Megaman8/EvilFistRage.txt"
-
 actor A1EvilAmmo : Ammo
 {
 inventory.amount 1

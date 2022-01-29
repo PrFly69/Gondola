@@ -870,6 +870,19 @@ stop
 }
 }
 
+actor HyperStormH_Puller_H1 : BasicHelper//golly jee whilikers, i love backporting into gond instead of doing what trill told me to!
+//surely this will have no ill effects on the mod in the near future!
+{
++NOBLOCKMAP
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 3 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,625,11,2)//25 blow
+stop
+}
+}
+
 actor HSHSucker33
 {
 PROJECTILE

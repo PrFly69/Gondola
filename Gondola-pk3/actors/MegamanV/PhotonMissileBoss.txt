@@ -351,13 +351,6 @@ stop
 }
 }
 
-actor MarsFuelSpeedP : PowerSpeed
-{
-    +POWERSPEED.NOTRAIL
-    speed 1.35
-    powerup.duration 5
-}
-
 actor MarsTankThrustCheckB_P : MarsTankThrustCheckF_P
 {
 States

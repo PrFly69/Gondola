@@ -1,20 +1,20 @@
 //#include "actors/Megaman0/ProtomanHero.txt"
-#include "actors/Megaman0/BassHero.txt"
-#include "actors/Megaman0/DuoHero.txt"
+//#include "actors/Megaman0/BassHero.txt"
+//#include "actors/Megaman0/DuoHero.txt"
 
-#include "actors/Megaman0/HeroicProtoBuster.txt"
-#include "actors/Megaman0/HeroicBassBuster.txt"
-#include "actors/Megaman0/HeroicDuoFist.txt"
+//#include "actors/Megaman0/HeroicProtoBuster.txt"
+//#include "actors/Megaman0/HeroicBassBuster.txt"
+//#include "actors/Megaman0/HeroicDuoFist.txt"
 
 
-#include "actors/Megaman0/AutoClass.dec"
-#include "actors/Megaman0/AutoBoltBoss.dec"
-#include "actors/Megaman0/AutoBoltBloatCode.dec"
+//#include "actors/Megaman0/Auto.txt"
+//#include "actors/Megaman0/AutoBolterBoss.txt"
+#include "actors/Megaman0/AutoBolterBloatCode.txt"
 
-#include "actors/Wep/ProjectilePickups.dec"
+#include "actors/Wep/ProjectilePickups.txt"
 #include "actors/Wep/Copywep/baseweapon_s.txt"
 
-#include "actors/Megaman0/MaestroBuster.txt"
+//#include "actors/Megaman0/MaestroBuster.txt"
 #include "actors/Megaman0/MaestroGuts.txt"
 #include "actors/Megaman0/MaestroCustom.txt"
 #include "actors/Megaman0/MaestroShield.txt"
@@ -23,16 +23,16 @@
 //#include "actors/Megaman3/Breakman.txt"
 //#include "actors/Wep/Megaman3/BreakBusterBoss.txt"
 
-#include "actors/Megaman5/DarkTwoShieldBoss.txt"
-#include "actors/Megaman5/DarkFourBusterBoss.txt"
+//#include "actors/Megaman5/DarkTwoShieldBoss.txt"
+//#include "actors/Megaman5/DarkFourBusterBoss.txt"
 
 #include "actors/Megaman10/Strikeman.txt"
 #include "actors/Megaman10/ReboundStrikeBoss.txt"
 #include "actors/Megaman10/ReboundStrikeBloatCode.txt"
 
-#include "actors/Megaman10/Solarman.dec"
-#include "actors/Megaman10/SolarBlazeBoss.dec"
-#include "actors/Wep/Megaman10/SolarBlazeBloatCode.dec"
+//#include "actors/Megaman10/Solarman.txt"
+//#include "actors/Megaman10/SolarBlazeBoss.txt"
+#include "actors/Megaman10/SolarBlazeBloatCode.txt"
 
 #include "actors/Megaman10/Sheepman.txt"
 #include "actors/Megaman10/ThunderWoolBoss.txt"
@@ -41,13 +41,13 @@
 #include "actors/MegamanV/Saturn.txt"
 #include "actors/MegamanV/BlackHoleBoss.txt"
 
-#include "actors/Wep/MegamanWT/PigsyBoss.txt"
-#include "actors/Wep/MegamanWT/SandySandBoss.txt"
+//#include "actors/Wep/MegamanWT/PigsyBoss.txt"
+//#include "actors/Wep/MegamanWT/SandySandBoss.txt"
 
 //MM11
 #include "actors/Megaman11/Fuseman.txt"
 //#include "actors/Megaman11/Blastman.txt"
-#include "actors/Megaman11/ScrambleThunderBossC.dec"
+#include "actors/Megaman11/ScrambleThunderBossC.txt"
 //#include "actors/Wep/Megaman11/ChainBlastBoss.txt"
 
 #include "actors/Megaman/YellowDevil.txt"
@@ -55,8 +55,8 @@
 
 #include "actors/Megaman5/CrystalEyeBloatCode.txt"
 //test
-#include "actors/MegamanV/Terra.txt"
-#include "actors/MegamanV/SparkChaserBoss.txt"
+//#include "actors/MegamanV/Terra.txt"
+//#include "actors/MegamanV/SparkChaserBoss.txt"
 #include "actors/MegamanV/SparkChaserBloatCode.txt"
 
 #include "actors/Megaman11/Torchman.txt"
@@ -69,9 +69,6 @@
 #include "actors/Wep/Copywep/ScrambleThunder.txt"
 #include "actors/Wep/Copywep/ChainBlast.txt"
 #include "actors/Wep/Copywep/AcidBarrier.txt"
-
-#include "actors/ClassBase0.txt"
-#include "actors/ClassBaseTID.txt"
 
 #include "actors/MegamanV/Sunstar.txt"
 #include "actors/MegamanV/NovaBeamBoss.txt"
