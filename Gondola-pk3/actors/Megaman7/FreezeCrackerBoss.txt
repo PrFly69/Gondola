@@ -580,6 +580,25 @@ wait}}
 actor FreezeCrackerFXX:FreezeCrackerFX1{+NOINTERACTION}
 actor FreezeCrackerFXX2:FreezeCrackerFX2{+NOINTERACTION}
 
+actor MrFreezemanWalkFX
+{
++MISSILE
++NOGRAVITY
++THRUACTORS
++DONTBLAST
++NOINTERACTION
++CLIENTSIDEONLY
+damage 0
+Radius 2
+Height 2
+scale 2.5
+States
+{
+Spawn:
+MRFB UVWXYZ 1
+stop
+}
+}
 
 actor FreezemanMain_CI : TeamColor_CI
 {

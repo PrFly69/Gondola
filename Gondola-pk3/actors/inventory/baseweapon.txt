@@ -709,15 +709,6 @@ actor BassDash : MegaSlide{}
 
 actor DuoBash : MegaSlide{}
 
-actor SlideLimitFlag : Inventory
-{
-inventory.amount 1
-inventory.maxamount 500
-}
-
-
-
-
 actor CopySlidePickup : CustomInventory
 {
 States

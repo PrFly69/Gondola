@@ -1,0 +1,646 @@
+
+//Go look in
+//actors/inventory/baseweapon.txt
+//for BaseMM8BDMWep_CBM
+
+//191 = CORE_ACS_191
+
+actor BaseWepAltOverride_F : Inventory{}
+
+actor BaseWep_User1_F : Inventory{}
+actor BaseWep_User1Check_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(CallACS("cbm_user1_check")==1,2)
+TNT1 A 0 A_TakeInventory("BaseWep_User1_F")
+stop
+TNT1 A 0 A_GiveInventory("BaseWep_User1_F",1)
+stop
+}
+}
+
+actor BaseMM8BDMWep : BaseMM8BDMWep_CBM//BaseMM8BDMWep//MegaBuster0
+{
+
+Weapon.SlotNumber 1
++WEAPON.ALT_USES_BOTH
+
+States
+{
+
+	AltfireCore://"----" A
+		//"####" "#" 0 A_JumpIfInventory("BusterAmmo", 1, "Fire")
+		"####" "#" 1 A_JumpIfInventory("MM8BDMPlayer",1,"Fire")
+	//	"####" "#" 1 A_CheckFlag("LONGMELEERANGE","Fire")//SHORTMISSILERANGE//MISSILEMORE//NOMENU
+		"####" "#" 1 A_Jump(256, "NoAmmo")
+		wait
+
+AltfireCBM:
+Altfire://A_LogInt(CheckClass("Maestro"))
+//"####" "#" 0 A_JumpIf(CheckClass("Maestro"),"AltfireCore")
+"####" "#" 0 A_JumpIfInventory("BaseWepAltOverride_F",1,"AltfireC_User1")//AltfireC
+//"####" "#" 1 A_CheckFlag("LONGMELEERANGE","AltfireCore")
+"####" "#" 1 A_JumpIfInventory("MM8BDMPlayer",1,"AltfireCore")//A_Jump(256,"AltfireCore")//AltfireC
+loop
+
+AltfireC_User1:
+"####" "#" 0 A_GiveInventory("BaseWep_User1Check_P")
+"####" "#" 0 A_JumpIfInventory("BaseWep_User1_F",1,"AltfireCore")
+"####" "#" 1 A_JumpIfInventory("BaseWepAltOverride_F",1,"AltfireC")
+"####" "#" 1 A_JumpIfInventory("MM8BDMPlayer",1,"AltfireCore")
+loop
+
+AltfireC:
+goto AltfireS
+
+AltfireS:
+"####" "#" 0 A_JumpIfInventory("EvilFistBoss",1,"EvilAlt")
+"####" "#" 0 A_JumpIfInventory("DocBusterBoss",1,"DocAlt")
+
+//"####" "#" 0 A_JumpIfInventory("BearerFlag",1,"ArchiveBuster") //A_JumpIfInventory("BassFlag",1,"BassDash")
+"####" "#" 0 A_JumpIfInventory("BassUpgradeFlag",1,"BassDash")
+"####" "#" 0 A_JumpIf(z-floorz==0,"GroundCheck") //A_JumpIf(momz==0, "GroundCheck")
+//"####" "#" 1
+//"####" "#" 0 A_Refire
+goto AltfireS2
+AltfireS2:
+"####" "#" 0 A_JumpIfInventory("MM8BDMPlayer",1,"ReadyC")
+"####" "#" 1 A_WeaponReady
+loop
+
+GroundCheck:
+"----" "#" 0 A_JumpIfInventory("DuoFistBoss",1,"DuoBash")
+"----" "#" 0 A_JumpIfInventory("BassFlag",1,"BassDash")
+"----" "#" 0 A_JumpIfInventory("ProtoBusterBoss",1,"ProtoSlide")
+"----" "#" 0 A_JumpIfInventory("MegaFlag",1,"MegaSlide")
+GroundCheck2:
+"----" "#" 0 A_JumpIfInventory("MM8BDMPlayer",1,"ReadyC")
+"----" "#" 1 A_WeaponReady
+loop
+
+/*ArchiveBuster:
+TNT1 A 0 A_PlaySoundEx("weapon/pshot","weapon")
+TNT1 A 0 A_FireCustomMissile("DocShot",0,0,8,0)
+TNT1 AA 5
+TNT1 A 10
+Goto Ready+1*/
+
+MegaSlide:
+MKIC C 0 A_GiveInventory("SlideVivifyFlag",1)
+MKIC C 0 A_Refire(1)
+MKIC C 0 A_PlaySoundEx("weapon/chargekick","Weapon")
+MKIC C 0 SetPlayerProperty(0,1,0)
+MKIC C 0 ACS_ExecuteAlways(191,0,APROP_JumpZ,0,1)
+MKIC C 2 A_GiveInventory("CopySlideThrust_P",1)
+MKIC A 8 //SetPlayerProperty(0,0,0)
+MKIC B 5 SetPlayerProperty(0,0,0)
+MKIC C 5 ACS_ExecuteAlways(191,0,APROP_JumpZ,10,1)
+MKIC A 0 A_TakeInventory("SlideVivifyFlag",9)
+MKIC C 1 A_Refire("AltfireCBM")
+MegaSlide2:
+MKIC C 0 A_JumpIfInventory("MM8BDMPlayer",1,"ReadyC")
+MKIC C 1 A_WeaponReady
+loop
+ProtoSlide:
+PROC D 0 A_GiveInventory("SlideVivifyFlag",1)
+PROC D 0 A_Refire(1)
+PROC D 0 A_PlaySoundEx("weapon/chargekick","Weapon")
+PROC D 0 SetPlayerProperty(0,1,0)
+PROC D 0 ACS_ExecuteAlways(191,0,APROP_Speed,2,10)
+PROC D 0 ACS_ExecuteAlways(191,0,APROP_JumpZ,0,1)
+PROC D 4 A_GiveInventory("CopySlideThrust_P",1)
+PSLI A 8 //SetPlayerProperty(0,0,0)
+PSLI B 5 SetPlayerProperty(0,0,0)
+PROC D 0 ACS_ExecuteAlways(191,0,APROP_Speed,1,1)
+PROC D 0 ACS_ExecuteAlways(191,0,APROP_JumpZ,10,1)
+PROC DD 5
+PROC D 0 A_TakeInventory("SlideVivifyFlag",9)
+PROC D 1 A_Refire("AltfireCBM")
+ProtoSlide2:
+PROC D 0 A_JumpIfInventory("MM8BDMPlayer",1,"ReadyC")
+PROC D 1 A_WeaponReady
+loop
+BassDash:
+BASD B 0 A_GiveInventory("SlideVivifyFlag",1)
+BASD B 0 A_Refire(1)
+BASD B 0 A_PlaySoundEx("weapon/chargekick","Weapon")
+BASD B 0 SetPlayerProperty(0,1,0)
+BASD B 0 ACS_ExecuteAlways(191,0,APROP_Speed,85,100)
+BASD B 2 A_GiveInventory("CopySlideThrust_P",1)
+BASD C 8
+BASD C 5 SetPlayerProperty(0,0,0)
+BASD C 5 ACS_ExecuteAlways(191,0,APROP_Speed,1,1)
+BASD C 0 A_TakeInventory("SlideVivifyFlag",9)
+BASD B 1 A_Refire("AltfireCBM")
+BASD B 4
+BassDash2:
+BASD B 0 A_JumpIfInventory("MM8BDMPlayer",1,"ReadyC")
+BASD B 1 A_WeaponReady
+loop
+DuoBash:
+DUOL N 0 A_GiveInventory("SlideVivifyFlag",1)
+DUOL N 0 A_Refire(1)
+DUOL N 0 A_PlaySoundEx("weapon/chargekick","Weapon")
+DUOL N 0 ACS_ExecuteAlways(191,0,APROP_JumpZ,0,1)
+DUOL N 0 SetPlayerProperty(0,1,0)
+DUOL N 0 A_FireCustomMissile("DuoRam",0,0,0,0)
+DUOL N 0 ThrustThingZ(0,0,1,0)
+DUOL N 1 A_GiveInventory("CopySlideThrust_P",1)
+DUOL N 0 ThrustThingZ(0,0,1,0)
+DUOL NNNN 2
+DUOL N 1
+DUOL N 0
+DUOL N 0 ACS_ExecuteAlways(191,0,APROP_JumpZ,10,1)
+DUOL N 0 SetPlayerProperty(0,0,0)
+DUOL M 5
+DUOL M 15
+DUOL M 0 A_TakeInventory("SlideVivifyFlag",9)
+DUOL M 1 A_Refire("AltfireCBM")
+DuoBash2:
+DUOL M 0 A_JumpIfInventory("MM8BDMPlayer",1,"ReadyC")
+DUOL M 1 A_WeaponReady
+loop
+
+DocAlt:
+DOCR A 0 A_JumpIfInventory("DocVirusAmmo",56,"DocAltScan")
+DOCR A 1
+goto DocAlt2
+DocAlt2:
+DOCR A 0 A_JumpIfInventory("MM8BDMPlayer",1,"ReadyC")
+DOCR A 1 A_WeaponReady
+loop
+DocAltScan:
+DOCR D 0 A_PlaySoundEx("Wep/DocScanCheck","Body")
+DOCR D 0 A_SpawnItemEx("DocScanner",0,0,33,cos(-pitch)*1,0,sin(-pitch)*1,0,1)
+DOCR D 1 A_SpawnItemEx("DocScannerLaserFX_H",0,0,43,cos(-pitch)*15,0,sin(-pitch)*15,0,1)
+DOCR A 1 A_TakeInventory("DocVirusAmmo",4)
+DOCR D 0 A_JumpIfInventory("PowerRage_ST",1,5)
+DOCR DADADADAD 1
+Goto DocAlt2
+
+EvilAlt:
+TNT1 A 0 A_JumpIfInventory("TrioRageWeakness",1,"EvilSelect")
+TNT1 A 0 A_JumpIfInventory("EvilRageAmmo",1120,"RageActivate")
+goto AltFireS2
+RageActivate:
+ERO8 A 0 A_PlaySoundEx("weapon/TrioRage","SoundSlot7")
+ERO8 A 0 A_GiveInventory("TrioRageOnPickup",1)
+ERO8 A 2 Offset(2,34)
+ERO8 B 2 Offset(5,37)
+ERO8 C 2 Offset(8,40)
+ERO8 D 0 A_JumpIfInventory("PowerRage_ST",1,"RageActivate_R")
+ERO8 DEFDEFDEF 1 Offset(11,43)
+ERO8 C 2 Offset(8,40)
+ERO8 B 2 Offset(5,37)
+ERO8 A 2 Offset(2,34)
+goto AltFireS2
+RageActivate_R:
+ERO8 DEFDEF 1 Offset(11,43)
+ERO8 C 2 Offset(8,40)
+ERO8 B 2 Offset(5,37)
+ERO8 A 2 Offset(2,34)
+goto AltFireS2
+EvilSelect:
+TNT1 A 0 A_GiveInventory("TrioGigaFlag",1)
+TNT1 A 0 A_GiveInventory("TrioFireFlag",1)
+TNT1 A 0 A_JumpIfInventory("TrioGigaType",8,"EvilAlt8")
+TNT1 A 0 A_JumpIfInventory("TrioGigaType",7,"EvilAlt7")
+TNT1 A 0 A_JumpIfInventory("TrioGigaType",6,"EvilAlt6")
+TNT1 A 0 A_JumpIfInventory("TrioGigaType",5,"EvilAlt5")
+TNT1 A 0 A_JumpIfInventory("TrioGigaType",4,"EvilAlt4")
+TNT1 A 0 A_JumpIfInventory("TrioGigaType",3,"EvilAlt3")
+TNT1 A 0 A_JumpIfInventory("TrioGigaType",2,"EvilAlt2")
+TNT1 A 0 A_JumpIfInventory("TrioGigaType",1,"EvilAlt1")
+goto EvilAlt0
+EvilAlt8://WaterBalloon
+ERO8 R 2 OffSet(8,44)
+ERO8 R 2 A_WeaponReady(14)
+ERO8 R 0 A_PlaySoundEx("weapon/waterballoon","Weapon")
+ERO8 R 0 A_TakeInventory("EvilRageAmmo",280)
+ERO8 R 0 A_SpawnItemEx("TrioBalloon",0,0,32,cos(-pitch)*15,0,sin(-pitch)*15,0,1)
+ERO8 STUVW 3
+ERO8 R 6 OffSet(24,56)
+ERO8 R 2 OffSet(8,44)
+ERO8 R 2 A_WeaponReady(14)
+ERO8 R 0 A_PlaySoundEx("weapon/waterballoon","Weapon")
+ERO8 R 0 A_TakeInventory("EvilRageAmmo",280)
+ERO8 R 0 A_SpawnItemEx("TrioBalloon",0,0,32,cos(-pitch)*15,0,sin(-pitch)*15,0,1)
+ERO8 R 0 A_TakeInventory("TrioFireFlag",1)
+ERO8 STUVW 3
+ERO8 R 18 OffSet(24,56)
+goto EvilAltEnd
+EvilAlt7://FlashBomb
+ERO8 Q 1
+ERO8 Q 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
+ERO8 Q 0 A_TakeInventory("EvilRageAmmo",560)
+
+ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,8,sin(-pitch)*55,0,1)
+ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,16,sin(-pitch)*55,0,1)
+//ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,24,sin(-pitch)*55,0,1)
+ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,-8,sin(-pitch)*55,0,1)
+ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,-16,sin(-pitch)*55,0,1)
+//ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,-24,sin(-pitch)*55,0,1)
+
+ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55,0,1)
+
+//ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55+24,0,1)
+ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55+16,0,1)
+ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55+8,0,1)
+ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55-8,0,1)
+ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55-16,0,1)
+//ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,32+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55-24,0,1)
+
+ERO8 Q 4 OffSet(22,56)A_TakeInventory("TrioFireFlag",1)
+ERO8 Q 4 OffSet(42,75)
+ERO8 Q 4 OffSet(22,56)
+ERO8 Q 35 A_WeaponReady(14)
+goto EvilAltEnd
+EvilAlt6://IceWave
+ERO7 W 4 OffSet(0,24)A_PlaySoundEx("weapon/pcharge","Weapon")
+ERO7 W 4 OffSet(0,-6)
+ERO7 W 4 OffSet(0,-36)A_SpawnItemEx("TrioIceWaveCharging",0,0,28,0,0,0,0,1)
+ERO7 W 4 OffSet(0,-66)
+
+ERO7 X 2 OffSet(1,-66)
+ERO7 X 2 OffSet(-3,-66)
+ERO7 X 2 OffSet(1,-66)
+ERO7 X 2 OffSet(-3,-66)
+ERO7 X 2 OffSet(1,-66)
+ERO7 X 2 OffSet(-3,-66)
+ERO7 X 2 OffSet(1,-66)
+ERO7 X 2 OffSet(-3,-66)
+ERO7 X 2 OffSet(1,-66)
+
+ERO7 X 0 A_PlaySoundEx("weapon/BlizzStrike","Weapon")
+ERO7 X 0 A_TakeInventory("EvilRageAmmo",560)
+
+ERO7 X 0 A_WeaponReady(14)
+ERO7 X 3 Offset(0,-19)A_SpawnItemEx("TrioIceWave",0,0,8,cos(-pitch)*20,0,sin(-pitch)*20,0,1)
+ERO7 Y 3 Offset(0,28)A_TakeInventory("TrioFireFlag",1)
+ERO7 Y 21 Offset(0,48)
+ERO7 W 3 OffSet(0,40)
+goto EvilAltEnd
+EvilAlt5://HomingSniper
+ERO7 S 0 A_SpawnItemEx("TrioSniper",0,0,32,cos(-pitch)*150,0,sin(-pitch)*150,0,1)
+ERO7 S 1 A_GiveInventory("AdapterWaitCount",1)
+ERO7 S 0 A_JumpIfInventory("AdapterWaitCount",100,"EvilAlt5End")
+ERO7 S 0 A_JumpIfInventory("CutterFlag",1,"EvilAlt5_Fire")
+goto EvilAlt5+1
+EvilAlt5End:
+ERO7 S 0 A_TakeInventory("CutterFlag",999)
+ERO7 S 0 A_TakeInventory("AdapterWaitCount",999)
+ERO7 S 0 A_TakeInventory("EvilRageAmmo",70)
+ERO7 S 0 Thing_Remove(TID+7000)
+ERO7 VSVS 2 A_PlaySoundEx("S3_K/MetalSpark","Weapon")
+ERO7 S 0 A_TakeInventory("CutterFlag",999)
+ERO7 S 0 A_TakeInventory("AdapterWaitCount",999)
+ERO7 S 0 A_TakeInventory("TrioFireFlag",1)
+ERO7 VS 2 A_PlaySoundEx("S3_K/MetalSpark","Weapon")
+goto EvilAltEnd
+EvilAlt5_Fire:
+ERO7 S 0 A_TakeInventory("CutterFlag",999)
+ERO7 S 0 A_TakeInventory("AdapterWaitCount",999)
+ERO7 S 0 A_TakeInventory("EvilRageAmmo",560)
+ERO7 TUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUVTUV 1 A_SpawnItemEx("TrioMissiles",20,random(-64,64),random(-8,70),0,0,0,0,1)
+ERO7 S 0 A_TakeInventory("CutterFlag",999)
+ERO7 S 0 A_TakeInventory("AdapterWaitCount",999)
+ERO7 S 0 A_TakeInventory("TrioFireFlag",1)
+ERO7 TUVS 2
+ERO7 S 15
+goto EvilAltEnd
+EvilAlt4://ThunderClaw
+ERO7 O 0 A_TakeInventory("EvilRageAmmo",560)
+ERO7 O 0 A_SpawnItemEx("TrioThunderClawHelper",0,0,0,0,0,0,0,1)
+ERO7 O 0 A_PlaySoundEx("misc/wilylightning","Weapon")
+ERO7 PQR 3
+ERO7 Q 1
+ERO7 Q 2 A_PlaySoundEx("misc/wilylightning","Weapon")
+ERO7 PQ 3
+ERO7 R 2
+ERO7 R 1 A_PlaySoundEx("misc/wilylightning","Weapon")
+ERO7 QPQ 3
+ERO7 R 0 A_PlaySoundEx("misc/wilylightning","Weapon")
+ERO7 RQPQR 3
+ERO7 O 15 A_TakeInventory("TrioFireFlag",1)
+goto EvilAltEnd
+EvilAlt3://FlameSword
+ERO7 I 2 OffSet(136,-13)A_PlaySoundEx("weapon/mirrorabsorb","Weapon")
+ERO7 I 2 OffSet(98,-1)
+ERO7 I 2 OffSet(60,11)
+ERO7 I 2 OffSet(30,22)
+ERO7 I 6 OffSet(1,33)
+ERO7 I 2 OffSet(20,18)
+ERO7 J 2 OffSet(1,33)
+ERO7 J 0 A_PlaySoundEx("weapon/atomicfire","Weapon")
+ERO7 J 0 A_TakeInventory("EvilRageAmmo",280)
+ERO7 J 2 OffSet(50,18)A_SpawnItemEx("TrioFlameSwing1",0,0,32,cos(-pitch)*1,0,sin(-pitch)*1,0,1)
+ERO7 J 2 OffSet(91,-3)
+ERO7 K 2 OffSet(1,33)
+ERO7 K 2 OffSet(50,33)
+TNT1 A 4
+ERO7 L 2 OffSet(24,19)
+ERO7 L 0 A_PlaySoundEx("weapon/atomicfire","Weapon")
+ERO7 L 0 A_TakeInventory("EvilRageAmmo",280)
+ERO7 L 2 OffSet(1,33)A_SpawnItemEx("TrioFlameSwing2",0,0,32,cos(-pitch)*1,0,sin(-pitch)*1,0,1)
+ERO7 M 2 OffSet(1,33)A_TakeInventory("TrioFireFlag",1)
+ERO7 M 2 OffSet(-57,43)
+ERO7 M 2 OffSet(-143,56)
+ERO7 N 2 OffSet(17,21)
+ERO7 N 2 OffSet(8,27)
+ERO7 N 16 OffSet(-1,33)
+ERO7 N 2 OffSet(26,31)
+ERO7 N 2 OffSet(52,29)
+ERO7 N 2 OffSet(78,28)
+ERO7 N 2 OffSet(102,27)
+ERO7 N 2 OffSet(124,26)
+ERO7 N 2 OffSet(144,25)
+goto EvilAltEnd
+EvilAlt2://AstroCrush
+ERO7 D 0 A_PlaySoundEx("weapon/mirrorabsorb","Weapon")
+ERO7 D 0 A_TakeInventory("EvilRageAmmo",560)
+ERO7 D 0 A_SpawnItemEx("TrioAstroCrush",0,0,0,0,0,0,0,1)
+ERO7 DEFGHHGFED 3
+TNT1 A 2
+goto EvilAltEnd
+EvilAlt1://TornadoHold
+ERO7 A 0 A_GiveInventory("PowerTrioTornadoSpeed",1)
+ERO7 A 24 A_SpawnItemEx("TrioTornadoHelper")
+ERO7 B 0 A_TakeInventory("EvilRageAmmo",560)
+ERO7 B 0 A_SpawnItemEx("TrioTornado",0,0,0,20,0,0,0,1)
+ERO7 B 0 A_SpawnItemEx("TrioTornado",0,0,0,20,0,0,90,1)
+ERO7 B 0 A_SpawnItemEx("TrioTornado",0,0,0,20,0,0,-90,1)
+ERO7 B 0 A_SpawnItemEx("TrioTornado",0,0,0,20,0,0,180,1)
+ERO7 B 0 A_TakeInventory("TrioFireFlag",1)
+ERO7 BC 3
+ERO7 C 3 OffSet(-12,47)
+ERO7 C 3 OffSet(-26,62)A_TakeInventory("PowerTrioTornadoSpeed",9)
+goto EvilAltEnd
+
+EvilAlt0://EvilLaser
+ERO8 B 0 ACS_ExecuteAlways(444,0,2,3)//C_JAX_SPECTRUM_SET1
+ERO8 B 0 ACS_ExecuteAlways(445,0,angle,pitch)//C_JAX_SPECTRUM_SET2
+ERO8 B 0 A_PlaySoundEx("weapon/TrioCharge3","Weapon")
+ERO8 B 0 A_GiveInventory("TrioGigaFlag",1)
+ERO8 B 0 A_JumpIfInventory("TrioExodiaFlag",1,2)
+ERO8 B 0 A_TakeInventory("PowerSpread_ST",1)
+ERO8 B 2 Offset(11,41)
+ERO8 H 2 Offset(25,53)
+goto EvilAlt0_0
+EvilAlt0_0:
+ERO8 B 0 A_JumpIfInventory("PowerRage_ST",1,"EvilAlt0_1")
+ERO8 B 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum2",1)
+ERO8 B 0 A_Refire("EvilAlt0_1")
+goto EvilAlt0_1E
+EvilAlt0_1:
+ERO8 B 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum2",1)
+ERO8 B 0 A_Refire("EvilAlt0_2")
+goto EvilAlt0_2E
+EvilAlt0_2:
+ERO8 B 0 A_JumpIfInventory("PowerRage_ST",1,"EvilAlt0_3")
+ERO8 B 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum2",1)
+ERO8 B 0 A_Refire("EvilAlt0_3")
+goto EvilAlt0_3E
+EvilAlt0_3:
+ERO8 B 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum2",1)
+ERO8 B 0 A_Refire("EvilAlt0_4")
+goto EvilAlt0_4E
+EvilAlt0_4:
+ERO8 H 0 A_JumpIfInventory("PowerRage_ST",1,"EvilAlt0_5")
+ERO8 H 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum1",1)
+ERO8 H 0 A_Refire("EvilAlt0_5")
+goto EvilAlt0_5E
+EvilAlt0_5:
+ERO8 H 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum1",1)
+ERO8 H 0 A_JumpIfInventory("EvilRageAmmo",1,1)
+goto EvilAlt0End
+ERO8 H 0 A_Refire("EvilAlt0_0")
+goto EvilAlt0End
+EvilAlt0_0E:
+ERO8 B 0 A_JumpIfInventory("PowerRage_ST",1,"EvilAlt0_1E")
+ERO8 B 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum2",1)
+EvilAlt0_1E:
+ERO8 B 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum2",1)
+EvilAlt0_2E:
+ERO8 B 0 A_JumpIfInventory("PowerRage_ST",1,"EvilAlt0_3E")
+ERO8 B 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum2",1)
+EvilAlt0_3E:
+ERO8 B 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum2",1)
+EvilAlt0_4E:
+ERO8 H 0 A_JumpIfInventory("PowerRage_ST",1,"EvilAlt0_5E")
+ERO8 H 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum1",1)
+EvilAlt0_5E:
+ERO8 H 1 Offset(25,53)A_GiveInventory("FireTrioSpectrum1",1)
+EvilAlt0End:
+ERO8 B 0 A_TakeInventory("TrioGigaFlag",1)
+ERO8 B 2 Offset(17,48)
+ERO8 H 2 Offset(11,44)
+ERO8 B 2 Offset(6,40)
+ERO8 B 2 Offset(3,37)A_GiveInventory("TrioSpreadRuneRevert",1)
+ERO8 A 2 Offset(1,34)
+ERO8 B 0 A_ClearRefire
+goto AltFireS2
+EvilAltEnd:
+"----" "#" 0 A_TakeInventory("TrioGigaFlag",9)
+"----" "#" 10 A_TakeInventory("TrioFireFlag",1)
+"----" "#" 0 A_WeaponReady(14)
+goto AltFireS2
+}
+}
+
+actor SlideVivifyFlag : Inventory{}
+
+actor SlideLimitFlag : Ammo
+{
+inventory.amount 1
+inventory.maxamount 500
++INVENTORY.IGNORESKILL
+}
+
+actor CopySlideThrust_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("BasicSlideDashFX_P")
+TNT1 A 0 A_JumpIfInventory("DuoFistBoss",1,"DuoBash")
+TNT1 A 0 A_JumpIfInventory("BassFlag",1,"BassDash")
+TNT1 A 0 A_JumpIfInventory("ProtoBusterBoss",1,"ProtoSlide")
+TNT1 A 0 A_JumpIfInventory("MegaFlag",1,"MegaSlide")
+MegaSlide:
+TNT1 A 0 A_GiveInventory("MegaSlideThrust_P")
+goto TakeAmmo
+ProtoSlide:
+TNT1 A 0 A_GiveInventory("ProtoSlideThrust_P")
+goto TakeAmmo
+BassDash:
+TNT1 A 0 A_GiveInventory("BassDashThrust_P")
+goto TakeAmmo
+DuoBash:
+TNT1 A 0 A_GiveInventory("DuoSlideThrust_P")
+goto TakeAmmo
+TakeAmmo:
+TNT1 A 0 A_GiveInventory("SlideLimitRestoreDelay",1)
+TNT1 A 0 A_GiveInventory("SlideLimitFlagTake_P")
+stop
+}
+}
+
+actor SlideLimitFlagTake_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SlideLimitRestore_F",1,3)
+TNT1 A 0 A_GiveInventory("SlideLimitRestore_F",1)
+TNT1 A 0 A_SpawnItemEx("SlideLimitRestore_H",0,0,24)
+TNT1 A 0 A_JumpIfInventory("SlideLimitFlag",100,"Pickup1")
+stop
+Pickup1:
+TNT1 A 0 A_TakeInventory("SlideLimitFlag",100,1)
+stop
+}
+}
+
+actor SlideLimitRestoreDelay : Powerup
+{
+Powerup.Duration -2
+}
+
+actor SlideLimitRestore_F : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor SlideLimitRestore_H
+{
++MISSILE
+-SOLID
++NOCLIP
++NOINTERACTION
++NOGRAVITY
++DONTBLAST
++DONTREFLECT
++THRUACTORS
++SERVERSIDEONLY
+renderstyle none
+radius 2
+height 2
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 5
+Spawn2:
+TNT1 A 0 A_JumpIfInTargetInventory("SlideLimitRestoreDelay",1,2)
+TNT1 A 0 A_GiveToTarget("SlideLimitFlag",5)
+TNT1 A 5
+//TNT1 A 0 A_JumpIfInTargetInventory("SlideLimitRestoreDelay",1,"Spawn2")
+TNT1 A 0 A_JumpIfInTargetInventory("SlideLimitFlag",500,"Death")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(649)==0,"Death")//C_CHECK_TARGET_OOC
+TNT1 A 0 A_JumpIfInTargetInventory("SlideLimitRestore_F",1,"Spawn2")
+goto Death
+Death:
+TNT1 A 1 A_TakeFromTarget("SlideLimitRestore_F",99)
+stop
+}
+}
+
+actor ProtoSlideThrustDelay_H : SlideLimitRestore_H
+{
+States
+{
+Spawn:
+TNT1 A 2
+TNT1 A 0 ThrustThing(angle*256/360,26,1,ACS_ExecuteWithResult(257))
+stop
+}
+}
+actor ProtoSlideThrustWeakDelay_H : SlideLimitRestore_H
+{
+States
+{
+Spawn:
+TNT1 A 2
+TNT1 A 0 ThrustThing(angle*256/360,15,1,ACS_ExecuteWithResult(257))
+stop
+}
+}
+
+
+actor MegaSlideThrust_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SlideLimitFlag",100,"Thrust")
+TNT1 A 0 ThrustThingZ(0,0,1,0)
+TNT1 A 0 A_Recoil(-21)
+stop
+Thrust:
+TNT1 A 0 ThrustThingZ(0,0,1,0)
+TNT1 A 0 A_Recoil(-38)
+stop
+}
+}
+
+actor ProtoSlideThrust_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SlideLimitFlag",100,"Thrust")
+TNT1 A 0 A_SpawnItemEx("ProtoSlideThrustWeakDelay_H")
+TNT1 A 0 ThrustThingZ(0,0,1,0)
+TNT1 A 0 A_Recoil(-15)
+stop
+Thrust:
+TNT1 A 0 A_SpawnItemEx("ProtoSlideThrustDelay_H")
+TNT1 A 0 ThrustThingZ(0,0,1,0)
+TNT1 A 0 A_Recoil(-26)
+stop
+}
+}
+
+actor BassDashThrust_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SlideLimitFlag",100,"Thrust")
+TNT1 A 0 A_JumpIf(z-floorz==0,"GroundWeak")
+TNT1 A 0 A_Recoil(-11.5)
+stop
+GroundWeak:
+TNT1 A 0 ThrustThingZ(0,20,0,0)
+TNT1 A 0 A_Recoil(-16)
+stop
+Thrust:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
+TNT1 A 0 A_Recoil(-23)
+stop
+Ground:
+TNT1 A 0 ThrustThingZ(0,28,0,0)
+TNT1 A 0 A_Recoil(-28)
+stop
+}
+}
+
+actor DuoSlideThrust_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SlideLimitFlag",100,"Thrust")
+TNT1 A 0 ThrustThingZ(0,0,1,0)
+TNT1 A 0 A_Recoil(-16)
+stop
+Thrust:
+TNT1 A 0 ThrustThingZ(0,0,1,0)
+TNT1 A 0 A_Recoil(-32)
+stop
+}
+}
+

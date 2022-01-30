@@ -17,7 +17,7 @@ Ready:
 ERO8 A 0 A_JumpIfInventory("Once",1,"Ready2")
 ERO8 A 0 ACS_ExecuteAlways(981,0,0)
 ERO8 A 0 ACS_NamedExecuteAlways("cbm_CopyWepAmmoSet",0,2,3)
-ERO8 A 0 A_GiveInventory("LMSCheckPickup",1)
+//ERO8 A 0 A_GiveInventory("LMSCheckPickup",1)
 ERO8 A 0 A_SpawnItemEX("TrioRageManager")
 ERO8 A 0 A_GiveInventory("Once",1)
 Goto Ready2
@@ -631,10 +631,9 @@ TNT1 A 0 A_GiveInventory("TrioRuneFlag",1)
 TNT1 A 0 A_GiveInventory("TrioRageWeakness",1)
 TNT1 A 0 A_GiveInventory("GuardDownFlag",1)
 TNT1 A 0 A_SpawnItemEx("TrioRageFXBeginHelper",0,0,28,0,0,0,0,1)
-TNT1 A 0 A_JumpIfInventory("IsLMSFlag",1,2)
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_CopyWepAmmoRatioGive",0,100)//DocRobot Ammo
-stop
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_CopyWepAmmoRatioGive",0,50)//DocRobot Ammo
+//TNT1 A 0 A_JumpIfInventory("IsLMSFlag",1,2)
+//TNT1 A 0 ACS_NamedExecuteAlways("cbm_CopyWepAmmoRatioGive",0,100)//DocRobot Ammo//stop
+//TNT1 A 0 ACS_NamedExecuteAlways("cbm_CopyWepAmmoRatioGive",0,50)//DocRobot Ammo
 stop
 //TNT1 A 0 ACS_ExecuteAlways(992,0,0,1)//MTank Ammo
 }

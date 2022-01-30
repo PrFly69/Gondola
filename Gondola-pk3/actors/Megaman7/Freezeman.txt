@@ -1,0 +1,59 @@
+actor Freezeman : ClassBase
+{
+Player.ScoreIcon "C_07A0X"
+player.displayname "Freezeman"
+player.soundclass "freezemanc"
+
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "FreezeCrackerBoss"
+player.startitem "MrFreezeAmmo", 24
+
+player.startitem "JunkShieldWeakness2", 1
+
+player.startitem "OilSliderWeakness", 1
+player.startitem "TimeStopperWeakness", 1
+player.startitem "DustCrusherWeakness", 1
+player.startitem "JunkShieldWeakness", 1
+player.startitem "ConcreteShotWeakness", 1
+
+States
+{
+Spawn:
+FREE A 0
+FREE B 1
+FREE A 1 A_JumpIfInventory("FreezeFireHold",1,"MissileHold")
+Goto Spawn+2
+See:
+FREE B 4
+FREE B 1 A_SpawnItemEx("MrFreezemanWalkFX",-2,-6,0,0,-1,frandom(0.8f,2.0f),0,1)
+FREE C 5
+FREE D 4
+FREE D 1 A_SpawnItemEx("MrFreezemanWalkFX",-2,6,0,0,-1,frandom(0.8f,2.0f),0,1)
+FREE E 5
+Goto Spawn
+Missile:
+FREE F 0 A_JumpIfInventory("FreezeFireHold",1,"MissileHold")
+FREE F 1 A_JumpIfInventory("FreezeFireHold",1,"MissileHold")
+FREE FG 4
+goto Spawn
+MissileHold:
+FREE S 3
+FREE SS 1 A_JumpIfInventory("FreezeFireHold",1,"MissileHold2")
+goto Missile
+MissileHold2:
+FREE T 3
+FREE TT 1 A_JumpIfInventory("FreezeFireHold",1,"MissileHold")
+goto Missile
+ClassPain:
+FREE H 0
+goto PainContinue
+ClassDeath:
+FREE H 0
+goto DeathContinue
+}
+}

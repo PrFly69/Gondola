@@ -414,7 +414,7 @@ TNT1 A 0 A_SpawnItemEx("DuoSlamGrabExplosion",20,0,10,0,0,0,0,1)
 goto SlamExplodeEnd+1
 SlamExplodeEnd:
 CMDH C 0 A_ChangeFlag("THRUSPECIES",0)
-CMDH C 0 A_SpawnItemEx("ReSolidifier")
+CMDH C 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TNT1 A 0 A_JumpIfInventory("WeaponChargeDuo",1,"SlamExplodeEndGrab")
 TNT1 A 0 A_TakeInventory("BasicArmor",9999)
 DUPH HIIIIII 1

@@ -5,7 +5,7 @@ player.displayname "solarman"
 player.soundclass "solarmanc"
 player.startitem "SolarBlazeBoss"
 player.startitem "SolarBlazerBoss"
-player.startitem "SolarSunAmmo", 400
+player.startitem "SolarInfernoAmmo", 400
 
 player.weaponslot 1, "SolarBlazeBoss"
 player.weaponslot 2, "SolarBlazerBoss"
