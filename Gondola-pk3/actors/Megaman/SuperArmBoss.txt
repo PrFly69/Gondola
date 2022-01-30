@@ -106,7 +106,7 @@ Goto Ready1
 Altfire:
 TNT1 A 0 A_JumpIfInventory("SuperArmTemp",1,"Altfire2")
 TNT1 A 0 A_JumpIfInventory("GutsmanFlag",1,2)
-TNT1 A 0 A_FireBullets(8,8,50,-1,"GutPunch",50,100)
+TNT1 A 0 A_FireBullets(8,8,50,-1,"GutPunch",50,115)
 GUTP A 0 A_GiveInventory("GutsmanAlt_CI",1)
 GUTP A 0 A_PlaySoundEx("Weapon/GutMelee","Weapon")
 GUTP A 0 A_GiveInventory("GutsDestroyFlag",1)

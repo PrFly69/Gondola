@@ -1,3 +1,31 @@
+actor AutoItemFXB : BasicClientside
+{
+Translation "192:192=196:196","198:198=74:74"
+Scale 2.35
+States
+{
+Spawn:
+TNT1 A 0
+GRSH B 3
+stop
+}
+}
+
+actor AutoItemFXR : AutoItemFXB
+{
+Translation "192:192=170:170","198:198=41:41"
+}
+
+actor AutoItemFXO : AutoItemFXB
+{
+Translation "192:192=138:138","198:198=128:128"
+}
+
+actor AutoItemFXP : AutoItemFXB
+{
+Translation "192:192=214:214","198:198=232:232"
+}
+
 actor AutoTangoRollProjectile
 {
 Obituary "HMM, TODAY I WILL SHOW UP AS AN OBITUARY ERROR"

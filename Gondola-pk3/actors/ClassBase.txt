@@ -56,7 +56,7 @@ Goto Pain.ColdM_Down
 
 Pain.GutsPunch:
 "----" H 0 A_GiveInventory("GutsPunch_PowerProtect",1)
-Goto Pain+1
+Goto Pain+2
 
 Pain.HardKnuckleClass:
 "----" H 0 A_PlaySoundEx("weapon/hknucklehit","Body")

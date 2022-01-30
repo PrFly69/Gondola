@@ -23,13 +23,13 @@ actor SolarCheckAlt : PowerUp //Checks if sun is present.
 Powerup.Duration 3
 }
 
-actor SolarSunAmmo : Ammo //Ammo for inventory use.
+actor SolarInfernoAmmo : Ammo //Ammo for inventory use.
 {
 inventory.amount 1
 inventory.maxamount 400
 }
 
-actor SolarSunAmmoExtra : Ammo //Ammo for inventory use.
+actor SolarInfernoAmmoExtra : Ammo //Ammo for inventory use.
 {
 inventory.amount 1
 inventory.maxamount 140
@@ -67,7 +67,7 @@ States
 Spawn:
 TNT1 A 0
 Spawn2:
-TNT1 A 1 A_TakeFromTarget("SolarSunAmmo",40)
+TNT1 A 1 A_TakeFromTarget("SolarInfernoAmmo",40)
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 0 A_Countdown
 loop
@@ -79,14 +79,14 @@ actor SolarAltPickup : CustomInventory
 states
 {
 Pickup:
-TNT1 A 0 A_JumpIfInventory("SolarSunAmmo",300,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("SolarInfernoAmmo",300,"Pickup2")
 TNT1 A 0 A_PlaySoundEx("weapon/solarblaze","Body")
-TNT1 A 0 A_GiveInventory("SolarSunAmmo",10)
+TNT1 A 0 A_GiveInventory("SolarInfernoAmmo",10)
 stop
 
 Pickup2:
 TNT1 A 0 A_PlaySoundEx("weapon/solarblaze","Body")
-TNT1 A 0 A_GiveInventory("SolarSunAmmoExtra",5)
+TNT1 A 0 A_GiveInventory("SolarInfernoAmmoExtra",5)
 stop
 
 No:
