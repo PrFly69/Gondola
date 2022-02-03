@@ -158,6 +158,8 @@ OptionMenu "CBM_UserOptionsMenu"
 	StaticText " "
 	StaticText "User Options", 1
 	StaticText " "
+	Option "Show HP as decimal system", "gondola_hpconvert", "OnOff"
+	StaticText " "
 	Option "Auto's Reload Is Cycled Using", "UEC_AutoToggleMethod", "AutoToggleOptions"
 	StaticText " "	
 	Option "Jewelman Slot 1", "UEC_Jewel1", "Jewelmanjewels"

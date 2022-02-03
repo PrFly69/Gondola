@@ -20,19 +20,24 @@ InInventory SkullBarrierProtection,1{DrawBar"4H_A_BAR","NOBAR",SkullShieldCheck,
 //InInventory BasicArmor,1{DrawBar"BARAMT31","NOBAR",Armor,vertical,24,8;}
 
 //InInventory HealthNumberFlag,1{
-	DrawNumber 3, "8BDMAFONT", Untranslated, AboveDecimalHP, alignment(left), 31, 31;
-	DrawImage "STYS8BDD", 37, 31;
-	DrawNumber 3, "8BDMAFONT", Untranslated, BelowDecimalHP, alignment(left), 39, 31;
-	InInventory AboveDecimalHP, 10{
+	InInventory HPConvertedFlag, 1{
 		DrawNumber 3, "8BDMAFONT", Untranslated, AboveDecimalHP, alignment(left), 31, 31;
-		DrawImage "STYS8BDD", 42, 31;
-		DrawNumber 3, "8BDMAFONT", Untranslated, BelowDecimalHP, alignment(left), 44, 31;
+		DrawImage "STYS8BDD", 37, 31;
+		DrawNumber 3, "8BDMAFONT", Untranslated, BelowDecimalHP, alignment(left), 39, 31;
+		InInventory AboveDecimalHP, 10{
+			DrawNumber 3, "8BDMAFONT", Untranslated, AboveDecimalHP, alignment(left), 31, 31;
+			DrawImage "STYS8BDD", 42, 31;
+			DrawNumber 3, "8BDMAFONT", Untranslated, BelowDecimalHP, alignment(left), 44, 31;
+			}
+		InInventory AboveDecimalHP, 100{
+			DrawNumber 3, "8BDMAFONT", Untranslated, AboveDecimalHP, alignment(left), 31, 31;
+			DrawImage "STYS8BDD", 47, 31;
+			DrawNumber 3, "8BDMAFONT", Untranslated, BelowDecimalHP, alignment(left), 49, 31;
+			}
 		}
-	InInventory AboveDecimalHP, 100{
-		DrawNumber 3, "8BDMAFONT", Untranslated, AboveDecimalHP, alignment(left), 31, 31;
-		DrawImage "STYS8BDD", 47, 31;
-		DrawNumber 3, "8BDMAFONT", Untranslated, BelowDecimalHP, alignment(left), 49, 31;
-		}
+	else{
+		DrawNumber 4, "8BDMAFONT", Untranslated, health, alignment(left), 31, 31;
+	}
 //}
 
 DrawImage"EmptIcon",24,64;
@@ -277,19 +282,24 @@ else InInventory GuardUpFlag,1{DrawBar"0H_R_BAR","NOBAR",Health,vertical,24,8;}
 else InInventory GuardDownFlag,1{DrawBar"0H_W_BAR","NOBAR",Health,vertical,24,8;}
 
 InInventory BasicArmor,1{
-    DrawNumber 3,CMBHRFONT,DarkGray,AboveDecimalArmor,alignment(left),31,40;
-    DrawImage "STYSCBM6", 36, 40;
-    DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),37,40;
-    InInventory BasicArmor, 100{
-        DrawNumber 3,CMBHRFONT,DarkGray,AboveDecimalArmor,alignment(left),31,40;
-        DrawImage "STYSCBM6", 40, 40;
-        DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),41,40;
-        }
-    InInventory BasicArmor, 1000{
-        DrawNumber 3,CMBHRFONT,DarkGray,AboveDecimalArmor,alignment(left),31,40;
-        DrawImage "STYSCBM6", 44, 40;
-        DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),45,40;
-        }
+	InInventory HPConvertedFlag, 1{
+		DrawNumber 3,CMBHRFONT,DarkGray,AboveDecimalArmor,alignment(left),31,40;
+		DrawImage "STYSCBM6", 36, 40;
+		DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),37,40;
+		InInventory BasicArmor, 100{
+			DrawNumber 3,CMBHRFONT,DarkGray,AboveDecimalArmor,alignment(left),31,40;
+			DrawImage "STYSCBM6", 40, 40;
+			DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),41,40;
+			}
+		InInventory BasicArmor, 1000{
+			DrawNumber 3,CMBHRFONT,DarkGray,AboveDecimalArmor,alignment(left),31,40;
+			DrawImage "STYSCBM6", 44, 40;
+			DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),45,40;
+			}
+		}
+	else{
+		DrawNumber 4,CMBHRFONT,DarkGray,BasicArmor,alignment(left),31,40;
+	}
     DrawNumber 4,CMBHRFONT,DarkGray,SavePercent,alignment(left),31,46;
     InInventory BossBasicArmorAmount,1{DrawBar"BARAMT31","NOBAR",Armor BossBasicArmorAmount,vertical,24,8;}
     else{DrawBar"BARAMT31","NOBAR",Armor,vertical,24,8;}}

@@ -1,4 +1,3 @@
-// Dumb script by Trillster
 #library "HPCONV"
 #include "zcommon.acs"
 
@@ -14,10 +13,16 @@ while(true) {
 function void HPConvertFunc(int cpn) {
 	int cam = CheckPlayerCamera(cpn);
 	if(cam>0) {
-		SetActorInventory(cam,"AboveDecimalHP",GetActorProperty(cam,APROP_Health)/10);
-		SetActorInventory(cam,"BelowDecimalHP",GetActorProperty(cam,APROP_Health)%10);
-		SetActorInventory(cam,"AboveDecimalArmor",CheckActorInventory(cam,"BasicArmor")/10);
-		SetActorInventory(cam,"BelowDecimalArmor",CheckActorInventory(cam,"BasicArmor")%10);
+		if(GetUserCvar(ConsolePlayerNumber(),"gondola_hpconvert")){
+			SetActorInventory(cam,"HPConvertedFlag",1);
+			SetActorInventory(cam,"AboveDecimalHP",GetActorProperty(cam,APROP_Health)/10);
+			SetActorInventory(cam,"BelowDecimalHP",GetActorProperty(cam,APROP_Health)%10);
+			SetActorInventory(cam,"AboveDecimalArmor",CheckActorInventory(cam,"BasicArmor")/10);
+			SetActorInventory(cam,"BelowDecimalArmor",CheckActorInventory(cam,"BasicArmor")%10);
+		}
+		else if(CheckActorInventory(cam,"HPConvertedFlag") > 0){
+			SetActorInventory(cam,"HPConvertedFlag",0);
+		}
 	}
 }
 
