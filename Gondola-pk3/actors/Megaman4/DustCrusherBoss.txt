@@ -75,6 +75,7 @@ AltSuck:
 //DUSB D 2 A_FireBullets (20, 20, 1, 0, "DustSucker", 0, 400)
 DUSB M 0 A_FireCustomMissile("DustSucker",0,0,0,0)
 DUSB M 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("DustSuckerGrabFX",0,0,0,24)
 DUSB MMM 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 DUSB N 3
 DUSB M 0 A_Refire("AltSuck2")
@@ -83,6 +84,7 @@ Goto AltSuckEnd
 AltSuck2:
 DUSB M 0 A_FireCustomMissile("DustSucker",0,0,0,0)
 DUSB M 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("DustSuckerGrabFX",0,0,0,24)
 DUSB MMM 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 DUSB O 3
 DUSB M 0 A_Refire("AltSuck3")
@@ -91,6 +93,7 @@ Goto AltSuckEnd
 AltSuck3:
 DUSB M 0 A_FireCustomMissile("DustSucker",0,0,0,0)
 DUSB M 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("DustSuckerGrabFX",0,0,0,24)
 DUSB MMM 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 DUSB P 3
 DUSB M 0 A_Refire("AltSuck4")
@@ -99,6 +102,7 @@ Goto AltSuckEnd
 AltSuck4:
 DUSB M 0 A_FireCustomMissile("DustSucker",0,0,0,0)
 DUSB M 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("DustSuckerGrabFX",0,0,0,24)
 DUSB MMM 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 DUSB O 3
 DUSB M 0 A_Refire("AltSuck")
@@ -197,6 +201,7 @@ AltSuck:
 //DUSB D 2 A_FireBullets (20, 20, 1, 0, "DustSucker", 0, 400)
 DUSB T 0 A_FireCustomMissile("DustSucker",0,0,0,0)
 DUSB T 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("DustSuckerGrabFX",0,0,0,24)
 DUSB TTT 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 DUSB U 3
 DUSB T 0 A_Refire("AltSuck2")
@@ -205,6 +210,7 @@ Goto AltSuckEnd
 AltSuck2:
 DUSB T 0 A_FireCustomMissile("DustSucker",0,0,0,0)
 DUSB T 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("DustSuckerGrabFX",0,0,0,24)
 DUSB TTT 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 DUSB V 3
 DUSB T 0 A_Refire("AltSuck3")
@@ -213,6 +219,7 @@ Goto AltSuckEnd
 AltSuck3:
 DUSB T 0 A_FireCustomMissile("DustSucker",0,0,0,0)
 DUSB T 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("DustSuckerGrabFX",0,0,0,24)
 DUSB TTT 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 DUSB W 3
 DUSB T 0 A_Refire("AltSuck4")
@@ -221,6 +228,7 @@ Goto AltSuckEnd
 AltSuck4:
 DUSB T 0 A_FireCustomMissile("DustSucker",0,0,0,0)
 DUSB T 0 A_FireCustomMissile("DustSuckerGrab",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("DustSuckerGrabFX",0,0,0,24)
 DUSB TTT 0 A_FireCustomMissile("DustSucker2",random(-15,15),0,random(-10,10),random(-10,10),0,random(-10,10))
 DUSB V 3
 DUSB T 0 A_Refire("AltSuck")
@@ -602,21 +610,50 @@ stop
 }
 }
 
-actor DustGrabber
+actor DustGrabber : DustSuckerGrab
 {
-Height 0
-Radius 0
-+NOINTERACTION
--SOLID
-+DONTBLAST
-+DONTREFLECT
-+NOGRAVITY
-+MISSILE
 States
 {
 Spawn:
-TNT1 A 0
-TNT1 A 2 Thing_ChangeTID(0,(ACS_ExecuteWithResult(147,0)+800))
+TNT1 A 1
+Crash:
+XDeath:
+Death:
+TNT1 A 0 A_Stop
+TNT1 A 2 Thing_ChangeTID(0,(CallACS("cbm_GetPointerTID_147",2)+800))//A_SpawnItemEx("DustSuckerGrabber_H")
+stop
+}
+}
+
+actor DustSuckerGrabFX : DustGrabber
+{
++CLIENTSIDEONLY
+States
+{
+Spawn:
+TNT1 A 1
+Crash:
+XDeath:
+Death:
+TNT1 A 1 A_JumpIf(CallACS("cbm_IsPointerClient",2)==1,"DeathClient")
+TNT1 A 1
+stop
+DeathClient:
+TNT1 A 1 A_SpawnItemEx("DustSuckerGrabFX2")
+stop
+}
+}
+
+actor DustSuckerGrabFX2 : BasicClientSide
+{
+Translation "4:4=197:197","192:192=95:95","198:198=5:5"
+RenderStyle Add
+Alpha 1.0
+States
+{
+Spawn:
+X_8E K 0
+X_8E KL 1
 stop
 }
 }

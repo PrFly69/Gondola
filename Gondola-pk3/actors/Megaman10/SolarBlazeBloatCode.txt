@@ -35,13 +35,13 @@ inventory.amount 1
 inventory.maxamount 140
 }
 
-actor SolarSunHoldAmmo : Inventory //Ammo for inventory use.
+actor SolarInfernoHoldAmmo : Inventory //Ammo for inventory use.
 {
 inventory.amount 1
 inventory.maxamount 70
 }
 
-actor SolarSunHoldAmmoDelay : Inventory //Ammo for inventory use.
+actor SolarInfernoHoldAmmoDelay : Inventory //Ammo for inventory use.
 {
 inventory.amount 1
 inventory.maxamount 350
@@ -213,7 +213,7 @@ stop
 }
 }
 
-actor SolarSunDetonator : Powerup
+actor SolarInfernoDetonator : Powerup
 {
 Powerup.Duration 3
 }
@@ -249,26 +249,26 @@ actor SolarFlare //The main sun.
 		Spawn2:
 		GSOL E 1 A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
 		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-		GSOL E 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL E 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL E 1 A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
-		GSOL E 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL E 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL E 1 A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
-		GSOL E 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL E 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL F 1 A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
-		GSOL F 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL F 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL F 1 A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
-		GSOL F 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL F 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL F 1 A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
-		GSOL F 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL F 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		loop
 		
 		Stopped:
 		GSOL E 0 A_ChangeFlag("NOGRAVITY",FALSE)
 		Stopped2:
 		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-		GSOL EEE 1 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL EEE 1 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-		GSOL FFF 1 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL FFF 1 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL F 0 A_Countdown
 		loop
 
@@ -581,28 +581,28 @@ actor SolarFlare2 //The main sun.
 		GSOL C 1 Bright Light("SOLARLIGHT")A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
 		GSOL C 0 A_SpawnItemEX("SolarGrenadeLobFX",-10,0,0,0,0,0,0,1)
 		GSOL D 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-		GSOL C 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL C 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 		GSOL C 1 Bright Light("SOLARLIGHT")A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
 		GSOL C 0 A_SpawnItemEX("SolarGrenadeLobFX",-10,0,0,0,0,0,0,1)
 		GSOL D 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-		GSOL C 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL C 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL C 1 Bright Light("SOLARLIGHT")A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
 		GSOL C 0 A_SpawnItemEX("SolarGrenadeLobFX",-10,0,0,0,0,0,0,1)
 		GSOL D 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-		GSOL C 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL C 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL D 1 Bright Light("SOLARLIGHT")A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
 		GSOL D 0 A_SpawnItemEX("SolarGrenadeLobFX",-10,0,0,0,0,0,0,1)
 		GSOL D 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-		GSOL D 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL D 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL D 1 Bright Light("SOLARLIGHT")A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
 		GSOL D 0 A_SpawnItemEX("SolarGrenadeLobFX",-10,0,0,0,0,0,0,1)
 		GSOL D 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-		GSOL D 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL D 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		GSOL D 1 Bright Light("SOLARLIGHT")A_JumpIfInTargetInventory("SolarChecker",1,"Stopped")
 		GSOL D 0 A_SpawnItemEX("SolarGrenadeLobFX",-10,0,0,0,0,0,0,1)
 		GSOL D 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-		GSOL D 0 A_JumpIfInTargetInventory("SolarSunDetonator",1,"Death")
+		GSOL D 0 A_JumpIfInTargetInventory("SolarInfernoDetonator",1,"Death")
 		loop
 		
 		Stopped:

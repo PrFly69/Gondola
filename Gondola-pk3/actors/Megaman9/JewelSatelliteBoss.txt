@@ -1,0 +1,1076 @@
+actor JewelSatelliteBoss1 : BaseMM8BDMWep_CBM
+{
+tag "$TAGC_9E"
+dropitem "JewelSatelliteWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 14
+Obituary "$OB_JEWELGLAM"
+Inventory.Pickupmessage "Bejeweled master."
+weapon.ammotype "OutragousGemsAmmo"
+States
+{
+Spawn:
+C_09 E 1
+loop
+Ready:
+JEWH A 0 ACS_ExecuteAlways(991,0,DYE_JEWELMAN)
+JEWH A 0 ACS_NamedExecuteAlways("cbm_LocalJewelSnd",0)
+goto Ready0
+Ready0:
+JEWH X 2
+JEWH X 0 A_JumpIfInventory("JewelSlot1",6,"ReadyDiamond")
+JEWH X 0 A_JumpIfInventory("JewelSlot1",5,"ReadyAmethyst")
+JEWH X 0 A_JumpIfInventory("JewelSlot1",4,"ReadyTopaz")
+JEWH X 0 A_JumpIfInventory("JewelSlot1",3,"ReadySapphire")
+JEWH X 0 A_JumpIfInventory("JewelSlot1",2,"ReadyRuby")
+JEWH X 0 A_JumpIfInventory("JewelSlot1",1,"ReadyEmerald")
+JEWH A 0
+ReadyDiamond:
+JEWH A 0 A_TakeInventory("JewelSlot1",999)
+JEWH A 0 A_JumpIfInventory("JewelmanItemDelay",1,"Ready0")//
+JEWH A 1 A_WeaponReady
+goto ReadyDiamond+1
+ReadyEmerald:
+JEWH C 0
+JEWH C 0 A_JumpIfInventory("JewelmanItemDelay",1,"Ready0")
+JEWH C 1 A_WeaponReady
+goto ReadyEmerald+1
+ReadyRuby:
+JEWH E 0
+JEWH E 0 A_JumpIfInventory("JewelmanItemDelay",1,"Ready0")
+JEWH E 1 A_WeaponReady
+goto ReadyRuby+1
+ReadySapphire:
+JEWH G 0
+JEWH G 0 A_JumpIfInventory("JewelmanItemDelay",1,"Ready0")
+JEWH G 1 A_WeaponReady
+goto ReadySapphire+1
+ReadyTopaz:
+JEWH I 0
+JEWH I 0 A_JumpIfInventory("JewelmanItemDelay",1,"Ready0")
+JEWH I 1 A_WeaponReady
+goto ReadyTopaz+1
+ReadyAmethyst:
+JEWH K 0
+JEWH K 0 A_JumpIfInventory("JewelmanItemDelay",1,"Ready0")
+JEWH K 1 A_WeaponReady
+goto ReadyAmethyst+1
+Deselect:
+JEWH AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+JEWH A 1 A_Lower
+Loop
+Select:
+JEWH AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+JEWH A 1 A_Raise
+Loop
+Fire:
+JEWH S 1 A_JumpIfInventory("ShieldCheck",1,"ShieldFire")
+JEWH S 0 A_PlaySound("weapon/jewelsatellite",1,0.90)
+JEWH S 0 A_ChangeFlag(DONTRIP,true)
+JEWH S 0 ACS_NamedExecuteAlways("core_cantseekplayer",0,0,true)
+JEWH S 0 A_GiveInventory("JewelmanItemFlag",1)
+JEWH S 1 A_GiveInventory("ShieldCheck",1)
+JEWH S 0 A_SpawnItemEx("JewelBossWarper1_H")
+JEWH S 0 A_SpawnItemEx("JewelBossWarper2_H")
+JEWH S 0 A_SpawnItemEx("JewelBossWarper3_H")
+JEWH S 0 A_SpawnItemEx("JewelBossWarper4_H")
+JEWH TUVWQ 2
+Goto ShieldReady
+ShieldReady:
+JEWH Q 1 A_WeaponReady(WRF_NOSWITCH|WRF_NOSECONDARY)
+loop
+ShieldFire:
+JEWH Q 0 A_GiveInventory("VivifyDelay7")
+JEWH Q 0 A_Refire(1)
+JEWH Q 3
+JEWH Q 3 OffSet(-31,6)
+JEWH Q 3 OffSet(-51,-15)
+JEWH R 0 A_ChangeFlag(DONTRIP,false)
+JEWH R 0 ACS_NamedExecuteAlways("core_cantseekplayer",0,0,false)
+JEWH R 0 A_TakeInventory("ShieldCheck",999)
+JEWH R 0 A_PlaySound("weapon/jewelshot",1,0.66)
+JEWH RRRR 6 OffSet(-51,-15)A_GiveInventory("JewelmanShot_EmeraldCheck_P",1)
+JEWH Q 4 OffSet(-51,-15)A_TakeInventory("JewelmanItemFlag",1)
+JEWH Q 4 OffSet(-31,6)
+JEWH Q 4 A_WeaponReady(14)
+JEWH Q 0 A_Refire("Fire")
+JEWH Q 0 A_JumpIf(1,"Ready0")
+Goto Ready0
+Altfire:
+JEWH M 1 A_GiveInventory("JewelSlot1",1)
+JEWH M 1 A_JumpIfInventory("JewelSlot1",6,"ResetJewels")
+JEWH M 2 A_PlaySoundEx("weapon/jewelrub","Weapon")
+JEWH N 2
+JEWH O 2 A_PlaySoundEx("weapon/jewelrub","Weapon")
+JEWH P 2
+JEWH MM 1 A_Refire("Altfire")
+Goto Ready0
+ResetJewels:
+JEWH M 1 A_TakeInventory("JewelSlot1",999)
+Goto Altfire+2
+}
+}
+
+actor JewelSatelliteBoss2 : JewelSatelliteBoss1
+{
+tag "$TAGC_9E2"
+states
+{
+Ready:
+JEWH A 0 ACS_ExecuteAlways(991,0,DYE_JEWELMAN)
+JEWH A 0 ACS_NamedExecuteAlways("cbm_LocalJewelSnd",0)
+goto Ready0
+Ready0:
+JEWH X 2
+JEWH X 0 A_JumpIfInventory("JewelSlot2",6,"ReadyDiamond")
+JEWH X 0 A_JumpIfInventory("JewelSlot2",5,"ReadyAmethyst")
+JEWH X 0 A_JumpIfInventory("JewelSlot2",4,"ReadyTopaz")
+JEWH X 0 A_JumpIfInventory("JewelSlot2",3,"ReadySapphire")
+JEWH X 0 A_JumpIfInventory("JewelSlot2",2,"ReadyRuby")
+JEWH X 0 A_JumpIfInventory("JewelSlot2",1,"ReadyEmerald")
+JEWH A 0
+ReadyDiamond:
+JEWH A 0 A_TakeInventory("JewelSlot2",999)
+JEWH A 0 A_JumpIfInventory("JewelmanItemDelay",1,"Ready0")//
+JEWH A 1 A_WeaponReady
+goto ReadyDiamond+1
+Altfire:
+JEWH M 1 A_GiveInventory("JewelSlot2",1)
+JEWH M 1 A_JumpIfInventory("JewelSlot2",6,"ResetJewels")
+JEWH M 2 A_PlaySoundEx("weapon/jewelrub","Weapon")
+JEWH N 2
+JEWH O 2 A_PlaySoundEx("weapon/jewelrub","Weapon")
+JEWH P 2
+JEWH MM 1 A_Refire("Altfire")
+Goto Ready0
+ResetJewels:
+JEWH M 1 A_TakeInventory("JewelSlot2",999)
+Goto Altfire+2
+}
+}
+
+actor JewelSatelliteBoss3 : JewelSatelliteBoss1
+{
+tag "$TAGC_9E3"
+states
+{
+Ready:
+JEWH A 0 ACS_ExecuteAlways(991,0,DYE_JEWELMAN)
+JEWH A 0 ACS_NamedExecuteAlways("cbm_LocalJewelSnd",0)
+goto Ready0
+Ready0:
+JEWH X 2
+JEWH X 0 A_JumpIfInventory("JewelSlot3",6,"ReadyDiamond")
+JEWH X 0 A_JumpIfInventory("JewelSlot3",5,"ReadyAmethyst")
+JEWH X 0 A_JumpIfInventory("JewelSlot3",4,"ReadyTopaz")
+JEWH X 0 A_JumpIfInventory("JewelSlot3",3,"ReadySapphire")
+JEWH X 0 A_JumpIfInventory("JewelSlot3",2,"ReadyRuby")
+JEWH X 0 A_JumpIfInventory("JewelSlot3",1,"ReadyEmerald")
+JEWH A 0
+ReadyDiamond:
+JEWH A 0 A_TakeInventory("JewelSlot3",999)
+JEWH A 0 A_JumpIfInventory("JewelmanItemDelay",1,"Ready0")//
+JEWH A 1 A_WeaponReady
+goto ReadyDiamond+1
+Altfire:
+JEWH M 1 A_GiveInventory("JewelSlot3",1)
+JEWH M 1 A_JumpIfInventory("JewelSlot3",6,"ResetJewels")
+JEWH M 2 A_PlaySoundEx("weapon/jewelrub","Weapon")
+JEWH N 2
+JEWH O 2 A_PlaySoundEx("weapon/jewelrub","Weapon")
+JEWH P 2
+JEWH MM 1 A_Refire("Altfire")
+Goto Ready0
+ResetJewels:
+JEWH M 1 A_TakeInventory("JewelSlot3",999)
+Goto Altfire+2
+}
+}
+
+actor JewelSatelliteBoss4 : JewelSatelliteBoss1
+{
+tag "$TAGC_9E4"
+states
+{
+Ready:
+JEWH A 0 ACS_ExecuteAlways(991,0,DYE_JEWELMAN)
+JEWH A 0 ACS_NamedExecuteAlways("cbm_LocalJewelSnd",0)
+goto Ready0
+Ready0:
+JEWH X 2
+JEWH X 0 A_JumpIfInventory("JewelSlot4",6,"ReadyDiamond")
+JEWH X 0 A_JumpIfInventory("JewelSlot4",5,"ReadyAmethyst")
+JEWH X 0 A_JumpIfInventory("JewelSlot4",4,"ReadyTopaz")
+JEWH X 0 A_JumpIfInventory("JewelSlot4",3,"ReadySapphire")
+JEWH X 0 A_JumpIfInventory("JewelSlot4",2,"ReadyRuby")
+JEWH X 0 A_JumpIfInventory("JewelSlot4",1,"ReadyEmerald")
+JEWH A 0
+ReadyDiamond:
+JEWH A 0 A_TakeInventory("JewelSlot4",999)
+JEWH A 0 A_JumpIfInventory("JewelmanItemDelay",1,"Ready0")//
+JEWH A 1 A_WeaponReady
+goto ReadyDiamond+1
+Altfire:
+JEWH M 1 A_GiveInventory("JewelSlot4",1)
+JEWH M 1 A_JumpIfInventory("JewelSlot4",6,"ResetJewels")
+JEWH M 2 A_PlaySoundEx("weapon/jewelrub","Weapon")
+JEWH N 2
+JEWH O 2 A_PlaySoundEx("weapon/jewelrub","Weapon")
+JEWH P 2
+JEWH MM 1 A_Refire("Altfire")
+Goto Ready0
+ResetJewels:
+JEWH M 1 A_TakeInventory("JewelSlot4",999)
+Goto Altfire+2
+}
+}
+
+actor OutragousGemsAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 4
++INVENTORY.IGNORESKILL
+}
+
+
+actor JewelSlot1 : Inventory
+{
+inventory.amount 1
+inventory.maxamount 6
+}
+
+actor JewelSlot2 : JewelSlot1 {}
+actor JewelSlot3 : JewelSlot1 {}
+actor JewelSlot4 : JewelSlot1 {}
+
+actor JewelmanItemFlag : OnceC {}
+actor JewelmanItemDelay : Powerup
+{
+Powerup.Duration 3
+}
+
+actor JewelResetItem : BasicClassItem
+{
+inventory.pickupmessage "This selection of colors is all wrong! Lets start over!"
+inventory.icon "JEWRES"
+Tag "Reset Jewel Gems"
+states
+{
+Spawn:
+JEWH Z 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("JewelmanItemFlag",1,"No")
+TNT1 A 0 A_JumpIfInventory("JewelmanItemDelay",1,"No")
+//TNT1 A 0 A_TakeInventory("JewelSlot1",999)
+//TNT1 A 0 A_TakeInventory("JewelSlot2",999)
+//TNT1 A 0 A_TakeInventory("JewelSlot3",999)
+//TNT1 A 0 A_TakeInventory("JewelSlot4",999)
+TNT1 A 0 A_GiveInventory("JewelResetCycle_P")
+TNT1 A 0 A_GiveInventory("JewelmanItemDelay",1)
+TNT1 A 0 A_PlaySoundEx("Columns_3/S_0E","SoundSlot7")//item/ItemUseMM9
+fail
+}
+}
+
+actor JewelResetCycle_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",5,"No")//Check5
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",4,"Check4")
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",3,"Check3")
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",2,"Check2")
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",1,"Check1")
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",1,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",1,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",1,"No")
+goto Upgrade
+Upgrade:
+TNT1 A 0 A_GiveInventory("JewelSlot1",1)
+TNT1 A 0 A_GiveInventory("JewelSlot2",1)
+TNT1 A 0 A_GiveInventory("JewelSlot3",1)
+TNT1 A 0 A_GiveInventory("JewelSlot4",1)
+stop
+No:
+TNT1 A 0 A_TakeInventory("JewelSlot1",999)
+TNT1 A 0 A_TakeInventory("JewelSlot2",999)
+TNT1 A 0 A_TakeInventory("JewelSlot3",999)
+TNT1 A 0 A_TakeInventory("JewelSlot4",999)
+stop
+Check1:
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",2,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",2,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",1,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",2,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",1,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",2,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",1,"Upgrade")
+goto No
+Check2:
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",3,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",3,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",2,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",3,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",2,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",3,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",2,"Upgrade")
+goto No
+Check3:
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",4,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",4,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",3,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",4,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",3,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",4,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",3,"Upgrade")
+goto No
+Check4:
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",5,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",5,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",4,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",5,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",4,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",5,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",4,"Upgrade")
+goto No
+Check5:
+TNT1 A 0 A_JumpIfInventory("JewelSlot1",6,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",6,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot2",5,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",6,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot3",5,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",6,"No")
+TNT1 A 0 A_JumpIfInventory("JewelSlot4",5,"Upgrade")
+goto No
+
+}
+}
+
+actor JewelManShot
+{
+Translation "202:202=202:202","199:199=197:197"
+var int user_diamond;
+var int user_emerald;
+var int user_ruby;
+var int user_topaz;
+var int user_amethyst;
+var int user_sapphire;
+PROJECTILE
+damagetype "JewelM_Shot"
+Obituary "$OB_JEWELSATELLITE"
+-NOGRAVITY
++USEBOUNCESTATE
++BOUNCEONFLOORS
++BOUNCEONWALLS
++BOUNCEONCEILINGS
++ALLOWBOUNCEONACTORS
++CANBOUNCEWATER
++HITTRACER
+bouncefactor 0.9
+wallbouncefactor 0.9
+BounceCount 1
+gravity 0.0001
+reactiontime 32
+Damage (50 + user_diamond*20 - Args[1]*10 + Args[4]*10)
+height 16
+radius 16
+speed 30
+scale 2.5
+states
+{
+Spawn:
+Y_9E Q 0
+
+Y_9E Q 0 A_SetUserVar("user_diamond",CallACS("CBM_GetJewelInfo",0))
+Y_9E Q 0 A_SetUserVar("user_emerald", CallACS("CBM_GetJewelInfo",1))
+//Y_9E Q 0 A_SetUserVar("user_ruby",CallACS("CBM_GetJewelInfo",2))
+//Y_9E Q 0 A_SetUserVar("user_sapphire",CallACS("CBM_GetJewelInfo",3))
+Y_9E Q 0 A_SetUserVar("user_topaz",CallACS("CBM_GetJewelInfo",4))
+//Y_9E Q 0 A_SetUserVar("user_amethyst",CallACS("CBM_GetJewelInfo",5))
+
+//Args so that CustomInventory can work
+//Y_9E Q 0 A_SetArg(0,CallACS("CBM_GetJewelInfo",0))//diamond
+Y_9E Q 0 A_SetArg(1,CallACS("CBM_GetJewelInfo",2))//ruby
+Y_9E Q 0 A_SetArg(2,CallACS("CBM_GetJewelInfo",3))//sapphire
+//Y_9E Q 0 A_SetArg(3,CallACS("CBM_GetJewelInfo",4))//topaz
+Y_9E Q 0 A_SetArg(4,CallACS("CBM_GetJewelInfo",5))//amethyst
+
+Y_9E Q 0 A_ScaleVelocity(1.0 + (user_topaz * 0.83))//0.3
+Y_9E Q 0 //A_SetGravity(user_amethyst * 0.5)
+Y_9E Q 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Gravity,Args[4] * 1.0,4.0)
+
+Y_9E Q 0 A_ChangeFlag("HITTRACER",0)
+
+Y_9E Q 1 A_GiveInventory("ResyncPickup",1)
+goto Flying
+Flying:
+Y_9E Q 0 A_JumpIf(Args[2] >= 1,"FlyingMine")//sapphire
+Y_9E Q 2 A_CountDown
+Y_9E QRST 2 A_SpawnItemEx("JewelManShotFX",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,1,0)
+goto Flying+1
+FlyingMine:
+Y_9E Q 0 A_GiveInventory("JewelManShotSapphire_P")
+Y_9E Q 2 A_CountDown
+Y_9E QRST 2 A_SpawnItemEx("JewelManShotFX",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,1,0)
+loop
+/*
+Flying2:
+Y_9E Q 0 A_CountDown
+Y_9E Q 0 A_GiveToTarget("CBM_TargetMarker", 1)
+Y_9E Q 0 ACS_ExecuteAlways(989, 0, ACS_ExecuteWithResult(257)+100, 32)
+Y_9E Q 0 A_ChangeVelocity(cos(pitch)*(2 * user_amethyst), 0, -sin(pitch)*(2 * user_amethyst),CVF_RELATIVE)
+Y_9E QR 2 A_SpawnItemEx("JewelManShotFX",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,1,0)
+Y_9E Q 0 A_GiveToTarget("CBM_TargetMarker", 1)
+Y_9E Q 0 ACS_ExecuteAlways(989, 0, ACS_ExecuteWithResult(257)+100, 32)
+Y_9E Q 0 A_ChangeVelocity(cos(pitch)*(2 * user_amethyst), 0, -sin(pitch)*(2 * user_amethyst),CVF_RELATIVE)
+Y_9E ST 2 A_SpawnItemEx("JewelManShotFX",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,1,0)
+Goto Flying
+*/
+Bounce:
+Y_9E T 0 A_JumpIf(user_diamond + user_emerald + Args[1] + Args[2] + user_topaz + Args[4] == 0,"Bounce1")
+Y_9E T 0 A_GiveInventory("ResyncPickup",1)
+Y_9E T 0 A_GiveInventory("JewelManShotRuby_P",1)
+Y_9E T 1 //A_PlaySound("weapon/jewelbounce",1,0.90)
+Goto Flying
+Bounce1:
+//Y_9E T 0 A_Log("BounceFix report!")
+
+Y_9E T 0 A_SetUserVar("user_diamond",CallACS("CBM_GetJewelInfo",0))
+Y_9E T 0 A_SetUserVar("user_emerald", CallACS("CBM_GetJewelInfo",1))
+Y_9E T 0 A_SetArg(1,CallACS("CBM_GetJewelInfo",2))//ruby
+Y_9E T 0 A_SetArg(2,CallACS("CBM_GetJewelInfo",3))//sapphire
+Y_9E T 0 A_SetUserVar("user_topaz",CallACS("CBM_GetJewelInfo",4))
+Y_9E T 0 A_SetArg(4,CallACS("CBM_GetJewelInfo",5))//amethyst
+
+Y_9E T 0 A_ScaleVelocity(1.0 + (user_topaz * 0.83))//Topaz
+Y_9E T 0 //A_SetGravity(user_amethyst * 0.5)
+Y_9E T 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Gravity,Args[4] * 1.0,2.0)
+Y_9E T 0 A_ChangeFlag("HITTRACER",0)
+Y_9E T 1 A_GiveInventory("ResyncPickup",1)
+Y_9E T 0 A_GiveInventory("JewelManShotRuby_P",1)
+Y_9E T 1 //A_PlaySound("weapon/jewelbounce",1,0.90)
+Goto Flying
+
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1, "DeathAmmo")
+goto Death
+DeathAmmo://Diamond*2-Ruby+Amethyst//Pointblank fix
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_JewelThingDamage2",0,10*(CallACS("CBM_GetJewelInfo",0)*2-CallACS("CBM_GetJewelInfo",2)+CallACS("CBM_GetJewelInfo",5)))
+goto Death
+
+Death:
+TNT1 A 0 A_JumpIf(user_diamond + user_emerald + Args[1] + Args[2] + user_topaz + Args[4] == 0,"DeathB0")
+goto Death2
+DeathB0:
+TNT1 A 0 A_SetArg(1,CallACS("CBM_GetJewelInfo",2))
+goto Death2
+Death2:
+TNT1 A 0 A_JumpIf(Args[1] == 4,"DeathB4")
+TNT1 A 0 A_JumpIf(Args[1] == 3,"DeathB3")
+TNT1 A 0 A_JumpIf(Args[1] == 2,"DeathB2")
+TNT1 A 1 A_JumpIf(Args[1] == 1,"DeathB1")
+Goto DeathEnd
+DeathB1:
+TNT1 A 0 A_SpawnItemEx("JewelRubyExplode1",0,0,0,0,0,0,0,1)
+Goto DeathEnd
+DeathB2:
+TNT1 A 0 A_SpawnItemEx("JewelRubyExplode2",0,0,0,0,0,0,0,1)
+Goto DeathEnd
+DeathB3:
+TNT1 A 0 A_SpawnItemEx("JewelRubyExplode3",0,0,0,0,0,0,0,1)
+Goto DeathEnd
+DeathB4:
+TNT1 A 0 A_SpawnItemEx("JewelRubyExplode4",0,0,0,0,0,0,0,1)
+Goto DeathEnd
+DeathEnd:
+TNT1 A 1
+stop
+}
+}
+
+actor JewelManShotB : JewelManShot{Translation "202:202=205:205","199:199=74:74"}
+actor JewelManShotR : JewelManShot{Translation "202:202=171:171","199:199=41:41"}
+actor JewelManShotO : JewelManShot{Translation "202:202=104:104","199:199=128:128"}
+actor JewelManShotP : JewelManShot{Translation "202:202=229:229","199:199=232:232"}
+
+actor JewelManShotRuby_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(Args[1] == 4,"Explode4")
+TNT1 A 0 A_JumpIf(Args[1] == 3,"Explode3")
+TNT1 A 0 A_JumpIf(Args[1] == 2,"Explode2")
+TNT1 A 0 A_JumpIf(Args[1] == 1,"Explode1")
+stop
+Explode1:
+TNT1 A 0 A_SpawnItemEx("JewelRubyExplode1",0,0,0,0,0,0,0,1)
+stop
+Explode2:
+TNT1 A 0 A_SpawnItemEx("JewelRubyExplode2",0,0,0,0,0,0,0,1)
+stop
+Explode3:
+TNT1 A 0 A_SpawnItemEx("JewelRubyExplode3",0,0,0,0,0,0,0,1)
+stop
+Explode4:
+TNT1 A 0 A_SpawnItemEx("JewelRubyExplode4",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor JewelManShotSapphire_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(Args[4] >= 1,"Pickup2")
+TNT1 A 0 A_JumpIf(Args[2] == 4,4)
+TNT1 A 0 A_JumpIf(Args[2] == 3,4)
+TNT1 A 0 A_JumpIf(Args[2] == 2,4)
+TNT1 A 0 A_JumpIf(Args[2] == 1,4)
+stop
+TNT1 A 0 A_SpawnItemEx("JewelManMine4",0,0,0,0,0,0,Args[1]*45,5)
+stop
+TNT1 A 0 A_SpawnItemEx("JewelManMine3",0,0,0,0,0,0,Args[1]*45,5)
+stop
+TNT1 A 0 A_SpawnItemEx("JewelManMine2",0,0,0,0,0,0,Args[1]*45,5)
+stop
+TNT1 A 0 A_SpawnItemEx("JewelManMine1",0,0,0,0,0,0,Args[1]*45,5)
+stop
+Pickup2:
+TNT1 A 0 A_JumpIf(Args[2] == 4,4)
+TNT1 A 0 A_JumpIf(Args[2] == 3,4)
+TNT1 A 0 A_JumpIf(Args[2] == 2,4)
+TNT1 A 0 A_JumpIf(Args[2] == 1,4)
+stop
+TNT1 A 0 A_SpawnItemEx("JewelManMine4F",0,0,0,0,0,-Args[4]*5,Args[1]*45,5)
+stop
+TNT1 A 0 A_SpawnItemEx("JewelManMine3F",0,0,0,0,0,-Args[4]*5,Args[1]*45,5)
+stop
+TNT1 A 0 A_SpawnItemEx("JewelManMine2F",0,0,0,0,0,-Args[4]*5,Args[1]*45,5)
+stop
+TNT1 A 0 A_SpawnItemEx("JewelManMine1F",0,0,0,0,0,-Args[4]*5,Args[1]*45,5)
+stop
+}
+}
+
+actor JewelmanShot_EmeraldCheck_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_PlaySound("weapon/jewelshot",1,0.66)
+TNT1 A 0 A_JumpIf(CallACS("CBM_GetJewelInfo",1) == 4,"Pickup4")
+TNT1 A 0 A_JumpIf(CallACS("CBM_GetJewelInfo",1) == 3,"Pickup3")
+TNT1 A 0 A_JumpIf(CallACS("CBM_GetJewelInfo",1) == 2,"Pickup2")
+TNT1 A 0 A_JumpIf(CallACS("CBM_GetJewelInfo",1) == 1,"Pickup1")
+goto Pickup0
+Pickup0:
+TNT1 A 0 A_GiveInventory("JewelmanMain_CI",1)
+stop
+Pickup1:
+TNT1 A 0 A_GiveInventory("JewelmanMain1_CI",1)
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("JewelmanMain2_CI",1)
+stop
+Pickup3:
+TNT1 A 0 A_GiveInventory("JewelmanMain3_CI",1)
+stop
+Pickup4:
+TNT1 A 0 A_GiveInventory("JewelmanMain4_CI",1)
+stop
+}
+}
+
+
+actor JewelManShot1 : JewelManShot{BounceCount 2}
+actor JewelManShot1B : JewelManShotB{BounceCount 2}
+actor JewelManShot1R : JewelManShotR{BounceCount 2}
+actor JewelManShot1O : JewelManShotO{BounceCount 2}
+actor JewelManShot1P : JewelManShotP{BounceCount 2}
+
+actor JewelManShot2 : JewelManShot{BounceCount 3}
+actor JewelManShot2B : JewelManShotB{BounceCount 3}
+actor JewelManShot2R : JewelManShotR{BounceCount 3}
+actor JewelManShot2O : JewelManShotO{BounceCount 3}
+actor JewelManShot2P : JewelManShotP{BounceCount 3}
+
+actor JewelManShot3 : JewelManShot{BounceCount 4}
+actor JewelManShot3B : JewelManShotB{BounceCount 4}
+actor JewelManShot3R : JewelManShotR{BounceCount 4}
+actor JewelManShot3O : JewelManShotO{BounceCount 4}
+actor JewelManShot3P : JewelManShotP{BounceCount 4}
+
+actor JewelManShot4 : JewelManShot{BounceCount 5}
+actor JewelManShot4B : JewelManShotB{BounceCount 5}
+actor JewelManShot4R : JewelManShotR{BounceCount 5}
+actor JewelManShot4O : JewelManShotO{BounceCount 5}
+actor JewelManShot4P : JewelManShotP{BounceCount 5}
+
+actor JewelManShotFX : BasicClientSide
+{
++FORCEXYBILLBOARD
++BRIGHT
+States
+{
+Spawn:
+Y_9E UVW 3
+stop
+}
+}
+
+actor JewelManMine1
+{
+PROJECTILE
+damagetype "JewelM_ShotBit"
+Obituary "$OB_JEWELGLAM"
+//-NOGRAVITY
++DONTREFLECT
++THRUGHOST
++EXPLODEONWATER
++NOEXPLODEFLOOR
+Gravity 0.5
+damage (50*(angle==0))
+reactiontime 10//20
+radius 10
+height 10
+speed 0
+scale 2.5
+states
+{
+Spawn:
+JEWH Y 0
+JEWH Y 0 A_JumpIf(angle>0,"SpawnExplodeOn")
+goto SpawnL
+SpawnExplodeOn:
+JEWH Y 0 A_ChangeFlag("NOEXPLODEFLOOR",0)
+goto SpawnL
+SpawnL:
+JEWH Y 0 A_SpawnItemEx("JewelManShotFX",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,1,0)
+JEWH Y 0 //A_ScaleVelocity(1.3)
+JEWH YY 2 A_CountDown
+loop
+Death:
+TNT1 A 0 A_JumpIf(angle==45*3,"Explode3")
+TNT1 A 0 A_JumpIf(angle==45*2,"Explode2")
+TNT1 A 1 A_JumpIf(angle==45,"Explode1")
+stop
+Explode1:
+TNT1 A 1 A_SpawnItemEx("JewelRubyExplodeM1",0,0,0,0,0,0,0,1)
+stop
+Explode2:
+TNT1 A 1 A_SpawnItemEx("JewelRubyExplodeM2",0,0,0,0,0,0,0,1)
+stop
+Explode3:
+TNT1 A 1 A_SpawnItemEx("JewelRubyExplodeM3",0,0,0,0,0,0,0,1)
+stop
+Explode4:
+TNT1 A 1 A_SpawnItemEx("JewelRubyExplodeM4",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor JewelManMine2 : JewelManMine1 {reactiontime 25}//40
+actor JewelManMine3 : JewelManMine1 {reactiontime 40}//60
+actor JewelManMine4 : JewelManMine1 {reactiontime 55}//85
+
+actor JewelManMine1F : JewelManMine1 {-NOGRAVITY}
+actor JewelManMine2F : JewelManMine2 {-NOGRAVITY}
+actor JewelManMine3F : JewelManMine3 {-NOGRAVITY}
+actor JewelManMine4F : JewelManMine4 {-NOGRAVITY}
+
+
+actor JewelRubyExplode1 : BasicExplosion
+{
+damagetype "JewelM_ShotBoom"
+Obituary "$OB_JEWELGLAM"
++FORCEXYBILLBOARD
++BRIGHT
+Mass 0
+scale 1.5//2.0
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySound("weapon/jewelexplode",1,0.45+Mass*0.15)
+TNT1 A 0 A_Explode(20+Mass*20,64+Mass*32,0,0,17+Mass*6)
+goto Spawn2
+Spawn2:
+//Y_4D PQRSTUVWXY 1
+Y_8B BCDEF 1
+stop
+}
+}
+actor JewelRubyExplodeM1 : JewelRubyExplode1
+{
+Mass 0
+scale 1.75
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_PlaySound("weapon/jewelexplodebit",1,0.45+Mass*0.15)
+TNT1 A 0 A_Explode(50,64+Mass*32,0,0,12+Mass*3)
+goto Spawn2
+Spawn2:
+Y_4D PQSTUWY 1
+stop
+}
+}
+
+actor JewelRubyExplode2 : JewelRubyExplode1
+{
+Mass 1
+scale 2.0//4.0
+}
+actor JewelRubyExplodeM2 : JewelRubyExplodeM1
+{
+Mass 1
+scale 2.5
+}
+
+actor JewelRubyExplode3 : JewelRubyExplode1
+{
+Mass 2
+scale 2.5//6.0
+}
+actor JewelRubyExplodeM3 : JewelRubyExplodeM1
+{
+Mass 2
+scale 3.25
+}
+
+actor JewelRubyExplode4 : JewelRubyExplode1
+{
+Mass 3
+scale 3.0//8.0
+}
+actor JewelRubyExplodeM4 : JewelRubyExplodeM1
+{
+Mass 3
+scale 4.0
+}
+
+actor JewelBossWarper_Diamond1 : ShieldWarper_CBM
+{
+Translation "202:202=202:202","199:199=197:197"
++NOTIMEFREEZE
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_clientwarper",0,1)
+Goto ShieldL
+ShieldL:
+Y_9E A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR1")
+Y_9E AABBCCDD 1 A_Warp(2,0,0,0,0,24)
+Y_9E E 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR2")
+Y_9E EEFFGGHH 1 A_Warp(2,0,0,0,0,24)
+Y_9E I 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR3")
+Y_9E IIJJKKLL 1 A_Warp(2,0,0,0,0,24)
+Y_9E M 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"ShieldR4")
+Y_9E MMNNOOPP 1 A_Warp(2,0,0,0,0,24)
+loop
+ShieldR1:
+Y_9E ABCD 1 A_Warp(2,0,0,0,0,24)
+goto ShieldL+9
+ShieldR2:
+Y_9E EFGH 1 A_Warp(2,0,0,0,0,24)
+goto ShieldL+18
+ShieldR3:
+Y_9E IJKL 1 A_Warp(2,0,0,0,0,24)
+goto ShieldL+27
+ShieldR4:
+Y_9E MNOP 1 A_Warp(2,0,0,0,0,24)
+goto ShieldL
+}
+}
+
+actor JewelBossWarper_Diamond2 : JewelBossWarper_Diamond1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_clientwarper",0,1)
+Goto ShieldL+9
+}
+}
+
+actor JewelBossWarper_Diamond3 : JewelBossWarper_Diamond1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_clientwarper",0,1)
+Goto ShieldL+18
+}
+}
+
+actor JewelBossWarper_Diamond4 : JewelBossWarper_Diamond1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_clientwarper",0,1)
+Goto ShieldL+27
+}
+}
+
+actor JewelBossWarper_Emerald1 : JewelBossWarper_Diamond1 {Translation "202:202=104:104","199:199=106:106"}
+actor JewelBossWarper_Emerald2 : JewelBossWarper_Diamond2 {Translation "202:202=104:104","199:199=106:106"}
+actor JewelBossWarper_Emerald3 : JewelBossWarper_Diamond3 {Translation "202:202=104:104","199:199=106:106"}
+actor JewelBossWarper_Emerald4 : JewelBossWarper_Diamond4 {Translation "202:202=104:104","199:199=106:106"}
+
+actor JewelBossWarper_Ruby1 : JewelBossWarper_Diamond1 {Translation "202:202=174:174","199:199=176:176"}
+actor JewelBossWarper_Ruby2 : JewelBossWarper_Diamond2 {Translation "202:202=174:174","199:199=176:176"}
+actor JewelBossWarper_Ruby3 : JewelBossWarper_Diamond3 {Translation "202:202=174:174","199:199=176:176"}
+actor JewelBossWarper_Ruby4 : JewelBossWarper_Diamond4 {Translation "202:202=174:174","199:199=176:176"}
+
+actor JewelBossWarper_Sapphire1 : JewelBossWarper_Diamond1 {Translation "202:202=198:198","199:199=199:199"}
+actor JewelBossWarper_Sapphire2 : JewelBossWarper_Diamond2 {Translation "202:202=198:198","199:199=199:199"}
+actor JewelBossWarper_Sapphire3 : JewelBossWarper_Diamond3 {Translation "202:202=198:198","199:199=199:199"}
+actor JewelBossWarper_Sapphire4 : JewelBossWarper_Diamond4 {Translation "202:202=198:198","199:199=199:199"}
+
+actor JewelBossWarper_Topaz1 : JewelBossWarper_Diamond1 {Translation "202:202=228:228","199:199=226:226"}
+actor JewelBossWarper_Topaz2 : JewelBossWarper_Diamond2 {Translation "202:202=228:228","199:199=226:226"}
+actor JewelBossWarper_Topaz3 : JewelBossWarper_Diamond3 {Translation "202:202=228:228","199:199=226:226"}
+actor JewelBossWarper_Topaz4 : JewelBossWarper_Diamond4 {Translation "202:202=228:228","199:199=226:226"}
+
+actor JewelBossWarper_Amethyst1 : JewelBossWarper_Diamond1 {Translation "202:202=236:236","199:199=251:251"}
+actor JewelBossWarper_Amethyst2 : JewelBossWarper_Diamond2 {Translation "202:202=236:236","199:199=251:251"}
+actor JewelBossWarper_Amethyst3 : JewelBossWarper_Diamond3 {Translation "202:202=236:236","199:199=251:251"}
+actor JewelBossWarper_Amethyst4 : JewelBossWarper_Diamond4 {Translation "202:202=236:236","199:199=251:251"}
+
+actor JewelBossWarper1D_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Diamond1")
+stop
+}
+}
+actor JewelBossWarper1E_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Emerald1")stop}}
+actor JewelBossWarper1R_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Ruby1")stop}}
+actor JewelBossWarper1S_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Sapphire1")stop}}
+actor JewelBossWarper1T_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Topaz1")stop}}
+actor JewelBossWarper1A_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Amethyst1")stop}}
+
+actor JewelBossWarper2D_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Diamond2")stop}}
+actor JewelBossWarper2E_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Emerald2")stop}}
+actor JewelBossWarper2R_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Ruby2")stop}}
+actor JewelBossWarper2S_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Sapphire2")stop}}
+actor JewelBossWarper2T_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Topaz2")stop}}
+actor JewelBossWarper2A_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Amethyst2")stop}}
+
+actor JewelBossWarper3D_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Diamond3")stop}}
+actor JewelBossWarper3E_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Emerald3")stop}}
+actor JewelBossWarper3R_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Ruby3")stop}}
+actor JewelBossWarper3S_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Sapphire3")stop}}
+actor JewelBossWarper3T_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Topaz3")stop}}
+actor JewelBossWarper3A_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Amethyst3")stop}}
+
+actor JewelBossWarper4D_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Diamond4")stop}}
+actor JewelBossWarper4E_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Emerald4")stop}}
+actor JewelBossWarper4R_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Ruby4")stop}}
+actor JewelBossWarper4S_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Sapphire4")stop}}
+actor JewelBossWarper4T_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Topaz4")stop}}
+actor JewelBossWarper4A_P : CustomInventory{states{Pickup:TNT1 A 0 A_SpawnItemEx("JewelBossWarper_Amethyst4")stop}}
+
+
+actor JewelBossWarper1_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot1",5,"Amethyst")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot1",4,"Topaz")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot1",3,"Sapphire")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot1",2,"Ruby")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot1",1,"Emerald")
+Goto Diamond
+Diamond:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper1D_P",1)
+stop
+Emerald:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper1E_P",1)
+stop
+Ruby:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper1R_P",1)
+stop
+Sapphire:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper1S_P",1)
+stop
+Topaz:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper1T_P",1)
+stop
+Amethyst:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper1A_P",1)
+stop
+}
+}
+
+actor JewelBossWarper2_H : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot2",5,"Amethyst")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot2",4,"Topaz")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot2",3,"Sapphire")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot2",2,"Ruby")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot2",1,"Emerald")
+Goto Diamond
+Diamond:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper2D_P",1)
+stop
+Emerald:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper2E_P",1)
+stop
+Ruby:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper2R_P",1)
+stop
+Sapphire:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper2S_P",1)
+stop
+Topaz:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper2T_P",1)
+stop
+Amethyst:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper2A_P",1)
+stop
+}
+}
+
+
+actor JewelBossWarper3_H : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot3",5,"Amethyst")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot3",4,"Topaz")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot3",3,"Sapphire")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot3",2,"Ruby")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot3",1,"Emerald")
+Goto Diamond
+Diamond:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper3D_P",1)
+stop
+Emerald:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper3E_P",1)
+stop
+Ruby:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper3R_P",1)
+stop
+Sapphire:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper3S_P",1)
+stop
+Topaz:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper3T_P",1)
+stop
+Amethyst:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper3A_P",1)
+stop
+}
+}
+
+actor JewelBossWarper4_H : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot4",5,"Amethyst")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot4",4,"Topaz")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot4",3,"Sapphire")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot4",2,"Ruby")
+TNT1 A 0 A_JumpIfInTargetInventory("JewelSlot4",1,"Emerald")
+Goto Diamond
+Diamond:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper4D_P",1)
+stop
+Emerald:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper4E_P",1)
+stop
+Ruby:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper4R_P",1)
+stop
+Sapphire:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper4S_P",1)
+stop
+Topaz:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper4T_P",1)
+stop
+Amethyst:
+TNT1 A 2 A_GiveToTarget("JewelBossWarper4A_P",1)
+stop
+}
+}
+
+actor JewelmanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JewelManShot",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JewelManShotB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JewelManShotR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JewelManShotO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JewelManShotP",0,1,8,0)
+goto Done
+}
+}
+
+actor JewelmanMain1_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("JewelManShot1",0,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("JewelManShot1B",0,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("JewelManShot1R",0,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("JewelManShot1O",0,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("JewelManShot1P",0,1,8,0)goto Done}}
+actor JewelmanMain2_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("JewelManShot2",0,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("JewelManShot2B",0,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("JewelManShot2R",0,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("JewelManShot2O",0,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("JewelManShot2P",0,1,8,0)goto Done}}
+actor JewelmanMain3_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("JewelManShot3",0,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("JewelManShot3B",0,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("JewelManShot3R",0,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("JewelManShot3O",0,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("JewelManShot3P",0,1,8,0)goto Done}}
+actor JewelmanMain4_CI : TeamColor_CI{states{
+FireX:TNT1 A 0 A_FireCustomMissile("JewelManShot4",0,1,8,0)goto Done
+FireB:TNT1 A 0 A_FireCustomMissile("JewelManShot4B",0,1,8,0)goto Done
+FireR:TNT1 A 0 A_FireCustomMissile("JewelManShot4R",0,1,8,0)goto Done
+FireO:TNT1 A 0 A_FireCustomMissile("JewelManShot4O",0,1,8,0)goto Done
+FireP:TNT1 A 0 A_FireCustomMissile("JewelManShot4P",0,1,8,0)goto Done}}

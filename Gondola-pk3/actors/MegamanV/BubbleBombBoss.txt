@@ -506,6 +506,7 @@ damagetype "Venus_Acid"
 Obituary "$OB_VENUSSHIELD"
 +HITTRACER
 +THRUGHOST
++FORCEALLYCOLLISION
 damage (100)
 Radius 20
 Height 20

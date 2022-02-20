@@ -9,7 +9,7 @@ addplayerclass Duo nomenu
 addplayerclass Maestro nomenu
 addplayerclass RockClass nomenu
 addplayerclass RollClass nomenu
-addplayerclass Auto nomenu
+addplayerclass AutoClass nomenu
 addplayerclass LightRyu nomenu
 addplayerclass DrWily nomenu
 addplayerclass SniperJoe nomenu

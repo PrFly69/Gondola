@@ -200,7 +200,7 @@ script "cbm_legacyDustPull" (int Range, int Power)
 		for(int i=0; i<MAX_PLAYERS; i++) {
 			if (owner != 1000 + i) {
 				if(push2Val(x,y,z,angle, 1000 +i, Power, Range)) {
-					//GiveActorInventory(1000 + i, "TempPitProtect", 1);
+					GiveActorInventory(1000 + i, "TempPitProtect_P", 1);
 				}
 			}
 		}	
@@ -210,7 +210,7 @@ script "cbm_legacyDustPull" (int Range, int Power)
 			if (owner != 1000 + j) {
 				if (isDifferentTeams(team,j)) {
 					if(push2Val(x,y,z,angle, 1000 +j, Power, Range)) {
-						//GiveActorInventory(1000 + j, "TempPitProtect", 1);
+						GiveActorInventory(1000 + j, "TempPitProtect_P", 1);
 					}
 				}
 			}

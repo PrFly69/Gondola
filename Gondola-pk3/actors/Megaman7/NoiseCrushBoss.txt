@@ -288,7 +288,7 @@ goto SwoopSuplex2
 SwoopSuplex2:
 SHDW F 0 A_Jumpif(CallACS("cbm_ZangiefGrab",25,CallACS("cbm_ZangiefCountInv",1),80)==0,"FlightEnd")
 SHDW F 0 ThrustThingZ(0,12,0,0)
-SHDW F 0 A_GiveInventory("TempPitProtect_P",1)
+SHDW F 0 A_GiveInventory("TempPitProtect_P_P",1)
 SHDW F 0 A_JumpIfInventory("ShadeIsDoneC",1,"SwoopThrustEnd")
 SHDW F 0 A_JumpIfInventory("ShadeSuckDelay",1,"SwoopSuplex3")
 goto SwoopSuplexSuck
@@ -301,7 +301,7 @@ goto SwoopSuplexTeam2
 SwoopSuplexTeam2:
 SHDW F 0 A_Jumpif(CallACS("cbm_ZangiefGrab",25,CallACS("cbm_ZangiefCountInv",1),80)==0,"FlightEnd")
 SHDW F 0 ThrustThingZ(0,12,0,0)
-SHDW F 0 A_GiveInventory("TempPitProtect_P",1)
+SHDW F 0 A_GiveInventory("TempPitProtect_P_P",1)
 SHDW F 0 A_JumpIfInventory("ShadeIsDoneC",1,"SwoopThrustEnd")
 goto SwoopSuplexTeam3
 SwoopSuplexTeam3:

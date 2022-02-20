@@ -635,7 +635,7 @@ Loop
 Crash:
 XDeath:
 TNT1 A 0 A_Stop
-TNT1 A 3 ACS_NamedExecuteAlways("cbm_legacyDustPull",0,88,20)
+TNT1 A 3 ACS_NamedExecuteAlways("cbm_legacyDustPull",0,88,15)
 goto Death
 Death:
 TNT1 A 0 A_Stop

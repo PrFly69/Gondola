@@ -918,11 +918,9 @@ IsSelected NovaBeamBoss{Drawbar"V_I_VUN","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory NuclearOverclockAmmo,120{DrawBar"V_I_VUF","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory NuclearOverheatAmmo,1{DrawBar"V_I_VUV","VNOBAR",Ammo2,horizontal,58,184;}}}
 //MM11
-IsSelected ScrambleThunderBossC {
+IsSelected ScrambleThunderBoss {
 	DrawBar "11_H_VAR", "VAREMPTY", Ammo2, horizontal, 58, 184;
-	DrawBar "11_I_VAR", "VAREMPTY", Ammo1, horizontal, 58, 176;
-	DrawImage"FUSERICN",178,175;
-	DrawNumber 5,CMBHPFONT,Untranslated,FusemanHUDCount,alignment(left),116,185;}
+	DrawBar "11_I_VAR", "VAREMPTY", Ammo1, horizontal, 58, 176;}
 IsSelected BlazingTorchBoss{Drawbar "VARTOR", "VAREMPTY", Ammo1, vertical, 16, 8;
 	DrawImage "TORMETER",16,8;
     InInventory TorchjutsuAmmo, 420{Drawbar "VARTORX", "VAREMPTY", Ammo1, vertical, 16, 8;}
@@ -963,6 +961,7 @@ InInventory PowerSplashSwiftSong,1||PowerSplashSwiftSongX{DrawImage"SPLWBUF3",30
 InInventory PlugmanRageFlag,1{DrawImage"PLUGBUFF",249,3;}
 InInventory DynamoM_IsTagged{DrawImage"DYNATAG",174,2;}
 InInventory VenusBlastJumpFlag,1{DrawImage"VENJUMP1",301,64;}
+InInventory SolarPowerSTR,1{DrawImage"SUNCROWN",32,20;}
 InInventory AcidBarrierVisualBar,1{DrawBar"ACIDVARR","VNOBAR",AcidBarrierVisualBar,horizontal,130,184;}
 
 //InInventory FloodMyHudTest_F,1{DrawImage"TESTHUDX",0,30;}

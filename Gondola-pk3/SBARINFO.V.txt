@@ -851,14 +851,14 @@ IsSelected ReboundStrikeBoss,ReboundStrikerBoss{Drawbar"10_4_BAR","BAREMPTY",Amm
 	Drawbar"10_4_BAX","BAREMPTY",Ammo2,vertical,8,8;
 	InInventory ReboundStrikerPower,7{Drawbar"10_4_BA3","BAREMPTY",Ammo2,vertical,8,8;}}
 
-IsSelected SolarBlazeBoss,SolarBlazerBoss{Drawbar"00_E_BAR","BAREMPTY",SolarInferoAmmo,vertical,16,8;
+IsSelected SolarBlazeBoss,SolarBlazerBoss{Drawbar"00_E_BAR","BAREMPTY",SolarInfernoAmmo,vertical,16,8;
 	DrawImage"SLRRICON",32,55;
 	InInventory ShieldCheck,1{DrawBar "00_E_BAR", "00_E_BAR", ShieldCheck,vertical, 16, 8;}
-	InInventory SolarInferoAmmoExtra,1{DrawBar "SOLBAR2", "00_E_BAR", SolarInferoAmmoExtra,vertical, 16, 8;}
-	InInventory SolarInferoAmmoExtra,35{DrawBar "SOLBAR3", "00_E_BAR", SolarInferoAmmoExtra,vertical, 16, 8;}
-	InInventory SolarInferoAmmoExtra,70{DrawBar "SOLBAR4", "00_E_BAR", SolarInferoAmmoExtra,vertical, 16, 8;}
-	InInventory SolarInferoAmmoExtra,105{DrawBar "SOLBAR5", "00_E_BAR", SolarInferoAmmoExtra,vertical, 16, 8;}
-	InInventory SolarInferoHoldAmmo,1{DrawBar"KC_A_BAR","NOBAR",SolarInferoHoldAmmo,vertical,16,8;}}
+	InInventory SolarInfernoAmmoExtra,1{DrawBar "SOLBAR2", "00_E_BAR", SolarInfernoAmmoExtra,vertical, 16, 8;}
+	InInventory SolarInfernoAmmoExtra,35{DrawBar "SOLBAR3", "00_E_BAR", SolarInfernoAmmoExtra,vertical, 16, 8;}
+	InInventory SolarInfernoAmmoExtra,70{DrawBar "SOLBAR4", "00_E_BAR", SolarInfernoAmmoExtra,vertical, 16, 8;}
+	InInventory SolarInfernoAmmoExtra,105{DrawBar "SOLBAR5", "00_E_BAR", SolarInfernoAmmoExtra,vertical, 16, 8;}
+	InInventory SolarInfernoHoldAmmo,1{DrawBar"KC_A_BAR","NOBAR",SolarInfernoHoldAmmo,vertical,16,8;}}
 
 //MMB
 IsSelected LightningBoltBoss{Drawbar"BARAMM53","BAREMPTY",Ammo1,vertical,16,8;
@@ -955,12 +955,9 @@ IsSelected NovaBeamBoss{Drawbar"V_I_SUN","BAREMPTY",Ammo1,vertical,16,8;
 	INInventory NuclearOverheatAmmo,1{DrawBar"V_I_SUV","NOBAR",Ammo2,vertical,16,8;}}}
 
 //MM11
-IsSelected ScrambleThunderBossC {
+IsSelected ScrambleThunderBoss {
 	DrawBar "11_H_BAR", "BAREMPTY", Ammo2, vertical, 16, 8;
-	DrawBar "11_I_BAR", "BAREMPTY", Ammo1, vertical,  8, 8;
-	DrawImage"FUSERICN",32,55;
-	DrawNumber 5,CMBHPFONT,Untranslated,FusemanHUDCount,alignment(left),32,65;
-	}
+	DrawBar "11_I_BAR", "BAREMPTY", Ammo1, vertical,  8, 8;}
 IsSelected ChainBlastBoss{Drawbar"BLASBARR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"BARAMM64","BAREMPTY",Ammo2,vertical,8,8;
 	DrawImage"BLASICON",32,55;
@@ -998,6 +995,7 @@ InInventory PowerSplashSwiftSong,1||PowerSplashSwiftSongX{DrawImage"SPLWBUF3",30
 InInventory PlugmanRageFlag,1{DrawImage"PLUGBUFF",249,3;}
 InInventory DynamoM_IsTagged{DrawImage"DYNATAG",174,2;}
 InInventory VenusBlastJumpFlag,1{DrawImage"VENJUMP1",301,64;}
+InInventory SolarPowerSTR,1{DrawImage"SUNCROWN",32,20;}
 InInventory AcidBarrierVisualBar,1{DrawBar"ACIDBARR","NOBAR",AcidBarrierVisualBar,vertical,24,8;}
 
 

@@ -435,7 +435,7 @@ OptionValue ClassJump
 114, "11"
 115, "10"
 116, "11"
-117, "14"//Fuse
+117, "10"//Fuse
 118, "12"
 119, "12"
 120, "13"
@@ -570,7 +570,7 @@ OptionValue ClassSpeed
 114, "0.7"
 115, "0.7"//Neptune
 116, "0.76"
-117, "0.8"
+117, "0.7"
 118, "0.89"
 119, "0.89"
 120, "1.0"
@@ -705,7 +705,7 @@ OptionValue ClassMainfire
 114, "\cdCan be held to fire up to three shots\nFire faster at high speeds"
 115, "\cdShot always splits\nSalty shot splits even more"
 116, "\cdFire a shot that eventually gains gravity\nAt max heat gains a damage halo but is heavier"
-117, "\cdIf tesseract is out, fires a tracer\nOtherwise spawns a 5 way shot"//Fuse
+117, "\cdFires a ripper projectile that slides on floors\nHas two weaker offshoots with limited duration\nFirerate doubled within Tesla Coil"//Fuse
 118, "\cdFires up to 5 shots of globs of acid\nStacking 4% slow up to 5 times \nHitting the enviroment causes damaging gas \nAuto-reloads but cant be shot unless full"//Torch
 119, "\cdProjectile sticks to enemies\n\cgPower Gear: Fires strong bomb that detonates \nstickied bombs for big damage"
 120, "\cdRod attack hits through walls"
@@ -840,7 +840,7 @@ OptionValue ClassAltfire
 114, "\cdDash in any direction, faster at high speed"
 115, "\cdHold to leap across floor and enemies\nCan bounce on enemies to deal damage\nTap to leap up and slam the ground"
 116, "\cdFire projectile that reacts under enemies\nMax heat sets down a lasting line of fire"
-117, "\cdDoes a basic melee zap"//Fuse
+117, "\cdPerform a dash and leave behind a tesla coil\nTesla Coil passively spawns spinning offshoots\nIf a tesla coil is out, remotely detonates coil"//Fuse
 118, "\cdThrows an Acid Barrier on an ally\nStarts at high resist but falls off\nAcidman gains gear ammo with blocked damage"//Acid
 119, "\cdA burst of several small explosives\nCan stick to the ground"
 120, "\cdSpins rod to damage and block missiles"
@@ -975,7 +975,7 @@ OptionValue ClassItem
 114, "\cvMEOW \cv(NEW!)"
 115, "\cdTurns up the salt, empowering attacks\nSalty mode makes you take extra damage"
 116, "\cdVents heat for small knockback and damage\nBuffs you and all allies around\n15% all stats for 7 seconds"
-117, "\cdPlaces a tesseract where you are located\nUp to 4 can be placed"//Fuse
+117, "\cdTurns hovering on"//Fuse
 118, "\cuNo Item\nCan't use Auto's Item-2 or Wire"
 119, "\cdBoost yourself in the direction you are pressing."
 120, "\cdSummons two clones at full ammo\nThese clones mimic all attacks"
@@ -1110,7 +1110,7 @@ OptionValue ClassReload
 114, "\ckReload : Uses melee swipes\nGain speed through constant movement"
 115, "\ckNone"
 116, "\ckShooting speeds up heat generation\nGains a second bar by shooting at max heat\nSecond bar slows rate of fire as it fills"
-117, "\ckReload : Teleports to your tesseracts \nfirst to last\nIf none are out, user does not teleport"//Fuse
+117, "\ckNone"//Fuse
 118, "\ckGear ammo drains for a 20% speed boost\nReload : A copy of Acid Barrier but for himself \non a different cooldown"//Acid
 119, "\ckReload: Activates Power Gear\nSuccessful hits with mainfire build Power Gear"
 120, "\ckCan Wall Jump"

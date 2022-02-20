@@ -928,6 +928,7 @@ stop
 
 actor PowerFlood : PowerSpeed
 {
++NOTRAIL
 powerup.duration 3
 Speed 0.8
 }

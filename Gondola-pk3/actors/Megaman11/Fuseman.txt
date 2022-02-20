@@ -6,78 +6,67 @@ actor Fuseman : ClassBase //85
 	Player.ScoreIcon "C_11F0X"
 	player.displayname "Fuseman"
 	player.soundclass "fusemanc"
-	player.startitem "ScrambleThunderBossC", 1
+	player.startitem "ScrambleThunderBoss", 1
+	player.startitem "FusemanTracerAmmo", 280
+	player.startitem "FuseFlightItem"
+	player.startitem "FuseFlight"
 	
 	player.maxhealth 850
 	health 850
-	player.jumpz 14
-	Player.ForwardMove 0.8, 0.8
-	Player.SideMove 0.78, 0.78
+	player.jumpz 10
+	Player.ForwardMove 0.72, 0.72
+	Player.SideMove 0.7, 0.7
 
 	States
 	{
 		Spawn:
 			FUSM A 0
 			FUSM B 1
-			FUSM A 1 A_ChangeFlag(FLOATBOB, false)
+			FUSM A 1 //A_ChangeFlag(FLOATBOB, false)
 			FUSM A 0 A_JumpIfInventory("FuseInDashState",1,"OnDash")
 			Goto Spawn+2
 		See:
-			FUSM B 0 A_ChangeFlag(FLOATBOB, true)
+			FUSM B 0 //A_ChangeFlag(FLOATBOB, true)
 			FUSM BCDE 2 A_JumpIfInventory("FuseInDashState",1,"OnDash")
 			Goto Spawn
 		Missile:
-			FUSM F 0 A_ChangeFlag(FLOATBOB, false)
+			FUSM F 0 //A_ChangeFlag(FLOATBOB, false)
 			FUSM FFFFF 1 A_JumpIfInventory("FuseInDashState",1,"OnDash")
 			FUSM GGGG 1 A_JumpIfInventory("FuseInDashState",1,"OnDash")
 			goto Spawn
+
+		MissileFast:
+			FUSM F 0 //A_ChangeFlag(FLOATBOB, false)
+			FUSM GGGGGG 1 A_JumpIfInventory("FuseInDashState",1,"OnDash")
+			goto Spawn
 			
 		OnDash:
-			FUSM WXYYXW 1 A_ChangeFlag(FLOATBOB, false)
+			FUSM WXYYXW 1 //A_ChangeFlag(FLOATBOB, false)
 			FUSM W 0 A_JumpIfInventory("FuseInDashState",1,"OnDash")
 			goto Spawn
 			
 
 		ClassPain:
-			FUSM H 0 A_ChangeFlag(FLOATBOB, false)
+			FUSM H 0 //A_ChangeFlag(FLOATBOB, false)
 			goto PainContinue
 		DeathFix:
-			FUSM H 0 A_ChangeFlag(FLOATBOB, false)
-			FUSH H 0 A_TakeInventory("FusemanFuse4",1)
-			FUSH H 0 A_TakeInventory("FusemanFuse3",1)
-			FUSH H 0 A_TakeInventory("FusemanFuse2",1)
-			FUSH H 0 A_TakeInventory("FusemanFuse1",1)
-			FUSH H 0 Thing_remove(tid+10000)
-			FUSH H 0 Thing_remove(tid+10100)
-			FUSH H 0 Thing_remove(tid+10200)
-			FUSH H 0 Thing_remove(tid+10300)
+			FUSM H 0 //A_ChangeFlag(FLOATBOB, false)
 			goto DeathContinue
 		ClassDeath:
-			FUSM H 1 A_ChangeFlag(FLOATBOB, false)
-			FUSH H 0 A_TakeInventory("FusemanFuse4",1)
-			FUSH H 0 A_TakeInventory("FusemanFuse3",1)
-			FUSH H 0 A_TakeInventory("FusemanFuse2",1)
-			FUSH H 0 A_TakeInventory("FusemanFuse1",1)
-			FUSH H 0 Thing_remove(tid+10000)
-			FUSH H 0 Thing_remove(tid+10100)
-			FUSH H 0 Thing_remove(tid+10200)
-			FUSH H 0 Thing_remove(tid+10300)
+			FUSM H 1 //A_ChangeFlag(FLOATBOB, false)
 			goto MegaDeathEnd
 			
 		Death.Falling:
-			FUSM H 0 A_ChangeFlag(FLOATBOB, false)
-			FUSH H 0 A_TakeInventory("FusemanFuse4",1)
-			FUSH H 0 A_TakeInventory("FusemanFuse3",1)
-			FUSH H 0 A_TakeInventory("FusemanFuse2",1)
-			FUSH H 0 A_TakeInventory("FusemanFuse1",1)
-			FUSH H 0 Thing_remove(tid+10000)
-			FUSH H 0 Thing_remove(tid+10100)
-			FUSH H 0 Thing_remove(tid+10200)
-			FUSH H 0 Thing_remove(tid+10300)
+			FUSM H 0 //A_ChangeFlag(FLOATBOB, false)
 			FUSH H 0 A_GiveInventory("FallingFlag",1)
 			FUSH H 0 A_GiveInventory("DeadClassBundle")
 			FUSH H 0 A_SetTranslucent(0.0,0)
 			FUSH H 0 A_PlaySoundEx("*death","Voice")
 			goto DeathWait
+			
+		CustomState1:
+			FUSM FFF 1 //A_ChangeFlag(FLOATBOB, false)
+			TRTP DDEEFFEEDD 1 A_SpawnItemEx("FuseDashSparkleFX2",0,0,32,0,0,0,0,1,96)
+		Goto MissileFast
 	}
 }

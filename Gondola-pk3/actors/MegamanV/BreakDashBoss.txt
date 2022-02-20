@@ -440,10 +440,9 @@ stop
 }
 }
 
-
 actor PlutoFireBall
 {
-translation "192:192=65:65", "198:198=60:60"
+translation "192:192=56:56", "198:198=60:60"
 PROJECTILE
 Obituary "$OB_PLUTOSHOT"
 Damagetype "Pluto_Shot"
@@ -458,10 +457,12 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-PLUH HIHIHIHIH 4
+SpawnLOOP:
+PLUH HIHIHIH 3
+PLUH I 1 A_CountDown
+wait
 Death:
-TNT1 A 0 A_Stop
-PLUH IHIH 1 A_Fadeout
+PLUH IHI 1 A_Fadeout
 stop
 }
 }
@@ -474,10 +475,11 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-PLUH HIHIHIHIHIHIHIHIHI 2
+PLUH HIHIHIH 2
+PLUH I 1 A_CountDown
+wait
 Death:
-TNT1 A 0 A_Stop
-PLUH HIHI 1 A_Fadeout
+PLUH IHIHI 1 A_Fadeout
 stop
 }
 }

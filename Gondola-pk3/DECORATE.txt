@@ -47,7 +47,7 @@
 //MM11
 #include "actors/Megaman11/Fuseman.txt"
 //#include "actors/Megaman11/Blastman.txt"
-#include "actors/Megaman11/ScrambleThunderBossC.txt"
+#include "actors/Megaman11/ScrambleThunderBoss.txt"
 //#include "actors/Wep/Megaman11/ChainBlastBoss.txt"
 
 #include "actors/Megaman/YellowDevil.txt"

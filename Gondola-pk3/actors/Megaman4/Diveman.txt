@@ -1,0 +1,95 @@
+//====================================
+// Formatted and Cleaned by Ru5tK1ng
+//------------------------------------
+//====================================
+
+  Actor Diveman : ClassBase
+  {
+	Player.ScoreIcon "C_04G0X"
+	Player.DisplayName "diveman"
+	Player.SoundClass "divemanc"
+	player.maxhealth 1000
+	health 1000
+	player.jumpz 10
+	Player.ForwardMove 0.8, 0.8
+	Player.SideMove 0.78, 0.78
+	Player.StartItem "DiveMissileBoss"
+	//Player.StartItem "DiveTackleBoss"
+	Player.StartItem "YouSunkMyAmmo",420
+	Player.StartItem "DiveTackleAmmo",280
+	Player.StartItem "DiveMissileUseItem"
+	Player.WeaponSlot 1, "DiveMissileBoss"
+	Player.StartItem "SkullBarrierWeakness2", 1
+	Player.StartItem "SparkShockWeakness", 1
+	Player.StartItem "SkullBarrierWeakness", 1
+	Player.StartItem "NoiseCrushWeakness", 1
+	Player.StartItem "ElectricShockWeakness", 1
+	States
+	{
+		Spawn:
+		DIVM A 0
+		DIVM B 1
+		DIVM A 1
+		Goto Spawn+2
+		
+		See:
+		DIVM BCDE 5
+		Goto Spawn
+		
+		Missile:
+		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",8,"DiveM")
+		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",7,"DiveL")
+		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",5,"DiveK")
+		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",3,"DiveJ")
+		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",1,"DiveI")
+		DIVM F 0 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
+		DIVM F 1
+		DIVM F 4
+		DIVM G 4
+		DIVM G 0 A_JumpIfInventory("DiveTackleFrame",1,"DiveLoop")
+		Goto Spawn
+		
+		Missile2:
+		DIVM G 6
+		DIVM F 4
+		Goto Spawn
+		
+		DiveLoop:
+		DIVM IJKL 2
+		DIVM I 0 A_JumpIfInventory("DiveTackleFrame",1,"DiveLoop")
+		Goto Missile+9
+		
+		DiveI:
+		DIVM I 2
+		Goto Missile+7
+		
+		DiveJ:
+		DIVM J 2
+		Goto Missile+7
+		
+		DiveK:
+		DIVM K 2
+		Goto Missile+7
+		
+		DiveL:
+		DIVM L 2
+		Goto Missile+7
+		
+		DiveM:
+		DIVM L 2 A_TakeInventory("DiveTackleFrame",99)
+		Goto Missile+7
+		
+		CustomState1:
+		DIVM F 4
+		DIVM G 5
+		Goto Spawn
+
+		ClassPain:
+		DIVM H 0
+		Goto PainContinue
+		
+		ClassDeath:
+		DIVM H 1
+		Goto DeathContinue
+	}
+  }

@@ -18,7 +18,7 @@ Spawn:
 11WP F 1
 loop
 Ready:
-CBLA A 0 ACS_ExecuteAlways(998,0,11977)
+CBLA A 0 ACS_ExecuteAlways(998,0,11986)
 CBLA A 1 A_WeaponReady
 Goto Ready+1
 Deselect:

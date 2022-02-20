@@ -770,8 +770,8 @@ Spawn:
 TNT1 A 0
 Spawn2:
 TNT1 A 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-TNT1 A 0 A_TakeFromTarget("SolarSunHoldAmmo",1)
-TNT1 A 0 A_JumpIfInTargetInventory("SolarSunHoldAmmo",1,"Spawn2")
+TNT1 A 0 A_TakeFromTarget("SolarInfernoHoldAmmo",1)
+TNT1 A 0 A_JumpIfInTargetInventory("SolarInfernoHoldAmmo",1,"Spawn2")
 goto Death
 
 Death:
@@ -814,7 +814,7 @@ stop
 }
 }
 
-actor SolarSunHelper : BasicHelper
+actor SolarInfernoHelper : BasicHelper
 {
 Translation "192:192=213:213", "198:198=217:217"
 scale 2.5
@@ -893,10 +893,10 @@ stop
 }
 }
 
-actor SolarSunHelperB : SolarSunHelper{translation "192:192=205:205","198:198=74:74"}
-actor SolarSunHelperR : SolarSunHelper{translation "192:192=171:171","198:198=41:41"}
-actor SolarSunHelperO : SolarSunHelper{translation "192:192=104:104","198:198=128:128"}
-actor SolarSunHelperP : SolarSunHelper{translation "192:192=229:229","198:198=232:232"}
+actor SolarInfernoHelperB : SolarInfernoHelper{translation "192:192=205:205","198:198=74:74"}
+actor SolarInfernoHelperR : SolarInfernoHelper{translation "192:192=171:171","198:198=41:41"}
+actor SolarInfernoHelperO : SolarInfernoHelper{translation "192:192=104:104","198:198=128:128"}
+actor SolarInfernoHelperP : SolarInfernoHelper{translation "192:192=229:229","198:198=232:232"}
 
 actor SolarmanMainInv_CI : CustomInventory
 {
@@ -917,7 +917,7 @@ stop
 
 //Inventory item.
 
-actor SolarSunItem : CustomInventory //Item to return missing suns.
+actor SolarInfernoItem : CustomInventory //Item to return missing suns.
 {
 inventory.amount 1
 inventory.maxamount 1
@@ -933,7 +933,7 @@ loop
 
 Use:
 TNT1 A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot6")
-TNT1 A 0 A_GiveInventory("SolarSunDetonator")
+TNT1 A 0 A_GiveInventory("SolarInfernoDetonator")
 fail
 
 No:
@@ -1053,19 +1053,19 @@ actor SolarmanHelper_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_SpawnItemEx("SolarSunHelper")
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelper")
 goto Done
 FireB:
-TNT1 A 0 A_SpawnItemEx("SolarSunHelperB")
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelperB")
 goto Done
 FireR:
-TNT1 A 0 A_SpawnItemEx("SolarSunHelperR")
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelperR")
 goto Done
 FireO:
-TNT1 A 0 A_SpawnItemEx("SolarSunHelperO")
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelperO")
 goto Done
 FireP:
-TNT1 A 0 A_SpawnItemEx("SolarSunHelperP")
+TNT1 A 0 A_SpawnItemEx("SolarInfernoHelperP")
 goto Done
 }
 }

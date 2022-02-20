@@ -566,8 +566,9 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-WISS S 1
-wait
+SpawnLOOP:
+WISS ST 3
+loop
 }
 }
 
@@ -588,8 +589,9 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-WISS T 1
-wait
+SpawnLOOP:
+WISS UV 3
+loop
 }
 }
 
@@ -609,8 +611,9 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-WISS U 1
-wait
+SpawnLOOP:
+WISS WX 3
+loop
 }
 }
 
@@ -630,8 +633,9 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-TMFX C 1
-wait
+SpawnLOOP:
+WISS YZ 3
+loop
 }
 }
 

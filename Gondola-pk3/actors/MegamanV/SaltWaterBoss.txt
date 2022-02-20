@@ -611,7 +611,7 @@ stop
 actor Neptune_FloorQuakeSpawn : BasicExplosion
 {
 Obituary "$OB_NEPTUNESTOMP"
-damagetype "ClassPainSemi"
+damagetype "DMGNoHitstun"
 Renderstyle None
 States
 {
@@ -626,7 +626,7 @@ stop
 actor Neptune_FloorQuakeBoom : Hardman_FloorQuakeBoom
 {
 Obituary "$OB_NEPTUNESTOMP"
-damagetype "ClassPainSemi"
+damagetype "DMGNoHitstun"
 }
 
 actor NeptuneBigBounce_P : CustomInventory
@@ -933,7 +933,7 @@ actor NeptuneSaltWaterBit
 {
 PROJECTILE
 obituary "$OB_SALTWATER"
-damagetype "SaltWater"
+damagetype "Neptune_ShotBit"
 -NOGRAVITY
 +USEBOUNCESTATE
 +FORCEXYBILLBOARD

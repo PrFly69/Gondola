@@ -462,11 +462,13 @@ OB_STRIKEBAT = "%k scored a perfect home run with %o.";
 OB_STRIKEBOUNCE = "%o was knocked out of the field by %k's Rebound Bouncer.";
 
 //Fuseman
-OB_FUSESLAP = "%o was given a power cut by %k's Electro Chop.";
-OB_FUSEBATTERY = "%o was electrified by the radiations from %k's Tesseract.";
-OB_FUSESHOT = "%o received a center-shock from %k's Scramble Ray.";
+OB_FUSEBATTERY = "%o was electrified by the radiations from %k's Thunder Tesla.";
+OB_FUSESHOT1 = "%o received a center-shock from %k's Scramble Ray.";
+OB_FUSESHOT2 = "%o received a left-shock from %k's Scramble Ray.";
+OB_FUSESHOT3 = "%o received a right-shock from %k's Scramble Ray.";
 OB_FUSETHUNDER = "%o was jolted down to ground zero by %k's Scramble Thunder.";
-OB_FUSETRAIL = "%o proved to be a superconductor for %k's Tesseract.";
+OB_FUSETRAIL = "%o proved to be a superconductor for %k's Tesla Thunder.";
+OB_FUSECHAIN = "%o couldn't find good reception within %k's Thunder Tesla.";
 
 //Venus
 TAGC_VC1 = "Venus Ticker";

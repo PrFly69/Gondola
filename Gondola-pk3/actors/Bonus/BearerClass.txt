@@ -10,6 +10,8 @@ player.startitem "BearerFlag"
 player.startitem "CanUseItems"
 player.startitem "SemiStunArmor"
 
+player.maxhealth 2000
+health 2000
 player.forwardmove 0.60, 0.60
 player.sidemove 0.58, 0.58
 
@@ -368,7 +370,7 @@ actor YD_BearerCube
 	damagetype "YellowDevilB"
 	-NOGRAVITY
 	+SKYEXPLODE
-	damage (10)
+	damage (100)
 	BounceType Doom
 	BounceCount 1
 	reactiontime 15
@@ -438,7 +440,7 @@ Obituary "$OB_YELLOWMAIN3"
 +NOEXPLODEFLOOR
 +THRUGHOST
 +DONTREFLECT
-damage (25)
+damage (250)
 Radius 45
 Height 70
 scale 2.5
@@ -480,7 +482,7 @@ damagetype "YellowDevilB"
 +DONTSPLASH
 -NOGRAVITY
 +HEXENBOUNCE
-damage (5)
+damage (50)
 Radius 8//25
 Height 8//20
 speed 14
@@ -509,7 +511,7 @@ damagetype "YellowDevilP"
 Obituary "$OB_BEARALT"
 +DONTBLAST
 reactiontime 1
-damage (35)
+damage (350)
 Radius 40
 Height 20
 speed 60
@@ -521,7 +523,7 @@ TMFX R 0
 TMFX R 1 A_CountDown
 wait
 Death:
-TMFX R 0 A_Explode(35,40,0,0,40)
+TMFX R 0 A_Explode(350,40,0,0,40)
 goto XDeath
 XDeath:
 TMFX R 0 A_Stop

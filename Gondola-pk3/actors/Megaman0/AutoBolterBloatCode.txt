@@ -6,7 +6,7 @@ States
 {
 Spawn:
 TNT1 A 0
-GRSH B 3
+5A_H Q 3
 stop
 }
 }
@@ -436,8 +436,9 @@ reactiontime 4200
 states
 {
 Spawn:
-WEA9 Z 1
-WEA9 Z 0 A_Countdown
+WEA9 ZZZZZZ 1
+WEA3 Z 0 A_Countdown
+WEA3 Z 0 A_SpawnItemEx("AutoItemFXB",32,0,random(0,32),velx,vely,velz+12,random(0,360))
 loop
 
 Pickup:
@@ -473,9 +474,8 @@ reactiontime 700
 states
 {
 Spawn:
-WEA9 ZZZZZZ 1
+WEA9 Z 1
 WEA9 Z 0 A_Countdown
-WEA9 Z 0 A_SpawnItemEx("AutoItemFXB",32,0,random(0,32),velx,vely,velz+12,random(0,360))
 loop
 
 Pickup:
@@ -715,8 +715,18 @@ scale 2.5
 States
 {
 Spawn:
-SCOR F 1
-wait
+X_0G A 0
+X_0G A 0 A_Jump(256,"Spawn1","Spawn2")
+Spawn1:
+X_0G B 0 A_Jump(256,1,2,3,4,5,6,7,8)
+X_0G BCDEFGHI 3
+X_0G B 0 A_CountDown
+goto Spawn1+1
+Spawn2:
+X_0G I 0 A_Jump(256,1,2,3,4,5,6,7,8)
+X_0G IHGFEDCB 3
+X_0G I 0 A_CountDown
+goto Spawn2+1
 XDeath:
 Crash:
 Death:

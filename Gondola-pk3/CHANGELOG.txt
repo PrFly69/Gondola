@@ -2161,11 +2161,15 @@ CHANGELOG
 ==Bombman
 -Hyper Bomb Explosion FX ported from classes-v9fh.pk3
 
-==Flashman
--Flash Stunner windup reverted to original version
+==Bubbleman
+-New HUD by Christmas Cultist
+-Ported swimming sprites from classes-v9fh.pk3
 
 ==Quickman
 -Movespeed 1.33/1.35 > 1.08/1.10
+
+==Flashman
+-Flash Stunner windup reverted to original version
 
 ==Doc Robot
 -Health 90.0 > 100.0
@@ -2227,16 +2231,17 @@ CHANGELOG
 -Health 90.0 > 100.0
 
 ==Terra
--Ported CBM HUD
+-Ported HUD from classes-v9fh.pk3
 
 ==Mercury
--Ported CBM Blob HUD
+-Ported Blob HUD from classes-v9fh.pk3
 -Blob dropped when using tackle now resembles old large blob
 
 ==Venus
--Ported CBM SFX
+-Ported SFX from classes-v9fh.pk3
 
 ==Jupiter
+-New HUD by Christmas Cultist
 -Powerprotect duration 3 tics > 4 tics
 
 ==Saturn
@@ -2249,7 +2254,22 @@ CHANGELOG
 --Gained 4 armor if BlackHoleAmmo is full
 
 ==Pluto
--Break Shot duration ported from CBM
+-Break Shot duration ported from classes-v9fh.pk3
+
+==Fuseman
+-Reworked by NightFly
+-Base Speed 0.78/0.8 > 0.7/0.72
+-Now has psuedo-flight like Alien and Astroman, item toggles on/off flight
+-Mainfire now three ripping projectiles in a spread
+--Side projectiles do less damage and are range limited
+--Center projectile can crawl on floors and short steps
+-Altfire reworked, Electro Chop removed
+--Now a dash based on movement keys, propels user upwards if no movement keys are pressed
+--Leaved behind Thunder Tesla from initial dash, drains ammo passively
+--Tesla doubles mainfire RoF while user is inside, has two rotating damagers while active
+--Pressing altfire while Tesla is out activates it
+--Activated Tesla shoots out projectile bursts before dying
+-Reload removed
 
 ==Enker
 -New M2 HUD sprite by Honootorch

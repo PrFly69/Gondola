@@ -1,0 +1,48 @@
+actor Brightman : ClassBase
+{
+Player.ScoreIcon "C_04A0X"
+player.displayname "brightman"
+player.soundclass "brightmanc"
+player.startitem "FlashStopperBoss"
+player.startitem "FlashStopperClassAmmo", 14
+player.startitem "FlashStopperUseItem"
+
+player.maxhealth 850
+health 850
+player.jumpz 10
+Player.ForwardMove 0.8, 0.8
+Player.SideMove 0.78, 0.78
+
+player.startitem "RainFlushWeakness2", 1
+
+player.startitem "BubbleLeadWeakness", 1
+player.startitem "HardKnuckleWeakness", 1
+player.startitem "RainFlushWeakness", 1
+player.startitem "WaterWaveWeakness", 1
+player.startitem "WaterBalloonWeakness", 1
+player.startitem "SaltWaterWeakness", 1
+States
+{
+Spawn:
+BRIG A 0
+BRIG B 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
+BRIG A 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
+Goto Spawn+2
+See:
+BRIG BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
+Goto Spawn
+Missile:
+BRIG FFFFF 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
+BRIG GGGG 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
+goto Spawn
+FlashStopper:
+BRIG JJII 1 A_JumpIfInventory("EndFlashStopperFlag",1,"Spawn")
+loop
+ClassPain:
+BRIG H 0
+goto PainContinue
+ClassDeath:
+BRIG H 0
+goto DeathContinue
+}
+}

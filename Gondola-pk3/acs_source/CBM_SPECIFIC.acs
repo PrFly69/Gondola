@@ -1,0 +1,1469 @@
+#library "CBM_SPECIFIC"
+#include "zcommon.acs"
+#include "8bdmlib.acs"
+
+#define TEAM_NONE -1
+
+#DEFINE C_DIVELOCKDISPLAY 4407
+
+//Precursor to ACS cleanup/organization
+
+script "cbm_IsTeamServerMAX_S" OPEN
+{
+	IsTeamGame = ACS_ExecuteWithResult(975,1);
+	ServerMAX = GetMaxPlayers();
+}
+
+//  _____                           _
+// |  __ \                         | |
+// | |  \/ ___ _ __   ___ _ __ __ _| |
+// | | __ / _ \ '_ \ / _ \ '__/ _` | |
+// | |_\ \  __/ | | |  __/ | | (_| | |
+//  \____/\___|_| |_|\___|_|  \__,_|_|
+
+script "cbm_countinv_acs" (int Which, int Pointer)
+{
+	if(Pointer>0){
+		SetActivator(0,Pointer);
+	}
+	int Counter = 0;
+	switch(Which)
+	{
+		Default://ACS calls found on their weapon or ClassBaseTID
+			break;
+		Case 27:
+			Counter = CheckInventory("IncredibleAmmo");
+			break;
+		Case 31:
+			Counter = CheckInventory("PullCharge");
+			break;
+		Case 33:
+			Counter = CheckInventory("Quaking");//Wind, ODuo
+			break;
+		Case 52:
+			Counter = CheckInventory("StoneBossCharge");
+			break;
+		Case 57:
+			Counter = CheckInventory("CrystalEyeCharge");
+			break;
+		Case 92:
+			Counter = CheckInventory("CrabHealingAmmo");
+			break;
+		Case 103:
+			Counter = CheckInventory("ChillHealthFlag");
+			break;
+		Case 107:
+			Counter = CheckInventory("SolarHoldFlag");
+			break;
+		Case 204:
+			Counter = CheckInventory("JoeGrenadeCharge");
+			break;
+		Case 305:
+			Counter = CheckInventory("MWSShieldCharge");
+			break;
+		Case 306:
+			Counter = CheckInventory("HSHDashPower");
+			break;
+		Case 500:
+			Counter = CheckInventory("TerraCurrentRadius");
+			break;
+		Case 503:
+			Counter = CheckInventory("MarsSpreadFlag");
+			break;
+		Case 503:
+			Counter = CheckInventory("MarsSpreadFlag");
+			break;
+		Case 802:
+			Counter = CheckInventory("TeslaCoilAmmo");
+			break;
+//		Case 805:
+//			Counter = CheckInventory("PirateWaterPush");
+//			break;
+	}
+	SetResultValue(Counter);
+}
+//MMB is 802/3/4....
+//MMK is 300/1/2/3 //WT is 304/5/6
+//MMV is 500
+script "cbm_FloorQuakeDamage" (int maxRange, int QuakePower, int Which)
+{
+	int userTID = ActivatorTID();
+	int userTeam = ACS_ExecuteWithResult(143,0);
+	int zDist;
+	str TheClass;
+	Switch(Which){
+		Case 557:
+			TheClass = "Neptune";
+			break;
+		Case 90:
+			TheClass = "Concreteman";
+			break;
+		Case 66:
+			TheClass = "Windman";
+			break;
+		Case 1052:
+			TheClass = "Stoneman2";
+			break;
+		Case 52:
+			TheClass = "Stoneman";
+			break;
+		Case 33:
+			TheClass = "Hardman";
+			break;
+	}
+	str SpawnName = StrParam(s:TheClass,s:"_FloorQuakeSpawn");
+	//Log(s:"maxRange = ",i:maxRange,s:" \\ QuakePower = ",i:QuakePower);
+	for(int p = 0;p < ServerMAX; p++)
+	{
+		if(!PlayerInGame(p))
+		{
+			continue;
+		}
+		if(IsTeamGame)
+		{
+			if(userTeam == GetPlayerInfo(p, PLAYERINFO_TEAM))
+			{
+				continue;
+			}
+		}
+		if(xyDistance(0, p+1000) < maxRange && zDistance(0, p+1000) >= -32 && zDistance(0, p+1000) <= 32 && userTID != p+1000)
+		{
+			//Log(s:"xyDist = ",i:xyDistance(0, p+1000),s:" \\ zDist = ",i:zDistance(0, p+1000));
+			//SpawnForced(SpawnName,GetActorX(p+1000),GetActorY(p+1000),GetActorZ(p+1000),0,QuakePower);
+			SpawnProjectile(userTID,SpawnName,QuakePower,0,p,0,0);
+		}
+	}
+}
+
+
+
+script "cbm_SetActorPropertyMath" (int jump)
+{
+	switch (jump) {
+	//Darkman 1Lite
+		case 18:
+	//Darkman 1
+		case 17:
+			int DarkSpeed = 0.006;
+			if(jump==18){DarkSpeed = 0.002;}
+			DarkSpeed *= 100-min(PlayerHealth()*100/GetActorProperty(0,APROP_SPAWNHEALTH),100);
+			SetActorProperty(0,APROP_SPEED,(1.0+DarkSpeed));
+			break;
+	//Star gravity
+	    case 11:
+			SetActorProperty(0, APROP_Gravity, min(GetActorProperty(0, APROP_Gravity),0.7));
+			break;
+	//Cloud gravity
+		case 10:
+			SetActorProperty(0, APROP_Gravity, min(GetActorProperty(0, APROP_Gravity),0.4));
+			break;
+	//Darkman 1Lite old
+		case 3:
+			int healthSpeedL = 0.002;
+			healthSpeedL *= 100-min(PlayerHealth(),100);
+			SetActorProperty(0,APROP_SPEED,(1.0+healthSpeedL));
+			break;
+	//Darkman 1 old
+		case 2:
+			int healthSpeed = 0.006;
+			healthSpeed *= 100-min(PlayerHealth(),100);
+			SetActorProperty(0,APROP_SPEED,(1.0+healthSpeed));
+			break;
+
+	//Bot Revert
+		case -2:
+			int o1 = GetActorProperty(0,APROP_SPEED);
+			SetActorProperty(0,APROP_SPEED,max(o1,o1*-1));
+			break;
+	//Bot Reverse
+		case -1:
+			int o2 = GetActorProperty(0,APROP_SPEED);
+			SetActorProperty(0,APROP_SPEED,min(o2,o2*-1));
+			break;
+		default:
+			Log(s:"Error! Invalid switch [",i:jump,s:"]for cbm_SetActorPropertyMath!");
+			break;
+	}
+}
+
+script "cbm_HealthDamageRage" (int jump)
+{
+	int The_Math = 10;
+	if(GetActorProperty(0, APROP_SPAWNHEALTH) <= 500){The_Math = 1;}
+	switch (jump) {
+
+	//Pluto
+		case 27:
+			int PlutoDiff = CheckInventory("LastHealthFlag")-max(PlayerHealth(),0);
+			if (PlutoDiff>0) {
+				if(!CheckInventory("PlutoIsDashing")){
+					TakeInventory("BreakingIntoADashAmmo",max(PlutoDiff*30/The_Math,0));
+				}
+				TakeInventory("LastHealthFlag",PlutoDiff);
+			} else if (PlutoDiff<0) {
+				GiveInventory("LastHealthFlag",-PlutoDiff);
+			}
+            int PlutoSpeed = 0.000901;//0.00115;
+            PlutoSpeed *= CheckInventory("BreakingIntoADashAmmo");
+			SetActorProperty(0,APROP_SPEED,(1.0+PlutoSpeed));
+            break;
+	//Woodman ammo
+		case 19:
+			int WoodDiff = CheckInventory("LastHealthFlag")-max(PlayerHealth(),0);
+			if (WoodDiff>0) {
+				GiveInventory("IncredibleAmmo",max(WoodDiff*2/The_Math,0));
+				TakeInventory("LastHealthFlag",WoodDiff);
+			} else if (WoodDiff<0) {
+				GiveInventory("LastHealthFlag",-WoodDiff);
+			}
+			break;
+
+	//Magma ammo
+		case 14:
+			int MagmaDiff = CheckInventory("LastHealthFlag")-max(PlayerHealth(),0);
+			if (MagmaDiff>0) {
+				TakeInventory("VolcanicBreakfastAmmo",max(MagmaDiff/(2*The_Math),0));
+				TakeInventory("LastHealthFlag",MagmaDiff);
+			} else if (MagmaDiff<0) {
+				GiveInventory("LastHealthFlag",-MagmaDiff);
+			}
+			break;
+	//Junk leak
+	    case 13:
+			int JunkLoss = CheckInventory("LastHealthFlag") - max(PlayerHealth(),0);
+			if (junkLoss>0) {
+				GiveInventory("JunkLeakStock",JunkLoss*(9*(The_Math==1)+1));
+				TakeInventory("LastHealthFlag",JunkLoss);
+			} else if (JunkLoss<0) {
+				GiveInventory("LastHealthFlag",-JunkLoss);
+			}
+			break;
+	//Grenade Man Death
+		case 5:
+			SetResultValue(CheckInventory("LastHealthFlag")/(3*The_Math));
+			break;
+	//Grenade Man
+		case 4:
+			int GreDiff = CheckInventory("LastHealthFlag") - max(PlayerHealth(),0);
+			if (GreDiff>0) {
+				if(!CheckInventory("CuteBombDrain")){
+					GiveInventory("ThatFeltGoodAmmo",max(GreDiff/(3*The_Math),0));
+				}
+				TakeInventory("LastHealthFlag",GreDiff);
+			} else if (GreDiff<0) {
+				GiveInventory("LastHealthFlag",-GreDiff);
+			}
+			int GrenadeSpeed = 0.012;
+			GrenadeSpeed *= CheckInventory("ThatFeltGoodAmmo");
+			SetActorProperty(0,APROP_SPEED,(1.0+GrenadeSpeed));
+			break;
+		default:
+			Log(s:"Error! Invalid switch [",i:jump,s:"]for cbm_HealthDamageRage!");
+			break;
+	}
+}
+
+
+
+script "cbm_GiveIfPlayerHitMe" (int mode, int ExtraData1, int ExtraData2)
+{
+	int O_TID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",8);
+	int H_TID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2);
+	//log(s:"Owner TID = ",i:O_TID);
+	//log(s:"Hitter TID = ",i:H_TID);
+	//log(s:"Mode = ",i:mode);
+	//log(s:"ExtraData1 = ",i:ExtraData1);
+	//log(s:"ExtraData2 = ",i:ExtraData2);
+	if(H_TID == 0 || mode == 0){//Actual different TID
+		terminate;
+	}
+	if(H_TID != O_TID && ClassifyActor(H_TID) & ACTOR_PLAYER){//Owner didn't hit self AND Hitter is a Player
+		int O_TID_Team = ACS_ExecuteWithResult(143,O_TID,1);
+		int H_TID_Team = ACS_ExecuteWithResult(143,H_TID,1);
+		//log(s:"Hitter Team = ",i:H_TID_Team);
+		//log(s:"Owner Team = ",i:O_TID_Team);
+		if(H_TID_Team == TEAM_NONE || H_TID_Team != O_TID_Team){//No teams OR Different teams
+			switch (mode) {
+				default:
+					break;
+				case 47://log(s:"Gave SkullCounter");
+					GiveActorInventory(O_TID,"SkullM_CounterTime_P",1);
+					break;
+				case 107://log(s:"Gave Solar");
+					GiveActorInventory(O_TID,"SunAmmo",ExtraData1);
+					GiveActorInventory(O_TID,"SolarInfernoAmmo",(ExtraData1*0.11)>>16);
+					GiveActorInventory(O_TID,"SolarM_HeadSunCounter_P",1);
+					break;
+				case 501://log(s:"Gave MercurySnatch");
+					GiveActorInventory(O_TID,"MercurySnatchPickup",1);
+					break;
+				case 808://log(s:"Gave KingCounter");
+					GiveActorInventory(O_TID,"TheKingShieldCounter",1);
+					break;
+			}
+		}
+	}
+}
+
+script "cbm_countinv_snatcher" (int Pointer)
+{
+	if(Pointer>0){
+		SetActivator(0,Pointer);
+	}
+	//Case -1917:
+	SetResultValue(CheckInventory("PirateTreasureStack"));
+}
+
+//   ___
+//  / _ \
+// | | | |
+// | | | |
+// | |_| |
+//  \___/ 
+
+script "cbm_BBA_SetMugShot" (int Which) CLIENTSIDE
+{
+	if(ConsolePlayerNumber() != PlayerNumber()){
+		terminate;
+	}//SetMugShotState applies to every player...for some reason
+	switch (Which) {
+		Default:
+			SetMugShotState("Normal");
+			break;
+		Case 1:
+			SetMugShotState("Pain");
+			break;
+		Case 2:
+			SetMugShotState("Ouch");
+			break;
+		Case 3:
+			SetMugShotState("Rampage");
+			break;
+		Case 4:
+			SetMugShotState("Grin");
+			break;
+		Case 5:
+			SetMugShotState("Death");
+			break;
+		Case 6:
+			SetMugShotState("XDeath");
+			break;
+		Case 7:
+			SetMugShotState("God");
+			break;
+		Case 8:
+			SetMugShotState("GodAnimated");
+			break;
+		Case 9:
+			SetMugShotState("Quad");
+			break;
+	}
+}
+
+script "cbm_bbabfg" (int maxRange)
+{
+	if(maxRange == 0){terminate;}
+
+	int userTID;
+	int userTeam = -1;
+
+	if(ActivatorTID() == 0)
+	{
+		userTID = ACS_ExecuteWithResult(257,0);
+		userTeam = ACS_ExecuteWithResult(143,0);
+	}
+	else
+	{
+		userTID = ActivatorTID();
+	}
+	str SpawnName = StrParam(s:"BBA_BFGTracerSpawner_",i:userTeam);
+	for(int p = 0;p < ServerMAX; p++)
+	{
+		if(!PlayerInGame(p))
+		{
+			continue;
+		}
+		if(IsTeamGame)
+		{
+			if(userTeam == GetPlayerInfo(p, PLAYERINFO_TEAM))
+			{
+				continue;
+			}
+		}
+
+		if(xyzDistance(0, p+1000) < maxRange && userTID != p+1000)//&& !CheckActorInventory(p+1000, "IsDead")){
+		{
+			SetActorAngle(0, p);
+			GiveInventory(SpawnName,1);
+			//Spawn("BBA_BFGTracer", GetActorX(0), GetActorY(0), GetActorZ(0), 0, p);
+		}
+
+	}
+}
+
+
+//  __
+// /_ |
+//  | |
+//  | |
+//  | |
+//  |_|
+
+//  ___
+// |__ \
+//    ) |
+//   / /
+//  / /_
+// |____|
+
+//  ____
+// |___ \
+//   __) |
+//  |__ <
+//  ___) |
+// |____/
+
+
+script "cbm_GeminiClone_Disconnect" (int p) DISCONNECT//Might not be needed
+{
+	Thing_Remove(p+1200);//Gemini Clone
+}
+
+// Gemini Clones Spawner
+script "cbm_GeminiCloneSpawner" (int j)
+{
+	if (j==2) {
+		bool oneFound = false;
+		bool twoMany = false;
+		int cloner;
+		for(int i=0; i<64; i++) {//MAX_PLAYERS
+			if (CheckActorInventory(1000 + i, "CloneSpawning")>0) {
+				if (!oneFound) {
+					cloner = 1000 + i;
+					oneFound = true;
+				} else {
+					twoMany = true;
+					takeActorInventory(1000 + i, "CloneSpawning", 999);
+					giveActorInventory(1000 + i, "CloneRareBug", 1);
+				}
+			}
+		}
+		if (twoMany) {
+			takeActorInventory(cloner, "CloneSpawning", 999);
+			giveActorInventory(cloner, "CloneRareBug", 1);
+			//SetActorState(0, "Death");
+			//thing_destroy(ActivatorTID(),0);
+			//DamageThing(0);
+			Thing_Remove(0);
+			terminate;
+		}
+		if (oneFound) {
+			Thing_ChangeTID(0, cloner + 200);
+			//SpawnProjectile(activatorTID(), "GemCloneVisual", GetActorAngle(0), 0, 0, 0, cloner+300);
+			giveActorInventory(cloner, "CloneSpawned", 1);
+			takeActorInventory(cloner, "CloneSpawning", 999);
+			terminate;
+		}
+		//SetActorState(0, "Death");
+		//thing_destroy(ActivatorTID(),0);
+		//DamageThing(0);
+		Thing_Remove(0);
+		terminate;
+	}
+	if (j==1) { //This doesn't make a loyal clone
+//		SpawnProjectile(activatorTID(), "GemClone", GetActorAngle(0), 0, 0, 0, activatorTID()+200);
+		Spawn("GemClone", GetActorX(activatorTID()), GetActorY(activatorTID()), GetActorZ(activatorTID()), activatorTID()+200, GetActorAngle(activatorTID()));
+	}
+	TakeInventory("cloneAngle",999);
+	GiveInventory("cloneAngle",GetActorAngle(0) >> 8);
+}
+
+// Reposition sync
+script "cbm_GeminiCloneSync" (int clone_HP, int owner_MaxHP)
+{
+	if(checkInventory("CloneID")==0) {
+		giveInventory("CloneID", (ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2)-999));
+	}
+	int owner = (checkInventory("CloneID") + 999);
+	//log(s:"CloneID: ",i:owner);
+	//log(s:"Clone percent HP Left: ",i:clone_HP*100/owner_MaxHP,s:" <> owner_MaxHP: ",i:owner_MaxHP);
+	//log(s:"I HAVE THE POWAH ",i:checkActorInventory(owner, "CloneSpawned"));
+	TakeActorInventory(owner, "SeeingDoubleAmmo", 9999);
+	GiveActorInventory(owner, "SeeingDoubleAmmo", clone_HP*100/owner_MaxHP);
+	TakeActorInventory(owner, "CloneFiring", 999);
+	GiveActorInventory(owner, "CloneFiring", CheckActorInventory(owner+200, "CloneFiring"));
+	if(clone_HP>0 && GetActorProperty(owner, APROP_HEALTH)>0 && CheckActorInventory(owner, "CloneSpawned")>0) {
+		//log(s:"Is Alive");
+		if (CheckActorInventory(owner, "cloneStationary")==0) {
+			int cloneAngle = CheckActorInventory(owner, "cloneAngle") << 8;
+			//print(i:cloneAngle);
+			//log(s:"CloneAngle: ",i:cloneAngle);
+			int cloneDistanceInv = CheckActorInventory(owner, "cloneDistance");
+			int cloneDistanceX = 15.0;
+			cloneDistanceX *= cloneDistanceInv;
+			int cloneDistanceY = FixedMul(cloneDistanceX,sin(cloneAngle));
+			cloneDistanceX = FixedMul(cloneDistanceX,cos(cloneAngle));
+			if(!SetActorPosition(owner+200, GetActorX(owner)+cloneDistanceX, GetActorY(owner)+cloneDistanceY, GetActorZ(owner+200), 0)) {
+				SetActorPosition(owner+200, GetActorX(owner)+cloneDistanceX, GetActorY(owner)+cloneDistanceY, GetActorZ(owner), 0);
+			}
+			if (cloneDistanceInv<=1) {
+				SetActorState(owner+200, "SummonCooldown");
+			}
+		}
+		SetActorAngle(0, GetActorAngle(owner+200));
+		SetActorPosition(0, GetActorX(owner+200), GetActorY(owner+200), GetActorZ(owner+200), 0);
+	} 
+	else {
+		if(CheckActorInventory(owner, "cloneBug")==0) {
+			//print(s:"Some sort of rare bug has happened, Tell the Devs!");
+			TakeActorInventory(owner, "SeeingDoubleAmmo", clone_HP*100/owner_MaxHP/2);
+			TakeActorInventory(owner, "cloneSpawned", 999);		
+		}
+		TakeActorInventory(owner, "cloneBug", 999);
+		SetActorState(0, "Death2");
+		Thing_Remove(owner+200);
+		//log(s:"The Clone should be dead");
+	}
+}
+
+
+
+script "cbm_DocDistSpeedReturn" (int MainNum, int TID)
+{
+	//int PreventZero = xyzDistance(0,TID)/MainNum;
+	//Log(s:"cbm_DocDistSpeedReturn = ",i:MainNum,s:" [][] xyzDistance = ",i:xyzDistance(0,TID),s:" [][] PreventZero = ",i:PreventZero);
+	SetResultValue(xyzDistance(0,TID)/MainNum);
+}
+
+//  _  _
+// | || |
+// | || |_
+// |__   _|
+//    | |
+//    |_|
+
+
+script "cbm_Pharaoh_OOC" (void)
+{
+	SetActivatorToTarget(0);
+	if(PlayerNumber() == -1 || CheckInventory("IsDead") || !PlayerInGame(PlayerNumber()) || !CheckInventory("ManInGauseAmmo")){
+		SetResultValue(0);
+	}
+}
+
+script "cbm_LocalRingSnd" (void) CLIENTSIDE
+{
+	LocalAmbientSound("weapon/RingChime",45);
+}
+
+script C_DIVELOCKDISPLAY (void)// CLIENTSIDE
+{
+	int TID = CheckInventory("SuplexID")+999;
+	while(CheckInventory("SuplexID")>0)
+	{
+		hudmessageonactor(TID,PlayerNumber()+4000,640,480,0,-24,9028,"DIVLOCK","",0.1,CR_UNTRANSLATED,0);
+		Delay(1);
+	}
+}
+
+script "cbm_divesonarrender" (int targetTID)
+{
+	if(CheckActorInventory(targetTID, "PowerDiveSonarLockon")>0){terminate;}
+	
+	GiveActorInventory(targetTID, "PowerDiveSonarLockonG", 1);
+
+	while(CheckActorInventory(targetTID, "PowerDiveSonarLockon")>0){
+	Delay(1);
+	hudmessageonactor(targetTID,PlayerNumber()+4000 + (targetTID -1000),640,480,0,-24,9028,"DIVLOCK","",0.1,CR_UNTRANSLATED,0);
+	}
+}
+
+script "cbm_divesonardetect" (int maxRange)
+{
+	int targetTID;
+	int distance;
+	int userTID;
+	int userTeam = -1;
+
+	if(ActivatorTID() == 0){
+		userTID = ACS_ExecuteWithResult(257, 0);
+		userTeam = GetPlayerInfo(userTID - 1000, PLAYERINFO_TEAM);
+	}
+	else{
+		userTID = ActivatorTID();
+	}
+
+	for(int p = 0;p < ServerMax; p++){
+		if(!PlayerInGame(p)){
+			continue;
+		}
+		if(IsTeamGame){
+			if(userTeam == GetPlayerInfo(p, PLAYERINFO_TEAM)){
+				continue;
+			}
+		}
+		targetTID = p+1000;
+		if(xyzDistance(0, targetTID) < maxRange && userTID != targetTID && !CheckActorInventory(targetTID, "IsDead")){
+			SetActivator(userTID);
+			ACS_NamedExecuteAlways("cbm_divesonarrender",0,targetTID);
+		}
+	}
+}
+
+
+//  _____
+// | ____|
+// | |__ 
+// |___ \
+//  ___) |
+// |____/
+
+
+//A note for the next two scripts, these are from the following file "lod-addon1.2pk3"
+//It was used for the hookshot weapon for WitchHunter
+// By IjonTichy, modified by Ivan, modified for this mod (CBM) by Celebi (Then tweaked for core!)
+
+Script "cbm_WaveHookshot" (int PlayerID, int Vel, int Moving)
+{
+	int myx, myy, myz;
+	int vx, vy, vz, magnitude, nx, ny, nz;
+
+	myx = GetActorX(0);
+	myy = GetActorY(0);
+	myz = GetActorZ(0);
+
+	while(1)
+	{
+		if(Moving > 0){//If the hook is set to move, the positions need to be updated.
+			myx = GetActorX(0);
+			myy = GetActorY(0);
+			myz = GetActorZ(0);
+		}
+		vx = myx - GetActorX(PlayerID);
+		vy = myy - GetActorY(PlayerID);
+		vz = myz - GetActorZ(PlayerID);//+1.0
+
+        magnitude = magnitudeThree(vx >> 16, vy >> 16, vz >> 16);
+
+        if(magnitude != 0) {
+            nx = vx / magnitude; ny = vy / magnitude; nz = vz / magnitude;
+        }
+        else {
+            nx = 0; ny = 0; nz = 0;
+        }
+
+		//Log(s:"nx: ",f:nx,s:" <> ny: ",f:ny,s:" <> nz: ",f:nz);
+		//Log(s:"magnitude: ",i:magnitude);
+		//if(xyDistance(PlayerID, 0)>1500){break;}
+		//Thing_Stop(0);
+		if(GetPlayerInput(PlayerID-1000, INPUT_BUTTONS) & BT_JUMP && magnitude < 50){
+			SetActorVelocity(PlayerID, nx*Vel, ny*Vel, nz*Vel, false, false);
+		}
+		else{
+			SetActorVelocity(PlayerID, nx*Vel, ny*Vel, nz*Vel, true, true);
+		}
+		GiveActorInventory(PlayerID,"WaveM_TakeHookshotAmmo_P",1);
+
+		Delay(1);
+        if(CheckActorInventory(PlayerID,"WaveHookKillFlag") || CheckActorInventory(PlayerID,"IsDead") ||
+			CheckActorInventory(PlayerID,"HookshotStamina") < 1|| CheckActorInventory(PlayerID,"FlightDisableFlag"))
+		{
+			ActivatorSound("S3_K/MetalSpark", 127);
+			break;
+		}
+	}
+    Thing_Remove(0);//Remove Hook
+	Delay(1);
+
+	TakeActorInventory(PlayerID,"WaveHookWasFired",9);
+	GiveActorInventory(PlayerID,"WaveHookNeedLand",1);
+	GiveActorInventory(PlayerID,"WaveHookKillFlag",1);
+}
+
+//This spawns the sprite
+Script "cbm_WaveHookshotFX" (int playerTid, int P_team) CLIENTSIDE
+{
+    int plX; int plY;  int plZ;
+    int grX; int grY;  int grZ;
+    int vX;  int vY;   int vZ;
+    int nX;  int nY;   int nZ;
+    int bX;  int bY;   int bZ;
+    int magnitude;
+    int pointCount;
+    int pointOffset;
+	int density = 18;
+	str SpawnName = StrParam(s:"HookshotFX",i:P_team);
+
+	while((ClassifyActor(0) == 128||ClassifyActor(0) == 256) && CheckFlag(0,"NOGRAVITY") == true && GetActorProperty(playerTid, APROP_HEALTH)>0){
+
+		plX = GetActorX(playerTid); grX = GetActorX(0);
+		plY = GetActorY(playerTid); grY  = GetActorY(0);
+		plZ = GetActorZ(playerTid)+(28 << 16); grZ  = GetActorZ(0);
+		//+28 to the spawn height of ^the player so the chain doesn't spawn from their feet.
+		vX = grX - plX;   vY = grY - plY;   vZ = grZ - plZ;
+
+		magnitude = magnitudeThree(vX >> 16, vY >> 16, vZ >> 16);
+
+		pointCount  = magnitude / density;
+		pointOffset = magnitude - (pointCount * density);
+
+
+		//if(grX == 0 && grY == 0 && grZ == 0){terminate;} 
+
+		if (magnitude != 0)
+		{
+			nX = vX / magnitude; nY = vY / magnitude; nZ = vZ / magnitude;
+
+			int i; int j;
+			for (i = 0; i < pointCount; i++)
+			{
+				j = (i * density) + pointOffset;
+
+				bX = (nX * j) + plX;
+				bY = (nY * j) + plY;
+				bZ = (nZ * j) + plZ;//+(16 << 16);
+				if(i>0)
+					Spawn(SpawnName, bX, bY, bZ);
+			}
+		}
+		Delay(1);
+	}
+}
+
+//Chargeman
+script "cbm_traingrab" (int target)
+{
+	SetActivatorToTarget(0);
+	if(GetActorProperty(target, APROP_HEALTH)<=0 || GetActorProperty(ActivatorTID(), APROP_HEALTH)<=0 ||
+	  !customgrab(target,-100,64,100000,0) ||
+	  ((GetPlayerInput(target-1000, INPUT_BUTTONS) & BT_JUMP) && CheckActorInventory(target, "ChargeManJumpBuffer") == 0)){
+		GiveInventory("ChargeManJumpBuffer",1);
+		TakeActorInventory(target, "ChargeWildRideFlag", 1);
+		TakeInventory("ChargeManLink",9999);
+	}
+}
+
+function bool customgrab (int target, int xOff, int zOff, int range, int angle)
+{
+	bool End = false;
+	//if (target==999) { return true; }
+	int a = getActorAngle(0) + (angle<<8);
+	int xDiff = (getActorX(0)+(100 + xOff)*cos(a)) - getActorX(target);
+	int yDiff = (getActorY(0)+(100 + xOff)*sin(a)) - getActorY(target);
+	int zDiff = (getActorZ(0)+(zOff<<16)) - getActorZ(target);
+	
+	int xDiffI = xDiff>>16;
+	int yDiffI = yDiff>>16;
+	int zDiffI = zDiff>>16;
+	
+	if (xDiffI*xDiffI+yDiffI*yDiffI+zDiffI*zDiffI < range) {
+		SetActorVelocity(target, xDiff, yDiff, zDiff, 0, 0);
+		End = true;
+	}
+	return End;
+}
+
+script "cbm_chargemanlink" (int driver, int passenger)
+{
+	if(passenger==0 || passenger == driver || passenger < 1000 || passenger > 1064){terminate;}
+	// !IsTeamGame || 
+	if((GetPlayerInput(passenger-1000, INPUT_BUTTONS) & BT_JUMP) == false){terminate;}
+	if(CheckActorInventory(driver, "ChargeManLink")>0){terminate;}
+	GiveActorInventory(passenger, "ChargeManJumpBuffer", 1);
+	GiveActorInventory(passenger, "ChargeWildRideFlag", 1);
+	GiveActorInventory(driver, "ChargeManLink", passenger);
+	PlaySound(driver,"weapon/TrainRide",7,1.0,false,1.5);
+	//Log(s:"driver is ", i:driver, s:" passenger is ", i:passenger);
+}
+
+script "cbm_gettrainpassenger" (void)
+{
+	SetActivatorToTarget(0);
+	SetResultValue(CheckInventory("ChargeManLink"));
+}
+
+
+
+//    __
+//   / /
+//  / /_
+// | '_ \
+// | (_) |
+//  \___/
+
+//  ______
+// |____  |
+//     / /
+//    / /
+//   / /
+//  /_/
+
+//   ___
+//  / _ \
+// | (_) |
+//  > _ <
+// | (_) |
+//  \___/
+
+//   ___
+//  / _ \
+// | (_) |
+//  \__, |
+//    / /
+//   /_/
+
+script "cbm_SplashW_RedFishButtonCheck" (void)
+{
+	SetActivatorToTarget(0);
+	if(GetPlayerInput(-1,INPUT_BUTTONS) & (BT_ATTACK|BT_ALTATTACK))
+		SetResultValue(2);
+}
+
+script "cbm_SplashW_RedFishGiver" (int ownerTID, int maxRange)
+{
+	int targetTID;
+
+	int SplashyArray = -8200+ownerTID*-1;
+	int userTeam = GetPlayerInfo(ownerTID-1000,PLAYERINFO_TEAM);
+
+	for(int p = 0;p < ServerMAX; p++){
+		if(!PlayerInGame(p)){
+			continue;
+		}
+		if(isTeamGame){
+			if(userTeam == GetPlayerInfo(p,PLAYERINFO_TEAM)){
+				continue;
+			}
+		}
+		targetTID = p+1000;
+		if(!CheckSight(0,targetTID,0)){
+			continue;
+		}
+		if(GetUserArray(SplashyArray,"user_Fishy",p)){
+			continue;
+		}//PVPNoDamage
+		if(!CheckActorInventory(targetTID, "NoPushFlag") && xyzDistance(0, targetTID) < maxRange/* && ownerTID != targetTID*/){
+			if(CheckActorInventory(targetTID,"REDFISH!")){
+				continue;
+			}
+			else{
+				GiveActorInventory(targetTID,"REDFISH!",1);
+				SetUserArray(SplashyArray,"user_Fishy",p,1);
+			}
+		}
+	}
+}
+
+script "cbm_GetJewelInfo" (int gem)
+{
+	int power;
+	SetActivatorToTarget(0);
+	if(CheckInventory("JewelSlot1")==gem){power++;}
+	if(CheckInventory("JewelSlot2")==gem){power++;}
+	if(CheckInventory("JewelSlot3")==gem){power++;}
+	if(CheckInventory("JewelSlot4")==gem){power++;}
+
+	SetResultValue(power);
+}
+
+script "cbm_LocalJewelSnd" (void) CLIENTSIDE
+{
+	LocalAmbientSound("Columns_3/S_0F",127);
+}
+
+script "cbm_JewelThingDamage2" (int Power)
+{
+	if(Power>0){
+		//Log(s:"Attempted to do damage: ",i:Power);
+		Thing_Damage2(ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",8),Power,"JewelM_Shot");
+	}
+}
+
+Script "cbm_PlugLatch" (void)
+{
+	int TargetTID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",8);//Tracer
+	SetActivatorToTarget(0);
+
+	if(TargetTID==0){terminate;}
+
+	SetPointer(AAPTR_TRACER, TargetTID);
+
+	int OwnerTID = ActivatorTID();
+
+	if(IsTeamGame){
+		if(GetPlayerInfo(TargetTID-1000, PLAYERINFO_TEAM) == GetPlayerInfo(OwnerTID-1000, PLAYERINFO_TEAM)){
+		GiveInventory("PlugmanLatch",2);
+		}
+	}
+	GiveInventory("PlugmanLatch",1);
+
+	while(GetActorProperty(TargetTID, APROP_HEALTH)>0 && GetActorProperty(OwnerTID, APROP_HEALTH)>0 && xyzDistance(OwnerTID, TargetTID) < 700 && CheckInventory("PlugmanLatch")>0){
+		ACS_NamedExecuteAlways("cbm_DrawPlugCable", 0, TargetTID, OwnerTID, CheckInventory("PlugmanIsShocking"));
+		Delay(1);
+	}
+
+	SetPointer(AAPTR_TRACER,0);
+	TakeInventory("PlugmanLatch",999);
+}
+
+script "cbm_PlugHealthDrain" (int DrainHP)
+{
+	int player = ActivatorTID();
+	
+	if(GetActorProperty(0, APROP_SPAWNHEALTH) <= 500){DrainHP = 10;}
+	if(DrainHP <= 0)
+		DrainHP = 10;
+
+	SetActivator(0, AAPTR_Tracer);
+	If(CheckActorInventory(ActivatorTID(),"PVPNoDamage")>=1 || CheckActorInventory(ActivatorTID(),"PlugM_DontZapHP_F")>=1){terminate;}
+
+	if(ClassifyActor(ActivatorTID()) & ACTOR_PLAYER){
+		if(GetActorProperty(0, APROP_HEALTH) > DrainHP){
+			SetActorProperty(0, APROP_HEALTH, GetActorProperty(0, APROP_HEALTH) - DrainHP);
+		}
+		if(GetActorProperty(0, APROP_HEALTH) <= DrainHP){
+			SpawnProjectile(player, "PluggedEnemyFinalHit", 0, 10, 0, 0, 6300 + ActivatorTID());//PlugmanFinshingPlugHit
+			SetActorPosition(6300 + ActivatorTID(), GetActorX(0), GetActorY(0), GetActorZ(0) + 1835008, 0);
+		}
+	}
+}
+
+Script "cbm_DrawPlugCable" (int grappleTid, int playerTid, int ang) CLIENTSIDE
+{
+    int plX; int plY;  int plZ;
+    int grX; int grY;  int grZ;
+    int vX;  int vY;   int vZ;
+    int nX;  int nY;   int nZ;
+    int bX;  int bY;   int bZ;
+    int magnitude;
+    int pointCount;
+    int pointOffset;
+	int density = 18;
+	
+	int zOff;
+	
+	int angle = GetActorAngle(playerTid);
+	str SpawnName;
+	
+	if(grappleTid!=0){
+		zOff = 32.0;
+		SpawnName = StrParam(s:"PlugCableFX",i:ACS_ExecuteWithResult(143,0));
+	}
+	else{
+		SpawnName = StrParam(s:"PlugCableFX",i:ACS_ExecuteWithResult(143,playerTid,1));
+	}
+
+    plX = GetActorX(playerTid) + cos(angle + 0.75) * 17; grX = GetActorX(grappleTid);
+    plY = GetActorY(playerTid) + sin(angle + 0.75) * 17; grY  = GetActorY(grappleTid);
+    plZ = GetActorZ(playerTid)+ 28.0; grZ  = GetActorZ(grappleTid) + zOff;
+
+    vX = grX - plX;   vY = grY - plY;   vZ = grZ - plZ;
+
+    magnitude = magnitudeThree(vX >> 16, vY >> 16, vZ >> 16);
+
+    pointCount  = magnitude / density;
+    pointOffset = magnitude - (pointCount * density);
+
+    if (magnitude != 0)
+    {
+        nX = vX / magnitude; nY = vY / magnitude; nZ = vZ / magnitude;
+
+        int i; int j;
+        for (i = 0; i < pointCount; i++)
+        {
+            j = (i * density) + pointOffset;
+
+            bX = (nX * j) + plX;
+            bY = (nY * j) + plY;
+            bZ = (nZ * j) + plZ;//+(16 << 16);
+
+            Spawn(SpawnName, bX, bY, bZ, 0, ang);
+        }
+    }
+}
+
+
+//  __    ___
+// /_ |  / _ \
+//  | | | | | |
+//  | | | | | |
+//  | | | |_| |
+//  |_|  \___/
+
+script "cbm_bladedropcheck" (void)
+{
+	//Log(i:(GetActorPitch(0)>>8)*360/256);
+	if((GetPlayerInput(-1, INPUT_BUTTONS) & BT_JUMP) && GetActorPitch(0) > 0.11){//0.08
+		//Printbold(s:"drop");
+		SetResultValue(1);
+	}
+	else
+	{
+		SetResultValue(0);
+	}
+}
+
+script "cbm_ChillSlipNSlide" (int TheAngle, int TheThrust, int maxRange)
+{
+
+	int userTID = ACS_ExecuteWithResult(257,0);
+	int userTeam = ACS_ExecuteWithResult(143,0);
+
+	for(int p = 0;p < ServerMAX; p++)
+	{
+		if(!PlayerInGame(p) || p+1000 == userTID)
+		{
+			continue;
+		}
+		if(CheckActorInventory(p+1000,"NoPushFlag")){continue;}
+		if(IsTeamGame)
+		{
+			if(userTeam == GetPlayerInfo(p, PLAYERINFO_TEAM))
+			{
+				if(!CheckActorInventory(p+1000,"ChillPuddleDelayACS_A"))
+				{
+					if(xyDistance(0, p+1000) < maxRange*2 && abs(zDistance(0, p+1000)) <= 31)
+					{
+						GiveActorInventory(p+1000,"ChillPuddleDelayACS_A",1);
+						GiveActorInventory(p+1000,"ChillPuddleAllySpeed",1);
+					}
+				}
+				continue;
+			}
+		}
+		if(!CheckActorInventory(p+1000,"ChillPuddleDelayACS_E"))
+		{
+			if(xyDistance(0, p+1000) < maxRange && abs(zDistance(0, p+1000)) <= 31)
+			{
+			//	if(p+1000 == userTID){
+					//GiveActorInventory(p+1000,"SelfSpeedPickupThatIsFake",1);
+			//	}
+				GiveActorInventory(p+1000,"ChillPuddleDelayACS_E",1);
+				SetActorVelocity(p+1000,FixedMul(cos(TheAngle),TheThrust << 16),FixedMul(sin(TheAngle),TheThrust << 16),GetActorVelZ(p+1000),0,0);
+			}
+		}
+	}
+
+
+}
+
+#DEFINE DEF_ChillMaxHP 650
+
+script "C_CHILLSHIELD" (int jump, int amount)//a most modular script for chill's shield
+{
+	int ChillMaxHP = GetActorProperty(0, APROP_SPAWNHEALTH);
+
+	int ChillMathRatio = ChillMaxHP*6/13;//30
+	int ChillShieldMax = ChillMaxHP*5/13;//25
+
+	int ChillHP = max(PlayerHealth(),0);
+	int ChillFlag = CheckInventory("ChillHealthFlag");
+
+	switch (jump) {
+		case 3://shield up
+			if(GetAmmoCapacity("ChillHealthFlag") != ChillMaxHP){
+				SetAmmoCapacity("ChillHealthFlag",ChillMaxHP);
+				SetAmmoCapacity("ChillShield",ChillShieldMax);
+			}
+			if(CheckInventory("ChillShield")<1){
+				if(ChillHP>ChillMaxHP){ChillHP = ChillMaxHP;}
+				TakeInventory("ChillHealthFlag",99999);
+				GiveInventory("ChillHealthFlag",ChillHP);
+				if(ChillHP < ChillMaxHP){
+					SetActorProperty(0,APROP_HEALTH,1);
+					HealThing(ChillMathRatio,ChillMathRatio);
+				}
+			}
+			GiveInventory("ChillShield",ChillShieldMax);
+			break;
+		case 2://shield break
+			SetActorProperty(0,APROP_HEALTH,1);
+			if(ChillFlag-amount >= 2){
+				int TempMax = ChillFlag-amount;
+				if(TempMax >= ChillMaxHP){TempMax = ChillMaxHP;}
+				HealThing(30000,TempMax);
+			}
+			break;
+		case 1://update health memory
+			if(ChillFlag >= ChillMaxHP){
+				break;
+			}
+			GiveInventory("ChillHealthFlag",ChillHP-ChillMathRatio);
+			if(CheckInventory("ChillHealthFlag") >= ChillMaxHP){
+				HealThing(30000,ChillMaxHP);
+			}
+			else{
+				SetActorProperty(0,APROP_HEALTH,1);
+				HealThing(30000,ChillMathRatio);
+			}
+			break;
+		case 0://armor loss on hit
+			if(CheckInventory("ChillShield")>0){
+				int Num_0 = ChillMathRatio;
+				if(ChillFlag >= ChillMaxHP){Num_0 = ChillMaxHP;}
+				TakeInventory("ChillShield",(Num_0 - ChillHP));
+				HealThing(30000,Num_0);
+				TakeInventory("ChillShieldCooldown",amount);
+			}
+			else{
+				TakeInventory("ChillShieldCooldown",amount);
+			}
+			break;
+		}
+}
+
+
+script "cbm_SolarSunMassPull" (int Vel, int maxRange)
+{
+	int targetTID, vx, vy, vz, magnitude, nx, ny, nz;
+
+	int userTID = ACS_ExecuteWithResult(257,0);
+	int userTeam = GetPlayerInfo(userTID-1000,PLAYERINFO_TEAM);
+
+	int myx = GetActorX(0);
+	int myy = GetActorY(0);
+	int myz = GetActorZ(0);
+
+	for(int p = 0;p < ServerMAX; p++){
+		if(!PlayerInGame(p)){
+			continue;
+		}
+		if(isTeamGame){
+			if(userTeam == GetPlayerInfo(p,PLAYERINFO_TEAM)){
+				continue;
+			}
+		}
+		targetTID = p+1000;
+		if(!CheckSight(0,targetTID,0)){
+			continue;
+		}
+		if(!CheckActorInventory(targetTID, "NoPushFlag") && xyzDistance(0, targetTID) < maxRange && userTID != targetTID){
+
+			vx = myx - GetActorX(targetTID);
+			vy = myy - GetActorY(targetTID);
+			vz = myz - GetActorZ(targetTID);
+			magnitude = magnitudeThree(vx >> 16, vy >> 16, vz >> 16);
+
+			if(magnitude != 0) {
+				nx = vx / magnitude; ny = vy / magnitude; nz = vz / magnitude;
+			}
+			else {
+				nx = 0; ny = 0; nz = 0;
+			}
+			SetActorVelocity(targetTID, nx*Vel/2, ny*Vel/2, nz*Vel/2, true, true);
+
+		}
+	}
+}
+
+//  __    __
+// /_ |  /_ |
+//  | |   | |
+//  | |   | |
+//  | |   | |
+//  |_|   |_|
+
+// ______
+// | ___ \
+// | |_/ /
+// | ___ \
+// | |_/ /
+// \____/
+
+script "cbm_DynamoScannerMissile" (int Which, int Target)
+{
+	if(Which>0){
+		int TargetTID = ActivatorTID();
+		int ScannerTID = -2100+TargetTID*-1;
+
+		for(int i=0; i<ServerMAX; i++) {
+			int ScannerArray = GetUserArray(ScannerTID,"user_Tagged",i);
+			if(ScannerArray>0){
+				//Log(s:"Player ",i:i,s:" times hit >> ",i:ScannerArray);
+				SpawnProjectile(TargetTID,"DynamoM_ScannerLBolt",ScannerArray,0,i,0,0);
+				SetUserArray(ScannerTID,"user_Tagged",i,0);
+			}
+		}
+	}
+	else{
+		SetActorVelocity(0, getActorX(target) - getActorX(0), getActorY(target) - getActorY(0), getActorZ(target) - getActorZ(0), 0, 0);
+	}
+}
+
+script "cbm_DynamoScannerCheck" (void)
+{
+	int ScannerTID = ActivatorTID();
+	int TargetTID = ScannerTID*-1-2100;
+
+	for(int i=0; i<ServerMAX; i++) {
+		if(GetUserArray(ScannerTID,"user_Tagged",i)>0){
+			if(!(getActorProperty(1000+i, APROP_Health)>0)) {
+				SetUserArray(ScannerTID,"user_Tagged",i,0);
+			}
+			else{GiveActorInventory(1000+i,"DynamoM_IsTagged_P",1);}
+		}
+	}
+
+}
+
+script "cbm_DynamoScannerHit" (void)
+{
+	int IsTracerEnemy = ACS_NamedExecuteWithResult("cbm_istracerenemy");
+	if(IsTracerEnemy){
+		int TracerTID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",8);
+		int TargetTID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2);
+		if(GetActorProperty(TracerTID,APROP_HEALTH)<=max(GetActorProperty(TracerTID,APROP_SPAWNHEALTH)/100,1)){
+			SpawnProjectile(TargetTID,"DynamoM_ScannerKiller_H",TracerTID-1000,1,TracerTID-1000,0,0);
+		}
+		int TempArr = GetUserArray(-2100+TargetTID*-1,"user_Tagged",TracerTID-1000);
+		SetUserArray(-2100+TargetTID*-1,"user_Tagged",TracerTID-1000,1+TempArr);
+	}
+
+	SetResultValue(IsTracerEnemy);
+}
+
+script "cbm_StickyColdWall" (int radius, int height, int WallZ)
+{
+	//Log(s:"radius = ",i:radius,s:"  height = ",i:height,s:"  WallZ = ",i:WallZ);
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	int team = ACS_ExecuteWithResult(143,0);
+	int i;
+
+	int playerX,playerY,playerZ;
+
+	int oldx = x;
+	int oldy = y;
+	int oldz = z;
+	int velx = GetActorVelX(0);
+	int vely = GetActorVelY(0);
+	int velz = GetActorVelZ(0);
+	int PlayerVelX,PlayerVelY,PlayerVelZ;
+	int PlayerSpeed;
+	int ObjectSpeed;
+	int SpeedDif;
+	GiveInventory("CutterFlag",1);
+
+	if(team==-1){
+		i = ACS_ExecuteWithResult(257);
+		while(CheckInventory("CutterFlag")){
+			If(PlayerInGame(i-1000)){
+				playerX = GetActorX(i);
+				playerY = GetActorY(i);
+				playerZ = GetActorZ(i);
+				PlayerVelX = GetActorVelX(i);
+				PlayerVelY = GetActorVelY(i);
+				PlayerVelZ = GetActorVelZ(i);
+				if(onStickyColdWallZ(z,playerZ,WallZ,height)){
+					if(onPlatformXY(x,y,playerX,playerY,radius)){
+						if(GetPlayerInput(i-1000, INPUT_BUTTONS) & (BT_JUMP)){
+							ThrustThingZ(i,(GetActorProperty(i,APROP_JumpZ) >> 16) * 4,0,0);
+						}
+						else{
+							PlayerSpeed = SpeedCheck(playerX, playerX - PlayerVelX, playerY, playerY - PlayerVelY);
+							ObjectSpeed = SpeedCheck(x, oldx, y, oldy);
+							If(ObjectSpeed > 0)
+								{SpeedDif = 1.0 - FixedDiv(PlayerSpeed, ObjectSpeed);}
+							Else
+								{SpeedDif = 0;}
+							If(SpeedDif > 0.20 && SpeedDif < 1.0)
+								{SetActorVelocity(i,velx + FixedMul(velx, SpeedDif), vely + FixedMul(vely, SpeedDif), velz, 0, 0);}
+							Else
+								{SetActorVelocity(i,velx, vely, velz, 0, 0);}
+						}
+					}
+				}
+			}
+			oldx = x;
+			oldy = y;
+			oldz = z;
+			delay(1);
+			x = GetActorX(0);
+			y = GetActorY(0);
+			z = GetActorZ(0);
+			velx = x-oldx;
+			vely = y-oldy;
+			velz = z-oldz;
+		}
+	}
+	else{
+		while(CheckInventory("CutterFlag")){
+			for(i=1000; i<ServerMAX+1000; i++){
+				If(PlayerInGame(i-1000)&&ACS_ExecuteWithResult(143,i,1)==team){
+					playerX = GetActorX(i);
+					playerY = GetActorY(i);
+					playerZ = GetActorZ(i);
+					PlayerVelX = GetActorVelX(i);
+					PlayerVelY = GetActorVelY(i);
+					PlayerVelZ = GetActorVelZ(i);
+					if(onStickyColdWallZ(z,playerZ,WallZ,height)){
+						if (onPlatformXY(x,y,playerX,playerY,radius)){
+							if (GetPlayerInput(i-1000, INPUT_BUTTONS) & (BT_JUMP)){
+								ThrustThingZ(i,(GetActorProperty(i,APROP_JumpZ) >> 16) * 4,0,0);
+							}
+							else{
+								PlayerSpeed = SpeedCheck(playerX, playerX - PlayerVelX, playerY, playerY - PlayerVelY);
+								ObjectSpeed = SpeedCheck(x, oldx, y, oldy);
+								If(ObjectSpeed > 0)
+									{SpeedDif = 1.0 - FixedDiv(PlayerSpeed, ObjectSpeed);}
+								Else
+									{SpeedDif = 0;}
+								If(SpeedDif > 0.20 && SpeedDif < 1.0)
+									{SetActorVelocity(i,velx + FixedMul(velx, SpeedDif), vely + FixedMul(vely, SpeedDif), velz, 0, 0);}
+								Else
+									{SetActorVelocity(i,velx, vely, velz, 0, 0);}
+							}
+						}
+					}
+				}
+			}
+			oldx = x;
+			oldy = y;
+			oldz = z;
+			delay(1);
+			x = GetActorX(0);
+			y = GetActorY(0);
+			z = GetActorZ(0);
+			velx = x-oldx;
+			vely = y-oldy;
+			velz = z-oldz;
+		}
+	}
+}
+
+function int onStickyColdWallZ (int tid1z, int tid2z, int WallZ, int height)
+{
+	int Final = tid1z+(WallZ<<16)-tid2z;
+	//Log(s:"Sticky Z DIFF = ",f:Final);
+	if (Final < 0){
+		//Log(s:"Sticky ---------Z");
+        return Final >= -height<<16;
+	}
+	//Log(s:"Sticky +++++++++Z");
+    return Final <= height<<16;
+}
+
+
+//  _   __
+// | | / /
+// | |/ /
+// |    \
+// | |\  \
+// \_| \_/
+
+script "cbm_EnkerArmorGiver" (void)
+{
+	if(CheckInventory("EnkerAbsorbCount")){
+		int ArmorPoints = PlayerArmorPoints();
+		if(CheckInventory("PowerFallingRespawnSpeed")){//Pits and friends
+			GiveInventory("MirrorChargeAmmo",1);
+			TakeInventory("LastArmorCount",99999);
+			GiveInventory("LastArmorCount",ArmorPoints);
+			terminate;
+		}
+		int MaxArmor = CheckInventory("DynamicArmorDosage_F");//GetArmorInfo(1);
+		if(MaxArmor==0)MaxArmor = 1;//FastWeapons leaves you with No Armor
+		int ArmorMemory = CheckInventory("LastArmorCount");
+		GiveInventory("MirrorChargeAmmo", max(100-((MaxArmor-ArmorMemory+ArmorPoints)*100/MaxArmor),1) );
+		TakeInventory("LastArmorCount",99999);
+		GiveInventory("LastArmorCount",ArmorPoints);
+	}
+}
+//  _    _   _____ 
+// | |  | | |_   _|
+// | |  | |   | |
+// | |/\| |   | |
+// \  /\  /   | |
+//  \/  \/    \_/
+
+// __       __
+// \ \     / /
+//  \ \   / /
+//   \ \ / /
+//    \ V /
+//     \_/
+
+script "cbm_MarsRocketJump" (int thrust, int radius, int zOffset)
+{
+	int target = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",2);
+
+	//Log(i:xyzDistance(0, target));
+	if(xyzDistance(0, target) <= radius+16){
+		SetResultValue(0);
+		actorPull(0, target, -thrust, 0, 0, zOffset<<16);
+	}
+}
+
+
+script "cbm_uranusgrab" (void)
+{
+	int grabTID = ACS_NamedExecuteWithResult("cbm_GetPointerTID_147",8);
+	//Log(i:grabTID);
+	if(grabTID == 0){
+		TakeInventory("UranusCarrying",1);
+		SetPointer(AAPTR_TRACER, 0);
+		terminate;
+	}
+	if(CheckInventory("UranusCarrying")){
+		if(!customgrab(grabTID,10,0,100000/4,0)){
+			TakeInventory("UranusCarrying",1);
+			SetPointer(AAPTR_TRACER, 0);
+		}
+	}
+}
+
+
+
+// ______
+// |  ___|
+// | |_ _   _ _ __   ___
+// |  _| | | | '_ \ / __|
+// | | | |_| | | | | (__
+// \_|  \__,_|_| |_|\___|
+                    
+
+function void hudmessageonactor(int tid, int msgID, int hudX, int hudY, int xOffset, int yOffset, int range, str sprite, str text, int holdTime, str colour, int swap)
+{
+	int dist, angle, vang, pitch, x, y;
+
+	if (hudX == 0) { hudX = 640; }
+	if (hudY == 0) { hudY = 480; }
+
+	if(sprite != -1)
+	{
+		SetFont(sprite);
+		text = "A";
+		//offset = 0.1;
+	}
+
+	SetHudSize(hudX, hudY, 1);
+	x = GetActorX(tid) - GetActorX(0);
+	y = GetActorY(tid) - GetActorY(0);
+
+	vang = VectorAngle(x,y);
+	angle = (vang - GetActorAngle(0) + 1.0) % 1.0;
+
+	if(((vang+0.125)%0.5) > 0.25) dist = FixedDiv(y, sin(vang));
+	else dist = FixedDiv(x, cos(vang));
+
+	if ((angle < 0.2 || angle > 0.8) && (dist >> 16) < range)
+	{
+		if (GetActorPitch(0) >= -0.25 && GetActorPitch(0) <= 0.25)
+		{
+			pitch = VectorAngle(dist, GetActorZ(tid) - (GetActorZ(0) + 41.0));
+			pitch = (pitch + GetActorPitch(0) + 1.0) % 1.0;
+			if ((hudX/2) * sin(angle) != 0 && cos(angle) != 0 && (hudX/2) * sin(pitch) != 0 && cos(pitch) != 0) //    Fixes divide by zero
+			{
+				x = hudX/2 - ((hudX/2) * sin(angle) / cos(angle));
+				y = hudY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
+
+				x+=xOffset;
+				y+=yOffset;
+				if(swap){HudMessage(i:dist >> 16; HUDMSG_PLAIN, msgID, colour, (x << 16), (y << 16), holdTime);}
+				else{HudMessage(s:text; HUDMSG_PLAIN, msgID, colour, (x << 16), (y << 16), holdTime);}
+			}
+		}
+	}
+}
+

@@ -17,7 +17,7 @@ Spawn:
 11WP H 1
 loop
 Ready:
-STHU A 0 ACS_ExecuteAlways(998,0,11975)
+STHU A 0 ACS_ExecuteAlways(998,0,11985)
 BZTR A 1 A_WeaponReady
 Goto Ready+1
 Deselect:

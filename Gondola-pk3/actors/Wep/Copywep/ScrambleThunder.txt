@@ -17,7 +17,7 @@ Spawn:
 11WP G 1
 loop
 Ready:
-STHU A 0 ACS_ExecuteAlways(998,0,1198)
+STHU A 0 ACS_ExecuteAlways(998,0,11987)
 STHU A 1 A_WeaponReady
 Goto Ready+1
 Deselect:
@@ -76,6 +76,7 @@ inventory.maxamount 28
 actor ScrambleThunder : PlugBall
 {
 var int user_P;
+Translation "192:192=229:229"
 +DONTSPLASH
 -BOUNCEONWALLS
 -BOUNCEONFLOORS
@@ -115,13 +116,13 @@ Crash:
 SCTH A 0 A_SetScale(2.5)
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/scrambleboom","Weapon")
-SCTH H 3 A_Explode(2+user_P, 100, 0,0,100)
+SCTH H 3 A_Explode(2+user_P*10, 100, 0,0,100)
 SCTH I 3 A_Stop
-SCTH J 3 A_Explode(2+user_P, 100, 0,0,100)
+SCTH J 3 A_Explode(2+user_P*10, 100, 0,0,100)
 SCTH K 3 A_Stop
-SCTH J 3 A_Explode(2+user_P, 100, 0,0,100)
+SCTH J 3 A_Explode(2+user_P*10, 100, 0,0,100)
 SCTH L 3 A_Stop
-SCTH J 3 A_Explode(2+user_P, 100, 0,0,100)
+SCTH J 3 A_Explode(2+user_P*10, 100, 0,0,100)
 SCTH M 3 A_Stop
 stop
 }
@@ -143,13 +144,13 @@ XDeath:
 Crash:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/scrambleboom","Weapon")
-SCTH H 3 A_Explode(5, 100, 0,0,100)
+SCTH H 3 A_Explode(50, 100, 0,0,100)
 SCTH I 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH K 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH L 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH M 3 A_Stop
 stop
 }
@@ -171,13 +172,13 @@ XDeath:
 Crash:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/scrambleboom","Weapon")
-SCTH H 3 A_Explode(5, 100, 0,0,100)
+SCTH H 3 A_Explode(50, 100, 0,0,100)
 SCTH I 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH K 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH L 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH M 3 A_Stop
 stop
 }
@@ -198,13 +199,13 @@ XDeath:
 Crash:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/scrambleboom","Weapon")
-SCTH H 3 A_Explode(5, 100, 0,0,100)
+SCTH H 3 A_Explode(50, 100, 0,0,100)
 SCTH I 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH K 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH L 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH M 3 A_Stop
 stop
 }
@@ -225,13 +226,13 @@ XDeath:
 Crash:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/scrambleboom","Weapon")
-SCTH H 3 A_Explode(5, 100, 0,0,100)
+SCTH H 3 A_Explode(50, 100, 0,0,100)
 SCTH I 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH K 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH L 3 A_Stop
-SCTH J 3 A_Explode(5, 100, 0,0,100)
+SCTH J 3 A_Explode(50, 100, 0,0,100)
 SCTH M 3 A_Stop
 stop
 }
