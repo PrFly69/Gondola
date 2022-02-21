@@ -144,6 +144,24 @@ stop
 }
 }
 
+actor ChainBlastWepCDropped : WepCDropped
+{
+inventory.pickupmessage "$PU_CHAINBLAST"
+States
+{
+Spawn:
+11WP I 1500
+stop
+Pickup1:
+TNT1 A 0 A_JumpIfInventory("AcidBarrierAmmo",0,"No")
+goto Pickup2
+Pickup3:
+TNT1 A 0 A_GiveInventory("AcidBarrierWepC",1)
+stop
+Rock_P:goto Rock_P4
+}
+}
+
 actor AcidBarrierAmmo : Ammo
 {
 inventory.amount 1
