@@ -195,7 +195,7 @@ IsSelected BreakDashWepC {DrawBar "BARAMM84", "BAREMPTY", BreakDashAmmo, vertica
 	IsSelected NovaBeamWepC{DrawBar"V_I_SUF","BAREMPTY",Ammo1,vertical,16,8;}
 
 //MM11
-IsSelected AcidBarrierWepC{DrawBar"11_J_BAR","BAREMPTY",Ammo1,vertical,16,8;
+IsSelected AcidBarrierWepC{DrawBar"BAMMO11E","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory AcidBar, 1	{DrawBar"BARACID", "NOBAR", AcidBar, vertical, 16, 8;}}
 IsSelected ChainBlastWepC{DrawBar "BAMMO11F", "BAREMPTY", Ammo1,vertical,16,8;}
 IsSelected ScrambleThunderWepC{DrawBar "BAMMO11G", "BAREMPTY", Ammo1,vertical,16,8;}

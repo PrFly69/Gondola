@@ -381,7 +381,7 @@ sprite ACBSB0,124,96{Offset -184,-98 Patch BUSTC0,0,0 {Translation"192:192=34:56
 sprite ACBSC0,128,92{Offset -187,-102 Patch BUSTD0,0,0{Translation"192:192=34:34",		   "198:198=117:117"}}
 texture BAMMO11E,8,56{patch BARENERG,0,0{Translation"192:192=34:34","198:198=117:117"}}
 texture VAMMO11E,56,8{patch BAMMO11E,0,0{rotate 90}}//Acid Barrier
-texture BARACID, 8, 56{patch BARAMT70,0,0{Translation "74:74=112:112"}}
+texture BARACID, 8, 56{patch BARAMT70,0,0{Translation "74:74=104:104"}}
 texture VARACID,56,8{patch BARACID,0,0{rotate 90}}//
 
 //Stone

@@ -144,9 +144,9 @@ stop
 }
 }
 
-actor ChainBlastWepCDropped : WepCDropped
+actor AcidBarrierWepCDropped : WepCDropped
 {
-inventory.pickupmessage "$PU_CHAINBLAST"
+inventory.pickupmessage "$PU_ACIDBARRC"
 States
 {
 Spawn:

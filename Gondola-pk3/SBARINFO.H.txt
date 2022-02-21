@@ -172,8 +172,6 @@ IsSelected WheelCutterWepC{DrawBar "VARAMMWC", "VAREMPTY", Ammo1, horizontal, 58
 	InInventory WheelCutterCheck, 1	{DrawBar "VARFLS1", "VNOBAR", WheelCutterCheck, horizontal, 58, 184;}}
 IsSelected SolarBlazeWepC, SolarBlazeWepCMaestro{DrawBar"VAMMO107","VAREMPTY",Ammo1,horizontal,58,184;}
 
-IsSelected AcidBarrierWepC{DrawBar"11_J_VAR","VAREMPTY",Ammo1,horizontal,58,184;}
-
 //MMV
 IsSelected SparkChaserWepC{DrawBar"VAMMO_V0","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected GrabBusterWepC{DrawBar"VAMMO_V1","VAREMPTY",Ammo1,horizontal,58,184;}
@@ -193,7 +191,10 @@ IsSelected ScrewCrusherWepC{Drawbar"VARAMM50","VAREMPTY",Ammo1,horizontal,58,184
 IsSelected BalladeCrackerWepC{Drawbar"VARAMM51","VAREMPTY",Ammo1,horizontal,58,184;}
 
 //MM11
-IsSelected AcidBarrierWepC{DrawBar"11_J_VAR","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected AcidBarrierWepC{DrawBar"VAMMO11E","VAREMPTY",Ammo1,horizontal,58,184;
+	InInventory AcidBar, 1{DrawBar"VARACID", "VNOBAR", AcidBar, horizontal, 58, 184;}}
+IsSelected ChainBlastWepC{DrawBar "VAMMO11F", "VAREMPTY", Ammo1,horizontal,58,184;}
+IsSelected ScrambleThunderWepC{DrawBar "VAMMO11G", "VAREMPTY", Ammo1,horizontal,58,184;}
 
 //Assists
 InInventory RushJetCounter,5{DrawImage"RUSHH2H8",290,16;}
@@ -814,14 +815,14 @@ IsSelected ReboundStrikeBoss,ReboundStrikerBoss{Drawbar"10_4_VAR","VAREMPTY",Amm
 	Drawbar"10_4_VAX","VAREMPTY",Ammo2,horizontal,58,176;
 	InInventory ReboundStrikerPower,7{Drawbar"10_4_VA3","VAREMPTY",Ammo2,horizontal,58,176;}}
 	
-IsSelected SolarBlazeBoss,SolarBlazerBoss{Drawbar"00_E_VAR","VAREMPTY",SolarInfernAmmo,horizontal,58,184;
+IsSelected SolarBlazeBoss,SolarBlazerBoss{Drawbar"00_E_VAR","VAREMPTY",SolarInfernoAmmo,horizontal,58,184;
 	DrawImage"SLRRICON",178,175;
 	InInventory ShieldCheck,1{DrawBar "00_E_VAR", "00_E_BAR", ShieldCheck,horizontal,58,184;}
-	InInventory SolarInfernoAmmoExtra,1{DrawBar "SOLVAR2", "00_E_VAR", SolarInferoAmmoExtra,horizontal,58,184;}
-	InInventory SolarInfernAmmoExtra,35{DrawBar "SOLVAR3", "00_E_VAR", SolarInferoAmmoExtra,horizontal,58,184;}
-	InInventory SolarInfernAmmoExtra,70{DrawBar "SOLVAR4", "00_E_VAR", SolarInferoAmmoExtra,horizontal,58,184;}
-	InInventory SolarInfernAmmoExtra,105{DrawBar "SOLVAR5", "00_E_VAR", SolarInferoAmmoExtra,horizontal,58,184;}
-	InInventory SolarInfernHoldAmmo,1{DrawBar"KC_A_VAR","VNOBAR",SolarInfernHoldAmmo,horizontal,58,184;}}
+	InInventory SolarInfernoAmmoExtra,1{DrawBar "SOLVAR2", "00_E_VAR", SolarInfernoAmmoExtra,horizontal,58,184;}
+	InInventory SolarInfernoAmmoExtra,35{DrawBar "SOLVAR3", "00_E_VAR", SolarInfernoAmmoExtra,horizontal,58,184;}
+	InInventory SolarInfernoAmmoExtra,70{DrawBar "SOLVAR4", "00_E_VAR", SolarInfernoAmmoExtra,horizontal,58,184;}
+	InInventory SolarInfernoAmmoExtra,105{DrawBar "SOLVAR5", "00_E_VAR", SolarInfernoAmmoExtra,horizontal,58,184;}
+	InInventory SolarInfernoHoldAmmo,1{DrawBar"KC_A_VAR","VNOBAR",SolarInferonHoldAmmo,horizontal,58,184;}}
 
 //MMB
 IsSelected LightningBoltBoss{Drawbar"VARAMM53","VAREMPTY",Ammo1,horizontal,58,184;

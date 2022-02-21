@@ -67,6 +67,8 @@ Fire:
 JEWH S 1 A_JumpIfInventory("ShieldCheck",1,"ShieldFire")
 JEWH S 0 A_PlaySound("weapon/jewelsatellite",1,0.90)
 JEWH S 0 A_ChangeFlag(DONTRIP,true)
+//JEWH S 0 A_ChangeFlag(CANTSEEK,true)
+JEWE S 0 A_ChangeFlag(REFLECTIVE, true)
 JEWH S 0 ACS_NamedExecuteAlways("core_cantseekplayer",0,0,true)
 JEWH S 0 A_GiveInventory("JewelmanItemFlag",1)
 JEWH S 1 A_GiveInventory("ShieldCheck",1)
@@ -86,6 +88,8 @@ JEWH Q 3
 JEWH Q 3 OffSet(-31,6)
 JEWH Q 3 OffSet(-51,-15)
 JEWH R 0 A_ChangeFlag(DONTRIP,false)
+//JEWH R 0 A_ChangeFlag(CANTSEEK,false)
+JEWE R 0 A_ChangeFlag(REFLECTIVE, false)
 JEWH R 0 ACS_NamedExecuteAlways("core_cantseekplayer",0,0,false)
 JEWH R 0 A_TakeInventory("ShieldCheck",999)
 JEWH R 0 A_PlaySound("weapon/jewelshot",1,0.66)
@@ -392,6 +396,9 @@ scale 2.5
 states
 {
 Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnReal:
 Y_9E Q 0
 
 Y_9E Q 0 A_SetUserVar("user_diamond",CallACS("CBM_GetJewelInfo",0))
