@@ -521,6 +521,7 @@ actor FuserShoot
 	Height 15
 	speed 36
 	Scale 3.5
+	reactiontime 350
 	States
 	{
 		Spawn:
@@ -531,6 +532,7 @@ actor FuserShoot
 			
 		SpawnX:
 			FSST ABCB 2 A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)//A_SpawnItemEx("FuseSmallSparkFX",random(-8,8),random(-8,8),random(-8,8))
+			FSST A 0 A_Countdown
 			loop
 			
 		Death:

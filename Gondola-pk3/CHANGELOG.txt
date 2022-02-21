@@ -2144,10 +2144,14 @@ CHANGELOG
 =====2.5
 ==NOW FULLY COMPATIBLE WITH CBM!
 *Uses Trillster's HP decimal system :)
+-New startup screen by A-Chan, new startup music by CosmicGem
 
 ==Megaman
 -Second Tier Chargeshot damage 25.0 > 30.0
 *No clue what to call it lmao
+
+==Duo
+-Duo Wave stepheight 24 > 32
 
 ==Rock
 -Ported classes-v9fk.pk3 Mega Ball visuals
@@ -2176,6 +2180,9 @@ CHANGELOG
 -Gear Grinder RoF lowered by 10 tics
 --Gear Grinder bouncecount 3 > 2
 --Gear Grinder speed 90 > 69
+
+==Dustman
+-Ported suction retcle from classes-v9fh.pk3
 
 ==Gravityman
 -Gravity Buster speed 60 > 45

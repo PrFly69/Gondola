@@ -565,6 +565,7 @@ damagetype "DuoWave"
 Obituary "$OB_ODUOWAVE"
 +MISSILE
 +STEPMISSILE
+maxstepheight 32
 +THRUGHOST
 +RIPPER
 +NOEXPLODEFLOOR
@@ -631,6 +632,7 @@ Translation "192:192=192:192"
 damagetype "DuoWave"
 Obituary "$OB_DUOWAVE"
 +STEPMISSILE
+maxstepheight 32
 -NOGRAVITY
 gravity 100
 Damage (200)

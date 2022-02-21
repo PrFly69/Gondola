@@ -1,5 +1,5 @@
 // Gondola Game Info
-StartupColors = "FCE0A8","784000"
+StartupColors = "FFFF00","0000FE"
 StartupTitle = "MM8BDM CCBM : The Gondola Patch"
 StartupSong = "GONDT"
-StartupType = "doom"
+StartupType = "hexen"

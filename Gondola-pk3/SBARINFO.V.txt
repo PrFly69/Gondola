@@ -643,7 +643,8 @@ IsSelected ScorchWheelBoss{Drawbar"BARAMM38","BAREMPTY",Ammo1,vertical,16,8;
 IsSelected TornadoHoldBoss{Drawbar"BARAMM40","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage"TNGUICON",32,55;
 	Drawbar"TNGUBAR","BAREMPTY",Ammo2,vertical,8,8;
-	InInventory TenguHoverFlag,1{DrawImage"TENJETA",290,8;}}
+		InInventory TenguHoverFlag,1{DrawImage"TENJET1",288,8;
+		InInventory TenguIsHovering,1{DrawImage"TENJET0",288,8;}}}
 IsSelected AstroCrushBoss{Drawbar"BARAMM52","BAREMPTY",Ammo1,vertical,16,8;
 						  DrawImage"ATRRICON",32,55;
 	Drawbar"BARAMM41","BAREMPTY",Ammo2,vertical,8,8;}
@@ -739,11 +740,12 @@ WeaponAmmo OutragousGemsAmmo{
 IsSelected MagmaBazookaBoss{Drawbar"BARAMM64","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory MagmaItemFlag,1{DrawImage"MAGFLOWA",-53,-32;}}
 IsSelected HornetChaserBoss{
+ InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
  DrawBar"BARAMM67","BAREMPTY",Ammo1,vertical,16,8; 
 	DrawBar"09_6_BAR","BAREMPTY",Ammo2,vertical,8,8;
 	DrawImage"HORNEICN",32,55;
-    InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
-	InInventory HornetIsHovering,1{DrawImage"HORNJETA",290,8;}}
+	InInventory HornetHoverFlag,1{DrawImage"HORNJET1",290,8;
+	InInventory HornetIsHovering,1{DrawImage"HORNJET0",290,8;}}}
 	
 	
 IsSelected BlackHoleBombBoss
