@@ -2251,7 +2251,7 @@ CHANGELOG
 
 ==Venus
 -Ported SFX from classes-v9fh.pk3
--SBar no longer switches
+-SBar no longer switches on weapon swap
 -Ported double Bubble Ticker from classes-v9fh.pk3
 --Damage 5.0 > 4.0
 
