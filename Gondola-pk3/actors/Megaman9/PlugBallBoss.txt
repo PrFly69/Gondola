@@ -36,6 +36,8 @@ Fire:
 PLGH A 0 A_JumpIfInventory("PlugmanLatch",2,"AllyPlug")
 PLGH A 0 A_JumpIfInventory("PlugmanLatch",1,"EnemyPlug")
 PLGH A 0 A_JumpIfNoAmmo("NoAmmo")
+PLGH A 0 A_GiveInventory("PlugmanMain_CI",1)
+PLUG A 0 A_PlaySoundEx("weapon/Plugball","Weapon")
 PLGH A 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
 PLGH BCDBC 1
 goto FireEnd
@@ -43,8 +45,6 @@ FireR:
 PLGH BCD 1
 goto FireEnd
 FireEnd:
-PLGH A 0 A_GiveInventory("PlugmanMain_CI",1)
-PLUG A 0 A_PlaySoundEx("weapon/Plugball","Weapon")
 PLGH A 0 A_JumpIfInventory("PowerRage_ST",1,"FireEndR")
 PLGH A 1 offset(3,35)
 PLGH A 1 offset(8,40)

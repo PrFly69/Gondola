@@ -104,13 +104,13 @@ CLDH C 0 A_JumpIfInventory("PowerRage_ST",1,"ColdGroundFreezeR")
 CLDH B 1 
 CLDH B 1 A_TakeInventory("DinoDNAFlag",999)
 CLDH J 1 
-CLDH J 1 A_GiveInventory("ColdmanOther_CI",1)
-CLDH K 1 
-CLDH L 1 A_TakeInventory("DinoDNAFlag",999)
+CLDH K 1 A_GiveInventory("ColdmanOther_CI",1)
+CLDH L 1 
+CLDH M 1 A_TakeInventory("DinoDNAFlag",999)
 CLDH M 5 
-CLDH LK 1
-CLDH JB 1
-TNT1 A 2
+CLDH ML 1
+CLDH KJ 1
+CLDH B 1
 CLDH A 1 offset(0,88)
 //CLDH A 1 offset(0,80)A_WeaponReady(5)
 CLDH A 1 offset(0,72)A_WeaponReady(5)

@@ -2158,6 +2158,7 @@ CHANGELOG
 
 ==Roll
 -Ported classes-v9fh.pk3 visuals
+-Broom now restores half of a dash stock on hit
 
 ==Gutsman
 -Rock sprite ported from classes-v9fh.pk3
@@ -2200,6 +2201,7 @@ CHANGELOG
 ==Plantman
 -Health 85.0 > 90.0
 -Plant Buster shots bounce off of walls with reduced velocity
+-Plant Buster speed 43 > 48
 
 ==Windman
 -Weapon ammo capacity 28 > 32
@@ -2222,6 +2224,9 @@ CHANGELOG
 ==Concreteman
 -Sniper Concrete Block direct damage 5.0 > 20.0
 --Sniper Concrete Block explosive damage 35.0 > 15.0
+
+==Plugman
+-Plug Ball now come out on frame one
 
 ==Fakeman
 -FOM Buffer 15 > 12
@@ -2246,6 +2251,9 @@ CHANGELOG
 
 ==Venus
 -Ported SFX from classes-v9fh.pk3
+-SBar no longer switches
+-Ported double Bubble Ticker from classes-v9fh.pk3
+--Damage 5.0 > 4.0
 
 ==Jupiter
 -New HUD by Christmas Cultist

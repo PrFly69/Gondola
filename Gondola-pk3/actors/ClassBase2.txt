@@ -19,6 +19,28 @@ states
 //Pain.TornadoM_Lift:
 //"----" H 0 ThrustThingZ(0,22222,0,1)
 //goto Pain+2
+
+Pain.Roll_Swing:
+"----" H 0 //A_GiveInventory("TempPitProtect_P",1)
+"----" H 0 //ThrustThing(random(0,255),15,1,0)
+"----" H 0 //ThrustThingZ(0,50,0,0)
+"----" H 0 A_GiveToTarget("RollHyperDashAmmo",55)
+"----" H 0 A_GiveToTarget("RollHealAmmo",4)
+Goto Pain+2
+Pain.Roll_Whiff:
+"----" H 0 //A_GiveInventory("TempPitProtect_P",1)
+"----" H 0 //ThrustThing(random(0,255),15,1,0)
+"----" H 0 //ThrustThingZ(0,50,0,0)
+"----" H 0 A_GiveToTarget("RollHyperDashAmmo",55)
+Goto Pain+2
+Death.Roll_Swing:
+"----" H 0 A_GiveToTarget("RollHealAmmo",4)
+Death.Roll_Whiff:
+"----" H 0 A_GiveToTarget("RollHyperDashAmmo",55)
+"----" H 0 ThrustThing(random(0,255),15,1,0)
+"----" H 0 ThrustThingZ(0,50,0,0)
+Goto Death.FlingDamage
+
 Pain.FlameM_Pillar:
 "----" H 0 A_GiveInventory("FlameM_PillarProtect",1)
 goto Pain+2
@@ -62,13 +84,6 @@ Goto Pain+2
 
 Pain.DrWily_Fire:
 "----" H 0 A_SpawnItemEx("PainDrWily_FireHit",0,0,0,0,0,0,0,1)
-Goto Pain+2
-
-Pain.Roll_Swing:
-//"----" H 0 A_GiveInventory("TempPitProtect_P",1)
-//"----" H 0 ThrustThing(random(0,255),15,1,0)
-//"----" H 0 ThrustThingZ(0,50,0,0)
-"----" H 0 A_SpawnItemEx("PainRollHit")
 Goto Pain+2
 
 Pain.LightRyu_Kick:

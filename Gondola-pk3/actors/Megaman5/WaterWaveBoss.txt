@@ -270,7 +270,7 @@ actor WaveHarpoonHook
 var int user_PTID;
 Translation "202:202=202:202","199:199=193:193"
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "WaveM_Hook"
 Obituary "$OB_WAVEHOOKSHOT"
 +DONTBLAST
 +DONTREFLECT
@@ -306,8 +306,7 @@ HARP I 0 A_CountDown
 loop
 
 SpawnX:
-"####" "#" 0 //A_PlaySoundEx("S3_K/MetalSpark","Weapon")
-HARP H 0 A_GiveToTarget("WaveHookACSSound",1)
+"####" "#" 0 A_PlaySoundEx("S3_K/MetalSpark","Weapon")
 "####" "#" 0 A_GiveInventory("WaveHookKillFlag",1)
 "####" "#" 0 A_ChangeFlag("HITTRACER",0)
 "####" "#" 0 A_ChangeFlag("NOGRAVITY",0)
@@ -423,7 +422,7 @@ actor WaveHarpoon
 {
 Translation "199:199=193:193"
 PROJECTILE 
-Damagetype "ClassPainLess2"
+Damagetype "WaveM_Shot"
 Obituary "$OB_WAVEHARPOON" 
 +FORCEXYBILLBOARD
 damage (150)
@@ -595,7 +594,7 @@ stop
 actor WaterWaveB
 {
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "WaveM_Water"
 Obituary "$OB_WATERWAVE"
 -NOGRAVITY
 +DONTSPLASH
@@ -650,7 +649,7 @@ stop
 actor WaterWaveB_XXX
 {
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "WaveM_Water"
 Obituary "$OB_WATERWAVE"
 -NOGRAVITY
 //+NOEXPLODEFLOOR

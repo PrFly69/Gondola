@@ -358,12 +358,12 @@ actor BossRollSwing
 {
 Translation "199:199=197:197", "202:202=196:196"
 PROJECTILE
-damagetype "RollWhiff"
+damagetype "Roll_Whiff"
 Obituary "$OB_ROLLSWING"
 +DONTBLAST
 +NOGRAVITY
 -NOBLOCKMAP
-+SHOOTABLE
+//+SHOOTABLE
 +NOTARGETSWITCH
 //+NODAMAGE
 +INVULNERABLE
@@ -416,7 +416,7 @@ actor BossRollSwingP : BossRollSwing{translation "202:202=229:229", "199:199=232
 
 actor BossRollSwing2 : BossRollSwing
 {
-damagetype "RollSwing"
+damagetype "Roll_Swing"
 Speed 30
 States
 {
@@ -441,7 +441,7 @@ actor BossRollSwingXP : BossRollSwingP {Speed 38}
 actor BossRollSwingDeath : BasicExplosion
 {
 Obituary "$OB_ROLLSWING"
-damagetype "RollWhiff"
+damagetype "Roll_Whiff"
 Species "RollStuff"
 States
 {

@@ -209,7 +209,7 @@ actor BubbleBounceX
 translation "192:192=4:4","195:195=102:102"
 PROJECTILE
 Obituary "$OB_BUBBLELEAD"
-damagetype "BubbleLead"
+damagetype "BubbleM_Lead"
 scale 2.5
 -NOGRAVITY
 +HEXENBOUNCE
@@ -257,7 +257,7 @@ actor BubProj : FastProjectile
 translation "192:192=4:4"
 PROJECTILE
 Obituary "$OB_BUBBLEBUSTER"
-damagetype "Buster"
+damagetype "BubbleM_Shot"
 Damage (120)
 radius 6
 height 6

@@ -784,7 +784,7 @@ Actor SaturnWhiteRingReturner {
 actor SaturnCrusherExploder
 {
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Obituary "%o was thrusted away by %k's white hole ring."
 +RIPPER
 +DONTBLAST
@@ -1167,7 +1167,7 @@ actor SaturnSuckExplode
 var int user_USER;
 translation "202:202=210:210"
 PROJECTILE
-damagetype "SaturnSuck"
+damagetype "DMGNoHitstun"
 Obituary "%o was spaghettified by %k's Black Hole Vortex."
 +THRUSPECIES
 Species "SaturnSuck"
@@ -1380,7 +1380,7 @@ actor SaturnBlackProjectile
 {
 PROJECTILE
 +RIPPER
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 Obituary ""
 damage (40)
 Radius 18

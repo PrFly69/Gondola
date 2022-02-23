@@ -241,7 +241,7 @@ PROJECTILE
 damagetype "MetalM_Blade"
 Obituary "$OB_METALBLADE"
 +RIPPER
-Damage (140)
+Damage (120)
 Radius 3
 Height 4
 Speed 40
@@ -377,7 +377,7 @@ Damagetype "MetalM_Chain"
 Obituary "$OB_CHAINBLADE"
 +DONTBLAST
 +DONTREFLECT
-Damage (100)
+Damage (75)
 Radius 3
 Height 4
 Speed 64

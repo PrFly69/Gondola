@@ -169,11 +169,11 @@ actor CWV_MegaBusterC:CWV_Template_Blank{}
 actor CWV_MegaBusterBoss:CWV_Template_Blank{} //Fuck.
 actor CWV_JetBusterC:CWV_Template_Blank{} //Has wings.
 actor CWV_PowerFistC:CWV_Template_Blank{} //Has pads.
-actor CWV_HeroicProtoBuster:CWV_Template_Blank{}
-actor CWV_HeroBassBusterBoss:CWV_Template_Blank{}
+actor CWV_ProtoBusterBoss:CWV_Template_Blank{}
+actor CWV_BassBusterBoss:CWV_Template_Blank{}
 actor CWV_TrebleBoostC:CWV_Template_Blank{} //These two have wings.
 actor CWV_TrebleboosterWepC:CWV_Template_Blank{} //...right?
-actor CWV_HeroicDuoFistBoss:CWV_Template_Blank{}
+actor CWV_DuoFistBoss:CWV_Template_Blank{}
 actor CWV_DocBusterC:CWV_Template_Blank{}
 actor CWV_MaestroNeutralBoss:CWV_Template_Blank{}
 actor CWV_DuoMeteorWepC:CWV_Template_Blank{}

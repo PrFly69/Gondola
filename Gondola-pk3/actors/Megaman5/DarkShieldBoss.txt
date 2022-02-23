@@ -462,6 +462,7 @@ actor DM2ShieldWatcher : BasicHelper
 
 actor DM2ShieldWatcher2 : DM2ShieldWatcher
 {
+	damagetype "DM2_Shield"
 	+THRUACTORS
 	+THRUGHOST
 	+RIPPER

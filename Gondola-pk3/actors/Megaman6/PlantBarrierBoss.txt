@@ -699,7 +699,7 @@ PROJECTILE
 +HITTRACER
 damagetype "PlantM_Shot"
 Obituary "%o was germinated by %k's Plant Buster."
-Speed 43
+Speed 48
 Damage (50)
 radius 5
 height 5

@@ -1,95 +1,85 @@
-//====================================
-// Formatted and Cleaned by Ru5tK1ng
-//------------------------------------
-//====================================
+actor Diveman : ClassBase
+{
+Player.ScoreIcon "C_04G0X"
+player.displayname "Diveman"
+player.soundclass "divemanc"
 
-  Actor Diveman : ClassBase
-  {
-	Player.ScoreIcon "C_04G0X"
-	Player.DisplayName "diveman"
-	Player.SoundClass "divemanc"
-	player.maxhealth 1000
-	health 1000
-	player.jumpz 10
-	Player.ForwardMove 0.8, 0.8
-	Player.SideMove 0.78, 0.78
-	Player.StartItem "DiveMissileBoss"
-	//Player.StartItem "DiveTackleBoss"
-	Player.StartItem "YouSunkMyAmmo",420
-	Player.StartItem "DiveTackleAmmo",280
-	Player.StartItem "DiveMissileUseItem"
-	Player.WeaponSlot 1, "DiveMissileBoss"
-	Player.StartItem "SkullBarrierWeakness2", 1
-	Player.StartItem "SparkShockWeakness", 1
-	Player.StartItem "SkullBarrierWeakness", 1
-	Player.StartItem "NoiseCrushWeakness", 1
-	Player.StartItem "ElectricShockWeakness", 1
-	States
-	{
-		Spawn:
-		DIVM A 0
-		DIVM B 1
-		DIVM A 1
-		Goto Spawn+2
-		
-		See:
-		DIVM BCDE 5
-		Goto Spawn
-		
-		Missile:
-		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",8,"DiveM")
-		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",7,"DiveL")
-		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",5,"DiveK")
-		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",3,"DiveJ")
-		DIVM F 0 A_JumpIfInventory("DiveTackleFrame",1,"DiveI")
-		DIVM F 0 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
-		DIVM F 1
-		DIVM F 4
-		DIVM G 4
-		DIVM G 0 A_JumpIfInventory("DiveTackleFrame",1,"DiveLoop")
-		Goto Spawn
-		
-		Missile2:
-		DIVM G 6
-		DIVM F 4
-		Goto Spawn
-		
-		DiveLoop:
-		DIVM IJKL 2
-		DIVM I 0 A_JumpIfInventory("DiveTackleFrame",1,"DiveLoop")
-		Goto Missile+9
-		
-		DiveI:
-		DIVM I 2
-		Goto Missile+7
-		
-		DiveJ:
-		DIVM J 2
-		Goto Missile+7
-		
-		DiveK:
-		DIVM K 2
-		Goto Missile+7
-		
-		DiveL:
-		DIVM L 2
-		Goto Missile+7
-		
-		DiveM:
-		DIVM L 2 A_TakeInventory("DiveTackleFrame",99)
-		Goto Missile+7
-		
-		CustomState1:
-		DIVM F 4
-		DIVM G 5
-		Goto Spawn
+player.maxhealth 1000
+health 1000
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
-		ClassPain:
-		DIVM H 0
-		Goto PainContinue
-		
-		ClassDeath:
-		DIVM H 1
-		Goto DeathContinue
-	}
-  }
+player.startitem "DiveMissileBoss"
+//player.startitem "DiveTackleBoss"
+player.startitem "YouSunkMyAmmo",420
+player.startitem "DiveTackleAmmo",280
+player.startitem "DiveMissileUseItem"
+
+//player.weaponslot 1, "DiveMissileBoss"
+//player.weaponslot 2, "DiveTackleBoss"
+
+player.startitem "SkullBarrierWeakness2", 1
+
+player.startitem "SparkShockWeakness", 1
+player.startitem "SkullBarrierWeakness", 1
+player.startitem "NoiseCrushWeakness", 1
+player.startitem "ElectricShockWeakness", 1
+
+States
+{
+Spawn:
+DIVM A 0
+DIVM B 1
+DIVM A 1
+DIVM A 280
+DIVM J 1
+wait
+
+See:
+DIVM BCDE 5
+Goto Spawn
+Missile:
+DIVM F 0 A_JumpIfInventory("DiveTackleFrame",8,"DiveM")
+DIVM F 0 A_JumpIfInventory("DiveTackleFrame",7,"DiveL")
+DIVM F 0 A_JumpIfInventory("DiveTackleFrame",5,"DiveK")
+DIVM F 0 A_JumpIfInventory("DiveTackleFrame",3,"DiveJ")
+DIVM F 0 A_JumpIfInventory("DiveTackleFrame",1,"DiveI")
+DIVM F 0 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
+DIVM F 1
+DIVM F 4
+DIVM G 4
+DIVM G 0 A_JumpIfInventory("DiveTackleFrame",1,"DiveLoop")
+goto Spawn
+Missile2:
+DIVM G 6
+DIVM F 4
+goto Spawn
+DiveLoop:
+DIVM RSTU 2
+DIVM R 0 A_JumpIfInventory("DiveTackleFrame",1,"DiveLoop")
+Goto Missile+9
+DiveI:
+DIVM R 2
+Goto Missile+7
+DiveJ:
+DIVM S 2
+Goto Missile+7
+DiveK:
+DIVM T 2
+Goto Missile+7
+DiveL:
+DIVM U 2
+Goto Missile+7
+DiveM:
+DIVM U 2 A_TakeInventory("DiveTackleFrame",99)
+Goto Missile+7
+
+ClassPain:
+DIVM H 0
+goto PainContinue
+ClassDeath:
+DIVM H 0
+goto DeathContinue
+}
+}
