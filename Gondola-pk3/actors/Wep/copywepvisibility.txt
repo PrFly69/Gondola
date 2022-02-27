@@ -2,7 +2,6 @@
 //P.S. God bless Trillster.
 //-Greg.EXE
 
-actor WeaponSwappedFlag : OnceC{inventory.maxamount 1} //The ACS will give this when it needs to.
 actor WeaponUnswappedFlag : OnceC{inventory.maxamount 1}
 
 const int CWVSPAWNHEIGHT = 80;
