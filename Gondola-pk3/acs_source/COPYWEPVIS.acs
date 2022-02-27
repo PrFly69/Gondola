@@ -16,15 +16,15 @@ script "CCBM_copywepvisibility" ENTER
 
             //The 'fuck Centaur Flash' section. May seem obtuse, but isn't actually very intensive.
             if(CheckFlag(0,"INVISIBLE")){
-            GiveInventory("WeaponSwappedFlag",1); 
+            TakeInventory("WeaponUnswappedFlag",1); 
             while(CheckFlag(0,"INVISIBLE")){delay(1);}}
 
             else{
             if(lastweapon==currentweapon){delay(1);continue;} //Continues if someone already has the correct display or blanker.
-            GiveInventory("WeaponSwappedFlag",1);
+            TakeInventory("WeaponUnswappedFlag",1);
             delay(1);}
             
-            TakeInventory("WeaponSwappedFlag",1); //If something is wrong or this is the first time the script has looped, this removes spare flags. Important.
+            GiveInventory("WeaponUnswappedFlag",1); //If a player doesn't have one of these, or has disconnected, existing displays should disappear.
             wepparam = strparam(s:"CWV_",s:currentweapon);
             GiveInventory(wepparam,1);
             lastweapon = currentweapon;
