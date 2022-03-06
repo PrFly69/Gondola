@@ -668,7 +668,7 @@ Script "cbm_WaveHookshot" (int PlayerID, int Vel, int Moving)
         if(CheckActorInventory(PlayerID,"WaveHookKillFlag") || CheckActorInventory(PlayerID,"IsDead") ||
 			CheckActorInventory(PlayerID,"HookshotStamina") < 1|| CheckActorInventory(PlayerID,"FlightDisableFlag"))
 		{
-			ActivatorSound("S3_K/MetalSpark", 127);
+			//ActivatorSound("S3_K/MetalSpark", 127);
 			break;
 		}
 	}

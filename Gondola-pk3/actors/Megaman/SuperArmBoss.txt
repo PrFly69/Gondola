@@ -433,9 +433,16 @@ stop
 }
 }
 
-actor GutrockDebris2 : GutrockDebris
+actor GutrockDebris2
 {
-Damage (90)//15
+PROJECTILE
+damagetype "GutsM_RockBit"
+Obituary "$OB_SUPERARM"
+Damage (90)//150
+Radius 12
+Height 12
+Speed 20
+scale 2.5
 States
 {
 Spawn:

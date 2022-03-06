@@ -287,10 +287,10 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
 ICEB TUTU 3 A_ScaleVelocity(1.025)
+SpawnLOOP:
 ICEB TU 3
-wait
+loop
 }
 }
 

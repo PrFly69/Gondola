@@ -735,13 +735,6 @@ stop
 }
 }
 
-actor TenguWasThrusted : OnceC {}
-
-actor TenguIsHovering : Powerup
-{
-powerup.duration 9
-}
-
 actor TenguTHeld_End : Powerup
 {
 powerup.duration 3

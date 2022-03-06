@@ -149,7 +149,7 @@ PROJECTILE
 damagetype "Buster"
 Obituary "$OB_POWERADAPTOR"
 ReactionTime 1
-Damage (13)
+Damage (130)
 radius 8
 height 8
 Speed 32
@@ -183,7 +183,7 @@ actor PowerShotP : PowerShot{translation "204:204=229:229"}
 actor PowerShot2 : PowerShot
 {
 +THRUGHOST
-Damage (25)
+Damage (250)
 radius 12
 height 12
 States
@@ -211,7 +211,7 @@ actor PowerShot2P : PowerShot2{translation "204:204=229:229"}
 actor PowerShot3 : PowerShot
 {
 +THRUGHOST
-Damage (50)
+Damage (500)
 radius 20
 height 20
 Speed 50

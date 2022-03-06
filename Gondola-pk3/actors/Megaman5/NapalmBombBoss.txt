@@ -164,6 +164,7 @@ NAPC M 0 A_Stop
 NAPC M 0 A_PlaySoundEx("weapon/drillexplode", "Weapon")
 NAPC M 0 A_Explode(180,128,0,0,32)
 TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
+TNT1 A 35
 stop
 }
 }
@@ -201,6 +202,7 @@ TN_B E 0 A_PlaySoundEx("weapon/napalm", "Weapon")
 TN_B E 0 A_ChangeFlag("NOGRAVITY",1)
 TN_B E 0 A_Explode(140,128,0,0,32)
 TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
+TNT1 A 35
 stop
 }
 }

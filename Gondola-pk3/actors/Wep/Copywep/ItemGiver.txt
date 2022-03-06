@@ -68,9 +68,9 @@ TNT1 A 0 A_JumpIfInventory("GotUpgradeFlag",1,"NoNo")
 TNT1 A 0 A_GiveInventory("GotUpgradeFlag",1)
 TNT1 A 0 A_JumpIfInventory("MegaFlag",1,"Mega")
 TNT1 A 0 A_JumpIfInventory("GreenSupremeFlag",1,"Maestro")
-TNT1 A 0 A_JumpIfInventory("HeroicProtoBuster",1,"Proto")
+TNT1 A 0 A_JumpIfInventory("ProtoBusterBoss",1,"Proto")
 TNT1 A 0 A_JumpIfInventory("BassFlag",1,"Bass")
-TNT1 A 0 A_JumpIfInventory("HeroicDuoFistBoss",1,"Duo")
+TNT1 A 0 A_JumpIfInventory("DuoFistBoss",1,"Duo")
 //TNT1 A 0 A_JumpIfInventory("NoAmmoPickup",1,"Doc")
 TNT1 A 0
 fail

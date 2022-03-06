@@ -34,6 +34,7 @@ JOEB J 1 A_WeaponReady
 //JOEB D 0 A_GiveInventory("AverageJoeAmmo",1)
 goto Ready4+2
 Deselect:
+JOEB H 0 A_GiveInventory("StopShield",1)
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 JOEB J 1 A_Lower
 Loop

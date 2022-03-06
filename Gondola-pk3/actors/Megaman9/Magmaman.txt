@@ -35,9 +35,9 @@ See:
 MGMA BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("MagmaItemFlag",1,"Missile2")
 Goto Spawn
 Missile:
-MGMA F 4
-MGMA F 1 A_JumpIfInventory("MagmaItemFlag",1,"Missile2")
-MGMA G 5
+MGMA G 3
+MGMA F 3 A_JumpIfInventory("MagmaItemFlag",1,"Missile2")
+MGMA G 3
 goto Spawn
 Missile2:
 MGMA FG 2

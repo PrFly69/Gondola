@@ -23,12 +23,12 @@ Ready1:
 DYHD A 0 A_JumpIfInventory("DynamoCoolDownFlag",1,1)
 DYHD A 0 A_JumpIfInventory("DynamoHealAmmo",1,"Ready1Heal")
 DYHD A 2 A_WeaponReady
-DYHD A 0 A_GiveInventory("DynamoElectricity",2)
+DYHD A 0 A_GiveInventory("TeslaCoilAmmo",2)
 DYHD A 0 A_GiveInventory("DynamoARGS_PG2",1)
 loop
 Ready1Heal:
 DYHD A 2 A_WeaponReady(WRF_ALLOWRELOAD)
-DYHD A 0 A_GiveInventory("DynamoElectricity",2)
+DYHD A 0 A_GiveInventory("TeslaCoilAmmo",2)
 DYHD A 0 A_GiveInventory("DynamoARGS_PG2",1)
 goto Ready1
 Deselect:

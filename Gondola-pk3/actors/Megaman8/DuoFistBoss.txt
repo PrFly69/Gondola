@@ -236,15 +236,15 @@ goto SlideSlide
 SlideSlide:
 TNT1 A 0 A_TakeInventory("WeaponCharge",9000)
 DUOL N 0 A_GiveInventory("DuoBash",1)
-DUOL N 0 A_PlaySoundEx("weapon/chargekick","Weapon")
-DUOL N 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
-DUOL N 0 SetPlayerProperty(0,1,0)
-DUOL N 0 A_FireCustomMissile("DuoRam2",0,0,0,0)
-DUOL N 0 ThrustThingZ(0,0,1,0)
-DUOL C 1 A_GiveInventory("CopySlidePickup",1)
-DUOL N 0 ThrustThingZ(0,0,1,0)
-DUOL C 1 Offset(-15,41)
-DUOL C 1 Offset(-78,98)
+DUOF N 0 A_PlaySoundEx("weapon/chargekick","Weapon")
+DUOF N 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
+DUOF N 0 SetPlayerProperty(0,1,0)
+DUOF N 0 A_FireCustomMissile("DuoRam2",0,0,0,0)
+DUOF N 0 ThrustThingZ(0,0,1,0)
+DUOF C 1 A_GiveInventory("CopySlidePickup",1)
+DUOF N 0 ThrustThingZ(0,0,1,0)
+DUOF C 1 Offset(-15,41)
+DUOF C 1 Offset(-78,98)
 TNT1 A 1 Offset(-78,200)
 TNT1 A 1 A_GiveInventory("CautiousDuoSlideDesync_P",1)
 DUOL N 1 Offset(120,39)
@@ -265,19 +265,19 @@ DUOL N 1 Offset(-15,46)
 DUOL N 1 Offset(-10,47)
 DUOL N 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
 DUOL N 0 SetPlayerProperty(0,0,0)
-//DUOL N 6
+//DUOF N 6
 DUOL M 1 Offset(15,49)
 DUOL M 1 Offset(39,51)
 DUOL M 1 Offset(78,53)
 TNT1 A 1 Offset(78,200)
 TNT1 A 1
-DUOL C 1 Offset(-78,98)
-DUOL C 1 Offset(-39,62)
-DUOL C 1 Offset(-15,41)
-DUOL C 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
-DUOL M 0 A_TakeInventory("DuoBash",1)
-DUOL C 1 A_Refire
-DUOL C 0 ACS_ExecuteAlways(998,0,DYE_DUOC,1)
+DUOF C 1 Offset(-78,98)
+DUOF C 1 Offset(-39,62)
+DUOF C 1 Offset(-15,41)
+DUOF C 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOSWITCH)
+DUOF M 0 A_TakeInventory("DuoBash",1)
+DUOF C 1 A_Refire
+DUOF C 0 ACS_ExecuteAlways(998,0,DYE_DUOC,1)
 goto Ready2+2
 
 //"Should I just delete this artifact code under the premise that we're never making the mistake of giving Duo a grab again?"

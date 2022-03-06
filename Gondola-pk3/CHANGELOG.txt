@@ -2056,9 +2056,6 @@ CHANGELOG
 ==Saturn
 -Can now suck Flash Stunner and YD shots
 
-==Pluto
--Meowing removed from altfire, now buffers for Break Dash with not enough ammo
-
 ==Mega Water S
 -Fixed only 2 harpoons coming out
 --Harpoons now properly do 10 damage instead of 12
@@ -2078,68 +2075,6 @@ CHANGELOG
 
 
 
-=====2.4.2
-==Bass
--Now has SBAR indicator of firing spread gain
-
-==Rock
--Removed Powerprotect from Bomb Ball
--Reduced Powerprotect factor on all other balls 0.1 > 0.5
-
-==Flashman
--Ammo bars swapped
--Fixed bot crashout bug after stunning an enemy
-
-==Magnetman
--Magnet Mines removed
-
-==Gyroman
--Fixed coloring issues on altfire splitting FX
-
-==Dark Man 3
--All shots are now suckable by Saturn
-*Whoops!
--Fully charged ping sound reverted to core sound
-
-==Knightman
--Special obit on first Knight Rush damager readded
-
-==Junkman
--Junk Cube is now suckable by Saturn
-
-==Cloudman
--Thunder Bolt is now suckable by Saturn
-
-==Plugman
--Fixed plug still breaking off LOS
--Fixed HUD disjoint on mainfire
-
-==Pumpman
--Bubbles now have +GHOST property
-
-==Sheepman
--Sheep Bolters that are spawned via Thunder Wool no longer wool-colored, now are properly yellow in non-team settings
-
-==Strikeman
--No longer gains ammo on any given Semi-Powered Rebound Striker, now functions as it does in CCBM 2.0h
-
-==Saturn
--CBL Callback death nerfed into a mere easter egg
---Only activated upon dying to Electric Shock (Saturn's canonical weakness)
--Fixed White Hole Ring/Black Hole Ring flying infinitely upon user's death
--Fixed Black Hole Ring not activating on release
-
-==Pluto
--Now has a 5 tic delay in between meows
---Meow sound has lower pitch than Tango meow
---Meowing no longer cancels Break Dashing skinsprites
-
-==Hyper Storm H
--Ammo gain/lost on suction/blowing doubled
--Removed healing during suction
--Trample damage 18 > 16
---Trample ammo loss 1 > 3, 2 > 6 with rage
---Removed ammo gain on damaging enemies with trample
 
 =====2.5
 ==NOW FULLY COMPATIBLE WITH CBM!
@@ -2150,11 +2085,16 @@ CHANGELOG
 -Second Tier Chargeshot damage 25.0 > 30.0
 *No clue what to call it lmao
 
+==Bass
+-Now has SBAR indicator of firing spread gain
+
 ==Duo
 -Duo Wave stepheight 24 > 32
 
 ==Rock
 -Ported classes-v9fk.pk3 Mega Ball visuals
+-Removed Powerprotect from Bomb Ball
+-Reduced Powerprotect factor on all other balls 0.1 > 0.5
 
 ==Roll
 -Ported classes-v9fh.pk3 visuals
@@ -2175,6 +2115,11 @@ CHANGELOG
 
 ==Flashman
 -Flash Stunner windup reverted to original version
+-Ammo bars swapped
+-Fixed bot crashout bug after stunning an enemy
+
+==Magnetman
+-Magnet Mines removed
 
 ==Doc Robot
 -Health 90.0 > 100.0
@@ -2188,6 +2133,17 @@ CHANGELOG
 ==Gravityman
 -Gravity Buster speed 60 > 45
 
+==Waveman
+-Fixed global latching sounds
+
+==Gyroman
+-Fixed coloring issues on altfire splitting FX
+
+==Dark Man 3
+-All shots are now suckable by Saturn
+*Whoops!
+-Fully charged ping sound reverted to core sound
+
 ==Centaurman
 -Centaur Arrow requires 2 ammo
 --Fires singular Centaur Buster shot without sufficient ammo
@@ -2197,6 +2153,7 @@ CHANGELOG
 -Spinning Mace knockback increased 8 > 12
 -Super Knight Crush sprite now reflects hitbox
 --Now has explosive hitbox around impact, does not do knockup (only does knockup on direct)
+-Special obit on first Knight Rush damager readded
 
 ==Plantman
 -Health 85.0 > 90.0
@@ -2207,6 +2164,12 @@ CHANGELOG
 -Weapon ammo capacity 28 > 32
 --Wind Storm ammo usage 14 > 16
 
+==Junkman
+-Junk Cube is now suckable by Saturn
+
+==Cloudman
+-Thunder Bolt is now suckable by Saturn
+
 ==Springman
 -Now has unique obit for Super Spring Punch
 
@@ -2216,6 +2179,7 @@ CHANGELOG
 
 ==Coldman
 -Ice Wall health 95.0 > 50.0
+-New HUD by A-Chan
 
 ==Magicman
 -Ported Magic Ball from classes-v9fh.pk3
@@ -2226,7 +2190,21 @@ CHANGELOG
 --Sniper Concrete Block explosive damage 35.0 > 15.0
 
 ==Plugman
--Plug Ball now come out on frame one
+-Plug Ball startup frames removed
+--Fixed HUD disjoint on mainfire
+-Fixed plug still breaking off LOS
+
+==Jewelman
+-Ported from classes-v9fh.pk3
+--Still retains reflective properties while Jewel Satellite is active
+
+==Hornetman
+-Enraged hornets homing stats (2,10) > (3,12)
+--Enraged hornets damage 70 > 60
+-Nectar Hive speed 25 > 36
+--ROF decreased by 10 tics
+--Fixed Nectar Hive applying debuff on allies
+--Honey Droplets on death 4 > 3
 
 ==Fakeman
 -FOM Buffer 15 > 12
@@ -2234,10 +2212,15 @@ CHANGELOG
 ==Pumpman
 -Bubble Spray damage 2.0 > 2.5 (total damage 25.0)
 --Projectile speed 90 > 60
--Ammo taken 56 > 999
+-Ammo taken on item 56 > 999
+-Bubbles now have +GHOST property
 
 ==Sheepman
 -Health 85.0 > 90.0
+-Sheep Bolters that are spawned via Thunder Wool no longer wool-colored, now are properly yellow in non-team settings
+
+==Strikeman
+-No longer gains ammo on any given Semi-Powered Rebound Striker, now functions as it does in CCBM 2.0h
 
 ==Solarman
 -Health 90.0 > 100.0
@@ -2267,9 +2250,17 @@ CHANGELOG
 -Removed M2 duration reduction on sucking shots
 -Armor gained per sucked projectile 1 > 2
 --Gained 4 armor if BlackHoleAmmo is full
+-CBL Callback death nerfed into a mere easter egg
+--Only activated upon dying to Electric Shock (Saturn's canonical weakness)
+-Fixed White Hole Ring/Black Hole Ring flying infinitely upon user's death
+-Fixed Black Hole Ring not activating on release
 
 ==Pluto
 -Break Shot duration ported from classes-v9fh.pk3
+-Meowing removed from altfire, now buffers for Break Dash with not enough ammo
+--Now has a 5 tic delay in between meows
+--Meow sound has lower pitch than Tango meow
+--Meowing no longer cancels Break Dashing skinsprites
 
 ==Fuseman
 -Reworked by NightFly
@@ -2285,6 +2276,13 @@ CHANGELOG
 --Pressing altfire while Tesla is out activates it
 --Activated Tesla shoots out projectile bursts before dying
 -Reload removed
+
+==Hyper Storm H
+-Ammo gain/lost on suction/blowing doubled
+-Removed healing during suction
+-Trample damage 18.0 > 12.0
+--Trample ammo loss 1 > 2, 2 > 4 with rage
+--Removed ammo gain on damaging enemies with trample
 
 ==Enker
 -New M2 HUD sprite by Honootorch
