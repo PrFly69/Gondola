@@ -53,7 +53,7 @@ R2GD H 1 A_Jump(256,"Spawn")
 Goto Spawn+2
 
 DeathFix: 
-R2GD H 0 A_GiveInventory("SpecialDeathFlag",1)
+R2GD H 0 //A_GiveInventory("SpecialDeathFlag",1)
 goto DeathContinue
 
 ClassDeath:
@@ -87,11 +87,11 @@ TimeStoppedX:
 R2GD "####################################################" 1 A_Stop
 Goto Pain+2
 
-Pain.LightRyuStop:
-R2GD H 0 A_SpawnItemEx("PainLightRyuStopHit")
-R2GD H 0 A_GiveInventory("LightRyuStopProtect",1)
-R2GD H 0 A_GiveInventory("TimeStoppedTF",1)
-R2GD HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_Stop
+Pain.LightRyu_Stop://BearerClass has a copy of this
+"####" H 0 A_SpawnItemEx("PainLightRyu_StopHit")
+"####" H 0 A_GiveInventory("LightRyu_StopProtect",1)
+"####" H 0 A_GiveInventory("TimeStoppedTF",1)
+"####" HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_Stop
 Goto Pain+2
 }
 }
@@ -205,7 +205,7 @@ AltfireEnd:
 //R2GH E 0 A_ChangeFlag("INVISIBLE",0)
 R2GH E 0 A_ChangeFlag("PICKUP",1)
 R2GH E 0 A_ChangeFlag("NOTELEPORT",0)
-R2GH E 0 A_SpawnItemEx("ReSolidifier")
+R2GH E 0 A_SpawnItemEx("ReSolidifyPlayer_H")
 R2GH E 0 A_PlaySoundEx("wep/YD_Sploosh","Weapon")
 R2GH E 0 A_CheckCeiling("AltfireEndCeiling")
 R2GH E 0 A_SpawnItemEx("YD_BearerCubeBit",4,0,12,8,0,10,0,1)
@@ -312,14 +312,14 @@ TNT1 A 0 SetPlayerProperty(0,0,3)//Flight
 TNT1 A 0 A_GiveInventory("BearerFlag",1)//ACS watches for this
 TNT1 A 0 A_GiveInventory("EnvironmentGravity",1)//Fix underwater gravity
 TNT1 A 0 A_GiveInventory("IsInGame",1)//Great deal of things watch for this
-TNT1 A 0 A_GiveInventory("PowerNoGravityFix",1)//Fixes NoGravity
-TNT1 A 0 A_GiveInventory("SpawnTelefragFixPickup",1)//Probably not needed, but might as well
+TNT1 A 0 A_GiveInventory("CBM_StarterSpawnInventory_P")//A morph is a fresh respawn due to ClearInventory
+//TNT1 A 0 A_GiveInventory("SpawnTelefragFixPickup",1)//Probably not needed, but might as well
 TNT1 A 0 A_GiveInventory("StaminaFlag",500)//Restore Stamina due to ClearInventory();
 
 //Bonus Gives
 TNT1 A 0 A_GiveInventory("CanUseItems",1)
 TNT1 A 0 A_GiveInventory("SemiStunArmor",1)
-TNT1 A 0 A_GiveInventory("HardHealthBar",1)
+//TNT1 A 0 A_GiveInventory("HardHealthBar",1)
 TNT1 A 0 A_GiveInventory("CheeseProtectionHelper",1)
 
 

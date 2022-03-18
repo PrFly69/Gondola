@@ -10,7 +10,7 @@ Inventory.Pickupmessage "$PU_BLAZINGTORCH"
 Obituary "$OB_BLAZINGTORCH"
 Tag "$TAG_BLAZINGTORCH"
 weapon.ammotype "BlazingTorchAmmo"
-inventory.icon "BTORICON"
+inventory.icon "ACIDBCON"
 States
 {
 Spawn:

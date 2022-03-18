@@ -239,7 +239,7 @@ actor SolarBlazeBoss : BaseMM8BDMWep_CBM
 		SUNH E 1 //Offset(-10,44)
 		SUNH A 1 //Offset(20,36)
 		SUNH A 0 A_PlaySoundEx("weapon/solarblaze","weapon")
-		SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
+		//SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
 		SUNH B 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(50,29)
 		SUNH B 1 //Offset(83,23)
 		SUNH C 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(116,18)
@@ -261,7 +261,7 @@ actor SolarBlazeBoss : BaseMM8BDMWep_CBM
 		SUNH E 1 //Offset(-10,44)
 		SUNH A 1 //Offset(20,36)
 		SUNH A 0 A_PlaySoundEx("weapon/solarblaze","weapon")
-		SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
+		//SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
 		SUNH B 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(50,29)
 		SUNH B 1 //Offset(83,23)
 		SUNH C 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(116,18)
@@ -630,7 +630,7 @@ actor SolarBlazerBoss : SolarBlazeBoss
 		SUNH E 1 //Offset(-10,44)
 		SUNH A 1 //Offset(20,36)
 		SUNH A 0 A_PlaySoundEx("weapon/solarblaze","weapon")
-		SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
+		//SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
 		SUNH B 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(50,29)
 		SUNH B 1 //Offset(83,23)
 		SUNH C 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(116,18)
@@ -652,7 +652,7 @@ actor SolarBlazerBoss : SolarBlazeBoss
 		SUNH E 1 //Offset(-10,44)
 		SUNH A 1 //Offset(20,36)
 		SUNH A 0 A_PlaySoundEx("weapon/solarblaze","weapon")
-		SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
+		//SUNH A 0 A_GiveInventory("")//A_GiveInventory("SolarmanMain_CI") //Summons the main sun to split into the 5 projectiles.
 		SUNH B 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(50,29)
 		SUNH B 1 //Offset(83,23)
 		SUNH C 1  A_JumpIfInventory("PowerRage_ST",1,1)//Offset(116,18)

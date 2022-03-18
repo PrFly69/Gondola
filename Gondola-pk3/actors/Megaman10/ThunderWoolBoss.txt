@@ -151,7 +151,7 @@ goto ReloadUsingCloud
 ReloadEnd:
 SHEP A 0 A_TakeInventory("ArchOfWoolAmmo",999)//JUST IN CASE!!!
 TNT1 A 0 A_TakeInventory("SheepWeaponCharge",999)
-TNT1 A 0 A_TakeInventory("CancelFlag",999)
+//TNT1 A 0 A_TakeInventory("CancelFlag",999)
 TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,3)
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
 SHEP IIGFFEEDD 1 A_WeaponReady(WRF_NOFIRE)

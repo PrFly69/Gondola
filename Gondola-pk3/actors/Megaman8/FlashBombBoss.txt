@@ -45,7 +45,6 @@ Loop
 
 Fire:
 GRHU A 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
-GRHU A 0 A_JumpIfInventory("CuteBombDrain",1,6)
 GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",36,"5RageFire")
 GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",35,"4RageFire")
 GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",25,"3RageFire")
@@ -87,7 +86,7 @@ goto FireEnd
 
 Altfire:
 //GRHU A 0 A_JumpIfNoAmmo("NoAmmo")
-GRHU A 0 A_GiveInventory("VivifyDelay8",1)
+HSN8 A 0 ACS_NamedExecuteWithResult("BULL_SetState",1)
 GRHU A 0 A_JumpIfInventory("CuteBombDrain",1,5)
 GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",36,"7Grenades")
 GRHU A 0 A_JumpIfInventory("THATFELTGOODAMMO",27,"6Grenades")
@@ -622,7 +621,7 @@ actor Grrnade30 : Grrnade {speed 30}actor Grrnade30B : GrrnadeB {speed 30}actor 
 actor Grrnade32 : Grrnade {speed 32}actor Grrnade32B : GrrnadeB {speed 32}actor Grrnade32R : GrrnadeR {speed 32}actor Grrnade32O : GrrnadeO {speed 32}actor Grrnade32P : GrrnadeP {speed 32}
 actor Grrnade34 : Grrnade {speed 34}actor Grrnade34B : GrrnadeB {speed 34}actor Grrnade34R : GrrnadeR {speed 34}actor Grrnade34O : GrrnadeO {speed 34}actor Grrnade34P : GrrnadeP {speed 34}
 
-actor GrenadeBoom : BasicExplosion
+actor GrenademanDeathBoom : BasicExplosion
 {
 damagetype "GrenadeM_Kamikaze"
 Obituary "$OB_THATFELTGOOD"

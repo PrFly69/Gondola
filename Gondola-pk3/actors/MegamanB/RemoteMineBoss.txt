@@ -78,7 +78,7 @@
 		PRMI A 0 A_TakeInventory("PirateMineSticky",9)
 		PRMI A 0 A_TakeInventory("PirateMineExplodey",9)
 		PRMI A 0 A_GiveInventory("PirateMineFlag",1)
-		RPMI A 0 A_GiveInventory("TargetMarkerT",1)
+		RPMI A 0 A_GiveInventory("CBM_TargetMarker",1)
 		PRMI A 0 A_GiveInventory("PiratemanMain_CI",1)
 		PRMI A 1 Offset(-18, 50)
 		PRMI A 0 A_Refire(1)
@@ -473,7 +473,7 @@
 		TNT1 A 0 A_PlaySoundEx("weapon/PirateBubble","Body")
 		TNT1 A 0 A_JumpIfInventory("PBubbleArmour",1,"Deactivate")
 		TNT1 A 0 A_GiveInventory("PBubbleArmour")
-		TNT1 A 0 A_GiveInventory("BossBasicArmorAmount",25)
+		TNT1 A 0 //A_GiveInventory("BossBasicArmorAmount",25)
 		TNT1 A 0 A_GiveInventory("PBubbleFlag")
 		TNT1 A 0 A_SpawnItemEx("PBubbleWatcher")
 		TNT1 A 1
@@ -481,7 +481,7 @@
 		
 		Deactivate:
 		TNT1 A 0 A_TakeInventory("WetRogerAmmo",1)
-		TNT1 A 0 A_TakeInventory("BossBasicArmorAmount",999)
+		TNT1 A 0 //A_TakeInventory("BossBasicArmorAmount",999)
 		TNT1 A 0 A_TakeInventory("BasicArmor",999)
 		TNT1 A 0 A_TakeInventory("PBubbleFlag",999)
 		TNT1 A 1
@@ -931,7 +931,7 @@ DamageFactor "PirateM_Boom", 0.5
 		Death:
 		TNT1 A 0 A_TakeFromTarget("WetRogerAmmo",14)
 		TNT1 A 0 A_TakeFromTarget("BasicArmor",999)
-		TNT1 A 0 A_TakeFromTarget("BossBasicArmorAmount",999)
+		TNT1 A 0 //A_TakeFromTarget("BossBasicArmorAmount",999)
 		TNT1 A 0 A_TakeFromTarget("PBubbleFlag",999)
 		TNT1 A 1 A_TakeFromTarget("PBubbleArmour",999)
 		Stop

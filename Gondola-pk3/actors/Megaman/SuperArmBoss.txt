@@ -375,6 +375,7 @@ actor Gutrock2 : Gutrock
 Translation "204:204=216:216","195:195=220:220"
 Damage (330)//55
 Speed 35//30
+damagetype "GutsM_Rock"
 States
 {
 Spawn:

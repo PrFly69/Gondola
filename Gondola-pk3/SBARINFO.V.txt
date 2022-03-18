@@ -291,9 +291,9 @@ InInventory BasicArmor,1{
         DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),45,40;
         }
     DrawNumber 4,CMBHRFONT,DarkGray,SavePercent,alignment(left),31,46;
-    InInventory BossBasicArmorAmount,1{DrawBar"BARAMT31","NOBAR",Armor BossBasicArmorAmount,vertical,24,8;}
-    else{DrawBar"BARAMT31","NOBAR",Armor,vertical,24,8;}}
-
+    //InInventory BossBasicArmorAmount,1{DrawBar"BARAMT31","NOBAR",Armor BossBasicArmorAmount,vertical,24,8;}
+    //else{DrawBar"BARAMT31","NOBAR",Armor,vertical,24,8;}}
+}
 }
 
 
@@ -326,11 +326,11 @@ IsSelected WaveBusterWepC{Drawbar"XTR0BR_C","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected RisingFistWepC{Drawbar"XTR0BR_B","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected RollSweepWepC{Drawbar"XTR0BR_A","BAREMPTY",Ammo1,vertical,16,8;}
 
-InInventory ProtoBusterWep,1{DrawBar"00_0_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
-InInventory MegaFlag,1{InInventory MegaBusterFlag,1{DrawBar"00_1_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
+InInventory ProtoBusterBoss,1{DrawBar"00_0_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
+InInventory MegaBusterBoss,1{InInventory MegaBusterFlag,1{DrawBar"00_1_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
 	else{DrawBar"00___BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
 	InInventory MegamanX,1{DrawBar"KC_A_BAR","NOBAR",MegamanX,vertical,24,8;}}
-InInventory BassDoubleJump,1{DrawBar"00_4_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
+InInventory BassBusterBoss,1{DrawBar"00_4_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
 InInventory DuoFistBoss,1{DrawBar"08_9_BAR","BAREMPTY",SlideLimitFlag,vertical,8,8;}
 //MM0
 
@@ -496,7 +496,7 @@ IsSelected AlienTrapBoss{Drawbar"02_A_BAR","BAREMPTY",Ammo1,vertical,16,8;}
 //NoodleAmmo
 WeaponAmmo NoodleAmmo{Drawbar"BARAMMO2","BAREMPTY",Ammo1,vertical,16,8;
 	DrawImage"NEEDRCON",32,55;}
-IsSelected MagnetMissileBoss{DrawBar"MAGNBAR","BAREMPTY",MagnetFlag,vertical,16,8;
+IsSelected MagnetMissileBoss{DrawBar"BARAMM14","BAREMPTY",MagnetFlag,vertical,16,8;
 	InInventory MagFlyIsOut, 1{Drawbar"BARFLS1","NOBAR",MagFlyIsOut,vertical,24,8;}
 	InInventory MagFlyDelay, 1{Drawbar"BARFLS1","NOBAR",MagFlyDelay,vertical,24,8;}
 	InInventory MagFlyDelayFast, 1{Drawbar"BARFLS1","NOBAR",MagFlyDelayFast,vertical,24,8;}}
@@ -516,10 +516,10 @@ IsSelected ShadowBladeBoss,ShadowBladerBoss{Drawbar"BARAMMO7","BAREMPTY",Ammo1,v
 	DrawImage"SDWRICON",32,55;
 	DrawBar"BARAMMO1","BAREMPTY",Ammo2,vertical,8,8;
 	InInventory ShadowInvisCountdown,1{DrawBar"MV_A_BAR","NOBAR",ShadowInvisCountdown,vertical,24,8;}}
-IsSelected BreakBusterAgility,BreakBusterStability{DrawBar"BARAMM14","BAREMPTY",BreakAmmo,vertical,16,8;
+/*IsSelected BreakBusterAgility,BreakBusterStability{DrawBar"BARAMM14","BAREMPTY",BreakAmmo,vertical,16,8;
 	DrawBar"BARAMMO1","BAREMPTY",SnipeAmmo,vertical,8,8;
-	DrawBar"KC_A_BAR","NOBAR",SnipeCharge,vertical,8,8;}
-
+	DrawBar"KC_A_BAR","NOBAR",SnipeCharge,vertical,8,8;}*/
+//wait a lil bit longer
 IsSelected DocBusterWoodHeatWep{DrawBar"XTR0BR_S","BAREMPTY",DocVirusAmmo,vertical,16,8;
 DrawImage"DOCRICON",32,55;}
 IsSelected DocBusterBubbleFlashWep{DrawBar"BARAMM26","BAREMPTY",DocVirusAmmo,vertical,16,8;
@@ -740,8 +740,8 @@ WeaponAmmo OutragousGemsAmmo{
 IsSelected MagmaBazookaBoss{Drawbar"BARAMM64","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory MagmaItemFlag,1{DrawImage"MAGFLOWA",-53,-32;}}
 IsSelected HornetChaserBoss{
- InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
  DrawBar"BARAMM67","BAREMPTY",Ammo1,vertical,16,8; 
+	InInventory HornetFireFlag,1{Drawbar"HC_S_BAR","NOBAR",Ammo1,vertical,16,8;}
 	DrawBar"09_6_BAR","BAREMPTY",Ammo2,vertical,8,8;
 	DrawImage"HORNEICN",32,55;
 	InInventory HornetHoverFlag,1{DrawImage"HORNJET1",290,8;

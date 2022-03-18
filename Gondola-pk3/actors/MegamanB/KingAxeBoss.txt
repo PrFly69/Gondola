@@ -456,7 +456,7 @@ AltFireX:
 KINH S 0 A_JumpIfInventory("DinnerAmmo",40,1)
 Goto Ready2
 KINH S 0 A_PlaySoundEx("weapon/TrioCharge3","Weapon")
-KINH S 0 A_GiveInventory("KingMainSld2_CI",1)
+//KINH S 0 A_GiveInventory("KingMainSld2_CI",1)
 KINH S 4 A_TakeInventory("DinnerAmmo",40,1)
 Goto Ready2
 
@@ -729,11 +729,11 @@ states
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("TheKingShieldHitbox",0,-16,0,momx,momy,momz,0,8)
-TNT1 A 0 A_SpawnItemEx("TheKingShieldHitbox",0,-8,0,momx,momy,momz,0,8)
-TNT1 A 0 A_SpawnItemEx("TheKingShieldHitbox",0,0,0,momx,momy,momz,0,8)
-TNT1 A 0 A_SpawnItemEx("TheKingShieldHitbox",0,8,0,momx,momy,momz,0,8)
-TNT1 A 1 A_SpawnItemEx("TheKingShieldHitbox",0,16,0,momx,momy,momz,0,8)
+TNT1 A 0 A_SpawnItemEx("TheKingShieldHitbox0",0,-16,0,momx,momy,momz,0,8)
+TNT1 A 0 A_SpawnItemEx("TheKingShieldHitbox0",0,-8,0,momx,momy,momz,0,8)
+TNT1 A 0 A_SpawnItemEx("TheKingShieldHitbox0",0,0,0,momx,momy,momz,0,8)
+TNT1 A 0 A_SpawnItemEx("TheKingShieldHitbox0",0,8,0,momx,momy,momz,0,8)
+TNT1 A 1 A_SpawnItemEx("TheKingShieldHitbox0",0,16,0,momx,momy,momz,0,8)
 stop
 }
 }

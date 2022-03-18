@@ -1,0 +1,204 @@
+actor JetBusterC : BaseMM8BDMWep_CBM 
+{
+tag "$TAG_JETADAPTOR"
+dropitem "JetUpgradeGiverDropped"
+weapon.preferredskin "Flight-Megaman"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+Weapon.SlotNumber 1
+Obituary "$OB_JETADAPTOR"
+weapon.ammotype "JetFuel"
+States
+{
+Spawn:
+C_00 B 1
+loop
+Ready:
+JETB A 0 A_JumpIfInventory("BusterGiven",1,"TakeBusters")
+Goto Ready1
+TakeBusters:
+JETB A 0 A_GiveInventory("TakeBuster_P",1)
+Goto Ready1
+Ready1:
+JETB A 0 ACS_ExecuteAlways(998,0,DYE_POWERFLIGHT)
+JETB A 0 A_JumpIfInventory("JetTriggerEx",1,"AltFall")
+goto Ready2
+Ready2:
+JETB A 0 //A_JumpIf(ACS_ExecuteWithResult(975,0)==2,"Ready2L")
+JETB A 0 A_JumpIfInventory("JetFuel",4,"Ready3")
+JETB A 6 A_WeaponReady(8)
+JETB A 0 A_GiveInventory("JetFuel",1)
+Goto Ready2+1
+Ready3:
+JETB A 6 A_WeaponReady
+JETB A 0 A_GiveInventory("JetFuel",1)
+loop
+Ready2L:
+JETB A 0 A_JumpIfInventory("JetFuel",4,"Ready3L")
+JETB A 10 A_WeaponReady(8)
+JETB A 0 A_GiveInventory("JetFuel",1)
+loop
+Ready3L:
+JETB A 10 A_WeaponReady
+JETB A 0 A_GiveInventory("JetFuel",1)
+loop
+Deselect:
+JETB AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+JETB A 1 A_Lower
+Loop
+Select:
+JETB AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+JETB A 1 A_Raise
+Loop
+Fire:
+JETB A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+JETB A 0 A_GiveInventory("JetMegaMain_CI",1)
+JETB BC 3
+JETB A 2
+JETB A 0 A_JumpIfInventory("JetTriggerEx",1,"AltFall")
+JETB A 0 A_Refire
+goto Ready2
+Altfire:
+JETB A 0 A_JumpIfInventory("JetFuel",1,"Alt_FlyS")
+goto AltFall
+Alt_FlyS:
+JETB A 0 A_GiveInventory("JetTriggerEx",1)
+JETB A 0 A_GiveInventory("JetTrigger",1)
+JETB A 0 A_Refire("AltFly")
+goto AltFly
+AltFlyC:
+JETB A 0 A_JumpIfInventory("JetFuel",1,"AltFly")
+goto AltFlyEnd
+AltFly:
+JETB A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+JETB A 0 SetPlayerProperty(0,1,3)
+JETB A 0 A_TakeInventory("JetFuel",1,1)
+JETB A 0 A_PlaySoundEx("weapon/Jetfly","Body")
+JETB A 0 ThrustThingZ(0,7,0,1)
+JETB B 4
+JETB A 0 A_ReFire("AltFlyC")
+AltFlyEnd:
+JETB A 1
+JETB A 0 A_TakeInventory("JetTrigger",999)
+JETB A 0 A_GiveInventory("FlightDisableCheck",1)
+Goto AltFall
+
+AltFall:
+JETB A 0 A_JumpIfInventory("JetFuel",1,"AltFall2")
+JETB A 0 A_JumpIf(z-floorz==0, "AltFallEnd")
+JETB A 0 A_JumpIf(momz==0, "AltFall_Z")
+JETB A 1 A_WeaponReady(8)
+loop
+AltFall_Z:
+JETB A 1 A_WeaponReady(8)
+JETB A 0 A_JumpIf(z-floorz==0, "AltFallEnd")
+JETB A 0 A_JumpIf(momz==0, "AltFallEnd")
+goto AltFall
+
+AltFall2:
+JETB A 0 A_JumpIf(z-floorz==0, "AltFallEnd")
+JETB A 0 A_JumpIf(momz==0, "AltFall2_Z")
+JETB A 1 A_WeaponReady
+loop
+AltFall2_Z:
+JETB A 1 A_WeaponReady
+JETB A 0 A_JumpIf(z-floorz==0, "AltFallEnd")
+JETB A 0 A_JumpIf(momz==0, "AltFallEnd")
+goto AltFall2
+
+AltFallEnd:
+JETB A 1 A_TakeInventory("JetTriggerEx",999)
+goto Ready2
+}
+}
+
+actor JetFuel : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor JetTrigger : OnceC{}
+
+actor JetTriggerEx : OnceC{}
+
+actor JetMegaShot : MegaShotC
+{
+Damagetype "MegaM_JetShot"
+Obituary "$OB_JETADAPTOR"
+Translation "204:204=215:215","202:202=4:4","199:199=215:215"
+}
+
+actor JetMegaShotB : JetMegaShot{translation "204:204=205:205","202:202=4:4","199:199=205:205"}
+actor JetMegaShotR : JetMegaShot{translation "204:204=171:171","202:202=4:4","199:199=171:171"}
+actor JetMegaShotO : JetMegaShot{translation "204:204=104:104","202:202=4:4","199:199=104:104"}
+actor JetMegaShotP : JetMegaShot{translation "204:204=229:229","202:202=4:4","199:199=229:229"}
+
+
+actor JetAdaptorWings1
+{
++MISSILE
+//+CLIENTSIDEONLY
+-SOLID
++NOCLIP
++NOINTERACTION
++NOTIMEFREEZE
++NOGRAVITY
++DONTBLAST
++DONTREFLECT
++THRUACTORS
+radius 4
+height 4
+States
+{
+Spawn:
+MMJT A 0
+MMJT A 1
+stop
+}
+}
+
+actor JetAdaptorWings2 : JetAdaptorWings1
+{
+States
+{
+Spawn:
+MMJT B 0
+MMJT B 1
+stop
+}
+}
+
+actor JetAdaptorWings3 : JetAdaptorWings1
+{
+States
+{
+Spawn:
+MMJT C 0
+MMJT C 1
+stop
+}
+}
+
+actor JetMegaMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("JetMegaShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("JetMegaShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("JetMegaShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("JetMegaShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("JetMegaShotP",0,0,8,0)
+goto Done
+}
+}

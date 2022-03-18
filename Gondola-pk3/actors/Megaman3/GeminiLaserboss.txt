@@ -147,7 +147,7 @@ actor BossGeminiLaser
 {
 translation "202:202=197:197"
 PROJECTILE
-damagetype "GeminiLaser"
+damagetype "DMGNoHitstun"
 Obituary "$OB_GEMINILASER"
 +FORCEXYBILLBOARD
 +HEXENBOUNCE
@@ -242,7 +242,7 @@ actor GemShot : FastProjectile
 Translation "204:204=215:215"
 PROJECTILE
 Obituary "$OB_GEMINIBUSTER"
-damagetype "Buster"
+damagetype "DMGNoHitstun"
 +THRUSPECIES//+THRUGHOST
 species "GeminiClone"
 Damage (120)
@@ -1024,7 +1024,7 @@ TNT1 A 0 A_TakeInventory("CloneRun",999)
 //TNT1 A 0 A_TakeInventory("CloneRunStand", 999)
 stop
 RunStand:
-TNT1 A 0 A_GiveInventory("CloneRunStand", 1)
+//TNT1 A 0 A_GiveInventory("CloneRunStand", 1)
 stop
 }
 }

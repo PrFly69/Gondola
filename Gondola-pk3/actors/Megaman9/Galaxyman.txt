@@ -47,33 +47,53 @@ GALX H 0
 goto PainContinue
 
 ClassDeath:
+GALX H 0 A_JumpIfInventory("GalaxyAltFlag",1,1)
+goto DeathContinue
 GALX H 0
-GALX H 0 A_JumpIfInventory("InstagibFlag",1,"MegaDeathEnd")
+GALX H 0 A_JumpIfInventory("InstagibFlag",1,"GibDeath")
 GALX H 0 A_JumpIfInventory("FlingDeathFlag",1,"ClassDeathF")
-GALX Z 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
-GALX Z 0 A_PlaySoundEx("weapon/junkend","Voice")
-GALX Z 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
-GALX Z 1 A_SpawnItemEx("GalaxymanBoomGibs",0,0,0,momx,momy,momz+5,0,9,0)
+GALX Z 5 A_GiveInventory("GalaxyM_FlingCorpse_P")
 goto DeathWait
 ClassDeathF:
-GALX "]" 1 A_PlaySoundEx("weapon/junkend","Voice")
-GALX Z 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
-GALX Z 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
-GALX Z 1 A_SpawnItemEx("GalaxymanBoomGibs",0,0,0,momx*0.75,momy*0.75,momz*0.75+1,0,9,0)
-goto DeathWait
-goto ClassDeath+3
-ClassDeathI:
-GALX Z 1 A_SpawnItemEx("GalaxymanIceGibs",0,0,0,momx,momy,momz+5,0,8,0)
-goto DeathWait
-ClassDeathR:
-GALX Z 1 A_SpawnItemEx("GalaxymanRiseGibs",0,0,0,momx*0.5,momy*0.5,momz+5,0,9,0)
-GALX Z 0 A_Stop
+GALX "]" 0 A_PlaySoundEx("weapon/junkend","Voice")
+GALX "]" 3
+GALX Z 5 A_GiveInventory("GalaxyM_FlingCorpse_P")
 goto DeathWait
 }
 }
 
+actor GalaxyM_FlingCorpse_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("InstagibFlag",1,"No")
+TNT1 A 0 A_JumpIfInventory("FlingDeathFlag",1,"P_Fling")
+TNT1 A 0 A_PlaySoundEx("weapon/junkend","Voice")
+TNT1 A 0 A_JumpIfInventory("IceDeathFlag",1,"P_Ice")
+TNT1 A 0 A_JumpIfInventory("RiseDeathFlag",1,"P_Rise")
+TNT1 A 0 A_SpawnItemEx("GalaxymanBoomFlingCorpse",0,0,0,momx,momy,momz+5,0,9)
+stop
+P_Fling:
+TNT1 A 0 A_JumpIfInventory("IceDeathFlag",1,"P_Ice")
+TNT1 A 0 A_JumpIfInventory("RiseDeathFlag",1,"P_Rise")
+TNT1 A 0 A_SpawnItemEx("GalaxymanBoomFlingCorpse",0,0,0,momx*0.8,momy*0.8,momz*0.8+1,0,9)
+stop
+P_Ice:
+TNT1 A 0 A_SpawnItemEx("GalaxymanIceFlingCorpse",0,0,0,momx,momy,momz+5,0,8)
+stop
+P_Rise:
+TNT1 A 0 A_SpawnItemEx("GalaxymanRiseFlingCorpse",0,0,0,momx*0.5,momy*0.5,momz+5,0,9)
+TNT1 A 0 A_Stop
+stop
+No:
+TNT1 A 0
+stop
+}
+}
 
-actor GalaxymanBoomGibs
+
+actor GalaxymanBoomFlingCorpse
 {
 +MISSILE
 +THRUACTORS
@@ -88,18 +108,31 @@ scale 2.5
 States
 {
 Spawn:
+GALX "]" 0
+GALX "]" 0 A_JumpIfInventory("CriticalDeath",1,"SpawnCheckGib",2)
+goto SpawnL
+SpawnCheckGib:
+GALX "]" 0 A_GiveInventory("CriticalDeath",1)
+goto SpawnL
+SpawnL:
 GALX "]" 1
-loop
+wait
 Death:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-TNT1 A 0 A_PlaySoundEx("misc/devildeath","Body")
-TNT1 A 4 A_SpawnItemEx("TFakeDeathFX",0,0,32,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("FakeDeathFX_CBM",0,0,32,0,0,0,0,1)
+TNT1 A 0 A_JumpIfInventory("CriticalDeath",1,"DeathGibbed")
+TNT1 A 4 A_PlaySoundEx("misc/devildeath","Body")
+stop
+DeathGibbed:
+TNT1 A 0 A_PlaySoundEX("misc/gib","SoundSlot6")
+TNT1 A 4 A_SpawnItemEX("CriticalDeathSpawner",0,0,0,0,0,0,0,1)
 stop
 }
 }
 
-actor GalaxymanRiseGibs : GalaxymanBoomGibs
+
+actor GalaxymanRiseFlingCorpse : GalaxymanBoomFlingCorpse
 {
 +NOGRAVITY
 +SKYEXPLODE
@@ -107,13 +140,20 @@ ReactionTime 7
 States
 {
 Spawn:
+GALX "]" 0
+GALX "]" 0 A_JumpIfInventory("CriticalDeath",1,"SpawnCheckGib",2)
+goto SpawnL
+SpawnCheckGib:
+GALX "]" 0 A_GiveInventory("CriticalDeath",1)
+goto SpawnL
+SpawnL:
 GALX "]]]]]" 1 ThrustThingZ(0,4,0,1)
 GALX "]" 0 A_CountDown
 loop
 }
 }
 
-actor GalaxymanIceGibs : GalaxymanBoomGibs
+actor GalaxymanIceFlingCorpse : GalaxymanBoomFlingCorpse
 {
 Translation "192:192=4:4", "198:198=201:201", "3:8=72:72", "243:247=72:72", "208:215=4:4", "202:202=4:4", "199:199=201:201", "204:204=4:4", "195:195=201:201"
 States
@@ -121,13 +161,21 @@ States
 Spawn:
 GALX "]" 0
 GALX "]" 0 A_PlaySoundEx("CBM/freeze","Body")
+GALX "]" 0 A_JumpIfInventory("CriticalDeath",1,"SpawnCheckGib",2)
+goto SpawnL
+SpawnCheckGib:
+GALX "]" 0 A_GiveInventory("CriticalDeath",1)
+goto SpawnL
+SpawnL:
 GALX "]" 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
 wait
 Death:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 TNT1 A 0 A_PlaySoundEx("CBM/icebreak","Body")
-TNT1 A 4 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+TNT1 A 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+TNT1 A 0 A_JumpIfInventory("CriticalDeath",1,"DeathGibbed")
+TNT1 A 4
 stop
 }
 }

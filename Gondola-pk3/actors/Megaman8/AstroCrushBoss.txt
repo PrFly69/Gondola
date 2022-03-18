@@ -61,7 +61,7 @@ Altfire:
 	Fire2:
 	8_AS A 0 A_TakeInventory("CopyAmmoC",14)
 	8_AS I 2 Offset(0,46) A_GiveInventory("AstroMain2_CI",1)
-	8_AS J 2 A_GiveInventory("TargetMarkerX",1)
+	8_AS J 2 A_GiveInventory("CBM_TargetMarker",1)
 	8_AS KLM 4
 	8_AS B 4 A_WeaponReady
 	8_AS A 4

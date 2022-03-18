@@ -927,7 +927,7 @@ TNT1 A 0 A_FireCustomMissile("MagicCardBO",0,1,0,15)
 TNT1 A 0 A_FireCustomMissile("MagicCard2BO",0,1,0,-15)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("MagicCardBP	",0,1,0,15)
+TNT1 A 0 A_FireCustomMissile("MagicCardBP",0,1,0,15)
 TNT1 A 0 A_FireCustomMissile("MagicCard2BP",0,1,0,-15)
 goto Done
 }

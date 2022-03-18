@@ -142,9 +142,12 @@ CHAH C 0 A_PlaySoundEx("weapon/chugga","weapon")
 CHAH C 0 A_SpawnItemEx("CoalSpawner",0,0,56,0,0,0,0,1)
 CHAH C 0 A_FireCustomMissile("ChargeAltRadius",0,0,0,0)
 CHAH C 0 A_GiveInventory("ChargemanAlt_CI",1)
-CHAH OOPPQQRR 1 A_TakeInventory("BlackHotAmmo",10)
+TNT1 A 0 A_GiveInventory("ChargeTrollageFlag",1)
+CHAH OOOPPQQRR 1 A_TakeInventory("BlackHotAmmo",10)
 CHAH E 0 ACS_ExecuteAlways(998,0,DYE_CHARGEMAN,1)
-CHAH E 0 A_GiveInventory("InvulnerableOff_Pickup",1)
+STAC A 0 A_TakeInventory("SemiStunArmor",1)
+STAC A 0 A_TakeInventory("GuardUpFlag",1)
+STAC A 0 A_TakeInventory("ChargeParryPower",1)
 TNT1 A 0 A_TakeInventory("ChargeTrollageFlag",1)
 CHAH E 0 A_TakeInventory("BlackHotAmmo",10)
 CHAH SSSSRRQQPPOO 1
@@ -269,11 +272,16 @@ States
 {
 Pickup:
 TNT1 A 0 ACS_ExecuteAlways(998,0,DYE_CHARGEMANHOT,5)
-TNT1 A 0 A_GiveInventory("InvulnerableOn_Pickup",1)
-TNT1 A 0 A_GiveInventory("ChargeTrollageFlag",1)
-TNT1 A 0 A_TakeInventory("BlackHotAmmo",10)
+STAC A 0 A_GiveInventory("SemiStunArmor",1)
+STAC A 0 A_GiveInventory("GuardUpFlag",1)
+STAC A 0 A_GiveInventory("ChargeParryPower",1)
 stop
 }
+}
+
+actor ChargeParryPower : BasePowerPro
+{
+damagefactor "Normal", 0.5
 }
 
 actor ChargeCarryHelper : BasicHelper

@@ -355,7 +355,7 @@ Actor DiveHatchFlag : OnceC{} //Okay, which one of you made all the fancy sectio
 	DamageFactor "PlantM_Drain", 0.0
 	DamageFactor "ShadeDrain", 0.0
 
-	Health 50
+	Health 500
 	Mass 99999
 	ReactionTime 1
 	Damage (0)

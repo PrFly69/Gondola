@@ -11,7 +11,7 @@
 //#include "actors/Megaman0/AutoBolterBoss.txt"
 #include "actors/Megaman0/AutoBolterBloatCode.txt"
 
-#include "actors/Wep/ProjectilePickups.txt"
+#include "actors/ProjectilePickups.txt"
 //#include "actors/Wep/Copywep/baseweapon_s.txt"
 
 //#include "actors/Megaman0/MaestroBuster.txt"
@@ -76,7 +76,7 @@
 #include "actors/Megaman11/Blastman.txt"
 #include "actors/Megaman11/ChainBlastBoss.txt"
 
-#include "actors/Wep/copywepvisibility.txt"
+#include "actors/copywepvisibility.txt"
 
 actor AboveDecimalHP : Inventory
 {
@@ -1015,3 +1015,5 @@ actor Maestro_MapMarker_2 : Maestro_MapMarker_D {translation "192:192=104:104", 
 actor Maestro_MapMarker_3 : Maestro_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
 #include "MAPICONS.txt"
+
+actor IsVeryMuchDuoFlag : Inventory {}

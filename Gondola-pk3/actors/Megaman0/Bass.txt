@@ -26,7 +26,7 @@ States
 {
 Spawn:
 BASS A 0
-BASS A 0 A_JumpIfInventory("TrebleBoostcFlag",1,"Treb")
+BASS A 0 A_JumpIfInventory("BassAndTreble_F",1,"Treb")
 BASS A 0 A_JumpIfInventory("BassKickFlag",1,"BassKick")
 BASS B 1
 BASS A 1
@@ -36,11 +36,11 @@ BASS MNMN 5
 Goto Spawn
 See:
 BASS A 0 A_JumpIfInventory("BassKickFlag",1,"BassKick")
-BASS A 0 A_JumpIfInventory("TrebleBoostcFlag",1,"Treb")
+BASS A 0 A_JumpIfInventory("BassAndTreble_F",1,"Treb")
 BASS BCDE 5 A_JumpIfInventory("BassKickFlag",1,"BassKick")
 Goto Spawn
 Missile:
-BASS F 0 A_JumpIfInventory("TrebleBoostcFlag",1,"Trebs")
+BASS F 0 A_JumpIfInventory("BassAndTreble_F",1,"Trebs")
 BASS F 1 A_JumpIfInventory("BassDash",1,"Dash")
 BASS F 0 A_JumpIfInventory("BassKickFlag",1,"BassKick")
 BASS F 1 A_JumpIfInventory("BassDash",1,"Dash")

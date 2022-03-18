@@ -235,7 +235,7 @@ actor SolarFlare //The main sun.
 	Radius 24
 	Height 24
 	Obituary "$OB_SOLARBLAZEX"
-	DamageType "SolarBlaze"
+	DamageType "DMGNoHitstun"
 	scale 2.5
 	damage (0)
 	speed 50
@@ -655,7 +655,7 @@ actor SolarFlareExplosionWaveMed
 Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 Obituary "$OB_SOLARWAVE"
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 -FORCEXYBILLBOARD
 +RIPPER
 Damage (70)
@@ -689,7 +689,7 @@ actor SolarFlare3 //The main sun.
 	+BOUNCEONCEILINGS
 	+BOUNCEONWALLS
 	Obituary "$OB_SOLARBLAZE"
-	DamageType "SolarBlaze"
+	DamageType "DMGNoHitstun"
 	Radius 10
 	Height 10
 	scale 2.5
@@ -752,7 +752,7 @@ actor SolarGrenadeLob
 Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 Obituary "$OB_SOLARLOB"
-DamageType "ClassPainLess2"
+DamageType "DMGNoHitstun"
 damage (50)
 Radius 14
 Height 14
@@ -803,7 +803,7 @@ actor SolarSmallGrenadeLob
 Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 Obituary "$OB_SOLARLOB"
-DamageType "ClassPainLess2"
+DamageType "DMGNoHitstun"
 damage (100)
 Radius 14
 Height 14
@@ -1069,7 +1069,7 @@ actor SolarFlareAlt //The main sun.
 	+NOINTERACTION
 	+NOCLIP
 	Obituary "$OB_SOLARBLAZE"
-	DamageType "SolarBlaze"
+	DamageType "DMGNoHitstun"
 	species "SolarAltSun"
 	Radius 15
 	Height 12
@@ -1146,7 +1146,7 @@ actor SolarFlareAlt2 //The main sun.
 	+NOINTERACTION
 	+NOCLIP
 	Obituary "$OB_SOLARBLAZE"
-	DamageType "SolarBlaze"
+	DamageType "DMGNoHitstun"
 	species "SolarAltSun"
 	Radius 15
 	Height 12
@@ -1223,7 +1223,7 @@ actor SolarFlareAlt3 //The main sun.
 	+NOINTERACTION
 	+NOCLIP
 	Obituary "$OB_SOLARBLAZE"
-	DamageType "SolarBlaze"
+	DamageType "DMGNoHitstun"
 	species "SolarAltSun"
 	Radius 15
 	Height 12
@@ -1300,7 +1300,7 @@ actor SolarFlareAlt4 //The main sun.
 	+NOINTERACTION
 	+NOCLIP
 	Obituary "$OB_SOLARBLAZE"
-	DamageType "SolarBlaze"
+	DamageType "DMGNoHitstun"
 	species "SolarAltSun"
 	Radius 15
 	Height 12
@@ -1395,7 +1395,7 @@ stop
 actor SolarSnatchHitboxD
 {
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "DMGNoHitstun"
 var int user_USER;
 obituary "%o's eyes were burned off by staying too close to %k's solar spiral."
 +DONTBLAST

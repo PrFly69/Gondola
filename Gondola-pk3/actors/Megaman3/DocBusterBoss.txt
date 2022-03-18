@@ -1152,6 +1152,269 @@ actor DocQuickSpeedup : PowerSpeed
 Speed 1.35
 }
 
+actor DocRobotMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocShotB",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocShotBB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocShotBR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocShotBO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocShotBP",0,0,8,0)
+goto Done
+}
+}
+
+actor DocRobotHeatAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocHeatShot",10,1,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShot",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShot",-10,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocHeatShotB",10,1,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotB",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotB",-10,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocHeatShotR",10,1,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotR",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotR",-10,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocHeatShotO",10,1,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotO",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotO",-10,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocHeatShotP",10,1,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotP",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotP",-10,0,8,0)
+goto Done
+}
+}
+
+actor DocRobotHeatAltNoTake_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocHeatShot",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShot",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShot",-10,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocHeatShotB",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotB",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotB",-10,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocHeatShotR",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotR",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotR",-10,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocHeatShotO",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotO",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotO",-10,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocHeatShotP",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotP",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("DocHeatShotP",-10,0,8,0)
+goto Done
+}
+}
+
+actor DocRobotFlashAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocFlashShot",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotP",0,1,8,0)
+goto Done
+}
+}
+
+actor DocRobotFlashAltNoTake_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocFlashShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotP",0,0,8,0)
+goto Done
+}
+}
+
+actor DocRobotFlashAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocFlashShot",random(-3,3),1,8,0,1,random(-3,3))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotB",random(-3,3),1,8,0,1,random(-3,3))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotR",random(-3,3),1,8,0,1,random(-3,3))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotO",random(-3,3),1,8,0,1,random(-3,3))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotP",random(-3,3),1,8,0,1,random(-3,3))
+goto Done
+}
+}
+
+actor DocRobotFlashAltNoTake2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocFlashShot",random(-3,3),0,8,0,1,random(-3,3))
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotB",random(-3,3),0,8,0,1,random(-3,3))
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotR",random(-3,3),0,8,0,1,random(-3,3))
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotO",random(-3,3),0,8,0,1,random(-3,3))
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocFlashShotP",random(-3,3),0,8,0,1,random(-3,3))
+goto Done
+}
+}
+
+actor DocRobotCrashAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocCrashShot",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocCrashShotB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocCrashShotR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocCrashShotO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocCrashShotP",0,1,8,0)
+goto Done
+}
+}
+
+actor DocRobotCrashAltNoTake_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocCrashShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocCrashShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocCrashShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocCrashShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocCrashShotP",0,0,8,0)
+goto Done
+}
+}
+
+actor DocRobotMetalAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocMetalShot",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocMetalShotB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocMetalShotR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocMetalShotO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocMetalShotP",0,1,8,0)
+goto Done
+}
+}
+
+actor DocRobotMetalAltNoTake_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("DocMetalShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("DocMetalShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("DocMetalShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("DocMetalShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("DocMetalShotP",0,0,8,0)
+goto Done
+}
+}
+
+//for cbm
 actor DocScanner : FastProjectile
 {
 //PROJECTILE
@@ -1573,436 +1836,7 @@ stop
 }
 }
 
-
-actor DocVirusAmmo_RC : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
-TNT1 A 0 A_GiveInventory("DocVirusAmmo",1)
-stop
-PickupR:
-TNT1 A 0 A_GiveInventory("DocVirusAmmo",2)
-stop
-}
-}
-
 actor DocVirusAmmoDelay : Powerup
 {
 Powerup.Duration 20
-}
-
-actor DocAmmoGiver_RC : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"PickupR")
-TNT1 A 0 A_GiveInventory("CutterFlag",1)
-goto PickupVirus
-PickupR:
-TNT1 A 0 A_GiveInventory("CutterFlag",2)
-goto PickupVirus
-PickupVirus:
-TNT1 A 0 A_JumpIfInTargetInventory("DocVirusAmmoDelay",1,"No")
-TNT1 A 0 A_JumpIfInventory("VivifyDelay10",1,"No")
-TNT1 A 0 A_GiveInventory("VivifyDelay10",1)
-TNT1 A 0 A_GiveToTarget("DocVirusAmmo_RC",1)
-stop
-No:
-TNT1 A 0
-stop
-}
-}
-
-actor DocAmmoGiver : BasicHelper
-{
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 A_JumpIfInventory("IsLMSFlag",1,"SpawnLMS")
-goto Spawn1
-Spawn1:
-TNT1 A 0
-TNT1 A 1
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-TNT1 A 0 A_JumpIfInTargetInventory("DocBusterC",1,1)
-goto Death
-TNT1 A 0 A_GiveInventory("DocAmmoGiver_RC",1)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",53,"DocAmmo2")
-loop
-SpawnLMS:
-TNT1 A 0
-TNT1 A 1
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-TNT1 A 0 A_JumpIfInTargetInventory("DocBusterC",1,1)
-goto Death
-TNT1 A 0 A_GiveInventory("DocAmmoGiver_RC",1)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",106,"DocAmmo2LMS")
-loop
-
-DocAmmo2:
-TNT1 A 0 A_GiveToTarget("DocAmmo22",1)
-TNT1 A 0 A_TakeInventory("CutterFlag",999)
-goto Spawn1
-DocAmmo2LMS:
-TNT1 A 0 A_GiveToTarget("DocAmmo22",1)
-TNT1 A 0 //A_JumpIfInTargetInventory("EnergyBalancerActive",1,2)
-TNT1 A 0 A_TakeInventory("CutterFlag",999)
-goto SpawnLMS
-TNT1 A 0 A_TakeInventory("CutterFlag",53)
-goto SpawnLMS
-
-}
-}
-
-actor DocAmmoGiverOld : BasicHelper
-{
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 1
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-TNT1 A 0 A_JumpIfInTargetInventory("DocBusterC",1,1)
-goto Death
-TNT1 A 0 A_GiveInventory("CutterFlag",1)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",127,2)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",126,"DocAmmo2")
-TNT1 A 0 A_JumpIfInventory("CutterFlag",169,2)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",168,"DocAmmo1p5")
-TNT1 A 0 A_JumpIfInventory("CutterFlag",253,2)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",252,"DocAmmo0and2")
-TNT1 A 0 A_JumpIfInventory("CutterFlag",337,2)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",336,"DocAmmo1p5")
-TNT1 A 0 A_JumpIfInventory("CutterFlag",379,2)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",378,"DocAmmo2")
-TNT1 A 0 A_JumpIfInventory("CutterFlag",504,"DocAmmo0and1p5and2")
-goto Spawn+1
-DocAmmo0and2:
-TNT1 A 0 A_GiveToTarget("DocAmmo0",1)
-TNT1 A 0 A_GiveToTarget("DocAmmo2",1)
-goto Spawn+1
-DocAmmo1p5:
-TNT1 A 0 A_GiveToTarget("DocAmmo1p5",1)
-goto Spawn+1
-DocAmmo2:
-TNT1 A 0 A_GiveToTarget("DocAmmo2",1)
-goto Spawn+1
-DocAmmo0and1p5and2:
-TNT1 A 0 A_GiveToTarget("DocAmmo0",1)
-TNT1 A 0 A_GiveToTarget("DocAmmo1p5",1)
-TNT1 A 0 A_GiveToTarget("DocAmmo2",1)
-TNT1 A 0 A_TakeInventory("CutterFlag",999)
-goto Spawn+1
-Death:
-TNT1 A 0
-stop
-}
-}
-
-
-actor DocAmmo0 : CustomInventory
-{
-States
-{
-Pickup:
-EBAL E 0 ACS_NamedExecuteAlways("cbm_CopyWepAmmoRatioGive",0,2)
-stop
-}
-}
-
-actor DocAmmo1p5 : CustomInventory
-{
-States
-{
-Pickup:
-EBAL E 0 ACS_NamedExecuteAlways("cbm_CopyWepAmmoRatioGive",0,3/* *0.5 */)
-stop
-}
-}
-
-actor DocAmmo2 : CustomInventory
-{
-States
-{
-Pickup:
-EBAL E 0 ACS_NamedExecuteAlways("cbm_CopyWepAmmoRatioGive",0,4 /* *0.5 */)
-stop
-}
-}
-
-actor DocAmmo22 : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 //A_PlaySound("item/energyup",3,1.0)
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_CopyWepAmmoRatioGive",0,8)//HAHA RATIO LMAO
-stop
-}
-}
-
-actor DocRobotMain_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocShotB",0,0,8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocShotBB",0,0,8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocShotBR",0,0,8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocShotBO",0,0,8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocShotBP",0,0,8,0)
-goto Done
-}
-}
-
-actor DocRobotHeatAlt_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocHeatShot",10,1,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShot",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShot",-10,0,8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocHeatShotB",10,1,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotB",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotB",-10,0,8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocHeatShotR",10,1,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotR",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotR",-10,0,8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocHeatShotO",10,1,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotO",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotO",-10,0,8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocHeatShotP",10,1,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotP",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotP",-10,0,8,0)
-goto Done
-}
-}
-
-actor DocRobotHeatAltNoTake_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocHeatShot",10,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShot",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShot",-10,0,8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocHeatShotB",10,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotB",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotB",-10,0,8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocHeatShotR",10,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotR",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotR",-10,0,8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocHeatShotO",10,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotO",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotO",-10,0,8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocHeatShotP",10,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotP",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("DocHeatShotP",-10,0,8,0)
-goto Done
-}
-}
-
-actor DocRobotFlashAlt_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocFlashShot",0,1,8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotB",0,1,8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotR",0,1,8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotO",0,1,8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotP",0,1,8,0)
-goto Done
-}
-}
-
-actor DocRobotFlashAltNoTake_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocFlashShot",0,0,8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotB",0,0,8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotR",0,0,8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotO",0,0,8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotP",0,0,8,0)
-goto Done
-}
-}
-
-actor DocRobotFlashAlt2_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocFlashShot",random(-3,3),1,8,0,1,random(-3,3))
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotB",random(-3,3),1,8,0,1,random(-3,3))
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotR",random(-3,3),1,8,0,1,random(-3,3))
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotO",random(-3,3),1,8,0,1,random(-3,3))
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotP",random(-3,3),1,8,0,1,random(-3,3))
-goto Done
-}
-}
-
-actor DocRobotFlashAltNoTake2_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocFlashShot",random(-3,3),0,8,0,1,random(-3,3))
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotB",random(-3,3),0,8,0,1,random(-3,3))
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotR",random(-3,3),0,8,0,1,random(-3,3))
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotO",random(-3,3),0,8,0,1,random(-3,3))
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocFlashShotP",random(-3,3),0,8,0,1,random(-3,3))
-goto Done
-}
-}
-
-actor DocRobotCrashAlt_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocCrashShot",0,1,8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocCrashShotB",0,1,8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocCrashShotR",0,1,8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocCrashShotO",0,1,8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocCrashShotP",0,1,8,0)
-goto Done
-}
-}
-
-actor DocRobotCrashAltNoTake_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocCrashShot",0,0,8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocCrashShotB",0,0,8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocCrashShotR",0,0,8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocCrashShotO",0,0,8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocCrashShotP",0,0,8,0)
-goto Done
-}
-}
-
-actor DocRobotMetalAlt_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocMetalShot",0,1,8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocMetalShotB",0,1,8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocMetalShotR",0,1,8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocMetalShotO",0,1,8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocMetalShotP",0,1,8,0)
-goto Done
-}
-}
-
-actor DocRobotMetalAltNoTake_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("DocMetalShot",0,0,8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("DocMetalShotB",0,0,8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("DocMetalShotR",0,0,8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("DocMetalShotO",0,0,8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("DocMetalShotP",0,0,8,0)
-goto Done
-}
 }

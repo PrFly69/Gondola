@@ -2106,6 +2106,9 @@ CHANGELOG
 ==Bombman
 -Hyper Bomb Explosion FX ported from classes-v9fh.pk3
 
+==Metalman
+-Damage 14.0 > 12.0
+
 ==Bubbleman
 -New HUD by Christmas Cultist
 -Ported swimming sprites from classes-v9fh.pk3
@@ -2120,6 +2123,11 @@ CHANGELOG
 
 ==Magnetman
 -Magnet Mines removed
+-SBAR now uses vanilla Magnet Missile colors
+
+==Hardman
+-Fixed Hard Knuckle hit FX not playing on killing an enemy
+--Killing enemies also produces minor A_Quake on impact
 
 ==Doc Robot
 -Health 90.0 > 100.0
@@ -2139,17 +2147,23 @@ CHANGELOG
 ==Gyroman
 -Fixed coloring issues on altfire splitting FX
 
+==Chargeman
+-Fixed SBar desync
+-Full invuln on Coal Shot now replaced with 50% damage resistance
+
 ==Dark Man 3
 -All shots are now suckable by Saturn
 *Whoops!
 -Fully charged ping sound reverted to core sound
+-Scoped Dark Ring now takes 1/2 ammo bar from 1/3
+-Scoped Uncharged mainfire speed 100 > 120, now matches scoped Dark Ring
 
 ==Centaurman
 -Centaur Arrow requires 2 ammo
 --Fires singular Centaur Buster shot without sufficient ammo
 
 ==Knightman
--Hitstun on Knight Crush reduced 0.75 > 0.9
+-Hitstun on Knight Crush reomved
 -Spinning Mace knockback increased 8 > 12
 -Super Knight Crush sprite now reflects hitbox
 --Now has explosive hitbox around impact, does not do knockup (only does knockup on direct)
@@ -2177,12 +2191,15 @@ CHANGELOG
 -Hyper Speed Shade glitch patched out
 -Holding charge shot now grants 1.2x speed to the user, gets removed once fired
 
+==Grenademan
+-Ported Grenade Spread skinsprites from classes-v9fh.pk3
+
 ==Coldman
 -Ice Wall health 95.0 > 50.0
 -New HUD by A-Chan
 
 ==Magicman
--Ported Magic Ball from classes-v9fh.pk3
+-Ported Magic Ball and HUD sprites from classes-v9fh.pk3
 --Damage 11.0 > 9.0
 
 ==Concreteman
@@ -2201,6 +2218,7 @@ CHANGELOG
 ==Hornetman
 -Enraged hornets homing stats (2,10) > (3,12)
 --Enraged hornets damage 70 > 60
+-Removed reworked altfire, now functions similarly to 2.4h Nectar Hive
 -Nectar Hive speed 25 > 36
 --ROF decreased by 10 tics
 --Fixed Nectar Hive applying debuff on allies

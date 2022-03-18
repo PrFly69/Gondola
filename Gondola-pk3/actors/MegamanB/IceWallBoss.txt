@@ -79,19 +79,14 @@ CLDH A 0 A_JumpIf(z-floorz==0,3)
 CLDH A 0 A_GiveInventory("GoFlagAir")
 CLDH A 0 A_Jump(256,2)
 CLDH A 0 A_GiveInventory("GoFlag")
-CLDH H 1 Offset(-20, 25)
-CLDH H 1 Offset(-45, 25)
-CLDH I 3 Offset(-72,28)
-CLDH I 3 Offset(-78,36)
+CLDH H 2
+CLDH I 3
+CLDH H 3
 CLDH H 0 A_TakeInventory("GoFlag")
 CLDH H 0 A_TakeInventory("GoFlagAir")
-CLDH I 1 Offset(-35, 28)
-CLDH H 1 Offset(15, 25)
-CLDH H 1 Offset(30, 25)
-CLDH G 1 Offset(55, 25)
-CLDH G 1 Offset(75, 25)
-CLDH G 1 A_TakeInventory("ColdCombo_Flag",99)
-CLDH A 8 A_WeaponReady(WRF_NOFIRE)
+CLDH G 4
+CLDH G 2 A_TakeInventory("ColdCombo_Flag",99)
+CLDH A 8
 CLDH A 0 A_TakeInventory("DinoDNAFlag")
 goto Ready1
 Reload:

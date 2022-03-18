@@ -1499,7 +1499,7 @@ script "cbm_PickupCTFMorph" PICKUP//Attempt at CTF stuff
 
 	int k = GetActorProperty(0,APROP_HEALTH);
 	int j = GetActorProperty(0,APROP_SpawnHealth);
-	if(j == 0){j = 100;}
+	if(j == 0){j = 1000;}
 	int t;
 	//I hate that I'm about to do this when I'm not even sure that it works.
 	while(true)
@@ -1515,7 +1515,7 @@ script "cbm_PickupCTFMorph" PICKUP//Attempt at CTF stuff
 	}
 	int losthealth = GetCvar("SV_FLAGHOTPOTATO") * flagdropcount[t];
 	int i;
-	if(losthealth<200){i = ( ( 200 - ( losthealth ) ) * k ) / j;}
+	if(losthealth<2000){i = ( ( 2000 - ( losthealth ) ) * k ) / j;}
 	else{i = 1;}
 	
 	while(GetActorProperty(0, APROP_HEALTH)>0){

@@ -164,8 +164,8 @@ POWW ABABABABABAB 2
 POWW A 1 A_CountDown
 wait
 Death:
-VMFX DSR 2
-YMFX Q 2
+VMFX DKJ 2
+XMFX S 2
 POWW G 2
 stop
 XDeath:
@@ -196,9 +196,8 @@ POWW HIHIHIHIH 2
 POWW H 1 A_CountDown
 wait
 Death:
-VMFX DSR 2
-YMFX Q 2
-XMFX Q 2
+VMFX DKJ 2
+XMFX SQ 2
 stop
 }
 }
@@ -221,21 +220,21 @@ Spawn:
 TNT1 A 0 
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-VMFX R 2
-YMFX Q 2
-VMFX R 0 A_Stop
-VMFX R 2
-YMFX Q 2
-VMFX R 2
-YMFX Q 2
-VMFX R 2
+VMFX J 2
+XMFX S 2
+VMFX J 0 A_Stop
+VMFX J 2
+XMFX S 2
+VMFX J 2
+XMFX S 2
+VMFX J 2
 stop
 Death:
-VMFX R 2
-YMFX Q 2
-VMFX R 2
-YMFX Q 2
-VMFX R 2
+VMFX J 2
+XMFX S 2
+VMFX J 2
+XMFX S 2
+VMFX J 2
 stop
 XDeath:
 Crash:

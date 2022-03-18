@@ -1651,7 +1651,7 @@ TNT1 A 0 A_GiveInventory("AcidmanVisualDelay1",1)
 TNT1 A 0 A_GiveInventory("AcidmanVisualDelay2",1)
 TNT1 A 0 A_GiveInventory("AcidmanVisualDelay3",1)
 TNT1 A 0 A_GiveInventory("AcidmanVisualDelay4",1)
-TNT1 A 0 A_GiveInventory("AcidmanVisualDelay5",1)
+//TNT1 A 0 A_GiveInventory("AcidmanVisualDelay5",1)
 stop
 }
 }

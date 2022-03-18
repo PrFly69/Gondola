@@ -324,12 +324,12 @@ States
 {
 Pickup:
 TNT1 A 0 A_JumpIfInventory("MarsTankFuel_F",1,"Pickup2")
-TNT1 A 0 A_JumpIfInventory("MarsRocketThrustBonus",1,"GroundW")
+//TNT1 A 0 A_JumpIfInventory("MarsRocketThrustBonus",1,"GroundW")
 TNT1 A 0 A_JumpIf(z-floorz==0,"GroundW")
 TNT1 A 0 A_JumpIf(1,"AirW")
 stop
 Pickup2:
-TNT1 A 0 A_JumpIfInventory("MarsRocketThrustBonus",1,"Ground")
+//TNT1 A 0 A_JumpIfInventory("MarsRocketThrustBonus",1,"Ground")
 TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
 TNT1 A 0 A_JumpIf(1,"Air")
 stop

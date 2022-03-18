@@ -109,7 +109,7 @@ goto NoAmmo
 AltContinue:
 TNT1 A 0 A_PlaySoundEX("weapon/shieldhum","SoundSlot7")
 DKC4 A 0 A_GiveInventory("ShieldCheck",1)
-DKC4 A 0 A_GiveInventory("ShieldNoRegenFlag",1)
+DKC4 A 0 //A_GiveInventory("ShieldNoRegenFlag",1)
 DKC4 B 2
 DKC4 C 8
 DKC4 B 2

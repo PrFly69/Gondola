@@ -62,7 +62,7 @@ PUNK WV 5
 Goto Spawn
 PunkJumping:
 PUNK I 1 A_JumpIf(z-floorz<=0, "Spawn")
-goto Spawn+2
+wait
 PunkJumpingShoot:
 PUNK JJJKKK 1 A_JumpIf(z-floorz<=0, "Missile")
 goto PunkJumping

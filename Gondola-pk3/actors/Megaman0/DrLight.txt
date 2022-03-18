@@ -67,49 +67,46 @@ ClassPain:
 RYUL H 0 A_JumpIfInventory("MegaShoryu",1,"MissileUpper2")
 RYUL H 0 A_JumpIfInventory("RyuMainFlagX",1,"MissileSuperMain")
 goto PainContinue
-
 ClassDeath:
 RYUL H 0
-RYUL H 0 A_JumpIfInventory("InstagibFlag",1,"MegaDeathEnd")
+RYUL H 0 ACS_ExecuteAlways(998,0,DYE_LIGHTRYU_DEATH,3)
+RYUL H 0 A_StopSound(2)//Voice
+RYUL H 0 A_PlaySoundEx("*death","SoundSlot7")
+RYUL H 0 A_JumpIfInventory("InstagibFlag",1,"GibDeath")
 RYUL H 0 A_JumpIfInventory("FlingDeathFlag",1,"ClassDeathF")
 RYUL H 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
 RYUL H 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
-RYUL H 10 A_PlaySoundEx("*death","Voice")
-RYUL Z 0 A_SpawnItemEx("LightRyuDemiseC",0,0,0,0,0,0,0,1)
-RYUL Z 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-RYUL H 0 A_GiveInventory("SpecialDeathFlag")
-goto DeathContinue
-
+RYUL H 10
+RYUL Z 0 A_SpawnItemEx("LightRyuDemiseCorpse",0,0,0,0,0,0,0,1)
+RYUL Z 0 A_GiveInventory("CBM_CritDeathCheck_P")
+goto MegaDeathEnd+1
 ClassDeathF:
-RYUL H 19 A_PlaySoundEx("*death","Voice")
-RYUL Z 0 A_SpawnItemEx("LightRyuDemiseC",0,0,0,0,0,0,0,1)
-RYUL Z 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-RYUL H 0 A_GiveInventory("SpecialDeathFlag")
-goto DeathContinue
+RYUL H 19
+RYUL Z 0 A_SpawnItemEx("LightRyuDemiseCorpse",0,0,0,0,0,0,0,1)
+RYUL Z 0 A_GiveInventory("CBM_CritDeathCheck_P")
+goto MegaDeathEnd+2
 ClassDeathR:
 RYUL H 1 ThrustThingZ(0,21,0,1)
 RYUL H 0 A_JumpIf(ceilingz-z<64,"ClassDeathRE")
 RYUL H 0 A_GiveInventory("RiseDeathFlag2",1)
-RYUL H 0 A_GiveInventory("SpecialDeathFlag")
 RYUL H 0 A_JumpIfInventory("RiseDeathFlag2",25,"ClassDeathRE")
 Goto ClassDeathR
 ClassDeathRE:
-RYUL H 0 A_Stop
-RYUL H 0 A_SpawnItemEx("LightRyuDemiseC",0,0,0,0,0,0,0,1)
-goto DeathWait
+RYUL Z 0 A_SpawnItemEx("LightRyuDemiseCorpse",0,0,0,0,0,0,0,1)
+goto GibDeath
 ClassDeathI:
-RYUL H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
+RYUL H 0 A_PlaySoundEx("*death","Body")
 RYUL H 1 A_PlaySoundEx("CBM/freeze","Voice")
+RYUL H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
 RYUL HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
 RYUL H 0 A_PlaySoundEx("CBM/icebreak","Body")
 RYUL H 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
-RYUL H 0 A_SpawnItemEx("LightRyuDemiseC",0,0,0,0,0,0,0,1)
-RYUL H 0 A_GiveInventory("SpecialDeathFlag")
+RYUL H 0 A_SpawnItemEx("LightRyuDemiseCorpse",0,0,0,0,0,0,0,1)
 goto DeathWait
 }
 }
 
-actor LightRyuDemiseC : BasicExplosion
+actor LightRyuDemiseCorpse : BasicExplosion
 {
 Scale 2.5
 States

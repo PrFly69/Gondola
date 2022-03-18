@@ -70,6 +70,11 @@ actor IceBallProtect : PowerProtection
 Powerup.Duration 5
 DamageFactor "MegaIceBall", 0.5
 }
+actor FireBallProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "MegaFireBall", 0.5
+}
 actor GutsBallProtect : PowerProtection
 {
 Powerup.Duration 5

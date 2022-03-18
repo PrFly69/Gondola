@@ -552,7 +552,7 @@ stop
 SwimCheck:
 TNT1 A 0 A_JumpIfInventory("HasFeetInWater",1,"Swim")
 TNT1 A 0 A_JumpIfInventory("IsUnderWater",1,"Swim")
-TNT1 A 0 A_JumpIfInventory("PowerBubbleFlood",1,"Swim")//IsUnderBubbleWater
+TNT1 A 0 A_JumpIfInventory("PowerFlood",1,"Swim")//IsUnderBubbleWater
 TNT1 A 0 SetPlayerProperty(0,0,3)
 stop
 Swim:

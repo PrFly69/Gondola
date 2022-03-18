@@ -1,0 +1,53 @@
+actor Slashman : ClassBase
+{
+Player.ScoreIcon "C_07F0X"
+player.displayname "Slashman"
+player.soundclass "slashmanc"
+
+player.maxhealth 850
+health 850
+player.jumpz 10
+player.forwardmove 0.82, 0.82
+player.sidemove 0.80, 0.80
+
+player.startitem "SlashClawBoss"
+player.startitem "DashAmmo", 42
+player.startitem "SlashAmmo", 14
+player.startitem "CanWallJump"
+player.startitem "CanWallJumpStack", 99
+
+player.startitem "FreezeCrackerWeakness2", 1
+
+player.startitem "IceSlasherWeakness", 1
+player.startitem "AirShooterWeakness", 1
+player.startitem "BlizzardAttackWeakness", 1
+player.startitem "FreezeCrackerWeakness", 1
+player.startitem "IceWaveWeakness", 1
+player.startitem "IceWallWeakness", 1
+player.startitem "HornetChaserWeakness", 1
+player.startitem "ChillSpikeWeakness", 1
+
+States
+{
+Spawn:
+SLAS A 0
+SLAS B 1
+SLAS A 1
+Goto Spawn+2
+See:
+SLAS BCDE 5
+Goto Spawn
+Missile:
+SLAS F 5
+SLAS G 4
+goto Spawn
+Missile2:
+goto Missile+1
+ClassPain:
+SLAS H 0
+goto PainContinue
+ClassDeath:
+SLAS H 0
+goto DeathContinue
+}
+}

@@ -73,8 +73,8 @@ QSAK A 0 A_GiveInventory("SakugarneActive",1)
 QSAK A 1 Offset(0, 72) A_GiveInventory("QuintIsAir",1)
 QSAK A 1 Offset(0, 60) A_GiveInventory("QuintIsAir",1)
 //QSAK A 2 A_GiveInventory("QuintLeapWeaken",1)
-QSAK A 1 Offset(0, 38) A_GiveInventory("QuintLeapWeaken",1)
-QSAK A 1 Offset(0, 32) A_GiveInventory("QuintLeapWeaken",1)
+QSAK A 1 Offset(0, 38)//A_GiveInventory("QuintLeapWeaken",1)
+QSAK A 1 Offset(0, 32)//A_GiveInventory("QuintLeapWeaken",1)
 Goto Air
 
 Air:
@@ -172,7 +172,7 @@ QSAK A 1 Offset(0, 32)
 QSAK A 1 Offset(0, 30)
 QSAK A 0 A_WeaponReady(14)
 QSAK A 1 A_JumpIfInventory("IsBot",1,"BotJump")
-QSAK A 1 A_GiveInventory("QuintLeapWeaken",1)
+QSAK A 1 //A_GiveInventory("QuintLeapWeaken",1)
 QSAK A 0 A_WeaponReady(12)
 Goto Air
 
@@ -202,7 +202,7 @@ QSAK A 1 Offset(0, 72)
 QSAK A 1 Offset(0, 60)
 QSAK A 1 Offset(0, 38)
 QSAK A 1 Offset(0, 32)
-QSAK A 1 Offset(0, 30) A_GiveInventory("QuintLeapWeaken",1)
+QSAK A 1 Offset(0, 30) //A_GiveInventory("QuintLeapWeaken",1)
 QSAK A 0 A_WeaponReady(12)
 Goto Air
 
@@ -708,6 +708,11 @@ Powerup.Duration 7
 DamageFactor "Quint_Wave", 0.2
 }
 
+actor QuintLeapArmor : BasicArmorPickup
+{
+Armor.Savepercent 75
+Armor.Saveamount 1000
+}
 
 actor QuintLeapCrush
 {

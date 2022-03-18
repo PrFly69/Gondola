@@ -225,6 +225,34 @@ stop
 }
 }
 
+actor IsLMSFlag : OnceC{}
+actor LMSCheckPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(975)==2,"Yes")
+stop
+Yes:
+TNT1 A 0 A_GiveInventory("IsLMSFlag",1)
+stop
+}
+}
+
+actor IsBuckshotFlag : OnceC{}
+actor BuckshotCheckPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(975,2)==2,"Yes")
+stop
+Yes:
+TNT1 A 0 A_GiveInventory("IsBuckshotFlag",1)
+stop
+}
+}
+
 actor ScrewBoltPickup : CustomInventory
 {
 inventory.pickupmessage "Picked up a Small Screw!"
@@ -697,16 +725,16 @@ TNT1 A 0 A_GiveInventory("PowerWallJumpSpeed",1)
 TNT1 A 0 //A_GiveInventory("JumpCancler",1)
 TNT1 A 0 A_TakeInventory("CanWallJumpLimit",1)
 TNT1 A 0 A_JumpIfInventory("QuickManTrail",1,"JumpQuick")
-TNT1 A 0 A_JumpIfInventory("ChillParkour",1,"JumpChill")
+//TNT1 A 0 A_JumpIfInventory("ChillParkour",1,"JumpChill")
 TNT1 A 0 ACS_NamedExecuteAlways("CBM_WallJumpThruster",0,10)
 stop
 JumpQuick:
 TNT1 A 0 ACS_NamedExecuteAlways("CBM_WallJumpThruster",0,20)
 stop
-JumpChill:
-TNT1 A 0 A_GiveInventory("ChillParkourJump_P",1)
-TNT1 A 0 ACS_NamedExecuteAlways("CBM_WallJumpThruster",0,25,3)//12
-stop
+//JumpChill:
+//TNT1 A 0 A_GiveInventory("ChillParkourJump_P",1)
+//TNT1 A 0 ACS_NamedExecuteAlways("CBM_WallJumpThruster",0,25,3)//12
+//stop
 }
 }
 

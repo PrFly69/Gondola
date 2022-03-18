@@ -51,38 +51,40 @@ BBAM H 0
 goto PainContinue
 
 ClassDeath:
-BBAM H 0
+BBAM H 0 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_DEATH,3)
 BBAM H 0 A_JumpIfInventory("InstagibFlag",1,"ClassDeathM")
 BBAM H 0 A_JumpIfInventory("FlingDeathFlag",1,"ClassDeathF")
 BBAM H 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
 BBAM H 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
-BBAM H 2 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_DEATH,3)
+BBAM H 2
 BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
 BBAM H 0 A_SpawnItemEx("BBADeathAnimation",0,0,0,0,0,0,0,1)
-goto DeathContinue
+BBAM H 0 A_GiveInventory("CBM_CritDeathCheck_Snd_P")
+goto MegaDeathEnd+1
 ClassDeathM:
 BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
-goto DeathContinue
+BBAM H 0 A_SpawnItemEx("BBADeathAnimation",0,0,0,0,0,0,0,1)
+goto GibDeath
 ClassDeathF:
-BBAM H 19 ACS_ExecuteAlways(998,0,DYE_BBAMEGAMAN_DEATH,3)
+BBAM H 19
 BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
 BBAM H 0 A_SpawnItemEx("BBADeathAnimationF",0,0,0,0,0,0,0,1)
-goto DeathContinue
+BBAM H 0 A_GiveInventory("CBM_CritDeathCheck_Snd_P")
+goto MegaDeathEnd+1
 ClassDeathR:
 BBAM H 1 ThrustThingZ(0,21,0,1)
 BBAM H 0 A_JumpIf(ceilingz-z<64,"ClassDeathRE")
-BBAM H 0 A_JumpIfInventory("RiseDeathFlag2",25,"ClassDeathRE")
-BBAM H 0 A_JumpIfInventory("RiseDeathFlag2",1,"ClassDeathR")
 BBAM H 0 A_GiveInventory("RiseDeathFlag2",1)
-BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
+BBAM H 0 A_JumpIfInventory("RiseDeathFlag2",25,"ClassDeathRE")
 Goto ClassDeathR
 ClassDeathRE:
-BBAM H 0 A_Stop
-goto DeathContinue
+BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
+BBAM H 0 A_SpawnItemEx("BBADeathAnimationF",0,0,0,0,0,0,0,1)
+goto GibDeathStop
 ClassDeathI:
-BBAM H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
 BBAM H 0 A_SpawnItemEx("BBADeathBubble",0,65,80)
 BBAM H 1 A_PlaySoundEx("CBM/freeze","Voice")
+BBAM H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
 BBAM HHHHHHHHHHHHHHH 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
 BBAM H 0 A_SpawnItemEx("BBADeathAnimationI",0,0,0,0,0,0,0,1)
 goto DeathWait

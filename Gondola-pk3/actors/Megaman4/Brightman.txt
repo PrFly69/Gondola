@@ -25,18 +25,18 @@ States
 {
 Spawn:
 BRIG A 0
-BRIG B 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
-BRIG A 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
+BRIG B 1 A_JumpIfInventory("VivifyDelay4",1,"FlashStopper")
+BRIG A 1 A_JumpIfInventory("VivifyDelay4",1,"FlashStopper")
 Goto Spawn+2
 See:
-BRIG BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
+BRIG BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("VivifyDelay4",1,"FlashStopper")
 Goto Spawn
 Missile:
-BRIG FFFFF 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
-BRIG GGGG 1 A_JumpIfInventory("FlashStopperFlag",1,"FlashStopper")
+BRIG FFFFF 1 A_JumpIfInventory("VivifyDelay4",1,"FlashStopper")
+BRIG GGGG 1 A_JumpIfInventory("VivifyDelay4",1,"FlashStopper")
 goto Spawn
 FlashStopper:
-BRIG JJII 1 A_JumpIfInventory("EndFlashStopperFlag",1,"Spawn")
+BRIG JJII 1
 loop
 ClassPain:
 BRIG H 0

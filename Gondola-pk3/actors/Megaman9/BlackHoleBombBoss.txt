@@ -111,8 +111,8 @@ GALH V 1 offset(0,36)
 goto Ready0
 
 BotFire:
-GALH V 1 A_GiveInventory("RainbowGalaxyBoss",1)
-GALH V 1 A_SelectWeapon("RainbowGalaxyBoss")
+GALH V 1 //A_GiveInventory("RainbowGalaxyBoss",1)
+GALH V 1 //A_SelectWeapon("RainbowGalaxyBoss")
 Goto Ready0
 
 Fire2:

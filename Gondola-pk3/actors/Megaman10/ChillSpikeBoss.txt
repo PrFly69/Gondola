@@ -36,7 +36,7 @@ actor ChillSpikeBossC : BaseMM8BDMWep_CBM
 		TNT1 A 1
 		loop
 		Flash2:
-		TNT1 A 0 A_SpawnItemEx("FreezemanWalkFX",random(12,32),0,32+random(-12,12),0,0,0,frandom(0,359),1,96)
+		TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(12,32),0,32+random(-12,12),0,0,0,frandom(0,359),1,96)
 		TNT1 A 0 A_GiveInventory("ChillSlideBossAmmo",1)
 		TNT1 A 2 A_JumpIfInventory("IsDead",1,"NoFlash")
 		loop
@@ -361,7 +361,7 @@ actor ChillmanSpikeShot
 		loop
 		
 		Death:
-		TNT1 AAAA 0 A_SpawnItemEx("FreezemanWalkFX",random(-16,16),0,random(-16,16),0,0,0,frandom(0,359),1)// :^)
+		TNT1 AAAA 0 A_SpawnItemEx("MrFreezemanWalkFX",random(-16,16),0,random(-16,16),0,0,0,frandom(0,359),1)// :^)
 		TNT1 A 0 A_CheckCeiling("Ceiling")
 		TNT1 A 0 A_JumpIf(z-floorz<5, "Floor")
 		X_AD A 0 A_FaceTarget
@@ -608,7 +608,7 @@ actor ChillCloudyCloud
 		GiveThrust:
 		Y_AX J 0 Thing_Stop(user_owner)
 		Y_AX J 0 ACS_NamedExecuteAlways("BULL_ThrustTowards",0,2,24,user_owner)
-		Y_AX JJJ 1 A_SpawnItemEx("FreezemanWalkFX",0,random(-24,24),random(-8,8),0,0,0,0,1)
+		Y_AX JJJ 1 A_SpawnItemEx("MrFreezemanWalkFX",0,random(-24,24),random(-8,8),0,0,0,0,1)
 		Y_AX J 0 A_SetUserVar("user_usetimes",user_usetimes-1)
 		Y_AX J 0 A_SetScale(0.5)
 		Y_AX J 0 A_ChangeFlag(THRUACTORS,true)
@@ -668,7 +668,7 @@ actor ChillCloudyCloudW : ChillCloudyCloud
 		TNT1 A 0
 		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 		SpawnLOOP:
-		SHAH UUUUVVVVVV 1 A_SpawnItemEx("FreezemanWalkFX",0,random(-5,5),random(-5,5),0,0,0,0,1)
+		SHAH UUUUVVVVVV 1 A_SpawnItemEx("MrFreezemanWalkFX",0,random(-5,5),random(-5,5),0,0,0,0,1)
 		stop
 		Death:
 		TNT1 A 0 A_CheckFloor("Floor")
@@ -705,7 +705,7 @@ actor ChillCloudyCloudWX : ChillCloudyCloud
 		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 		SpawnLOOP:
 		TNT1 A 4
-		SHAH UUVVVV 1 A_SpawnItemEx("FreezemanWalkFX",0,random(-5,5),random(-5,5),0,0,0,0,1)
+		SHAH UUVVVV 1 A_SpawnItemEx("MrFreezemanWalkFX",0,random(-5,5),random(-5,5),0,0,0,0,1)
 		stop
 		Death:
 		TNT1 A 0 A_CheckFloor("Floor")

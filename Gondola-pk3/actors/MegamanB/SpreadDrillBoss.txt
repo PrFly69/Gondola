@@ -307,7 +307,7 @@ TNT1 A 0 A_GiveInventory("GroundFuryAmmo",1)
 TNT1 A 0 A_JumpIfInventory("SandAngerAmmo",1,"AltDigging")
 Goto DigRelease
 DigRelease:
-TNT1 A 0 A_TakeInventory("BlackHoleBombCBMProtect")
+TNT1 A 0 A_TakeInventory("GalaxyM_BHBProtect")
 TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("GroundRocksX",0,0,8,random(-8,8),random(-8,8),random(2,8),random(0,359),1)
 TNT1 A 0 A_TakeInventory("StunArmor",99)
 TNT1 A 0 A_TakeInventory("GroundIsATank",999)
@@ -430,7 +430,7 @@ goto AFireCeilingD
 
 
 CeilingDone:
-TNT1 A 0 A_TakeInventory("BlackHoleBombCBMProtect")
+TNT1 A 0 A_TakeInventory("GalaxyM_BHBProtect")
 GRDH F 0 A_TakeInventory("GroundCMainFlag",99)
 GRDH F 0 A_TakeInventory("GroundCAltFlag",99)
 GRDH F 0 A_TakeInventory("GroundHoldFlag",99)

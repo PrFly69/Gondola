@@ -175,7 +175,7 @@ SRKH A 1 OffSet(0,92)
 SRKH A 1 OffSet(0,77)
 SRKH A 1 OffSet(0,62)
 SRKH A 0 A_ChangeFlag("THRUACTORS",0)
-SRKH A 0 A_SpawnItemEx("ReSolidifier")
+SRKH A 0 A_SpawnItemEx("ReSolidifyPlayer_H")
 SRKH A 1 OffSet(0,47)
 Goto Ready1
 
@@ -459,7 +459,7 @@ SRKH A 1 OffSet(0,92)
 SRKH A 1 OffSet(0,77)
 SRKH A 1 OffSet(0,62)
 SRKH A 0 A_ChangeFlag("THRUACTORS",0)
-SRKH A 0 A_SpawnItemEx("ReSolidifier")
+SRKH A 0 A_SpawnItemEx("ReSolidifyPlayer_H")
 SRKH A 1 OffSet(0,47)
 Goto Ready1
 

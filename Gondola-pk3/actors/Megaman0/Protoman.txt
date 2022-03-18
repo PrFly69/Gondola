@@ -55,7 +55,7 @@ PRO_ G 1 A_JumpIfInventory("ProtoSlide",1,"Slide")
 PRO_ F 0 A_JumpIfInventory("ProtoShieldBashFlag",1,"ShieldBash")
 goto Spawn+2
 Slide:
-PROM Y 20
+PRO_ W 20
 goto Spawn
 ShieldBash:
 PROM P 20

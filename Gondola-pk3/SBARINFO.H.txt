@@ -269,9 +269,9 @@ InInventory BasicArmor,1{
     DrawImage "STYSCBM6", 152, 192;
     DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(right),157,192;
     DrawNumber 4,CMBHRFONT,DarkGray,SavePercent,alignment(left),160,192;
-    InInventory BossBasicArmorAmount,1{DrawBar"VARAMT31","VNOBAR",Armor BossBasicArmorAmount,horizontal,130,184;}
-    else{DrawBar"VARAMT31","VNOBAR",Armor,horizontal,130,184;}}
-
+    //InInventory BossBasicArmorAmount,1{DrawBar"VARAMT31","VNOBAR",Armor BossBasicArmorAmount,horizontal,130,184;}
+    //else{DrawBar"VARAMT31","VNOBAR",Armor,horizontal,130,184;}}
+}
 }
 
 //Extra Copy Weapons
@@ -301,11 +301,11 @@ IsSelected WaveBusterWepC{Drawbar"XTR0VR_C","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected RisingFistWepC{Drawbar"XTR0VR_B","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected RollSweepWepC{Drawbar"XTR0VR_A","VAREMPTY",Ammo1,horizontal,58,184;}
 
-InInventory ProtoBusterWep,1{DrawBar"00_0_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
-InInventory MegaFlag,1{InInventory MegaBusterFlag,1{DrawBar"00_1_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
+InInventory ProtoBusterBoss,1{DrawBar"00_0_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
+InInventory MegaBusterBoss,1{InInventory MegaBusterFlag,1{DrawBar"00_1_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 	else{DrawBar"00___VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 	InInventory MegamanX,1{DrawBar"KC_A_VAR","VNOBAR",MegamanX,horizontal,130,184;}}
-InInventory BassDoubleJump,1{DrawBar"00_4_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
+InInventory BassBusterBoss,1{DrawBar"00_4_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 InInventory DuoFistBoss,1{DrawBar"08_9_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;}
 //MM0
 IsSelected JetBusterC{DrawBar"00_A_VAR","VAREMPTY",Ammo1,horizontal,58,184;}
@@ -469,7 +469,7 @@ IsSelected AlienTrapBoss{Drawbar"02_A_VAR","VAREMPTY",Ammo1,horizontal,58,184;}
 //MM3
 WeaponAmmo NoodleAmmo{Drawbar"VARAMMO2","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawImage"NEEDRCON",178,175;}
-IsSelected MagnetMissileBoss{DrawBar"MAGNVAR","VAREMPTY",MagnetFlag,horizontal,58,184;
+IsSelected MagnetMissileBoss{DrawBar"VARAMM14","VAREMPTY",MagnetFlag,horizontal,58,184;
 	InInventory MagFlyIsOut,1{Drawbar"VARFLS1","VNOBAR",MagFlyIsOut,horizontal,130,184;}
 	InInventory MagFlyDelay,1{Drawbar"VARFLS1","VNOBAR",MagFlyDelay,horizontal,130,184;}
 	InInventory MagFlyDelayFast,1{Drawbar"VARFLS1","VNOBAR",MagFlyDelayFast,horizontal,130,184;}}
@@ -489,9 +489,9 @@ IsSelected ShadowBladeBoss,ShadowBladerBoss{Drawbar"VARAMMO7","VAREMPTY",Ammo1,h
 	DrawImage"SDWRICON",178,175;
 	DrawBar"VARAMMO1","VAREMPTY",Ammo2,horizontal,58,176;
 	InInventory ShadowInvisCountdown,70{DrawBar"MV_A_VAR","VNOBAR",ShadowInvisCountdown,horizontal,130,184;}}
-IsSelected BreakBusterAgility,BreakBusterStability{DrawBar"VARAMM14","VAREMPTY",Ammo1,horizontal,58,184;
+/*IsSelected BreakBusterAgility,BreakBusterStability{DrawBar"VARAMM14","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"VARAMMO1","VAREMPTY",SnipeAmmo,horizontal,58,184;
-	DrawBar"KC_A_VAR","VNOBAR",SnipeCharge,horizontal,58,184;}}
+	DrawBar"KC_A_VAR","VNOBAR",SnipeCharge,horizontal,58,184;}}*/
 
 IsSelected DocBusterWoodHeatWep{DrawBar"XTR0VR_S","VAREMPTY",DocVirusAmmo,horizontal,58,184;
 	DrawImage"DOCRICON",178,175;}
@@ -822,7 +822,7 @@ IsSelected SolarBlazeBoss,SolarBlazerBoss{Drawbar"00_E_VAR","VAREMPTY",SolarInfe
 	InInventory SolarInfernoAmmoExtra,35{DrawBar "SOLVAR3", "00_E_VAR", SolarInfernoAmmoExtra,horizontal,58,184;}
 	InInventory SolarInfernoAmmoExtra,70{DrawBar "SOLVAR4", "00_E_VAR", SolarInfernoAmmoExtra,horizontal,58,184;}
 	InInventory SolarInfernoAmmoExtra,105{DrawBar "SOLVAR5", "00_E_VAR", SolarInfernoAmmoExtra,horizontal,58,184;}
-	InInventory SolarInfernoHoldAmmo,1{DrawBar"KC_A_VAR","VNOBAR",SolarInferonHoldAmmo,horizontal,58,184;}}
+	InInventory SolarInfernoHoldAmmo,1{DrawBar"KC_A_VAR","VNOBAR",SolarInfernoHoldAmmo,horizontal,58,184;}}
 
 //MMB
 IsSelected LightningBoltBoss{Drawbar"VARAMM53","VAREMPTY",Ammo1,horizontal,58,184;

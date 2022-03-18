@@ -2,4 +2,4 @@
 StartupColors = "FFFF00","0000FE"
 StartupTitle = "MM8BDM CBM : The Gondola Patch"
 StartupSong = "GONDT"
-StartupType = "hexen"
+StartupType = "doom"

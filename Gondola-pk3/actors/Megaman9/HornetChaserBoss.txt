@@ -114,12 +114,12 @@ HORH B 3 OffSet(-23,10)
 HORH B 3 OffSet(-15,17)
 HORH B 2 OffSet(-12,20)
 HORH B 1 OffSet(-9,23)
-HORH D 1 OffSet(-6,26)
-HORH D 1 OffSet(-3,29) 
+HORH A 1 OffSet(-6,26)
+HORH A 1 OffSet(-3,29) 
 HORH A 0 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH) 
-HORH D 4 A_GiveInventory("NotTheHornetsAmmo",1)
-HORH D 4 A_WeaponReady(14) 
-HORH D 4 A_GiveInventory("NotTheHornetsAmmo",1) 
+HORH A 4 A_GiveInventory("NotTheHornetsAmmo",1)
+HORH A 4 A_WeaponReady(14) 
+HORH A 4 A_GiveInventory("NotTheHornetsAmmo",1) 
 HORH A 0 A_WeaponReady(WRF_NOSECONDARY)
 Goto Ready+1
 Reload:
@@ -456,7 +456,7 @@ PROJECTILE
 damagetype "HornetM_Slow"
 Obituary "$OB_HORNETHONEY"
 -NOGRAVITY
-Damage (50)
+Damage (150)
 Radius 12
 Height 10
 speed 36
@@ -486,8 +486,6 @@ XDeath:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/hornetcomb","Weapon")
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-TNT1 A 0 A_SetDamageType("HornetM_Shot")
-TNT1 A 0 A_Explode(100,80,0,0,16)
 TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,-3,10,0,-5,6,0,1)
 TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX2",0,3,10,0,5,6,0,1)
 TNT1 A 0 A_SpawnItemEx("HornetNectarHiveFX1",0,3,4,0,5,-6,0,1)
@@ -580,7 +578,7 @@ stop
 Actor NectarTrapBlob
 {
 species "BeeStuff"
-damagetype "HornetHoney"
+damagetype "HornetM_Slow"
 Obituary "$OB_HORNETHONEY"
 +MISSILE
 +DONTSPLASH
@@ -713,7 +711,7 @@ stop
 actor HornetmanMeleePoke
 {//SECRET REVEALED!
 PROJECTILE
-Damagetype "ClassPainSemi"
+Damagetype "DMGNoHitstun"
 Obituary "$OB_SNAKEPOKE"
 reactiontime 3 
 damage (50)

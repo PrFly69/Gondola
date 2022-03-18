@@ -146,8 +146,8 @@ TNT1 A 0 A_GiveInventory("WilyCapsuleItem",1)
 
 TNT1 A 0 A_TakeInventory("GuardDownFlag",99)
 TNT1 A 0 A_TakeInventory("WilyNoSuitWeakness",99)
-TNT1 A 0 A_TakeInventory("GlassHealthBar",999)
-TNT1 A 0 A_GiveInventory("LightHealthBar",1)
+//TNT1 A 0 A_TakeInventory("GlassHealthBar",999)
+//TNT1 A 0 A_GiveInventory("LightHealthBar",1)
 stop
 }
 }
@@ -169,8 +169,8 @@ TNT1 A 0 A_TakeInventory("WilyCapsuleItem",1)
 
 TNT1 A 0 A_GiveInventory("WilySandalsItem",1)
 TNT1 A 0 A_TakeInventory("WilyNoSuitWeakness",99)
-TNT1 A 0 A_TakeInventory("GlassHealthBar",999)
-TNT1 A 0 A_GiveInventory("LightHealthBar",1)
+//TNT1 A 0 A_TakeInventory("GlassHealthBar",999)
+//TNT1 A 0 A_GiveInventory("LightHealthBar",1)
 stop
 }
 }
@@ -194,8 +194,8 @@ TNT1 A 0 A_GiveInventory("WilySkullSuitItem",1)
 
 TNT1 A 0 A_GiveInventory("GuardDownFlag",1)
 TNT1 A 0 A_GiveInventory("WilyNoSuitWeakness",1)
-TNT1 A 0 A_TakeInventory("LightHealthBar",999)
-TNT1 A 0 A_GiveInventory("GlassHealthBar",1)
+//TNT1 A 0 A_TakeInventory("LightHealthBar",999)
+//TNT1 A 0 A_GiveInventory("GlassHealthBar",1)
 stop
 }
 }

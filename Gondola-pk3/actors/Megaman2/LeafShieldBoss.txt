@@ -586,7 +586,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 9 A_SpawnItemEx("WoodmanLeafFallFX",0,0,0,0,0,13,0,1)
-TNT1 A 2 A_GiveToTarget("TargetMarkerX",1)
+TNT1 A 2 A_GiveToTarget("CBM_TargetMarker",1)
 TNT1 A 1 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100)
 TNT1 A 0 A_SpawnItemEx("WoodmanLeafFallLine",0,0,0,13,0,0,0,1)
 TNT1 A 2

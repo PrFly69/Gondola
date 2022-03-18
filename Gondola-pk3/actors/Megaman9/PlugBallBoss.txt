@@ -459,16 +459,16 @@ Y_9D A 0 A_SetUserVar(user_y, y)
 loop
 
 SpawnFA:
-Y_9D A 0 A_GiveInventory("PlugBallClassFall_P")
+Y_9D A 0 //A_GiveInventory("PlugBallClassFall_P")
 goto SpawnF+1
 SpawnFB:
-Y_9D B 0 A_GiveInventory("PlugBallClassFall_P")
+Y_9D B 0 //A_GiveInventory("PlugBallClassFall_P")
 goto SpawnF+2
 SpawnFC:
-Y_9D C 0 A_GiveInventory("PlugBallClassFall_P")
+Y_9D C 0 //A_GiveInventory("PlugBallClassFall_P")
 goto SpawnF+3
 SpawnFD:
-Y_9D D 0 A_GiveInventory("PlugBallClassFall_P")
+Y_9D D 0 //A_GiveInventory("PlugBallClassFall_P")
 goto SpawnF+4
 SpawnF:
 Y_9D A 0
@@ -479,16 +479,16 @@ Y_9D D 1 A_JumpIf(z-floorz==0,"SpawnLD")
 Y_9D A 0 A_CountDown
 loop
 SpawnLA:
-Y_9D A 1 A_GiveInventory("PlugBallClassForward_P")
+Y_9D A 1 //A_GiveInventory("PlugBallClassForward_P")
 goto SpawnL+2
 SpawnLB:
-Y_9D B 1 A_GiveInventory("PlugBallClassForward_P")
+Y_9D B 1 //A_GiveInventory("PlugBallClassForward_P")
 goto SpawnL+3
 SpawnLC:
-Y_9D C 1 A_GiveInventory("PlugBallClassForward_P")
+Y_9D C 1 //A_GiveInventory("PlugBallClassForward_P")
 goto SpawnL+4
 SpawnLD:
-Y_9D D 1 A_GiveInventory("PlugBallClassForward_P")
+Y_9D D 1 //A_GiveInventory("PlugBallClassForward_P")
 goto SpawnL+5
 Death2:
 TNT1 A 1 A_CountDownArg(0)

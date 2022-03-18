@@ -40,16 +40,15 @@ See:
 GREM BCDE 5
 Goto Spawn
 Missile:
-GREM F 0 A_JumpIfInventory("VivifyDelay8",1,"Missile2")
 GREM F 5
 GREM G 4
 goto Spawn
-Missile2:
-GREM P 4
-GREM Q 4
+CustomState1:
+GREM P 3
+GREM Q 3
 GREM O 3
-GREM R 4
-goto Spawn
+GREM R 3
+Goto Spawn
 ClassPain:
 GREM H 0
 goto PainContinue

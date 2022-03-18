@@ -67,6 +67,12 @@ Pain.HardKnuckleClass:
 "----" H 0 A_SpawnItemEx("HardKnuckleHitFX",0,0,32,0,0,0,0,0)
 Goto Pain+2
 
+Death.HardKnuckleClass:
+"----" H 0 A_PlaySoundEx("weapon/hknucklehit","Body")
+"----" H 0 A_SpawnItemEx("HardKnuckleHitFX",0,0,32,0,0,0,0,0)
+"----" H 0 A_Quake(5,9,0,128)
+goto Death
+
 Pain.Punk_Ram:
 "----" H 0 A_GiveInventory("Punk_RamProtect",1)
 "----" H 0 A_SpawnItemEx("PainScrewCrusherMHit",1)
@@ -87,7 +93,7 @@ Goto Pain+2
 
 Pain.KnightBonk2:
 "----" H 0 ThrustThingZ(0,40,0,1)
-"----" H 0 A_SpawnItemEx("PainKnightRushHit")
+"----" H 0 A_SpawnItemEx("PainKnightM_PushHit")
 Goto Pain+2
 
 Pain.KnightReturn:
@@ -121,11 +127,11 @@ TimeStoppedX:
 Goto Pain+2
 
 Death.KnightBonk2:
-"----" H 0 A_SpawnItemEx("PainKnightRushHit")
+"----" H 0 A_SpawnItemEx("PainKnightM_PushHit")
 Goto FlingDeath
 
 Pain.KnightCrushNoisy:
-"----" H 0 A_ScaleVelocity(0.9)
+//"----" H 0 A_ScaleVelocity(0.9)
 "----" H 0 A_PlaySoundEx("weapon/knightcrushhit","SoundSlot5")
 Goto Pain+2
 Death.KnightCrushNoisy:
@@ -134,9 +140,9 @@ Goto Death
 
 Pain.DuoWave:
 "----" H 0 A_GiveInventory("DuoWaveProtect",1)
-"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
-"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
-"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
+//"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
+//"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
+//"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
 "----" H 0 A_ChangeVelocity(momz/4,momy/4,momz,CVF_REPLACE)
 "----" H 0 ThrustThingZ(0,56,0,1)
 "----" H 0 A_GiveInventory("DuoWaveThrustSpeed1",1)
@@ -145,9 +151,9 @@ Pain.DuoWave:
 Goto Pain+1
 Pain.DuoWave2:
 "----" H 0 A_GiveInventory("DuoWaveProtect",1)
-"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
-"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
-"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
+//"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
+//"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
+//"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
 "----" H 0 A_ChangeVelocity(momz/4,momy/4,momz,CVF_REPLACE)
 "----" H 0 ThrustThingZ(0,62,0,1)
 "----" H 0 A_GiveInventory("DuoWaveThrustSpeed2",1)
@@ -156,9 +162,9 @@ Pain.DuoWave2:
 Goto Pain+1
 Pain.DuoWave3:
 "----" H 0 A_GiveInventory("DuoWaveProtect",1)
-"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
-"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
-"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
+//"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
+//"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
+//"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
 "----" H 0 A_ChangeVelocity(momz/4,momy/4,momz,CVF_REPLACE)
 "----" H 0 ThrustThingZ(0,68,0,1)
 "----" H 0 A_GiveInventory("DuoWaveThrustSpeed3",1)
@@ -167,9 +173,9 @@ Pain.DuoWave3:
 Goto Pain+1
 Pain.DuoWave4:
 "----" H 0 A_GiveInventory("DuoWaveProtect",1)
-"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
-"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
-"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
+//"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
+//"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
+//"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
 "----" H 0 A_ChangeVelocity(momz/4,momy/4,momz,CVF_REPLACE)
 "----" H 0 ThrustThingZ(0,74,0,1)
 "----" H 0 A_GiveInventory("DuoWaveThrustSpeed4",1)
@@ -178,9 +184,9 @@ Pain.DuoWave4:
 Goto Pain+1
 Pain.DuoWave5:
 "----" H 0 A_GiveInventory("DuoWaveProtect",1)
-"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
-"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
-"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
+//"----" H 0 A_JumpIfInventory("DuoSlowImpaired",1,2)
+//"----" H 0 A_SpawnItemEx("ImpairmentHelperDuoSlow")
+//"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,4)
 "----" H 0 A_ChangeVelocity(momz/4,momy/4,momz,CVF_REPLACE)
 "----" H 0 ThrustThingZ(0,80,0,1)
 "----" H 0 A_GiveInventory("DuoWaveThrustSpeed5",1)
@@ -196,16 +202,16 @@ Pain.AcidGas:
 "----" H 0 A_GiveInventory("AcidGasProtection",1)
 goto Pain+2
 Pain.AcidmanBoss:
-"----" H 0 A_JumpIfInventory("AcidBurnImpaired",1,2)
-"----" H 0 A_SpawnItemEx("ImpairmentHelperAcidBurn")
+//"----" H 0 A_JumpIfInventory("AcidBurnImpaired",1,2)
+//"----" H 0 A_SpawnItemEx("ImpairmentHelperAcidBurn")
 "----" H 0
 goto Pain+1
 
 Pain.FlashBombB1:
-"----" H 0 A_SpawnItemEx("PainFlashBombB1Hit")
+"----" H 0 A_SpawnItemEx("PainGrenadeM_NadeHit")
 goto Pain.FlashBomb
 Pain.FlashBombB2:
-"----" H 0 A_SpawnItemEx("PainFlashBombB2Hit")
+"----" H 0 A_SpawnItemEx("PainGrenadeM_BombHit")
 goto Pain.FlashBomb
 Death.FlashBombB1:
 "----" H 0 A_GiveToTarget("THATFELTGOODAMMO",2)
@@ -219,26 +225,26 @@ Pain.LightRyuShoryu:
 "----" H 0 ThrustThingZ(0,56,0,0)
 "----" H 0
 Goto Pain+2//Pain.LightRyu1
-Pain.LightRyuShoryuNew:
+/*Pain.LightRyuShoryuNew:
 "----" H 0 A_GiveToTarget("SuperComboGauge",1)
 "----" H 0 A_GiveInventory("LightRyuShoryuProtect",1)
 "----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
 "----" H 0 ThrustThingZ(0,56,0,0)
 "----" H 0
-Goto Pain+2
+Goto Pain+2*/
 Death.LightRyuShoryu:
 Death.LightRyuShoryuNew:
 "----" H 0 ThrustThingZ(0,90,0,0)
-"----" H 0 A_SpawnItemEx("DeathLightRyuShoryuHit",1)
+//"----" H 0 A_SpawnItemEx("DeathLightRyuShoryuHit",1)
 Goto FlingDeath
 
 Pain.LightRyuShinShoryu:
-"----" H 0 A_TakeInventory("LightRyuStopProtect",1)
+//"----" H 0 A_TakeInventory("LightRyuStopProtect",1)
 "----" H 0 ThrustThingZ(0,200,0,0)
 Goto Pain+2
 Death.LightRyuShinShoryu:
 "----" H 0 ThrustThingZ(0,200,0,0)
-"----" H 0 A_SpawnItemEx("DeathLightRyuShinShoryuHit",1)
+//"----" H 0 A_SpawnItemEx("DeathLightRyuShinShoryuHit",1)
 Goto FlingDeath
 
 Pain.MercSploosh:
@@ -248,21 +254,17 @@ Goto Pain+2
 Pain.SolarVent:
 "----" H 0 ThrustThingZ(0,12,0,0)
 "----" H 0 A_SpawnItemEx("SolarVentHit")
-"----" H 0 A_GiveInventory("TempPitProtect")
+"----" H 0 A_GiveInventory("TempPitProtect_P")
 Goto Pain+2
 
 Pain.BlastBombBig:
-"----" H 0 A_GiveInventory("PainScaleVelocityFlashBombC",1)
+//"----" H 0 A_GiveInventory("PainScaleVelocityFlashBombC",1)
 "----" H 0 A_GiveInventory("ChainBlastActivator")
 goto Pain+1
 
 Pain.SparkChaserWep:
 PLY1 H 0 A_GiveInventory("SparkChaserTagged", 1)
 goto Pain+1
-
-Pain.WaterCannonC:
-"----" H 0 A_GiveInventory("WaterCannonProtect",1)
-Goto Pain
 
 Pain.MegaBall:
 "----" H 0 A_GiveInventory("MegaBallProtect",1)
@@ -301,21 +303,6 @@ Pain.HornetHoney:
 "----" H 0 A_GiveInventory("HornetmanSlowPickup",1) 
 "----" H 0 
 Goto Pain+2
-Pain.HornetHoney1:
-"----" H 0 A_JumpIfInventory("PowerIceHornet1",1,2)
-"----" H 0 A_GiveInventory("HornetmanSlowPickup",1) 
-"----" H 0 
-Goto Pain+2
-Pain.HornetHoney2:
-"----" H 0 A_JumpIfInventory("PowerIceHornet2",1,2)
-"----" H 0 A_GiveInventory("HornetmanSlowPickup",1) 
-"----" H 0 
-Goto Pain+2
-Pain.HornetHoney3:
-"----" H 0 A_JumpIfInventory("PowerIceHornet3",1,2)
-"----" H 0 A_GiveInventory("HornetmanSlowPickup",1) 
-"----" H 0 
-Goto Pain+2
 
 Pain.MegaIceBall:
 "----" H 0 A_GiveInventory("PainStopC",1)
@@ -330,19 +317,15 @@ Pain.SolarMortarMain:
 "----" H 0 ThrustThingZ(0,65,0,1)
 Pain.SolarMortarWave:
 "----" H 0 A_GiveInventory("SolarMortarProtect",1)
-Goto Pain
+Goto Pain+2
 
 Pain.SolarHead:
 "----" H 0 A_GiveInventory("SolarHeadProtect",1)
-Goto Pain
-
-Pain.ShadowBladeCBM:
-"----" H 0 A_GiveInventory("ShadowBladeCBMProtect",1)
 Goto Pain+2
 
 Pain.JunkM_Cube:
 "----" H 0 A_GiveInventory("JunkM_CubeProtect",1)
-Goto Pain
+Goto Pain+2
 
 Pain.StoneSpiralP:
 "----" H 0 A_GiveInventory("StoneSpiralProtect",1)
@@ -358,7 +341,7 @@ Goto Pain+2
 
 Pain.TorchHit25:
 "----" H 0 A_SpawnItemEx("PainTorchHit25")
-"----" H 0 A_SpawnItemEx("PainDuoRamHit")
+"----" H 0 A_SpawnItemEx("PainDuo_RamHit")
 Goto Pain+2
 
 Pain.TorchHit3:
@@ -383,7 +366,7 @@ Goto Death
 
 Pain.TerraMelee:
 "----" H 0
-"----" H 0 A_SpawnItemEx("PainTerraMeleeHit",1)
+"----" H 0 A_SpawnItemEx("PainTerra_MeleeHit",1)
 "----" H 0 ThrustThingZ(0,2,0,0)
 "----" H 0 A_PlaySoundEx("weapon/terramelee", "SoundSlot7", 0)
 Goto Pain.SparkShock
@@ -391,7 +374,7 @@ Goto Pain.SparkShock
 Death.TerraMelee:
 "----" H 0 ThrustThingZ(0,120,0,0)
 "----" H 0 A_PlaySoundEx("weapon/terrameleeko", "SoundSlot7", 0)
-"----" H 0 A_SpawnItemEx("DeathConcreteShoulderHit",1)
+"----" H 0 A_SpawnItemEx("DeathConcreteM_BashHit",1)
 goto FlingDeath
 
 Pain.SparkChaserTerra:
@@ -427,7 +410,7 @@ Pain.FlameSwordCBM3:
 "----" HH 0 A_SpawnItemEx("FlameSwordBitB",0,0,0,random(-10,10),random(-10,10),random(10,15),random(0,359))
 Goto Pain+2
 
-pain.DuoGrabExplosion5:
+/*pain.DuoGrabExplosion5:
 "----" H 0 A_SpawnItemEx("PainDuoExplodeHit5")
 "----" H 0 A_GiveInventory("DuoCleanserGrabberSpd0")
 //"----" H 0 ThrustThingZ(0,40,0,0)
@@ -455,10 +438,10 @@ pain.DuoGrabExplosion1:
 "----" H 0 A_SpawnItemEx("PainDuoExplodeHit1")
 "----" H 0 A_GiveInventory("DuoCleanserGrabberSpd0")
 //"----" H 0 ThrustThingZ(0,40,0,0)
-goto Pain+2
+goto Pain+2*/
 
 Pain.ChargeBusterC:
-"----" H 0 A_GiveInventory("PainScaleVelocityFlashBombC",1)
+"----" H 0 //A_GiveInventory("PainScaleVelocityFlashBombC",1)
 Goto Pain+1
 
 //Pain.HyperBombRecoil:
@@ -507,7 +490,7 @@ Pain.MaestroFireGuts:
 "----" H 0 A_GiveInventory("MaestroFireProtect2",1)
 "----" H 0 A_JumpIfInventory("FireGutsCheck",1,"NoGuts")
 "----" H 0 A_GiveInventory("FireGutsCheck",1)
-"----" H 0 A_SpawnItemEx("PainMaestroAfterburn",0,0,0,0,0,0,0,1)
+"----" H 0 //A_SpawnItemEx("PainMaestroAfterburn",0,0,0,0,0,0,0,1)
 Goto Pain+2
 NoGuts:
 "----" H 0
@@ -567,7 +550,7 @@ Death.RaThorWave:
 goto Death
 
 Pain.JewelSatelliteC:
-"----" H 0 A_GiveInventory("JewelSatelliteProtect")
+"----" H 0 //A_GiveInventory("JewelSatelliteProtect")
 Goto Pain.JewelSatelliteB
 
 Pain.AutoBoltX:
@@ -594,7 +577,7 @@ Death.StrikeBall:
 "----" H 0 ThrustThingZ(0,120,0,0)
 "----" H 0 A_PlaySound("weapon/reboundbunt",5,1.0)
 "----" H 0 A_SpawnItemEx("PainStrikeBallHit",1)
-"----" H 0 A_SpawnItemEx("DeathConcreteShoulderHit",1)
+"----" H 0 A_SpawnItemEx("DeathConcreteM_BashHit",1)
 goto FlingDeath
 
 Pain.StrikeBall2:
@@ -618,7 +601,7 @@ Death.StrikeBall2:
 "----" H 0 ThrustThingZ(0,120,0,0)
 "----" H 0 A_PlaySound("weapon/reboundbunt",5,1.0)
 "----" H 0 A_PlaySound("weapon/reboundcheer",6,1.0)
-"----" H 0 A_SpawnItemEx("DeathConcreteShoulderHit",1)
+"----" H 0 A_SpawnItemEx("DeathConcreteM_BashHit",1)
 goto FlingDeath
 
 Pain.PumpTheHandle:
@@ -642,7 +625,7 @@ Death.SaturnShot:
 Death.SaturnWhiteRing1:
 Death.SaturnWhiteRing2:
 "----" H 0 ThrustThingZ(0,120,0,0)
-"----" H 0 A_SpawnItemEx("DeathConcreteShoulderHit",1)
+"----" H 0 A_SpawnItemEx("DeathConcreteM_BashHit",1)
 goto FlingDeath
 
 //Pain.ThunderClawHit:
@@ -672,7 +655,7 @@ pain.HeroProtoShot2:
 "----" H 0 A_GiveInventory("HeroProtoShot2Protection")
 goto Pain+2
 
-Pain.DuoCleanserGrab:
+/*Pain.DuoCleanserGrab:
 "####" H 0 A_SpawnItemEx("PainDuoGrabHit")
 "####" H 0 A_GiveInventory("DuoCleanserGrabberProt",1)
 "####" H 0 A_GiveInventory("DuoCleanserGrabberSpd0",1)
@@ -684,7 +667,7 @@ pain.DuoGrabExplosion:
 "----" H 0 A_SpawnItemEx("PainDuoExplodeHit")
 "----" H 0 A_GiveInventory("DuoCleanserGrabberSpd0")
 //"----" H 0 ThrustThingZ(0,40,0,0)
-goto Pain+2
+goto Pain+2*/
 
 Pain.ClassPainLess2Ice:
 "----" H 0
@@ -724,34 +707,10 @@ pain.BassKickEx:
 "----" H 0 A_GiveInventory("BassKickCProtect")
 goto Pain+2
 
-//Give on-hit
-Pain.GrabBusterCopywep:
-"----" H 0 A_SpawnItemEx("PainGrabBusterHit")
-Goto Pain+1
-Death.GrabBusterCopywep:
-"----" H 0 A_SpawnItemEx("GrabBusterHealthChaser")
-goto Death
-
-// -------------------------------------------------
-
-Pain.WheelCutter:
-"----" H 0 A_GiveInventory("WheelCutterProtect", 1)
-goto pain+1
-Pain.ChillSpike:
-PLY1 H 0 A_GiveInventory("ChillFreeze", 1)
-goto Pain+1
-Pain.WheelCutter:
-"----" H 0 A_GiveInventory("WheelCutterProtect", 1)
-goto pain+1
-
 //==================
 //All of the painstates below are copied from cbm
 //------------------
 //==================
-//MM2
-Pain.CrashBomb:
-"----" H 0 A_ScaleVelocity(0.6)
-Goto Pain+2
 
 //MM5
 Pain.GravitySmackUpNoSlam:
@@ -792,90 +751,6 @@ goto Pain+2
 "----" H 0 A_TakeInventory("GmanSmackD_DelayF",1)
 "----" H 0 //A_JumpIfInventory("FlightDisableFlag",1,2)
 "----" H 0 ThrustThingZ(0,105,0,0)
-"----" H 0
-Goto Pain+2
-
-//MM8
-Pain.TenguTornadoHeld:
-"----" H 0 A_JumpIfInventory("TenguTornadoHeldProtect",1,3)
-"----" H 0 A_GiveInventory("TenguTornadoHeldProtect",1)
-"----" H 0 A_SpawnItemEx("TenguTornadoHeld_H")
-"----" H 0
-goto Pain+2
-
-//MM10
-Pain.PumpHandle:
-"----" H 0
-Goto Pain+1
-
-Pain.PumpShield:
-"----" H 0 A_GiveInventory("PumpShieldProtect",1)
-Goto Pain+2
-
-Pain.WaterShielder:
-"----" H 0 A_GiveInventory("WaterShielderProtect",1)
-Goto Pain+2
-
-Pain.CommandoBombWave:
-"----" H 0 A_GiveInventory("CommandoBombWaveProtect",1)
-Goto Pain+2
-
-Pain.CommandoBomb:
-"----" H 0
-goto Pain
-
-Pain.CommandoCrush_p:
-"----" H 0 A_GiveInventory("CommandoCrushProtect",1)
-Goto Pain+2
-
-//MMV
-Pain.SaltWater:
-"----" H 0
-goto Pain
-
-Pain.PhotonMissileStart:
-"----" H 0
-goto Pain
-
-Pain.PhotonMissile:
-"----" H 0 A_GiveInventory("PhotonMissileProtect",1)
-Goto Pain+2
-
-Pain.ElectricShockBeam:
-"----" H 0 A_GiveInventory("ElectricShockBeamProtect",1)
-Goto Pain+2
-
-Pain.SlashClaw:
-Pain.PlutoClaw:
-"----" H 0 A_PlaySoundEx("weapon/slashclawhit","SoundSlot5")
-Goto Pain
-
-
-Pain.BreakDash:
-"----" H 0 A_GiveInventory("BreakDashProtect",1)
-Goto Pain+2
-
-Pain.BreakDashP:
-"----" H 0 A_GiveInventory("BreakDashPProtect",1)
-Goto Pain+2
-
-Pain.NeptuneSaltStomp:
-"----" H 0 A_GiveInventory("NeptuneSaltStompProtect",1)
-Goto Pain+2
-
-Pain.NeptuneLeap:
-"----" H 0 A_SpawnItemEx("PainNeptuneLeapHit")
-"----" H 0 A_GiveInventory("NeptuneLeapProtect",1)
-Goto Pain+2
-Death.NeptuneLeap:
-"----" H 0 A_GiveToTarget("NeptuneLeap_Pickup",1)
-goto Death
-
-Pain.RemoteMineB:
-"----" H 0 A_GiveInventory("RemoteMineBProtect",1)
-Goto Pain+2
-
-Pain.RemoteMineB2:
 "----" H 0
 Goto Pain+2
 

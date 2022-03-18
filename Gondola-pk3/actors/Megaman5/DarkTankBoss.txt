@@ -169,9 +169,9 @@ DKC1 C 1//10
 Goto FireEnd+2
 FireEnd:
 DKC1 C 0 A_JumpIfInventory("DM1DashFlag",1,2)
-DKC1 C 0 A_GiveInventory("Darkman1DashAmmo",1)
+DKC1 C 0 A_GiveInventory("DarkTankBoostAmmo",1)
 DKC1 C 0 A_JumpIfInventory("DM1DashFlag",1,2)
-DKC1 C 0 A_GiveInventory("Darkman1DashAmmo",1)
+DKC1 C 0 A_GiveInventory("DarkTankBoostAmmo",1)
 DKC1 C 0 A_Refire
 Goto Ready0
 

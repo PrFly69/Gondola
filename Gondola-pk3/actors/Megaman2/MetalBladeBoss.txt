@@ -241,7 +241,7 @@ PROJECTILE
 damagetype "MetalM_Blade"
 Obituary "$OB_METALBLADE"
 +RIPPER
-Damage (140)
+Damage (120)
 Radius 3
 Height 4
 Speed 40

@@ -77,25 +77,25 @@ Goto Spawn
 ClassPain:
 EROB H 0
 goto PainContinue
-DeathFix:
-EROB H 0 A_Jump(256,2)//32
-EROB H 0 A_JumpIfInventory("TrioRuneFlag",1,2)
-goto DeathContinue
-EROB H 0 A_GiveInventory("SpecialDeathFlag",1)
-goto DeathContinue
-EROB H 0 A_Jump(256,1)//32
-goto DeathContinue
-EROB H 0 A_GiveInventory("SpecialDeathFlag",1)
-goto DeathContinue
 ClassDeath:
+EROB H 0 A_JumpIf(CallACS("cbm_FetchServerCVar",6)==1,1)
+goto DeathContinue
+EROB H 0
 EROB H 0 A_JumpIfInventory("InstagibFlag",1,"ClassDeathM")
+EROB H 0 A_JumpIfInventory("FlingDeathFlag",1,"ClassDeathF")
 EROB H 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
 EROB H 0 A_JumpIfInventory("IceDeathFlag",1,"ClassDeathI")
-EROB H 19
-goto ClassDeathM
+EROB HHH 1 A_JumpIfInventory("CriticalDeath",1,"ClassDeathM")
+EROB H 16
+EROB H 0 A_SpawnItemEx("TrioRareDeathHelper",0,0,0,momx,momy,momz,0,9)
+goto MegaDeathEnd
 ClassDeathM:
 EROB H 0 A_SpawnItemEx("TrioRareDeathHelper",0,0,0,momx,momy,momz,0,9)
-goto DeathContinue
+goto GibDeath
+ClassDeathF:
+EROB H 19
+EROB H 0 A_SpawnItemEx("TrioRareDeathHelper",0,0,0,momx,momy,momz,0,9)
+goto FlingDeath+1
 ClassDeathR:
 EROB H 1 ThrustThingZ(0,21,0,1)
 EROB H 0 A_JumpIf(ceilingz-z<64,"ClassDeathM")
@@ -110,8 +110,6 @@ EROB H 0 A_PlaySoundEx("CBM/icebreak","Body")
 EROB H 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
 EROB H 0 A_SpawnItemEx("TrioRareDeathHelper",0,0,0,momx,momy,momz,0,9)
 goto DeathWait
-
-
 }
 }
 

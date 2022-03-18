@@ -322,7 +322,7 @@ fail
 		Looping:
 		TNT1 A 0 A_TakeFromTarget("StunArmor",80)
 		TNT1 A 0 A_TakeFromTarget("BasicArmor",80)
-		TNT1 A 0 A_TakeFromTarget("BossBasicArmorAmount",80)
+		//TNT1 A 0 A_TakeFromTarget("BossBasicArmorAmount",80)
 		TNT1 A 0 A_TakeFromTarget("LastArmorCount",80)
 		TNT1 A 1 A_Countdown
 		goto Looping

@@ -1,7 +1,7 @@
 actor RollSwingBoss : BaseMM8BDMWep_CBM
 {
 Tag "$TAGC_0E"
-dropitem "CopyClassUpgradeDropped"
+dropitem "RollSweepWepCDropped"
 Weapon.AmmoUse 0
 Weapon.AmmoGive 0
 Obituary "$OB_ROLLSWING"
@@ -163,7 +163,7 @@ Goto Ready2
 actor RollBucketBoss : BaseMM8BDMWep_CBM
 {
 Tag "$TAGC_0E2"
-dropitem "CopyClassUpgradeDropped"
+dropitem "RollSweepWepCDropped"
 Weapon.AmmoUse 0
 Weapon.AmmoGive 0
 Obituary "$OB_ROLLBUCKET"
@@ -300,7 +300,7 @@ TNT1 A 0 A_SpawnItemEx("RollSlideFX",-10,0,16,0,0,0,0,1)
 
 TNT1 A 0 A_TakeInventory("SecondSwing")
 TNT1 A 0 A_GiveInventory("SlideVivifyFlag",1)
-TNT1 A 0 A_GiveInventory("PowerRollDashing",1)
+//TNT1 A 0 A_GiveInventory("PowerRollDashing",1)
 RSWB I 0 A_GiveInventory("RollSlide",1)
 RSWB I 0 A_GiveInventory("RollSlideX",1)
 TNT1 A 0 A_PlaySoundEx("weapon/superboost","Body")
@@ -529,7 +529,7 @@ stop
 Death:
 TNT1 A 0
 TNT1 A 0 A_JumpIf(z-floorz<=9,"DeathF")
-TNT1 A 1 A_SpawnItemEx("RollCleanserShotFall",0,0,0,0,0,-1,0,1)
+TNT1 A 1 A_SpawnItemEx("RollCleanserBlob",0,0,0,0,0,-1,0,1)
 stop
 
 //Y_1H R 0 A_JumpIf(z-floorz<=0,"Death2")
