@@ -2287,7 +2287,7 @@ CHANGELOG
 -Break Shot duration ported from classes-v9fh.pk3
 -Meowing removed from altfire, now buffers for Break Dash with not enough ammo
 --Now has a 5 tic delay in between meows
---Meow sound has lower pitch than Tango meow
+--New meow SFX, provided by Conejo
 --Meowing no longer cancels Break Dashing skinsprites
 
 ==Fuseman

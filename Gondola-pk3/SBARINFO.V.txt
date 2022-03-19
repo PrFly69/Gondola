@@ -291,9 +291,8 @@ InInventory BasicArmor,1{
         DrawNumber 1,CMBHRFONT,DarkGray,BelowDecimalArmor,alignment(left),45,40;
         }
     DrawNumber 4,CMBHRFONT,DarkGray,SavePercent,alignment(left),31,46;
-    //InInventory BossBasicArmorAmount,1{DrawBar"BARAMT31","NOBAR",Armor BossBasicArmorAmount,vertical,24,8;}
-    //else{DrawBar"BARAMT31","NOBAR",Armor,vertical,24,8;}}
-}
+    InInventory DynamicArmorDosage_F,1{DrawBar"BARAMT31","NOBAR",Armor DynamicArmorDosage_F,vertical,24,8;}
+    else{DrawBar"BARAMT31","NOBAR",Armor,vertical,24,8;}}
 }
 
 

@@ -398,7 +398,7 @@ Use1:
 //TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,8,10)//80% speed
 TNT1 A 0 A_GiveInventory("MWS_ItemHoldIt",1)
 TNT1 A 0 A_GiveInventory("MWS_Armour",1)
-//TNT1 A 0 A_GiveInventory("BossBasicArmorAmount",50)
+TNT1 A 0 A_GiveInventory("SetDynamicArmorDosage_P")
 TNT1 A 0 A_GiveInventory("MWS_ItemFlag",1)
 TNT1 A 0 A_SpawnItemEx("MWS_ShieldWatcher")
 fail
@@ -406,7 +406,7 @@ Use2:
 TNT1 A 0 A_GiveInventory("MWS_ItemHoldIt",1)
 TNT1 A 0 A_TakeInventory("MWS_ItemFlag",999)
 TNT1 A 0 A_TakeInventory("BasicArmor",999)
-//TNT1 A 0 A_TakeInventory("BossBasicArmorAmount",999)
+TNT1 A 0 A_TakeInventory("SetDynamicArmorDosage_P")
 fail
 No:
 TNT1 A 0
@@ -457,7 +457,7 @@ goto Death
 Death:
 TNT1 A 0 A_GiveToTarget("MWS_ItemHoldIt",1)
 TNT1 A 0 A_TakeFromTarget("BasicArmor",999)
-//TNT1 A 0 A_TakeFromTarget("BossBasicArmorAmount",999)
+TNT1 A 0 A_TakeFromTarget("SetDynamicArmorDosage_P")
 TNT1 A 0 A_TakeFromTarget("MWSShieldCharge",50)
 TNT1 A 0 A_TakeFromTarget("MWS_ItemFlag",999)
 TNT1 A 1

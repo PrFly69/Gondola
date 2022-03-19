@@ -85,7 +85,7 @@ CLDH H 3
 CLDH H 0 A_TakeInventory("GoFlag")
 CLDH H 0 A_TakeInventory("GoFlagAir")
 CLDH G 4
-CLDH G 2 A_TakeInventory("ColdCombo_Flag",99)
+CLDH A 2 A_TakeInventory("ColdCombo_Flag",99)
 CLDH A 8
 CLDH A 0 A_TakeInventory("DinoDNAFlag")
 goto Ready1
