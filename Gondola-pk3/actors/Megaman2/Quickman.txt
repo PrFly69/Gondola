@@ -11,8 +11,8 @@ player.startitem "QuickTrailItem"
 
 player.maxhealth 750
 health 750
-player.forwardmove 1.10, 1.10
-player.sidemove 1.08, 1.08
+player.forwardmove 1.20, 1.20
+player.sidemove 1.18, 1.18
 player.jumpz 12
 
 player.startitem "TimestopperWeakness2", 1

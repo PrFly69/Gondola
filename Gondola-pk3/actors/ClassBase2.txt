@@ -151,7 +151,7 @@ Pain.ConcreteM_TossBit:Pain.SplashW_Fish1:Pain.SplashW_Fish2:Pain.SplashW_Fish3:
 Pain.PlugM_Ball:Pain.PlugM_Prong:Pain.PlugM_Plugged:Pain.MagmaM_Shot1:Pain.MagmaM_Shot2:
 Pain.GalaxyM_Shot:
 
-Pain.PumpM_ShieldToss:Pain.CommandoM_Shot:Pain.CommandoM_Mine:Pain.NitroM_Shot:
+Pain.PumpM_ShieldToss:Pain.PumpM_Stream:Pain.CommandoM_Shot:Pain.CommandoM_Mine:Pain.NitroM_Shot:
 
 Pain.AstroM_Shot:Pain.AstroM_CloneShot:Pain.DynamoM_Orb:Pain.DynamoM_Bolt:
 Pain.DynamoM_TaggedBolt:Pain.DynamoM_DishZap:Pain.MagicM_Orb:Pain.MagicM_Ball:Pain.King_ShieldDrop:

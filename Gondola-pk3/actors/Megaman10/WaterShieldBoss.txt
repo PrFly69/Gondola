@@ -391,7 +391,7 @@ actor PumpRayWater
 {
 PROJECTILE
 Translation "192:192=200:200", "198:198=75:75"
-Damagetype "DMGNoHitstun"
+Damagetype "PumpM_Stream"
 Obituary "%o was washed clean by %k's water stream."
 +THRUSPECIES
 +DONTREFLECT
@@ -451,7 +451,7 @@ PROJECTILE
 +NOCLIP
 +CLIENTSIDEONLY
 Gravity 1.5
-damagetype "DMGNoHitstun"
+damagetype "PumpM_Stream"
 Speed 0
 Damage (0)
 radius 16
@@ -976,7 +976,8 @@ damagetype "PumpShield"
 //+DONTRIP
 +THRUSPECIES
 species "DumbPumpBubble"
-damagefactor "PumpHandle",0.0
+damagefactor "PumpTheHandle",0.0
+damagefactor "PumpM_Stream",0.0
 damagefactor "WaterShield",0.0
 damagefactor "WaterShielder",0.0
 damagefactor "PumpShield",0.0
@@ -986,8 +987,9 @@ damageFactor "IceWallC", 0.125
 damageFactor "ConcreteShoulder", 0.04
 
 painchance 256
-painchance "PumpHandle", 0
+painchance "PumpTheHandle", 0
 painchance "WaterShield", 0
+damagefactor "PumpM_Stream",0.0
 painchance "WaterShielder", 0
 painchance "PumpShield", 0
 painchance "Telefrag", 0
