@@ -25,12 +25,6 @@ pic V_I_VUX tics 4
 pic V_I_VUY tics 4
 pic V_I_VUZ tics 4
 
-texture GALPORTA
-pic BLKHB0 tics 2
-pic BLKHC0 tics 2
-pic BLKHD0 tics 2
-pic BLKHE0 tics 2
-
 texture 5K_B_BAR
 pic 5K_C_BAR tics 4
 pic 5K_D_BAR tics 4
@@ -124,35 +118,6 @@ pic MV_B_VAR tics 4
 pic MV_C_VAR tics 4
 pic MV_D_VAR tics 4
 pic MV_E_VAR tics 4
-
-//Jewel
-texture M9_J_BAR
-/*pic J_BAR10A tics 4
-pic J_BAR10B tics 4
-pic J_BAR10C tics 4
-pic J_BAR10D tics 4
-pic J_BAR10E tics 4
-pic J_BAR10F tics 4
-pic J_BAR10G tics 4
-pic TNT1A0 tics 4*/
-pic B_BAR10A tics 4
-pic B_BAR10B tics 4
-pic B_BAR10C tics 4
-pic B_BAR10D tics 4
-pic B_BAR10E tics 4
-pic B_BAR10F tics 4
-pic B_BAR10G tics 4
-pic B_BAR10H tics 4
-
-texture M9_J_VAR
-pic J_VAR10A tics 4
-pic J_VAR10B tics 4
-pic J_VAR10C tics 4
-pic J_VAR10D tics 4
-pic J_VAR10E tics 4
-pic J_VAR10F tics 4
-pic J_VAR10G tics 4
-pic TNT1A0 tics 4
 
 //Bubbleman Item Indicator
 texture BUBFLODA

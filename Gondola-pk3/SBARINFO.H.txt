@@ -420,7 +420,7 @@ IsSelected WildBearBoss{DrawBar"BEAR_VAR","VAREMPTY", BomuCharge, horizontal,58,
 	InInventory BomuHeal,1{DrawBar"4H_S_VAR","VNOBAR",BomuHeal,horizontal,58,184;}}
 
 //MM1
-IsSelected IceStatueBoss{Drawbar"VARAMMO3","VAREMPTY",Ammo1,horizontal,58,184;
+IsSelected IceSlasherBoss{Drawbar"VARAMMO3","VAREMPTY",Ammo1,horizontal,58,184;
 	Drawbar"ICEVAR","VAREMPTY",Ammo2,horizontal,58,176;
 	DrawImage"ICEMRCON",178,175;}
 IsSelected HyperBombBoss{Drawbar"M1_B_VAR","VAREMPTY",Ammo1,horizontal,58,184;

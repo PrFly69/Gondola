@@ -1,4 +1,4 @@
-actor IceStatueBoss : BaseMM8BDMWep_CBM
+actor IceSlasherBoss : BaseMM8BDMWep_CBM
 {
 Tag "$TAGC_1C1"
 dropitem "IceSlasherWepCDropped"
@@ -144,7 +144,7 @@ goto Ready+2
 }
 }
 
-actor IceRainBoss : IceStatueBoss
+actor IceRainBoss : IceSlasherBoss
 {
 Tag "$TAGC_1C2"
 inventory.icon "ICEMANI2"
@@ -281,16 +281,23 @@ actor IceSlasherB : IceSlasher
 Translation "198:198=197:197"
 damagetype "IceM_Slasher"
 damage (100)
-speed 30
+speed 15
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-ICEB TUTU 3 A_ScaleVelocity(1.025)
+//TNT1 A 0 A_JumpIfInTargetInventory("PowerRage_ST",1,"LOLOLO")
+ICEB TUTU 3 
+ICEB TUTU 3 A_ScaleVelocity(1.25)
 SpawnLOOP:
 ICEB TU 3
 loop
+//LOLOLO:
+//ICEB TUTU 3 A_ScaleVelocity(1.5)
+//LOLOLOLOOP:
+//ICEB TU 3
+//loop
 }
 }
 

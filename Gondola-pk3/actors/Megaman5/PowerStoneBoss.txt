@@ -311,6 +311,12 @@ inventory.amount 1
 inventory.maxamount 1
 }
 
+actor StoneM_RockProtect : PowerProtection
+{
+Powerup.Duration 3
+DamageFactor "StoneM_Rock", 1.0//lol
+}
+
 actor PowerStoneManHaver
 {
 	Translation "192:192=215:215", "198:198=216:216"
@@ -321,7 +327,7 @@ actor PowerStoneManHaver
 	+NOTARGETSWITCH
 	+NOINTERACTION
 	+NOCLIP
-	damagetype "PowerStone"
+	damagetype "StoneM_Rock"
 	Obituary "$OB_POWERSTONE"
 	species "PowerStoneHaver"
 	Radius 15
@@ -407,7 +413,7 @@ actor PowerStoneManHaver2
 	+NOTARGETSWITCH
 	+NOINTERACTION
 	+NOCLIP
-	damagetype "PowerStone"
+	damagetype "StoneM_Rock"
 	Obituary "$OB_POWERSTONE"
 	species "PowerStoneHaver"
 	Radius 15
@@ -493,7 +499,7 @@ actor PowerStoneManHaver3
 	+NOTARGETSWITCH
 	+NOINTERACTION
 	+NOCLIP
-	damagetype "PowerStone"
+	damagetype "StoneM_Rock"
 	Obituary "$OB_POWERSTONE"
 	species "PowerStoneHaver"
 	Radius 15
@@ -626,7 +632,7 @@ Radius 14
 Height 14
 damage (120)
 -NOGRAVITY
-damagetype "PowerStone"
+damagetype "StoneM_Rock"
 Obituary "$OB_POWERSTONE"
 speed 45
 scale 2.5
@@ -741,7 +747,7 @@ actor PainStoneCrushSlamHit : BasicExplosion//StoneCrush
 {
 var int user_GravStack;
 Obituary "$OB_STONECRUSHB"
-damagetype "ClassPainLess2"
+damagetype "StoneM_Dunked"
 damage (0)
 Renderstyle None
 Mass 250
@@ -773,12 +779,12 @@ stop
 actor StoneCrushSlamCollide : BasicCollideSlam
 {
 Obituary "$OB_STONECRUSHB"
-damagetype "ClassPainLess2"
+damagetype "StoneM_Dunked"
 }
 actor StoneCrushSlamCollideX : BasicCollideSlam
 {
 Obituary "$OB_STONECRUSHX"
-damagetype "ClassPainLess2"
+damagetype "StoneM_Dunked"
 }
 
 actor StoneLeap_Pickup : CustomInventory
@@ -888,14 +894,14 @@ stop
 
 actor StoneQuakeDamage2 : StoneQuakeDamage
 {
-damagetype "ClassPainLess2"
+damagetype "StoneM_Quake"
 }
 
 actor StoneHandBoss
 {
 Translation "192:192=215:215", "198:198=216:216"
 PROJECTILE
-damagetype "PowerStone"
+damagetype "StoneM_Hand"
 Obituary "$OB_STONEHAND"
 +SEEKERMISSILE
 +SCREENSEEKER
@@ -1369,7 +1375,7 @@ PROJECTILE
 Radius 24
 Height 10
 damage (200)
-damagetype "PowerStone"
+damagetype "StoneM_Rock"
 Obituary "$OB_POWERSTONE"
 speed 0
 //var int user_startwepangle;

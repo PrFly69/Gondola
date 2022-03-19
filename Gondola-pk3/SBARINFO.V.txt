@@ -445,7 +445,7 @@ IsSelected WildBearBoss{DrawBar"BEAR_BAR","BAREMPTY", BomuCharge, vertical, 16, 
 	InInventory BomuHeal,1{DrawBar"4H_S_BAR","NOBAR",BomuHeal,vertical,24,8;}}
 
 //MM1
-IsSelected IceStatueBoss{Drawbar"BARAMMO3","BAREMPTY",Ammo1,vertical,16,8;
+IsSelected IceSlasherBoss{Drawbar"BARAMMO3","BAREMPTY",Ammo1,vertical,16,8;
 	Drawbar"ICEBAR","BAREMPTY",Ammo2,vertical,8,8;
 	DrawImage"ICEMRCON",32,55;}
 IsSelected HyperBombBoss{Drawbar"M1_B_BAR","BAREMPTY",Ammo1,vertical,16,8;
@@ -752,24 +752,9 @@ IsSelected BlackHoleBombBoss
 {
     Drawbar"GALBAR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar "MV_A_BAR", "NOBAR",PowerupTime Blackholecooldownindicatorbar, vertical, 16,8;
-	
-	ininventory BlackHoleFlag 
-	{
-	drawimage "MV_A_BAR", 16,8; 
-	}
-	
-	InInventory GalaxyPortFlag
-	{
-	DrawImage "G4LR1C0N",32,55;
-	}
-	
-	InInventory not GalaxyPortFlag
-	{
 	DrawImage "GALRICON",32,55;
-	}
-	
 	DrawImage "C_09H0X",20,0;
-	}
+	ininventory BlackHoleFlag{drawimage "MV_A_BAR", 16,8;}}
 	
 	
 IsSelected RevolverBusterBoss{DrawBar"BARAMM10","BAREMPTY",FakemanDashCounter,vertical,16,8;

@@ -337,7 +337,8 @@ PROJECTILE
 +FORCEXYBILLBOARD
 Obituary "$OB_DARK1BUSTER"
 damagetype "DMGNoHitstun"
-radius 32
+radius 10
+height 10
 damage (110)
 speed 20
 scale 2.5
@@ -538,7 +539,7 @@ actor Dark1BoomShot11P:Dark1BoomShotP{speed 37 Meleerange 3}
 
 actor DarkTankPushExplode : BasicExplosion
 {
-damagetype "DarkTank"
+damagetype "DarkM_Tank"
 Obituary "$OB_DARK1BOOST"
 States
 {

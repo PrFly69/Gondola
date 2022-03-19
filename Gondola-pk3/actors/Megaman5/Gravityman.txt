@@ -84,16 +84,18 @@ goto PainContinue
 ClassPain_C:
 GRAM T 0
 goto PainContinue
-
 ClassDeath:
-GRAM T 0 A_JumpIfInventory("RiseDeathFlag",1,"ClassDeathR")
-GRAM T 19
+GRAM H 0 A_JumpIfInventory("CeilingFlag",1,1)
 goto DeathContinue
+GRAM T 0 A_JumpIfInventory("RiseDeathFlag",1,1)
+goto DeathContinue
+GRAM T 0
+goto ClassDeathR
 ClassDeathR:
 GRAM T 1 ThrustThingZ(0,-11,0,1)
-GRAM T 0 A_JumpIf(z-floorz<64,"DeathContinue")
+GRAM T 0 A_JumpIf(z-floorz<64,"GibDeathStop")
 GRAM T 0 A_GiveInventory("RiseDeathFlag2",1)
-GRAM T 0 A_JumpIfInventory("RiseDeathFlag2",25,"DeathContinue")
+GRAM T 0 A_JumpIfInventory("RiseDeathFlag2",25,"GibDeathStop")
 Goto ClassDeathR
 }
 }

@@ -1,0 +1,542 @@
+actor ClassBase0 : PlayerPawn//Base for every class
+{
+player.displayname "Copy Robot"
+player.damagescreencolor "white", 0.0, FlashStopper
+player.damagescreencolor "white", 0.0, FlashBulb
+player.damagescreencolor "yellow", 0.333
+player.maxhealth 1000
+health 1000
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+player.jumpz 10
+bloodtype "MegamanBlood"
+//+NOSKIN
+-SOLID//
++NOGRAVITY//
++NOBLOOD
++DONTBLAST
++NODAMAGETHRUST
++QUICKTORETALIATE
+player.colorrange 0 0
+//Player.GruntSpeed 12.0
+mass 999999
+
+damagefactor "Dummy", 0.0
+
+damagefactor "spawntelefrag", 0.0
+damagefactor "Crush", 1.0
+damagefactor "Disintegrate", 10.0
+
+gravity 0.8
+scale 2.5
+Species "Megaman"
+Player.MaxSkinSizeFactor 0, 0
+
+var int user_hp;
+
+var int user_wepangle;
+var int user_weppitch;
+var int user_wepangle2;//Dynamo
+
+var int user_wepaimlimit;//SpectrumMystery
+
+States
+{
+Spawn:
+"----" A 0
+"----" B 1
+"----" A 1
+Goto Spawn+2
+See:
+"----" BCDE 5
+Goto Spawn
+Missile:
+"----" F 5
+"----" G 4
+goto Spawn
+
+Pain.NoPain:
+"----" B 0 
+Goto Spawn
+Pain.EclipsePunch:
+PLY1 B 0 
+Goto Spawn
+Pain.BotSight:
+"----" B 5 HealThing(1)
+Goto Spawn+2
+
+///////////////////
+//Sound Based / Power Protects
+///////////////////
+
+Pain.Reggae:
+"----" H 0 A_PlaySoundEx("item/reggae","SoundSlot5",0)
+Goto Pain+2
+
+Pain.SlashClaw:
+"----" H 0 A_PlaySoundEx("weapon/slashclawhit","SoundSlot5")
+Goto Pain
+
+Pain.FlameSword:
+"----" H 0 A_GiveInventory("FlameSwordProtect",1)
+"----" H 0 A_PlaySoundEx("weapon/flamehit","SoundSlot5")
+"----" HH 0 A_SpawnItemEx("FlameSwordBit",0,0,0,random(-10,10),random(-10,10),random(10,15),random(0,359))
+Goto Pain
+
+Pain.TenguSlash:
+"----" H 0 A_PlaySoundEx("weapon/tenguhit","SoundSlot5")
+goto Pain
+
+Pain.SpreadDrill:
+Pain.SpreadDrill2:
+Pain.SpreadDrill3:
+"----" H 0 A_JumpIfInventory("SpreadDrillProtect",1,2)
+"----" H 0 A_PlaySoundEx("weapon/spreaddrillhit","SoundSlot5")
+"----" H 0 A_GiveInventory("SpreadDrillProtect",1)
+Goto Pain+1
+
+Pain.LaserTrident:
+"----" H 0 A_GiveInventory("LaserTridentProtect",1)
+goto Pain+1
+
+Pain.SparkChaser:
+"----" H 0 A_GiveInventory("SparkChaserTagged",1)
+goto Pain+1
+
+Pain.BreakDash:
+"----" H 0 A_GiveInventory("BreakDashProtect",1)
+"----" H 0 A_GiveInventory("PainStopC",1)
+goto Pain+1
+
+///////////////////
+//Movement Based (Stops/Slows)
+///////////////////
+
+Pain.TimeStopper:
+"----" H 0 A_GiveInventory("TimeStopActivatorC",1)//ClaseBaseFlags.txt
+Goto Pain+2
+
+Echo_TimeStop:
+"----" H 0 A_GiveInventory("TimeStoppedTF",1)
+"----" H 0 A_Jump(256,"TimeStopped_Echo")
+Goto TimeStopped_Echo
+Fun_TimeStop:
+"----" H 0 A_GiveInventory("TimeStoppedTF",1)
+"----" H 0 A_Jump(256,"TimeStopped_Fun")
+Goto TimeStopped_Fun
+Pain_TimeStop:
+"----" H 0 A_GiveInventory("TimeStoppedTF",1)
+"----" H 0 A_Jump(256,"TimeStopped_Pain")
+Goto TimeStopped_Pain
+//The following tinker with these: Timeman, Flashman, Stoneman, Swordman, BearerClass
+TimeStopped_Echo://Force last frame
+"####" "#####################################################################################################" 1 A_GiveInventory("TimeBenderPain_P")
+Goto Pain+2
+TimeStopped_Fun://Force Fun frame
+"####" "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]" 1 A_GiveInventory("TimeBenderPain_P")
+Goto Pain+2
+TimeStopped_Pain://Force H Pain frame
+"####" "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH" 1 A_GiveInventory("TimeBenderPain_P")
+Goto Pain+2
+
+Pain.CrashBomb:
+"----" H 0 A_GiveInventory("PainStopC",1)
+Goto Pain+1
+
+Pain.ClassPainStop:
+"----" H 0 A_Stop
+Goto Pain+2
+
+Pain.TimeSlow:
+"----" H 0 A_GiveInventory("Slowed",1)
+Goto Pain+2
+
+Pain.ConcreteShot:
+"----" H 0 A_JumpIfInventory("ConcreteVision",1,"ConcreteReset")
+"----" H 0 A_GiveInventory("ConcreteVision",1)
+"----" H 0 A_GiveInventory("ConcreteTime",105)
+"----" H 0 A_SpawnItemEx("ConcreteWatcherC")
+goto Pain+1
+ConcreteReset:
+"----" H 0 A_GiveInventory("ConcreteTime",105)
+goto Pain+1
+
+Pain.SparkShock:
+"----" H 0 A_SpawnItemEx("ShockFX",4,0,32)
+"----" H 0 A_GiveInventory("Shocked",1)
+Goto Pain+1
+
+Pain.ChillSpike:
+"----" H 0 A_GiveInventory("ChillFreeze",1)
+goto Pain+1
+
+///////////////////
+//Movement Based (Flings)
+///////////////////
+
+Pain.WindStorm:
+Pain.FlingDamage:
+"----" H 0 //ThrustThing(random(0,255),50,1,0)
+"----" H 0 ThrustThing(random(0,255),5,0,0)
+"----" H 0 ThrustThingZ(0,30,0,0)
+Goto Pain+1
+
+Pain.TornadoBlow:
+"----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
+"----" H 0 ThrustThingZ(0,60,0,0)
+"----" H 0
+goto Pain+2
+
+Pain.GravityHold:
+"----" H 0 A_ChangeVelocity(momx, momy, 0, CVF_REPLACE)
+"----" H 0 A_JumpIf(z-floorz>180,"GravityForce4")
+"----" H 0 A_JumpIf(z-floorz>128,"GravityForce3")
+"----" H 0 A_JumpIf(z-floorz>32,"GravityForce2")
+"----" H 0 A_JumpIf(z-floorz>8,"GravityForce1")
+Goto GravityForceFinish
+GravityForce4:
+"----" H 0 A_GiveInventory("GravityForce4",1)
+Goto GravityForceFinish
+GravityForce3:
+"----" H 0 A_GiveInventory("GravityForce3",1)
+Goto GravityForceFinish
+GravityForce2:
+"----" H 0 A_GiveInventory("GravityForce2",1)
+Goto GravityForceFinish
+GravityForce1:
+"----" H 0 A_GiveInventory("GravityForce1",1)
+Goto GravityForceFinish
+GravityForceFinish:
+"----" H 0 A_CheckFloor(2)
+"----" H 0 ThrustThingZ(0,150,1,0)
+"----" H 0
+Goto Pain+1
+
+///////////////////
+//Effect Based
+///////////////////
+
+Pain.FlashStopper:
+"----" H 0 A_GiveInventory("FlashStopperHit",1)
+Goto Pain+1
+
+//Stonecore and Chillman have tweaks for these damagetypes
+//For some reason, Doom Rocket has "Fire" damagetype. Be wary of Cyberdemons
+Pain.Drowning:Pain.Slime:Pain.Fire:Pain.Falling:Pain.Ice:
+"----" H 0
+"----" H 0 A_JumpIfInventory("BeatCallCheck",1,"BeatAssist")
+Pain.Spiney:
+"----" H 0 A_JumpIfInventory("ShieldHits",1,"Pain1")
+Pain.Crush:Pain.Beam:Pain.PressBall:Pain.BurnWave:
+"----" H 0 A_JumpIfInventory("NoFallingRespawn_F",1,"Pain1")
+"----" H 0 A_GiveInventory("CBM_ArtiTeleportCheck_P")
+Goto Pain+1
+
+BeatAssist:
+"----" H 0
+"----" H 0 HealThing(2,30000)
+"----" H 0 ACS_NamedExecuteAlways("core_beatflight",0,0,1)
+"----" H 0 A_JumpIfInventory("BeatCallProtection",1,"Spawn")
+Goto Pain+1
+
+Pain.WilyFire:
+"----" H 0 A_SpawnItemEx("ImOnFire")
+"----" H 0 A_GiveInventory("FireVision",1)
+Goto Pain+2
+Pain.WilyIce:
+"----" H 0 A_GiveInventory("WilyIceTotallyFrozen",1)
+"----" H 0 A_TakeInventory("SuperEffective",1)
+"----" H 0 A_GiveInventory("EndBossFlashStoppered",1)
+"----" H 0 A_GiveInventory("TimeStoppedUnfreeze",1)
+"----" H 0 A_SpawnItemEx("ImFrozen")
+"----" H 0 A_GiveInventory("IceVision",1)
+"----" H 0 A_Stop
+"----" H 0 A_Jump(256,"Spawn")
+Goto Spawn
+
+///////////////////
+//TID Soup Based
+///////////////////
+
+///////////////////
+//Nothing Special Based
+///////////////////
+
+//0.75x Hitstun (goto Pain)
+//Pain.Normal:
+Pain.Buster:Pain.ProtoBuster:Pain.ProtoBuster2:Pain.ProtoBuster3:Pain.BassBuster:Pain.SuperAdaptor:Pain.ChargeBuster:Pain.ArrowBuster:Pain.LaserBuster:Pain.DuoFist1:Pain.DuoFist2:Pain.DuoFist3:Pain.TrebleBoost:Pain.MegaArm:
+Pain.RollingCutter:Pain.SuperArm:Pain.IceSlasher:Pain.HyperBomb:Pain.FireStorm:Pain.FireSpin:Pain.ThunderBeam:/*Pain.TimeSlow:*/Pain.OilSlider:Pain.OilFlame:
+Pain.MetalBlade:Pain.AirShooter:Pain.BubbleLead:Pain.QuickBoomerang:/*Pain.CrashBomb:*/Pain.AtomicFire1:Pain.AtomicFire2:Pain.AtomicFire3:Pain.LeafShield:
+Pain.NeedleCannon:Pain.MagnetMissile:Pain.GeminiLaser:Pain.HardKnuckle:Pain.TopSpin:Pain.SearchSnake:/*Pain.SparkShock:*/Pain.ShadowBlade:
+/*Pain.FlashStopper:*/Pain.RainFlush:Pain.DrillBomb:Pain.PharaohShot1:Pain.PharaohShot2:Pain.PharaohShot3:Pain.RingBoomerang:Pain.DustCrusher:Pain.DustCrusherBit:Pain.DiveMissile:Pain.SkullBarrier:
+/*Pain.GravityHold:*/Pain.WaterWave:Pain.PowerStone:Pain.GyroAttack:Pain.StarCrash:Pain.ChargeKick:Pain.NapalmBomb:Pain.CrystalEye:Pain.CrystalEyeBit:Pain.DarkShot:
+Pain.BlizzardAttack:Pain.CentaurFlash:Pain.FlameBlast:Pain.KnightCrush:Pain.PlantBarrier:Pain.SilverTomahawk:/*Pain.WindStorm:*/Pain.YamatoSpear:
+Pain.FreezeCracker:Pain.FreezeCrackerBit:Pain.JunkShield:Pain.DangerWrap:Pain.ThunderBolt:Pain.WildCoil:Pain.WildCoil2:/*Pain.SlashClaw:*/Pain.NoiseCrush1:Pain.NoiseCrush2:Pain.ScorchWheel:
+Pain.MegaBall:Pain.TornadoHold:Pain.AstroCrush:/*Pain.FlameSword:*/Pain.FlameSwordSpark:Pain.ThunderClaw:Pain.HomingSniper:Pain.IceWave:Pain.FlashBomb:Pain.WaterBalloon:
+/*Pain.ConcreteShot:Pain.TornadoBlow:Pain.LaserTrident:*/Pain.PlugBall:Pain.JewelSatellite:Pain.HornetChaser:Pain.MagmaBazooka1:Pain.MagmaBazooka2:Pain.BlackHoleBomb:
+Pain.TripleBlade:Pain.WaterShield:Pain.CommandoBomb:Pain.ChillShot:/*Pain.ChillSpike:*/Pain.ThunderWool:Pain.ReboundStriker:Pain.WheelCutter:Pain.WheelCutterSaw:Pain.SolarBlaze:
+Pain.TenguBlade:Pain.CopyVision:Pain.LightningBolt:Pain.IceWall:/*Pain.SpreadDrill:Pain.SpreadDrill2:Pain.SpreadDrill3:*/Pain.RemoteMine:Pain.WaveBurner:Pain.WaveBurnerUW:Pain.MagicCard:
+/*Pain.SparkChaser:*/Pain.GrabBuster:Pain.BubbleBomb:Pain.PhotonMissile:Pain.ElectricShock:Pain.BlackHole:Pain.DeepDigger:/*Pain.BreakDash:*/Pain.SaltWater:
+Pain.MirrorBuster1:Pain.MirrorBuster2:Pain.MirrorBuster3:Pain.ScrewCrusher:Pain.BalladeCracker:Pain.Sakugarne:Pain.BlastRune:Pain.DawnBreaker:
+
+Pain.Beat:Pain.EddieBomber:Pain.Tango:/*Pain.Reggae:*/Pain.TrebleSentry:
+//Stage Hazards
+Pain.FireTrap:Pain.FirePillar:Pain.BigEye:Pain.MetalPress:/*Pain.Spiney:Pain.Beam:*/Pain.Wanaan://MM4DW1 Met is 'Misc"
+/*Pain.PressBall:Pain.FlingDamage:*/Pain.KyorownBullet:Pain.ChangekeyDragon:Pain.IceBlock:Pain.PirateMine://Pain.BurnWave://FlingDamage is on SpringBoxTrap/ClownTrain
+//Pain.Exit:
+
+//Core Bosses
+Pain.Misc:Pain.Met:Pain.Dozer:Pain.DozerShot:Pain.instagib:Pain.Protoman:Pain.DarkMan:Pain.Darkman:Pain.Gamma:
+Pain.Bass:Pain.BassLaser:/*Pain.WilyFire:Pain.WilyIce:*/Pain.WilyLightning:Pain.King:Pain.BusterRod:Pain.Quick:Pain.Fakeman:
+
+"----" H 0
+goto Pain
+
+
+//0.9x Hitstun
+Pain.ChargeBuster:
+Pain.WaterBalloon:Pain.FlashBomb:
+Pain.RemoteMine:Pain.IceWall:
+Pain_90:
+"----" H 0 A_GiveInventory("PainHitstun_90_P",1)
+Goto Pain+1
+
+
+//No Hitstun (goto Pain+1)
+Pain.ProtoBuster:Pain.Buster:Pain.BassBuster:Pain.MegaArm:
+Pain.TrebleSentry:Pain.Treble:Pain.TrebleBoost:
+Pain.FireSpin:/*Pain.TimeSlow:*/Pain.OilSlider:
+Pain.QuickBoomerang://Pain.CrashBomb:
+Pain.NeedleCannon:Pain.MagnetMissile://Pain.SparkShock:
+/*Pain.FlashStopper:*/Pain.PharaohHold:Pain.DiveMissile:
+/*Pain.GravityHold:*/Pain.StarCrash:Pain.ChargeKick:
+Pain.CentaurFlash:/*Pain.WindStorm:*/Pain.YamatoSpear:
+Pain.FreezeCracker:Pain.JunkShield:Pain.WildCoil:Pain.ScorchWheel:
+Pain.TornadoHold:Pain.FlameSwordSpark://Pain.FlashBomb:Pain.WaterBalloon:
+//Pain.ConcreteShot:Pain.TornadoBlow:Pain.LaserTrident:
+Pain.TripleBlade:Pain.CommandoBomb:/*Pain.ChillSpike:*/Pain.ThunderWool:
+/*Pain.IceWall:Pain.SpreadDrill:Pain.SpreadDrill2:Pain.SpreadDrill3:*/Pain.WaveBurner:Pain.WaveBurnerUW:
+/*Pain.SparkChaser:*/Pain.ElectricShock://Pain.BreakDash:
+//MMWT
+Pain.ScrewCrusher:
+
+Pain.Exit:
+/*Pain.Reggae:*/
+/*Pain.FlingDamage:*/Pain.IceBlock:
+Pain.Misc:Pain.Protoman:Pain.DarkMan:Pain.Darkman:Pain.Gamma:Pain.KyorownBullet:
+"----" H 0
+Goto Pain+1
+
+Pain1://Used by Stoneman/Chillman
+"----" H 0
+goto Pain+1
+Pain2:
+"----" H 0
+goto Pain+2
+
+Pain:
+"----" H 0 A_GiveInventory("PainHitstun_75_P",1)
+"----" H 0 //A_GiveInventory("PainRecoilC",1)
+"----" H 0 ACS_NamedExecuteWithResult("core_decdmg_begin")
+"----" H 0 A_TakeInventory("SuperEffective",1)
+"----" H 0 A_GiveInventory("EndBossFlashStoppered",1)
+"----" H 0 A_GiveInventory("CBMPainSound_P")//A_Pain
+"----" H 0 A_GiveInventory("TimeStoppedUnfreeze",1)
+"----" H 0
+"----" H 0 A_JumpIfInventory("SkipClassPainJump",1,"PainContinue")
+"----" H 0 A_Jump(256, "ClassPain")
+goto ClassPain
+
+ClassPain:
+"----" H 0
+goto PainContinue
+
+PainContinue:
+//"----" H 1 A_SpawnItemEx("PainFX_CBM",-5,0,3,0,0,0)
+//"----" H 1// A_GiveInventory("PainRecoilC",1)
+"----" "#" 0 A_GiveInventory("IsInPain",1)
+"----" "##########" 2 A_SpawnItemEx("PainFX_CBM",-5,0,3,0,0,0)//HHHHHHHHHH
+"----" H 1
+"----" H 0 A_Jump(256, "Spawn")
+"----" H 1 A_Jump(256, "Spawn")
+Goto Spawn
+
+///////////////////
+//Death states
+///////////////////
+
+Death.Ice:
+Death.TimeStopper:Death.WilyIce:
+Death.IceWave:
+Death.ChillSpike:
+Death.IceBlock:
+"----" H 0 A_GiveInventory("IceDeathFlag",1)
+goto Death
+
+Death.WindStorm:
+Death.GravityHold:
+Death.TornadoHold:
+Death.TornadoBlow:
+"----" H 0 A_GiveInventory("RiseDeathFlag",1)
+goto Death
+
+Death.spawntelefrag:
+"----" H 0 A_GiveInventory("SpawnTeleFragFlag",1)
+goto Death
+
+Death.Gib:
+Death.instagib:Death.Telefrag:
+Death.TopSpin:Death.DawnBreaker:
+Death.Suicide:Death.Beam:Death.Spiney:Death.Crush:Death.PressBall://Death.Extreme:Death.InstantDeath:
+"----" H 0 A_GiveInventory("InstagibFlag",1)
+"----" H 0 A_SetTranslucent(0.0,0)
+goto Death
+
+Death.MetalPress:
+"----" H 0 A_GiveInventory("FlattenDeathFlag",1)
+"----" H 0 A_SetScale(ScaleX,ScaleX/3)
+goto Death
+
+Death.FlingDamageGib:
+"----" H 0 A_GiveInventory("CriticalDeath",1)
+Death.FlingDamage:
+"----" H 0 A_GiveInventory("FlingDeathFlag",1)
+goto Death
+
+Death.DustCrusher:Death.DustCrusherBit:
+Death.JunkShield:
+"----" H 0 A_GiveInventory("JunkDeathDropFlag",1)
+goto Death
+
+Death.BurnWave:
+Death.Fire:Death.Slime:Death.Drowning:Death.Exit:
+Death:
+"----" H 0 A_GiveInventory("DeadClassBundle")
+"----" H 0 A_Jump(256,"ClassDeath")
+goto ClassDeath
+
+//## Fun Death (Bonus stuff)
+//// Auto Junk Burst Magic
+//## Sprite (Alternate frames)
+//// Cut Stone Sword Pump
+//## Animations/Changing states
+//// DrLight DrWily Alien Gravity Grenade EvilRobot Galaxy Fake RaThor BBAMegaman
+ClassDeath://Used to show the H sprite for a class on death.
+"----" H 0//Otherwise used for special class death.
+"----" H 1
+goto DeathContinue
+
+ClassDeathM://Placeholder to fix desync online
+"----" H 1
+goto MegaDeathEnd
+ClassDeathF:
+"----" H 1
+goto FlingDeath
+ClassDeathR:
+"----" H 1
+goto RiseDeath
+ClassDeathRE:
+"----" H 1
+goto GibDeathStop//MegaDeathEnd
+ClassDeathI:
+"----" H 1
+goto IceDeath
+
+DeathContinue://Which state to hop to
+"----" H 0
+"----" H 0
+"----" H 0 A_JumpIfInventory("InstagibFlag",1,"GibDeath")
+"----" H 0 A_JumpIfInventory("FlingDeathFlag",1,"FlingDeath")
+"----" H 0 A_JumpIfInventory("RiseDeathFlag",1,"RiseDeath")
+"----" H 0 A_JumpIfInventory("IceDeathFlag",1,"IceDeath")
+//"----" H 19
+goto DeathContinueDelay
+DeathContinueDelay:
+"----" HHHHHHHHH 1 A_JumpIfInventory("CriticalDeath",1,"GibDeath")
+"----" H 10
+"----" H 0
+goto MegaDeathEnd
+
+GibDeath:
+"----" H 0 A_GiveInventory("CriticalDeathGiver",1)
+goto MegaDeathEnd+2
+GibDeathStop:
+"----" H 0 A_GiveInventory("CriticalDeathGiver",1)
+goto MegaDeathEnd+1
+
+FlingDeath:
+"----" H 19
+"----" H 0 A_GiveInventory("CBM_CritDeathCheck_Snd_P")
+goto MegaDeathEnd+2
+RiseDeath:
+"----" H 1 ThrustThingZ(0,21,0,1)
+"----" H 0 A_JumpIf(ceilingz-z<64,"GibDeathStop")//MegaDeathEnd
+"----" H 0 A_GiveInventory("RiseDeathFlag2",1)
+"----" H 0 A_JumpIfInventory("RiseDeathFlag2",25,"GibDeathStop")//MegaDeathEnd
+Goto RiseDeath
+IceDeath:
+"----" H 0 ACS_ExecuteAlways(998,0,DYE_ICEDEATHCBM,10)
+"----" H 1 A_PlaySoundEx("CBM/freeze","Voice")
+"----" HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 A_SpawnItemEx("FrozenDeathBitFX",frandom(16,48),0,fRandom(16,48),0,0,0,random(0,359))
+"----" H 0 A_PlaySoundEx("CBM/icebreak","Body")
+"----" H 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
+goto DeathWait
+Death.Falling:
+"----" H 0 A_JumpIfInventory("FallDeathExplodeFlag",1,"Death")
+"----" H 0 A_GiveInventory("FallingFlag",1)
+"----" H 0 A_GiveInventory("DeadClassBundle")
+"----" H 0 A_SetTranslucent(0.0,0)
+"----" H 0 A_PlaySoundEx("*death","Voice")
+goto DeathWait
+
+MegaDeathEnd:
+"----" H 0 A_PlaySoundEx("*death","Voice")//A_XScream
+"----" H 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+"----" H 0 A_JumpIf(ACS_ExecuteWithResult(143,0)>=0,3)//Check if team game
+"----" H 0 A_SpawnItemEx("FakeDeathFX_CBM",0,0,32)
+"----" H 0 A_Jump(256,2)
+"----" H 0 A_SpawnItemEx("FakeDeathFX_CBM",0,0,32,0,0,0,0,1)
+"----" H 0
+goto DeathWait
+
+DeathWait:
+PLY1 Z 1 A_CheckPlayerDone
+wait
+
+DropWeapon:
+"----" H 0
+"----" H 0 A_Jump(256,"NoDropWeapon")
+goto NoDropWeapon
+NoDropWeapon:
+PLY1 Z 1 A_CheckPlayerDone
+wait
+
+// SINGLEPLAYER STUFF
+TheEnd: // Used in the original ending
+PLY1 G 4
+loop
+WalkForward:
+PLY1 BBBBBCCCCCDDDDDEEEEE 1 A_Recoil(-0.8)
+loop
+CreditWalk:
+PLY1 BCDE 8
+loop
+CreditRun:
+PLY1 BCDE 5
+loop
+DozerCarry:
+PLY1 BBBBCCCCDDDDEEEEBBBBCCCCDDDDBBBBCCCCDDDD 1 A_Recoil(-1)
+PLY1 F 10 A_Stop
+PLY1 F -1
+stop
+DozerThrow:
+PLY1 F 0 A_ChangeFlag("THRUACTORS",1)
+PLY1 F 20 ThrustThingZ(0, 60, 0, 1)
+PLY1 G 20
+PLY1 A -1
+stop
+EndlessPain:
+PLY1 H -1
+stop
+}
+}

@@ -4,12 +4,12 @@ Player.ScoreIcon "C_01C0X"
 player.displayname "Iceman"
 player.soundclass "Icemanc"
 //player.startitem "IceSlasherBoss"
-player.startitem "IceStatueBoss"
+player.startitem "IceSlasherBoss"
 //player.startitem "IceRainBoss"
 player.startitem "IcicleAmmo", 28
 player.startitem "IceLaserAmmo", 28
 player.startitem "RealClassFlag", 11
-//player.weaponslot 1, "IceStatueBoss"
+//player.weaponslot 1, "IceSlasherBoss"
 //player.weaponslot 2, "IceRainBoss"
 
 player.startitem "HyperBombWeakness2", 1

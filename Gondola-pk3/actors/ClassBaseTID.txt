@@ -337,6 +337,7 @@ actor PainBassKickHitEx : PainBaseFlingHit{Mass 48}
 actor PainMaestroAquaGuts : PainBaseFlingHit{Mass 6}
 actor PainTerra_MeleeHit : PainBaseFlingHit{Mass 10}
 actor SolarVentHit : PainBaseFlingHit{Mass 16}
+actor PainDarkM_TankHit : PainBaseFlingHit{Mass 5}
 
 actor DeathLightRyu_ShoryuHit : DeathBaseFlingHit{Mass 15}
 

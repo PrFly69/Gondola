@@ -2103,6 +2103,11 @@ CHANGELOG
 ==Gutsman
 -Rock sprite ported from classes-v9fh.pk3
 
+==Iceman
+-Speed scaling reworked
+--Base speed 30 > 15
+--Spends first 12 tics at base speed, then scales up 25% four times over the course of 12 tics for an effective max speed of 36
+
 ==Bombman
 -Hyper Bomb Explosion FX ported from classes-v9fh.pk3
 
@@ -2151,7 +2156,10 @@ CHANGELOG
 -Fixed SBar desync
 -Full invuln on Coal Shot now replaced with 50% damage resistance
 
-==Dark Man 3
+==Darkman1
+-Dark Buster shot radius 32 > 10
+
+==Darkman3
 -All shots are now suckable by Saturn
 *Whoops!
 -Fully charged ping sound reverted to core sound

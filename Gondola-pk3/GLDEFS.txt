@@ -16,7 +16,7 @@ object SolarHeadFX {frame GSOL {light SOLARLIGHT}}
 object SolarFlareExplosionWave {frame GSOL {light SOLARLIGHT}}
 object SolarFlareExplosionWaveFX {frame GSOL {light SOLARLIGHT}}
 object SolarFlareExplosionWaveFX2 {frame GSOL {light SOLARLIGHT}}
-object SolarSunHelper {frame GSOL {light SOLARLIGHT}}
+object SolarInfernoHelper {frame GSOL {light SOLARLIGHT}}
 pointlight FIRELIGHT
 {
 color 1.0 0.1 0.05
