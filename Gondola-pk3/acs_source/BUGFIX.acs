@@ -1604,9 +1604,9 @@ SetActorProperty(0,APROP_Speed,1.0);
 SetActorProperty(0,APROP_JumpZ,10.0);
 SetActorProperty(0,APROP_Gravity,0.8);
 SetActorProperty(0,APROP_HEALTH,i);
-SetActorProperty(0,APROP_SpawnHealth,200-losthealth);
+SetActorProperty(0,APROP_SpawnHealth,2000-losthealth);
 
-if(GetActorProperty(0,APROP_HEALTH)>201){SetActorProperty(0,APROP_HEALTH,200);}
+if(GetActorProperty(0,APROP_HEALTH)>2001){SetActorProperty(0,APROP_HEALTH,2000);}
 
 GiveInventory("BearerMorphStart_P",1);
 }
