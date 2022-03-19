@@ -189,7 +189,7 @@ PROJECTILE
 damagetype "Venus_Shot"
 Obituary "$OB_VENUSTICKER"
 ReactionTime 1
-damage (40)
+damage (50)
 Radius 10
 Height 10
 speed 25
@@ -734,23 +734,23 @@ states
 {
 FireX:
 TNT1 A 0 A_FireCustomMissile("VenusBubbleTicker",frandom(-3,3),1,-8,0,0,frandom(-3,3))
-TNT1 A 0 A_FireCustomMissile("VenusBubbleTicker",frandom(-3,3),0,-8,0,0,frandom(-3,3))
+//TNT1 A 0 A_FireCustomMissile("VenusBubbleTicker",frandom(-3,3),0,-8,0,0,frandom(-3,3))
 goto Done
 FireB:
 TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerB",frandom(-3,3),1,-8,0,0,frandom(-3,3))
-TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerB",frandom(-3,3),0,-8,0,0,frandom(-3,3))
+//TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerB",frandom(-3,3),0,-8,0,0,frandom(-3,3))
 goto Done
 FireR:
 TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerR",frandom(-3,3),1,-8,0,0,frandom(-3,3))
-TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerR",frandom(-3,3),0,-8,0,0,frandom(-3,3))
+//TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerR",frandom(-3,3),0,-8,0,0,frandom(-3,3))
 goto Done
 FireO:	
 TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerO",frandom(-3,3),1,-8,0,0,frandom(-3,3))
-TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerO",frandom(-3,3),0,-8,0,0,frandom(-3,3))
+//TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerO",frandom(-3,3),0,-8,0,0,frandom(-3,3))
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerP",frandom(-3,3),1,-8,0,0,frandom(-3,3))
-TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerP",frandom(-3,3),0,-8,0,0,frandom(-3,3))
+//TNT1 A 0 A_FireCustomMissile("VenusBubbleTickerP",frandom(-3,3),0,-8,0,0,frandom(-3,3))
 goto Done
 }
 }

@@ -889,7 +889,7 @@ IsSelected PhotonVulcanBoss,PhotonMissileBoss{DrawBar"0V_D_VAR","VAREMPTY",Ammo1
 	InInventory MarsIsATank,1{DrawBar"VD_S_VAR","VNOBAR",MarsTankFuel_F,horizontal,58,184;}
 	else InInventory not MarsTankFuel_F,500{DrawBar"VD_R_VAR","VNOBAR",MarsTankFuel_F,horizontal,58,184;}}
 
-IsSelected BubbleBombBoss,BubbleBomberBoss{Drawbar"VAMMO_V2","VAREMPTY",BubbleCrabbyAmmo,horizontal,58,176;
+IsSelected BubbleBombBoss,BubbleBomberBoss{Drawbar"VARAMMO4","VAREMPTY",BubbleCrabbyAmmo,horizontal,58,176;
 	Drawbar"CRABVAR","VAREMPTY",CrabbyBubbleAmmo,horizontal,58,184;
 	DrawBar"2C_S_VAR","VNOBAR",AwaDanceAmmo,horizontal,130,184;}
 

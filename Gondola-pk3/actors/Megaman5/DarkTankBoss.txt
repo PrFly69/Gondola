@@ -337,8 +337,8 @@ PROJECTILE
 +FORCEXYBILLBOARD
 Obituary "$OB_DARK1BUSTER"
 damagetype "DMGNoHitstun"
-radius 10
-height 10
+radius 11
+height 11
 damage (110)
 speed 20
 scale 2.5

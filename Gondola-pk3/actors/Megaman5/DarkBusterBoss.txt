@@ -172,8 +172,8 @@ Obituary "$OB_DARK4BUSTER"
 +THRUGHOST
 +DONTREFLECT
 Damage (150+pitch)
-radius 10
-height 10
+radius 11
+height 11
 Speed 30
 scale 2.5
 States
