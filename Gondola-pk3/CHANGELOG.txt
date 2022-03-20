@@ -2101,6 +2101,21 @@ CHANGELOG
 -Ported classes-v9fh.pk3 visuals
 -Broom now restores half of a dash stock on hit
 
+==Sniper Joe
+-Vehicle box max ammo 420 > 700
+*Effectively increases base duration of vehicles from 12 seconds to 20 seconds
+--Idle ammo gain 1 > 2
+--Scoreball ammo gain 105 > 175
+-Machine Gun refill moved to Reload
+--Vehicle box still on item
+---Vehicle box usage 315 -> 700
+---Vehicle box requirement same
+-Does not gain Machine Gun ammo on vehicle usage
+-Using mainfire/altfire on vehicles consumes vehicle box ammo
+--Joe Truck mainfire consumes 2 ammo per tic, altfire consumes 1 ammo per tic
+--Apache Joe mainfire consumes 15 ammo per shot, altfire consumes 35 ammo per use
+---Apache Joe no longer gives 25% extra bonus speed while active
+
 ==Gutsman
 -Rock sprite ported from classes-v9fh.pk3
 
