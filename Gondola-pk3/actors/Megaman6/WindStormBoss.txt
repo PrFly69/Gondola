@@ -661,10 +661,10 @@ stop
 }
 }
 
-actor WindStormPullProtect : PowerProtection
+actor WindM_PullProtect : PowerProtection
 {
 Powerup.Duration 10
-DamageFactor "WindStormPull", 0.0
+DamageFactor "WindM_Pull", 0.0
 }
 
 actor WindmanMain_CI : TeamColor_CI

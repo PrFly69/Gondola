@@ -571,7 +571,7 @@ TNT1 A 0 A_JumpIfInventory("PumpSluggerAmmo",224,"No3")
 TNT1 A 0 A_JumpIfInventory("PumpSluggerAmmo",196,"No2")
 fail
 No:
-TNT1 A 0
+TNT1 A 0 A_TakeInventory("PumpSluggerAmmo",999)
 fail
 No2:
 TNT1 A 0 A_TakeInventory("PumpSluggerAmmo",999)
@@ -937,7 +937,7 @@ stop
 actor PumpShieldBubbleBoom : BasicExplosion
 {
 Obituary "$OB_PUMPBUBBLE"
-damagetype "PumpShield"
+damagetype "PumpM_Shield"
 States
 {
 Spawn:
@@ -948,10 +948,10 @@ stop
 }
 }
 
-actor PumpShieldProtect : PowerProtection
+actor PumpM_ShieldProtect : PowerProtection
 {
 Powerup.Duration 9
-damagefactor "PumpShield", 0.0
+damagefactor "PumpM_Shield", 0.0
 }
 
 actor PumpShieldBubbleB1
@@ -959,7 +959,7 @@ actor PumpShieldBubbleB1
 var int user_radius;
 var int user_owner;
 Obituary "$OB_PUMPBUBBLE"
-damagetype "PumpShield"
+damagetype "PumpM_Shield"
 +MISSILE
 
 +NOBLOOD
@@ -1362,7 +1362,7 @@ actor PumpShieldBubbleThrown
 {
 PROJECTILE
 Obituary "$OB_PUMPBUBBLE"
-damagetype "WaterShield"
+damagetype "PumpM_ShieldToss"
 +FORCEXYBILLBOARD
 +THRUSPECIES
 species "DumbPumpBubble"

@@ -483,8 +483,8 @@ actor DeathEnker_PushHit : DeathBaseFlingHit{Mass 44}
 
 actor PainRaThorThrowHit : PainBaseFlingHit{Mass 64}
 
-actor PainYellowDevilPHit : PainBaseFlingHit{Mass 77}
-actor DeathYellowDevilPHit : DeathBaseFlingHit{Mass 81}
+actor PainYellowDevilPHit : PainBaseFlingHit{Mass 20}
+actor DeathYellowDevilPHit : DeathBaseFlingHit{Mass 80}
 
 
 

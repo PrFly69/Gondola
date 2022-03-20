@@ -1084,7 +1084,6 @@ actor DeathDM3_SnipeHit : Inventory {}
 actor PainDM3_SnipeHit : Inventory {}
 actor Roll_CleanseShockProtect : Inventory {}
 actor PowerFakeM_Baton : Inventory {}
-actor PowerSlashM_GoopSlow : Inventory {}
 actor ColdM_FreezeProtect : Inventory {}
 actor ChillFreezeStoppered : Inventory {}
 actor Terra_StopperProtect : Inventory {}
@@ -1092,7 +1091,6 @@ actor Pluto_Dash2Protect : Inventory {}
 actor Terra_SparkChaserProtect : Inventory {}
 actor SolarM_BlazeWaveProtect : Inventory {}
 actor ChillM_SpikeProtect : Inventory {}
-actor PumpM_ShieldProtect : Inventory {}
 actor SwordM_SwipeProtect : Inventory {}
 actor SwordM_TorsoProtect : Inventory {}
 actor WindM_ShotProtect : Inventory {}

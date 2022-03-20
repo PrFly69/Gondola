@@ -489,7 +489,7 @@ Translation "202:202=4:4","199:199=210:210", "195:195=43:43", "204:204=219:219"
 PROJECTILE
 -NOGRAVITY
 Obituary "$OB_SLASHGOOP"
-Damagetype "SlashGoop"
+Damagetype "SlashM_Goop"
 scale 2.5
 radius 10
 height 10
@@ -522,10 +522,10 @@ stop
 }
 }
 
-actor PowerSlashGoopSlow : PowerSpeed
+actor PowerSlashM_GoopSlow : PowerSpeed
 {
 powerup.duration 50
-speed 0.57
+speed 0.50
 }
 
 actor SlashGoop2 : SlashGoop
