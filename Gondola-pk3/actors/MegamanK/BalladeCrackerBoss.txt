@@ -193,7 +193,7 @@ Actor BalladeMineThrust_P : CustomInventory {
 Actor BC_Base {
 	Translation "202:202=210:210","204:204=64:64","195:195=62:62"
     PROJECTILE
-    Damagetype "BalladeCracker"
+    Damagetype "Ballade_Shot"
     Obituary "$OB_BALLADECRACKER"
     +EXPLODEONWATER
     Damage (120)
@@ -223,7 +223,7 @@ Actor BC_Base {
 Actor BC_Base_Fast : FastProjectile {
 	Translation "202:202=210:210","204:204=64:64","195:195=62:62"
     PROJECTILE
-    Damagetype "BalladeCracker"
+    Damagetype "Ballade_Shot"
     Obituary "$OB_BALLADECRACKER"
     +EXPLODEONWATER
     Damage (120)
@@ -273,7 +273,7 @@ Actor BC_Base_Fast : FastProjectile {
   Actor TheBalladeKaboomExplode : BasicExplosion
   {
 	Obituary "$OB_BALLADECRACKER"
-	DamageType "BalladeCracker"
+	DamageType "Ballade_Shot"
 	Scale 2.5
 	States
 	{
