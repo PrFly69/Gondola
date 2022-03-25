@@ -17,5 +17,5 @@ graphic 11_H_VAR, 56, 8 {patch 11_H_BAR, 0, 0 {Rotate 90}}
 
 graphic FUSEBATI, 32, 32{XScale 2.0 YScale 2.0 Patch FUSEBATT,0,0{Translation "192:192=138:138", "198:198=139:139"}}
 
-sprite  C_11F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0111, 0, 0}
-texture C_11F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE0111, 0, 0}
+sprite  C_11A0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE011A, 0, 0}
+texture C_11A0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE011A, 0, 0}
