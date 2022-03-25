@@ -946,6 +946,8 @@ RSWB TUTU 6
 RSWB T 0 A_CountDown
 loop
 Pickup:
+TNT1 A 0 A_JumpIfInventory("RollHealItem",1,"NoF")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==0,"Health")
 Health:
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2)==0,"SnatchCheck")
 TNT1 A 0 A_PlaySound("item/energyup",3,1.0)

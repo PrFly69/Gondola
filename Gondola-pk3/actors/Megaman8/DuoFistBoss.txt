@@ -781,6 +781,7 @@ actor DuoPunchLefty : DuoPunch
 Translation "199:199=95:95", "202:202=89:89"
 ReactionTime 1
 Damage (200)//25
+damagetype "Duo_Fist1"
 //Speed 32
 Radius 13
 Height 13
@@ -891,6 +892,7 @@ stop
 //Translation "195:195=194:194", "204:204=192:192", "199:199=95:95", "202:202=89:89"
 actor MidFistLefty : MidFist
 {
+damagetype "Duo_Fist2"
 Translation "195:195=194:194", "204:204=192:192"
 Damage (300)//35
 Radius 16
@@ -924,6 +926,7 @@ Translation "195:195=194:194", "204:204=192:192"
 Damage (550)//70
 Radius 24//20
 Height 20//10
+damagetype "Duo_Fist3"
 //Speed 26
 States
 {
