@@ -1079,7 +1079,6 @@ actor MWS_WaterSplashFX : Inventory {}
 actor RaThor_SpiritProtect : Inventory {}
 actor RaThor_WaveProtect : Inventory {}
 actor SolarM_HeadProtect : Inventory {}
-actor WindM_PullProtect : Inventory {}
 actor DeathDM3_SnipeHit : Inventory {}
 actor PainDM3_SnipeHit : Inventory {}
 actor Roll_CleanseShockProtect : Inventory {}

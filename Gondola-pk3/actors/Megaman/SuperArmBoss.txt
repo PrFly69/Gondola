@@ -106,7 +106,7 @@ Goto Ready1
 Altfire:
 TNT1 A 0 A_JumpIfInventory("SuperArmTemp",1,"Altfire2")
 TNT1 A 0 A_JumpIfInventory("GutsmanFlag",1,2)
-TNT1 A 0 A_FireBullets(8,8,50,-1,"GutPunch",50,115)
+//TNT1 A 0 A_FireBullets(8,8,50,-1,"GutPunch",50,115)
 GUTP A 0 A_GiveInventory("GutsmanAlt_CI",1)
 GUTP A 0 A_PlaySoundEx("Weapon/GutMelee","Weapon")
 GUTP A 0 A_GiveInventory("GutsDestroyFlag",1)
@@ -467,30 +467,38 @@ Radius 10
 scale 2.0
 }
 
-actor GutPunch : FastProjectile
+actor GutPunch
 {
-damagetype "GutsPunch"
+translation "202:202=210:210"
+PROJECTILE
+damagetype "GutsM_Punch"
 Obituary "$OB_GUTSPUNCH"
 +DONTBLAST
-+PUFFONACTORS
-+PUFFGETSOWNER
+reactiontime 1
+damage (550)
+Radius 20
+Height 20
+speed 60
 scale 2.5
 States
 {
 Spawn:
-TNT1 A 0
+UMFX J 0
+UMFX J 1 A_CountDown
+wait
 Death:
-TNT1 A 1 A_Explode(550,40,0,0,40)
+UMFX J 0 A_Explode(550,40,0)
+goto XDeath
 XDeath:
-TNT1 A 0 A_Stop
-TNT1 A 2
-TNT1 A 2
-TNT1 AA 2
+UMFX J 0 A_Stop
+UMFX J 2
+XMFX S 2
+UMFX JK 2
 stop
 }
 }
 
-actor GutsPunch_PowerProtect : PowerProtection
+/*actor GutsPunch_PowerProtect : PowerProtection
 {
 Powerup.Duration 5
 DamageFactor "GutsPunch", 0.0
@@ -523,12 +531,12 @@ XMFX S 2
 UMFX JK 2
 stop
 }
-}
+}*/
 
-actor GutPunchFXB : GutPunchFX{translation "202:202=205:205"}
-actor GutPunchFXR : GutPunchFX{translation "202:202=171:171"}
-actor GutPunchFXO : GutPunchFX{translation "202:202=104:104"}
-actor GutPunchFXP : GutPunchFX{translation "202:202=229:229"}
+actor GutPunchB : GutPunch{translation "202:202=205:205"}
+actor GutPunchR : GutPunch{translation "202:202=171:171"}
+actor GutPunchO : GutPunch{translation "202:202=104:104"}
+actor GutPunchP : GutPunch{translation "202:202=229:229"}
 
 
 actor GutsmanMain_CI : TeamColor_CI
@@ -558,19 +566,19 @@ actor GutsmanAlt_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("GutPunchFX",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("GutPunch",0,0,8,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("GutPunchFXB",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("GutPunchB",0,0,8,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("GutPunchFXR",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("GutPunchR",0,0,8,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("GutPunchFXO",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("GutPunchO",0,0,8,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("GutPunchFXP",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("GutPunchP",0,0,8,0)
 goto Done
 }
 }
