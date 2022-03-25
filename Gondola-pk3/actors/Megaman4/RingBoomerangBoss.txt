@@ -287,6 +287,17 @@ Powerup.Duration 15
 DamageFactor "RingM_Ring1", 0.5
 }
 
+actor RingM_ChimeSnd_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 ACS_NamedExecuteWithResult("cbm_LocalRingSnd")
+//TNT1 A 0 A_PlaySound("weapon/RingChime",4,0.35)//Local doesn't exist
+stop
+}
+}
+
 actor RingBoomerangB
 {
 var int user_POWER;
@@ -327,6 +338,7 @@ RINA W 0 A_GiveInventory("RingBoomerangBFuncB",1)
 RINA W 1 A_JumpIfInventory("RingReturnFlag",1,"Return")
 TNT1 A 0 A_SpawnItemEx("RingBlingThing1",0,0,0,0,0,0,0,1)
 TNT1 A 0 A_SetUserVar("user_POWER",10)
+RINA X 0 A_GiveToTarget("RingM_ChimeSnd_P")
 goto Spawn3
 Spawn3:
 RINA X 0 A_GiveInventory("RingBoomerangBFuncB",1)
