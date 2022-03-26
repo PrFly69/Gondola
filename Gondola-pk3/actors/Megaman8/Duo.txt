@@ -77,5 +77,8 @@ goto PainContinue
 ClassDeath:
 DUO7 H 0
 goto DeathContinue
+TimeStopped:
+DUOR ] 0
+Goto "Super::TimeStopped"
 }
 }
