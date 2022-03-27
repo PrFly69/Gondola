@@ -523,7 +523,7 @@ PROS B 1 A_JumpIf(velx == 0 && vely == 0, "Death")
 goto Spawn
 Death:
 PROS B 0 A_RearrangePointers(AAPTR_Target,AAPTR_Target,AAPTR_Null)
-PROS B 0 A_SpawnItemEx("HeroProtoShieldTossed",0,0,0,0,0,0,0,1)
+PROS B 0 A_SpawnItemEx("HeroProtoShieldTossed",0,0,0,0,0,0,0,sxf_transfertranslation|sxf_transferpointers)
 stop
 }
 }
@@ -533,19 +533,24 @@ actor HeroProtoShieldTossR : HeroProtoShieldToss{translation "192:192=171:171","
 actor HeroProtoShieldTossO : HeroProtoShieldToss{translation "192:192=104:104","198:198=128:128"}
 actor HeroProtoShieldTossP : HeroProtoShieldToss{translation "192:192=229:229","198:198=232:232"}
 
+//Let it be made abundantly clear: you people deserve less than you have. You have ALWAYS deserved less than you have, and certainly less than you will get in the future.
+//The fact that any reputable person has the gall to force a recode of this shitty fucking shield just for compatibility with a competitively unviable server variable
+//has me questioning if it's about time for Noah to make a second ark.
+//Luckily for the people who couldn't be bothered to do this themselves, as it turns out, it was actually easy as hell.
+//+FRIENDLY + sv_shootthroughallies means you can never shoot your shield? Fine. Disable +FRIENDLY except in the state the shield fires on.
+//Woo.
+//I hate Megamans I hate the antichrist
+// - GREG.EXE
+
 actor HeroProtoShieldTossed
 {
 - SOLID
-//+NOGRAVITY
 MONSTER
--ISMONSTER
-//+MISSILE
 +NOCLIP
 +DONTBLAST
 +SKYEXPLODE
 -SOLID
 -COUNTKILL
-+FRIENDLY
 +SHOOTABLE
 +HITTRACER
 +DONTDRAIN
@@ -569,22 +574,25 @@ States
 {
 Spawn:
 PROS B 0
+PROS B 0 A_RearrangePointers(AAPTR_Target,AAPTR_Target,AAPTR_Null)
 PROS A 0 A_ChangeFlag("NOBLOCKMAP",0)
 PROS A 0 A_ChangeFlag("NOPAIN",0)
 goto SpawnC
 SpawnC:
-PROS B 0 A_RearrangePointers(AAPTR_Target,AAPTR_Target,AAPTR_Null)
-P_SH ABCD 4 A_JumpIfInventory("ShieldReturn",1,"ShieldReturn",AAPTR_FriendPlayer)
-P_SH H 0 A_JumpIfInventory("IsDead",1,"ShieldReturn",AAPTR_FriendPlayer)
-P_SH EFGH 4 A_JumpIfInventory("ShieldReturn",1,"ShieldReturn",AAPTR_FriendPlayer)
-P_SH H 0 A_JumpIfInventory("IsDead",1,"ShieldReturn",AAPTR_FriendPlayer)
+PROS A 0 A_ChangeFlag("FRIENDLY",0)
+PROS A 0 A_ClearTarget
+P_SH ABCD 4 A_JumpIfInventory("ShieldReturn",1,"ShieldReturn",AAPTR_Master)
+P_SH H 0 A_JumpIfInventory("IsDead",1,"ShieldReturn",AAPTR_Master)
+P_SH EFGH 4 A_JumpIfInventory("ShieldReturn",1,"ShieldReturn",AAPTR_Master)
+P_SH H 0 A_JumpIfInventory("IsDead",1,"ShieldReturn",AAPTR_Master)
 P_SH H 0 DamageThing(5)
 loop
 Pain.ProtoM_Shot3:
-P_SH A 1 A_LookEx(42,0,1004,1,0,"FireTheShot")//A_Chase
+PROS A 0 A_ChangeFlag("FRIENDLY",1)
+PROS A 0 A_RearrangePointers(AAPTR_Null,AAPTR_Master,AAPTR_Null) //Yeah, this is redundant with A_ClearTarget, idc
+P_SH A 1 A_LookEx(42,0,1024,0,360,"FireTheShot")//A_Chase //Yeah, LookEx fov 0 with +LOOKALLAROUND is supposed to act the same as 360, but it doesn't in practice, so fuck it
 P_SH A 0 A_JumpIfTargetInLOS("FireTheShot",0,0)
 goto SpawnC
-
 FireTheShot:
 P_SH A 0 A_GiveInventory("ProtomanHeroShieldShot3_CI",1)
 goto SpawnC
@@ -592,11 +600,15 @@ goto SpawnC
 ShieldReturn:
 P_SH A 0
 PROS B 0 A_SpawnItemEx("TeleportFogFancy",0,0,0,0,0,0,0,1)
-PROS B 0 A_GiveInventory("HeroProtoShieldTossedFlag_PickupEnd",1,AAPTR_FriendPlayer)
+PROS B 0 A_GiveInventory("HeroProtoShieldTossedFlag_PickupEnd",1,AAPTR_Master)
 stop
 
 Death:
-PROS B 0 A_GiveInventory("HeroProtoShieldTossedFlag_PickupEnd",1,AAPTR_FriendPlayer)
+XDeath:
+Crash:
+PROS A 0 A_ChangeFlag("FRIENDLY",1) //Just in case.
+PROS A 0 A_RearrangePointers(AAPTR_Master,AAPTR_Master,AAPTR_Master) //Just in case.
+PROS B 0 A_GiveInventory("HeroProtoShieldTossedFlag_PickupEnd",1,AAPTR_Master)
 stop
 }
 }
