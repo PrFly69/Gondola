@@ -686,7 +686,7 @@ Powerup.duration 35//70
   {
     Translation "202:202=168:168", "199:199=95:95", "204:204=215:215"
     Projectile
-    DamageType "WheelCutter"
+    damagetype "NitroM_Shot2"
     Obituary "$OB_NITROMAIN"
     -NOGRAVITY
     +HITTRACER
@@ -739,7 +739,7 @@ stop
   {
     Translation "202:202=168:168", "199:199=95:95", "204:204=215:215"
     Projectile
-    DamageType "WheelCutter"
+    damagetype "NitroM_Shot2"
     Obituary "$OB_NITROMAIN"
     -NOGRAVITY
     +HITTRACER
@@ -794,7 +794,7 @@ stop
     +NOEXPLODEFLOOR
     +STEPMISSILE
     +HITTRACER
-    DamageType "WheelCutter"
+    damagetype "NitroM_Shot2"
     Obituary "$OB_NITROMAIN"
     Bouncetype Classic
     MaxStepHeight 32
@@ -851,7 +851,7 @@ stop
   {
     Translation "202:202=168:168", "199:199=95:95", "204:204=215:215"
     PROJECTILE
-    damagetype "WheelCutter"
+    damagetype "NitroM_Shot2"
     Obituary "$OB_NITROMAIN"
     -NOGRAVITY
     +HITTRACER

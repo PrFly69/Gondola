@@ -118,7 +118,7 @@ GRDL A 0 A_JumpIfInventory("BomuHeal",1,"Heal")
 loop
 
 Heal:
-GRDL A 0 HealThing(1)
+GRDL A 0 HealThing(10)
 GRDL A 0 A_TakeInventory("BomuHeal",1)
 GRDL A 2 A_WeaponReady//(WRF_ALLOWRELOAD)
 goto Ready1+1
