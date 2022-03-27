@@ -1,5 +1,31 @@
 [enu default]
 
+OB_TUNDRACLOSE = "%k's Tundra Storm turned %o's body into a rose... \cvfrozen in ice!";
+OB_TUNDRACICLE = "%o was permafrosted by %k's Glacier Spike.";
+OB_TUNDRASPIN = "%o expectations were shattered by %k's Triple Lutz.";
+OB_TUNDRASTORMBOSS = "%k's Tundra Storm turned %o's body into a rose... \cvfrozen in ice!";
+TAGC_11D = "Tundraman Skates";
+
+TAGC_11E = "Bounceman Rubber";
+OB_BOUNCEBOP = "%k's Bounce Bopper caught %o on the rebound.";
+OB_BOUNCEBALL = "%o could not bounce like %k's Bounce Ball.";
+OB_BOUNCEGRAB = "%o was rubberized by %k's Rubber Latch.";
+OB_BOUNCERETURN = "%o was rubberized by %k's Returning Rubber Latch.";
+OB_BOUNCEPULL = "%o was stretched like a rubber band by %k's Rubber Grip.";
+
+//Copywep
+OB_BLAZINGTORCH = "%o was grilled by %k's Blazing Torch.";
+PU_BLAZINGTORCH = "Power up! Blazing Torch!";
+TAG_BLAZINGTORCH = "Blazing Torch";
+
+//Torch
+OB_TORCH = "%o fell to %k's Fist of Flame.";
+OB_TORCHEX = "%o burnt too many calories facing %k's Torchjutsu .";
+OB_TORCHX = "%k had to teach %o campfire safety through brute force.";
+OB_TORCH2 = "%o got hot feet from %k's Torchjutsu Kick.";
+OB_TORCH2X = "%o was barbecued by %k's Torchjutsu Kick.";
+TAGC_11B = "Torchman Daigo Parry";
+
 //Springman
 OB_SPRINGFISTX = "%o was springtrapped by %k's Super Spring Punch.";
 OB_SPRINGFIST = "%o was thwacked by %k's Spring Punch.";
@@ -67,13 +93,6 @@ OB_KNIGHTRUSHX = "%o was banged into Bangers and Mash by %k's Knight Rush.";
 OB_KNIGHTCRUSHX = "%o was decimated by %k's Super Knight Crush.";
 OB_KNIGHTCRUSHY = "%o broke %p nose from getting too close to %k's Spinning Mace.";
 OB_KNIGHTCRUSHZ = "%o was slain by %k's Returning Knight Crush.";
-//Torch
-OB_TORCH = "%o fell to %k's Fist of Flame.";
-OB_TORCHEX = "%o burnt too many calories facing %k's Torchjutsu Fist.";
-OB_TORCHX = "%k had to teach %o campfire safety through brute force.";
-OB_TORCH2 = "%o got hot feet from %k's Torchjutsu Kick.";
-OB_TORCH2X = "%k gave %o \c[Fire]the ole Dick Twist!";
-TAGC_11B = "Torchman Daigo Parry";
 //Bomb
 OB_HYPERBOMBSPLITX = "%o was blown to smithereens by %k's Rapid Bomb.";
 //Plant

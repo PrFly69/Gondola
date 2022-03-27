@@ -22,7 +22,7 @@ actor ScrambleThunderBoss : BaseMM8BDMWep_CBM
 		Ready:
 		//FUSH A 0 A_GiveInventory("FusemanItem")
 		FUSH A 0 A_GunFlash
-		FUSH A 0 ACS_ExecuteAlways(998,0,10970)
+		FUSH A 0 ACS_ExecuteAlways(998,0,10971)
 		Goto Ready1
 		
 		Flash:

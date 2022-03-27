@@ -147,10 +147,10 @@ addplayerclass Sunstar nomenu
 addplayerclass Fuseman nomenu
 addplayerclass Blastman nomenu
 addplayerclass Acidman nomenu
-//addplayerclass Tundraman nomenu
-//addplayerclass Torchman nomenu
+addplayerclass Tundraman nomenu
+addplayerclass Torchman nomenu
 //addplayerclass Impactman nomenu
-//addplayerclass Bounceman nomenu
+addplayerclass Bounceman nomenu
 
 addplayerclass BusterRodG nomenu
 addplayerclass MegaWaterS nomenu

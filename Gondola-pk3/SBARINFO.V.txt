@@ -947,13 +947,6 @@ IsSelected ChainBlastBoss{Drawbar"BLASBARR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"BARAMM64","BAREMPTY",Ammo2,vertical,8,8;
 	DrawImage"BLASICON",32,55;
 	InInventory BlastDashCooldown,1{DrawBar"BARFLS1","NOBAR",BlastDashCooldown,vertical,24,8;}}
-IsSelected BlazingTorchBoss{Drawbar "BARTOR", "BAREMPTY", Ammo1, vertical, 16, 8;
-	DrawImage "TORMETER",16,8;
-    InInventory TorchjutsuAmmo, 420{Drawbar "BARTORX", "BAREMPTY", Ammo1, vertical, 16, 8;}
-	Drawbar "BARTOK", "BAREMPTY", Ammo2, vertical, 8, 8;
-	Drawbar"PTSDBAR","NOBAR",LightHeavyChargeAmmo,vertical,16,8;
-	InInventory WaveDashAmmo, 100{Drawbar "BARTOKX", "BAREMPTY", Ammo2, vertical, 8, 8;}
-	}
 	
 IsSelected AcidBarrierBoss{Drawbar"11_J_BAR","BAREMPTY",Ammo1,vertical,16,8;
 Drawbar"11_K_BAR","BAREMPTY",Ammo2,vertical,8,8;
@@ -967,6 +960,27 @@ Drawbar"BARFLS1","NOBAR",AcidmanVisualDelay31,vertical,24,8;
 Drawbar"BARFLS1","NOBAR",AcidmanVisualDelay41,vertical,24,8;
 }
 }
+
+IsSelected TundraStormBoss
+{
+Drawbar "BARTUNX", "BAREMPTY", Ammo1, vertical, 16, 8;
+    DrawImage"TUNRICON",32,55;
+    InInventory TripleLutzAmmo,1{DrawBar"BARTUXX","NOBAR",TripleLutzAmmo,vertical,16,8;}
+    InInventory TundraDelayA,1{DrawBar"BARFLS1","NOBAR",TundraDelayA,vertical,24,8;}}
+
+IsSelected BlazingTorchBoss{Drawbar "BARTOR", "BAREMPTY", Ammo1, vertical, 8, 8;
+    DrawImage "TORMETER",8,8;
+    InInventory TorchjutsuAmmo, 420{Drawbar "BARTORX", "BAREMPTY", Ammo1, vertical, 8, 8;}
+    Drawbar "BARTOK", "BAREMPTY", Ammo2, vertical, 16, 8;
+    InInventory WaveDashAmmo, 100{Drawbar "BARTOKX", "BAREMPTY", Ammo2, vertical, 16, 8;}
+	InInventory not TorchDiveTimeAmmo,350{DrawBar"BARTODVK","NOBAR",TorchDiveTimeAmmo,vertical,16,8;}
+    }
+IsSelected BounceBallBoss{Drawbar"BAR11BNC","BAREMPTY",Ammo1,vertical,16,8;
+    DrawBar"BAR11BCE","BAREMPTY",Ammo2,vertical,8,8;
+    InInventory BounceDragState,1{DrawImage"BNCEDRAG",250,24;}
+    Else{DrawImage"BNCEPULL",250,24;}
+    InInventory not BounceLatchTimeAmmo,350{DrawBar"BARBNCLA","NOBAR",BounceLatchTimeAmmo,vertical,8,8;}}
+
 //Inventory
 
 InInventory DiveBossLockon{DrawImage"DIVLOCN",150,8;}

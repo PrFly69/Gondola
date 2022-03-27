@@ -2112,7 +2112,7 @@ CHANGELOG
 ---Vehicle box requirement same
 -Does not gain Machine Gun ammo on vehicle usage
 -Using mainfire/altfire on vehicles consumes vehicle box ammo
---Joe Truck mainfire consumes 2 ammo per tic, altfire consumes 1 ammo per tic
+--Joe Truck mainfire consumes 1 ammo per tic, altfire consumes 1 ammo per tic
 --Apache Joe mainfire consumes 15 ammo per shot, altfire consumes 35 ammo per use
 ---Apache Joe no longer gives 25% extra bonus speed while active
 
@@ -2177,6 +2177,7 @@ CHANGELOG
 -Dark Buster shot radius 32 > 10
 
 ==Darkman3
+-Health 85 > 100
 -All shots are now suckable by Saturn
 *Whoops!
 -Fully charged ping sound reverted to core sound
@@ -2320,7 +2321,6 @@ CHANGELOG
 
 ==Hyper Storm H
 -Ammo gain/lost on suction/blowing doubled
--Removed healing during suction
 -Trample damage 18.0 > 12.0
 --Trample ammo loss 1 > 2, 2 > 4 with rage
 --Removed ammo gain on damaging enemies with trample

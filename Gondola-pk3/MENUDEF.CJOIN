@@ -316,6 +316,9 @@ OptionString CBM_ClassStrings11
 "Fuseman", "Fuseman"
 "Blastman", "Blastman"
 "Acidman", "Acidman"
+"Tundraman", "Tundraman"
+"Torchman", "Torchman"
+"Bounceman", "Bounceman"
 "Random", "Random"
 }
 OptionString CBM_ClassStringsB
@@ -496,6 +499,9 @@ OptionString CBM_ClassStrings
 "Fuseman", "Fuseman"
 "Blastman", "Blastman"
 "Acidman", "Acidman"
+"Tundraman", "Tundraman"
+"Torchman", "Torchman"
+"Bounceman", "Bounceman"
 
 "BusterRodG", "BusterRod G"
 "MegaWaterS", "MegaWater S"
