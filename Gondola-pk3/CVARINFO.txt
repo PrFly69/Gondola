@@ -1,5 +1,6 @@
 user bool ccbm_allyhealthbar = true;
 user bool ccbm_mapmarker = true;
+user bool gondola_hpconvert = true;
 
 //LMSGAS
 

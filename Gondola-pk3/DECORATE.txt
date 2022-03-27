@@ -84,6 +84,12 @@
 
 #include "actors/copywepvisibility.txt"
 
+actor HPConvertedFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
 actor AboveDecimalHP : Inventory
 {
 inventory.amount 1
