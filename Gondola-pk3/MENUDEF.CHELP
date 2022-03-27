@@ -164,19 +164,22 @@ OptionValue Classname
 114, "Pluto"
 115, "Neptune"
 116, "Sunstar"
-117, "Fuseman"//Fuse
-118, "Acidman"//Not Fuse
-119, "Blastman"
-120, "BusterRod G"
-121, "MegaWater S"
-122, "HyperStorm H"
-123, "Enker"
-124, "Punk"
-125, "Ballade"
-126, "Quint"
-127, "BBA Mega Man"
-128, "Auto"
-129, "RaThor"
+117, "Fuseman \cv(NEW!)"//Fuse
+118, "Blastman"
+119, "Acidman"//Not Fuse
+120, "Tundraman \cv(NEW!)"
+121, "Torchman \cv(NEW!)"
+122, "Bounceman \cv(NEW!)"
+123, "BusterRod G"
+124, "MegaWater S"
+125, "HyperStorm H"
+126, "Enker"
+127, "Punk"
+128, "Ballade"
+129, "Quint"
+130, "BBA Mega Man"
+131, "Auto"
+132, "RaThor"
 } 
 
 
@@ -200,7 +203,7 @@ OptionValue ClassHealth
 15, "75"
 16, "100"
 17, "90"
-18, "155 (200 with Flag)"
+18, "155"
 19, "75"
 20, "100"
 21, "100"
@@ -218,7 +221,7 @@ OptionValue ClassHealth
 33, "85"
 34, "100"
 35, "75"
-36, "90"
+36, "100"
 37, "85"
 38, "155"
 39, "85"
@@ -237,13 +240,13 @@ OptionValue ClassHealth
 52, "110"
 53, "155"
 54, "115"
-55, "85"
+55, "100"
 56, "125"
 57, "100"
 58, "85"
 59, "100"
 60, "115"
-61, "85"
+61, "90"
 62, "100"
 63, "125"
 64, "115"
@@ -286,10 +289,10 @@ OptionValue ClassHealth
 101, "135"
 102, "90"
 //
-103, "85"
+103, "90"
 104, "100"
-105, "75 \cv(NEW!)"
-106, "90"
+105, "75"
+106, "100"
 107, "75"//Terra
 108, "85"
 109, "100"//
@@ -301,18 +304,21 @@ OptionValue ClassHealth
 115, "125"
 116, "125"
 117, "85"//
-118, "90"//Acid
-119, "90"
-120, "85"
-121, "85 \cv(NEW!)"
-122, "200"
-123, "125"
-124, "100"
-125, "85"
-126, "100"
+118, "90"//Blast
+119, "90"//Acid
+120, "85"//Tundra
+121, "100"//Torch
+122, "115"//Bounce
+123, "85"
+124, "85"
+125, "200"
+126, "125"
 127, "100"
-128, "100"
-129, "115"
+128, "85"
+129, "100"
+130, "100"
+131, "100"
+132, "115"
 } 
 
 
@@ -436,18 +442,21 @@ OptionValue ClassJump
 115, "10"
 116, "11"
 117, "10"//Fuse
-118, "12"
-119, "12"
-120, "13"
-121, "10"
-122, "10"
-123, "10"
+118, "12"//Blast
+119, "12"//Acid
+120, "12"//Tundra
+121, "14"//Torch
+122, "15"//Bounce
+123, "13"
 124, "10"
-125, "13"
+125, "10"
 126, "10"
 127, "10"
-128, "10"
-129, "14"
+128, "13"
+129, "10"
+130, "10"
+131, "10"
+132, "14"
 } 
 
 
@@ -478,7 +487,7 @@ OptionValue ClassSpeed
 22, "1.2"
 23, "0.86"
 24, "0.8"
-25, "0.8 \cv(NEW!)"
+25, "0.8"
 26, "0.67"
 27, "0.8"
 28, "0.77"
@@ -570,19 +579,22 @@ OptionValue ClassSpeed
 114, "0.7"
 115, "0.7"//Neptune
 116, "0.76"
-117, "0.7"
-118, "0.89"
-119, "0.89"
-120, "1.0"
-121, "0.8"
-122, "0.5"
-123, "0.94"
-124, "0.75"
-125, "0.9"
-126, "0.8"
-127, "0.8"
-128, "0.7"
-129, "0.89"
+117, "0.72"//Fuse
+118, "0.89"//Blast
+119, "0.89"//Acid
+120, "0.9"//Tundra
+121, "0.92"//Torch
+122, "0.7"//Bounce
+123, "1.0"
+124, "0.8"
+125, "0.5"
+126, "0.94"
+127, "0.75"
+128, "0.9"
+129, "0.8"
+130, "0.8"
+131, "0.7"
+132, "0.89"
 } 
 
 
@@ -594,7 +606,7 @@ OptionValue ClassMainfire
 3, "\cdBase weapon can be charged\nCharges secondary ammo once ready\nUse with altfire to dash grab\nGrab connect stops and blasts away enemy"
 4, "\cdCharges current weapon's charge shot\nIn selection mode, changes style"
 5, "\cdMainfire + altfire can kick balls\nCan jump off balls, even midair\nDifferent balls have different stats"
-6, "\cdSwing can block shots\n\ciWater stuns after being placed"
+6, "\cdSwing can block shots\nHitting broom restores dash ammo\n\ciWater stuns after being placed"
 7, "\cdBasic shot gives ammo\nCombo altfire to empower\nEmpower causes burning"
 8, "\cdHigher ammo means stronger shots\n\cbFire shot can burn for a while\nIce shot freezes but prevents damage"
 9, "\cdBasic 13 damage buster has a shield\n\cbTruck: Charge ahead for rapid damage\n\ciApache: Rapid fire shots"
@@ -649,7 +661,7 @@ OptionValue ClassMainfire
 58, "\cdArrow shots split on surfaces but not players\nSplit shots do less damage than arrow"
 59, "\cdLeaves a flame pillar on walls and floors"
 60, "\cdLower shield to throw mace, follows aim\nHold to swing mace around, charging\nand knocking enemies back\n\ciCharged:Huge Knight Crush with inf. range"
-61, "\cdShots are affected by gravity\nShots restore health on hit"
+61, "\cdShots are affected by gravity and bounce on walls\nShots restore health on hit"
 62, "\cdFires a pair of tomahawks\nDamage increases after a short distance\nTomahawks slide on floors"
 63, "\cdShotgun of gyros that move \naway from and towards each other"
 64, "\cdSpears drop on hit to pickup\nCollecting spears refills ammo"
@@ -683,7 +695,7 @@ OptionValue ClassMainfire
 92, "\cdFires tridents in a straight line\nHas initial delay before firing"
 93, "\cdFires a PlugBall with gravity"
 94, "\cvFires jewels based on current combination\nCyan = Damage, Green = Bounce\nRed = Explode, Blue = Trail\nYellow = Speed, Purple = Gravity"
-95, "\cdHornets go where user aims"
+95, "\cdHornets go where user aims\nHomes into enemies\nstronger homing on slowed down enemies"
 96, "\cdShot fired straight and to the right"
 97, "\cdFires and detonates BlackHoleBomb\nThe Bomb can be blown during altfire"
 98, "\cdRapid firing causes less damage"
@@ -706,18 +718,21 @@ OptionValue ClassMainfire
 115, "\cdShot always splits\nSalty shot splits even more"
 116, "\cdFire a shot that eventually gains gravity\nAt max heat gains a damage halo but is heavier"
 117, "\cdFires a ripper projectile that slides on floors\nHas two weaker offshoots with limited duration\nFirerate doubled within Tesla Coil"//Fuse
-118, "\cdFires up to 5 shots of globs of acid\nStacking 4% slow up to 5 times \nHitting the enviroment causes damaging gas \nAuto-reloads but cant be shot unless full"//Torch
-119, "\cdProjectile sticks to enemies\n\cgPower Gear: Fires strong bomb that detonates \nstickied bombs for big damage"
-120, "\cdRod attack hits through walls"
-121, "\cdFires a volley of 3 harpoons"
-122, "\cdSuction does damage that heals\n\ciBlowing cools down, sucking heats up"
-123, "\cdLarge shots require 20% ammo"
-124, "\cdThrows a straight shot\n\ciThrows a lobbed bouncing shot"
-125, "\cdShot speed is based on charge"
-126, "\cdWhen on Pogo, thrust forward and slam\nLanding on enemies bounces off them\n\ciFires a basic shot"
-127, "\cdFires selected weapon\nEach weapon uses different ammo"
-128, "\cdFires basic rockets\nRockets spawn shrapnel on explosion"
-129, "\cdMore souls give better mainfires"
+118, "\cdProjectile sticks to enemies\n\cgPower Gear: Fires strong bomb that detonates \nstickied bombs for big damage"//Blast
+119, "\cdFires up to 5 shots of globs of acid\nStacking 4% slow up to 5 times \nHitting the enviroment causes damaging gas \nAuto-reloads but cant be shot unless full"//Acid
+120, "\cdChargeable icicle attack\nSlows enemies at max charge"//Tundraman
+121, "\cdTwo mid ranged fists\n\cgPower Gear: Two faster spinning ripper flames"//Torchman
+122, "\cdMidranged fist\nSplits into three Bounce Balls\nCan push back user at close range"//Bounceman
+123, "\cdRod attack hits through walls"
+124, "\cdFires a volley of 3 harpoons"
+125, "\cdSuction does damage that heals\n\ciBlowing cools down, sucking heats up"
+126, "\cdLarge shots require 20% ammo"
+127, "\cdThrows a straight shot\n\ciThrows a lobbed bouncing shot"
+128, "\cdShot speed is based on charge"
+129, "\cdWhen on Pogo, thrust forward and slam\nLanding on enemies bounces off them\n\ciFires a basic shot"
+130, "\cdFires selected weapon\nEach weapon uses different ammo"
+131, "\cdFires basic rockets\nRockets spawn shrapnel on explosion"
+132, "\cdMore souls give better mainfires"
 } 
 
 
@@ -773,7 +788,7 @@ OptionValue ClassAltfire
 47, "\cdCan be charged to leap higher\nSummons stone hand on landing\nCancelling mainfire makes PowerStone spiral"
 48, "\cdGyro that splits after half second\nSplit gyros deal 10 damage each"
 49, "\cdDelayed projectile to manipulate foes"
-50, "\cdDoes light damage to nearby enemies\nPuffs a coal shot for unreachable foes\nSmall parry window \cv(NEW!)"
+50, "\cdDoes light damage to nearby enemies\nPuffs a coal shot for unreachable foes\nSmall parry window"
 51, "\cdFires direct missiles"
 52, "\cdBit shot with limited bounces"
 53, "\cdThrusts user forward with alt ammo\nRegens ammo when not firing"
@@ -787,7 +802,7 @@ OptionValue ClassAltfire
 61, "\cdAll contact shield damage heals\nShield toss on allies regenerate their health\nOn enemies, poisons them and gives user health\nGives healing ammo if health is full"
 62, "\cdFires a spread of ripping feathers"
 63, "\cdWindStorm pulls foes toward the user"
-64, "\cdRapid melee damage\nUser is slower during melee\nPulls in nearby spears"
+64, "\cdRapid melee damage\nPulls in nearby spears"
 65, "\cdCharge shot that spreads on surfaces\nThe waves also freeze foes in place"
 66, "\cdPunch that flings some junk"
 67, "\cdPinpoint attack that can trap foes\nCan also ride the bubbles for hovering"
@@ -818,7 +833,7 @@ OptionValue ClassAltfire
 92, "\cdCharged sing buffs allies, tapped buffs user\n\caPower Song = 35% more damage on shots\n\cdHealing Song = Restores health, requires screws\n\cfSpeed Song = 40% more speed while affected"
 93, "\cdFires plug that connects to players\nEnemy: Damage and refill ammo\nAlly: Use ammo to haste ally attacks"
 94, "\cdChanges selected Gem\nDuring shield, homing ignores user\nAlso reflects most projectiles"
-95, "\cdTosses hornet hive\nThe honey bits slow foes\nCan be charged to increase \nslow duration, blobs and speed"
+95, "\cdTosses hornet hive\nThe honey bits slow foes"
 96, "\cdShot fired straight and to the left"
 97, "\cdFires basic shots"
 98, "\cdDoes a basic melee attack with baton"
@@ -841,18 +856,21 @@ OptionValue ClassAltfire
 115, "\cdHold to leap across floor and enemies\nCan bounce on enemies to deal damage\nTap to leap up and slam the ground"
 116, "\cdFire projectile that reacts under enemies\nMax heat sets down a lasting line of fire"
 117, "\cdPerform a dash and leave behind a tesla coil\nTesla Coil passively spawns spinning offshoots\nIf a tesla coil is out, remotely detonates coil"//Fuse
-118, "\cdThrows an Acid Barrier on an ally\nStarts at high resist but falls off\nAcidman gains gear ammo with blocked damage"//Acid
-119, "\cdA burst of several small explosives\nCan stick to the ground"
-120, "\cdSpins rod to damage and block missiles"
-121, "\cdSummons a pinpoint pillar\n\ciSprays water dealing pushback"
-122, "\cdUses remaining ammo to either\nHot: Boost upwards for mobility\nCold: Dash that gets stronger over time"
-123, "\cdDo a defensive pose to lower damage\nArmor lost converts into ammo"
-124, "\cdCompact self to avoid damage\nThrust forward doing tackle damage"
-125, "\cdHop forward dropping a mine\nOnly three mines max"
-126, "\cdWhen on Pogo, do a strong attack\n\ciDash forward that works in midair"
-127, "\cdBasic melee that gives 100 ammo on hit"
-128, "\cdFires bolt repeater in a 5-round burst"
-129, "\cdLunge at enemies to grab them\nSucessful grab slams them once\nUse with item to slam more based on souls"
+118, "\cdA burst of several small explosives\nCan stick to the ground"
+119, "\cdThrows an Acid Barrier on an ally\nStarts at high resist but falls off\nAcidman gains gear ammo with blocked damage"//Acid
+120, "\cdSpinning melee leap\nCan bounce off of enemies and props"//Tundra
+121, "\cdFlurry of kicks\nAerial divekick makes flares on landing\n\cgPower Gear: Ground kick has dash\nDivekick has bigger landing shockwave"
+122, "\cdMidranged grab on surfaces/players\nCan either pull user to target or vice versa"
+123, "\cdSpins rod to damage and block missiles"
+124, "\cdSummons a pinpoint pillar\n\ciSprays water dealing pushback"
+125, "\cdUses remaining ammo to either\nHot: Boost upwards for mobility\nCold: Dash that gets stronger over time"
+126, "\cdDo a defensive pose to lower damage\nArmor lost converts into ammo"
+127, "\cdCompact self to avoid damage\nThrust forward doing tackle damage"
+128, "\cdHop forward dropping a mine\nOnly three mines max"
+129, "\cdWhen on Pogo, do a strong attack\n\ciDash forward that works in midair"
+130, "\cdBasic melee that gives 100 ammo on hit"
+131, "\cdFires bolt repeater in a 5-round burst"
+132, "\cdLunge at enemies to grab them\nSucessful grab slams them once\nUse with item to slam more based on souls"
 } 
 
 
@@ -867,7 +885,7 @@ OptionValue ClassItem
 6, "\cdSummons health"
 7, "\cdCan be used with maxed super\nMainfire fires suction shot\nAltfire does powerful uppercut"
 8, "\cdChange between capsule, foot, and suit\n\ciFoot form takes more damage"
-9, "\cdSummons a crate to give Apache"
+9, "\cdSummons a crate to give Apache or Truck"
 10, "\cuNo Item"
 11, "\cuNo Item"
 12, "\cuNo Item"
@@ -972,22 +990,25 @@ OptionValue ClassItem
 111, "\cuNo Item"
 112, "\cuNo Item"//Saturn
 113, "\cuNo Item"
-114, "\cvMEOW \cv(NEW!)"
+114, "\cvMEOW"
 115, "\cdTurns up the salt, empowering attacks\nSalty mode makes you take extra damage"
 116, "\cdVents heat for small knockback and damage\nBuffs you and all allies around\n15% all stats for 7 seconds"
 117, "\cdTurns hovering on"//Fuse
-118, "\cuNo Item\nCan't use Auto's Item-2 or Wire"
-119, "\cdBoost yourself in the direction you are pressing."
-120, "\cdSummons two clones at full ammo\nThese clones mimic all attacks"
-121, "\cdCreates Water Shield at full ammo\nThe shield builds pressure while active\nItem pops the shield to fling foes"
-122, "\cuNo Item"
-123, "\cdItem switches large and small shot mode"
-124, "\cuNo Item"
+118, "\cdBoost yourself in the direction you are pressing."
+119, "\cuNo Item"
+120, "\cuNo Item"
+121, "\cuNo Item"
+122, "\cdSwitches between two altfire grab modes"
+123, "\cdSummons two clones at full ammo\nThese clones mimic all attacks"
+124, "\cdCreates Water Shield at full ammo\nThe shield builds pressure while active\nItem pops the shield to fling foes"
 125, "\cuNo Item"
-126, "\cuNo Item"
-127, "\cdOrders weapon based on meter\nBlank space refills all weapons"
-128, "\cdIf using Item Toggle, swaps item for reload\n\cuOtherwise, No Item"
-129, "\cdActivates and deactivates soul usage"
+126, "\cdItem switches large and small shot mode"
+127, "\cuNo Item"
+128, "\cuNo Item"
+129, "\cuNo Item"
+130, "\cdOrders weapon based on meter\nBlank space refills all weapons"
+131, "\cdIf using Item Toggle, swaps item for reload\n\cuOtherwise, No Item"
+132, "\cdActivates and deactivates soul usage"
 } 
 
 
@@ -1002,7 +1023,7 @@ OptionValue ClassReload
 6, "\ckCan pickup screws"
 7, "\ckNone"
 8, "\ckNone"
-9, "\ckNone"
+9, "\ckReload : Refills Machine Gun ammo"
 10, "\ckCan wall jump"
 11, "\ckSuffers little hitstun when rockless"
 12, "\ckReload : Spawns cloud that rains icicles"
@@ -1038,9 +1059,9 @@ OptionValue ClassReload
 42, "\ckCan pickup scrap metal"
 43, "\ckReload : Tosses a spread of mines"
 44, "\ckNone"
-45, "\ckCombo direct sphere hit and fling\nUpward holds do no damage \cv(NEW!)"
+45, "\ckCombo direct sphere hit and fling\nUpward holds do no damage"
 46, "\ckNone"
-47, "\ckCan revive on death\nReload: fake death \cv(NEW!)"
+47, "\ckCan revive on death\nReload: fake death"
 48, "\ckNone"
 49, "\ckSlighty reduced gravity"
 50, "\ckGain armor for tackling enemies"
@@ -1059,7 +1080,7 @@ OptionValue ClassReload
 63, "\ckNone"
 64, "\ckReload : Leaps into the air\nAltfire during leap is a spear dive"
 65, "\ckNone"
-66, "\ckCan pickup scrap metal\nReload: bigger punch that makes cubes slide fast\n\cv(NEW!)"
+66, "\ckCan pickup scrap metal\nReload: bigger punch that makes cubes slide fast"
 67, "\ckDrops stocked bombs on death"
 68, "\ckHas reduced gravity"
 69, "\ckNone"
@@ -1111,16 +1132,19 @@ OptionValue ClassReload
 115, "\ckNone"
 116, "\ckShooting speeds up heat generation\nGains a second bar by shooting at max heat\nSecond bar slows rate of fire as it fills"
 117, "\ckNone"//Fuse
-118, "\ckGear ammo drains for a 20% speed boost\nReload : A copy of Acid Barrier but for himself \non a different cooldown"//Acid
-119, "\ckReload: Activates Power Gear\nSuccessful hits with mainfire build Power Gear"
-120, "\ckCan Wall Jump"
-121, "\ckNone"
-122, "\ckSuffers half hitstun"
-123, "\ckNone"
+118, "\ckReload: Activates Power Gear\nSuccessful hits with mainfire build Power Gear"
+119, "\ckGear ammo drains for a 20% speed boost\nReload : A copy of Acid Barrier but for himself \non a different cooldown"//Acid
+120, "\ckReload: Propel user/enemies up with Tundra Storm"
+121, "\ckDoing damage builds Power Gear"
+122, "\ckNone"
+123, "\ckCan Wall Jump"
 124, "\ckNone"
-125, "\ckNone"
-126, "\ckJumping affects Sakugarne's jump"
-127, "\ckGain meter by damaging foes"
-128, "\ckReload : Dispense current item\nIf no ammo left, dispenses nothing\nCan select weapon style in user options"
-129, "\ckFoes drop souls on death"
+125, "\ckSuffers half hitstun"
+126, "\ckNone"
+127, "\ckNone"
+128, "\ckNone"
+129, "\ckJumping affects Sakugarne's jump"
+130, "\ckGain meter by damaging foes"
+131, "\ckReload : Dispense current item\nIf no ammo left, dispenses nothing\nCan select weapon style in user options"
+132, "\ckFoes drop souls on death"
 }

@@ -1,0 +1,754 @@
+actor BounceBallBoss : BaseMM8BDMWep_CBM
+{
+Tag "$TAGC_2E"
+dropitem "BounceBallWepCDropped"
+Weapon.AmmoUse 0
+Weapon.AmmoGive 28
+Obituary "$OB_BOUNCEBALL"
+Inventory.Pickupmessage "Power up! Crash Bomb!"
+weapon.ammotype "HeliumAmmo"
+weapon.ammotype2 "UpUpAndAwayAmmo"
++WEAPON.NOAUTOAIM
+States
+{
+Spawn:
+C_02 E 1
+loop
+Ready:
+CRAA A 0 ACS_ExecuteAlways(998,0,10977)
+BCMN A 0 A_GunFlash
+BCMN A 10 
+Ready0:
+BCMN A 0 A_JumpIfInventory("HeliumAmmo",35,"Ready1")
+BCMN A 0 A_GiveInventory("HeliumAmmo",1)
+FUSH A 0 A_GiveInventory("BouncemanAmmo_RC",1)
+BCMN A 1 A_WeaponReady(WRF_NOPRIMARY)
+loop
+Ready1:
+BCMN A 0 A_GiveInventory("HeliumAmmo",1)
+FUSH A 0 A_GiveInventory("BouncemanAmmo_RC",1)
+BCMN A 1 A_WeaponReady
+goto Ready0
+
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+CRAA A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+CRAA A 1 A_Raise
+Loop
+
+Fire:
+KNIA D 0 A_JumpIfInventory("SlappyHandOut",1,"Fire2")
+STHU A 0 A_PlaySoundEx("weapon/scrambleshot","Weapon")
+KNIA C 0 A_GiveInventory("BounceHandFlag1",1)
+BCMN A 0 A_TakeInventory("HeliumAmmo",35)
+TNT1 A 0 A_GunFlash("Flash.Punch")
+TNT1 A 1 A_GiveInventory("BouncemanMain_CI",1)
+TNT1 A 1 Offset(0, 26)
+TNT1 A 1 Offset(5, 29)
+TNT1 A 1 Offset(10, 32)
+TNT1 A 1 Offset(15, 35)
+TNT1 A 1 Offset(20, 38)
+TNT1 A 1 Offset(25, 41)
+Goto Check
+
+Fire2:
+
+STHU A 0 A_PlaySoundEx("weapon/scrambleshot","Weapon")
+KNIA C 0 A_GiveInventory("BounceHandFlag1",1)
+BCMN A 0 A_TakeInventory("HeliumAmmo",35)
+TNT1 A 1 A_GiveInventory("BouncemanMain_CI",1)
+TNT1 A 1 Offset(0, 26)
+TNT1 A 1 Offset(5, 29)
+TNT1 A 1 Offset(10, 32)
+TNT1 A 1 Offset(15, 35)
+TNT1 A 1 Offset(20, 38)
+TNT1 A 1 Offset(25, 41)
+Goto Check
+
+Check:
+TNT1 A 1 Offset(30, 44)A_GiveInventory("BounceHandFlag1",1)
+KNIA D 0 A_JumpIfInventory("BounceHandFlag1",35,"Return")
+KNIA D 0 A_JumpIfInventory("BounceHandReturn",1,"Return")
+loop
+
+Return:
+TNT1 A 1 Offset(25, 41)
+TNT1 A 1 Offset(20, 38)
+TNT1 A 1 Offset(15, 35)
+TNT1 A 1 Offset(10, 32)
+TNT1 A 1 Offset(5, 29)
+TNT1 A 1 Offset(0, 26)
+BCMN A 0 A_TakeInventory("BounceHandFlag1",999)
+BCMN A 0 A_TakeInventory("BounceHandReturn",999)
+BCMN A 2 A_WeaponReady(WRF_NOFIRE)
+BCMN A 4
+Goto Ready0
+
+Altfire:
+TNT1 A 0 A_JumpIfInventory("SlappyHandOut",1,"AltDetonate")
+TNT1 A 0 A_JumpIfInventory("UpUpAndAwayAmmo",150,1) //350 isn't divisible by 4, sadly.
+goto NoAmmo
+STHU A 0 A_PlaySoundEx("weapon/scrambleshot","Weapon")
+TNT1 A 0 A_GunFlash("Flash.Grab")
+TNT1 A 0 A_GiveInventory("BouncemanAlt_CI",1)
+TNT1 A 1 Offset(0, 26)
+TNT1 A 1 Offset(-5, 29)
+TNT1 A 1 Offset(-10, 32)
+TNT1 A 1 Offset(-15, 35)
+TNT1 A 1 Offset(-20, 38)
+TNT1 A 1 Offset(-20, 38)
+TNT1 A 1 Offset(-15, 35)
+TNT1 A 1 Offset(-10, 32)
+TNT1 A 1 Offset(-5, 29)
+TNT1 A 1 Offset(0, 26)
+TNT1 A 0 A_WeaponReady(WRF_NOFIRE)
+TNT1 A 0 A_GiveInventory("BounceHandFlag2",1)
+BCMN A 5
+//BCMN A 0 A_Refire("AltHold")
+Goto Ready0
+
+AltDetonate:
+BCMN A 0 //momentum is funny //Joke's on you motherfucker, I thought of a better solution.//FUCK you got me there greg
+BCMN A 0 Offset(0,40)A_ScaleVelocity(.4) //ScaleVelocity, motherfucker. The blend of momentum and pitsaving.//ggwp
+BCMN A 2 Offset(0,40)A_GiveInventory("SlappyHandReturnFlag",1)
+BCMN A 2 Offset(0,60)
+BCMN A 2 Offset(0,80)
+BCMN A 2 Offset(0,60) 
+Goto Ready0
+
+NoAmmo:
+BCMN A 1
+goto Ready0
+
+Flash:
+BCMN C 0 A_JumpIfInventory("BounceHandFlag2",1,"FlashNo")
+BCMN B 1
+loop
+FlashNo:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInventory("SlappyHandOut",1,"FlashNo")
+//TNT1 A 0 A_JumpIfInventory("BounceHandFlag2",1,"FlashNo") //Uncertain if this is necessary.
+goto Flash
+Flash.Punch:
+BCMN C 0 A_JumpIfInventory("SlappyHandOut",1,"FlashNo")
+BCMN BBBBD 1
+ReturnCheck:
+BCMN D 1
+BCMN D 0 A_JumpIfInventory("BounceHandFlag1",1,"ReturnCheck")
+BCMN DDBB 1
+goto Flash
+Flash.Grab:
+BCMN C 0 A_JumpIfInventory("BounceHandFlag2",1,"FlashNo")
+BCMN AAAACCCCAA 1
+BCMN A 5
+goto Flash
+}
+}
+
+actor HeliumAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 140
++INVENTORY.IGNORESKILL
+}
+
+actor UpUpAndAwayAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 600
++INVENTORY.IGNORESKILL
+}
+actor BounceLatchTimeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 350
++INVENTORY.IGNORESKILL
+}
+
+actor BounceHandFlag1 : OnceC{}
+actor BounceHandReturn : OnceC{}
+actor BounceHandFlag2 : Powerup
+{
+Powerup.Duration 3
+}
+
+actor SlappyHandOut : OnceC{}
+
+actor SlappyHandReturnFlag : Powerup
+{
+Powerup.Duration 3
+}
+
+actor BounceDragState : OnceC {}
+//WITH this, Bounce pulls players towards him.
+//WITHOUT this, Bounce pulls himself towards players.
+//Either way, Bounce pulls himself to terrain.
+//However, WITHOUT this, Bounce gets an A_Stop for better travel.
+
+actor BounceDragToggle : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "BNCEICON"
+inventory.pickupmessage "\cuHow many of these toggles can I get away with?"
+scale 2.0
++INVBAR
+states
+{
+Spawn:
+TNT1 A 1
+wait
+Use:
+TNT1 A 0 A_JumpIfInventory("BounceDragState",1,"Use2")
+TNT1 A 0 A_PlaySoundEx("item/refill","Item")
+TNT1 A 0 A_GiveInventory("BounceDragState",1)
+fail
+Use2:
+TNT1 A 0 A_PlaySoundEx("item/refill","Item")
+TNT1 A 0 A_TakeInventory("BounceDragState",999)
+fail
+}
+}
+
+actor BouncemanAmmo_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SlappyHandOut",1,"No")
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"Pickup2")
+TNT1 A 0 A_GiveInventory("UpUpAndAwayAmmo",2)
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("UpUpAndAwayAmmo",4)
+stop
+No:
+TNT1 A 0 A_GiveInventory("BounceHandFlag2",1)
+stop
+}
+}
+
+actor BounceM_Punch
+{
+Translation "194:194=39:39","195:195=41:41","202:202=4:4","192:192=193:193","198:198=197:197"
+PROJECTILE
+damagetype "DMGNoHitstun"
+Obituary "$OB_BOUNCEBOP"
++NOTARGETSWITCH
++SKYEXPLODE
++FORCEXYBILLBOARD
+damage (160)
+Radius 12
+Height 12
+speed 40
+scale 2.5
+States
+{
+Spawn:
+BNCM I 0
+//HARP H 0 A_SetUserVar("user_PTID",ACS_ExecuteWithResult(257,0))
+SpawnLOOP:
+BNCM B 0 A_GiveInventory("CutterFlag",1)
+BNCM B 1 A_SpawnItemEx("BounceM_TetherWire",0,0,0,0,0,0,0,1)
+BNCM B 0 A_SpawnItemEx("BounceM_FistFX",0,0,0,0,0,0,0,1)
+BNCM B 0 A_JumpIfInventory("CutterFlag",5,1)
+goto SpawnLOOP
+//BNCM B 0 A_TakeInventory("CutterFlag",999)
+BNCM BBBBBBBBBB 1 A_SpawnItemEx("BounceM_TetherWire",0,0,0,0,0,0,0,1)
+TNT1 A 0 //ACS_NamedExecuteWithResult("CCBM_PitchAngleSetter",5)
+BBLL A 0 A_PlaySoundEx("weapon/bounceshot","Weapon")
+TNT1 A 0 A_SpawnItemEx("BounceM_Ball",0,0,0,momx,momy,momz,angle-10,1) //I'm not sure why using 'angle' worked but 0 didn't when these are supposed
+TNT1 A 0 A_SpawnItemEx("BounceM_Ball",0,0,0,momx,momy,momz,angle+10,1) //to be relative by default. I don't want to know. - Greg
+TNT1 A 0 A_SpawnItemEx("BounceM_Ball",0,0,0,momx,momy,momz,angle,1)
+Death:
+BNCM B 0 A_JumpIfInventory("CutterFlag",5,1)
+goto DeathRebound
+TNT1 A 0
+DeathCont:
+//BNCM B 0 A_SetDamageType("DMGNoHitstun")
+//HARP I 0 A_SpawnItemEx("BounceHandBoomFX",0,0,0,0,0,0,0,1)
+TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BounceM_Confetti",0,0,0,random(-3,3),random(-3,3),random(3,-3),0,1)
+//"####" "#" 0 ACS_ExecuteWithResult(259,1)//Set angle based on player pitch/angle
+//BNCM I 0 A_Explode(100,96,0,0,48)
+DeathCont2:
+BNCM A 0 A_Stop
+HARP I 0 A_SpawnItemEx("BounceM_HandReturn",0,0,0,0,0,0,0,1) //A_GiveToTarget("WavemanHookshotStart_P",1)
+TNT1 AAAAAAAAAA 1 //ACS_NamedExecuteAlways("cbm_WaveHookshot",0,user_PTID,10,0)
+stop
+DeathRebound:
+BNCM I 0 A_GiveToTarget("BounceRebound_P",1)
+goto DeathCont
+}
+}
+
+actor BounceM_PunchB : BounceM_Punch{Translation"194:194=74:74","195:195=199:199","202:202=4:4","192:192=196:196","198:198=205:205"}
+actor BounceM_PunchR : BounceM_Punch{Translation"194:194=41:41","195:195=43:43","202:202=4:4","192:192=170:170","198:198=171:171"}
+actor BounceM_PunchO : BounceM_Punch{Translation"194:194=128:128","195:195=131:131","202:202=4:4","192:192=138:138","198:198=104:104"}
+actor BounceM_PunchP : BounceM_Punch{Translation"194:194=232:232","195:195=223:223","202:202=4:4","192:192=214:214","198:198=229:229"}
+
+actor BounceHandBoomFX : SpringFistHitFX
+{
+Scale 2
+renderstyle add
+States
+{
+Spawn:
+X_8B ABCDEF 1
+stop
+}
+}
+
+actor BounceM_FistFX : BasicClientSide
+{
+renderstyle add
++FORCEXYBILLBOARD
+states
+{
+Spawn:
+BNCM B 1 A_FadeOut(0.25)
+loop
+}
+}
+
+actor BounceRebound_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_ChangeVelocity(-Cos(pitch)*7, 0, sin(pitch)*7,1)
+stop
+}
+}
+
+Actor BounceM_TetherWire : DuoPunchLeftyReturn
+{
+Translation "194:194=193:193","195:195=39:39"
++NOCLIP
+Scale 1.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_RearrangePointers(0,0,2)
+TNT1 A 0 A_FaceTarget
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_JumpIfCloser(64,"Death")
+TNT1 AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+BNCM A 1 //A_SpawnItemEx("BounceM_TetherWireFX",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_CountDown
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Return:
+Death2:
+Death:
+TNT1 A 0 
+stop
+}
+}
+
+Actor BounceM_TetherWire2 : DuoPunchLeftyReturn
+{
+Translation "194:194=193:193","195:195=39:39"
++NOCLIP
+renderstyle translucent
+Scale 1.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_RearrangePointers(0,0,2)
+TNT1 A 0 A_FaceTarget
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_JumpIfCloser(512,"ComingClose")
+TNT1 AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+BNCM A 1 A_FadeOut(0.1,0)//A_SpawnItemEx("BounceM_TetherWireFX",0,0,0,0,0,0,0,1)
+//TNT1 A 0 A_CountDown
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+ComingClose:
+TNT1 A 0 A_JumpIfCloser(64,"Death")
+TNT1 AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+BNCM A 1 A_FadeIn(0.75)//A_SpawnItemEx("BounceM_TetherWireFX",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_CountDown
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Return:
+Death2:
+Death:
+TNT1 A 0 
+stop
+}
+}
+
+Actor BounceM_HandReturn : DuoPunchLeftyReturn
+{
+Translation "194:194=193:193","195:195=39:39"
++NOCLIP
+Scale 2.5
+renderstyle translucent
+alpha 0.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_RearrangePointers(0,0,2)
+TNT1 A 0 A_FaceTarget
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_JumpIfCloser(64,"Death")
+TNT1 AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+BNCM C 1 //A_SpawnItemEx("BounceM_TetherWireFX",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_CountDown
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Return:
+Death2:
+Death:
+BNCM I 0 A_GiveToTarget("BounceHandReturn",999)
+stop
+}
+}
+
+Actor BounceM_HandReturn2 : DuoPunchLeftyReturn
+{
+Obituary "$OB_BOUNCEPULL"
+Translation "194:194=193:193","195:195=39:39"
++NOCLIP
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_RearrangePointers(0,0,2)
+TNT1 A 0 A_FaceTarget
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_JumpIfCloser(64,"Death")
+TNT1 AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+BNCM C 1 //A_SpawnItemEx("BounceM_Drag")
+TNT1 A 0 A_CountDown
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Return:
+Death2:
+Death:
+BNCM I 0 A_GiveToTarget("BounceHandFlag2",999)
+OOTC H 0 A_TakeFromTarget("SlappyHandOut",1)
+stop
+}
+}
+
+actor BounceM_HandReturn2Drag : BounceM_HandReturn2
+{
+Obituary "$OB_BOUNCEPULL"
+	States
+	{
+		Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_RearrangePointers(0,0,2)
+		TNT1 A 0 A_FaceTarget
+		goto Spawn2
+		Spawn2:
+		TNT1 A 0 A_JumpIfCloser(64,"Death")
+		TNT1 AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+		BNCM C 1 A_SpawnItemEx("BounceM_Drag")
+		TNT1 A 0 A_CountDown
+		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+		loop
+	}
+}
+
+actor BounceM_Drag
+{
++THRUSPECIES
+PROJECTILE
+damagetype "WindM_Pull"
+Obituary "$OB_BOUNCEPULL"
++RIPPER
++NOINTERACTION
++DONTBLAST
+damage (0)
+radius 1
+height 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(160,50,0,0,50)
+stop
+Crash:
+Death:
+XDeath:
+TNT1 A 0
+stop
+}
+}
+
+Actor BounceM_TetherWireFX : BasicClientSide
+{
++NOINTERACTION
+Scale 1.5
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_JumpIfCloser(32,"Death")
+BNCM A 2 
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor BounceM_Confetti
+{
++MISSILE
++DONTBLAST
++DONTREFLECT
++CLIENTSIDEONLY
++LOWGRAVITY
++THRUACTORS
++DONTSPLASH
+damage 0
+height 2
+radius 2
+scale 2.0
+States
+{
+Spawn:
+PCNF A 0
+PCNF A 0 A_Jump(85,"Spawn2")
+PCNF A 0 A_Jump(85,"Spawn3")
+Spawn1://White
+PCNF A 1
+PCNF BCD 1 A_ChangeVelocity(momx*0.9,momy*0.9,momz,2)
+PCNF ABCDABCD 1
+PCNF AAAAABBBBBCCCCCDDDDD 1 A_Fadeout(.1)
+stop
+Spawn2://195/249
+PCNF T 1
+PCNF UTU 1 A_ChangeVelocity(momx*0.9,momy*0.9,momz,2)
+PCNF TUTUTUTU 1
+PCNF TTTTTUUUUUTTTTTUUUUU 1 A_Fadeout(.1)
+stop
+Spawn3://194/250/4
+PCNF V 1
+PCNF WB 1 A_ChangeVelocity(momx*0.9,momy*0.9,momz,2)
+PCNF VWBVWBVW 1
+PCNF VVVVVBBBBBWWWWWVVVVVBBBBB 1 A_Fadeout(.1)
+stop
+}
+}
+
+actor BounceM_Ball
+{
+PROJECTILE
++HEXENBOUNCE
+//+BOUNCEONACTORS
++CANBOUNCEWATER
++USEBOUNCESTATE
++FORCEXYBILLBOARD
+WALLBOUNCEFACTOR 2
+BOUNCEFACTOR 2
+seesound "weapon/bouncebounce"
+damagetype "DMGNoHitstun"
+Obituary "$OB_BOUNCEBALL"
+speed 40
+Radius 16
+Height 16
+scale 2.5
+damage (100)
+bouncecount 2
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+BBAL D 0 A_JumpIfInventory("BounceBallTimer",10,"Pop")
+BBAL E 0 A_GiveInventory("BounceBallTimer",1)
+BBAL DEDF 4
+loop
+Pop:
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/bounceexplode", "Weapon")
+TNT1 A 0 A_SpawnItemEx("BounceBallPop")
+TNT1 A 0 A_SpawnItemEx("BounceBallConfettiScatter")
+TNT1 A 35
+Stop
+/*Bounce.Actor:
+BBAL D 0 A_ChangeFlag("THRUACTORS", 1)
+BBAL D 2 A_ChangeVelocity(40.0,0,velz,CVF_RELATIVE|CVF_REPLACE)
+BBAL F 2
+BBAL F 0 A_ChangeFlag("THRUACTORS",0)
+Goto Spawn*/
+
+}
+}
+/*actor BounceBallX : BounceBall
+{
+States
+{
+Spawn:
+BBAL D 0 A_JumpIfInventory("BounceBallTimer",10,"Pop")
+BBAL E 0 A_GiveInventory("BounceBallTimer",1)
+BBAL GHGI 4
+loop
+Bounce.Actor:
+BBAL G 0 A_ChangeFlag("THRUACTORS", 1)
+BBAL G 2 A_ChangeVelocity(40.0,0,velz,CVF_RELATIVE|CVF_REPLACE)
+BBAL I 2
+BBAL I 0 A_ChangeFlag("THRUACTORS",0)
+Goto Spawn
+
+}
+}*/
+
+actor BounceBallPop
+{
++NOINTERACTION
+States
+{
+Spawn:
+MMFX BCDE 2
+Stop
+}
+}
+
+actor BounceBallConfettiScatter
+{
++NOINTERACTION
+States
+{
+Spawn:
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("BounceM_Confetti",0,0,0,7,0,random(-2,2),random(0,360))
+Stop
+}
+}
+
+actor BounceBallTimer : Inventory
+{
+inventory.amount 1
+inventory.maxamount 10
+}
+
+actor BounceM_Latch
+{
+Translation "194:194=39:39","195:195=41:41","202:202=4:4","192:192=193:193","198:198=197:197"
+PROJECTILE
++SKYEXPLODE
++HITTRACER
++FORCEXYBILLBOARD
+damagetype "RemoteMine"
+Obituary "$OB_BOUNCEGRAB"
+Radius 16
+Height 32
+scale 2.5
+damage (0)
+speed 70
+gravity 2
+damagetype "DMGNoHitstun"
+var int user_stuck;
+var int user_PTID;
+States
+{
+Spawn:
+BNCM D 0
+BNCM D 0 A_SetUserVar("user_PTID",ACS_ExecuteWithResult(257,0))
+BNCM DDDDD 1 A_SpawnItemEx("BounceM_TetherWire2",0,0,0,0,0,0,0,1)
+BNCM G 0 A_Stop
+BNCM DDDD 1 A_FadeOut
+stop
+Crash:
+XDeath:
+BNCM A 0 A_SetUserVar("user_stuck", 1)
+Death:
+BNCM A 0 A_Stop
+BNCM A 0 A_PlaySound("weapon/rminestick")
+LatchStart:
+OOTC H 0 A_TakeFromTarget("UpUpAndAwayAmmo",150)
+Latch:
+OOTC H 0 A_GiveToTarget("SlappyHandOut",1)
+BNCM A 0 A_Warp(AAPTR_TRACER,0,0,12,0,WARPF_COPYINTERPOLATION)
+BNCM D 0 A_TakeFromTarget("BounceLatchTimeAmmo",1)
+BNCM D 0 A_JumpIfInTargetInventory("BounceLatchTimeAmmo",1,1)
+goto Detonate
+BNCM D 1 A_JumpIfInTargetInventory("SlappyHandReturnFlag",1,"Detonate")
+BNCM D 0 A_SpawnItemEx("BounceM_TetherWire2",0,0,0,0,0,0,0,1)
+BNCM D 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Detonate")
+BNCM D 0 A_JumpIf(user_stuck==0,"Latch")
+BNCM D 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists",1)==0,"Detonate")
+Goto Latch
+Detonate:
+BNCM B 0 A_GiveToTarget("BounceLatchTimeAmmo",350)
+BNCM B 0 A_JumpIf(ACS_NamedExecuteWithResult("core_targetexists")==0,"Exit")
+BNCM B 0 A_JumpIfInTargetInventory("BounceDragState",1,"DetonateDrag")
+HARP I 0 A_SpawnItemEx("BounceM_HandReturn2",0,0,0,0,0,0,0,1) //A_GiveToTarget("WavemanHookshotStart_P",1)
+TNT1 A 0 A_Explode(160,50,0,0,50)
+//HARP I 0 A_SpawnItemEx("BounceHandBoomFX",0,0,0,0,0,0,0,1)
+TNT1 AAAAAAAAAA 1 ACS_NamedExecuteAlways("cbm_WaveHookshot",0,user_PTID,16,0)
+stop
+DetonateDrag:
+HARP I 0 A_SpawnItemEx("BounceM_HandReturn2Drag",0,0,0,0,0,0,0,1) //A_GiveToTarget("WavemanHookshotStart_P",1)
+BNCM B 0 A_JumpIf(user_stuck==1,"Exit")
+TNT1 AAAAAAAAAA 1 ACS_NamedExecuteAlways("cbm_WaveHookshot",0,user_PTID,16,0)
+Exit:
+TNT1 A 1
+stop
+}
+}
+
+actor BounceM_LatchB : BounceM_Latch {Translation "194:194=74:74","195:195=199:199","202:202=4:4","192:192=196:196","198:198=205:205"}
+actor BounceM_LatchR : BounceM_Latch {Translation "194:194=41:41","195:195=43:43","202:202=4:4","192:192=170:170","198:198=171:171"}
+actor BounceM_LatchO : BounceM_Latch {Translation "194:194=128:128","195:195=131:131","202:202=4:4","192:192=138:138","198:198=104:104"}
+actor BounceM_LatchP : BounceM_Latch {Translation "194:194=232:232","195:195=223:223","202:202=4:4","192:192=214:214","198:198=229:229"}
+
+actor BouncemanMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BounceM_Punch",0,1,-10,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BounceM_PunchB",0,1,-10,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BounceM_PunchR",0,1,-10,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BounceM_PunchO",0,1,-10,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BounceM_PunchP",0,1,-10,0)
+goto Done
+}
+}
+
+actor BouncemanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BounceM_Latch",0,1,10,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BounceM_LatchB",0,1,10,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BounceM_LatchR",0,1,10,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BounceM_LatchO",0,1,10,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BounceM_LatchP",0,1,10,0)
+goto Done
+}
+}

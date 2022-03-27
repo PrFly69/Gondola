@@ -1,0 +1,42 @@
+actor Bounceman : ClassBase //125
+{
+Player.ScoreIcon "C_11F0X"
+player.displayname "bounceman"
+player.soundclass "bouncemanc"
+player.startitem "BounceBallBoss"
+player.startitem "BounceDragToggle"
+player.startitem "HeliumAmmo",70
+player.startitem "UpUpAndAwayAmmo",350
+player.startitem "BounceLatchTimeAmmo",350
+
+player.maxhealth 1150
+health 1150
+player.jumpz 15
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
+
+States
+{
+Spawn:
+BOUM A 0 
+BOUM B 1
+BOUM A 1
+Goto Spawn+2
+See:
+BOUM BCDE 4
+Goto Spawn
+Missile:
+BOUM F 5
+Missile2:
+BOUM G 1
+BOUM G 0 A_JumpIfInventory("BounceHandFlag1",1,"Missile2")
+BOUM F 5
+goto Spawn
+ClassPain:
+BOUM H 0
+goto PainContinue
+ClassDeath:
+BOUM H 0
+goto DeathContinue
+}
+}

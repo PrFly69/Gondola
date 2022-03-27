@@ -76,6 +76,12 @@
 #include "actors/Megaman11/Blastman.txt"
 #include "actors/Megaman11/ChainBlastBoss.txt"
 
+//GIBUS
+#include "actors/Megaman11/Tundraman.txt"
+#include "actors/Megaman11/TundraStormBoss.txt"
+#include "actors/Megaman11/Bounceman.txt"
+#include "actors/Megaman11/BounceBallBoss.txt"
+
 #include "actors/copywepvisibility.txt"
 
 actor AboveDecimalHP : Inventory

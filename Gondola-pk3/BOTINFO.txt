@@ -25,3 +25,25 @@ accuracy=6 intellect=6 evade=6 anticipation=6 reactiontime=6 perception=6
 class = "YellowDevil"
 script = "humanbot"
 }
+
+
+{
+name = "\cnTundraman"
+accuracy=1 intellect=3 evade=0 anticipation=1 reactiontime=2 perception=1
+class = "Tundraman"
+script = "humanbot"
+}
+
+{
+name = "\crTorchman"
+accuracy=1 intellect=3 evade=0 anticipation=1 reactiontime=2 perception=1
+class = "Torchman"
+script = "humanbot"
+}
+
+{
+name = "\caBounceman"
+accuracy=1 intellect=3 evade=0 anticipation=1 reactiontime=2 perception=1
+class = "Bounceman"
+script = "humanbot"
+}

@@ -3,6 +3,14 @@
 weapon/saturnglitch SATFUK
 weapon/saturndeath SATFUCK
 
+//MM11
+weapon/bounceshot BBALSHOT
+weapon/bounceexplode BBALEXPL
+weapon/bouncebounce BBALBNCE
+
+weapon/torchpunch TORPUNCH
+weapon/torchwheel TORWHEEL
+
 //Flash
 weapon/flashstunboom FLASBOOM
 weapon/flashstunstart FLSWNDUP

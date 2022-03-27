@@ -718,3 +718,28 @@ $playersound	BearerClassc	male	*pain100	M1_PAIN
 $playersound	BearerClassc	male	*weakpain	M1_HURT
 $playersound	BearerClassc	male	*land		FATLAND
 
+$playersound	tundramanc	male	*death		MEGADEAT
+$playersound	tundramanc	male	*xdeath		MEGADEAT
+$playersound	tundramanc	male	*gibbed		MEGADEAT
+$playersound	tundramanc	male	*pain100	MM3PAIN
+$playersound	tundramanc	male	*pain75		MM3PAIN
+$playersound	tundramanc	male	*pain50		MM3PAIN
+$playersound	tundramanc	male	*pain25		MM3PAIN
+$playersound	tundramanc	male	*grunt		dsnone
+$playersound	tundramanc	male	*land		MM6JUMP
+$playersound	tundramanc	male	*jump		dsnone
+$playersound	tundramanc	male	*fist		dsnone
+$playersound	tundramanc	male	*usefail	MM6JUMP
+
+$playersound	bouncemanc	male	*death		MEGADEAT
+$playersound	bouncemanc	male	*xdeath		MEGADEAT
+$playersound	bouncemanc	male	*gibbed		MEGADEAT
+$playersound	bouncemanc	male	*pain100	MM3PAIN
+$playersound	bouncemanc	male	*pain75		MM3PAIN
+$playersound	bouncemanc	male	*pain50		MM3PAIN
+$playersound	bouncemanc	male	*pain25		MM3PAIN
+$playersound	bouncemanc	male	*grunt		dsnone
+$playersound	bouncemanc	male	*land		BBALBNCE
+$playersound	bouncemanc	male	*jump		dsnone
+$playersound	bouncemanc	male	*fist		dsnone
+$playersound	bouncemanc	male	*usefail	BBALBNCE
