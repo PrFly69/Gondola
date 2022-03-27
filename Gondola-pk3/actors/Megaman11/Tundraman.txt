@@ -1,0 +1,70 @@
+actor TundraMan : ClassBase
+{
+Player.ScoreIcon "C_11E0X"
+player.displayname "Tundraman"
+player.soundclass "tundramanc"
+player.startitem "TundraStormBoss"
+//player.startitem "TundraStormerBoss"
+player.startitem "FeelFreezeAmmo", 56
+
+player.maxhealth 850
+health 850
+player.forwardmove 0.9, 0.9
+player.sidemove 0.88, 0.88
+player.jumpz 12
+
+player.weaponslot 1, "TundraStormBoss"
+//player.weaponslot 2, "TundraStormerBoss"
+
+player.startitem "ScrambleThunderWeakness2", 1
+
+player.startitem "ThunderBeamWeakness", 1
+player.startitem "SparkShockWeakness", 1
+player.startitem "ThunderBoltWeakness", 1
+player.startitem "ThunderClawWeakness", 1
+player.startitem "LightningBoltWeakness", 1
+player.startitem "PlugBallWeakness", 1
+player.startitem "ElectricShockWeakness", 1
+player.startitem "ScrambleThunderWeakness", 1
+
+States
+{
+Spawn:
+TNDM A 0 
+TNDM B 1
+TNDM A 1 A_JumpIfInventory("TundraIsBouncingFlag",1,"Spinning")
+Goto Spawn+2
+See:
+TNDM BBBBBCCCCCDDDDDCCCCC 1 A_JumpIfInventory("TundraIsBouncingFlag",1,"Spinning")
+Goto Spawn
+
+Missile:
+TNDM F 0
+TNDM FF 1
+TNDM FFF 1
+TNDM F 4
+goto Spawn
+
+CustomState1:
+TNDM I 3
+Spinning:
+TNDM JKLMNOPQ 1 A_JumpIf(z-floorz<=0, "SpinningEnd")
+TNDM Q 0 A_JumpIf(z-floorz>0, "Spinning")
+TNDM Q 0 A_TakeInventory("TundraIsBouncingFlag",999)
+TNDM A 1
+Goto SpinningEnd
+SpinningEnd:
+TNDM A 4 A_TakeInventory("TundraIsBouncingFlag",999)
+goto Spawn
+
+ClassPain:
+TNDM H 0
+goto PainContinue
+DeathFix:
+TNDM H 0
+goto DeathContinue
+ClassDeath:
+TNDM H 1
+goto MegaDeathEnd
+}
+}

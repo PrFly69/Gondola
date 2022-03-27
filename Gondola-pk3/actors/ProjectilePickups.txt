@@ -134,7 +134,9 @@ actor pluto_pspickup : PSuckerBase {}
 actor Neptune_pspickup : PSuckerBase {}
 actor Fuseman_pspickup : PSuckerBase {}
 actor Acidman_pspickup : PSuckerBase {}
-//actor Torchman_pspickup : PSuckerBase {}
+actor Tundraman_pspickup : PSuckerBase {}
+actor Torchman_pspickup : PSuckerBase {}
+actor Bounceman_pspickup : PSuckerBase {}
 actor BusterRodG_pspickup : PSuckerBase {}
 actor MegaWaterS_pspickup : PSuckerBase {}
 actor HyperStormH_pspickup : PSuckerBase {}

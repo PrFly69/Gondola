@@ -199,17 +199,48 @@ texture BARMTERR,8,56{patch TNT1A0,0,0}
 texture VARMTERR,56,8{patch TNT1A0,0,0}
 
 
-sprite  C_11T0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE011D, 0, 0}
-texture C_11T0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE011D, 0, 0}
 
+//Torchman
+sprite  C_11D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE011D, 0, 0}
+texture C_11D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE011D, 0, 0}
+
+texture VTORMETR,56,8{patch TORMETER,0,0{rotate 90}}
 texture BARTOR,8,56{patch B_BAR12B,0,0{Translation "4:4=175:175","192:192=180:180","198:198=185:185"}}//,"0:0=190:190"
 texture VARTOR,56,8{patch BARTOR,0,0{rotate 90}}
 texture BARTORX,8,56{patch B_BAR12B,0,0{Translation "4:4=160:160","192:192=218:218","198:198=175:175"}}//,"0:0=180:180"
 texture VARTORX,56,8{patch BARTORX,0,0{rotate 90}}
-texture BARTOK,8,56{patch B4ENER,0,0{Translation "192:192=87:87","198:198=227:227"}}
+texture BARTOK,8,56{patch B6ENERG,0,0{Translation "192:192=87:87","198:198=227:227"}}
 texture VARTOK,56,8{patch BARTOK,0,0{rotate 90}}
-texture BARTOKX,8,56{patch B4ENER,0,0{Translation "192:192=87:87","198:198=227:227"}}
+texture BARTOKX,8,56{patch B6ENERG,0,0{Translation "192:192=87:87","198:198=227:227"}}
 texture VARTOKX,56,8{patch BARTOKX,0,0{rotate 90}}//Torchman
+texture BARTODVK,8,56{patch B_BAR10B,0,0{Translation "198:198=218:218"}}
+texture VARTODVK,56,8{patch BARTODVK,0,0{rotate 90}}
+
+//Tundraman
+sprite  C_11E0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE011E, 0, 0}//PROTO//FACE49
+texture C_11E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE011E, 0, 0}
+
+texture BARTUN,8,56{patch B6ENER,0,0{Translation "198:198=76:76","192:192=72:72"}}
+texture VARTUN,56,8{patch BARTUN,0,0{rotate 90}}//Tundraman
+texture BARTUNX,8,56{patch B6ENER,0,0{Translation "198:198=58:58","192:192=196:196"}}
+texture VARTUNX,56,8{patch BARTUNX,0,0{rotate 90}}//Tundraman
+texture BARTUXX,8,56{patch B_4BARSB,0,0{Translation "198:198=194:194","199:199=193:193","195:195=202:202"}}
+texture VARTUXX,56,8{patch BARTUXX,0,0{rotate 90}}//TundraFundra
+
+graphic TUNRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHO410,0,0}
+
+//Bounceman
+sprite  C_11F0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE011F, 0, 0}//PROTO//FACE49
+texture C_11F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE011F, 0, 0}
+
+texture BAR11BNC,8,56{patch B4ENER,0,0{Translation "192:192=4:4","198:198=39:39"}}
+texture VAR11BNC,56,8{patch BAR11BNC,0,0{rotate 90}}
+texture BAR11BCE,8,56{patch BARENERG,0,0{Translation "192:192=214:214","198:198=239:239"}}
+texture VAR11BCE,56,8{patch BAR11BCE,0,0{rotate 90}}
+texture BARBNCLA,8,56{patch B_BAR10B,0,0{Translation "198:198=160:160"}}
+texture VARBNCLA,56,8{patch BARBNCLA,0,0{rotate 90}}
+
+graphic BNCEICON,30,30{XScale 2.0 YScale 2.0 Patch BNCMZ0,0,0}
 
 sprite PROCR0,116,96{Offset -184,-94 Patch PROCD0,0,0{Translation"0:0=253:253","247:247=253:253"}}//251    ,"93:93=253:253"
 sprite PROCS0,116,96{Offset -184,-94 Patch PROCD0,0,0{Translation"0:0=230:230","247:247=230:230","42:42=138:138","186:186=229:229","87:87=138:138","93:93=229:229"}}

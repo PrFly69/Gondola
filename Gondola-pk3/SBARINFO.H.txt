@@ -921,13 +921,6 @@ IsSelected NovaBeamBoss{Drawbar"V_I_VUN","VAREMPTY",Ammo1,horizontal,58,184;
 IsSelected ScrambleThunderBoss {
 	DrawBar "11_H_VAR", "VAREMPTY", Ammo2, horizontal, 58, 184;
 	DrawBar "11_I_VAR", "VAREMPTY", Ammo1, horizontal, 58, 176;}
-IsSelected BlazingTorchBoss{Drawbar "VARTOR", "VAREMPTY", Ammo1, vertical, 16, 8;
-	DrawImage "TORMETER",16,8;
-    InInventory TorchjutsuAmmo, 420{Drawbar "VARTORX", "VAREMPTY", Ammo1, vertical, 16, 8;}
-	Drawbar "VARTOK", "VAREMPTY", Ammo2, vertical, 8, 8;
-	Drawbar"PTSDVAR","VNOBAR",LightHeavyChargeAmmo,vertical,16,8;
-	InInventory WaveDashAmmo, 100{Drawbar "VARTOKX", "VAREMPTY", Ammo2, vertical, 8, 8;}
-	}
 	
 IsSelected ChainBlastBoss{Drawbar"VLASBARR","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"VARAMM64","VAREMPTY",Ammo2,horizontal,58,176;
@@ -945,6 +938,26 @@ Drawbar"VARFLS1","VNOBAR",AcidmanVisualDelay31,horizontal,130,184;
 Drawbar"VARFLS1","VNOBAR",AcidmanVisualDelay41,horizontal,130,184;
 }
 }
+
+IsSelected TundraStormBoss
+{
+Drawbar "VARTUNX","VAREMPTY",Ammo1,horizontal,58,184;
+    DrawImage"TUNRICON",178,175;
+    InInventory TripleLutzAmmo,1{DrawBar"VARTUXX","VNOBAR",TripleLutzAmmo,horizontal,58,184;}
+    InInventory TundraDelayA,1{DrawBar"VARFLS1","VNOBAR",TundraDelayA,horizontal,130,184;}}
+    
+IsSelected BlazingTorchBoss{Drawbar "VARTOR", "VAREMPTY", Ammo1, horizontal, 58, 184;
+    DrawImage "VTORMETR",58,184;
+    InInventory TorchjutsuAmmo, 420{Drawbar "VARTORX", "VAREMPTY", Ammo1, horizontal, 58, 184;}
+    Drawbar "VARTOK", "VBAREMPTY", Ammo2, horizontal, 58, 176;
+    InInventory WaveDashAmmo, 100{Drawbar "VARTOKX", "VAREMPTY", Ammo2, horizontal, 58, 176;}
+	InInventory not TorchDiveTimeAmmo,350{DrawBar"VARTODVK","VNOBAR",TorchDiveTimeAmmo,horizontal,58,176;}
+    }
+IsSelected BounceBallBoss{Drawbar"VAR11BNC","VAREMPTY",Ammo1,horizontal,58,184;
+    DrawBar"VAR11BCE","VAREMPTY",Ammo2,horizontal,58,176;
+    InInventory BounceDragState,1{DrawImage"BNCEDRAG",250,24;}
+    Else{DrawImage"BNCEPULL",250,24;}
+    InInventory not BounceLatchTimeAmmo,350{DrawBar"VARBNCLA","VNOBAR",BounceLatchTimeAmmo,horizontal,58,176;}}
 	
 
 
