@@ -264,6 +264,7 @@ PUMH O 2
 PUMH ONML 1
 TNT1 A 1
 PUMH KJ 1
+PUMH A 0 A_GiveInventory("PumpmanShieldFlag",1)
 PUMH A 0 A_TakeInventory("AdapterWaitCount",9999)
 Goto Ready0
 
@@ -499,7 +500,11 @@ inventory.maxamount 1
 }
 
 actor PumpmanNoHandleF : OnceC{}
-actor PumpmanShieldFlag : OnceC {}
+
+actor PumpmanShieldFlag : Inventory
+{inventory.amount 1
+inventory.maxamount 2}
+
 actor PumpNextRadius : OnceC {}
 
 actor PumpMainTrigger : Powerup
@@ -563,14 +568,16 @@ loop
 Use:
 TNT1 A 0 A_JumpIfInventory("PumpItemTrigger",1,"No")
 TNT1 A 0 A_JumpIfInventory("AdapterWaitCount",1,"No")
-TNT1 A 0 A_JumpIfInventory("PumpmanShieldFlag",1,"Trigger")
-goto No
+TNT1 A 0 A_JumpIfInventory("PumpmanShieldFlag",2,"Trigger")
+goto SuckstoSuck
 Trigger:
 TNT1 A 0 A_GiveInventory("PumpItemTrigger",1)
 TNT1 A 0 A_JumpIfInventory("PumpSluggerAmmo",224,"No3")
 TNT1 A 0 A_JumpIfInventory("PumpSluggerAmmo",196,"No2")
 fail
 No:
+TNT1 A 0 A_JumpIfInventory("PumpmanShieldFlag",2,1)
+TNT1 A 0 A_Jump(256,"SuckstoSuck")
 TNT1 A 0 A_TakeInventory("PumpSluggerAmmo",999)
 fail
 No2:
@@ -578,6 +585,9 @@ TNT1 A 0 A_TakeInventory("PumpSluggerAmmo",999)
 fail
 No3:
 TNT1 A 0 A_TakeInventory("PumpSluggerAmmo",999)
+fail
+SuckstoSuck:
+TNT1 A 0
 fail
 }
 }
@@ -976,6 +986,7 @@ damagetype "PumpM_Shield"
 //+DONTRIP
 +THRUSPECIES
 species "DumbPumpBubble"
+damagefactor "PumpM_Shield",0.0
 damagefactor "PumpTheHandle",0.0
 damagefactor "PumpM_Stream",0.0
 damagefactor "WaterShield",0.0
