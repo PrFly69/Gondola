@@ -223,7 +223,7 @@ TAG_AUTOSWITCH6 = "\cm[\cg7\cm] \cfEddie Bomber \cm[\cg7\cm]";
 OB_TIMESTUNNER = "%o's optics blew out from %k's Flash Stunner.";
 
 QUITMSG31 = "Yes Yes Yes Yes Yes Yes";
-QUITMSG32 = "Don't make us stop production on version 9c...";
+QUITMSG32 = "Don't make us stop production on version 2.6...";
 
 //The Banner
 STARTUP1 = "";
@@ -231,7 +231,7 @@ STARTUP2 = "";
 
 STARTUP3 = " ";
 STARTUP4 = " ";
-STARTUP5 = "\cvFeel free to leave any suggestion/complaint at link present in the help screen! \n  \ck-CCBM Developers\n";
+STARTUP5 = "\cvFeel free to leave any suggestion/complaint at link present in the help screen! \n  \ck-Gondola Developers\n";
 
 //STARTUP6 = "\c[MollyPink]_$$$$$$___$$$$$$$___$$_______$$\n$$____$$__$$____$$__$$$_____$$$\n$$________$$____$$__$$$$___$$$$\n$$________$$$$$$$___$$_$$_$$_$$\n$$________$$____$$__$$__$$$__$$\n$$____$$__$$____$$__$$___$___$$\n_$$$$$$___$$$$$$$___$$_______$$";
 
