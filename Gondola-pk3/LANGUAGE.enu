@@ -1,6 +1,6 @@
 [enu default]
 
-OB_TUNDRACLOSE = "%k's Tundra Storm turned %o's body into a rose... \cvfrozen in ice!";
+OB_TUNDRACLOSE = "%o expectations were shattered by %k's Triple Lutz.";
 OB_TUNDRACICLE = "%o was permafrosted by %k's Glacier Spike.";
 OB_TUNDRASPIN = "%o expectations were shattered by %k's Triple Lutz.";
 OB_TUNDRASTORMBOSS = "%k's Tundra Storm turned %o's body into a rose... \cvfrozen in ice!";
@@ -34,11 +34,11 @@ OB_SPRINGFIST = "%o was thwacked by %k's Spring Punch.";
 OB_SHADESWOOP = "%o was scraped and licked by %k's Shade Swoop.";
 
 //Flagbearer - Yellow Devil
-TAGC_BEAR = "Grey Devil Flagbearer";
+TAGC_BEAR = "Green Devil Flagbearer";
 OB_BEARCLOSE = "%o was unable to understand %k's bomumu bomumumu bomu.";
 OB_BEARMAIN1 = "%o was pulverised by %k's flawed sphere.";
 OB_BEARMAIN2 = "%o was pulverised by %k's flawed cube?";
-OB_BEARMAIN3 = "%o got in the way of %k's grey one-eyed sphere.";
+OB_BEARMAIN3 = "%o got in the way of %k's green one-eyed cube.";
 OB_BEARALT = "%o was whapped by %k's flawed fist.";
 OB_BEARWIN = "%o played the objective!"; //Does this even work?
 
