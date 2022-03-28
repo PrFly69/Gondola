@@ -165,10 +165,10 @@ TCCC B 1 Offset(75,22)A_GiveInventory("TorchKickEX_CI",1)
 TCCC B 1 OffSet(115,32)
 TCCC A 2 Offset(155,42)
 TCCC A 2 Offset(175,52)
-TNT1 A 8 A_WeaponReady(14)
-TCCC Z 1 Offset(0,85)
-TCCC Z 1 Offset(0,60)
-TCCC Z 1 Offset(0,40)
+TNT1 A 16 A_WeaponReady(14)
+TCCC Z 2 Offset(0,85)
+TCCC Z 2 Offset(0,60)
+TCCC Z 2 Offset(0,40)
 TCCC Z 5 A_WeaponReady(14)
 Goto Ready1
 
@@ -796,7 +796,7 @@ stop
 
 actor TorchKickVert2 : TorchKick2
 {
-damage (300)
+damage (200)
 Radius 48
 Height 64
 speed 60

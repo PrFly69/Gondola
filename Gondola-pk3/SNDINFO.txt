@@ -11,6 +11,8 @@ weapon/bouncebounce BBALBNCE
 weapon/torchpunch TORPUNCH
 weapon/torchwheel TORWHEEL
 
+weapon/tundracicle TUNDSHOT
+
 //Flash
 weapon/flashstunboom FLASBOOM
 weapon/flashstunstart FLSWNDUP

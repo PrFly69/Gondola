@@ -1,11 +1,11 @@
 actor BounceBallBoss : BaseMM8BDMWep_CBM
 {
 Tag "$TAGC_11E"
-dropitem "BounceBallWepCDropped"
+dropitem "PowerUpgradeGiverDropped"
 Weapon.AmmoUse 0
 Weapon.AmmoGive 28
 Obituary "$OB_BOUNCEBALL"
-Inventory.Pickupmessage "Power up! Crash Bomb!"
+Inventory.Pickupmessage "Boingaboingaboingaboingaboingaboingaboingaboingaboingaboingaboingaboinga"
 weapon.ammotype "HeliumAmmo"
 weapon.ammotype2 "UpUpAndAwayAmmo"
 +WEAPON.NOAUTOAIM
