@@ -485,7 +485,7 @@ actor FireManWaveD
 {
 PROJECTILE
 Obituary "$OB_FIRESTORMW"
-damagetype "FireM_Wave"
+damagetype "FireM_Spin"
 +DONTBLAST
 +DONTREFLECT
 +BRIGHT
@@ -621,10 +621,10 @@ stop
 }
 }
 
-actor FireSpinProtect : PowerProtection
+actor FireM_SpinProtect : PowerProtection
 {
 Powerup.Duration 1
-DamageFactor "FireSpin", 0.0
+DamageFactor "FireM_Spin", 0.0
 }
 
 

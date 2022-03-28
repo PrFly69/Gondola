@@ -1,6 +1,6 @@
 actor BounceBallBoss : BaseMM8BDMWep_CBM
 {
-Tag "$TAGC_2E"
+Tag "$TAGC_11E"
 dropitem "BounceBallWepCDropped"
 Weapon.AmmoUse 0
 Weapon.AmmoGive 28

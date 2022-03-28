@@ -1000,10 +1000,10 @@ stop
 }
 }
 
-actor TorchmanJutsuB : TorchmanJutsu{translation "195:195=74:74", "204:204=205:205"}
-actor TorchmanJutsuR : TorchmanJutsu{translation "195:195=41:41", "204:204=171:171"}
-actor TorchmanJutsuO : TorchmanJutsu{translation "195:195=128:128", "204:204=104:104"}
-actor TorchmanJutsuP : TorchmanJutsu{translation "195:195=232:232", "204:204=229:229"}
+actor TorchmanJutsuB : TorchmanJutsu{translation "198:198=199:199", "192:192=74:74"}
+actor TorchmanJutsuR : TorchmanJutsu{translation "198:198=43:43", "192:192=41:41"}
+actor TorchmanJutsuO : TorchmanJutsu{translation "198:198=131:131", "192:192=128:128"}
+actor TorchmanJutsuP : TorchmanJutsu{translation "198:198=223:223", "192:192=232:232"}
 
 actor TorchMain_CI : TeamColor_CI
 {
@@ -1051,10 +1051,10 @@ goto Done
 }
 }
 
-actor PGTorchmanJutsuB : PGTorchmanJutsu{translation "195:195=74:74", "204:204=205:205"}
-actor PGTorchmanJutsuR : PGTorchmanJutsu{translation "195:195=41:41", "204:204=171:171"}
-actor PGTorchmanJutsuO : PGTorchmanJutsu{translation "195:195=128:128", "204:204=104:104"}
-actor PGTorchmanJutsuP : PGTorchmanJutsu{translation "195:195=232:232", "204:204=229:229"}
+actor PGTorchmanJutsuB : PGTorchmanJutsu{translation "198:198=199:199", "192:192=74:74"}
+actor PGTorchmanJutsuR : PGTorchmanJutsu{translation "198:198=43:43", "192:192=41:41"}
+actor PGTorchmanJutsuO : PGTorchmanJutsu{translation "198:198=131:131", "192:192=128:128"}
+actor PGTorchmanJutsuP : PGTorchmanJutsu{translation "198:198=223:223", "192:192=232:232"}
 
 actor TorchMain2_CI : TeamColor_CI
 {
