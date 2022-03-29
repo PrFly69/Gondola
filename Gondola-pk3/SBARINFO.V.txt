@@ -970,7 +970,7 @@ Drawbar "BARTUNX", "BAREMPTY", Ammo1, vertical, 16, 8;
 
 IsSelected BlazingTorchBoss{Drawbar "BARTOR", "BAREMPTY", Ammo1, vertical, 8, 8;
     DrawImage "TORMETER",8,8;
-    InInventory TorchjutsuAmmo, 420{Drawbar "BARTORX", "BAREMPTY", Ammo1, vertical, 8, 8;}
+    InInventory TorchjutsuAmmo, 260{Drawbar "BARTORX", "BAREMPTY", Ammo1, vertical, 8, 8;}
     Drawbar "BARTOK", "BAREMPTY", Ammo2, vertical, 16, 8;
     InInventory WaveDashAmmo, 100{Drawbar "BARTOKX", "BAREMPTY", Ammo2, vertical, 16, 8;}
 	InInventory not TorchDiveTimeAmmo,350{DrawBar"BARTODVK","NOBAR",TorchDiveTimeAmmo,vertical,16,8;}
