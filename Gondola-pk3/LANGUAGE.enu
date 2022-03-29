@@ -4,7 +4,7 @@ OB_TUNDRACLOSE = "%o expectations were shattered by %k's Triple Lutz.";
 OB_TUNDRACICLE = "%o was permafrosted by %k's Glacier Spike.";
 OB_TUNDRASPIN = "%o expectations were shattered by %k's Triple Lutz.";
 OB_TUNDRASTORMBOSS = "%k's Tundra Storm turned %o's body into a rose... \cvfrozen in ice!";
-TAGC_11D = "Tundraman Skates";
+TAGC_11F = "Tundraman Skates";
 
 TAGC_11E = "Bounceman Rubber";
 OB_BOUNCEBOP = "%k's Bounce Bopper caught %o on the rebound.";

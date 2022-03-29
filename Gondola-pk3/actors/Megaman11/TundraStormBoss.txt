@@ -1,6 +1,6 @@
 actor TundraStormBoss : BaseMM8BDMWep_CBM
 {
-tag "$TAGC_11D"
+tag "$TAGC_11F"
 dropitem "TundraStormWepCDropped"
 Weapon.AmmoUse 16
 Weapon.AmmoGive 28
@@ -273,7 +273,7 @@ goto Flash
 
 actor TundraStormerBoss : BaseMM8BDMWep_CBM
 {
-tag "$TAGC_11E"
+tag "$TAGC_11F"
 dropitem "TundraStormWepCDropped"
 Weapon.AmmoUse 16
 Weapon.AmmoGive 28

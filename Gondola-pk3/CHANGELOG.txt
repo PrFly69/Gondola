@@ -2337,6 +2337,9 @@ CHANGELOG
 
 =====2.5H
 
+==Tundraman
+-Now has the correct name in allyinfo rather than Acid and Bounce names
+
 ==Torchman
 -Mainfire punch damage 15.0 > 16.0, speed 40 > 60, duration 9 > 8
 -Power Mainfire ripping damage 10.0 > 12.5, speed 60 > 70
