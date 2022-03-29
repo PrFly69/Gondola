@@ -856,7 +856,7 @@ damagetype "TorchWave"
 Obituary "$OB_BLAZINGTORCH"
 Scale 3.0
 Speed 0
-Damage (20)
+Damage (25)
 +THRUGHOST
 +RIPPER
 Radius 9
