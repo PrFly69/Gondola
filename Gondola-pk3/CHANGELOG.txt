@@ -2335,23 +2335,33 @@ CHANGELOG
 ==BBA Megaman
 -All A_PlayWeaponSound instances have been replaced with A_PlaySoundEx
 
+
+
+
+
 =====2.5H
+
+==Alien
+-Flight cap 160 > 240
 
 ==Tundraman
 -Now has the correct name in allyinfo rather than Acid and Bounce names
 
 ==Torchman
--Health 100 > 90
+-Health 100.0 > 90.0
+-New SFX provided by Fr3ak
 -Mainfire punch damage 15.0 > 16.0, speed 40 > 60, duration 9 > 8
 -Power Mainfire ripping damage 10.0 > 12.5, speed 60 > 70
 -Altfire hits 1-4 projectile speed 80 > 60
 -Power Altfire Radius 48 > 56
+--Now has raging demon FX (to ensure your opponent fries a thousand deaths)
 -Aerial divekick hit damage 7.0 > 5.0, meter gain from aerial hit 80 > 50
 --Aerial divekick hit now knocks down, not just back
 --15.0 explosion added to divekick landing, 25.0 with Power Gear
---This explosion also grants 50 meter on impact
---Divekick wave damage 6.0 > 2.5, speed 15 > 25, meter gain 15 > 10
--Power Gear ammo does not begin to drain until 3sec after initially entering Power Gear
+--This explosion also grants 35 meter on impact
+--Divekick flare damage 6.0 > 2.5, speed 15 > 25, meter gain 15 > 5, powerprotect 8 tics > 5 tics
+--Divekick flare count 5 > 3 without Power Gear
+-Power Gear ammo drain now stops upon doing damage, stalls for another 2 seconds before continuing draining 
 --Power Gear meter cap 560 > 400, minimum to enter Power 420 > 260, meter on spawn 280 > 120
 --Entering Power Gear no longer gives you 20 free Power Gear meter
 -Fixed bug where Torch would seize on the Player Setup class select

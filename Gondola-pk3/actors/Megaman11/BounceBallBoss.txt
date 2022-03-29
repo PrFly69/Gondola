@@ -22,12 +22,12 @@ Ready0:
 BCMN A 0 A_JumpIfInventory("HeliumAmmo",35,"Ready1")
 BCMN A 0 A_GiveInventory("HeliumAmmo",1)
 FUSH A 0 A_GiveInventory("BouncemanAmmo_RC",1)
-BCMN A 1 A_WeaponReady(WRF_NOPRIMARY)
+BCMN A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
 loop
 Ready1:
 BCMN A 0 A_GiveInventory("HeliumAmmo",1)
 FUSH A 0 A_GiveInventory("BouncemanAmmo_RC",1)
-BCMN A 1 A_WeaponReady
+BCMN A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 goto Ready0
 
 Deselect:
@@ -118,6 +118,10 @@ BCMN A 2 Offset(0,60)
 BCMN A 2 Offset(0,80)
 BCMN A 2 Offset(0,60) 
 Goto Ready0
+
+Reload:
+BCMN A 0 ThrustThingZ(0,900,1,0)
+goto Ready0
 
 NoAmmo:
 BCMN A 1
@@ -270,7 +274,7 @@ TNT1 A 0
 DeathCont:
 //BNCM B 0 A_SetDamageType("DMGNoHitstun")
 //HARP I 0 A_SpawnItemEx("BounceHandBoomFX",0,0,0,0,0,0,0,1)
-TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BounceM_Confetti",0,0,0,random(-3,3),random(-3,3),random(3,-3),0,1)
+TNT1 AAAAAAAAAA 0 A_SpawnItemEx("BounceM_Confetti",0,0,0,random(-3,3),random(-3,3),random(3,-3),0,1)
 //"####" "#" 0 ACS_ExecuteWithResult(259,1)//Set angle based on player pitch/angle
 //BNCM I 0 A_Explode(100,96,0,0,48)
 DeathCont2:
@@ -627,7 +631,7 @@ actor BounceBallConfettiScatter
 States
 {
 Spawn:
-TNT1 AAAAAAAAAA 0 A_SpawnItemEx("BounceM_Confetti",0,0,0,7,0,random(-2,2),random(0,360))
+TNT1 AAAAA 0 A_SpawnItemEx("BounceM_Confetti",0,0,0,7,0,random(-2,2),random(0,360))
 Stop
 }
 }

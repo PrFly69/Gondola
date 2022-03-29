@@ -32,13 +32,13 @@ Spawn:
 TRCM A 0
 TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",260,"Spawn2")
 TRCM B 1 
-TRCM A 0 A_JumpIf(z-floorz>0, "SeeAir")
-TRCM A 1 A_JumpIfInventory("TorchjutsuAmmo",260,"Spawn2")
-goto Spawn+4
+TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",260,"Spawn2")
+TRCM A 1 A_JumpIf(z-floorz>0, "SeeAir")
+goto Spawn+3
 Spawn2:
 TRPG NNNAAA 1 A_JumpIf(momx>0.25||momy>0.25||momx<-0.25||momy<-0.25,"See")
 TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",260,"Spawn2")
-goto Spawn+4
+goto Spawn+3
 
 See:
 TRCM B 0 A_JumpIfInventory("TorchjutsuAmmo",260,"SeeX")
@@ -47,14 +47,14 @@ Goto Spawn
 
 SeeX:
 TRPG BBBBCCCCDDDDEEEE 1 A_JumpIf(z-floorz>0,"SeeAirX")
-Goto Spawn+4
+Goto Spawn+3
 
 SeeAir:
 TRCM L 1 A_JumpIf(z-floorz<=0, "Spawn")
-Goto See
+wait
 SeeAirX:
 TRPG L 1 A_JumpIf(z-floorz<=0, "Spawn2")
-Goto See
+wait
 
 Missile:
 TRCM S 0 
@@ -81,20 +81,20 @@ goto MegaDeathEnd
 
 CustomState1:
 TRCM I 0 A_JumpIfInventory("TorchjutsuAmmo",260,2)
-TRCM IJI 3
+TRCM IJI 2
 Goto Spawn
-TRPG IJI 3
+TRPG IJI 2
 Goto Spawn
 
 CustomState2:
 TRCM I 0 A_JumpIfInventory("TorchjutsuAmmo",260,2)
 TRCM IJ 3
-TRCM K 6
-TRCM J 3
+TRCM K 3
+TRCM JI 3
 Goto Spawn
 TRPG IJ 3
-TRPG K 6
-TRPG J 3
+TRPG K 3
+TRPG JI 3
 Goto Spawn
 
 CustomState3:
@@ -111,8 +111,34 @@ Goto Spawn
 TRPG M 4
 Goto Spawn
 
+CustomState5:
+TRPG DDDD 2 A_SpawnItemEx("TorchKickAfterImages",0,0,0,0,0,0,0,1) 
+TRPG IJI 2
+Goto Spawn
+
 TimeStopped:
 TRCM ] 0
 Goto "Super::TimeStopped"
+}
+}
+
+actor TorchKickAfterImages : BasicClientside
+{
+renderstyle add
+alpha 0.75
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 AA 1 A_JumpIf(ACS_NamedExecuteWithResult("cbm_IsPointerClient",2)!=1, "Fade")
+TRPG D 1 A_FadeOut(0.08)
+wait
+Fade:
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+TRPG D 1 A_FadeOut(0.08)
+loop
+Death:
+TNT1 A 0
+stop
 }
 }

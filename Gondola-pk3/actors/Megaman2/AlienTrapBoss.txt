@@ -89,7 +89,7 @@ TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,"NoFlight")
 TNT1 A 0 A_JumpIfInventory("AlienFlightFlag",1,"Flight")
 goto NoFlight
 Flight:
-TNT1 A 0 A_JumpIf(z-floorz>=160,"NoFlight")
+TNT1 A 0 A_JumpIf(z-floorz>=240,"NoFlight")
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(107,0)==1,"MaybeFlight")
 YesFlight:
 TNT1 A 1 SetPlayerProperty(0,1,3)

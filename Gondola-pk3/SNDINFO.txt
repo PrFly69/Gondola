@@ -8,8 +8,14 @@ weapon/bounceshot BBALSHOT
 weapon/bounceexplode BBALEXPL
 weapon/bouncebounce BBALBNCE
 
-weapon/torchpunch TORPUNCH
-weapon/torchwheel TORWHEEL
+weapon/torchfireball HOTDOKEN
+weapon/torchexfireball EX_FBALL
+weapon/torchkick TATSU
+weapon/torchexkick EX_TATSU
+weapon/torchkickland BURNLAND
+weapon/torchroundhouse TORCH_HK
+weapon/torchsuper SATSUI
+weapon/torchwave TORCHWAV
 
 weapon/tundracicle TUNDSHOT
 
