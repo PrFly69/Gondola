@@ -10,6 +10,9 @@ player.startitem "TorchDiveTimeAmmo", 350
 //player.startitem "CanWallJump"
 //player.startitem "CanWallJumpStack", 99
 
+player.maxhealth 900
+health 900
+
 player.forwardmove 0.92, 0.92
 player.sidemove 0.9, 0.9
 player.jumpz 14
