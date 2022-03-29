@@ -2334,3 +2334,18 @@ CHANGELOG
 
 ==BBA Megaman
 -All A_PlayWeaponSound instances have been replaced with A_PlaySoundEx
+
+=====2.5H
+==Torchman
+-Mainfire punch damage 15.0 > 16.0, speed 40 > 60, duration 9 > 8
+-Power Mainfire ripping damage 10.0 > 12.5, speed 60 > 70
+-Aerial divekick hit damage 7.0 > 5.0, meter gain from aerial hit 80 > 50
+--Aerial divekick hit now knocks down, not just back
+--15.0 explosion added to divekick landing, 25.0 with Power Gear
+--This explosion also grants 50 meter on impact
+--Divekick wave damage 6.0 > 2.0, speed 15 > 25, meter gain 15 > 10
+-Power Gear ammo does not begin to drain until 3sec after initially entering Power Gear
+--Power Gear meter cap 560 > 400, minimum to enter Power 420 > 260, meter on spawn 280 > 120
+--Entering Power Gear no longer gives you 20 free Power Gear meter
+-Fixed bug where Torch would seize on the Player Setup class select
+--Fixed bug where Torch would disappear if Time Stopped in Power Gear

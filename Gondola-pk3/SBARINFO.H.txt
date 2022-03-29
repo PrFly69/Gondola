@@ -948,7 +948,7 @@ Drawbar "VARTUNX","VAREMPTY",Ammo1,horizontal,58,184;
     
 IsSelected BlazingTorchBoss{Drawbar "VARTOR", "VAREMPTY", Ammo1, horizontal, 58, 184;
     DrawImage "VTORMETR",58,184;
-    InInventory TorchjutsuAmmo, 420{Drawbar "VARTORX", "VAREMPTY", Ammo1, horizontal, 58, 184;}
+    InInventory TorchjutsuAmmo, 260{Drawbar "VARTORX", "VAREMPTY", Ammo1, horizontal, 58, 184;}
     Drawbar "VARTOK", "VBAREMPTY", Ammo2, horizontal, 58, 176;
     InInventory WaveDashAmmo, 100{Drawbar "VARTOKX", "VAREMPTY", Ammo2, horizontal, 58, 176;}
 	InInventory not TorchDiveTimeAmmo,350{DrawBar"VARTODVK","VNOBAR",TorchDiveTimeAmmo,horizontal,58,176;}
