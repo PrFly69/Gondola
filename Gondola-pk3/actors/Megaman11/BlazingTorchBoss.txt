@@ -538,7 +538,7 @@ Obituary "$OB_TORCH2"
 damage (40)
 Radius 28
 Height 16
-speed 80
+speed 60
 scale 4
 States
 {
@@ -672,7 +672,7 @@ stop
 actor TorchKickVert2 : TorchKick2
 {
 damage (200)
-Radius 48
+Radius 56
 Height 64
 speed 60
 scale 6
