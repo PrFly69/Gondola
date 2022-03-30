@@ -2340,9 +2340,22 @@ CHANGELOG
 
 
 =====2.5H
-
 ==Alien
 -Flight cap 160 > 240
+
+==Darkman1
+-HP 155.0 > 135.0
+
+==Astroman
+-Flight cap 160 > 180
+
+==Fuseman
+-Flight cap 160 > 120
+-Mainfire reworked
+--Now rips through enemies once for 9.0 damage, has lingering explosion that hits for 3.0 four times over 28 tics
+--Rate of fire decreased by 6 tics
+-Altfire ammo cap/requirement 280 > 180 (ammo regen unchanged)
+--Now increased mainfire speed while in radius from 36 to 64
 
 ==Tundraman
 -Now has the correct name in allyinfo rather than Acid and Bounce names

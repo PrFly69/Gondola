@@ -13,7 +13,7 @@ actor Fuseman : ClassBase //85
 	
 	player.maxhealth 850
 	health 850
-	player.jumpz 10
+	player.jumpz 12
 	Player.ForwardMove 0.72, 0.72
 	Player.SideMove 0.7, 0.7
 
