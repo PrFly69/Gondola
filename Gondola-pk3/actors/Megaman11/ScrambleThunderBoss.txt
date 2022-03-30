@@ -317,8 +317,12 @@ actor FuseM_LivewireProtect : PowerProtection {
 	DamageFactor "FuseM_Livewire", 0.0
 	Powerup.Duration 5
 }
-actor FuseM_LivewireMiniProtect : PowerProtection {
-	DamageFactor "FuseM_LivewireMini", 0.0
+actor FuseM_LivewireMini1Protect : PowerProtection {
+	DamageFactor "FuseM_LivewireMini1", 0.0
+	Powerup.Duration 5
+}
+actor FuseM_LivewireMini2Protect : PowerProtection {
+	DamageFactor "FuseM_LivewireMini2", 0.0
 	Powerup.Duration 5
 }
 actor FusemanMeleeProtect : PowerProtection {
@@ -547,19 +551,19 @@ actor FuserShoot
 			FSST A 1 A_SpawnItemEx("FuseM_Damager",0,0,0,0,0,0,0,1)
 			FSST A 0 A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)//A_SpawnItemEx("FuseSmallSparkFX",random(-8,8),random(-8,8),random(-8,8))
 			FSST A 1 A_SpawnItemEx("FuseM_Damager",0,0,0,0,0,0,0,1)
-			FSST A 0 A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
+			FSST A 0 //A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
 			FSST B 1 A_SpawnItemEx("FuseM_Damager",0,0,0,0,0,0,0,1)
 			FSST B 0 A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
 			FSST B 1 A_SpawnItemEx("FuseM_Damager",0,0,0,0,0,0,0,1)
-			FSST B 0 A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
+			FSST B 0 //A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
 			FSST C 1 A_SpawnItemEx("FuseM_Damager",0,0,0,0,0,0,0,1)
 			FSST C 0 A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
 			FSST C 1 A_SpawnItemEx("FuseM_Damager",0,0,0,0,0,0,0,1)
-			FSST C 0 A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
+			FSST C 0 //A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
 			FSST B 1 A_SpawnItemEx("FuseM_Damager",0,0,0,0,0,0,0,1)
 			FSST B 0 A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
 			FSST B 1 A_SpawnItemEx("FuseM_Damager",0,0,0,0,0,0,0,1)
-			FSST B 0 A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
+			FSST B 0 //A_SpawnItemEx("FuseM1SparkleFX2",0,0,0,0,0,0,0,1)
 			FSST A 0 A_Countdown
 			loop
 			
@@ -728,12 +732,12 @@ stop
 
 actor FuserShootTemp_L : FuserShoot
 {
-Damage (30)
+Damage (45)
 speed 24
 Radius 10
 Height 12
 scale 2.5
-Damagetype "FuseM_LivewireMini"
+Damagetype "FuseM_LivewireMini1"
 Obituary "$OB_FUSESHOT2"
 	States
 	{
@@ -754,7 +758,8 @@ Obituary "$OB_FUSESHOT2"
 
 actor FuserShootTemp_R : FuserShootTemp_L
 {
-	Obituary "$OB_FUSESHOT3"
+Damagetype "FuseM_LivewireMini2"
+Obituary "$OB_FUSESHOT3"
 	States
 	{
 		Spawn:
@@ -1061,6 +1066,7 @@ actor FusemanFuseBeacon
 	Scale 2.5
 	var int user_a; //Angle
 	var int user_rotspeed;
+	var int user_rotdistance;
 	
 	+DONTRIP
 +NOGRAVITY//
@@ -1092,12 +1098,17 @@ mass 99999
 			//stop
 		SpawnL:
 			TNT1 A 0 A_PlaySoundEx("fuseman/telestart", "Weapon")
-			11FG A 12
+		SpawnL2:
+			11FG A 1
 			TNT1 A 0 A_GiveToTarget("FuserOut",1)
 			11FG A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Close")
-			//TNT1 A 0 A_SpawnItemEx("FuseChain",0,0,0,0,0,0,0,1) 
-			//TNT1 A 0 A_SpawnItemEx("FuseChain2",0,0,0,0,0,0,0,1) 
-			//"####" "#" 0 A_ChangeFlag("SHOOTABLE",1)
+			TNT1 A 0 A_GiveInventory("WeaponCharge",25)
+			TNT1 A 0 A_SetUserVar("user_rotspeed",user_rotspeed-9)
+			TNT1 A 0 A_SetUserVar("user_rotdistance",user_rotdistance+25)
+			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon",user_rotdistance,0,0,0,0,0,user_rotspeed,1)
+			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon",user_rotdistance,0,0,0,0,0,user_rotspeed+180,1)
+			TNT1 A 0 A_JumpIfInventory("WeaponCharge",300,"SpawnLOOP")
+			loop
 		SpawnLOOP:
 			TNT1 A 0 A_JumpIfInTargetInventory("FusemanAmmo",1,1)
 			goto ZapDetonate
@@ -1130,8 +1141,8 @@ mass 99999
 			TNT1 A 0 A_RadiusGive("FuseDoubleMain_P",300,514)
 			11FG A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Close")
 			//TNT1 A 0 A_Explode(40, 32, 0, 0, 32)
-			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon",300,0,0,0,0,0,user_rotspeed,1)
-			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon",300,0,0,0,0,0,user_rotspeed+180,1)
+			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon3",300,0,0,0,0,0,user_rotspeed,1)
+			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon3",300,0,0,0,0,0,user_rotspeed+180,1)
 			TNT1 A 0 A_JumpIfInTargetInventory("FusemanAmmo",1,1)
 			goto ZapDetonate
 			11FG D 1 	
@@ -1141,8 +1152,8 @@ mass 99999
 			TNT1 A 0 A_RadiusGive("FuseDoubleMain_P",300,514)
 			11FG A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Close")
 			//TNT1 A 0 A_Explode(40, 32, 0, 0, 32)
-			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon2",300,0,0,0,0,0,user_rotspeed,1)
-			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon2",300,0,0,0,0,0,user_rotspeed+180,1)
+			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon4",300,0,0,0,0,0,user_rotspeed,1)
+			TNT1 A 0 A_SpawnItemEx("FuseChainBeacon4",300,0,0,0,0,0,user_rotspeed+180,1)
 			loop
 			
 		Close:
@@ -1203,7 +1214,7 @@ mass 99999
 			TNT1 A 0 A_SpawnItemEx("FusemanDamager", 0, 0, 0, 0, 0, 0, 0, 1)
 			TNT1 A 0 A_GiveInventory("CutterFlag",1)
 			11FG BCDBCDBCD 1 A_GiveToTarget("FuseTracerHaltPowerup")
-			TNT1 A 0 A_JumpIfInventory("CutterFlag",6, 1)
+			TNT1 A 0 A_JumpIfInventory("CutterFlag",3, 1)
 			goto ZapDetonateShot
 			STAC A 0 A_PlaySoundEx("fuseman/hvend","body") 
 			11FG A 0 A_TakeFromTarget("FuserOut",1)
@@ -1237,7 +1248,7 @@ TNT1 A 0
 TNT1 A 0
 SpawnLOOP:
 TNT1 A 0 A_SpawnItemEx("FuseM1SparkleFX1",random(-8,8),random(-8,8),random(-8,8),0,0,0,0,1)
-SCTH A 1 A_SpawnItemEx("FusemanDamager2")
+11FS A 1 A_SpawnItemEx("FuseChainDamager")
 stop
 }
 }
@@ -1251,7 +1262,35 @@ TNT1 A 0
 TNT1 A 0
 SpawnLOOP:
 TNT1 A 0 A_SpawnItemEx("FuseM1SparkleFX1",random(-8,8),random(-8,8),random(-8,8),0,0,0,0,1)
-SCTH B 1 A_SpawnItemEx("FusemanDamager2")
+11FS B 1 A_SpawnItemEx("FuseChainDamager")
+stop
+}
+}
+
+actor FuseChainBeacon3 : FuseChainBeacon
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+SpawnLOOP:
+TNT1 A 0 A_SpawnItemEx("FuseM1SparkleFX1",random(-8,8),random(-8,8),random(-8,8),0,0,0,0,1)
+11FS C 1 A_SpawnItemEx("FuseChainDamager")
+stop
+}
+}
+
+actor FuseChainBeacon4 : FuseChainBeacon
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+SpawnLOOP:
+TNT1 A 0 A_SpawnItemEx("FuseM1SparkleFX1",random(-8,8),random(-8,8),random(-8,8),0,0,0,0,1)
+11FS D 1 A_SpawnItemEx("FuseChainDamager")
 stop
 }
 }
@@ -1519,23 +1558,23 @@ actor FuseMainX_CI : TeamColor_CI
 	{
 		FireX:
 			TNT1 A 0 A_FireCustomMissile("FuserShootX",0,2,-8,0)
-			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_L",0,0,2,0)
-			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_R",0,0,-18,0)
+			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_L",6,0,2,0)
+			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_R",-6,0,-18,0)
 			goto Done
 		FireB:
 			TNT1 A 0 A_FireCustomMissile("FuserShootXB",0,2,-8,0)
-			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_LB",0,0,2,0)
-			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_RB",0,0,-18,0)
+			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_LB",6,0,2,0)
+			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_RB",-6,0,-18,0)
 			goto Done
 		FireR:
 			TNT1 A 0 A_FireCustomMissile("FuserShootXR",0,2,-8,0)
-			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_LR",0,0,2,0)
-			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_RR",0,0,-18,0)
+			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_LR",6,0,2,0)
+			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_RR",-6,0,-18,0)
 			goto Done
 		FireO:
 			TNT1 A 0 A_FireCustomMissile("FuserShootXO",0,2,-8,0)
-			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_LO",0,0,2,0)
-			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_RO",0,0,-18,0)
+			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_LO",6,0,2,0)
+			TNT1 A 0 A_FireCustomMissile("FuserShootTemp_RO",-6,0,-18,0)
 			goto Done
 		FireP:
 			TNT1 A 0 A_FireCustomMissile("FuserShootXP",0,2,-8,0)
