@@ -129,6 +129,41 @@ else ACS_NamedExecute("RespawnDReset",0);
 }
 ////
 
+// Protoman shield toss recode
+script "gond_protoshieldcheck" (int target, int range) {
+    int tracerRange = range + 5;
+    int tracer = -1;
+    int dist;
+
+    for(int i = 0; i < 64; i++) {
+        dist = xyzDistance(0, i + 1000);
+        if(i + 1000 != target && (GetPlayerInfo(target-1000,PLAYERINFO_TEAM) == 4 || GetPlayerInfo(target-1000,PLAYERINFO_TEAM) != GetPlayerInfo(i,PLAYERINFO_TEAM)) && CheckSight(0, i+1000, 0) && dist <= range && dist < tracerRange) {
+            tracer = i + 1000;
+            tracerRange = dist;
+        }
+    }
+    
+    if(tracer > 0) {
+        int x, y, z, ang, pitch, len;
+        x = getactorx(tracer) - getactorx(0);
+        y = getactory(tracer) - getactory(0);
+
+        ang = vectorangle(x,y);
+        if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
+        else len = fixeddiv(x, cos(ang));
+
+        z = (getactorz(tracer) + 32.0) - (getactorz(0)+16.0);
+
+        pitch = -vectorangle(len, z);
+
+        setactorangle(0,ang);
+        setactorpitch(0, pitch);
+        SetPointer(AAPTR_TRACER, tracer);
+    }
+        
+    SetResultValue(tracer);
+}
+
 // Flash Stopper Script
 Script "CCBM_BrightNewBlind" (void) 
 {
