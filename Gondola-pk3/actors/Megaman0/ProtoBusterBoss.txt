@@ -54,8 +54,9 @@ PROC D 0 A_GiveInventory("StopShield",1)
 PROC D 0 A_PlaySoundEx("weapon/mbuster","Weapon")
 PROC D 0 A_GiveInventory("ProtomanHeroMain_CI",1)
 PROC DDD 0 A_TakeInventory("WeaponCharge",999)
-PROC D 0 A_JumpIfInventory("HeroProtoShieldTossedFlag",1,2)
-PROC KL 1
+PROC D 0 A_JumpIfInventory("HeroProtoShieldTossedFlag",1,3)
+PROC K 1
+PROC L 1
 PROC D 1
 PROC EF 2
 PROC FEDD 1
@@ -454,11 +455,10 @@ loop
 
 actor HeroProtoShieldShot3 : HeroProtoShot3
 {
-+THRUACTORS
 +THRUSPECIES
 Species "ProtomanHeroStupidShield"
 Damage (200)
-Speed 1
+Speed 50
 States
 {
 Spawn:
@@ -466,16 +466,9 @@ TNT1 A 0
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-TNT1 A 0 A_TransferPointer(AAPTR_TARGET,AAPTR_DEFAULT,AAPTR_FRIENDPLAYER,AAPTR_TARGET)
-TNT1 A 0 A_ScaleVelocity(50)
-TNT1 A 0 A_ChangeFlag("THRUACTORS",0)
 TNT1 A 0 A_PlaySound("item/protoreflect")
-PRCH A 1 A_ChangeFlag("THRUSPECIES",1)
-goto SpawnX
-SpawnX:
 PRCH AAABBB 1 A_SpawnItemEx("HeroProtoShotTrail",0,0,0,0,0,0,0,1)
-loop
-
+goto SpawnLOOP+1
 }
 }
 
@@ -509,7 +502,6 @@ States
 {
 Spawn:
 TNT1 A 0
-PROS B 0 A_RearrangePointers(AAPTR_Target,AAPTR_Target,AAPTR_Null)
 PROS B 1
 PROS B 0 A_ChangeFlag(THRUACTORS, false)
 PROS B 1 A_JumpIf(velx == 0 && vely == 0, "Death")
@@ -522,8 +514,7 @@ PROS B 0 A_ChangeFlag("THRUACTORS", 0)
 PROS B 1 A_JumpIf(velx == 0 && vely == 0, "Death")
 goto Spawn
 Death:
-PROS B 0 A_RearrangePointers(AAPTR_Target,AAPTR_Target,AAPTR_Null)
-PROS B 0 A_SpawnItemEx("HeroProtoShieldTossed",0,0,0,0,0,0,0,sxf_transfertranslation|sxf_transferpointers)
+PROS B 0 A_SpawnItemEx("HeroProtoShieldTossed",0,0,1,0,0,0,0,sxf_transfertranslation|sxf_transferpointers)
 stop
 }
 }
@@ -533,95 +524,116 @@ actor HeroProtoShieldTossR : HeroProtoShieldToss{translation "192:192=171:171","
 actor HeroProtoShieldTossO : HeroProtoShieldToss{translation "192:192=104:104","198:198=128:128"}
 actor HeroProtoShieldTossP : HeroProtoShieldToss{translation "192:192=229:229","198:198=232:232"}
 
-//Let it be made abundantly clear: you people deserve less than you have. You have ALWAYS deserved less than you have, and certainly less than you will get in the future.
-//The fact that any reputable person has the gall to force a recode of this shitty fucking shield just for compatibility with a competitively unviable server variable
-//has me questioning if it's about time for Noah to make a second ark.
-//Luckily for the people who couldn't be bothered to do this themselves, as it turns out, it was actually easy as hell.
-//+FRIENDLY + sv_shootthroughallies means you can never shoot your shield? Fine. Disable +FRIENDLY except in the state the shield fires on.
-//Woo.
-//I hate Megamans I hate the antichrist
-// - GREG.EXE
-
+// One-week-old problems require one-day-old solutions.
 actor HeroProtoShieldTossed
 {
-- SOLID
-MONSTER
-+NOCLIP
-+DONTBLAST
++MISSILE
+-NOBLOCKMAP
++NOGRAVITY
++NOTARGETSWITCH
 +SKYEXPLODE
++RIPPER
++THRUGHOST
+damage(0)
+
 -SOLID
--COUNTKILL
+
++DONTBLAST
 +SHOOTABLE
-+HITTRACER
 +DONTDRAIN
 +CANTSEEK
-+FORCEALLYCOLLISION
-+LOOKALLAROUND
 speed 0
 scale 2.5
-+MISSILEMORE
-+MISSILEEVENMORE
 Species "ProtomanHeroStupidShield"
 Health 1000
-speed 0
 Radius 16
 Height 32
-reactiontime 10
 painchance 0
 painchance "ProtoM_Shot3", 999
 damagefactor "ProtoM_Shot3", 0.1
 States
 {
 Spawn:
-PROS B 0
-PROS B 0 A_RearrangePointers(AAPTR_Target,AAPTR_Target,AAPTR_Null)
-PROS A 0 A_ChangeFlag("NOBLOCKMAP",0)
-PROS A 0 A_ChangeFlag("NOPAIN",0)
-goto SpawnC
-SpawnC:
-PROS A 0 A_ChangeFlag("FRIENDLY",0)
-PROS A 0 A_ClearTarget
-P_SH ABCD 4 A_JumpIfInventory("ShieldReturn",1,"ShieldReturn",AAPTR_Master)
-P_SH H 0 A_JumpIfInventory("IsDead",1,"ShieldReturn",AAPTR_Master)
-P_SH EFGH 4 A_JumpIfInventory("ShieldReturn",1,"ShieldReturn",AAPTR_Master)
-P_SH H 0 A_JumpIfInventory("IsDead",1,"ShieldReturn",AAPTR_Master)
+P_SH A 0
+P_SH ABCD 4 A_JumpIfInTargetInventory("ShieldReturn",1,"ShieldReturn")
+P_SH H 0 A_JumpIfInTargetInventory("IsDead",1,"ShieldReturn")
+P_SH EFGH 4 A_JumpIfInTargetInventory("ShieldReturn",1,"ShieldReturn")
+P_SH H 0 A_JumpIfInTargetInventory("IsDead",1,"ShieldReturn")
 P_SH H 0 DamageThing(5)
 loop
 Pain.ProtoM_Shot3:
-PROS A 0 A_ChangeFlag("FRIENDLY",1)
-PROS A 0 A_RearrangePointers(AAPTR_Null,AAPTR_Master,AAPTR_Null) //Yeah, this is redundant with A_ClearTarget, idc
-P_SH A 1 A_LookEx(42,0,1024,0,360,"FireTheShot")//A_Chase //Yeah, LookEx fov 0 with +LOOKALLAROUND is supposed to act the same as 360, but it doesn't in practice, so fuck it
-P_SH A 0 A_JumpIfTargetInLOS("FireTheShot",0,0)
-goto SpawnC
-FireTheShot:
-P_SH A 0 A_GiveInventory("ProtomanHeroShieldShot3_CI",1)
-goto SpawnC
+"####" "#" 0 
+"####" "#" 0 A_JumpIf(ACS_NamedExecuteWithResult("gond_protoshieldcheck",ACS_NamedExecuteWithResult("core_gettarget"),1024) >= 0, "Shot")
+"####" "#" 1 A_JumpIf(true,"Spawn")
+wait
+Shot:
+"####" "#" 0 A_GiveInventory("ProtomanHeroShieldShot3_CI",1)
+goto Spawn
 
 ShieldReturn:
 P_SH A 0
-PROS B 0 A_SpawnItemEx("TeleportFogFancy",0,0,0,0,0,0,0,1)
-PROS B 0 A_GiveInventory("HeroProtoShieldTossedFlag_PickupEnd",1,AAPTR_Master)
+P_SH A 0 A_SpawnItemEx("TeleportFogProto",0,0,0,0,0,0,0,1)
+P_SH A 0 A_GiveToTarget("HeroProtoShieldTossedFlag_PickupEnd",1)
 stop
 
 Death:
 XDeath:
-Crash:
-PROS A 0 A_ChangeFlag("FRIENDLY",1) //Just in case.
-PROS A 0 A_RearrangePointers(AAPTR_Master,AAPTR_Master,AAPTR_Master) //Just in case.
-PROS B 0 A_GiveInventory("HeroProtoShieldTossedFlag_PickupEnd",1,AAPTR_Master)
+TNT1 A 5 A_GiveToTarget("HeroProtoShieldTossedFlag_PickupEnd",1)
 stop
 }
 }
 
-actor ShieldCooldown : Powerup
+actor TeleportFogProto : TeleportFogFancy
 {
-powerup.duration 175
-+INVENTORY.ADDITIVETIME
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 //Thing_SetTranslation(0, ACS_NamedExecuteWithResult("core_copytranslation"))
+TFOG CB 3
+TFOG A 65 A_ChangeVelocity(0,0,13,CVF_RELATIVE|CVF_REPLACE)
+stop
+}
 }
 
-actor ShieldCooldownEx : ShieldCooldown
+actor ShieldCooldownHelper : BasicHelper
 {
-powerup.duration 105
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("ShieldCooldown",175)
+SpawnLoop:
+TNT1 A 1
+TNT1 A 0 A_TakeFromTarget("ShieldCooldown",1)
+TNT1 A 5 A_JumpIfInTargetInventory("ShieldCooldown",1,"SpawnLoop")
+stop
+}
+}
+actor ShieldCooldown : Inventory
+{
+inventory.amount 1
+inventory.maxamount 175
+}
+
+actor ShieldCooldownEXHelper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("ShieldCooldownEX",105)
+SpawnLoop:
+TNT1 A 1
+TNT1 A 0 A_TakeFromTarget("ShieldCooldownEX",1)
+TNT1 A 5 A_JumpIfInTargetInventory("ShieldCooldownEX",1,"SpawnLoop")
+stop
+}
+}
+actor ShieldCooldownEX : Inventory
+{
+inventory.amount 1
+inventory.maxamount 105
 }
 
 actor HeroProtoShieldTossedFlag_PickupEnd : CustomInventory
@@ -632,9 +644,9 @@ TNT1 A 0 A_TakeInventory("ProtomanHeroShieldReturnItem",999)
 TNT1 A 0 A_TakeInventory("HeroProtoShieldTossedFlag",999)
 TNT1 A 0 A_PlaySoundEx("weapon/ProtoShieldPickup","Weapon")
 TNT1 A 0 A_JumpIfInventory("ProtomanUpgradeFlag",1,2)
-TNT1 A 0 A_GiveInventory("ShieldCooldown")
+TNT1 A 0 A_SpawnItemEX("ShieldCooldownHelper")
 goto End
-TNT1 A 0 A_GiveInventory("ShieldCooldownEx")
+TNT1 A 0 A_SpawnItemEX("ShieldCooldownEXHelper")
 End:
 TNT1 A 0 A_GiveInventory("ProtomanHeroShieldTossItem")
 stop
@@ -909,23 +921,23 @@ states
 {
 Pickup:
 TNT1 A 0
-TNT1 A 0 A_JumpIfInventory("LightTeamFlag",1,"P_B",AAPTR_FRIENDPLAYER)
-TNT1 A 0 A_JumpIfInventory("WilyTeamFlag",1,"P_R",AAPTR_FRIENDPLAYER)
-TNT1 A 0 A_JumpIfInventory("CossackTeamFlag",1,"P_O",AAPTR_FRIENDPLAYER)
-TNT1 A 0 A_JumpIfInventory("KingTeamFlag",1,"P_P",AAPTR_FRIENDPLAYER)
-TNT1 A 0 A_CustomMissile("HeroProtoShieldShot3",12,16,0,4)
+TNT1 A 0 A_JumpIfInTargetInventory("LightTeamFlag",1,"P_B")
+TNT1 A 0 A_JumpIfInTargetInventory("WilyTeamFlag",1,"P_R")
+TNT1 A 0 A_JumpIfInTargetInventory("CossackTeamFlag",1,"P_O")
+TNT1 A 0 A_JumpIfInTargetInventory("KingTeamFlag",1,"P_P")
+TNT1 A 0 A_SpawnItemEX("HeroProtoShieldShot3",0,0,16,cos(-pitch)*50,0,sin(-pitch)*50)
 goto Done
 P_B:
-TNT1 A 0 A_CustomMissile("HeroProtoShieldShot3B",12,16,0,4)
+TNT1 A 0 A_SpawnItemEX("HeroProtoShieldShot3B",0,0,16,cos(-pitch)*50,0,sin(-pitch)*50)
 goto Done
 P_R:
-TNT1 A 0 A_CustomMissile("HeroProtoShieldShot3R",12,16,0,4)
+TNT1 A 0 A_SpawnItemEX("HeroProtoShieldShot3R",0,0,16,cos(-pitch)*50,0,sin(-pitch)*50)
 goto Done
 P_O:
-TNT1 A 0 A_CustomMissile("HeroProtoShieldShot3O",12,16,0,4)
+TNT1 A 0 A_SpawnItemEX("HeroProtoShieldShot3O",0,0,16,cos(-pitch)*50,0,sin(-pitch)*50)
 goto Done
 P_P:
-TNT1 A 0 A_CustomMissile("HeroProtoShieldShot3P",12,16,0,4)
+TNT1 A 0 A_SpawnItemEX("HeroProtoShieldShot3P",0,0,16,cos(-pitch)*50,0,sin(-pitch)*50)
 goto Done
 }
 }

@@ -2340,6 +2340,14 @@ CHANGELOG
 
 
 =====2.5H
+==General
+-Respawn timer reimplemented after accidental removal in 2.5
+
+==Protoman
+-Shield rescripted, now correctly functions with sv_shootthroughallies on or off
+--Fixes 2.5 bug where shield would lose the ability to rebound and could be picked up by enemy players
+--Visuals cleaned up by Trillster, cooldown now displays gradually
+
 ==Alien
 -Flight cap 160 > 240
 
