@@ -2081,6 +2081,7 @@ CHANGELOG
 *Uses Trillster's HP decimal system :)
 -New startup screen by A-Chan, new startup music by CosmicGem
 -All startup errors fixed
+-Respawn timer script removed, as Zandronum has its own now
 
 ==Megaman
 -Second Tier Chargeshot damage 25.0 > 30.0
@@ -2340,9 +2341,6 @@ CHANGELOG
 
 
 =====2.5H
-==General
--Respawn timer reimplemented after accidental removal in 2.5
-
 ==Protoman
 -Shield rescripted, now correctly functions with sv_shootthroughallies on or off
 --Fixes 2.5 bug where shield would lose the ability to rebound and could be picked up by enemy players
