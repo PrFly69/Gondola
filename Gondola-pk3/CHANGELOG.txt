@@ -2345,6 +2345,9 @@ CHANGELOG
 -Fixed Plant Trapper using Centaur HUD sprite
 --Fixed Plant Trapper SBAR not showing for Maestro WoodCustom
 
+==Flagbearer (Green Devil)
+-Can no longer pick up Auto's Item-2 and Wire, which he can't use anyway
+
 ==Megaman
 -Fixed Mega Buster doing hitstun
 
