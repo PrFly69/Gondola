@@ -58,6 +58,9 @@ OB_DUOCSLAM = "%o was chokeslammed by %k's grip of justice.";
 OB_DUOWAVE = "%o lost %p footing to %k's Justice Shockwave.";
 OB_DUOGRIP = "%o could not escape from %k's Grip of Justice.";
 
+//Plug
+OB_PLUGITINEX = "%k turned %o into a NEMA standardized power outlet.";
+
 //Yamato
 OB_YAMATODIVE = "%o was honorably defeated by %k's Spear Dive.";
 //Astro
@@ -469,6 +472,7 @@ OB_THUNDERZAP = "%o was zapped by %k's Zap Dash.";
 
 //Oilman
 OB_OILSLED = "%o crashed and slipped from %k's Oil Sled.";
+OB_OILTRIP = "%o slipped and crashed on %k's Oil Puddle.";
 
 //Sparkman
 OB_SPARKSUPLEX = "%k's Spark Tazer soldered %o's circuits into malfunction.";

@@ -280,7 +280,7 @@ actor PlugManPlugShot
 var int user_PTID;
 PROJECTILE
 damagetype "PlugM_Prong"
-Obituary "$o's was tripped by %k's Plug Ball."
+Obituary "$OB_PLUGITINEX"
 +HITTRACER
 +FORCEALLYCOLLISION
 +THRUGHOST

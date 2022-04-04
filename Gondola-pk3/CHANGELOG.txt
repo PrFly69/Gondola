@@ -2341,6 +2341,9 @@ CHANGELOG
 
 
 =====2.5H
+==General
+-SV_FLAGHOTPOTATO now correctly has 10x applied
+
 ==Copyweapons
 -Fixed Plant Trapper using Centaur HUD sprite
 --Fixed Plant Trapper SBAR not showing for Maestro WoodCustom
@@ -2363,6 +2366,9 @@ CHANGELOG
 ==Elecman
 -Trailing FX on Thunder Beam now waves up and down, similarly to original sprite
 
+==Oilman
+-Now has an obituary for killing someone with a stationary puddle
+
 ==Airman
 -Fixed Air Shooter doing hitstun
 
@@ -2377,6 +2383,9 @@ CHANGELOG
 
 ==Astroman
 -Flight cap 160 > 180
+
+==Plugman
+-Now has an obituary for killing someone with altfire's first hit
 
 ==Fuseman
 -Speed 0.7/0.72 > 0.73/0.75

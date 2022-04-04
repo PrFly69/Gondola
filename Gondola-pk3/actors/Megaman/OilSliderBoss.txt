@@ -716,7 +716,7 @@ actor OilSpillXP : OilSpillX{Translation"192:192=229:229","198:198=232:232","250
 Actor OilmanBlob
 {
 damagetype "OilM_Shot"
-Obituary "$OB_OilmanBlob"
+Obituary "$OB_OILTRIP"
 +MISSILE
 +NODAMAGETHRUST
 +DONTDRAIN

@@ -7,6 +7,6 @@ user bool ccbm_mapmarker = true;
 server bool SV_COPYDISPLAY = true;
 
 //Decides how much life the flagbearer loses for each time the flag has been picked up without being returned.
-server int SV_FLAGHOTPOTATO = 10;
+server int SV_FLAGHOTPOTATO = 100;
 
 //My brother in christ, sv_respawndelaytime
