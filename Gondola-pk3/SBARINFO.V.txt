@@ -307,7 +307,7 @@ IsSelected FakeRepeaterWepC{DrawBar"XTR0BR_R","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory RepeaterChamber,1{DrawBar"BARFLS1","NOBAR",RepeaterChamber,vertical,16,8;}}
 IsSelected RainbowGalaxyWepC{DrawBar"BARAMM66","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected DynamoTendrilWepC{Drawbar"XTR0BR_P","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected PlantTrapperWepC{Drawbar"XTR0BR_O","BAREMPTY",Ammo1,vertical,16,8;}
+IsSelected PlantTrapperWepC, PlantTrapperWepCMaestro{Drawbar"XTR0BR_O","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected CentaurArrowWepC{DrawBar"BARAMM26","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected DarkShieldWepC{DrawBar"BARAMMO1","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected GravitySphereWepC{DrawBar"BARAMM18","BAREMPTY",Ammo1,vertical,16,8;}

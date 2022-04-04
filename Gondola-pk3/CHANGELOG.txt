@@ -2341,8 +2341,12 @@ CHANGELOG
 
 
 =====2.5H
-==CBM Porting Issues
--Fixed Mega Buster, Air Shooter, Flame Blast and Mirror Buster doing hitstun
+==Copyweapons
+-Fixed Plant Trapper using Centaur HUD sprite
+--Fixed Plant Trapper SBAR not showing for Maestro WoodCustom
+
+==Megaman
+-Fixed Mega Buster doing hitstun
 
 ==Protoman
 -Shield rescripted, now correctly functions with sv_shootthroughallies on or off
@@ -2356,11 +2360,17 @@ CHANGELOG
 ==Elecman
 -Trailing FX on Thunder Beam now waves up and down, similarly to original sprite
 
+==Airman
+-Fixed Air Shooter doing hitstun
+
 ==Alien
 -Flight cap 160 > 240
 
 ==Darkman1
 -HP 155.0 > 135.0
+
+==Flameman
+-Fixed Flame Blast doing hitstun
 
 ==Astroman
 -Flight cap 160 > 180
@@ -2398,3 +2408,6 @@ CHANGELOG
 --Entering Power Gear no longer gives you 20 free Power Gear meter
 -Fixed bug where Torch would seize on the Player Setup class select
 --Fixed bug where Torch would disappear if Time Stopped in Power Gear
+
+==Enker
+-Fixed Mirror Buster doing hitstun
