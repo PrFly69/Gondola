@@ -6,7 +6,7 @@
 //Flagbearer health reduction script, because nobody enjoys the sound of 9000 pain noises.
 script "CCBM_DevilHealthDrainer" (void)
 {
-	while((CheckInventory("BomuEnd") || CheckInventory("IsDead")) == false)
+	while((CheckInventory("BomuEnd") || CheckInventory("IsDead") || !PlayerInGame(PlayerNumber())) == false)
 	{
 		delay(1);
 		SetActorProperty(0, APROP_HEALTH, GetActorProperty(0, APROP_HEALTH) - 20); //I can't believe we almost forgot to 10x this.

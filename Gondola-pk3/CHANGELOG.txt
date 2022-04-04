@@ -2350,6 +2350,7 @@ CHANGELOG
 
 ==Flagbearer (Green Devil)
 -Can no longer pick up Auto's Item-2 and Wire, which he can't use anyway
+--Fixed bug where disconnecting during charged M2 crashed server
 
 ==Megaman
 -Fixed Mega Buster doing hitstun
