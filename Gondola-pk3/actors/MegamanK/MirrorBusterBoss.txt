@@ -436,7 +436,7 @@ fail
     +THRUGHOST
 	Translation "192:192=229:229"
 	Projectile
-	DamageType "MirrorBuster1"
+	DamageType "Enker_Shot"
 	Obituary "$OB_MIRRORREFLECT"
 	Damage (160)
 	Radius 10
@@ -465,7 +465,7 @@ fail
 
   Actor MirrorShotLargeCust : MirrorShotSmallCust
   {
-    DamageType "MirrorBuster3"
+    DamageType "Enker_Shot2"
 	Obituary "$OB_MIRRORREFLECT"
 	Radius 16
 	Height 18

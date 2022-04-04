@@ -507,7 +507,7 @@ IsSelected DocBusterQuickMetalWep{DrawBar"XTR0VR_C","VAREMPTY",DocVirusAmmo,hori
 IsSelected FlashStopperBoss{DrawBar"VARAMM12","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"VARAMM18","VAREMPTY",Ammo2,horizontal,58,176;}
 IsSelected RainFlushBoss{Drawbar"VARAMM19","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected DrillBombBoss{Drawbar"VARTOKX","VAREMPTY",Ammo1,horizontal,58,184;
+IsSelected DrillBombBoss{Drawbar"DRILVAR","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"VARAMMO1","VAREMPTY",DigLimit,horizontal,58,176;}
 IsSelected PharaohShotBoss{Drawbar"VARAMM20","VAREMPTY",Ammo1,horizontal,58,184;
 						   DrawImage"PHRRICON",178,175;

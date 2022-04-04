@@ -32,6 +32,9 @@ texture VARYAM,56,8{patch BARYAM,0,0{rotate 90}}
 texture BARYAMX,8,56{patch B_BAR12B,0,0{Translation "198:198=63:63","192:192=60:60","4:4=57:57"}}
 texture VARYAMX,56,8{patch BARYAMX,0,0{rotate 90}}//Yamato
 
+texture DRILBAR,8,56{patch B4ENER,0,0{Translation "192:192=87:87", "198:198=227:227"}}
+texture DRILVAR,56,8{patch DRILBAR,0,0{rotate 90}}//Drill
+
 texture GYROBAR,8,56{patch BARENERG,0,0{Translation"192:192=4:4","198:198=86:86"}}
 texture GYROVAR,56,8{patch GYROBAR,0,0{rotate 90}}//GyroMan
 

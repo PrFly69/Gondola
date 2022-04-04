@@ -212,9 +212,14 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnL:
-ELEB HH 1 A_SpawnItemEx("ElecBarrierProjTrail1",0,0,0,0,0,0,0,1)
-ELEB II 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,0,0,0,0,0,1)
-ELEB JJ 1 A_SpawnItemEx("ElecBarrierProjTrail3",0,0,0,0,0,0,0,1)
+ELEB H 1 A_SpawnItemEx("ElecBarrierProjTrail1",0,0,0,0,0,0,0,1)
+ELEB H 1 A_SpawnItemEx("ElecBarrierProjTrail1",0,0,7.5,0,0,0,0,1)
+ELEB I 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,15,0,0,0,0,1)
+ELEB I 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,7.5,0,0,0,0,1)
+ELEB J 1 A_SpawnItemEx("ElecBarrierProjTrail3",0,0,0,0,0,0,0,1)
+ELEB J 1 A_SpawnItemEx("ElecBarrierProjTrail3",0,0,-7.5,0,0,0,0,1)
+ELEB I 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,-15,0,0,0,0,1)
+ELEB I 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,-7.5,0,0,0,0,1)
 loop
 }
 }
@@ -231,8 +236,8 @@ damage (0)
 States
 {
 Spawn:
-TNT1 A 2
-ELEB KLM 1
+TNT1 A 1
+ELEB KLM 2
 stop
 }
 }
@@ -242,8 +247,8 @@ actor ElecBarrierProjTrail2 : ElecBarrierProjTrail1
 States
 {
 Spawn:
-TNT1 A 2
-ELEB MKL 1
+TNT1 A 1
+ELEB MKL 2
 stop
 }
 }
@@ -253,8 +258,8 @@ actor ElecBarrierProjTrail3 : ElecBarrierProjTrail1
 States
 {
 Spawn:
-TNT1 A 2
-ELEB LMK 1
+TNT1 A 1
+ELEB LMK 2
 stop
 }
 }

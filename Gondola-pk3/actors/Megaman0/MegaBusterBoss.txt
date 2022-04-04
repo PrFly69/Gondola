@@ -469,7 +469,7 @@ actor MegaShotC
 Translation "204:204=215:215","202:202=4:4","199:199=215:215"
 PROJECTILE
 +FORCEXYBILLBOARD
-damagetype "Buster"
+damagetype "MegaM_Shot"
 Obituary "$OB_MEGABUSTER"
 Damage (100)
 radius 5
@@ -497,7 +497,7 @@ actor MegaShotCX
 {
 Translation "204:204=215:215","202:202=4:4","199:199=215:215"
 PROJECTILE
-damagetype "Buster"
+damagetype "MegaM_Shot"
 Obituary "$OB_MEGABUSTER"
 Damage (100)
 radius 5
@@ -525,7 +525,7 @@ actor MidShotC
 {
 Translation "204:204=215:215"
 PROJECTILE
-damagetype "ChargeBuster"
+damagetype "MegaM_Shot2"
 Obituary "$OB_MEGABUSTER"
 Damage (200)
 radius 20
@@ -551,7 +551,7 @@ actor MidShotCX
 {
 Translation "204:204=215:215"
 PROJECTILE
-damagetype "ChargeBuster"
+damagetype "MegaM_Shot2"
 Obituary "$OB_MEGABUSTER"
 Damage (200)
 radius 20
@@ -578,7 +578,7 @@ actor MegaShot3
 {
 Translation "192:192=205:205","198:198=74:74","202:202=205:205"
 PROJECTILE
-damagetype "MegaBuster3"
+damagetype "MegaM_Shot2"
 Obituary "$OB_MEGABUSTER"
 +THRUGHOST
 Damage (300)
@@ -607,7 +607,7 @@ actor MegaShot3X
 {
 Translation "192:192=205:205","198:198=74:74","202:202=205:205"
 PROJECTILE
-damagetype "MegaBuster3"
+damagetype "MegaM_Shot2"
 Obituary "$OB_MEGABUSTER"
 +THRUGHOST
 Damage (300)
@@ -636,7 +636,7 @@ actor MegaShot4
 {
 Translation "198:198=198:198","202:202=193:193","204:204=215:215"
 PROJECTILE
-damagetype "MegaBuster3"
+damagetype "MegaM_Shot3"
 Obituary "$OB_MEGABUSTER"
 Damage (300)
 radius 18
@@ -663,7 +663,7 @@ actor MegaShot4X
 {
 Translation "198:198=198:198","202:202=193:193","204:204=215:215"
 PROJECTILE
-damagetype "MegaBuster3"
+damagetype "MegaM_Shot3"
 Obituary "$OB_MEGABUSTER"
 Damage (300)
 radius 18

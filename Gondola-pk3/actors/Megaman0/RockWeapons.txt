@@ -2088,7 +2088,7 @@ bouncecount 11
 bouncefactor 0.9
 wallbouncefactor 0.9
 Gravity 0.50
-damage(210)
+damage(140)
 radius 16
 height 16
 speed 40
@@ -2412,7 +2412,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(30,15,0,0,15)
+TNT1 A 1 A_Explode(10,15,0,0,15)
 stop
 }
 }

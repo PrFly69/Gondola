@@ -136,6 +136,7 @@ actor AirShotB : AirShot
 {
 damage (150)
 speed 35//22
+damagetype "AirM_Shot"
 States
 {
 Spawn:

@@ -534,7 +534,7 @@ DrawImage"DOCRICON",32,55;}
 IsSelected FlashStopperBoss{DrawBar"BARAMM12","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"BARAMM18","BAREMPTY",Ammo2,vertical,8,8;}
 IsSelected RainFlushBoss{Drawbar"BARAMM19","BAREMPTY",Ammo1,vertical,16,8;}
-IsSelected DrillBombBoss{Drawbar"BARTOKX","BAREMPTY",Ammo1,vertical,16,8;
+IsSelected DrillBombBoss{Drawbar"DRILBAR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"BARAMMO1","BAREMPTY",DigLimit,vertical,8,8;}
 IsSelected PharaohShotBoss{Drawbar"BARAMM20","BAREMPTY",Ammo1,vertical,16,8;
 						   DrawImage"PHRRICON",32,55;

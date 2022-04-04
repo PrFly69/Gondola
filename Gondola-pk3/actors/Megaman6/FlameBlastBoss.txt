@@ -86,7 +86,7 @@ Translation "198:198=227:227", "192:192=216:216"
 PROJECTILE
 Damage (170)
 Obituary "$OB_FLAMEBLAST"
-damagetype "FlameBlast"
+damagetype "FlameM_Shot"
 Height 10
 Radius 10
 Scale 2.5
