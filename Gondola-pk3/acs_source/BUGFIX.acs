@@ -1548,7 +1548,7 @@ script "cbm_PickupCTFMorph" PICKUP//Attempt at CTF stuff
 			Delay(1);
 			completeMorph(i,losthealth);
 		}
-
+		if(flagdropcount[t]<1){GiveInventory("CheeseProtectionHelper",1);}
 		Delay(1);
 	}
 	//Log(s:"cbm_PickupCTFMorph has ended for ",i:ActivatorTID());
