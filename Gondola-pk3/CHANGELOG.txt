@@ -2377,6 +2377,15 @@ CHANGELOG
 ==Alien
 -Flight cap 160 > 240
 
+==Toadman
+-Rain Flush now spawns from a cloud that slowly drifts forward (speed 5)
+--This gives Rain Flush higher effective range, but reduces the time Toadman spends protected by it
+--Damage 12.0/12.0/10.0/9.0 > 10.0/10.0/8.0/6.0
+--Radius 480/488/496/512 > 480/420/360/300
+--Max damage radius 112/80/48/16 > constant 112
+--Visuals adjusted to make range clearer
+
+
 ==Darkman1
 -HP 155.0 > 135.0
 
