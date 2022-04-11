@@ -2382,7 +2382,7 @@ CHANGELOG
 --This gives Rain Flush higher effective range, but reduces the time Toadman spends protected by it
 --Damage 12.0/12.0/10.0/9.0 > 10.0/10.0/8.0/6.0
 --Radius 480/488/496/512 > 480/420/360/300
---Max damage radius 112/80/48/16 > constant 112
+--Max damage radius 112/80/48/16 > constant 90
 --Visuals adjusted to make range clearer
 
 
