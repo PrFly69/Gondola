@@ -158,7 +158,7 @@ Pain.SpringM_Fist:Pain.ShadeM_Shot:Pain.ShadeM_Shot2:
 
 Pain.AstroM_Meteor:Pain.SearchM_Shot:Pain.SearchM_LockShot:Pain.SearchM_Disc:
 Pain.FrostM_Shot:Pain.GrenadeM_Kamikaze:
-Pain.Trio_Shot2:Pain.Trio_Shot3:Pain.TrioAstroCrush:Pain.TrioHomingSniper:Pain.TrioIceWave:
+Pain.Trio_Shot2:Pain.Trio_Shot3:Pain.TrioAstroCrush:Pain.TrioHomingSniper:
 
 Pain.ConcreteM_TossBit:Pain.SplashW_Fish1:Pain.SplashW_Fish2:Pain.SplashW_Fish3:
 Pain.PlugM_Ball:Pain.PlugM_Prong:Pain.PlugM_Plugged:Pain.MagmaM_Shot1:Pain.MagmaM_Shot2:

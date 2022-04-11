@@ -2385,7 +2385,6 @@ CHANGELOG
 --Max damage radius 112/80/48/16 > constant 90
 --Visuals adjusted to make range clearer
 
-
 ==Darkman1
 -HP 155.0 > 135.0
 
@@ -2394,6 +2393,14 @@ CHANGELOG
 
 ==Astroman
 -Flight cap 160 > 180
+
+==Evil Robot
+-Evil Fist full charge damage 55.0 > 45.0
+-Gigas generally tweaked
+--Astro Crush A_Explode fulldamageradius 53 > 100
+--Flame Sword A_Explode damage 5.0 > 4.0
+--Ice Wave powerprotected (.25, 1 tic), lowering its ability to lock down flagposts by aiming straight up
+--Flash Bomb initial A_Explode damage 23.0/22.0 > 30.0/29.0, outermost 4 bombs removed
 
 ==Plugman
 -Now has an obituary for killing someone with altfire's first hit
