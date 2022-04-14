@@ -669,7 +669,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-SOBL JJKK 1 Bright //A_Fadeout(.05)
+SOBL JJKK 1 Bright A_Fadeout(.1)
 loop
 Death:
 TNT1 A 0
@@ -959,7 +959,7 @@ Translation "192:192=213:213", "198:198=217:217"
 PROJECTILE
 damagetype "DMGNoHitstun"
 Obituary "$OB_SOLARMORTAR"
-seesound "weapon/solarwavex"
+seesound "weapon/solarblazex"
 +SKYEXPLODE
 +HEXENBOUNCE
 -NOGRAVITY
@@ -985,6 +985,7 @@ GSOL EEEFFF 1 Bright A_SpawnItemEX("SolarMortarLobFX",-10,0,0,0,0,0,0,1)
 loop
 
 Bounce:
+		TNT1 A 0 A_SetArg(2,(z-floorz <= Accuracy)*(Accuracy-(z-floorz))+Accuracy-(ceilingz-z <= Height)*(Accuracy*3/2)-(ceilingz-z <= Height)*(Height-(ceilingz-z)))
         PFBX A 0 A_SpawnItemEx("SolarFlareExplosionWaveMed",0,0,Args[2],40,0,0,0,1)
         PFBX A 0 A_SpawnItemEx("SolarFlareExplosionWaveMed",0,0,Args[2],40,0,0,45,1)
         PFBX A 0 A_SpawnItemEx("SolarFlareExplosionWaveMed",0,0,Args[2],40,0,0,90,1)
@@ -1004,6 +1005,7 @@ Death:
         PFBX A 0 A_Explode(300,176,0,0,64)
 		PFBX A 0 ACS_NamedExecuteWithResult("cbm_MarsRocketJump",30,176,2)
 		PFBX A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+		TNT1 A 0 A_SetArg(2,(z-floorz <= Accuracy)*(Accuracy-(z-floorz))+Accuracy-(ceilingz-z <= Height)*(Accuracy*3/2)-(ceilingz-z <= Height)*(Height-(ceilingz-z)))
         PFBX A 0 A_SpawnItemEx("SolarFlareExplosionWave",0,0,Args[2],40,0,0,0,1)
         PFBX A 0 A_SpawnItemEx("SolarFlareExplosionWave",0,0,Args[2],40,0,0,45,1)
         PFBX A 0 A_SpawnItemEx("SolarFlareExplosionWave",0,0,Args[2],40,0,0,90,1)

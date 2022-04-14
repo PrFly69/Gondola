@@ -20,12 +20,12 @@ BCMN A 0 A_GunFlash
 BCMN A 10 
 Ready0:
 BCMN A 0 A_JumpIfInventory("HeliumAmmo",35,"Ready1")
-BCMN A 0 A_GiveInventory("HeliumAmmo",1)
+BCMN A 0 A_GiveInventory("HeliumAmmo",2)
 FUSH A 0 A_GiveInventory("BouncemanAmmo_RC",1)
 BCMN A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
 loop
 Ready1:
-BCMN A 0 A_GiveInventory("HeliumAmmo",1)
+BCMN A 0 A_GiveInventory("HeliumAmmo",2)
 FUSH A 0 A_GiveInventory("BouncemanAmmo_RC",1)
 BCMN A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 goto Ready0
@@ -331,6 +331,7 @@ Actor BounceM_TetherWire : DuoPunchLeftyReturn
 {
 Translation "194:194=193:193","195:195=39:39"
 +NOCLIP
++FORCEXYBILLBOARD
 Scale 1.5
 States
 {
@@ -358,6 +359,7 @@ Actor BounceM_TetherWire2 : DuoPunchLeftyReturn
 {
 Translation "194:194=193:193","195:195=39:39"
 +NOCLIP
++FORCEXYBILLBOARD
 renderstyle translucent
 Scale 1.5
 States
@@ -394,6 +396,7 @@ Actor BounceM_HandReturn : DuoPunchLeftyReturn
 Translation "194:194=193:193","195:195=39:39"
 +NOCLIP
 Scale 2.5
++FORCEXYBILLBOARD
 renderstyle translucent
 alpha 0.5
 States
@@ -423,6 +426,7 @@ Actor BounceM_HandReturn2 : DuoPunchLeftyReturn
 Obituary "$OB_BOUNCEPULL"
 Translation "194:194=193:193","195:195=39:39"
 +NOCLIP
++FORCEXYBILLBOARD
 Scale 2.5
 States
 {

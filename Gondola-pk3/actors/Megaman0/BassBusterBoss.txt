@@ -267,10 +267,12 @@ actor BassShotBR : BassShotB{translation "204:204=171:171","202:202=4:4","199:19
 actor BassShotBO : BassShotB{translation "204:204=104:104","202:202=4:4","199:199=104:104"}
 actor BassShotBP : BassShotB{translation "204:204=229:229","202:202=4:4","199:199=229:229"}
 
-actor HeroBassChargeShot : BassChargeShot
+actor HeroBassChargeShot
 {
 translation "220:220=4:4", "228:228=103:103", "192:198=103:103"
 Obituary "%o's particles were disintegrated by %k's charge shot."
+damagetype "Bass_Shot"
+PROJECTILE
 Damage (200)
 Speed 45
 Scale 2.75

@@ -134,6 +134,7 @@ Goto Pain+2
 
 Pain.ClassPainTimeStop:
 Pain.TimeStop:
+"----" H 0 A_JumpIfInventory("TimeStopProtector",1,"Pain.CrashBomb")
 "----" H 0 A_GiveInventory("TimeStopProtector")
 "----" H 0 A_GiveInventory("TimeStoppedTF",1)
 "----" H 0 A_SpawnItemEx("AntiTimeStopFreezeHelper")
@@ -447,7 +448,7 @@ Pain.FlameSwordCBM3:
 "----" HH 0 A_SpawnItemEx("FlameSwordBitB",0,0,0,random(-10,10),random(-10,10),random(10,15),random(0,359))
 Goto Pain+2
 
-/*pain.DuoGrabExplosion5:
+pain.DuoGrabExplosion5:
 "----" H 0 A_SpawnItemEx("PainDuoExplodeHit5")
 "----" H 0 A_GiveInventory("DuoCleanserGrabberSpd0")
 //"----" H 0 ThrustThingZ(0,40,0,0)
@@ -475,7 +476,7 @@ pain.DuoGrabExplosion1:
 "----" H 0 A_SpawnItemEx("PainDuoExplodeHit1")
 "----" H 0 A_GiveInventory("DuoCleanserGrabberSpd0")
 //"----" H 0 ThrustThingZ(0,40,0,0)
-goto Pain+2*/
+goto Pain+2
 
 Pain.ChargeBusterC:
 "----" H 0 //A_GiveInventory("PainScaleVelocityFlashBombC",1)
@@ -683,12 +684,12 @@ Pain.FuseM_Livewire:
 goto Pain+2
 
 Pain.FuseM_LivewireMini1:
-"----" H 0 A_GiveInventory("FuseM_LivewireMini1Protect1")
+"----" H 0 A_GiveInventory("FuseM_LivewireMiniProtect1")
 //"----" H 0 A_SpawnItemEx("FuseThunderBlast",0,0,0,0,0,0,0,1)
 goto Pain+2
 
 Pain.FuseM_LivewireMini2:
-"----" H 0 A_GiveInventory("FuseM_LivewireMini1Protect2")
+"----" H 0 A_GiveInventory("FuseM_LivewireMiniProtect2")
 //"----" H 0 A_SpawnItemEx("FuseThunderBlast",0,0,0,0,0,0,0,1)
 goto Pain+2
 

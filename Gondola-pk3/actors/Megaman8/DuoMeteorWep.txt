@@ -47,10 +47,10 @@ actor DuoMeteorWepC : BaseMM8BDMWep_CBM
 			TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,2)
 			TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 			TNT1 A 1 ThrustThingZ(0,6,0,0)
-			TNT1 A 0 A_JumpIfInventory("DuoMeteorTimer",5,"FireRise2")
+			TNT1 A 0 A_JumpIfInventory("DuoMeteorTimer",10,"FireRise2")
 			loop
 		FireRise2:
-			TNT1 A 0 //A_GiveInventory("InvulnerableOn_Pickup",1)
+			TNT1 A 0 A_GiveInventory("InvulnerableOn_Pickup",1)
 		FireRise22:
 			TNT1 A 0 A_GiveInventory("DuoMeteorTimer",1)
 			TNT1 A 0 A_JumpIfInventory("FlightDisableFlag",1,2)

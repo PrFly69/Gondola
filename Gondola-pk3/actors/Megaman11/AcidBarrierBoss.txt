@@ -1298,7 +1298,7 @@ stop
 
 actor AcidGearBoost : PowerSpeed
 {
-Speed 1.2
+Speed 1.25
 powerup.duration 10
 +POWERSPEED.NOTRAIL
 }

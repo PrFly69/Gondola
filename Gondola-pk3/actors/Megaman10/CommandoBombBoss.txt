@@ -486,7 +486,7 @@ actor CommandoM_BombP : CommandoM_Bomb{translation"204:204=229:229","195:195=232
 
 actor CommandoM_WaveProtect : PowerProtection
 {
-Powerup.Duration 10
+Powerup.Duration 5
 DamageFactor "CommandoM_Wave", 0.0
 DamageFactor "CommandoM_WaveBit", 0.0
 }

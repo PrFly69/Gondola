@@ -2360,6 +2360,15 @@ CHANGELOG
 --Fixes 2.5 bug where shield would lose the ability to rebound and could be picked up by enemy players
 --Visuals cleaned up by Trillster, cooldown now displays gradually
 
+==Bass
+-Charge Shot no longer inherits from Vanilla Bossfight charge shot
+*This prevents an extremely specific bug where Bass charge shots cling onto this one little linedef on MM8CLO permanently (hitbox and all) and also completely fuck up the timings and movement patterns of the trains of that map where more often than not they just get stuck ramming into the gates that will never open
+*Don't ask me how it works.
+
+==Duo
+-Readded chokeslam on leap
+-Duo Meteor invuln now comes after the first 10 tics instead of on ball
+
 ==Rock
 -Mega Ball damage 21.0 > 14.0
 -Fire Ball afterburn damage 3.0 > 1.0
@@ -2369,24 +2378,55 @@ CHANGELOG
 
 ==Oilman
 -Now has an obituary for killing someone with a stationary puddle
+-Oil Blob tap damage 12.0 > 15.0
+--Repeated Oil Blob damage 12.0 > 12.5
+-Oil Slider damage changes reverted
+--Oil Slider damage 8.0 > 12.0
+--Oil Slider while using altfire 4.0 > 8.0
 
 ==Airman
 -Fixed Air Shooter doing hitstun
 
+==Flashman
+-Secondary ammo regeneration halfed
+-FreezeShot radius 96 > 80
+--Freeze duration/protection 52/101 > 40/40 tics
+--Damage 9.0 > 10.0
+--Costs 28 > 42 ammo
+--Can now be held for firing up to a second
+--Protected hit jumps to Pain.crashbomb instead
+
 ==Alien
 -Flight cap 160 > 240
 
-==Darkman1
+==Dark Man 1
 -HP 155.0 > 135.0
 
 ==Flameman
 -Fixed Flame Blast doing hitstun
 
+==Cloudman
+-Thunder Bolt radius 25 > 22
+--Thunder Bolt Split radius 25 > 16
+
+==Turboman
+-Scorch Wheel maxdamageradius 18 > 24
+-Turbo Honk maxdamageradius 256 > 64
+--Honk radius 256 > 272
+
 ==Astroman
 -Flight cap 160 > 180
 
+==Splashwoman
+-Laser Trident projectile count per 7 > 5
+-Power Song buff 35% > 30%
+-Speed Song buff 40% > 30%
+
 ==Plugman
 -Now has an obituary for killing someone with altfire's first hit
+
+==Commandoman
+-Commando Wave protect 10 tics > 5 tics
 
 ==Fuseman
 -Speed 0.7/0.72 > 0.73/0.75
@@ -2398,6 +2438,9 @@ CHANGELOG
 -Altfire ammo cap/requirement 280 > 180 (ammo regen unchanged)
 --Now increased mainfire speed while in radius from 36 to 64
 --Tesla Thunder no longer uses M2 Cancel A_Explode, now resembles A_Explode from initial build
+
+==Acidman
+-Speed Gear boost 20% > 25%
 
 ==Tundraman
 -Now has the correct name in allyinfo rather than Acid and Bounce names
@@ -2421,6 +2464,12 @@ CHANGELOG
 --Entering Power Gear no longer gives you 20 free Power Gear meter
 -Fixed bug where Torch would seize on the Player Setup class select
 --Fixed bug where Torch would disappear if Time Stopped in Power Gear
+
+==Bounceman
+-Bounce Bopper ammo regen doubled
+
+==Mega Water S
+-Shield Amount 25.0 > 40.0
 
 ==Enker
 -Fixed Mirror Buster doing hitstun

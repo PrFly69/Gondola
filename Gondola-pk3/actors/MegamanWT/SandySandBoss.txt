@@ -374,7 +374,7 @@ actor MWS_ItemForceFail : OnceC{}
 
 actor MWS_Armour : BasicArmorPickup
 {
-armor.saveamount 250
+armor.saveamount 400
 armor.savepercent 40.001
 }
 

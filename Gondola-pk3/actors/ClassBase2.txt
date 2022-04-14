@@ -20,6 +20,11 @@ states
 //"----" H 0 ThrustThingZ(0,22222,0,1)
 //goto Pain+2
 
+Pain.CrashM_Mine:
+Pain.CrashM_Clash:
+"----" H 0 A_ScaleVelocity(0.6)
+Goto Pain+2
+
 Pain.CommandoM_Wave:
 "----" H 0 A_GiveInventory("CommandoM_WaveProtect",1)
 Goto Pain+2

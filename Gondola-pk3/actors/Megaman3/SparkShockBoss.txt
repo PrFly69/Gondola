@@ -478,7 +478,7 @@ actor SparkIsFullFlag : OnceC{}
 actor SparkHealAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 56
+inventory.maxamount 28
 +INVENTORY.IGNORESKILL
 }
 
