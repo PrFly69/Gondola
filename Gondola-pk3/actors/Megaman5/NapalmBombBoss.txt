@@ -140,7 +140,7 @@ actor NapalmClassFireFlag : OnceC {}
 
 actor NapalmMissileClass
 {
-translation "199:199=41:41","202:202=210:210"
+translation "199:199=41:41","202:202=210:210","192:192=4:4"
 PROJECTILE
 damagetype "NapalmM_Missile"
 Obituary "$OB_NAPALMMISSILE"
@@ -169,10 +169,10 @@ stop
 }
 }
 
-actor NapalmMissileClassB : NapalmMissileClass{translation "199:199=74:74","202:202=205:205"}
-actor NapalmMissileClassR : NapalmMissileClass{translation "199:199=41:41","202:202=171:171"}
-actor NapalmMissileClassO : NapalmMissileClass{translation "199:199=128:128","202:202=104:229"}
-actor NapalmMissileClassP : NapalmMissileClass{translation "199:199=232:232","202:202=229:229"}
+actor NapalmMissileClassB : NapalmMissileClass{translation "199:199=74:74","202:202=205:205","192:192=4:4"}
+actor NapalmMissileClassR : NapalmMissileClass{translation "199:199=41:41","202:202=171:171","192:192=4:4"}
+actor NapalmMissileClassO : NapalmMissileClass{translation "199:199=128:128","202:202=104:229","192:192=4:4"}
+actor NapalmMissileClassP : NapalmMissileClass{translation "199:199=232:232","202:202=229:229","192:192=4:4"}
 
 actor NapalmBombClass : NapalmBomb
 {

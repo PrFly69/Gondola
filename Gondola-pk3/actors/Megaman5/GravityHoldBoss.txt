@@ -276,7 +276,7 @@ powerup.duration 7
 actor PowerGravityCeilingSpeed : PowerSpeed
 {
 Speed 2.0
-powerup.duration 5
+powerup.duration 0x7fffffff
 +POWERSPEED.NOTRAIL
 }
 
