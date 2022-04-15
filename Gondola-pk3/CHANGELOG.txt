@@ -2494,3 +2494,18 @@ CHANGELOG
 
 ==Quint
 -Removed Saku M2 blocks being shootable
+
+==BBAMegaman
+-Punch money per hit 100 > 110 
+--Pistol money per hit 25 > 30
+--Max Clip ammo 150 > 120
+--Clip ammo regain on item 100 > 60
+--Chaingun money per hit 8 > 5
+--Shotgun money per hit 12 > 10
+--Max Shell ammo 40 > 20
+--Shell ammo regain on item 20 > 12
+--Super Shotgun money 7 > 5
+--Rocket money per hit 7 > 5
+--Max Rocket ammo 40 > 20
+--Rocket ammo regain on item 20 > 10
+-BFG Range 500 > 750
