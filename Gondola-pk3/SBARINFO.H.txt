@@ -753,7 +753,7 @@ IsSelected RevolverBusterBoss{DrawBar"VARAMM10","VAREMPTY",FakemanDashCounter,ho
 	DrawImage"FKERICON",178,175;}
 
 //MM10
-IsSelected TripleBladeBoss,TripleBladeBoss2{Drawbar"VARAMM74","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected TripleBladeBoss,TripleBladeBoss2{Drawbar"VAMMO100","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected WaterShieldBoss{Drawbar"VARAMM69","VAREMPTY",Ammo2,horizontal,58,184;
 	DrawImage"PUMRICON",178,175;
 	DrawBar"10_P_VAR","VAREMPTY",Ammo1,horizontal,58,176;

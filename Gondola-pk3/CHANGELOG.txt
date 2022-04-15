@@ -2384,8 +2384,15 @@ CHANGELOG
 --Oil Slider damage 8.0 > 12.0
 --Oil Slider while using altfire 4.0 > 8.0
 
+==Yellow Devil
+-Fixed Perfect Cubes doing hitstun
+--Perfect Cube/Bit damage 10.0/5.0 > 7.0/3.5 
+
 ==Airman
 -Fixed Air Shooter doing hitstun
+
+==Crashman
+-HUD is now 20% more red
 
 ==Flashman
 -Secondary ammo regeneration halfed
@@ -2399,7 +2406,15 @@ CHANGELOG
 ==Alien
 -Flight cap 160 > 240
 
-==Dark Man 1
+==Sparkman
+-Health 100.0 > 110.0
+-JumpZ 10 > 11
+-Mid-Level Spark Spread ported from classes-v9fh.pk3
+--Total shots 8->16, aimable shots 1->3
+-Max Level Spark Spread now shoots eight Spark Orbs from classes-v9fh.pk3, with one aimable shot
+-SparkHealAmmo capacity 56 > 28
+
+==Darkman1
 -HP 155.0 > 135.0
 
 ==Flameman
@@ -2416,6 +2431,9 @@ CHANGELOG
 
 ==Astroman
 -Flight cap 160 > 180
+
+==King
+-Fixed Hitstun on Shield Lasers
 
 ==Splashwoman
 -Laser Trident projectile count per 7 > 5
@@ -2473,3 +2491,6 @@ CHANGELOG
 
 ==Enker
 -Fixed Mirror Buster doing hitstun
+
+==Quint
+-Removed Saku M2 blocks being shootable

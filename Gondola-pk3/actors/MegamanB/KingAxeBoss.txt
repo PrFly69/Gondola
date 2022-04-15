@@ -988,7 +988,7 @@ loop
 actor TheKingShieldDeath
 {
 PROJECTILE
-DamageType "ClassPainLess2"
+DamageType "King_ShieldDrop"
 Obituary "$OB_KINGSHIELDX"
 -NOGRAVITY
 +THRUGHOST
@@ -1166,7 +1166,7 @@ actor TheKingShieldLaser
 Translation "249:249=72:72"
 PROJECTILE
 Obituary "$OB_KINGSHIELD"
-DamageType "ClassPainLess2"
+DamageType "King_Laser"
 +THRUGHOST
 +THRUSPECIES
 Species "TheKing"
@@ -1223,7 +1223,7 @@ loop
 actor TheKingXAttack
 {
 PROJECTILE
-DamageType "NeutralShock"
+DamageType "King_XShock"
 Obituary "$OB_KINGPEWX"
 damage (80)
 Radius 16//42
@@ -1280,7 +1280,7 @@ actor TheKingLaser
 //Translation "192:192=215:215", "198:198=220:220"
 Translation "249:249=72:72"
 PROJECTILE
-damagetype "ClassPainLess2"
+damagetype "King_ShieldLaser"
 Obituary "$OB_KINGLASER"
 +THRUGHOST
 +FORCEXYBILLBOARD

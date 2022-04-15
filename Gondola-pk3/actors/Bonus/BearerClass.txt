@@ -367,10 +367,10 @@ actor YD_BearerCube
 	Translation "192:192=216:216", "198:198=220:220"
 	PROJECTILE
 	Obituary "$OB_BEARMAIN1"
-	damagetype "YellowDevilB"
+	damagetype "DMGNoHitstun"
 	-NOGRAVITY
 	+SKYEXPLODE
-	damage (100)
+	damage (70)
 	BounceType Doom
 	BounceCount 1
 	reactiontime 15
@@ -478,11 +478,11 @@ actor YD_BearerCubeBit
 {
 PROJECTILE
 Obituary "$OB_BEARMAIN2"
-damagetype "YellowDevilB"
+damagetype "DMGNoHitstun"
 +DONTSPLASH
 -NOGRAVITY
 +HEXENBOUNCE
-damage (50)
+damage (35)
 Radius 8//25
 Height 8//20
 speed 14
