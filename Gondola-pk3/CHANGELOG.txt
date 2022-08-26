@@ -2954,15 +2954,16 @@ CHANGELOG
 -Chain Blast now gives victim HUD indicator of how many bombs are stuck onto them
 --Chain Blast bombs that hit enemies now circle around them instead of staying put
 *Both of these changes apply to the copywep too
--Altfire bomb explosion damage 5 > 4
+-Blast Bomb explosion damage 5 > 4
 --Gravity decreased .5 > .25
 --No longer lingers on surfaces, instead stays stationary for 10 tics before automatically exploding
 --Explosion radius 56 > 96, no longer has falloff
 --Spread altered -10/-3/3/10 > -10/-5/0/5
 --Landing direct shots on enemies now grants 4 Power Gear ammo
--Power Gear altfire bomb explosion damage 5 > 8
+-Power Gear Blast Bomb explosion damage 5 > 8
 --Speed buffed 57 > 61
 --Spread altered -6/-2/2/6 > -6/-3/0/3
+--Now lets the user blastjump on explosion, immediately explodes on surfaces instead of lingering
 -All attack FX redone, new SFX on Power Gear Chain Blast and Blast Bomb
 
 ==Acidman
