@@ -9,8 +9,8 @@ player.startitem "BuzzsawAmmo", 28
 player.startitem "MetalHoverBootsAmmo", 280
 player.startitem "MetalmanItem", 1
 
-player.maxhealth 750
-health 750
+player.maxhealth 75
+health 75
 player.jumpz 11
 player.forwardmove 0.85, 0.85
 player.sidemove 0.83, 0.83

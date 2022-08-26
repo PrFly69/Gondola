@@ -4,8 +4,8 @@ Player.ScoreIcon "C_08F0X"
 player.displayname "Frostman"
 player.soundclass "frostmanc"
 
-player.maxhealth 2000
-health 2000
+player.maxhealth 200
+health 200
 player.jumpz 10
 player.forwardmove 0.5, 0.5
 player.sidemove 0.48, 0.48

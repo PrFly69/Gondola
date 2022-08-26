@@ -35,7 +35,7 @@ script "cbm_countinv_acs" (int Which, int Pointer)
 			Counter = CheckInventory("IncredibleAmmo");
 			break;
 		Case 31:
-			Counter = CheckInventory("PullCharge");
+			Counter = CheckInventory("PullChargePower");
 			break;
 		Case 33:
 			Counter = CheckInventory("Quaking");//Wind, ODuo
@@ -202,8 +202,8 @@ script "cbm_HealthDamageRage" (int jump)
 				TakeInventory("LastHealthFlag",PlutoDiff);
 			} else if (PlutoDiff<0) {
 				GiveInventory("LastHealthFlag",-PlutoDiff);
-			}
-            int PlutoSpeed = 0.000901;//0.00115;
+			}                 //i liked 0.00090
+            int PlutoSpeed = 0.00095;//0.00115;
             PlutoSpeed *= CheckInventory("BreakingIntoADashAmmo");
 			SetActorProperty(0,APROP_SPEED,(1.0+PlutoSpeed));
             break;
@@ -220,13 +220,10 @@ script "cbm_HealthDamageRage" (int jump)
 
 	//Magma ammo
 		case 14:
-			int MagmaDiff = CheckInventory("LastHealthFlag")-max(PlayerHealth(),0);
-			if (MagmaDiff>0) {
-				TakeInventory("VolcanicBreakfastAmmo",max(MagmaDiff/(2*The_Math),0));
-				TakeInventory("LastHealthFlag",MagmaDiff);
-			} else if (MagmaDiff<0) {
-				GiveInventory("LastHealthFlag",-MagmaDiff);
-			}
+			int MagH = max(PlayerHealth(),0);
+			GiveInventory("MagmaMunchArmor",max((CheckInventory("LastHealthFlag")-MagH)/2,0));
+			TakeInventory("LastHealthFlag",999);
+			GiveInventory("LastHealthFlag",MagH);
 			break;
 	//Junk leak
 	    case 13:
@@ -236,6 +233,15 @@ script "cbm_HealthDamageRage" (int jump)
 				TakeInventory("LastHealthFlag",JunkLoss);
 			} else if (JunkLoss<0) {
 				GiveInventory("LastHealthFlag",-JunkLoss);
+			}
+			break;
+	//Enker absorb
+	    case 12:
+			if (CheckInventory("EnkerAbsorbCount")) {
+			int armor = PlayerArmorPoints();
+			GiveInventory("MirrorChargeAmmo",max(CheckInventory("LastArmorCount")-Armor-3, 0));
+			TakeInventory("LastArmorCount",999);
+			GiveInventory("LastArmorCount",armor);
 			}
 			break;
 	//Grenade Man Death
@@ -556,6 +562,7 @@ script "cbm_LocalRingSnd" (void) CLIENTSIDE
 	LocalAmbientSound("weapon/RingChime",45);
 }
 
+
 script C_DIVELOCKDISPLAY (void)// CLIENTSIDE
 {
 	int TID = CheckInventory("SuplexID")+999;
@@ -791,6 +798,11 @@ script "cbm_gettrainpassenger" (void)
 // | (_) |
 //  \___/
 
+script "cbm_LocalTomhSnd" (void) CLIENTSIDE
+{
+	LocalAmbientSound("weapon/RingChime",12);
+}
+
 //  ______
 // |____  |
 //     / /
@@ -910,9 +922,9 @@ script "cbm_PlugHealthDrain" (int DrainHP)
 {
 	int player = ActivatorTID();
 	
-	if(GetActorProperty(0, APROP_SPAWNHEALTH) <= 500){DrainHP = 10;}
+	if(GetActorProperty(0, APROP_SPAWNHEALTH) <= 500){DrainHP = 1;}
 	if(DrainHP <= 0)
-		DrainHP = 10;
+		DrainHP = 1;
 
 	SetActivator(0, AAPTR_Tracer);
 	If(CheckActorInventory(ActivatorTID(),"PVPNoDamage")>=1 || CheckActorInventory(ActivatorTID(),"PlugM_DontZapHP_F")>=1){terminate;}
@@ -978,6 +990,59 @@ Script "cbm_DrawPlugCable" (int grappleTid, int playerTid, int ang) CLIENTSIDE
             bZ = (nZ * j) + plZ;//+(16 << 16);
 
             Spawn(SpawnName, bX, bY, bZ, 0, ang);
+        }
+    }
+}
+
+Script "cbm_DrawBounceTether" (int grappleTid, int playerTid, int density) CLIENTSIDE
+{
+    int plX; int plY;  int plZ;
+    int grX; int grY;  int grZ;
+    int vX;  int vY;   int vZ;
+    int nX;  int nY;   int nZ;
+    int bX;  int bY;   int bZ;
+    int magnitude;
+    int pointCount;
+    int pointOffset;
+    
+    int zOff;
+    
+    int angle = GetActorAngle(playerTid);
+    str SpawnName;
+    
+    if(grappleTid!=0){
+        zOff = 32.0;
+        SpawnName = StrParam(s:"BounceM_TetherFX",i:ACS_ExecuteWithResult(143,0));
+    }
+    else{
+        SpawnName = StrParam(s:"BounceM_TetherFX",i:ACS_ExecuteWithResult(143,playerTid,1));
+    }
+
+    plX = GetActorX(playerTid) + cos(angle + 0.75) * 17; grX = GetActorX(grappleTid);
+    plY = GetActorY(playerTid) + sin(angle + 0.75) * 17; grY  = GetActorY(grappleTid);
+    plZ = GetActorZ(playerTid)+ 28.0; grZ  = GetActorZ(grappleTid) + zOff;
+
+    vX = grX - plX;   vY = grY - plY;   vZ = grZ - plZ;
+
+    magnitude = magnitudeThree(vX >> 16, vY >> 16, vZ >> 16);
+
+    pointCount  = magnitude / density;
+    pointOffset = magnitude - (pointCount * density);
+
+    if (magnitude != 0)
+    {
+        nX = vX / magnitude; nY = vY / magnitude; nZ = vZ / magnitude;
+
+        int i; int j;
+        for (i = 0; i < pointCount; i++)
+        {
+            j = (i * density) + pointOffset;
+
+            bX = (nX * j) + plX;
+            bY = (nY * j) + plY;
+            bZ = (nZ * j) + plZ;//+(16 << 16);
+
+            Spawn(SpawnName, bX, bY, bZ, 0, 0);
         }
     }
 }
@@ -1352,24 +1417,15 @@ function int onStickyColdWallZ (int tid1z, int tid2z, int WallZ, int height)
 // | |\  \
 // \_| \_/
 
-script "cbm_EnkerArmorGiver" (void)
+/*script "cbm_EnkerArmorGiver" (void)
 {
-	if(CheckInventory("EnkerAbsorbCount")){
-		int ArmorPoints = PlayerArmorPoints();
-		if(CheckInventory("PowerFallingRespawnSpeed")){//Pits and friends
-			GiveInventory("MirrorChargeAmmo",1);
-			TakeInventory("LastArmorCount",99999);
-			GiveInventory("LastArmorCount",ArmorPoints);
-			terminate;
-		}
-		int MaxArmor = CheckInventory("DynamicArmorDosage_F");//GetArmorInfo(1);
-		if(MaxArmor==0)MaxArmor = 1;//FastWeapons leaves you with No Armor
-		int ArmorMemory = CheckInventory("LastArmorCount");
-		GiveInventory("MirrorChargeAmmo", max(100-((MaxArmor-ArmorMemory+ArmorPoints)*100/MaxArmor),1) );
-		TakeInventory("LastArmorCount",99999);
-		GiveInventory("LastArmorCount",ArmorPoints);
-	}
-}
+			if (CheckInventory("EnkerAbsorbCount")) {
+			int armor = PlayerArmorPoints();
+			GiveInventory("MirrorChargeAmmo",max(CheckInventory("LastArmorCount")-Armor-3, 0));
+			TakeInventory("LastArmorCount",999);
+			GiveInventory("LastArmorCount",armor);
+			}
+}*/
 //  _    _   _____ 
 // | |  | | |_   _|
 // | |  | |   | |

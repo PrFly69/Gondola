@@ -1,0 +1,47 @@
+actor Starman : ClassBase
+{
+Player.ScoreIcon "C_05E0X"
+player.displayname "Starman"
+player.soundclass "starmanc"
+
+player.maxhealth 115
+health 115
+player.jumpz 12
+player.forwardmove 0.75, 0.75
+player.sidemove 0.73, 0.73
+gravity 0.7
+
+player.startitem "StarCrashBoss"
+player.startitem "SuperStarPowerAmmo",21
+
+player.startitem "WaterWaveWeakness2", 1
+
+//player.startitem "DustCrusherWeakness", 1
+player.startitem "WaterWaveWeakness", 1
+player.startitem "NoiseCrushWeakness", 1
+player.startitem "IceWaveWeakness", 1
+player.startitem "WaveBurnerWeakness", 1
+player.startitem "BubbleBombWeakness", 1
+
+States
+{
+Spawn:
+STAM A 0
+STAM B 1
+STAM A 1
+Goto Spawn+2
+See:
+STAM BCDE 5
+Goto Spawn
+Missile:
+STAM F 5
+STAM G 4
+goto Spawn
+ClassPain:
+STAM H 0
+goto PainContinue
+ClassDeath:
+STAM H 0
+goto DeathContinue
+}
+}

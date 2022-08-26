@@ -1,8 +1,0 @@
-//Mercury
-sprite MRCHQ0,138,120{Offset -176,-60 Patch MRCHC0,0,0{Translation"33:33=104:104","39:39=110:110","41:41=130:130","0:0=130:130"}}
-sprite MRCHR0,135,195{Offset -238,-90 Patch MRCHI0,0,0{Translation"33:33=104:104","39:39=110:110","41:41=130:130","0:0=130:130"}}
-sprite MRCHS0,180,174{Offset -223,-112 Patch MRCHL0,0,0{Translation"33:33=104:104","39:39=110:110","41:41=130:130","0:0=130:130"}}
-sprite MRCHT0,168,120{Offset -214,-132 Patch MRCHM0,0,0{Translation"33:33=104:104","39:39=110:110","41:41=130:130","0:0=130:130"}}
-
-//Evil Robot
-graphic EVALICON,30,30{XScale 2.0 YScale 2.0 Patch EVALX0,0,0}

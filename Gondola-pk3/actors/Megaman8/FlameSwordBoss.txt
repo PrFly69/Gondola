@@ -7,7 +7,7 @@ Weapon.AmmoGive 28
 Obituary "$OB_FLAMESWORD"
 Inventory.Pickupmessage "FLAME SWARD"
 weapon.ammotype "OrdersAmmo"
-weapon.ammotype2 "SwordSpinnyAmmo"
+weapon.ammotype2 "SwordHeatFlag"
 +WEAPON.NOAUTOAIM
 States
 {
@@ -15,19 +15,21 @@ Spawn:
 C_08 C 1
 loop
 Ready:
+FHUB A 0 ACS_ExecuteAlways(998,0,11943)
 FHUB A 0 A_GunFlash
-FHUB A 0 ACS_ExecuteAlways(998,0,DYE_SWORDMAN)
-Goto Ready1
-Ready1:
-FHUB A 0 A_TakeInventory("FlameFlag",999)
-FHUB A 0 A_TakeInventory("FlameSwordUpperFlag",999)
+FHUB A 0 A_JumpIfInventory("FlameFlag",1,"Ready2")
+FHUB A 0 A_GiveInventory("NoFlameFlag",1)
+ReadyPlus:
 FHUB A 1 A_WeaponReady
-loop
+Goto Ready+2
 Ready2:
-FHUB AAAAAAAAAAAAAAAAAAAAA 1 A_TakeInventory("OrdersAmmo",2)
-FHUB A 0 A_TakeInventory("FlameFlag",999)
-FHUB A 0 A_TakeInventory("FlameSwordUpperFlag",999)
-Goto Ready1
+TNT1 A 0 A_JumpIfInventory("OrdersAmmo",1,1)
+goto NoAmmoBlub
+TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+goto Ready+2
+NoAmmoReady:
+FHUB AAAAAAAAAAAAAAAAAAAAA 1 A_TakeInventory("SwordHeatFlag",2)
+Goto Ready+2
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 FHUB A 1 A_Lower
@@ -37,72 +39,66 @@ TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 FHUB A 1 A_Raise
 Loop
 Fire:
-FHUB A 0 A_GiveInventory("FlameFlag",1)
-FHUB A 0 A_JumpIfInventory("FlameSwordUpperFlag",1,"SwordUpper")
+FHUB A 0 A_PlaySoundEx("weapon/NewFlameSword","SoundSlot7")
 FHUB A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
 Fire2:
 FHUB A 0 A_JumpIfInventory("PowerRage_ST",1,"Fire2Rage")
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
 FHUB C 1 A_GiveInventory("SwordmanMain1_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB D 1 A_GiveInventory("SwordmanMain2_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB E 1 A_GiveInventory("SwordmanMain3_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB F 1 A_GiveInventory("SwordmanMain4_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB G 1 A_GiveInventory("SwordmanMain5_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 //FHUB A 0 A_TakeInventory("FlameFlag",999)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB G 0 A_Refire("Fire2a")
 Goto Finish
 Fire2Rage:
-FHUB A 0 A_GiveInventory("FlameFlag",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
 FHUB C 1 A_GiveInventory("SwordmanMain1_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB D 0 A_GiveInventory("SwordmanMain2_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB E 1 A_GiveInventory("SwordmanMain3_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB F 0 A_GiveInventory("SwordmanMain4_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB G 1 A_GiveInventory("SwordmanMain5_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 //FHUB A 0 A_TakeInventory("FlameFlag",999)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
@@ -110,70 +106,66 @@ FHUB G 0 A_Refire("Fire2aRage")
 Goto Finish
 Fire2a:
 FHUB A 0 A_JumpIfInventory("PowerRage_ST",1,"Fire2aRage")
+FHUB A 0 A_PlaySoundEx("weapon/NewFlameSword","SoundSlot7")
 FHUB A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-FHUB A 0 A_GiveInventory("FlameFlag",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
 FHUB G 1 A_GiveInventory("SwordmanMain1a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB F 1 A_GiveInventory("SwordmanMain2a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB E 1 A_GiveInventory("SwordmanMain3a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB D 1 A_GiveInventory("SwordmanMain4a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB C 1 A_GiveInventory("SwordmanMain5a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 //FHUB A 0 A_TakeInventory("FlameFlag",999)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB G 0 A_Refire("Fire2b")
 Goto Finish
 Fire2aRage:
+FHUB A 0 A_PlaySoundEx("weapon/NewFlameSword","SoundSlot7")
 FHUB A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-FHUB A 0 A_GiveInventory("FlameFlag",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
 FHUB G 1 A_GiveInventory("SwordmanMain1a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB F 0 A_GiveInventory("SwordmanMain2a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB E 1 A_GiveInventory("SwordmanMain3a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB D 0 A_GiveInventory("SwordmanMain4a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB C 1 A_GiveInventory("SwordmanMain5a_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 //FHUB A 0 A_TakeInventory("FlameFlag",999)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
@@ -181,108 +173,89 @@ FHUB G 0 A_Refire("Fire2b")
 Goto Finish
 Fire2b:
 FHUB A 0 A_JumpIfInventory("PowerRage_ST",1,"Fire2bRage")
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
 FHUB B 1 //A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB CD 1 //A_GiveInventory("SwordSpinnyAmmo",2)
 FHUB FG 1 //A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB F 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-FHUB A 0 A_GiveInventory("FlameSwordUpperFlag",1)
-FHUB J 1 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB A 0 A_PlaySoundEx("weapon/NewFlameSword","SoundSlot7")
+FHUB A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+//FHUB A 0 A_GiveInventory("FlameSwordUpperFlag",1)
+FHUB J 1 A_GiveInventory("SwordmanMainX1_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB K 1 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB K 1 A_GiveInventory("SwordmanMainX2_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB L 1 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB L 1 A_GiveInventory("SwordmanMainX3_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB M 1 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB M 1 A_GiveInventory("SwordmanMainX4_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB N 1 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB N 1 A_GiveInventory("SwordmanMainX5_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",5)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",5)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 //FHUB A 0 A_TakeInventory("FlameFlag",999)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 goto Finish
 Fire2bRage:
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FHUB B 1 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB CE 1  A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB FG 1 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB F 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-FHUB A 0 A_GiveInventory("FlameSwordUpperFlag",1)
-FHUB J 1 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB B 1 A_GiveInventory("SwordHeatFlag",2)
+FHUB CE 1  A_GiveInventory("SwordHeatFlag",2)
+FHUB FG 1 A_GiveInventory("SwordHeatFlag",2)
+FHUB A 0 A_PlaySoundEx("weapon/NewFlameSword","SoundSlot7")
+FHUB A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+//FHUB A 0 A_GiveInventory("FlameSwordUpperFlag",1)
+FHUB J 1 A_GiveInventory("SwordmanMainX1_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB K 0 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB K 0 A_GiveInventory("SwordmanMainX2_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB L 1 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB L 1 A_GiveInventory("SwordmanMainX3_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB M 0 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB M 0 A_GiveInventory("SwordmanMainX4_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",2)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",2)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-FHUB N 0 A_GiveInventory("SwordmanMainX0_CI",1)
+FHUB N 0 A_GiveInventory("SwordmanMainX5_CI",1)
 //FHUB N 0 A_GiveInventory("SwordmanMainX_CI",1)
-TNT1 A 0 A_GiveInventory("OrdersAmmo",5)
+TNT1 A 0 A_GiveInventory("SwordHeatFlag",5)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 //FHUB A 0 A_TakeInventory("FlameFlag",999)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
-TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
+//TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 //TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
 goto Finish
 Finish:
-FHUB A 0 A_TakeInventory("FlameFlag",999)
-FHUB A 0 A_TakeInventory("FlameSwordUpperFlag",999)
+//FHUB A 0 A_TakeInventory("FlameSwordUpperFlag",999)
 TNT1 A 1 Offset(0,122)A_JumpIfInventory("PowerRage_ST",1,1)
 TNT1 A 1 Offset(0,122)
 TNT1 A 1 Offset(0,122)A_JumpIfInventory("PowerRage_ST",1,1)
@@ -302,256 +275,152 @@ FHUB A 1 Offset(0,65)
 FHUB A 1 Offset(0,56)A_JumpIfInventory("PowerRage_ST",1,1)
 FHUB A 1 Offset(0,49) 
 FHUB A 1 Offset(0,42)A_JumpIfInventory("PowerRage_ST",1,1)
-FHUB AAAA 1 
-FHUB A 0 A_TakeInventory("OrdersAmmo",999)
+FHUB AAAA 1 A_TakeInventory("SwordHeatFlag",7)
 FHUB A 0 A_Refire
-Goto Ready1
-
-SwordUpper:
-CMDH C 0 A_PlaySoundEx("weapon/GutThrow","Weapon")
-HSN8 A 0 SetPlayerProperty(0,0,0)
-CMDH C 0 A_TakeInventory("UnSolid",99)
-CMDH C 0 A_ChangeFlag("SOLID",0)
-CMDH C 0 A_ChangeFlag("THRUSPECIES",1)
-FMSW A 0 A_GiveInventory("FlameFlag",1)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-FMSW A 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-FMSW A 0 A_Recoil(-40)
-FMSW A 0 A_TakeInventory("SwordSpinnyAmmo",10)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",10)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",9)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",9)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",9)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",8)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",8)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",7)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",7)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",6)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",5)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",5)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",4)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",4)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",4)
-FHUB A 0 A_SetUserVar("user_wepangle",angle)
-FHUB A 0 A_SetUserVar("user_weppitch",pitch)
-FMSW B 1 A_GiveInventory("SwordmanMainX0_CI",1)
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",3)
-FMSW A 1 
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 0 A_TakeInventory("SwordSpinnyAmmo",3)
-FMSW B 1 
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW A 1 A_TakeInventory("SwordSpinnyAmmo",3)
-FMSW B 1 
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW B 1 A_TakeInventory("SwordSpinnyAmmo",2)
-FMSW A 1 
-//FMSW B 0 A_PlaySoundEx("weapon/flamesword","Weapon")
-//FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FMSW A 1 A_TakeInventory("SwordSpinnyAmmo",1)
-goto AltEndNoAnim
-
-Altfire:
-FHUB A 0 A_JumpIfInventory("SwordSpinnyAmmo",140,1)
+Goto Ready+2
+SwitchCamera:
+TNT1 A 0 //A_JumpIf(ACS_ExecuteWithResult(975,0)==3,"Revert")//Duel
+TNT1 A 0 A_JumpIfInventory("CameraFlag",1,"Revert")
+TNT1 A 0 ChangeCamera(400+TID,0,0)
+TNT1 A 10 A_GiveInventory("CameraFlag",1)
 goto Ready2
-FHUB A 0 A_GiveInventory("FlameFlag",1)
-TNT1 A 1 A_JumpIfInventory("OrdersAmmo",1,"AltDashers")
-AltSmackers:
-FHUB A 0 A_ScaleVelocity(0.9)
-FHUB A 0 A_TakeInventory("OrdersAmmo",999)
-FHUB A 0 A_GiveInventory("FlameSwordUpperFlag",1)
-SmackersContinue:
-FHUB A 0 ACS_NamedExecute("BULL_SetState",0,1)
-FHUB A 0 A_JumpIfInventory("PowerRage_ST",1,"SmackersRageContinue")
-//FHUB A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,25,100)
-FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB A 0 A_ScaleVelocity(0.9)
-FHUB A 0 A_FireCustomMissile("SwordSucker",0,0,0,0)
-FHUB U 1 A_WeaponReady(WRF_NOSECONDARY)
-FHUB U 0 A_TakeInventory("SwordSpinnyAmmo",5)
-FHUB S 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB A 0 A_ScaleVelocity(0.9)
-FHUB A 0 A_FireCustomMissile("SwordSucker",0,0,0,0)
-FHUB S 1 A_WeaponReady(WRF_NOSECONDARY)
-FHUB S 0 A_TakeInventory("SwordSpinnyAmmo",5)
-FHUB T 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB A 0 A_ScaleVelocity(0.9)
-FHUB A 0 A_FireCustomMissile("SwordSucker",0,0,0,0)
-FHUB T 1 A_WeaponReady(WRF_NOSECONDARY)
-FHUB T 0 A_TakeInventory("SwordSpinnyAmmo",5)
-FHUB U 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
-goto AltEnd
-FHUB U 0 A_Refire("SmackersContinue")
-goto AltEnd
-SmackersRageContinue:
-//FHUB A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,25,100)
-FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB A 0 A_ScaleVelocity(0.9)
-FHUB A 0 A_FireCustomMissile("SwordSucker",0,0,0,0)
-FHUB U 1 A_WeaponReady(WRF_NOSECONDARY)
-FHUB U 0 A_TakeInventory("SwordSpinnyAmmo",5)
-FHUB S 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB A 0 A_ScaleVelocity(0.9)
-FHUB A 0 A_FireCustomMissile("SwordSucker",0,0,0,0)
-FHUB S 0 A_WeaponReady(WRF_NOSECONDARY)
-FHUB S 0 A_TakeInventory("SwordSpinnyAmmo",5)
-FHUB T 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB A 0 A_ScaleVelocity(0.9)
-FHUB A 0 A_FireCustomMissile("SwordSucker",0,0,0,0)
-FHUB T 1 A_WeaponReady(WRF_NOSECONDARY)
-FHUB T 0 A_TakeInventory("SwordSpinnyAmmo",5)
-FHUB U 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
-goto AltEnd
-FHUB U 0 A_Refire("SmackersContinue")
-goto AltEnd
+Revert:
+TNT1 A 0 A_TakeInventory("CameraFlag",1)
+TNT1 A 10 ChangeCamera(0,0,0)
+goto Ready2
+Altfire:
+//TNT1 A 0 A_JumpIfInventory("SwordAmmoDelay",1,"ReadyPlus")
+//FHUB A 0 A_JumpIfInventory("FlameFlag",1,"blub")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,"blub")
+TNT1 A 1 A_JumpIfInventory("SwordHeatFlag",1,"AltDashers")
+TNT1 A 0 A_JumpIfInventory("SwordAmmoDelay",1,"ReadyPlus")
+FHUB A 0 A_JumpIfInventory("FlameFlag",1,"blub")
+TNT1 A 0 A_JumpIfInventory("OrdersAmmo",2,"AltFire2Check")
+goto Ready2
+AltFire2Check:
+FHUB A 0 A_JumpIfInventory("FlameFlag",1,"ReadyPlus")
+goto AltFire2
+AltFire2:
+TNT1 A 0 A_TakeInventory("CameraFlag",1)
+TNT1 A 0 ChangeCamera(0,0,0)
+TNT1 A 0 A_TakeInventory("EndFlameFlag",1)
+TNT1 A 0 A_TakeInventory("NoFlameFlag",1)
+TNT1 A 0 A_GiveInventory("FlameFlag",1)
+//TNT1 A 0 A_GiveInventory("TorsoSpeed",156)
+TNT1 A 0 A_GiveInventory("SwordmanAlt_CI",1)
+TNT1 A 10 A_TakeInventory("OrdersAmmo",2)
+goto Ready2
+blub:
+TNT1 A 0 A_TakeInventory("CameraFlag",1)
+TNT1 A 0 ChangeCamera(0,0,0)
+TNT1 A 0 A_GiveInventory("EndFlameFlag",1)
+blub2:
+TNT1 A 1 A_RailWait
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,"blub2")
+blubEnd:
+
+TNT1 AA 2 Offset(0,122) A_TakeInventory("FlameFlag",1)
+TNT1 AA 2 Offset(0,122) A_GiveInventory("NoFlameFlag",1)
+FHUB A 1 Offset(0,122)
+FHUB A 1 Offset(0,109)
+FHUB A 1 Offset(0,96)
+FHUB A 1 Offset(0,85)
+FHUB A 1 Offset(0,74)
+FHUB A 1 Offset(0,65)
+FHUB A 1 Offset(0,56)
+FHUB A 1 Offset(0,49)
+FHUB A 1 Offset(0,42)
+FHUB A 4 A_WeaponReady(14)
+goto Ready+2
+NoAmmo:
+FHUB A 1
+Goto Ready+2
+NoAmmoblub:
+TNT1 A 0 A_TakeInventory("CameraFlag",1)
+TNT1 A 0 ChangeCamera(0,0,0)
+goto blub
 AltDashers:
+FHUB A 0 A_JumpIfInventory("OrdersAmmo",14,1)
+goto NoAmmoReady
 XTOP B 0 A_TakeInventory("UnSolid",1)
 XTOP B 0 A_ChangeFlag("SOLID",0)
-TNT1 A 0 A_JumpIfInventory("OrdersAmmo",21,"AltDashersMax")
-TNT1 A 0 A_JumpIfInventory("OrdersAmmo",11,"AltDashersMed")
-TNT1 A 0 A_JumpIfInventory("OrdersAmmo",1,"AltDashersMin")
+TNT1 A 0 A_JumpIfInventory("SwordHeatFlag",21,"AltDashersMax")
+TNT1 A 0 A_JumpIfInventory("SwordHeatFlag",11,"AltDashersMed")
+TNT1 A 0 A_JumpIfInventory("SwordHeatFlag",1,"AltDashersMin")
 goto AltEnd
 
 AltDashersMax:
-FHUB U 0 A_TakeInventory("OrdersAmmo",99)
+FHUB U 0 A_TakeInventory("SwordHeatFlag",99)
 TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,1)
 HSN8 A 0 SetPlayerProperty(0,1,3)
-FHUB U 1 A_Recoil(-3)
+FHUB U 1 A_Recoil(-10)
 FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB U 0 A_TakeInventory("SwordSpinnyAmmo",15)
-FHUB U 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
+FHUB U 0 A_TakeInventory("OrdersAmmo",3)
+FHUB U 0 A_JumpIfInventory("OrdersAmmo",1,1)
 goto AltEnd
-FHUB S 1 A_Recoil(-3)
+FHUB S 1 A_Recoil(-10)
 FHUB S 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB S 0 A_TakeInventory("SwordSpinnyAmmo",15)
-FHUB S 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
+FHUB S 0 A_TakeInventory("OrdersAmmo",3)
+FHUB S 0 A_JumpIfInventory("OrdersAmmo",1,1)
 goto AltEnd
-FHUB T 1 A_Recoil(-3)
+FHUB T 1 A_Recoil(-10)
 FHUB T 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB T 0 A_TakeInventory("SwordSpinnyAmmo",15)
-FHUB T 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
+FHUB T 0 A_TakeInventory("OrdersAmmo",3)
+FHUB T 0 A_JumpIfInventory("OrdersAmmo",1,1)
 goto AltEnd
 FHUB T 0 A_Refire("AltDashersMax")
 goto AltEnd
 
 AltDashersMed:
-FHUB U 0 A_TakeInventory("OrdersAmmo",99)
+FHUB U 0 A_TakeInventory("SwordHeatFlag",99)
 TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,1)
 HSN8 A 0 SetPlayerProperty(0,1,3)
-FHUB U 1 A_Recoil(-2)
+FHUB U 1 A_Recoil(-6)
 FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB U 0 A_TakeInventory("SwordSpinnyAmmo",12)
-FHUB U 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
+FHUB U 0 A_TakeInventory("OrdersAmmo",2)
+FHUB U 0 A_JumpIfInventory("OrdersAmmo",1,1)
 goto AltEnd
-FHUB S 1 A_Recoil(-2)
+FHUB S 1 A_Recoil(-6)
 FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB U 0 A_TakeInventory("SwordSpinnyAmmo",12)
-FHUB U 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
+FHUB U 0 A_TakeInventory("OrdersAmmo",2)
+FHUB U 0 A_JumpIfInventory("OrdersAmmo",1,1)
 goto AltEnd
-FHUB T 1 A_Recoil(-2)
+FHUB T 1 A_Recoil(-6)
 FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB U 0 A_TakeInventory("SwordSpinnyAmmo",12)
-FHUB U 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
+FHUB U 0 A_TakeInventory("OrdersAmmo",2)
+FHUB U 0 A_JumpIfInventory("OrdersAmmo",1,1)
 goto AltEnd
 FHUB T 0 A_Refire("AltDashersMed")
 goto AltEnd
 
 AltDashersMin:
-FHUB U 0 A_TakeInventory("OrdersAmmo",99)
+FHUB U 0 A_TakeInventory("SwordHeatFlag",99)
 TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,1)
 HSN8 A 0 SetPlayerProperty(0,1,3)
-FHUB U 1 A_Recoil(-1)
+FHUB U 1 A_Recoil(-2)
 FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB U 0 A_TakeInventory("SwordSpinnyAmmo",9)
-FHUB U 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
+FHUB U 0 A_TakeInventory("OrdersAmmo",1)
+FHUB U 0 A_JumpIfInventory("OrdersAmmo",1,1)
 goto AltEnd
-FHUB S 1 A_Recoil(-1)
+FHUB S 1 A_Recoil(-2)
 FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB U 0 A_TakeInventory("SwordSpinnyAmmo",9)
-FHUB U 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
+FHUB U 0 A_TakeInventory("OrdersAmmo",1)
+FHUB U 0 A_JumpIfInventory("OrdersAmmo",1,1)
 goto AltEnd
-FHUB T 1 A_Recoil(-1)
+FHUB T 1 A_Recoil(-2)
 FHUB U 0 A_FireCustomMissile("SwordSpinnerExplosion")
-FHUB U 0 A_TakeInventory("SwordSpinnyAmmo",9)
-FHUB U 0 A_JumpIfInventory("SwordSpinnyAmmo",1,1)
+FHUB U 0 A_TakeInventory("OrdersAmmo",1)
+FHUB U 0 A_JumpIfInventory("OrdersAmmo",1,1)
 goto AltEnd
 FHUB T 0 A_Refire("AltDashersMin")
 goto AltEnd
 
 AltEnd:
-FHUB A 0 A_TakeInventory("FlameSwordUpperFlag",999)
+//FHUB A 0 A_TakeInventory("FlameSwordUpperFlag",999)
 FHUB A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
 FHUB A 0 ACS_NamedExecute("BULL_SetState",0,2)
 AltEndNoAnim:
+TNT1 A 0 A_GiveInventory("FlameFlag",1)
 HSN8 A 0 SetPlayerProperty(0,0,3)
 HSN8 A 0 SetPlayerProperty(0,0,0)
 CMDH C 0 A_TakeInventory("NoJumpCancel",999)
@@ -566,7 +435,7 @@ FMSW B 1 Offset(0,60)
 FMSW B 1 Offset(25,70)
 FMSW A 1 Offset(50,80)
 FMSW A 1 Offset(75,90)
-TNT1 A 5 Offset(0,122)
+TNT1 A 15 Offset(0,122)
 FHUB A 1 Offset(75,122)
 FHUB A 1 Offset(65,109)
 FHUB A 1 Offset(55,96)
@@ -577,17 +446,77 @@ FHUB A 1 Offset(15,56)
 FHUB A 1 Offset(5,49)
 FHUB A 1 Offset(0,42)
 FHUB A 0 A_TakeInventory("FlameFlag",999)
-goto Ready1
+Goto Ready+2
+NoAmmo:
+FHUB A 1
+Goto Ready+2
+NoAmmoblub:
+TNT1 A 0 A_TakeInventory("CameraFlag",1)
+TNT1 A 0 ChangeCamera(0,0,0)
+goto blub
 
 Flash:
-TNT1 A 1 A_JumpIfInventory("FlameFlag",1,"AmmoHalt")
-TNT1 A 0 A_TakeInventory("OrdersAmmo",2)
-TNT1 A 0 A_GiveInventory("SwordSpinnyAmmo",2)
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+TNT1 AAAAA 1 A_JumpIfInventory("FlameFlag",1,"AmmoDeplete")
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("SwordAmmoRegen_P",1)
 loop
-AmmoHalt:
-TNT1 A 1
+Flash2:
+TNT1 AAAAAAAAAAAAAAA 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
 goto Flash
+TNT1 A 0 A_TakeInventory("OrdersAmmo",1)
+goto Flash2
+AmmoDeplete:
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 1 A_JumpIfInventory("SwordAmmoDelay",1,"Flash2")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,1)
+goto Flash
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_TakeInventory("OrdersAmmo",2)
+goto AmmoDeplete
+
 }
 }
 
@@ -595,14 +524,14 @@ actor OrdersAmmo : Ammo
 {
 +INVENTORY.IGNORESKILL
 inventory.amount 1
-inventory.maxamount 30
+inventory.maxamount 28
 }
 
-actor SwordSpinnyAmmo : Ammo
+actor SwordHeatFlag : Ammo
 {
 +INVENTORY.IGNORESKILL
 inventory.amount 1
-inventory.maxamount 280
+inventory.maxamount 28
 }
 
 /*
@@ -613,8 +542,6 @@ actor FlameFlag : PowerUp
 powerup.duration 150
 }
 
-actor FlameSwordUpperFlag : OnceC{}
-
 actor NoFlameFlag : OnceC{}
 actor EndFlameFlag : OnceC{}
 actor SwordmanSyncFlag : PowerUp
@@ -622,6 +549,16 @@ actor SwordmanSyncFlag : PowerUp
 powerup.duration 10
 }
 
+actor SwordSlow1 : PowerUp{powerup.duration 6}
+actor SwordSlow2 : PowerUp{powerup.duration 6}
+actor SwordSlow3 : PowerUp{powerup.duration 6}
+actor SwordSlow4 : PowerUp{powerup.duration 6}
+actor SwordSlow5 : PowerUp{powerup.duration 6}
+
+actor SwordAmmoDelay : Powerup
+{
+Powerup.Duration 30
+}
 
 actor SwordLegCramp : Powerup
 {
@@ -655,13 +592,45 @@ stop
 }
 }
 
+actor SwordAmmoRegen_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SwordAmmoDelay",1,"No")
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,"No")
+goto Yes
+Yes:
+TNT1 A 0 A_GiveInventory("OrdersAmmo",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
 //FHUB V 0 A_ChangeVelocity(cos(pitch)*12,0,-sin(pitch)*12,CVF_RELATIVE|CVF_REPLACE)
+actor SwordSpinnerExplosion : RyuL_TrueHurricane
+{
+Obituary "$OB_SWORDTORSO"
+damagetype "FlameSwordB"
+PROJECTILE
++NOINTERACTION
+height 0
+radius 0
+speed 0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(2,128,0,0,10)
+stop
+}
+}
 
 actor SwordManTorsoB
 {
-Translation "192:192=205:205","198:198=74:74"
-PROJECTILE
-//+RIPPER
+Translation "192:192=219:219","198:198=43:43","202:202=219:219","199:199=43:43","250:250=211:211"
 -MISSILE
 +DONTBLAST
 +NOBLOCKMONST
@@ -670,7 +639,13 @@ PROJECTILE
 +NODAMAGETHRUST
 //-NOBLOCKMAP
 //+SOLID
-//-SHOOTABLE
++SHOOTABLE
+-NORADIUSDMG
++NOTAUTOAIMED
++NOGRAVITY
++NOBLOOD
++QUICKTORETALIATE
++NOTARGETSWITCH
 
 Obituary "$OB_SWORDTORSO"
 damagetype "FlameSwordB"
@@ -685,6 +660,8 @@ scale 2.5
 damage (0)
 //+FORCEXYBILLBOARD
 //speed 20
+Health 9999
+PainChance 256
 speed 0
 States
 {
@@ -699,7 +676,7 @@ FHUB V 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 FHUB V 0 A_JumpIfInTargetInventory("EndFlameFlag",1,"Return")
 FHUB V 0 A_PlaySoundEx("weapon/flamesword","Weapon")
 FHUB V 0 A_GiveInventory("TorsoVelocity",1)
-FHUB V 1 //A_Explode(14,65,0)
+FHUB V 1 //A_GiveInventory("TorsoTeamCheck",1)
 FHUB V 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 FHUB V 0 A_JumpIfInTargetInventory("EndFlameFlag",1,"Return")
 FHUB V 0 A_GiveInventory("TorsoVelocity",1)
@@ -708,17 +685,17 @@ FHUB V 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 FHUB V 0 A_JumpIfInTargetInventory("EndFlameFlag",1,"Return")
 FHUB V 0 A_PlaySoundEx("weapon/flamesword","Weapon")
 FHUB V 0 A_GiveInventory("TorsoVelocity",1)
-FHUB W 1 //A_Explode(14,65,0)
+FHUB W 1 //A_GiveInventory("TorsoTeamCheck",1)
 FHUB V 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 FHUB V 0 A_JumpIfInTargetInventory("EndFlameFlag",1,"Return")
 FHUB V 0 A_GiveInventory("TorsoVelocity",1)
 FHUB V 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-FHUB W 1 A_Explode(11,65,0)
+FHUB W 1 A_Explode(4,64,0,0,65)
 FHUB V 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 FHUB V 0 A_JumpIfInTargetInventory("EndFlameFlag",1,"Return")
 FHUB V 0 A_PlaySoundEx("weapon/flamesword","Weapon")
 FHUB V 0 A_GiveInventory("TorsoVelocity",1)
-FHUB X 1 //A_Explode(14,65,0)
+FHUB X 1 //A_GiveInventory("TorsoTeamCheck",1)
 FHUB V 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 FHUB V 0 A_JumpIfInTargetInventory("EndFlameFlag",1,"Return")
 FHUB V 0 A_GiveInventory("TorsoVelocity",1)
@@ -727,23 +704,132 @@ FHUB V 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 FHUB V 0 A_JumpIfInTargetInventory("EndFlameFlag",1,"Return")
 FHUB V 0 A_PlaySoundEx("weapon/flamesword","Weapon")
 FHUB V 0 A_GiveInventory("TorsoVelocity",1)
-FHUB Y 1 //A_Explode(14,65,0)
+FHUB Y 1 //A_GiveInventory("TorsoTeamCheck",1)
 FHUB V 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 FHUB V 0 A_JumpIfInTargetInventory("EndFlameFlag",1,"Return")
 FHUB V 0 A_GiveInventory("TorsoVelocity",1)
 FHUB V 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-FHUB Y 1 A_Explode(11,65,0)
-
+FHUB Y 1 A_Explode(4,64,0,0,65)
 loop
+Pain:
+"####" "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+"####" "#" 0 A_JumpIfInTargetInventory("EndFlameFlag",1,"Death")
+"####" "#" 1 A_GiveInventory("TorsoVelocity",1)
+"####" "#" 0 A_JumpIfHealthLower(9740,"Give6")
+"####" "#" 0 A_JumpIfHealthLower(9790,"Give5")
+"####" "#" 0 A_JumpIfHealthLower(9840,"Give4")
+"####" "#" 0 A_JumpIfHealthLower(9890,"Give3")
+"####" "#" 0 A_JumpIfHealthLower(9940,"Give2")
+"####" "#" 0 A_JumpIfHealthLower(9990,"Give1")
+goto HPReset
+Give1:
+"####" "#" 0
+"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 A_TakeFromTarget("OrdersAmmo",1)
+goto HPReset
+Give2:
+"####" "#" 0
+"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 A_TakeFromTarget("OrdersAmmo",2)
+"####" "#" 0 A_GiveToTarget("SwordSlow1",1)
+goto HPReset
+Give3:
+"####" "#" 0
+"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 A_TakeFromTarget("OrdersAmmo",3)
+"####" "#" 0 A_GiveToTarget("SwordSlow2",1)
+goto HPReset
+Give4:
+"####" "#" 0
+"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 A_TakeFromTarget("OrdersAmmo",4)
+"####" "#" 0 A_GiveToTarget("SwordSlow3",1)
+goto HPReset
+Give5:
+"####" "#" 0
+"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 A_TakeFromTarget("OrdersAmmo",5)
+"####" "#" 0 A_GiveToTarget("SwordSlow4",1)
+goto HPReset
+Give6:
+"####" "#" 0
+"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 A_TakeFromTarget("OrdersAmmo",6)
+"####" "#" 0 A_GiveToTarget("SwordSlow5",1)
+goto HPReset
+HPReset:
+"####" "#" 0 Healthing(9999)
+"####" "#" 1 A_GiveInventory("TorsoVelocity",1)
+goto Loopz
 Death:
-FHUB V 0
+FHUB V 0 A_ChangeFlag("MISSILE",1)
+FHUB V 0 A_SpawnItemEx("ReturningTorsoFlameB",0,0,0,0,0,0,0,1)
+FHUB V 0 A_SpawnItemEx("ReturningTorsoB",0,0,0,0,0,0,0,33,0)
 stop
 Return:
 FHUB V 0 A_ChangeFlag("MISSILE",1)
-//FHUB V 0 A_CustomMissile("ReturningTorsoB",0,0,0,0)
+FHUB V 0 A_SpawnItemEx("ReturningTorsoFlameB",0,0,0,0,0,0,0,1)
 FHUB V 0 A_SpawnItemEx("ReturningTorsoB",0,0,0,0,0,0,0,33,0)
 stop
 }
+}
+
+actor SwordManTorsoBB : SwordManTorsoB
+{
+DesignatedTeam 0
+Translation"192:192=205:205","198:198=74:74","202:202=205:205","199:199=74:74","250:250=196:196"
+}
+
+actor SwordManTorsoBR : SwordManTorsoB
+{
+DesignatedTeam 1
+Translation"192:192=171:171","198:198=41:41","202:202=171:171","199:199=41:41","250:250=170:170"
+}
+
+actor SwordManTorsoBO : SwordManTorsoB
+{
+DesignatedTeam 2
+Translation"192:192=104:104","198:198=128:128","202:202=104:104","199:199=128:128","250:250=138:138"
+}
+
+actor SwordManTorsoBP : SwordManTorsoB {
+DesignatedTeam 3
+Translation"192:192=229:229","198:198=232:232","202:202=229:229","199:199=232:232","250:250=214:214"
+}
+
+
+actor ReturningTorsoFlameB : BasicExplosion
+{
+Obituary "$OB_SWORDTORSO"
+damagetype "FlameSwordBT"
+RenderStyle "Normal"
+Scale 3
+States
+{
+Spawn:
+TNT1 A 0 A_SpawnItemEx("FlameSwordBitBT",0,0,-10,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("FlameSwordBitBT",0,0,-10,0,0,0,60,1)
+TNT1 A 0 A_SpawnItemEx("FlameSwordBitBT",0,0,-10,0,0,0,120,1)
+TNT1 A 0 A_SpawnItemEx("FlameSwordBitBT",0,0,-10,0,0,0,180,1)
+TNT1 A 0 A_SpawnItemEx("FlameSwordBitBT",0,0,-10,0,0,0,240,1)
+TNT1 A 0 A_SpawnItemEx("FlameSwordBitBT",0,0,-10,0,0,0,300,1)
+TNT1 A 2 A_Explode(8,64,0,0,16)
+TNT1 A 1 //A_SpawnItemEx("FlameSwordBitBT",0,0,0,0,0,0,60,1)
+TNT1 A 2 A_Explode(8,64,0,0,24)
+TNT1 A 1 //A_SpawnItemEx("FlameSwordBitBT",0,0,0,0,0,0,90,1)
+TNT1 A 2 A_Explode(8,72,0,0,32)
+TNT1 A 1 //A_SpawnItemEx("FlameSwordBitBT",0,0,0,0,0,0,120,1)
+TNT1 A 2 A_Explode(8,80,0,0,40)
+TNT1 A 1 //A_SpawnItemEx("FlameSwordBitBT",0,0,0,0,0,0,150,1)
+TNT1 A 2 A_Explode(8,88,0,0,44)
+stop
+}
+}
+
+actor FlameSwordBProtect : PowerProtection
+{
+Powerup.Duration 4
+damagefactor "FlameSwordB", 0.8
 }
 
 actor ReturningTorsoB//: SwordManTorsoB
@@ -772,9 +858,10 @@ FHUB V 0 A_RearrangePointers(AAPTR_DEFAULT,AAPTR_DEFAULT,AAPTR_TARGET)//Target >
 FHUB V 0 A_FaceTarget
 goto Spawn4
 Spawn4:
+FHUB V 0 A_GiveToTarget("SwordAmmoDelay",1)
 FHUB V 0 A_GiveToTarget("FlameFlag",1)
 FHUB V 0 A_JumpIfCloser(70,"Returned")
-FHUB V 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+FHUB V 0 A_PlaySound("weapon/flamesword",1,0.9)
 FHUB VV 0 A_SeekerMissile(90,90,SMF_PRECISE)
 FHUB V 1
 FHUB V 0 A_JumpIfCloser(70,"Returned")
@@ -782,15 +869,15 @@ FHUB VV 0 A_SeekerMissile(90,90,SMF_PRECISE)
 FHUB V 1
 
 FHUB W 0 A_JumpIfCloser(70,"Returned")
-FHUB W 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+FHUB W 0 A_PlaySound("weapon/flamesword",1,0.9)
 FHUB WW 0 A_SeekerMissile(90,90,SMF_PRECISE)
 FHUB W 1
 FHUB W 0 A_JumpIfCloser(70,"Returned")
 FHUB WW 0 A_SeekerMissile(90,90,SMF_PRECISE)
-FHUB W 1 A_Explode(11,65,0)
+FHUB W 1 A_Explode(4,65,0,0,24)
 
 FHUB X 0 A_JumpIfCloser(70,"Returned")
-FHUB X 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+FHUB X 0 A_PlaySound("weapon/flamesword",1,0.9)
 FHUB XX 0 A_SeekerMissile(90,90,SMF_PRECISE)
 FHUB X 1
 FHUB X 0 A_JumpIfCloser(70,"Returned")
@@ -798,12 +885,12 @@ FHUB XX 0 A_SeekerMissile(90,90,SMF_PRECISE)
 FHUB X 1
 
 FHUB Y 0 A_JumpIfCloser(70,"Returned")
-FHUB Y 0 A_PlaySoundEx("weapon/flamesword","Weapon")
+FHUB Y 0 A_PlaySound("weapon/flamesword",1,0.9)
 FHUB YY 0 A_SeekerMissile(90,90,SMF_PRECISE)
 FHUB Y 1
 FHUB Y 0 A_JumpIfCloser(70,"Returned")
 FHUB YY 0 A_SeekerMissile(90,90,SMF_PRECISE)
-FHUB Y 1 A_Explode(11,65,0)
+FHUB Y 1 A_Explode(4,65,0,0,24)
 
 FHUB V 0 A_CountDown
 FHUB V 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
@@ -815,6 +902,7 @@ FHUB V 0
 FHUB V 1 A_PlaySoundEx("S3_K/MetalSpark","Weapon")
 stop
 Returned:
+FHUB V 0 A_GiveToTarget("SwordAmmoDelay",1)
 FHUB V 0 A_GiveToTarget("SwordmanSyncFlag",1)
 FHUB V 0 A_TakeFromTarget("FlameFlag",999)
 FHUB V 1 A_PlaySoundEx("weapon/adapterreturn","Body")
@@ -822,11 +910,6 @@ stop
 }
 }
 
-
-actor SwordManTorso : SwordManTorsoB{Translation "192:192=219:219","198:198=43:43"}
-actor SwordManTorsoR : SwordManTorsoB{Translation "192:192=171:171","198:198=41:41"}
-actor SwordManTorsoO : SwordManTorsoB{Translation "192:192=104:104","198:198=128:128"}
-actor SwordManTorsoP : SwordManTorsoB{Translation "192:192=229:229","198:198=232:232"}
 
 actor TorsoVelocity : CustomInventory
 {
@@ -837,8 +920,28 @@ TNT1 A 0 A_GiveToTarget("FlameFlag",1)
 TNT1 A 0 ACS_ExecuteAlways(800,0)
 
 TNT1 A 0 //A_TakeFromTarget("TorsoSpeed",2)
+TNT1 A 0 A_JumpIfInTargetInventory("SwordSlow5",1,"Slow5")
+TNT1 A 0 A_JumpIfInTargetInventory("SwordSlow4",1,"Slow4")
+TNT1 A 0 A_JumpIfInTargetInventory("SwordSlow3",1,"Slow3")
+TNT1 A 0 A_JumpIfInTargetInventory("SwordSlow2",1,"Slow2")
+TNT1 A 0 A_JumpIfInTargetInventory("SwordSlow1",1,"Slow1")
 
-TNT1 A 0 A_ChangeVelocity(cos(pitch)*(7+ACS_ExecuteWithResult(803,TORSOSPEED)/13),0,-sin(pitch)*(8+ACS_ExecuteWithResult(803,TORSOSPEED)/13),3)
+TNT1 A 0 A_ChangeVelocity(cos(pitch)*(7+9),0,-sin(pitch)*(7+9),3)
+stop
+Slow1:
+TNT1 A 0 A_ChangeVelocity(cos(pitch)*(7+8),0,-sin(pitch)*(7+8),3)
+stop
+Slow2:
+TNT1 A 0 A_ChangeVelocity(cos(pitch)*(7+7),0,-sin(pitch)*(7+7),3)
+stop
+Slow3:
+TNT1 A 0 A_ChangeVelocity(cos(pitch)*(7+6),0,-sin(pitch)*(7+6),3)
+stop
+Slow4:
+TNT1 A 0 A_ChangeVelocity(cos(pitch)*(7+5),0,-sin(pitch)*(7+5),3)
+stop
+Slow5:
+TNT1 A 0 A_ChangeVelocity(cos(pitch)*(7+4),0,-sin(pitch)*(7+4),3)
 stop
 }
 }
@@ -873,53 +976,71 @@ Powerup.Duration 20
 damagefactor "FlameSwordCBM3", 0.0
 }
 
-actor FlameSwordBProtect : PowerProtection
-{
-Powerup.Duration 20
-damagefactor "FlameSwordB", 1.0
-}
-
 actor SwordSauceProtect : PowerProtection
 {
 Powerup.Duration 5
 damagefactor "SwordFXWithSauce", 0.0
 }
 
-actor FlameSwordB
+actor SwordM_FlameSword
 {
-Translation "192:192=219:219","198:198=43:43"
+Translation "192:192=219:219","198:198=43:43" 
 PROJECTILE
-damagetype "FlameSwordCBM1"
-Obituary "$OB_FLAMESWORD"
-+THRUACTORS
-ReactionTime 1
++RIPPER
++BRIGHT
 damage (0)
 height 5
 radius 5
-Speed 20
+Speed 52
 scale 2.5
+reactiontime 1
 states
 {
 Spawn:
 TNT1 A 0
-TNT1 AAAAAAAAA 1 A_SpawnItemEx("FlameSwordTrailB",0,0,0,0,0,0,0,1)
-TNT1 A 1 A_Countdown
+TNT1 AAAAAA 1 A_SpawnItemEx("SwordM_FlameSwordTrail",-20,0,0,5,0,0,0,1)
+TNT1 A 1 A_CountDown
 wait
+//Goto Death
 Death:
-TNT1 A 0
+TNT1 A 0 
 TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+Death2:
+X_8C AABCD 2
 stop
 }
 }
 
-actor FlameSwordBB : FlameSwordB{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSwordBR : FlameSwordB{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSwordBO : FlameSwordB{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSwordBP : FlameSwordB{translation "192:192=229:229", "198:198=232:232"}
-
-actor FlameSwordTrailB
+actor SwordM_FlameSword2 : SwordM_FlameSword
 {
-Translation "192:192=219:219","198:198=43:43"
+RenderStyle "Translucent"
+Alpha 0.9
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAA 1 A_SpawnItemEx("SwordM_FlameSwordTrail2",20,0,0,-5,0,0,0,1)
+TNT1 A 1 A_CountDown
+wait
+}
+}
+
+actor SwordM_FlameSword3 : SwordM_FlameSword
+{
+RenderStyle "Translucent"
+Alpha 0.9
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAA 1 A_SpawnItemEx("SwordM_FlameSwordTrail3",0,0,0,0,0,-5,0,1)
+TNT1 A 1 A_CountDown
+wait
+}
+}
+
+actor SwordM_FlameSwordTrail
+{
 PROJECTILE
 damagetype "FlameSwordCBM1"
 Obituary "$OB_FLAMESWORD"
@@ -929,178 +1050,34 @@ Bouncetype Classic
 -BOUNCEONFLOORS
 +NOEXPLODEFLOOR
 +RIPPER
-//+PUFFGETSOWNER
 Bouncecount 2
-BounceFactor 0.1
-WallBounceFactor 0.1
-damage (160)
-radius 24
-height 24
-Speed 25
-scale 1.5
+BounceFactor 1.0
+WallBounceFactor 1.0
+ReactionTime 1
+damage (16) 
+radius 6
+height 6
+Speed 20
+scale 2.5 
 States
 {
 Spawn:
 X_8C E 0
-TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+TNT1 A 0 A_ChangeVelocity(5,-10,0,3)
+X_8C EFGE 1
 SpawnLOOP:
-X_8C E 0 A_ChangeVelocity(5,10,0,3)
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-X_8C EFGEFG 1 A_SpawnItemEx("FlameSwordTrailFX",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-goto Death
-Death:
-X_8C EFGEFG 1 A_SetScale(ScaleX-0.25)
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-stop
-XDeath:
-TNT1 A 1
-stop
-}
-}
-
-actor FlameSwordTrailX0 : FlameSwordTrailB
-{
-damage (1)
-damagetype "FlameSwordB"
-States
-{
-Spawn:
-X_8C E 0
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-X_8C EFGEFG 1 A_SpawnItemEx("FlameSwordTrailFX",0,0,0,0,0,0,0,1)
-goto Death
-}
-}
-
-actor FlameSwordTrailX : FlameSwordTrailB
-{
-Obituary "$OB_FLAMESWORDSHOT"
-damagetype "ClassPainless"
--BOUNCEONWALLS
--NOEXPLODEFLOOR
--BOUNCEONCEILINGS
-+FORCEXYBILLBOARD
-damage (1)
-Speed 50
-scale 3.5
-States
-{
-Spawn:
-X_8C E 0
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-X_8C EFGEFG 1 A_SpawnItemEx("FlameSwordTrailFX",0,0,0,0,0,0,0,1)
+X_8C E 0 //A_ChangeVelocity(10,-25,0,3)
+X_8C FGE 1 
+X_8C E 0 A_CountDown
 loop
 Death:
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+TNT1 A 0
 stop
 }
 }
 
-actor FlameSwordTrailXTrail : FlameSwordTrailX
-{
-States
-{
-Spawn:
-X_8C E 0
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-X_8C EFGEFG 1 A_SpawnItemEx("FlameSwordTrailFX",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-goto Death
-}
-}
-
-actor FlameSwordTrailB_A : FlameSwordTrailB
-{
-States
-{
-Spawn:
-X_8C E 0
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-X_8C E 0 A_ChangeVelocity(5,-10,0,3)
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-X_8C EFGEFG 1 A_SpawnItemEx("FlameSwordTrailFX_A",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-goto Death
-}
-}
-
-actor FlameSwordTrailBB : FlameSwordTrailB{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSwordTrailBR : FlameSwordTrailB{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSwordTrailBO : FlameSwordTrailB{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSwordTrailBP : FlameSwordTrailB{translation "192:192=229:229", "198:198=232:232"}
-
-actor FlameSwordTrailX0B : FlameSwordTrailX0{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSwordTrailX0R : FlameSwordTrailX0{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSwordTrailX0O : FlameSwordTrailX0{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSwordTrailX0P : FlameSwordTrailX0{translation "192:192=229:229", "198:198=232:232"}
-
-actor FlameSwordTrailXB : FlameSwordTrailX{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSwordTrailXR : FlameSwordTrailX{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSwordTrailXO : FlameSwordTrailX{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSwordTrailXP : FlameSwordTrailX{translation "192:192=229:229", "198:198=232:232"}
-
-actor FlameSwordTrailXTrailB : FlameSwordTrailXTrail{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSwordTrailXTrailR : FlameSwordTrailXTrail{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSwordTrailXTrailO : FlameSwordTrailXTrail{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSwordTrailXTrailP : FlameSwordTrailXTrail{translation "192:192=229:229", "198:198=232:232"}
-
-actor FlameSwordTrailBB_A : FlameSwordTrailB_A{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSwordTrailBR_A : FlameSwordTrailB_A{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSwordTrailBO_A : FlameSwordTrailB_A{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSwordTrailBP_A : FlameSwordTrailB_A{translation "192:192=229:229", "198:198=232:232"}
-
-actor FlameSword2B : FlameSwordB
-{
-damagetype "FlameSwordCBM2"
-Translation "192:192=219:219","198:198=43:43" 
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 AAAAAAAAA 1 A_SpawnItemEx("FlameSwordTrail2B",0,0,0,0,0,0,0,1)
-TNT1 A 1 A_Countdown
-wait
-}
-}
-
-actor FlameSword3B : FlameSwordB
-{
-damagetype "FlameSwordCBM3"
-Translation "192:192=219:219","198:198=43:43" 
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 AAAAAAAAA 1 A_SpawnItemEx("FlameSwordTrail3B",0,0,0,0,0,0,0,1)
-TNT1 A 1 A_Countdown
-wait
-}
-}
-
-actor FlameSword2BB : FlameSword2B{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSword2BR : FlameSword2B{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSword2BO : FlameSword2B{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSword2BP : FlameSword2B{translation "192:192=229:229", "198:198=232:232"}
-
-actor FlameSword3BB : FlameSword3B{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSword3BR : FlameSword3B{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSword3BO : FlameSword3B{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSword3BP : FlameSword3B{translation "192:192=229:229", "198:198=232:232"}
-
-actor FlameSwordTrail2B : FlameSwordTrailB
+actor SwordM_FlameSwordTrail2 : SwordM_FlameSwordTrail
 {
 damagetype "FlameSwordCBM2"
 States
@@ -1108,73 +1085,96 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+TNT1 A 0 A_ChangeVelocity(10,10,0,3)
+X_8C EFGE 1
 SpawnLOOP:
-X_8C E 0 A_ChangeVelocity(-5,10,0,3)
-X_8C EFGEFG 1 A_SpawnItemEx("FlameSwordTrailFX",0,0,0,0,0,0,0,1)
-stop
+X_8C E 0 //A_ChangeVelocity(10,25,0,3)
+X_8C FGE 1 
+X_8C E 0 A_CountDown
+loop
 }
 }
 
-actor FlameSwordTrail3B : FlameSwordTrailB
+actor SwordM_FlameSwordTrail3 : SwordM_FlameSwordTrail
 {
-damage (220)
 damagetype "FlameSwordCBM3"
+damage (22)
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+TNT1 A 0 //A_ChangeVelocity(10,10,0,3)
+X_8C EFGE 1
 SpawnLOOP:
-X_8C E 0 //A_ChangeVelocity(5,10,0,3)
-X_8C EFGEFG 1 A_SpawnItemEx("FlameSwordTrailFX",0,0,0,0,0,0,0,1)
-stop
+X_8C E 0 //A_ChangeVelocity(10,25,0,3)
+X_8C FGE 1 
+X_8C E 0 A_CountDown
+loop
 }
 }
 
-actor FlameSwordTrailFX : FlameSwordTrailB
+actor FlameSwordBitBT
 {
-damage (0)
-damagetype "ClassPainless2"
--RIPPER
+Translation "192:192=219:219","198:198=43:43"
++THRUACTORS
++NOGRAVITY
++CLIENTSIDEONLY
+-SOLID
+damage 0
+Height 2
+Radius 2
+scale 7
 States
 {
 Spawn:
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_7H P 1 A_Setangle(angle-1500/30)
+TNT1 A 0 A_SpawnItemEx("FlameSwordTrailT",-20,0,0,5,0,0,0,1)
+X_7H P 1 A_ChangeVelocity(10,0,6,CVF_RELATIVE)
+TNT1 A 0 A_SpawnItemEx("FlameSwordTrailT",-20,0,0,5,0,0,0,1)
+X_7H P 1 A_Setangle(angle-1590/30)
+TNT1 A 0 A_SpawnItemEx("FlameSwordTrailT",-20,0,0,5,0,0,0,1)
+X_7H P 1 A_ChangeVelocity(10,0,6,CVF_RELATIVE)
+TNT1 A 0 A_SpawnItemEx("FlameSwordTrailT",-20,0,0,5,0,0,0,1)
+X_7H P 1 A_Setangle(angle-1680/30)
+TNT1 A 0 A_SpawnItemEx("FlameSwordTrailT",-20,0,0,5,0,0,0,1)
+X_7H P 1 A_ChangeVelocity(10,0,6,CVF_RELATIVE)
+TNT1 A 0 A_SpawnItemEx("FlameSwordTrailT",-20,0,0,5,0,0,0,1)
+X_7H P 1 A_Setangle(angle-1770/30)
+TNT1 A 0 A_SpawnItemEx("FlameSwordTrailT",-20,0,0,5,0,0,0,1)
+X_7H P 1 A_ChangeVelocity(10,0,6,CVF_RELATIVE)
+TNT1 A 0 A_SpawnItemEx("FlameSwordTrailT",-20,0,0,5,0,0,0,1)
+X_7H P 1 A_Setangle(angle-1860/30)
+TNT1 A 0 A_SpawnItemEx("FlameSwordTrailT",-20,0,0,5,0,0,0,1)
+X_7H P 1 A_ChangeVelocity(10,0,6,CVF_RELATIVE)
+goto Spawn2
+Spawn2:
+X_7H P 1 A_Fadeout(25.0)
+loop
+}
+}
+
+actor FlameSwordTrailT :  SwordM_FlameSwordTrail
+{
++CLIENTSIDEONLY
+Damage (0)
+radius 6
+height 6
+Speed 20
+scale 2.5 
+States
+{
+Spawn:
 X_8C E 0
-SpawnLOOP:
-X_8C EFGEFG 1 A_SetScale(ScaleX-0.25)
-stop
-XDEATH:
-X_8C E 0 A_PlaySoundEx("weapon/flamehit","SoundSlot5")
-X_8C E 0 A_SpawnItemEx("FlameSwordBit",0,0,0,random(-10,10),random(-10,10),random(10,15),random(0,359))
-stop
-}
-}
-
-actor FlameSwordTrailFX_A : FlameSwordTrailFX
-{
-States
-{
-Spawn:
-TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-X_8C E 0
+TNT1 A 0 A_ChangeVelocity(5,-10,0,3)
+X_8C EF 1
 SpawnLOOP:
-X_8C EFGEFG 1 A_SetScale(ScaleX-0.25)
+X_8C E 0 A_ChangeVelocity(10,-25,0,3)
+X_8C GEFG 1 
 stop
 }
 }
-
-actor FlameSwordTrailFXB : FlameSwordTrailFX{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSwordTrailFXR : FlameSwordTrailFX{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSwordTrailFXO : FlameSwordTrailFX{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSwordTrailFXP : FlameSwordTrailFX{translation "192:192=229:229", "198:198=232:232"}
-
-actor FlameSwordTrailFXB_A : FlameSwordTrailFX_A{translation "192:192=205:205", "198:198=74:74"}
-actor FlameSwordTrailFXR_A : FlameSwordTrailFX_A{translation "192:192=171:171", "198:198=41:41"}
-actor FlameSwordTrailFXO_A : FlameSwordTrailFX_A{translation "192:192=104:104", "198:198=128:128"}
-actor FlameSwordTrailFXP_A : FlameSwordTrailFX_A{translation "192:192=229:229", "198:198=232:232"}
 
 actor FlameSwordBitB
 {
@@ -1204,125 +1204,39 @@ stop
 }
 }
 
-actor FSSParkSpawnerB : BasicHelper
-{
-ReactionTime 10
-states
-{//Adjusted Xvel speed +5
-Spawn:
-TNT1 A 0
-TNT1 A 0 A_CountDown
-loop
-}
-}
+actor SwordM_FlameSwordB : SwordM_FlameSword{translation "192:192=205:205", "198:198=74:74"}
+actor SwordM_FlameSwordR : SwordM_FlameSword{translation "192:192=171:171", "198:198=41:41"}
+actor SwordM_FlameSwordO : SwordM_FlameSword{translation "192:192=104:104", "198:198=128:128"}
+actor SwordM_FlameSwordP : SwordM_FlameSword{translation "192:192=229:229", "198:198=232:232"}
 
-actor FlameSwordSparkB
-{
-PROJECTILE
-damagetype "FlameSwordSpark"
-Obituary "$OB_FLAMESWORD"
-+FORCEXYBILLBOARD
-+DONTSPLASH
-Damage (1)
-Radius 2
-Height 2
-Speed 50
-Scale 2.0
-States
-{
-Spawn:
-X_8C A 0
-X_8C ABCD 1
-stop
-}
-}
-actor FlameSwordSparkB2 : FlameSwordSparkB
-{
-damagetype "FlameSwordSpark2"
-}
-actor FlameSwordSparkB3 : FlameSwordSparkB
-{
-damagetype "FlameSwordSpark3"
-}
+actor SwordM_FlameSword2B : SwordM_FlameSword2{translation "192:192=205:205", "198:198=74:74"}
+actor SwordM_FlameSword2R : SwordM_FlameSword2{translation "192:192=171:171", "198:198=41:41"}
+actor SwordM_FlameSword2O : SwordM_FlameSword2{translation "192:192=104:104", "198:198=128:128"}
+actor SwordM_FlameSword2P : SwordM_FlameSword2{translation "192:192=229:229", "198:198=232:232"}
 
-actor SwordPuff : FlameSwordTrailB
-{
-Damage (0)
-}
-
-actor SwordPuff_A : FlameSwordTrailB_A
-{
-Damage (0)
-}
-
-actor SwordPuffX : FlameSwordTrailX0
-{
-Damage (0)
-}
-
-actor SwordPuffB : SwordPuff{translation "192:192=205:205", "198:198=74:74"}
-actor SwordPuffR : SwordPuff{translation "192:192=171:171", "198:198=41:41"}
-actor SwordPuffO : SwordPuff{translation "192:192=104:104", "198:198=128:128"}
-actor SwordPuffP : SwordPuff{translation "192:192=229:229", "198:198=232:232"}
-
-actor SwordPuffB_A : SwordPuff_A{translation "192:192=205:205", "198:198=74:74"}
-actor SwordPuffR_A : SwordPuff_A{translation "192:192=171:171", "198:198=41:41"}
-actor SwordPuffO_A : SwordPuff_A{translation "192:192=104:104", "198:198=128:128"}
-actor SwordPuffP_A : SwordPuff_A{translation "192:192=229:229", "198:198=232:232"}
-
-actor SwordPuffXB : SwordPuffX{translation "192:192=205:205", "198:198=74:74"}
-actor SwordPuffXR : SwordPuffX{translation "192:192=171:171", "198:198=41:41"}
-actor SwordPuffXO : SwordPuffX{translation "192:192=104:104", "198:198=128:128"}
-actor SwordPuffXP : SwordPuffX{translation "192:192=229:229", "198:198=232:232"}
-
-actor SwordSpinnerExplosion : RyuL_TrueHurricane
-{
-Obituary "$OB_SWORDTORSO"
-damagetype "FlameSwordB"
-PROJECTILE
-+NOINTERACTION
-height 0
-radius 0
-speed 0
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 1 A_Explode(20,128,0,0,10)
-stop
-}
-}
-
-actor SwordSucker : DustSucker
-{
-states
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 ACS_ExecuteAlways(C_JAX_SUCKRECODE,0,700,10,2)
-TNT1 A 3
-stop
-}
-}
+actor SwordM_FlameSword3B : SwordM_FlameSword3{translation "192:192=205:205", "198:198=74:74"}
+actor SwordM_FlameSword3R : SwordM_FlameSword3{translation "192:192=171:171", "198:198=41:41"}
+actor SwordM_FlameSword3O : SwordM_FlameSword3{translation "192:192=104:104", "198:198=128:128"}
+actor SwordM_FlameSword3P : SwordM_FlameSword3{translation "192:192=229:229", "198:198=232:232"}
 
 actor SwordmanAlt_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("SwordManTorso",0,0,0,-2)
-goto Done
-FireB:
 TNT1 A 0 A_FireCustomMissile("SwordManTorsoB",0,0,0,-2)
 goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SwordManTorsoBB",0,0,0,-2)
+goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("SwordManTorsoR",0,0,0,-2)
+TNT1 A 0 A_FireCustomMissile("SwordManTorsoBR",0,0,0,-2)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("SwordManTorsoO",0,0,0,-2)
+TNT1 A 0 A_FireCustomMissile("SwordManTorsoBO",0,0,0,-2)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("SwordManTorsoP",0,0,0,-2)
+TNT1 A 0 A_FireCustomMissile("SwordManTorsoBP",0,0,0,-2)
 goto Done
 }
 }
@@ -1330,21 +1244,21 @@ goto Done
 actor SwordmanMain1_CI : TeamColor_CI
 {
 states
-{//A_FireCustomMissile("FlameSwordB",50,0,-16,0,0,-10)
+{//A_FireCustomMissile("SwordM_FlameSword",50,0,-16,0,0,-10)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSwordB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword",50,0,-16,0,0,-10)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordB",50,0,-16,0,0,-10)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordR",50,0,-16,0,0,-10)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordO",50,0,-16,0,0,-10)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordP",50,0,-16,0,0,-10)
 goto Done
 }
 }
@@ -1352,21 +1266,21 @@ goto Done
 actor SwordmanMain2_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSwordB",25,0,-8,0,0,-5)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword",25,0,-8,0,0,-5)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSwordB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword",25,0,-8,0,0,-5)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordB",25,0,-8,0,0,-5)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordR",25,0,-8,0,0,-5)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordO",25,0,-8,0,0,-5)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordP",25,0,-8,0,0,-5)
 goto Done
 }
 }
@@ -1374,21 +1288,21 @@ goto Done
 actor SwordmanMain3_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSwordB",0,0,0,0,0,0)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword",0,0,0,0,0,0)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSwordB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword",0,0,0,0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordB",0,0,0,0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordR",0,0,0,0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordO",0,0,0,0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordP",0,0,0,0,0,0)
 goto Done
 }
 }
@@ -1396,21 +1310,21 @@ goto Done
 actor SwordmanMain4_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSwordB",-25,0,8,0,0,10)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword",-25,0,8,0,0,10)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSwordB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword",-25,0,8,0,0,5)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordB",-25,0,8,0,0,5)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordR",-25,0,8,0,0,5)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordO",-25,0,8,0,0,5)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordP",-25,0,8,0,0,5)
 goto Done
 }
 }
@@ -1418,21 +1332,21 @@ goto Done
 actor SwordmanMain5_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSwordB",-50,0,16,0,0,20)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword",-50,0,16,0,0,20)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSwordB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword",-50,0,16,0,0,10)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordB",-50,0,16,0,0,10)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordR",-50,0,16,0,0,10)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordO",-50,0,16,0,0,10)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSwordBP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSwordP",-50,0,16,0,0,10)
 goto Done
 }
 }
@@ -1442,147 +1356,213 @@ actor SwordmanMain1a_CI : TeamColor_CI
 states
 {//TNT1 A 0 A_FireCustomMissile("FlameSword2B",-50,0,16,0,0,20)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSword2B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",-50,0,-16,0,0,-10)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2B",-50,0,-16,0,0,-10)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2R",-50,0,-16,0,0,-10)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2O",-50,0,-16,0,0,-10)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-50,0,16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2P",-50,0,-16,0,0,-10)
 goto Done
 }
 }
 actor SwordmanMain2a_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSword2B",-25,0,8,0,0,10)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",-25,0,8,0,0,10)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSword2B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",-25,0,-8,0,0,-5)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2B",-25,0,-8,0,0,-5)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2R",-25,0,-8,0,0,-5)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2O",-25,0,-8,0,0,-5)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle-25,0,8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2P",-25,0,-8,0,0,-5)
 goto Done
 }
 }
 actor SwordmanMain3a_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSword2B",0,0,0,0,0,0)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",0,0,0,0,0,0)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSword2B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",0,0,0,0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2B",0,0,0,0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2R",0,0,0,0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2O",0,0,0,0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2P",0,0,0,0,0,0)
 goto Done
 }
 }
 actor SwordmanMain4a_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSword2B",25,0,-8,0,0,-5)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",25,0,-8,0,0,-5)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSword2B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",25,0,8,0,0,5)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2B",25,0,8,0,0,5)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2R",25,0,8,0,0,5)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2O",25,0,8,0,0,5)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+25,0,-8,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2P",25,0,8,0,0,5)
 goto Done
 }
 }
 actor SwordmanMain5a_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSword2B",50,0,-16,0,0,-10)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",50,0,-16,0,0,-10)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSword2B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",50,0,16,0,0,10)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2B",50,0,16,0,0,10)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2R",50,0,16,0,0,10)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2O",50,0,16,0,0,10)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSword2BP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle+50,0,-16,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2P",50,0,16,0,0,10)
 goto Done
 }
 }
 
-actor SwordmanMainX0_CI : TeamColor_CI
+actor SwordmanMainX1_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSword2B",0,0,0,0,0,0)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",50,0,-16,0,0,-10)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSword3B",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3",0,0,0,16,0,10)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSword3BB",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3B",0,0,0,16,0,10)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSword3BR",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3R",0,0,0,16,0,10)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSword3BO",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3O",0,0,0,16,0,10)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSword3BP",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3P",0,0,0,16,0,10)
 goto Done
 }
 }
 
-actor SwordmanMainX_CI : TeamColor_CI
+actor SwordmanMainX2_CI : TeamColor_CI
 {
 states
-{//TNT1 A 0 A_FireCustomMissile("FlameSword2B",50,0,-16,0,0,-10)
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",50,0,-16,0,0,-10)
 FireX:
-TNT1 A 0 A_FireCustomMissile("FlameSwordTrailX",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3",0,0,0,8,0,5)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("FlameSwordTrailXB",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3B",0,0,0,8,0,5)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("FlameSwordTrailXR",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3R",0,0,0,8,0,5)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("FlameSwordTrailXO",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3O",0,0,0,8,0,5)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("FlameSwordTrailXP",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3P",0,0,0,8,0,5)
+goto Done
+}
+}
+
+actor SwordmanMainX3_CI : TeamColor_CI
+{
+states
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",50,0,-16,0,0,-10)
+FireX:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3",0,0,0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3B",0,0,0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3R",0,0,0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3O",0,0,0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3P",0,0,0,0,0,0)
+goto Done
+}
+}
+
+actor SwordmanMainX4_CI : TeamColor_CI
+{
+states
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",50,0,-16,0,0,-10)
+FireX:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3",0,0,0,-8,0,-5)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3B",0,0,0,-8,0,-5)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3R",0,0,0,-8,0,-5)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3O",0,0,0,-8,0,-5)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3P",0,0,0,-8,0,-5)
+goto Done
+}
+}
+
+actor SwordmanMainX5_CI : TeamColor_CI
+{
+states
+{//TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword2",50,0,-16,0,0,-10)
+FireX:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3",0,0,0,16,0,10)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3B",0,0,0,16,0,10)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3R",0,0,0,16,0,10)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3O",0,0,0,16,0,10)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("SwordM_FlameSword3P",0,0,0,16,0,10)
 goto Done
 }
 }

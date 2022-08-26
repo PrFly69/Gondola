@@ -3,9 +3,8 @@ actor Burstman : ClassBase
 Player.ScoreIcon "C_07C0X"
 player.displayname "Burstman"
 player.soundclass "burstmanc"
-
-player.maxhealth 1100
-health 1100
+player.maxhealth 110
+health 110
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

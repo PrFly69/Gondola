@@ -8,8 +8,8 @@ player.startitem "BossBurnerAmmo", 84
 player.startitem "BossBurnerAmmo2", 42
 //player.startitem "TrapUse"
 
-player.maxhealth 700
-health 700
+player.maxhealth 70
+health 70
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
@@ -56,30 +56,39 @@ BURN F 2
 Goto Missile
 ARunB:
 BURN B 2
+TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
 Goto Missile//+6
 ARunC:
 BURN C 2
+TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
 Goto Missile//+6
 ARunD:
 BURN D 2
+TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
 Goto Missile//+6
 ARunE:
 BURN E 2
+TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
 Goto Missile//+6
 ARunF:
 BURN E 2 A_TakeInventory("BurnerDashFlag",4)
+TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
 Goto Missile//+6
 AirDash:
 BURN BB 1
+TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
 BURN B 1 A_JumpIfInventory("BurnerDiveFlag",1,1)
 goto Missile+6
 BURN CC 1
+TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
 BURN C 1 A_JumpIfInventory("BurnerDiveFlag",1,1)
 goto Missile+6
 BURN DD 1
+TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
 BURN D 1 A_JumpIfInventory("BurnerDiveFlag",1,1)
 goto Missile+6
 BURN EE 1
+TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
 BURN E 1 A_JumpIfInventory("BurnerDiveFlag",1,"AirDash")
 goto Missile+6
 

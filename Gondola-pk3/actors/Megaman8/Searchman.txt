@@ -8,11 +8,11 @@ player.startitem "SearchBusher"
 player.startitem "MetalFloatFlag"
 player.startitem "WilyBanzaiAmmo", 560
 
-player.maxhealth 900
-health 900
-player.jumpz 10
-player.forwardmove 0.7, 0.7
-player.sidemove 0.68, 0.68
+player.maxhealth 90
+health 90
+player.jumpz 11
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.startitem "FlameSwordWeakness2", 1
 

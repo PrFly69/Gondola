@@ -1,0 +1,84 @@
+//Help modders adjust armor values for every class
+
+actor RyuLight_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 50.001
+Armor.Saveamount 40
+}
+
+actor JoeTruck_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 66.001
+Armor.Saveamount 100
+}
+
+actor JoeApache_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 33.001
+Armor.Saveamount 100
+}
+
+actor HeatM_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 30.001
+Armor.Saveamount 100
+}
+
+actor ChargeM_BasicArmorBonus_P : BasicArmorBonus
+{
+Armor.SavePercent 50.0
+Armor.Saveamount 11
+Armor.Maxsaveamount 100
+Armor.Maxbonus 11//This doesn't do anything???
+Armor.Maxbonusmax 50
+}
+
+actor JunkM_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 40.001
+Armor.Saveamount 20
+//Armor.MaxSaveAmount 200
+}
+
+actor ShadeM_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 80.001
+Armor.Saveamount 40
+}
+
+actor ODuo_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 33.001
+Armor.Saveamount 100
+}
+
+actor PirateM_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 99.001
+Armor.Saveamount 25
+}
+/*
+actor ChillM_BasicArmor_P : BasicArmorPickup
+{
+//+ALLOWPAIN
+Armor.Savepercent 100
+Armor.Saveamount 250
+}
+*/
+actor Uranus_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 60.001
+Armor.Saveamount 100
+}
+
+actor MegaWaterS_BasicArmor_P : BasicArmorPickup
+{
+armor.saveamount 50
+armor.savepercent 80.001
+}
+
+actor Enker_BasicArmor_P : BasicArmorPickup
+{
+Armor.Savepercent 90.001
+Armor.Saveamount 100
+}

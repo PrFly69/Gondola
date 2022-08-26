@@ -3,10 +3,10 @@ actor Ballade : ClassBase //85
 Player.ScoreIcon "C_0KC0X"
 player.displayname "Ballade"
 player.soundclass "balladec"
-player.maxhealth 850
-health 850
-player.forwardmove 0.9, 0.9
-player.sidemove 0.8, 0.8
+player.maxhealth 85
+health 85
+player.forwardmove 1.0, 1.0
+player.sidemove 0.98, 0.98
 player.startitem "BalladeCrackerBoss"
 player.startitem "BalladeMineAmmo", 3
 player.jumpz 13

@@ -7,8 +7,8 @@ player.startitem "ThunderClawBoss"
 //player.startitem "ThunderClawBosT"
 player.startitem "YoGeekyAmmo", 200
 
-player.maxhealth 900
-health 900
+player.maxhealth 90
+health 90
 player.forwardmove 0.93, 0.93
 player.sidemove 0.91, 0.91
 player.jumpz 12

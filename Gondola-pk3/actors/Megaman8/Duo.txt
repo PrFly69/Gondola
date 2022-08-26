@@ -18,8 +18,8 @@ player.weaponslot 1, "DuoFistBoss"
 
 player.startitem "BaseWepAltOverride_F", 1
 
-player.maxhealth 1150
-health 1150
+player.maxhealth 115
+health 115
 player.jumpz 10
 player.forwardmove 0.73, 0.73
 player.sidemove 0.71, 0.71
@@ -69,7 +69,7 @@ CustomState4:
 DUO7 R 1 A_JumpIfInventory("DuoSlamAnimFlag",1,"EndSlam")
 loop
 EndSlam:
-DUO7 S 6
+DUO7 STUU 3
 goto Spawn+2
 ClassPain:
 DUO7 H 0 A_JumpIfInventory("DuoMeteor",1,"Rise")

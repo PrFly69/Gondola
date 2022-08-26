@@ -651,10 +651,10 @@ damagetype "SaturnWhiteRing1"
 bouncecount 10
 bouncefactor 0.75
 wallbouncefactor 0.75
-damage (150)
+damage (15)
 Radius 24
 Height 16
-speed 50
+speed 56
 scale 2.5
 reactiontime 5
 States
@@ -722,7 +722,7 @@ Actor SaturnWhiteRingReturner {
 	+DONTBLAST
 	+DONTREFLECT
 	ReactionTime 87//about 10 seconds
-	Speed 40
+	Speed 45
 	States {
 		Spawn:
 			TNT1 A 0
@@ -789,7 +789,7 @@ Obituary "%o was thrusted away by %k's white hole ring."
 +RIPPER
 +DONTBLAST
 +DONTREFLECT
-damage (30)
+damage (3)
 radius 24
 height 16
 States
@@ -815,10 +815,10 @@ damagetype "SaturnWhiteRing1"
 bouncecount 10
 bouncefactor 0.75
 wallbouncefactor 0.75
-damage (150)
+damage (15)
 Radius 24
 Height 16
-speed 50
+speed 62
 scale 2.5
 States
 {
@@ -945,7 +945,7 @@ TNT1 A 0
 TNT1 A 0 
 SpawnLOOP:
 BHLE FFEEDDCC 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
-BHLE B 2 A_Explode(150,216,0,0,64)
+BHLE B 2 A_Explode(15,216,0,0,64)
 BHLE BBBBBBBBBBBBBBBBBBBB 0 A_SpawnItemEx("BlackVortexHelperFX",0,0,0,0,0,0,0,1)
 BHLE CCDDEE 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
 stop
@@ -1175,7 +1175,7 @@ reactiontime 1
 damage (0)
 Radius 20
 Height 20
-speed 40
+speed 45
 scale 2.5
 States
 {
@@ -1184,7 +1184,7 @@ TNT1 A 0
 TNT1 A 1 A_CountDown
 wait
 Death:
-TNT1 A 0 A_Explode(10,64,0,0,65)
+TNT1 A 0 A_Explode(1,64,0,0,65)
 TNT1 A 1
 stop
 }
@@ -1230,7 +1230,7 @@ PROJECTILE
 +DONTREFLECT
 +THRUSPECIES
 Species "SaturnSuck"
-Speed 650//450
+Speed 731//450
 Damage (0)
 radius 12
 height 12
@@ -1281,7 +1281,7 @@ Species "SaturnSuck"
 height 5
 radius 5
 Scale 2.5
-Speed 60
+Speed 68
 States
 {
 Spawn:
@@ -1328,14 +1328,14 @@ TNT1 A 0 A_GiveInventory("SaturnCatchSuccess",1)
 TNT1 A 0 A_PlaySoundEx("item/JunkPick","Body")
 TNT1 A 0 A_JumpIfInventory("BlackVortexAmmo",28,"Pickup2")
 TNT1 A 0 A_GiveInventory("BlackVortexAmmo",1)
-TNT1 A 0 A_GiveInventory("SaturnCatchArmor",2)
+TNT1 A 0 A_GiveInventory("SaturnCatchArmor",1)
 //TNT1 A 0 A_GiveInventory("WhiteHoleAmmo",10)
 //TNT1 A 0 A_TakeInventory("SaturnHoldAmmo",10)
 stop
 
 Pickup2:
 TNT1 A 0 A_GiveInventory("BlackVortexAmmo",1)
-TNT1 A 0 A_GiveInventory("SaturnCatchArmor",4)
+TNT1 A 0 A_GiveInventory("SaturnCatchArmor",2)
 stop
 
 No:
@@ -1365,9 +1365,9 @@ stop
 
 actor SaturnCatchArmor : BasicArmorBonus
 {
-  armor.maxsaveamount 1350
-  armor.savepercent 40.001
-  armor.saveamount 10
+  armor.maxsaveamount 75
+  armor.savepercent 30.001
+  armor.saveamount 5
   states
   {
   Spawn:
@@ -1382,10 +1382,10 @@ PROJECTILE
 +RIPPER
 damagetype "DMGNoHitstun"
 Obituary ""
-damage (40)
+damage (4)
 Radius 18
 Height 18
-Speed 35
+Speed 39
 Scale 1.25
 States
 {

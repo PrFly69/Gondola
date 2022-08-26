@@ -4,13 +4,14 @@ Player.ScoreIcon "C_01A0X"
 player.displayname "Cutman"
 player.soundclass "cutmanc"
 
-player.maxhealth 850
-health 850
-player.jumpz 12
+player.maxhealth 85
+health 85
+player.jumpz 12.5
 player.forwardmove 1.0, 1.0
 player.sidemove 0.98, 0.98
 
 player.startitem "RollingCutterBoss"
+player.startitem "KFCAmmo", 14
 player.startitem "CanWallJump"
 player.startitem "CanWallJumpStack", 99
 player.startitem "CutterReturned"

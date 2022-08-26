@@ -56,6 +56,9 @@ str FLOORS[FLOORCOUNT] = {
 "SOLALAVX",//Solar
 "NEPWAVX",//Neptune
 
+//Encore
+"ESWRLAVX",
+"ESLRLAVX",
 
 //RockForce maps
 "CRPTBLCK",

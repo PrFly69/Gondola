@@ -1,12 +1,21 @@
 #library "bugfix_f"//F is for fish
 #include "zcommon.acs"
 
+#include "8bdmlib.acs"
+
+
 #DEFINE C_JAX_SUCKRECODE 422
 #DEFINE C_JAX_SUCKRECODE2 423
 
 #DEFINE TEAM_NONE -1
 #DEFINE MAX_PLAYERS 64 //0-31//0-63
 #DEFINE MAX_PLAYERSX 64
+
+script "cbmf_IsTeamServerMAX" OPEN
+{
+IsTeamGame = ACS_ExecuteWithResult(975,1);
+ServerMAX = GetMaxPlayers();
+}
 
 script 147 (int Swap)
 {
@@ -119,7 +128,7 @@ script C_JAX_SUCKRECODE (int distRange, int angleRange, int type)
 							case 2://Dust Suck
 								GiveActorInventory(1000+i,"TempPitProtect_P",1);
 								if(ACS_NamedExecuteWithResult("cbm_IsPlayerAlive",i+1000)){
-									GiveActorInventory(owner,"CrushEmAmmo",2);
+									GiveActorInventory(owner,"CrushEmAmmo",3);
 								}
 								ThrustThing((angle >> 8)+128, 3, 1, 1000+i);
 								break;
@@ -237,6 +246,16 @@ function void clearCloneSpawn (void)
 	}
 }
 
+script "cbm_LocalSprk1Snd" (void)
+{
+	LocalAmbientSound("weapon/ShockLob",64);
+}
+
+script "cbm_LocalSprk2Snd" (void)
+{
+	LocalAmbientSound("weapon/ShockLob",128);
+}
+
 // Gemini Clones Spawner
 script 149 (int j)
 {
@@ -337,15 +356,6 @@ script 150 (void)
 	}
 }
 
-// Returns absolute value
-function int abs (int x)
-{
-    if (x < 0)
-	{
-        return -x;
-	}
-    return x;
-}
 
 function int WrapAround(int i)
 {
@@ -403,7 +413,7 @@ function int NoPushFlagCheck(int Target)
 	return 0;
 }
 
-function int sqrt8(int number)
+/*function int sqrt8(int number)
 {
 	if(number <= 3)
 	{
@@ -425,7 +435,7 @@ function int sqrt8(int number)
 	}
 
 	return oldAns;
-}
+}*/
 
 function int distanceVal (int tid1x, int tid1y, int tid1z, int tid2)
 {

@@ -6,7 +6,7 @@ dropitem "DarkShieldWepCDropped"
 Weapon.AmmoUse 16
 Weapon.AmmoUse2 18
 Weapon.AmmoGive 64
-Obituary "$OB_DARK3SNIPE"
+Obituary "$OB_DARK3SNIPER"
 Inventory.Pickupmessage "maybe"
 weapon.ammotype1 "Darkman3SniperAmmo"
 weapon.ammotype2 "Darkman3RingAmmo"
@@ -88,22 +88,28 @@ DKC3 A 0 A_GiveInventory("VivifyDelay8",1)
 DKC3 A 0 A_ReFire(1)
 DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main_CI",1)
+//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
 DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
 DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main0_CI",1)
+//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
 DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
 DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main0_CI",1)
+//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
 DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
 DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main0_CI",1)
+//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
 DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
 DKC3 A 2 OffSet(10,42)
 DKC3 A 14 A_WeaponReady(14)
 goto Ready0
 
 Fire1:
-DKC3 A 12 OffSet(20,52)A_GiveInventory("Dark3_FireCheck_P")
+DKC3 A 1 OffSet(20,52)A_GiveInventory("Dark3_FireCheck_P")
+TNT1 A 0 A_TakeInventory("DarkSniperCharge")
+DKC3 A 11 OffSet(20,52) 
 DKC3 A 2 OffSet(10,42)
 DKC3 A 10 A_WeaponReady(14)
 goto Ready0
@@ -112,11 +118,16 @@ AltFire:
 DKC3 A 0 A_GiveInventory("VivifyDelay6",1)
 DKC3 A 0 A_TakeInventory("DarkSniperCharge_F",1)
 DKC3 A 0 A_ReFire(1)
-DKC3 A 0 A_PlaySoundEx("weapon/sparkalt","Weapon")
+DKC3 A 0 A_JumpIfInventory("Darkman3RingAmmo",54,1)
+goto AltfireUnZoom
 DKC3 A 0 A_JumpIfInventory("DarkSniperFlag",1,"AltfireZoom")
+AltfireUnZoom:
+DKC3 A 0 A_JumpIfInventory("DarkSniperFlag",1,"NoAmmo")
+DKC3 A 0 A_PlaySoundEx("weapon/sparkalt","Weapon")
 DKC3 A 4 OffSet(40,32) A_GiveInventory("Darkman3Alt_CI",1)
 goto AltEnd
 AltfireZoom:
+DKC3 A 0 A_PlaySoundEx("weapon/sparkalt","Weapon")
 DKC3 A 4 OffSet(40,32)A_GiveInventory("Darkman3Alt2_CI",1)
 goto AltEnd
 AltEnd:
@@ -146,25 +157,32 @@ goto Ready1
 
 Flash:
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIfInventory("DarkSniperFlag",1,2)
+TNT1 A 0 A_JumpIfInventory("DarkSniperFlag",1,"Zooms")
 TNT1 A 1
 loop
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,3,5)
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
-TNT1 A 1 A_ZoomFactor(2.0,1)
+Zooms: 
+TNT1 A 0 A_ZoomFactor(1.5,1)
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 1 A_GiveInventory("DarkSniperFlash_P",1)
-TNT1 A 0 A_JumpIfInventory("DarkSniperFlag",1,1)
-goto Flash+10
-TNT1 A 0
-goto Flash+6
+TNT1 A 0 A_GiveInventory("DarkSniperFlash_P",1)
+TNT1 A 0 A_JumpIfInventory("DarkSniperFlag",2,"Zooms2") 
+TNT1 A 1 A_GiveInventory("DarkRailPointerFX",1)
+Loop
+Zooms2: 
+TNT1 A 0 A_ZoomFactor(2.0,1)
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 0 A_GiveInventory("DarkSniperFlash_P",1) 
+TNT1 A 0 A_JumpIfInventory("DarkSniperFlag",3,"Reset") 
+TNT1 A 1 A_GiveInventory("DarkRailPointerFX",1)
+Loop
+Reset:
 TNT1 A 0 A_GiveInventory("DarkSniperFlashReset_P")
 TNT1 A 1 A_ZoomFactor(1.0,1)
-loop
+Goto Flash
+
 NoAmmo:
-DKC3 A 2
-DKC3 AA 0 A_GiveInventory("Darkman3SniperAmmo",1)
-DKC3 AA 0 A_GiveInventory("Darkman3RingAmmo",1)
+DKC3 A 4
+DKC3 A 0 A_GiveInventory("Darkman3SniperAmmo",1)
+DKC3 A 0 A_GiveInventory("Darkman3RingAmmo",1)
 goto Ready0
 }
 }
@@ -189,7 +207,12 @@ inventory.amount 1
 inventory.maxamount 700
 }
 
-actor DarkSniperFlag : OnceC {}
+//actor DarkSniperFlag : OnceC {}
+actor DarkSniperFlag : Inventory
+{
+inventory.maxamount 3
+-invbar
+}
 actor DarkRailMultiFlag : OnceC {}//teehee
 actor DarkSniperCharge_F : OnceC {}
 
@@ -214,14 +237,9 @@ DKC3 Z 1
 loop
 Use:
 TNT1 A 0 A_JumpIfInventory("DarkSniperSpawnDelay",1,"Trolled")
-TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot7")
-TNT1 A 0 A_JumpIfInventory("DarkSniperFlag",1,"Use2")
+TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot7")  
 TNT1 A 0 A_GiveInventory("DarkSniperFlag",1)
-fail
-Use2:
-TNT1 A 0 A_TakeInventory("DarkSniperFlag",1)
-TNT1 A 0 A_TakeInventory("DarkSniperCharge")
-fail
+fail  
 Trolled:
 TNT1 A 0
 fail
@@ -242,7 +260,7 @@ TNT1 A 0 A_PlaySoundEx("weapon/Dark3Rail","Weapon")
 TNT1 A 0 A_GiveInventory("Darkman3Main2_CI")
 goto PickEnd
 PickEnd:
-TNT1 A 0 A_TakeInventory("DarkSniperCharge")
+TNT1 A 0 //A_TakeInventory("DarkSniperCharge")
 stop
 }
 }
@@ -253,8 +271,9 @@ States
 {
 Pickup:
 TNT1 A 0 A_TakeInventory("DarkSniperCharge")
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,12,1)
+TNT1 A 0 A_TakeInventory("DarkSniperFlag",99)
+//TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+//TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,12,1)
 stop
 }
 }
@@ -268,12 +287,13 @@ TNT1 A 0 A_JumpIfInventory("DarkSniperCharge_F",1,1)
 stop
 TNT1 A 0 A_JumpIfInventory("Darkman3SniperAmmo",16,1)
 stop
-TNT1 A 0 A_GiveInventory("DarkSniperCharge",(10+(100-health*100.0/ACS_ExecuteWithResult(CBM_FetchMyHealth,1))/10)*(CallACS("cbm_CheckForRage",0)+1))
+TNT1 A 0 A_GiveInventory("DarkSniperCharge",(5+(100-health*100.0/ACS_ExecuteWithResult(CBM_FetchMyHealth,1))/18)*(CallACS("cbm_CheckForRage",0)+1))
 TNT1 A 0
 TNT1 A 0 A_JumpIfInventory("DarkSniperCharge",701,2)
 TNT1 A 0 A_JumpIfInventory("DarkSniperCharge",700,2)
 TNT1 A 0
 stop
+TNT1 A 1
 TNT1 A 0 A_TakeInventory("DarkSniperCharge",-50)
 TNT1 A 0 A_PlaySound("weapon/BassCombine",4,0.5)
 stop
@@ -298,7 +318,7 @@ damagetype "DMGNoHitstun"
 Obituary "$OB_DARK3SMG"
 +FORCEXYBILLBOARD
 +BRIGHT
-Damage (50)
+Damage (5)
 radius 8
 height 8
 speed 45
@@ -324,12 +344,14 @@ actor Darkman3SMGP : Darkman3SMG{translation "202:202=229:229","199:199=232:232"
 
 actor Darkman3SnipeShot : FastProjectile
 {
-Translation "202:202=216:216","199:199=219:219"
+Translation "202:202=216:216","199:199=219:219" 
 damagetype "DMGNoHitstun"
-Obituary "$OB_DARK3SNIPE"
-+FORCEXYBILLBOARD
-+BRIGHT
-Damage(150)
+Obituary "$OB_DARK3SNIPE" 
++FORCEXYBILLBOARD 
++BRIGHT 
+var int user_H;
+var int user_P; 
+Damage(12+user_H)
 radius 14//11
 height 14
 speed 120
@@ -337,16 +359,60 @@ scale 2.75
 States
 {
 Spawn:
-DSHO A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+DSHO A 0 
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)        
+TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",600,"Amp6") 
+TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",500,"Amp5") 
+TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",400,"Amp4")   
+TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",300,"Amp3")  
+TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",200,"Amp2")   
+TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",100,"Amp1")  
+Goto Weeee
+Amp1:
+TNT1 A 0 A_SetUserVar("user_H",2) 
+Goto Weeee
+Amp2:
+TNT1 A 0 A_SetUserVar("user_H",4) 
+Goto Weeee
+Amp3:
+TNT1 A 0 A_SetUserVar("user_H",6) 
+Goto Weeee
+Amp4:
+TNT1 A 0 A_SetUserVar("user_H",8) 
+Goto Weeee
+Amp5: 
+TNT1 A 0 A_SetUserVar("user_H",10) 
+Goto Weeee
+Amp6: 
+TNT1 A 0 A_SetUserVar("user_H",12)
+Goto Weeee
+Weeee:
+TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",400,"Woooo") 
 DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,0,0,0,1)
-wait
+Loop
+Woooo: 
+DSHO A 0 A_SpawnItemEx("Darkman3ShotFX2",0,0,0,0,0,0,0,1)
+DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+30)*2.5,-sin(pitch+30)*2.5,0,1)
+DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+150)*2.5,-sin(pitch+150)*2.5,0,1)
+DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+270)*2.5,-sin(pitch+270)*2.5,0,1)
+DSHO A 0 A_SetUserVar("user_P",user_P+2)
+DSHO A 0 A_SetPitch(pitch%360+30)
+DSHO A 0 A_JumpIf(user_P>=20,"Spawn2")
+Loop
+Spawn2:
+DSHO A 0 A_SpawnItemEx("Darkman3ShotFX2",0,0,0,0,0,0,0,1)
+DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+30)*2.5,-sin(pitch+30)*2.5,0,1)
+DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+150)*2.5,-sin(pitch+150)*2.5,0,1)
+DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+270)*2.5,-sin(pitch+270)*2.5,0,1)
+DSHO A 0 A_SetPitch(pitch%360+30)
+loop
 Death:
 DKC1 G 0 A_Stop
 DKC1 GHIJK 1
 stop
 }
 }
+  
 actor Darkman3SnipeShotB : Darkman3SnipeShot{translation "202:202=205:205","199:199=74:74"}
 actor Darkman3SnipeShotR : Darkman3SnipeShot{translation "202:202=171:171","199:199=41:41"}
 actor Darkman3SnipeShotO : Darkman3SnipeShot{translation "202:202=104:104","199:199=128:128"}
@@ -358,7 +424,7 @@ speed 180
 var int user_P;
 Obituary "$OB_DARK3SNIPER"
 damagetype "DMGNoHitstun"
-Damage (250+user_P)
+Damage (25+user_P)
 States
 {
 Spawn:
@@ -369,16 +435,16 @@ DSHO A 0 A_SpawnItemEx("Darkman3ShotFX2",0,0,0,0,0,0,0,1)
 DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+30)*2.5,-sin(pitch+30)*2.5,0,1)
 DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+150)*2.5,-sin(pitch+150)*2.5,0,1)
 DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+270)*2.5,-sin(pitch+270)*2.5,0,1)
-DSHO A 0 A_SetUserVar("user_P",user_P+20)
-DSHO A 0 A_SetPitch(pitch%360+30)
-DSHO A 0 A_JumpIf(user_P>=200,"Spawn2")
+DSHO A 0 A_SetUserVar("user_P",user_P+2)
+//DSHO A 0 A_SetPitch(pitch%360+30)
+DSHO A 0 A_JumpIf(user_P>=20,"Spawn2")
 loop
 Spawn2:
 DSHO A 0 A_SpawnItemEx("Darkman3ShotFX2",0,0,0,0,0,0,0,1)
 DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+30)*2.5,-sin(pitch+30)*2.5,0,1)
 DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+150)*2.5,-sin(pitch+150)*2.5,0,1)
 DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+270)*2.5,-sin(pitch+270)*2.5,0,1)
-DSHO A 0 A_SetPitch(pitch%360+30)
+//DSHO A 0 A_SetPitch(pitch%360+30)
 loop
 Death:
 DKC1 G 0 A_Stop
@@ -423,7 +489,7 @@ damagetype "NeutralShock"
 Obituary "$OB_DARK3RING"
 +FORCEXYBILLBOARD
 +BRIGHT
-damage (60)
+damage (6)
 radius 13
 height 18
 speed 40
@@ -446,7 +512,7 @@ actor Dark3_ShockRingP : Dark3_ShockRing{translation "202:202=229:229"}
 actor Dark3_ShockRinger : Dark3_ShockRing
 {
 Obituary "$OB_DARK3RINGER"
-damage (150)
+damage (15)
 speed 120
 States
 {
@@ -480,7 +546,7 @@ wait
 actor Darkman3RailPuff
 {
 Translation "192:192=65:65","198:198=60:60"
-Damagetype "DarkRail"
+Damagetype "DMGNoHitstun"
 Obituary "$OB_DARK3RAIL"
 +NOINTERACTION
 +NOGRAVITY
@@ -570,6 +636,31 @@ actor Darkman3RailFXR : Darkman3RailFX{Translation "192:192=171:171","198:198=41
 actor Darkman3RailFXO : Darkman3RailFX{Translation "192:192=104:104","198:198=128:128"}
 actor Darkman3RailFXP : Darkman3RailFX{Translation "192:192=229:229","198:198=232:232"}
 
+actor Darkman3RailFX2S : BasicClientSide
+{
+Translation "192:192=65:65","198:198=60:60"
++FORCEXYBILLBOARD
++DONTSPLASH
+//+CLIENTSIDEONLY
++NOINTERACTION
+RenderStyle "translucent"
+Alpha 0.7
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+DKC3 D 1
+TNT1 A 0
+stop
+}
+}
+
+actor Darkman3RailFX2S2 : Darkman3RailFX2S
+{
+renderstyle translucent
+Alpha 0.5
+}
 
 actor DarkRailMultiFlag_P : CustomInventory
 {
@@ -599,6 +690,241 @@ TNT1 A 0 A_PlaySound("S_Spin/SUCCESS",1,0.55,0,ATTN_NONE)
 TNT1 A 1
 stop
 }
+}
+
+actor Darkman3Target : FastProjectile
+{
+Translation "192:192=65:65","198:198=60:60"
+PROJECTILE
++THRUGHOST
++DONTBLAST
++DONTSPLASH
++NONETID
+damagetype "DarkShot"
+Obituary "$OB_DARK3SNIPE"
+Damage (0)
+radius 2
+height 2
+speed 9999
+scale 2
+States
+{
+Spawn:
+TNT1 A 0
+SpawnLOOP:
+TNT1 A 1
+loop
+Death:
+TNT1 A 0 A_SpawnItemEx("Darkman3RailFX2S",0,0,0,0,0,0,0,1)
+TNT1 A 1 A_Stop
+stop
+}
+}
+
+actor Darkman3Target2 : Darkman3Target
+{
+renderstyle translucent
+alpha 0.1
+States
+{
+Death:
+TNT1 A 0 A_SpawnItemEx("Darkman3RailFX2S2",0,0,0,0,0,0,0,1)
+TNT1 A 1 A_Stop
+stop
+}
+}
+
+actor Darkman3TargetB : Darkman3Target{Translation "192:192=205:205","198:198=74:74"}
+actor Darkman3TargetR : Darkman3Target{Translation "192:192=171:171","198:198=41:41"}
+actor Darkman3TargetO : Darkman3Target{Translation "192:192=104:104","198:198=128:128"}
+actor Darkman3TargetP : Darkman3Target{Translation "192:192=229:229","198:198=232:232"}
+
+actor Darkman3Target2B : Darkman3Target2{Translation "192:192=205:205","198:198=74:74"}
+actor Darkman3Target2R : Darkman3Target2{Translation "192:192=171:171","198:198=41:41"}
+actor Darkman3Target2O : Darkman3Target2{Translation "192:192=104:104","198:198=128:128"}
+actor Darkman3Target2P : Darkman3Target2{Translation "192:192=229:229","198:198=232:232"}
+
+actor DM3BaseFX1 : FastProjectile
+{
++BRIGHT
+Translation "192:192=65:65","198:198=60:60"
++SKYEXPLODE
++DONTBLAST
++DONTREFLECT
++DONTSPLASH
++THRUACTORS
++THRUGHOST
+Damage (0)
+Radius 3
+Height 3
+Scale 2.5
+Renderstyle "Normal"
+Alpha 1
+Speed 60
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*0,momy*0,momz*0,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*2,momy*2,momz*2,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*4,momy*4,momz*4,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*6,momy*6,momz*6,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*8,momy*8,momz*8,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*10,momy*10,momz*10,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*12,momy*12,momz*12,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*14,momy*14,momz*14,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*16,momy*16,momz*16,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*18,momy*18,momz*18,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*20,momy*20,momz*20,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*22,momy*22,momz*22,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*24,momy*24,momz*24,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*26,momy*26,momz*26,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*28,momy*28,momz*28,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*30,momy*30,momz*30,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*32,momy*32,momz*32,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*34,momy*34,momz*34,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*36,momy*36,momz*36,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*38,momy*38,momz*38,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*40,momy*40,momz*40,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*42,momy*42,momz*42,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*44,momy*44,momz*44,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*46,momy*46,momz*46,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*48,momy*48,momz*48,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*50,momy*50,momz*50,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*52,momy*52,momz*52,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*54,momy*54,momz*54,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*56,momy*56,momz*56,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*58,momy*58,momz*58,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*60,momy*60,momz*60,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*62,momy*62,momz*62,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*64,momy*64,momz*64,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*66,momy*66,momz*66,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*68,momy*68,momz*68,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*70,momy*70,momz*70,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*72,momy*72,momz*72,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*74,momy*74,momz*74,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*76,momy*76,momz*76,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*78,momy*78,momz*78,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*80,momy*80,momz*80,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*82,momy*82,momz*82,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*84,momy*84,momz*84,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*86,momy*86,momz*86,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*88,momy*88,momz*88,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*90,momy*90,momz*90,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*92,momy*92,momz*92,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*94,momy*94,momz*94,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*96,momy*96,momz*96,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*98,momy*98,momz*98,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine",momx*100,momy*100,momz*100,0,0,0,0,3)
+TNT1 A 1
+stop
+}
+}
+
+actor DM3BaseFX1B : DM3BaseFX1{Translation "192:192=205:205","198:198=74:74"}
+actor DM3BaseFX1R : DM3BaseFX1{Translation "192:192=171:171","198:198=41:41"}
+actor DM3BaseFX1O : DM3BaseFX1{Translation "192:192=104:104","198:198=128:128"}
+actor DM3BaseFX1P : DM3BaseFX1{Translation "192:192=229:229","198:198=232:232"}
+
+actor DM3BaseFX12 : DM3BaseFX1
+{
+Alpha 0.1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*0,momy*0,momz*0,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*2,momy*2,momz*2,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*4,momy*4,momz*4,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*6,momy*6,momz*6,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*8,momy*8,momz*8,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*10,momy*10,momz*10,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*12,momy*12,momz*12,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*14,momy*14,momz*14,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*16,momy*16,momz*16,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*18,momy*18,momz*18,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*20,momy*20,momz*20,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*22,momy*22,momz*22,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*24,momy*24,momz*24,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*26,momy*26,momz*26,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*28,momy*28,momz*28,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*30,momy*30,momz*30,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*32,momy*32,momz*32,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*34,momy*34,momz*34,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*36,momy*36,momz*36,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*38,momy*38,momz*38,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*40,momy*40,momz*40,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*42,momy*42,momz*42,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*44,momy*44,momz*44,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*46,momy*46,momz*46,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*48,momy*48,momz*48,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*50,momy*50,momz*50,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*52,momy*52,momz*52,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*54,momy*54,momz*54,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*56,momy*56,momz*56,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*58,momy*58,momz*58,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*60,momy*60,momz*60,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*62,momy*62,momz*62,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*64,momy*64,momz*64,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*66,momy*66,momz*66,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*68,momy*68,momz*68,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*70,momy*70,momz*70,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*72,momy*72,momz*72,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*74,momy*74,momz*74,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*76,momy*76,momz*76,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*78,momy*78,momz*78,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*80,momy*80,momz*80,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*82,momy*82,momz*82,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*84,momy*84,momz*84,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*86,momy*86,momz*86,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*88,momy*88,momz*88,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*90,momy*90,momz*90,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*92,momy*92,momz*92,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*94,momy*94,momz*94,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*96,momy*96,momz*96,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*98,momy*98,momz*98,0,0,0,0,3)
+TNT1 A 0 A_SpawnItemEx("Darkman3TargetLine2",momx*100,momy*100,momz*100,0,0,0,0,3)
+TNT1 A 1
+stop
+}
+}
+
+actor DM3BaseFX12B : DM3BaseFX12{Translation "192:192=205:205","198:198=74:74"}
+actor DM3BaseFX12R : DM3BaseFX12{Translation "192:192=171:171","198:198=41:41"}
+actor DM3BaseFX12O : DM3BaseFX12{Translation "192:192=104:104","198:198=128:128"}
+actor DM3BaseFX12P : DM3BaseFX12{Translation "192:192=229:229","198:198=232:232"}
+
+actor Darkman3TargetLine
+{
+Translation "192:192=65:65","198:198=60:60"
++NOGRAVITY
+-SOLID
++DONTSPLASH
++DONTBLAST
++THRUGHOST
++THRUACTORS
++CLIENTSIDEONLY
++NOINTERACTION
+Renderstyle "Normal"
+Radius 3
+Height 3
+Scale 1.5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_JumpIfTargetInLoS("Spawn2",0)
+stop
+Spawn2:
+DKC3 C 1
+stop
+}
+}
+
+actor Darkman3TargetLine2 : Darkman3TargetLine
+{
+renderstyle translucent
+alpha 0.1
 }
 
 actor Darkman3Main0_CI : TeamColor_CI
@@ -667,30 +993,101 @@ goto Done
 }
 }
 
-/*actor Darkman3Main2_CI : TeamColor_CI
+actor Darkman3Main2_CI : TeamColor_CI
 {
 states
 {
 FireX:
 //TNT1 A 0 A_RailAttack(25,0,1,"68 44 FC","D8 B8 F8",1,0,"Darkman3RailPuff",0,0)
-TNT1 A 0 A_RailAttack(20,0,1,"68 44 FC","D8 B8 F8",1,0,"Darkman3RailPuff",0,0,0.0,1,10.0,10.0,"Darkman3RailFX")
+TNT1 A 0 A_RailAttack(25,0,1,"68 44 FC","D8 B8 F8",1,0,"Darkman3RailPuff",0,0,0.0,1,10.0,10.0,"Darkman3RailFX")
 goto Done
 FireB:
-TNT1 A 0 A_RailAttack(20,0,1,"00 70 E8","38 B8 F8",1,0,"Darkman3RailPuffB",0,0,0.0,1,10.0,10.0,"Darkman3RailFXB")
+TNT1 A 0 A_RailAttack(25,0,1,"00 70 E8","38 B8 F8",1,0,"Darkman3RailPuffB",0,0,0.0,1,10.0,10.0,"Darkman3RailFXB")
 goto Done
 FireR:
-TNT1 A 0 A_RailAttack(20,0,1,"E0 00 58","FF 9B 9B",1,0,"Darkman3RailPuffR",0,0,0.0,1,10.0,10.0,"Darkman3RailFXR")
+TNT1 A 0 A_RailAttack(25,0,1,"E0 00 58","FF 9B 9B",1,0,"Darkman3RailPuffR",0,0,0.0,1,10.0,10.0,"Darkman3RailFXR")
 goto Done
 FireO:
-TNT1 A 0 A_RailAttack(20,0,1,"00 A8 00","B8 F8 18",1,0,"Darkman3RailPuffO",0,0,0.0,1,10.0,10.0,"Darkman3RailFXO")
+TNT1 A 0 A_RailAttack(25,0,1,"00 A8 00","B8 F8 18",1,0,"Darkman3RailPuffO",0,0,0.0,1,10.0,10.0,"Darkman3RailFXO")
 goto Done
 FireP:
-TNT1 A 0 A_RailAttack(20,0,1,"C0 70 00","F8 B8 00",1,0,"Darkman3RailPuffP",0,0,0.0,1,10.0,10.0,"Darkman3RailFXP")
+TNT1 A 0 A_RailAttack(25,0,1,"C0 70 00","F8 B8 00",1,0,"Darkman3RailPuffP",0,0,0.0,1,10.0,10.0,"Darkman3RailFXP")
 goto Done
 }
-}*/
+}
 
-actor Darkman3Main2_CI : TeamColor_CI
+actor DarkRailPointerFX : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("DarkSniperCharge",700,"Pickup_Big")
+TNT1 A 0 A_JumpIfInventory("DarkSniperCharge",525,"Pickup_Smol")
+goto End
+Pickup_Big:
+TNT1 A 0 A_GiveInventory("Darkman3Main2FX_CI")
+goto End
+Pickup_Smol:
+TNT1 A 0 A_GiveInventory("Darkman3Main2FX2_CI")
+goto End
+}
+}
+
+actor Darkman3Main2FX_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Darkman3Target",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX1",0,0,0,4,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Darkman3TargetB",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX1B",0,0,0,4,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Darkman3TargetR",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX1R",0,0,0,4,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Darkman3TargetO",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX1O",0,0,0,4,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Darkman3TargetP",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX1P",0,0,0,4,0)
+goto Done
+}
+}
+
+actor Darkman3Main2FX2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Darkman3Target2",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX12",0,0,0,4,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Darkman3TargetB",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX12B",0,0,0,4,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Darkman3TargetR",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX12R",0,0,0,4,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Darkman3TargetO",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX12O",0,0,0,4,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Darkman3TargetP",0,0,0,4)
+TNT1 A 0 A_FireCustomMissile("DM3BaseFX12P",0,0,0,4,0)
+goto Done
+}
+}
+
+/*actor Darkman3Main2_CI : TeamColor_CI
 {
 states
 {
@@ -710,7 +1107,7 @@ FireP:
 TNT1 A 0 A_FireCustomMissile("Darkman3SniperShotP",0,1,0,0)
 goto Done
 }
-}
+}*/
 
 actor Darkman3Alt_CI : TeamColor_CI
 {
@@ -764,7 +1161,7 @@ FireP:
 TNT1 A 0 A_FireCustomMissile("Dark3_ShockRingerP",0,0,0,0)
 goto Done
 Done:
-DKC3 A 0 A_TakeInventory("Darkman3RingAmmo",27)
+DKC3 A 0 A_TakeInventory("Darkman3RingAmmo",54)
 stop
 }
 }

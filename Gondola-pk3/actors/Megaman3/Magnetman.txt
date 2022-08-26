@@ -5,10 +5,10 @@ player.displayname "Magnetman"
 player.soundclass "magnetmanc"
 player.startitem "MagnetMissileBoss"
 player.startitem "MagFlyDeleteItem"
-player.startitem "MagnetFlag", 15
+player.startitem "MagnetMissileClassAmmo", 20
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
 player.jumpz 12

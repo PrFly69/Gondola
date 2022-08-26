@@ -6,7 +6,8 @@ Weapon.AmmoUse 16
 Weapon.AmmoGive 28
 Weapon.AmmoUse2 28
 Obituary "$OB_TUNDRACLOSE"
-weapon.ammotype "FeelFreezeAmmo"
+weapon.ammotype "IcyWindAmmo"
+weapon.ammotype2 "FeelFreezeAmmo"
 Inventory.Pickupmessage "eats frosty goodness like a boss"
 //inventory.icon "CHILWEP1"
 States
@@ -23,14 +24,16 @@ goto Ready1
 Ready1:
 TUND A 1 A_JumpIfInventory("CoolingDownFlag",1,"ContinuedAirSlam")
 TUND A 0 A_TakeInventory("TundraSpinningFlag",1)
+TUND C 0 A_GiveInventory("IcyWindAmmo",5)
+TUND A 0 A_GiveInventory("TripleLutzAmmo",1)
 TUND A 0 A_GiveInventory("FeelFreezeAmmo",1)
-TUND A 0 A_GiveInventory("TripleLutzAmmo",2)
 TUND A 2 A_WeaponReady(WRF_ALLOWRELOAD)
 loop
 Ready2:
 TUND A 0 A_TakeInventory("TundraSpinningFlag",1)
 TUND A 0 A_GiveInventory("FeelFreezeAmmo",1)
-TUND A 0 A_GiveInventory("TripleLutzAmmo",2)
+TUND A 0 A_GiveInventory("TripleLutzAmmo",1)
+TUND C 0 A_GiveInventory("IcyWindAmmo",5)
 TUND A 2 A_WeaponReady(WRF_ALLOWRELOAD)
 loop
 Deselect:
@@ -46,17 +49,18 @@ Fire:
 TUND B 1 OffSet(45,42)
 FireAmmoC:
 TUND B 0 A_GiveInventory("GorgeousPowerStop",1)
-TUND C 0 A_GiveInventory("TripleLutzAmmo",5)
+TUND C 0 A_JumpIfInventory("TripleLutzAmmo",105,"FireCicle3")
+TUND C 0 A_JumpIfInventory("IcyWindAmmo",2,1)
+goto FireEndReal
+TUND C 0 A_TakeInventory("IcyWindAmmo",2)
+TUND C 0 A_GiveInventory("TripleLutzAmmo",3)
+XH0L A 0 A_GiveInventory("TundraMainWind_CI")
 TUND C 1 A_GiveInventory("FeelFreezeAmmo",1)
+TUND C 0 A_GiveInventory("TripleLutzAmmo",3)
 TUND D 1 A_PlaySound("weapon/IceWaveLoop","Body",0.25)
 TUND C 0 A_Refire("FireAmmoC")
 FireEndReal:
 TUND C 1 A_StopSound
-TUND C 0 A_JumpIfInventory("TripleLutzAmmo",191,"FireCicle3")
-TUND C 0 A_JumpIfInventory("TripleLutzAmmo",128,"FireCicle2")
-TUND C 0 A_JumpIfInventory("TripleLutzAmmo",64,"FireCicle1")
-TUND G 1 A_PlaySoundEx("weapon/tundracicle","Weapon")
-XH0L A 0 A_GiveInventory("TundraMain00_CI")
 TUND C 1 Offset(40,20)
 TUND C 1 Offset(0,40)
 TUND C 1 Offset(-20,43)
@@ -67,57 +71,15 @@ TUND B 1 Offset(-43,47)
 TUND B 1 Offset(-30,47)
 TUND B 1 Offset(0,46)
 TUND B 1 Offset(-20,45)
-TUND B 0 A_TakeInventory("TripleLutzAmmo",192)
-TUND B 0 A_TakeInventory("GorgeousPowerStop",1)
-goto Ready1+1
-FireCicle1:
-TUND G 1 A_PlaySoundEx("weapon/tundracicle","Weapon")
-XH0L A 0 A_GiveInventory("TundraMain01_CI")
-TUND C 1 Offset(40,20)
-TUND C 1 Offset(0,40)
-TUND C 1 Offset(-20,43)
-TUND C 1 Offset(-45,45)
-TUND C 1 Offset(-46,46)
-TUND B 1 Offset(-45,47)
-TUND B 1 Offset(-43,47)
-TUND B 1 Offset(-30,47)
-TUND B 1 Offset(0,46)
-TUND B 1 Offset(-20,45)
-TUND B 0 A_TakeInventory("TripleLutzAmmo",192)
-TUND B 0 A_TakeInventory("GorgeousPowerStop",1)
-goto Ready1+1
-FireCicle2:
-TUND G 1 A_PlaySoundEx("weapon/tundracicle","Weapon")
-XH0L A 0 A_GiveInventory("TundraMain02_CI")
-TUND C 1 Offset(40,20)
-TUND C 1 Offset(0,40)
-TUND C 1 Offset(-20,43)
-TUND C 1 Offset(-45,45)
-TUND C 1 Offset(-46,46)
-TUND B 1 Offset(-45,47)
-TUND B 1 Offset(-43,47)
-TUND B 1 Offset(-30,47)
-TUND B 1 Offset(0,46)
-TUND B 1 Offset(-20,45)
-TUND B 0 A_TakeInventory("TripleLutzAmmo",192)
+TUND B 0 A_TakeInventory("TripleLutzAmmo",999)
 TUND B 0 A_TakeInventory("GorgeousPowerStop",1)
 goto Ready1+1
 FireCicle3:
-TUND G 1 A_PlaySoundEx("weapon/ColdField","Weapon")
-XH0L A 0 A_GiveInventory("TundraMain03_CI")
-TUND C 1 Offset(40,20)
-TUND C 1 Offset(0,40)
-TUND C 1 Offset(-20,43)
-TUND C 1 Offset(-45,45)
-TUND C 1 Offset(-46,46)
-TUND B 1 Offset(-45,47)
-TUND B 1 Offset(-43,47)
-TUND B 1 Offset(-30,47)
-TUND B 1 Offset(0,46)
-TUND B 1 Offset(-20,45)
-TUND B 0 A_TakeInventory("TripleLutzAmmo",192)
-TUND B 0 A_TakeInventory("GorgeousPowerStop",1)
-goto Ready1+1
+TUND D 1 A_PlaySoundEx("weapon/ColdField","Weapon")
+XH0L A 0 A_GiveInventory("TundraMain_CI")
+XH0L A 0 A_GiveInventory("TundraMainWind_CI")
+TUND C 0 A_TakeInventory("TripleLutzAmmo",999)
+goto FireAmmoC
 
 
 Altfire:
@@ -128,7 +90,7 @@ TUND E 1 A_GiveInventory("FeelFreezeAmmo",1)
 TUND E 1 Offset(-5, 46)A_GiveInventory("FeelFreezeAmmo",1)//41 
 TUND E 1 Offset(-9, 49)//41 
 TUND E 1 Offset(-13, 51)A_GiveInventory("FeelFreezeAmmo",1)//45
-TUND E 0 A_PlaySoundEx("weapon/CSlide1","Weapon")
+TUND E 0 A_PlaySoundEx("weapon/ColdField","Weapon")
 TUND E 0 A_JumpIf(z-floorz==0,"LeapGround")
 TUND E 0 A_ChangeVelocity(50*cos(pitch), 0, 25*sin(-pitch), CVF_RELATIVE|CVF_REPLACE)
 goto LiftOff
@@ -180,6 +142,7 @@ TUND A 1 Offset(-5, 46) A_GiveInventory("FeelFreezeAmmo",1)//41
 CMDH C 0 A_ChangeFlag("THRUSPECIES",0)
 CMDH C 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TUND A 1 A_TakeInventory("CoolingDownFlag",1)
+TNT1 A 0 A_TakeInventory("TundraCheerFlag",1)
 TUND A 0 A_GiveInventory("TundraDelayA",56)
 TUND A 0 A_SpawnItemEx("TundraDelayHelper")
 goto Ready1+1
@@ -231,6 +194,7 @@ goto Ready2
 CDTime:
 TUND F 1 A_TakeInventory("CoolingDownFlag",1)
 TUND A 0 A_GiveInventory("TundraDelayA",56)
+TNT1 A 0 A_TakeInventory("TundraCheerFlag",1)
 TUND A 0 A_SpawnItemEx("TundraDelayHelper")
 goto Ready1+1
 
@@ -245,7 +209,7 @@ TNT1 A 0 A_JumpIf(z-floorz>0, "Flash2")
 TNT1 A 0 A_GiveInventory("StaminaFlag",4)
 TNT1 A 0 A_TakeInventory("ImaGraciousDancerStop",1)
 Flash2:
-TNT1 A 0 A_JumpIfInventory("TripleLutzAmmo",192,"FlashFX")
+TNT1 A 0 A_JumpIfInventory("TripleLutzAmmo",105,"FlashFX")
 TNT1 A 0 A_JumpIfInventory("GorgeousPowerStop",1,"PauseFlash")
 TNT1 A 0 A_JumpIfInventory("TundraIsBouncingFlag",1,"Flash.Spinning")
 goto Flash
@@ -271,240 +235,24 @@ goto Flash
 }
 }
 
-actor TundraStormerBoss : BaseMM8BDMWep_CBM
-{
-tag "$TAGC_11F"
-dropitem "TundraStormWepCDropped"
-Weapon.AmmoUse 16
-Weapon.AmmoGive 28
-Weapon.AmmoUse2 28
-Obituary "$OB_TUNDRACLOSE"
-weapon.ammotype "FeelFreezeAmmo"
-Inventory.Pickupmessage "eats frostier goodness like a boss"
-inventory.icon "MWS1Icon"
-States
-{
-Spawn:
-C_10 D 1
-loop
-Ready:
-TUND E 0 ACS_ExecuteAlways(998,0,10973)
-TUND E 0 A_GunFlash
-TUND E 5
-goto Ready1
-
-Ready1:
-TUND E 1 A_JumpIfInventory("CoolingDownFlag",1,"ContinuedAirSlam")
-TUND E 0 A_TakeInventory("TundraSpinningFlag",1)
-TUND E 0 A_GiveInventory("FeelFreezeAmmo",1)
-TUND E 0 A_GiveInventory("TripleLutzAmmo",2)
-TUND E 2 A_WeaponReady(WRF_ALLOWRELOAD)
-loop
-Ready2:
-TUND E 0 A_TakeInventory("TundraSpinningFlag",1)
-TUND E 0 A_GiveInventory("FeelFreezeAmmo",1)
-TUND E 0 A_GiveInventory("TripleLutzAmmo",2)
-TUND E 2 A_WeaponReady(WRF_ALLOWRELOAD)
-loop
-Deselect:
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-TUND E 1 A_Lower
-Loop
-Select:
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-TUND E 1 A_Raise
-Loop
-
-Fire:
-TUND B 1 OffSet(45,42)
-TUND G 1 A_PlaySoundEx("weapon/tundracicle","Weapon")
-XH0L A 0 A_GiveInventory("TundraMain00_CI")
-TUND C 1 Offset(40,20)
-TUND B 1 Offset(-20,43)
-TUND B 1 Offset(-45,47)
-TUND G 1 A_PlaySoundEx("weapon/tundracicle","Weapon")
-XH0L A 0 A_GiveInventory("TundraMain00_CI")
-TUND C 1 Offset(40,20)
-TUND B 1 Offset(-20,43)
-TUND B 1 Offset(-45,47)
-TUND G 1 A_PlaySoundEx("weapon/tundracicle","Weapon")
-XH0L A 0 A_GiveInventory("TundraMain00_CI")
-TUND C 1 Offset(40,20)
-TUND B 1 Offset(-20,43)
-TUND B 1 Offset(-45,47)
-TUND B 1 Offset(-43,47)
-TUND B 1 Offset(-30,47)
-TUND B 1 Offset(0,46)
-TUND B 1 Offset(-20,45)
-TUND B 3 Offset(-20, 61)
-TUND B 3 Offset(-25, 61)
-TUND E 9 Offset(-25, 61)
-TUND E 1 Offset(-25, 61) A_GiveInventory("FeelFreezeAmmo",2)//46
-TUND E 1 Offset(-24, 59)//46
-TUND E 1 Offset(-21, 56) A_GiveInventory("FeelFreezeAmmo",2)//46
-TUND E 1 Offset(-17, 53)//45
-TUND E 1 Offset(-13, 51) A_GiveInventory("FeelFreezeAmmo",2)//45
-TUND E 1 Offset(-9, 49)//41
-TUND E 1 Offset(-5, 46) A_GiveInventory("FeelFreezeAmmo",2)//41
-goto Ready1+1
-
-Altfire:
-TUND E 0 A_JumpIfInventory("TundraDelayA",1,"NoAmmo")
-TUND E 1 A_JumpIfInventory("StaminaFlag",10,1)
-goto Ready1+1
-TUND E 1 A_GiveInventory("FeelFreezeAmmo",1)
-TUND E 1 Offset(-5, 46)A_GiveInventory("FeelFreezeAmmo",1)//41 
-TUND E 1 Offset(-9, 49)//41 
-TUND E 1 Offset(-13, 51)A_GiveInventory("FeelFreezeAmmo",1)//45
-TUND E 0 A_PlaySoundEx("weapon/CSlide1","Weapon")
-TUND E 0 A_JumpIf(z-floorz==0,"LeapGround")
-TUND E 0 A_ChangeVelocity(50*cos(pitch), 0, 25*sin(-pitch), CVF_RELATIVE|CVF_REPLACE)
-goto LiftOff
-LeapGround:
-TUND E 0 A_ChangeVelocity(Cos(pitch)*50,0,sin(pitch)*-10,CVF_RELATIVE|CVF_REPLACE)
-TUND E 0 ThrustThingZ(0,30,0,1)
-goto LiftOff
-LiftOff:
-TUND E 0 A_GiveInventory("TundraIsBouncingFlag",1)
-TUND E 0 A_GiveInventory("CoolingDownFlag",1)
-TUND E 1 Offset(-17, 53)//45
-TUND E 1 Offset(-21, 56) 
-TUND E 1 Offset(-24, 59)//46
-TUND E 1 Offset(-25, 61) 
-goto Slam
-Slam:
-TUND E 1 A_SpawnItemEX("TundraLeapCheck",0,0,-8,momx,momy,momz,0,8,0)
-TUND E 0 A_JumpIf(z-floorz==0,"SlamEnd")
-TUND E 0 A_JumpIfInventory("TundraHasBouncedFlag",1,"SlamEnd")
-goto Slam
-SlamCancel:
-TUND E 0 A_WeaponReady(WRF_ALLOWRELOAD)
-goto Slam
-SlamEnd:
-TUND E 0 A_TakeInventory("TundraHasBouncedFlag",1)
-TUND E 0 SetPlayerProperty(0,1,0)
-TUND E 0 A_TakeInventory("StaminaFlag",10)
-TUND E 0 A_PlaySound("weapon/icewavespawn","Weapon")
-TUND E 2 A_GiveInventory("FeelFreezeAmmo",1)
-TUND E 0 A_TakeInventory("TundraHasBouncedFlag",1)
-TUND E 0 SetPlayerProperty(0,0,0)
-TUND E 0 A_JumpIfInventory("StaminaFlag",10,2)
-TUND E 0 A_Jump(256,"SlamEnd2")
-TUND E 0 A_JumpIf(z-floorz>0, "ContinuedAirSlam")
-SlamEnd2:
-TUND E 0 A_TakeInventory("TundraIsBouncingFlag",1)
-TUND E 0 A_TakeInventory("TundraHasBouncedFlag",1)
-TUND E 1 Offset(-25, 61) A_GiveInventory("FeelFreezeAmmo",1)//46
-TUND E 1 Offset(-24, 59)//46
-TUND E 1 Offset(-21, 56) A_GiveInventory("FeelFreezeAmmo",1)//46
-TUND E 1 Offset(-17, 53)//45
-TUND E 1 Offset(-13, 51) A_GiveInventory("FeelFreezeAmmo",1)//45
-TUND E 1 Offset(-9, 49)//41
-TUND E 1 Offset(-5, 46) A_GiveInventory("FeelFreezeAmmo",1)//41
-TUND E 1 A_TakeInventory("CoolingDownFlag",1)
-TUND E 0 A_GiveInventory("TundraDelayA",56)
-TUND E 0 A_SpawnItemEx("TundraDelayHelper")
-goto Ready
-ContinuedAirSlam:
-TUND E 6
-ContinuedAirSlam2:
-TUND E 2 A_WeaponReady(WRF_ALLOWRELOAD)
-TUND E 0 A_GiveInventory("FeelFreezeAmmo",1)
-TUND E 0 A_SpawnItemEX("TundraLeapCheck",0,0,0,momx,momy,momz,0,8,0)
-TUND E 0 A_JumpIf(z-floorz==0,"SlamEnd")
-TUND E 0 A_JumpIfInventory("TundraHasBouncedFlag",1,"SlamEnd")
-goto ContinuedAirSlam2
-
-Reload:
-TUND A 1 A_JumpIfInventory("TundraSpinningFlag",1,"NoAmmo")
-TUND A 0 A_JumpIfInventory("FeelFreezeAmmo",60,"Reaload")
-goto NoAmmo
-Reaload:
-TNT1 A 0 A_GiveInventory("TundraIsBouncingFlag",1)
-TNT1 A 0 A_GiveInventory("TundraSpinningFlag",1)
-TNT1 F 0 A_TakeInventory("TundraHasBouncedFlag",1)
-TUND F 0 A_GiveInventory("ImAGraciousDancerStop",1)
-TUND F 0 A_TakeInventory("FeelFreezeAmmo",60)
-TUND F 0 ThrustThingZ(0,60,0,0)
-TUND F 0 A_GiveInventory("TundraStorm_CI",1)
-TUND F 1 Offset(-50,80)
-TUND F 1 Offset(-60,90)
-TUND F 1 Offset(-63,93)
-TUND F 1 Offset(-65,95)
-TUND F 1 Offset(-66,96)
-TUND F 1 Offset(-65,95)
-TUND F 1 Offset(-63,93)
-TUND F 1 Offset(-60,90)
-TUND F 1 Offset(-50,80)
-TUND F 1 Offset(-40,70)
-TUND F 1 Offset(-30,60)
-TUND F 1 Offset(-20,50)
-TUND F 1 Offset(-10,40)
-ReadyFreeze:
-TUND F 4 A_WeaponReady(WRF_ALLOWRELOAD)
-TUND F 0 A_GiveInventory("FeelFreezeAmmo",1)
-TUND F 0 A_JumpIf(z-floorz==0,"FreezeFall")
-goto ReadyFreeze
-FreezeFall:
-TUND F 1 A_JumpIfInventory("CoolingDownFlag",1,"CDTime")
-TUND F 1 A_TakeInventory("TundraSpinningFlag",1)
-TUND A 1
-TNT1 A 0 A_TakeInventory("TundraIsBouncingFlag",1)
-goto Ready2
-CDTime:
-TUND F 1 A_TakeInventory("CoolingDownFlag",1)
-TUND A 0 A_GiveInventory("TundraDelayA",56)
-TUND A 0 A_SpawnItemEx("TundraDelayHelper")
-goto Ready
-
-NoAmmo:
-TUND E 10
-Goto Ready1+1
-
-Flash:
-TNT1 A 1 //
-TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIf(z-floorz>0, "Flash2")
-TNT1 A 0 A_GiveInventory("StaminaFlag",4)
-TNT1 A 0 A_TakeInventory("ImaGraciousDancerStop",1)
-Flash2:
-TNT1 A 0 A_JumpIfInventory("GorgeousPowerStop",1,"PauseFlash")
-TNT1 A 0 A_JumpIfInventory("TundraIsBouncingFlag",1,"Flash.Spinning")
-goto Flash
-FlashFreeze:
-TNT1 A 1
-TNT1 A 0 A_JumpIfInventory("TripleLutzAmmo",192,"FlashFX")
-TNT1 A 0 A_JumpIfInventory("GorgeousPowerStop",1,"PauseFlash")
-TNT1 A 0 A_JumpIfInventory("TundraIsBouncingFlag",1,"Flash.Spinning")
-goto Flash
-FlashFX:
-TNT1 A 1 A_SpawnItemEx("MrFreezemanWalkFX",random(12,32),0,32+random(-12,12),0,0,0,frandom(0,359),1,96)
-TNT1 A 1 A_SpawnItemEx("MrFreezemanWalkFX",random(12,32),0,32+random(-12,12),0,0,0,frandom(0,359),1,96)
-goto Flash
-Flash.Spinning:
-TNT1 A 1 //
-TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIfInventory("GorgeousPowerStop",1,"PauseFlash")
-TNT1 A 0 A_JumpIfInventory("TundraIsBouncingFlag",1,"Flash.Spinning")
-goto Flash
-PauseFlash:
-TNT1 A 1
-TNT1 A 0 A_JumpIfInventory("GorgeousPowerStop",1,"PauseFlash")
-goto Flash
-}
-}
-
-actor FeelFreezeAmmo : Ammo
+actor IcyWindAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 120
+inventory.maxamount 180
 +INVENTORY.IGNORESKILL
 }
 
 actor TripleLutzAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 192
+inventory.maxamount 105
++INVENTORY.IGNORESKILL
+}
+
+actor FeelFreezeAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 120
 +INVENTORY.IGNORESKILL
 }
 
@@ -534,106 +282,117 @@ actor TundraSpinningFlag : OnceC {}
 
 actor CoolingDownFlag : OnceC {}
 
-actor TundraGlacier
+actor TundraGlacierWind
 {
-Translation "202:202=202:202", "199:199=199:199"
+Translation "192:192=196:196", "198:198=58:58", "202:202=196:196", "199:199=58:58"
 PROJECTILE
-damagetype "DMGNoHitstun"
-Obituary "$OB_TUNDRACICLE"
-damage (70)
+renderstyle translucent
+alpha .15
++RIPPER
+damagetype "TundraM_Wind"
+Obituary "$OB_ICYWIND"
+damage (0)
 radius 10
 height 5
-speed 60
-scale 1.5
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-TNDR ABC 3 
-loop
-Death:
-TNT1 A 0 A_CheckCeiling("Death.Ceiling")
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX1",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX2",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX3",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
-TNT1 A 0 A_PlaySoundEX("weapon/ChillIceBrk","Weapon")
-TNT1 A 35
-stop
-Death.Ceiling:
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX1",random(0,6),0,random(2,32),random(-2,-6),0,random(-2,-6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX2",random(0,6),0,random(2,32),random(-2,-6),0,random(-2,-6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX3",random(0,6),0,random(2,32),random(-2,-6),0,random(-2,-6),random(0,359),1)
-TNT1 A 0 A_PlaySoundEX("weapon/ChillIceBrk","Weapon")
-TNT1 A 35
-stop
-}
-}
-
-actor TundraGlacier0 : TundraGlacier
-{
--NOGRAVITY
-speed 50
-gravity 0.5
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-TNDR ABC 3 
-loop
-}
-}
-
-actor TundraGlacier2 : TundraGlacier
-{
-damage (140)
-radius 15
-height 10
-speed 70
-scale 2.5
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-TNDR ABC 3 A_SpawnItemEx("MrFreezemanWalkFX",0,random(-24,24),random(-8,8),0,0,0,0,1)
-loop
-Death:
-TNT1 A 0 A_CheckCeiling("Death.Ceiling")
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX1",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX2",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX3",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX1",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX2",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX3",random(0,6),0,random(2,32),random(1,7),0,random(2,6),random(0,359),1)
-TNT1 A 0 A_PlaySoundEX("weapon/ChillIceBrk","Weapon")
-TNT1 A 35
-stop
-Death.Ceiling:
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX1",random(0,6),0,random(2,32),random(-2,-6),0,random(-2,-6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX2",random(0,6),0,random(2,32),random(-2,-6),0,random(-2,-6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX3",random(0,6),0,random(2,32),random(-2,-6),0,random(-2,-6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX1",random(0,6),0,random(2,32),random(-2,-6),0,random(-2,-6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX2",random(0,6),0,random(2,32),random(-2,-6),0,random(-2,-6),random(0,359),1)
-TNT1 A 0 A_SpawnItemEx("IceBaFIcicleFX3",random(0,6),0,random(2,32),random(-2,-6),0,random(-2,-6),random(0,359),1)
-TNT1 A 0 A_PlaySoundEX("weapon/ChillIceBrk","Weapon")
-TNT1 A 35
-stop
-}
-}
-
-actor TundraGlacier3 : TundraGlacier
-{
-damagetype "TundraM_Slow"
-damage (210)
-radius 20
-speed 80
-height 15
+speed 45
 scale 3.5
+reactiontime 4
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+TNST A 1 A_Explode(2,48,0,0,48)
+TNT1 A 0 A_SpawnItemEx("TundraGlacierWindFX",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
+TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(-32,-16),random(-32,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,1)
+TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(16,32),random(-32,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,1)
+TNST B 1 A_Explode(2,48,0,0,48)
+TNT1 A 0 A_SpawnItemEx("TundraGlacierWindFX",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
+TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(-32,-16),random(-32,32),random(-32,-16),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
+TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(-32,32),random(16,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
+TNST C 1 A_Explode(2,48,0,0,48)
+TNT1 A 0 A_SpawnItemEx("TundraGlacierWindFX",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
+TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(-32,-16),random(-32,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
+TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(16,32),random(-32,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
+TNST D 1 A_Explode(2,48,0,0,48)
+TNT1 A 0 A_SpawnItemEx("TundraGlacierWindFX",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
+TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(-32,-16),random(-32,32),random(-32,-16),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
+TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(-32,32),random(16,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
+TNT1 A 0 A_Countdown
+loop
+Death:
+TNST A 0 A_Stop
+TNST A 0 A_FadeOut(0.01)
+TNST A 0 A_Recoil(1)
+TNST A 1 A_SetScale(scalex+.35)
+TNST A 0 A_FadeOut(0.01)
+TNST A 0 A_Recoil(1)
+TNST A 1 A_SetScale(scalex+.35)
+TNST B 0 A_FadeOut(0.01)
+TNST A 0 A_Recoil(1)
+TNST B 1 A_SetScale(scalex+.35)
+TNST B 0 A_FadeOut(0.01)
+TNST A 0 A_Recoil(1)
+TNST B 1 A_SetScale(scalex+.35)
+TNST C 0 A_FadeOut(0.01)
+TNST A 0 A_Recoil(1)
+TNST C 1 A_SetScale(scalex+.35)
+TNST C 0 A_FadeOut(0.01)
+TNST A 0 A_Recoil(1)
+TNST C 1 A_SetScale(scalex+.35)
+TNST D 0 A_FadeOut(0.01)
+TNST A 0 A_Recoil(1)
+TNST D 1 A_SetScale(scalex+.35)
+TNST D 0 A_FadeOut(0.01)
+TNST A 0 A_Recoil(1)
+TNST D 1 A_SetScale(scalex+.35)
+loop
+}
+}
+
+actor TundraGlacierWindB : TundraGlacierWind{translation "202:202=196:196", "199:199=76:76", "192:192=196:196", "198:198=76:76"}
+actor TundraGlacierWindR : TundraGlacierWind{translation "202:202=170:170", "199:199=191:191", "192:192=171:171", "198:198=41:41"}
+actor TundraGlacierWindO : TundraGlacierWind{translation "202:202=100:100", "199:199=123:123", "192:192=104:104", "198:198=128:128"}
+actor TundraGlacierWindP : TundraGlacierWind{translation "202:202=160:160", "199:199=229:229", "192:192=214:214", "198:198=229:229"}
+
+actor TundraGlacierWindFX
+{
++CLIENTSIDEONLY
++NOGRAVITY
+renderstyle translucent
++FORCEXYBILLBOARD
++NOINTERACTION
++THRUGHOST
+scale 3.5
+alpha .15
++BRIGHT
+states
+{
+Spawn:
+TNST A 1 A_Fadeout(0.01)
+TNST A 0 A_ScaleVelocity(0.75)
+TNST B 1 A_Fadeout(0.01)
+TNST B 0 A_ScaleVelocity(0.75)
+TNST C 1 A_Fadeout(0.01)
+TNST C 0 A_ScaleVelocity(0.75)
+TNST D 1 A_Fadeout(0.01)
+TNST D 0 A_ScaleVelocity(0.75)
+loop
+}
+}
+
+actor TundraGlacier //this might actually be the best projectile in the game, next to heatman's atomic fire. seriously, this thing is fucking CRACKED.
+{//lol nerd
+Translation "202:202=196:196", "199:199=58:58"
+PROJECTILE
+damagetype "TundraM_Glacier"
+Obituary "$OB_TUNDRACICLE"
+damage (14)
+radius 15
+speed 75
+height 15
+scale 2.5
 States
 {
 Spawn:
@@ -673,110 +432,51 @@ stop
 }
 }
 
-actor TundraGlacier0B : TundraGlacier0{translation "202:202=196:196", "199:199=76:76", "192:192=196:196", "198:198=76:76"}
-actor TundraGlacier0R : TundraGlacier0{translation "202:202=170:170", "199:199=191:191", "192:192=171:171", "198:198=41:41"}
-actor TundraGlacier0O : TundraGlacier0{translation "202:202=100:100", "199:199=123:123", "192:192=104:104", "198:198=128:128"}
-actor TundraGlacier0P : TundraGlacier0{translation "202:202=160:160", "199:199=229:229", "192:192=214:214", "198:198=229:229"}
-
 actor TundraGlacierB : TundraGlacier{translation "202:202=196:196", "199:199=76:76", "192:192=196:196", "198:198=76:76"}
 actor TundraGlacierR : TundraGlacier{translation "202:202=170:170", "199:199=191:191", "192:192=171:171", "198:198=41:41"}
 actor TundraGlacierO : TundraGlacier{translation "202:202=100:100", "199:199=123:123", "192:192=104:104", "198:198=128:128"}
 actor TundraGlacierP : TundraGlacier{translation "202:202=160:160", "199:199=229:229", "192:192=214:214", "198:198=229:229"}
 
-actor TundraGlacier2B : TundraGlacier2{translation "202:202=196:196", "199:199=76:76", "192:192=196:196", "198:198=76:76"}
-actor TundraGlacier2R : TundraGlacier2{translation "202:202=170:170", "199:199=191:191", "192:192=171:171", "198:198=41:41"}
-actor TundraGlacier2O : TundraGlacier2{translation "202:202=100:100", "199:199=123:123", "192:192=104:104", "198:198=128:128"}
-actor TundraGlacier2P : TundraGlacier2{translation "202:202=160:160", "199:199=229:229", "192:192=214:214", "198:198=229:229"}
-
-actor TundraGlacier3B : TundraGlacier3{translation "202:202=196:196", "199:199=76:76", "192:192=196:196", "198:198=76:76"}
-actor TundraGlacier3R : TundraGlacier3{translation "202:202=170:170", "199:199=191:191", "192:192=171:171", "198:198=41:41"}
-actor TundraGlacier3O : TundraGlacier3{translation "202:202=100:100", "199:199=123:123", "192:192=104:104", "198:198=128:128"}
-actor TundraGlacier3P : TundraGlacier3{translation "202:202=160:160", "199:199=229:229", "192:192=214:214", "198:198=229:229"}
-
-actor TundraMain00_CI : TeamColor_CI
+actor TundraMainWind_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier0",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacierWind",0,0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier0B",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacierWindB",0,0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier0R",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacierWindR",0,0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier0O",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacierWindO",0,0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier0P",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacierWindP",0,0,0,0)
 goto Done
 }
 }
 
-actor TundraMain01_CI : TeamColor_CI
+actor TundraMain_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacier",0,0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("TundraGlacierB",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacierB",0,0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("TundraGlacierR",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacierR",0,0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("TundraGlacierO",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacierO",0,0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("TundraGlacierP",0,0,-8,0)
-goto Done
-}
-}
-
-actor TundraMain02_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier2",0,0,-8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier2B",0,0,-8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier2R",0,0,-8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier2O",0,0,-8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier2P",0,0,-8,0)
-goto Done
-}
-}
-
-actor TundraMain03_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier3",0,0,-8,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier3B",0,0,-8,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier3R",0,0,-8,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier3O",0,0,-8,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("TundraGlacier3P",0,0,-8,0)
+TNT1 A 0 A_FireCustomMissile("TundraGlacierP",0,0,0,0)
 goto Done
 }
 }
@@ -848,7 +548,7 @@ damagetype "TundraM_Tornado"
 +DONTSPLASH
 +DONTBLAST
 +THRUGHOST
-Damage (50)
+Damage (5)
 Radius 150
 Height 1350
 Speed 0
@@ -879,7 +579,7 @@ Obituary "$OB_TUNDRASPIN"
 +THRUGHOST
 +DONTREFLECT
 +HITTRACER
-damage (200)
+damage (20)
 Radius 44
 Height 63
 States
@@ -901,8 +601,24 @@ Stop
 
 actor TundraM_LeapProtect : PowerProtection
 {
-Powerup.Duration 4
+Powerup.Duration 8
 DamageFactor "TundraM_Leap", 0.0
+}
+
+actor TundraM_WindProtect : PowerProtection
+{
+Powerup.Duration 8
+DamageFactor "TundraM_Wind", 0.0
+}
+
+actor TundraStormableFlag : Powerup
+{
+Powerup.Duration 10
+}
+
+actor TundraSlowFXStopper : Powerup
+{
+Powerup.Duration 10
 }
 
 actor TundraLeap_P : CustomInventory
@@ -913,6 +629,109 @@ Pickup:
 TNT1 A 0 ThrustThingZ(0,60,0,0)
 TNT1 A 0
 stop
+}
+}
+
+actor TundraEncore_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveInventory("FeelFreezeAmmo",30)
+TNT1 A 0 A_JumpIfInventory("TundraCheerFlag",1,"No")
+TNT1 A 0 A_GiveInventory("TundraCheerFlag",1)
+TNT1 A 0 A_SpawnItemEx("TundraSpotlight",0,0,0,0,0,0,0,1)
+TNT1 A 0
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor TundraBoast
+{
++NOINTERACTION
+PROJECTILE
+scale 1.5
+RenderStyle "add"
+Alpha 0.2
+States
+{
+Spawn:
+TNT1 AA 0
+TNT1 A 0 A_Jump(128,"S_2","S_3","S_4","S_5")
+S_1:
+TNT1 A 0 A_Log("\cvShattered!")
+stop
+S_2:
+TNT1 A 0 A_Log("\cvGorgeous!")
+stop
+
+S_3:
+TNT1 A 0 A_Log("\cvPerfection!")
+stop
+
+S_4:
+TNT1 A 0 A_Log("\cvElegance!")
+stop
+
+S_5:
+TNT1 A 0 A_Log("\cvHeartless!")
+stop
+}
+}
+
+actor TundraSpotlight
+{
++NOINTERACTION
+PROJECTILE
+scale 1.5
+RenderStyle "add"
+Alpha 0.2
+States
+{
+Spawn:
+TNT1 AA 0
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex-0.08,scaley-0.08)
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+loopit:
+MSP0 L 0 A_JumpIfInTargetInventory("TundraDelayA",1,"Death")
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+loop
+
+Death:
+MSP0 L 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+MSP0 L 0 A_SetScale(scalex+0.16,scaley+0.16)
+MSP0 L 0 A_FadeOut
+loop
 }
 }
 
@@ -937,5 +756,95 @@ inventory.maxamount 1
 +INVENTORY.IGNORESKILL
 }
 
-//sailent asked me to put "fuck you" here
-//fuck you
+actor TundraCheerFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
++INVENTORY.IGNORESKILL
+}
+
+actor PowerTundraGiver : BasicPowerupGiver
+{
+Powerup.Type "PowerTundra"
+}
+
+actor PowerTundra : PowerSpeed
+{
+Speed 0.5
+powerup.duration 70
+}
+
+actor TundraFrostbite : BasePowerWeak
+{
+powerup.duration 70
+damagefactor "TundraM_Leap",1.25
+}
+
+actor TundramanSlowPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerTundra",1,2)
+TNT1 A 0 A_SpawnItemEx("TundraSlowWatcher")
+TNT1 A 0 A_GiveInventory("PowerTundraGiver",1)
+TNT1 A 0 A_GiveInventory("TundraFrostbite",1)
+stop
+}
+}
+
+actor TundraSlowWatcher : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0 
+TNT1 A 0 A_GiveToTarget("TundraSlowFX",1)
+Waiting:
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("PowerTundra",1,"Waiting")
+TNT1 A 0 A_GiveToTarget("TundraSlowFXStopper",1)
+stop
+}
+}
+
+actor TundraSlowFX : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("TundraSlowGFX", 0, 0, 32, 0, 0, 0, 0,1)
+stop
+}
+}
+
+actor TundraSlowGFX
+{
++NOGRAVITY
++THRUACTORS
++CLIENTSIDEONLY
++NOINTERACTION
++MISSILE
+Damage(0)
+Scale 2.25
+renderstyle translucent
+alpha 0.75
+Height 0
+Radius 0
+States
+{
+Spawn:
+TNST E 1 A_Warp(AAPTR_TARGET,0,0,28,0,0)
+TNT1 A 0 A_JumpIfInTargetInventory("TundraSlowFXStopper",1,"Death")
+TNST F 1 A_Warp(AAPTR_TARGET,0,0,28,0,0)
+TNT1 A 0 A_JumpIfInTargetInventory("TundraSlowFXStopper",1,"Death")
+TNST G 1 A_Warp(AAPTR_TARGET,0,0,28,0,0)
+TNT1 A 0 A_JumpIfInTargetInventory("TundraSlowFXStopper",1,"Death")
+loop
+Death:
+TNST EFG 1 A_Fadeout
+loop
+}
+}

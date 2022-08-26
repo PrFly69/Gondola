@@ -7,8 +7,8 @@ player.startitem "ChargeKickBoss"
 player.startitem "ChargeManIsEveryWhereAmmo", 75
 player.startitem "BlackHotAmmo", 300
 
-player.maxhealth 1150
-health 1150
+player.maxhealth 115
+health 115
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.4, 0.4
@@ -61,7 +61,12 @@ ARunF:
 CHRM M 0 A_TakeInventory("ChargeDashFlag",4)
 Goto ARunB
 
+Parry:
+CHRM H 0 A_PlaySound("weapon/tankengine","Voice")
+goto PainContinue
+
 ClassPain:
+CHRM H 0 A_JumpIfInventory("ChargeParryPower",1,"Parry")
 CHRM H 0
 goto PainContinue
 ClassDeath:

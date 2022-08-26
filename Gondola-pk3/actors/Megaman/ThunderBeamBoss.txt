@@ -49,6 +49,7 @@ ELEH A 1 A_Raise
 Loop
 Fire:
 ELEH A 0 A_JumpIfNoAmmo("NoAmmo")
+ELEA C 0 A_PlaySoundEx("weapon/thunderhandup","Weapon")
 ELEH B 2 //Offset(0,-10)
 ELEH F 2 //Offset(0,-15)
 ELEH C 1 //Offset(0,-20)
@@ -167,7 +168,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(450,450,0)
+TNT1 A 1 A_Explode(45,450,0)
 stop
 }
 }
@@ -180,7 +181,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(40,80,0,0,80)
+TNT1 A 1 A_Explode(4,80,0,0,80)
 stop
 }
 }
@@ -192,7 +193,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(150,96,0,0,96)
+TNT1 A 1 A_Explode(15,96,0,0,96)
 stop
 }
 }
@@ -201,10 +202,11 @@ actor ThunderManBeam : ThunderBeam
 {
 Translation "192:192=211:211","198:198=216:216"
 var int user_P;
-Damage(150)
+Damage(15)
 +FORCEXYBILLBOARD
 Height 12
 scale 2
+Speed 30
 damagetype "ElecM_Beam"
 States
 {
@@ -228,6 +230,48 @@ actor ThunderManBeamB : ThunderManBeam{translation "192:192=205:205","198:198=74
 actor ThunderManBeamR : ThunderManBeam{translation "192:192=171:171","198:198=41:41"}
 actor ThunderManBeamO : ThunderManBeam{translation "192:192=104:104","198:198=128:128"}
 actor ThunderManBeamP : ThunderManBeam{translation "192:192=229:229","198:198=232:232"}
+
+actor ThunderManSideBeamL : ThunderManBeam
+{
+Obituary "$OB_THUNDERSIDEBEAM"
+damagetype "ElecM_BeamL"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnL:
+ELEB HH 1 A_SpawnItemEx("ElecBarrierProjTrail1",0,0,0,0,0,0,0,1)
+ELEB II 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,0,0,0,0,0,1)
+ELEB JJ 1 A_SpawnItemEx("ElecBarrierProjTrail3",0,0,0,0,0,0,0,1)
+ELEB II 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,0,0,0,0,0,1)
+loop
+}
+}
+
+actor ThunderManSideBeamR : ThunderManSideBeamL{damagetype "ElecM_BeamR"}
+
+actor ThunderManSideBeamLB : ThunderManSideBeamL{translation "192:192=205:205","198:198=74:74"}
+actor ThunderManSideBeamLR : ThunderManSideBeamL{translation "192:192=171:171","198:198=41:41"}
+actor ThunderManSideBeamLO : ThunderManSideBeamL{translation "192:192=104:104","198:198=128:128"}
+actor ThunderManSideBeamLP : ThunderManSideBeamL{translation "192:192=229:229","198:198=232:232"}
+
+actor ThunderManSideBeamRB : ThunderManSideBeamR{translation "192:192=205:205","198:198=74:74"}
+actor ThunderManSideBeamRR : ThunderManSideBeamR{translation "192:192=171:171","198:198=41:41"}
+actor ThunderManSideBeamRO : ThunderManSideBeamR{translation "192:192=104:104","198:198=128:128"}
+actor ThunderManSideBeamRP : ThunderManSideBeamR{translation "192:192=229:229","198:198=232:232"}
+
+actor ThunderManSideBeamLProtect : PowerProtection
+{
+Powerup.Duration 6
+damagefactor "ElecM_BeamL", 0.0
+}
+
+actor ThunderManSideBeamRProtect : PowerProtection
+{
+Powerup.Duration 6
+damagefactor "ElecM_BeamR", 0.0
+}
 
 actor ElecBarrierProjTrail1 : ThunderManBeam
 {
@@ -448,28 +492,28 @@ states
 {
 FireX:
 TNT1 A 0 A_FireCustomMissile("ThunderManBeam",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeam",90,0,-24,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeam",-90,0,24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamL",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamR",-90,0,24,0)
 goto Done
 FireB:
 TNT1 A 0 A_FireCustomMissile("ThunderManBeamB",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeamB",90,0,-24,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeamB",-90,0,24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamLB",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamRB",-90,0,24,0)
 goto Done
 FireR:
 TNT1 A 0 A_FireCustomMissile("ThunderManBeamR",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeamR",90,0,-24,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeamR",-90,0,24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamLR",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamRR",-90,0,24,0)
 goto Done
 FireO:
 TNT1 A 0 A_FireCustomMissile("ThunderManBeamO",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeamO",90,0,-24,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeamO",-90,0,24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamLO",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamRO",-90,0,24,0)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("ThunderManBeamP",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeamP",90,0,-24,0)
-TNT1 A 0 A_FireCustomMissile("ThunderManBeamP",-90,0,24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamLP",90,0,-24,0)
+TNT1 A 0 A_FireCustomMissile("ThunderManSideBeamRP",-90,0,24,0)
 goto Done
 }
 }

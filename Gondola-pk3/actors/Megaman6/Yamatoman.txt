@@ -7,8 +7,8 @@ player.startitem "YamatoSpearBoss"
 player.startitem "YamatoClassAmmo", 28
 player.startitem "YamatoLeapAmmo", 28
 
-player.maxhealth 1150
-health 1150
+player.maxhealth 115
+health 115
 player.forwardmove 0.666, 0.666
 player.sidemove 0.646, 0.646
 player.jumpz 13
@@ -31,20 +31,75 @@ States
 Spawn:
 YAMM A 0
 YAMM B 1
+YAMM A 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
 YAMM A 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn+2
 See:
-YAMM BCDE 5 A_JumpIf(z-floorz>0, "Jumping")
+YAMM B 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM B 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM B 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM B 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM B 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM B 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM B 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM B 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM B 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM B 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+
+YAMM C 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM C 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM C 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM C 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM C 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM C 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM C 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM C 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM C 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM C 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+
+YAMM D 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM D 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM D 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM D 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM D 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM D 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM D 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM D 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM D 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM D 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+
+YAMM E 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM E 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM E 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM E 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM E 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM E 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM E 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM E 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
+YAMM E 1 A_JumpIf(z-floorz>0, "Jumping")
+YAMM E 0 A_JumpIfInventory("YamatoLeapActive",1,"YamatoLeapState")
 Goto Spawn
 Missile:
 YAMM JJKKJJKKJJKKJJKKJJ 1 A_JumpIf(z-floorz>0, "Banzai")
 goto Spawn+2
 Jumping:
-YAMM I 1 A_JumpIf(z-floorz<=0, "Spawn")
+YAMM I 1 A_JumpIf(z-floorz<=0, "SpawnBuffer")
 wait
+
+SpawnBuffer:
+YAMM L 3
+goto Spawn+2
+
 Banzai:
 YAMM FFGGFFGGFFGGFFGGFF 1 A_JumpIf(z-floorz<=0, "Missile")
 goto Spawn+2
+
+YamatoLeapState:
+YAMM L 3
+YAMM L 1 A_JumpIfInventory("CutterFlag",1,"Spawn")
+loop
+
+
 ClassPain:
 YAMM H 0
 goto PainContinue

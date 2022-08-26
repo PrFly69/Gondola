@@ -607,7 +607,7 @@ HUTB G 0 A_PlaySoundEx("weapon/lflcharge","Weapon")
 Hold2.a:
 HUTB G 1 ACS_ExecuteAlways(998,0,12009,6)
 HUTB G 0 A_GiveInventory("WeaponCharge_MaestroRC",1)//76
-HUTB G 0 A_JumpIfInventory("WeaponCharge",38,"Hold3")
+HUTB G 0 A_JumpIfInventory("WeaponCharge",76,"Hold3")
 HUTB G 0 A_Refire("Hold2.b")
 goto Fire2
 
@@ -615,7 +615,7 @@ Hold2.b:
 HUTB E 1 ACS_ExecuteAlways(998,0,12001,1)
 HUTB E 0 A_GiveInventory("WeaponCharge_MaestroRC",1)//76
 HUTB E 0 A_GiveInventory("MaestroShieldCount_RC",1)
-HUTB E 0 A_JumpIfInventory("WeaponCharge",38,"Hold3")
+HUTB E 0 A_JumpIfInventory("WeaponCharge",76,"Hold3")
 HUTB E 0 A_Refire("Hold2.a")
 goto Fire2
 

@@ -637,7 +637,7 @@ Height 16
 DamageType "GroundM_Stab"
 Obituary "$OB_SPREADDIG"
 speed 40
-damage (40)
+damage (2)
 reactiontime 1
 States
 {
@@ -646,7 +646,7 @@ TNT1 A 0
 TNT1 A 1 A_CountDown
 goto Spawn+1
 Death:
-TNT1 A 0 A_Explode(40,94,0,0,94)
+TNT1 A 0 A_Explode(2,94,0,0,94)
 goto XDeath
 XDeath:
 TNT1 A 0 A_Stop
@@ -663,7 +663,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(40,94,0,0,94)
+TNT1 A 1 A_Explode(2,94,0,0,94)
 stop
 }
 }
@@ -718,7 +718,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 AAAA 1 A_Explode(50,86,0,0,86)
+TNT1 AAAA 1 A_Explode(5,86,0,0,86)
 stop
 }
 }
@@ -731,7 +731,7 @@ PROJECTILE
 DamageType "GroundM_Shot1"
 Obituary "$OB_SPREADDRILL"
 +RIPPER
-damage (150)//25
+damage (15)//25
 radius 32
 height 16
 speed 20//13
@@ -781,7 +781,7 @@ actor MediumDrill1C : SpreadDrillC
 {
 radius 18
 scale 2.5
-damage (100)
+damage (10)
 DamageType "GroundM_Shot2"
 states
 {
@@ -806,7 +806,7 @@ radius 16
 scale 2.5
 Speed 28//20
 DamageType "GroundM_Shot2"
-damage (100)
+damage (10)
 states
 {
 Spawn:
@@ -830,7 +830,7 @@ actor SmallDrill1C : MediumDrill1C
 {
 radius 10
 height 8
-damage (80)
+damage (8)
 DamageType "GroundM_Shot3"
 states
 {
@@ -848,7 +848,7 @@ actor SmallDrill2C : MediumDrill2C
 {
 radius 8
 height 8
-damage (80)
+damage (8)
 Speed 28
 DamageType "GroundM_Shot3"
 states
@@ -953,7 +953,7 @@ height 28
 speed 1
 DamageType "GroundM_ShotCeil"
 Obituary "$OB_SPREADDRILL"
-damage (250)
+damage (25)
 scale 2.5
 states
 {
@@ -1007,7 +1007,7 @@ actor GiantCeilingDrill
 PROJECTILE
 Radius 12
 Height 18
-Damage (50)
+Damage (5)
 +DONTBLAST
 +RIPPER
 +DONTREFLECT
@@ -1063,7 +1063,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(60,48,0,0,48)
+TNT1 A 2 A_Explode(6,48,0,0,48)
 stop
 }
 }

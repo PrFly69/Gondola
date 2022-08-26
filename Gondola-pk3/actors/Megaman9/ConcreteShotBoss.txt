@@ -118,7 +118,7 @@
 		CONH Q 6
 		Goto Ready3a
 
-		AltFire:
+		AltFire: 
 		CONH A 0 A_JumpIfInventory("CementAni_Leap",1,"CrashLanding")
 		CONH A 0 A_JumpIfInventory("ConcreteBlockReady",1,"AltBlockCharge1")
 		CONH A 0 A_JumpIfInventory("ConcreteBlockFlag",1,"AltFirePickup")
@@ -169,6 +169,8 @@
 		Goto Dash
 
 		AltBlockCharge1:
+		CONH T 0 A_Jump(256,2)
+		CONH T 555
 		CONH T 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,75,100)
 		CONH T 0 A_PlaySound("weapon/conc_chargestart",1,0.5)
 		Goto AltBlockCharge2
@@ -291,6 +293,8 @@
 		Goto DashEnd
 		
 		Dash2:
+		CONH D 0 A_Jump(256,2)
+		CONH D 555
 		CONH D 0 A_GiveInventory("CementAni_Dash",1)
 		CONH D 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
 		CONH D 0 A_SetUserVar("user_wepangle", angle)
@@ -447,6 +451,8 @@
 
 		AltFirePickup:
 		CONH N 0 A_ClearReFire
+		CONH N 0 A_Jump(256,2)
+		CONH N 555
 		CONH N 0 A_TakeInventory("ConcreteGrabbingFlag",999)
 		CONH N 0 A_GiveInventory("CementAni_Pickup",1)
 		CONH N 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)
@@ -489,6 +495,11 @@
 	Inventory.MaxAmount 28
   }
 
+actor MeteorShotFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
 
   Actor ConcStaminaDelay : Powerup { Powerup.Duration -3 }
 
@@ -678,6 +689,11 @@ wait
 //-------------------------
 //=========================
 
+//=========================
+// Block & Dash Attacks
+//-------------------------
+//=========================
+
   Actor ConcreteShotgun
   {
     Translation "202:202=88:88", "199:199=95:95"
@@ -687,7 +703,8 @@ wait
 	Species "ConcreteShot"
 	-NOGRAVITY
 	+THRUSPECIES
-	Damage (100)	
+	+SKYEXPLODE
+	Damage (10)	
 	Radius 16
 	Height 32
 	Speed 33
@@ -696,6 +713,7 @@ wait
 	{
 		Spawn:
 		Y_9A A 0
+		Y_9A W 0 A_GiveInventory("MeteorShotFlag",1)
 		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 		SpawnLOOP:
 		Y_9A A 0 ThrustThingZ(0,4,0,1)
@@ -704,18 +722,19 @@ wait
 		Spawn2:
 		Y_9A AB 2
 		Loop
-XDeath:
-TNT1 A 1 A_PlaySoundEx("weapon/concreteblock","Weapon")
-stop
-Death:
-Y_9A W 0 A_ChangeFlag(NOGRAVITY,1)
-Y_9A W 4
-Y_9A W 0 A_JumpIfCloser(48,"XDeath")
-Y_9A W 0 A_SpawnItemEx("ConcreteShotgunBlock",0,0,0,0,0,0,0,5)
-Y_9A X 0 A_PlaySoundEx("weapon/concreteblock","Weapon")
-stop
-}
-}
+		XDeath:
+		TNT1 A 1 A_PlaySoundEx("weapon/concreteblock","Weapon")
+		Stop
+		
+		Death:
+		Y_9A W 0 A_ChangeFlag(NOGRAVITY,1)
+		Y_9A W 4 A_SpawnItemEx("ConcreteShotgunBlockCheck")
+		Y_9A W 0 A_JumpIf(CallACS("BG Spawner", 1)==0, 2)
+		Y_9A W 0 A_SpawnItemEx("ConcreteShotgunBlock",0,0,0,0,0,0,0,5)
+		Y_9A X 0 A_PlaySoundEx("weapon/concreteblock","Weapon")
+		Stop
+	}
+  }
 
   Actor ConcreteShotgunB : ConcreteShotgun{translation"202:202=205:205","199:199=74:74"}
   Actor ConcreteShotgunR : ConcreteShotgun{translation"202:202=171:171","199:199=41:41"}
@@ -747,7 +766,6 @@ stop
   Actor ConcreteShotgunXO : ConcreteShotgunX{translation "202:202=104:104", "199:199=128:128"}
   Actor ConcreteShotgunXP : ConcreteShotgunX{translation "202:202=229:229", "199:199=232:232"}
 
-
   Actor ConcreteShotgunXFX
   {
     +MISSILE
@@ -777,84 +795,168 @@ stop
   }
 
 
-actor ConcreteShotgunBlock
+  Actor ConcreteShotgunBlock
+  {
+    +FORCEYBILLBOARD
+	+GHOST
+	+NOGRAVITY
+	+DONTRIP
+	+CANTSEEK
+	+SHOOTABLE
+	+NOBLOOD
+	+DONTBLAST
+	+CANTSEEK
+	+DONTDRAIN
+	+NOTARGETSWITCH
+	+THRUSPECIES
+	+SKYEXPLODE
+	DamagefActor "ConcreteM_Shot", 0.0
+	DamagefActor "ConcreteM_Shoulder", 5.0
+	DamageFActor "IceWallC", 0.24
+	Species "ConcreteShot"
+	Health 30
+	Mass 9999
+	Radius 16
+	Height 32
+	Scale 2.0
+	States
+	{
+		Spawn://Y_9A minus one letter
+		TNT1 A 0
+		TNT1 A 0 //ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+		SpawnLOOP:
+		Y_9A W 0 A_GiveInventory("MeteorShotFlag",1)
+		Y_9A W 1 A_SetArg(3,20)
+		Y_9A W 0 A_SpawnItemEx("ConcreteShotgunBlockCheck2")
+		Y_9A W 0 A_ChangeFlag("SOLID",1)
+		Y_9A X 1 A_GiveInventory("WeaponCharge",1)
+		Y_9A X 0 A_JumpIfInTargetInventory("ConcreteGrabbingFlag",1,"Spawn_Check")
+		Y_9A W 0 A_SpawnItemEx("ConcreteShotgunBlockCheck2")
+		Y_9A X 1 A_GiveInventory("WeaponCharge",1)
+		Y_9A X 0 A_JumpIfInTargetInventory("ConcreteGrabbingFlag",1,"Spawn_Check")
+		Y_9A W 0 A_SpawnItemEx("ConcreteShotgunBlockCheck2")
+		Y_9A X 1 A_GiveInventory("WeaponCharge",1)
+		Y_9A X 0 A_JumpIfInTargetInventory("ConcreteGrabbingFlag",1,"Spawn_Check")
+		goto SpawnL
+		
+		SpawnL:
+		Y_9A X 0 A_JumpIfInventory("WeaponCharge",64,"SpawnL2")
+		Y_9A X 1 A_GiveInventory("WeaponCharge",1)
+		Y_9A X 0 A_JumpIfInTargetInventory("ConcreteGrabbingFlag",1,"Spawn_Check")
+		Loop
+		
+		SpawnL2:
+		Y_9A Y 1 A_CountDownArg(3)
+		Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteGrabbingFlag",1,"Spawn_Check2")
+		Loop
+		
+		Spawn_Check:
+		Y_9A X 0 A_JumpIfInTargetInventory("ConcreteBlockReady",1,"SpawnL")
+		Y_9A X 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL")
+		Y_9A X 0 A_JumpIfCloser(64,"Give")
+		Goto SpawnL
+		
+		Give:
+		Y_9A X 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL")
+		Y_9A X 0 A_GiveToTarget("ConcreteBlockFlag",1)
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 1
+		Stop
+		
+		Spawn_Check2:
+		Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteBlockReady",1,"SpawnL2")
+		Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL2")
+		Y_9A Y 0 A_JumpIfCloser(64,"Give2")
+		Goto SpawnL2
+		
+		Give2:
+		Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL2")
+		Y_9A Y 0 A_GiveToTarget("ConcreteBlockFlag",1)
+		TNT1 A 0 A_NoBlocking
+		TNT1 A 1
+		Stop
+		
+		Death:
+		Y_9A Y 1 A_ChangeFlag("NOGRAVITY",1)
+		Y_9A Y 2 A_NoBlocking
+		Y_9A Z 3
+		Stop
+	}
+  }
+
+
+actor ConcreteShotgunBlockCheck
 {
-+FORCEYBILLBOARD
-+GHOST
-+NOGRAVITY
-+DONTRIP
-+CANTSEEK
-+MISSILE
-+TOUCHY
-+SHOOTABLE
-+NOTAUTOAIMED
-+NOBLOOD
-+DONTBLAST
-+DONTDRAIN
-+NOTARGETSWITCH
+Translation "198:198=192:192", "192:192=4:4", "199:199=194:194", "202:202=193:193"
+Projectile
+DamageType "ConcreteM_Shot"
+Species "ConcreteShot"
+Damage (10)
+Radius 16
+Height 32
++THRUGHOST
 +THRUSPECIES
-damagefactor "ConcreteShot", 0.0
-damagefactor "ConcreteM_Shot", 0.0
-damagefactor "ConcreteM_Bash", 5.0
-damagefactor "VehicleHazard", 9999.0
-
-DamageFactor "ColdM_WallFloor", 0.125
-DamageFactor "ColdM_WallAir", 0.125
-species "ConcreteShot"//MovingPlatform
-Health 300
-Mass 9999
-radius 16
-height 32
-scale 2.0
-States
++NOINTERACTION
++SERVERSIDEONLY
++HITTRACER
+states
 {
-Spawn://Y_9A minus one letter
-Y_9A W 0
-Y_9A W 0
-Y_9A W 1 A_SetArg(3,20)
-Y_9A W 0 A_ChangeFlag("TOUCHY",0)
-Y_9A W 0 A_ChangeFlag("MISSILE",0)
-Y_9A W 0 A_ChangeFlag("SOLID",1)
-goto SpawnL
-SpawnL:
-Y_9A X 0 A_JumpIfInventory("WeaponCharge",64,"SpawnL2")
-Y_9A X 1 A_GiveInventory("WeaponCharge",1)
-Y_9A X 0 A_JumpIfInTargetInventory("ConcreteGrabbingFlag",1,"Spawn_Check")
-loop
-SpawnL2:
-Y_9A Y 1 A_CountDownArg(3)
-Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteGrabbingFlag",1,"Spawn_Check2")
-loop
-Spawn_Check:
-Y_9A X 0 A_JumpIfInTargetInventory("ConcreteBlockReady",1,"SpawnL")
-Y_9A X 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL")
-Y_9A X 0 A_JumpIfCloser(64,"Give")
-goto SpawnL
-Give:
-Y_9A X 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL")
-Y_9A X 0 A_GiveToTarget("ConcreteBlockFlag",1)
-TNT1 A 0 A_NoBlocking
-TNT1 A 1
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("MeteorShotFlag",1,"Spawn2")
 stop
-Spawn_Check2:
-Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteBlockReady",1,"SpawnL2")
-Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL2")
-Y_9A Y 0 A_JumpIfCloser(64,"Give2")
-goto SpawnL2
-Give2:
-Y_9A Y 0 A_JumpIfInTargetInventory("ConcreteBlockFlag",1,"SpawnL2")
-Y_9A Y 0 A_GiveToTarget("ConcreteBlockFlag",1)
-TNT1 A 0 A_NoBlocking
-TNT1 A 1
+Spawn2:
+TNT1 A 0 A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_DEFAULT) //save target to master
+TNT1 A 0 A_TransferPointer(AAPTR_MASTER,AAPTR_DEFAULT,AAPTR_MASTER,AAPTR_TARGET) //Master's master -> this thing's target
+TNT1 A 0 A_ChangeFlag("NOINTERACTION",0)
+TNT1 A 5
 stop
+XDeath:
+Crash:
+TNT1 A 1 A_RemoveMaster
 Death:
-Y_9A Y 1 A_ChangeFlag("NOGRAVITY",1)
-Y_9A Y 2 A_NoBlocking
-Y_9A Z 3
+TNT1 A 1
 stop
 }
 }
 
+actor ConcreteShotgunBlockCheck2
+{
+Translation "198:198=192:192", "192:192=4:4", "199:199=194:194", "202:202=193:193"
+Projectile
+DamageType "ConcreteShot"
+Species "ConcreteShot"
+Damage (0)
+Radius 16
+Height 31
++THRUGHOST
++THRUSPECIES
++NOINTERACTION
++SERVERSIDEONLY
++HITTRACER
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInTargetInventory("MeteorShotFlag",1,"Spawn2")
+stop
+Spawn2:
+TNT1 A 0 A_RearrangePointers(AAPTR_DEFAULT,AAPTR_TARGET,AAPTR_DEFAULT) //save target to master
+TNT1 A 0 A_TransferPointer(AAPTR_MASTER,AAPTR_DEFAULT,AAPTR_MASTER,AAPTR_TARGET) //Master's master -> this thing's target
+TNT1 A 0 A_ChangeFlag("NOINTERACTION",0)
+TNT1 A 2
+stop
+XDeath:
+Crash:
+TNT1 A 1 A_RemoveMaster
+Death:
+TNT1 A 1
+stop
+}
+}
+
+// AreaCheckers
+actor AC_ConcreteBlock {Radius 16 Height 32}
 
   Actor ConcreteShoulder
   {
@@ -865,10 +967,10 @@ stop
 	RenderStyle translucent
 	Alpha 0.15
 	ReactionTime 1
-	Damage (400)
+	Damage (40)
 	Radius 14
 	Height 25
-	Speed 40
+	Speed 45
 	Scale 2.5
 	States
 	{
@@ -976,7 +1078,7 @@ stop
 		Spawn:
 		TNT1 A 0
 		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("ConcreteShockLandingFX",128,0,0,0,0,0,random(0,360),5)
-		TNT1 A 2 A_Explode(20,192,0,0,32)
+		TNT1 A 2 A_Explode(2,192,0,0,32)
 		Stop
 	}
   }
@@ -1200,10 +1302,10 @@ stop
 	DamageType "ConcreteM_Toss"
 	Obituary "$OB_CONCRETETOSS"
 	-NOGRAVITY
-	Damage (300)
+	Damage (30)
 	Radius 16
 	Height 16
-	Speed 34
+	Speed 38
 	Scale 2.5
 	States
 	{
@@ -1238,10 +1340,10 @@ stop
 	PROJECTILE
 	DamageType "SparkM_Shock"
 	Obituary "$OB_CONCRETETOSS2"
-	Damage (200)
+	Damage (20)
 	Radius 16
 	Height 16
-	Speed 80
+	Speed 90
 	Scale 2.5
 	States
 	{
@@ -1294,7 +1396,7 @@ stop
 	{
 		Spawn:
 		TNT1 A 0
-		TNT1 A 0 A_Explode(150,128,0,0,16)
+		TNT1 A 0 A_Explode(15,128,0,0,16)
 		TNT1 A 2 A_SpawnItemEx("BasicBoom6FX_Y3",0,0,0,0,0,0,0,1+32)
 		Stop
 	}

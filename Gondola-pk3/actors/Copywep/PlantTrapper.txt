@@ -70,7 +70,7 @@ Obituary "$OB_PLANTTRAPPER"
 +FORCEXYBILLBOARD
 +BRIGHT
 wallbouncefactor 0.12
-Damage (80)
+Damage (8)
 radius 5
 height 5
 Speed 43
@@ -103,7 +103,7 @@ Obituary "$OB_PLANTTRAPPER"
 +THRUACTORS
 +HITTRACER
 ReactionTime 1
-damage (80)
+damage (8)
 radius 32
 height 32
 scale 1.8

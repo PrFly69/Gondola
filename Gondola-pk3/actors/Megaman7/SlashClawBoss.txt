@@ -358,7 +358,7 @@ Damagetype "SlashM_Swipe"
 +THRUACTORS
 +DONTBLAST
 +DONTSPLASH
-Mass 190
+Mass 19
 Meleerange 1
 ReactionTime 1
 damage (0)
@@ -371,22 +371,22 @@ States
 Spawn:
 SLSA H 0
 SLSA H 1 A_Explode(Mass-0,ScaleX*25,0,0,ScaleX*26)//38
-SLSA H 1 A_Explode(Mass-10,ScaleX*25,0,0,ScaleX*26)
-SLSA I 1 A_Explode(Mass-20,ScaleX*21,0,0,ScaleX*24)//35.5
-SLSA I 1 A_Explode(Mass-30,ScaleX*21,0,0,ScaleX*22)
-SLSA J 1 A_Explode(Mass-40,ScaleX*19,0,0,ScaleX*20)//33
-SLSA J 1 A_Explode(Mass-50,ScaleX*19,0,0,ScaleX*20)
-SLSA K 1 A_Explode(Mass-60,ScaleX*17,0,0,ScaleX*20)//22
-SLSA K 1 A_Explode(Mass-70,ScaleX*17,0,0,ScaleX*18)
-SLSA L 1 A_Explode(Mass-80,ScaleX*13,0,0,ScaleX*14)//16
-SLSA L 1 A_Explode(Mass-90,ScaleX*13,0,0,ScaleX*14)
+SLSA H 1 A_Explode(Mass-1,ScaleX*25,0,0,ScaleX*26)
+SLSA I 1 A_Explode(Mass-2,ScaleX*21,0,0,ScaleX*24)//35.5
+SLSA I 1 A_Explode(Mass-3,ScaleX*21,0,0,ScaleX*22)
+SLSA J 1 A_Explode(Mass-4,ScaleX*19,0,0,ScaleX*20)//33
+SLSA J 1 A_Explode(Mass-5,ScaleX*19,0,0,ScaleX*20)
+SLSA K 1 A_Explode(Mass-6,ScaleX*17,0,0,ScaleX*20)//22
+SLSA K 1 A_Explode(Mass-7,ScaleX*17,0,0,ScaleX*18)
+SLSA L 1 A_Explode(Mass-8,ScaleX*13,0,0,ScaleX*14)//16
+SLSA L 1 A_Explode(Mass-9,ScaleX*13,0,0,ScaleX*14)
 stop
 }
 }
 
 actor ClawmanSlash1 : ClawmanSlash
 {
-mass 190
+mass 19
 speed 18
 scale 2.5
 }
@@ -397,7 +397,7 @@ actor ClawmanSlash1P : ClawmanSlash1{translation"202:202=229:229","199:199=232:2
 
 actor ClawmanSlash2 : ClawmanSlash
 {
-mass 210
+mass 21
 speed 21
 scale 2.6
 }
@@ -408,7 +408,7 @@ actor ClawmanSlash2P : ClawmanSlash2{translation"202:202=229:229","199:199=232:2
 
 actor ClawmanSlash3 : ClawmanSlash
 {
-mass 230
+mass 23
 speed 24
 scale 2.7
 }
@@ -419,7 +419,7 @@ actor ClawmanSlash3P : ClawmanSlash3{translation"202:202=229:229","199:199=232:2
 
 actor ClawmanSlash4 : ClawmanSlash
 {
-mass 250
+mass 25
 speed 27
 scale 2.8
 }
@@ -430,7 +430,7 @@ actor ClawmanSlash4P : ClawmanSlash4{translation"202:202=229:229","199:199=232:2
 
 actor ClawmanSlash5 : ClawmanSlash
 {
-mass 270
+mass 27
 speed 30
 scale 2.9
 }
@@ -441,7 +441,7 @@ actor ClawmanSlash5P : ClawmanSlash5{translation"202:202=229:229","199:199=232:2
 
 actor ClawmanSlash6 : ClawmanSlash
 {
-mass 290
+mass 29
 speed 33
 scale 3.0
 }
@@ -452,7 +452,7 @@ actor ClawmanSlash6P : ClawmanSlash6{translation"202:202=229:229","199:199=232:2
 
 actor ClawmanSlash7 : ClawmanSlash
 {
-mass 310
+mass 31
 speed 36
 scale 3.1
 }
@@ -463,7 +463,7 @@ actor ClawmanSlash7P : ClawmanSlash7{translation"202:202=229:229","199:199=232:2
 
 actor ClawmanSlash8 : ClawmanSlash
 {
-mass 330
+mass 33
 speed 39
 scale 3.2
 }
@@ -474,7 +474,7 @@ actor ClawmanSlash8P : ClawmanSlash8{translation"202:202=229:229","199:199=232:2
 
 actor ClawmanSlash9 : ClawmanSlash
 {
-mass 350
+mass 35
 speed 42
 scale 3.3
 }
@@ -493,7 +493,7 @@ Damagetype "SlashM_Goop"
 scale 2.5
 radius 10
 height 10
-damage (50)
+damage (5)
 speed 25
 states
 {
@@ -531,7 +531,7 @@ speed 0.50
 actor SlashGoop2 : SlashGoop
 {
 +DONTBLAST
-damage (50)
+damage (5)
 +NOGRAVITY
 reactiontime 215
 Speed 0

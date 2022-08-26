@@ -1,5 +1,15 @@
 //These are actors used for ClassBase0
 
+//These are actors used for ClassBase0
+actor DamagedHealth : Ammo
+{
+inventory.maxamount 100
+}  
+
+actor DamagedHealthLostDelay : Powerup{Powerup.Duration 7 +INVENTORY.ADDITIVETIME}
+
+actor DamagedHealthIsDifferent : Powerup{Powerup.Duration 3}
+
 //Since 'Player.StartItem' can't be inherited, this is given via ACS
 actor CBM_StarterSpawnInventory_P : CustomInventory
 {
@@ -17,8 +27,68 @@ TNT1 A 0 A_GiveInventory("IsInGame",1)
 TNT1 A 0 A_GiveInventory("CBM_NoGravityFix_P")
 TNT1 A 0 A_GiveInventory("StaminaFlag",500)
 TNT1 A 0 A_GiveInventory("ResolidifyPlayer_SpawnTele_P")
+//TNT1 A 0 ACS_NamedExecuteWithResult("Gondola_Walksound") 
+//you dont understand bro we need to import every single UEC change regardless of how it actually plays
+
+//SR50
+TNT1 A 0 ACS_NamedExecuteWithResult("SR50Display")
 stop
 }
+}
+
+actor SR50PowerSpeed : PowerSpeed
+{
+Powerup.Duration 8
+Speed 1.0
+}
+
+actor AlertingSR50_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BlizzardM_WalkFX",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor SR50PlayerSpeedTrail : BasicClientside
+{
++NOINTERACTION
+renderstyle add
+scale 2.5
+alpha 0.75
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 AA 1 A_JumpIf(ACS_NamedExecuteWithResult("cbm_IsPointerClient",2)!=1, "Fade")
+"----" H 1 A_FadeOut(0.08)
+wait
+Fade:
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
+"----" H 1 A_FadeOut(0.08)
+loop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor WalkSoundDelayFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 999
+}
+
+actor WalkSoundForcer : OnceC{}//look what you made me do
+
+actor PowerFuckYourLegs : PowerSpeed
+{
+Speed 0.9
+Powerup.Duration 0x7FFFFFFD
++POWERSPEED.NOTRAIL
 }
 
 actor PowerNoGravityFixOld : PowerFlight

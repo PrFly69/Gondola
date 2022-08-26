@@ -6,8 +6,8 @@ player.soundclass "springmanc"
 player.startitem "WildCoilBoss"
 player.startitem "GumAmmo", 28
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.forwardmove 0.76, 0.76
 player.sidemove 0.74, 0.74
 player.jumpz 20
@@ -31,10 +31,10 @@ SPNG A 1 A_JumpIfInventory("SpringPunchFlag",1,"SpringPunch")
 SPNG A 0 //A_JumpIf(z-floorz>0,"SpringyFunny")
 Goto Spawn+2
 See:
-SPNG BBB 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
-SPNG CCC 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
-SPNG DDD 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
-SPNG EEE 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
+SPNG BBBB 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
+SPNG CCCC 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
+SPNG DDDD 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
+SPNG EEEE 1 //A_JumpIf(z-floorz>0,"SpringyFunny")
 Goto Spawn
 Missile:
 SPNG J 0 A_JumpIfInventory("SpringPunchFlag",1,"SpringPunch")

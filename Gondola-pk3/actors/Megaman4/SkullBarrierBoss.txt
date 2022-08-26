@@ -474,7 +474,7 @@ PROJECTILE
 damagetype "SkullM_Shot"
 Obituary "$OB_SKULLBUSTER"
 Speed 150
-Damage (100-user_POWER)
+Damage (10-user_POWER)
 radius 5
 height 5
 scale 3
@@ -485,13 +485,13 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 W_0D BBBBB 1 A_SpawnItemex("SkullShotFX",0,0,0,0,0,0,0,1)
-W_0D B 2 A_SetUserVar("user_POWER",10)
-W_0D B 2 A_SetUserVar("user_POWER",20)
-W_0D B 2 A_SetUserVar("user_POWER",30)
-W_0D B 2 A_SetUserVar("user_POWER",40)
-W_0D B 2 A_SetUserVar("user_POWER",50)
-W_0D B 2 A_SetUserVar("user_POWER",60)
-W_0D B 2 A_SetUserVar("user_POWER",70)
+W_0D B 2 A_SetUserVar("user_POWER",1)
+W_0D B 2 A_SetUserVar("user_POWER",2)
+W_0D B 2 A_SetUserVar("user_POWER",3)
+W_0D B 2 A_SetUserVar("user_POWER",4)
+W_0D B 2 A_SetUserVar("user_POWER",5)
+W_0D B 2 A_SetUserVar("user_POWER",6)
+W_0D B 2 A_SetUserVar("user_POWER",7)
 W_0D B 3
 wait
 Death:
@@ -516,7 +516,7 @@ actor SkullShotRage : SkullShot
 {
 scale 1
 damagetype "SkullM_ShotX"
-Damage (150)
+Damage (15)
 States
 {
 Spawn:

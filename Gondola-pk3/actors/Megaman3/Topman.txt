@@ -1,0 +1,92 @@
+actor Topman : ClassBase
+{
+Player.ScoreIcon "C_03E0X"
+player.displayname "Topman"
+player.soundclass "topmanc"
+
+player.maxhealth 85
+health 85
+player.jumpz 10
+player.forwardmove 1.0, 1.0
+player.sidemove 0.98, 0.98
+
+player.startitem "TopSpinBoss"
+player.startitem "DiscoTopAmmo", 3
+
+player.startitem "HardKnuckleWeakness2", 1
+
+player.startitem "SuperArmWeakness", 1
+player.startitem "HardKnuckleWeakness", 1
+player.startitem "PowerStoneWeakness", 1
+player.startitem "AstroCrushWeakness", 1
+player.startitem "DeepDiggerWeakness", 1
+
+States
+{
+Spawn:
+TOPM A 0
+TOPM B 1
+TOPM A 1
+Goto Spawn+2
+See:
+TOPM BCDE 5
+Goto Spawn
+Missile:
+TOPM F 5
+TOPM G 4
+goto Spawn
+
+Missile:
+TOPM F 0 A_JumpIfInventory("TopDashFlag",9,"ARunT2")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",8,"ARunT")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",7,"ARunS")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",6,"ARunR")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",5,"ARunQ")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",4,"ARunP")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",3,"ARunO")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",2,"ARunN")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",1,"ARunM")
+TOPM FF 1 A_JumpIfInventory("TopDashFlag",1,"ARunM")
+TOPM FFF 1
+TOPM G 4
+goto Spawn
+
+ARunM:
+TOPM M 2
+Goto ARunX+1
+ARunN:
+TOPM N 2
+Goto ARunX+2
+ARunO:
+TOPM O 2
+Goto ARunX+3
+ARunP:
+TOPM P 2
+Goto ARunX+4
+ARunQ:
+TOPM Q 2
+Goto ARunX+5
+ARunR:
+TOPM R 2
+Goto ARunX+6
+ARunS:
+TOPM S 2
+Goto ARunX+7
+ARunT:
+TOPM T 2
+Goto ARunX
+ARunT2:
+TOPM M 2 A_TakeInventory("TopDashFlag",8)
+Goto ARunX
+ARunX:
+TOPM MNOPQRST 1 A_JumpIfInventory("TopDash_End",1,"Missile")
+loop
+
+ClassPain:
+TOPM H 0
+goto PainContinue
+ClassDeath:
+TOPM H 0
+goto DeathContinue
+}
+}

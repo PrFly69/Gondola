@@ -4,14 +4,14 @@ Player.ScoreIcon "C_05G0X"
 player.displayname "napalmman"
 player.soundclass "napalmmanc"
 player.startitem "NapalmBombBoss"
-player.startitem "NapalmClassAmmo", 168
-player.startitem "OverHeater", 0
+player.startitem "NapalmClassAmmo", 360
+player.startitem "NapalmMissileAmmo", 100
 
-player.maxhealth 1000
-health 1000
-player.jumpz 10
+player.maxhealth 115
+health 115
 player.forwardmove 0.89, 0.89
 player.sidemove 0.5, 0.5
+player.jumpz 12
 
 player.startitem "CrystalEyeWeakness2", 1
 
@@ -47,8 +47,11 @@ Goto Jumping
 ClassPain:
 NAPM H 0
 goto PainContinue
-ClassDeath:
+DeathFix:
 NAPM H 0
 goto DeathContinue
+ClassDeath:
+NAPM H 1
+goto MegaDeathEnd
 }
 }

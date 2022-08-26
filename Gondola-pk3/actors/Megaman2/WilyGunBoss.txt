@@ -427,7 +427,7 @@ Obituary "$OB_WILYSHOT"
 //+SEEKERMISSILE
 //+SCREENSEEKER
 //ReactionTime 30
-damage (120)
+damage (12)
 Radius 10
 Height 10
 speed 35
@@ -557,7 +557,7 @@ PROJECTILE
 damagetype "DrWily_Suit"
 Obituary "$OB_WILYSKULL"
 Speed 26
-Damage (240)
+Damage (24)
 radius 22
 height 22
 scale 1.5
@@ -580,7 +580,7 @@ actor WilyShot1P : WilyShot1{translation "192:192=229:229","198:198=232:232"}
 
 actor WilyShot2 : WilyShot1
 {
-Damage (200)
+Damage (20)
 radius 18//20
 height 18
 scale 1.5
@@ -602,7 +602,7 @@ actor WilyShot2P : WilyShot2{translation "192:192=229:229","198:198=232:232"}
 
 actor WilyShot3 : WilyShot1
 {
-Damage (150)
+Damage (15)
 radius 14//15
 height 14
 scale 1.25
@@ -624,7 +624,7 @@ actor WilyShot3P : WilyShot3{translation "192:192=229:229","198:198=232:232"}
 
 actor WilyShot4 : WilyShot1
 {
-Damage (100)
+Damage (10)
 radius 10//7
 height 10
 scale 1.5
@@ -652,7 +652,7 @@ Damagetype "DrWily_Pan"
 Obituary "$OB_WILYPAN"
 +DONTSPLASH
 +DONTBLAST
-damage (330)
+damage (33)
 ReactionTime 1
 Radius 14
 Height 14
@@ -900,7 +900,7 @@ Bouncetype Hexen
 BounceCount 8
 BounceFactor 1.0
 WallBounceFactor 1.0
-Damage (120)
+Damage (12)
 Height 16
 Radius 16
 Speed 30
@@ -949,7 +949,7 @@ Obituary "$OB_WILYFIRE"
 damagetype "DrWily_Fire"
 PROJECTILE
 +RIPPER
-Damage (20)
+Damage (2)
 radius 6
 height 6
 Speed 30
@@ -981,7 +981,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(30,15,0,0,15)
+TNT1 A 1 A_Explode(3,15,0,0,15)
 stop
 }
 }
@@ -1022,7 +1022,7 @@ damagetype "DrWily_Ice"
 -RIPPER
 BounceType None
 BounceCount 0
-Damage (100)
+Damage (10)
 states
 {
 Spawn:
@@ -1054,7 +1054,7 @@ Obituary "$OB_WILYELEC"
 PROJECTILE
 +RIPPER
 -NOGRAVITY
-Damage (50)
+Damage (5)
 Radius 16
 Height 16
 Speed 0
@@ -1089,7 +1089,7 @@ damagetype "DrWily_Elec"
 Obituary "$OB_WILYELEC"
 +FLOORHUGGER
 +RIPPER
-Damage (60)
+Damage (6)
 Radius 32
 Height 32
 Speed 50

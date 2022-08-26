@@ -1,0 +1,92 @@
+/////////////////////////////////////////////////
+//Stage Hazards Damage
+/////////////////////////////////////////////////
+
+//MEGAMAN 1
+actor Beef_FireWave : FireWave replaces FireWave{}
+actor Beef_FirePillar : CBM_FirePillar replaces CBM_FirePillar{}
+actor Beef_OilCanisterDamager : OilCanisterDamager replaces OilCanisterDamager{}
+actor Beef_OilFlame : OilFlame replaces OilFlame{}//FlameBlastStage
+actor Beef_BigEye : BigEye replaces BigEye{}
+
+//MEGAMAN 2
+actor Beef_PressDamager : PressDamager replaces PressDamager{}
+actor Beef_OHKOPressDamager : OHKOPressDamager replaces OHKOPressDamager{}
+actor Beef_SpikeDamager : SpikeDamager replaces SpikeDamager{}//255
+actor Beef_QuickBeam : QuickBeam replaces QuickBeam{}//255
+
+//MEGAMAN 3
+
+//MEGAMAN 4
+actor Beef_MetoolSwimProjectile : MetoolSwimProjectile replaces MetoolSwimProjectile{}
+
+//MEGAMAN 5
+actor Beef_PressBall : PressBall replaces PressBall{}
+
+//MEGAMAN 6
+
+//MEGAMAN 7
+actor Beef_TeruTeru : CBM_TeruTeru replaces CBM_TeruTeru{}
+actor Beef_DustCrusherEnemyHead : DustCrusherEnemyHead replaces DustCrusherEnemyHead{}
+actor Beef_DustCrusherEnemyBody : DustCrusherEnemyBody replaces DustCrusherEnemyBody{}
+actor Beef_DustCrusherEnemyTail : DustCrusherEnemyTail replaces DustCrusherEnemyTail{}
+actor Beef_SpringBoxExplode : SpringBoxExplode replaces SpringBoxExplode{}
+actor Beef_KingGajuras : KingGajuras replaces KingGajuras{}
+actor Beef_GhostsNGoblinsThing : GhostsNGoblinsThing replaces GhostsNGoblinsThing{}
+actor Beef_KyorownBullet : KyorownBullet replaces KyorownBullet{}
+actor Beef_TurboRoaderBumper : TurboRoaderBumper replaces TurboRoaderBumper{}
+actor Beef_GutsManG : GutsManG replaces GutsManG{}
+actor Beef_GutsManGWhack : GutsManGWhack replaces GutsManGWhack{}
+
+//MEGAMAN 8
+//Clown Pickups in 'actors/misc/mm8' due to replaces not being possible for CustomInventory
+actor Beef_TrainWind : TrainWind replaces TrainWind{}
+actor Beef_CountBomb : CountBomb replaces CountBomb{}
+actor Beef_CountBombClear : CountBombClear replaces CountBombClear{}
+
+//MEGAMAN & BASS
+actor Beef_OniWindMachine : OniWindMachine replaces OniWindMachine{Obituary "%o was blown away."}//puff
+actor Beef_OniWind : OniWind replaces OniWind{}
+actor Beef_IceBlock : IceBlock replaces IceBlock{}
+actor Beef_PirateMine : CBM_PirateMine replaces CBM_PirateMine{}
+actor Beef_BigTellyBomb : BigTellyBomb replaces BigTellyBomb{}
+actor Beef_BurnWave : BurnWave replaces BurnWave{}
+
+//MEGAMAN WT
+actor Beef_FireSnakeyHead : FireSnakeyHead replaces FireSnakeyHead{}
+actor Beef_FireSnakeyBody : FireSnakeyBody replaces FireSnakeyBody{}
+
+//MEGAMAN 9
+actor Beef_CBM_MagmaBeamV1 : CBM_MagmaBeamV1 replaces CBM_MagmaBeamV1{}//(255)
+actor Beef_CBM_MagmaBeamV2 : CBM_MagmaBeamV2 replaces CBM_MagmaBeamV2{}
+actor Beef_CBM_MagmaBeamV3 : CBM_MagmaBeamV3 replaces CBM_MagmaBeamV3{}
+actor Beef_CBM_MagmaBeamH1 : CBM_MagmaBeamH1 replaces CBM_MagmaBeamH1{}
+actor Beef_CBM_MagmaBeamH2 : CBM_MagmaBeamH2 replaces CBM_MagmaBeamH2{}
+actor Beef_CBM_MagmaBeamH3 : CBM_MagmaBeamH3 replaces CBM_MagmaBeamH3{}
+actor Beef_MagmaDrakeHead : MagmaDrakeHead replaces MagmaDrakeHead{}
+actor Beef_MagmaDrakeNeck : MagmaDrakeNeck replaces MagmaDrakeNeck{}
+actor Beef_MagmaDrakeLegs : MagmaDrakeLegs replaces MagmaDrakeLegs{}
+actor Beef_MagmaDrakeArms : MagmaDrakeArms replaces MagmaDrakeArms{}
+actor Beef_MagmaDrakeTail : MagmaDrakeTail replaces MagmaDrakeTail{}
+actor Beef_MagmaDrakeTailFlame : MagmaDrakeTailFlame replaces MagmaDrakeTailFlame{}
+actor Beef_MagmaDrakeYashichi : MagmaDrakeYashichi replaces MagmaDrakeYashichi{}
+
+//MEGAMAN 10
+actor Beef_ChillIceCubeRespawnDamager : ChillIceCubeRespawnDamager replaces ChillIceCubeRespawnDamager{}
+actor Beef_SheepBlockDetect : SheepBlockDetect replaces SheepBlockDetect{+SERVERSIDEONLY}
+actor Beef_SheepBlockDamager : SheepBlockDamager replaces SheepBlockDamager{+SERVERSIDEONLY}//Damage (0x7FFFFFFD)
+actor Beef_SoccerBallPlatformPlayerCheck : SoccerBallPlatformPlayerCheck replaces SoccerBallPlatformPlayerCheck{}
+actor Beef_SoccerBallPlatformSpike : SoccerBallPlatformSpike replaces SoccerBallPlatformSpike{}
+actor Beef_SoccerBallPlatformBottomSpike : SoccerBallPlatformBottomSpike replaces SoccerBallPlatformBottomSpike{}
+actor Beef_NitroTruckRoadkiller : NitroTruckRoadkiller replaces NitroTruckRoadkiller{}
+actor Beef_SolarChangkey : SolarChangkey replaces SolarChangkey{}
+actor Beef_SolarChangkeyCeiling : SolarChangkeyCeiling replaces SolarChangkeyCeiling{}
+actor Beef_SolarChangkeyYashichi : SolarChangkeyYashichi replaces SolarChangkeyYashichi{}
+//actor Beef_Elevator10W3Damager : Elevator10W3Damager replaces Elevator10W3Damager{Damage (0x7FFFFFFD)}
+
+//MEGAMAN V
+actor Beef_MarsMine : MarsMine replaces MarsMine{}
+actor Beef_MarsRocket : MarsRocket replaces MarsRocket{}
+
+//MEGAMAN SINGLE PLAYER
+actor Beef_RuinsFire : RuinsFire replaces RuinsFire{}

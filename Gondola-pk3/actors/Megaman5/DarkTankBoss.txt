@@ -339,7 +339,7 @@ Obituary "$OB_DARK1BUSTER"
 damagetype "DMGNoHitstun"
 radius 11
 height 11
-damage (110)
+damage (11)
 speed 20
 scale 2.5
 States
@@ -382,46 +382,46 @@ actor DarkBusterShot3B : DarkBusterShotB{speed 23}
 actor DarkBusterShot3R : DarkBusterShotR{speed 23}
 actor DarkBusterShot3O : DarkBusterShotO{speed 23}
 actor DarkBusterShot3P : DarkBusterShotP{speed 23}
-actor DarkBusterShot4 : DarkBusterShot{speed 24 damage (100)}
-actor DarkBusterShot4B : DarkBusterShotB{speed 24 damage (100)}
-actor DarkBusterShot4R : DarkBusterShotR{speed 24 damage (100)}
-actor DarkBusterShot4O : DarkBusterShotO{speed 24 damage (100)}
-actor DarkBusterShot4P : DarkBusterShotP{speed 24 damage (100)}
-actor DarkBusterShot5 : DarkBusterShot{speed 25 damage (100)}
-actor DarkBusterShot5B : DarkBusterShotB{speed 25 damage (100)}
-actor DarkBusterShot5R : DarkBusterShotR{speed 25 damage (100)}
-actor DarkBusterShot5O : DarkBusterShotO{speed 25 damage (100)}
-actor DarkBusterShot5P : DarkBusterShotP{speed 25 damage (100)}
-actor DarkBusterShot6 : DarkBusterShot{speed 26 damage (100)}
-actor DarkBusterShot6B : DarkBusterShotB{speed 26 damage (100)}
-actor DarkBusterShot6R : DarkBusterShotR{speed 26 damage (100)}
-actor DarkBusterShot6O : DarkBusterShotO{speed 26 damage (100)}
-actor DarkBusterShot6P : DarkBusterShotP{speed 26 damage (100)}
-actor DarkBusterShot7 : DarkBusterShot{speed 27 damage (90)}
-actor DarkBusterShot7B : DarkBusterShotB{speed 27 damage (90)}
-actor DarkBusterShot7R : DarkBusterShotR{speed 27 damage (90)}
-actor DarkBusterShot7O : DarkBusterShotO{speed 27 damage (90)}
-actor DarkBusterShot7P : DarkBusterShotP{speed 27 damage (90)}
-actor DarkBusterShot8 : DarkBusterShot{speed 28 damage (90)}
-actor DarkBusterShot8B : DarkBusterShotB{speed 28 damage (90)}
-actor DarkBusterShot8R : DarkBusterShotR{speed 28 damage (90)}
-actor DarkBusterShot8O : DarkBusterShotO{speed 28 damage (90)}
-actor DarkBusterShot8P : DarkBusterShotP{speed 28 damage (90)}
-actor DarkBusterShot9 : DarkBusterShot{speed 29 damage (90)}
-actor DarkBusterShot9B : DarkBusterShotB{speed 29 damage (90)}
-actor DarkBusterShot9R : DarkBusterShotR{speed 29 damage (90)}
-actor DarkBusterShot9O : DarkBusterShotO{speed 29 damage (90)}
-actor DarkBusterShot9P : DarkBusterShotP{speed 29 damage (90)}
-actor DarkBusterShot10 :DarkBusterShot{speed 30 damage (80)}
-actor DarkBusterShot10B :DarkBusterShotB{speed 30 damage (80)}
-actor DarkBusterShot10R :DarkBusterShotR{speed 30 damage (80)}
-actor DarkBusterShot10O :DarkBusterShotO{speed 30 damage (80)}
-actor DarkBusterShot10P :DarkBusterShotP{speed 30 damage (80)}
-actor DarkBusterShot11 :DarkBusterShot{speed 32 damage (80)}
-actor DarkBusterShot11B :DarkBusterShotB{speed 32 damage (80)}
-actor DarkBusterShot11R :DarkBusterShotR{speed 32 damage (80)}
-actor DarkBusterShot11O :DarkBusterShotO{speed 32 damage (80)}
-actor DarkBusterShot11P :DarkBusterShotP{speed 32 damage (80)}
+actor DarkBusterShot4 : DarkBusterShot{speed 24 damage (10)}
+actor DarkBusterShot4B : DarkBusterShotB{speed 24 damage (10)}
+actor DarkBusterShot4R : DarkBusterShotR{speed 24 damage (10)}
+actor DarkBusterShot4O : DarkBusterShotO{speed 24 damage (10)}
+actor DarkBusterShot4P : DarkBusterShotP{speed 24 damage (10)}
+actor DarkBusterShot5 : DarkBusterShot{speed 25 damage (10)}
+actor DarkBusterShot5B : DarkBusterShotB{speed 25 damage (10)}
+actor DarkBusterShot5R : DarkBusterShotR{speed 25 damage (10)}
+actor DarkBusterShot5O : DarkBusterShotO{speed 25 damage (10)}
+actor DarkBusterShot5P : DarkBusterShotP{speed 25 damage (10)}
+actor DarkBusterShot6 : DarkBusterShot{speed 26 damage (10)}
+actor DarkBusterShot6B : DarkBusterShotB{speed 26 damage (10)}
+actor DarkBusterShot6R : DarkBusterShotR{speed 26 damage (10)}
+actor DarkBusterShot6O : DarkBusterShotO{speed 26 damage (10)}
+actor DarkBusterShot6P : DarkBusterShotP{speed 26 damage (10)}
+actor DarkBusterShot7 : DarkBusterShot{speed 27 damage (9)}
+actor DarkBusterShot7B : DarkBusterShotB{speed 27 damage (9)}
+actor DarkBusterShot7R : DarkBusterShotR{speed 27 damage (9)}
+actor DarkBusterShot7O : DarkBusterShotO{speed 27 damage (9)}
+actor DarkBusterShot7P : DarkBusterShotP{speed 27 damage (9)}
+actor DarkBusterShot8 : DarkBusterShot{speed 28 damage (9)}
+actor DarkBusterShot8B : DarkBusterShotB{speed 28 damage (9)}
+actor DarkBusterShot8R : DarkBusterShotR{speed 28 damage (9)}
+actor DarkBusterShot8O : DarkBusterShotO{speed 28 damage (9)}
+actor DarkBusterShot8P : DarkBusterShotP{speed 28 damage (9)}
+actor DarkBusterShot9 : DarkBusterShot{speed 29 damage (9)}
+actor DarkBusterShot9B : DarkBusterShotB{speed 29 damage (9)}
+actor DarkBusterShot9R : DarkBusterShotR{speed 29 damage (9)}
+actor DarkBusterShot9O : DarkBusterShotO{speed 29 damage (9)}
+actor DarkBusterShot9P : DarkBusterShotP{speed 29 damage (9)}
+actor DarkBusterShot10 :DarkBusterShot{speed 30 damage (8)}
+actor DarkBusterShot10B :DarkBusterShotB{speed 30 damage (8)}
+actor DarkBusterShot10R :DarkBusterShotR{speed 30 damage (8)}
+actor DarkBusterShot10O :DarkBusterShotO{speed 30 damage (8)}
+actor DarkBusterShot10P :DarkBusterShotP{speed 30 damage (8)}
+actor DarkBusterShot11 :DarkBusterShot{speed 32 damage (8)}
+actor DarkBusterShot11B :DarkBusterShotB{speed 32 damage (8)}
+actor DarkBusterShot11R :DarkBusterShotR{speed 32 damage (8)}
+actor DarkBusterShot11O :DarkBusterShotO{speed 32 damage (8)}
+actor DarkBusterShot11P :DarkBusterShotP{speed 32 damage (8)}
 
 
 actor Dark1BoomShot
@@ -432,7 +432,7 @@ Obituary "$OB_DARK1BUSTER"
 damagetype "DMGNoHitstun"
 //-NOGRAVITY
 Meleerange 0
-damage (40)
+damage (4)
 radius 11
 height 11
 speed 25
@@ -455,13 +455,13 @@ Crash:
 XDeath:
 DKC1 G 0 A_ChangeFlag("NOGRAVITY",1)
 DKC1 G 0 A_Stop
-DKC1 G 0 A_Explode(50-Meleerange,64,0,0,14)
+DKC1 G 0 A_Explode(5-Meleerange,64,0,0,14)
 DKC1 GHIJK 2
 stop
 Death:
 DKC1 G 0 A_ChangeFlag("NOGRAVITY",1)
 DKC1 G 0 A_Stop
-DKC1 G 0 A_Explode(90-Meleerange,64,0,0,12)
+DKC1 G 0 A_Explode(9-Meleerange,64,0,0,12)
 DKC1 GHIJK 2
 stop
 }
@@ -545,7 +545,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 3 A_Explode(10,64,0,0,64)
+TNT1 A 3 A_Explode(1,64,0,0,64)
 stop
 }
 }
@@ -573,7 +573,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(50,96,0)
+TNT1 A 1 A_Explode(5,96,0)
 stop
 }
 }

@@ -6,8 +6,9 @@ player.soundclass "ringmanc"
 
 player.startitem "RingBoomerangBoss"
 player.startitem "RingBoomerangClassAmmo", 2
-player.maxhealth 850
-health 850
+player.startitem "WhopperRingAmmo", 14
+player.maxhealth 100
+health 100
 player.jumpz 13
 player.ForwardMove 0.8, 0.8
 Player.SideMove 0.78, 0.78

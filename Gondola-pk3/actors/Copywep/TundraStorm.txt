@@ -1,0 +1,500 @@
+actor TundraStormWepC : BaseMM8BDMWep
+{
+Weapon.AmmoUse 7
+Weapon.AmmoGive 28
+Weapon.SlotNumber 6
+Inventory.Pickupmessage "$PU_TUNDRASTORM"
+Obituary "$OB_TUNDRASTORM"
+Tag "$TAG_TUNDRASTORM"
+weapon.ammotype "TundraStormAmmo"
+inventory.icon "TSTOICON"
+States
+{
+SpawnLoop:
+11WP C 1
+loop
+Ready:
+TSTO A 0 ACS_ExecuteAlways(998,0,11987)
+TSTO A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+TSTO A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+TSTO A 1 A_Raise
+Loop
+Fire:
+TSTO A 0 A_JumpIfNoAmmo("NoAmmo")
+TSTO A 0 A_PlaySoundEx("weapon/tornadoblow","Weapon")
+TSTO BBCC 1 //A_Stop
+TSTO B 0 A_TakeInventory("TundraStormAmmo",7)
+TSTO D 0 A_SpawnItemEx("TundraWind",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+Goto Continue
+Continue:
+TSTO D 0 A_JumpIfInventory("TundraSpinTimer",8,"RotateFinish")
+TSTO D 0 A_SpawnItemEx("TundraStormWindDamager",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+//TSTO D 0 ACS_NamedExecute("StateChange",0,2)
+TSTO D 0 A_Stop
+TSTO D 1 Offset(-3,0) ThrustThingZ(0,5,0,0)
+TSTO D 0 A_JumpIfInventory("TundraSpinTimer",8,"RotateFinish")
+TSTO D 0 //A_SpawnItemEx("TundraStormWindDamager",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+//TSTO D 0 ACS_NamedExecute("StateChange",0,2)
+TSTO D 0 A_Stop
+TSTO D 1 Offset(-3,0) ThrustThingZ(0,5,0,0)
+TSTO D 0 A_GiveInventory("TundraSpinTimer",1)
+TSTO D 0 A_JumpIfInventory("TundraSpinTimer",8,"RotateFinish")
+TSTO D 0 A_SpawnItemEx("TundraStormWindDamager",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+//TSTO D 0 ACS_NamedExecute("StateChange",0,2)
+TSTO D 0 A_Stop
+TSTO D 1 Offset(3,0) ThrustThingZ(0,5,0,0)
+TSTO D 0 A_JumpIfInventory("TundraSpinTimer",8,"RotateFinish")
+TSTO D 0 //A_SpawnItemEx("TundraStormWindDamager",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+//TSTO D 0 ACS_NamedExecute("StateChange",0,2)
+TSTO D 0 A_Stop
+TSTO D 1 Offset(3,0) ThrustThingZ(0,5,0,0)
+TSTO D 0 A_GiveInventory("TundraSpinTimer",1)
+loop
+RotateFinish:
+TSTO E 0 A_WeaponReady(14)
+TSTO F 0 A_TakeInventory("TundraSpinTimer",8)
+TSTO F 0 A_SpawnItemEx("ExpandedTundraWind")
+TSTO E 0 A_Stop
+TSTO E 1 ThrustThingZ(0,5,0,0)
+TSTO F 0 A_Stop
+TSTO F 1 ThrustThingZ(0,5,0,0)
+TSTO G 0 A_Stop
+TSTO G 1 ThrustThingZ(0,5,0,0)
+TSTO H 1 ThrustThingZ(0,75,0,0)
+TNT1 AAAAAAA 1 
+TSTO CCBB 1 
+TSTO A 30 
+Goto Ready+1
+NoFire:
+TSTO A 1 ACS_Execute(979,0)
+Goto Ready+1
+NoAmmo:
+TSTO A 1 ACS_Execute(979,0)
+Goto Ready+1
+ReadyC:
+Goto Ready+1
+}
+}
+
+actor TundraStormAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor TundraStormProtect : PowerProtection
+{
+Powerup.Duration 2
+damagefactor "TundraStorm", 0.5
+}
+
+actor TundraStormWepCDropped : WepCDropped
+{
+inventory.pickupmessage "$PU_TUNDRASTORM"
+States
+{
+Spawn:
+11WP C 1500
+stop
+Pickup1:
+TNT1 A 0 A_JumpIfInventory("TundraStormAmmo",0,"No")
+goto Pickup2
+Pickup3:
+TNT1 A 0 A_GiveInventory("TundraStormWepC",1)
+stop
+Rock_P:goto Rock_P6
+}
+}
+
+actor TundraStormWindDamager
+{
+PROJECTILE
+Obituary "$OB_TUNDRASTORM"
+damagetype "TundraStorm"
++FLOORHUGGER
++THRUGHOST
++NOCLIP
++DONTSPLASH
+damage (0)
+Radius 20
+Height 20
+reactiontime 16
+scale 2.5
+speed 0
+States
+{
+Spawn:
+TNT1 A 0
+SpawnLOOP:
+TNT1 A 0 A_CountDown
+TNT1 A 1 A_SpawnItemEx("TundraStormWindDamager2",0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+TNT1 A 1 A_FadeOut(0.1)
+Goto Death
+Death:
+TSTO N 0 A_Stop
+stop
+}
+}
+
+actor TundraStormWindDamager2
+{
+PROJECTILE
+Obituary "$OB_TUNDRASTORM"
+damagetype "TundraStorm"
++DONTSPLASH
++DONTBLAST
++THRUGHOST
+Damage (4)
+Radius 150
+Height 1350
+Speed 0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 
+Goto Death
+Death:
+stop
+}
+}
+
+actor TundraWind
+{
+PROJECTILE
++FLOORHUGGER
+Radius 1
+Height 1
+damagetype "TundraStorm"
+Obituary "$OB_TUNDRASTORM"
+Damage(0)
+Scale 4
+Speed 0
+States
+{
+Spawn:
+TNT1 A 0 A_JumpIfInventory("TundraWindTimer",7,"Death")
+TSTO MNO 1
+TNT1 A 0 A_GiveInventory("TundraWindTimer",1)
+loop
+Death:
+TSTO F 1
+TSTO F 0 A_TakeInventory("TundraWindTimer",100)
+stop
+}
+}
+
+actor ExpandedTundraWind
+{
+PROJECTILE
++NOINTERACTION
+Radius 1
+Height 1
+damagetype "TundraStorm"
+Obituary "$OB_TUNDRASTORM"
+Damage(0)
+Scale 8
+Speed 0
+States
+{
+Spawn:
+TNT1 A 0 A_JumpIfInventory("TundraFadeTimer",8,"End")
+TSTO M 2 A_Fadeout(0.125)
+TSTO N 2 A_Fadeout(0.125)
+TSTO O 2 A_Fadeout(0.125)
+TNT1 A 0 A_GiveInventory("TundraFadeTimer",1)
+loop
+End:
+TNT1 A 1
+TNT1 A 0 A_TakeInventory("TundraFadeTimer",100)
+stop
+}
+}
+
+actor TundraWindTrailSpawner
+{
+PROJECTILE
+Damage(0)
+Height 1
+Radius 1
+Speed 0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("WindTrail1",10,0,0,0,0,0,0)
+TNT1 A 0 A_SpawnItemEx("WindTrail2",10,0,0,0,0,0,30)
+TNT1 A 0 A_SpawnItemEx("WindTrail3",10,0,0,0,0,0,60)
+TNT1 A 0 A_SpawnItemEx("WindTrail4",10,0,0,0,0,0,90)
+TNT1 A 0 A_SpawnItemEx("WindTrail5",10,0,0,0,0,0,120)
+TNT1 A 0 A_SpawnItemEx("WindTrail6",10,0,0,0,0,0,150)
+TNT1 A 0 A_SpawnItemEx("WindTrail7",10,0,0,0,0,0,180)
+TNT1 A 0 A_SpawnItemEx("WindTrail8",10,0,0,0,0,0,210)
+TNT1 A 0 A_SpawnItemEx("WindTrail9",10,0,0,0,0,0,240)
+TNT1 A 0 A_SpawnItemEx("WindTrail10",10,0,0,0,0,0,270)
+TNT1 A 0 A_SpawnItemEx("WindTrail11",10,0,0,0,0,0,300)
+TNT1 A 0 A_SpawnItemEx("WindTrail12",10,0,0,0,0,0,330)
+stop
+}
+}
+
+actor WindTrail1
+{
+PROJECTILE
++NOINTERACTION
+Radius 1
+Height 1
+Scale 2.5
+var int user_angle;
+var int user_speed;
+var int user_maxturn;
+var int user_turndivisor;
+var int user_turndivisor_add;
+Speed 0
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",0)
+goto Spawn2.x
+Spawn2.x:
+TNT1 A 0 A_JumpIfInventory("TundraFlag",1,"Spread1")
+Goto Spawn2.a
+Spawn2.a:
+TSTO P 1 A_Warp(AAPTR_TARGET,45,7,25,user_angle,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+TSTO P 0 A_SetUserVar("user_angle",user_angle+11)
+TNT1 A 0 //A_SpawnItemEx("TundraRadius",0,0,0,0,0,0)
+TSTO P 0 A_GiveInventory("TundraFlag",1)
+goto Spawn2.b
+Spawn2.b:
+TSTO P 1 A_Warp(AAPTR_TARGET,45,7,25,user_angle,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+TSTO P 0 A_SetUserVar("user_angle",user_angle+11)
+TNT1 A 0 //A_SpawnItemEx("TundraRadius",0,0,0,0,0,0)
+TSTO P 0 A_GiveInventory("TundraFlag",1)
+goto Spawn2.x
+Spread1:
+TSTO P 0
+TNT1 A 0 A_SetUserVar("user_speed", 15)
+TNT1 A 0 A_SetUserVar("user_maxturn", 1500)
+TNT1 A 0 A_SetUserVar("user_turndivisor", 50)
+TNT1 A 0 A_SetUserVar("user_turndivisor_add", 12)
+Goto Spread2
+Spread2:
+TNT1 A 0 A_JumpIfInventory("TundraFadeTimer",8,"Spawn3")
+TNT1 A 0 A_Fadeout(0.05)
+TNT1 A 0 //A_SpawnItemEx("TundraRadius",0,0,0,0,0,0)
+TNT1 A 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+TSTO P 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+TNT1 A 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+loop
+Spawn3:
+TNT1 A 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+TSTO P 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+TNT1 A 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+Goto Spread2
+XDeath:
+TNT1 A 1
+stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor WindTrail2 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",30)
+goto Spawn2.a
+}
+}
+
+actor WindTrail3 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",60)
+goto Spawn2.a
+}
+}
+
+actor WindTrail4 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",90)
+goto Spawn2.a
+}
+}
+
+actor WindTrail5 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",120)
+goto Spawn2.a
+}
+}
+
+actor WindTrail6 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",150)
+goto Spawn2.a
+}
+}
+
+actor WindTrail7 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",180)
+goto Spawn2.a
+}
+}
+
+actor WindTrail8 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",210)
+goto Spawn2.a
+}
+}
+
+actor WindTrail9 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",240)
+goto Spawn2.a
+}
+}
+
+actor WindTrail10 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",270)
+goto Spawn2.a
+}
+}
+
+actor WindTrail11 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",300)
+goto Spawn2.a
+}
+}
+
+actor WindTrail12 : WindTrail1
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_angle",330)
+goto Spawn2.a
+}
+}
+
+actor FreezeFlakeSpawner
+{
++NOINTERACTION
+States
+{
+Spawn:
+TNT1 AAAAAAAAAA 1 A_SpawnItemEx("FreezeFlake",random(-64,64),random(-64,64),random(-128,128))
+stop
+}
+}
+
+actor FreezeFlake
+{
++NOINTERACTION
+Scale 2.5
+States
+{
+Spawn:
+MRFB UVWXYZ 2
+stop
+}
+}
+
+actor IceFlakeSpawner
+{
++NOINTERACTION
+States
+{
+Spawn:
+TNT1 AAAAAAAAAA 2 A_SpawnItemEx("IceFlake",random(-32,32),random(-32,32),random(-32,32))
+stop
+}
+}
+
+actor IceFlake
+{
++NOINTERACTION
+Scale 2.5
+States
+{
+Spawn:
+ICEB XYZ 2
+stop
+}
+}
+
+actor TundraSpinTimer : Inventory
+{
+inventory.amount 1
+inventory.maxamount 8
+}
+
+actor TundraWindTimer : Inventory
+{
+inventory.amount 1
+inventory.maxamount 7
+}
+
+actor TundraFadeTimer : Inventory
+{
+inventory.amount 1
+inventory.maxamount 8
+}
+
+actor TundraFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}

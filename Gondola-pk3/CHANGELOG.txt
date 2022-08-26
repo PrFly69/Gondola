@@ -2340,27 +2340,79 @@ CHANGELOG
 
 
 
-=====2.5H
+=====2.6
 ==General
+-Pirate Mine props no longer do x10 damage
+-Lava/Fire Pillars updated to be frozen by Chillman/Tundraman attacks
+-Fixed MM1ELE traps doing x10 damage
+-Added Strafe Run 50 (SR50) section to Customize Controls
+-Using SR50 now gives user trailing FX
+-Updated PITFIND ACS to account for Encore maps
 -SV_FLAGHOTPOTATO now correctly has 10x applied
+-Screw users can no longer pick up screw with full ammo
+-MM10 CCBM classes now have their mugshots restored
 
 ==Copyweapons
 -Fixed Plant Trapper using Centaur HUD sprite
---Fixed Plant Trapper SBAR not showing for Maestro WoodCustom
+--Fixed Plant Trapper and Mega Water Barrier SBARs not showing for Maestro WoodCustom and AquaShield respectively
+-Fixed Blazing Torch not having 3 tics of powerprotect per hit, ported updated version from Megavile and Serperior
+--Fixed Blazing Torch not using accurate colors
+-Fixed Chain Blast using x10 damage
+-Added Bounce Ball copywep, made by Megavile and Serperior
+--Shotgun of three Bounce Balls that get affected by gravity upon hitting a surface/actor
+-Reworked Acid Barrier slightly
+--Now fires three shot burst with increased endlag
+--Acid Barrier projectile now travels at a wider arc, projectile speed increased to 55 and initial projectile thrust 0 > 30
+--Explosion radius 100 > 50
+--New Acid Barrier projectile sprite ported from V-Classes
+-Added Tundra Storm copywep, made by Megavile and Serperior
+--Keeps user in place as hitstun-inducing AOE lingers before ending and propelling user high into the air
+-Super Arm initial damage 33 > 34
+-Fire Storm orbital damage 3 > 4
+-Air Shooter damage 10 > 12
+-Bubble Lead damage 12 > 19
+-Needle Cannon damage 4 > 8 
+-Gemini Laser damage 17 > 20
+-Hard Knuckle damage 22 > 35
+-Search Snake damage 12 > 15
+-Shadow Blade damage 6 > 12
+-Drill Bomb damage 18 > 21
+-Pharaoh Shot midcharge damage 18 > 22, max charge damage 22 > 35
+-Power Stone damage 18 > 25
+-Gyro Attack damage 8 > 30
+-Crystal Eye damage 22 > 40
+-Freeze Cracker damage 19 > 20
+-Thunder Bolt damage 19 > 23
+-Charged Noise Crush damage 24 > 35
+-Thunder Claw damage 12 > 18
+-Ice Wave damage 12 > 15
+-Ice Wall damage 2 > 4
 
 ==Flagbearer (Green Devil)
 -Can no longer pick up Auto's Item-2 and Wire, which he can't use anyway
 --Fixed bug where disconnecting during charged M2 crashed server
+-Green Devil is no longer x10'd
+-Being morphed into Green Devil only provides 1sec invul if the flag is picked up from its flagpost
 
 ==Megaman
+-Dash count 5 > 3
 -Fixed Mega Buster doing hitstun
 
 ==Protoman
--Shield rescripted, now correctly functions with sv_shootthroughallies on or off
+-Dash count 5 > 3
+-New HUD by Lamp
+-Added back Proto Strike
+-Shield Redirect Shot rescripted, now correctly functions with sv_shootthroughallies on or off
 --Fixes 2.5 bug where shield would lose the ability to rebound and could be picked up by enemy players
 --Visuals cleaned up by Trillster, cooldown now displays gradually
 
 ==Bass
+-Dash count 5 > 3
+-Fixed Bass Buster not working with rage
+--Bass Buster endlag 22 tics > 10 tics
+--Spread no longer instantly resets on releasing fire, takes a full second to go to minimum spread from max spread
+--Firing halts spread reset drain
+-New HUD by Lamp
 -Charge Shot no longer inherits from Vanilla Bossfight charge shot
 *This prevents an extremely specific bug where Bass charge shots cling onto this one little linedef on MM8CLO permanently (hitbox and all) and also completely fuck up the timings and movement patterns of the trains of that map where more often than not they just get stuck ramming into the gates that will never open
 *Don't ask me how it works.
@@ -2368,28 +2420,103 @@ CHANGELOG
 ==Duo
 -Readded chokeslam on leap
 -Duo Meteor invuln now comes after the first 10 tics instead of on ball
+-Now has traveling SFX on fully charged Duo Fist, provided by MusashiAA
+-Dash count 5 > 3
+--Chokeslam/Duo Wave power now scales up by increments of 2 instead of 1 to accomodate for only 3 dashes
+-Duo Wave height 34/20/16/12/8 > 35/30/25/20/15
+--Duo Wave YScale 1.8/1.6/1.2/.8/.4 > 1.8/1.6/1.4/1.2/1.0
+
+==Maestro
+-All Aqua style shots now have the same chargetime as the other chargeshots
+-Fixed Elec Guts chargeshot using x10 damage
+-ElecGuts shot no longer inherits from FastProjectile
+--Damage increased 5 ripper > 8 ripper
+--Elec Custom chargeshot no longer does only one damage, properly rips through enemies now
 
 ==Rock
--Mega Ball damage 21.0 > 14.0
--Fire Ball afterburn damage 3.0 > 1.0
+-Mega Ball damage 21 > 14
+-Fire Ball afterburn damage 3 > 1
+-Mega Man 11 weapons now give proper ball elements
+--Acid Barrier > Oil Ball
+--Chain Blast > Bomb Ball
+--Tundra Storm > Ice Ball
+--Blazing Torch > Fire Ball
+--Bounce Ball > Time Ball
+--Scramble Thunder > Elec Ball
+
+==Roll
+-Swing explosion radius 128 > 96
+--Swing explosion fulldmgradius 16/24 > 48
+
+==Sniper Joe
+-Joe Grenade explosion damage 45 > 35
+-Using Joe Crate now refills Machine Gun ammo on use
+-Joe Truck thrust boosted by 15%
+-Joe Apache speed boost 0% > 15%
+
+==Cutman
+-Holding mainfire slows down and stalls Rolling Cutter before returning into wider hitbox, drains ammo bar
+--Stalled Rolling Cutter creates a 96 radius explosion for 4 damage while held
+-Fixed bot crashout bug
+-Fixed Stalled Cutter FX being disjointed outwards from the cutter itself
+
+==Gutsman
+-Mainfire now has ammo bar
+--4/28 ammo depleted per rock picked up (7 rocks total), regens 1/28 ammo every 5 tics
+--Regen fully halts while a block is held, slightly slows down when punching
+
+==Bombman
+-Rapid Bomb fulldmgradius 88 > 48
+
+==Fireman
+-Fire Wave height 26 > 52, sprite scaled to represent the change
+-New Fire Wave sprite by FrostBlue
+-Fixed Fire Ring not having proper powerprotect
 
 ==Elecman
 -Trailing FX on Thunder Beam now waves up and down, similarly to original sprite
+-Side beams now have unique obit and do not have waving FX
+--Side beams now rip only once per beam
+-Now has a windup sound before firing Thunder Beam, provided by MusashiAA
 
 ==Oilman
 -Now has an obituary for killing someone with a stationary puddle
 -Oil Blob tap damage 12.0 > 15.0
 --Repeated Oil Blob damage 12.0 > 12.5
 -Oil Slider damage changes reverted
---Oil Slider damage 8.0 > 12.0
---Oil Slider while using altfire 4.0 > 8.0
+--Oil Slider damage 8 > 12
+--Oil Slider while using altfire 4 > 8
+--Oil Slider thrust increased by 25%
+-Fixed being able to use SlideSpill altfire when not sliding
+-Fixed altfire usage disabling Oil Slider
 
 ==Yellow Devil
--Fixed Perfect Cubes doing hitstun
---Perfect Cube/Bit damage 10.0/5.0 > 7.0/3.5 
+-HP 155 > 200
+-Cube damage 10 > 8
+--Cube bit damage 5 > 4
+--Fixed cube/bit damage doing hitstun
 
 ==Airman
 -Fixed Air Shooter doing hitstun
+-Air Wall now randomly selects between 5 set patterns of firing
+
+==Bubbleman
+-Bubble Lead radius 20 > 16, Bubble Lead height 16 > 20
+-Can now aim Bubble Lead before it hits the ground and starts bouncing
+--Bubble Lead bounceheight 10-40 > 30
+--Damage 22 > 19
+--Projectile speed 8 > 16
+-Removed time limit on Bubble Lead
+-Ported UEC Bubble Flood changes
+--Starts swimming on item use
+--Minimum momentum needed to inherit velocity 16 > 14
+--Bubble Flood less sensitive to zvelocity
+--Added 3 tic delay to be able to despawn Bubble Flood
+-Bubble Lead now has +STEPMISSILE
+-Bubble Lead now has 15% hitstun
+
+==Quickman
+-Stepheight 24 > 32
 
 ==Crashman
 -HUD is now 20% more red
@@ -2398,42 +2525,319 @@ CHANGELOG
 -Secondary ammo regeneration halfed
 -FreezeShot radius 96 > 80
 --Freeze duration/protection 52/101 > 40/40 tics
---Damage 9.0 > 10.0
+--Damage 9 > 10
 --Costs 28 > 42 ammo
 --Can now be held for firing up to a second
 --Protected hit jumps to Pain.crashbomb instead
 
+==Heatman
+-Ammo consumption on Atomic Fire 35 > 50
+
 ==Alien
 -Flight cap 160 > 240
+-Buster base damage 9 > 6, projectile speed 58.5 > 81
+--Mainfire rate of fire decreased by 6 tics, now has infinite ammo
+--Boobeam Traps now fire two Boobeam Shots in a V-spread
+
+==Needleman
+-Starting Needle Cannon shots with mainfire now have halved spread (-5,1)/(-3,3) (5/-1)/(-3,3) > (-2.5,0.5)/(-1.5,1.5) (2.5/-0.5)/(-1.5,1.5)
+
+==Magnetman
+-Now starts with 50% of both Magnet Missile and Magnet Shockwave ammo
+-Removed nonhoming Magnet Missile when releasing for first few tics
+--Magnet Missile homing speed scalar 125 > 225 (speed 48 > 75)
+--Charging time for Magnet Shockwave reduced by 33%
+-Magnet Shockwave/secondary ammobar brought back
+--Passive ammo regen on Shockwave ammo bar increased by 50%
+--Now has 12 tics of startlag before charging shockwave
+--Shockwave can no longer be held infinitely, instead drains shockwave ammo and releases when out of ammo
+--Shockwave charging speed increased by 50%
+--Maximum damage 30 > 20
+--Base knockback on Magnet M2 1 > 20
+--Shockwave knockback scalar decreased by 20%
+--Fixed Magnet Shockwave FX sprites conflicting with HUD sprites
+-MagFly moved to reload
+-MagFly only dunks enemies on initial hit
+--MagFly hitstun 25% > 75%
+-Fixed MagFly suspending enemies in midair, uses A_ChangeVelocity instead of A_ScaleVelocity
+--MagFly FX made much more visible for readability
+--Duration halved (effective damage 69 > 35)
+-New MagFly Reload icon, provided by Cowsha
+-New Item Icon, edited from Cowsha's reload HUD
+
+==Topman
+-Base speed 1.1/1.08 > 1.0/0.98
 
 ==Sparkman
--Health 100.0 > 110.0
+-Health 100 > 115
+-Movespeed 0.78/0.8 > 0.73/0.75
 -JumpZ 10 > 11
+-Mainfire startup frames reduced by half
+-All Spark Shock version speeds equalized to 42
+--Spark Shock now has 3 more tics of endlag to compensate for startlag being reduced
+-Now has client-sided sounds that indicate half/full charge, provided by MusashiAA
 -Mid-Level Spark Spread ported from classes-v9fh.pk3
---Total shots 8->16, aimable shots 1->3
+--Total shots 8 > 16, aimable shots 1 > 3
+--Using reload while charging Spark Shock allows you to use midcharge Spark Spread at full charge
 -Max Level Spark Spread now shoots eight Spark Orbs from classes-v9fh.pk3, with one aimable shot
+-Spark Solder now has less raunchy obit
+--Spark Solder now has visual sprites, provided by Cowsha
+--Spark Solder powerprotect 10 tics > 12 tics
 -SparkHealAmmo capacity 56 > 28
 
+==Doc Robot
+-Doc Buster damage and speed change nerfs reverted
+--Doc Buster now restores 10 ammo per buster hit
+-Atomic Shotgun gravity 5 > 7.5
+--Atomic Shotgun duration halved while grounded
+-WoodHeat body damage resistance 35% > 50%
+--Added back 25% slowdown while active
+-QuickMetal speed boost 35% > 50%
+--Added back 25% damage vulnerability while active
+-Gear Grinder radius 24 > 18
+--Gear Grinder startlag 14 > 10 tics
+
+==Brightman
+-Mainfire now has three more tics of endlag
+
+==Toadman
+-Now has visual outline indicating Rain Flush radius
+
+==Pharaohman
+-Pharaoh Wave damage 15 > 8
+--Pharaoh Wave now has infinite lifetime
+--Firing SFX altered
+
+==Ringman
+-HP 85 > 100
+
+==Dustman
+-Dust Vacuum now gains ammo 50% faster
+--Dust Vacuum now has 12 tics of endlag
+
+==Diveman
+-Fixed extra unintentional tics of endlag on Dive Tackle hit
+
+==Gravityman
+-Gravity Buster speed 42 > 60
+--Damage decreased 15 > 12
+-Fixed Gravity Hold healing for 1 hp at edges of explosion
+
+==Stoneman
+-Releasing mainfire now makes Power Stone move forwards before spinning
+--Time spent before being able to release mainfire reduced by 10 tics 
+--Starts at 15 damage, scales up to 25 before spinning
+--Can be angled up and down
+-Release Power Stone radius 38 > 24
+-Power Stone mainfire now has 35% hitstun
+-Synthfire (OG) Power Stone now has different sprites
+-Fixed Stone Core giving unusually low levels of health regain on resurrection
+
+==Starman
+-Updated HUD by Lamp
+
+==Chargeman
+-Fixed Charge Ram armor using outdated armor version
+-Coal Shot damage resistance 50% > 75%
+--Fixed Coal Shot explosion not playing sound
+--Now plays special hurt SFX if damage taken is parried by Coal Shot
+
+==Napalmman
+-Reworked by Pr. Gibus, ported from El Scorcho
+-New HUD by HeelNavi
+-Napalm Bomb can be charged up to 3 levels, is always a set 17 A_Explode per bomb
+--Napalm Bomb bouncecount now negatively correlates to chargetime (Bouncecount 2 > 4/3/2)
+--NapalmClassAmmo max amount 360 > 300 (total stocks with full ammo 6 > 5)
+-Napalm Missile now uses separate ammo bar, has 4 uses
+-Slowdown when charging mainfire reduced .75/.5/.25 > .9/.8/.7
+
 ==Darkman1
--HP 155.0 > 135.0
+-HP 155 > 135
+
+==Darkman2
+-Dark Spread (uncharged mainfire) how has 25% hitstun
+
+==Darkman3
+-Health 100 > 85
+-Time required to get max charge doubled
+--Max charge scaling shot replaced with 25 damage hitscan shot
+--Charging creates UEC aimpointer
+-Railgun pointer appears at 75% charge at 10% translucency, gains full transparency at full charge
+-Scoped Dark shot damage now scales with chargetime (min 12, max 24)
+-Scoped Ring now requires/consumed full clip instead of half
+-Zooming reworked
+--Pressing item once gives the user 1.5x zoom, pressing it again activates 2.0x zoom
+--Removed slowdown/jumpheight reduction while zoomed in
+
+==Centaurman
+-Updated HUD by Lamp
 
 ==Flameman
+-Flame Blast RoF increased by 4 tics
 -Fixed Flame Blast doing hitstun
+
+==Knightman
+-Removed explosion from Super Knight Crush, 15 explosion damage now transfered to base hit (27 overall still)
+--Super Knight Crush height 32 > 20
+-No longer blocks shots as he is charging mainfire
+-Super Knight Crush retooled
+--No longer requires chain to return, instead has a flat 20 tics of endlag
+--Mace now has trail for purely cosmetic purposes
+
+==Plantman
+-Plant Buster spread multiple of 1 doubled (-2/-1/0/1/2 > -4/-2/0/2/4)
+--Now has 9 tics of endlag once mainfire is released
+-Health 90 > 85
+
+==Tomahawkman
+-Updated HUD by Lamp
+-Now has sounds that indicate Silver Tomahawk initiating gleam mode
+--Silver Tomahawk keeps shining FX once gleaming
+
+==Windman
+-Wind Gyro damage 10 > 12
+-Has 8 more tics of endlag
+
+==Yamatoman
+-Ported Yamato Pounce from UEC
+
+==Freezeman
+-Freeze Cracker speed 32 > 42
+--Freeze Cracker impact shart speed 28 > 36 
+-M2 max ammo capacity/usage 42 > 36
+--M2 impact wave count 8 > 6
+--Ceiling icicle shard count 6 > 3
+
+==Junkman
+-Spawning Junk Cube inside of an enemy does not rip, does scaled damage + 10 A_Explode
+-Empowered Junk Bit damage 20 > 23, now has 75% hitstun
 
 ==Cloudman
 -Thunder Bolt radius 25 > 22
 --Thunder Bolt Split radius 25 > 16
+
+==Springman
+-Wild Coil projectile height 16 > 20
+
+==Shademan
+-Empowered Noise Crush now has travel/impact SFX, provided by MusashiAA
+-Grab invuln 35 tics > 10 tics
+--Grab armor save percentage 70% > 40%
 
 ==Turboman
 -Scorch Wheel maxdamageradius 18 > 24
 -Turbo Honk maxdamageradius 256 > 64
 --Honk radius 256 > 272
 
+==Tenguman
+-Tornado Hold pod 28 > 35
+-Tornado Hold ammo capacity 500 > 300
+-Fixed Tengu Slam only doing 12 damage max
+
 ==Astroman
+-HP 100 > 115
+-Speed 0.68/0.70 > 0.63/0.65
 -Flight cap 160 > 180
+-Astro Bullet damage 12 > 15
+--Astro Bullet speed 40 > 35
+-Copy Vision reworked, new SFX
+--Now sends user backwards on use, has 10 tic startup frames before activation
+--When activated, slowly moves forwards and blocks shots
+--Copy Vision reactiontime 9 > 12
+--Copy Vision firing faces where user is facing upon activation, fires shots 4 tics faster
+-Copy Bullet damage 10 > 7.5
+--Copy Bullet speed 40 > 45
+-Copy Vision now always slides on floors, added +STEPMISSILE
+--Copy Vision now has a 1 damage ripper hitbox
+-Copy Vision has 10% hitstun
+
+==Swordman
+-Nearly entirely retooled
+-Health 155 > 125
+-Base speed .58/.6 > .646/.666
+-Flame Sword now uses JaxOf7 method
+-Readjusted Flame Sword projectile offsets
+--Reduced 3 tics from each Flame Sword swinging frame
+-Flame Spindash altered, now drains more ammo but propels more per mode
+-Flame Torso RETURNS HOLY SHIT WHAT
+--Ported from UEC
+--Removed camera feature
+-Now made to be wider, akin to UEC
+-New SFX from UEC
+-Flame Torso health now adjusted for x10
+--Fixed Flame Torso dying without returning
+--Flame Torso damage 1 > 3.6
+--Flame Torso pre-return slash damage 7 > 7.2
+--Flame Torso return damage 9 > 3.6
+-Fixed regening ammo during endlag frames of Flame Spin
+--Added 10 more tics of endlag on Flame Spin
+
+==Searchman
+-HP 90 > 100
+-Movespeed 0.76/.78 > 0.78/0.8
+-New HUD by Pegg
+
+==Frostman
+-Ice Wave FX when broken now fades out for more visual clarity
+-Now has SFX for charging up Ice Wave
+
+==Evil Robot
+-Now has traveling SFX on Evil Fist, provided by MusashiAA
+-Gigas tweaked
+--Astro Crush A_Explode fulldamageradius 53 > 100
+--Flame Sword A_Explode damage 5 > 4
+--Ice Wave powerprotected (.20, 1 tic)
+--Flash Bomb initial A_Explode damage 23/22 > 30/29, outermost 4 bombs removed
+
+==Coldman
+-Ice Wall count 4 > 6
+--Ice Wall health 50 > 75
+--Ice Wall base damage 18 > 15
+--Ice Wall ripper damage 3 > 2
+--Ice Wall now has +FORCEALLYCOLLISION
+--Fixed Ice Wall FX being displaced
+--Ice Wall now has passive SFX
+-Cold Shoulder damage 30 > 32
+-Cold Field ammo regen doubled
+--No longer fullstuns on hit, now fully stops enemies velocity repeatedly
+--Updated FX
+--Cold Field initial projectile radius 8 > 12
+--Cold Field damager now spawns every tic instead of every 3 tics
+--Cold Field damager damage 1 > 2
+--Cold Field now has 2 tics of powerprotect on hit
+--Delay inbetween FX spawning 3 tics > 2 tics
+--Reactiontime 3 > 1
+
+==Pirateman
+-Movespeed 0.63/0.65 > 0.68/0.70
+-Allies can no longer destroy Pirate Mines
+--Pirate Mine width 14 > 16
+-Pirate Ravager damage 5 > 8
+--Pirate Ravager fulldmgradius 64 > 48
+
+==Burnerman
+-Burner Traps now have a few pixels sticking out of the ground, updated sprites by Cowsha
+-Updated Reload HUD and Divebomb/Wave Wall sprites by Cowsha
+
+==Magicman
+-Magic Card second card doing no damage fixed
+-Magic Orb can now bounce on surfaces
+--Now has 75% hitstun
 
 ==King
--Fixed Hitstun on Shield Lasers
+-Grounded Axe Swing damage 40 > 35 (singular swing actor no longer explodes twice for 4, only explodes once for 7)
+-Air Axe Swing rate of fire reduced, now matches grounded Axe Swing
+--Air Axe Swing now has 5 projectiles instead of only 3
+--Projectiles reworked, now explode once on contact for 5 damage each instead of 3 damage psuedoripper
+-Axe Spin ammo usage 3 > 4
+-Shield restored to 2.4.1 Version
+--Delay inbetween firing lasers 2 tics > 5 tics
+--Fixed Hitstun on Shield Lasers
+
+==Concreteman
+-Concrete Shot now has +FORCEALLYCOLLISION
+-Fixed Concrete Blocks trapping enemies
+-Fixed HUD desyncs
 
 ==Splashwoman
 -Laser Trident projectile count per 7 > 5
@@ -2441,59 +2845,239 @@ CHANGELOG
 -Speed Song buff 40% > 30%
 
 ==Plugman
--Now has an obituary for killing someone with altfire's first hit
+-Updated HUD by Lamp
+-Base speed 0.88/0.9 > 0.8/0.82
+-All instances of PlugBallAmmoBoss doubled except for ammo drain when plugging allies (essentially doubled time plugging allies)
+-Plug Ball no longer comes out on frame one, 5 tics of startlag brought back
+-New feature: Overdrive
+--Plugging enemies gives user overdrive bar that gives the user increased RoF on Plug Ball
+--Lasts 200 tics, with each tier lasting 50 tics (overdrive under 25% does not affect RoF)
 
-==Commandoman
--Commando Wave protect 10 tics > 5 tics
+==Jewelman
+-Fixed Jewel Sattelite doing x10 damage at point blank
+
+==Hornetman
+-HP 90 > 100
+-Fixed HUD desyncs
+-Fixed Hornet Chaser healing
+-Altfire layout reverted to 2.0h
+--Adjusted Honeycomb spread to suit three honey globs instead of 4
+--Nectar slow 25% > 31%
+-Reload now only fires Honeycombs
+
+==Magmaman
+-Recharging now gives user a base 20% damage resistance while active
+--Taking damage in recharge state grants user extra armor bonus with 15% armor save, gives user passive FX while granted
+
+==Galaxyman
+-Black Hole Bomb can now be detonated while using Galaxy Ram and Rainbow Dappler
+-Fixed a bug where ammobar indicator would get stuck if BHB died too early 
+
+==Fakeman
+-Fake Revolver FOMBuffer cooldown halved when plugboosted
+
+==Blademan
+-Removed CBM downwards jump detach while wallclinging
+-TripleBladeBossAmmo max capacity 28 > 30
+-TripleBladeBossAmmo regen increased by 25%
+-Dash ammo usage 3 > 5 (6 dashes total)
+-Clinging to walls now drains separate timer instead of taking from TripleBladeBossAmmo, lasts 7.5 seconds before declinging
+--Separate timer resets after every dash/recling
+--Sound made while dashing while clinging is now 67% quieter (.75 volume > .25 volume)
+--Sound made while clinging onto a wall within the first 5 tics of dashing is now 75% quieter (1.0 volume to .25 volume)
+
+==Sheepman
+-Sheep Bolters now have 10% hitstun
+
+==Nitroman
+-Health 75 > 85
+-Toggle removed, modes combined to simplify gameplay:
+-Double wheel removed
+-Removed middle wheel from triple wheel
+--Side wheel damage 10 > 14, spread tightened -4/4 > -2.5/2.5, ammo gain on hit 12/8 > 18/12
+-Boosted Bike speed/damage takes three tics to kick in, no cooldown if you wallride during this window
+--Cooldown after leaving a boosted Bike 70 > 80 tics; now has a HUD indicator
+
+==Solarman
+-Solar Blaze/Solar Launcher speeds all centralized to 55
+-Solar Mortar direct/explosion damage 10/20 > 0/25
+--Solar Mortar now has passive sound
+--Solar Mortar gravity 1.0 > 2.0
+
+==Mercury
+-Goo Blob firing speed 45 > 40
+--Goo Blob returning speed 44 > 40
+
+==Venus
+-Bubble Ticker now sticks to any surface
+
+==Jupiter
+-Electric Shock radius 24 > 18
+--Electric Shock fulldmgradius 24 > 20
+
+==Saturn
+-Maxarmorsaveamount 135 > 75
+--Armor save amount 40% > 30%
+
+==Pluto
+-Fixed HUD desyncs
+-Base speed 0.78/0.8 > 0.88/0.9
+-Speed scalar reduced by 18%
+--Ammo gain while moving increased by 70%
+-Break Dash now uses double hit system with two different damaging explosions
+--Explosion 1 range 75, 10 damage on hit
+--Explosion 2 range 38, 5 damage on hit (with 1 ripper on subsequent hits)
+-Fixed Break Dash having more than two airborne uses
+-Added noammo SBAR + visual indicator of not being able to use Break Dash by Conejo
+
+==Sunstar
+-Updated HUD by Lamp
+-Defense boost on Solar Vent 15% > 20% (to ensure ripper denial, as was the initial intention)
+-Scorched Land semi-reworked
+--Now fires a Sun Chaser that travels directly to where your cursor is upon firing, creates Scorched Earth upon reaching destination
 
 ==Fuseman
 -Speed 0.7/0.72 > 0.73/0.75
 -Flight cap 160 > 120
 -Mainfire reworked
---Now rips through enemies once for 9.0 damage, has lingering explosion that hits for 3.0 four times over 28 tics
---Side projectiles now hit once for 4.5
+--Scramble Ray offshoots removed, replaced by weakened Electro Chop that hits once for 9 damage
+-Scramble Ray scale 3.5 > 2.5
+--Scramble Ray projectile radius 12 > 10, projectile height 15 > 12
+--Now rips through enemies once for 9 damage, has lingering Scramble Thunder explosion that hits for 3 four times over 28 tics
+--Has passive sound effect
 --Rate of fire decreased by 6 tics
--Altfire ammo cap/requirement 280 > 180 (ammo regen unchanged)
---Now increased mainfire speed while in radius from 36 to 64
---Tesla Thunder no longer uses M2 Cancel A_Explode, now resembles A_Explode from initial build
+-Updated Thunder Tesla sprites
+-Fixed Thunder Tesla beacons having ridiculously large AOEs
+
+==Blastman
+-Updated HUD by Lamp
+-Chain Blast now gives victim HUD indicator of how many bombs are stuck onto them
+--Chain Blast bombs that hit enemies now circle around them instead of staying put
+*Both of these changes apply to the copywep too
+-Altfire bomb explosion damage 5 > 4
+--Gravity decreased .5 > .25
+--No longer lingers on surfaces, instead stays stationary for 10 tics before automatically exploding
+--Explosion radius 56 > 96, no longer has falloff
+--Spread altered -10/-3/3/10 > -10/-5/0/5
+--Landing direct shots on enemies now grants 4 Power Gear ammo
+-Power Gear altfire bomb explosion damage 5 > 8
+--Speed buffed 57 > 61
+--Spread altered -6/-2/2/6 > -6/-3/0/3
+-All attack FX redone, new SFX on Power Gear Chain Blast and Blast Bomb
 
 ==Acidman
+-HP 90 > 100
+-Increased Acid Barrier duration by 50%
+-FriendlyBarrierAmmo gain 3 > 2
+-Acid Barrier decay delay 6 tics > 5 tics
 -Speed Gear boost 20% > 25%
 
 ==Tundraman
 -Now has the correct name in allyinfo rather than Acid and Bounce names
+-JumpZ 12 > 14
+-Mainfire reworked
+--Now fires stream of Icy Gust that hitstuns enemies for 10% and drains ammo
+-Every second of firing charges up and shoots out a Glacial Spike
+--Glacial Spike damage is now equalized at 14 instead of being a chargeshot
+--Projectile speed equalized to 75
+--Does 50% hitstun, applies frostbite debuff only if an enemy is being hit by Icy Gust
+-Triple Lutz now does 25% more damage on frostbitten enemies, also restores 25% of user's Tundra Storm ammo
+--Spotlight/cheering FX also added upon chaining hits on enemies
 
 ==Torchman
--Health 100.0 > 90.0
--New SFX provided by Fr3ak
--Mainfire punch damage 15.0 > 16.0, speed 40 > 60, duration 9 > 8
--Power Mainfire ripping damage 10.0 > 12.5, speed 60 > 70
--Altfire hits 1-4 projectile speed 80 > 60
--Power Altfire Radius 48 > 56
---Now has raging demon FX (to ensure your opponent fries a thousand deaths)
--Aerial divekick hit damage 7.0 > 5.0, meter gain from aerial hit 80 > 50
---Aerial divekick hit now knocks down, not just back
---15.0 explosion added to divekick landing, 25.0 with Power Gear
---This explosion also grants 35 meter on impact
---Divekick flare damage 6.0 > 2.5, speed 15 > 25, meter gain 15 > 5, powerprotect 8 tics > 5 tics
---Divekick flare count 5 > 3 without Power Gear
--Power Gear ammo drain now stops upon doing damage, stalls for another 2 seconds before continuing draining 
---Power Gear meter cap 560 > 400, minimum to enter Power 420 > 260, meter on spawn 280 > 120
---Entering Power Gear no longer gives you 20 free Power Gear meter
+-Health 100 > 90
+-JumpZ 14 > 12
 -Fixed bug where Torch would seize on the Player Setup class select
 --Fixed bug where Torch would disappear if Time Stopped in Power Gear
+-New SFX provided by Fr3ak
+-Spawning now gives you Power Gear drain stall for 50 tics
+--HUD now indicates when Power Gear drainstall is active
+-Fist Of Flame damage 15 > 16
+--Fist Of Flame speed 40 > 69, duration 9 tics > 8 tics
+-Torchjutsu Torque ripper damage speed 60 > 70
+--Torchjutsu Torque ammo gain on hit 100 > 35
+-Torchjutsu Wheel ripper damage 8 > 10
+-Flaming Kick hits 1-4 projectile speed 80 > 60
+-Blazing Demon now split into five kicks as opposed to one strong kick
+--Blazing Demon kick radius 48 > 56
+--Now has added FX while traveling before kicks
+--Damage 15 > 4 per kick
+--Blazing Demon kicks now apply full hitstun
+--Blazing Demon finish with Blazing Demon explosion that does 15 damage and knocks enemies back (and special FX upon kill)
+--Blazing Demon now has 16 more tics of endlag, now only releases user from stationary tics after endlag
+-Divekick now is a singular actor that warps in front of the user and explodes for 3 damage max every tic
+-Divekick landing explosion damage reduced 15/25 > 9/15
+--Divekick landing fulldmgradius reduced 90 > 45
+--9 explosion added to divekick landing, 15 with Power Gear
+--This explosion also grants 35 meter on impact
+--Divekick flare damage 6 > 3, meter gain 15 > 5, powerprotect 8 tics > 5 tics
+--Divekick flare count 5 > 3 without Power Gear
+-Power Gear ammo drain now stops upon doing damage, stalls for 50 tics afterwards before continuing draining 
+--Power Gear meter cap 560 > 500, minimum to enter Power 420 > 400, meter on spawn 280 > 200
+--Entering Power Gear no longer gives you 20 free Power Gear meter, instead fills all of your ammo and grants 10% damage resistance
+-Now has MAPICON sprite, provided by Smashmania
 
 ==Bounceman
--Bounce Bopper ammo regen doubled
+-Health 115 > 155
+-Bounce Bopper damage 16 > 14
+--Bounce Bopper can now be swerved for first tics while active
+--HeliumAmmo regen doubled
+--Self-recoil doubled, no longer applied when hitting an enemy
+--Bounce Bopper now knocks enemies back on hit
+--Fixed being softlocked after having Bounce Bopper despawn
+-Bounce Ball damage 10 > 8
+--Bounce Ball is now affected by gravity
+--Bounce Ball spread upon Bounce Bopper death -10/0/10 > -30/0/30
+-Rubber Latch damage 16 > 12
+--Rubber Grip now uses Plug Cable ACS for tether
+--Rubber Grip ammo regen increased 2 > 3
+--Ammo consumption on use 0 > 150, ammo consumption on recall 150 > 0
+--Fixed Rubber Grip doing double damage to shields 
+--Self thrust increased 16 > 20, removed self slowdown on grab
+--Grabbing surfaces now always thrusts user to grabbed surface, grabbing enemies now always pulls enemy towards user
+--Rubber Latch now always drags enemies when returning
+--Increased Rubber Grip duration by 5 tics
+--Rubber Grip still holds on to enemies during 5 tic delay
+--Recalling Rubber Grip now has new SFX
+-Item no longer toggles push/pull on Rubber Grip, now manually detaches hand when latched
+--Added 5 tic delay before recalling on item cancel
+-NEW RELOAD: Superball Slam
+--User drops to the ground, creating shockwaves and consuming a mainfire stock per use when done on the landing on the ground
+--Every usage of reload before letting go generates a stock, releasing thrusts user upwards with the force being relative to the amount of stocks accumulated along with 6 Bounce Balls releasing from launch
+--Releasing reload halts HeliumAmmo (mainfire/reload ammo) generation for 50 tics
+--Has bottom hitbox while falling that knocks enemies away
+--Reload icon provided by FrostBlue
+-Now has MAPICON sprite, provided by Smashmania
 
 ==Mega Water S
--Shield Amount 25.0 > 40.0
+-Shield amount 25 > 40
 
 ==Enker
--Fixed Mirror Buster doing hitstun
+-Updated HUD by Honootorch
+-Mirror Buster damage 16/35 > 15/30
+-Fixed Mirror Absorb lasting far longer than it should
+--Mirror Absorb cooldown 12 tics > 20 tics
+--Leaving parry stance now instantly drains all armor
+-Altfire swipe cancel readded, now does a 20 damage spear swipe that deals knockback
 
 ==Quint
--Removed Saku M2 blocks being shootable
+-Added visual display of not being able to use Sakugarne while swapping/with delay by Conejo
+-Fixed Sakugarne M1 having reduced thrust
+-Canceling Sakugarne Dive with weapon swap now takes 7 ammo
+-Sakugarne Shockwave now sprite accurate, properly spawns on floor instead of bottom of actor
+--Sakugarne Shockwave speed doubled, halved duration
+-Removed Sakugarne M2 blocks being shootable
+-Dash count 5 > 3
+
+==Punk
+-Merged weapons (M1 Straight, M2 Bouncer)
+-Moved ram to Reload
+
+==Ballade
+-Updated Ballade Cracker explosion FX
+
+==Rathor
+-Fixed a bug where Rathor could pass through enemies without grabbing them
 
 ==BBAMegaman
 -Punch money per hit 100 > 110 

@@ -130,3 +130,64 @@ texture MAGFLOWA
 pic MAGFLOW1 tics 2
 pic MAGFLOW2 tics 2
 pic MAGFLOW3 tics 2
+
+texture TRPGSTAX
+pic TRPGSTAL tics 1.5
+pic NOBAR tics 1.5
+
+texture VRPGSTAX
+pic VRPGSTAL tics 1.5
+pic VNOBAR tics 1.5
+
+texture MAGPOWRB
+pic B_BAR10A tics 2
+pic B_BAR10B tics 2
+pic B_BAR10C tics 2
+pic B_BAR10D tics 2
+pic B_BAR10E tics 2
+pic B_BAR10F tics 2
+pic B_BAR10G tics 2
+texture MAGPOWRV
+pic B_VAR10A tics 2
+pic B_VAR10B tics 2
+pic B_VAR10C tics 2
+pic B_VAR10D tics 2
+pic B_VAR10E tics 2
+pic B_VAR10F tics 2
+pic B_VAR10G tics 2
+
+texture PLG1BARX
+pic PLG1BAR tics 5
+pic PLX1BAR tics 5
+
+texture PLG2BARX
+pic PLX1BAR tics 4
+pic PLG2BAR tics 4
+
+texture PLG3BARX
+pic PLX2BAR tics 3
+pic PLG3BAR tics 3
+
+texture PLG4BARX
+pic PLG3BAR tics 2
+pic PLX3BAR tics 2
+
+texture PLG1VARX
+pic PLG1VAR tics 5
+pic PLX1VAR tics 5
+
+texture PLG2VARX
+pic PLX1VAR tics 4
+pic PLG2VAR tics 4
+
+texture PLG3VARX
+pic PLX2VAR tics 3
+pic PLG3VAR tics 3
+
+texture PLG4VARX
+pic PLG3VAR tics 2
+pic PLX3VAR tics 2
+
+texture BLSTTAG
+pic BLSTTAG3 tics 9
+pic BLSTTAG4 tics 6

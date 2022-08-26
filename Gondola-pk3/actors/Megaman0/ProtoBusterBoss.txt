@@ -188,7 +188,7 @@ PROC F 0 A_TakeInventory("ProtoStrikeReady",9)
 PROC F 0 A_TakeInventory("WeaponCharge",999)
 PROC F 0 A_GiveInventory("StopShield",1)
 PROC F 0 A_PlaySoundEx("weapon/pshot","Weapon")
-PROC F 6 //A_GiveInventory("ProtomanAlt_CI",1)
+PROC F 6 A_GiveInventory("ProtomanAlt_CI",1)
 PROC ED 3
 PROC D 4 A_ClearRefire
 PROC D 5
@@ -215,7 +215,7 @@ PROC FD 3 A_TakeInventory("WeaponCharge",999)
 goto User1FireXL
 
 Altfire:
-//PROC I 0 A_JumpIfInventory("ProtoStrikeReady",1,"ProtoStrike")
+PROC I 0 A_JumpIfInventory("ProtoStrikeReady",1,"ProtoStrike")
 PROC I 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_user1_check")==1, "User1Fire")
 PROC J 0 A_JumpIf(z-floorz==0,"SlideSlide")
 Goto Ready2+5
@@ -361,10 +361,10 @@ Obituary "$OB_PROTOBUSTER"
 +FORCEXYBILLBOARD
 +THRUGHOST
 +BRIGHT
-Damage (100)
+Damage (10)
 radius 5
 height 5
-Speed 27
+Speed 33.75
 scale 2.5
 States
 {
@@ -388,7 +388,7 @@ actor ProtoShotCO : ProtoShotC{translation "204:204=104:104","202:202=4:4","199:
 actor ProtoShotCP : ProtoShotC{translation "204:204=229:229","202:202=4:4","199:199=229:229"}
 
 actor ProtoShot2C : ProtoShotC {
-Speed 36
+Speed 40.5
 DamageType "ProtoM_Shot2"
 }
 
@@ -408,10 +408,10 @@ Translation "192:192=108:108", "198:198=110:110"
 PROJECTILE
 Obituary "$OB_PROTOBUSTER"
 DamageType "ProtoM_Shot3"
-Speed 50
+Speed 56.25
 Radius 18
 Height 18
-Damage (350)
+Damage (35)
 Scale 2
 States
 {
@@ -430,7 +430,7 @@ actor HeroProtoShot3R : HeroProtoShot3{translation "192:192=171:171","198:198=41
 actor HeroProtoShot3O : HeroProtoShot3{translation "192:192=104:104","198:198=128:128"}
 actor HeroProtoShot3P : HeroProtoShot3{translation "192:192=229:229","198:198=232:232"}
 
-actor HeroProtoShot3Ex : HeroProtoShot3 {Speed 55}
+actor HeroProtoShot3Ex : HeroProtoShot3 {Speed 61.875}
 
 actor HeroProtoShot3Bex : HeroProtoShot3Ex{translation "192:192=205:205","198:198=74:74"}
 actor HeroProtoShot3Rex : HeroProtoShot3Ex{translation "192:192=171:171","198:198=41:41"}
@@ -457,8 +457,8 @@ actor HeroProtoShieldShot3 : HeroProtoShot3
 {
 +THRUSPECIES
 Species "ProtomanHeroStupidShield"
-Damage (200)
-Speed 50
+Damage (20)
+Speed 61.875
 States
 {
 Spawn:
@@ -477,6 +477,90 @@ actor HeroProtoShieldShot3R : HeroProtoShieldShot3{translation "192:192=171:171"
 actor HeroProtoShieldShot3O : HeroProtoShieldShot3{translation "192:192=104:104","198:198=128:128"}
 actor HeroProtoShieldShot3P : HeroProtoShieldShot3{translation "192:192=229:229","198:198=232:232"}
 
+actor ProtoStrikeShot : BasicExplosion
+{
+Translation "192:192=87:87", "198:198=42:42"
+damagetype "ProtoM_Strike"
+Obituary "$OB_PROTOSTRIKE"
++BRIGHT
+Speed 60
+scale 3.0
+States
+{
+Spawn:
+CHBU A 0
+CHBU A 0 A_Explode(7,44,0,0,44)
+CHBU A 2 A_Explode(7,44,0,0,44)
+CHBU B 1 A_Explode(7,44,0,0,44)
+CHBU B 1 A_Stop
+CHBU CDABCD 2 A_Explode(7,44,0,0,44)
+stop
+}
+}
+
+actor ProtoStrikeShotB : ProtoStrikeShot{translation "192:192=205:205","198:198=74:74"}
+actor ProtoStrikeShotR : ProtoStrikeShot{translation "192:192=171:171","198:198=41:41"}
+actor ProtoStrikeShotO : ProtoStrikeShot{translation "192:192=104:104","198:198=128:128"}
+actor ProtoStrikeShotP : ProtoStrikeShot{translation "192:192=229:229","198:198=232:232"}
+
+actor ProtoStrikeShot2 : ProtoStrikeShot
+{
+scale 2.75
+States
+{
+Spawn:
+CHBU E 0
+CHBU E 0 A_Explode(2,44,0,0,44)
+CHBU E 2 A_Explode(2,32,0,0,32)
+CHBU F 0 A_Stop
+CHBU FGEFGEF 2 A_Explode(2,32,0,0,32)
+stop
+}
+}
+actor ProtoStrikeShot2B : ProtoStrikeShot2{translation "192:192=205:205","198:198=74:74"}
+actor ProtoStrikeShot2R : ProtoStrikeShot2{translation "192:192=171:171","198:198=41:41"}
+actor ProtoStrikeShot2O : ProtoStrikeShot2{translation "192:192=104:104","198:198=128:128"}
+actor ProtoStrikeShot2P : ProtoStrikeShot2{translation "192:192=229:229","198:198=232:232"}
+
+actor ProtoStrikeShot3 : ProtoStrikeShot2
+{
+scale 2.5
+States
+{
+Spawn:
+CHBU E 0
+CHBU E 0 A_Explode(2,44,0,0,44)
+CHBU E 1 A_Explode(2,32,0,0,32)
+CHBU F 1 A_Stop
+CHBU FGEFGEF 2 A_Explode(2,32,0,0,32)
+stop
+}
+}
+
+actor ProtoStrikeShot3B : ProtoStrikeShot3{translation "192:192=205:205","198:198=74:74"}
+actor ProtoStrikeShot3R : ProtoStrikeShot3{translation "192:192=171:171","198:198=41:41"}
+actor ProtoStrikeShot3O : ProtoStrikeShot3{translation "192:192=104:104","198:198=128:128"}
+actor ProtoStrikeShot3P : ProtoStrikeShot3{translation "192:192=229:229","198:198=232:232"}
+
+actor ProtoStrikeShot4 : ProtoStrikeShot2
+{
+scale 2.25
+States
+{
+Spawn:
+CHBU E 0
+CHBU E 0 A_Explode(2,44,0,0,44)
+CHBU E 0 A_Stop
+CHBU FGEFGEF 2 A_Explode(2,32,0,0,32)
+stop
+}
+}
+
+actor ProtoStrikeShot4B : ProtoStrikeShot4{translation "192:192=205:205","198:198=74:74"}
+actor ProtoStrikeShot4R : ProtoStrikeShot4{translation "192:192=171:171","198:198=41:41"}
+actor ProtoStrikeShot4O : ProtoStrikeShot4{translation "192:192=104:104","198:198=128:128"}
+actor ProtoStrikeShot4P : ProtoStrikeShot4{translation "192:192=229:229","198:198=232:232"}
+
 actor HeroProtoShieldToss {
 PROJECTILE
 Translation "192:192=87:87", "198:198=42:42"
@@ -491,10 +575,10 @@ Obituary "%k's Proto Shield was only meant to be wielded by %h, so %o died upon 
 +USEBOUNCESTATE
 BounceFactor 0.35
 WallBounceFactor 0.4
-Speed 40
+Speed 45
 Radius 16
 Height 32
-Damage (40)
+Damage (4)
 Scale 2.5
 DamageType "ProtomanHeroShieldToss"
 Species ""
@@ -661,7 +745,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_Explode(80,48,0,0,48)
+TNT1 A 0 A_Explode(8,48,0,0,48)
 stop
 }
 }
@@ -938,6 +1022,43 @@ TNT1 A 0 A_SpawnItemEX("HeroProtoShieldShot3O",0,0,16,cos(-pitch)*50,0,sin(-pitc
 goto Done
 P_P:
 TNT1 A 0 A_SpawnItemEX("HeroProtoShieldShot3P",0,0,16,cos(-pitch)*50,0,sin(-pitch)*50)
+goto Done
+}
+}
+
+actor ProtomanAlt_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot2",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot3",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot4",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShotB",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot2B",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot3B",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot4B",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShotR",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot2R",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot3R",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot4R",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShotO",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot2O",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot3O",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot4O",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShotP",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot2P",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot3P",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("ProtoStrikeShot4P",0,0,8,0)
 goto Done
 }
 }

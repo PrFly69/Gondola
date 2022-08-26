@@ -8,8 +8,8 @@ player.startitem "WindClassAmmo", 28
 player.startitem "FlyingKickAmmo", 28
 player.startitem "WindFlightItem"
 
-player.maxhealth 1250
-health 1250
+player.maxhealth 125
+health 125
 player.jumpz 10
 player.forwardmove 0.7, 0.7
 player.sidemove 0.68, 0.68

@@ -577,7 +577,7 @@ BounceFactor 0.0
 WallBounceFactor 0.0
 
 reactiontime 15
-Damage(20)
+Damage(2)
 Radius 6
 Height 7
 speed 20
@@ -595,12 +595,12 @@ XH0D QRST 4
 XH0D QRST 4
 //Goto XDeath
 TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
-TNT1 A 0 A_Explode(100,128,0)
+TNT1 A 0 A_Explode(10,128,0)
 TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 stop
 XDeath:
 TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
-TNT1 A 0 A_Explode(80,128,0)
+TNT1 A 0 A_Explode(8,128,0)
 TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 stop
 }
@@ -635,7 +635,7 @@ TN_B E 0 A_Stop
 TN_B E 0 A_PlaySoundEx("misc/hugequake", "Weapon")
 TNT1 A 0 A_PlaySoundEx("weapon/GrenadeGood","Body")
 TNT1 A 0 A_PlaySoundEx("weapon/GrenadeGood","Voice")
-TN_B E 0 A_Explode(400,500,0,0,96)
+TN_B E 0 A_Explode(40,500,0,0,96)
 TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32+16384)
 stop
 }
@@ -650,7 +650,7 @@ PROJECTILE
 damagetype "GrenadeM_Bomb"
 Obituary "$OB_FLASHBOMB"
 +FORCEXYBILLBOARD
-damage (60)//0
+damage (6)//0
 Radius 8//6
 Height 8//7
 speed 26
@@ -734,12 +734,12 @@ Y_8G A 0
 Y_8G A 0 A_SetUserVar("user_Flash",5)
 Y_8G AB 1 
 Y_8G CD 1
-Y_8G A 0 A_Explode(150,80,0)
+Y_8G A 0 A_Explode(15,80,0)
 Y_8G EE 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random(-32, 32),0,0,0,0,1)
 Y_8G EF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
 Y_8G EE 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random(-32, 32),0,0,0,0,1)
 Y_8G GF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
-Y_8G A 0 A_Explode(100,80,0)
+Y_8G A 0 A_Explode(10,80,0)
 Goto Pattern1
 Pattern1:
 Y_8G EF 1 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
@@ -755,7 +755,7 @@ Y_8G EF 1 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random
 Y_8G G 0 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
 Goto DamageNow
 DamageNow:
-Y_8G A 0 A_Explode(90+user_Flash*10,80,0)
+Y_8G A 0 A_Explode(9+user_Flash*1,80,0)
 Goto Continue
 Continue:
 Y_8G A 0 A_CountDown

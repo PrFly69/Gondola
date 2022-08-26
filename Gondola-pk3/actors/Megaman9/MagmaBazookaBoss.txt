@@ -123,12 +123,16 @@ ReigniteStart:
 //MAGX D 0 SetPlayerProperty(0,1,0)
 MAGX D 0 A_GiveInventory("PowerMagma",1)
 MAGX D 0 A_GiveInventory("MagmaIgniteFlag",1)
+MAGX D 0 A_GiveInventory("MagmaIgnitePower")
+MAGX D 0 A_GiveInventory("GuardUpFlag")
 goto Reignite
 Reignite:
 MAGX D 0 A_GiveInventory("MagmaIgniteFX_P1",1)
 MAGX D 1 A_WeaponReady(2)
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,14)
 MAGX D 0 A_GiveInventory("MagmaIgniteFX_P2",1)
 MAGX D 1 A_WeaponReady(2)
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,14)
 MAGX D 0 A_GiveInventory("MagmaRecharge_RC",1)
 TNT1 A 0 A_FireCustomMissile("MagmaShield",0,0,0,0)
 MAGX D 0 A_JumpIfInventory("VolcanicBreakfastAmmo",48,"FinishIgnition")
@@ -137,6 +141,8 @@ goto FinishIgnition
 FinishIgnitionX:
 MAGX D 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot7")
 FinishIgnition:
+MAGX D 0 A_TakeInventory("GuardUpFlag")
+MAGX D 0 A_TakeInventory("MagmaIgnitePower")
 //MAGX D 0 SetPlayerProperty(0,0,0)
 MAGX D 0 A_PlaySoundEx("weapon/pharaoh2","Body")
 MAGX D 0 A_TakeInventory("MagmaItemFlag",99)
@@ -187,6 +193,23 @@ actor MagmaAltFlag :OnceC{}
 actor MagmaItemflag :OnceC{}
 actor MagmaIgniteFlag :OnceC{}
 
+actor MagmaIgnitePower : BasePowerPro
+{
+damagefactor "Normal", 0.80
+}
+
+Actor MagmaMunchArmor : BasicArmorBonus
+{
+  armor.maxsaveamount 75
+  armor.savepercent 15.001
+  armor.saveamount 5
+  states
+  {
+  Spawn:
+    TNT1 A 1 //A_GiveToTarget("SaturnArmorFlag",1)
+    loop
+  }
+}
 
 actor MagmaIgnition : BasicClassItem
 {
@@ -215,14 +238,18 @@ actor MagmamanFlashState_P : CustomInventory
 States
 {
 Pickup:
-TNT1 A 0 //ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,14)
 TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
 TNT1 A 0 A_TakeInventory("MagmaMainCool",1)
 TNT1 A 0 A_TakeInventory("MagmaAltCool",1)
+TNT1 A 0 A_JumpIfInventory("BasicArmor",1,"PickupFX")
 stop
 PickupR:
 TNT1 A 0 A_TakeInventory("MagmaMainCool",2)
 TNT1 A 0 A_TakeInventory("MagmaAltCool",2)
+TNT1 A 0 A_JumpIfInventory("BasicArmor",1,"PickupFX")
+stop
+PickupFX:
+HEAP S 0 A_SpawnItemEx("MagmamanBitFX",random(12,24),0,random(50,60),frandom(-1,1),0,frandom(0,2),random(0,359),1)
 stop
 }
 }
@@ -235,7 +262,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 4 A_Explode(40,80,0,0,20)
+TNT1 A 4 A_Explode(4,80,0,0,20)
 stop
 }
 }
@@ -273,6 +300,7 @@ States
 {
 Pickup:
 TNT1 A 0
+TNT1 A 0 //ACS_NamedExecuteAlways("cbm_HealthDamageRage",0,14)
 TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
 TNT1 A 0 A_GiveInventory("VolcanicBreakfastAmmo",1)
 stop
@@ -318,10 +346,10 @@ PROJECTILE
 Obituary "$OB_MAGMABAZOOKA"
 damagetype "MagmaM_Shot1"
 +BRIGHT
-Damage (70)
+Damage (7)
 Radius 10
 Height 10
-Speed 28
+Speed 32
 scale 2.5
 States
 {
@@ -346,7 +374,7 @@ actor MagmaBazookaB1P : MagmaBazookaB1{translation "192:192=229:229", "198:198=2
 actor MagmaBazookaB2 : MagmaBazookaB1
 {
 damagetype "MagmaM_Shot2"
-Damage (140)
+Damage (14)
 Radius 20
 Height 20
 States

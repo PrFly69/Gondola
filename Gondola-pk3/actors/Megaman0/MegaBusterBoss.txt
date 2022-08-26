@@ -52,6 +52,7 @@ Loop
 Fire:
 //BUST B 0 A_JumpIfNoAmmo("Hold")
 BUST B 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"FireX")
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 BUST B 0 A_PlaySoundEx("weapon/mbuster","Weapon")
 BUST B 0 A_GiveInventory("MegamanMain_CI",1)
 BUST B 0 A_TakeInventory("WeaponCharge",999)
@@ -63,6 +64,7 @@ BUST B 0 A_Refire
 goto Ready2+2
 
 FireX:
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 //BUST B 0 A_JumpIfNoAmmo("Hold")
 BUST B 0 A_PlaySoundEx("weapon/mbuster","Weapon")
 BUST B 0 A_GiveInventory("MegamanMainX_CI",1)
@@ -75,6 +77,7 @@ goto Ready2+2
 
 Fire2:
 BUST C 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"Fire2X")
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 BUST C 0 A_TakeInventory("WeaponCharge",999)
 BUST C 0 A_TakeInventory("MegamanX",999)
 BUST C 0 A_PlaySoundEx("weapon/minchrgshot","Weapon")
@@ -88,6 +91,7 @@ BUST B 0 A_Refire
 goto Ready2+2
 
 Fire2X:
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 BUST C 0 A_TakeInventory("WeaponCharge",999)
 BUST C 0 A_TakeInventory("MegamanX",999)
 BUST C 0 A_PlaySoundEx("weapon/minchrgshot","Weapon")
@@ -102,6 +106,7 @@ goto Ready2+2
 
 Fire3:
 BUST C 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"Fire3X")
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 BUST C 0 A_TakeInventory("WeaponCharge",999)
 BUST C 0 A_TakeInventory("MegamanX",999)
 BUST C 0 A_PlaySoundEx("weapon/minchrgshot","Weapon")
@@ -122,6 +127,7 @@ BUST B 0 A_Refire
 goto Ready2+2
 
 Fire3X:
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 BUST C 0 A_TakeInventory("WeaponCharge",999)
 BUST C 0 A_TakeInventory("MegamanX",999)
 BUST C 0 A_PlaySoundEx("weapon/minchrgshot","Weapon")
@@ -143,6 +149,7 @@ goto Ready2+2
 
 Fire4:
 BUST C 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"Fire4X")
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 BUST C 0 A_TakeInventory("WeaponCharge",999)
 BUST C 0 A_TakeInventory("MegamanX",999)
 BUST C 0 A_PlaySoundEx("weapon/cfire2","Weapon")
@@ -168,6 +175,7 @@ BUST B 1 offset(58,87)
 BUST B 1 offset(69,98)
 goto FireDelay
 Fire4X:
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 BUST C 0 A_TakeInventory("WeaponCharge",999)
 BUST C 0 A_TakeInventory("MegamanX",999)
 BUST C 0 A_PlaySoundEx("weapon/cfire2","Weapon")
@@ -201,6 +209,7 @@ TNT1 A 0 A_Refire("Fire5")
 goto FireDelay
 Fire5:
 CBSL C 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"Fire5X")
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 //CBSL AB 2
 CBSL C 1 offset(-69,98)
 CBSL C 1 offset(-46,76)
@@ -243,6 +252,7 @@ BUST B 1 OffSet(6,52)*/
 CBSL A 0 A_TakeInventory("DoubleUp",999)
 goto Ready2+2
 Fire5X:
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 CBSL C 1 offset(-69,98)
 CBSL C 1 offset(-46,76)
 CBSL C 1 offset(-20,54)
@@ -284,8 +294,14 @@ Hold:
 BUST B 0 A_JumpIfInventory("WeaponCharge",34,"Charge2")
 BUST B 0 A_JumpIfInventory("WeaponCharge",18,"Charge")
 BUST B 1 A_GiveInventory("WeaponCharge_RC",1)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 BUST B 0 A_Refire
 Goto Ready2+2
+
+//WalkShootFrames:
+//BUST B 0 
+//Goto Charge1
 
 Charge:
 BUST B 0 A_JumpIfInventory("WeaponCharge",34,"Charge2")
@@ -295,29 +311,41 @@ Goto Charge1
 Charge1:
 LBST H 0 A_JumpIfInventory("WeaponCharge",34,"Charge2")
 LBST H 1 ACS_ExecuteAlways(998,0,106,5)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 BUST B 0 A_Refire("Charge1.a")
 Goto Fire2
 Charge1.a:
 BUST B 1 ACS_ExecuteAlways(998,0,DYE_MEGAMANC,1)
 BUST B 0 A_GiveInventory("WeaponCharge_RC",1)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 LBST H 0 A_Refire("Charge1")
 Goto Fire2
 
 Charge2:
 BUST B 0 A_JumpIfInventory("WeaponCharge",40,"ChargeLoop")
 BUST B 1 ACS_ExecuteAlways(998,0,93,6)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 BUST B 0 A_Refire("Charge2.a")
 Goto Fire2
 Charge2.a:
 CHBU I 1 ACS_ExecuteAlways(998,0,94,7)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 BUST B 0 A_Refire("Charge2.b")
 Goto Fire2
 Charge2.b:
 CHBU J 1 ACS_ExecuteAlways(998,0,DYE_MEGAMANC,5)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 BUST B 0 A_Refire("Charge2.c")
 Goto Fire2
 Charge2.c:
 BUST B 0 A_GiveInventory("WeaponCharge",6)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 BUST B 0 A_GunFlash("Flash", GFF_NOEXTCHANGE)
 BUST B 0 A_Refire("ChargeLoop")
 Goto Fire3
@@ -337,32 +365,43 @@ stop
 
 ChargeLoop:
 LBST I 1 ACS_ExecuteAlways(991,0,30204)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 BUST B 0 A_JumpIfInventory("MegamanX",12,"ChargeLoop2")
 BUST B 0 A_GiveInventory("MegamanX",1)
 BUST B 0 A_Refire("ChargeLoop.a")
 Goto Fire3
 ChargeLoop.a:
 CHBU I 1 ACS_ExecuteAlways(998,0,30202,7)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 BUST B 0 A_Refire("ChargeLoop.b")
 Goto Fire3
 ChargeLoop.b:
 CHBU J 1 ACS_ExecuteAlways(998,0,30199,5)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 BUST B 0 A_JumpIfInventory("IsBot",1,"BotFire")
 BUST B 0 A_Refire("ChargeLoop")
 Goto Fire3
 
 ChargeLoop2:
 BUST B 1 ACS_ExecuteAlways(998,0,30201,6)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 TNT1 A 0 A_WeaponReady(14)
 BUST B 0 A_Refire("ChargeLoop2.a")
 Goto Fire4
 ChargeLoop2.a:
 CHBU I 1 ACS_ExecuteAlways(998,0,30202,7)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 TNT1 A 0 A_WeaponReady(14)
 BUST B 0 A_Refire("ChargeLoop2.b")
 Goto Fire4
 ChargeLoop2.b:
 CHBU J 1 ACS_ExecuteAlways(998,0,30199,5)
+//TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
+//BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 TNT1 A 0 A_WeaponReady(14)
 BUST B 0 A_JumpIfInventory("IsBot",1,"BotFire")
 BUST B 0 A_Refire("ChargeLoop2")
@@ -456,6 +495,29 @@ stop
 }
 */
 
+/*actor MegaCharge_WF : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+MEGM A 0 A_JumpIf(momx>0.25||momy>0.25||momx<-0.25||momy<-0.25,1)
+goto No
+TNT1 A 0 A_JumpIfInventory("WalkFrameDelayFlag",1,"Delay")
+TNT1 A 0 ACS_ExecuteAlways(512,0,1,0)
+TNT1 A 0 A_GiveInventory("WalkFrameDelayFlag",1)
+stop
+No:
+TNT1 A 0
+stop
+Delay:
+TNT1 A 0 ACS_ExecuteAlways(512,0,2,0)
+stop
+}
+}*/
+
+//actor WalkFrameDelayFlag : Powerup {powerup.duration 5}
+
 actor MegamanX : Inventory {
 inventory.maxamount 12
 }
@@ -471,10 +533,10 @@ PROJECTILE
 +FORCEXYBILLBOARD
 damagetype "MegaM_Shot"
 Obituary "$OB_MEGABUSTER"
-Damage (100)
+Damage (10)
 radius 5
 height 5
-Speed 27
+Speed 30.375
 scale 2.5
 States
 {
@@ -499,10 +561,10 @@ Translation "204:204=215:215","202:202=4:4","199:199=215:215"
 PROJECTILE
 damagetype "MegaM_Shot"
 Obituary "$OB_MEGABUSTER"
-Damage (100)
+Damage (10)
 radius 5
 height 5
-Speed 32
+Speed 36
 scale 2.5
 States
 {
@@ -527,10 +589,10 @@ Translation "204:204=215:215"
 PROJECTILE
 damagetype "MegaM_Shot2"
 Obituary "$OB_MEGABUSTER"
-Damage (200)
+Damage (20)
 radius 20
 height 20
-Speed 27
+Speed 30.375
 scale 2.5
 States
 {
@@ -553,10 +615,10 @@ Translation "204:204=215:215"
 PROJECTILE
 damagetype "MegaM_Shot2"
 Obituary "$OB_MEGABUSTER"
-Damage (200)
+Damage (20)
 radius 20
 height 20
-Speed 32
+Speed 36
 scale 2.5
 States
 {
@@ -581,10 +643,10 @@ PROJECTILE
 damagetype "MegaM_Shot2"
 Obituary "$OB_MEGABUSTER"
 +THRUGHOST
-Damage (300)
+Damage (30)
 radius 18
 height 18
-Speed 50
+Speed 56.25
 scale 2.5
 States
 {
@@ -610,10 +672,10 @@ PROJECTILE
 damagetype "MegaM_Shot2"
 Obituary "$OB_MEGABUSTER"
 +THRUGHOST
-Damage (300)
+Damage (30)
 radius 18
 height 18
-Speed 55
+Speed 61.875
 scale 2.5
 States
 {
@@ -638,10 +700,10 @@ Translation "198:198=198:198","202:202=193:193","204:204=215:215"
 PROJECTILE
 damagetype "MegaM_Shot3"
 Obituary "$OB_MEGABUSTER"
-Damage (300)
+Damage (30)
 radius 18
 height 22
-Speed 40
+Speed 45
 scale 1.5
 States
 {
@@ -665,10 +727,10 @@ Translation "198:198=198:198","202:202=193:193","204:204=215:215"
 PROJECTILE
 damagetype "MegaM_Shot3"
 Obituary "$OB_MEGABUSTER"
-Damage (300)
+Damage (30)
 radius 18
 height 22
-Speed 45
+Speed 50.625
 scale 1.5
 States
 {
@@ -689,7 +751,7 @@ actor MegaShot4XP : MegaShot4X{translation"202:202=229:229","204:204=229:229","1
 
 actor MegaShotTrail : BasicClientSide
 {
-speed 45
+speed 50.625
 +CLIENTSIDEONLY
 damage(2)
 translation "0:0=215:215", "4:4=215:215"

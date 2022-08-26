@@ -1,0 +1,34 @@
+#library "GALACS" 
+#include "zcommon.acs"
+ 
+Script "GalaxyRM1" (void)
+{
+ While(GetActorProperty(0,APROP_Health)>0 && CheckInventory("GalaxyAltFlag")==1 && CheckInventory("BlackHoleFlag")==1)
+ { 
+  If(GetPlayerInput(-1, INPUT_BUTTONS) & BT_ATTACK)
+  { 
+   GiveInventory("BlackHoleFlagD",1); 
+   GiveInventory("Blackholecooldownindicatorbar",1);
+   Terminate;
+  }  
+  TakeInventory("BlackHoleFlagD",99);
+  Delay(1);
+ } 
+ TakeInventory("BlackHoleFlagD",99);
+}
+ 
+Script "GalaxyM2M1" (void)
+{
+ While(GetActorProperty(0,APROP_Health)>0 && CheckInventory("GalaxyIsM2")==1 && CheckInventory("BlackHoleFlag")==1)
+ { 
+  If(GetPlayerInput(-1, INPUT_BUTTONS) & BT_ATTACK)
+  { 
+   GiveInventory("BlackHoleFlagD",1); 
+   GiveInventory("Blackholecooldownindicatorbar",1);
+   Terminate;
+  } 
+  TakeInventory("BlackHoleFlagD",99);
+  Delay(1);
+ } 
+ TakeInventory("BlackHoleFlagD",99);
+}

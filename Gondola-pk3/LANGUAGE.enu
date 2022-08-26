@@ -58,9 +58,6 @@ OB_DUOCSLAM = "%o was chokeslammed by %k's grip of justice.";
 OB_DUOWAVE = "%o lost %p footing to %k's Justice Shockwave.";
 OB_DUOGRIP = "%o could not escape from %k's Grip of Justice.";
 
-//Plug
-OB_PLUGITINEX = "%k turned %o into a NEMA standardized power outlet.";
-
 //Yamato
 OB_YAMATODIVE = "%o was honorably defeated by %k's Spear Dive.";
 //Astro
@@ -470,9 +467,6 @@ OB_HYPERBOMBSPLITX = "%o was blown to smithereens by %k's Cluster Bomb.";
 //Elecman
 OB_THUNDERZAP = "%o was zapped by %k's Zap Dash.";
 
-//Oilman
-OB_OILSLED = "%o crashed and slipped from %k's Oil Sled.";
-OB_OILTRIP = "%o slipped and crashed on %k's Oil Puddle.";
 
 //Sparkman
 OB_SPARKSUPLEX = "%k's Spark Tazer soldered %o's circuits into malfunction.";
@@ -504,3 +498,43 @@ OB_HOMINGSNIPERYDS = "%o was deceived and ambushed by %k's Deadly Storm.";
 OB_SOLARWAVE = "%o suffered before the light of %k's Solar Wave.";
 OB_SOLARBLAZEX = "%o was sun-blasted by %k's Solar Blaze.";
 OB_SOLARWAVEX = "%o vanquished before the light of %k's Solar Wave.";
+
+OB_THUNDERSIDEBEAM = "%o was electrocuted by %k's Thunder Sidebeam.";
+
+TAGC_11B = "Torchman Magic Series";
+TAGC_11F = "Tundraman Skates";
+
+//Ring
+OB_RINGHOLDER = "%o was bound to %k's Whopper Constrictor.";
+
+OB_BOUNCESLAM = "%o was crash-tested by %k's Superball Slam.";
+
+OB_BLOCKDROPPER = "%o recieved a concussion from %k's Block Dropper.";
+OB_PILEDRIVER = "%o felt the impact of %k's Pile Driver.";
+OB_TUNDRASTORM = "%o was glaciated by %k's Tundra Storm.";
+OB_ACIDBARRIER = "%o was corroded by %k's Acid Barrier.";
+OB_CHAINBLAST = "%o was tagged and bagged by %k's Chain Blast.";
+OB_BLAZINGTORCH = "%o was barbecued by %k's Blazing Torch.";
+
+PU_BLOCKDROPPER = "Power up! Block Dropper!";
+PU_PILEDRIVER = "Power up! Pile Driver!";
+PU_TUNDRASTORM = "Power up! Tundra Storm!";
+PU_BOUNCEBALL = "Power up! Bounce Ball!";
+
+TAG_BLOCKDROPPER = "Block Dropper";
+TAG_PILEDRIVER = "Pile Driver";
+TAG_TUNDRASTORM = "Tundra Storm";
+TAG_BOUNCEBALL = "Bounce Ball";
+
+//Plug
+OB_PLUGITINEX = "%k couldn't find the right socket in %o's body.";
+
+//Oilman
+OB_OILSLED = "%o crashed and slipped from %k's Oil Sled.";
+OB_OILTRIP = "%o slipped and crashed on %k's Oil Puddle.";
+
+//Fuse
+OB_FUSESLAP = "%o was given a power cut by %k's Electro Chop.";
+
+//Tundra
+OB_ICYWIND = "%k's Icy Gust froze %o's eyes open.";

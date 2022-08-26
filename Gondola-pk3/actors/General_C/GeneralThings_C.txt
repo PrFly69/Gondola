@@ -288,26 +288,32 @@ TNT1 A 0
 TNT1 A 0
 stop
 Spark:
+TNT1 A 0 A_JumpIfInventory("SparkHealAmmo",28,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("SparkHealAmmo",7)
 stop
 Plant:
+TNT1 A 0 A_JumpIfInventory("PlantmanHealAmmo",56,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("PlantmanHealAmmo",7)
 stop
 Roll:
+TNT1 A 0 A_JumpIfInventory("RollHealAmmo",56,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("RollHealAmmo",7)
 stop
 Dynamo:
+TNT1 A 0 A_JumpIfInventory("DynamoHealAmmo",50,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("DynamoHealAmmo",5)
 stop
 Splash:
+TNT1 A 0 A_JumpIfInventory("CrabHealingAmmo",56,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("CrabHealingAmmo",7)
 stop
 Auto:
+TNT1 A 0 A_JumpIfInventory("AutoNutsAmmo",28,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("AutoNutsAmmo",1)
 stop
@@ -343,26 +349,32 @@ X_0G RQPONMLK 3
 X_0G R 0 A_CountDown
 goto Spawn2+1
 Spark:
+TNT1 A 0 A_JumpIfInventory("SparkHealAmmo",28,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("SparkHealAmmo",14)
 stop
 Plant:
+TNT1 A 0 A_JumpIfInventory("PlantmanHealAmmo",56,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("PlantmanHealAmmo",14)
 stop
 Roll:
+TNT1 A 0 A_JumpIfInventory("RollHealAmmo",56,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("RollHealAmmo",14)
 stop
 Dynamo:
+TNT1 A 0 A_JumpIfInventory("DynamoHealAmmo",50,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("DynamoHealAmmo",10)
 stop
 Splash:
+TNT1 A 0 A_JumpIfInventory("CrabHealingAmmo",56,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("CrabHealingAmmo",14)
 stop
 Auto:
+TNT1 A 0 A_JumpIfInventory("AutoNutsAmmo",28,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("AutoNutsAmmo",2)
 stop
@@ -849,4 +861,3 @@ TNT1 A 1
 stop
 }
 }
-

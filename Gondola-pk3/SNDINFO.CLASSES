@@ -18,7 +18,7 @@ $playersound	player	male	*land		LAND
 $playersound	player	male	*jump		dsnone
 $playersound	player	male	*fist		dsnone
 //$playersound	player	male	*fistgrunt	dsnone
-$playersound	player	male	*usefail	*land
+$playersound	player	male	*usefail	LAND
 //$playersound	player	male	*evillaugh	dsnone
 //$playersound	player	male	*weaponlaugh	dsnone
 //$playersound	player	male	*puzzfail	dsnone
@@ -45,63 +45,75 @@ $playersound	megaman	male	*land		LAND
 $playersound	megaman	male	*taunt		SATUTAU4
 $playersound	megaman	female	*taunt		SATUTAU2
 $playersound	megaman	other	*taunt		SHOWTIME
+$playersound	megaman	male	*usefail	LAND
 
 $playersound	helpmanc	male	*death		THORSND6
 $playersound	helpmanc	male	*pain100	MEGAPAIN
 $playersound	helpmanc	male	*weakpain	M2_HURT
 $playersound	helpmanc	male	*land		LAND
 $playersound	helpmanc	male	*taunt		DS_OHNO8
+$playersound	helpmanc	male	*usefail	LAND
 
 //MM0/////////////////////////////////////////////////////////////
 $playersound	megamanc	male	*death		MEGADEAT
 $playersound	megamanc	male	*pain100	MEGAPAIN
 $playersound	megamanc	male	*weakpain	M2_HURT
 $playersound	megamanc	male	*land		LAND
+$playersound	megamanc	male	*usefail	LAND
 
 $playersound	protomanc	male	*death		MEGADEAT
 $playersound	protomanc	male	*pain100	MEGAPAIN
 $playersound	protomanc	male	*weakpain	M2_HURT
 $playersound	protomanc	male	*land		LAND
+$playersound	protomanc	male	*usefail	LAND
 
 $playersound	bassc	male	*death		MEGADEAT
 $playersound	bassc	male	*pain100	MEGAPAIN
 $playersound	bassc	male	*weakpain	M2_HURT
 $playersound	bassc	male	*land		LAND
+$playersound	bassc	male	*usefail	LAND
 
 $playersound	rollc	male	*death		M1_DIED
 $playersound	rollc	male	*pain100	M1_PAIN
 $playersound	rollc	male	*weakpain	M1_HURT
 $playersound	rollc	male	*land		LAND
+$playersound	rollc	male	*usefail	LAND
 
 $playersound	rockmanc	male	*death		M1_DIED
 $playersound	rockmanc	male	*pain100	M1_PAIN
 $playersound	rockmanc	male	*weakpain	M1_HURT
 $playersound	rockmanc	male	*land		MM2LAND
+$playersound	rockmanc	male	*usefail	MM2LAND
 
 $playersound	rockc	male	*death		M1_DIED
 $playersound	rockc	male	*pain100	M1_PAIN
 $playersound	rockc	male	*weakpain	M1_HURT
 $playersound	rockc	male	*land		LAND
+$playersound	rockc	male	*usefail	LAND
 
 $playersound	autoc	male	*death		MEGADEAT
 $playersound	autoc	male	*pain100	MM4PAIN
 $playersound	autoc	male	*weakpain	M4_WEAK
 $playersound	autoc	male	*land		LAND
+$playersound	autoc	male	*usefail	LAND
 
 $playersound	lightc	male	*death		S_RYU_V9
 $playersound	lightc	male	*pain100	M1_PAIN
 $playersound	lightc	male	*weakpain	M1_HURT
 $playersound	lightc	male	*land		LAND
+$playersound	lightc	male	*usefail	LAND
 
 $playersound	wilyc	male	*death		MEGADEAT
 $playersound	wilyc	male	*pain100	MM4PAIN
 $playersound	wilyc	male	*weakpain	M4_WEAK
 $playersound	wilyc	male	*land		LAND
+$playersound	wilyc	male	*usefail	LAND
 
 $playersound	sniperjoec	male	*death		M1_DIED
 $playersound	sniperjoec	male	*pain100	MM2PAIN
 $playersound	sniperjoec	male	*weakpain	M2_WEAK
 $playersound	sniperjoec	male	*land		MM2LAND
+$playersound	sniperjoec	male	*usefail	MM2LAND
 
 $playersound	bbamegamanc	male	*death		MEGADEAT
 $playersound	bbamegamanc	male	*pain100	MEGAPAIN
@@ -113,6 +125,7 @@ $playersound	duoc	male	*death		MEGADEAT
 $playersound	duoc	male	*pain100	MEGAPAIN
 $playersound	duoc	male	*weakpain	M2_HURT
 $playersound	duoc	male	*land		MM6LAND
+$playersound	duoc	male	*usefail	MM6LAND
 //MM1/////////////////////////////////////////////////////////////
 $playersound	cutmanc		male	*pain100	M1_PAIN
 $playersound	cutmanc		male	*pain75		M1_PAIN
@@ -121,10 +134,12 @@ $playersound	cutmanc		male	*pain25		M1_PAIN
 $playersound	cutmanc	male	*death		M1_DIED
 $playersound	cutmanc	male	*weakpain	M1_HURT
 $playersound	cutmanc	male	*land		MM2LAND
+$playersound	cutmanc	male	*usefail	MM2LAND
 
 $playersound	gutsmanc	male	*death		M1_DIED
 $playersound	gutsmanc	male	*weakpain	M1_HURT
 $playersound	gutsmanc	male	*land		FATLAND
+$playersound	gutsmanc	male	*usefail	FATLAND
 $playersound	gutsmanc	male	*pain100	M1_PAIN
 $playersound	gutsmanc	male	*pain75		M1_PAIN
 $playersound	gutsmanc	male	*pain50		M1_PAIN
@@ -137,6 +152,7 @@ $playersound	icemanc		male	*pain25		M1_PAIN
 $playersound	icemanc		male	*death		M1_DIED
 $playersound	icemanc		male	*weakpain	M1_HURT
 $playersound	icemanc		male	*land		MM2LAND
+$playersound	icemanc		male	*usefail	MM2LAND
 
 $playersound	firemanc	male	*pain100	M1_PAIN
 $playersound	firemanc	male	*pain75		M1_PAIN
@@ -145,6 +161,7 @@ $playersound	firemanc	male	*pain25		M1_PAIN
 $playersound	firemanc	male	*death		M1_DIED
 $playersound	firemanc	male	*weakpain	M1_HURT
 $playersound	firemanc	male	*land		MM2LAND
+$playersound	firemanc	male	*usefail	MM2LAND
 
 $playersound	elecmanc	male	*pain100	M1_PAIN
 $playersound	elecmanc	male	*pain75		M1_PAIN
@@ -153,6 +170,7 @@ $playersound	elecmanc	male	*pain25		M1_PAIN
 $playersound	elecmanc	male	*death		M1_DIED
 $playersound	elecmanc	male	*weakpain	M1_HURT
 $playersound	elecmanc	male	*land		MM2LAND
+$playersound	elecmanc	male	*usefail	MM2LAND
 
 $playersound	bombmanc	male	*pain100	M1_PAIN
 $playersound	bombmanc	male	*pain75		M1_PAIN
@@ -161,6 +179,7 @@ $playersound	bombmanc	male	*pain25		M1_PAIN
 $playersound	bombmanc	male	*death		M1_DIED
 $playersound	bombmanc	male	*weakpain	M1_HURT
 $playersound	bombmanc	male	*land		MM2LAND
+$playersound	bombmanc	male	*usefail	MM2LAND
 
 $playersound	oilmanc		male	*pain100	M1_PAIN
 $playersound	oilmanc		male	*pain75		M1_PAIN
@@ -169,6 +188,7 @@ $playersound	oilmanc		male	*pain25		M1_PAIN
 $playersound	oilmanc		male	*death		M1_DIED
 $playersound	oilmanc		male	*weakpain	M1_HURT
 $playersound	oilmanc		male	*land		MM2LAND
+$playersound	oilmanc		male	*usefail	MM2LAND
 
 $playersound	timemanc	male	*pain100	MM2PAIN
 $playersound	timemanc	male	*pain75		MM2PAIN
@@ -177,546 +197,727 @@ $playersound	timemanc	male	*pain25		MM2PAIN
 $playersound	timemanc	male	*death		M1_DIED
 $playersound	timemanc	male	*weakpain	M1_HURT
 $playersound	timemanc	male	*land		MM2LAND
+$playersound	timemanc	male	*usefail	MM2LAND
 //MM2/////////////////////////////////////////////////////////////
 $playersound	airmanc	male	*death		M1_DIED
 $playersound	airmanc	male	*pain100	MM2PAIN
 $playersound	airmanc	male	*weakpain	M2_WEAK
 $playersound	airmanc	male	*land		MM2LAND
+$playersound	airmanc	male	*usefail	MM2LAND
 
 $playersound	crashmanc	male	*death		M1_DIED
 $playersound	crashmanc	male	*pain100	MM2PAIN
 $playersound	crashmanc	male	*weakpain	M2_WEAK
 $playersound	crashmanc	male	*land		MM2LAND
+$playersound	crashmanc	male	*usefail	MM2LAND
 
 $playersound	bubblemanc	male	*death		M1_DIED
 $playersound	bubblemanc	male	*pain100	MM2PAIN
 $playersound	bubblemanc	male	*weakpain	M2_WEAK
 $playersound	bubblemanc	male	*land		MM2LAND
+$playersound	bubblemanc	male	*usefail	MM2LAND
 
 $playersound	heatmanc	male	*death		M1_DIED
 $playersound	heatmanc	male	*pain100	MM2PAIN
 $playersound	heatmanc	male	*weakpain	M2_WEAK
 $playersound	heatmanc	male	*land		MM2LAND
+$playersound	heatmanc	male	*usefail	MM2LAND
 
 $playersound	quickmanc	male	*death		M1_DIED
 $playersound	quickmanc	male	*pain100	MM2PAIN
 $playersound	quickmanc	male	*weakpain	M2_WEAK
 $playersound	quickmanc	male	*land		MM2LAND
+$playersound	quickmanc	male	*usefail	MM2LAND
 
 $playersound	woodmanc	male	*death		M1_DIED
 $playersound	woodmanc	male	*pain100	MM2PAIN
 $playersound	woodmanc	male	*weakpain	M2_WEAK
 $playersound	woodmanc	male	*land		FATLAND
+$playersound	woodmanc	male	*usefail	MM2LAND
 
 $playersound	metalmanc	male	*death		M1_DIED
 $playersound	metalmanc	male	*pain100	MM2PAIN
 $playersound	metalmanc	male	*weakpain	M2_WEAK
 $playersound	metalmanc	male	*land		MM2LAND
+$playersound	metalmanc	male	*usefail	MM2LAND
 
 $playersound	flashmanc	male	*death		M1_DIED
 $playersound	flashmanc	male	*pain100	MM2PAIN
 $playersound	flashmanc	male	*weakpain	M2_WEAK
 $playersound	flashmanc	male	*land		MM2LAND
+$playersound	flashmanc	male	*usefail	MM2LAND
 
 $playersound	alienc	male	*death		M1_DIED
 $playersound	alienc	male	*pain100	MM2PAIN
 $playersound	alienc	male	*weakpain	M2_WEAK
 $playersound	alienc	male	*land		DSNONE
+$playersound	alienc	male	*usefail	MM2LAND
 //MM3/////////////////////////////////////////////////////////////
 $playersound	magnetmanc	male	*death		MEGADEAT
 $playersound	magnetmanc	male	*pain100	MM3PAIN
 $playersound	magnetmanc	male	*weakpain	M3_WEAK
 $playersound	magnetmanc	male	*land		LAND
+$playersound	magnetmanc	male	*usefail	LAND
 
 $playersound	geminimanc	male	*death		MEGADEAT
 $playersound	geminimanc	male	*pain100	MM3PAIN
 $playersound	geminimanc	male	*weakpain	M3_WEAK
 $playersound	geminimanc	male	*land		LAND
+$playersound	geminimanc	male	*usefail	LAND
 
 $playersound	sparkmanc	male	*death		MEGADEAT
 $playersound	sparkmanc	male	*pain100	MM3PAIN
 $playersound	sparkmanc	male	*weakpain	M3_WEAK
 $playersound	sparkmanc	male	*land		LAND
+$playersound	sparkmanc	male	*usefail	LAND
 
 $playersound	topmanc	male	*death		MEGADEAT
 $playersound	topmanc	male	*pain100	MM3PAIN
 $playersound	topmanc	male	*weakpain	M3_WEAK
 $playersound	topmanc	male	*land		LAND
+$playersound	topmanc	male	*usefail	LAND
 
 $playersound	needlemanc	male	*death		MEGADEAT
 $playersound	needlemanc	male	*pain100	MM3PAIN
 $playersound	needlemanc	male	*weakpain	M3_WEAK
 $playersound	needlemanc	male	*land		LAND
+$playersound	snakemanc	male	*usefail	LAND
 
 $playersound	snakemanc	male	*death		MEGADEAT
 $playersound	snakemanc	male	*pain100	MM3PAIN
 $playersound	snakemanc	male	*weakpain	M3_WEAK
 $playersound	snakemanc	male	*land		LAND
+$playersound	snakemanc	male	*usefail	LAND
 
 $playersound	shadowmanc	male	*death		MEGADEAT
 $playersound	shadowmanc	male	*pain100	MM3PAIN
 $playersound	shadowmanc	male	*weakpain	M3_WEAK
 $playersound	shadowmanc	male	*land		dsnone
+$playersound	shadowmanc	male	*usefail	LAND
 
 $playersound	hardmanc	male	*death		MEGADEAT
 $playersound	hardmanc	male	*pain100	MM3PAIN
 $playersound	hardmanc	male	*weakpain	M3_WEAK
 $playersound	hardmanc	male	*land		FATLAND
+$playersound	hardmanc	male	*usefail	FATLAND
 
 $playersound	fatman	male	*death		MEGADEAT
 $playersound	fatman	male	*pain100	MM3PAIN
 $playersound	fatman	male	*weakpain	M3_WEAK
 $playersound	fatman	male	*land		FATLAND
+$playersound	fatman	male	*usefail	FATLAND
 
 $playersound	docrobotc	male	*death		MEGADEAT
 $playersound	docrobotc	male	*pain100	MM3PAIN
 $playersound	docrobotc	male	*weakpain	M3_WEAK
 $playersound	docrobotc	male	*land		LAND
+$playersound	docrobotc	male	*usefail	LAND
+
+$playersound	breakmanc	male	*death		MEGADEAT
+$playersound	breakmanc	male	*xdeath		MEGADEAT
+$playersound	breakmanc	male	*gibbed		MEGADEAT
+$playersound	breakmanc	male	*pain100	MM3PAIN
+$playersound	breakmanc	male	*pain75		MM3PAIN
+$playersound	breakmanc	male	*pain50		MM3PAIN
+$playersound	breakmanc	male	*pain25		MM3PAIN
+$playersound	breakmanc	male	*grunt		dsnone
+$playersound	breakmanc	male	*land		LAND
+$playersound	breakmanc	male	*jump		dsnone
+$playersound	breakmanc	male	*fist		dsnone
+$playersound	breakmanc	male	*usefail	LAND
+//lol
 //MM4/////////////////////////////////////////////////////////////
 $playersound	ringmanc	male	*death		MEGADEAT
 $playersound	ringmanc	male	*pain100	MM4PAIN
 $playersound	ringmanc	male	*weakpain	M4_WEAK
 $playersound	ringmanc	male	*land		LAND
+$playersound	ringmanc	male	*usefail	LAND
 
 $playersound	brightmanc	male	*death		MEGADEAT
 $playersound	brightmanc	male	*pain100	MM4PAIN
 $playersound	brightmanc	male	*weakpain	M4_WEAK
 $playersound	brightmanc	male	*land		LAND
+$playersound	brightmanc	male	*usefail	LAND
 
 $playersound	pharaohmanc	male	*death		MEGADEAT
 $playersound	pharaohmanc	male	*pain100	MM4PAIN
 $playersound	pharaohmanc	male	*weakpain	M4_WEAK
 $playersound	pharaohmanc	male	*land		LAND
+$playersound	pharaohmanc	male	*usefail	LAND
 
 $playersound	toadmanc	male	*death		MEGADEAT
 $playersound	toadmanc	male	*pain100	MM4PAIN
 $playersound	toadmanc	male	*weakpain	M4_WEAK
 $playersound	toadmanc	male	*land		LAND
+$playersound	toadmanc	male	*usefail	LAND
 
 $playersound	dustmanc	male	*death		MEGADEAT
 $playersound	dustmanc	male	*pain100	MM4PAIN
 $playersound	dustmanc	male	*weakpain	M4_WEAK
 $playersound	dustmanc	male	*land		LAND
+$playersound	dustmanc	male	*usefail	LAND
 
 $playersound	divemanc	male	*death		MEGADEAT
 $playersound	divemanc	male	*pain100	MM4PAIN
 $playersound	divemanc	male	*weakpain	M4_WEAK
 $playersound	divemanc	male	*land		MM6LAND
+$playersound	divemanc	male	*usefail	MM6LAND
 
 $playersound	skullmanc	male	*death		MEGADEAT
 $playersound	skullmanc	male	*pain100	MM4PAIN
 $playersound	skullmanc	male	*weakpain	M4_WEAK
 $playersound	skullmanc	male	*land		LAND
+$playersound	skullmanc	male	*usefail	LAND
 
 $playersound	drillmanc	male	*death		MEGADEAT
 $playersound	drillmanc	male	*pain100	MM4PAIN
 $playersound	drillmanc	male	*weakpain	M4_WEAK
 $playersound	drillmanc	male	*land		LAND
+$playersound	drillmanc	male	*usefail	LAND
 //MM5/////////////////////////////////////////////////////////////
 $playersound	gyromanc	male	*death		MEGADEAT
 $playersound	gyromanc	male	*pain100	MM4PAIN
 $playersound	gyromanc	male	*weakpain	M4_WEAK
 $playersound	gyromanc	male	*land		LAND
+$playersound	gyromanc	male	*usefail	LAND
 
 $playersound	starmanc	male	*death		MEGADEAT
 $playersound	starmanc	male	*pain100	MM4PAIN
 $playersound	starmanc	male	*weakpain	M4_WEAK
 $playersound	starmanc	male	*land		LAND
+$playersound	starmanc	male	*usefail	LAND
 
 $playersound	crystalmanc	male	*death		MEGADEAT
 $playersound	crystalmanc	male	*pain100	MM4PAIN
 $playersound	crystalmanc	male	*weakpain	M4_WEAK
 $playersound	crystalmanc	male	*land		LAND
+$playersound	crystalmanc	male	*usefail	LAND
 
 $playersound	gravitymanc	male	*death		MEGADEAT
 $playersound	gravitymanc	male	*pain100	MM4PAIN
 $playersound	gravitymanc	male	*weakpain	M4_WEAK
 $playersound	gravitymanc	male	*land		LAND
+$playersound	gravitymanc	male	*usefail	LAND
 
 $playersound	wavemanc	male	*death		MEGADEAT
 $playersound	wavemanc	male	*pain100	MM4PAIN
 $playersound	wavemanc	male	*weakpain	M4_WEAK
 $playersound	wavemanc	male	*land		LAND
+$playersound	wavemanc	male	*usefail	LAND
 
 $playersound	napalmmanc	male	*death		MEGADEAT
 $playersound	napalmmanc	male	*pain100	MM4PAIN
 $playersound	napalmmanc	male	*weakpain	M4_WEAK
 $playersound	napalmmanc	male	*land		LAND
+$playersound	napalmmanc	male	*usefail	LAND
 
 $playersound	stonemanc	male	*death		MEGADEAT
 $playersound	stonemanc	male	*pain100	MM4PAIN
 $playersound	stonemanc	male	*weakpain	M4_WEAK
 $playersound	stonemanc	male	*land		FATLAND
+$playersound	stonemanc	male	*usefail	FATLAND
 
 $playersound	chargemanc	male	*death		MEGADEAT
 $playersound	chargemanc	male	*pain100	MM4PAIN
 $playersound	chargemanc	male	*weakpain	M4_WEAK
 $playersound	chargemanc	male	*land		LAND
+$playersound	chargemanc	male	*usefail	LAND
 
 $playersound	darkman1c	male	*death		MEGADEAT
 $playersound	darkman1c	male	*pain100	MM4PAIN
 $playersound	darkman1c	male	*weakpain	M4_WEAK
 $playersound	darkman1c	male	*land		FATLAND
+$playersound	darkman1c	male	*usefail	FATLAND
 
 $playersound	darkman2c	male	*death		MEGADEAT
 $playersound	darkman2c	male	*pain100	MM4PAIN
 $playersound	darkman2c	male	*weakpain	M4_WEAK
 $playersound	darkman2c	male	*land		LAND
+$playersound	darkman2c	male	*usefail	LAND
 
 $playersound	darkman3c	male	*death		MEGADEAT
 $playersound	darkman3c	male	*pain100	MM4PAIN
 $playersound	darkman3c	male	*weakpain	M4_WEAK
 $playersound	darkman3c	male	*land		LAND
+$playersound	darkman3c	male	*usefail	LAND
 
 $playersound	darkman4c	male	*death		MEGADEAT
 $playersound	darkman4c	male	*pain100	MM4PAIN
 $playersound	darkman4c	male	*weakpain	M4_WEAK
 $playersound	darkman4c	male	*land		FATLAND
+$playersound	darkman4c	male	*usefail	FATLAND
 //MM6/////////////////////////////////////////////////////////////
 $playersound	blizzardmanc	male	*death		MEGADEAT
 $playersound	blizzardmanc	male	*pain100	MM4PAIN
 $playersound	blizzardmanc	male	*weakpain	M4_WEAK
 $playersound	blizzardmanc	male	*land		MM6LAND
+$playersound	blizzardmanc	male	*usefail	MM6LAND
 
 $playersound	flamemanc	male	*death		MEGADEAT
 $playersound	flamemanc	male	*pain100	MM4PAIN
 $playersound	flamemanc	male	*weakpain	M4_WEAK
 $playersound	flamemanc	male	*land		MM6LAND
+$playersound	flamemanc	male	*usefail	MM6LAND
 
 $playersound	knightmanc	male	*death		MEGADEAT
 $playersound	knightmanc	male	*pain100	MM4PAIN
 $playersound	knightmanc	male	*weakpain	M4_WEAK
 $playersound	knightmanc	male	*land		MM6LAND
+$playersound	knightmanc	male	*usefail	MM6LAND
 
 $playersound	tomahawkmanc	male	*death		MEGADEAT
 $playersound	tomahawkmanc	male	*pain100	MM4PAIN
 $playersound	tomahawkmanc	male	*weakpain	M4_WEAK
 $playersound	tomahawkmanc	male	*land		MM6LAND
+$playersound	tomahawkmanc	male	*usefail	MM6LAND
 
 $playersound	plantmanc	male	*death		MEGADEAT
 $playersound	plantmanc	male	*pain100	MM4PAIN
 $playersound	plantmanc	male	*weakpain	M4_WEAK
 $playersound	plantmanc	male	*land		MM6LAND
+$playersound	plantmanc	male	*usefail	MM6LAND
 
 $playersound	windmanc	male	*death		MEGADEAT
 $playersound	windmanc	male	*pain100	MM4PAIN
 $playersound	windmanc	male	*weakpain	M4_WEAK
 $playersound	windmanc	male	*land		MM6LAND
+$playersound	windmanc	male	*usefail	MM6LAND
 
 $playersound	yamatomanc	male	*death		MEGADEAT
 $playersound	yamatomanc	male	*pain100	MM4PAIN
 $playersound	yamatomanc	male	*weakpain	M4_WEAK
 $playersound	yamatomanc	male	*land		MM6LAND
+$playersound	yamatomanc	male	*usefail	MM6LAND
 
 $playersound	centaurmanc	male	*death		MEGADEAT
 $playersound	centaurmanc	male	*pain100	MM4PAIN
 $playersound	centaurmanc	male	*weakpain	M4_WEAK
 $playersound	centaurmanc	male	*land		MM6LAND
+$playersound	centaurmanc	male	*usefail	MM6LAND
 //MM7/////////////////////////////////////////////////////////////
 $playersound	springmanc	male	*death		MEGADEAT
 $playersound	springmanc	male	*pain100	CLAWHIT
 $playersound	springmanc	male	*weakpain	M4_WEAK
 $playersound	springmanc	male	*land		SPRNCOIL
+$playersound	springmanc	male	*usefail	SPRNCOIL
 
 $playersound	burstmanc	male	*death		MEGADEAT
 $playersound	burstmanc	male	*pain100	MM4PAIN//MM7PAIN
 $playersound	burstmanc	male	*weakpain	M4_WEAK
 $playersound	burstmanc	male	*land		MM6JUMP
+$playersound	burstmanc	male	*usefail	MM6JUMP
 
 $playersound	cloudmanc	male	*death		MEGADEAT
 $playersound	cloudmanc	male	*pain100	MM4PAIN
 $playersound	cloudmanc	male	*weakpain	M4_WEAK
 $playersound	cloudmanc	male	*land		DSNONE
+$playersound	cloudmanc	male	*usefail	FATLAND
 
 $playersound	freezemanc	male	*death		MEGADEAT
 $playersound	freezemanc	male	*pain100	MM4PAIN
 $playersound	freezemanc	male	*weakpain	M4_WEAK
 $playersound	freezemanc	male	*land		MM6JUMP
+$playersound	freezemanc	male	*usefail	MM6JUMP
 
 $playersound	junkmanc	male	*death		MEGADEAT
 $playersound	junkmanc	male	*pain100	MM4PAIN
 $playersound	junkmanc	male	*weakpain	M4_WEAK
 $playersound	junkmanc	male	*land		FATLAND
+$playersound	junkmanc	male	*usefail	FATLAND
 
 $playersound	turbomanc	male	*death		MEGADEAT
 $playersound	turbomanc	male	*pain100	MM4PAIN
 $playersound	turbomanc	male	*weakpain	M4_WEAK
 $playersound	turbomanc	male	*land		MM6JUMP
+$playersound	turbomanc	male	*usefail	MM6JUMP
 
 $playersound	slashmanc	male	*death		MEGADEAT
 $playersound	slashmanc	male	*pain100	MM4PAIN
 $playersound	slashmanc	male	*weakpain	M4_WEAK
 $playersound	slashmanc	male	*land		MM6JUMP
+$playersound	slashmanc	male	*usefail	MM6JUMP
 
 $playersound	shademanc	male	*death		MEGADEAT
 $playersound	shademanc	male	*pain100	MM4PAIN
 $playersound	shademanc	male	*weakpain	M4_WEAK
 $playersound	shademanc	male	*land		MM6JUMP
+$playersound	shademanc	male	*usefail	MM6JUMP
 //MM8/////////////////////////////////////////////////////////////
 $playersound	tengumanc	male	*death		MEGADEAT
 $playersound	tengumanc	male	*pain100	MM4PAIN
 $playersound	tengumanc	male	*weakpain	M4_WEAK
 $playersound	tengumanc	male	*land		MM6JUMP
+$playersound	tengumanc	male	*usefail	MM6JUMP
 
 $playersound	astromanc	male	*death		MEGADEAT
 $playersound	astromanc	male	*pain100	MM4PAIN
 $playersound	astromanc	male	*weakpain	M4_WEAK
 $playersound	astromanc	male	*land		DSNONE
+$playersound	astromanc	male	*usefail	FATLAND
 
 $playersound	swordmanc	male	*death		MEGADEAT
 $playersound	swordmanc	male	*pain100	MM4PAIN
 $playersound	swordmanc	male	*weakpain	M4_WEAK
-$playersound	swordmanc	male	*land		MM6LAND
+$playersound	swordmanc	male	*land		FATLAND
+$playersound	swordmanc	male	*usefail	FATLAND
 
 $playersound	clownmanc	male	*death		MEGADEAT
 $playersound	clownmanc	male	*pain100	MM4PAIN
 $playersound	clownmanc	male	*weakpain	M4_WEAK
 $playersound	clownmanc	male	*land		MM6JUMP
+$playersound	clownmanc	male	*usefail	MM6JUMP
 
 $playersound	searchmanc	male	*death		MEGADEAT
 $playersound	searchmanc	male	*pain100	MM4PAIN
 $playersound	searchmanc	male	*weakpain	M4_WEAK
-$playersound	searchmanc	male	*land		MM6LAND
+$playersound	searchmanc	male	*land		MM6JUMP
+$playersound	searchmanc	male	*usefail	MM6JUMP
 
 $playersound	frostmanc	male	*death		MEGADEAT
 $playersound	frostmanc	male	*pain100	MM4PAIN
 $playersound	frostmanc	male	*weakpain	M4_WEAK
 $playersound	frostmanc	male	*land		quake
+$playersound	frostmanc	male	*usefail	quake
 
 $playersound	grenademanc	male	*death		MEGADEAT
 $playersound	grenademanc	male	*pain100	MM4PAIN
 $playersound	grenademanc	male	*weakpain	M4_WEAK
 $playersound	grenademanc	male	*land		LAND
+$playersound	grenademanc	male	*usefail	LAND
 
 $playersound	aquamanc	male	*death		MEGADEAT
 $playersound	aquamanc	male	*pain100	MM4PAIN
 $playersound	aquamanc	male	*weakpain	M4_WEAK
 $playersound	aquamanc	male	*land		LAND
+$playersound	aquamanc	male	*usefail	LAND
 
 $playersound	originalduoc	male	*death		MEGADEAT
 $playersound	originalduoc	male	*pain100	MM4PAIN
 $playersound	originalduoc	male	*weakpain	M4_WEAK
 $playersound	originalduoc	male	*land		DSNONE//dsnone
+$playersound	originalduoc	male	*usefail	FATLAND
 
 $playersound	evilrobotc	male	*death		MEGADEAT
 $playersound	evilrobotc	male	*pain100	MM4PAIN
 $playersound	evilrobotc	male	*weakpain	M4_WEAK
 $playersound	evilrobotc	male	*land		DSNONE//dsnone
+$playersound	evilrobotc	male	*usefail	FATLAND
 //MMB/////////////////////////////////////////////////////////////
 $playersound	dynamomanc	male	*death		MEGADEAT
 $playersound	dynamomanc	male	*pain100	MM4PAIN
 $playersound	dynamomanc	male	*weakpain	M4_WEAK
 $playersound	dynamomanc	male	*land		LAND
+$playersound	dynamomanc	male	*usefail	LAND
 
 $playersound	coldmanc	male	*death		MEGADEAT
 $playersound	coldmanc	male	*pain100	MM4PAIN
 $playersound	coldmanc	male	*weakpain	M4_WEAK
 $playersound	coldmanc	male	*land		LAND
+$playersound	coldmanc	male	*usefail	LAND
 
 $playersound	groundmanc	male	*death		MEGADEAT
 $playersound	groundmanc	male	*pain100	MM4PAIN
 $playersound	groundmanc	male	*weakpain	M4_WEAK
 $playersound	groundmanc	male	*land		FATLAND
+$playersound	groundmanc	male	*usefail	FATLAND
 
 $playersound	piratemanc	male	*death		MEGADEAT
 $playersound	piratemanc	male	*pain100	MM4PAIN
 $playersound	piratemanc	male	*weakpain	M4_WEAK
 $playersound	piratemanc	male	*land		LAND
+$playersound	piratemanc	male	*usefail	LAND
 
 $playersound	burnermanc	male	*death		MEGADEAT
 $playersound	burnermanc	male	*pain100	MM4PAIN
 $playersound	burnermanc	male	*weakpain	M4_WEAK
 $playersound	burnermanc	male	*land		LAND
+$playersound	burnermanc	male	*usefail	LAND
 
 $playersound	magicmanc	male	*death		MEGADEAT
 $playersound	magicmanc	male	*pain100	MM4PAIN
 $playersound	magicmanc	male	*weakpain	M4_WEAK
 $playersound	magicmanc	male	*land		LAND
+$playersound	magicmanc	male	*usefail	LAND
 
 $playersound	kingc	male	*death		MEGADEAT
 $playersound	kingc	male	*pain100	MM4PAIN
 $playersound	kingc	male	*weakpain	M4_WEAK
 $playersound	kingc	male	*land		MM6JUMP
+$playersound	kingc	male	*usefail	MM6JUMP
 //MM9/////////////////////////////////////////////////////////////
 $playersound	concretemanc	male	*death		MEGADEAT
-$playersound	concretemanc	male	*pain100	MM2PAIN
+$playersound	concretemanc	male	*pain100	MM9PAIN
 $playersound	concretemanc	male	*weakpain	M2_WEAK
 $playersound	concretemanc	male	*land		FATLAND
+$playersound	concretemanc	male	*usefail	FATLAND
 
 $playersound	tornadomanc	male	*death		MEGADEAT
-$playersound	tornadomanc	male	*pain100	MM2PAIN
+$playersound	tornadomanc	male	*pain100	MM9PAIN
 $playersound	tornadomanc	male	*weakpain	M2_WEAK
 $playersound	tornadomanc	male	*land		MM2LAND
+$playersound	tornadomanc	male	*usefail	MM2LAND
 
 $playersound	splashwomanc	male	*death		MEGADEAT
-$playersound	splashwomanc	male	*pain100	MM2PAIN
+$playersound	splashwomanc	male	*pain100	MM9PAIN
 $playersound	splashwomanc	male	*weakpain	M2_WEAK
 $playersound	splashwomanc	male	*land		MM2LAND
+$playersound	splashwomanc	male	*usefail	MM2LAND
 
 $playersound	plugmanc	male	*death		MEGADEAT
-$playersound	plugmanc	male	*pain100	MM2PAIN
+$playersound	plugmanc	male	*pain100	MM9PAIN
 $playersound	plugmanc	male	*weakpain	M2_WEAK
 $playersound	plugmanc	male	*land		MM2LAND
+$playersound	plugmanc	male	*usefail	MM2LAND
 
 $playersound	jewelmanc	male	*death		MEGADEAT
-$playersound	jewelmanc	male	*pain100	MM2PAIN
+$playersound	jewelmanc	male	*pain100	MM9PAIN
 $playersound	jewelmanc	male	*weakpain	M2_WEAK
 $playersound	jewelmanc	male	*land		MM2LAND
+$playersound	jewelmanc	male	*usefail	MM2LAND
 
 $playersound	hornetmanc	male	*death		MEGADEAT
-$playersound	hornetmanc	male	*pain100	MM2PAIN
+$playersound	hornetmanc	male	*pain100	MM9PAIN
 $playersound	hornetmanc	male	*weakpain	M2_WEAK
 $playersound	hornetmanc	male	*land		MM2LAND
+$playersound	hornetmanc	male	*usefail	MM2LAND
 
 $playersound	magmamanc	male	*death		MEGADEAT
-$playersound	magmamanc	male	*pain100	MM2PAIN
+$playersound	magmamanc	male	*pain100	MM9PAIN
 $playersound	magmamanc	male	*weakpain	M2_WEAK
-$playersound	magmamanc	male	*land		MM2LAND//MM6LAND
+$playersound	magmamanc	male	*land		FATLAND//MM6LAND
+$playersound	magmamanc	male	*usefail	FATLAND
 
 $playersound	galaxymanc	male	*death		MEGADEAT
-$playersound	galaxymanc	male	*pain100	MM2PAIN
+$playersound	galaxymanc	male	*pain100	MM9PAIN
 $playersound	galaxymanc	male	*weakpain	M2_WEAK
 $playersound	galaxymanc	male	*land		MM2LAND
+$playersound	galaxymanc	male	*usefail	MM2LAND
 
 $playersound	fakemanc	male	*death		MEGADEAT
-$playersound	fakemanc	male	*pain100	MM2PAIN
+$playersound	fakemanc	male	*pain100	MM9PAIN
 $playersound	fakemanc	male	*weakpain	M2_WEAK
 $playersound	fakemanc	male	*land		MM2LAND
+$playersound	fakemanc	male	*usefail	MM2LAND
 //MM10////////////////////////////////////////////////////////////
 $playersound	blademanc	male	*death		MEGADEAT
-$playersound	blademanc	male	*pain100	MM2PAIN
+$playersound	blademanc	male	*pain100	MM9PAIN
 $playersound	blademanc	male	*weakpain	M2_WEAK
 $playersound	blademanc	male	*land		MM6JUMP
+$playersound	blademanc	male	*usefail	MM6JUMP
 
 $playersound	pumpmanc	male	*death		MEGADEAT
-$playersound	pumpmanc	male	*pain100	MM2PAIN
+$playersound	pumpmanc	male	*pain100	MM9PAIN
 $playersound	pumpmanc	male	*weakpain	M2_WEAK
 $playersound	pumpmanc	male	*land		MM2LAND
+$playersound	pumpmanc	male	*usefail	MM2LAND
 
 $playersound	commandomanc	male	*death		MEGADEAT
-$playersound	commandomanc	male	*pain100	MM2PAIN
+$playersound	commandomanc	male	*pain100	MM9PAIN
 $playersound	commandomanc	male	*weakpain	M2_WEAK
 $playersound	commandomanc	male	*land		FATLAND
+$playersound	commandomanc	male	*usefail	FATLAND
 
 $playersound	chillmanc	male	*death		MEGADEAT
-$playersound	chillmanc	male	*pain100	MM2PAIN
+$playersound	chillmanc	male	*pain100	MM9PAIN
 $playersound	chillmanc	male	*weakpain	M2_WEAK
 $playersound	chillmanc	male	*land		MM2LAND
+$playersound	chillmanc	male	*usefail	MM2LAND
 
 $playersound	sheepmanc	male	*death		MEGADEAT
-$playersound	sheepmanc	male	*pain100	MM2PAIN
+$playersound	sheepmanc	male	*pain100	MM9PAIN
 $playersound	sheepmanc	male	*weakpain	M2_WEAK
 $playersound	sheepmanc	male	*land		MM2LAND
+$playersound	sheepmanc	male	*usefail	MM2LAND
 
 $playersound	strikemanc	male	*death		MEGADEAT
-$playersound	strikemanc	male	*pain100	MM2PAIN
+$playersound	strikemanc	male	*pain100	MM9PAIN
 $playersound	strikemanc	male	*weakpain	M2_WEAK
 $playersound	strikemanc	male	*land		MM2LAND
+$playersound	strikemanc	male	*usefail	MM2LAND
 
 $playersound	nitromanc	male	*death		MEGADEAT
-$playersound	nitromanc	male	*pain100	MM2PAIN
+$playersound	nitromanc	male	*pain100	MM9PAIN
 $playersound	nitromanc	male	*weakpain	M2_WEAK
 $playersound	nitromanc	male	*land		MM2LAND
+$playersound	nitromanc	male	*usefail	MM2LAND
 
 $playersound	solarmanc	male	*death		MEGADEAT
-$playersound	solarmanc	male	*pain100	MM2PAIN
+$playersound	solarmanc	male	*pain100	MM9PAIN
 $playersound	solarmanc	male	*weakpain	M2_WEAK
 $playersound	solarmanc	male	*land		MM2LAND
+$playersound	solarmanc	male	*usefail	MM2LAND
 //MMV/////////////////////////////////////////////////////////////
 $playersound	terrac	male	*death		MV_DIED
 $playersound	terrac	male	*pain100	MV_OUCH
 $playersound	terrac	male	*weakpain	MV_WEAK
 $playersound	terrac	male	*land		dsnone
+$playersound	terrac	male	*usefail	GBLAND
 
 $playersound	mercuryc	male	*death		MV_DIED
 $playersound	mercuryc	male	*pain100	MV_OUCH
 $playersound	mercuryc	male	*weakpain	MV_WEAK
 $playersound	mercuryc	male	*land		GBLAND
+$playersound	mercuryc	male	*usefail	GBLAND
 
 $playersound	venusc	male	*death		MV_DIED
 $playersound	venusc	male	*pain100	MV_OUCH
 $playersound	venusc	male	*weakpain	MV_WEAK
 $playersound	venusc	male	*land		GBLAND
+$playersound	venusc	male	*usefail	GBLAND
 
 $playersound	marsc	male	*death		MV_DIED
 $playersound	marsc	male	*pain100	MV_OUCH
 $playersound	marsc	male	*weakpain	MV_WEAK
-$playersound	marsc	male	*land		GBLAND//FATLAND
+$playersound	marsc	male	*land		FATLAND//FATLAND
+$playersound	marsc	male	*usefail	FATLAND
 
 $playersound	jupiterc	male	*death		MV_DIED
 $playersound	jupiterc	male	*pain100	MV_OUCH
 $playersound	jupiterc	male	*weakpain	MV_WEAK
 $playersound	jupiterc	male	*land		GBLAND
+$playersound	jupiterc	male	*usefail	GBLAND
 
 $playersound	saturnc	male	*death		MV_DIED
 $playersound	saturnc	male	*pain100	MV_OUCH
 $playersound	saturnc	male	*weakpain	MV_WEAK
-$playersound	saturnc	male	*land		GBLAND//MM6LAND
+$playersound	saturnc	male	*land		MM6LAND//MM6LAND
+$playersound	saturnc	male	*usefail	MM6LAND
 
 $playersound	uranusc	male	*death		MV_DIED
 $playersound	uranusc	male	*pain100	MV_OUCH
 $playersound	uranusc	male	*weakpain	MV_WEAK
-$playersound	uranusc	male	*land		FATLAND//quake
+$playersound	uranusc	male	*land		quake
+$playersound	uranusc	male	*usefail	quake
 
 $playersound	plutoc	male	*death		MV_DIED
 $playersound	plutoc	male	*pain100	MV_OUCH
 $playersound	plutoc	male	*weakpain	MV_WEAK
 $playersound	plutoc	male	*land		GBLAND
+$playersound	plutoc	male	*usefail	GBLAND
 
 $playersound	neptunec	male	*death		MV_DIED
 $playersound	neptunec	male	*pain100	MV_OUCH
 $playersound	neptunec	male	*weakpain	MV_WEAK
 $playersound	neptunec	male	*land		GBLAND
+$playersound	neptunec	male	*usefail	GBLAND
 
-$playersound	sunstarc	male	*death		MV_DIED
-$playersound	sunstarc	male	*pain100	MV_OUCH
-$playersound	sunstarc	male	*weakpain	MV_WEAK
-$playersound	sunstarc	male	*land		GBLAND//MM6LAND
+$playersound	sunstarc	male	*death		GBDEAD
+$playersound	sunstarc	male	*xdeath		GBDEAD
+$playersound	sunstarc	male	*gibbed		GBDEAD
+$playersound	sunstarc	male	*pain100	GBPAIN
+$playersound	sunstarc	male	*pain75		GBPAIN
+$playersound	sunstarc	male	*pain50		GBPAIN
+$playersound	sunstarc	male	*pain25		GBPAIN
+$playersound	sunstarc	male	*grunt		dsnone
+$playersound	sunstarc	male	*land		MM6LAND
+$playersound	sunstarc	male	*jump		dsnone
+$playersound	sunstarc	male	*fist		dsnone
+$playersound	sunstarc	male	*usefail	MM6LAND
 //MMWT////////////////////////////////////////////////////////////
 $playersound	busterrodgc	male	*death		MEGADEAT
 $playersound	busterrodgc	male	*pain100	MM3PAIN
 $playersound	busterrodgc	male	*weakpain	M3_WEAK
 $playersound	busterrodgc	male	*land		LAND
+$playersound	busterrodgc	male	*usefail	LAND
 
 $playersound	megawatersc	male	*death		M1_DIED
 $playersound	megawatersc	male	*pain100	MM2PAIN
 $playersound	megawatersc	male	*weakpain	M2_WEAK
 $playersound	megawatersc	male	*land		MM2LAND
+$playersound	megawatersc	male	*usefail	MM2LAND
 
 $playersound	hyperstormhc	male	*death		M1_DIED
 $playersound	hyperstormhc	male	*pain100	M1_PAIN
 $playersound	hyperstormhc	male	*weakpain	M1_HURT
-$playersound	hyperstormhc	male	*land		FATLAND//quake
+$playersound	hyperstormhc	male	*land		quake//quake
+$playersound	hyperstormhc	male	*usefail	quake//quake
 //MMK/////////////////////////////////////////////////////////////
 $playersound	enkerc	male	*death		MV_DIED
 $playersound	enkerc	male	*pain100	MV_OUCH
 $playersound	enkerc	male	*weakpain	MV_WEAK
 $playersound	enkerc	male	*land		GBLAND
+$playersound	enkerc	male	*usefail	GBLAND
 
 $playersound	punkc	male	*death		MV_DIED
 $playersound	punkc	male	*pain100	MV_OUCH
 $playersound	punkc	male	*weakpain	MV_WEAK
 $playersound	punkc	male	*land		GBLAND
+$playersound	punkc	male	*usefail	GBLAND
 
 $playersound	balladec	male	*death		MV_DIED
 $playersound	balladec	male	*pain100	MV_OUCH
 $playersound	balladec	male	*weakpain	MV_WEAK
 $playersound	balladec	male	*land		GBLAND
+$playersound	balladec	male	*usefail	GBLAND
 
 $playersound	quintc	male	*death		MV_DIED
 $playersound	quintc	male	*pain100	MV_OUCH
 $playersound	quintc	male	*weakpain	MV_WEAK
 $playersound	quintc	male	*land		GBLAND
+$playersound	quintc	male	*usefail	GBLAND
 
 $playersound	rathorc	male	*death		MEGADEAT
-$playersound	rathorc	male	*pain100	MEGAPAIN
-$playersound	rathorc	male	*weakpain	M2_HURT
-$playersound	rathorc	male	*land		MM6LAND
+$playersound	rathorc	male	*xdeath		MEGADEAT
+$playersound	rathorc	male	*gibbed		MEGADEAT
+$playersound	rathorc	male	*pain100	MM3PAIN
+$playersound	rathorc	male	*pain75		MM3PAIN
+$playersound	rathorc	male	*pain50		MM3PAIN
+$playersound	rathorc	male	*pain25		MM3PAIN
+$playersound	rathorc	male	*grunt		dsnone
+$playersound	rathorc	male	*land		MM6JUMP
+$playersound	rathorc	male	*jump		dsnone
+$playersound	rathorc	male	*fist		dsnone
+$playersound	rathorc	male	*usefail	MM6JUMP
+
 
 $playersound	BearerClassc	male	*death		M1_DIED
 $playersound	BearerClassc	male	*pain100	M1_PAIN
 $playersound	BearerClassc	male	*weakpain	M1_HURT
 $playersound	BearerClassc	male	*land		FATLAND
+$playersound	BearerClassc	male	*usefail	FATLAND
+
+$playersound	fusemanc	male	*death		MEGADEAT
+$playersound	fusemanc	male	*xdeath		MEGADEAT
+$playersound	fusemanc	male	*gibbed		MEGADEAT
+$playersound	fusemanc	male	*pain100	MM3PAIN
+$playersound	fusemanc	male	*pain75		MM3PAIN
+$playersound	fusemanc	male	*pain50		MM3PAIN
+$playersound	fusemanc	male	*pain25		MM3PAIN
+$playersound	fusemanc	male	*grunt		dsnone
+$playersound	fusemanc	male	*land		MM6JUMP
+$playersound	fusemanc	male	*jump		dsnone
+$playersound	fusemanc	male	*fist		dsnone
+$playersound	fusemanc	male	*usefail	MM6JUMP
+
+//Blast
+$playersound	blastmanc	male	*death		MEGADEAT
+$playersound	blastmanc	male	*xdeath		MEGADEAT
+$playersound	blastmanc	male	*gibbed		MEGADEAT
+$playersound	blastmanc	male	*pain100	MM3PAIN
+$playersound	blastmanc	male	*pain75		MM3PAIN
+$playersound	blastmanc	male	*pain50		MM3PAIN
+$playersound	blastmanc	male	*pain25		MM3PAIN
+$playersound	blastmanc	male	*grunt		dsnone
+$playersound	blastmanc	male	*land		MM6JUMP
+$playersound	blastmanc	male	*jump		dsnone
+$playersound	blastmanc	male	*fist		dsnone
+$playersound	blastmanc	male	*usefail	MM6JUMP
+
+//Acid
+$playersound	acidmanc	male	*death		MEGADEAT
+$playersound	acidmanc	male	*xdeath		MEGADEAT
+$playersound	acidmanc	male	*gibbed		MEGADEAT
+$playersound	acidmanc	male	*pain100	MM3PAIN
+$playersound	acidmanc	male	*pain75		MM3PAIN
+$playersound	acidmanc	male	*pain50		MM3PAIN
+$playersound	acidmanc	male	*pain25		MM3PAIN
+$playersound	acidmanc	male	*grunt		dsnone
+$playersound	acidmanc	male	*land		MM6JUMP
+$playersound	acidmanc	male	*jump		dsnone
+$playersound	acidmanc	male	*fist		dsnone
+$playersound	acidmanc	male	*usefail	MM6JUMP
+//$playersound    acidmanc    male   *taunt      ACIDTAUN
+//$playersound    acidmanc    other   *taunt      ACIDTAU3
 
 $playersound	tundramanc	male	*death		MEGADEAT
 $playersound	tundramanc	male	*xdeath		MEGADEAT
@@ -730,6 +931,20 @@ $playersound	tundramanc	male	*land		MM6JUMP
 $playersound	tundramanc	male	*jump		dsnone
 $playersound	tundramanc	male	*fist		dsnone
 $playersound	tundramanc	male	*usefail	MM6JUMP
+
+//Torch
+$playersound	torchmanc	male	*death		MEGADEAT
+$playersound	torchmanc	male	*xdeath		MEGADEAT
+$playersound	torchmanc	male	*gibbed		MEGADEAT
+$playersound	torchmanc	male	*pain100	MM3PAIN
+$playersound	torchmanc	male	*pain75		MM3PAIN
+$playersound	torchmanc	male	*pain50		MM3PAIN
+$playersound	torchmanc	male	*pain25		MM3PAIN
+$playersound	torchmanc	male	*grunt		dsnone
+$playersound	torchmanc	male	*land		MM6JUMP
+$playersound	torchmanc	male	*jump		dsnone
+$playersound	torchmanc	male	*fist		dsnone
+$playersound	torchmanc	male	*usefail	MM6JUMP
 
 $playersound	bouncemanc	male	*death		MEGADEAT
 $playersound	bouncemanc	male	*xdeath		MEGADEAT

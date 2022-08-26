@@ -502,7 +502,7 @@ stop
 actor ShadowBladeCBM : ShadowBlade 
 {
 translation "202:202=4:4", "199:199=210:210"
-Damage (200)//16
+Damage (20)//16
 damagetype "ShadowM_Blade1"
 Radius 7
 Height 7
@@ -536,7 +536,7 @@ actor ShadowBladeCBMDead : ShadowBladeCBM
 {
 +DONTSPLASH
 -RIPPER
-Damage (200)
+Damage (20)
 Speed 0
 States
 {
@@ -580,7 +580,7 @@ Translation "250:250=87:87","249:249=93:93"
 PROJECTILE
 damagetype "DMGNoHitstun"
 Obituary "$OB_SHADOWKUNAI"
-Damage (60)
+Damage (6)
 Radius 8
 Height 8
 Speed 42
@@ -611,7 +611,7 @@ actor ShadowNoReturnBlade : ShadowKunaiBlade
 {
 translation "192:192=4:4"
 //damage (8)
-damage (50)
+damage (5)
 States
 {
 Spawn:
@@ -631,13 +631,13 @@ actor ShadowKunaiBladeP : ShadowKunaiBlade{translation "250:250=214:214","249:24
 
 actor ShadowKunaiBlade2 : ShadowKunaiBlade
 {
-damage (100)
+damage (10)
 }
 
-actor ShadowKunaiBlade2B : ShadowKunaiBladeB{damage (90)}
-actor ShadowKunaiBlade2R : ShadowKunaiBladeR{damage (90)}
-actor ShadowKunaiBlade2O : ShadowKunaiBladeO{damage (90)}
-actor ShadowKunaiBlade2P : ShadowKunaiBladeP{damage (90)}
+actor ShadowKunaiBlade2B : ShadowKunaiBladeB{damage (9)}
+actor ShadowKunaiBlade2R : ShadowKunaiBladeR{damage (9)}
+actor ShadowKunaiBlade2O : ShadowKunaiBladeO{damage (9)}
+actor ShadowKunaiBlade2P : ShadowKunaiBladeP{damage (9)}
 
 actor ShadowKunaiBladeFX
 {
@@ -785,7 +785,7 @@ bouncefactor 0.40
 wallbouncefactor 0.55
 BounceCount 4
 gravity 0.90
-Damage (30)
+Damage (3)
 Radius 16
 Height 16
 Speed 26
@@ -838,7 +838,7 @@ BounceFactor 1.0
 WallBounceFactor 0.15
 gravity 1.0
 ReactionTime 61
-Damage (100)
+Damage (10)
 Radius 16
 Height 16
 speed 20
@@ -880,7 +880,7 @@ bouncefactor 0.40
 wallbouncefactor 0.55
 BounceCount 4
 gravity 0.90
-Damage (10)
+Damage (1)
 Radius 16
 Height 16
 Speed 26
@@ -933,7 +933,7 @@ BounceFactor 1.0
 WallBounceFactor 0.15
 gravity 1.0
 ReactionTime 61
-Damage (100)
+Damage (10)
 Radius 16
 Height 16
 speed 20

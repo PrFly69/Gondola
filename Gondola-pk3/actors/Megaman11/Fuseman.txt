@@ -11,9 +11,9 @@ actor Fuseman : ClassBase //85
 	player.startitem "FuseFlightItem"
 	player.startitem "FuseFlight"
 	
-	player.maxhealth 850
-	health 850
-	player.jumpz 12
+	player.maxhealth 85
+	health 85
+	player.jumpz 10
 	Player.ForwardMove 0.75, 0.75
 	Player.SideMove 0.73, 0.73
 

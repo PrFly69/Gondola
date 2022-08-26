@@ -1,0 +1,26 @@
+#library "solar"
+
+#include "zcommon.acs"
+#include "8bdmlib.acs"
+
+//Solar
+script "CCBM_SolarInvCheck" (void)
+{
+SetResultValue(CheckInventory("SolarInfernoAmmoExtra")-35);
+//printbold(f:GetActorPitch(0));
+}
+
+script "CCBM_GetMasterTID" (void) {
+    SetActivatorToTarget(0);
+    SetResultValue(ActivatorTID());
+}
+
+script "CCBM_SolarClientCheck" (int owner_tid) CLIENTSIDE
+{
+    int pnum = owner_tid - 1000;
+    
+    if(ConsolePlayerNumber() != pnum)
+        Thing_Remove(6900);
+		//Log(d:pnum);
+		//Log(d:ConsolePlayerNumber(), s: " ", d:pnum);
+}

@@ -482,13 +482,13 @@ damagefactor "normal", 0.2
 
 actor ShadeGrabArmor : BasicArmorPickup
 {
-Armor.Savepercent 70.001
-Armor.Saveamount 330
+Armor.Savepercent 40.001
+Armor.Saveamount 33
 }
 
 actor ShadeInvulnerability : PowerInvulnerable
 {
-powerup.duration 35
+powerup.duration 10
 }
 
 actor ShadeGrabFlight : PowerUp
@@ -593,7 +593,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(50,15,0,1,15)
+TNT1 A 1 A_Explode(5,15,0,1,15)
 stop
 }
 }
@@ -717,7 +717,7 @@ BounceFactor 1.0
 WallBounceFactor 1.0
 bouncecount 2
 reactiontime 38
-damage (150)
+damage (15)
 Radius 6
 Height 6
 speed 25
@@ -766,7 +766,7 @@ PROJECTILE
 damagetype "ShadeM_Shot2"
 Obituary "$OB_NOISECRUSH"
 +FORCEXYBILLBOARD
-damage (400)
+damage (40)
 Radius 22
 Height 16
 speed 40
@@ -778,12 +778,14 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 TNT1 A 0
+SHDW E 0 A_PlaySoundEx("weapon/noisecrushtravel","Weapon")
 TNT1 A 1 A_SpawnItemEx("ShadeNoiseCrushFX8",0,0,0,0,0,0,0,1)
 TNT1 A 1 A_SpawnItemEx("ShadeNoiseCrushFX7",0,0,0,0,0,0,0,1)
 TNT1 A 1 A_SpawnItemEx("ShadeNoiseCrushFX6",0,0,0,0,0,0,0,1)
 TNT1 A 1 A_SpawnItemEx("ShadeNoiseCrushFX5",0,0,0,0,0,0,0,1)
 loop
 Death:
+SHDW E 0 A_PlaySoundEx("weapon/noisecrushimpact","Weapon")
 TNT1 AAAA 2 A_SpawnItemEx("ShadeNoiseDeathFX",0,0,0,0,0,0,0,1)
 stop
 }

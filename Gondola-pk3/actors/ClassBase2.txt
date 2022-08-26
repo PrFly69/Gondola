@@ -1,15 +1,15 @@
 actor ClassBase2 : ClassBase1
 {
-damagefactor "Drowning", 10.0
-damagefactor "Slime", 10.0
-damagefactor "Fire", 10.0
-damagefactor "Falling", 10.0
-damagefactor "Ice", 10.0
-damagefactor "Spiney", 10.0
-damagefactor "Crush", 10.0
-damagefactor "Beam", 10.0
-damagefactor "PressBall", 10.0
-damagefactor "BurnWave", 10.0
+damagefactor "Drowning", 1.0
+damagefactor "Slime", 1.0
+damagefactor "Fire", 1.0
+damagefactor "Falling", 1.0
+damagefactor "Ice", 1.0
+damagefactor "Spiney", 1.0
+damagefactor "Crush", 1.0
+damagefactor "Beam", 1.0
+damagefactor "PressBall", 1.0
+damagefactor "BurnWave", 1.0
 states
 {
 //Modders, if you want to replace Core or CBM damagetypes, put them here.
@@ -23,6 +23,10 @@ states
 Pain.CrashM_Mine:
 Pain.CrashM_Clash:
 "----" H 0 A_ScaleVelocity(0.6)
+Goto Pain+2
+
+Pain.MagicM_Orb:
+"----" H 0 A_ScaleVelocity(0.25)
 Goto Pain+2
 
 Pain.CommandoM_Wave:
@@ -73,6 +77,13 @@ goto Pain+2
 Pain.AirM_Wall:
 "----" H 0 A_GiveInventory("AirM_WallProtect",1)
 Goto Pain+2
+
+Pain.DocR_Buster:
+"----" H 0 A_SpawnItemEx("PainDocR_BusterHit")
+Goto Pain+2
+Death.DocR_Buster:
+"----" H 0 A_GiveToTarget("DocVirusAmmo",10)
+Goto Death
 
 Pain.WoodM_LeafRain:
 "----" H 0 A_GiveInventory("WoodM_LeafRainProtect",1)
@@ -131,6 +142,10 @@ Pain.GrenadeM_Bomb:
 "----" H 0 A_SpawnItemEx("PainGrenadeM_BombHit")
 goto Pain+2
 
+Pain.BubbleM_Lead:
+"----" H 0 A_ScaleVelocity(.85)
+goto Pain+2
+
 Pain.YellowDevilB:
 Pain.FragBomber:Pain.SkullSniper:Pain.CentaurArrow:Pain.PlantTrapper2:Pain.DynamoTendrilZap:Pain.RainbowGalaxy:
 
@@ -141,7 +156,7 @@ Pain.Rock_MegaBall:Pain.MegaCutBall:Pain.MegaGutsBall:/*Pain.MegaIceBall:*/Pain.
 Pain.CutM_Cutter:Pain.GutsM_Rock:Pain.GutsM_RockBit:Pain.BombM_Boom:Pain.FireM_Storm:Pain.FireM_StormBit:
 Pain.ElecM_Beam:Pain.ElecM_Zap:Pain.ElecM_TeleZap:Pain.OilM_Flame:Pain.OilM_Snap:
 
-Pain.MetalM_Blade:Pain.MetalM_Chain:Pain.AirM_Shot:Pain.BubbleM_Lead:
+Pain.MetalM_Blade:Pain.MetalM_Chain:Pain.AirM_Shot:
 Pain.HeatM_Toss:Pain.HeatM_Shot:Pain.WoodM_Leaf:Pain.WoodM_Shield:Pain.WoodM_Slam:
 Pain.DrWily_Pan:Pain.DrWily_Elec:Pain.Alien_Boobeam:
 
@@ -163,16 +178,16 @@ Pain.SpringM_Fist:Pain.ShadeM_Shot:Pain.ShadeM_Shot2:
 
 Pain.AstroM_Meteor:Pain.SearchM_Shot:Pain.SearchM_LockShot:Pain.SearchM_Disc:
 Pain.FrostM_Shot:Pain.GrenadeM_Kamikaze:
-Pain.Trio_Shot2:Pain.Trio_Shot3:Pain.TrioAstroCrush:Pain.TrioHomingSniper:Pain.TrioIceWave:
+Pain.Trio_Shot2:Pain.Trio_Shot3:Pain.TrioAstroCrush:Pain.TrioHomingSniper:
 
 Pain.ConcreteM_TossBit:Pain.SplashW_Fish1:Pain.SplashW_Fish2:Pain.SplashW_Fish3:
 Pain.PlugM_Ball:Pain.PlugM_Prong:Pain.PlugM_Plugged:Pain.MagmaM_Shot1:Pain.MagmaM_Shot2:
 Pain.GalaxyM_Shot:
 
-Pain.PumpM_ShieldToss:Pain.PumpM_Stream:Pain.CommandoM_Shot:Pain.CommandoM_Mine:Pain.NitroM_Shot:
+Pain.PumpM_ShieldToss:Pain.PumpM_Stream:Pain.CommandoM_Shot:Pain.CommandoM_Mine:Pain.NitroM_Shot:Pain.ChillSpikeClass:
 
 Pain.AstroM_Shot:Pain.AstroM_CloneShot:Pain.DynamoM_Orb:Pain.DynamoM_Bolt:
-Pain.DynamoM_TaggedBolt:Pain.DynamoM_DishZap:Pain.MagicM_Orb:Pain.MagicM_Ball:Pain.King_ShieldDrop:
+Pain.DynamoM_TaggedBolt:Pain.DynamoM_DishZap:Pain.MagicM_Ball:Pain.King_ShieldDrop:
 
 Pain.Mercury_Swipe:Pain.Mercury_Swipe2:Pain.Mercury_Blob:Pain.Mercury_Slam:
 Pain.Venus_Bomb:Pain.Venus_Acid:Pain.Venus_BoomJump:Pain.Mars_Photon:Pain.Mars_Mortar:
@@ -207,7 +222,6 @@ Pain.GravityM_Up:
 "----" H 0 A_GiveInventory("PainHitstun_90_P",1)
 "----" H 0 A_JumpIfInventory("FlightDisableFlag",1,2)
 "----" H 0 ThrustThingZ(0,70,0,0)
-"----" H 0 HealThing(1)
 "----" H 0
 goto Pain+2
 

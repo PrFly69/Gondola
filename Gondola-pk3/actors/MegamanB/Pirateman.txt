@@ -8,11 +8,11 @@
     Player.ScoreIcon "C_0BD0X"
 	Player.DisplayName "Pirateman"
 	Player.SoundClass "piratemanC"
-	player.maxhealth 1250
-	health 1250
+	player.maxhealth 125
+	health 125
 	player.jumpz 10
-	Player.ForwardMove 0.65, 0.65
-	Player.SideMove 0.63, 0.63
+	Player.ForwardMove 0.7, 0.7
+	Player.SideMove 0.68, 0.68
 	Player.StartItem "IsAPirate", 1
 	//Player.StartItem "CanSnatch_F"
 	Player.StartItem "RemoteMineBoss"

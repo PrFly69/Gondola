@@ -1,0 +1,111 @@
+actor DocScannerWep : BaseMM8BDMWep
+{
+dropitem "DocScannerWepCDropped"
+Weapon.AmmoUse 28
+Weapon.AmmoGive 28
+Weapon.SlotNumber 6
+Inventory.Pickupmessage "$PU_DOCSCANNER"
+Obituary "$OB_DOCSCANNER"
+Tag "$TAG_DOCSCANNER"
+weapon.ammotype "DocScannerAmmo"
+inventory.icon "XTR0WI_H"
+States
+{
+Spawn:
+XWI0 H 1
+loop
+Ready:
+XH0H A 0 ACS_ExecuteAlways(998,0,DYE_DOCSCANNER)
+XH0H A 1 A_WeaponReady
+wait
+
+Deselect:
+XH0H AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0H A 1 A_Lower
+Loop
+Select:
+XH0H AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0H A 1 A_Raise
+Loop
+
+Fire:
+XH0H A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0H A 0 A_JumpIfInventory("DocScannerUseDelay",1,"FireNo")
+XH0H A 0 A_PlaySoundEx("Wep/DocScanCheck","weapon")
+XH0H A 0 A_SpawnItemEx("DocScannerCopy",0,0,33,cos(-pitch)*1,0,sin(-pitch)*1,0,1)
+XH0H C 1 A_SpawnItemEx("DocScannerLaserFX_H",0,0,43,cos(-pitch)*15,0,sin(-pitch)*15,0,1)
+XH0H C 2
+XH0H BA 3
+XH0H A 2 A_GiveInventory("DocScannerUseDelay",1)
+Goto Ready+1
+FireNo:
+XH0H A 1
+Goto Ready+1
+NoAmmo:
+XH0H A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor DocScannerAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor DocScannerUseDelay : Powerup
+{
+Powerup.Duration 20
+}
+
+actor DocScannerCopy : DocScanner
+{
+damagetype "DocScanner"
+damage (6)
+States
+{
+DeathScan:
+TNT1 A 0 A_SpawnItemEx("DocScannerMarkFX_H",-6,0,8,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("CopyDocScannerBitFX_H",-6,0,8,0,0,0,0,1025)
+TNT1 A 10
+stop
+}
+}
+
+actor CopyDocScannerBitFX_H : BasicHelper
+{
+var int user_TID;
+var int user_Tracer;
+var int user_ScannerMemory;
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SetUserVar("user_TID",ACS_NamedExecuteWithResult("core_gettarget",0))
+TNT1 A 0 A_SetUserVar("user_Tracer",ACS_NamedExecuteWithResult("core_gettracer",0))
+TNT1 A 0 A_PlaySoundEx("Wep/DocScanHit","weapon")
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_DocScannerFetch",0,user_Tracer,user_TID,0)
+TNT1 A 4 A_GiveToTarget("DocScannerUseDelay",1)
+goto Spawn1
+Spawn1:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_GiveInventory("WeaponCharge",1)
+TNT1 A 0 A_GiveToTarget("DocScannerUseDelay",1)
+TNT1 A 8 A_SpawnItemEx("DocScannerBitFX",0,0,-58,0,0,0,0,1)
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",4,"SpawnEnd")
+goto Spawn2
+Spawn2:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 A_GiveToTarget("DocScannerUseDelay",1)
+TNT1 A 10 A_SpawnItemEx("DocScannerBitFX",0,0,6,0,0,0,0,1)
+goto Spawn1
+SpawnEnd:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 10 A_GiveToTarget("DocScannerUseDelay",1)
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 0 //A_GiveToTarget("DocScannerUseDelay",1)
+TNT1 A 12 ACS_NamedExecuteAlways("cbm_DocScannerFetch",0,user_Tracer,user_TID,28)
+stop
+}
+}

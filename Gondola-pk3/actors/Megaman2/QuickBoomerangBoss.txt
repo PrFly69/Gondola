@@ -174,7 +174,7 @@ goto Spawn
 actor Quickbossrangs1 : QuickBoomerang
 {
 translation "192:192=229:229"
-damage (60)
+damage (6)
 damagetype "QuickM_Rapid"
 bouncecount 2
 Radius 7
@@ -209,7 +209,7 @@ actor Quickbossrangs1P : Quickbossrangs1{translation "192:192=229:229"}
 actor Quickbossrangs2 : Quickbossrangs1
 {
 reactiontime 7
-damage (60)
+damage (6)
 damagetype "QuickM_Shot"
 States
 {

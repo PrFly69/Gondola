@@ -4,11 +4,11 @@ Player.ScoreIcon "C_WTC0X"
 player.displayname "HyperStormH"
 player.soundclass "hyperstormhc"
 
-player.maxhealth 2000
-health 2000
+player.maxhealth 200
+health 200
 player.jumpz 10
-player.forwardmove 0.50, 0.50
-player.sidemove 0.48, 0.48
+player.forwardmove 0.5625, 0.5625
+player.sidemove 0.5625, 0.5625
 player.startitem "PigsyBoss"
 player.startitem "PiggyBoss"
 player.startitem "SemiStunArmor"

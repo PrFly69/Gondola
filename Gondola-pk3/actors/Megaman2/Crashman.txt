@@ -4,11 +4,11 @@ Player.ScoreIcon "C_02E0X"
 player.displayname "Crashman"
 player.soundclass "crashmanc"
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.jumpz 13
-player.forwardmove 0.86, 0.86
-player.sidemove 0.84, 0.84
+player.forwardmove 0.88, 0.88
+player.sidemove 0.86, 0.86
 
 player.startitem "CrashbombBoss"
 player.startitem "ClashAmmo", 14

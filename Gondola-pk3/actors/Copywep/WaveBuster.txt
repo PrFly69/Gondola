@@ -1,0 +1,132 @@
+actor WaveBusterWep : BaseMM8BDMWep
+{
+dropitem "WaveBusterWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 3
+Inventory.Pickupmessage "$PU_WAVEBUSTER"
+Obituary "$OB_WAVEBUSTER"
+Tag "$TAG_WAVEBUSTER"
+weapon.ammotype "WaveBusterAmmo"
+inventory.icon "XTR0WI_C"
+States
+{
+Spawn:
+XWI0 C 1
+loop
+Ready:
+XH0C A 0 ACS_ExecuteAlways(998,0,DYE_WAVEBUSTER)
+XH0C A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+XH0C AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0C A 1 A_Lower
+Loop
+Select:
+XH0C AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0C A 1 A_Raise
+Loop
+Fire:
+XH0C A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0C A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+XH0C A 0 A_FireCustomMissile("WaveBuster",0,1,8,0)
+XH0C A 0 A_FireCustomMissile("WaveBuster2",0,0,8,0)
+XH0C BC 4
+XH0C A 6 
+XH0C A 0 A_Refire
+Goto Ready+1
+NoAmmo:
+XH0C A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor WaveBusterAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor WaveBuster
+{
+var int user_DIRECTION;
+Translation "192:192=228:228","198:198=253:253"
+PROJECTILE
+damagetype "WaveBuster"
+Obituary "$OB_WAVEBUSTER"
++FORCEXYBILLBOARD
++BRIGHT
+damage (16)
+Radius 10
+Height 10
+speed 10
+scale 3.0
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_DIRECTION",1)
+goto SpawnStart
+SpawnStart:
+XH0C VV 1 A_Changevelocity(0,-3*user_DIRECTION,0,1)
+XH0C W 2 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C X 0 A_Changevelocity(0,18*user_DIRECTION,0,1)
+goto Spawn1
+Spawn1:
+XH0C XVW 2 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C XX 1 A_Changevelocity(0,-6*user_DIRECTION,0,1)
+XH0C V 0 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C VV 1 A_Changevelocity(0,-6*user_DIRECTION,0,1)
+XH0C WXV 2 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C WW 1 A_Changevelocity(0,6*user_DIRECTION,0,1)
+XH0C X 0 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C XX 1 A_Changevelocity(0,6*user_DIRECTION,0,1)
+
+XH0C VWX 2 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C VV 1 A_Changevelocity(0,-6*user_DIRECTION,0,1)
+XH0C W 0 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C WW 1 A_Changevelocity(0,-6*user_DIRECTION,0,1)
+XH0C XVW 2 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C XX 1 A_Changevelocity(0,6*user_DIRECTION,0,1)
+XH0C V 0 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C VV 1 A_Changevelocity(0,6*user_DIRECTION,0,1)
+
+XH0C WXV 2 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C WW 1 A_Changevelocity(0,-6*user_DIRECTION,0,1)
+XH0C X 0 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C XX 1 A_Changevelocity(0,-6*user_DIRECTION,0,1)
+XH0C VWX 2 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C VV 1 A_Changevelocity(0,6*user_DIRECTION,0,1)
+XH0C W 0 A_SpawnItemEx("WaveBusterFX",0,0,0,0,0,0,0,1)
+XH0C WW 1 A_Changevelocity(0,6*user_DIRECTION,0,1)
+loop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor WaveBuster2 : WaveBuster
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_SetUserVar("user_DIRECTION",-1)
+goto SpawnStart
+}
+}
+
+actor WaveBusterFX : BasicClientSide
+{
++BRIGHT
+scale 2.0
+States
+{
+Spawn:
+TNT1 A 1
+XH0C VWX 2
+stop
+}
+}

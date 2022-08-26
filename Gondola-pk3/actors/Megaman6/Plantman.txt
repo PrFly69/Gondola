@@ -8,8 +8,8 @@ player.startitem "PsychedelicAmmo", 28
 player.startitem "PlantmanHealAmmo", 14
 player.startitem "PlantBarrierUseItem"
 
-player.maxhealth 900
-health 900
+player.maxhealth 85
+health 85
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

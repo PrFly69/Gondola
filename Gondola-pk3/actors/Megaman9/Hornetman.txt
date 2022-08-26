@@ -4,11 +4,11 @@ Player.ScoreIcon "C_09F0X"
 player.displayname "Hornetman"
 player.soundclass "hornetmanc"
 
-player.maxhealth 900
-health 900
+player.maxhealth 100
+health 100
 player.jumpz 13
-player.forwardmove 0.8, 0.8
-player.sidemove 0.78, 0.78
+player.forwardmove 0.9, 0.9
+player.sidemove 0.9, 0.9
 
 player.startitem "HornetChaserBoss"
 player.startitem "NotTheHornetsAmmo", 21

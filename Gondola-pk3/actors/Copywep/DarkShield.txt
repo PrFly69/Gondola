@@ -1,0 +1,136 @@
+actor DarkShieldWep : BaseMM8BDMWep
+{
+dropitem "DarkShieldWepCDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 28
+Weapon.SlotNumber 7
+Inventory.Pickupmessage "$PU_DARKSHIELD"
+Obituary "$OB_DARKSHIELD"
+Tag "$TAG_DARKSHIELD"
+weapon.ammotype "DarkShieldAmmo"
+inventory.icon "XTR0WI_M"
+States
+{
+Spawn:
+XWI0 M 1
+loop
+Ready:
+XH0M A 0 ACS_ExecuteAlways(998,0,DYE_DARKMAN2)
+XH0M A 0 A_GunFlash
+XH0M A 1 A_WeaponReady
+Goto Ready+2
+ReadyShield:
+XH0M A 0 A_GiveInventory("DarkShieldPowerSpeed",1)
+XH0M AAAAAAAAAAAAAAAAAAAA 1 Offset(0,50)A_WeaponReady(1)
+XH0M A 0 A_TakeInventory("DarkShieldAmmo",1,1)
+XH0M A 0 A_JumpIfInventory("DarkShieldAmmo",1,"ReadyShield")
+goto ShieldThrow
+Deselect:
+XH0M A 0 A_GiveInventory("StopShield",1)
+XH0M A 0 A_TakeInventory("ShieldCheck",1)
+XH0M A 0 A_TakeInventory("DarkShieldPowerSpeed",1)
+XH0M AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0M A 1 A_Lower
+Loop
+Select:
+XH0M AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0M A 1 A_Raise
+Loop
+Fire:
+XH0M B 0 A_JumpIfInventory("ShieldCheck",1,"ShieldThrow")
+XH0M B 0 A_JumpIfNoAmmo("NoAmmo")
+XH0M B 0 A_GiveInventory("ShieldCheck",1)
+XH0M B 0 A_TakeInventory("StopShield",9)
+XH0M B 0 A_SpawnItemEx("DarkShieldBlocker",55,0,0,0,0,0,0,1)
+XH0M B 0 A_SpawnItemEx("DarkShieldBlocker",55,0,0,0,0,0,180,1)
+XH0M B 2
+XH0M CDEF 2 A_GiveInventory("DarkShieldPowerSpeed",1)
+XH0M A 2 Offset(0,78)
+XH0M A 2 Offset(0,50)
+XH0M A 0 A_TakeInventory("DarkShieldAmmo",1,1)
+goto ReadyShield
+ShieldThrow:
+XH0M B 0 A_GiveInventory("StopShield",1)
+XH0M G 0 A_TakeInventory("ShieldCheck",999)
+XH0M G 0 A_FireCustomMissile("DarkShieldSpinner_H",0,1,0,0)
+XH0M G 3 Offset(-20,18)
+XH0M H 3 A_WeaponReady(14)
+XH0M H 10 A_TakeInventory("DarkShieldPowerSpeed",999)
+XH0M G 3 Offset(-20,18)
+Goto Ready+2
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 A 1 A_GiveInventory("DarkShieldFlash_P",1)
+loop
+NoAmmo:
+XH0M A 1 ACS_Execute(979,0)
+Goto Ready+2
+}
+}
+
+actor DarkShieldAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor DarkShieldPowerSpeed : PowerSpeed
+{
++POWERSPEED.NOTRAIL
+Powerup.Duration -2
+Speed 1.30
+}
+
+actor PowerDarkShieldSnd : Powerup
+{
+Powerup.Duration 10
+}
+
+actor DarkShieldFlash_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("ShieldCheck",1,"PickupSnd")
+stop
+PickupSnd:
+TNT1 A 0 A_JumpIfInventory("PowerDarkShieldSnd",1,"No")
+TNT1 A 0 A_GiveInventory("PowerDarkShieldSnd",1)
+TNT1 A 0 A_PlaySoundEx("weapon/shieldhum","Body")
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor DarkShieldBlocker : Darkman2ShieldBlocker
+{
+Translation "202:202=93:93"
+damagetype "DarkShield"
+Obituary "$OB_DARKSHIELD"
+Accuracy 8
+}
+
+actor DarkShieldSpinner_H : BasicHelper
+{
+Translation "202:202=93:93"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("Darkman2ShieldSpinner",46,0,-28,0,0,0,90,1)
+TNT1 A 0 A_SpawnItemEx("Darkman2ShieldSpinner",46,0,-28,0,0,0,270,1)
+stop
+}
+}
+
+actor DarkShieldSpinner : Darkman2ShieldSpinner
+{
+Translation "202:202=93:93"
+damagetype "DarkShield"
+Obituary "$OB_DARKSHIELD"
+damage (8)
+}

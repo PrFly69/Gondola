@@ -4,17 +4,17 @@ Player.ScoreIcon "C_0KB0X"
 player.displayname "Punk"
 player.soundclass "punkc"
 player.startitem "ScrewCrusherBoss"
-player.startitem "BounceCrusherBoss"
+//player.startitem "BounceCrusherBoss"
 player.startitem "ScrewCrushAmmo", 14
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.jumpz 10
 player.forwardmove 0.75, 0.75
-player.sidemove 0.7, 0.7
+player.sidemove 0.73, 0.73
 
 player.weaponslot 1, "ScrewCrusherBoss"
-player.weaponslot 2, "BounceCrusherBoss"
+//player.weaponslot 2, "BounceCrusherBoss"
 
 player.startitem "MirrorBusterWeakness2", 1
 
@@ -61,8 +61,10 @@ PunkStop2:
 PUNK WV 5
 Goto Spawn
 PunkJumping:
+PUNK A 0 A_JumpIfInventory("PunkSpinning",1,"PunkSpin2")
+PUNK A 0 A_JumpIfInventory("PunkSpinning2",1,"PunkFlying2")
 PUNK I 1 A_JumpIf(z-floorz<=0, "Spawn")
-wait
+loop
 PunkJumpingShoot:
 PUNK JJJKKK 1 A_JumpIf(z-floorz<=0, "Missile")
 goto PunkJumping

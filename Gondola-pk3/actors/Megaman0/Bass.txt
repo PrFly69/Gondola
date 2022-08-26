@@ -17,8 +17,8 @@ player.startitem "CanUseItems"
 player.startitem "SlideLimitFlag", 500
 player.startitem "CopyNerf"
 
-player.maxhealth 900
-health 900
+player.maxhealth 90
+health 90
 player.jumpz 10
 player.forwardmove 0.75, 0.75
 player.sidemove 0.73, 0.73

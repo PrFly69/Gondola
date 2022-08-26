@@ -1,0 +1,54 @@
+#library "HSCRL"
+#include "zcommon.acs"
+
+script "UECHealthScrollingEnter" ENTER
+{
+	ACS_NAmedExecuteAlways("UECHealthScrolling", 0);
+}
+
+script "UECHealthScrollingRespawn" RESPAWN
+{
+	ACS_NAmedExecuteAlways("UECHealthScrolling", 0);
+}
+
+script "UECHealthScrolling" (void)
+{
+//If(GetUserCvar(PlayerNumber(),"UEC_DamagedColor") == 0){terminate;}
+int Diff;
+int Diff2;
+int DiffLoss;
+int SpawnHP = GetActorProperty(0,APROP_SPAWNHEALTH);
+GiveInventory("DamagedHealth",100);
+while(GetActorProperty(0,APROP_Health)>0 && PlayerInGame(PlayerNumber()))
+  {
+ if(CheckActorInventory(ActivatorTID(),"DamagedHealth")==GetPercentHP(GetActorProperty(0,APROP_HEALTH),SpawnHP)) //Not using activator tid breaks it's timings, somehow even with int
+   {
+	 Delay(6);
+    }
+  else
+	{
+	 While(CheckActorInventory(ActivatorTID(),"DamagedHealthLostDelay") == 1){GiveInventory("DamagedHealthIsDifferent",1); Delay(1);}
+		If(CheckActorInventory(ActivatorTID(),"DamagedHealth")>GetPercentHP(GetActorProperty(0,APROP_HEALTH),SpawnHP))
+			{
+			If(Diff2 >10){Diff2 = 2;}
+			else{Diff2 = 1;}
+			TakeInventory("DamagedHealth",1*Diff2);
+			GiveInventory("DamagedHealthIsDifferent",1);
+			Delay(1);
+			}
+		else{
+			GiveInventory("DamagedHealth",1*Diff2);
+			GiveInventory("DamagedHealthIsDifferent",1);
+			Delay(1);
+			}
+		}
+  }
+TakeInventory("DamagedHealth",9999);
+}
+
+function int GetPercentHP (int CurHP, int MaxHP)
+{
+CurHP = CurHP << 16;
+MaxHP = MaxHP << 16;
+Return(fixedmul(fixeddiv(CurHP,MaxHP),100));
+}

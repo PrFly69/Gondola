@@ -20,7 +20,7 @@ SeeSound "weapon/reboundprojectile"
 BounceFactor 1.0
 WallBounceFactor 1.0
 BounceCount 6
-Damage (100)
+Damage (10)
 Radius 16
 Height 16
 Speed 50
@@ -177,7 +177,7 @@ Actor ReboundStrikerReturnerPowered : StrikeM_ReboundStriker {
 			TNT1 A 0 A_JumpIfInTargetInventory("StrikeBuntCheck",1,"ReturnBunted")
 			TNT1 A 0 //A_GiveToTarget("ReboundStrikerLimit")
 			TNT1 A 0 A_GiveToTarget("StrikeHUDCheck")
-			TNT1 A 0 A_GiveToTarget("ReboundStrikerPower", 2)
+			TNT1 A 0 A_GiveToTarget("ReboundStrikerPower", 4)
 			stop
 			
 		ReturnBunted:
@@ -229,10 +229,10 @@ damagetype "StrikeBall2"
 Obituary "$OB_STRIKEBAT"
 +DONTBLAST
 reactiontime 1
-damage (200)
+damage (20)
 Radius 20
 Height 20
-speed 60
+speed 68
 scale 2.5
 States
 {
@@ -241,7 +241,7 @@ UMFX R 0
 UMFX J 1 A_CountDown
 wait
 Death:
-UMFX R 0 A_Explode(200,40,0)
+UMFX R 0 A_Explode(20,40,0)
 goto XDeath
 XDeath:
 UMFX J 0 A_Stop
@@ -265,7 +265,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 3 A_Explode(200,48,0,0,49)
+TNT1 A 3 A_Explode(20,48,0,0,49)
 stop
 XDeath:
 TNT1 A 0 A_PlaySoundEx("weapon/blizzstrike","Body")
@@ -334,11 +334,12 @@ Obituary "$OB_STRIKEBALLX"
 +DONTSPLASH
 +HEXENBOUNCE
 +SKYEXPLODE
++BOUNCEONACTORS
 +USEBOUNCESTATE
 BounceFactor 1.0
 WallBounceFactor 1.0
 BounceCount 8
-Damage (150)
+Damage (15)
 Radius 16
 Height 16
 Speed 60
@@ -369,7 +370,8 @@ RBD2 D 0 A_ChangeFlag("THRUACTORS",0)
 goto Spawn2
 
 Death:
-RBDS D 0 //A_SpawnItemEx("ReboundStrikerReturnerPowered", 0, 0, 0, 0, 0, 0, 0, 1)
+TNT1 A 1 //A_GiveToTarget("ReboundStrikerLimit")
+TNT1 A 1
 stop
 }
 }
@@ -411,11 +413,12 @@ Obituary "$OB_STRIKEBALLX"
 +DONTSPLASH
 +HEXENBOUNCE
 +SKYEXPLODE
++BOUNCEONACTORS
 +USEBOUNCESTATE
 BounceFactor 1.0
 WallBounceFactor 1.0
 BounceCount 6
-Damage (200)
+Damage (20)
 Radius 16
 Height 16
 Speed 75
@@ -447,6 +450,7 @@ RBDS D 0 A_ChangeFlag("THRUACTORS",0)
 goto Spawn2
 
 Death:
+TNT1 A 1 //A_GiveToTarget("ReboundStrikerLimit")
 TNT1 A 1
 stop
 }
@@ -472,10 +476,10 @@ Obituary "$OB_STRIKEBALLX"
 BounceFactor 1.0
 WallBounceFactor 1.0
 BounceCount 8
-Damage (150)
+Damage (15)
 Radius 16
 Height 16
-Speed 55
+Speed 60
 Scale 2.5
 States 
 {

@@ -65,14 +65,14 @@
 #include "actors/Megaman11/Acidman.txt"
 #include "actors/Megaman11/AcidBarrierBoss.txt"
 
-#include "actors/Wep/Copywep/BlazingTorch.txt"
-#include "actors/Wep/Copywep/ScrambleThunder.txt"
-#include "actors/Wep/Copywep/ChainBlast.txt"
-#include "actors/Wep/Copywep/AcidBarrier.txt"
+#include "actors/Copywep/BlazingTorch.txt"
+#include "actors/Copywep/ScrambleThunder.txt"
+#include "actors/Copywep/ChainBlast.txt"
+#include "actors/Copywep/AcidBarrier.txt"
 
 #include "actors/MegamanV/Sunstar.txt"
 #include "actors/MegamanV/NovaBeamBoss.txt"
-#include "actors/Wep/CopyWep/NovaBeam.txt"
+#include "actors/CopyWep/NovaBeam.txt"
 #include "actors/Megaman11/Blastman.txt"
 #include "actors/Megaman11/ChainBlastBoss.txt"
 
@@ -83,6 +83,9 @@
 #include "actors/Megaman11/BounceBallBoss.txt"
 
 #include "actors/copywepvisibility.txt"
+
+#include "actors/copywep/BounceBall.txt"
+#include "actors/copywep/TundraStorm.txt"
 
 actor AboveDecimalHP : Inventory
 {

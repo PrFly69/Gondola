@@ -4,13 +4,13 @@ Player.ScoreIcon "C_08B0X"
 player.displayname "Astroman"
 player.soundclass "astromanc"
 player.startitem "AstroCrushBoss"
-player.startitem "CopyAmmoC", 28
+player.startitem "CopyAmmoC", 84
 player.startitem "AstroFlightItem"
 player.startitem "AstroFlight"
 //gravity 0.6
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 115
+health 115
 player.jumpz 10
 player.forwardmove 0.7, 0.7
 player.sidemove 0.68, 0.68

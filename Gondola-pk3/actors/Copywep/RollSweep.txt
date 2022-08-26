@@ -1,0 +1,206 @@
+actor RollSweepWep : BaseMM8BDMWep
+{
+dropitem "RollSweepWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 4
+Inventory.Pickupmessage "$PU_ROLLSWEEP"
+Obituary "$OB_ROLLSWEEP"
+Tag "$TAG_ROLLSWEEP"
+weapon.ammotype "RollSweepAmmo"
+inventory.icon "XTR0WI_A"
+States
+{
+Spawn:
+XWI0 A 1
+loop
+Ready:
+XH0A A 0 ACS_ExecuteAlways(998,0,DYE_ROLLSWEEP)
+XH0A A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+XH0A A 0 A_TakeInventory("RollSweepFlag",999)
+XH0A AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0A A 1 A_Lower
+goto Deselect+1
+Select:
+XH0A AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0A A 1 A_Raise
+Loop
+Fire:
+XH0A A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0A A 0 A_PlaySoundEx("weapon/RollSwing","Weapon")
+XH0A A 0 A_JumpIfInventory("RollSweepFlag",1,"Fire2")
+XH0A A 1 OffSet(-24,34)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A B 1 OffSet(-48,37)
+XH0A B 0 A_Blast(BF_NOIMPACTDAMAGE,255,192,25.0,"RollSweepBlastFX")
+XH0A B 0 A_FireCustomMissile("RollSweepShot",0,1,0,0)
+XH0A B 1 OffSet(-72,41)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A C 1 OffSet(-84,43)
+XH0A C 1 OffSet(-103,46)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A D 1 OffSet(-114,49)
+XH0A D 1 OffSet(-133,52)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A E 1 OffSet(-144,43)
+XH0A E 1 OffSet(-164,48)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A E 1 OffSet(-184,53)
+XH0A E 1 OffSet(-206,59)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A E 1 OffSet(-230,66)
+XH0A E 1 OffSet(-256,74)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A E 1 OffSet(-284,83)
+XH0A E 1 OffSet(-314,93)A_JumpIfInventory("PowerRage_ST",1,1)
+TNT1 AA 2 A_GiveInventory("RollSweepFlag",1)
+TNT1 AAAA 2 A_WeaponReady
+TNT1 A 0 A_TakeInventory("RollSweepFlag",99)
+XH0A A 1 OffSet(30,192)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(25,167)A_WeaponReady(1)
+XH0A A 1 OffSet(20,142)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(16,122)A_WeaponReady(1)
+XH0A A 1 OffSet(12,87)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(9,72)A_WeaponReady(1)
+XH0A A 1 OffSet(6,62)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(4,52)A_WeaponReady(1)
+XH0A A 1 OffSet(2,47)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(1,42)A_WeaponReady(1)
+XH0A A 0
+Goto Ready+1
+Fire2:
+XH0A F 1 OffSet(-130,62)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A F 1 OffSet(-100,45)
+XH0A G 0 A_Blast(BF_NOIMPACTDAMAGE,255,192,40.0,"RollSweepBlastFX")
+XH0A G 0 A_FireCustomMissile("RollSweepShot2",0,1,0,0)
+XH0A G 1 OffSet(-108,50)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A G 1 OffSet(-88,43)
+XH0A G 1 OffSet(-68,35)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A G 1 OffSet(-46,26)
+XH0A G 1 OffSet(-24,16)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A H 1 OffSet(-30,20)
+XH0A H 1 OffSet(-6,24)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A H 1 OffSet(19,29)
+XH0A H 1 OffSet(45,35)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A H 1 OffSet(72,42)
+XH0A H 1 OffSet(100,50)A_JumpIfInventory("PowerRage_ST",1,1)
+XH0A H 1 OffSet(129,59)
+TNT1 AA 2 A_TakeInventory("RollSweepFlag",99)
+XH0A A 1 OffSet(90,72)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(77,66)A_WeaponReady(1)
+XH0A A 1 OffSet(64,60)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(53,55)A_WeaponReady(1)
+XH0A A 1 OffSet(42,50)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(33,46)A_WeaponReady(1)
+XH0A A 1 OffSet(24,42)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(17,39)A_WeaponReady(1)
+XH0A A 1 OffSet(10,36)A_WeaponReady(1)
+XH0A A 0 A_JumpIfInventory("PowerRage_ST",1,2)
+XH0A A 1 OffSet(5,34)A_WeaponReady(1)
+XH0A A 0
+Goto Ready+1
+NoAmmo:
+XH0A A 0 A_TakeInventory("RollSweepFlag",99)
+XH0A A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor RollSweepAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor RollSweepFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 1
+}
+
+actor RollSweepBlastFX : BasicClientSide
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+stop
+}
+}
+
+actor RollSweepShot
+{
+Translation "202:202=35:35"
+PROJECTILE
+damagetype "RollSweep"
+Obituary "$OB_ROLLSWEEP"
++DONTBLAST
++NOGRAVITY
+-NOBLOCKMAP
++SHOOTABLE
++NOTARGETSWITCH
+//+NODAMAGE
++INVULNERABLE
++NORADIUSDMG
++DONTRIP
++NOBLOOD
++THRUSPECIES
+Species "RollSweep"
+ReactionTime 1
+Damage (0)
+Radius 20
+Height 16
+speed 27
+Scale 2.5
+States
+{
+Spawn:
+PLUH P 0
+PLUH Q 0 A_SpawnItemEx("WaterGush_Torrent")
+PLUH QRS 1
+PLUH T 1 A_CountDown
+wait
+Death:
+PLUH T 0
+PLUH T 0 A_SpawnItemEx("WaterGush_Torrent")
+PLUH T 1 A_Explode(16,104,0,0,16)
+stop
+XDeath:
+PLUH T 0
+PLUH T 0 A_SpawnItemEx("WaterGush_Torrent")
+PLUH T 1 A_Explode(21,112,0,0,24)
+stop
+}
+}
+
+actor RollSweepShot2 : RollSweepShot
+{
+//damagetype "RollSweep"
+Speed 30
+States
+{
+Spawn:
+Y_7F P 0
+Y_7F Q 0 A_SpawnItemEx("WaterGush_Torrent")
+Y_7F QRS 1
+Y_7F T 1 A_CountDown
+wait
+Death:
+Y_7F T 0
+Y_7F T 0 A_SpawnItemEx("WaterGush_Torrent")
+Y_7F T 1 A_Explode(16,104,0,0,16)
+stop
+XDeath:
+Y_7F T 0
+Y_7F T 0 A_SpawnItemEx("WaterGush_Torrent")
+Y_7F T 1 A_Explode(21,112,0,0,24)
+stop
+}
+}
+

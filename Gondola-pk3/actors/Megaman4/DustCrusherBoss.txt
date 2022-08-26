@@ -110,6 +110,7 @@ DUSB O 2
 Goto AltSuckEnd
 AltSuckEnd:
 DUSB D 0 A_GunFlash("NoFlash")
+DUSB NNNNMMMMMMMM 1
 DUSB D 0 //A_StopSound(4)
 Goto Ready2
 
@@ -236,6 +237,7 @@ DUSB V 2
 Goto AltSuckEnd
 AltSuckEnd:
 DUSB D 0 A_GunFlash("NoFlash")
+DUSB UTT 4
 DUSB D 0 //A_StopSound(4)
 Goto Ready2
 
@@ -264,7 +266,7 @@ Translation "199:199=87:87", "202:202=4:4", "198:198=87:87", "192:192=4:4"
 PROJECTILE
 damagetype "DustM_Crush"
 Obituary "$OB_DUSTCRUSHER"
-damage (350)
+damage (35)
 Radius 12
 Height 12
 speed 30
@@ -301,10 +303,10 @@ stop
 Death:
 TMFX A 0 A_PlaySoundEx("Weapon/BigDustBreak","Weapon")
 TMFX A 0 A_SpawnItemEx("DustCrusherDustPickup",0,0,0,random(0,2),0,4,0,1)
-TMFX A 0 A_SpawnItemEx("DustBit1Dust",0,0,0,28,0,0,45,1)
-TMFX A 0 A_SpawnItemEx("DustBit2Dust",0,0,0,28,0,0,-45,1)
-TMFX A 0 A_SpawnItemEx("DustBit3Dust",0,0,0,28,0,0,225,1)
-TMFX A 0 A_SpawnItemEx("DustBit4Dust",0,0,0,28,0,0,-225,1)
+TMFX A 0 A_SpawnItemEx("DustBit1Dust",0,0,0,31.5,0,0,45,1)
+TMFX A 0 A_SpawnItemEx("DustBit2Dust",0,0,0,31.5,0,0,-45,1)
+TMFX A 0 A_SpawnItemEx("DustBit3Dust",0,0,0,31.5,0,0,225,1)
+TMFX A 0 A_SpawnItemEx("DustBit4Dust",0,0,0,31.5,0,0,-225,1)
 TMFX ABCD 2
 stop
 }
@@ -370,7 +372,7 @@ PROJECTILE
 damagetype "DustM_CrushBit"
 Obituary "$OB_DUSTCRUSHER"
 ReactionTime 90
-damage (150)
+damage (15)
 Radius 7
 Height 7
 speed 28
@@ -432,7 +434,7 @@ actor DustBitPew : DustBit1Dust
 Translation "199:199=87:87", "202:202=4:4"
 -THRUACTORS
 damagetype "DustM_Shot"
-damage (150)
+damage (15)
 Radius 8
 Height 8
 speed 34
@@ -474,7 +476,7 @@ Translation "204:204=215:215"
 PROJECTILE
 damagetype "DustBuster"
 Obituary "$OB_DUSTBUSTER"
-damage (100)
+damage (10)
 Radius 6
 Height 6
 speed 28

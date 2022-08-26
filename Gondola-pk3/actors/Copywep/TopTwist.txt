@@ -1,0 +1,198 @@
+actor TopTwistWep : BaseMM8BDMWep
+{
+dropitem "TopTwistWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 3
+Inventory.Pickupmessage "$PU_TOPTWIST"
+Obituary "$OB_TOPTWIST"
+Tag "$TAG_TOPTWIST"
+weapon.ammotype "TopTwistAmmo"
+inventory.icon "XTR0WI_G"
+States
+{
+Spawn:
+XWI0 G 1
+loop
+Ready:
+XH0G A 0 ACS_ExecuteAlways(998,0,9)
+XH0G A 0 A_JumpIfNoAmmo("ReadyNoAmmo")
+XH0G A 1 A_WeaponReady
+Goto Ready+2
+ReadyNoAmmo:
+XH0G B 1 A_WeaponReady
+XH0G B 0 A_JumpIfNoAmmo("ReadyNoAmmo")
+Goto Ready+1
+Deselect:
+XH0G AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0G A 1 A_Lower
+Loop
+Select:
+XH0G AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0G A 1 A_Raise
+Loop
+Fire:
+XH0G A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0G A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+XH0G A 0 A_FireCustomMissile("TopTwisterStart",0,1,8,0)
+XH0G C 2
+XH0G C 2 OffSet(-70,74)
+XH0G C 2 OffSet(-121,114)
+XH0G D 2 OffSet(1,31)
+XH0G D 2 OffSet(-21,56)
+XH0G D 2 OffSet(-33,84)
+TNT1 A 6
+XH0G A 0 A_JumpIfNoAmmo("FireNoAmmoEnd")
+XH0G A 1 OffSet(-4,64)
+XH0G A 1 OffSet(-2,48)
+XH0G A 1 A_WeaponReady(14)
+Goto Ready+1
+FireNoAmmoEnd:
+XH0G B 1 OffSet(-4,64)
+XH0G B 1 OffSet(-2,48)
+XH0G B 1 A_WeaponReady(14)
+Goto ReadyNoAmmo
+NoAmmo:
+XH0G B 1 ACS_Execute(979,0)
+Goto ReadyNoAmmo
+}
+}
+
+actor TopTwistAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor TopTwisterStart
+{
+Translation "192:192=52:52", "198:198=93:93"
+PROJECTILE
+damagetype "TopTwist"
+Obituary "$OB_TOPTWIST"
+-NOGRAVITY
++DONTSPLASH
++BOUNCEONFLOORS
++BOUNCEONWALLS
++BOUNCEONCEILINGS
+//+ALLOWBOUNCEONACTORS
++BOUNCEAUTOOFF
++CANBOUNCEWATER
+bouncefactor 0.001
+reactiontime 50
+Damage (19)
+Height 16
+Radius 16
+Speed 25
+Scale 2.5
+States
+{
+Spawn:
+TNT1 A 1
+Looping:
+XH0G RST 4 A_CountDown
+loop
+Death:
+MMFX G 0 A_JumpIf(z-floorz==0,"Death2")
+MMFX G 0 A_Stop
+MMFX G 0 A_ChangeFlag("NOGRAVITY",1)
+MMFX GGHHII 1
+stop
+Death2:
+TNT1 A 1 A_SpawnItemEx("TopTwister",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor TopTwister
+{
+Translation "192:192=52:52", "198:198=93:93"
+var int user_spin;
+PROJECTILE
+damagetype "TopTwist"
+Obituary "$OB_TOPTWIST"
+-NOGRAVITY
+reactiontime 120
+Damage (19)
+Radius 16
+Height 16
+Speed 0
+Scale 2.5
+States
+{
+Spawn:
+XH0G R 0
+XH0G R 0 A_SetUserVar("user_spin",20)//8
+XH0G R 0 A_PlaySoundEx("weapon/TopTwist","Weapon")
+Looping:
+XH0G R 0 A_SpawnItemEx("TopTwistSparkFX",0,0,0,8,0,random(0,5),random(0,359))
+XH0G R 0 A_CountDown
+XH0G R 0 A_JumpIf(floorz-z>0,"Flight")
+XH0G R 1 A_SetAngle(angle+14.0)
+XH0G S 0 A_SpawnItemEx("TopTwistSparkFX",0,0,0,8,0,random(0,5),random(0,359))
+XH0G S 0 A_SetUserVar("user_spin",user_spin+2)
+XH0G S 0 A_ChangeVelocity(0.1*user_spin,0,velz,3)
+XH0G S 1 A_SetAngle(angle+14.0)
+XH0G T 0 A_SpawnItemEx("TopTwistSparkFX",0,0,0,8,0,random(0,5),random(0,359))
+XH0G T 0 //A_SetUserVar("user_spin", user_spin+1)
+XH0G T 0 A_ChangeVelocity(0.1*user_spin,0,velz,3)
+XH0G T 1 A_SetAngle(angle+14.0)
+XH0G R 0 //A_SetUserVar("user_spin", user_spin+1)
+XH0G R 0 A_ChangeVelocity(0.1*user_spin,0,velz,3)
+loop
+Flight:
+XH0G RST 1
+loop
+Death:
+MMFX G 0 A_Stop
+MMFX G 0 A_ChangeFlag("NOGRAVITY",1)
+MMFX GGHHII 1
+stop
+}
+}
+
+actor TopTwistSparkFX : BasicClientSide
+{
+Scale 0.15
+States
+{
+Spawn:
+MMFX AAAA 1 A_SetScale(scalex - 0.025, scaley - 0.025)
+stop
+}
+}
+
+actor TopTwistPain_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AAAAAAAAAAAAAAAAAAAAA 1 A_GiveToTarget("TopTwistAngler_P",1)
+stop
+}
+}
+
+actor TopTwistAngler_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SetAngle(angle-20.0) 
+TNT1 A 0 A_SpawnITemEx("TopTwistFX",8)
+stop
+}
+}
+
+actor TopTwistFX : BasicExplosion
+{
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0
+TOPS A 2
+stop
+}
+}

@@ -10,15 +10,16 @@ player.startitem "SelfishBarrierAmmo", 98
 player.startitem "CanTreadWater", 1
 player.startitem "AcidHUDCvar_P", 1
 
-player.maxhealth 900
-health 900
+player.maxhealth 100
+health 100
 player.jumpz 12
-Player.ForwardMove 0.89, 0.89
-Player.SideMove 0.87, 0.87
+Player.ForwardMove 1.0, 1.0
+Player.SideMove 0.98, 0.98
 
 //player.startitem "RealClassFlag", 130
 
 //player.startitem "CommandoBombWeakness2", 1
+//commando bomb weakness?? isn't acidmans actual weakness block dropper?
 
 States
 {

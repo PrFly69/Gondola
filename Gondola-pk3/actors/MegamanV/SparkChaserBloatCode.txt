@@ -40,10 +40,10 @@ PROJECTILE
 damagetype "TerraMelee"
 Obituary "$OB_TERRAMELEE"
 +DONTBLAST
-damage (250)
+damage (25)
 Radius 16
 Height 20
-speed 30
+speed 34
 reactiontime 1
 scale 2.0
 States
@@ -77,7 +77,7 @@ Alpha 0.8
 +BRIGHT
 Translation "192:192=100:100", "198:198=110:110"
 Scale 0.95
-Speed 5
+Speed 6
 States
 {
 Spawn:
@@ -420,10 +420,10 @@ Obituary "$OB_SPARKCHASERBOSSX"
 +NOTARGETSWITCH
 +FORCEXYBILLBOARD
 ReactionTime 1
-Damage (200)
+Damage (20)
 Radius 14
 Height 14
-Speed 8
+Speed 9
 Scale 2.5
 States
 {
@@ -697,7 +697,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(150,15,0,0,15)
+TNT1 A 1 A_Explode(15,15,0,0,15)
 stop
 }
 }
@@ -711,8 +711,8 @@ PROJECTILE
 +DONTBLAST
 +BRIGHT
 Damagetype "DMGNoHitstun"
-Speed 90
-Damage (50)
+Speed 101
+Damage (5)
 radius 8
 height 8
 scale 2.5

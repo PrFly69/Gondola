@@ -11,8 +11,8 @@ player.startitem "CanUseItems"
 player.startitem "RollHealAmmo", 28
 player.startitem "RollHyperDashAmmo", 777
 
-player.maxhealth 900
-health 900
+player.maxhealth 90
+health 90
 player.forwardmove 0.825, 0.825
 player.sidemove 0.805, 0.805
 player.jumpz 11

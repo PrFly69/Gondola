@@ -9,11 +9,14 @@ player.startitem "CanWallJump"
 player.startitem "CanWallJumpStack", 99
 player.startitem "QuickTrailItem"
 
-player.maxhealth 750
-health 750
-player.forwardmove 1.20, 1.20
+player.maxhealth 75
+health 75
+player.forwardmove 1.2, 1.2
 player.sidemove 1.18, 1.18
 player.jumpz 12
+
+MaxStepHeight 32//24
+MaxDropOffHeight 32//24
 
 player.startitem "TimestopperWeakness2", 1
 

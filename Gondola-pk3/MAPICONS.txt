@@ -1954,13 +1954,97 @@ actor Acidman_MapMarker_1 : Acidman_MapMarker_D {translation "192:192=171:171", 
 actor Acidman_MapMarker_2 : Acidman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
 actor Acidman_MapMarker_3 : Acidman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
+actor Torchman_MapMarker_D : MapMarker
+{
+height 0
+radius 0
+translation "192:192=94:94", "198:198=181:181"
++CLIENTSIDEONLY
++NOINTERACTION
++NOGRAVITY
+-SOLID
+States
+{
+Spawn:
+_MM6 B 2
+stop
+}
+}
+actor Torchman_MapMarker_0 : Torchman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Torchman_MapMarker_1 : Torchman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Torchman_MapMarker_2 : Torchman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Torchman_MapMarker_3 : Torchman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Bounceman_MapMarker_D : MapMarker
+{
+height 0
+radius 0
+translation "192:192=193:193", "198:198=39:39"
++CLIENTSIDEONLY
++NOINTERACTION
++NOGRAVITY
+-SOLID
+States
+{
+Spawn:
+_MM6 C 2
+stop
+}
+}
+actor Bounceman_MapMarker_0 : Bounceman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Bounceman_MapMarker_1 : Bounceman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Bounceman_MapMarker_2 : Bounceman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Bounceman_MapMarker_3 : Bounceman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Blockman_MapMarker_D : MapMarker
+{
+height 0
+radius 0
+translation "192:192=104:104", "198:198=117:117"
++CLIENTSIDEONLY
++NOINTERACTION
++NOGRAVITY
+-SOLID
+States
+{
+Spawn:
+_MM6 D 2
+stop
+}
+}
+actor Blockman_MapMarker_0 : Blockman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Blockman_MapMarker_1 : Blockman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Blockman_MapMarker_2 : Blockman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Blockman_MapMarker_3 : Blockman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
+actor Impactman_MapMarker_D : MapMarker
+{
+height 0
+radius 0
+translation "192:192=104:104", "198:198=117:117"
++CLIENTSIDEONLY
++NOINTERACTION
++NOGRAVITY
+-SOLID
+States
+{
+Spawn:
+_MM6 E 2
+stop
+}
+}
+actor Impactman_MapMarker_0 : Impactman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Impactman_MapMarker_1 : Impactman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Impactman_MapMarker_2 : Impactman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Impactman_MapMarker_3 : Impactman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+
 actor YellowDevil_MapMarker_D : Maestro_MapMarker_D
 {
 translation "192:192=216:216", "198:198=220:220"
 States
 {
 Spawn:
-_MM6 B 2
+_MM6 F 2
 stop
 }
 }

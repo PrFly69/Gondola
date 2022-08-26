@@ -282,7 +282,7 @@ damagetype "FireM_Storm"
 Obituary "$OB_FIRESTORM"
 Alpha 0.4
 +BRIGHT
-damage (100+user_P)
+damage (10+user_P)
 Radius 12
 Height 20
 speed 40
@@ -295,7 +295,7 @@ TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 TNT1 A 1
 FWVE M 2 A_FadeIn(0.1)
-FWVE M 0 A_SetUserVar("user_P",30)
+FWVE M 0 A_SetUserVar("user_P",3)
 FWVE NOMNO 2 A_FadeIn(0.1)
 Spawn2:
 FWVE MNO 2
@@ -375,7 +375,7 @@ actor FiremanStormShotBitD : FiremanStormShotBit
 {
 -THRUACTORS
 +RIPPER
-Damage (30)
+Damage (3)
 States
 {
 Spawn:
@@ -485,16 +485,15 @@ actor FireManWaveD
 {
 PROJECTILE
 Obituary "$OB_FIRESTORMW"
-damagetype "FireM_Spin"
+damagetype "FireM_Wave2"
 +DONTBLAST
 +DONTREFLECT
 +BRIGHT
-renderstyle add
 +RIPPER
 +FLOORHUGGER
 Radius 20
 Height 26
-Damage (20)
+Damage (2)
 Speed 0
 Scale 2.5
 States
@@ -520,7 +519,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_SpawnItemEx("FireManWave2Time",20,0,24,5,0,0,0,1)
+TNT1 A 2 A_SpawnItemEx("FireManWave2Time",20,0,24,5.625,0,0,0,1)
 stop
 }
 }
@@ -564,20 +563,20 @@ damagetype "FireM_Wave"
 +RIPPER
 +FLOORHUGGER
 Radius 20
-Height 26
-Damage (30)
+Height 52
+Damage (3)
 Speed 0
-Scale 2.5
+scale 2.5
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-FWVE UVW 1
-FWVE X 0 A_PlaySoundEx("weapon/FireManWave","Weapon")
-FWVE XYXYXYXYXYXYXYXYXYXYXYXYX 2
-FWVE W 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
-FWVE WVU 1
+FRWV UVW 1
+FRWV X 0 A_PlaySoundEx("weapon/FireManWave","Weapon")
+FRWV XYXYXYXYXYXYXYXYXYXYXYXYX 2
+FRWV W 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+FRWV WVU 1
 stop
 Death:
 TNT1 A 0
@@ -616,7 +615,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 4 A_Explode(40,80,0,0,80)
+TNT1 A 4 A_Explode(4,80,0,0,80)
 stop
 }
 }
@@ -625,6 +624,12 @@ actor FireM_SpinProtect : PowerProtection
 {
 Powerup.Duration 1
 DamageFactor "FireM_Spin", 0.0
+}
+
+actor FireM_Wave2Protect : PowerProtection
+{
+Powerup.Duration 2
+DamageFactor "FireM_Wave2", 0.0
 }
 
 

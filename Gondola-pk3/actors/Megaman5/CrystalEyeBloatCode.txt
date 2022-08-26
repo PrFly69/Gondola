@@ -60,7 +60,7 @@ stop
 
 actor CrystalEyeC_0 : CrystalEyeC
 {
-Damage (150+user_D/0.7)
+Damage (15+user_D/7)
 States
 {
 XDeath:
@@ -112,7 +112,7 @@ actor CrystalEyeC_0P : CrystalEyeC_0{translation"202:202=229:229","199:199=232:2
 
 actor CrystalEyeC_1 : CrystalEyeC
 {
-Damage (200+user_D/0.7)
+Damage (20+user_D/7)
 States
 {
 XDeath:
@@ -165,7 +165,7 @@ actor CrystalEyeC_1P : CrystalEyeC_1{translation"202:202=229:229","199:199=232:2
 actor CrystalEyeC_2 : CrystalEyeC
 {
 +HITTRACER
-Damage (250+user_D/0.7)
+Damage (25+user_D/7)
 States
 {
 XDeath:
@@ -225,7 +225,7 @@ actor CrystalEyeC_2P : CrystalEyeC_2{translation"202:202=229:229","199:199=232:2
 actor CrystalEyeC_3 : CrystalEyeC
 {
 +HITTRACER
-Damage (300+user_D/0.7)
+Damage (30+user_D/7)
 States
 {
 XDeath:
@@ -285,7 +285,7 @@ actor CrystalEyeC_3P : CrystalEyeC_3{translation"202:202=229:229","199:199=232:2
 actor CrystalEyeC_4 : CrystalEyeC
 {
 +HITTRACER
-Damage (350+user_D/0.7)
+Damage (35+user_D/7)
 States
 {
 XDeath:

@@ -1,0 +1,150 @@
+actor BounceBallWepC : BaseMM8BDMWep
+{ 
+Weapon.AmmoUse 4
+Weapon.AmmoGive 28
+Weapon.SlotNumber 3
+Inventory.Pickupmessage "$PU_BOUNCEBALL"
+Obituary "$OB_BOUNCEBALL"
+Tag "$TAG_BOUNCEBALL"
+weapon.ammotype "BounceBallAmmo"
+inventory.icon "BBALICON"
+States
+{
+SpawnLoop:
+11WP D 1
+loop
+Ready:
+BBLL A 0 ACS_ExecuteAlways(998,0,11988)
+BBLL A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+BBLL A 1 A_Lower
+Loop
+Select:
+TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+BBLL A 1 A_Raise
+Loop
+Fire:
+BBLL A 0 A_JumpIfNoAmmo("NoAmmo")
+BBLL A 0 A_Jump(8,"FireX")
+BBLL A 0 A_PlaySoundEx("weapon/bounceshot","Weapon")
+BBLL A 0 A_FireCustomMissile("BounceBall",0,1,8,0)
+BBLL A 0 A_FireCustomMissile("BounceBall",10,0,8,0)
+BBLL A 0 A_FireCustomMissile("BounceBall",-10,0,8,0)
+BBLL ABC 2
+BBLL AAAAA 4
+BBLL A 0 A_Refire
+Goto Ready+1
+FireX:
+BBLL A 0 A_PlaySoundEx("weapon/bounceshot","Weapon")
+BBLL A 0 A_FireCustomMissile("BounceBallX",0,1,8,0)
+BBLL A 0 A_FireCustomMissile("BounceBallX",10,0,8,0)
+BBLL A 0 A_FireCustomMissile("BounceBallX",-10,0,8,0)
+BBLL ABC 2
+BBLL AAAAA 4
+BBLL A 0 A_Refire
+Goto Ready+1
+NoAmmo:
+BBLL A 1 ACS_Execute(979,0)
+Goto Ready+1
+ReadyC:
+Goto Ready+1
+}
+}
+
+actor BounceBallWepCDropped : WepCDropped
+{
+inventory.pickupmessage "$PU_BOUNCEBALL"
+States
+{
+Spawn:
+11WP D 1500
+stop
+Pickup1:
+TNT1 A 0 A_JumpIfInventory("BounceBallAmmo",0,"No")
+goto Pickup2
+Pickup3:
+TNT1 A 0 A_GiveInventory("BounceBallWepC",1)
+stop
+Rock_P:goto Rock_P2
+}
+}
+
+actor BounceBallAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor BounceBallProtect : PowerProtection
+{
+Powerup.Duration 2
+damagefactor "BounceBall", 0.5
+}
+
+actor BounceBall
+{
+PROJECTILE
++HEXENBOUNCE
++BOUNCEONACTORS
++CANBOUNCEWATER
++USEBOUNCESTATE
+WALLBOUNCEFACTOR 2
+BOUNCEFACTOR 2
+seesound "weapon/bouncebounce"
+damagetype "BounceBall"
+Obituary "$OB_BOUNCEBALL"
+speed 40
+Radius 16
+Height 16
+scale 2.5
+damage (10)
+States
+{
+Spawn:
+11BB D 0 A_JumpIfInventory("BounceBallTimer",10,"Pop")
+11BB E 0 A_GiveInventory("BounceBallTimer",1)
+11BB DEDF 4
+loop
+Pop:
+TNT1 A 0 A_PlaySoundEx("weapon/bounceexplode", "Weapon")
+TNT1 A 0 A_SpawnItemEx("BounceBallPop")
+TNT1 A 0 A_SpawnItemEx("BounceBallConfettiScatter")
+Stop
+Bounce:
+11BB D 0 A_ChangeFlag("NOGRAVITY",0)
+goto Spawn
+Bounce.Actor:
+11BB D 0 A_ChangeFlag("NOGRAVITY",0)
+11BB D 0 A_ChangeFlag("THRUACTORS", 1)
+11BB D 2 A_ChangeVelocity(40.0,0,velz,CVF_RELATIVE|CVF_REPLACE)
+11BB F 2
+11BB F 0 A_ChangeFlag("THRUACTORS",0)
+Goto Spawn
+
+}
+}
+actor BounceBallX : BounceBall
+{
+States
+{
+Spawn:
+11BB D 0 A_JumpIfInventory("BounceBallTimer",10,"Pop")
+11BB E 0 A_GiveInventory("BounceBallTimer",1)
+11BB GHGI 4
+loop
+Bounce:
+11BB D 0 A_ChangeFlag("NOGRAVITY",0)
+goto Spawn
+Bounce.Actor:
+11BB D 0 A_ChangeFlag("NOGRAVITY",0)
+11BB G 0 A_ChangeFlag("THRUACTORS", 1)
+11BB G 2 A_ChangeVelocity(40.0,0,velz,CVF_RELATIVE|CVF_REPLACE)
+11BB I 2
+11BB I 0 A_ChangeFlag("THRUACTORS",0)
+Goto Spawn
+
+}
+}

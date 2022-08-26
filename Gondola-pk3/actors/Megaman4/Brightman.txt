@@ -7,8 +7,8 @@ player.startitem "FlashStopperBoss"
 player.startitem "FlashStopperClassAmmo", 14
 player.startitem "FlashStopperUseItem"
 
-player.maxhealth 850
-health 850
+player.maxhealth 85
+health 85
 player.jumpz 10
 Player.ForwardMove 0.8, 0.8
 Player.SideMove 0.78, 0.78
@@ -37,7 +37,7 @@ BRIG GGGG 1 A_JumpIfInventory("VivifyDelay4",1,"FlashStopper")
 goto Spawn
 FlashStopper:
 BRIG JJII 1
-loop
+goto Spawn
 ClassPain:
 BRIG H 0
 goto PainContinue

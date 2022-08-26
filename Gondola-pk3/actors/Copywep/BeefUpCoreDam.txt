@@ -1,0 +1,264 @@
+//Hey, look.
+//I found the key.
+
+//Change every core damage to be x10
+//Search for "$CBM" for actors with extra changes
+
+actor Beef_BeatSupportProjectile : BeatSupportProjectile replaces BeatSupportProjectile{}
+actor Beef_EddieBomberBomb : EddieBomberBomb replaces EddieBomberBomb{}
+actor Beef_ReggaeCan : ReggaeCan replaces ReggaeCan{}
+actor Beef_TangoAttack : TangoAttack replaces TangoAttack{}
+actor Beef_TrebleShot : TrebleShot replaces TrebleShot{}
+actor Beef_WireAdaptorHook : WireAdaptorHook replaces WireAdaptorHook{}
+actor Beef_WireAdaptorHookFX : WireAdaptorHookFX{}
+
+actor Beef_MegaShot : MegaShot replaces MegaShot{}
+actor Beef_ProtoShot : ProtoShot replaces ProtoShot{}
+actor Beef_ProtoShot2 : ProtoShot2 replaces ProtoShot2{}
+actor Beef_ProtoShot3 : ProtoShot3 replaces ProtoShot3{}
+actor Beef_BassShot : BassShot replaces BassShot{}
+actor Beef_AdaptorFist : AdaptorFist replaces AdaptorFist{}
+actor Beef_DuoPunch : DuoPunch replaces DuoPunch{}
+actor Beef_MidFist : MidFist replaces MidFist{}
+actor Beef_GigaFist : GigaFist replaces GigaFist{}
+actor Beef_MegaLaser : MegaLaser replaces MegaLaser{}
+actor Beef_MidShot : MidShot replaces MidShot{}
+actor Beef_ArrowShot : ArrowShot replaces ArrowShot{}
+actor Beef_ArrowFrag1 : ArrowFrag1 replaces ArrowFrag1{}
+actor Beef_ArrowFrag2 : ArrowFrag2 replaces ArrowFrag2{}
+actor Beef_BoostShot : BoostShot replaces BoostShot{}
+actor Beef_MegaArmFist : MegaArmFist replaces MegaArmFist{}
+actor Beef_MegaArmDamage : MegaArmDamage replaces MegaArmDamage{}
+actor Beef_MegaArmHand : MegaArmHand replaces MegaArmHand{}
+
+actor Beef_RollingCutterDamager : RollingCutterDamager replaces RollingCutterDamager{}
+actor Beef_Gutrock : Gutrock replaces Gutrock{}
+actor Beef_GutrockDebris : GutrockDebris replaces GutrockDebris{}
+actor Beef_IceSlasher : IceSlasher replaces IceSlasher{}
+actor Beef_HyperBomb : HyperBomb replaces HyperBomb{}
+actor Beef_FireStorm : FireStorm replaces FireStorm{}
+actor Beef_FireShieldDamage : FireShieldDamage replaces FireShieldDamage{}
+actor Beef_ThunderBeam : ThunderBeam replaces ThunderBeam{}
+actor Beef_TimeSlow : TimeSlow replaces TimeSlow{}
+actor Beef_OilShot : OilShot replaces OilShot{}
+actor Beef_OilBlob : OilBlob replaces OilBlob{}//$CBM Drain
+actor Beef_OilBlobFlame : OilBlobFlame replaces OilBlobFlame{}
+actor Beef_SliderDamager : SliderDamager replaces SliderDamager{}
+
+actor Beef_MetalBlade : MetalBlade replaces MetalBlade{}
+actor Beef_IGMetalBlade : IGMetalBlade replaces IGMetalBlade{}
+actor Beef_AtomicFire1 : AtomicFire1 replaces AtomicFire1{}
+actor Beef_AtomicFire2 : AtomicFire2 replaces AtomicFire2{}
+actor Beef_AtomicFire3 : AtomicFire3 replaces AtomicFire3{}
+actor Beef_BubbleLeadStart : BubbleLeadStart replaces BubbleLeadStart{}
+actor Beef_BubbleLead : BubbleLead replaces BubbleLead{}
+actor Beef_AirShot : AirShot replaces AirShot{}
+actor Beef_LeafShield : CBM_LeafShield replaces CBM_LeafShield{}//
+actor Beef_LeafShieldCounterShot : LeafShieldCounterShot replaces LeafShieldCounterShot{}
+actor Beef_TimeStopperRadius : TimeStopperRadius replaces TimeStopperRadius{}
+actor Beef_CrashBomb : CrashBomb replaces CrashBomb{}
+actor Beef_QuickBoomerang : QuickBoomerang replaces QuickBoomerang{}
+
+
+actor Beef_Needle : Needle replaces Needle{}
+actor Beef_MagnetMissile : MagnetMissile replaces MagnetMissile{}
+actor Beef_GeminiLaser : GeminiLaser replaces GeminiLaser{}
+actor Beef_HardKnuckle : HardKnuckle replaces HardKnuckle{}
+actor Beef_TopRadius : TopRadius replaces TopRadius{}
+actor Beef_SearchSnakeStart : SearchSnakeStart replaces SearchSnakeStart{}
+actor Beef_SearchSnake : SearchSnake replaces SearchSnake{}
+actor Beef_UpSnake0 : UpSnake0 replaces UpSnake0{}
+actor Beef_UpSnake1 : UpSnake1 replaces UpSnake1{}
+actor Beef_UpSnake2 : UpSnake2 replaces UpSnake2{}
+actor Beef_UpSnake3 : UpSnake3 replaces UpSnake3{}
+actor Beef_UpSnake4 : UpSnake4 replaces UpSnake4{}
+actor Beef_DownSnake : DownSnake replaces DownSnake{}
+actor Beef_SparkShock : SparkShock replaces SparkShock{}
+actor Beef_ShadowBlade : ShadowBlade replaces ShadowBlade{}
+
+
+actor Beef_FlashStopper : FlashStopper replaces FlashStopper{}
+actor Beef_RainFlush : RainFlush replaces RainFlush{}
+actor Beef_RainFlush_H : RainFlush{}
+actor Beef_DrillBomb : DrillBomb replaces DrillBomb{}
+actor Beef_PharaohShot1 : PharaohShot1 replaces PharaohShot1{}
+actor Beef_PharaohShot2 : PharaohShot2 replaces PharaohShot2{}
+actor Beef_PharaohShot3 : PharaohShot3 replaces PharaohShot3{}
+actor Beef_PharaohFX10 : PharaohFX10 replaces PharaohFX10{}
+actor Beef_RingBoomerang : RingBoomerang replaces RingBoomerang{}
+actor Beef_ReturningRing : ReturningRing replaces ReturningRing{}
+actor Beef_RingBoomerangDamager : RingBoomerangDamager replaces RingBoomerangDamager{}
+actor Beef_DustCrusher : DustCrusher replaces DustCrusher{}
+actor Beef_DustBit1 : DustBit1 replaces DustBit1{}
+actor Beef_DustBit1C : DustBit1C replaces DustBit1C{}
+actor Beef_DustBit2 : DustBit2 replaces DustBit2{}
+actor Beef_DustBit2C : DustBit2C replaces DustBit2C{}
+actor Beef_DustBit3 : DustBit3 replaces DustBit3{}
+actor Beef_DustBit3C : DustBit3C replaces DustBit3C{}
+actor Beef_DustBit4 : DustBit4 replaces DustBit4{}
+actor Beef_DustBit4C : DustBit4C replaces DustBit4C{}
+actor Beef_DiveMissile : DiveMissile replaces DiveMissile{}
+//SkullBarrier
+
+
+actor Beef_GravityHold : GravityHold replaces GravityHold{}
+actor Beef_WaterWave : WaterWave replaces WaterWave{}
+actor Beef_PowerStone : PowerStone replaces PowerStone{}
+actor Beef_GyroAttack : GyroAttack replaces GyroAttack{}
+actor Beef_GyroAttack2 : GyroAttack2 replaces GyroAttack2{}
+actor Beef_StarRadius : StarRadius replaces StarRadius{}
+actor Beef_StarCrash : StarCrash replaces StarCrash{}
+actor Beef_ChargeKick : ChargeKick replaces ChargeKick{}
+actor Beef_NapalmBomb : NapalmBomb replaces NapalmBomb{}
+actor Beef_CrystalEye : CrystalEye replaces CrystalEye{}
+actor Beef_CrystalEyeBit : CrystalEyeBit replaces CrystalEyeBit{}
+
+
+actor Beef_BlizzardAttack : BlizzardAttack replaces BlizzardAttack{}
+actor Beef_CentaurFlash : CentaurFlash replaces CentaurFlash{}
+actor Beef_FlameBlast : FlameBlast replaces FlameBlast{}
+actor Beef_FlameWallPillar : FlameWallPillar replaces FlameWallPillar{}
+actor Beef_FlamePillar : FlamePillar replaces FlamePillar{}
+actor Beef_KnightCrushDamager : KnightCrushDamager replaces KnightCrushDamager{}
+actor Beef_PlantBarrier : PlantBarrier replaces PlantBarrier{}
+actor Beef_SilverTomahawk : SilverTomahawk replaces SilverTomahawk{}
+actor Beef_WindStormStart : WindStormStart replaces WindStormStart{}
+actor Beef_WindStorm : WindStorm replaces WindStorm{}
+actor Beef_WindBlower : WindBlower replaces WindBlower{}
+actor Beef_YamatoSpear : YamatoSpear replaces YamatoSpear{}
+
+actor Beef_FreezeCracker : FreezeCracker replaces FreezeCracker{}
+actor Beef_FreezeBit : FreezeBit replaces FreezeBit{}
+actor Beef_JunkProjectile : JunkProjectile replaces JunkProjectile{}
+actor Beef_JunkProjectile2 : JunkProjectile2 replaces JunkProjectile2{}
+actor Beef_WrapExplosion : WrapExplosion replaces WrapExplosion{}
+actor Beef_DangerWrapMine : DangerWrapMine replaces DangerWrapMine{}
+actor Beef_ThunderBolt : ThunderBolt replaces ThunderBolt{}
+actor Beef_ThunderBoltSplit : ThunderBoltSplit replaces ThunderBoltSplit{}
+actor Beef_WildCoil : WildCoil replaces WildCoil{}
+actor Beef_WildCoil2 : WildCoil2 replaces WildCoil2{}
+actor Beef_SlashClaw : SlashClaw replaces SlashClaw{}
+actor Beef_NoiseCrush : NoiseCrush replaces NoiseCrush{}
+actor Beef_NoiseCrush2 : NoiseCrush2 replaces NoiseCrush2{}
+actor Beef_ScorchWheel : ScorchWheel replaces ScorchWheel{}
+actor Beef_ScorchWheel2 : ScorchWheel2 replaces ScorchWheel2{}
+
+actor Beef_TornadoHoldPod : TornadoHoldPod replaces TornadoHoldPod{}
+actor Beef_HoldingTornado : HoldingTornado replaces HoldingTornado{}
+actor Beef_AstroCrush : AstroCrush replaces AstroCrush{}
+actor Beef_FlameSwordTrail : FlameSwordTrail replaces FlameSwordTrail{}
+actor Beef_FlameSwordTrail2 : FlameSwordTrail2 replaces FlameSwordTrail2{}
+actor Beef_FlameSwordSpark : FlameSwordSpark replaces FlameSwordSpark{}
+actor Beef_ThunderClawDamager : ThunderClawDamager replaces ThunderClawDamager{}
+actor Beef_HomingSniper : HomingSniper replaces HomingSniper{}
+actor Beef_IceWaveSpawner : IceWaveSpawner replaces IceWaveSpawner{}
+actor Beef_IceWaveIcicle : IceWaveIcicle replaces IceWaveIcicle{}
+actor Beef_IceWaveIcicleWall : IceWaveIcicleWall replaces IceWaveIcicleWall{}
+actor Beef_IceWaveIcicleFloor : IceWaveIcicleFloor replaces IceWaveIcicleFloor{}
+actor Beef_FlashBombExplosion : FlashBombExplosion replaces FlashBombExplosion{}
+actor Beef_FlashBombExplosion_H : FlashBombExplosion{}
+actor Beef_WaterBalloon : WaterBalloon replaces WaterBalloon{}
+actor Beef_MegaBallStart : MegaBallStart replaces MegaBallStart{}
+actor Beef_MegaBallDroppedStart : MegaBallDroppedStart replaces MegaBallDroppedStart{}//5
+actor Beef_MegaBall : CBM_MegaBall replaces CBM_MegaBall{}//$CBM CoreActorReplace version
+actor Beef_MegaBallDropped : CBM_MegaBallDropped replaces CBM_MegaBallDropped{}//$CBM  CoreActorReplace version
+actor Beef_MegaBallKicked : MegaBallKicked replaces MegaBallKicked{}
+
+
+actor Beef_TenguDash : TenguDash replaces TenguDash{}
+actor Beef_TenguSlash1 : TenguSlash1 replaces TenguSlash1{}
+actor Beef_TenguSlash2 : TenguSlash2 replaces TenguSlash2{}
+actor Beef_TenguBlade : TenguBlade replaces TenguBlade{}
+actor Beef_CopyShot : CopyShot replaces CopyShot{}
+actor Beef_LightningBolt : LightningBolt replaces LightningBolt{}
+actor Beef_IceWallSpawner : IceWallSpawner replaces IceWallSpawner{}
+actor Beef_IceWall : IceWall replaces IceWall{}
+actor Beef_SpreadDrill : SpreadDrill replaces SpreadDrill{}
+actor Beef_MediumDrill1 : MediumDrill1 replaces MediumDrill1{}
+actor Beef_MediumDrill2 : MediumDrill2 replaces MediumDrill2{}
+actor Beef_SmallDrill1 : SmallDrill1 replaces SmallDrill1{}
+actor Beef_SmallDrill2 : SmallDrill2 replaces SmallDrill2{}
+actor Beef_RemoteMineExplosion : RemoteMineExplosion replaces RemoteMineExplosion{}
+actor Beef_RemoteMineExplosion_H : RemoteMineExplosion{}
+actor Beef_WaveBurn : WaveBurn replaces WaveBurn{}
+actor Beef_WaveBurnUW : WaveBurnUW replaces WaveBurnUW{}
+actor Beef_MagicCardDamager : MagicCardDamager replaces MagicCardDamager{}
+
+
+actor Beef_ConcreteShot : ConcreteShot replaces ConcreteShot{}
+actor Beef_TornadoDamager : TornadoDamager replaces TornadoDamager{}
+actor Beef_LaserTrident : LaserTrident replaces LaserTrident{}
+actor Beef_PlugBallStart : PlugBallStart replaces PlugBallStart{}
+actor Beef_PlugBall : PlugBall replaces PlugBall{}
+actor Beef_JewelShot : JewelShot replaces JewelShot{}
+actor Beef_HornetChaser : HornetChaser replaces HornetChaser{}
+actor Beef_MagmaBazooka1 : MagmaBazooka1 replaces MagmaBazooka1{}
+actor Beef_MagmaBazooka2 : MagmaBazooka2 replaces MagmaBazooka2{}
+actor Beef_BlackHoleBombExplosion : BlackHoleBombExplosion replaces BlackHoleBombExplosion{}
+
+
+
+actor Beef_TripleBlade : TripleBlade replaces TripleBlade{}
+actor Beef_TripleBladeR : TripleBladeR replaces TripleBladeR{}
+actor Beef_WaterShield : WaterShield replaces WaterShield{}
+actor Beef_CommandoBomb : CommandoBomb replaces CommandoBomb{}
+actor Beef_CommandoBombSecondary : CommandoBombSecondary replaces CommandoBombSecondary{}
+actor Beef_CommandoBombDamagerA : CommandoBombDamagerA replaces CommandoBombDamagerA{}
+actor Beef_CommandoBombDamagerB : CommandoBombDamagerB replaces CommandoBombDamagerB{}
+actor Beef_CommandoBombDamagerC : CommandoBombDamagerC replaces CommandoBombDamagerC{}
+actor Beef_CommandoBombDamagerD : CommandoBombDamagerD replaces CommandoBombDamagerD{}
+actor Beef_CommandoBombDamagerX : CommandoBombDamagerX replaces CommandoBombDamagerX{}
+actor Beef_CommandoBombDamagerY : CommandoBombDamagerY replaces CommandoBombDamagerY{}
+actor Beef_CommandoBombDamagerZ : CommandoBombDamagerZ replaces CommandoBombDamagerZ{}
+actor Beef_ChillShot : ChillShot replaces ChillShot{}
+actor Beef_ChillSpike : ChillSpike replaces ChillSpike{}
+actor Beef_WallSpike : WallSpike replaces WallSpike{}
+actor Beef_CeilingSpike : CeilingSpike replaces CeilingSpike{}
+actor Beef_ThunderWool : ThunderWool replaces ThunderWool{}
+actor Beef_ThunderWoolLightninginator : ThunderWoolLightninginator replaces ThunderWoolLightninginator{}
+actor Beef_ThunderWoolLightning : ThunderWoolLightning replaces ThunderWoolLightning{}
+actor Beef_ThunderWoolRadius : ThunderWoolRadius replaces ThunderWoolRadius{}
+actor Beef_ReboundStriker : ReboundStriker replaces ReboundStriker{}
+actor Beef_WheelBounceSpawner : WheelBounceSpawner replaces WheelBounceSpawner{}
+actor Beef_WheelCutterSawDamage : WheelCutterSawDamage replaces WheelCutterSawDamage{}
+actor Beef_WheelBouncer : WheelBouncer replaces WheelBouncer{}
+actor Beef_WheelCutter : WheelCutter replaces WheelCutter{}
+actor Beef_SolarBlaze : SolarBlaze replaces SolarBlaze{}
+actor Beef_SolarWave : SolarWave replaces SolarWave{}
+
+
+actor Beef_SparkChaser : SparkChaser replaces SparkChaser{}
+actor Beef_GrabBuster : GrabBuster replaces GrabBuster{}
+actor Beef_BubbleBomb : BubbleBomb replaces BubbleBomb{}
+actor Beef_BubbleBomb2 : BubbleBomb2 replaces BubbleBomb2{}
+actor Beef_PhotonMissile : PhotonMissile replaces PhotonMissile{}
+actor Beef_PhotonMissileExplosion : PhotonMissileExplosion replaces PhotonMissileExplosion{}
+actor Beef_ElectricShockDamager : ElectricShockDamager replaces ElectricShockDamager{}
+actor Beef_BlackHoleSpiral : BlackHoleSpiral replaces BlackHoleSpiral{}
+actor Beef_DeepDigger : DeepDigger replaces DeepDigger{}
+actor Beef_DeepDiggerBit : DeepDiggerBit replaces DeepDiggerBit{}
+actor Beef_BreakDashCheck : BreakDashCheck replaces BreakDashCheck{}
+actor Beef_SaltWater : SaltWater replaces SaltWater{}
+actor Beef_SaltWaterBit : SaltWaterBit replaces SaltWaterBit{}
+
+
+actor Beef_MirrorShotSmall : MirrorShotSmall replaces MirrorShotSmall{}//$CBM Able to hit MirrorBuster
+actor Beef_MirrorShotMedium : MirrorShotMedium replaces MirrorShotMedium{}//$CBM But hits ProtoBuster Shield
+actor Beef_MirrorShotLarge : MirrorShotLarge replaces MirrorShotLarge{}//Except this one, its the strongest one
+actor Beef_ScrewCrusher : ScrewCrusher replaces ScrewCrusher{}
+actor Beef_BalladeCracker : BalladeCracker replaces BalladeCracker{}
+actor Beef_SakugarneCrush : SakugarneCrush replaces SakugarneCrush{}
+actor Beef_SakugarneDriller : SakugarneDriller replaces SakugarneDriller{}
+
+
+actor Beef_BlastRuneA : BlastRuneA replaces BlastRuneA{}
+actor Beef_BlastRuneB : BlastRuneB replaces BlastRuneB{}
+actor Beef_BlastRuneD : BlastRuneD replaces BlastRuneD{}
+actor Beef_BlastRuneM : BlastRuneM replaces BlastRuneM{}
+actor Beef_BlastRuneExplosion : BlastRuneExplosion replaces BlastRuneExplosion{}
+actor Beef_DawnBreakerDive : DawnBreakerDive replaces DawnBreakerDive{}
+actor Beef_DawnBreakerQuake : DawnBreakerQuake replaces DawnBreakerQuake{}
+
+actor Beef_DawnBreakerExplosion : BasicExplosion replaces DawnBreakerExplosion{}//$CBM Damage was increased. Old style usually hit with 2 of these.
+
+actor Beef_DawnBreakerEmitter : DawnBreakerEmitter replaces DawnBreakerEmitter{}

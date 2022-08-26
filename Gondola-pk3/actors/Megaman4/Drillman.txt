@@ -11,8 +11,8 @@
 	Player.SoundClass "drillmanc"
 	Player.StartItem "DrillBombBoss"
 	Player.StartItem "DrillBombClassAmmo", 28
-	player.maxhealth 850
-	health 850
+	player.maxhealth 85
+	health 85
 	player.jumpz 10
 	Player.ForwardMove 0.75, 0.75
 	Player.SideMove 0.73, 0.73

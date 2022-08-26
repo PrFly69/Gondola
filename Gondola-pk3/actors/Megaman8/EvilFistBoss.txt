@@ -441,19 +441,21 @@ ERO8 Q 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
 ERO8 Q 0 A_TakeInventory("EvilRageAmmo",560)
 
 ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,8,sin(-pitch)*55,0,1)
-ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,16,sin(-pitch)*55,0,1)
+////ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,16,sin(-pitch)*55,0,1)
 //ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,24,sin(-pitch)*55,0,1)
+
 ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,-8,sin(-pitch)*55,0,1)
-ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,-16,sin(-pitch)*55,0,1)
+////ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,-16,sin(-pitch)*55,0,1)
 //ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,-24,sin(-pitch)*55,0,1)
 
 ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55,0,1)
 
 //ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55+24,0,1)
-ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55+16,0,1)
+////ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55+16,0,1)
 ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55+8,0,1)
+
 ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55-8,0,1)
-ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55-16,0,1)
+////ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55-16,0,1)
 //ERO8 Q 0 A_SpawnItemEx("TrioFlashBomb",cos(-pitch)*9,8,28+(sin(-pitch)*9),cos(-pitch)*55,0,sin(-pitch)*55-24,0,1)
 
 ERO8 Q 4 OffSet(22,56)A_TakeInventory("TrioFireFlag",1)
@@ -1148,7 +1150,7 @@ actor TrioSpectrum2SP : TrioSpectrum2S{translation "192:192=229:229","198:198=23
 
 actor TrioSpectrum3 : TrioSpectrum
 {
-damage (66)
+damage (5)
 +THRUGHOST
 -PAINLESS
 -CLIENTSIDEONLY
@@ -1180,7 +1182,7 @@ damagetype "Trio_Shot2"
 Obituary "$OB_EVILFIST"
 +SKYEXPLODE
 +EXPLODEONWATER
-Damage (300)//350
+Damage (30)//350
 Radius 16
 Height 16//10
 Speed 26
@@ -1194,10 +1196,11 @@ SpawnLOOP:
 EVFL CD 1
 Loop
 Death:
-EVFL F 0 
+TNT1 A 0 A_PlaySoundEx("weapon/fistimpact","Body")
 EVFL F 0 A_Recoil(5)
+DeathLOOP:
 EVFL CD 1 A_FadeOut
-Goto Death+2
+loop
 }
 }
 
@@ -1218,7 +1221,7 @@ Obituary "$OB_EVILFIST"
 +EXPLODEONWATER
 RenderStyle "Translucent"
 Alpha 0.98
-Damage (550)
+Damage (55)
 Radius 24
 Height 20
 Speed 26
@@ -1229,15 +1232,19 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
+TNT1 A 0 A_PlaySoundEx("weapon/TrioCharge2","Weapon")
+TNT1 A 0 A_PlaySoundEx("weapon/fistringtravel","Body")
 EVFL F 2
 EVFL F 1 A_SpawnItemEx("GigaFistEvilFX",64,0,0,momx/7,momy/7,momz/7,0,9)
 EVFL G 2
 loop
 Death:
 EVFL F 0 
+TNT1 A 0 A_PlaySoundEx("weapon/fistimpact","Weapon")
+TNT1 A 0 A_PlaySoundEx("weapon/DuoShot2","Body")
 EVFL F 0 A_Recoil(5)
 EVFL F 1 A_FadeOut
-Goto Death+2
+wait
 }
 }
 
@@ -1402,7 +1409,7 @@ damagetype "TrioTornadoHold"
 +DONTSPLASH
 +DONTBLAST
 +THRUGHOST
-Damage (50)
+Damage (5)
 Radius 65
 Height 1350
 Speed 0
@@ -1452,7 +1459,7 @@ Damagetype "TrioAstroCrush"
 +HEXENBOUNCE
 renderstyle translucent
 alpha 0.1
-Damage (40)
+Damage (4)
 Radius 52//260
 Height 60//300
 Speed 35
@@ -1500,7 +1507,7 @@ TNT1 A 1 A_JumpIfInventory("CutterFlag",8,"Death2")
 stop
 Death2:
 TNT1 A 0 A_playSoundEx("weapon/astrocrush","Weapon")
-TNT1 A 0 A_Explode(240,196,0,0,53)
+TNT1 A 0 A_Explode(24,196,0,0,100)
 TNT1 AAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TrioMeteorExplodeFX",random(-72,72),random(-72,72),random(-72,72),0,0,0,0,1)
 stop
 }
@@ -1662,16 +1669,16 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 FWVE M 0 A_CountDown
-FWVE M 0 A_Explode(50,80,0,0,80)
+FWVE M 0 A_Explode(4,80,0,0,80)
 FWVE M 0 A_SpawnItemEx("TrioFlameFX",0,0,40,-6,0,5,0,1)
 FWVE M 0 A_SpawnItemEx("TrioFlameFX",0,0,-40,-6,0,-5,0,1)
-FWVE MMM 1 A_Explode(50,80,0,0,80)
+FWVE MMM 1 A_Explode(4,80,0,0,80)
 FWVE N 0 A_SpawnItemEx("TrioFlameFX",0,0,40,-6,0,5,0,1)
 FWVE N 0 A_SpawnItemEx("TrioFlameFX",0,0,-40,-6,0,-5,0,1)
-FWVE NNN 1 A_Explode(50,80,0,0,80)
+FWVE NNN 1 A_Explode(4,80,0,0,80)
 FWVE O 0 A_SpawnItemEx("TrioFlameFX",0,0,40,-6,0,5,0,1)
 FWVE O 0 A_SpawnItemEx("TrioFlameFX",0,0,-40,-6,0,-5,0,1)
-FWVE OOO 1 A_Explode(50,80,0,0,80)
+FWVE OOO 1 A_Explode(4,80,0,0,80)
 loop
 }
 }
@@ -1740,7 +1747,7 @@ PROJECTILE
 +THRUGHOST
 damagetype "TrioThunderClaw"
 Obituary "$OB_GIGA_THUNDERCLAW"
-Damage (40+user_D*10)
+Damage (4+user_D)
 Radius 32//40
 Height 46//55
 
@@ -1760,7 +1767,7 @@ XDeath:
 TNT1 A 1
 stop
 Death:
-TNT1 A 1 A_Explode(user_D*10+10,64+user_D*2,0,0,32+user_D*1.25)
+TNT1 A 1 A_Explode(user_D+4,64+user_D*2,0,0,32+user_D*1.25)
 stop
 }
 }
@@ -1785,7 +1792,7 @@ Obituary "$OB_GIGA_HOMINGSNIPER"
 +HITTRACER
 
 ReactionTime 1
-damage (60)
+damage (6)
 height 12
 Radius 12
 Speed 500
@@ -1955,7 +1962,7 @@ PROJECTILE
 damagetype "TrioHomingSniper"
 Obituary "$OB_GIGA_HOMINGSNIPER"
 +THRUGHOST
-Damage (80)
+Damage (8)
 Radius 40
 Height 40
 Speed 264
@@ -2078,7 +2085,7 @@ health 1
 Renderstyle Translucent
 alpha 0.5
 ReactionTime 1
-Damage (150)
+Damage (15)
 Radius 64
 Height 64
 Speed 0
@@ -2188,7 +2195,7 @@ Damagetype "TrioFlashBomb2"
 +THRUGHOST
 +FORCEXYBILLBOARD
 reactiontime 10
-damage (30)
+damage (3)
 radius 12
 height 10
 Speed 40
@@ -2225,12 +2232,12 @@ Y_8G A 0
 Y_8G A 0 A_SetUserVar("user_Flash",20)
 Y_8G AB 1 bright 
 Y_8G CD 1 bright
-Y_8G A 0 A_Explode(230,80,0,0,16)
+Y_8G A 0 A_Explode(30,80,0,0,16)
 Y_8G EE 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random(-32, 32),0,0,0,0,1)
 Y_8G EF 1 bright A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
 Y_8G EE 0 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random(-32, 32),0,0,0,0,1)
 Y_8G GF 1 bright A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
-Y_8G A 0 A_Explode(220,80,0,0,16)
+Y_8G A 0 A_Explode(29,80,0,0,16)
 Goto Pattern1
 Pattern1:
 Y_8G EF 1 bright A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
@@ -2271,6 +2278,13 @@ actor TrioFlashBombProtect : PowerProtection
 Powerup.Duration 15
 DamageFactor "TrioFlashBomb", 0.25//0.125
 }
+
+actor TrioIceWaveProtect : PowerProtection
+{
+Powerup.Duration 1
+DamageFactor "TrioIceWave", 0.20
+}
+
 ////
 ////////
 //WaterBalloon
@@ -2291,7 +2305,7 @@ BounceCount 10
 renderstyle Translucent
 Alpha 0.2
 reactiontime 6
-Damage (300)//25
+Damage (30)//25
 Height 56
 Radius 56
 Speed 30
@@ -2334,7 +2348,7 @@ Gravity 0.50
 BounceCount 15
 Alpha 0.8
 reactiontime 1
-Damage (120)//15
+Damage (12)//15
 Radius 32
 Height 32
 Speed 35
@@ -2375,7 +2389,7 @@ actor TrioBalloon3 : TrioBalloon2
 Gravity 0.35
 BounceCount 20
 reactiontime 1
-Damage (80)
+Damage (8)
 Radius 16
 Height 16
 Speed 40

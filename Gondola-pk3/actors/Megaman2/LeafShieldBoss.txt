@@ -400,7 +400,7 @@ BounceFactor 0.85
 WallBounceFactor 0.75
 Bouncecount 6
 
-Damage (40)
+Damage (4)
 Height 8
 Radius 8
 Speed 42
@@ -477,7 +477,7 @@ Obituary "$OB_LEAFTOWERX"
 +DONTREFLECT
 +DONTBLAST
 ReactionTime 4
-Damage (20)
+Damage (2)
 Height 8
 Radius 8
 Scale 2.5
@@ -543,7 +543,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(20,32,0,0,32)
+TNT1 A 1 A_Explode(2,32,0,0,32)
 stop
 }
 }
@@ -561,7 +561,7 @@ PROJECTILE
 Obituary "$OB_LEAFSHIELD"
 damagetype "WoodM_Leaf"
 +NOGRAVITY
-Damage (20)
+Damage (2)
 Radius 8
 Height 8
 speed 28
@@ -642,7 +642,7 @@ damagetype "WoodM_LeafRain"
 +DONTBLAST
 //+NOCLIP
 Gravity 0.4
-Damage (160)
+Damage (16)
 Radius 13
 Height 13
 speed 0
@@ -674,7 +674,7 @@ Translation "199:199=104:104"
 PROJECTILE
 damagetype "WoodM_Shield"
 Obituary "$OB_LEAFSHIELD"
-Damage (220)
+Damage (22)
 Radius 14
 Height 14
 Speed 28
@@ -738,7 +738,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("WoodSlamFX",0,0,0,0,0,0,random(0,30),4)
-TNT1 A 2 A_Explode(350,136,0,0,8)
+TNT1 A 2 A_Explode(35,136,0,0,8)
 stop
 }
 }

@@ -233,7 +233,7 @@
   {
 	Translation "192:192=65:65", "198:198=61:61"
 	PROJECTILE
-	Damage (130)
+	Damage (13)
 	Height 7
 	Radius 6
 	+FORCEXYBILLBOARD
@@ -254,24 +254,24 @@
 	}
   }
 
-  Actor TimeManArrow : TimeArrow{speed 40 Damage (110)}
+  Actor TimeManArrow : TimeArrow{speed 40 Damage (11)}
 
   Actor TimeManArrowB : TimeManArrow{translation "192:192=205:205", "198:198=74:74"}
   Actor TimeManArrowR : TimeManArrow{translation "192:192=171:171", "198:198=41:41"}
   Actor TimeManArrowO : TimeManArrow{translation "192:192=104:104", "198:198=128:128"}
   Actor TimeManArrowP : TimeManArrow{translation "192:192=229:229", "198:198=232:232"}
   
-  Actor TimeArrowSlow : TimeManArrow{Damage (70) +RIPPER speed 15}
-  Actor TimeArrowSlowB : TimeManArrowB{Damage (70) +RIPPER speed 15}
-  Actor TimeArrowSlowR : TimeManArrowR{Damage (70) +RIPPER speed 15}
-  Actor TimeArrowSlowO : TimeManArrowO{Damage (70) +RIPPER speed 15}
-  Actor TimeArrowSlowP : TimeManArrowP{Damage (70) +RIPPER speed 15}
+  Actor TimeArrowSlow : TimeManArrow{Damage (7) +RIPPER speed 15}
+  Actor TimeArrowSlowB : TimeManArrowB{Damage (7) +RIPPER speed 15}
+  Actor TimeArrowSlowR : TimeManArrowR{Damage (7) +RIPPER speed 15}
+  Actor TimeArrowSlowO : TimeManArrowO{Damage (7) +RIPPER speed 15}
+  Actor TimeArrowSlowP : TimeManArrowP{Damage (7) +RIPPER speed 15}
 
-  Actor TimeArrowFast : TimeManArrow{Damage (90) +RIPPER speed 64}
-  Actor TimeArrowFastB : TimeManArrowB{Damage (90) +RIPPER speed 64}
-  Actor TimeArrowFastR : TimeManArrowR{Damage (90) +RIPPER speed 64}
-  Actor TimeArrowFastO : TimeManArrowO{Damage (90) +RIPPER speed 64}
-  Actor TimeArrowFastP : TimeManArrowP{Damage (90) +RIPPER speed 64}
+  Actor TimeArrowFast : TimeManArrow{Damage (9) +RIPPER speed 64}
+  Actor TimeArrowFastB : TimeManArrowB{Damage (9) +RIPPER speed 64}
+  Actor TimeArrowFastR : TimeManArrowR{Damage (9) +RIPPER speed 64}
+  Actor TimeArrowFastO : TimeManArrowO{Damage (9) +RIPPER speed 64}
+  Actor TimeArrowFastP : TimeManArrowP{Damage (9) +RIPPER speed 64}
 
 
   Actor TimeManSlow : BasicExplosion
@@ -284,7 +284,7 @@
 	{
 		Spawn:
 		TNT1 A 0
-		TNT1 A 1 A_Explode(100,480,0,0,16)
+		TNT1 A 1 A_Explode(10,480,0,0,16)
 		X_1G EFGHIJKLMNEFGHIJKLMN 1
 		Stop
 	}

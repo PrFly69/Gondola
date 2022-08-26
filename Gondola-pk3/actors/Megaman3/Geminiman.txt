@@ -1,0 +1,47 @@
+actor Geminiman : ClassBase
+{
+Player.ScoreIcon "C_03C0X"
+player.displayname "Geminiman"
+player.soundclass "geminimanc"
+
+player.maxhealth 100
+health 100
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "GeminiLaserBoss"
+player.startitem "SeeingDoubleAmmo", 750
+player.startitem "GemSpawner", 1
+
+player.startitem "SearchSnakeWeakness2", 1
+
+player.startitem "SearchSnakeWeakness", 1
+player.startitem "HomingSniperWeakness", 1
+player.startitem "DiveMissileWeakness", 1
+player.startitem "MagicCardWeakness", 1
+player.startitem "HornetChaserWeakness", 1
+player.startitem "SparkChaserWeakness", 1
+//Remember to give clone weakness checks
+States
+{
+Spawn:
+GEMM A 0
+GEMM B 1
+GEMM A 1
+Goto Spawn+2
+See:
+GEMM BCDE 5
+Goto Spawn
+Missile:
+GEMM F 5
+GEMM G 4
+goto Spawn
+ClassPain:
+GEMM H 0
+goto PainContinue
+ClassDeath:
+GEMM H 0
+goto DeathContinue
+}
+}

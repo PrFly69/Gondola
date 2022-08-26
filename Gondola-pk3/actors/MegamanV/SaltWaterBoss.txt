@@ -435,7 +435,7 @@ states
 {
 Spawn:
 TNT1 A 0
-TNT1 A 4 A_Explode(150,96,0,0,32)
+TNT1 A 4 A_Explode(15,96,0,0,32)
 stop
 }
 }
@@ -446,7 +446,7 @@ states
 {
 Spawn:
 TNT1 A 0
-TNT1 A 4 A_Explode(260,128,0,0,64)
+TNT1 A 4 A_Explode(26,128,0,0,64)
 stop
 }
 }
@@ -504,7 +504,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(30,20,0,0,20)
+TNT1 A 2 A_Explode(3,20,0,0,20)
 stop
 }
 }
@@ -517,7 +517,7 @@ Obituary "$OB_NEPTUNELEAP"
 +DONTBLAST
 +DONTREFLECT
 +THRUGHOST
-damage (30)
+damage (3)
 Radius 28
 Height 2
 renderstyle none
@@ -655,7 +655,7 @@ states
 {
 Spawn:
 TNT1 A 0
-TNT1 A 4 A_Explode(50,64,0,0,32)//A_Explode(20,300,0,0,150)
+TNT1 A 4 A_Explode(5,64,0,0,32)//A_Explode(20,300,0,0,150)
 stop
 }
 }
@@ -735,7 +735,7 @@ damagetype "Neptune_SaltQuake"
 reactiontime 9//11
 radius 4
 height 4
-speed 60
+speed 68
 states
 {
 Spawn:
@@ -781,10 +781,10 @@ damagetype "Neptune_Shot"
 +USEBOUNCESTATE
 deathsound "W_Neptune/SaltWater"
 BounceFactor 1.0
-damage (150)
+damage (15)
 radius 14//24
 height 24
-speed 40
+speed 45
 scale 2.5
 states
 {
@@ -844,13 +844,13 @@ actor NeptuneSaltWaterR : NeptuneSaltWater{Translation"202:202=171:171","199:199
 actor NeptuneSaltWaterO : NeptuneSaltWater{Translation"202:202=104:104","199:199=128:128"}
 actor NeptuneSaltWaterP : NeptuneSaltWater{Translation"202:202=229:229","199:199=232:232"}
 
-actor NeptuneSaltWater2 : NeptuneSaltWater{damage (100)}
+actor NeptuneSaltWater2 : NeptuneSaltWater{damage (10)}
 
 actor NeptuneSaltWaterSalty : NeptuneSaltWater
 {
 //gravity 0.6
-damage (250)
-speed 50
+damage (25)
+speed 56
 states
 {
 Spawn:
@@ -939,10 +939,10 @@ damagetype "Neptune_ShotBit"
 +FORCEXYBILLBOARD
 +HEXENBOUNCE
 bouncecount 2
-damage (50)
+damage (5)
 radius 9
 height 10
-speed 25
+speed 28
 scale 2.5
 states
 {
@@ -997,7 +997,7 @@ gravity 0.5
 reactiontime 1
 radius 4
 height 4
-speed 30
+speed 34
 scale 1.75
 states
 {

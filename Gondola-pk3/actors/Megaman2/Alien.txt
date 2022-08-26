@@ -1,0 +1,136 @@
+actor Alien : ClassBase
+{
+Player.ScoreIcon "C_02J0X"
+player.displayname "Alien"
+player.soundclass "alienc"
+
+player.maxhealth 100
+health 100
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "AlienTrapBoss"
+player.startitem "AlienTrapAmmo", 42
+player.startitem "Alien_StaminaFlag", 500
+player.startitem "AlienFlightItem"
+player.startitem "AlienFlightFlag"
+
+player.startitem "BubbleLeadWeakness2", 1
+
+player.startitem "BubbleLeadWeakness", 1
+player.startitem "RainFlushWeakness", 1
+player.startitem "WaterWaveWeakness", 1
+player.startitem "WaterBalloonWeakness", 1
+player.startitem "BubbleBombWeakness", 1
+
+States
+{
+Spawn:
+ALIE A 0
+ALIE B 1
+ALIE A 1
+Goto Spawn+2
+See:
+ALIE BCDE 5
+Goto Spawn
+Missile:
+ALIE F 5
+ALIE G 4
+goto Spawn
+ClassPain:
+ALIE H 0
+goto PainContinue
+Death.BubbleLead:
+ALIE H 0 A_GiveInventory("BubbleLeadAmmo",1)
+goto Death
+ClassDeath:
+ALIE H 0 A_JumpIfInventory("BubbleLeadAmmo",1,2)
+ALIE H 0 A_Jump(16,1)
+goto DeathContinue
+ALIE H 0
+ALIE H 0 A_JumpIfInventory("InstagibFlag",1,"GibDeath")
+ALIE H 0 A_JumpIfInventory("FlingDeathFlag",1,"ClassDeathF")
+ALIE H 0 A_JumpIfInventory("RiseDeathFlag",1,"RiseDeath")
+ALIE H 0 A_JumpIfInventory("IceDeathFlag",1,"IceDeath")
+ALIE H 1
+ALIE Z 0 A_SpawnItemEx("AlienDeath_MainProp",0,0,0,0,0,0,0,1)
+goto DeathWait
+ClassDeathF:
+ALIE HZHZHZHZHZ 2
+ALIE Z 0 A_SpawnItemEx("AlienDeath_MainProp",0,0,0,0,0,0,0,1)
+goto DeathWait
+}
+}
+
+actor AlienDeath_MainProp : BasicHelper
+{
+renderstyle Normal
+Scale 2.5
+States
+{
+Spawn:
+ALIE H 0
+ALIE H 0 A_JumpIfInventory("CriticalDeath",1,"SpawnCheckGib",2)
+ALIE HZHZHZHZHZ 2//20
+ALIE H 0 A_SpawnItemEx("AlienDeath_UpperPropFX",0,0,128,0,0,0,0,1)
+goto Spawn2
+SpawnCheckGib:
+ALIE HZHZHZHZHZ 2
+ALIE H 0 A_SpawnItemEx("AlienDeath_UpperPropFX_Gib",0,0,128,0,0,0,0,1)
+Spawn2:
+ALIE H 2
+ALIF S 2
+ALIE H 2
+ALIF T 2
+ALIE H 2
+ALIF S 2
+ALIE H 2
+ALIF T 2
+ALIE H 2
+ALIF S 2//20
+
+ALIF STSTSTSTSTSTSTS 4//60
+TNT1 A 1 A_SpawnItemEx("AlienDeath_UpperPropEndFX",0,0,34,0,0,0,0,1)
+stop
+}
+}
+
+actor AlienDeath_UpperPropEndFX : BasicClientSide
+{
+States
+{
+Spawn:
+WMFX ABCD 2
+stop
+}
+}
+
+actor AlienDeath_UpperPropFX : BasicClientSide
+{
+Alpha 0.1
+States
+{
+Spawn:
+ALIF R 0
+ALIF RQQQQQQQQ 1 A_FadeIn(0.1)
+ALIF RQRQRQRQR 8
+TNT1 A 0 A_PlaySoundEx("misc/M1_DIED","SoundSlot6")
+TNT1 A 1 A_SpawnItemEx("FakeDeathFX_CBM",0,0,32,0,0,0,0,1)//random(0,359)
+stop
+}
+}
+actor AlienDeath_UpperPropFX_Gib : AlienDeath_UpperPropFX
+{
+States
+{
+Spawn:
+ALIF R 0
+ALIF RQQQQQQQQ 1 A_FadeIn(0.1)
+ALIF RQRQRQRQR 8
+TNT1 A 0 A_PlaySoundEX("misc/gib","Weapon")
+TNT1 A 0 A_SpawnItemEx("FakeDeathFX_CBM",0,0,32,0,0,0,0,1)
+TNT1 A 1 A_SpawnItemEX("CriticalDeathSpawner",0,0,0,0,0,0,0,1)
+stop
+}
+}

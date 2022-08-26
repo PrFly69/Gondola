@@ -45,10 +45,11 @@
 		Fire:
 		FAKR E 0 A_JumpIfNoAmmo("NoAmmo")
 		FAKR E 0 A_JumpIfInventory("FOMBuffer",1,"FOMCheck")
+		FAKR E 0 A_JumpIfInventory("FOMBufferR",1,"FOMCheck")
 		FAKR E 0 A_PlaySoundEx("weapon/fakeshot1","Weapon")
 		FARK E 0 A_GiveInventory("FakemanFiring",1)
 		FAKR E 0 A_GiveInventory("FakemanMain1_CI",1)
-		FAKR E 1 A_Giveinventory("FOMBuffer")
+		FAKR E 1 A_GiveInventory("FakemanFOM_P")
 		FAKR B 0 A_Refire("FireH1")
 		Goto FireEnd
 		
@@ -61,7 +62,7 @@
 		FAKR A 0 A_PlaySoundEx("weapon/fakeshot1","Weapon")
 		FARK A 0 A_GiveInventory("FakemanFiring",1)
 		FAKR A 0 A_GiveInventory("FakemanMain2_CI",1)
-		FAKR A 1 A_Giveinventory("FOMBuffer")
+		FAKR A 1 A_GiveInventory("FakemanFOM_P")
 		FAKR B 0 A_Refire("FireBH1")
 		Goto FireBEnd
 
@@ -298,6 +299,11 @@
   {
     Powerup.Duration 12
   }
+  
+  Actor FOMBufferR : Powerup
+  {
+    Powerup.Duration 6
+  }
 
 
 //====================
@@ -360,6 +366,22 @@
 	}
   }
 
+
+  Actor FakemanFOM_P : CustomInventory
+  {
+	States
+	{
+		Pickup:
+		TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+		TNT1 A 0 A_GiveInventory("FOMBuffer",1)
+		stop
+
+		PickupR:
+		TNT1 A 0 A_GiveInventory("FOMBufferR",1)
+		Stop
+
+	}
+  }
 
   Actor FakemanAmmoHelper : BasicHelper
   {
@@ -435,10 +457,10 @@ stop
 	Projectile
 	damagetype "FakeM_Shot"
 	Obituary "$OB_FAKEBRUTAL"
-	Damage (160)
+	Damage (16)
 	Radius 6
 	Height 7
-	Speed 90
+	Speed 101
 	Scale 2.5
 	States
 	{
@@ -462,7 +484,7 @@ stop
 
   Actor StrayShot : RevolverShot
   {
-    Damage (100)
+    Damage (12)
 	States
 	{
 		Spawn:
@@ -517,7 +539,7 @@ stop
 	Damage (0)
 	Height 4
 	Radius 4
-	Speed 30
+	Speed 34
 	Scale 1.5
 	States
 	{
@@ -550,7 +572,8 @@ stop
 	+DONTBLAST
 	Projectile
 	Obituary "$OB_FAKEBATON"
-	Damage (150)
+	damagetype "DMGNoHitstun"
+	Damage (15)
 	Radius 14
 	Height 14
 	Speed 100
@@ -585,7 +608,11 @@ stop
   }
 
 
-  Actor FakeBatonSwing2 : FakeBatonSwing1 { Damage(200) }
+  Actor FakeBatonSwing2 : FakeBatonSwing1 
+  { 
+  Damage(20) 
+  damagetype "NeutralShock"
+  }
 
 //======================
 // Attack Items

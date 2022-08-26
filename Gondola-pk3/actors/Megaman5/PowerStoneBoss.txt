@@ -43,7 +43,7 @@ POWB J 1 A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
 POWB J 1 offset(0,48)A_GiveInventory("StonemanMain_CI",1)
 POWB J 0 A_GiveInventory("StoneManMainCheck",1)
 POWB J 0 A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
-POWB JJJJJJ 2 offset(0,48)A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
+POWB J 2 offset(0,48)A_WeaponReady(WRF_NOPRIMARY|WRF_NOBOB)
 goto FireHold
 
 FireHold:
@@ -57,24 +57,21 @@ goto FireEnd
 FireEnd:
 POWB G 0 A_TakeInventory("StoneManMainCheck",999)
 POWB G 0 A_TakeInventory("WeaponChargeStone",999)
-POWB JI 2
-POWB F 1 offset(0,42)
-POWB F 1 offset(0,34)
-POWB G 0 A_PlaySoundEx("weapon/powerstone","Weapon")
-POWB G 6 Offset(0,48)A_GiveInventory("StonemanMain2_CI")
-POWB G 0 A_PlaySoundEx("weapon/powerstone","Weapon")
-POWB G 6 Offset(0,48)A_GiveInventory("StonemanMain2_CI")
-POWB G 0 A_PlaySoundEx("weapon/powerstone","Weapon")
-POWB G 6 Offset(0,48)A_GiveInventory("StonemanMain2_CI")
-POWB G 1 offset(0,34)
-POWB F 2 offset(0,26)
-POWB F 2 offset(0,40)
-POWB E 2 offset(0,20)
-POWB E 2 offset(0,22)
-POWB E 2 offset(0,24)
-POWB E 2 offset(0,26)
+POWB E 0 A_PlaySoundEx("weapon/powerstone","Weapon")
 POWB E 2 offset(0,28)
-POWB E 2 offset(0,30)
+POWB F 2 offset(0,42)
+POWB F 2 offset(0,34)//A_LogInt(Pitch)
+POWB G 3 offset(0,48) A_GiveInventory("StoneM_FirePitchCheck_P",1)
+POWB G 3 offset(0,34)
+POWB G 3 offset(0,48)
+POWB F 3 offset(0,26)
+POWB F 3 offset(0,40)
+POWB E 3 offset(0,20)
+POWB E 3 offset(0,22)
+POWB E 3 offset(0,24)
+POWB E 3 offset(0,26)
+POWB E 3 offset(0,28)
+POWB E 4 offset(0,30)
 Goto Ready2
 
 FireLeap:
@@ -334,7 +331,7 @@ actor PowerStoneManHaver
 	Height 12
 	scale 2.5
 	damage (0)
-	speed 40
+	speed 45
 	var int user_angle;
 	reactiontime 1
 	States
@@ -420,7 +417,7 @@ actor PowerStoneManHaver2
 	Height 12
 	scale 2.5
 	damage (0)
-	speed 40
+	speed 45
 	var int user_angle;
 	reactiontime 1
 	States
@@ -506,7 +503,7 @@ actor PowerStoneManHaver3
 	Height 12
 	scale 2.5
 	damage (0)
-	speed 40
+	speed 45
 	var int user_angle;
 	reactiontime 1
 	States
@@ -598,7 +595,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_Explode(20,24,0,0,24)
+TNT1 A 0 A_Explode(2,24,0,0,24)
 TNT1 A 2
 stop
 }
@@ -612,7 +609,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_Explode(40,24,0,0,24)
+TNT1 A 0 A_Explode(4,24,0,0,24)
 TNT1 A 2
 stop
 }
@@ -624,39 +621,153 @@ Powerup.duration 7
 DamageFactor "StoneSpiralP", 0
 }
 
-actor PowerStoneRedirector
+actor StoneM_PowerStoneStart_H : BasicHelper
 {
-PROJECTILE
-Translation "192:192=215:215", "198:198=216:216"
-Radius 14
-Height 14
-damage (120)
--NOGRAVITY
-damagetype "StoneM_Rock"
-Obituary "$OB_POWERSTONE"
-speed 45
-scale 2.5
+Translation "192:192=215:215","198:198=216:216"
+Speed 0
 States
 {
 Spawn:
-POWB X 0
-POWB X 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-POWB X 1
-loop
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,pitch,0,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,pitch,120,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,pitch,240,1+32)
+//TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,0+28,1)//v9e
+//TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,180+28,1)
+//TNT1 A 0 A_SpawnItemEx("PowerStoneMan",54,0,0,0,0,0,0,1)//Oldest?
+//TNT1 A 0 A_SpawnItemEx("PowerStoneMan2",54,0,0,0,0,0,180,1)
+stop
+}
+}
+actor StoneM_PowerStoneStart_HB : StoneM_PowerStoneStart_H{Translation "192:192=205:205","198:198=74:74"}
+actor StoneM_PowerStoneStart_HR : StoneM_PowerStoneStart_H{Translation "192:192=171:171","198:198=41:41"}
+actor StoneM_PowerStoneStart_HO : StoneM_PowerStoneStart_H{Translation "192:192=104:104","198:198=128:128"}
+actor StoneM_PowerStoneStart_HP : StoneM_PowerStoneStart_H{Translation "192:192=229:229","198:198=232:232"}
 
-Death:
-TNT1 AA 0 A_SpawnItemEx("PowerStoneRedirectorFX",random(-8,8),random(-8,8),random(0,8),6,frandom(-8,8),frandom(8,8),random(0,360),1)
-TNT1 AA 0 A_SpawnItemEx("PowerStoneRedirectorFX2",random(-8,8),random(-8,8),random(0,8),6,frandom(-8,8),frandom(8,8),random(0,360),1)
-TNT1 A 35 A_PlaySoundEx("weapon/StoneBreak","Body",0,0)
+actor StoneM_PowerStoneStart_H2 : StoneM_PowerStoneStart_H
+{
+Speed 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,10,0,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,10,120,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,10,240,1+32)
 stop
 }
 }
 
-actor PowerStoneRedirectorB : PowerStoneRedirector{translation "192:192=205:205", "198:198=74:74"}
-actor PowerStoneRedirectorR : PowerStoneRedirector{translation "192:192=171:171", "198:198=41:41"}
-actor PowerStoneRedirectorO : PowerStoneRedirector{translation "192:192=104:104", "198:198=128:128"}
-actor PowerStoneRedirectorP : PowerStoneRedirector{translation "192:192=229:229", "198:198=232:232"}
+actor StoneM_PowerStoneStart_H2B : StoneM_PowerStoneStart_H2{Translation "192:192=205:205","198:198=74:74"}
+actor StoneM_PowerStoneStart_H2R : StoneM_PowerStoneStart_H2{Translation "192:192=171:171","198:198=41:41"}
+actor StoneM_PowerStoneStart_H2O : StoneM_PowerStoneStart_H2{Translation "192:192=104:104","198:198=128:128"}
+actor StoneM_PowerStoneStart_H2P : StoneM_PowerStoneStart_H2{Translation "192:192=229:229","198:198=232:232"}
+
+actor StoneM_PowerStoneStart_H3 : StoneM_PowerStoneStart_H
+{
+Speed 1
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,-10,0,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,-10,120,1+32)
+TNT1 A 0 A_SpawnItemEx("PowerStoneManX",46,0,0,1,0,-10,240,1+32)
+stop
+}
+}
+
+actor StoneM_PowerStoneStart_H3B : StoneM_PowerStoneStart_H3{Translation "192:192=205:205","198:198=74:74"}
+actor StoneM_PowerStoneStart_H3R : StoneM_PowerStoneStart_H3{Translation "192:192=171:171","198:198=41:41"}
+actor StoneM_PowerStoneStart_H3O : StoneM_PowerStoneStart_H3{Translation "192:192=104:104","198:198=128:128"}
+actor StoneM_PowerStoneStart_H3P : StoneM_PowerStoneStart_H3{Translation "192:192=229:229","198:198=232:232"}
+
+actor PowerStoneManX
+{
+Translation "192:192=215:215","198:198=216:216"
+var int user_speed;
+var int user_damage;
+var int user_maxturn;
+var int user_turndivisor;
+var int user_turn_add;
+//var int user_warpZ;
+PROJECTILE
+damagetype "StoneM_Toss"
+Obituary "$OB_POWERSTONE"
++FORCEXYBILLBOARD
++THRUACTORS
+Radius 24
+Height 10
+damage (15+user_damage)
+speed 1
+scale 2.5
+States
+{
+Spawn:
+X_5C Q 0
+X_5C Q 0 A_SetUserVar("user_speed",55)//30
+X_5C Q 0 A_SetUserVar("user_maxturn",1000)//1500
+X_5C Q 0 A_SetUserVar("user_turndivisor",96)//40
+X_5C Q 0 A_SetUserVar("user_turn_add",4)//14
+POWB U 1
+Spawn2:
+POWB U 0 A_ChangeFlag("THRUACTORS",0)
+POWB U 0 A_ScaleVelocity(55)
+POWB UVW 2 A_SetUserVar("user_damage",user_damage+2)
+POWB X 1 A_Stop
+TNT1 A 0 A_SetUserVar("user_damage",user_damage+2)
+POWB X 3 A_Setangle(angle-80)
+TNT1 A 0 A_SetUserVar("user_damage",user_damage+2)
+X_5C T 0
+goto Spawn3+1
+/*
+X_5C Q 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+X_5C Q 1 A_ChangeVelocity(user_speed,0,momz,3)
+X_5C Q 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turn_add)
+X_5C Q 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+X_5C Q 1 A_ChangeVelocity(user_speed,0,momz,3)
+X_5C R 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turn_add)
+X_5C R 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+X_5C R 1 A_ChangeVelocity(user_speed,0,momz,3)
+X_5C R 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turn_add)
+X_5C R 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+X_5C R 1 A_ChangeVelocity(user_speed,0,momz,3)
+X_5C S 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turn_add)
+X_5C S 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+X_5C S 1 A_ChangeVelocity(user_speed,0,momz,3)
+X_5C S 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turn_add)
+X_5C S 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+X_5C S 1 A_ChangeVelocity(user_speed,0,momz,3)
+X_5C T 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turn_add)
+*/
+Spawn3:
+X_5C T 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+X_5C T 1 A_ChangeVelocity(user_speed,0,momz,3)
+//X_5C T 0 A_LogInt(user_maxturn*10000/user_turndivisor)
+X_5C T 0 A_JumpIf(user_turndivisor*100/user_maxturn>92,"Spawn4")
+X_5C T 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turn_add)
+loop
+Spawn4:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+X_5C T 1
+wait
+//XDeath:
+//Crash:
+Death:
+TNT1 AA 0 A_SpawnItemEx("PowerStoneRedirectorFX",random(-8,8),random(-8,8),random(0,8),6,frandom(-8,8),frandom(8,8),random(0,360),1)
+TNT1 AA 0 A_SpawnItemEx("PowerStoneRedirectorFX2",random(-8,8),random(-8,8),random(0,8),6,frandom(-8,8),frandom(8,8),random(0,360),1)
+TNT1 A 35 A_PlaySoundEx("weapon/StoneBreak","Body",0,0)
+
+TNT1 A 1
+stop
+}
+}
+
+actor PowerStoneManXB : PowerStoneManX{Translation "192:192=205:205","198:198=74:74"}
+actor PowerStoneManXR : PowerStoneManX{Translation "192:192=171:171","198:198=41:41"}
+actor PowerStoneManXO : PowerStoneManX{Translation "192:192=104:104","198:198=128:128"}
+actor PowerStoneManXP : PowerStoneManX{Translation "192:192=229:229","198:198=232:232"}
 
 actor PowerStoneRedirectorFX
 {
@@ -704,7 +815,7 @@ Obituary "$OB_STONECRUSH"
 +THRUGHOST
 +HITTRACER
 renderstyle none
-damage (250)
+damage (25)
 Radius 24
 Height 2
 States
@@ -801,7 +912,7 @@ TNT1 A 0 A_PlaySoundEx("weapon/ToadCrush","Body")
 goto PickupT
 Pickup2:
 TNT1 A 0 A_PlaySoundEx("weapon/ToadCrushUp","Body")
-TNT1 A 0 A_GiveInventory("Health",100)
+TNT1 A 0 A_GiveInventory("Health",10)
 goto PickupT
 PickupT:
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"PickupT2")
@@ -825,7 +936,7 @@ Obituary "$OB_STONEHEAD"
 +DONTREFLECT
 +THRUGHOST
 renderstyle none
-damage (150)
+damage (15)
 Radius 16
 Height 2
 States
@@ -872,7 +983,7 @@ actor StoneQuakeDamage
 +THRUGHOST
 height 2
 radius 200
-damage (150)
+damage (15)
 Obituary "$OB_STONECRUSH"
 damagetype "StoneM_Shock"
 -SOLID
@@ -908,7 +1019,7 @@ Obituary "$OB_STONEHAND"
 +FLOORHUGGER
 +NOINTERACTION
 ReactionTime 20
-damage (100)
+damage (10)
 radius 16
 height 32
 speed 15
@@ -976,24 +1087,96 @@ goto Done
 }
 }
 
+actor StoneM_FirePitchCheck_P : CustomInventory
+{
+States
+{
+Pickup:
+//TNT1 A 0 A_JumpIf(pitch<359 && pitch>=200, "FireUp")
+//TNT1 A 0 A_JumpIf(pitch>1 && pitch<=70, "FireDown")
+TNT1 A 0 A_GiveInventory("StonemanMain2_CI")
+stop
+FireUp:
+TNT1 A 0 A_GiveInventory("StonemanMain3_CI")
+stop
+FireDown:
+TNT1 A 0 A_GiveInventory("StonemanMain4_CI")
+stop
+}
+}
+
 actor StonemanMain2_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("PowerStoneRedirector",0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManX",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManX",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManX",240,0,0,0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("PowerStoneRedirectorB",0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXB",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXB",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXB",240,0,0,0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("PowerStoneRedirectorR",0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXR",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXR",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXR",240,0,0,0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("PowerStoneRedirectorO",0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXO",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXO",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXO",240,0,0,0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("PowerStoneRedirectorP",0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXP",0,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXP",120,0,0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("PowerStoneManXP",240,0,0,0,0,0)
+goto Done
+}
+}
+
+actor StonemanMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2",0,0,0,-8)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2B",0,0,0,-8)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2R",0,0,0,-8)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2O",0,0,0,-8)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H2P",0,0,0,-8)
+goto Done
+}
+}
+
+actor StonemanMain4_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3",0,0,0,8)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3B",0,0,0,8)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3R",0,0,0,8)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3O",0,0,0,8)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("StoneM_PowerStoneStart_H3P",0,0,0,8)
 goto Done
 }
 }
@@ -1203,7 +1386,7 @@ TNT1 A 0 A_GiveInventory("BuckshotCheckPickup",1)
 TNT1 A 0 A_SetUserVar("user_wepaimlimit",0)
 
 //TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,7,55)//Set Hp to 55
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_StonemanACS",0,550,150)
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_StonemanACS",0,55,15)
 TNT1 A 0 A_GiveInventory("StonemanDeathCounter",1)
 
 
@@ -1231,7 +1414,7 @@ TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TNT1 A 0 A_SpawnItemEx("StoneRebornFX",0,0,0,0,0,0,0,1)
 
 //TNT1 A 0 ACS_NamedExecuteAlways("C_HEALTHACS",0,7,85)//Set Hp to 85
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_StonemanACS",0,850,250)
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_StonemanACS",0,85,25)
 //TNT1 A 0 A_GiveInventory("StonemanDeathCounter",1)
 
 TNT1 A 0 A_GiveInventory("StonemanSpawnStart_P",1)//Buddha on
@@ -1374,7 +1557,7 @@ actor PowerStoneMan
 PROJECTILE
 Radius 24
 Height 10
-damage (200)
+damage (20)
 damagetype "StoneM_Rock"
 Obituary "$OB_POWERSTONE"
 speed 0
@@ -1387,36 +1570,36 @@ scale 2.5
 States
 {
 Spawn:
-POWB U 0
+X_5C A 0
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-TNT1 A 0 A_SetUserVar("user_speed",30)
+TNT1 A 0 A_SetUserVar("user_speed",33.75)
 TNT1 A 0 A_SetUserVar("user_num",1500)
 TNT1 A 0 A_SetUserVar("user_time",30)
 TNT1 A 0 A_SetUserVar("user_time_add",10)
 Spawn2:
 TNT1 A 0 A_Setangle(angle-user_num/user_time)
-POWB U 1 A_ChangeVelocity(user_speed,0,0,3)
+X_5C A 1 A_ChangeVelocity(user_speed,0,0,3)
 TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
 TNT1 A 0 A_Setangle(angle-user_num/user_time)
-POWB U 1 A_ChangeVelocity(user_speed,0,0,3)
+X_5C A 1 A_ChangeVelocity(user_speed,0,0,3)
 TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
 TNT1 A 0 A_Setangle(angle-user_num/user_time)
-POWB V 1 A_ChangeVelocity(user_speed,0,0,3)
+X_5C B 1 A_ChangeVelocity(user_speed,0,0,3)
 TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
 TNT1 A 0 A_Setangle(angle-user_num/user_time)
-POWB V 1 A_ChangeVelocity(user_speed,0,0,3)
+X_5C B 1 A_ChangeVelocity(user_speed,0,0,3)
 TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
 TNT1 A 0 A_Setangle(angle-user_num/user_time)
-POWB W 1 A_ChangeVelocity(user_speed,0,0,3)
+X_5C C 1 A_ChangeVelocity(user_speed,0,0,3)
 TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
 TNT1 A 0 A_Setangle(angle-user_num/user_time)
-POWB W 1 A_ChangeVelocity(user_speed,0,0,3)
+X_5C C 1 A_ChangeVelocity(user_speed,0,0,3)
 TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
 Spawn3:
 TNT1 A 0 A_Setangle(angle-user_num/user_time)
-POWB X 1 A_ChangeVelocity(user_speed,0,0,3)
+X_5C D 1 A_ChangeVelocity(user_speed,0,0,3)
 TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
 loop
 Death:

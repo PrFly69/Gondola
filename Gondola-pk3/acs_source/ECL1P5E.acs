@@ -4,6 +4,21 @@
 
 #include "8bdmlib.acs"
 
+Script "CCBM_ButtonCheck" (int theButton)
+{
+SetResultValue(PressingButton(theButton));
+}
+
+function bool PressingButton (int theButton)
+{
+return PressingButton2(GetPlayerInput(-1, INPUT_BUTTONS),theButton);
+}
+
+function bool PressingButton2 (int buttons, int theButton)
+{
+return ((buttons&theButton)>0);
+}
+
 script 512 (int state, int speedmodify)
 {
 if(GetActorProperty(0,APROP_HEALTH)>0){
@@ -92,6 +107,51 @@ SetActorProperty(0,APROP_SPEED,2.00);
 break;
 }
 }
+}
+
+script "Yamatocounter" (void)
+{
+SetResultValue(CheckInventory("YamatoClassAmmo2"));
+}
+
+script "SR50Display" (void)
+{
+int buttons;
+while(GetActorProperty(0,APROP_Health)>0 && PlayerInGame(PlayerNumber()))
+  {
+  buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+  if(buttons & BT_STRAFE && checkLeftandRight(buttons) == 1 && LcheckLeftandRight(buttons) == 1){GiveInventory("SR50PowerSpeed",1);}
+  Delay(7);
+  }
+}
+
+function bool checkLeftandRight(int buttons)
+{
+	if (buttons & BT_MOVERIGHT || buttons & BT_MOVELEFT){return(1);}
+	return(0);
+}
+
+function bool LcheckLeftandRight(int buttons)
+{
+	if (buttons & BT_RIGHT || buttons & BT_LEFT){return(1);}
+	return(0);
+}
+
+script "ItemReloadACSBubble" (void)
+{
+int buttons;
+while(GetActorProperty(0,APROP_Health)>0 && PlayerInGame(PlayerNumber()))
+  {
+  buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+  if(buttons & BT_RELOAD && CheckInventory("IsTreadingWater"))
+    {
+		TakeInventory("BubbleDabbleAmmo",10);
+		GiveInventory("StopTreadingWater",1);
+		ThrustThingZ(0,10,1,0);
+		Delay(2);
+    }
+	Delay(2);
+  }
 }
 
 script "DuoSlamCounter" (void)

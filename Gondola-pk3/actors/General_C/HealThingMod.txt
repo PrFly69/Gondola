@@ -1,0 +1,56 @@
+//Help Modders change base HealThing amounts. Such as cutting in half or dividing by 10.
+
+actor CBM_HealThing10_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(!(health>0),"No")
+TNT1 A 0 HealThing(1,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+actor CBM_HealThing10_PU : CustomInventory
+{//ClassBase
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(Health>0,"Pickup2")
+stop
+Pickup2:
+TNT1 A 0 HealThing(1,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop
+}
+}
+
+actor CBM_HealThing20_PU : CBM_HealThing10_PU{states{Pickup2:
+TNT1 A 0 HealThing(2,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop}}
+actor CBM_HealThing30_PU : CBM_HealThing10_PU{states{Pickup2:
+TNT1 A 0 HealThing(3,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop}}
+actor CBM_HealThing40_PU : CBM_HealThing10_PU{states{Pickup2:
+TNT1 A 0 HealThing(4,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop}}
+actor CBM_HealThing50_PU : CBM_HealThing10_PU{states{Pickup2:
+TNT1 A 0 HealThing(5,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop}}
+actor CBM_HealThing60_PU : CBM_HealThing10_PU{states{Pickup2:
+TNT1 A 0 HealThing(6,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop}}
+actor CBM_HealThing70_PU : CBM_HealThing10_PU{states{Pickup2:
+TNT1 A 0 HealThing(7,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop}}
+actor CBM_HealThing80_PU : CBM_HealThing10_PU{states{Pickup2:
+TNT1 A 0 HealThing(8,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop}}
+actor CBM_HealThing90_PU : CBM_HealThing10_PU{states{Pickup2:
+TNT1 A 0 HealThing(9,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop}}
+actor CBM_HealThing100_PU : CBM_HealThing10_PU{states{Pickup2:
+TNT1 A 0 HealThing(10,ACS_ExecuteWithResult(CBM_FetchMyHealth,1))
+stop}}

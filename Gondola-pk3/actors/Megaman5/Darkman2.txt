@@ -7,8 +7,8 @@ player.startitem "DarkShieldBoss"
 player.startitem "DarkShieldAmmo",28
 player.startitem "Darkman2ShieldAmmo", 500
 
-player.maxhealth 1150
-health 1150
+player.maxhealth 115
+health 115
 player.jumpz 10
 player.forwardmove 0.810, 0.810
 player.sidemove 0.808, 0.808

@@ -17,15 +17,15 @@ player.startitem "FreezeCrackerWeakness", 1
 player.startitem "IceWaveWeakness", 1
 player.startitem "IceWallWeakness", 1
 player.startitem "ChillSpikeWeakness", 1
-	Player.StartItem "NitroGearToggle", 1
-	//Player.StartItem "NitroGearState", 1 //"Wow, DECORATE is easy!"
+	//Player.StartItem "NitroGearToggle", 1 //It's about time.
+	//Player.StartItem "NitroGearState", 1
     //player.startitem "ChillSpikeWeakness2", 1
 	
-player.maxhealth 750
-health 750
+player.maxhealth 85
+health 85
 player.jumpz 10
 player.forwardmove 0.8, 0.8
-player.sidemove 0.78, 0.78
+player.sidemove 0.8, 0.8
 
     States
     {

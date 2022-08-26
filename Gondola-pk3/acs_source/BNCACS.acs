@@ -1,0 +1,16 @@
+#library "BNCACS"
+#include "zcommon.acs"
+
+Script "BounceAltFireACS" (void)
+{ 
+ While(GetActorProperty(0,APROP_Health) > 0)
+ {
+  If(GetPlayerInput(-1,INPUT_BUTTONS) & BT_ALTATTACK && GetActorProperty(0,APROP_Health) > 0 && CheckInventory("BounceHandDelay")==0 && CheckInventory("BounceHandLanded")==1)
+  {  
+   //Print(s:"lol");
+   GiveInventory("SlappyHandReturnFlag",1);    
+   TakeInventory("BounceHandLanded",1); 
+  } 
+  Delay(1); 
+ } 
+}

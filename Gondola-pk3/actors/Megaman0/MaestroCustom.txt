@@ -339,14 +339,14 @@ HUST L 0 A_PlaySoundEx("weapon/lflcharge","Weapon")
 Hold2.a:
 HUST L 1 ACS_ExecuteAlways(998,0,12009,6)
 HUST L 0 A_GiveInventory("WeaponCharge_MaestroRC",1)//76
-HUST L 0 A_JumpIfInventory("WeaponCharge",38,"Hold3")
+HUST L 0 A_JumpIfInventory("WeaponCharge",76,"Hold3")
 HUST L 0 A_Refire("Hold2.b")
 goto Fire2
 
 Hold2.b:
 HUST J 1 ACS_ExecuteAlways(998,0,12001,1)
 HUST J 0 A_GiveInventory("WeaponCharge_MaestroRC",1)//76
-HUST J 0 A_JumpIfInventory("WeaponCharge",38,"Hold3")
+HUST J 0 A_JumpIfInventory("WeaponCharge",76,"Hold3")
 HUST J 0 A_Refire("Hold2.a")
 goto Fire2
 

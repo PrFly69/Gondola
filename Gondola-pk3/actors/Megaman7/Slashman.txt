@@ -4,8 +4,8 @@ Player.ScoreIcon "C_07F0X"
 player.displayname "Slashman"
 player.soundclass "slashmanc"
 
-player.maxhealth 850
-health 850
+player.maxhealth 85
+health 85
 player.jumpz 10
 player.forwardmove 0.82, 0.82
 player.sidemove 0.80, 0.80

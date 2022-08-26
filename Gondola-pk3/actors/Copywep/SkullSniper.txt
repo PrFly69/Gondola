@@ -1,0 +1,75 @@
+actor SkullSniperWep : BaseMM8BDMWep
+{
+dropitem "SkullSniperWepCDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 28
+Weapon.SlotNumber 2
+Inventory.Pickupmessage "$PU_SKULLSNIPER"
+Obituary "$OB_SKULLSNIPER"
+Tag "$TAG_SKULLSNIPER"
+weapon.ammotype "SkullSniperAmmo"
+inventory.icon "XTR0WI_K"
+States
+{
+Spawn:
+XWI0 K 1
+loop
+Ready:
+XH0K A 0 ACS_ExecuteAlways(998,0,34)
+XH0K A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+XH0K AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0K A 1 A_Lower
+Loop
+Select:
+XH0K AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0K A 1 A_Raise
+Loop
+Fire:
+XH0K A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0K A 0 A_PlaySoundEx("weapon/skullbust","Weapon")
+XH0K A 0 A_FireCustomMissile("SkullSniperShot",0,1,8,0)
+XH0K CBA 4
+XH0K A 4 A_Refire
+Goto Ready+1
+NoAmmo:
+XH0K A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor SkullSniperAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+
+actor SkullSniperShot : FastProjectile
+{
+Translation "192:192=192:192","198:198=197:197"
+PROJECTILE
+damagetype "SkullSniper"
+Obituary "$OB_SKULLSNIPER"
++FORCEXYBILLBOARD
++BRIGHT
+Damage (13)
+radius 8
+height 8
+Speed 150
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 1
+SKUB U 1
+TNT1 A 1
+SKUB V 1
+Goto Spawn+1
+Death:
+SKUB VW 1
+stop
+}
+}

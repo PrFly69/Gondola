@@ -1,0 +1,235 @@
+actor FakeRepeaterWep : BaseMM8BDMWep
+{
+dropitem "FakeRepeaterWepCDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 28
+Weapon.SlotNumber 2
+Inventory.Pickupmessage "$PU_FAKEREPEATER"
+Obituary "$OB_FAKEREPEATER"
+Tag "$TAG_FAKEREPEATER"
+weapon.ammotype "FakeRepeaterAmmo"
+inventory.icon "XTR0WI_R"
+States
+{
+Spawn:
+XWI0 R 1
+loop
+Ready:
+XH0R A 0 ACS_ExecuteAlways(998,0,DYE_FAKEREPEATER)
+XH0R A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+XH0R AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0R A 1 A_Lower
+Loop
+Select:
+XH0R AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0R A 1 A_Raise
+Loop
+
+Fire:
+XH0R A 0 A_JumpIfNoAmmo("NoAmmo")
+goto Hold1
+
+Hold1.c:
+XH0R A 0 A_JumpIfInventory("WeaponCharge",9,"Hold2")
+XH0R A 1 A_GiveInventory("WeaponCharge_RC",1)
+XH0R A 0 A_Refire("Hold1.c")
+goto UnloadChamber
+Hold1:
+XH0R A 0 A_GiveInventory("FakeRepeaterCharge_P",1)
+Hold1.Wait:
+XH0R A 0 A_JumpIfInventory("FakeRepeaterAmmo",2,"Hold1.c")
+XH0R A 0 A_JumpIfInventory("IsBot",1,"BotHold1")
+XH0R A 1
+XH0R A 0 A_Refire("Hold1.Wait")
+goto UnloadChamber
+BotHold1:
+XH0R A 0 A_Jump(12,"UnloadChamber")
+goto Hold1.Wait+2
+
+Hold2.c:
+XH0R A 0 A_JumpIfInventory("WeaponCharge",18,"Hold3")
+XH0R A 1 A_GiveInventory("WeaponCharge_RC",1)
+XH0R A 0 A_Refire("Hold2.c")
+goto UnloadChamber
+Hold2:
+XH0R A 0 A_GiveInventory("FakeRepeaterCharge_P",1)
+Hold2.Wait:
+XH0R A 0 A_JumpIfInventory("FakeRepeaterAmmo",3,"Hold2.c")
+XH0R A 0 A_JumpIfInventory("IsBot",1,"BotHold2")
+XH0R A 1
+XH0R A 0 A_Refire("Hold2.Wait")
+goto UnloadChamber
+BotHold2:
+XH0R A 0 A_Jump(12,"UnloadChamber")
+goto Hold2.Wait+2
+
+Hold3.c:
+XH0R A 0 A_JumpIfInventory("WeaponCharge",27,"Hold4")
+XH0R A 1 A_GiveInventory("WeaponCharge_RC",1)
+XH0R A 0 A_Refire("Hold3.c")
+goto UnloadChamber
+Hold3:
+XH0R A 0 A_GiveInventory("FakeRepeaterCharge_P",1)
+Hold3.Wait:
+XH0R A 0 A_JumpIfInventory("FakeRepeaterAmmo",4,"Hold3.c")
+XH0R A 0 A_JumpIfInventory("IsBot",1,"BotHold3")
+XH0R A 1
+XH0R A 0 A_Refire("Hold3.Wait")
+goto UnloadChamber
+BotHold3:
+XH0R A 0 A_Jump(14,"UnloadChamber")
+goto Hold3.Wait+2
+
+Hold4.c:
+XH0R A 0 A_JumpIfInventory("WeaponCharge",36,"Hold5")
+XH0R A 1 A_GiveInventory("WeaponCharge_RC",1)
+XH0R A 0 A_Refire("Hold4.c")
+goto UnloadChamber
+Hold4:
+XH0R A 0 A_GiveInventory("FakeRepeaterCharge_P",1)
+Hold4.Wait:
+XH0R A 0 A_JumpIfInventory("FakeRepeaterAmmo",5,"Hold4.c")
+XH0R A 0 A_JumpIfInventory("IsBot",1,"BotHold4")
+XH0R A 1
+XH0R A 0 A_Refire("Hold4.Wait")
+goto UnloadChamber
+BotHold4:
+XH0R A 0 A_Jump(14,"UnloadChamber")
+goto Hold4.Wait+2
+
+Hold5.c:
+XH0R A 0 A_JumpIfInventory("WeaponCharge",45,"Hold6")
+XH0R A 1 A_GiveInventory("WeaponCharge_RC",1)
+XH0R A 0 A_Refire("Hold5.c")
+goto UnloadChamber
+Hold5:
+XH0R A 0 A_GiveInventory("FakeRepeaterCharge_P",1)
+Hold5.Wait:
+XH0R A 0 A_JumpIfInventory("FakeRepeaterAmmo",6,"Hold5.c")
+XH0R A 0 A_JumpIfInventory("IsBot",1,"BotHold5")
+XH0R A 1
+XH0R A 0 A_Refire("Hold5.Wait")
+goto UnloadChamber
+BotHold5:
+XH0R A 0 A_Jump(16,"UnloadChamber")
+goto Hold5.Wait+2
+
+Hold6:
+XH0R A 0 A_GiveInventory("FakeRepeaterCharge_P",1)
+Hold6.Wait:
+XH0R A 0 A_JumpIfInventory("IsBot",1,"BotHold6")
+XH0R A 1 A_RailWait
+XH0R A 0 A_Refire("Hold6.Wait")
+goto UnloadChamber
+BotHold6:
+XH0R A 0 A_Jump(16,"UnloadChamber")
+goto Hold6.Wait+2
+
+Altfire:
+XH0R A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0R A 0 A_PlaySoundEx("weapon/fakeempty","Body")
+XH0R A 1
+goto UnloadChamber
+UnloadChamber:
+XH0R A 0 A_PlaySoundEx("weapon/fakeshot1","Weapon")
+XH0R A 0 A_TakeInventory("RepeaterChamber",1)
+XH0R B 2 A_FireCustomMissile("FakeRepeaterShot",0,1,8,0)
+XH0R B 0 A_JumpIfInventory("RepeaterChamber",1,"UnloadChamberAgain")
+XH0R C 2
+goto FireEnd
+UnloadChamberAgain:
+XH0R A 0 A_PlaySoundEx("weapon/fakeshot1","Weapon")
+XH0R A 0 A_TakeInventory("RepeaterChamber",1)
+XH0R A 0 A_FireCustomMissile("FakeRepeaterShot2",0,1,8,0)
+XH0R C 2
+XH0R B 0 A_JumpIfInventory("RepeaterChamber",1,"UnloadChamberAgain")
+goto FireEnd
+FireEnd:
+XH0R C 4
+XH0R AAA 2 A_TakeInventory("WeaponCharge",999)
+XH0R A 2
+XH0R A 0 A_ClearRefire
+Goto Ready+1
+NoAmmo:
+XH0R A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor FakeRepeaterAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor RepeaterChamber : Inventory
+{
+inventory.amount 1
+inventory.maxamount 6
+}
+
+actor FakeRepeaterCharge_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_PlaySoundEx("weapon/fakeempty","Body")
+TNT1 A 0 A_GiveInventory("RepeaterChamber",1)
+stop
+}
+}
+
+actor FakeRepeaterShot : Fastprojectile
+{
+Translation "204:204=215:215"
+PROJECTILE
+damagetype "FakeRepeater"
+Obituary "$OB_FAKEREPEATER"
++FORCEXYBILLBOARD
++BRIGHT
+Damage (13)
+radius 6
+height 7
+Speed 90
+scale 2.5
+States
+{
+Spawn:
+TNT1 A 0 
+Fly:
+W_0D B 1 A_SpawnItemEx("FakeRepeaterShotFX",0,0,0,0,0,0,0,1)
+loop
+Death:
+W_0D B 1
+stop
+}
+}
+
+actor FakeRepeaterShotFX : BasicClientSide
+{
+renderstyle add
+states
+{
+Spawn:
+W_0D B 1 A_FadeOut(0.25)
+loop
+}
+}
+
+actor FakeRepeaterShot2 : FakeRepeaterShot
+{
+Damage (9)
+speed 5
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_ScaleVelocity(13)
+TNT1 A 0 A_ChangeVelocity(0,random(-6,6),random(-6,6),CVF_RELATIVE)
+W_0D B 1
+wait
+}
+}

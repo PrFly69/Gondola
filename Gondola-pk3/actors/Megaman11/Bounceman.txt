@@ -4,13 +4,13 @@ Player.ScoreIcon "C_11F0X"
 player.displayname "bounceman"
 player.soundclass "bouncemanc"
 player.startitem "BounceBallBoss"
-player.startitem "BounceDragToggle"
+player.startitem "BounceDragCancel"
 player.startitem "HeliumAmmo",70
-player.startitem "UpUpAndAwayAmmo",350
+player.startitem "UpUpAndAwayAmmo",300
 player.startitem "BounceLatchTimeAmmo",350
 
-player.maxhealth 1150
-health 1150
+player.maxhealth 155
+health 155
 player.jumpz 15
 player.forwardmove 0.7, 0.7
 player.sidemove 0.68, 0.68
@@ -23,7 +23,7 @@ BOUM B 1
 BOUM A 1
 Goto Spawn+2
 See:
-BOUM BCDE 4
+BOUM BCDE 5
 Goto Spawn
 Missile:
 BOUM F 5
@@ -38,5 +38,8 @@ goto PainContinue
 ClassDeath:
 BOUM H 0
 goto DeathContinue
+CustomState1:
+BOUM CDCDCDE 2
+goto Spawn
 }
 }

@@ -1,0 +1,627 @@
+actor CBM_SmallHealth : CustomInventory replaces SmallHealth
+{
+inventory.pickupmessage "$PU_SMALLHEALTH"
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+HBAL AB 6
+loop
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2),"HealMe")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P1A",1)
+stop
+HealMe:
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0 ACS_ExecuteAlways(CBM_HealMyThing,0,1,20)
+stop
+}
+}
+
+actor CBM_BigHealth : CustomInventory replaces BigHealth
+{
+inventory.pickupmessage "$PU_LARGEHEALTH"
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+HBAL CD 6
+loop
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2),"HealMe")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P2",1)
+stop
+HealMe:
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0 ACS_ExecuteAlways(CBM_HealMyThing,0,1,55)
+stop
+}
+}
+
+actor CBM_WeaponEnergy : CustomInventory replaces WeaponEnergy
+{
+inventory.pickupmessage "$PU_SMALLENERGY"
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+EBAL A 0
+EBAL A 0 Thing_ChangeTID(0,999)
+EBAL AB 6
+Goto Spawn+2
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(984,0),"Success")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P1A",1)
+stop
+Success:
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"Success2")
+TNT1 A 0 ACS_ExecuteAlways(992,0,30)
+stop
+Success2:
+TNT1 A 0 ACS_ExecuteAlways(992,0,36)
+stop
+}
+}
+
+actor CBM_BigWeaponEnergy : CustomInventory replaces BigWeaponEnergy
+{
+inventory.pickupmessage "$PU_LARGEENERGY"
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+EBAL C 0
+EBAL C 0 Thing_ChangeTID(0,999)
+EBAL CD 6 
+Goto Spawn+2
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(984,0),"Success")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P2",1)
+stop
+Success:
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"Success2")
+TNT1 A 0 ACS_ExecuteAlways(992,0,72)
+stop
+Success2:
+TNT1 A 0 ACS_ExecuteAlways(992,0,86)
+stop
+}
+}
+
+actor CBM_MegaHealth : CustomInventory replaces MegaHealth
+{
+inventory.pickupmessage "Picked up a mega health capsule."
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+HBAL E 0
+HBAL E 0 Thing_ChangeTID(0,999)
+HBAL EF 6
+Goto Spawn+2
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2),"HealMe")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P3",1)
+stop
+HealMe:
+TNT1 A 0 A_PlaySound("item/energyup/large",3,1.0)
+TNT1 A 0 ACS_ExecuteAlways(CBM_HealMyThing,0,1,100)
+stop
+}
+}
+
+actor CBM_MegaWeaponEnergy : CustomInventory replaces MegaWeaponEnergy
+{
+inventory.pickupmessage "Picked up a mega energy capsule."
++COUNTITEM
+Scale 2.0
+States
+{
+Spawn:
+EBAL I 0
+EBAL I 0 Thing_ChangeTID(0,999)
+EBAL IJ 6 
+Goto Spawn+2
+Pickup:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(984,0),"Success")
+TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
+fail
+TheSnatch:
+TNT1 A 0 A_GiveInventory("SnatchItems_P3",1)
+stop
+Success:
+TNT1 A 0 A_PlaySound("item/energyup/large",3,1.0)
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"Success2")
+TNT1 A 0 ACS_ExecuteAlways(992,0,255)
+stop
+Success2:
+TNT1 A 0 ACS_ExecuteAlways(992,0,1000)
+stop
+}
+}
+
+
+actor NoTeleportFX_Flag : PowerUp 
+{
+powerup.duration 3
+}
+actor TeleportFX_Flag6 : NoTeleportFX_Flag{}
+
+ACTOR CBM_TeleportFog : TeleportFog2 replaces TeleportFog
+{
++NOINTERACTION
+Radius 4
+Height 4
+States
+{
+Spawn:
+TNT1 A 0 //Online, clients desync to Destination always
+TNT1 A 0 A_StopSound(4)//So the sound was put onto the FX for more control
+TNT1 A 0 A_JumpIfInTargetInventory("NoTeleportFX_Flag",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("JumpCancler",1,"CheckDist")
+Goto Destination
+Destination:
+TNT1 A 0 A_JumpIfInTargetInventory("TeleportFX_Flag6",1,"Destination6")
+TNT1 A 0 A_SpawnItemEx("CBM_TeleportFogNormal")
+Stop
+Destination6:
+TNT1 A 0 A_SpawnItemEx("CBM_TeleportFogNormal_6")
+Stop
+CheckDist:
+TNT1 A 0 A_JumpIfCloser(128,"Destination")
+Goto Teleport
+Teleport:
+TNT1 A 0 A_JumpIfInTargetInventory("TeleportFX_Flag6",1,"Teleport6")
+TNT1 A 0 A_SpawnItemEx("CBM_TeleportFogFancy")
+stop
+Teleport6:
+TNT1 A 0 A_SpawnItemEx("CBM_TeleportFogFancy_6")
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor CBM_TeleportFogNormal
+{
+PainSound "misc/teleport"
+-SOLID
++MISSILE
++NOGRAVITY
++NOINTERACTION
++NOBLOCKMAP
++NOTELEPORT
++BRIGHT
+Radius 4
+Height 4
+scale 2.5
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Pain
+TNT1 A 1 Thing_SetTranslation(0,CallACS("core_copytranslation"))
+TFOG CBA 2
+stop
+}
+}
+actor CBM_TeleportFogNormal_6 : CBM_TeleportFogNormal
+{
+PainSound "misc/teleport66"
+}
+
+actor CBM_TeleportFogFancy : CBM_TeleportFogNormal
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_Pain
+TNT1 A 1 Thing_SetTranslation(0,CallACS("core_copytranslation"))
+TFOG CB 3
+TFOG A 65 A_ChangeVelocity(0,0,13,3)
+stop
+}
+}
+actor CBM_TeleportFogFancy_6 : CBM_TeleportFogFancy
+{
+PainSound "misc/teleport66"
+}
+
+
+/////////////////////////////////////////////////
+//Stage Props Damage/Pain
+/////////////////////////////////////////////////
+
+/*
+actor CBM_WilyBarrel1 : WilyBarrel1 replaces WilyBarrel1
+{
+Species "DumbBarrel"
++THRUSPECIES
+}
+actor CBM_WilyBarrel2 : WilyBarrel2 replaces WilyBarrel2
+{
+Species "DumbBarrel"
++THRUSPECIES
+}
+*/
+actor CBM_FirePillar : FirePillar replaces FirePillar
+{
++DONTDRAIN
++NODAMAGE
+states
+{
+Pain.FreezeCrackerBit:Pain.ChillShot:Pain.ChillSpike://Missing in core
+
+Pain.MegaIceBall:
+Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:
+Pain.DrWily_Ice:
+Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:
+Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:
+Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:
+Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:
+FIRP A 0
+goto Pain.IceSlasher
+}
+}
+
+actor CBM_JunkLavaPillar : JunkLavaPillar replaces JunkLavaPillar
+{
+//+DONTDRAIN
+states
+{
+Pain.ChillShot:Pain.ChillSpike://Missing in core
+
+Pain.MegaIceBall:
+Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:
+Pain.DrWily_Ice:
+Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:
+Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:
+Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:
+Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillM_Freeze:Pain.ChillSpikeClass:
+Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
+TNT1 A 0
+goto Pain.IceSlasher
+}
+}
+
+actor CBM_TeruTeru : TeruTeru replaces TeruTeru
+{
++DONTDRAIN
+painchance 256
+states
+{
+Pain.ChillShot:Pain.ChillSpike://Missing in core
+
+Pain.MegaIceBall:
+Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:
+Pain.DrWily_Ice:
+Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:
+Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:
+Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:
+Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:
+Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
+TERU A 0
+goto Pain.FreezeCracker
+
+Pain.ThunderWool:Pain.ElectricShock://Missing in core
+
+Pain.DynamoTendrilZap:Pain.MegaElecBall:
+Pain.ElecM_Beam:Pain.ElecM_Zap:Pain.ElecM_TeleZap:
+Pain.DrWily_Elec:
+Pain.SparkM_Shock:Pain.SparkM_Shock2:Pain.SparkM_Zap:Pain.SparkM_Lob:
+Pain.DM2_Shock:Pain.DM3_Shock://You think this is funny?!
+Pain.CloudM_Shot:Pain.CloudM_Charge:Pain.CloudM_Spark:Pain.CloudM_Zapper:
+Pain.ClownM_Claw:Pain.ClownM_ClawChain:Pain.ClownM_Peg:Pain.ClownM_Aura:Pain.ClownM_Aura2:Pain.ClownM_Ground:Pain.TrioThunderClaw:
+Pain.DynamoM_Bolt:Pain.DynamoM_TaggedBolt:Pain.DynamoM_Orb:Pain.DynamoM_DishZap:
+Pain.PlugM_Ball:Pain.PlugM_Prong:Pain.PlugM_Plugged:
+Pain.Jupiter_Shot:Pain.Jupiter_Beam:
+TERU A 0
+goto Pain.ThunderBolt
+}
+}
+
+
+actor CBM_PirateMine : PirateMine replaces PirateMine
+{
+damagefactor "Torrent", 1.0
+damagefactor "PiratePush", 1.0
+-NORADIUSDMG//Needed due to Torret being an explosion
++DONTDRAIN
++THRUSPECIES
+Species "PirateMine"
+States
+{
+Pain.PiratePush:
+Pain.Torrent:
+PMIN A 0
+goto Pain.WaveBurnerUW
+
+Pain.Breakdash:
+Pain.WaveBurner:
+Pain.WaveBurnerUW:
+PMIN A 0 A_ChangeFlag("NOINTERACTION", 1)
+PMIN A 1 ACS_ExecuteAlways(259, 0, 1)
+PMIN A 1//One more tic of delay to fix aiming
+TNT1 A 10 A_CustomMissile("PirateMineProjectile", 0, 0, 0, CMF_AIMDIRECTION|CMF_TRACKOWNER, -pitch)
+TNT1 A 0 A_Die
+Goto Death
+}
+}
+
+actor CBM_PirateMineProjectile : PirateMineProjectile replaces PirateMineProjectile
+{
++THRUSPECIES
+Species "PirateMine"
+States
+{
+Death:
+BALA A 0 A_Stop
+BALA A 0 A_PlaySoundEx("weapon/crackerexplode", "Weapon")
+BALA A 0 A_Explode(48,160,1)
+TNT1 A 35 A_SpawnItemEx("ExplosionEffect2")
+stop
+}
+}
+
+
+actor CBM_MagmaBeamV1 : MagmaBeamV1 replaces MagmaBeamV1
+{
+States
+{
+Pain.ChillShot:Pain.ChillSpike://Missing in core
+
+Pain.MegaIceBall:
+Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:
+Pain.DrWily_Ice:
+Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:
+Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:
+Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:
+Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:
+Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
+"----" A 0
+goto Pain.IceSlasher
+}
+}
+actor CBM_MagmaBeamV2 : MagmaBeamV2 replaces MagmaBeamV2
+{
+States
+{
+Pain.ChillShot:Pain.ChillSpike:
+Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
+"----" A 0
+goto Pain.IceSlasher
+}
+}
+actor CBM_MagmaBeamV3 : MagmaBeamV3 replaces MagmaBeamV3
+{
+States
+{
+Pain.ChillShot:Pain.ChillSpike:
+Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
+"----" A 0
+goto Pain.IceSlasher
+}
+}
+
+actor CBM_MagmaBeamH1 : MagmaBeamH1 replaces MagmaBeamH1
+{
+States
+{
+Pain.ChillShot:Pain.ChillSpike:
+Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
+"----" A 0
+goto Pain.IceSlasher
+}
+}
+actor CBM_MagmaBeamH2 : MagmaBeamH2 replaces MagmaBeamH2
+{
+States
+{
+Pain.ChillShot:Pain.ChillSpike:
+Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:Pain.TundraM_Glacier:Pain.TundraM_Slow:Pain.TundraM_Tornado:
+"----" A 0
+goto Pain.IceSlasher
+}
+}
+actor CBM_MagmaBeamH3 : MagmaBeamH3 replaces MagmaBeamH3
+{
+States
+{
+Pain.ChillShot:Pain.ChillSpike:
+Pain.MegaIceBall:Pain.IceM_Slasher:Pain.IceM_Slow:Pain.IceM_Slow2:Pain.IceM_Icicle:Pain.IceM_Sculpt:Pain.DrWily_Ice:Pain.BlizzardM_Shot:Pain.BlizzardM_Shot2:Pain.FreezeM_Shot:Pain.FreezeM_ShotBit:Pain.FreezeM_Frozen:Pain.FreezeM_Iced:Pain.FreezeM_SpikeF:Pain.FreezeM_SpikeC:
+Pain.FrostM_Shot:Pain.FrostM_Iced:Pain.FrostM_Iced2:Pain.TrioIceWave:Pain.ColdM_Wall:Pain.ColdM_WallFloor:Pain.ColdM_WallAir:Pain.ColdM_Down:Pain.ColdM_Freeze:Pain.ChillM_Shot:Pain.ChillM_Spike:Pain.ChillM_Freeze:Pain.ChillSpikeClass:
+"----" A 0
+goto Pain.IceSlasher
+}
+}
+
+/////////////////////////////////////////////////
+//Core Weapon Actors
+/////////////////////////////////////////////////
+
+actor CBM_LeafShield : LeafShield replaces LeafShield
+{
++THRUGHOST
+States
+{
+Spawn:
+WOOD E 2
+WOOD E 0 A_ChangeFlag("THRUGHOST",0)
+goto Super::Spawn+1
+}
+}
+
+actor CBM_PlantBarrierWarper2 : PlantBarrierWarper
+{
+Translation "202:202=4:4", "199:199=39:39"
+States
+{
+Shield:
+Y_6F ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+Y_6F EFGHIJ 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION)
+loop
+}
+}
+
+actor CBM_MegaBall : MegaBall replaces MegaBall
+{
+states
+{
+KickMe:
+MBAL "#" 0 A_ChangeFlag("USEBOUNCESTATE",0)
+MBAL "#" 1 A_GiveToTarget("CBM_BallAction",1)
+MBAL "#" 1 A_CountDown
+wait
+}
+}
+actor CBM_MegaBallDropped : MegaBallDropped replaces MegaBallDropped
+{
+states
+{
+KickMe:
+MBAL "#" 0 A_ChangeFlag("USEBOUNCESTATE",0)
+MBAL "#" 1 A_GiveToTarget("CBM_BallAction",1)
+MBAL "#" 1 A_CountDown
+wait
+}
+}
+actor CBM_BallAction : BallAction replaces BallAction
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SlideVivifyFlag",1,"KickTheBallSlide")
+goto "Super::Pickup"
+KickTheBallSlide:
+MBAL Q 0 A_FireCustomMissile("MegaBallKicked",0,0,0,0)
+MBAL Q 0 A_TakeInventory("BallFlag",999)
+stop
+}
+}
+
+actor CBM_GrabBusterHeal : GrabBusterHeal replaces GrabBusterHeal
+{
+States
+{
+Death:
+GRBU A 0 A_GiveToTarget("CBM_GrabBusterHealPickup",1)
+stop
+}
+}
+
+actor CBM_GrabBusterHealPickup : GrabBusterHealPickup replaces GrabBusterHealPickup
+{
+States
+{
+Pickup:
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0 ACS_ExecuteAlways(CBM_HealMyThing,0,1,15)
+stop
+}
+}
+
+
+actor CBM_MirrorBuster1 : MirrorBuster1 replaces MirrorBuster1
+{
++DONTDRAIN
+Health 100
+Stamina 100
+States
+{
+Pain:
+TNT1 A 0 
+TNT1 A 0 A_PlaySoundEx("weapon/mirrorabsorb", "Weapon")
+TNT1 A 0 A_JumpIfHealthLower(Stamina*61/100,"ShotStrong")//610
+TNT1 A 0 A_JumpIfHealthLower(Stamina*88/100,"ShotMid")//880
+TNT1 A 0 A_JumpIfHealthLower(Stamina,"ShotWeak")//1000
+stop
+}
+}
+
+actor CBM_MirrorBuster2 : MirrorBuster2 replaces MirrorBuster2
+{
++DONTDRAIN
+Health 100
+Stamina 100
+States
+{
+Pain:
+TNT1 A 0 
+TNT1 A 0 A_PlaySoundEx("weapon/mirrorabsorb", "Weapon")
+TNT1 A 0 A_JumpIfHealthLower(Stamina*61/100,"ShotStrong")
+TNT1 A 0 A_JumpIfHealthLower(Stamina*88/100,"ShotMid")
+TNT1 A 0 A_JumpIfHealthLower(Stamina,"ShotWeak")
+stop
+}
+}
+
+actor CBM_PartyBall : PartyBall replaces PartyBall
+{
+-FLOATBOB
+States
+{
+Spawn:
+PRTB A 0 //Have it spawn in LMS, don't spawn if Buckshot
+PRTB A 0 A_JumpIf(/*ACS_ExecuteWithResult(975,0)==2 ||*/ ACS_ExecuteWithResult(975,2)>0,"End")
+PRTB A 0 A_ChangeFlag("FLOATBOB",1)
+PRTB A 0 A_GiveInventory("PartyBallSpawnFunc",1)
+goto Spawn2
+}
+}
+
+
+actor CBM_BeatBoostUp_H : BeatBoostUp_H replaces BeatBoostUp_H
+{
++SERVERSIDEONLY
+ReactionTime 4200
+States
+{
+SpawnEnd:
+TNT1 A 0 A_TakeFromTarget("PowerBeatBoostUpSpeed",1)
+TNT1 A 0 A_GiveToTarget("PowerBeatBoostSpeed",1)
+SpawnWatch:
+TNT1 A 0 A_CountDown
+TNT1 A 0 A_JumpIfInTargetInventory("BeatBoosterHasLanded",1,"SpawnDead")
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnDead")
+TNT1 A 1 A_GiveToTarget("BeatBoostFall_P",1)
+loop
+Death:
+TNT1 A 0
+goto SpawnDead
+}
+}

@@ -1,0 +1,223 @@
+actor BusterRodGWep : BaseMM8BDMWep
+{
+dropitem "BusterRodGWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 3
+Inventory.Pickupmessage "$PU_BUSTERRODPOLE"
+Obituary "$OB_BUSTERRODPOLE"
+Tag "$TAG_BUSTERRODPOLE"
+weapon.ammotype "BusterRodGCopyAmmo"
+inventory.icon "XTR0WI_S"
+States
+{
+Spawn:
+XWI0 S 1
+loop
+Ready:
+XH0S A 0 ACS_ExecuteAlways(998,0,DYE_BUSTERRODPOLE)
+XH0S A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+XH0S AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0S A 1 A_Lower
+Loop
+Select:
+XH0S AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0S A 1 A_Raise
+Loop
+Fire:
+XH0S A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0S A 0 A_SetUserVar("user_wepangle", angle)
+XH0S A 0 A_SetUserVar("user_weppitch", pitch)
+XH0S A 0 A_TakeInventory("BusterRodGCopyAmmo",2,1)
+XH0S A 0 A_PlaySoundEx("weapon/BRGStaff","Weapon")
+XH0S A 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
+XH0S B 1 A_GiveInventory("LaunchBusterRodC1",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC2",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC3",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC4",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC5",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC6",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC7",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC8",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC8",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC7",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC6",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC5",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC4",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC3",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC2",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC1",1)
+XH0S A 14
+//36
+Goto Ready+1
+FireR:
+XH0S B 0 A_GiveInventory("LaunchBusterRodC1",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC2",1)
+XH0S B 0 A_GiveInventory("LaunchBusterRodC3",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC4",1)
+XH0S C 0 A_GiveInventory("LaunchBusterRodC5",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC6",1)
+XH0S C 0 A_GiveInventory("LaunchBusterRodC7",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC8",1)
+XH0S C 0 A_GiveInventory("LaunchBusterRodC8",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC7",1)
+XH0S C 0 A_GiveInventory("LaunchBusterRodC6",1)
+XH0S C 1 A_GiveInventory("LaunchBusterRodC5",1)
+XH0S B 0 A_GiveInventory("LaunchBusterRodC4",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC3",1)
+XH0S B 0 A_GiveInventory("LaunchBusterRodC2",1)
+XH0S B 1 A_GiveInventory("LaunchBusterRodC1",1)
+XH0S A 14
+Goto Ready+1
+
+NoAmmo:
+XH0S A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor BusterRodGCopyAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor LaunchBusterRodC1 : CustomInventory
+{
+states
+{
+pickup:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndC1",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+pickup2:
+TNT1 A 0
+stop
+}
+}
+
+actor LaunchBusterRodC2 : LaunchBusterRodC1
+{
+states
+{
+pickup:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndC2",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+pickup2:
+TNT1 A 0 A_FireCustomMissile("BusterRod1",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::Pickup2"
+}
+}
+
+actor LaunchBusterRodC3 : LaunchBusterRodC2
+{
+states
+{
+pickup:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndC3",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+pickup2:
+TNT1 A 0 A_FireCustomMissile("BusterRod2",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::Pickup2"
+}
+}
+
+actor LaunchBusterRodC4 : LaunchBusterRodC3
+{
+states
+{
+pickup:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndC4",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+pickup2:
+TNT1 A 0 A_FireCustomMissile("BusterRod3",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::Pickup2"
+}
+}
+
+actor LaunchBusterRodC5 : LaunchBusterRodC4
+{
+states
+{
+pickup:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndC5",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+pickup2:
+TNT1 A 0 A_FireCustomMissile("BusterRod4",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::Pickup2"
+}
+}
+
+actor LaunchBusterRodC6 : LaunchBusterRodC5
+{
+states
+{
+pickup:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndC6",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+pickup2:
+TNT1 A 0 A_FireCustomMissile("BusterRod5",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::Pickup2"
+}
+}
+
+actor LaunchBusterRodC7 : LaunchBusterRodC6
+{
+states
+{
+pickup:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndC7",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+pickup2:
+TNT1 A 0 A_FireCustomMissile("BusterRod6",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::Pickup2"
+}
+}
+
+actor LaunchBusterRodC8 : LaunchBusterRodC7
+{
+states
+{
+pickup:
+TNT1 A 0 A_FireCustomMissile("BusterRodEndC8",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+pickup2:
+TNT1 A 0 A_FireCustomMissile("BusterRod7",ACS_ExecuteWithResult(811,WEPANGLE_NUM)-angle,0,8,0,0,pitch-ACS_ExecuteWithResult(811,WEPPITCH_NUM))
+goto "Super::Pickup2"
+}
+}
+
+actor BusterRodEndC : BusterRod
+{
+Damagetype "BusterRodPole"
+Obituary "$OB_BUSTERRODPOLE"
+}
+
+actor BusterRodEndCO : BusterRodEndC
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+BRGX O 1 A_Explode(11,40,0,0,40)
+stop
+}
+}
+
+actor BusterRodEndCP : BusterRodEndC
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_Stop
+BRGX P 1 A_Explode(11,40,0,0,40)
+stop
+}
+}
+
+actor BusterRodEndC1 : BusterRodEndCO{speed 22}
+actor BusterRodEndC2 : BusterRodEndCO{speed 44}
+actor BusterRodEndC3 : BusterRodEndCP{speed 66}
+actor BusterRodEndC4 : BusterRodEndCP{speed 88}
+actor BusterRodEndC5 : BusterRodEndCO{speed 110}
+actor BusterRodEndC6 : BusterRodEndCO{speed 132}
+actor BusterRodEndC7 : BusterRodEndCP{speed 154}
+actor BusterRodEndC8 : BusterRodEndCP{speed 176}

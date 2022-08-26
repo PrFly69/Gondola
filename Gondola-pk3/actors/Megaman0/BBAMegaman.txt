@@ -8,8 +8,8 @@ player.startitem "BBA_Clip", 50
 player.startitem "BBA_Money", 0
 player.startitem "BBA_ShopItem", 1
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.jumpz 10
 player.forwardmove 0.85, 0.85
 player.sidemove 0.83, 0.83

@@ -11,8 +11,8 @@ player.weaponslot 1, "SolarBlazeBoss"
 player.weaponslot 2, "SolarBlazerBoss"
 
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.jumpz 12
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

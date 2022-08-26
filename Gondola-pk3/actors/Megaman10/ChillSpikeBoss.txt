@@ -17,7 +17,7 @@ actor ChillSpikeBossC : BaseMM8BDMWep_CBM
 	Inventory.Pickupmessage "Chill man.."
 	weapon.ammotype "ChillSpikeBossAmmo"
 	weapon.ammotype2 "ChillSlideBossAmmo"
-	inventory.icon "CHILWEP1"
+	inventory.icon "CHILLI"
 	Weapon.SlotNumber 1
 	States
 	{
@@ -261,7 +261,7 @@ actor ChillStunner
 //+NOINTERACTION
 +NOGRAVITY
 renderstyle none
-speed 50
+speed 56
 states
 {
 Spawn:
@@ -339,15 +339,15 @@ actor ChillmanSpikeShot
 {
 	Obituary "%o was icebound by %k's chill spike."
 	Translation "192:192=202:202", "198:198=207:207"
-	DamageType "DMGNoHitstun"
+	DamageType "ChillSpikeClass"
 	PROJECTILE
 	+SKYEXPLODE
 	-NOGRAVITY
 	Radius 8
 	Height 8
 	Gravity 0.65
-	Damage (160)
-	Speed 45
+	Damage (16)
+	Speed 51
 	Scale 2.5
 
 	States
@@ -406,8 +406,8 @@ actor ChillmanSpikeShot2 : ChillmanSpikeShot
 	Scale 1.5
 	Radius 6
 	Height 6
-	Damage (80)
-	Speed 35
+	Damage (8)
+	Speed 39
 	States
 	{
 		Death:
@@ -474,7 +474,7 @@ actor ChillCeilingSpikeSpawner
 actor ChillFloorSpike
 {
 	Obituary "%o tripped over %k's chill spike."
-	DamageType "DMGNoHitstun"
+	DamageType "ChillSpikeClass"
 	PROJECTILE
 	+FLOORHUGGER
 	+THRUACTORS
@@ -482,7 +482,7 @@ actor ChillFloorSpike
 	Scale 2.5
 	Radius 6
 	Height 8
-	Damage (40)
+	Damage (4)
 	
 	States
 	{
@@ -528,7 +528,7 @@ actor ChillCeilingSpike : ChillFloorSpike
 	+CEILINGHUGGER
 	Radius 8
 	Height 12
-	Damage (120)
+	Damage (12)
 	States
 	{
 		Spawn:
@@ -582,10 +582,10 @@ actor ChillCloudyCloud
 	Species "ChillCloudyCloud"
 	Radius 48
 	Height 10
-	Speed 20
+	Speed 23
 	Damage (0)
 	Health 10
-	Damagetype "DMGNoHitstun"
+	Damagetype "ChillSpikeClass"
 	Obituary "%o somehow died tried to ride %k's frozen sled."
 	Scale 2.5
 	
@@ -656,12 +656,12 @@ actor ChillCloudyCloudW : ChillCloudyCloud
 {
 	-NOINTERACTION
 	Renderstyle Translucent
-	DamageType "DMGNoHitstun"
+	DamageType "ChillSpikeClass"
 	Obituary "%o's body reached sub-zero from %k's chilling spray."
 	Alpha 0.45
 	Radius 10
 	Height 10
-	Damage (40)
+	Damage (4)
 	States
 	{
 		Spawn:
@@ -692,7 +692,7 @@ actor ChillCloudyCloudWX : ChillCloudyCloud
 {
 	-NOINTERACTION
 	Renderstyle Translucent
-	DamageType "DMGNoHitstun"
+	DamageType "ChillSpikeClass"
 	Obituary "%o's body reached sub-zero from %k's chilling spray."
 	Alpha 0.45
 	Radius 10

@@ -5,8 +5,8 @@ player.displayname "Bombman"
 player.soundclass "bombmanc"
 player.startitem "HyperBombBoss"
 Player.StartItem "GigaAmmo", 106
-player.maxhealth 1250
-health 1250
+player.maxhealth 125
+health 125
 player.forwardmove 0.65, 0.65
 player.sidemove 0.63, 0.63
 player.jumpz 13

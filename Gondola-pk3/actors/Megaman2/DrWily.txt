@@ -12,8 +12,8 @@ player.startitem "WilySkullSuitItem"
 player.weaponslot 1, "WilyCapsuleFireBoss"
 player.weaponslot 2, "WilyCapsuleIceBoss"
 
-player.maxhealth 850
-health 850
+player.maxhealth 85
+health 85
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

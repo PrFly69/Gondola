@@ -1,0 +1,46 @@
+actor Aquaman : ClassBase
+{
+Player.ScoreIcon "C_08H0X"
+player.displayname "Aquaman"
+player.soundclass "aquamanc"
+
+player.maxhealth 100
+health 100
+player.jumpz 10
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
+
+player.startitem "WaterBalloonBoss"
+player.startitem "HandsomeAmmo", 20
+
+player.startitem "AstroCrushWeakness2", 1
+
+player.startitem "SuperArmWeakness", 1
+player.startitem "HardKnuckleWeakness", 1
+player.startitem "PowerStoneWeakness", 1
+player.startitem "AstroCrushWeakness", 1
+player.startitem "CopyVisionWeakness", 1
+player.startitem "DeepDiggerWeakness", 1
+
+States
+{
+Spawn:
+AQUA A 0
+AQUA B 1
+AQUA A 1
+Goto Spawn+2
+See:
+AQUA BCDE 5
+Goto Spawn
+Missile:
+AQUA F 5
+AQUA G 4
+goto Spawn
+ClassPain:
+AQUA H 0
+goto PainContinue
+ClassDeath:
+AQUA H 0
+goto DeathContinue
+}
+}

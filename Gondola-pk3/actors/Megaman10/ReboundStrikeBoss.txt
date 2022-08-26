@@ -1,5 +1,3 @@
-const int BT_ATTACK	= 1; //UEC
-
 actor ReboundStrikeBoss : BaseMM8BDMWep_CBM
 {
 tag "Strikeman Pitcher"

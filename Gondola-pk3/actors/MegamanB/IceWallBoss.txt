@@ -79,14 +79,19 @@ CLDH A 0 A_JumpIf(z-floorz==0,3)
 CLDH A 0 A_GiveInventory("GoFlagAir")
 CLDH A 0 A_Jump(256,2)
 CLDH A 0 A_GiveInventory("GoFlag")
-CLDH H 2
-CLDH I 3
-CLDH H 3
+CLDH H 1 Offset(-20, 25)
+CLDH H 1 Offset(-45, 25)
+CLDH I 3 Offset(-72,28)
+CLDH I 3 Offset(-78,36)
 CLDH H 0 A_TakeInventory("GoFlag")
 CLDH H 0 A_TakeInventory("GoFlagAir")
-CLDH G 4
-CLDH A 2 A_TakeInventory("ColdCombo_Flag",99)
-CLDH A 8
+CLDH I 1 Offset(-35, 28)
+CLDH H 1 Offset(15, 25)
+CLDH H 1 Offset(30, 25)
+CLDH G 1 Offset(55, 25)
+CLDH G 1 Offset(75, 25)
+CLDH G 1 A_TakeInventory("ColdCombo_Flag",99)
+CLDH A 8 A_WeaponReady(WRF_NOFIRE)
 CLDH A 0 A_TakeInventory("DinoDNAFlag")
 goto Ready1
 Reload:
@@ -103,7 +108,7 @@ CLDH K 1 A_GiveInventory("ColdmanOther_CI",1)
 CLDH L 1 
 CLDH M 1 A_TakeInventory("DinoDNAFlag",999)
 CLDH M 5 
-CLDH ML 1
+CLDH M 1
 CLDH KJ 1
 CLDH B 1
 CLDH A 1 offset(0,88)
@@ -128,7 +133,7 @@ CLDH A 0 A_GiveInventory("ColdBossAmmo",2)
 goto Ready1
 
 Flash:
-TNT1 AAAAA 2 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 AAAAA 1 A_JumpIfInventory("IsDead",1,"NoFlash")
 TNT1 A 1 A_GiveInventory("RunningFridgeAmmo",1)
 loop
 
@@ -159,7 +164,7 @@ goto Ready1+1
 actor ColdBossAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 240
+inventory.maxamount 360
 +INVENTORY.IGNORESKILL
 }
 
@@ -214,6 +219,7 @@ fail
 actor BossIceWallSpawner : BasicHelper
 {
 Translation "192:192=96:96","198:198=116:116"
++forceallycollision
 States
 {
 Spawn:
@@ -244,6 +250,7 @@ Obituary "$OB_ICEWALL"
 +DONTREFLECT
 +NOBLOOD
 +NOCLIP
++forceallycollision
 +NOEXPLODEFLOOR
 +SOLID
 Species "DUMBICEWALL"
@@ -348,7 +355,7 @@ DamageFactor "ColdM_WallAir", 0.0
 DamageFactor "ColdM_WallFloor", 0.0
 DamageFactor "ColdM_Punch", 0.0
 DamageFactor "ConcreteM_Bash", 0.04
-Health 500
+Health 75
 BounceFactor 1.0
 WallBounceFactor 1.0
 Bouncecount 4
@@ -551,8 +558,8 @@ CLDW B 0 A_ChangeFlag("NORADIUSDMG",1)
 Goto MovingLow+2
 
 Moving:
-CLDW A 0 A_SpawnItemEx("BossIceWallFX",0,random(-16,16)+random2(1)*10,frandom(8,-4),0,0,0,0,1)
-CLDW A 0 A_SpawnItemEx("BossIceWallFX",0,random(-16,16)+random2(1)*10,frandom(8,-4),0,0,0,0,1)
+CLDW AAA 0 A_SpawnItemEx("BossIceWallFX",0,random(-16,16)+random2(1)*10,frandom(8,-4),0,0,0,0,1)
+TNT1 A 0 A_PlaySound("walk/cloudmanwalk","Voice",0.35)
 CLDW A 0 A_GiveInventory("ResyncPickup",1)
 CLDW A 0 A_SpawnItemEx("BossIceWall_BoomG",0,0,32)
 CLDW A 1 A_GiveInventory("ColdWallTimer",1)
@@ -562,8 +569,8 @@ CLDW A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 CLDW A 0 A_CheckFloor("Moving")
 Goto Air
 MovingLow:
-CLDW B 0 A_SpawnItemEx("BossIceWallFX",0,random(-16,16)+random2(1)*10,frandom(8,-4),0,0,0,0,1)
-CLDW B 0 A_SpawnItemEx("BossIceWallFX",0,random(-16,16)+random2(1)*10,frandom(8,-4),0,0,0,0,1)
+CLDW BBB 0 A_SpawnItemEx("BossIceWallFX",0,random(-16,16)+random2(1)*10,frandom(8,-4),0,0,0,0,1)
+TNT1 A 0 A_PlaySound("walk/cloudmanwalk","Voice",0.35)
 CLDW B 0 A_GiveInventory("ResyncPickup",1)
 CLDW B 0 A_SpawnItemEx("BossIceWall_BoomG",0,0,32)
 CLDW B 1 A_GiveInventory("ColdWallTimer",1)
@@ -572,6 +579,7 @@ CLDW B 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 CLDW B 0 A_CheckFloor("MovingLow")
 Goto AirLow
 Air:
+TNT1 A 0 A_PlaySound("walk/cloudmanwalk","Voice",0.35)
 CLDW A 0 A_GiveInventory("ResyncPickup",1)//ACS_ExecuteAlways(994, 0)
 CLDW A 0 A_JumpIfHealthLower(35,"AirLow")
 CLDW A 0 A_JumpIfInventory("ColdWallTimer",125,"AirLow")
@@ -581,6 +589,7 @@ CLDW A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 CLDW A 1 A_CheckFloor("Continue")
 Goto Air+1
 AirLow:
+TNT1 A 0 A_PlaySound("walk/cloudmanwalk","Voice",0.35)
 CLDW B 0 A_GiveInventory("ResyncPickup",1)
 CLDW B 0 A_JumpIfInventory("ColdWallTimer",200,"Death")
 CLDW B 0 A_SpawnItemEx("BossIceWall_BoomA",0,0,32)
@@ -602,6 +611,7 @@ Goto MovingLow
 Death:
 CLDW B 0
 CLDW B 0 A_Stop
+CLDW B 0 A_StopSound
 CLDW B 0 A_ChangeFlag("NOGRAVITY",1)
 CLDW B 0 A_ChangeFlag("SOLID",0)
 CLDW B 0 A_SpawnItemEx("BossIceWall_BoomD",0,0,32)
@@ -621,7 +631,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_PlaySound("KirbyNES/IcePain",1)
-TNT1 A 0 A_Explode(80,42,0,0,42)
+TNT1 A 0 A_Explode(8,42,0,0,42)
 TNT1 A 4
 stop
 }
@@ -641,6 +651,8 @@ stop
 
 actor BossIceWallFX : BasicClientSide
 {
+xscale 2.5
+yscale 4
 States
 {
 Spawn:
@@ -649,15 +661,18 @@ TNT1 A 0 A_Jump(256,"S1","S2","S3")
 
 S1:
 X_7A V 4
-X_7A W 15
+X_7A W 5
+X_7A WWWWWWWWWW 1 A_FadeOut(frandom(.025,.2))
 stop
 S2:
 X_7A W 4
-X_7A I 15
+X_7A I 5
+X_7A IIIIIIIIII 1 A_FadeOut(frandom(.025,.2))
 stop
 S3:
 X_7A I 4
-X_7A I 15
+X_7A I 5
+X_7A IIIIIIIIII 1 A_FadeOut(frandom(.025,.2))
 stop
 
 Spawn1:
@@ -717,8 +732,8 @@ wait
 actor ColdM_WallMoveProtect : PowerProtection
 {
 Powerup.Duration 17
-DamageFactor "ColdM_WallFloor", 0.135
-DamageFactor "ColdM_WallAir", 0.135
+DamageFactor "ColdM_WallFloor", 0.167
+DamageFactor "ColdM_WallAir", 0.167
 }
 
 actor ColdM_WallMoveProtect0 : PowerProtection
@@ -726,6 +741,12 @@ actor ColdM_WallMoveProtect0 : PowerProtection
 Powerup.Duration 3
 DamageFactor "ColdM_WallFloor", 0.0
 DamageFactor "ColdM_WallAir", 0.0
+}
+
+actor ColdM_FieldProtect : PowerProtection
+{
+Powerup.Duration 2
+DamageFactor "ColdM_Field", 0.0
 }
 
 actor BossIceWall_BoomG : BasicExplosion
@@ -736,7 +757,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(180,42,0,0,42)
+TNT1 A 2 A_Explode(15,42,0,0,42)
 stop
 }
 }
@@ -747,7 +768,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(230,42,0,0,42)
+TNT1 A 2 A_Explode(15,42,0,0,42)
 stop
 }
 }
@@ -758,7 +779,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(20,42,0,0,42)
+TNT1 A 2 A_Explode(2,42,0,0,42)
 stop
 }
 }
@@ -769,7 +790,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(40,42,0,0,42)//6
+TNT1 A 2 A_Explode(4,42,0,0,42)//6
 stop
 }
 }
@@ -778,11 +799,11 @@ actor ColdPunch : JunkPunch
 {
 DamageType "ColdM_Punch"
 Obituary "$OB_COLDPUNCH"
-damage (300)
+damage (32)
 States
 {
 Death:
-UMFX R 0 A_Explode(300,64,0)
+UMFX R 0 A_Explode(32,64,0)
 goto XDeath
 }
 }
@@ -794,11 +815,11 @@ actor ColdPunchP : ColdPunch{translation "202:202=229:229"}
 
 actor ColdPunch_W : ColdPunch
 {
-damage (250)
+damage (28)
 States
 {
 Death:
-TMFX R 0 A_Explode(250,64,0)
+TMFX R 0 A_Explode(28,64,0)
 goto XDeath
 }
 }
@@ -840,8 +861,8 @@ Species "DUMBICEWALL"
 //MissileHeight 8
 //MissileType "GroundColdFreezeFX"
 //reactiontime 5
-damage (40)
-radius 8
+damage (1)
+radius 12
 height 16
 speed 60//800
 States
@@ -896,7 +917,7 @@ actor GroundColdFreezePFX : GroundColdFreezeFX{translation "192:192=229:229", "1
 actor GroundColdFreeze2
 {
 PROJECTILE
-DamageType "ColdM_Freeze"
+DamageType "ColdM_Field"
 Obituary "$OB_ICEWALLFREEZE"
 //+NOINTERACTION
 +DONTBLAST
@@ -913,18 +934,162 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_PlaySound("weapon/ColdField",1,1.0)
 goto SpawnX
 SpawnX:
-CLDW F 3 A_Explode(20,56,0,0,56)
-CLDW G 0 A_SetDamageType("ColdM_Down")
-CLDW GEFG 3 A_Explode(20,56,0,0,56)
-CLDW E 0 
-CLDW E 1 A_CountDown
-wait
+TNT1 A 0 A_PlaySound("weapon/ColdField",1,1.0)
+TNT1 A 0 A_SpawnItemEx("ColdM_FieldGround1FX_H",0,0,0,0,0,0,0,1)
+TNT1 AA 1 A_Explode(2,56,0,0,60)
+TNT1 A 0 A_SpawnItemEx("ColdM_FieldGround2FX_H",0,0,0,0,0,0,0,1)
+TNT1 AA 1 A_Explode(2,56,0,0,60)
+TNT1 A 0 A_SpawnItemEx("ColdM_FieldGround3FX_H",0,0,0,0,0,0,0,1)
+TNT1 AA 1 A_Explode(2,56,0,0,60)
+TNT1 A 0 A_SpawnItemEx("ColdM_FieldGround2FX_H",0,0,0,0,0,0,0,1)
+TNT1 AA 1 A_Explode(2,56,0,0,60)
+CLDW E 0 A_CountDown
+loop
 Death:
-CLDW EEEFFFEEEFFF 1 A_FadeOut(0.1)
+TNT1 A 0 A_SpawnItemEx("ColdM_FieldGround1FX_H",0,0,0,0,0,-10,0,1)
 stop
+}
+}
+
+actor ColdM_FieldGround1FX_H : BasicClientSide
+{
+-CLIENTSIDEONLY
+RenderStyle None
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(0,89)*3,1)
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(90,179),1)
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(180,269),1)
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(270,359),1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*0,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*1,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*2,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*3,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*4,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*5,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*6,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*7,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*8,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*9,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*10,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*11,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*12,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*13,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*14,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX1",56,0,0,0,0,0,22.5*15,1)
+stop
+}
+}
+//BossIceWallFX
+actor ColdM_FieldGround2FX_H : BasicClientSide
+{
+-CLIENTSIDEONLY
+RenderStyle None
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(0,89)*3,1)
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(90,179),1)
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(180,269),1)
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(270,359),1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*0,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*1,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*2,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*3,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*4,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*5,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*6,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*7,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*8,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*9,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*10,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*11,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*12,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*13,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*14,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX2",56,0,0,0,0,0,22.5*15,1)
+stop
+}
+}
+
+actor ColdM_FieldGround3FX_H : BasicClientSide
+{
+-CLIENTSIDEONLY
+RenderStyle None
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_CountDown
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(0,89)*3,1)
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(90,179),1)
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(180,269),1)
+TNT1 AAA 0 A_SpawnItemEX("BossIceWallFX",random(1,18)*3,0,0,0,0,frandom(1,4),random(270,359),1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*0,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*1,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*2,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*3,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*4,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*5,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*6,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*7,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*8,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*9,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*10,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*11,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*12,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*13,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*14,1)
+TNT1 A 0 A_SpawnItemEX("ColdM_FieldFX3",56,0,0,0,0,0,22.5*15,1)
+stop
+}
+}
+
+actor ColdM_FieldFX1 : BasicClientSide
+{
+-FORCEXYBILLBOARD
+-CLIENTSIDEONLY
++BRIGHT
+YScale 3.0
+XScale 5.0
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+CDFL AA 1 A_FadeOut(.2)
+goto Spawn+2
+}
+}
+
+actor ColdM_FieldFX2 : ColdM_FieldFX1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+CDFL BB 1 A_FadeOut(.2)
+goto Spawn+2
+}
+}
+
+actor ColdM_FieldFX3 : ColdM_FieldFX1
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+CDFL CC 1 A_FadeOut(.2)
+goto Spawn+2
 }
 }
 
@@ -934,7 +1099,6 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_PlaySound("weapon/ColdField",1,1.0)
 goto SpawnX
 }
 }

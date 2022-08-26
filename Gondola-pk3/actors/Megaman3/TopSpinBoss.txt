@@ -645,7 +645,7 @@ PROJECTILE
 Radius 10
 Height 10
 scale 2.5
-damage (100)
+damage (10)
 speed 35
 //damagetype "TopThrow"
 Damagetype "TopM_Toss"
@@ -703,7 +703,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TOPX D 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*2.675+10,96,0,0,24)
+TOPX D 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*0.2675+1,96,0,0,24)
 stop
 }
 }
@@ -738,7 +738,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TOPX D 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*2.675+20,96,0,0,24)
+TOPX D 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*0.2675+2,96,0,0,24)
 stop
 }
 }
@@ -758,7 +758,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TOPX D 2 A_Explode(20,88,0,0,32)
+TOPX D 2 A_Explode(2,88,0,0,32)
 stop
 }
 }
@@ -768,7 +768,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TOPX D 2 A_Explode(30,88,0,0,32)
+TOPX D 2 A_Explode(3,88,0,0,32)
 stop
 }
 }

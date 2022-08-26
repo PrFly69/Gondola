@@ -1,0 +1,514 @@
+actor BoobeamBarrierWep : BaseMM8BDMWep
+{
+dropitem "BoobeamBarrierWepCDropped"
+Weapon.AmmoUse 7
+Weapon.AmmoGive 28
+Weapon.SlotNumber 7
+Inventory.Pickupmessage "$PU_BOOBEAMBARRIER"
+Obituary "$OB_BOOBEAMBARRIER"
+Tag "$TAG_BOOBEAMBARRIER"
+weapon.ammotype "BoobeamBarrierAmmo"
+inventory.icon "XTR0WI_F"
+States
+{
+Spawn:
+XWI0 F 1
+loop
+Ready:
+XH0F A 0 ACS_ExecuteAlways(998,0,DYE_BOOBEAMBARRIER)
+XH0F A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+XH0F AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0F A 1 A_Lower
+Loop
+Select:
+XH0F AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0F A 1 A_Raise
+Loop
+Fire:
+XH0F A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0F A 0 A_TakeInventory("BoobeamBarrierAmmo",7,1)
+XH0F BCDEF 2
+XH0F A 0 A_SpawnItemEx("BoobeamBarrier",50,0,32,0,0,0,35,32,0)
+XH0F A 0 A_SpawnItemEx("BoobeamBarrier",50,0,32,0,0,0,125,32,0)
+XH0F A 0 A_SpawnItemEx("BoobeamBarrier",50,0,32,0,0,0,215,32,0)
+XH0F A 0 A_SpawnItemEx("BoobeamBarrier",50,0,32,0,0,0,305,32,0)
+Hold:
+TNT1 A 1 A_PlaySoundEx("wep/BB_BarrierActive","Weapon")
+TNT1 A 0 A_Refire("Hold1")
+goto Split
+Hold1:
+TNT1 A 1 A_JumpIfInventory("BoobeamBarrierFlag",4,"Split")
+TNT1 A 0 A_Refire("Hold2")
+Hold2:
+TNT1 A 1
+TNT1 A 0 A_Refire("Hold3")
+goto Split
+Hold3:
+TNT1 A 0 A_JumpIfInventory("IsBot",1,"BotHold3")
+TNT1 A 1
+TNT1 A 0 A_Refire("Hold")
+goto Split
+BotHold3:
+TNT1 A 0 A_Jump(24,"Split")
+goto Hold3+1
+
+Split:
+TNT1 A 0 A_PlaySoundEx("wep/BB_BarrierSplit","Weapon")
+TNT1 A 0 A_GiveInventory("PowerBoobeamBarrier",1)
+TNT1 A 1
+TNT1 AAA 4 A_TakeInventory("BoobeamBarrierFlag",9)
+TNT1 A 2
+XH0F A 2 OffSet(0,64)A_ClearRefire
+XH0F A 2 OffSet(0,48)A_ClearRefire
+Goto Ready+1
+Altfire:
+XH0F A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0F A 0 A_TakeInventory("BoobeamBarrierAmmo",7)
+XH0F BCDEF 2
+XH0F A 0 A_SpawnItemEx("BoobeamBarrier",50,0,32,0,0,0,35,32,0)
+XH0F A 0 A_SpawnItemEx("BoobeamBarrier",50,0,32,0,0,0,125,32,0)
+XH0F A 0 A_SpawnItemEx("BoobeamBarrier",50,0,32,0,0,0,215,32,0)
+XH0F A 0 A_SpawnItemEx("BoobeamBarrier",50,0,32,0,0,0,305,32,0)
+TNT1 A 1 A_PlaySoundEx("wep/BB_BarrierActive","Body")
+goto Split
+NoAmmo:
+XH0F A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor BoobeamBarrierAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor PowerBoobeamBarrier : Powerup
+{
+Powerup.Duration 8
+}
+
+actor BoobeamBarrierFlag : Inventory
+{
+inventory.amount 1
+inventory.maxamount 4
+}
+
+
+actor BoobeamBarrier
+{
+translation "199:199=198:198","202:202=4:4","192:192=4:4"
+damagetype "BoobeamBarrier"
+Obituary "$OB_BOOBEAMBARRIERX"
++MISSILE
+//+SHOOTABLE
++NOBLOOD
++NOGRAVITY
++NOCLIP
++DONTSPLASH
++DONTBLAST
++DONTREFLECT
++DONTDRAIN
+//+NOTARGETSWITCH
++QUICKTORETALIATE
++FORCEXYBILLBOARD
+//+EXPLODEONDEATH
+//+DONTRIP
++THRUSPECIES
+Species "DumbBoobeamBarrier"
++INVULNERABLE
++NOPAIN
+
+damagefactor "BoobeamBarrier",0.0
+
+health 20000
+painchance 256
+damage (0)
+radius 16
+height 16
+scale 2.5
+States
+{
+Spawn:
+X_2N R 0
+X_2N R 0 A_RearrangePointers(0,0,2)
+X_2N R 0 //A_ClearTarget
+X_2N R 0 A_ChangeFlag("INVULNERABLE",0)
+X_2N R 0 A_ChangeFlag("NOPAIN",0)
+X_2N R 0 A_ChangeFlag("SHOOTABLE",1)
+X_2N R 0 //A_ChangeFlag("NOTARGETSWITCH",0)
+goto Spawn2
+Spawn2:
+X_2N R 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"SuperDeath")
+X_2N R 0 A_JumpIfInventory("PowerBoobeamBarrier",1,"Split",8)
+X_2N R 1 A_Warp(8,50,0,32,10,28)//WARPF_USECALLERANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE
+X_2N R 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"SuperDeath")
+X_2N R 0 A_JumpIfInventory("PowerBoobeamBarrier",1,"Split",8)
+X_2N R 1 A_Warp(8,50,0,32,10,28)
+X_2N S 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"SuperDeath")
+X_2N S 0 A_JumpIfInventory("PowerBoobeamBarrier",1,"Split",8)
+X_2N S 1 A_Warp(8,50,0,32,10,28)
+X_2N S 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"SuperDeath")
+X_2N S 0 A_JumpIfInventory("PowerBoobeamBarrier",1,"Split",8)
+X_2N S 1 A_Warp(8,50,0,32,10,28)
+loop
+Split:
+X_2N S 0 A_RearrangePointers(8,0,0)
+X_2N S 0 A_FaceTarget
+X_2N S 0 A_SpawnItemEX("BoobeamBarrierTrapSpawner",0,0,0,5,0,3,180)
+X_2N S 0 A_JumpIfInTargetInventory("PowerSpread_ST",1,"Split_S")
+stop
+Split_S:
+X_2N S 0 A_SpawnItemEX("BoobeamBarrierTrapSpawner",0,0,0,5,0,3,195)
+X_2N S 0 A_SpawnItemEX("BoobeamBarrierTrapSpawner",0,0,0,5,0,3,165)
+stop
+
+Pain:
+X_2N T 0 A_ChangeFlag("INVULNERABLE",1)
+X_2N T 0 A_ChangeFlag("NOPAIN",1)
+X_2N T 0 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+X_2N TT 1 A_Warp(8,50,0,32,10,28)
+X_2N T 0 A_RearrangePointers(8,0,2)
+X_2N T 0 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+X_2N RR 1 A_Warp(2,50,0,32,10,28)
+X_2N T 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
+X_2N T 0 A_FaceTracer(0,0)
+X_2N T 0 A_CustomMissile("BoobeamBarrierShot",8,0,0,2,pitch)
+X_2N T 0 A_JumpIfInTargetInventory("PowerSpread_ST",1,"Pain_S")
+goto PainEnd
+Pain_S:
+X_2N T 0 A_CustomMissile("BoobeamBarrierShot",8,0,15,2,pitch)
+X_2N T 0 A_CustomMissile("BoobeamBarrierShot",8,0,-15,2,pitch)
+goto PainEnd
+PainEnd:
+X_2N T 0 A_GiveToTarget("BoobeamBarrierFlag",1)
+X_2N UUUU 1 A_Warp(2,50,0,32,10,28)
+stop
+Death:
+TNT1 A 0 A_Explode(90,24,0,0,24)
+SuperDeath:
+UMFX ABCD 2
+stop
+}
+}
+
+
+actor BoobeamBarrierShot
+{
+PROJECTILE
+damagetype "BoobeamBarrier"
+Obituary "$OB_BOOBEAMBARRIER"
++FORCEXYBILLBOARD
++BRIGHT
++THRUSPECIES
+Species "DumbBoobeamBarrier"
+Damage (17)
+radius 12
+height 12
+Speed 52
+scale 2.5
+States
+{
+Spawn:
+X_2N G 0
+X_2N G 1
+wait
+XDeath:
+X_2N G 0
+stop
+Death:
+X_2N G 0
+stop
+}
+}
+
+const int COPY_BBTRAPSPEED = 52;
+
+actor BoobeamBarrierShot2 : BoobeamBarrierShot
+{
+Damage (12)
+Speed 52
+States
+{
+Death:
+X_2N G 0 A_JumpIf(z-floorz==0,"Floor")
+X_2N G 0
+stop
+Floor:
+X_2N G 0 A_SpawnItemEx("BoobeamBarrierShot3",0,0,1,COPY_BBTRAPSPEED-2,0,0,0,1)
+stop
+}
+}
+actor BoobeamBarrierShot3 : BoobeamBarrierShot2
+{
+Damage (11)
+States
+{
+Death:
+goto XDeath
+}
+}
+
+actor BoobeamBarrierTrapSpawner
+{
+translation "199:199=198:198","202:202=4:4","4:4=39:39","208:208=39:39","192:192=4:4"
+PROJECTILE
+damagetype "BoobeamBarrier"
+Obituary "$OB_BOOBEAMBARRIERX"
++DONTSPLASH
++DONTREFLECT
++THRUSPECIES
+Species "DumbBoobeamBarrier"
+Damage(22)
+Height 10
+Radius 10
+speed 25
+Scale 2.5
+States
+{
+Spawn:
+X_2N R 0
+X_2N RR 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"XDeath")
+X_2N R 0 A_ChangeFlag("NOGRAVITY",0)
+X_2N R 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"XDeath")
+wait
+Death:
+TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+TNT1 A 0 A_Stop
+X_2N UUUU 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"XDeath")
+TNT1 A 0 A_PlaySound("weapon/crashland")
+TNT1 A 0 A_JumpIf(z-floorz<5,"Floor")
+TNT1 A 0 A_JumpIf(z-ceilingz==0-10,"Ceiling")
+TNT1 A 0 A_SpawnItemEx("BoobeamBarrierTrap",0,0,0,0,0,0,0,1)
+XDeath:
+UMFX ABCD 2
+TNT1 A 2
+stop
+Floor:
+TNT1 A 0 A_SpawnItemEx("BoobeamBarrierTrapF",0,0,0,0,0,0,0,1)
+goto XDeath
+Ceiling:
+TNT1 A 0 A_SpawnItemEx("BoobeamBarrierTrapC",0,0,0,0,0,0,0,1)
+goto XDeath
+}
+}
+
+actor BoobeamBarrierTrap
+{
+PROJECTILE
+damagetype "BoobeamBarrier"
+Obituary "$OB_BOOBEAMBARRIER"
++NOCLIP
++DONTBLAST
++DONTREFLECT
++SEEKERMISSILE
++LOOKALLAROUND
+reactiontime 350
+Damage (0)
+Radius 9
+Height 9
+Speed 0
+scale 2.5
+States
+{
+Spawn:
+X_2N AA 3
+X_2N A 0 A_SetArg(0,1)
+X_2N FAFAFAFA 3 A_PlaySoundEx("weapon/BoobeamBeep","Body")
+Goto Waiting
+Waiting:
+X_2N B 0 A_RearrangePointers(0,0,1)
+X_2N BBBCCCDDDEEE 1 A_CountDown
+X_2N B 0 A_SeekerMissile(0,0,3,256,4)
+X_2N B 0 A_JumpIfTargetInLOS("FireTime",0,1,606)
+X_2N B 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+
+Delay1:
+X_2N F 1 A_SpawnItemEx("BoobeamBarrierTrapX1",0,0,0,0,0,0,0,1025)
+goto FireTime+2
+Delay2:
+X_2N F 2 A_SpawnItemEx("BoobeamBarrierTrapX2",0,0,0,0,0,0,0,1025)
+goto FireTime+2
+Delay3:
+X_2N F 3 A_SpawnItemEx("BoobeamBarrierTrapX3",0,0,0,0,0,0,0,1025)
+goto FireTime+2
+Delay4:
+X_2N F 0 A_SpawnItemEx("BoobeamBarrierTrapX4",0,0,0,0,0,0,0,1025)
+X_2N FA 2
+goto FireTime+2
+
+FireTime:
+X_2N F 0 A_Jump(256,1,"Delay1","Delay2","Delay3","Delay4")
+X_2N F 0 A_SpawnItemEx("BoobeamBarrierTrapX",0,0,0,0,0,0,0,1025)
+X_2N FA 2
+X_2N F 1
+X_2N F 0
+X_2N F 1
+X_2N FFFFFFFF 0 A_CountDown
+X_2N F 0 A_JumpIfInTargetInventory("PowerRage_ST",1,7)
+X_2N FFAAAAAA 1 A_CountDown
+X_2N F 0 A_CountDownArg(0)
+Goto Waiting
+Death:
+UMFX ABCD 2
+stop
+}
+}
+
+actor BoobeamBarrierTrapX : BasicExplosion
+{
+damagetype "BoobeamBarrier"
+Obituary "$OB_BOOBEAMBARRIER"
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0
+goto Spawn2
+Spawn2:
+TNT1 AA 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+TNT1 A 1 A_SeekerMissile(4,10,2)
+TNT1 A 0 A_FaceTracer(0,0)
+TNT1 A 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
+TNT1 A 5 A_SpawnItemEx("BoobeamBarrierShot2",0,0,0,cos(pitch)*COPY_BBTRAPSPEED,0,sin(pitch)*COPY_BBTRAPSPEED,random(-2,2),1,0)
+stop
+
+}
+}
+
+actor BoobeamBarrierTrapX1 : BoobeamBarrierTrapX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+goto Spawn2
+}
+}
+actor BoobeamBarrierTrapX2 : BoobeamBarrierTrapX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto Spawn2
+}
+}
+actor BoobeamBarrierTrapX3 : BoobeamBarrierTrapX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto Spawn2
+}
+}
+actor BoobeamBarrierTrapX4 : BoobeamBarrierTrapX
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 AA 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto Spawn2
+}
+}
+actor BoobeamBarrierTrapF : BoobeamBarrierTrap
+{
+States
+{
+Spawn:
+X_2N HH 3
+X_2N H 0 A_SetArg(0,1)
+X_2N LHLHLHLH 3 A_PlaySoundEx("weapon/BoobeamBeep","Body")
+Goto Waiting
+Waiting:
+X_2N I 0 A_RearrangePointers(0,0,1)
+X_2N IIIJJJKKKHHH 1 A_CountDown
+X_2N I 0 A_SeekerMissile(0,0,3,256,4)
+X_2N I 0 A_JumpIfTargetInLOS("FireTime",0,1,606)
+X_2N I 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Delay1:
+X_2N L 1
+goto FireTime+2
+Delay2:
+X_2N L 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+Delay3:
+X_2N L 1
+X_2N L 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+Delay4:
+X_2N LH 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+FireTime:
+X_2N L 0
+X_2N L 0 A_Jump(256,1,"Delay1","Delay2","Delay3","Delay4")
+X_2N LH 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+X_2N L 1 A_SeekerMissile(4,10,SMF_PRECISE)
+X_2N L 0 A_FaceTracer(0,0)
+X_2N L 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
+X_2N L 1 A_SpawnItemEx("BoobeamBarrierShot2",0,0,10,cos(pitch)*COPY_BBTRAPSPEED,0,sin(pitch)*COPY_BBTRAPSPEED,random(-2,2),1,0)
+X_2N LLLLLLLL 0 A_CountDown
+X_2N L 0 A_JumpIfInTargetInventory("PowerRage_ST",1,7)
+X_2N LLHHHHHH 1 A_CountDown
+X_2N H 0 A_CountDownArg(0)
+goto Waiting
+}
+}
+
+actor BoobeamBarrierTrapC : BoobeamBarrierTrap
+{
+States
+{
+Spawn:
+X_2N MM 3
+X_2N M 0 A_SetArg(0,2)
+X_2N QMQMQMQM 3 A_PlaySoundEx("weapon/BoobeamBeep","Body")
+Goto Waiting
+Waiting:
+X_2N N 0 A_RearrangePointers(0,0,1)
+X_2N NNNOOOPPPMMM 1 A_CountDown
+X_2N N 0 A_SeekerMissile(0,0,3,256,4)
+X_2N N 0 A_JumpIfTargetInLOS("FireTime",0,1,606)
+X_2N N 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+loop
+Delay1:
+X_2N Q 1
+goto FireTime+2
+Delay2:
+X_2N Q 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+Delay3:
+X_2N Q 1
+X_2N Q 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+Delay4:
+X_2N QM 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+goto FireTime+2
+FireTime:
+X_2N Q 0
+X_2N Q 0 A_Jump(256,1,"Delay1","Delay2","Delay3","Delay4")
+X_2N QM 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
+X_2N Q 1 A_SeekerMissile(4,10,2)
+X_2N Q 0 A_FaceTracer(0,0)
+X_2N Q 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
+X_2N Q 0 A_SpawnItemEx("BoobeamBarrierShot2",0,0,-8,cos(pitch)*COPY_BBTRAPSPEED,0,sin(pitch)*COPY_BBTRAPSPEED,random(-2,2),1,0)
+X_2N QQQQQQQQ 0 A_CountDown
+X_2N Q 0 A_JumpIfInTargetInventory("PowerRage_ST",1,7)
+X_2N QQMMMMMM 1 A_CountDown
+X_2N M 0 A_CountDownArg(0)
+goto Waiting
+}
+}
+
+

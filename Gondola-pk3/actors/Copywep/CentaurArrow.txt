@@ -1,0 +1,73 @@
+actor CentaurArrowWep : BaseMM8BDMWep
+{
+dropitem "CentaurArrowWepCDropped"
+Weapon.AmmoUse 2
+Weapon.AmmoGive 28
+Weapon.SlotNumber 5
+Inventory.Pickupmessage "$PU_CENTAURARROW"
+Obituary "$OB_CENTAURARROW"
+Tag "$TAG_CENTAURARROW"
+weapon.ammotype "CentaurArrowAmmo"
+inventory.icon "XTR0WI_N"
+States
+{
+Spawn:
+XWI0 N 1
+loop
+Ready:
+XH0N A 0 ACS_ExecuteAlways(998,0,51)
+XH0N A 1 A_WeaponReady
+Goto Ready+1
+Deselect:
+XH0N AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0N A 1 A_Lower
+Loop
+Select:
+XH0N AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0N A 1 A_Raise
+Loop
+Fire:
+XH0N A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0N A 0 A_PlaySoundEx("weapon/pshot","Weapon")
+XH0N A 0 A_FireCustomMissile("CentaurArrow",0,1,8,0)
+XH0N A 0 A_FireCustomMissile("CentaurArrow",(random(0,1)*2-1)*random(4,10),0,8,0)
+XH0N BC 2
+XH0N C 12
+XH0N CB 2
+XH0N A 2
+XH0N A 0 A_Refire
+Goto Ready+1
+NoAmmo:
+XH0N A 1 ACS_Execute(979,0)
+Goto Ready+1
+}
+}
+
+actor CentaurArrowAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor CentaurArrow
+{
+Translation "192:192=4:4", "198:198=117:117"
+PROJECTILE
+damagetype "CentaurArrow"
+Obituary "$OB_CENTAURARROW"
++RIPPER
++FORCEXYBILLBOARD
++BRIGHT
+damage (12)
+Radius 6
+Height 7
+speed 20
+scale 2.5
+States
+{
+Spawn:
+XH0N RS 3
+loop
+}
+}

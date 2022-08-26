@@ -4,8 +4,8 @@ Player.ScoreIcon "C_0BF0X"
 player.displayname "Magicman"
 player.soundclass "magicmanc"
 
-player.maxhealth 900
-health 900
+player.maxhealth 90
+health 90
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

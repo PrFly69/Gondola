@@ -590,7 +590,7 @@ script 148 (void)
 			for(int i=0; i<MAX_PLAYERS; i++) {
 				if (CheckActorInventory(1000+i,"DustCrusherBoss")) {
 					if (distanceVal(x,y,z, 1800+i) < 64) {//50
-						GiveActorInventory(1000+i,"DustBits",1);
+						GiveActorInventory(1000+i,"DustBits",2);
 						SetActorState(0, "Vacuumed");
 						terminate;
 					}
@@ -1499,7 +1499,7 @@ script "cbm_PickupCTFMorph" PICKUP//Attempt at CTF stuff
 
 	int k = GetActorProperty(0,APROP_HEALTH);
 	int j = GetActorProperty(0,APROP_SpawnHealth);
-	if(j == 0){j = 1000;}
+	if(j == 0){j = 100;}
 	int t;
 	//I hate that I'm about to do this when I'm not even sure that it works.
 	while(true)
@@ -1515,7 +1515,7 @@ script "cbm_PickupCTFMorph" PICKUP//Attempt at CTF stuff
 	}
 	int losthealth = GetCvar("SV_FLAGHOTPOTATO") * flagdropcount[t];
 	int i;
-	if(losthealth<2000){i = ( ( 2000 - ( losthealth ) ) * k ) / j;}
+	if(losthealth<200){i = ( ( 200 - ( losthealth ) ) * k ) / j;}
 	else{i = 1;}
 	
 	while(GetActorProperty(0, APROP_HEALTH)>0){
@@ -1546,6 +1546,7 @@ script "cbm_PickupCTFMorph" PICKUP//Attempt at CTF stuff
 		{
 			startMorph();
 			Delay(1);
+			if(flagdropcount[t]==0){GiveInventory("CheeseProtectionHelper",1);}
 			completeMorph(i,losthealth);
 		}
 
@@ -1604,9 +1605,9 @@ SetActorProperty(0,APROP_Speed,1.0);
 SetActorProperty(0,APROP_JumpZ,10.0);
 SetActorProperty(0,APROP_Gravity,0.8);
 SetActorProperty(0,APROP_HEALTH,i);
-SetActorProperty(0,APROP_SpawnHealth,2000-losthealth);
+SetActorProperty(0,APROP_SpawnHealth,200-losthealth);
 
-if(GetActorProperty(0,APROP_HEALTH)>2001){SetActorProperty(0,APROP_HEALTH,200);}
+if(GetActorProperty(0,APROP_HEALTH)>201){SetActorProperty(0,APROP_HEALTH,200);}
 
 GiveInventory("BearerMorphStart_P",1);
 }

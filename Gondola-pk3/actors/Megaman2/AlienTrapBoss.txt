@@ -17,7 +17,7 @@ Ready:
 ALIF A 0 ACS_ExecuteAlways(998,0,DYE_ALIEN)
 ALIF A 0 A_GunFlash
 ALIF A 0 A_ClearRefire
-ALIF A 0 A_JumpIfInventory("AlienTrapAmmo",2,"Ready2")
+ALIF A 0 A_JumpIfInventory("AlienTrapAmmo",1,"Ready2")
 ALIF A 3 A_WeaponReady(WRF_NOFIRE)
 ALIF A 0 A_GiveInventory("AlienTrapAmmo",1)
 Goto Ready+3
@@ -39,10 +39,10 @@ TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 ALIF A 1 A_Raise
 Loop
 Fire:
-ALIF B 0 A_JumpIfInventory("AlienTrapAmmo",2,1)
-goto NoAmmo
+ALIF B 0 //A_JumpIfInventory("AlienTrapAmmo",1,1)
+//goto NoAmmo
 ALIF B 0 A_PlaySoundEx("weapon/AlienFire","Weapon")
-ALIF G 0 A_TakeInventory("AlienTrapAmmo",2)
+ALIF G 0 //A_TakeInventory("AlienTrapAmmo",1)
 ALIF B 0 A_GiveInventory("AlienMain_CI",1)
 ALIF B 1 Offset(0,35) A_GiveInventory("CBM_TargetMarker",1)
 ALIF B 1 Offset(0,39)A_GiveInventory("AlienFiredFlag",1)
@@ -53,7 +53,7 @@ ALIF D 1
 ALIF C 1 A_JumpIfInventory("PowerRage_ST",1,1)
 ALIF C 1 Offset(0,39)
 ALIF G 1 Offset(0,35)A_JumpIfInventory("PowerRage_ST",1,1)
-ALIF A 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+ALIF A 10 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 Goto Ready+3
 AltFire:
 ALIF A 0 A_JumpIfInventory("AlienTrapAmmo",14,"AltFire2")
@@ -153,32 +153,117 @@ PROJECTILE
 damagetype "Alien_Shot"
 Obituary "$OB_ALIENBUSTER"
 Speed 52
-Damage (90)
 radius 12
 height 12
 scale 2.5
+Damage (6)
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-//BASB T 1
-W_0D B 1
-wait
+SpawnLOOP:
+W_0D A 0
+W_0D B 1 A_Changevelocity(0,0.75,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,0.75,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,0.75,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,0.75,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+Spawn2:
+W_0D BBB 1 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D BBB 1 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+loop
 }
 }
+
+actor AlienShotX : AlienShot
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+W_0D A 0
+W_0D B 1 A_Changevelocity(0,-0.75,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-0.75,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-0.75,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-0.75,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+Spawn2:
+W_0D BBB 1 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D BBB 1 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+W_0D B 1 A_Changevelocity(0,-1.5,0,CVF_RELATIVE)
+W_0D B 0 A_SpawnItemEx("AlienShotFX",0,0,0,0,0,0,0,1)
+loop
+}
+}
+
+  Actor AlienShotFX : BasicClientSide
+  {
+    RenderStyle "Add"
+	alpha 0.5
+	States
+	{
+		Spawn:
+		W_0D B 1 A_FadeOut(0.05)
+		W_0D B 0 A_ScaleVelocity(0.5)
+		loop
+	}
+  }
 
 actor AlienShotB : AlienShot{translation "204:204=205:205"}
 actor AlienShotR : AlienShot{translation "204:204=171:171"}
 actor AlienShotO : AlienShot{translation "204:204=104:104"}
 actor AlienShotP : AlienShot{translation "204:204=229:229"}
 
+actor AlienShotXB : AlienShotX{translation "204:204=205:205"}
+actor AlienShotXR : AlienShotX{translation "204:204=171:171"}
+actor AlienShotXO : AlienShotX{translation "204:204=104:104"}
+actor AlienShotXP : AlienShotX{translation "204:204=229:229"}
+
 actor AlienBoobeamShot
 {
 PROJECTILE
 damagetype "Alien_BooShot"
 Obituary "$OB_ALIENBOOBEAM"
-Damage (60)
+Damage (4)
 radius 12
 height 12
 Speed 52
@@ -206,7 +291,7 @@ stop
 
 actor AlienBoobeamShotF : AlienBoobeamShot
 {
-Damage (60)
+Damage (4)
 States
 {
 Death:
@@ -221,7 +306,7 @@ Obituary "$OB_ALIENBOOBEAMX"
 +SEEKERMISSILE
 +SCREENSEEKER
 ReactionTime 85
-Damage (60)
+Damage (4)
 radius 6
 height 6
 Speed 35
@@ -231,22 +316,13 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-X_2N G 0 A_SpawnItemEx("AlienBoobeamShotXFX",0,0,0,0,0,0,0,1)
-X_2N GG 1 A_SeekerMissile(0,1,1,88,7)
+X_2N G 0 //A_SpawnItemEx("AlienBoobeamShotXFX",0,0,0,0,0,0,0,1)
+X_2N GG 1 //A_SeekerMissile(0,1,1,88,7)
 X_2N G 0 A_CountDown
 loop
 }
 }
 
-actor AlienBoobeamShotXFX : BasicClientSide
-{
-States
-{
-Spawn:
-X_2N G 1 A_FadeOut(0.15)
-wait
-}
-}
 
 actor AlienBoobeamTrapSpawner
 {
@@ -256,7 +332,7 @@ damagetype "Alien_Boobeam"
 Obituary "$OB_ALIENBOOBEAMX"
 +DONTSPLASH
 +DONTREFLECT
-Damage (120)
+Damage (12)
 Height 10
 Radius 10
 speed 40
@@ -393,10 +469,14 @@ TNT1 A 4
 TNT1 A 1 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,0)
 TNT1 A 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
 TNT1 A 0 //A_Jump(16,"SpawnX")
-TNT1 A 5 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+TNT1 A 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
+TNT1 A 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+TNT1 A 5 
 stop
 SpawnX:
-TNT1 A 5 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+TNT1 A 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
+TNT1 A 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+TNT1 A 5 
 stop
 
 }
@@ -498,12 +578,16 @@ X_2N LH 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
 X_2N L 1 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,10)
 X_2N L 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
 X_2N L 0 //A_Jump(16,"FireTimeX")
-X_2N L 1 A_SpawnItemEx("AlienBoobeamShot",0,0,10,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+X_2N L 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
+X_2N L 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+X_2N L 1 
 X_2N LLLLLLLL 0 A_CountDown
 X_2N LLHHHHHH 1 A_CountDown
 goto Waiting
 FireTimeX:
-X_2N L 1 A_SpawnItemEx("AlienBoobeamShotX",0,0,10,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+X_2N L 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
+X_2N L 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+X_2N L 1 
 goto FireTime+8
 
 Death:
@@ -566,12 +650,16 @@ X_2N Q 0 A_Jump(256,1,"Delay1","Delay2","Delay3","Delay4")
 X_2N QM 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
 X_2N Q 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
 X_2N Q 0 //A_Jump(16,"FireTimeX")
-X_2N Q 1 A_SpawnItemEx("AlienBoobeamShot",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+X_2N Q 0 A_SpawnItemEx("AlienBoobeamShot",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+X_2N Q 0 A_SpawnItemEx("AlienBoobeamShot",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
+X_2N Q 1 
 X_2N QQQQQQQQ 0 A_CountDown
 X_2N QQMMMMMM 1 A_CountDown
 goto Waiting
 FireTimeX:
-X_2N Q 1 A_SpawnItemEx("AlienBoobeamShotX",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,random(-2,2),1,0)
+X_2N Q 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+X_2N Q 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
+X_2N Q 1 
 goto FireTime+7
 Death:
 UMFX ABCD 2
@@ -587,18 +675,23 @@ states
 {
 FireX:
 TNT1 A 0 A_FireCustomMissile("AlienShot",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AlienShotX",0,0,0,0)
 goto Done
 FireB:
 TNT1 A 0 A_FireCustomMissile("AlienShotB",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AlienShotXB",0,0,0,0)
 goto Done
 FireR:
 TNT1 A 0 A_FireCustomMissile("AlienShotR",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AlienShotXR",0,0,0,0)
 goto Done
 FireO:
 TNT1 A 0 A_FireCustomMissile("AlienShotO",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AlienShotXO",0,0,0,0)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("AlienShotP",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AlienShotXP",0,0,0,0)
 goto Done
 }
 }

@@ -1,0 +1,75 @@
+actor Mars : ClassBase
+{
+Player.ScoreIcon "C_0VD0X"
+player.displayname "Mars"
+player.soundclass "marsc"
+
+player.maxhealth 135
+health 135
+player.jumpz 10
+player.forwardmove 0.6, 0.6
+player.sidemove 0.58, 0.58
+
+player.startitem "PhotonVulcanBoss"
+player.startitem "PhotonMissileBoss"
+player.startitem "RedPlanetAmmo", 252
+player.startitem "CandyBarAmmo", 14
+player.startitem "MarsTankFuel_F", 500
+
+player.weaponslot 1, "PhotonVulcanBoss"
+player.weaponslot 2, "PhotonMissileBoss"
+
+player.startitem "SaltWaterWeakness2", 1
+
+player.startitem "BubbleLeadWeakness", 1
+player.startitem "RainFlushWeakness", 1
+player.startitem "WaterWaveWeakness", 1
+player.startitem "WaterBalloonWeakness", 1
+player.startitem "WaterShieldWeakness", 1
+player.startitem "SaltWaterWeakness", 1
+
+States
+{
+Spawn:
+MARS A 0
+MARS A 0 A_JumpIfInventory("MarsIsATank",1,"SeeTank")
+MARS B 1
+MARS A 1
+wait
+
+Melee:
+MARS A 0 A_JumpIfInventory("MarsIsATank",1,"SeeTank")
+goto Spawn
+
+See:
+MARS BCDE 5
+Goto Spawn
+
+SeeTank:
+MARS L 5 A_JumpIfInventory("PowerRage_ST",1,"SeeTank_L")
+MARS M 5 A_JumpIfInventory("PowerRage_ST",1,"SeeTank_M")
+loop
+SeeTank_L:
+MARS L 3
+goto SeeTank+1
+SeeTank_M:
+MARS M 3
+goto SeeTank
+
+Missile:
+MARS F 0 A_JumpIfInventory("MarsIsATank",1,"MadLadMissile")
+MARS F 5
+MARS G 4
+goto Spawn+3
+MadLadMissile:
+MARS N 9
+MARS N 0 A_JumpIfInventory("MarsIsATank",1,"SeeTank")
+goto Spawn+3
+ClassPain:
+MARS H 0
+goto PainContinue
+ClassDeath:
+MARS H 0
+goto DeathContinue
+}
+}

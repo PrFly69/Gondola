@@ -10,8 +10,8 @@ player.startitem "CanWallJump"
 player.startitem "CanWallJumpStack", 99
 player.startitem "PlutoMeowItem"
 
-player.maxhealth 750
-health 750
+player.maxhealth 75
+health 75
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
 player.jumpz 11
@@ -40,10 +40,14 @@ PLUT B random(35,105)
 Goto Spawn+3
 See:
 PLUT B 0 A_JumpIfInventory("BreakingIntoADashAmmo",784,"SeeB")
-PLUT BBBBBCCCCCDDDDDEEEEE 1 //A_JumpIf(z-floorz>0,"SeeJumper")
+PLUT BBBBBCCCCCDDDDD 1
+TNT1 A 0 A_GiveInventory("WalkSoundForcer")
+PLUT EEEEE 1 //A_JumpIf(z-floorz>0,"SeeJumper")
 goto Spawn+1
 SeeB:
-PLUT BBBCCCDDDEEE 1 //A_JumpIf(z-floorz>0,"SeeJumper")
+PLUT BBBCCCDDD 1 
+TNT1 A 0 A_GiveInventory("WalkSoundForcer")
+PLUT EEE 1 //A_JumpIf(z-floorz>0,"SeeJumper")
 goto Spawn+1
 SeeJumper:
 "----" "#" 1 A_JumpIf(z-floorz==0,"Spawn")

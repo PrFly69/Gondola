@@ -816,7 +816,7 @@ stop
 
 actor SolarInfernoHelper : BasicHelper
 {
-Translation "192:192=213:213", "198:198=217:217"
+Translation "192:192=213:213", "198:198=217:217", "194:194=248:248", "195:195=222:222"
 scale 2.5
 renderstyle normal
 //+FORCEXYBILLBOARD
@@ -893,10 +893,10 @@ stop
 }
 }
 
-actor SolarInfernoHelperB : SolarInfernoHelper{translation "192:192=205:205","198:198=74:74"}
-actor SolarInfernoHelperR : SolarInfernoHelper{translation "192:192=171:171","198:198=41:41"}
-actor SolarInfernoHelperO : SolarInfernoHelper{translation "192:192=104:104","198:198=128:128"}
-actor SolarInfernoHelperP : SolarInfernoHelper{translation "192:192=229:229","198:198=232:232"}
+actor SolarInfernoHelperB : SolarInfernoHelper{translation "192:192=205:205","198:198=74:74","194:194=205:205","195:195=74:74"}
+actor SolarInfernoHelperR : SolarInfernoHelper{translation "192:192=171:171","198:198=41:41","194:194=171:171","195:195=41:41"}
+actor SolarInfernoHelperO : SolarInfernoHelper{translation "192:192=104:104","198:198=128:128","194:194=104:104","195:195=128:128"}
+actor SolarInfernoHelperP : SolarInfernoHelper{translation "192:192=229:229","198:198=232:232","194:194=229:229","195:195=232:232"}
 
 actor SolarmanMainInv_CI : CustomInventory
 {

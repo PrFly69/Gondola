@@ -1,0 +1,199 @@
+actor FragBomberWep : BaseMM8BDMWep
+{
+dropitem "FragBomberWepCDropped"
+Weapon.AmmoUse 4
+Weapon.AmmoGive 28
+Weapon.SlotNumber 5
+Inventory.Pickupmessage "$PU_FRAGBOMBER"
+Obituary "$OB_FRAGBOMBER"
+Tag "$TAG_FRAGBOMBER"
+weapon.ammotype "FragBomberAmmo"
+inventory.icon "XTR0WI_D"
+States
+{
+Spawn:
+XWI0 D 1
+loop 
+Ready:
+XH0D A 0 ACS_ExecuteAlways(998,0,DYE_FRAGBOMBER)
+XH0D A 0 A_JumpIfNoAmmo("ReadyNoAmmo")
+XH0D A 1 A_WeaponReady
+Goto Ready+2
+ReadyNoAmmo:
+XH0D B 1 A_WeaponReady
+XH0D B 0 A_JumpIfNoAmmo("ReadyNoAmmo")
+Goto Ready+1
+Deselect:
+XH0D AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0D A 1 A_Lower
+Loop
+Select:
+XH0D AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0D A 1 A_Raise
+Loop
+Fire:
+XH0D A 0 A_JumpIfNoAmmo("NoAmmo")
+FireH:
+XH0D A 1 Offset(0,48)A_JumpIfInventory("FragBomberCharge",28,"FireExplode")
+XH0D A 0 A_Refire("FireH2")
+goto FireToss
+FireH2:
+XH0D A 1 Offset(0,48)A_GiveInventory("FragBomberCharge_RC",1)
+XH0D A 0 A_Refire("FireH")
+goto FireToss
+FireToss:
+XH0D A 0 A_GiveInventory("FragBomberFireCheck_P")
+XH0D C 2 OffSet(1,31)
+XH0D C 2 OffSet(-70,74)
+XH0D C 2 OffSet(-121,114)
+XH0D D 2 OffSet(1,31)
+XH0D D 2 OffSet(-21,56)
+XH0D D 2 OffSet(-33,84)
+TNT1 A 16 OffSet(2,32)
+XH0D A 0 A_JumpIfNoAmmo("FireNoAmmoEnd")
+XH0D A 2 Offset(-4,69)
+XH0D A 2 Offset(-2,48)
+XH0D A 0 A_Refire
+Goto Ready+2
+FireExplode:
+XH0D A 0 A_FireCustomMissile("FragBomber5",0,1,8,0)
+XH0D A 0 //ThrustThingZ(0,50,0,0)
+XH0D A 0 //A_Recoil(-20)
+
+XH0D A 0 ThrustThingZ(0,10,0,0)
+XH0D A 0 A_ChangeVelocity(Cos(pitch)*20,0,(-sin(pitch)*14)+(Cos(pitch)*10),1)
+
+TNT1 A 2 OffSet(2,32)
+TNT1 A 14 OffSet(2,32)A_TakeInventory("FragBomberCharge",999)
+XH0D A 0 A_JumpIfNoAmmo("FireNoAmmoEnd")
+XH0D A 2 Offset(-4,69)
+XH0D A 2 Offset(-2,48)
+XH0D A 0 A_Refire
+Goto Ready+2
+Altfire:
+XH0D A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0D A 1 Offset(0,48)
+XH0D A 0 A_GiveInventory("FragBomberFireCheck_P")
+XH0D C 2 OffSet(1,31)
+XH0D C 2 OffSet(-70,74)
+XH0D C 2 OffSet(-121,114)
+XH0D D 2 OffSet(1,31)
+XH0D D 2 OffSet(-21,56)
+XH0D D 2 OffSet(-33,84)
+TNT1 A 16 OffSet(2,32)
+XH0D A 0 A_JumpIfNoAmmo("FireNoAmmoEnd")
+XH0D A 2 Offset(-4,69)
+XH0D A 2 Offset(-2,48)
+XH0D A 0 A_Refire
+Goto Ready+2
+FireNoAmmoEnd:
+XH0D B 2 Offset(-4,69)
+XH0D B 2 Offset(-2,48)
+goto ReadyNoAmmo
+NoAmmo:
+XH0D B 1 ACS_Execute(979,0)
+Goto ReadyNoAmmo
+}
+}
+
+actor FragBomberAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 28
++INVENTORY.IGNORESKILL
+}
+
+actor FragBomberCharge : Inventory
+{
+inventory.amount 1
+inventory.maxamount 28
+}
+
+actor FragBomberCharge_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
+TNT1 A 0 A_GiveInventory("FragBomberCharge",1)
+stop
+PickupR:
+TNT1 A 0 A_GiveInventory("FragBomberCharge",2)
+stop
+}
+}
+
+actor FragBomberFireCheck_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("FragBomberCharge",28,"Alt4")
+TNT1 A 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+TNT1 A 0 A_JumpIfInventory("FragBomberCharge",21,"Alt3")
+TNT1 A 0 A_JumpIfInventory("FragBomberCharge",14,"Alt2")
+TNT1 A 0 A_JumpIfInventory("FragBomberCharge",7,"Alt1")
+TNT1 A 0 A_FireCustomMissile("FragBomber",0,1,8,0)
+goto AEnd
+Alt1:
+TNT1 A 0 A_FireCustomMissile("FragBomber2",0,1,8,0)
+goto AEnd
+Alt2:
+TNT1 A 0 A_FireCustomMissile("FragBomber3",0,1,8,0)
+goto AEnd
+Alt3:
+TNT1 A 0 A_FireCustomMissile("FragBomber4",0,1,8,0)
+goto AEnd
+Alt4:
+TNT1 A 0 A_FireCustomMissile("FragBomber5",0,1,8,0)
+goto AEnd
+AEnd:
+TNT1 A 0 A_TakeInventory("FragBomberCharge",999)
+stop
+}
+}
+
+actor FragBomber
+{
+Translation "192:192=92:92","198:198=131:131","202:202=210:210"
+PROJECTILE
+Obituary "$OB_FRAGBOMBER"
+Damagetype "FragBomber"
+-NOGRAVITY
++BOUNCEONFLOORS
++BOUNCEONWALLS
++BOUNCEONCEILINGS
++ALLOWBOUNCEONACTORS
++CANBOUNCEWATER
+Bouncefactor 0.6
+Wallbouncefactor 0.25
+Bouncecount 5
+Reactiontime 10
+Damage(0)
+Radius 8
+Height 11
+Speed 15
+Scale 2.5
+States
+{
+Spawn:
+XH0D Q 0
+XH0D Q 0 ThrustThingZ(0,25,0,1)
+XH0D Q 0 A_CountDown
+XH0D QRST 4
+Goto Spawn+2
+//XH0D U 0
+Death:
+TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
+TNT1 A 0 A_Explode(60,128,0,0,12)
+TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
+TNT1 A 2
+stop
+}
+}
+
+actor FragBomber2 : FragBomber {reactiontime 8 speed 25}
+actor FragBomber3 : FragBomber {reactiontime 6 speed 35}
+actor FragBomber4 : FragBomber {reactiontime 4 speed 45}
+actor FragBomber5 : FragBomber {reactiontime 1 speed 20}

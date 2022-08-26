@@ -8,35 +8,36 @@ Inventory.Pickupmessage "$PU_DYNAMOTENDRIL"
 Obituary "$OB_DYNAMOTENDRIL"
 Tag "$TAG_DYNAMOTENDRIL"
 weapon.ammotype "DynamoTendrilAmmo"
-inventory.icon "XTR0WI_N"
+inventory.icon "XTR0WI_P"
 States
 {
 Spawn:
-XWI0 N 1
+XWI0 P 1
 loop
 Ready:
-XH0N A 0 ACS_ExecuteAlways(998,0,207)//BubbleBomb
-XH0N A 1 A_WeaponReady
+XH0P A 0 ACS_ExecuteAlways(998,0,207)//BubbleBomb
+XH0P A 1 A_WeaponReady
 Goto Ready+1
 Deselect:
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-XH0N A 1 A_Lower
+XH0P AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+XH0P A 1 A_Lower
 Loop
 Select:
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-XH0N A 1 A_Raise
+XH0P AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+XH0P A 1 A_Raise
 Loop
 Fire:
-XH0N A 0 A_JumpIfNoAmmo("NoAmmo")
-XH0N B 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
-XH0N B 0 A_FireCustomMissile("DynamoDish2",0,1,8,0)
-XH0N BC 3
-XH0N C 10
-XH0N CB 3 
-XH0N B 0 A_Refire
+XH0P A 0 A_JumpIfNoAmmo("NoAmmo")
+XH0P B 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
+XH0P B 0 A_FireCustomMissile("DynamoTendril",0,1,8,0)
+XH0P BC 2
+XH0P C 8
+XH0P CB 2
+XH0P A 2
+XH0P A 0 A_Refire
 Goto Ready+1
 NoAmmo:
-XH0N A 1 ACS_Execute(979,0)
+XH0P A 1 ACS_Execute(979,0)
 Goto Ready+1
 }
 }
@@ -48,7 +49,7 @@ inventory.maxamount 28
 +INVENTORY.IGNORESKILL
 }
 
-actor DynamoDish2// : DynamoM_Dish
+actor DynamoTendril// : DynamoM_Dish
 {
 translation "192:192=217:217","202:202=217:217","199:199=229:229"
 PROJECTILE

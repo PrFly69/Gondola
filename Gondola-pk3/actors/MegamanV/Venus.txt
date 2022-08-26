@@ -1,0 +1,58 @@
+actor Venus : ClassBase
+{
+Player.ScoreIcon "C_0VC0X"
+player.displayname "Venus"
+player.soundclass "venusc"
+
+player.maxhealth 100
+health 100
+player.jumpz 10
+player.forwardmove 0.78, 0.78
+player.sidemove 1.0, 1.0
+
+player.startitem "BubbleBombBoss"
+player.startitem "BubbleBomberBoss"
+player.startitem "CrabbyBubbleAmmo", 42
+player.startitem "AwaDanceAmmo", 21
+
+player.weaponslot 1, "BubbleBombBoss"
+player.weaponslot 2, "BubbleBomberBoss"
+
+player.startitem "PhotonMissileWeakness2", 1
+
+player.startitem "RollingCutterWeakness", 1
+player.startitem "MetalBladeWeakness", 1
+player.startitem "ShadowBladeWeakness", 1
+player.startitem "RingBoomerangWeakness", 1
+player.startitem "GyroAttackWeakness", 1
+player.startitem "SilverTomahawkWeakness", 1
+player.startitem "TenguBladeWeakness", 1
+player.startitem "WheelCutterWeakness", 1
+player.startitem "PhotonMissileWeakness", 1
+player.startitem "ScrewCrusherWeakness", 1
+
+States
+{
+Spawn:
+VENS A 0
+VENS B 1
+VENS A 1
+Goto Spawn+2
+See:
+VENS BCDE 5
+Goto Spawn
+Missile:
+VENS F 0 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
+VENS FG 5
+goto Spawn
+Missile2:
+VENS GFGF 2
+goto Spawn
+ClassPain:
+VENS H 0
+goto PainContinue
+ClassDeath:
+VENS H 0
+goto DeathContinue
+}
+}

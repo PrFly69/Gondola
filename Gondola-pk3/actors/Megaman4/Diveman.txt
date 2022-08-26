@@ -4,8 +4,8 @@ Player.ScoreIcon "C_04G0X"
 player.displayname "Diveman"
 player.soundclass "divemanc"
 
-player.maxhealth 1000
-health 1000
+player.maxhealth 100
+health 100
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

@@ -6,47 +6,18 @@
 //Flagbearer health reduction script, because nobody enjoys the sound of 9000 pain noises.
 script "CCBM_DevilHealthDrainer" (void)
 {
-	while((CheckInventory("BomuEnd") || CheckInventory("IsDead") || !PlayerInGame(PlayerNumber())) == false)
+	while((CheckInventory("BomuEnd") || CheckInventory("IsDead")) == false)
 	{
 		delay(1);
-		SetActorProperty(0, APROP_HEALTH, GetActorProperty(0, APROP_HEALTH) - 20); //I can't believe we almost forgot to 10x this.
+		SetActorProperty(0, APROP_HEALTH, GetActorProperty(0, APROP_HEALTH) - 2); //I can't believe we almost forgot to un-10x this.
 		GiveInventory("BomuHeal",1);
 	}
 }
 
-// Protoman shield toss recode
-script "gond_protoshieldcheck" (int target, int range) {
-    int tracerRange = range + 5;
-    int tracer = -1;
-    int dist;
-
-    for(int i = 0; i < 64; i++) {
-        dist = xyzDistance(0, i + 1000);
-        if(i + 1000 != target && (GetPlayerInfo(target-1000,PLAYERINFO_TEAM) == 4 || GetPlayerInfo(target-1000,PLAYERINFO_TEAM) != GetPlayerInfo(i,PLAYERINFO_TEAM)) && CheckSight(0, i+1000, 0) && dist <= range && dist < tracerRange) {
-            tracer = i + 1000;
-            tracerRange = dist;
-        }
-    }
-    
-    if(tracer > 0) {
-        int x, y, z, ang, pitch, len;
-        x = getactorx(tracer) - getactorx(0);
-        y = getactory(tracer) - getactory(0);
-
-        ang = vectorangle(x,y);
-        if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
-        else len = fixeddiv(x, cos(ang));
-
-        z = (getactorz(tracer) + 32.0) - (getactorz(0)+16.0);
-
-        pitch = -vectorangle(len, z);
-
-        setactorangle(0,ang);
-        setactorpitch(0, pitch);
-        SetPointer(AAPTR_TRACER, tracer);
-    }
-        
-    SetResultValue(tracer);
+//Bounce
+script "cbm_FetchDistance" (void)
+{
+	SetResultValue(xyzDistance (ACS_ExecuteWithResult(257,0), 0));
 }
 
 // Flash Stopper Script
@@ -86,7 +57,7 @@ FadeTo(45,45,45,0.0,0.0);
 //Dark Man 4
 script "CCBM_Dark4Shield" (void)
 {
-		int shielddiff = 500 - GetActorProperty(0,APROP_HEALTH);
+		int shielddiff = 50 - GetActorProperty(0,APROP_HEALTH);
 		SetActivatorToTarget(0);
 		TakeInventory("DarkBlasterAmmo",shielddiff);
 }
@@ -142,6 +113,8 @@ script "cbm_Re_SetThingSpecial" (int Thing0, int Thing1, int Thing2, int Thing3)
 {
 	SetThingSpecial(0,0,Thing0,Thing1,Thing2,Thing3);
 }*/
+
+// [Mess] Returns the target of the activator
 
 //From Trillster's Magnet concept
 script "Trill_MagnetJumpBooster" (int maxRange)
@@ -383,6 +356,40 @@ Script "core_hookshot" (int PlayerID, int Vel, int Moving)
 	SetResultValue(GetUserCVar(PlayerNumber(),"UEC_AcidmanHUD"));
 }
 
+script "gond_protoshieldcheck" (int target, int range) {
+    int tracerRange = range + 5;
+    int tracer = -1;
+    int dist;
+
+    for(int i = 0; i < 64; i++) {
+        dist = xyzDistance(0, i + 1000);
+        if(i + 1000 != target && (GetPlayerInfo(target-1000,PLAYERINFO_TEAM) == 4 || GetPlayerInfo(target-1000,PLAYERINFO_TEAM) != GetPlayerInfo(i,PLAYERINFO_TEAM)) && CheckSight(0, i+1000, 0) && dist <= range && dist < tracerRange) {
+            tracer = i + 1000;
+            tracerRange = dist;
+        }
+    }
+    
+    if(tracer > 0) {
+        int x, y, z, ang, pitch, len;
+        x = getactorx(tracer) - getactorx(0);
+        y = getactory(tracer) - getactory(0);
+
+        ang = vectorangle(x,y);
+        if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
+        else len = fixeddiv(x, cos(ang));
+
+        z = (getactorz(tracer) + 32.0) - (getactorz(0)+16.0);
+
+        pitch = -vectorangle(len, z);
+
+        setactorangle(0,ang);
+        setactorpitch(0, pitch);
+        SetPointer(AAPTR_TRACER, tracer);
+    }
+        
+    SetResultValue(tracer);
+}
+
 script "IsTargetClient" (void) CLIENTSIDE
 {
 SetActivatorToTarget(0);
@@ -400,41 +407,41 @@ script "AcidmanBarrierProtect" (void)
 {
 	SetActivator(0,AAPTR_TARGET);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.1);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.15);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.2);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.25);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.3);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.35);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.4);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.45);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.5);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.55);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.6);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.65);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.7);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.75);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.8);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.85);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.90);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.95);
-	Delay(4);
+	Delay(5);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,1.0);
 }
 
@@ -442,58 +449,58 @@ script "AcidmanBarrierProtectAlly" (void)
 {
 	SetActivator(0,AAPTR_TRACER);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.1);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.15);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.2);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.25);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.3);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.35);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.4);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.45);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.5);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.55);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.6);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.65);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.7);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.75);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.8);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.85);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.90);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,0.95);
-	Delay(4);
+	Delay(5);
 	TakeInventory("AcidBarrierVisualBar",1);
 	SetActorProperty(0,APROP_DAMAGEFACTOR,1.0);
 }
@@ -505,7 +512,7 @@ script "AcidmanGearAmmo" (int AcidMult)
 	int AcidH = max(GetActorProperty(TracerSave,APROP_HEALTH),0);
 	int AcidDiff = CheckActorInventory(TracerSave,"AcidLastHealthFlag") - AcidH;
 	If(AcidDiff != 0){GiveActorInventory(TargetSave,"AcidGearUpSound_P",1);};
-		GiveActorInventory(TargetSave,"AcidGearAmmo",AcidDiff*AcidMult/10);
+		GiveActorInventory(TargetSave,"AcidGearAmmo",AcidDiff*AcidMult);
 		TakeActorInventory(TracerSave,"AcidLastHealthFlag",999);
 		GiveActorInventory(TracerSave,"AcidLastHealthFlag",AcidH);
 }
@@ -516,7 +523,7 @@ script "AcidmanGearAmmoSelf" (int AcidMult)
 	int AcidH = max(PlayerHealth(),0);
 	int AcidDiff = CheckInventory("AcidLastHealthFlag") - AcidH;
 	If(AcidDiff != 0){GiveInventory("AcidGearUpSound_P",1);};
-		GiveInventory("AcidGearAmmo",AcidDiff*AcidMult/10);
+		GiveInventory("AcidGearAmmo",AcidDiff*AcidMult);
 		TakeInventory("AcidLastHealthFlag",999);
 		GiveInventory("AcidLastHealthFlag",AcidH);
 }
@@ -627,7 +634,7 @@ int merc_mode[32];
 
 #define TEAM_NONE -1
 
-script "cbm_GiveIfPlayerHitMe" (int mode, int O_TID, int H_TID)
+/*script "cbm_GiveIfPlayerHitMe" (int mode, int O_TID, int H_TID)
 {
 switch (mode) {
 	case 3://Mercury
@@ -666,7 +673,7 @@ switch (mode) {
 	default:
 		break;
 }
-}
+}*/
 
 Script "MEOWMEOWMEOWMEOWMEOWMEOWMEOW" (void)
 {

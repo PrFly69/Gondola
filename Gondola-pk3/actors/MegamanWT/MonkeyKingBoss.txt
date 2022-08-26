@@ -834,7 +834,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 1
 TNT1 A 0 A_Stop
-BRGX O 1 A_Explode(60,40,0,0,40)
+BRGX O 1 A_Explode(6,40,0,0,40)
 stop
 }
 }
@@ -847,7 +847,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 1
 TNT1 A 0 A_Stop
-BRGX P 1 A_Explode(60,40,0,0,40)
+BRGX P 1 A_Explode(6,40,0,0,40)
 stop
 }
 }
@@ -877,11 +877,11 @@ Spawn:
 TNT1 A 0
 TNT1 A 1
 TNT1 A 0 A_Stop
-BRGX O 1 A_Explode(60,40,0,0,40)
+BRGX O 1 A_Explode(6,40,0,0,40)
 TNT1 A 35
-BRGX O 1 A_Explode(60,40,0,0,40)
+BRGX O 1 A_Explode(6,40,0,0,40)
 TNT1 A 35
-BRGX O 1 A_Explode(60,40,0,0,40)
+BRGX O 1 A_Explode(6,40,0,0,40)
 stop
 }
 }
@@ -894,11 +894,11 @@ Spawn:
 TNT1 A 0
 TNT1 A 1
 TNT1 A 0 A_Stop
-BRGX P 1 A_Explode(60,40,0,0,40)
+BRGX P 1 A_Explode(6,40,0,0,40)
 TNT1 A 35
-BRGX P 1 A_Explode(60,40,0,0,40)
+BRGX P 1 A_Explode(6,40,0,0,40)
 TNT1 A 35
-BRGX P 1 A_Explode(60,40,0,0,40)
+BRGX P 1 A_Explode(6,40,0,0,40)
 stop
 }
 }
@@ -928,170 +928,170 @@ actor BusterRodEndPDR : BusterRodEndPD{translation "192:192=171:171","198:198=41
 actor BusterRodEndPDO : BusterRodEndPD{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
 actor BusterRodEndPDP : BusterRodEndPD{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
 
-actor BusterRod1:BusterRod{speed 22}
-actor BusterRod2:BusterRod{speed 44}
-actor BusterRod3:BusterRod{speed 66}
-actor BusterRod4:BusterRod{speed 88}
-actor BusterRod5:BusterRod{speed 110}
-actor BusterRod6:BusterRod{speed 132}
-actor BusterRod7:BusterRod{speed 154}
-actor BusterRod8:BusterRod{speed 176}
-actor BusterRod1B:BusterRodB{speed 22}//
-actor BusterRod2B:BusterRodB{speed 44}
-actor BusterRod3B:BusterRodB{speed 66}
-actor BusterRod4B:BusterRodB{speed 88}
-actor BusterRod5B:BusterRodB{speed 110}
-actor BusterRod6B:BusterRodB{speed 132}
-actor BusterRod7B:BusterRodB{speed 154}
-actor BusterRod8B:BusterRodB{speed 176}
-actor BusterRod1R:BusterRodR{speed 22}//
-actor BusterRod2R:BusterRodR{speed 44}
-actor BusterRod3R:BusterRodR{speed 66}
-actor BusterRod4R:BusterRodR{speed 88}
-actor BusterRod5R:BusterRodR{speed 110}
-actor BusterRod6R:BusterRodR{speed 132}
-actor BusterRod7R:BusterRodR{speed 154}
-actor BusterRod8R:BusterRodR{speed 176}
-actor BusterRod1O:BusterRodO{speed 22}//
-actor BusterRod2O:BusterRodO{speed 44}
-actor BusterRod3O:BusterRodO{speed 66}
-actor BusterRod4O:BusterRodO{speed 88}
-actor BusterRod5O:BusterRodO{speed 110}
-actor BusterRod6O:BusterRodO{speed 132}
-actor BusterRod7O:BusterRodO{speed 154}
-actor BusterRod8O:BusterRodO{speed 176}
-actor BusterRod1P:BusterRodP{speed 22}//
-actor BusterRod2P:BusterRodP{speed 44}
-actor BusterRod3P:BusterRodP{speed 66}
-actor BusterRod4P:BusterRodP{speed 88}
-actor BusterRod5P:BusterRodP{speed 110}
-actor BusterRod6P:BusterRodP{speed 132}
-actor BusterRod7P:BusterRodP{speed 154}
-actor BusterRod8P:BusterRodP{speed 176}
+actor BusterRod1:BusterRod{speed 25}
+actor BusterRod2:BusterRod{speed 50}
+actor BusterRod3:BusterRod{speed 74}
+actor BusterRod4:BusterRod{speed 99}
+actor BusterRod5:BusterRod{speed 124}
+actor BusterRod6:BusterRod{speed 149}
+actor BusterRod7:BusterRod{speed 173}
+actor BusterRod8:BusterRod{speed 198}
+actor BusterRod1B:BusterRodB{speed 25}//
+actor BusterRod2B:BusterRodB{speed 50}
+actor BusterRod3B:BusterRodB{speed 74}
+actor BusterRod4B:BusterRodB{speed 99}
+actor BusterRod5B:BusterRodB{speed 124}
+actor BusterRod6B:BusterRodB{speed 149}
+actor BusterRod7B:BusterRodB{speed 173}
+actor BusterRod8B:BusterRodB{speed 198}
+actor BusterRod1R:BusterRodR{speed 25}//
+actor BusterRod2R:BusterRodR{speed 50}
+actor BusterRod3R:BusterRodR{speed 74}
+actor BusterRod4R:BusterRodR{speed 99}
+actor BusterRod5R:BusterRodR{speed 124}
+actor BusterRod6R:BusterRodR{speed 149}
+actor BusterRod7R:BusterRodR{speed 173}
+actor BusterRod8R:BusterRodR{speed 198}
+actor BusterRod1O:BusterRodO{speed 25}//
+actor BusterRod2O:BusterRodO{speed 50}
+actor BusterRod3O:BusterRodO{speed 74}
+actor BusterRod4O:BusterRodO{speed 99}
+actor BusterRod5O:BusterRodO{speed 124}
+actor BusterRod6O:BusterRodO{speed 149}
+actor BusterRod7O:BusterRodO{speed 173}
+actor BusterRod8O:BusterRodO{speed 198}
+actor BusterRod1P:BusterRodP{speed 25}//
+actor BusterRod2P:BusterRodP{speed 50}
+actor BusterRod3P:BusterRodP{speed 74}
+actor BusterRod4P:BusterRodP{speed 99}
+actor BusterRod5P:BusterRodP{speed 124}
+actor BusterRod6P:BusterRodP{speed 149}
+actor BusterRod7P:BusterRodP{speed 173}
+actor BusterRod8P:BusterRodP{speed 198}
 
-actor BusterRodD1:BusterRodD{speed 22}
-actor BusterRodD2:BusterRodD{speed 44}
-actor BusterRodD3:BusterRodD{speed 66}
-actor BusterRodD4:BusterRodD{speed 88}
-actor BusterRodD5:BusterRodD{speed 110}
-actor BusterRodD6:BusterRodD{speed 132}
-actor BusterRodD7:BusterRodD{speed 154}
-actor BusterRodD8:BusterRodD{speed 176}
-actor BusterRodD1B:BusterRodDB{speed 22}//
-actor BusterRodD2B:BusterRodDB{speed 44}
-actor BusterRodD3B:BusterRodDB{speed 66}
-actor BusterRodD4B:BusterRodDB{speed 88}
-actor BusterRodD5B:BusterRodDB{speed 110}
-actor BusterRodD6B:BusterRodDB{speed 132}
-actor BusterRodD7B:BusterRodDB{speed 154}
-actor BusterRodD8B:BusterRodDB{speed 176}
-actor BusterRodD1R:BusterRodDR{speed 22}//
-actor BusterRodD2R:BusterRodDR{speed 44}
-actor BusterRodD3R:BusterRodDR{speed 66}
-actor BusterRodD4R:BusterRodDR{speed 88}
-actor BusterRodD5R:BusterRodDR{speed 110}
-actor BusterRodD6R:BusterRodDR{speed 132}
-actor BusterRodD7R:BusterRodDR{speed 154}
-actor BusterRodD8R:BusterRodDR{speed 176}
-actor BusterRodD1O:BusterRodDO{speed 22}//
-actor BusterRodD2O:BusterRodDO{speed 44}
-actor BusterRodD3O:BusterRodDO{speed 66}
-actor BusterRodD4O:BusterRodDO{speed 88}
-actor BusterRodD5O:BusterRodDO{speed 110}
-actor BusterRodD6O:BusterRodDO{speed 132}
-actor BusterRodD7O:BusterRodDO{speed 154}
-actor BusterRodD8O:BusterRodDO{speed 176}
-actor BusterRodD1P:BusterRodDP{speed 22}//
-actor BusterRodD2P:BusterRodDP{speed 44}
-actor BusterRodD3P:BusterRodDP{speed 66}
-actor BusterRodD4P:BusterRodDP{speed 88}
-actor BusterRodD5P:BusterRodDP{speed 110}
-actor BusterRodD6P:BusterRodDP{speed 132}
-actor BusterRodD7P:BusterRodDP{speed 154}
-actor BusterRodD8P:BusterRodDP{speed 176}
+actor BusterRodD1:BusterRodD{speed 25}
+actor BusterRodD2:BusterRodD{speed 50}
+actor BusterRodD3:BusterRodD{speed 74}
+actor BusterRodD4:BusterRodD{speed 99}
+actor BusterRodD5:BusterRodD{speed 124}
+actor BusterRodD6:BusterRodD{speed 149}
+actor BusterRodD7:BusterRodD{speed 173}
+actor BusterRodD8:BusterRodD{speed 198}
+actor BusterRodD1B:BusterRodDB{speed 25}//
+actor BusterRodD2B:BusterRodDB{speed 50}
+actor BusterRodD3B:BusterRodDB{speed 74}
+actor BusterRodD4B:BusterRodDB{speed 99}
+actor BusterRodD5B:BusterRodDB{speed 124}
+actor BusterRodD6B:BusterRodDB{speed 149}
+actor BusterRodD7B:BusterRodDB{speed 173}
+actor BusterRodD8B:BusterRodDB{speed 198}
+actor BusterRodD1R:BusterRodDR{speed 25}//
+actor BusterRodD2R:BusterRodDR{speed 50}
+actor BusterRodD3R:BusterRodDR{speed 74}
+actor BusterRodD4R:BusterRodDR{speed 99}
+actor BusterRodD5R:BusterRodDR{speed 124}
+actor BusterRodD6R:BusterRodDR{speed 149}
+actor BusterRodD7R:BusterRodDR{speed 173}
+actor BusterRodD8R:BusterRodDR{speed 198}
+actor BusterRodD1O:BusterRodDO{speed 25}//
+actor BusterRodD2O:BusterRodDO{speed 50}
+actor BusterRodD3O:BusterRodDO{speed 74}
+actor BusterRodD4O:BusterRodDO{speed 99}
+actor BusterRodD5O:BusterRodDO{speed 124}
+actor BusterRodD6O:BusterRodDO{speed 149}
+actor BusterRodD7O:BusterRodDO{speed 173}
+actor BusterRodD8O:BusterRodDO{speed 198}
+actor BusterRodD1P:BusterRodDP{speed 25}//
+actor BusterRodD2P:BusterRodDP{speed 50}
+actor BusterRodD3P:BusterRodDP{speed 74}
+actor BusterRodD4P:BusterRodDP{speed 99}
+actor BusterRodD5P:BusterRodDP{speed 124}
+actor BusterRodD6P:BusterRodDP{speed 149}
+actor BusterRodD7P:BusterRodDP{speed 173}
+actor BusterRodD8P:BusterRodDP{speed 198}
 
 
-actor BusterRodEnd1:BusterRodEndO{speed 22}
-actor BusterRodEnd2:BusterRodEndO{speed 44}
-actor BusterRodEnd3:BusterRodEndP{speed 66}
-actor BusterRodEnd4:BusterRodEndP{speed 88}
-actor BusterRodEnd5:BusterRodEndO{speed 110}
-actor BusterRodEnd6:BusterRodEndO{speed 132}
-actor BusterRodEnd7:BusterRodEndP{speed 154}
-actor BusterRodEnd8:BusterRodEndP{speed 176}
-actor BusterRodEnd1B:BusterRodEndOB{speed 22}//
-actor BusterRodEnd2B:BusterRodEndOB{speed 44}
-actor BusterRodEnd3B:BusterRodEndPB{speed 66}
-actor BusterRodEnd4B:BusterRodEndPB{speed 88}
-actor BusterRodEnd5B:BusterRodEndOB{speed 110}
-actor BusterRodEnd6B:BusterRodEndOB{speed 132}
-actor BusterRodEnd7B:BusterRodEndPB{speed 154}
-actor BusterRodEnd8B:BusterRodEndPB{speed 176}
-actor BusterRodEnd1R:BusterRodEndOR{speed 22}//
-actor BusterRodEnd2R:BusterRodEndOR{speed 44}
-actor BusterRodEnd3R:BusterRodEndPR{speed 66}
-actor BusterRodEnd4R:BusterRodEndPR{speed 88}
-actor BusterRodEnd5R:BusterRodEndOR{speed 110}
-actor BusterRodEnd6R:BusterRodEndOR{speed 132}
-actor BusterRodEnd7R:BusterRodEndPR{speed 154}
-actor BusterRodEnd8R:BusterRodEndPR{speed 176}
-actor BusterRodEnd1O:BusterRodEndOO{speed 22}//
-actor BusterRodEnd2O:BusterRodEndOO{speed 44}
-actor BusterRodEnd3O:BusterRodEndPO{speed 66}
-actor BusterRodEnd4O:BusterRodEndPO{speed 88}
-actor BusterRodEnd5O:BusterRodEndOO{speed 110}
-actor BusterRodEnd6O:BusterRodEndOO{speed 132}
-actor BusterRodEnd7O:BusterRodEndPO{speed 154}
-actor BusterRodEnd8O:BusterRodEndPO{speed 176}
-actor BusterRodEnd1P:BusterRodEndOP{speed 22}//
-actor BusterRodEnd2P:BusterRodEndOP{speed 44}
-actor BusterRodEnd3P:BusterRodEndPP{speed 66}
-actor BusterRodEnd4P:BusterRodEndPP{speed 88}
-actor BusterRodEnd5P:BusterRodEndOP{speed 110}
-actor BusterRodEnd6P:BusterRodEndOP{speed 132}
-actor BusterRodEnd7P:BusterRodEndPP{speed 154}
-actor BusterRodEnd8P:BusterRodEndPP{speed 176}
+actor BusterRodEnd1:BusterRodEndO{speed 25}
+actor BusterRodEnd2:BusterRodEndO{speed 50}
+actor BusterRodEnd3:BusterRodEndP{speed 74}
+actor BusterRodEnd4:BusterRodEndP{speed 99}
+actor BusterRodEnd5:BusterRodEndO{speed 124}
+actor BusterRodEnd6:BusterRodEndO{speed 149}
+actor BusterRodEnd7:BusterRodEndP{speed 173}
+actor BusterRodEnd8:BusterRodEndP{speed 198}
+actor BusterRodEnd1B:BusterRodEndOB{speed 25}//
+actor BusterRodEnd2B:BusterRodEndOB{speed 50}
+actor BusterRodEnd3B:BusterRodEndPB{speed 74}
+actor BusterRodEnd4B:BusterRodEndPB{speed 99}
+actor BusterRodEnd5B:BusterRodEndOB{speed 124}
+actor BusterRodEnd6B:BusterRodEndOB{speed 149}
+actor BusterRodEnd7B:BusterRodEndPB{speed 173}
+actor BusterRodEnd8B:BusterRodEndPB{speed 198}
+actor BusterRodEnd1R:BusterRodEndOR{speed 25}//
+actor BusterRodEnd2R:BusterRodEndOR{speed 50}
+actor BusterRodEnd3R:BusterRodEndPR{speed 74}
+actor BusterRodEnd4R:BusterRodEndPR{speed 99}
+actor BusterRodEnd5R:BusterRodEndOR{speed 124}
+actor BusterRodEnd6R:BusterRodEndOR{speed 149}
+actor BusterRodEnd7R:BusterRodEndPR{speed 173}
+actor BusterRodEnd8R:BusterRodEndPR{speed 198}
+actor BusterRodEnd1O:BusterRodEndOO{speed 25}//
+actor BusterRodEnd2O:BusterRodEndOO{speed 50}
+actor BusterRodEnd3O:BusterRodEndPO{speed 74}
+actor BusterRodEnd4O:BusterRodEndPO{speed 99}
+actor BusterRodEnd5O:BusterRodEndOO{speed 124}
+actor BusterRodEnd6O:BusterRodEndOO{speed 149}
+actor BusterRodEnd7O:BusterRodEndPO{speed 173}
+actor BusterRodEnd8O:BusterRodEndPO{speed 198}
+actor BusterRodEnd1P:BusterRodEndOP{speed 25}//
+actor BusterRodEnd2P:BusterRodEndOP{speed 50}
+actor BusterRodEnd3P:BusterRodEndPP{speed 74}
+actor BusterRodEnd4P:BusterRodEndPP{speed 99}
+actor BusterRodEnd5P:BusterRodEndOP{speed 124}
+actor BusterRodEnd6P:BusterRodEndOP{speed 149}
+actor BusterRodEnd7P:BusterRodEndPP{speed 173}
+actor BusterRodEnd8P:BusterRodEndPP{speed 198}
 
-actor BusterRodEndD1:BusterRodEndOD{speed 22}
-actor BusterRodEndD2:BusterRodEndOD{speed 44}
-actor BusterRodEndD3:BusterRodEndPD{speed 66}
-actor BusterRodEndD4:BusterRodEndPD{speed 88}
-actor BusterRodEndD5:BusterRodEndOD{speed 110}
-actor BusterRodEndD6:BusterRodEndOD{speed 132}
-actor BusterRodEndD7:BusterRodEndPD{speed 154}
-actor BusterRodEndD8:BusterRodEndPD{speed 176}
-actor BusterRodEndD1B:BusterRodEndODB{speed 22}//
-actor BusterRodEndD2B:BusterRodEndODB{speed 44}
-actor BusterRodEndD3B:BusterRodEndPDB{speed 66}
-actor BusterRodEndD4B:BusterRodEndPDB{speed 88}
-actor BusterRodEndD5B:BusterRodEndODB{speed 110}
-actor BusterRodEndD6B:BusterRodEndODB{speed 132}
-actor BusterRodEndD7B:BusterRodEndPDB{speed 154}
-actor BusterRodEndD8B:BusterRodEndPDB{speed 176}
-actor BusterRodEndD1R:BusterRodEndODR{speed 22}//
-actor BusterRodEndD2R:BusterRodEndODR{speed 44}
-actor BusterRodEndD3R:BusterRodEndPDR{speed 66}
-actor BusterRodEndD4R:BusterRodEndPDR{speed 88}
-actor BusterRodEndD5R:BusterRodEndODR{speed 110}
-actor BusterRodEndD6R:BusterRodEndODR{speed 132}
-actor BusterRodEndD7R:BusterRodEndPDR{speed 154}
-actor BusterRodEndD8R:BusterRodEndPDR{speed 176}
-actor BusterRodEndD1O:BusterRodEndODO{speed 22}//
-actor BusterRodEndD2O:BusterRodEndODO{speed 44}
-actor BusterRodEndD3O:BusterRodEndPDO{speed 66}
-actor BusterRodEndD4O:BusterRodEndPDO{speed 88}
-actor BusterRodEndD5O:BusterRodEndODO{speed 110}
-actor BusterRodEndD6O:BusterRodEndODO{speed 132}
-actor BusterRodEndD7O:BusterRodEndPDO{speed 154}
-actor BusterRodEndD8O:BusterRodEndPDO{speed 176}
-actor BusterRodEndD1P:BusterRodEndODP{speed 22}//
-actor BusterRodEndD2P:BusterRodEndODP{speed 44}
-actor BusterRodEndD3P:BusterRodEndPDP{speed 66}
-actor BusterRodEndD4P:BusterRodEndPDP{speed 88}
-actor BusterRodEndD5P:BusterRodEndODP{speed 110}
-actor BusterRodEndD6P:BusterRodEndODP{speed 132}
-actor BusterRodEndD7P:BusterRodEndPDP{speed 154}
-actor BusterRodEndD8P:BusterRodEndPDP{speed 176}
+actor BusterRodEndD1:BusterRodEndOD{speed 25}
+actor BusterRodEndD2:BusterRodEndOD{speed 50}
+actor BusterRodEndD3:BusterRodEndPD{speed 74}
+actor BusterRodEndD4:BusterRodEndPD{speed 99}
+actor BusterRodEndD5:BusterRodEndOD{speed 124}
+actor BusterRodEndD6:BusterRodEndOD{speed 149}
+actor BusterRodEndD7:BusterRodEndPD{speed 173}
+actor BusterRodEndD8:BusterRodEndPD{speed 198}
+actor BusterRodEndD1B:BusterRodEndODB{speed 25}//
+actor BusterRodEndD2B:BusterRodEndODB{speed 50}
+actor BusterRodEndD3B:BusterRodEndPDB{speed 74}
+actor BusterRodEndD4B:BusterRodEndPDB{speed 99}
+actor BusterRodEndD5B:BusterRodEndODB{speed 124}
+actor BusterRodEndD6B:BusterRodEndODB{speed 149}
+actor BusterRodEndD7B:BusterRodEndPDB{speed 173}
+actor BusterRodEndD8B:BusterRodEndPDB{speed 198}
+actor BusterRodEndD1R:BusterRodEndODR{speed 25}//
+actor BusterRodEndD2R:BusterRodEndODR{speed 50}
+actor BusterRodEndD3R:BusterRodEndPDR{speed 74}
+actor BusterRodEndD4R:BusterRodEndPDR{speed 99}
+actor BusterRodEndD5R:BusterRodEndODR{speed 124}
+actor BusterRodEndD6R:BusterRodEndODR{speed 149}
+actor BusterRodEndD7R:BusterRodEndPDR{speed 173}
+actor BusterRodEndD8R:BusterRodEndPDR{speed 198}
+actor BusterRodEndD1O:BusterRodEndODO{speed 25}//
+actor BusterRodEndD2O:BusterRodEndODO{speed 50}
+actor BusterRodEndD3O:BusterRodEndPDO{speed 74}
+actor BusterRodEndD4O:BusterRodEndPDO{speed 99}
+actor BusterRodEndD5O:BusterRodEndODO{speed 124}
+actor BusterRodEndD6O:BusterRodEndODO{speed 149}
+actor BusterRodEndD7O:BusterRodEndPDO{speed 173}
+actor BusterRodEndD8O:BusterRodEndPDO{speed 198}
+actor BusterRodEndD1P:BusterRodEndODP{speed 25}//
+actor BusterRodEndD2P:BusterRodEndODP{speed 50}
+actor BusterRodEndD3P:BusterRodEndPDP{speed 74}
+actor BusterRodEndD4P:BusterRodEndPDP{speed 99}
+actor BusterRodEndD5P:BusterRodEndODP{speed 124}
+actor BusterRodEndD6P:BusterRodEndODP{speed 149}
+actor BusterRodEndD7P:BusterRodEndPDP{speed 173}
+actor BusterRodEndD8P:BusterRodEndPDP{speed 198}
 
 
 
@@ -1179,7 +1179,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(30,128,0,0,16)
+TNT1 A 2 A_Explode(3,128,0,0,16)
 stop
 }
 }

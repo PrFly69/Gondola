@@ -218,7 +218,7 @@ PROJECTILE
 Radius 8
 Height 8
 scale 2.5
-damage (60)
+damage (6)
 Obituary "$OB_BLIZZARDATTACK"
 damagetype "BlizzardM_Shot"
 speed 32
@@ -251,7 +251,7 @@ Translation "198:198=193:193"
 PROJECTILE
 damagetype "BlizzardM_Shot"
 Obituary "$OB_BLIZZARDATTACK"
-Damage (70)//10//Legacy
+Damage (7)//10//Legacy
 Height 12//10
 Radius 12//10
 Speed 32
@@ -352,7 +352,7 @@ Obituary "$OB_BLIZZARDBOWL"
 +NOEXPLODEFLOOR
 +THRUGHOST
 +DONTREFLECT
-damage (400)
+damage (40)
 Radius 52
 Height 76
 scale 2.5

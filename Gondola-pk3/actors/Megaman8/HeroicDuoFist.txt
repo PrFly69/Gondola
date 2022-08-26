@@ -631,7 +631,7 @@ WallBounceFactor 1.0//Desync fix?
 BounceCount 0
 
 ReactionTime 10
-damage (240 - user_POWER)
+damage (24 - user_POWER)
 Radius 18
 Height 25
 speed 10
@@ -741,7 +741,7 @@ Obituary "$OB_DUOWAVE"
 +STEPMISSILE
 -NOGRAVITY
 gravity 100
-Damage (200)
+Damage (20)
 Radius 24
 Height 24
 Speed 30

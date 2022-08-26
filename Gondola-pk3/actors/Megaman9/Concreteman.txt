@@ -1,0 +1,98 @@
+actor Concreteman : ClassBase
+{
+Player.ScoreIcon "C_09A0X"
+player.displayname "Concreteman"
+player.soundclass "concretemanc"
+
+player.maxhealth 155
+health 155
+player.jumpz 10
+player.forwardmove 0.675, 0.675
+player.sidemove 0.675, 0.675
+player.startitem "ConcreteShotBoss"
+player.startitem "ConcreteShoemakerAmmo", 28
+player.startitem "ConcreteM_StaminaFlag", 560
+
+player.startitem "LaserTridentWeakness2", 1
+
+player.startitem "HyperBombWeakness", 1
+player.startitem "CrashBombWeakness", 1
+player.startitem "DrillBombWeakness", 1
+player.startitem "NapalmBombWeakness", 1
+player.startitem "DangerWrapWeakness", 1
+player.startitem "FlashBombWeakness", 1
+player.startitem "RemoteMineWeakness", 1
+player.startitem "LaserTridentWeakness", 1
+player.startitem "CommandoBombWeakness", 1
+player.startitem "BubbleBombWeakness", 1
+player.startitem "BalladeCrackerWeakness", 1
+
+States
+{
+Spawn:
+CONM A 0
+CONM A 0 A_JumpIfInventory("ConcreteBlockFlag",1,6)
+CONM A 0 A_JumpIfInventory("CementAni_Dash",1,"MissileDash")
+CONM A 0 A_JumpIfInventory("CementAni_Leap",1,"MissileLeap")
+CONM A 0
+CONM B 1
+CONM A -1
+CONM S 1
+CONM R 1
+Goto Spawn+8
+See:
+CONM B 0 A_JumpIfInventory("ConcreteBlockFlag",1,"SeeBlock")
+CONM BCDE 5
+Goto Spawn
+SeeBlock:
+CONM STUT 5
+Goto Spawn+7
+Missile:
+CONM F 0 A_JumpIfInventory("ConcreteBlockFlag",1,"MissileBlock")
+CONM F 1
+CONM F 0 A_JumpIfInventory("CementAni_Dash",1,"MissileDash")
+CONM F 0 A_JumpIfInventory("CementAni_Leap",1,"MissileLeap")
+CONM F 0 A_JumpIfInventory("CementAni_Pickup",1,"MissilePickup")
+CONM F 1
+CONM F 0 A_JumpIfInventory("CementAni_Dash",1,"MissileDash")
+CONM F 0 A_JumpIfInventory("CementAni_Leap",1,"MissileLeap")
+CONM F 0 A_JumpIfInventory("CementAni_Pickup",1,"MissilePickup")
+CONM F 1
+CONM F 0 A_JumpIfInventory("CementAni_Dash",1,"MissileDash")
+CONM F 0 A_JumpIfInventory("CementAni_Leap",1,"MissileLeap")
+CONM F 0 A_JumpIfInventory("CementAni_Pickup",1,"MissilePickup")
+CONM F 2
+CONM G 4
+goto Spawn
+MissileBlock:
+CONM V 5
+CONM V 0 A_JumpIfInventory("CementAni_Throw",1,"MissileBlockT")
+CONM V 4
+Goto Spawn+7
+MissileBlockT:
+CONM W 6
+goto Spawn
+MissileDash:
+CONM MMMNNN 1 A_JumpIfInventory("CementAni_DashStop",1,"MissileDash2")
+loop
+MissileDash2:
+CONM M 10
+goto Spawn
+MissileLeap:
+CONM O 1 A_JumpIfInventory("CementAni_LeapStop",1,"MissileLeap2")
+wait
+MissileLeap2:
+CONM PPQQQQPPP 2
+goto Spawn+6
+MissilePickup:
+CONM W 4
+Goto Spawn+7
+
+ClassPain:
+CONM H 0
+goto PainContinue
+ClassDeath:
+CONM H 0
+goto DeathContinue
+}
+}

@@ -7,8 +7,8 @@ player.startitem "EvilFistC"
 player.startitem "NoAmmoPickup"
 player.startitem "EvilRotateItem"
 
-player.maxhealth 1150
-health 1150
+player.maxhealth 115
+health 115
 player.jumpz 10
 player.forwardmove 0.73, 0.73
 player.sidemove 0.71, 0.71

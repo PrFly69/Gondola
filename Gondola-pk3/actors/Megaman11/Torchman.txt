@@ -1,21 +1,23 @@
+//shoutout to torchman j. m2 for being the only dedicated neutral skip button in the mod
 actor Torchman : ClassBase //sin
 {
 Player.ScoreIcon "C_11D0X"
 player.displayname "Torchman"
 player.soundclass "TorchmanC"
 player.startitem "BlazingTorchBoss"
-player.startitem "TorchjutsuAmmo", 120
+player.startitem "TorchjutsuAmmo", 200
 player.startitem "WaveDashAmmo", 300
 player.startitem "TorchDiveTimeAmmo", 350
+player.startitem "PGStall_P"
 //player.startitem "CanWallJump"
 //player.startitem "CanWallJumpStack", 99
 
-player.maxhealth 900
-health 900
+player.maxhealth 90
+health 90
 
-player.forwardmove 0.92, 0.92
-player.sidemove 0.9, 0.9
-player.jumpz 14
+player.forwardmove 0.9, 0.9
+player.sidemove 0.88, 0.88
+player.jumpz 12
 
 player.startitem "IceSlasherWeakness2", 1
 
@@ -30,18 +32,18 @@ States
 {
 Spawn:
 TRCM A 0
-TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",260,"Spawn2")
+TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",400,"Spawn2")
 TRCM B 1 
-TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",260,"Spawn2")
+TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",400,"Spawn2")
 TRCM A 1 A_JumpIf(z-floorz>0, "SeeAir")
 goto Spawn+3
 Spawn2:
-TRPG NNNAAA 1 A_JumpIf(momx>0.25||momy>0.25||momx<-0.25||momy<-0.25,"See")
-TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",260,"Spawn2")
+TRPG NNNAAA 1 A_JumpIf(momx>0.15||momy>0.15||momx<-0.15||momy<-0.15,"See")
+TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",400,"Spawn2")
 goto Spawn+3
 
 See:
-TRCM B 0 A_JumpIfInventory("TorchjutsuAmmo",260,"SeeX")
+TRCM B 0 A_JumpIfInventory("TorchjutsuAmmo",400,"SeeX")
 TRCM BBBBCCCCDDDDEEEE 1 A_JumpIf(z-floorz>0,"SeeAir")
 Goto Spawn
 
@@ -58,7 +60,7 @@ wait
 
 Missile:
 TRCM S 0 
-TRCM B 0 A_JumpIfInventory("TorchjutsuAmmo",260,"MissileX")
+TRCM B 0 A_JumpIfInventory("TorchjutsuAmmo",400,"MissileX")
 TRCM FG 5
 goto Spawn
 MissileX:
@@ -66,28 +68,25 @@ TRPG F 0
 TRPG FG 5
 goto Spawn
 ClassPain:
-TRCM H 0 A_JumpIfInventory("TorchjutsuAmmo",260,1)
+TRCM H 0 A_JumpIfInventory("TorchjutsuAmmo",400,1)
 goto PainContinue
 TRPG H 0
 goto PainContinue
-DeathFix:
-TRCM H 0 A_JumpIfInventory("TorchjutsuAmmo",260,1)
-goto DeathContinue
-TRPG H 0
-goto DeathContinue
 ClassDeath:
-TRCM H 1
-goto MegaDeathEnd
+TRCM H 0 A_JumpIfInventory("TorchjutsuAmmo",400,1)
+goto DeathContinue
+TRPG H 0
+goto DeathContinue
 
 CustomState1:
-TRCM I 0 A_JumpIfInventory("TorchjutsuAmmo",260,2)
+TRCM I 0 A_JumpIfInventory("TorchjutsuAmmo",400,2)
 TRCM IJI 2
 Goto Spawn
 TRPG IJI 2
 Goto Spawn
 
 CustomState2:
-TRCM I 0 A_JumpIfInventory("TorchjutsuAmmo",260,2)
+TRCM I 0 A_JumpIfInventory("TorchjutsuAmmo",400,2)
 TRCM IJ 3
 TRCM K 3
 TRCM JI 3
@@ -98,14 +97,14 @@ TRPG JI 3
 Goto Spawn
 
 CustomState3:
-TRCM L 0 A_JumpIfInventory("TorchjutsuAmmo",260,2)
+TRCM L 0 A_JumpIfInventory("TorchjutsuAmmo",400,2)
 TRCM LM 5
 Goto Spawn
 TRPG LM 10
 Goto Spawn
 
 CustomState4:
-TRCM I 0 A_JumpIfInventory("TorchjutsuAmmo",260,2)
+TRCM I 0 A_JumpIfInventory("TorchjutsuAmmo",400,2)
 TRCM M 4
 Goto Spawn
 TRPG M 4

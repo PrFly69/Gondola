@@ -13,10 +13,10 @@ player.startitem "CanHarvestSouls"
 //player.startitem "CanAirJump"
 //player.startitem "CanAirJumpStack", 1
 
-player.maxhealth 1150
-health 1150
-player.forwardmove 0.84, 0.84
-player.sidemove 0.82, 0.82
+player.maxhealth 115
+health 115
+player.forwardmove 0.8, 0.8 //didn't rathors speed get nerfed at one point? //yes. yes it did
+player.sidemove 0.78, 0.78
 player.jumpz 14
 
 player.startitem "ThunderBeamWeakness", 1

@@ -46,7 +46,7 @@ texture PTSDVAR,56,8{patch PTSDBAR,0,0{rotate 90}}//Napalm
 texture SATYBAR,8,56{patch B4ENER,0,0{Translation "192:192=59:59", "198:198=62:62"}}
 texture SATYVAR,56,8{patch SATYBAR,0,0{rotate 90}}
 texture SATNBAR,8,56{patch B4ENER,0,0{Translation "192:192=88:8", "198:198=94:94"}}
-texture SATNVAR,56,8{patch SATYBAR,0,0{rotate 90}}
+texture SATNVAR,56,8{patch SATNBAR,0,0{rotate 90}}
 graphic SATRNICN,30,30{XScale 2.0 YScale 2.0 Patch RSHOY0,0,0}
 graphic Sat1Icon,30,30{XScale 2.0 YScale 2.0 Patch SATICON1,0,0}
 graphic Sat2Icon,30,30{XScale 2.0 YScale 2.0 Patch SATICON2,0,0}//Saturn
@@ -227,8 +227,8 @@ texture BARTUN,8,56{patch B6ENER,0,0{Translation "198:198=76:76","192:192=72:72"
 texture VARTUN,56,8{patch BARTUN,0,0{rotate 90}}//Tundraman
 texture BARTUNX,8,56{patch B6ENER,0,0{Translation "198:198=58:58","192:192=196:196"}}
 texture VARTUNX,56,8{patch BARTUNX,0,0{rotate 90}}//Tundraman
-texture BARTUXX,8,56{patch B_4BARSB,0,0{Translation "198:198=194:194","199:199=193:193","195:195=202:202"}}
-texture VARTUXX,56,8{patch BARTUXX,0,0{rotate 90}}//TundraFundra
+texture BARTUXX,8,56{patch B_BAR01C,0,0{Translation"192:192=192:192","198:198=192:192"}}
+texture VARTUXX,56,8{patch BARTUXX,0,0{rotate 90}}//Tundra
 
 graphic TUNRICON,30,30{XScale 2.0 YScale 2.0 Patch RSHO410,0,0}
 
@@ -238,7 +238,7 @@ texture C_11F0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE011F, 0, 0}
 
 texture BAR11BNC,8,56{patch B4ENER,0,0{Translation "192:192=4:4","198:198=39:39"}}
 texture VAR11BNC,56,8{patch BAR11BNC,0,0{rotate 90}}
-texture BAR11BCE,8,56{patch BARENERG,0,0{Translation "192:192=214:214","198:198=239:239"}}
+texture BAR11BCE,8,56{patch B4ENER,0,0{Translation "192:192=214:214","198:198=239:239"}}
 texture VAR11BCE,56,8{patch BAR11BCE,0,0{rotate 90}}
 texture BARBNCLA,8,56{patch B_BAR10B,0,0{Translation "198:198=160:160"}}
 texture VARBNCLA,56,8{patch BARBNCLA,0,0{rotate 90}}
@@ -481,3 +481,95 @@ texture CHRXBAR,8,56{patch TNT1A0,0,0}
 texture CHRXVAR,56,8{patch TNT1A0,0,0}
 
 graphic FLSHICON,30,30{XScale 2.0 YScale 2.0 Patch "RSHFLSH0",0,0}
+
+
+
+//Block Dropper
+graphic BLDRICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPA0,0,0}
+sprite BDRHA0, 148, 80 {Offset -202, -103 Patch HSPRE0, 0, 0 {Translation "192:192=87:87", "198:198=194:194"}}
+sprite BDRHB0, 115, 96 {Offset -210, -96  Patch HSPRB0, 0, 0 {Translation "192:192=87:87", "198:198=194:194"}}
+sprite BDRHC0, 115, 96 {Offset -190, -82  Patch HSPRC0, 0, 0 {Translation "192:192=87:87", "198:198=194:194"}}
+sprite BDRHD0, 128, 128 {Offset -195, -65 Patch HSPRD0, 0, 0 {Translation "192:192=87:87", "198:198=194:194"}}
+sprite BDRHE0, 128, 128 {Offset -177, -50 Patch HSPRD0, 0, 0 {Translation "192:192=87:87", "198:198=194:194"}}
+
+texture BAMMO11A,8,56{patch BARENERG,0,0{Translation"192:192=87:87","198:198=194:194"}}
+texture VAMMO11A,56,8{patch BAMMO11A,0,0{rotate 90}}//Block Dropper
+
+//Pile Driver
+graphic PLDRICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPB0,0,0}
+sprite PDRVA0,116,96{Offset -184,-94 Patch BUSTB0,0,0 {Translation"192:192=90:90","198:198=221:221"}}
+sprite PDRVB0,124,96{Offset -184,-98 Patch BUSTC0,0,0 {Translation"192:192=90:90","198:198=221:221"}}
+sprite PDRVC0,128,92{Offset -187,-102 Patch BUSTD0,0,0{Translation"192:192=90:90","198:198=221:221"}}
+
+texture BAMMO11B,8,56{patch BARENERG,0,0{Translation"192:192=90:90","198:198=221:221"}}
+texture VAMMO11B,56,8{patch BAMMO11B,0,0{rotate 90}}//Pile Driver
+
+//Tundra Storm
+graphic TSTOICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPC0,0,0}
+
+sprite TSTOA0, 148, 80 {Offset -202, -103 Patch HSPRE0, 0, 0 {Translation "192:192=196:196","198:198=58:58"}}
+sprite TSTOB0, 148, 80 {Offset -202, -135 Patch HSPRM0, 0, 0 {Translation "192:192=196:196","198:198=58:58"}}
+sprite TSTOC0, 148, 80 {Offset -202, -119 Patch HSPRL0, 0, 0 {Translation "192:192=196:196","198:198=58:58"}}
+sprite TSTOD0, 427, 40 {Offset 52, -145 Patch HSPRN0, 0, 0 {Translation "192:192=196:196","198:198=58:58"}}
+sprite TSTOE0, 427, 52 {Offset 53, -133 Patch HSPRO0, 0, 0 {Translation "192:192=196:196","198:198=58:58"}}
+sprite TSTOF0, 427, 104 {Offset 53, -81 Patch HSPRP0, 0, 0 {Translation "192:192=196:196","198:198=58:58"}}
+sprite TSTOG0, 427, 112 {Offset 53, -73 Patch HSPRQ0, 0, 0 {Translation "192:192=196:196","198:198=58:58"}}
+sprite TSTOH0, 427, 128 {Offset 53, -57 Patch HSPRR0, 0, 0 {Translation "192:192=196:196","198:198=58:58"}}
+
+texture BAMMO11C,8,56{patch BARENERG,0,0{Translation"192:192=196:196","198:198=58:58"}}
+texture VAMMO11C,56,8{patch BAMMO11C,0,0{rotate 90}}//Tundra Storm
+
+//Bounce Ball
+graphic BBALICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPD0,0,0}
+sprite BBLLA0,116,96{Offset -184,-94 Patch BUSTB0,0,0 {Translation"192:192=214:214","198:198=238:238"}}
+sprite BBLLB0,124,96{Offset -184,-98 Patch BUSTC0,0,0 {Translation"192:192=214:214","198:198=238:238"}}
+sprite BBLLC0,128,92{Offset -187,-102 Patch BUSTD0,0,0{Translation"192:192=214:214","198:198=238:238"}}
+
+texture BAMMO11D,8,56{patch BARENERG,0,0{Translation"192:192=214:214","198:198=238:238"}}
+texture VAMMO11D,56,8{patch BAMMO11D,0,0{rotate 90}}//Bounce Ball
+
+//Acid Barrier
+graphic ACIDBCON,30,30{XScale 2.0 YScale 2.0 Patch 11WPE0,0,0}
+sprite ACDBA0, 148, 80 {Offset -202, -103 Patch HSPRE0, 0, 0 {Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBB0, 308, 204 {Offset -105, -147 Patch HSPRJ0, 0, 0{Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBC0, 308, 204 {Offset -126, -123 Patch HSPRI0, 0, 0{Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBD0, 308, 204 {Offset -151, -36 Patch HSPRH0, 0, 0 {Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBE0, 308, 204 {Offset -202, 4 Patch HSPRG0, 0, 0   {Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACDBF0, 308, 204 {Offset -272, 46 Patch HSPRF0, 0, 0  {Translation "192:192=34:34", "198:198=117:117"}}
+sprite ACBSA0,116,96{Offset -184,-94 Patch BUSTB0,0,0 {Translation"192:192=34:56",		   "198:198=117:117"}}
+sprite ACBSB0,124,96{Offset -184,-98 Patch BUSTC0,0,0 {Translation"192:192=34:56",		   "198:198=117:117"}}
+sprite ACBSC0,128,92{Offset -187,-102 Patch BUSTD0,0,0{Translation"192:192=34:34",		   "198:198=117:117"}}
+texture BAMMO11E,8,56{patch BARENERG,0,0{Translation"192:192=34:34","198:198=117:117"}}
+texture VAMMO11E,56,8{patch BAMMO11E,0,0{rotate 90}}//Acid Barrier
+
+//Chain Blast
+graphic CBLAICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPF0,0,0}
+sprite CBLAA0, 148, 80 {Offset -202, -103 Patch HSPRE0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+sprite CBLAB0, 115, 96 {Offset -210, -96  Patch HSPRB0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+sprite CBLAC0, 115, 96 {Offset -190, -82  Patch HSPRC0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+sprite CBLAD0, 128, 128 {Offset -195, -65 Patch HSPRD0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+sprite CBLAE0, 128, 128 {Offset -177, -50 Patch HSPRD0, 0, 0 {Translation "192:192=174:174", "198:198=241:241"}}
+
+texture BAMMO11F,8,56{patch BARENERG,0,0{Translation"192:192=174:174", "198:198=241:241"}}
+texture VAMMO11F,56,8{patch BAMMO11F,0,0{rotate 90}}//Chain Blast
+
+graphic CBLACBR,8,56{patch B_BAR01C,0,0{Translation "192:192=174:174", "198:198=174:174"}}
+texture CBLACVR, 56, 8 {patch CBLACBR, 0, 0 {rotate 90}}
+
+//Scramble Thunder
+graphic STHUICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPG0,0,0}
+sprite STHUA0,116,96{Offset -184,-94 Patch BUSTB0,0,0 {Translation"192:192=6:6", "198:198=229:229"}}
+sprite STHUB0,124,96{Offset -184,-98 Patch BUSTC0,0,0 {Translation"192:192=6:6", "198:198=229:229"}}
+sprite STHUC0,128,92{Offset -187,-102 Patch BUSTD0,0,0{Translation"192:192=6:6", "198:198=229:229"}}
+
+texture BAMMO11G,8,56{patch BARENERG,0,0{Translation"192:192=6:6", "198:198=229:229"}}
+texture VAMMO11G,56,8{patch BAMMO11G,0,0{rotate 90}}//Scramble Thunder
+
+//Blazing Torch
+graphic BTORICON,30,30{XScale 2.0 YScale 2.0 Patch 11WPH0,0,0}
+sprite BZTRA0,116,96{Offset -184,-94 Patch BUSTB0,0,0 {Translation"192:192=92:92","198:198=177:177"}}
+sprite BZTRB0,124,96{Offset -184,-98 Patch BUSTC0,0,0 {Translation"192:192=92:92","198:198=177:177"}}
+sprite BZTRC0,128,92{Offset -187,-102 Patch BUSTD0,0,0{Translation"192:192=92:92","198:198=177:177"}}
+
+texture BAMMO11H,8,56{patch BARENERG,0,0{Translation"192:192=92:92","198:198=177:177"}}
+texture VAMMO11H,56,8{patch BAMMO11H,0,0{rotate 90}}//Blazing Torch

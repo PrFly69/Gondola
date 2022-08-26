@@ -214,7 +214,7 @@ damagetype "CentaurM_Shot"
 Obituary "$OB_CENTAURBUSTER"
 +SKYEXPLODE
 +FORCEXYBILLBOARD
-Damage (160)
+Damage (16)
 radius 7
 height 7
 Speed 35
@@ -232,14 +232,14 @@ Crash:
 TNT1 A 1
 stop
 Death:
-TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,28,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,28,0,0,180,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,28,0,0,-90,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,28,0,0,-135,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,28,0,0,90,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,28,0,0,135,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,28,0,0,45,1)
-TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,28,0,0,-45,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,180,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,-90,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,-135,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,90,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,135,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,45,1)
+TNT1 A 0 A_SpawnItemEx("CentaurShot2",0,0,0,31.5,0,0,-45,1)
 TNT1 A 1 A_SpawnItemEx("HardKnuckleFX",0,0,0,0,0,0)
 stop
 }
@@ -271,7 +271,7 @@ actor CentaurShot2 : CentaurShot
 {
 Obituary "$OB_CENTAURBUSTER"
 Translation "204:204=210:210"
-Damage (100)
+Damage (10)
 radius 6
 height 6
 Speed 35
@@ -319,7 +319,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("CentaurFlashCFX",0,0,28,22,0,random2(256/12),random(0,359),1)
-TNT1 A 2 A_Explode(100,512,0,0,48)
+TNT1 A 2 A_Explode(10,512,0,0,48)
 stop
 }
 }
@@ -337,7 +337,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(20,256,0,0,256)
+TNT1 A 2 A_Explode(2,256,0,0,256)
 stop
 }
 }
