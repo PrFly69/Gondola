@@ -38,8 +38,8 @@ PLUT PQPQPQPQPQPQ 2
 PLUT P 10
 PLUT B random(35,105)
 Goto Spawn+3
-See:
-PLUT B 0 A_JumpIfInventory("BreakingIntoADashAmmo",784,"SeeB")
+See:                                             //784
+PLUT B 0 A_JumpIfInventory("BreakingIntoADashAmmo",656,"SeeB")
 PLUT BBBBBCCCCCDDDDD 1
 TNT1 A 0 A_GiveInventory("WalkSoundForcer")
 PLUT EEEEE 1 //A_JumpIf(z-floorz>0,"SeeJumper")
@@ -53,10 +53,10 @@ SeeJumper:
 "----" "#" 1 A_JumpIf(z-floorz==0,"Spawn")
 loop
 
-Missile:
+Missile:                                           
 PLUT F 0 A_JumpIfInventory("VivifyDelay8",1,"MissileD")
-PLUT F 0 A_JumpIfInventory("BreakingIntoADashAmmo",784,"MissileB")
-PLUT F 5
+PLUT F 0 A_JumpIfInventory("BreakingIntoADashAmmo",656,"MissileB")
+PLUT F 5                                         //784
 PLUT G 4
 goto Spawn
 MissileB:

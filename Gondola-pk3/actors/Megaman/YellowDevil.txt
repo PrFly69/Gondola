@@ -22,8 +22,8 @@ player.startitem "GyroAttackWeakness", 1
 //player.startitem "ChainBlastWeakness2", 1
 //player.startitem "ChainBlastWeakness", 1
 
-player.maxhealth 200
-health 200
+player.maxhealth 185
+health 185
 player.jumpz 10
 player.forwardmove 0.60, 0.60
 player.sidemove 0.58, 0.58

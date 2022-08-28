@@ -2491,7 +2491,12 @@ CHANGELOG
 -Fixed altfire usage disabling Oil Slider
 
 ==Yellow Devil
--HP 155 > 200
+-New skin by Thresh90/Ze Robotico
+-HP 155 > 185
+-Mainfire reworked
+--Charged mainfire now shoots out a Petit Devil that fires at the user's crosshair
+--Firing while Petit Devil is out lets you shoot out Mk. III Segments, which bounce and have high RoF
+-Landing from altfire throw now lets out 8 cube bits instead of 4
 -Cube damage 10 > 8
 --Cube bit damage 5 > 4
 --Fixed cube/bit damage doing hitstun
@@ -2773,7 +2778,6 @@ CHANGELOG
 --Added 10 more tics of endlag on Flame Spin
 
 ==Searchman
--HP 90 > 100
 -Movespeed 0.76/.78 > 0.78/0.8
 -New HUD by Pegg
 

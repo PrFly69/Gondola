@@ -202,8 +202,8 @@ script "cbm_HealthDamageRage" (int jump)
 				TakeInventory("LastHealthFlag",PlutoDiff);
 			} else if (PlutoDiff<0) {
 				GiveInventory("LastHealthFlag",-PlutoDiff);
-			}                 //i liked 0.00090
-            int PlutoSpeed = 0.00095;//0.00115;
+			}                 
+            int PlutoSpeed = 0.00115;//0.00115;
             PlutoSpeed *= CheckInventory("BreakingIntoADashAmmo");
 			SetActorProperty(0,APROP_SPEED,(1.0+PlutoSpeed));
             break;

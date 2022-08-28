@@ -1044,7 +1044,7 @@ damagetype "WaveBurner"
 Height 10
 Radius 6
 Damage(5)
-scale 1.5
+scale 2.5
 States
 {
 Spawn:
@@ -1070,7 +1070,7 @@ damagetype "WaveBurner"
 Damage (5+user_Dam)
 Height 40
 Radius 6
-scale 1.5
+scale 2.5
 gravity 900.0
 speed 20
 States
@@ -1129,7 +1129,7 @@ stop
 
 actor WaveBurnLineFX : BasicClientSide
 {
-scale 1.5
+scale 2.5
 States
 {
 Spawn:
