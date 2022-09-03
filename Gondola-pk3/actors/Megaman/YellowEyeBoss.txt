@@ -464,6 +464,9 @@ actor YellowDevilFuchi //If you change this or the actors below, be sure to chan
 	damagetype "DMGNoHitstun"
 	+SKYEXPLODE
 	+HEXENBOUNCE
+	+DONTSEEKINVISIBLE//
+	+SEEKERMISSILE
+	+LOOKALLAROUND
 	seesound "wep/YD_Sploosh"
 	damage (35)
 	reactiontime 15
@@ -538,23 +541,23 @@ loop
 }
 }
 
-  Actor YellowDevilMK3Cube
+  Actor YellowDevilMK2Cube
   {
 	Translation "192:192=216:216", "198:198=220:220"
     Projectile
     damagetype "NitroM_Shot2"
-    Obituary "%o was mashed into mush by %k's Mk. III Segment."
+    Obituary "%o was mashed into mush by %k's Mk. II Segment."
     -NOGRAVITY
     +HITTRACER
     +BOUNCEONFLOORS
     BounceFactor 1.0
     BounceCount 10
 	BounceSound "weapon/minitubthumpin"
-    Damage (12)
+    Damage (10)
     Radius 20
     Height 12
     Speed 45
-	gravity 2
+	gravity 0.75
     Scale 2.5
     States
     {
@@ -576,10 +579,10 @@ stop
     }
   }
   
-actor YellowDevilMK3CubeB : YellowDevilMK3Cube{translation "192:192=205:205", "198:198=74:74"}
-actor YellowDevilMK3CubeR : YellowDevilMK3Cube{translation "192:192=171:171", "198:198=41:41"}
-actor YellowDevilMK3CubeO : YellowDevilMK3Cube{translation "192:192=104:104", "198:198=128:128"}
-actor YellowDevilMK3CubeP : YellowDevilMK3Cube{translation "192:192=229:229", "198:198=232:232"}
+actor YellowDevilMK2CubeB : YellowDevilMK2Cube{translation "192:192=205:205", "198:198=74:74"}
+actor YellowDevilMK2CubeR : YellowDevilMK2Cube{translation "192:192=171:171", "198:198=41:41"}
+actor YellowDevilMK2CubeO : YellowDevilMK2Cube{translation "192:192=104:104", "198:198=128:128"}
+actor YellowDevilMK2CubeP : YellowDevilMK2Cube{translation "192:192=229:229", "198:198=232:232"}
 
 actor YellowDevilInv_CI : CustomInventory
 {
@@ -648,19 +651,19 @@ actor YellowDevilMainCube_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("YellowDevilMK3Cube",0,0,0,0,16)
+TNT1 A 0 A_FireCustomMissile("YellowDevilMK2Cube",0,0,0,0,16)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("YellowDevilMK3CubeB",0,0,0,0,16)
+TNT1 A 0 A_FireCustomMissile("YellowDevilMK2CubeB",0,0,0,0,16)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("YellowDevilMK3CubeR",0,0,0,0,16)
+TNT1 A 0 A_FireCustomMissile("YellowDevilMK2CubeR",0,0,0,0,16)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("YellowDevilMK3CubeO",0,0,0,0,16)
+TNT1 A 0 A_FireCustomMissile("YellowDevilMK2CubeO",0,0,0,0,16)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("YellowDevilMK3CubeP",0,0,0,0,16)
+TNT1 A 0 A_FireCustomMissile("YellowDevilMK2CubeP",0,0,0,0,16)
 goto Done
 }
 }

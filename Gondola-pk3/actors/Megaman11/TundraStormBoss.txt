@@ -305,20 +305,12 @@ TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 TNST A 1 A_Explode(2,48,0,0,48)
 TNT1 A 0 A_SpawnItemEx("TundraGlacierWindFX",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
-TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(-32,-16),random(-32,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,1)
-TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(16,32),random(-32,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,1)
 TNST B 1 A_Explode(2,48,0,0,48)
 TNT1 A 0 A_SpawnItemEx("TundraGlacierWindFX",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
-TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(-32,-16),random(-32,32),random(-32,-16),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
-TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(-32,32),random(16,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
 TNST C 1 A_Explode(2,48,0,0,48)
 TNT1 A 0 A_SpawnItemEx("TundraGlacierWindFX",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
-TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(-32,-16),random(-32,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
-TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(16,32),random(-32,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
 TNST D 1 A_Explode(2,48,0,0,48)
 TNT1 A 0 A_SpawnItemEx("TundraGlacierWindFX",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
-TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(-32,-16),random(-32,32),random(-32,-16),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
-TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(16,32),random(-32,32),random(16,32),momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION,255)
 TNT1 A 0 A_Countdown
 loop
 Death:
@@ -607,7 +599,7 @@ DamageFactor "TundraM_Leap", 0.0
 
 actor TundraM_WindProtect : PowerProtection
 {
-Powerup.Duration 8
+Powerup.Duration 12
 DamageFactor "TundraM_Wind", 0.0
 }
 
@@ -638,9 +630,9 @@ States
 {
 Pickup:
 TNT1 A 0 A_GiveInventory("FeelFreezeAmmo",30)
-TNT1 A 0 A_JumpIfInventory("TundraCheerFlag",1,"No")
-TNT1 A 0 A_GiveInventory("TundraCheerFlag",1)
-TNT1 A 0 A_SpawnItemEx("TundraSpotlight",0,0,0,0,0,0,0,1)
+//TNT1 A 0 A_JumpIfInventory("TundraCheerFlag",1,"No")
+//TNT1 A 0 A_GiveInventory("TundraCheerFlag",1)
+//TNT1 A 0 A_SpawnItemEx("TundraSpotlight",0,0,0,0,0,0,0,1)
 TNT1 A 0
 stop
 No:

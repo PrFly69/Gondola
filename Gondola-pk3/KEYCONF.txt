@@ -183,3 +183,15 @@ alias +rapidattackc "+user1; +altattack"
 alias -rapidattackc "-user1; -altattack"
 
 addmenukey "Reload/Extra Attack" +reload
+
+addkeysection "Strafe Run 50 (SR50)" SR50
+addmenukey "Strafe Left" +left2
+addmenukey "Strafe Right" +right2
+addmenukey "ACTIVATE SR50" +sr
+
+alias +left2 "+left; +moveleft"
+alias -sr "turnspeeds 0; -strafe"
+alias +sr "turnspeeds 65536; +strafe"
+alias +right2 "+right; +moveright"
+alias -right2 "-right; -moveright"
+alias -left2 "-left; -moveleft"

@@ -237,8 +237,8 @@ PROJECTILE
 translation "192:193=55:55","242:242=219:219","0:9=4:4", "199:199=219:219", "202:202=55:55"
 Damagetype "DMGNoHitstun"
 Obituary "$OB_SUNSLAND"
-Radius 23
-Radius 11
+Radius 25
+Height 1
 Damage (20)
 Speed 45
 Scale 1.5
@@ -456,7 +456,7 @@ BounceFactor 1
 WallBounceFactor 1
 BounceCount 2
 Damage (0)
-Radius 23
+Radius 25
 Height 26
 Speed 7
 MaxStepHeight 0

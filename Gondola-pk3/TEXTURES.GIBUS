@@ -337,7 +337,7 @@ texture VAMMO11G,56,8{patch BAMMO11G,0,0{rotate 90}}//Scramble Thunder
 
 //Sunstar
 graphic SUNSICON,32,32{XScale 2.0 YScale 2.0 Patch SUNSZ0,0,0}
-graphic V_I_SUN, 8, 56 {patch BARENERG, 0, 0 {Translation "192:192=216:216", "198:198=243:243"}}
+graphic V_I_SUN, 8, 56 {patch BARENERG, 0, 0 {Translation "192:192=248:248", "198:198=249:249"}}
 graphic V_I_VUN, 56, 8 {patch V_I_SUN, 0, 0 {Rotate 90}}
 graphic V_I_SUF, 8, 56 {patch BARENERG, 0, 0 {Translation "192:192=216:216", "198:198=220:220"}}
 graphic V_I_VUF, 56, 8 {patch V_I_SUF, 0, 0 {Rotate 90}}
