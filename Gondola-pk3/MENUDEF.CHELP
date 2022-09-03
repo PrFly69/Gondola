@@ -164,12 +164,12 @@ OptionValue Classname
 114, "Pluto"
 115, "Neptune"
 116, "Sunstar"
-117, "Fuseman \cv(NEW!)"//Fuse
+117, "Fuseman"//Fuse
 118, "Blastman"
 119, "Acidman"//Not Fuse
-120, "Tundraman \cv(NEW!)"
-121, "Torchman \cv(NEW!)"
-122, "Bounceman \cv(NEW!)"
+120, "Tundraman"
+121, "Torchman"
+122, "Bounceman"
 123, "BusterRod G"
 124, "MegaWater S"
 125, "HyperStorm H"
@@ -203,7 +203,7 @@ OptionValue ClassHealth
 15, "75"
 16, "100"
 17, "90"
-18, "155"
+18, "185"
 19, "75"
 20, "100"
 21, "100"
@@ -219,7 +219,7 @@ OptionValue ClassHealth
 31, "200"
 32, "85"
 33, "85"
-34, "100"
+34, "115"
 35, "75"
 36, "100"
 37, "85"
@@ -236,11 +236,11 @@ OptionValue ClassHealth
 48, "85"
 49, "115"
 50, "115"
-51, "100"
+51, "115"
 52, "110"
-53, "155"
+53, "135"
 54, "115"
-55, "100"
+55, "85"
 56, "125"
 57, "100"
 58, "85"
@@ -259,8 +259,8 @@ OptionValue ClassHealth
 71, "100"
 72, "100"
 73, "90"
-74, "100"
-75, "155"
+74, "115"
+75, "125"
 76, "90"
 77, "90"
 78, "200"
@@ -291,7 +291,7 @@ OptionValue ClassHealth
 //
 103, "90"
 104, "100"
-105, "75"
+105, "85"
 106, "100"
 107, "75"//Terra
 108, "85"
@@ -305,10 +305,10 @@ OptionValue ClassHealth
 116, "125"
 117, "85"//
 118, "90"//Blast
-119, "90"//Acid
+119, "100"//Acid
 120, "85"//Tundra
 121, "100"//Torch
-122, "115"//Bounce
+122, "155"//Bounce
 123, "85"
 124, "85"
 125, "200"
@@ -358,7 +358,7 @@ OptionValue ClassJump
 31, "10"
 32, "10"
 33, "10"
-34, "10"
+34, "11"
 35, "15"
 36, "10"
 37, "12"
@@ -444,8 +444,8 @@ OptionValue ClassJump
 117, "10"//Fuse
 118, "12"//Blast
 119, "12"//Acid
-120, "12"//Tundra
-121, "14"//Torch
+120, "14"//Tundra
+121, "12"//Torch
 122, "15"//Bounce
 123, "13"
 124, "10"
@@ -490,13 +490,13 @@ OptionValue ClassSpeed
 25, "0.8"
 26, "0.67"
 27, "0.8"
-28, "0.77"
+28, "0.8"
 29, "0.8"
 30, "0.8"
 31, "0.5"
-32, "1.1"
+32, "1.0"
 33, "1.0"
-34, "0.85"
+34, "0.75"
 35, "0.8"
 36, "0.75"
 37, "0.84"
@@ -536,9 +536,9 @@ OptionValue ClassSpeed
 71, "0.8"
 72, "0.8"
 73, "0.76"
-74, "0.7"
-75, "0.6"
-76, "0.93"
+74, "0.65"
+75, "0.666"
+76, "0.82"
 77, "0.7"
 78, "0.5"
 79, "0.74"
@@ -548,7 +548,7 @@ OptionValue ClassSpeed
 83, "0.85"
 84, "0.62"
 85, "0.64"
-86, "0.65"
+86, "0.7"
 87, "0.8"
 88, "0.8"
 89, "0.73"
@@ -600,7 +600,7 @@ OptionValue ClassSpeed
 
 OptionValue ClassMainfire 
 { 
-0, "\cdBuster can be charged into two levels"
+0, "\cdBuster can be charged into three levels"
 1, "\cdBase buster can be charged"
 2, "\cdAutomatically charges ammo for charge shot"
 3, "\cdBase weapon can be charged\nCharges secondary ammo once ready\nUse with altfire to dash grab\nGrab connect stops and blasts away enemy"
@@ -651,11 +651,11 @@ OptionValue ClassMainfire
 48, "\cdGyro slides across floors"
 49, "\cdDuring shield, take 75% damage\nWith shield up, fires fast Star Crash"
 50, "\cdRams nearby foes\nAiming improves damage"
-51, "\cdFires bouncing bombs that explode over time\nFiring builds overheat meter\nCan not refire with overheat up"
+51, "\cdFires bombs that bounce less the more they're charged\nCan be charged for speed up to three levels"
 52, "\cdCan be charged\nMore charge adds more bits when split\nUse altfire to split ball instantly"
 53, "\cdShots get faster at lower health"
 54, "\cdCharges mainfire into multiple levels\nFirst level fires 5 basic sparks\nSecond fires a stunning ball\nFinal fires a net that homes in on enemies"
-55, "\cd4-shot SMG\n\ciSingle heavy shot\nCharged: very fast, high damage snipe"
+55, "\cd4-shot SMG\n\ciSingle heavy shot \nCharged: Railgun"
 56, "\cdUnshielded shots get stronger\nCan fire shots with shield up"
 57, "\cdBits home for a short time"
 58, "\cdArrow shots split on surfaces but not players\nSplit shots do less damage than arrow"

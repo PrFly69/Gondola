@@ -1800,7 +1800,7 @@ CHANGELOG
 -Added Scramble Thunder copywep (WIP)
 
 ==Acidman
--Movespeed 0.884/0.864 > 0.89/0.87
+-Movespeed 0.864/0.884 > 0.87/0.89
 -Ported all recent UEC changes
 -Added 4 ZThrust to M1
 --Speed 43 > 42 to readjust range
@@ -2577,6 +2577,7 @@ CHANGELOG
 -Health 100 > 115
 -Movespeed 0.78/0.8 > 0.73/0.75
 -JumpZ 10 > 11
+-HUD ported from classes-v9fh.pk3
 -Mainfire startup frames reduced by half
 -All Spark Shock version speeds equalized to 42
 --Spark Shock now has 3 more tics of endlag to compensate for startlag being reduced
@@ -2622,6 +2623,9 @@ CHANGELOG
 
 ==Diveman
 -Fixed extra unintentional tics of endlag on Dive Tackle hit
+
+==Skullman
+-Skull Barrier can now properly be used while firing
 
 ==Gravityman
 -Gravity Buster speed 42 > 60
@@ -2708,7 +2712,7 @@ CHANGELOG
 
 ==Freezeman
 -Freeze Cracker speed 32 > 42
---Freeze Cracker impact shart speed 28 > 36 
+--Freeze Cracker impact shard speed 28 > 36 
 -M2 max ammo capacity/usage 42 > 36
 --M2 impact wave count 8 > 6
 --Ceiling icicle shard count 6 > 3
@@ -2737,7 +2741,7 @@ CHANGELOG
 ==Tenguman
 -Tornado Hold pod 28 > 35
 -Tornado Hold ammo capacity 500 > 300
--Fixed Tengu Slam only doing 12 damage max
+-Fixed Tengu Slam doing improper damage
 
 ==Astroman
 -HP 100 > 115
@@ -2764,7 +2768,7 @@ CHANGELOG
 -Readjusted Flame Sword projectile offsets
 --Reduced 3 tics from each Flame Sword swinging frame
 -Flame Spindash altered, now drains more ammo but propels more per mode
--Flame Torso RETURNS HOLY SHIT WHAT
+-Flame Torso brought back
 --Ported from UEC
 --Removed camera feature
 -Now made to be wider, akin to UEC

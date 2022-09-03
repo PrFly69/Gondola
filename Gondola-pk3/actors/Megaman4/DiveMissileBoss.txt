@@ -170,6 +170,23 @@
 		DIVA A 6 A_GiveInventory("DiveTackleCooldown",1)
 		Goto Ready1
 
+		AltCollideX:
+		DIVA D 0 A_PlaySoundEx("weapon/blizzstrike","Body")
+		DIVA D 0 A_GiveInventory("DivemanAlt2_CI",1)
+		DIVA D 0 A_ChangeVelocity(-15,0,16,3)
+		goto AltTackleE
+		+2
+		AltTackleE:
+		DIVA H 0 //A_ScaleVelocity(0.8)
+		DIVA H 0 //ThrustThingZ(0,40,0,0)
+		DIVA H 0 SetPlayerProperty(0,0,0)
+		DIVA G 0 A_TakeInventory("DiveTackleFrame",999)
+		DIVA DCB 1
+		DIVA F 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
+		DIVA B 3
+		DIVA A 6 A_GiveInventory("DiveTackleCooldown",1)
+		Goto Ready1
+
 		Reload:
 		DIVA A 0 A_JumpIfInventory("DiveTackleAmmo",140,"Mines")
 		Goto Ready1
@@ -226,7 +243,7 @@
 
   Actor DiveTackleHitFlag : OnceC{}
   Actor DiveTackleHitFlagX : OnceC{}
-Actor DiveHatchFlag : OnceC{} //Okay, which one of you made all the fancy section borders but then completely threw away all sanity by universally indenting with spaces?
+  Actor DiveHatchFlag : OnceC{} //Okay, which one of you made all the fancy section borders but then completely threw away all sanity by universally indenting with spaces?
 
   
   Actor DiveTackleCooldown : Powerup

@@ -462,7 +462,6 @@ TAGC_0J = "Sniper Joe Buster & Grenade";
 
 //Bombman
 OB_HYPERBOMBSPLIT = "%o was blown to pieces by %k's Cluster Bomb.";
-OB_HYPERBOMBSPLITX = "%o was blown to smithereens by %k's Cluster Bomb.";
 
 //Elecman
 OB_THUNDERZAP = "%o was zapped by %k's Zap Dash.";

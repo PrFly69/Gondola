@@ -1,3 +1,5 @@
+StartupTick             bdoor
+$volume StartupTick 0.22
 
 ///// MM0 /////
 

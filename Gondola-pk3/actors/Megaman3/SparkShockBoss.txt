@@ -774,24 +774,24 @@ PROJECTILE
 +HITTRACER
 +DONTSPLASH
 renderstyle add
-alpha 0.25
+alpha 0.1
 +FORCEALLYCOLLISION
 damagetype "SparkSaw"
 Obituary "%o was energized by %k's Spark Solder."
 damage (5)
 Radius 18
 Height 18
-Speed 35
-Scale 1
+Speed 80
+Scale 2.5
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-SPKH ABCD 2 //A_SpawnItemEx("BigShockTrailFX1",0,0,0,0,0,0,0,1)
+TNT1 A 2 //A_SpawnItemEx("BigShockTrailFX1",0,0,0,0,0,0,0,1)
 //A_SpawnItemEx("BigShockTrailFX2",0,0,0,0,0,0,0,1)
-stop
+goto Death
 XDeath:
 TNT1 A 0 A_GiveToTarget("SparkHealDetection",1)
 TNT1 A 0 //A_PlaySoundEx("weapon/sparkrecharger","Body")
@@ -817,9 +817,9 @@ TNT1 A 0 A_GiveInventory("SparkHealthHandler",1,AAPTR_Tracer)
 TNT1 A 0 A_JumpIfInTargetInventory("SparkIsFullFlag",1,"Death")
 TNT1 A 0 A_TakeFromTarget("SparkHealAmmo",1)
 TNT1 A 0 A_GiveToTarget("Health",1)
-stop
 Death:
-TNT1 A 1
+TNT1 A 0 A_Stop
+SPKH ABCD 2
 stop
 }
 }
