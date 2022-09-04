@@ -191,3 +191,16 @@ pic PLX3VAR tics 2
 texture BLSTTAG
 pic BLSTTAG3 tics 9
 pic BLSTTAG4 tics 6
+
+//Joe
+texture SJOEBAV
+pic SJOEBAZ tics 2.5
+pic SJOEBAY tics 2.5
+pic SJOEBAX tics 2.5
+pic SJOEBAW tics 2.5
+
+texture SJOEVAV
+pic SJOEVAZ tics 2.5
+pic SJOEVAY tics 2.5
+pic SJOEVAX tics 2.5
+pic SJOEVAW tics 2.5

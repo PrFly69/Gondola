@@ -2449,10 +2449,13 @@ CHANGELOG
 --Swing explosion fulldmgradius 16/24 > 48
 
 ==Sniper Joe
+-SBARs revamped
+--Can now see Machine Gun ammo while in Shield Joe form, grenade charge moved
 -Joe Grenade explosion damage 45 > 35
 -Using Joe Crate now refills Machine Gun ammo on use
 -Joe Truck thrust boosted by 15%
 -Joe Apache speed boost 0% > 15%
+-Can now use reload while firing
 
 ==Cutman
 -Holding mainfire slows down and stalls Rolling Cutter before returning into wider hitbox, drains ammo bar

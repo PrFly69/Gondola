@@ -381,10 +381,11 @@ IsSelected ShotokanLightBoss{Drawbar"0R_V_BAR","0R_U_BAR",Ammo1,vertical,16,8;
 	InInventory SuperComboGauge,21{DrawImage"0R_A_BAR",17,23;}
 	InInventory SuperComboGauge,28{DrawImage"0R_A_BAR",17,9;}}
 
-IsSelected SniperJoeBoss{DrawBar"BARAMMO4","BAREMPTY",JoeGrenadeCharge,vertical,8,8;
+IsSelected SniperJoeBoss{DrawBar"BARAMMO1","BAREMPTY",ContraJoeAmmo,vertical,8,8;
 	DrawImage"JOEMICON",32,55;
 	InInventory JoeUpgradeAmmo,700{DrawBar"BARFLSJ","BAREMPTY",JoeUpgradeAmmo,vertical,16,8;}
-	else{DrawBar"BARAMM48","BAREMPTY",JoeUpgradeAmmo,vertical,16,8;}}
+	else{DrawBar"BARAMM48","BAREMPTY",JoeUpgradeAmmo,vertical,16,8;}
+	DrawBar"SJOEBAV","NOBAR",JoeGrenadeCharge,vertical,16,8;}
 IsSelected MachineGunJoeBoss{DrawBar"BARAMMO1","BAREMPTY",Ammo1,vertical,8,8;
 	DrawImage"JOEMICON",32,55;
 	InInventory JoeUpgradeAmmo,700{DrawBar"BARFLSJ","BAREMPTY",JoeUpgradeAmmo,vertical,16,8;}

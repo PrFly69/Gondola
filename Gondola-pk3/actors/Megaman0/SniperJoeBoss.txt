@@ -753,10 +753,10 @@ JOEB Q 0 A_JumpIfInventory("PowerRage_ST",1,"FireR")
 JOEB RQ 1
 JOEB S 1 offset(8,36)
 JOEB Q 1 offset(4,33)
-goto Ready+2
+goto Ready+4
 FireR:
 JOEB RS 1
-goto Ready+2
+goto Ready+4
 Altfire:
 JOEB Q 0 A_JumpIfInventory("ContraJoeAmmo",7,"Altfire2")
 goto NoAmmo
@@ -775,16 +775,16 @@ JOEB Q 2 offset(4,34)
 JOEB Q 2 offset(3,34)
 JOEB Q 2 offset(2,33)
 JOEB Q 2 offset(1,33)
-goto Ready+2
+goto Ready+4
 Altfire2_R:
 JOEB RQ 2
 JOEB S 2 offset(9,37)
 JOEB Q 2 offset(6,35)
 JOEB Q 2 offset(3,33)
-goto Ready+2
+goto Ready+4
 NoAmmo:
 JOEB Q 1
-Goto Ready+2
+goto Ready+4
 Flash:
 TNT1 A 4
 //TNT1 A 0 A_JumpIfInventory("IsBuckshotFlag",1,3)
