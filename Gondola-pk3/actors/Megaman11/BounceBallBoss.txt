@@ -255,12 +255,12 @@ inventory.maxamount 70
 
 actor BounceHandDelay : Powerup
 {
-Powerup.Duration 15 
+Powerup.Duration 25 
 }
 
 actor BounceHandCooldown : Powerup
 {
-Powerup.Duration 15
+Powerup.Duration 25
 }
 
 actor SuperballSlammingFlag : Inventory

@@ -52,6 +52,7 @@ NEPT L 4
 NEPT O 4
 goto Mis_BounceUp
 
+CustomState1:
 Mis_BounceUp:
 NEPT M 0 A_JumpIFInventory("VivifyDelay5",1,"Mis_BounceEnd")
 NEPT M 1
