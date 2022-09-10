@@ -1,0 +1,264 @@
+//The fix zone
+//The fix zone
+//The fix zone
+
+//PartyBall in CoreActorReplace for spawn height issue and Bobbing
+
+actor Beef_ElectricShockDamager_Fix : Beef_ElectricShockDamager replaces Beef_ElectricShockDamager
+{
+damagetype "ElectricShock"
+}
+
+actor Item2Platform_Fix : Item2Platform replaces Item2Platform
+{
+damagefactor "Normal", 0.0
+}
+
+//The fix zone
+//The fix zone
+//The fix zone
+
+
+
+//Objects that need DONTDRAIN for Plantman and friends
+
+actor OilCanister_Drain : OilCanister replaces OilCanister{+DONTDRAIN Health 100}
+
+actor LeafShieldGuard_Drain : LeafShieldGuard replaces LeafShieldGuard{+DONTDRAIN}//Might not be needed
+
+actor ConcreteBlock_Drain : ConcreteBlock replaces ConcreteBlock{+DONTDRAIN Health 50}
+
+actor BlackHolePart_Drain : BlackHolePart replaces BlackHolePart{+DONTDRAIN +NOTARGETSWITCH}
+
+//Within actors/CopyWep/BeefUpCoreDam.txt
+//OilBlob
+//IceWall
+
+//Within actors/General_C/CoreActorReplace.txt
+//FirePillar
+//TeruTeru
+//PirateMine
+//MirrorBuster1
+//MirrorBuster2
+
+
+//Original Skulltag/Zandronum runes
+
+ACTOR Rune_ST : PowerupGiver
+{
+	Game Doom
+	Game Heretic
+	Game Hexen
+	+COUNTITEM
+	+NOGRAVITY
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.INVBAR
+	+INVENTORY.FANCYPICKUPSOUND
+	Inventory.DefMaxAmount
+	Inventory.MaxAmount 0
+	Powerup.Duration 0x7FFFFFFC
+}
+
+
+ACTOR PowerStrength_ST : PowerDamage
+{
+	Damagefactor normal, 2.0
+}
+ACTOR PowerRage_ST : PowerDoubleFiringSpeed{}
+ACTOR PowerDrain_ST : PowerDrain{}
+ACTOR PowerSpread_ST : PowerSpread{}
+ACTOR PowerResistance_ST : PowerProtection
+{
+	Damagefactor normal, 0.5
+}
+ACTOR PowerRegeneration_ST : PowerRegeneration
+{
+Powerup.Strength 5
+}
+ACTOR PowerProsperity_ST : PowerInfiniteAmmo{}//PowerProsperity{}//This breaks PowerRegeneration
+ACTOR PowerReflection_ST : PowerReflection{}
+ACTOR PowerHighJump_ST : PowerHighJump
+{
+	//Powerup.Strength 1.5//2
+}
+ACTOR PowerHaste_ST : PowerSpeed
+{
+	Speed 1.25
+}
+
+ACTOR RUNECOLLECTION_ST : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("StrengthRune_ST",50,-100)
+TNT1 A 0 A_SpawnItemEx("RageRune_ST",50,-80)
+TNT1 A 0 A_SpawnItemEx("DrainRune_ST",50,-60)
+TNT1 A 0 A_SpawnItemEx("SpreadRune_ST",50,-40)
+TNT1 A 0 A_SpawnItemEx("ResistanceRune_ST",50,-20)
+TNT1 A 0 A_SpawnItemEx("RegenerationRune_ST",50,0)
+TNT1 A 0 A_SpawnItemEx("ProsperityRune_ST",50,20)
+TNT1 A 0 A_SpawnItemEx("ReflectionRune_ST",50,40)
+TNT1 A 0 A_SpawnItemEx("HighJumpRune_ST",50,60)
+TNT1 A 0 A_SpawnItemEx("HasteRune_ST",50,80)
+stop
+}
+}
+
+ACTOR StrengthRune_ST : Rune_ST
+{
+	Inventory.Icon STRRA0
+	Powerup.Type Strength_ST
+	Inventory.PickupMessage "$PICKUP_STRENGTH"
+	Inventory.PickupAnnouncerEntry "strength"
+	States
+	{
+	Spawn:
+		ST_R "YZ[" 6
+		//STRR ABCD 6
+		Loop
+	}
+}
+
+ACTOR RageRune_ST : Rune_ST
+{
+	Inventory.Icon RAGRA0
+	Powerup.Type Rage_ST
+	Inventory.PickupMessage "$PICKUP_RAGE"
+	Inventory.PickupAnnouncerEntry "rage"
+	States
+	{
+	Spawn:
+		ST_R LMNO 6
+		//RAGR ABCDEFGH 6
+		Loop
+	}
+}
+
+ACTOR DrainRune_ST : Rune_ST
+{
+	Inventory.Icon DRARA0
+	Powerup.Type Drain_ST
+	Inventory.PickupMessage "$PICKUP_DRAIN"
+	Inventory.PickupAnnouncerEntry "drain"
+	States
+	{
+	Spawn:
+		ST_R AB 6
+		//DRAR ABCD 6
+		Loop
+	}
+}
+
+ACTOR SpreadRune_ST : Rune_ST
+{
+	+FLOATBOB
+	Inventory.Icon SPRRA0
+	Powerup.Type Spread_ST
+	Inventory.PickupMessage "$PICKUP_SPREAD"
+	Inventory.PickupAnnouncerEntry "spread"
+	States
+	{
+	Spawn:
+		ST_R WX 6
+		//SPRR ABCD 6
+		Loop
+	}
+}
+
+ACTOR ResistanceRune_ST : Rune_ST
+{
+	Inventory.Icon RESRA0
+	Powerup.Type Resistance_ST
+	Inventory.PickupMessage "$PICKUP_RESISTANCE"
+	Inventory.PickupAnnouncerEntry "resistance"
+	States
+	{
+	Spawn:
+		ST_R TUV 6
+		//RESR ABCDEFGH 6
+		Loop
+	}
+}
+
+ACTOR RegenerationRune_ST : Rune_ST
+{
+	+FLOATBOB
+	Inventory.Icon REGRA0
+	Powerup.Type Regeneration_ST
+	Inventory.PickupMessage "$PICKUP_REGENERATION"
+	Inventory.PickupAnnouncerEntry "regeneration"
+	Powerup.Strength 25
+	States
+	{
+	Spawn:
+		ST_R RS 6
+		//REGR AB 6
+		Loop
+	}
+}
+
+ACTOR ProsperityRune_ST : Rune_ST
+{
+	Inventory.Icon PRSRA0
+	Powerup.Type Prosperity_ST
+	Inventory.PickupMessage "$PICKUP_PROSPERITY"
+	Inventory.PickupAnnouncerEntry "prosperity"
+	States
+	{
+	Spawn:
+		ST_R IJK 6
+		//PRSR ABCD 6
+		Loop
+	}
+}
+
+ACTOR ReflectionRune_ST : Rune_ST
+{
+	+FLOATBOB
+	Inventory.Icon REFRA0
+	Powerup.Type Reflection_ST
+	Inventory.PickupMessage "$PICKUP_REFLECTION"
+	Inventory.PickupAnnouncerEntry "reflection"
+	States
+	{
+	Spawn:
+		ST_R PQ 6
+		//REFR BA 6
+		Loop
+	}
+}
+
+ACTOR HighJumpRune_ST : Rune_ST
+{
+	Inventory.Icon HIJRA0
+	Powerup.Type HighJump_ST
+	Inventory.PickupMessage "$PICKUP_HIGHJUMP"
+	Inventory.PickupAnnouncerEntry "highjump"
+	States
+	{
+	Spawn:
+		ST_R GH 6
+		//HIJR ABCD 6
+		Loop
+	}
+}
+
+ACTOR HasteRune_ST : Rune_ST
+{
+	+FLOATBOB
+	Inventory.Icon HASRA0
+	Powerup.Type Haste_ST
+	Inventory.PickupMessage "$PICKUP_HASTE"
+	Inventory.PickupAnnouncerEntry "haste"
+	States
+	{
+	Spawn:
+		ST_R CDEF 6
+		//HASR ABCD 6
+		Loop
+	}
+}
+
+#include "actors/General_C/FunForAll.txt"

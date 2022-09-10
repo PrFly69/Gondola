@@ -357,7 +357,7 @@ renderstyle translucent
 +NOINTERACTION
 +THRUGHOST
 scale 3.5
-alpha .15
+alpha .05
 +BRIGHT
 states
 {
@@ -605,7 +605,7 @@ DamageFactor "TundraM_Wind", 0.0
 
 actor TundraStormableFlag : Powerup
 {
-Powerup.Duration 10
+Powerup.Duration 20
 }
 
 actor TundraSlowFXStopper : Powerup

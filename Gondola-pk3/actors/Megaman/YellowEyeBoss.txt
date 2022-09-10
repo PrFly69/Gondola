@@ -35,7 +35,7 @@ actor YellowEyeBoss : BaseMM8BDMWep_CBM
         goto Fire2
 
         FireCharge:
-        YD_H B 2 Offset(24,68) A_GiveInventory("BumoCharge",2)
+        YD_H B 2 Offset(24,68) A_GiveInventory("BumoCharge",1)
         YD_H B 0 A_Refire("FireCharge")
         YD_H B 0 A_JumpIfInventory("BumoCharge",50,"FireCharged")
         Goto Fire2
@@ -545,7 +545,7 @@ loop
   {
 	Translation "192:192=216:216", "198:198=220:220"
     Projectile
-    damagetype "NitroM_Shot2"
+    damagetype "DMGNoHitstun"
     Obituary "%o was mashed into mush by %k's Mk. II Segment."
     -NOGRAVITY
     +HITTRACER
@@ -557,7 +557,7 @@ loop
     Radius 20
     Height 12
     Speed 45
-	gravity 0.75
+	//gravity 0.75
     Scale 2.5
     States
     {

@@ -536,7 +536,7 @@ TNT1 A 0 A_JumpIfInventory("SakuThrustDelay",1,"Freeze")
 TNT1 A 0
 stop
 Freeze:
-TNT1 A 0 A_TakeInventory("BackToTheAmmo",7)
+TNT1 A 0 A_ScaleVelocity(.5)//A_TakeInventory("BackToTheAmmo",7)
 stop
 }
 }

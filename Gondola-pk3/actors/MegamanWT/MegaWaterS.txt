@@ -12,8 +12,8 @@ player.startitem "MWS_ShieldItem"
 player.maxhealth 90
 health 90
 player.jumpz 10
-player.forwardmove 0.9, 0.9
-player.sidemove 0.9, 0.9
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 
 player.weaponslot 1, "SandySandBoss"

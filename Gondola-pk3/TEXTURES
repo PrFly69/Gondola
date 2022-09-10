@@ -26,6 +26,8 @@ graphic CLOWNICR,30,30{XScale 2.0 YScale 2.0 Patch RSHOX0,0,0}
 graphic SATRNICN,30,30{XScale 2.0 YScale 2.0 Patch RSHOY0,0,0}
 graphic FUSERICN,30,30{XScale 2.0 YScale 2.0 Patch RSHOZ0,0,0}
 graphic PIRATICN,30,30{XScale 2.0 YScale 2.0 Patch "RSHO]0",0,0}
+graphic NAPMICON,30,30{XScale 2.0 YScale 2.0 Patch RSNAP0,0,0}
+graphic NEPRICON,30,30{XScale 2.0 YScale 2.0 Patch RSNEP0,0,0}
 
 graphic STYSCBM6,3,7{XScale 1.25 YScale 1.25 Patch STYS8BDD,0,0{translation "0:0=5:5", "4:4=93:93"}}
 
@@ -409,8 +411,6 @@ graphic PUNKICON,30,30{XScale 2.0 YScale 2.0 Patch RSH1F0,0,0}
 //Napalm
 texture NAPMBAR,8,56{patch B4ENER,0,0{Translation "192:192=4:4", "198:198=41:41"}}
 texture NAPMVAR,56,8{patch NAPMBAR,0,0{rotate 90}}
-
-graphic NAPMICON,30,30{XScale 2.0 YScale 2.0 Patch RSNAP0,0,0}
 
 texture TNGUBAR,8,56{patch B_3BARSB,0,0{Translation"192:192=4:4","198:198=109:109","202:202=4:4","199:199=109:109","204:204=4:4","195:195=109:109"}}
 texture TNGUVAR,56,8{patch TNGUBAR,0,0{rotate 90}}

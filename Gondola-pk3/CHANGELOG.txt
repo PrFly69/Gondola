@@ -2661,13 +2661,14 @@ CHANGELOG
 --Napalm Bomb bouncecount now negatively correlates to chargetime (Bouncecount 2 > 4/3/2)
 --NapalmClassAmmo max amount 360 > 300 (total stocks with full ammo 6 > 5)
 -Napalm Missile now uses separate ammo bar, has 4 uses
--Slowdown when charging mainfire reduced .75/.5/.25 > .9/.8/.7
+-Has slowdown when charging (.9/.8/.7)
 
 ==Darkman1
 -HP 155 > 135
 
 ==Darkman2
 -Dark Spread (uncharged mainfire) how has 25% hitstun
+-Fixed Dark Shield not having proper teamcolors
 
 ==Darkman3
 -Health 100 > 85
@@ -2811,6 +2812,7 @@ CHANGELOG
 -Cold Shoulder damage 30 > 32
 -Cold Field ammo regen doubled
 --No longer fullstuns on hit, now fully stops enemies velocity repeatedly
+--Cold Field also applies 35% slowdown that lingers for a 50 tics after hitting
 --Updated FX
 --Cold Field initial projectile radius 8 > 12
 --Cold Field damager now spawns every tic instead of every 3 tics
@@ -2896,6 +2898,7 @@ CHANGELOG
 --Separate timer resets after every dash/recling
 --Sound made while dashing while clinging is now 67% quieter (.75 volume > .25 volume)
 --Sound made while clinging onto a wall within the first 5 tics of dashing is now 75% quieter (1.0 volume to .25 volume)
+-Now fastfalls out of Blade Slash
 
 ==Sheepman
 -Sheep Bolters now have 10% hitstun
@@ -2940,6 +2943,12 @@ CHANGELOG
 --Explosion 2 range 38, 5 damage on hit (with 1 ripper on subsequent hits)
 -Fixed Break Dash having more than two airborne uses
 -Added noammo SBAR + visual indicator of not being able to use Break Dash by Conejo
+
+==Neptune
+-Salt Water and Salt Water bits now have 5% hitstun
+-Saltier Water now has FX to differentiate it from Salt Water
+-The Big Leap now does 50% hitstun
+--The Big Leap is now done through reload, altfire only does small hops
 
 ==Sunstar
 -Updated HUD by Lamp
@@ -2992,9 +3001,8 @@ CHANGELOG
 -Every second of firing charges up and shoots out a Glacial Spike
 --Glacial Spike damage is now equalized at 14 instead of being a chargeshot
 --Projectile speed equalized to 75
---Does 50% hitstun, applies frostbite debuff only if an enemy is being hit by Icy Gust
+--Does 25% hitstun, applies frostbite debuff only if enemy is also being hit by Icy Gust
 -Triple Lutz now does 25% more damage on frostbitten enemies, also restores 25% of user's Tundra Storm ammo
---Spotlight/cheering FX also added upon chaining hits on enemies
 
 ==Torchman
 -Health 100 > 90
@@ -3008,7 +3016,7 @@ CHANGELOG
 --Fist Of Flame speed 40 > 69, duration 9 tics > 8 tics
 -Torchjutsu Torque ripper damage speed 60 > 70
 --Torchjutsu Torque ammo gain on hit 100 > 35
--Torchjutsu Wheel ripper damage 8 > 10
+-Torchjutsu Torque ripper damage 8 > 9
 -Flaming Kick hits 1-4 projectile speed 80 > 60
 -Blazing Demon now split into five kicks as opposed to one strong kick
 --Blazing Demon kick radius 48 > 56
@@ -3075,7 +3083,7 @@ CHANGELOG
 ==Quint
 -Added visual display of not being able to use Sakugarne while swapping/with delay by Conejo
 -Fixed Sakugarne M1 having reduced thrust
--Canceling Sakugarne Dive with weapon swap now takes 7 ammo
+-Canceling Sakugarne Dive with weapon swap now halts momentum by 50%
 -Sakugarne Shockwave now sprite accurate, properly spawns on floor instead of bottom of actor
 --Sakugarne Shockwave speed doubled, halved duration
 -Removed Sakugarne M2 blocks being shootable

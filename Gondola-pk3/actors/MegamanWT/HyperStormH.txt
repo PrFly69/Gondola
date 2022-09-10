@@ -7,8 +7,8 @@ player.soundclass "hyperstormhc"
 player.maxhealth 200
 health 200
 player.jumpz 10
-player.forwardmove 0.5625, 0.5625
-player.sidemove 0.5625, 0.5625
+player.forwardmove 0.5, 0.5
+player.sidemove 0.48, 0.48
 player.startitem "PigsyBoss"
 player.startitem "PiggyBoss"
 player.startitem "SemiStunArmor"

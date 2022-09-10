@@ -749,6 +749,12 @@ Powerup.Duration 2
 DamageFactor "ColdM_Field", 0.0
 }
 
+actor ColdM_FieldSlow_P : PowerSpeed
+{
+powerup.duration 50
+Speed 0.65
+}
+
 actor BossIceWall_BoomG : BasicExplosion
 {
 DamageType "ColdM_WallFloor"

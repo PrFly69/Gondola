@@ -942,7 +942,8 @@ Drawbar"VH_S_VAR","VNOBAR",Ammo2,horizontal,58,176;
 }
 }
 IsSelected SaltWaterBoss{Drawbar"0V_8_VAR","VAREMPTY",Ammo1,horizontal,58,184;
-	Drawbar"0V_I_VAR","VAREMPTY",Ammo2,horizontal,58,176;}
+	Drawbar"0V_I_VAR","VAREMPTY",Ammo2,horizontal,58,176;
+	DrawImage"NEPRICON",178,175;}
 IsSelected NovaBeamBoss{Drawbar"V_I_VUN","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory NuclearOverclockAmmo,120{DrawBar"V_I_VUF","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory NuclearOverheatAmmo,1{DrawBar"V_I_VUV","VNOBAR",Ammo2,horizontal,58,184;}}}

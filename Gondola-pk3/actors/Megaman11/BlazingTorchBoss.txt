@@ -535,7 +535,7 @@ actor PGTorchmanJutsu : TorchmanJutsu
 {
 Obituary "$OB_TORCHX"
 damagetype "TorchHit1X"
-damage (10)
+damage (9)
 +RIPPER
 scale 3
 radius 28

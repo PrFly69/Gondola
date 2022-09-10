@@ -246,7 +246,7 @@ OptionValue ClassHealth
 58, "85"
 59, "100"
 60, "115"
-61, "90"
+61, "85"
 62, "100"
 63, "125"
 64, "115"
@@ -585,7 +585,7 @@ OptionValue ClassSpeed
 120, "0.9"//Tundra
 121, "0.92"//Torch
 122, "0.7"//Bounce
-123, "1.0"
+123, "1.1"
 124, "0.8"
 125, "0.5"
 126, "0.94"
@@ -647,11 +647,11 @@ OptionValue ClassMainfire
 44, "\cdShot gets weaker with distance\nRage shots do not get weaker"
 45, "\cdBasic fast projectile\nDoes 15 damage"
 46, "\cdWaves spawn where user points\nMore distance adds more delay\nWaves can climb small stairs"
-47, "\cdHold out Power Stones for burstfire on release\nCan cancel altfire while midair"
-48, "\cdGyro slides across floors"
+47, "\cdHold out Power Stones for midrange \nangleable spread on release\nCan cancel altfire while midair"
+48, "\cdGyro slides across floors\nReturns to user upon hitting walls"
 49, "\cdDuring shield, take 75% damage\nWith shield up, fires fast Star Crash"
 50, "\cdRams nearby foes\nAiming improves damage"
-51, "\cdFires bombs that bounce less the more they're charged\nCan be charged for speed up to three levels"
+51, "\cdFires bombs that bounce less \nthe more they're charged\nCan be charged for speed up to three levels"
 52, "\cdCan be charged\nMore charge adds more bits when split\nUse altfire to split ball instantly"
 53, "\cdShots get faster at lower health"
 54, "\cdCharges mainfire into multiple levels\nFirst level fires 5 basic sparks\nSecond fires a stunning ball\nFinal fires a net that homes in on enemies"
@@ -661,7 +661,7 @@ OptionValue ClassMainfire
 58, "\cdArrow shots split on surfaces but not players\nSplit shots do less damage than arrow"
 59, "\cdLeaves a flame pillar on walls and floors"
 60, "\cdLower shield to throw mace, follows aim\nHold to swing mace around, charging\nand knocking enemies back\n\ciCharged:Huge Knight Crush with inf. range"
-61, "\cdShots are affected by gravity and bounce on walls\nShots restore health on hit"
+61, "\cdShots are affected by gravity and \nbounce on walls\nShots restore health on hit"
 62, "\cdFires a pair of tomahawks\nDamage increases after a short distance\nTomahawks slide on floors"
 63, "\cdShotgun of gyros that move \naway from and towards each other"
 64, "\cdSpears drop on hit to pickup\nCollecting spears refills ammo"
@@ -675,7 +675,7 @@ OptionValue ClassMainfire
 72, "\cdSpeed boost is lost on full charge\nCharged wheel leaves flame trail\nWhile driving, mainfire honks the horn"
 73, "\cdTap to attack without dashing\nMelee swipe slams foes to the ground"
 74, "\cdBasic projectile"
-75, "\cdTriple swing builds heat\nDuring altfire, does forwards lunge"
+75, "\cdTriple swing builds heat"
 76, "\cdShock aura appears during mainfire\nAura is stronger during swinging"
 77, "\cdCan lock onto four targets\nMissiles get stronger during travel"
 78, "\cdIce waves freeze enemies\nCan be held indefinitely"
@@ -720,9 +720,9 @@ OptionValue ClassMainfire
 117, "\cdFires a ripper projectile that slides on floors\nHas two weaker offshoots with limited duration\nFirerate doubled within Tesla Coil"//Fuse
 118, "\cdProjectile sticks to enemies\n\cgPower Gear: Fires strong bomb that detonates \nstickied bombs for big damage"//Blast
 119, "\cdFires up to 5 shots of globs of acid\nStacking 4% slow up to 5 times \nHitting the enviroment causes damaging gas \nAuto-reloads but cant be shot unless full"//Acid
-120, "\cdChargeable icicle attack\nSlows enemies at max charge"//Tundraman
-121, "\cdTwo mid ranged fists\n\cgPower Gear: Two faster spinning ripper flames"//Torchman
-122, "\cdMidranged fist\nSplits into three Bounce Balls\nCan push back user at close range"//Bounceman
+120, "\cdIcy wind that shoots hitstun icicles every second\nHitting enemies with both applies slowdown"//Tundraman
+121, "\cdTwo midranged fists\n\cgPower Gear: Two fast spinning ripper flames"//Torchman
+122, "\cdFist can be angled for first 5 tics\nSplits into three Bounce Balls\nCan push back user and enemies at close range"//Bounceman
 123, "\cdRod attack hits through walls"
 124, "\cdFires a volley of 3 harpoons"
 125, "\cdSuction does damage that heals\n\ciBlowing cools down, sucking heats up"
@@ -767,7 +767,7 @@ OptionValue ClassAltfire
 26, "\cdLeaps forward, damaging on contact\nThis can be used to leap up ledges"
 27, "\cdToss a Boobeam trap\nIts shots can slide across floors"
 28, "\cdRev up needle gun"
-29, "\cdMagfly gives allies jump height\nAlt again to reverse\nWhile Reversed,\ndamages, grounds, and slows enemies"
+29, "\cdShockwave knocks enemies away with more charge"
 30, "\cdWithout clone, fire a laser\nWith clone, repositions clone"
 31, "\cdBoosts upward to begin quake press\nLonger falling increases range"
 32, "\cdThrows out 3 tops in a spread"
@@ -793,8 +793,8 @@ OptionValue ClassAltfire
 52, "\cdBit shot with limited bounces"
 53, "\cdThrusts user forward with alt ammo\nRegens ammo when not firing"
 54, "\cdSummons Dark Shield\nShield is able to block missiles\nMainfire holds shield until release\nAltfire throws the shield to warp around itself"
-55, "\cdThree rings that stun on hit\n\ciOne fast ring\n\cdRate of fire faster with lower health"
-56, "\cdSummons Dark Shield with 50~ HP\nShield blocks missiles but takes damage\nPressing altfre again throws shield\nwith a cooldown"
+55, "\cdThree rings that stun on hit\n\ciOne fast ring"
+56, "\cdSummons Dark Shield with 50 HP\nShield blocks missiles but takes damage\nPressing altfre again throws shield\nwith a cooldown"
 57, "\cdMakes rapidfire non-homing snowflakes"
 58, "\cdFlash stuns at closer ranges"
 59, "\cdFlame spread bounces off walls"
@@ -813,7 +813,7 @@ OptionValue ClassAltfire
 72, "\cdCan be charged to extend duration\nDoes ram damage and leaves fire trail"
 73, "\cdTornados lift foes into the air\nCan also ride Tornados for height"
 74, "\cdSummons up to two active clones"
-75, "\cdStationary spin with suction\nDuring mainfire, gives boosted temp flight \nFlight speed based on mainfire heat"
+75, "\cdFires controllable torso that blocks shots\nDuring mainfire, gives boosted temp flight \nFlight speed based on mainfire heat"
 76, "\cdPinpoint hand that stuns enemies\nDisables shock aura during use"
 77, "\cdProjectile bounces on surfaces\nDoes extra damage when cancelling reload"
 78, "\cdChanges ice wave shot during charging\nOtherwise does a punch"
@@ -853,14 +853,14 @@ OptionValue ClassAltfire
 112, "\cdUses black hole to suck in projectiles \nSucking up projectiles grants ammo and armor"//Saturn
 113, "\cdWorks up rage to charge foes\nMore rage = Longer charge\nMainfire Slams ground during Stampede"
 114, "\cdDash in any direction, faster at high speed"
-115, "\cdHold to leap across floor and enemies\nCan bounce on enemies to deal damage\nTap to leap up and slam the ground"
+115, "\cdHold to leap across floor and enemies\nCan bounce on enemies to deal damage"
 116, "\cdFire projectile that reacts under enemies\nMax heat sets down a lasting line of fire"
 117, "\cdPerform a dash and leave behind a tesla coil\nTesla Coil passively spawns spinning offshoots\nIf a tesla coil is out, remotely detonates coil"//Fuse
 118, "\cdA burst of several small explosives\nCan stick to the ground"
 119, "\cdThrows an Acid Barrier on an ally\nStarts at high resist but falls off\nAcidman gains gear ammo with blocked damage"//Acid
 120, "\cdSpinning melee leap\nCan bounce off of enemies and props"//Tundra
 121, "\cdFlurry of kicks\nAerial divekick makes flares on landing\n\cgPower Gear: Ground kick has dash\nDivekick has bigger landing shockwave"
-122, "\cdMidranged grab on surfaces/players\nCan either pull user to target or vice versa"
+122, "\cdMidranged grab on surfaces/players\nPulls players towards user and user towards surfaces"
 123, "\cdSpins rod to damage and block missiles"
 124, "\cdSummons a pinpoint pillar\n\ciSprays water dealing pushback"
 125, "\cdUses remaining ammo to either\nHot: Boost upwards for mobility\nCold: Dash that gets stronger over time"
@@ -905,7 +905,7 @@ OptionValue ClassItem
 26, "\cdEnables leaf shield"
 27, "\cdTurns passive flight on"
 28, "\cuNo Item"
-29, "\cuNo Item"
+29, "\cdDeletes MagFly"
 30, "\cdSummons a Gemini clone\nThe clone fires at enemies constantly"
 31, "\cuNo Item"
 32, "\cuNo Item"
@@ -931,7 +931,7 @@ OptionValue ClassItem
 52, "\cuNo Item"
 53, "\cuNo Item"
 54, "\cuNo Item"
-55, "\cdToggles scope"
+55, "\cdToggles scope\nScope charges faster with lower health"
 56, "\cuNo Item"
 57, "\cuNo Item"
 58, "\cdTeleports a short distance forward"
@@ -998,7 +998,7 @@ OptionValue ClassItem
 119, "\cuNo Item"
 120, "\cuNo Item"
 121, "\cuNo Item"
-122, "\cdSwitches between two altfire grab modes"
+122, "\cdDetaches grab"
 123, "\cdSummons two clones at full ammo\nThese clones mimic all attacks"
 124, "\cdCreates Water Shield at full ammo\nThe shield builds pressure while active\nItem pops the shield to fling foes"
 125, "\cuNo Item"
@@ -1043,7 +1043,7 @@ OptionValue ClassReload
 26, "\ckGains ammo when damaged"
 27, "\ckCan float above floors"
 28, "\ckDoes a basic melee poke\nCan be instantly done from mainfire end"
-29, "\ckReload : Throw a homing mine\nCan be destroyed by/blocks projectiles"
+29, "\ckMagfly gives allies jump height\n2nd press damages, grounds, and slows enemies"
 30, "\ckNone"
 31, "\ckSuffers half hitstun"
 32, "\ckNone"
@@ -1129,14 +1129,14 @@ OptionValue ClassReload
 112, "\ckReload : Flings enemies away\nHe has a hilarious death sound"//Saturn
 113, "\ckNone"
 114, "\ckReload : Uses melee swipes\nGain speed through constant movement"
-115, "\ckNone"
+115, "\ckReload : Leaps up and slams the ground with hitstun wave"
 116, "\ckShooting speeds up heat generation\nGains a second bar by shooting at max heat\nSecond bar slows rate of fire as it fills"
 117, "\ckNone"//Fuse
 118, "\ckReload: Activates Power Gear\nSuccessful hits with mainfire build Power Gear"
 119, "\ckGear ammo drains for a 20% speed boost\nReload : A copy of Acid Barrier but for himself \non a different cooldown"//Acid
-120, "\ckReload: Propel user/enemies up with Tundra Storm"
+120, "\ckReload : Propel user/enemies up with Tundra Storm"
 121, "\ckDoing damage builds Power Gear"
-122, "\ckNone"
+122, "\ckReload : Shockwave that fling enemies away and sends user up on release"
 123, "\ckCan Wall Jump"
 124, "\ckNone"
 125, "\ckSuffers half hitstun"
