@@ -28,6 +28,7 @@ weapon/CutterExtend S_M1_A4
 
 //Elec
 weapon/thunderhandup ELECSTRT
+weapon/thunderbeamdie	ELEKILL
 
 //Fire
 weapon/burnbabyburn FIRERING

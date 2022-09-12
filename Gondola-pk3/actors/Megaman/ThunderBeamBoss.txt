@@ -223,6 +223,10 @@ ELEB J 1 A_SpawnItemEx("ElecBarrierProjTrail3",0,0,-7.5,0,0,0,0,1)
 ELEB I 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,-15,0,0,0,0,1)
 ELEB I 1 A_SpawnItemEx("ElecBarrierProjTrail2",0,0,-7.5,0,0,0,0,1)
 loop
+Death:
+ELEB N 0 A_PlaySound("weapon/thunderbeamdie","Body",0.2)
+ELEB NOPQR 1
+stop
 }
 }
 
