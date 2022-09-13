@@ -66,6 +66,9 @@ $volume weapon/WoodTower 0.4
 
 ///// MM3 /////
 
+//Gemini
+weapon/geminibuster GEMNSHOT
+
 //Hard
 weapon/hknuckle HARDSHOT
 weapon/hknuckletravel HKTRAVEL $volume weapon/hknuckletravel 0.5
