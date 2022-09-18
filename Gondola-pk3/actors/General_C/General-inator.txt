@@ -1,0 +1,402 @@
+//Damagetype SolidifyDamage{Obituary "No obits yet :(" Noarmor}
+
+DamageType Torrent
+{
+Factor 0
+}
+
+actor WaterGush_Torrent : BasicExplosion
+{
+damagetype "Torrent"
++SERVERSIDEONLY
+RenderStyle None
+Mass 100
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1 A_Explode(1,Mass,1,0,Mass)
+stop
+}
+}
+
+actor CBM_OilPitIgnite : OilPitIgnite
+{
++SERVERSIDEONLY
+RenderStyle None
+}
+
+
+actor CBM_ArtiTeleport_P : ArtiTeleport
+{
+inventory.amount 1
+inventory.maxamount 0
+//+INVENTORY.QUIET
++INVENTORY.AUTOACTIVATE
+-INVENTORY.INVBAR
+//-INVENTORY.PICKUPFLASH
+-COUNTITEM
+-FLOATBOB
+Inventory.PickupSound "weapon/RaThorSinistarX"//GNT/ExitUse
+Inventory.PickupMessage "Chaos Rune Device"
+Tag "Chaos Rune Device"
+scale 2.0
+states
+{
+Spawn:
+ATLP C 0
+ATLP C 1
+wait
+}
+}
+
+actor ResolidifyPlayer_SpawnTele_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_SpawnTele_H")
+TNT1 A 0 //A_PlaySoundEx("KirbyNES/Hit_D","Voice")
+stop
+}
+}
+
+actor UnSolid : Inventory{}
+
+actor ResolidifyCheck_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("UnSolid",1,"PickupCheck")
+stop
+PickupCheck:
+//TNT1 A 0 A_CheckFlag("SOLID","Solid_Off")
+TNT1 A 0 A_ChangeFlag("SOLID",true)
+TNT1 A 0 A_JumpIf(CallACS("cbm_ResolidifyCheck"),"Solid_On")
+TNT1 A 0 A_ChangeFlag("SOLID",false)
+TNT1 A 0 A_TakeInventory("StaminaFlag",2)
+stop
+Solid_Off:
+TNT1 A 0 A_ChangeFlag("SOLID",false)
+stop
+Solid_On:
+TNT1 A 0 A_GiveInventory("Nudge")
+TNT1 A 0 A_TakeInventory("UnSolid")
+stop
+}
+}
+
+/*
+
+DamageType ReSolidifier
+{
+//Obituary = "%o was not solid enough."
+Factor 1.0
+ReplaceFactor
+Noarmor
+}
+
+*/
+
+actor ResolidifyDamage_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIf(Health<=ACS_ExecuteWithResult(CBM_FetchMyHealth,1)/10,"Pickup_CRUSH")
+TNT1 A 0 DamageThing(ACS_ExecuteWithResult(CBM_FetchMyHealth,1)/10,20)//Exit
+stop
+Pickup_CRUSH:
+TNT1 A 0 DamageThing(0,15)//Crush
+stop
+}
+}
+
+actor ResolidifyPlayer_H : BasicHelper
+{
++SERVERSIDEONLY
+Args 25,35
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_CheckFlag("SOLID","Spawn3",AAPTR_TARGET)
+TNT1 A 0 A_GiveToTarget("UnSolid",1)
+Spawn2:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("ResolidifyCheck_P",1)
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("UnSolid",1,"Spawn2a")
+TNT1 A 0 A_CheckFlag("SOLID","Spawn3",AAPTR_TARGET)
+goto SuperDeath
+Spawn2a:
+TNT1 A 0 A_JumpIfInTargetInventory("StaminaFlag",1,"Spawn2")
+TNT1 A 0 A_SetArg(0,Args[0]+1)
+TNT1 A 0 A_JumpIf(Args[0]>=Args[1],"Spawn2H")
+goto Spawn2
+Spawn2H:
+TNT1 A 0 A_GiveToTarget("ResolidifyDamage_P",1)
+TNT1 A 0 A_SetArg(0,0)
+goto Spawn2
+Spawn3:
+TNT1 A 1 A_GiveToTarget("StaminaFlag",5)
+TNT1 A 0 A_JumpIfInTargetInventory("StaminaFlag",496,2)
+TNT1 A 0 A_CheckFlag("SOLID","Spawn3",AAPTR_TARGET)
+TNT1 A 0
+stop
+SuperDeath:
+TNT1 A 1
+stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor ResolidifyPlayer_SpawnTele_H : ResolidifyPlayer_H
+{
+Args 0,35
+States
+{
+Spawn2H:
+TNT1 A 0 A_GiveToTarget("ArtiTeleport_Resolidify",1)
+TNT1 A 0 A_SetArg(0,0)
+goto Spawn2
+}
+}
+
+actor ArtiTeleport_Resolidify : ArtiTeleport
+{
+inventory.amount 1
+inventory.maxamount 1
++INVENTORY.QUIET
++INVENTORY.AUTOACTIVATE
+-FLOATBOB
+states
+{
+Spawn:
+TNT1 A 1
+stop
+}
+}
+
+
+Actor CBM_TargetMarker : CustomInventory//TargetMarkerX
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("CBM_TargetTracer",0,0,32,Cos(pitch)*4000,0,sin(-pitch)*4000,0)
+stop
+}
+}
+
+Actor CBM_TargetMarker2 : CustomInventory//TargetMarkerT
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("CBM_TargetTracer2",0,0,32,Cos(pitch)*4000,0,sin(-pitch)*4000,0)
+stop
+}
+}
+
+Actor CBM_TargetTracer : TargetTracer
+{
++SERVERSIDEONLY
++DONTREFLECT
+Radius 2
+Height 2
+Speed 4000
+States
+{
+Death:
+TNT1 A 0 
+TNT1 A 1 A_SpawnItemEx("CBM_TargetAimPoint",0,0,0)
+stop
+}
+}
+Actor CBM_TargetTracer2 : CBM_TargetTracer
+{
++THRUACTORS
+}
+
+Actor CBM_TargetAimPoint : TargetAimPoint
+{
++SERVERSIDEONLY
+//RenderStyle Normal
+}
+
+
+
+/*
+actor ReSolidifier : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_CheckFlag("SOLID","Spawn3",AAPTR_TARGET)
+TNT1 A 0 A_GiveToTarget("UnSolid",1)
+Spawn2:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("ReSolidifierCheck_P",1)
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("UnSolid",1,"Spawn2a")
+TNT1 A 0 A_CheckFlag("SOLID","Spawn3",AAPTR_TARGET)
+goto SuperDeath
+Spawn2a:
+TNT1 A 0 A_JumpIfInTargetInventory("StaminaFlag",1,"Spawn2")
+TNT1 A 0 A_GiveInventory("WeaponCharge",1)
+TNT1 A 0 A_JumpIfInventory("WeaponCharge",10,"Spawn2H")
+goto Spawn2
+Spawn2H:
+TNT1 A 0 A_GiveToTarget("ReSolidifier_UnSolid_P",1)
+TNT1 A 0 A_TakeInventory("WeaponCharge",100)
+goto Spawn2
+Spawn3:
+TNT1 A 1 A_GiveToTarget("StaminaFlag",5)
+TNT1 A 0 A_JumpIfInTargetInventory("StaminaFlag",496,2)
+TNT1 A 0 A_CheckFlag("SOLID","Spawn3",AAPTR_TARGET)
+TNT1 A 0
+stop
+SuperDeath:
+TNT1 A 1
+stop
+Death:
+TNT1 A 1
+stop
+}
+}
+
+actor ReSolidifierCheck_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("ReSolidifierCheck",0,0,0,momx,momy,momz,0,8)
+stop
+}
+}
+
+actor ReSolidifier_UnSolid_P : CustomInventory
+{
+states
+{
+Pickup:
+TNT1 A 0 A_JumpIf(Health<=10,"Pickup_CRUSH")
+TNT1 A 0 DamageThing(10,20)
+stop
+Pickup_CRUSH:
+TNT1 A 0 DamageThing(100,15)
+stop
+}
+}
+
+actor ReSolidifierCheck
+{
++MISSILE
++NOBLOCKMAP
++NOTELEPORT
++NOGRAVITY
++DONTSPLASH
++SKYEXPLODE
++EXPLODEONWATER
++DONTBLAST
++DONTREFLECT
++THRUGHOST
+//+NOINTERACTION
+//+NOCLIP
+Damage (0)
+radius 24
+height 64//84
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 1
+TNT1 A 0 A_GiveToTarget("ReSolidify",1)
+stop
+Death:
+XDeath:
+TNT1 A 0 A_TakeFromTarget("StaminaFlag",2)
+TNT1 A 1
+stop
+}
+}
+
+actor ReSolidify : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("UnSolid",1,"Pickup2")
+stop
+Pickup2:
+TNT1 A 0 A_ChangeFlag("SOLID",1)
+TNT1 A 0 A_TakeInventory("UnSolid",1)
+stop
+}
+}
+
+
+actor StopinatorFlag : OnceC{}
+
+actor StopinatorHelper : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 1
+TNT1 A 0 A_GiveToTarget("StopinatorPickup",1)
+TNT1 A 0 A_JumpIfInTargetInventory("StopinatorFlag",1,"Spawn")
+stop
+}
+}
+
+actor StopinatorPickup : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_Stop
+stop
+}
+}
+
+
+actor StaminaFlag_No : OnceC {}
+
+actor StaminaFlag_inator : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_TakeFromTarget("StaminaFlag_No",1)
+Spawn2:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("StaminaFlag",1)
+TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("StaminaFlag_No",1,"Death")
+TNT1 A 0 A_JumpIfInTargetInventory("StaminaFlag",496,"Death")
+loop
+}
+}
+
+*/
+
+// Gondola needs to remove this actor because they're no longer x10
+/*actor Beef_CBMModderSupport_H : BasicHelper
+{//I'm sorry modders, but x10 was NOT going to happen PACKWATCHHHHHHHHHHHHHHHHHH
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 10
+stop
+}
+}*/
+

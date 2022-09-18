@@ -89,12 +89,12 @@ goto Pain+1
 
 Death.TundraM_Leap:
 //"----" H 0 A_JumpIfInTargetInventory("TundraCheerFlag",1,"Death.TundraM_Skete")
-"----" H 0 A_JumpIfInventory("TundraFrostbite",1,"Death.TundraM_Skete")
+"----" H 0 A_JumpIfInventory("TundraFrostbite",1,"Death.TundraM_Leap2")
 goto Death
 
-Death.TundraM_Skete:
+Death.TundraM_Leap2:
 "----" H 0 A_PlaySound("weapon/reboundcheer",6,1.0)
-"----" H 0 A_GiveToTarget("TundraEncore_P")
+//"----" H 0 A_GiveToTarget("TundraEncore_P")
 "----" H 0 A_SpawnItemEx("TundraBoast")
 goto Death
 

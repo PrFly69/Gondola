@@ -36,17 +36,17 @@ YAMB A 0 A_TakeInventory("GravityAltDelay",1)
 Goto Ready1
 Ready3:
 YAMB A 0 A_JumpIfInventory("YamatoClassAmmo2",1,"Ready4")
-YAMB E 0 A_GiveInventory("YamatoStock",2)
-YAMB E 2 A_WeaponReady
+YAMB E 0 A_GiveInventory("YamatoStock",1)
+YAMB E 1 A_WeaponReady
 YAMB A 0 A_GiveInventory("YamatoClassAmmo2",2)
 YAMB A 0 A_TakeInventory("GravityAltDelay",1)
 Goto Ready1
 Ready4:
-YAMB F 2 A_WeaponReady
+YAMB F 1 A_WeaponReady
 YAMB A 0 A_GiveInventory("YamatoClassAmmo2",2)
 YAMB F 0 A_GiveInventory("YamatoStock",2)
 YAMB A 0 A_TakeInventory("GravityAltDelay",1)
-YAMB F 2 A_WeaponReady
+YAMB F 1 A_WeaponReady
 YAMB A 0 A_GiveInventory("YamatoClassAmmo2",1)
 YAMB F 0 A_GiveInventory("YamatoStock",2)
 YAMB A 0 A_TakeInventory("GravityAltDelay",1)
@@ -83,18 +83,36 @@ YAMB C 1 A_PlaySoundEx("weapon/BRGSpin","Weapon")
 YAMB D 0 A_PlaySoundEx("weapon/BRGSpin","Weapon")
 YAMB D 0 A_FireCustomMissile("YamatoAlt",0,0,8,0)
 YAMB D 1 A_GiveInventory("YamatoStock",1)
+SRKH R 0 A_Jumpif(CallACS("CCBM_ButtonCheck",BT_ATTACK) == True,"MiniSpear")
 YAMB D 0 A_Refire("AltfireLoop")
 goto AltfireEnd
 AltfireLoopR:
 YAMB C 0 A_GiveInventory("YamatoStock",1)
 YAMB C 0 A_FireCustomMissile("YamatoAlt",0,0,8,0)
+SRKH R 0 A_Jumpif(CallACS("CCBM_ButtonCheck",BT_ATTACK) == True,"MiniSpear2")
+goto AltfireLoop+1
+
+MiniSpear:
+TNT1 A 0 A_GunFlash("FlashWalter")
+YAMB CDCD 1
+YAMB D 0 A_Refire("AltfireLoop")
+goto AltfireEnd
+
+MiniSpear2:
+TNT1 A 0 A_GunFlash("FlashWalter")
+YAMB CD 1
+YAMB D 0 A_Refire("AltfireLoopRageCheck")
+goto AltfireEnd
+
+AltfireLoopRageCheck:
+TNT1 A 0
 goto AltfireLoop+1
 
 AltfireEnd:
 YAMB D 0 A_PlaySoundEx("weapon/topspin","Weapon")
-YAMB CD 2 A_GiveInventory("YamatoStock",1)
-YAMB C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//0.9 speed 10 jump
-YAMB C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,13,1)
+YAMB CD 2 A_GiveInventory("YamatoStock",1)//
+//YAMB C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//0.9 speed 10 jump
+//YAMB C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,13,1)
 YAMB C 2 A_GiveInventory("YamatoStock",1)
 YAMB C 0 A_GiveInventory("YamatoStock",1)
 YAMB C 0 A_JumpIfInventory("PowerRage_ST",1,2)
@@ -112,7 +130,7 @@ ReloadOk:
 YAMB E 1 SetPlayerProperty(0,1,0)
 YAMB D 0 A_PlaySoundEx("weapon/yamatocharge","Weapon")
 TNT1 A 0 A_TakeInventory("CutterFlag",99)
-YAMB EE 2 A_GiveInventory("YamatoLeapActive",1)
+YAMB EE 1 A_GiveInventory("YamatoLeapActive",1)
 Goto Ready1
 
 Fling:
@@ -183,6 +201,11 @@ TNT1 A 0 A_TakeInventory("YamatoStock",19)
 TNT1 A 0 A_GiveInventory("YamatoClassAmmo",1)
 goto Flash+2
 TNT1 A 1 A_TakeInventory("YamatoStock",999)
+goto Flash
+
+FlashWalter:
+YAMB C 0 A_GiveInventory("WhatsTheYams_P")
+//YAMB C 0 A_GiveInventory("YamatomanMain_CI",1)
 goto Flash
 
 BotFire:
@@ -303,6 +326,28 @@ YAMB S 0 A_SpawnItemEX("YamatoSpearB2",0,0,0,momx*45,momy*45,momz*45,0,9,0)
 stop
 }
 }
+
+actor WhatsTheYams_P : CustomInventory
+{
+States
+{
+Pickup:
+YAMB A 0 A_JumpIfInventory("YamatoClassAmmo",1,"Pickup2")
+stop
+Pickup2:
+TNT1 A 0 A_TakeInventory("YamatoClassAmmo",1)
+TNT1 A 0 A_GiveInventory("YamsAreThePowersThatBe_P",1)
+TNT1 A 0 A_GiveInventory("YamatoMain2_CI")
+stop
+}
+}
+
+  Actor YamsAreThePowersThatBe_P : PowerSpeed
+  {
+    Speed 0.5
+    Powerup.Duration 10
+    +POWERSPEED.NOTRAIL
+  }
 
 actor YamatoSpearBFirerB : YamatoSpearBFirer{Translation "192:192=205:205","198:198=74:74"}
 actor YamatoSpearBFirerR : YamatoSpearBFirer{Translation "192:192=171:171","198:198=41:41"}
@@ -467,8 +512,14 @@ scale 2.5
 States
 {
 Pickup:
+//DUST B 0 A_JumpIfInventory("YamsAreThePowersThatBe_P",1,"PickupHalved")
 DUST B 0 A_GiveInventory("YamatoStock",12)
 DUST B 0 A_PlaySound("item/energyup", 3, 0.75)
+DUST B 0
+stop
+PickupHalved:
+DUST B 0 A_GiveInventory("YamatoStock",6)
+DUST B 0 A_PlaySound("item/energyup", 3, 0.35)
 DUST B 0
 stop
 }
@@ -502,6 +553,33 @@ FireP:
 TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",5,1,8,random(5,10))
 TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",0,0,8,0)
 TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",-5,0,8,random(5,10))
+goto Done
+}
+}
+
+actor YamatoMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",random(-5,5),0,8,random(5,10))
+goto Done
+FireB:
+YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",random(-5,5),0,8,random(5,10))
+goto Done
+FireR:
+YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",random(-5,5),0,8,random(5,10))
+goto Done
+FireO:
+YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",random(-5,5),0,8,random(5,10))
+goto Done
+FireP:
+YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",random(-5,5),0,8,random(5,10))
 goto Done
 }
 }

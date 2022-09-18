@@ -152,7 +152,7 @@ NBOH A 0 A_GiveInventory("NapalmmanMainCheck_CI",1)
 NPAR A 0 A_TakeInventory("OverHeaterAmmo",1400)
 NPAR A 0 A_TakeInventory("NapalmChargeAmmo",10)
 NPAR A 0 A_TakeInventory("Charge3SoundCounter",999)
-NPAR BCHHH 2
+NPAR BCHHHHHHHHH 2
 NPAR IJKL 2
 NPAR A 1
 goto Ready+1
@@ -166,7 +166,7 @@ NBOH A 0 A_GiveInventory("NapalmmanMainCheck_CI",1)
 NPAR A 0 A_TakeInventory("OverHeaterAmmo",1400)
 NPAR A 0 A_TakeInventory("NapalmChargeAmmo",10)
 NPAR A 0 A_TakeInventory("Charge3SoundCounter",999)
-NPAR BCHHHHHHHHHHHH 2
+NPAR BCHHHHHHHHH 2
 NPAR IJKL 2
 NPAR A 1
 goto Ready+1
@@ -194,7 +194,7 @@ NBOH A 0 A_GiveInventory("NapalmmanMainCheck_CI",1)
 NPAR A 0 A_TakeInventory("OverHeaterAmmo",1400)
 NPAR A 0 A_TakeInventory("NapalmChargeAmmo",10)
 NPAR A 0 A_TakeInventory("Charge3SoundCounter",999)
-NPAR BCHHHHHH 2
+NPAR BCHHHHHHHHH 2
 NPAR IJKL 2
 NPAR A 1
 goto Ready+1
@@ -429,8 +429,8 @@ speed 20
 Damage (0)//Damage (1)
 Radius 11
 Height 12
-bouncefactor 1.0//0.6
-wallbouncefactor 1.0
+bouncefactor 0.6//0.6
+wallbouncefactor 0.6
 bouncecount 4
 scale 2.5
 States
@@ -466,6 +466,8 @@ actor NapalmBombClassTier2 : NapalmBombClass
 {
 bouncecount 3
 speed 30
+bouncefactor 0.8//0.6
+wallbouncefactor 0.8
 }
 
 actor NapalmBombClassTier2B : NapalmBombClassTier2{translation "192:192=205:205","198:198=74:74","202:202=205:205"}
@@ -477,6 +479,8 @@ actor NapalmBombClassTier3 : NapalmBombClass
 {
 bouncecount 2
 speed 40
+bouncefactor 1.0//0.6
+wallbouncefactor 1.0
 }
 
 actor NapalmBombClassTier3B : NapalmBombClassTier3{translation "192:192=205:205","198:198=74:74","202:202=205:205"}

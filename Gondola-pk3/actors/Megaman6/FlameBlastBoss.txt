@@ -17,13 +17,13 @@ loop
 Ready:
 FLBU A 0 ACS_ExecuteAlways(998,0,DYE_FLAMEMAN)
 FLBU A 0 A_JumpIfInventory("FlameBossAmmo",2,"Ready2")
-FLBU A 4 A_WeaponReady(WRF_NOFIRE)
-FLBU A 0 A_GiveInventory("FlameBossAmmo",1)
+FLBU A 4 A_WeaponReady(WRF_NOSECONDARY)//A_WeaponReady(WRF_NOFIRE)
+FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
 goto Ready+1
 Ready2:
 FLBU A 0 A_JumpIfInventory("FlameBossAmmo",56,"Ready3")
-FLBU A 3 A_WeaponReady(WRF_NOSECONDARY)
-FLBU A 0 A_GiveInventory("FlameBossAmmo",1)
+FLBU A 4 A_WeaponReady(WRF_NOSECONDARY)
+FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
 loop
 Ready3:
 FLBU A 1 A_WeaponReady
@@ -40,18 +40,22 @@ Fire:
 FLBU A 0 //A_JumpIfNoAmmo("NoAmmo")
 FLBU A 0 A_PlaySoundEx("weapon/FlameBall","Weapon")
 FLBU B 0 A_GiveInventory("FlamemanMain_CI",1)
-FLBU A 0 A_GiveInventory("FlameBossAmmo",1)
-FLBU B 2 OffSet(3,29)
+FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
+FLBU B 1 OffSet(3,29)
 FLBU B 2 OffSet(14,17)
-FLBU A 0 A_GiveInventory("FlameBossAmmo",1)
-FLBU C 2 OffSet(6,26)
+FLBU C 1 OffSet(6,26)
+FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
+FLBU C 1 OffSet(6,26)
 FLBU C 1 OffSet(3,29)
-FLBU A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-FLBU A 0 A_GiveInventory("FlameBossAmmo",1)
-FLBU A 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-FLBU A 0 A_GiveInventory("FlameBossAmmo",1)
-FLBU A 4 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-FLBU A 0 A_GiveInventory("FlameBossAmmo",1)
+FLBU A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
+FLBU A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
+FLBU A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
+FLBU A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
+FLBU A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 FLBU A 0 A_Refire
 goto Ready+1
 AltFire:
@@ -67,6 +71,7 @@ FLBU D 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 FLBU E 1
 FLBU A 0 A_PlaySoundEx("weapon/FlameWave","Weapon")
 FLBU B 0 A_TakeInventory("FlameBossAmmo",56)
+FLBU B 0 A_GiveInventory("FlameBurstCD",1)
 FLBU B 0 A_GiveInventory("FlamemanAlt_CI",1)
 FLBU FGFG 2
 FLBU F 1 Offset(0,60)
@@ -86,6 +91,29 @@ inventory.maxamount 56
 +INVENTORY.IGNORESKILL
 }
 
+actor FlameBurstCD : Powerup
+{
+Powerup.Duration 50
+}
+
+actor FlameBossAmmo_RC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("FlameBurstCD",1,"No")
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"Pickup2")
+TNT1 A 0 A_GiveInventory("FlameBossAmmo",1)
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("FlameBossAmmo",2)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
 actor FlameBall
 {
 Translation "198:198=227:227", "192:192=216:216"
@@ -96,10 +124,10 @@ damagetype "FlameM_Shot"
 Height 10
 Radius 10
 Scale 2.5
-//-NOGRAVITY
-//gravity 0.35
+-NOGRAVITY
+gravity 0.35
 //Speed 40
-Speed 28
+Speed 35
 States
 {
 Spawn:
@@ -185,19 +213,21 @@ Damage (0)
 Speed 20
 Height 48
 Radius 6
+scale 2.5
 ReactionTime 11//15
 States
 {
 Spawn:
-TNT1 A 1
-TNT1 A 2 A_SpawnItemEx("FlameStarter2",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_SetAngle(angle+random(-15,15))
-TNT1 A 0 A_ChangeVelocity(20,0,0,3)
-TNT1 A 0 A_Jump(128,3)
-TNT1 A 0 A_Jump(96,3)
-TNT1 AA 1
-TNT1 A 2 A_CountDown
-Loop
+FLAB D 0
+FLAB D 1 A_CountDown
+FLAB D 0 A_SpawnItemEx("FlameStarter2",0,0,0,0,0,0,0,1)
+FLAB ED 1
+FLAB D 0 A_SetAngle(angle+random(-15,15))
+FLAB D 0 A_ChangeVelocity(20,0,0,3)
+FLAB D 0 A_Jump(128,3)
+FLAB D 0 A_Jump(96,3)
+FLAB EDED 1
+loop
 }
 }
 
