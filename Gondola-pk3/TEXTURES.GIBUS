@@ -255,10 +255,8 @@ texture VARBNCLA,56,8{patch BARBNCLA,0,0{rotate 90}}
 
 graphic BNCEICON,30,30{XScale 2.0 YScale 2.0 Patch BNCMZ0,0,0}
 
-sprite PROCR0,116,96{Offset -184,-94 Patch PROCD0,0,0{Translation"0:0=253:253","247:247=253:253"}}//251    ,"93:93=253:253"
-sprite PROCS0,116,96{Offset -184,-94 Patch PROCD0,0,0{Translation"0:0=230:230","247:247=230:230","42:42=138:138","186:186=229:229","87:87=138:138","93:93=229:229"}}
-//Protoman
-//210&248 black>225 (MM10 colors), Above matches core ProtoCharge
+//Buster Rod Pole
+graphic XTR0WI_S,30,30{XScale 2.0 YScale 2.0 Patch XWI0S0,0,0}
 
 texture HEATBAR,8,56{patch B4ENER,0,0{Translation "192:192=229:229", "198:198=41:41"}}
 texture HEATVAR,56,8{patch HEATBAR,0,0{rotate 90}}//Heat

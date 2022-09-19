@@ -29,6 +29,9 @@ InInventory CanAirJump,1{}
 InInventory CanWallJump,1{}
 }
 
+DrawSelectedInventory INDEXFONT ,122, 184, 120, 185, white;
+DrawImage weaponicon, 50, 184;
+
 //MM1 Bars
 IsSelected RollingCutterWepC{Drawbar"VARAMMO1","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected SuperArmWepC{Drawbar"VARAMMO2","VAREMPTY",Ammo1,horizontal,58,184;}

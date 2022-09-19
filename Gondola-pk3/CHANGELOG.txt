@@ -3113,3 +3113,56 @@ CHANGELOG
 --Max Rocket ammo 40 > 20
 --Rocket ammo regain on item 20 > 10
 -BFG Range 500 > 750
+
+=====2.6H
+==General
+-Fixed item icons not appearing on HBAR
+
+==Copyweps
+-Fixed copynerf not working due to github forcibly renaming the file
+-Fixed BRG Pole copywep not having proper icon
+
+==Protoman
+-Fixed charging sprites having bugged frames
+
+==Elecman
+-Thunder Beam now has projectile death sprites
+
+==Geminiman
+-New Gemini Buster sprites by Frostblue
+-Added new Gemini Buster firing SFX
+
+==Napalmman
+-Napalm Bomb endlag no longer correlates to charge, now all charges share lvl2 endlag
+--Napalm Bomb bouncefactor 1.0 > 0.33/0.67/1.0
+
+==Flameman
+-Mainfire fire rate buff undone
+-Flame Blast speed 28 > 35
+--Now has 50% gravity
+-Flame Burst no longer generates ammo for 50 tics after usage
+--Ported Flame Burst spawner indicator sprites from classes-v9fh.pk3
+
+==Yamatoman
+-Using mainfire while using altfire now fires rapidfire spear heads
+--Has wide (-5,5) spread and fires one spearhead every 4 tics
+--Cuts speed and Yamato Spin damage in half while used
+-Reload charge rate doubled
+--Reload cooldown only starts draining once user hits the ground
+
+==Tenguman
+-Divine Wind now uses CCBM calculation method instead of CBM (Now factors Z axis)
+--Divine Wind now has FX to indicate damage
+-Fixed Tengu Slam doing less damage than intended
+-Tornado Hold max ammo capacity 300 > 500
+
+==Saturn
+-New FX indicator for armor
+
+==Tundraman
+-Icy Gust ammo regen per tic 5 > 6
+--Icy Gust death FX now die out twice as fast
+--Can now be cancelled into Triple Lutz
+-Glacier Spike speed reduced 75 > 50
+-Frostbite debuff strength 50% > 35%
+-Tundra Storm now resets frostbite debuff timer
