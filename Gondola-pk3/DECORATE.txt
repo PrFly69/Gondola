@@ -1107,3 +1107,4 @@ actor RingM_Ring2Protect : Inventory {}
 actor ShadowM_Blade2Protect : Inventory {}
 actor SparkM_LobProtect : Inventory {}
 actor IceM_Slow2Protect : Inventory {}
+#include "actors/MegamanB/GreenDevil.txt"

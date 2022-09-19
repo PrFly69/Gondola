@@ -523,7 +523,7 @@ TMFX J 0
 TMFX J 1 A_CountDown
 wait
 Death:
-TMFX J 0 A_Explode(350,40,0)
+TMFX J 0 A_Explode(35,40,0)
 goto XDeath
 XDeath:
 TMFX J 0 A_Stop

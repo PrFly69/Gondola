@@ -217,7 +217,7 @@ OptionString CBM_ClassStrings3
 "Sparkman", "Sparkman"
 "Shadowman", "Shadowman"
 "DocRobot", "DocRobot"
-"Breakman", "Breakman"
+"GreenDevil", "Breakman"//bumo bumo?
 "Random", "Random"
 }
 OptionString CBM_ClassStrings4

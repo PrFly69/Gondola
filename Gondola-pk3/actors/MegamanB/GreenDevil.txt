@@ -1,0 +1,47 @@
+actor GreenDevil : ClassBase //200
+{
+Player.ScoreIcon "C_00X0X"
+player.displayname "GreenDevil"
+player.soundclass "BearerClassC"
+
+player.startitem "WildBearBoss"
+player.startitem "MaximumBearAmmo",3
+player.startitem "BearerFlag"
+//player.startitem "CanUseItems"
+player.startitem "SemiStunArmor"
+
+player.maxhealth 200
+health 200
+player.forwardmove 0.60, 0.60
+player.sidemove 0.58, 0.58
+
+States
+{
+Spawn:
+GNDL A 0
+GNDL B 1
+GNDL A 1
+Goto Spawn+2
+See:
+GNDL BCDC 5
+Goto Spawn
+Missile:
+GNDL FG 5
+goto Spawn+2
+
+CustomState1:
+GNDL FG 5
+goto Spawn+2
+
+CustomState2:
+GRDL MNOP 3 A_JumpIfInventory("BomuEnd",1,"Spawn")
+loop
+
+ClassPain:
+GRDL H 0
+goto PainContinue
+ClassDeath:
+GRDL H 0
+goto DeathContinue
+}
+}
