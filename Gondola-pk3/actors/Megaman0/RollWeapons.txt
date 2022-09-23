@@ -902,7 +902,6 @@ stop
 }
 }
 
-
 actor RollHealB_P : RollHeal_P
 {
 States
@@ -1072,6 +1071,7 @@ TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==3,"Health")
 goto HealthSteal
 }
 }
+
 
 actor RollHealFX1 : BasicClientSide
 {
