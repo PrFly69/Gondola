@@ -520,7 +520,7 @@
 	wallbouncefactor 0.85
 	bouncecount 4
 	reactiontime 1
-	damage (20)
+	damage (0)
 	Radius 15
 	Height 12
 	speed 10

@@ -3159,6 +3159,11 @@ CHANGELOG
 ==Saturn
 -New FX indicator for armor
 
+==Blastman
+-Blast Bomb fulldmgradius 96 > 48
+-New Blast Bomb sprites made by Schmiddi, ported from UEC with revised teamcolors
+--New Blast Bomb obits added
+
 ==Tundraman
 -Icy Gust ammo regen per tic 5 > 6
 --Icy Gust death FX now die out twice as fast
@@ -3166,3 +3171,14 @@ CHANGELOG
 -Glacier Spike speed reduced 75 > 50
 -Frostbite debuff strength 50% > 35%
 -Tundra Storm now resets frostbite debuff timer
+
+==Torchman
+-Blazing Demon thrust before kicks 75 > 50
+
+==Bounceman
+-Rubber Latch now has extra 15 tics of endlag when whiffing the initial grabber
+--Also has extra 15 tics of startlag before being able to recall Rubber Latch off surfaces and/or players
+-Self-pull off of recalling from surfaces increased by 25%
+-Fixed bug with item having faster recall rate of fire than using altfire
+-Fixed bug that created duplicate Returning Rubber Latches when recalling from players
+-Fixed bug with doubled recalling sound before returning
