@@ -109,6 +109,28 @@ JUPH B 2 Offset(-14,39)
 JUPH A 1 A_WeaponReady(14)
 Goto Ready1
 
+HoldYourLagXD: 
+JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
+JUPH D 0 A_SpawnItemEX("JupiterFXWarper1",0,0,42,0,0,0,0,1)
+JUPH D 0 A_GiveInventory("JupiterBigLaser_PLAG")
+JUPH D 1 A_GiveInventory("JupiterLaser1_CI")
+JUPH D 0 A_Refire("LaserHold.aLAG")
+goto EndLaser
+LaserHold.aLAG:
+JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
+JUPH D 0 A_SpawnItemEX("JupiterFXWarper2",0,0,42,0,0,0,0,1)
+JUPH D 0 A_GiveInventory("JupiterBigLaser_PLAG")
+JUPH D 1 A_GiveInventory("JupiterLaser2_CI")
+JUPH D 0 A_Refire("LaserHold.bLAG")
+goto EndLaser
+LaserHold.bLAG:
+JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
+JUPH D 0 A_SpawnItemEX("JupiterFXWarper3",0,0,42,0,0,0,0,1)
+JUPH D 0 A_GiveInventory("JupiterBigLaser_PLAG")
+JUPH D 1 A_GiveInventory("JupiterLaser3_CI")
+JUPH D 0 A_Refire("LaserHold")
+goto EndLaser
+
 AltFire:
 JUPH A 0 A_JumpIfInventory("JupiterHovering",1,"HoverEnd")
 JUPH A 0 A_JumpIfInventory("Lit3Ammo",110,"AltFire2")
@@ -1108,5 +1130,41 @@ Done:
 TNT1 A 0 A_TakeInventory("Lit3Ammo",50,1)
 stop
 }
+}
+
+actor JupiterBigLaser_PLAG : CustomInventory
+{
+States
+{
+Pickup: 
+TNT1 A 0
+TNT1 A 0 A_FireBullets(0,0,1,0,"JupiBeamDamagePuffer",0,500)
+TNT1 A 0 A_JumpIfInventory("JupiterLaserSndDelay",1,"No")
+TNT1 A 0 A_PlaySound("weapon/jupiterlaser",1,0.5)
+TNT1 A 0 A_GiveInventory("JupiterLaserSndDelay",1)
+stop
+No:
+TNT1 A 0
+stop
+}
+}
+
+ACTOR JupiBeamDamagePuffer
+{
+  Obituary "$OB_JUPITERBEAM"
+  DamageType "Jupiter_Beam"
+  +NOBLOCKMAP 
+  +BLOODLESSIMPACT  
+  +PUFFGETSOWNER
+  +ALWAYSPUFF
+  +PUFFONACTORS
+  -ALLOWPARTICLES
+  States
+  {
+  Spawn: 
+    TNT1 A 0 
+    TNT1 A 5 A_Explode(3,18,0,0,20)
+    Stop
+  }
 }
 
