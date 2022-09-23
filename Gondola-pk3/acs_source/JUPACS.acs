@@ -1,0 +1,7 @@
+#library "JUPACS"
+#include "zcommon.acs"
+
+Script "JupiLags" (void)
+{ 
+ SetResultValue(GetCVar("gd_hjupiter"));
+} 
