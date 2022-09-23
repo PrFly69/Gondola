@@ -122,6 +122,7 @@ Goto Pain+2
 
 Pain.TundraM_Tornado:
 "----" H 0 ThrustThingZ(0,60,0,0)
+"----" H 0 A_JumpIfInventory("PowerTundra",1,"Pain.TundraM_Slow")
 Goto Pain+2
 
 Death.TundraM_Wind:
