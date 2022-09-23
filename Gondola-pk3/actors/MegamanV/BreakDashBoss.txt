@@ -443,10 +443,10 @@ TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*1.318
 stop
 
 P_Take35:
-TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",35)
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",29)//35
 stop
 P_Take50:
-TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",50)
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",41)//50
 stop
 }
 }
