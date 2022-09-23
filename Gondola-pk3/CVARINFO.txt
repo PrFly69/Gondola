@@ -10,3 +10,6 @@ server bool SV_COPYDISPLAY = true;
 server int SV_FLAGHOTPOTATO = 100;
 
 //My brother in christ, sv_respawndelaytime
+
+//Jupiter
+User Bool gd_hjupiter = FALSE;
