@@ -239,7 +239,7 @@ stop
 
 actor GemShot : FastProjectile
 {
-Translation "192:192=196:196","198:198=197:197"
+Translation "192:192=203:203","198:198=74:74"
 PROJECTILE
 Obituary "$OB_GEMINIBUSTER"
 damagetype "DMGNoHitstun"
@@ -259,10 +259,12 @@ SpawnLOOP:
 TNT1 A 1
 GEBS A 1 A_ChangeFlag("THRUSPECIES",0)
 Looper:
-GEBS ABBA 1
+GEBS ABBCCDDA 1
 loop
 Death:
 TNT1 A 0 A_SpawnItemEx("BrightmanSparkleFX",0,0,0,0,0,0,0,1)
+XDeath:
+TNT1 A 0
 stop
 }
 }
@@ -289,7 +291,7 @@ TNT1 A 0 A_ChangeFlag("THRUACTORS",0)
 TNT1 A 1
 GEBS A 1 A_ChangeFlag("THRUSPECIES",0)
 Spawn2:
-GEBS ABBA 1
+GEBS ABBCCDDA 1
 loop
 }
 }
