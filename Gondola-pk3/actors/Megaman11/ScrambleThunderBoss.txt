@@ -649,6 +649,7 @@ actor FuserShoot
 			loop
 			
 		Death:
+			TNT1 A 0 A_StopSoundEx("Weapon")
 			TNT1 A 0 A_JumpIf(z-floorz==0, "FuserGroundHug")
 			TNT1 A 0 A_Stop
 			FSST CDE 3
@@ -731,6 +732,7 @@ gravity 500
 	States
 	{
 		Death:
+			TNT1 A 0 A_StopSoundEx("Weapon")
 			TNT1 A 0 A_Stop
 			FSST CDE 3
 		stop

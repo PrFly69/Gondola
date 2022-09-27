@@ -3129,7 +3129,7 @@ CHANGELOG
 -Thunder Beam now has projectile death sprites
 
 ==Geminiman
--New Gemini Buster sprites by Frostblue
+-New Gemini Buster sprites by Cowsha and Frostblue
 -Added new Gemini Buster firing SFX
 
 ==Napalmman
@@ -3139,7 +3139,7 @@ CHANGELOG
 ==Flameman
 -Mainfire fire rate buff undone
 -Flame Blast speed 28 > 35
---Now has 50% gravity
+--Now has 35% gravity
 -Flame Burst no longer generates ammo for 50 tics after usage
 --Ported Flame Burst spawner indicator sprites from classes-v9fh.pk3
 
@@ -3150,14 +3150,24 @@ CHANGELOG
 -Reload charge rate doubled
 --Reload cooldown only starts draining once user hits the ground
 
+==Burstman
+-Fixed dropped Danger Wrap mines doing 30 damage
+
 ==Tenguman
 -Divine Wind now uses CCBM calculation method instead of CBM (Now factors Z axis)
 --Divine Wind now has FX to indicate damage
 -Fixed Tengu Slam doing less damage than intended
 -Tornado Hold max ammo capacity 300 > 500
 
+==Astroman
+-Movespeed 0.7/0.68 > 0.65/0.63
+-Copy Vision shots now translucent to indicate difference between Astro Bullets and Copy Bullets in team games
+
 ==Saturn
 -New FX indicator for armor
+
+==Fuseman
+-Fixed Scramble Ray sounds lingering after death
 
 ==Blastman
 -Blast Bomb fulldmgradius 96 > 48
