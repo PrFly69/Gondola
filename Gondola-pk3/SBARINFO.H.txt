@@ -891,7 +891,8 @@ IsSelected RaThorWrathBoss{DrawBar"0K_E_VAR","VAREMPTY",Ammo1,horizontal,58,184;
 
 //MMV
 IsSelected SparkChaserBoss{Drawbar"VAMM1_V0","VAREMPTY",ShonenAmmo,horizontal,58,184;
-	InInventory SparkLaserTimer,1{DrawBar"VARMTERR","BAREMPTY",ShonenAmmo,horizontal,58,184;}
+	InInventory SparkLaserTimer,1{DrawBar"VARMTERR","VAREMPTY",ShonenAmmo,horizontal,58,184;
+	DrawBar"2C_S_VAR","VNOBAR",SliceOfEyefeTimer,horizontal,58,184;}
 	DrawBar"VAMM2_V0","VAREMPTY",ShojoAmmo,horizontal,58,176;
 		DrawImage"TERRICON",178,175;
 			InInventory TerraKneeTimer,1{DrawBar"VARFLS1","VNOBAR",TerraKneeTimer,horizontal,58,176;}}
