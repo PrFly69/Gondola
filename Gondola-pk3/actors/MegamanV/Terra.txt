@@ -1,4 +1,4 @@
-actor Terra : ClassBase //75
+actor Terra : ClassBase //90
 {
 Player.ScoreIcon "C_0VA0X"
 player.displayname "terra"
@@ -6,11 +6,12 @@ player.soundclass "terrac"
 player.startitem "SparkChaserBoss"
 player.startitem "ShonenAmmo", 500
 player.startitem "ShojoAmmo", 56
+player.startitem "TerraSparkEyeItem"
 
 player.maxhealth 75
 health 75
-player.forwardmove 1.0, 1.0
-player.sidemove 0.98, 0.98
+player.forwardmove 0.9, 0.9
+player.sidemove 0.88, 0.88
 player.jumpz 12
 //FloatSpeed 2
 
@@ -29,10 +30,11 @@ States
 Spawn:
 TRRA A 0 A_JumpIf(z-floorz>0,"TerraJumping")
 TRRA B 1 A_JumpIf(z-floorz>0,"TerraJumping")
-TRRA A 1 A_JumpIf(z-floorz>0,"TerraJumping")//A_ChangeFlag(FLOATBOB, false)
+TRRA A 1 A_JumpIf(z-floorz>0,"TerraJumping")
+TRRA A 0 //A_ChangeFlag(FLOATBOB, false)
 Goto Spawn+2
 See:
-//TRRA B 0 A_ChangeFlag(FLOATBOB, true)
+TRRA B 0 //A_ChangeFlag(FLOATBOB, true)
 TRRA BBBB 1 A_JumpIf(z-floorz>0,"TerraJumping")
 TRRA CCCC 1 A_JumpIf(z-floorz>0,"TerraJumping")
 TRRA DDDD 1 A_JumpIf(z-floorz>0,"TerraJumping")
@@ -58,10 +60,13 @@ Goto Missile
 
 
 ClassPain:
-TRRA H 0
+TRRA H 0 //A_ChangeFlag(FLOATBOB, false)
 goto PainContinue
-ClassDeath:
-TRRA H 0
+DeathFix:
+TRRA H 0 //A_ChangeFlag(FLOATBOB, false)
 goto DeathContinue
+ClassDeath:
+TRRA H 1 //A_ChangeFlag(FLOATBOB, false)
+goto MegaDeathEnd
 }
 }
