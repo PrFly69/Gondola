@@ -83,11 +83,10 @@ OB_FLAMESWORDSHOT = "%k's Flame Beam was too fair for %o.";
 //Tengu
 OB_DIVINEWIND = "%o was severed by %k's Divine Wind.";
 //Terra
-TAGC_VA = "Terra Boss";
 OB_TERRAMELEE = "%o was bashed in the gut by %k's Warping Knee Strike.";
-OB_SPARKCHASERBOSS = "%o was enucleated by %k's Spark Laser.";
-OB_SPARKCHASERBOSSX = "%o lost an eye as %g lost %p life to %k's Spark Laser.";
-OB_SPARKCHASERBOSS2 = "%o was pincushioned by %k's Spark Chaser.";
+OB_SPARKCHASERBOSS = "%o was enucleated by %k's Spark Chaser.";
+OB_SPARKCHASERBOSSX = "%o sampled merely a fraction of the power that %k's Spark Chaser had emassed.";
+OB_SPARKCHASERBOSS2 = "%o's feeble existence failed to amuse %k's Spark Suppressor.";
 //Knight
 OB_KNIGHTRUSHX = "%o was banged into Bangers and Mash by %k's Knight Rush.";
 OB_KNIGHTCRUSHX = "%o was decimated by %k's Super Knight Crush.";
