@@ -45,12 +45,16 @@ Missile:
 YD_B FG 5
 goto Spawn+2
 
+CustomState1:
+YD_B AA 5
+goto Spawn+2
+
 CustomState2:
 YD_H MNOP 3 A_JumpIfInventory("BumoEnd",1,"Spawn")
 loop
 
 ClassPain:
-YD_B H 0
+YD_B H 0 A_GiveInventory("YDEyeHurtFlag")
 goto PainContinue
 ClassDeath:
 YD_B H 0
