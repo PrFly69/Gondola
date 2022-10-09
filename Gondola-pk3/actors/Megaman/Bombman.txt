@@ -69,5 +69,5 @@ goto PainContinue
 ClassDeath:
 BOMM H 0
 goto DeathContinue
-} 
+}
 }
