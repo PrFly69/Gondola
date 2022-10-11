@@ -65,6 +65,22 @@ GYAR A 0 A_JumpIfInventory("GyroTrigger2",1,2)
 GYAR A 0 A_GiveInventory("GyroFly",1)
 GYAR A 0 A_Refire("Fire")
 Goto Ready2
+HardThrow:
+BOMT C 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
+BOMT C 0 A_GiveInventory("BombmanMain_CI",1)
+BOMT C 0 A_GiveInventory("VivifyDelay8",1)
+BOMT C 0 A_TakeInventory("SuperArmTemp",1)
+BOMT C 0 A_Refire(1)
+BOMT C 2 Offset(-1,32)
+BOMT C 2 Offset(-70,72)
+BOMT C 2 Offset(-121,112)
+BOMT D 2 Offset(1,32)
+BOMT D 2 Offset(-21,56)
+BOMT D 2 Offset(-33,84)
+TNT1 AA 2 A_TakeInventory("GigaAmmo",FUSE_LENGTH)
+BOMT A 2 Offset(26,112)
+BOMT A 2 Offset(13,78)
+goto Ready1
 
 Altfire:
 GYAR A 0 A_JumpIfInventory("GyroBoomerangAmmo",2,"AltFireX")

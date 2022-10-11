@@ -93,6 +93,7 @@ TUND E 1 Offset(-5, 46)A_GiveInventory("FeelFreezeAmmo",1)//41
 TUND E 1 Offset(-9, 49)//41 
 TUND E 1 Offset(-13, 51)A_GiveInventory("FeelFreezeAmmo",1)//45
 TUND E 0 A_PlaySoundEx("weapon/ColdField","Weapon")
+TUND E 0 A_GiveInventory("TundraLutzFX_P",1)
 TUND E 0 A_JumpIf(z-floorz==0,"LeapGround")
 TUND E 0 A_ChangeVelocity(50*cos(pitch), 0, 25*sin(-pitch), CVF_RELATIVE|CVF_REPLACE)
 goto LiftOff
@@ -163,6 +164,7 @@ TUND A 1 A_JumpIfInventory("TundraSpinningFlag",1,"NoAmmo")
 TUND A 0 A_JumpIfInventory("FeelFreezeAmmo",60,"Reaload")
 goto NoAmmo
 Reaload:
+TUND E 0 A_GiveInventory("TundraLutzFX_P",1)
 TNT1 A 0 A_GiveInventory("TundraIsBouncingFlag",1)
 TNT1 A 0 A_GiveInventory("TundraSpinningFlag",1)
 TNT1 F 0 A_TakeInventory("TundraHasBouncedFlag",1)
@@ -226,6 +228,7 @@ TNT1 A 0 A_SpawnItemEx("MrFreezemanWalkFX",random(12,32),0,12+random(-12,12),0,0
 goto Flash
 Flash.Spinning:
 TNT1 A 1 //
+TNT1 A 0 A_GiveInventory("TundraFXKeeper",1)
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
 TNT1 A 0 A_JumpIfInventory("GorgeousPowerStop",1,"PauseFlash")
 TNT1 A 0 A_JumpIfInventory("TundraIsBouncingFlag",1,"Flash.Spinning")
@@ -256,6 +259,11 @@ actor FeelFreezeAmmo : Ammo
 inventory.amount 1
 inventory.maxamount 120
 +INVENTORY.IGNORESKILL
+}
+
+actor TundraFXKeeper : PowerUp
+{
+powerup.duration 5
 }
 
 actor GorgeousPowerStop : OnceC {}
@@ -810,7 +818,7 @@ States
 {
 Pickup:
 TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("TundraSlowGFX", 0, 0, 32, 0, 0, 0, 0,1)
+TNT1 A 0 A_SpawnItemEx("TundraSlowGFX", 0, 0, 28, 0, 0, 0, 0,1)
 stop
 Stopper:
 TNT1 A 0
@@ -843,6 +851,85 @@ TNST G 1 A_Warp(AAPTR_TARGET,0,0,28,0,0)
 TNT1 A 0 A_JumpIfInTargetInventory("PowerTundra",1,"Spawn")
 Death:
 TNST EFG 1 A_Fadeout
+loop
+}
+}
+
+actor TundraLutzFX_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 5 A_JumpIf(CallACS("IsTargetClient")==1,"Stopper")
+TNT1 A 0 A_JumpIfInventory("TundraIsBouncingFlag",1,"Stopper2")
+TNT1 A 0 A_SpawnItemEx("TundraLutzFX", 0, 0, 0, 0, 0, 0, 0,1)
+stop
+Stopper:
+TNT1 A 0
+stop
+Stopper2:
+TNT1 A 0 A_SpawnItemEx("TundraLutzFX2", 0, 0, 0, 0, 0, 0, 0,1)
+stop
+}
+}
+
+actor TundraLutzFX
+{
++NOGRAVITY
++THRUACTORS
++CLIENTSIDEONLY
++NOINTERACTION
++MISSILE
+PROJECTILE
+Damage(0)
+Scale 2
+renderstyle translucent
+alpha 0.75
+Height 0
+Radius 0
+States
+{
+Spawn:
+TNST H 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"Death")
+TNST I 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"Death")
+TNST J 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+//TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TRACER_OOC)==0,"Death")
+TNST K 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+TNT1 A 0 A_JumpIfInTargetInventory("TundraIsBouncingFlag",1,"Spawn")
+Death:
+TNST H 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+TNT1 A 0 A_FadeOut
+TNST I 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+TNT1 A 0 A_FadeOut
+TNST J 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+TNT1 A 0 A_FadeOut
+TNST K 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+TNT1 A 0 A_FadeOut
+loop
+}
+}
+
+actor TundraLutzFX2 : TundraLutzFX
+{
+alpha 1
+States
+{
+Spawn:
+TNST H 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+TNT1 A 0 A_FadeOut(.2)
+MSP0 L 0 A_SetScale(scalex+0.25,scaley+0.25)
+TNST I 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+TNT1 A 0 A_FadeOut(.2)
+MSP0 L 0 A_SetScale(scalex+0.25,scaley+0.25)
+TNST J 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+TNT1 A 0 A_FadeOut(.2)
+MSP0 L 0 A_SetScale(scalex+0.25,scaley+0.25)
+TNST K 1 A_Warp(AAPTR_TARGET,0,0,0,0,0)
+TNT1 A 0 A_FadeOut(.2)
+MSP0 L 0 A_SetScale(scalex+0.25,scaley+0.25)
 loop
 }
 }
