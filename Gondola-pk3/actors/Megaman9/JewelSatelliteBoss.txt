@@ -66,9 +66,10 @@ Loop
 Fire:
 JEWH S 1 A_JumpIfInventory("ShieldCheck",1,"ShieldFire")
 JEWH S 0 A_PlaySound("weapon/jewelsatellite",1,0.90)
-JEWH S 0 A_ChangeFlag(DONTRIP,true)
+//JEWH S 0 A_ChangeFlag(DONTRIP,true)
 //JEWH S 0 A_ChangeFlag(CANTSEEK,true)
-JEWE S 0 A_ChangeFlag(REFLECTIVE, true)
+JEWH S 0 A_GiveInventory("JewelmanDamageRes",1)
+JEWH S 0 A_GiveInventory("GuardUpFlag",1)
 JEWH S 0 ACS_NamedExecuteAlways("core_cantseekplayer",0,0,true)
 JEWH S 0 A_GiveInventory("JewelmanItemFlag",1)
 JEWH S 1 A_GiveInventory("ShieldCheck",1)
@@ -87,9 +88,11 @@ JEWH Q 0 A_Refire(1)
 JEWH Q 3
 JEWH Q 3 OffSet(-31,6)
 JEWH Q 3 OffSet(-51,-15)
-JEWH R 0 A_ChangeFlag(DONTRIP,false)
+//JEWH R 0 A_ChangeFlag(DONTRIP,false)
 //JEWH R 0 A_ChangeFlag(CANTSEEK,false)
-JEWE R 0 A_ChangeFlag(REFLECTIVE, false)
+//JEWE R 0 A_ChangeFlag(REFLECTIVE, false)
+JEWH S 0 A_TakeInventory("JewelmanDamageRes",999)
+JEWH S 0 A_TakeInventory("GuardUpFlag",999)
 JEWH R 0 ACS_NamedExecuteAlways("core_cantseekplayer",0,0,false)
 JEWH R 0 A_TakeInventory("ShieldCheck",999)
 JEWH R 0 A_PlaySound("weapon/jewelshot",1,0.66)
@@ -251,6 +254,11 @@ actor JewelmanItemFlag : OnceC {}
 actor JewelmanItemDelay : Powerup
 {
 Powerup.Duration 3
+}
+
+actor JewelmanDamageRes : BasePowerPro
+{
+damagefactor "Normal", 0.80
 }
 
 actor JewelResetItem : BasicClassItem

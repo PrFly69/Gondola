@@ -11,8 +11,8 @@ player.startitem "BladeDropItem"
 player.maxhealth 85
 health 85
 player.jumpz 13
-player.forwardmove 0.9, 0.9
-player.sidemove 0.9, 0.9
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.weaponslot 1, "TripleBladeBoss"
 player.weaponslot 2, "TripleBladeBoss2"

@@ -7,8 +7,8 @@ player.soundclass "tornadomanc"
 player.maxhealth 85
 health 85
 player.jumpz 12
-player.forwardmove 0.855, 0.855
-player.sidemove 0.855, 0.855
+player.forwardmove 0.76, 0.76
+player.sidemove 0.74, 0.74
 
 player.startitem "TornadoBlowBoss"
 player.startitem "GoneWithTheWindAmmo", 42

@@ -25,7 +25,7 @@ player.maxhealth 85
 health 85
 player.jumpz 10
 player.forwardmove 0.8, 0.8
-player.sidemove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
     States
     {

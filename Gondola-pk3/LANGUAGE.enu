@@ -146,8 +146,9 @@ M_GK = "K";
 //Blast
 TAGC_11C = "Blastman Boss";
 OB_CHAINBLASTBOSS = "%o was tagged by %k's Chain Blast.";
-OB_BLASTBOMB = "%o was blown away by %k's Blast Bomb.";
-OB_BLASTBOMBX = "%o was turned into a crater by %k's Power Blast Bomb.";
+OB_CHAINBLASTX = "%o was turned into a crater by %k's Power Chain Blast.";
+OB_BLASTBOMB = "%o was assaulted by %k's Blast Bomb.";
+OB_BLASTBOMBX = "%o was peppered by %k's Power Blast Bomb.";
 OB_CHAINBLASTBOOM = "%o was tagged and bagged by %k's Chain Blast.";
 OB_CHAINBLASTPUFF = "%o wasn't warned about %k's pretty short fuse.";
 

@@ -10,8 +10,8 @@ player.soundclass "chillmanc"
 player.maxhealth 90
 health 90
 player.jumpz 12
-player.forwardmove 0.9, 0.9
-player.sidemove 0.9, 0.9
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.startitem "ChillSpikeBossC", 1
 player.startitem "ChillSprayBossC", 1

@@ -7,8 +7,8 @@ player.soundclass "hornetmanc"
 player.maxhealth 100
 health 100
 player.jumpz 13
-player.forwardmove 0.9, 0.9
-player.sidemove 0.9, 0.9
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.startitem "HornetChaserBoss"
 player.startitem "NotTheHornetsAmmo", 21

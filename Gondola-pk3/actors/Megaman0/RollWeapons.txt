@@ -383,7 +383,7 @@ ReactionTime 1
 Damage (0)
 Radius 20
 Height 16
-speed 30.375
+speed 27
 Species "RollStuff"
 Scale 2.0
 States
@@ -417,7 +417,7 @@ actor BossRollSwingP : BossRollSwing{translation "202:202=229:229", "199:199=232
 actor BossRollSwing2 : BossRollSwing
 {
 damagetype "Roll_Swing"
-Speed 33.75
+Speed 30
 States
 {
 Spawn:
@@ -432,11 +432,11 @@ actor BossRollSwing2R : BossRollSwing2{translation "202:202=171:171", "199:199=4
 actor BossRollSwing2O : BossRollSwing2{translation "202:202=104:104", "199:199=128:128"}
 actor BossRollSwing2P : BossRollSwing2{translation "202:202=229:229", "199:199=232:232"}
 
-actor BossRollSwingX : BossRollSwing   {Speed 42.75}
-actor BossRollSwingXB : BossRollSwingB {Speed 42.75}
-actor BossRollSwingXR : BossRollSwingR {Speed 42.75}
-actor BossRollSwingXO : BossRollSwingO {Speed 42.75}
-actor BossRollSwingXP : BossRollSwingP {Speed 42.75}
+actor BossRollSwingX : BossRollSwing   {Speed 38}
+actor BossRollSwingXB : BossRollSwingB {Speed 38}
+actor BossRollSwingXR : BossRollSwingR {Speed 38}
+actor BossRollSwingXO : BossRollSwingO {Speed 38}
+actor BossRollSwingXP : BossRollSwingP {Speed 38}
 
 actor BossRollSwingDeath : BasicExplosion
 {
@@ -510,7 +510,7 @@ MeleeRange 8
 Damage (15)
 Height 10
 Radius 9
-speed 45
+speed 32
 Scale 2.0
 States
 {
@@ -643,7 +643,7 @@ PROJECTILE
 +DONTREFLECT
 radius 2
 height 2
-Speed 56.25
+Speed 50
 scale 2.0
 RenderStyle "Translucent"
 Alpha 0.25
@@ -721,7 +721,7 @@ Alpha 0.25
 ReactionTime 1
 radius 2
 height 2
-Speed 56.25
+Speed 50
 scale 2.0
 States
 {

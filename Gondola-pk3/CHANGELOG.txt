@@ -3117,6 +3117,8 @@ CHANGELOG
 =====2.6H
 ==General
 -Fixed item icons not appearing on HBAR
+-Fixed every MM9 and MM10 class having abnormally high base speeds (leftover from 2.6 Beta concept)
+-Light Team dark blue color 241 > [30,54,172]
 
 ==Copyweps
 -Fixed copynerf not working due to github forcibly renaming the file
@@ -3125,8 +3127,20 @@ CHANGELOG
 ==Protoman
 -Fixed charging sprites having bugged frames
 
+==Roll
+-Water Bucket speed change reverted, speed reduced 40 > 32
+
 ==Elecman
 -Thunder Beam now has projectile death sprites
+
+==Bombman(?)
+-Hyper Bomb now turned into CCBM Cluster Bomb
+--Cluster Bomb explosion damage 15 > 12
+--Cluster spread now consistent
+-Mainfire with Hyper Bomb active throws CBM Hyper Bomb M1
+
+==Yellow Devil
+-The Eye
 
 ==Geminiman
 -New Gemini Buster sprites by Cowsha and Frostblue
@@ -3153,6 +3167,13 @@ CHANGELOG
 ==Burstman
 -Fixed dropped Danger Wrap mines doing 30 damage
 
+==Shademan(?)
+-Uncharged Noise Crush damage 15 > 5 ripper
+--Uncharged Noise Crush now has infinite range before first bounce, reactiontime cut in half
+-Charged Noise Crush damage 40 > 30
+-Speed boost while charging now temporary, wears off after 3 seconds of having charge
+-Shade Swoop armor save 40% > 50%
+
 ==Tenguman
 -Divine Wind now uses CCBM calculation method instead of CBM (Now factors Z axis)
 --Divine Wind now has FX to indicate damage
@@ -3160,8 +3181,31 @@ CHANGELOG
 -Tornado Hold max ammo capacity 300 > 500
 
 ==Astroman
--Movespeed 0.7/0.68 > 0.65/0.63
+-Movespeed 0.7/0.68 > 0.6/0.58
 -Copy Vision shots now translucent to indicate difference between Astro Bullets and Copy Bullets in team games
+
+==Searchman
+-Homing Sniper now always consumes 1/6th of the bar on release
+--Time required to lock on reduced by 20%
+--Ammo regen reduced by 20%
+--NoAmmo Homing Snipers now properly no longer have lockon
+
+==Jewelman
+-Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
+
+==Terra
+-Reworked by Pr. Gibus
+-Spark Chaser speed 18 > 8
+--Direct damage 20 > 18
+--Released damage 15 every 35 tics > 6 every 6 tics
+--Released Spark Chaser speed no longer scales with charge, is always 60 speed
+-NEW ITEM: Spark Chaser Sight
+--Allows user to temporarily use Spark Chaser as a camera to scout enemies and cornercheck
+--Drains from tertiary ammo resource while in camera mode
+--Can not use camera when tertiary ammo is fully drained
+-Spark Suppressor now stops after a while and goes towards crosshair on release
+--Base damage 5 > 2
+--Does 1 damage after redirection
 
 ==Saturn
 -New FX indicator for armor

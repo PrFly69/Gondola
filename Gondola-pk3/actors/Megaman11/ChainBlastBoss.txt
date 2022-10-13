@@ -831,6 +831,7 @@ actor BlastBombP : BlastBomb{translation "192:192=229:229", "195:195=233:233", "
 
 actor BlasterBomb : BlastBomb
 {
+Obituary "$OB_BLASTBOMBX"
 speed 61
 +NOGRAVITY
 States 
@@ -926,7 +927,7 @@ translation "56:56=84:84", "58:58=42:42" ,"192:192=94:94", "198:198=3:3", "248:2
 +NOGRAVITY
 //+HITTRACER
 damagetype "BlastBombBig"
-Obituary "$OB_BLASTBOMBX"
+Obituary "$OB_CHAINBLASTX"
 damage (5)
 radius 15
 height 15
