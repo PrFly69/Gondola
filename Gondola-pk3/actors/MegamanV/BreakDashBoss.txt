@@ -419,7 +419,7 @@ TNT1 A 0 A_JumpIf(CallACS("cbm_CheckForRealMovementInput")==1,"P_SpeedCheck")
 goto P_Take50
 P_SpeedCheck:
 //TNT1 A 0 A_JumpIf( (MOMX*MOMX+MOMY*MOMY)*0.006 >= 1,"P_Give")
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=11,"P_Give")
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=8,"P_Give")
 goto P_Take35
 nothings:
 TNT1 A 0
@@ -443,10 +443,10 @@ TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*1.318
 stop
 
 P_Take35:
-TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",29)//35
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",25)//35
 stop
 P_Take50:
-TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",41)//50
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",35)//50
 stop
 }
 }
