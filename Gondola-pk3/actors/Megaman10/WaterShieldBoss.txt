@@ -404,7 +404,7 @@ var int user_power;
 Damage (3)
 radius 16
 height 16
-Speed 68
+Speed 60
 scale 2.5
 States
 {

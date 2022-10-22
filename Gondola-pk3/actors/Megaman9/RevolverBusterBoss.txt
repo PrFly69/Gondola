@@ -460,7 +460,7 @@ stop
 	Damage (16)
 	Radius 6
 	Height 7
-	Speed 101
+	Speed 90
 	Scale 2.5
 	States
 	{

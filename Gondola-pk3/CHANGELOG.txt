@@ -3146,14 +3146,17 @@ CHANGELOG
 -New Gemini Buster sprites by Cowsha and Frostblue
 -Added new Gemini Buster firing SFX
 
+==Diveman
+-Dive Tackle upwards thrust reduced 24 > 10 (42 > 20 with rage)
+
 ==Napalmman
 -Napalm Bomb endlag no longer correlates to charge, now all charges share lvl2 endlag
 --Napalm Bomb bouncefactor 1.0 > 0.33/0.67/1.0
 
 ==Flameman
 -Mainfire fire rate buff undone
--Flame Blast speed 28 > 35
---Now has 35% gravity
+-Flame Blast speed 28 > 32
+--Now gains gravity after 35 tics
 -Flame Burst no longer generates ammo for 50 tics after usage
 --Ported Flame Burst spawner indicator sprites from classes-v9fh.pk3
 
@@ -3185,13 +3188,18 @@ CHANGELOG
 -Copy Vision shots now translucent to indicate difference between Astro Bullets and Copy Bullets in team games
 
 ==Searchman
--Homing Sniper now always consumes 1/6th of the bar on release
---Time required to lock on reduced by 20%
---Ammo regen reduced by 20%
+-Homing Sniper ammo regen 50 per tic > 10 per tic
 --NoAmmo Homing Snipers now properly no longer have lockon
 
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
+
+==Fakeman
+-Fixed Fake Revolver shots unintentionally having 101 speed as opposed to 90
+
+==Nitroman
+-Empowered Wheel Cutter damage 14 > 12
+-Superbike now has mild drifting applied, more lenient than Uranus' Cattle Charge drifting
 
 ==Terra
 -Reworked by Pr. Gibus
@@ -3210,6 +3218,9 @@ CHANGELOG
 ==Saturn
 -New FX indicator for armor
 
+==Sunstar
+-Speed reduced 0.76/0.74 > 0.72/0.7
+
 ==Fuseman
 -Fixed Scramble Ray sounds lingering after death
 
@@ -3224,6 +3235,7 @@ CHANGELOG
 --Can now be cancelled into Triple Lutz
 -Glacier Spike speed reduced 75 > 50
 -Frostbite debuff strength 50% > 35%
+-Triple Lutz now has small tornado sprite around user when spinning, provided by Holic Star
 -Tundra Storm now resets frostbite debuff timer
 
 ==Torchman

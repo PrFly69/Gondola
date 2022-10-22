@@ -527,6 +527,11 @@ stop
 }
 }
 
+actor Bombman_HyperBTossB : Bombman_HyperBToss{translation "192:192=205:205", "199:199=74:74", "202:202=205:205"}
+actor Bombman_HyperBTossR : Bombman_HyperBToss{translation "192:192=171:171", "199:199=41:41", "202:202=171:171"}
+actor Bombman_HyperBTossO : Bombman_HyperBToss{translation "192:192=104:104", "199:199=128:128", "202:202=104:104"}
+actor Bombman_HyperBTossP : Bombman_HyperBToss{translation "192:192=229:229", "199:199=232:232", "202:202=229:229"}
+
 actor BombmanFuseExplosionFX_H0 : BasicClientSide
 {
 renderstyle none
