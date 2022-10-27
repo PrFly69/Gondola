@@ -714,12 +714,12 @@ Obituary "$OB_NOISECRUSH"
 +ALLOWBOUNCEONACTORS
 +CANBOUNCEWATER
 +USEBOUNCESTATE
-+RIPPER
+//+RIPPER
 BounceFactor 1.0
 WallBounceFactor 1.0
 bouncecount 2
 reactiontime 17
-damage (5)
+damage (15)
 Radius 6
 Height 6
 speed 25
@@ -787,7 +787,7 @@ PROJECTILE
 damagetype "ShadeM_Shot2"
 Obituary "$OB_NOISECRUSH"
 +FORCEXYBILLBOARD
-damage (30)
+damage (32)
 Radius 22
 Height 16
 speed 40

@@ -91,11 +91,11 @@ NEPH A 1 Offset(6,47)A_TakeInventory("CutterFlag",99)
 NEPH A 1 Offset(9,56)
 NEPH A 1 Offset(12,66)
 NEPH A 0 A_GiveInventory("NeptuneAltFlagOn_P",1)
-NEPH A 0 A_JumpIf(z-floorz==0,"AltBounce2Buffer")
-//NEPH A 0 A_Refire("AltBounceL")
-//NEPH A 1 Offset(12,66)
-//NEPH A 1 Offset(12,66)
-goto AltBounceL//AltBigJump
+//NEPH A 0 A_JumpIf(z-floorz==0,"AltBounce2Buffer")
+NEPH A 0 A_Refire("AltBounceL")
+NEPH A 1 Offset(12,66)
+NEPH A 1 Offset(12,66)
+goto AltBigJump
 
 AltBounce:
 NEPH A 0 A_GiveInventory("NeptuneSmallBounce_P",1)

@@ -41,7 +41,7 @@ CHANGELOG
 
 =====V1.2
 ==Needleman
--Speed 0.73/0.75 > 0.68/0.7
+-Speed 0.75/0.73 > 0.7/0.68
 
 ==Snakeman
 -SnakeCommandAmmo is full on spawn
@@ -3217,6 +3217,9 @@ CHANGELOG
 
 ==Saturn
 -New FX indicator for armor
+
+==Neptune
+-Tap altfire Swamp Stomp option returned
 
 ==Sunstar
 -Speed reduced 0.76/0.74 > 0.72/0.7
