@@ -4,10 +4,10 @@ Player.ScoreIcon "C_0KD0X"
 player.displayname "Quint"
 player.soundclass "quintc"
 
-player.maxhealth 100
-health 100
+player.maxhealth 90
+health 90
 player.jumpz 10
-player.forwardmove 0.8, 0.8//can't believe i'm giving this goober MORE movement lol
+player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
 
 player.startitem "QuintBusterBoss"
