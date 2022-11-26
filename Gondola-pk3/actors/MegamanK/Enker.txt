@@ -12,7 +12,7 @@
 	player.maxhealth 125
 	health 125
 	player.jumpz 10
-	player.forwardmove 0.94, 0.94 //how is this class faster then blastman what the fuck
+	player.forwardmove 0.94, 0.94 //how is this class faster then blastman what the fuck//hes sprinting
 	player.sidemove 0.92, 0.92
 	Player.StartItem "MirrorBusterBoss"
 	Player.StartItem "EnkerSwapItem1"

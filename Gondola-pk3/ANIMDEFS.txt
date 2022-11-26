@@ -204,3 +204,29 @@ pic SJOEVAZ tics 2.5
 pic SJOEVAY tics 2.5
 pic SJOEVAX tics 2.5
 pic SJOEVAW tics 2.5
+
+//Hisssssssssssssss
+texture SNAKBARX
+pic SNAKBAR1 tics 4
+pic SNAKBAR2 tics 4
+pic SNAKBAR3 tics 4
+pic SNAKBAR2 tics 4
+
+texture SNAKVARX
+pic SNAKVAR1 tics 4
+pic SNAKVAR2 tics 4
+pic SNAKVAR3 tics 4
+pic SNAKVAR2 tics 4
+
+texture SNACBARX
+pic SNACBAR1 tics 4
+pic SNACBAR2 tics 4
+pic SNACBAR3 tics 4
+pic SNACBAR2 tics 4
+
+
+texture SNACVARX
+pic SNACVAR1 tics 4
+pic SNACVAR2 tics 4
+pic SNACVAR3 tics 4
+pic SNACVAR2 tics 4

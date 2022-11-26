@@ -833,7 +833,7 @@ PROJECTILE
 +HEXENBOUNCE
 Damagetype "DMGNoHitstun"
 Speed 60
-Damage (2)
+Damage (4)
 radius 8
 height 8
 scale 2.5
@@ -882,7 +882,7 @@ actor TerraClassSparkChaserAltP : TerraClassSparkChaserAlt{translation "198:198=
 actor TerraClassSparkChaserAlt2 : TerraClassSparkChaserAlt
 {
 -HEXENBOUNCE
-damage (1)
+damage (2)
 States
 {
 Spawn:

@@ -447,7 +447,7 @@ IsSelected QuickBoomerangBoss{Drawbar"VARAMM11","VAREMPTY",Ammo1,horizontal,58,1
 IsSelected CrashBombBoss{Drawbar"VARAMM12","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected TimeStopperBoss{Drawbar"VARAMMO7","VAREMPTY",Ammo1,horizontal,58,176;
 	DrawBar"VARAMMO1","VAREMPTY",Ammo2,horizontal,58,184;
-	//DrawImage"FLSHICON",178,175;
+	DrawImage"FLSHICON",178,175;
 	}
 IsSelected AtomicDashBoss,AtomicFireBoss{Drawbar"VARAMM13","VEATEMPT",HeatmanDashFlag,horizontal,58,184;
 						  DrawImage"HETRICON",178,175;
@@ -479,7 +479,8 @@ IsSelected GeminiLaserBoss{Drawbar"VARAMM15","VAREMPTY",Ammo1,horizontal,58,184;
 IsSelected HardKnuckleBoss{Drawbar"VARAMM16","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected TopSpinBoss{InInventory Top_Charge,78{Drawbar"03_5_VAR","VAREMPTY",Top_Charge,horizontal,58,184;}
 else{Drawbar"VARAMM17","VAREMPTY",Top_Charge,horizontal,58,184;}}
-IsSelected SearchSnakeBoss{Drawbar"VARAMMO4","VAREMPTY",Ammo1,horizontal,58,184;
+IsSelected SearchSnakeBoss{Drawbar"SNAKVARX","VAREMPTY",Ammo1,horizontal,58,184;
+	InInventory SearchSnakeCommand,1{Drawbar"SNACVARX","VAREMPTY",Ammo1,horizontal,58,184;}
 	DrawBar"VARAMMO1","VAREMPTY",Ammo2,horizontal,58,176;
 	InInventory SnakeClimbing,1{DrawImage"SNACRAWA",282,8;}}
 IsSelected SparkShockBoss{Drawbar"VARAMM12","VAREMPTY",MightyGodAmmo,horizontal,58,184;

@@ -581,3 +581,15 @@ sprite BZTRC0,128,92{Offset -187,-102 Patch BUSTD0,0,0{Translation"192:192=92:92
 
 texture BAMMO11H,8,56{patch BARENERG,0,0{Translation"192:192=92:92","198:198=177:177"}}
 texture VAMMO11H,56,8{patch BAMMO11H,0,0{rotate 90}}//Blazing Torch
+
+texture SNAKBARX,8,56{patch TNT1A0,0,0}
+texture SNAKVARX,56,8{patch TNT1A0,0,0}
+texture SNAKVAR1,56,8{patch SNAKBAR1,0,0{rotate 90}}
+texture SNAKVAR2,56,8{patch SNAKBAR2,0,0{rotate 90}}
+texture SNAKVAR3,56,8{patch SNAKBAR3,0,0{rotate 90}}
+
+texture SNACBARX,8,56{patch TNT1A0,0,0}
+texture SNACVARX,56,8{patch TNT1A0,0,0}
+texture SNACVAR1,56,8{patch SNACBAR1,0,0{rotate 90}}
+texture SNACVAR2,56,8{patch SNACBAR2,0,0{rotate 90}}
+texture SNACVAR3,56,8{patch SNACBAR3,0,0{rotate 90}}

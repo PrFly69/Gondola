@@ -188,7 +188,7 @@ States
 {
 Pickup:
 TNT1 A 0
-TNT1 A 5 A_JumpIf(CallACS("IsTargetClient")==1,"Death")
+//TNT1 A 5 A_JumpIf(CallACS("IsTargetClient")==1,"Death")
 goto Spawn2
 Spawn2:
 TNT1 A 0 A_SpawnItemEx("TheEyeWarper",24,0,64,0,0,0,0,1)

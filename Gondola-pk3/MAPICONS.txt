@@ -28,7 +28,7 @@ actor MegamanC_MapMarker_1 : MegamanC_MapMarker_D {translation "192:192=171:171"
 actor MegamanC_MapMarker_2 : MegamanC_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
 actor MegamanC_MapMarker_3 : MegamanC_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
-actor ProtomanHero_MapMarker_D : Maestro_MapMarker_D
+actor Protoman_MapMarker_D : Maestro_MapMarker_D
 {
 translation "192:192=87:87", "198:198=42:42"
 States
@@ -38,12 +38,12 @@ _MM1 D 2
 stop
 }
 }
-actor ProtomanHero_MapMarker_0 : ProtomanHero_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
-actor ProtomanHero_MapMarker_1 : ProtomanHero_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
-actor ProtomanHero_MapMarker_2 : ProtomanHero_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
-actor ProtomanHero_MapMarker_3 : ProtomanHero_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+actor Protoman_MapMarker_0 : Protoman_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Protoman_MapMarker_1 : Protoman_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Protoman_MapMarker_2 : Protoman_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Protoman_MapMarker_3 : Protoman_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
-actor BassHero_MapMarker_D : Maestro_MapMarker_D
+actor Bass_MapMarker_D : Maestro_MapMarker_D
 {
 translation "192:192=217:217", "198:198=95:95"
 States
@@ -53,10 +53,10 @@ _MM1 E 2
 stop
 }
 }
-actor BassHero_MapMarker_0 : BassHero_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
-actor BassHero_MapMarker_1 : BassHero_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
-actor BassHero_MapMarker_2 : BassHero_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
-actor BassHero_MapMarker_3 : BassHero_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+actor Bass_MapMarker_0 : Bass_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Bass_MapMarker_1 : Bass_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Bass_MapMarker_2 : Bass_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Bass_MapMarker_3 : Bass_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
 actor RollClass_MapMarker_D : Maestro_MapMarker_D
 {
@@ -88,7 +88,7 @@ actor LightRyu_MapMarker_1 : LightRyu_MapMarker_D {translation "192:192=171:171"
 actor LightRyu_MapMarker_2 : LightRyu_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
 actor LightRyu_MapMarker_3 : LightRyu_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
-actor DuoHero_MapMarker_D : Maestro_MapMarker_D
+actor Duo_MapMarker_D : Maestro_MapMarker_D
 {
 translation "192:192=220:220", "198:198=195:195"
 States
@@ -98,10 +98,10 @@ _MM1 H 2
 stop
 }
 }
-actor DuoHero_MapMarker_0 : DuoHero_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
-actor DuoHero_MapMarker_1 : DuoHero_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
-actor DuoHero_MapMarker_2 : DuoHero_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
-actor DuoHero_MapMarker_3 : DuoHero_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+actor Duo_MapMarker_0 : Duo_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor Duo_MapMarker_1 : Duo_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor Duo_MapMarker_2 : Duo_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor Duo_MapMarker_3 : Duo_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
 actor DrWily_MapMarker_D : Maestro_MapMarker_D
 {

@@ -79,6 +79,7 @@ weapon/bebeskids BEBE
 $volume weapon/TopTwist 0.7
 
 //Snake
+weapon/snakeshot SNAKSHOT
 $volume weapon/Snakecommand 0.8
 
 //Spark

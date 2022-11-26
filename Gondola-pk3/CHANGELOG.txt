@@ -111,7 +111,7 @@ CHANGELOG
 
 ==Saturn
 -HP 115 > 125
--New firing sprites by Pegg, NightFly and DeliriousPersona
+-New firing sprites by Pegg, Pr. Gibus and DeliriousPersona
 -Mainfire and Reload now separate weps, reload has new function
 --Both mainfires can be held for extra distance, consumes new secondary ammo bar
 --White Hole Ring base damage 15 > 10
@@ -217,7 +217,7 @@ CHANGELOG
 --Quazar Burst maxradius 16 > 64
 
 ==Ballade
--Revamped by NightFly, Suggested by Mobius
+-Revamped by Pr. Gibus, Suggested by Mobius
 --Mainfire acts the same, but altfire now only shoots out slow shots that do not consume meter
 --Reload is now Mine Hop
 
@@ -416,7 +416,7 @@ CHANGELOG
 -Imported Greg.EXE's ccbm-fixed-nitroman.pk3
 
 ==Solarman
--Reworked by Nightfly
+-Reworked by Pr. Gibus
 -Solar Blaze now only has 4 charges, loses gravity on letting go of mainfire
 --Solar Blaze can not split into Solar Waves anymore
 --Firing with less than one bar of ammo results in firing small 12 damage Solar Blaze
@@ -686,7 +686,7 @@ CHANGELOG
 -HUD imported from HeelNavi
 
 ==Swordman
--Reworked by NightFly
+-Reworked by Pr. Gibus
 -HP 125 > 135
 -Speed 0.8/0.78 > 0.65/0.63
 -Flame Sword now uses railgun method, uses 3-swing method and builds heat
@@ -1316,7 +1316,7 @@ CHANGELOG
 -Quick Boomerang impact VFX added
 
 ==Flashman
--Reworked by Nightfly and Jeb, assets from Trillster and Fr3ak
+-Reworked by Pr. Gibus and Jeb, assets from Trillster and Fr3ak
 -HP 100 > 85
 -Max ammo decreased to 84
 -Flash Buster now requires and uses second ammo bar
@@ -1351,7 +1351,7 @@ CHANGELOG
 -Readded rev, moved Needle Hammer to reload
 
 ==Magnetman
--Reworked by NightFly (with assets from Greg.EXE and Trillster)
+-Reworked by Pr. Gibus (with assets from Greg.EXE and Trillster)
 -Mainfire homing reworked, now has 2 tics of delay before doing a singular fast redirect
 -Base damage 15 > 14, scaled damage now correctly capped at 30 rather than unbounded 
 -Speed after redirect 150% > 125% 
@@ -1376,7 +1376,7 @@ CHANGELOG
 --Now has Power Battle VFX on hit, sprites made by Hansungkee
 
 ==Sparkman
--Reworked by NightFly
+-Reworked by Pr. Gibus
 -HP 110 > 100
 -Base speed 0.8/0.78 > 0.85/0.83
 -Can now pick up screws (see altfire)
@@ -1405,7 +1405,7 @@ CHANGELOG
 -Fixed infinite invis glitch
 
 ==Doc Robot 
--Reworked by NightFly
+-Reworked by Pr. Gibus
 -Now has four weapons, each corresponding two a combination of two MM2 Robot Masters:
 --WoodHeat
 --BubbleFlash
@@ -1744,7 +1744,7 @@ CHANGELOG
 
 ==Terra
 -Fixed TerraSparkChaser overwriting the campaign boss attack
--Ported V6 skin + edited walkframes made by NightFly
+-Ported V6 skin + edited walkframes made by Pr. Gibus
 --Uses assets from Redflash's Terra skin
 -Fixed reduced ammo gain bug
 -Now starts with full ammo
@@ -2306,7 +2306,7 @@ CHANGELOG
 --Meowing no longer cancels Break Dashing skinsprites
 
 ==Fuseman
--Reworked by NightFly
+-Reworked by Pr. Gibus
 -Base Speed 0.78/0.8 > 0.7/0.72
 -Now has psuedo-flight like Alien and Astroman, item toggles on/off flight
 -Mainfire now three ripping projectiles in a spread
@@ -3133,25 +3133,42 @@ CHANGELOG
 ==Elecman
 -Thunder Beam now has projectile death sprites
 
-==Bombman(?)
--Hyper Bomb now turned into CCBM Cluster Bomb
+==Bombman
+-Rapid Bomb now reverted into CCBM Cluster Bomb
+--Speed reduced 60 > 50
+--Gains full ammo on spawn
 --Cluster Bomb explosion damage 15 > 12
---Cluster spread now consistent
+--Cluster spread now consistent, uses X pattern
 -Mainfire with Hyper Bomb active throws CBM Hyper Bomb M1
 
 ==Yellow Devil
 -The Eye
 
+==Flashman
+-Reverted ammo gain to 2.0h
+-Flash Buster damage 6 > 5
+-NEW RELOAD: Time Bender
+-UEC M2 but as a reload, timestop duration falls off with distance
+--Now halves user movement while being used
+
 ==Geminiman
 -New Gemini Buster sprites by Cowsha and Frostblue
 -Added new Gemini Buster firing SFX
+
+==Snakeman
+-SBAR updated
+-Search Snake now has scales up vertical thrust by 50% on spawn, inspired by HyperFighting
+--New Search Snake firing SFX made by Pr. Gibus
 
 ==Diveman
 -Dive Tackle upwards thrust reduced 24 > 10 (42 > 20 with rage)
 
 ==Napalmman
 -Napalm Bomb endlag no longer correlates to charge, now all charges share lvl2 endlag
---Napalm Bomb bouncefactor 1.0 > 0.33/0.67/1.0
+--Napalm Bomb bouncefactor 1.0 > 0.6/0.8/1.0
+
+==Darkman1
+-Dark Tank Ram damage increased 1 > 2
 
 ==Flameman
 -Mainfire fire rate buff undone
@@ -3167,13 +3184,15 @@ CHANGELOG
 -Reload charge rate doubled
 --Reload cooldown only starts draining once user hits the ground
 
+==Freezeman
+-Ground/Ceiling Freeze Wave speed 14 > 10
+
 ==Burstman
 -Fixed dropped Danger Wrap mines doing 30 damage
 
-==Shademan(?)
--Uncharged Noise Crush damage 15 > 5 ripper
---Uncharged Noise Crush now has infinite range before first bounce, reactiontime cut in half
--Charged Noise Crush damage 40 > 30
+==Shademan
+-Uncharged Noise Crush now has infinite range before first bounce, reactiontime cut in half
+-Charged Noise Crush damage 40 > 32
 -Speed boost while charging now temporary, wears off after 3 seconds of having charge
 -Shade Swoop armor save 40% > 50%
 
@@ -3212,14 +3231,14 @@ CHANGELOG
 --Drains from tertiary ammo resource while in camera mode
 --Can not use camera when tertiary ammo is fully drained
 -Spark Suppressor now stops after a while and goes towards crosshair on release
---Base damage 5 > 2
---Does 1 damage after redirection
+--Base damage 5 > 4
+--Does 2 damage after redirection
 
 ==Saturn
--New FX indicator for armor
+-New FX indicator for armor, code provided by Muzaru
 
 ==Neptune
--Tap altfire Swamp Stomp option returned
+-Tap altfire for Big Stomp restored as a legacy option
 
 ==Sunstar
 -Speed reduced 0.76/0.74 > 0.72/0.7
@@ -3238,7 +3257,6 @@ CHANGELOG
 --Can now be cancelled into Triple Lutz
 -Glacier Spike speed reduced 75 > 50
 -Frostbite debuff strength 50% > 35%
--Triple Lutz now has small tornado sprite around user when spinning, provided by Holic Star
 -Tundra Storm now resets frostbite debuff timer
 
 ==Torchman
@@ -3251,3 +3269,10 @@ CHANGELOG
 -Fixed bug with item having faster recall rate of fire than using altfire
 -Fixed bug that created duplicate Returning Rubber Latches when recalling from players
 -Fixed bug with doubled recalling sound before returning
+
+==Quint
+-HP 100 > 90, gets effective 100 health while in Sakugarne (via 11% damage res while selected)
+-Quint Buster speed 36 > 42
+-Sakugarne guaranteed 8 damage explosion removed
+-Sakugarne Dive cancel removed
+--Sakugarne Dive shockwave damage 5 > 8

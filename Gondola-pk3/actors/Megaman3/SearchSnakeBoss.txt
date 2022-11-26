@@ -57,7 +57,7 @@ SNAB A 1 A_Raise
 Loop
 
 Fire:
-SNAB A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+SNAB A 0 A_PlaySoundEx("weapon/snakeshot","Weapon")
 SNAB A 0 A_GiveInventory("SnakemanMain_CI",1)
 SNAB B 1 Offset(-5, 41)
 SNAB B 1 Offset(-9, 45)
@@ -271,6 +271,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+TNT1 A 0 A_ChangeVelocity(0,0,(momz/2))
 SpawnLOOP:
 X_3F A 4
 loop

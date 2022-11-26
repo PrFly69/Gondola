@@ -248,25 +248,25 @@ Death.KnightBonk:
 "----" H 0 A_SpawnItemEx("PainKnightBonkHit")
 Goto FlingDeath
 
-Pain.TimeStopper:
+Pain.TimeStopper: 
 "----" H 0 A_GiveInventory("TimeStopActivatorC",1)//ClaseBaseFlags.txt
 Goto Pain+2
 
-Pain.ClassPainTimeStop:
-Pain.TimeStop:
+Pain.ClassPainTimeStop: 
+Pain.TimeStop0: 
 "----" H 0 A_JumpIfInventory("TimeStopProtector",1,"Pain.CrashBomb")
 "----" H 0 A_GiveInventory("TimeStopProtector")
 "----" H 0 A_GiveInventory("TimeStoppedTF",1)
-"----" H 0 A_SpawnItemEx("AntiTimeStopFreezeHelper")
-"----" H 0 A_Jump(256, "TimeStopped")
-Goto TimeStopped
-TimeStopped:
+"----" H 0 A_SpawnItemEx("AntiTimeStopFreezeHelper0")
+"----" H 0 A_Jump(256, "TimeStopped0")
+Goto TimeStopped0
+TimeStopped0:
 //"----" AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Stop
 "####" "]" 0 A_PlaySoundEx("weapon/timestopper","Body")
 "####" "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]" 1 A_Stop
 //TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TimeStopGFXSmall", random(8, 64), 0, random(0, 64), 0, 0, 0, random(0, 359))
 Goto Pain+2
-TimeStoppedX:
+TimeStopped0X:
 "####" "####################################################" 1 A_Stop
 //TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TimeStopGFXSmall", random(8, 64), 0, random(0, 64), 0, 0, 0, random(0, 359))
 Goto Pain+2
