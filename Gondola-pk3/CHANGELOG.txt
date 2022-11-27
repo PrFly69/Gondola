@@ -3210,6 +3210,13 @@ CHANGELOG
 -Homing Sniper ammo regen 50 per tic > 10 per tic
 --NoAmmo Homing Snipers now properly no longer have lockon
 
+==Coldman
+-Cold Shoulder now has 13 more tics of endlag, RoF reduced 22 tics > 35 tics
+--Can place Ice Walls after 8 tics into endlag
+-Cold Field ammo regen reduced by 50%
+--Direct shot stun brought back, lasts 1.5 seconds
+--Lingering damager applies current hitstun effect
+
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
 
