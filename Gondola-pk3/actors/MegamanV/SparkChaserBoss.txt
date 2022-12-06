@@ -363,6 +363,12 @@ Powerup.Duration 6
 DamageFactor "SparkChaserTerra", 0.0
 }
 
+actor TerraSuppressorProtect : PowerProtection
+{
+Powerup.Duration 5
+DamageFactor "Terra_Suppressor", 0.25
+}
+
 actor SparkChaserSoundCounter : Ammo
 {
 inventory.amount 0
@@ -668,12 +674,6 @@ T_RR M 0 A_Warp(2,32,0,0,12,4|8|16,"Spawn")
 //TNT1 A 0 A_CheckFlag("NOGRAVITY","Spawn",2)
 stop
 }
-}
-
-actor Terra_StopperProtect : PowerProtection
-{
-Powerup.Duration 120
-DamageFactor "Terra_Stopper", 0.0
 }
 
 actor Terra_NullOrbiter

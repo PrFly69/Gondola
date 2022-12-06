@@ -134,7 +134,7 @@ CLDH A 0 A_GiveInventory("ColdBossAmmo",2)
 goto Ready1
 
 Flash:
-TNT1 AAAAAAAA 1 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 AAAAAAAAAA 1 A_JumpIfInventory("IsDead",1,"NoFlash")//AAAAAAAAAAAA
 TNT1 A 1 A_GiveInventory("RunningFridgeAmmo",1)
 loop
 
@@ -220,7 +220,7 @@ fail
 actor BossIceWallSpawner : BasicHelper
 {
 Translation "192:192=96:96","198:198=116:116"
-+forceallycollision
++FORCEALLYCOLLISION
 States
 {
 Spawn:
@@ -869,18 +869,26 @@ Species "DUMBICEWALL"
 //MissileType "GroundColdFreezeFX"
 //reactiontime 5
 damage (1)
-radius 12
-height 16
-speed 60//800
+radius 16
+height 12
+speed 45//800
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+CDFL DDD 2 A_SpawnItemEx("GroundColdFreezeFX",0,0,0,0,0,0,0,1)
 SpawnLOOP:
-TNT1 A 0
-TNT1 A 1 A_SpawnItemEx("GroundColdFreezeFX",0,0,0,0,0,0,0,1)//A_CountDown
-wait
+TNT1 A 0 A_Jump(128,"Loop1","Loop2","Loop3")
+Loop1:
+CDFL EFG 2 A_SpawnItemEx("GroundColdFreezeFX",0,0,0,0,0,0,0,1)//A_CountDown
+goto SpawnLOOP
+Loop2:
+CDFL GEF 2 A_SpawnItemEx("GroundColdFreezeFX",0,0,0,0,0,0,0,1)//A_CountDown
+goto SpawnLOOP
+Loop3:
+CDFL FGE 2 A_SpawnItemEx("GroundColdFreezeFX",0,0,0,0,0,0,0,1)//A_CountDown
+goto SpawnLOOP
 Death:
 TNT1 A 1 A_SpawnItemEx("GroundColdFreeze2",0,0,0,0,0,0,0,1)
 stop

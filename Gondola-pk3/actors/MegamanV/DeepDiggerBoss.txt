@@ -996,7 +996,8 @@ TNT1 A 0 A_SpawnItemEx("UranusDeepDiggerBit",0,0,-8,25,0,0,45*8,1)
 Goto End
 End:
 TNT1 A 0 A_PlaySoundEx("weapon/uranusexplode","Weapon")
-UMFX ABCD 3
+URFX AB 3
+TNT1 A 6
 stop
 }
 }

@@ -520,7 +520,12 @@ weapon/chainblastgear CBLASG
 weapon/chainblastbomb CBLASB
 
 //Tundra
-weapon/tundracicle TUNDSHOT
+weapon/TundraManSpear TUNDSPEA
+weapon/TundraManDash TUNDDASH
+weapon/TundraManStylishLand TUNDLAND
+weapon/TundraManSpear TUNDSPEA
+weapon/TundraManBreak TUNDBREA
+weapon/TundraManStorm jet
 
 
 ///// MMWT /////

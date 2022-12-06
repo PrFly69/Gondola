@@ -830,8 +830,9 @@ PROJECTILE
 +SKYEXPLODE
 +DONTBLAST
 +BRIGHT
++RIPPER
 +HEXENBOUNCE
-Damagetype "DMGNoHitstun"
+Damagetype "Terra_Suppressor"
 Speed 60
 Damage (4)
 radius 8
@@ -882,7 +883,7 @@ actor TerraClassSparkChaserAltP : TerraClassSparkChaserAlt{translation "198:198=
 actor TerraClassSparkChaserAlt2 : TerraClassSparkChaserAlt
 {
 -HEXENBOUNCE
-damage (2)
+Damage (2)
 States
 {
 Spawn:
@@ -909,9 +910,11 @@ Translation "198:198=110:110", "194:194=100:100", "195:195=110:110", "199:199=11
 +RIPPER
 +NOGRAVITY
 +FORCEXYBILLBOARD
+Damagetype "Terra_Suppressor"
 scale 1.5
 height 14
 radius 14
+Damage (2)
 +BRIGHT
 States
 {
