@@ -359,7 +359,7 @@ Powerup.Duration 10
 
 actor SparkChaserTerraProtectC : PowerProtection
 {
-Powerup.Duration 6
+Powerup.Duration 3
 DamageFactor "SparkChaserTerra", 0.0
 }
 

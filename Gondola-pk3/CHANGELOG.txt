@@ -3236,7 +3236,7 @@ CHANGELOG
 -Reworked by Pr. Gibus
 -Spark Chaser speed 18 > 8
 --Direct damage 20 > 18
---Released damage 15 every 35 tics > 6 every 6 tics
+--Released damage 15 every 35 tics > 3 every 3 tics
 --Released Spark Chaser speed no longer scales with charge, is always 60 speed
 -NEW ITEM: Spark Chaser Sight
 --Allows user to temporarily use Spark Chaser as a camera to scout enemies and cornercheck
@@ -3244,7 +3244,6 @@ CHANGELOG
 --Can not use camera when tertiary ammo is fully drained
 -Spark Suppressor now stops after a while and goes towards crosshair on release
 --Damage tweaked 5 > 4 (initial) + 1 (ripper)
---Does 2 damage every 5 rics after redirection
 --FX trail now has damager
 
 ==Saturn
