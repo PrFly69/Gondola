@@ -622,6 +622,7 @@ TNT1 A 0 A_JumpIfInventory("TimeStoppedTFFlag",1,"Pickup0")
 goto PickupNo
 Pickup0:
 TNT1 A 0 A_TakeInventory("TimeStoppedTFFlag",1)
+TNT1 A 0 A_SpawnItemEx("TimeBendInvuln_H",0,0,0,0,0,0,0,1)
 goto Pickup1
 }
 }
@@ -653,6 +654,20 @@ States
 Pickup:
 TNT1 A 0 A_TakeInventory("TimeStoppedCounter",1)
 goto Pickup1
+}
+}
+
+actor TimeBendInvuln_H : BasicHelper
+{
+states
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("InvulnerableOn_Pickup",1)
+TNT1 A 0 //A_Stop
+TNT1 AAAAA 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+TNT1 A 4 A_GiveToTarget("InvulnerableOff_Pickup",1)
+Stop
 }
 }
 

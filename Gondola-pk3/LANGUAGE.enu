@@ -93,7 +93,7 @@ OB_KNIGHTCRUSHX = "%o was decimated by %k's Super Knight Crush.";
 OB_KNIGHTCRUSHY = "%o broke %p nose from getting too close to %k's Spinning Mace.";
 OB_KNIGHTCRUSHZ = "%o was slain by %k's Returning Knight Crush.";
 //Bomb
-OB_HYPERBOMBSPLITX = "%o was blown to smithereens by %k's Rapid Bomb.";
+OB_HYPERBOMBSPLITX = "%o was blown to smithereens by %k's Cluster Bomb.";
 //Plant
 OB_PLANTDRAINX = "%o was wrapped into %k's Plant Feijoada.";
 //Tomahawk
@@ -461,7 +461,7 @@ OB_BREAKESCAPE = "%k's Break Escape helped them phase right through %o.";
 TAGC_0J = "Sniper Joe Buster & Grenade";
 
 //Bombman
-OB_HYPERBOMBSPLIT = "%o was blown to pieces by %k's Cluster Bomb.";
+OB_HYPERBOMBSPLIT = "%o was blown to pieces by %k's Cluster Bomb Bit.";
 
 //Elecman
 OB_THUNDERZAP = "%o was zapped by %k's Zap Dash.";

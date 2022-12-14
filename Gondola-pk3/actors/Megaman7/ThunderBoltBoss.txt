@@ -118,7 +118,7 @@ RechargeEnd:
 CLOH D 1 OffSet(23,26)ACS_ExecuteAlways(998,0,DYE_CLOUDCHARGE1,5)
 CLOH D 0 A_GiveInventory("RainAmmo",1)
 CLOH D 1 OffSet(23,26)ACS_ExecuteAlways(998,0,DYE_CLOUDCHARGE1,5)
-CLOH D 0 A_GiveInventory("RainAmmo",1)
+CLOH D 0 A_GiveInventory("RainAmmo",2)
 CLOH D 1 OffSet(23,26)ACS_ExecuteAlways(998,0,DYE_CLOUDCHARGE1,5)
 CLOH E 3 OffSet(23,26)ACS_ExecuteAlways(998,0,DYE_CLOUDCHARGE2,6)
 CLOH F 3 OffSet(23,26)ACS_ExecuteAlways(998,0,DYE_CLOUDCHARGE3,7)

@@ -721,6 +721,7 @@ TNT1 A 0 A_JumpIfInventory("ProtoBusterBoss",1,"ProtoSlide")
 TNT1 A 0 A_JumpIfInventory("MegaBusterBoss",1,"MegaSlide")
 //TNT1 A 0 A_JumpIfInventory("BreakBusterAgility",1,"BreakSlide")
 MegaSlide:
+TNT1 A 0 A_JumpIfInventory("SlideLimitFlag",60,"Pickup2")
 TNT1 A 0 A_GiveInventory("MegaSlideThrustW",1)
 stop
 ProtoSlide:
@@ -931,10 +932,15 @@ States
 Pickup:
 TNT1 A 0
 TNT1 A 0 A_JumpIfInventory("SlideLimitFlag",300,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("MegaBusterBoss",1,"PickupMega")
 TNT1 A 0 A_TakeInventory("SlideLimitFlag",100)
 stop
 Pickup2:
 TNT1 A 0 A_SpawnItemEx("CopySlideHelper",0,0,24)
+stop
+PickupMega:
+TNT1 A 0
+TNT1 A 0 A_TakeInventory("SlideLimitFlag",60)
 stop
 }
 }
@@ -957,7 +963,11 @@ States
 {
 Spawn:
 TNT1 A 1
+TNT1 A 0 A_JumpIfInTargetInventory("MegaBusterBoss",1,"SpawnMega")
 TNT1 A 5 A_TakeFromTarget("SlideLimitFlag",100)
+goto Spawn2
+SpawnMega:
+TNT1 A 5 A_TakeFromTarget("SlideLimitFlag",60)
 Spawn2:
 TNT1 A 0 A_JumpIfInTargetInventory("CopySlideDelay",1,2)
 TNT1 A 0 A_GiveToTarget("SlideLimitFlag",1)
