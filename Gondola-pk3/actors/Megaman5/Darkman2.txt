@@ -24,7 +24,27 @@ DAR2 A 1
 Goto Spawn+2
 
 See:
+DKC4 A 0 A_JumpIfHealthLower(2,"SeeMax")
+DKC4 A 0 A_JumpIfHealthLower(23,"See5")
+DKC4 A 0 A_JumpIfHealthLower(46,"See4")
+DKC4 A 0 A_JumpIfHealthLower(69,"See3")
+DKC4 A 0 A_JumpIfHealthLower(92,"See2")
 DAR2 BCDE 5
+Goto Spawn
+See2:
+DAR2 BCDE 4
+Goto Spawn
+See3:
+DAR2 BCDE 3
+Goto Spawn
+See4:
+DAR2 BCDE 2
+Goto Spawn
+See5:
+DAR2 BCDE 1
+Goto Spawn
+SeeMax:
+DAR2 BD 1
 Goto Spawn
 
 Missile:

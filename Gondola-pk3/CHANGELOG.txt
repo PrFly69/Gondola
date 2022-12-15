@@ -3176,6 +3176,9 @@ CHANGELOG
 ==Darkman1
 -Dark Tank Ram damage increased 1 > 2
 
+==Darkman2
+-Walkframe speed now corresponds to rage amount
+
 ==Darkman3
 -Double zoom removed, only goes up to x1.5 zoom instead of x2.0
 
@@ -3185,6 +3188,9 @@ CHANGELOG
 --Now gains gravity after 35 tics
 -Flame Burst no longer generates ammo for 50 tics after usage
 --Ported Flame Burst spawner indicator sprites from classes-v9fh.pk3
+
+==Tomahawkman
+-Now has Silver Tomahawk wall impact FX
 
 ==Yamatoman
 -Using mainfire while using altfire now fires rapidfire spear heads
