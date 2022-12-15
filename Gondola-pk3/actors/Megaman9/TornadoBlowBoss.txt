@@ -936,27 +936,51 @@ SpawnLOOP:
 X_9B B 0
 X_9B B 0 ThrustThingZ(0,5,0,0)
 X_9B B 0 A_Explode(3,90,0,0,91)
-X_9B BC 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B B 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B C 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 X_9B B 0 ThrustThingZ(0,10,0,1)
 X_9B B 0 A_Explode(3,90,0,0,91)
-X_9B DE 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B D 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B E 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 X_9B B 0 ThrustThingZ(0,10,0,1)
 X_9B B 0 A_Explode(3,90,0,0,91)
-X_9B BC 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B B 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B C 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 X_9B B 0 ThrustThingZ(0,15,0,1)
 X_9B B 0 A_Explode(3,90,0,0,91)
-X_9B DE 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B D 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B E 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 X_9B B 0 ThrustThingZ(0,15,0,1)
 X_9B B 0 A_Explode(3,90,0,0,91)
 Spawn2:
-X_9B BC 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B B 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B C 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 X_9B B 0 A_Explode(6+user_P,90,0,0,91)
-X_9B DE 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B D 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B E 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 X_9B B 0 A_SetUserVar("user_P",user_P+1)
 X_9B B 0 A_Explode(6+user_P,90,0,0,91)
-X_9B BC 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B B 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B C 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 X_9B B 0 A_Explode(6+user_P,90,0,0,91)
-X_9B DE 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B D 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+X_9B E 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 X_9B B 0 A_Explode(6+user_P,90,0,0,91)
 loop
 }
@@ -988,21 +1012,47 @@ SpawnLOOP:
 TORG V 0
 TORG V 0 ThrustThingZ(0,-5,0,0)
 TORG V 0 A_Explode(6,90,0,0,91)
-TORG VW 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG V 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG W 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG X 0 ThrustThingZ(0,-10,0,1)
-TORG XY 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG X 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG Y 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG V 0 ThrustThingZ(0,-10,0,1)
 TORG V 0 A_Explode(6,90,0,0,91)
-TORG VW 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG V 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG W 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG X 0 ThrustThingZ(0,-15,0,1)
-TORG XY 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG X 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG Y 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG V 0 ThrustThingZ(0,-15,0,1)
 TORG V 0 A_Explode(6,90,0,0,91)
 Spawn2:
-TORG VWXY 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG V 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG W 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG X 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG Y 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG V 0 A_SetUserVar("user_P",user_P+1)
 TORG V 0 A_Explode(6+user_P,90,0,0,91)
-TORG VWXY 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG V 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG W 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG X 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
+TORG Y 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG V 0 A_Explode(6+user_P,90,0,0,91)
 loop
 }
@@ -1083,45 +1133,57 @@ SpawnLOOP:
 TORG N 0 A_ChangeVelocity(2,0,0,1)//ThrustThing(angle*256/360,2,1,0)
 TORG N 0 A_Explode(4,80,0,0,81)
 TORG N 0 ACS_ExecuteAlways(347,0,160,160,18)//196,196,64)
-TORG N 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG N 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG O 0 A_Explode(4,80,0,0,81)
 TORG O 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG O 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG O 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG P 0 A_Explode(4,80,0,0,81)
 TORG P 0 ACS_ExecuteAlways(347,0,160,160,18)
 TORG P 0 A_ChangeVelocity(4,0,0,1)
-TORG P 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG P 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG Q 0 A_Explode(4,80,0,0,81)
 TORG Q 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG Q 2 
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG Q 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1) 
 TORG N 0 A_ChangeVelocity(4,0,0,1)
 TORG N 0 A_Explode(4,80,0,0,81)
 TORG N 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG N 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG N 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG O 0 A_Explode(4,80,0,0,81)
 TORG O 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG O 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG O 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG P 0 A_Explode(4,80,0,0,81)
 TORG P 0 ACS_ExecuteAlways(347,0,160,160,18)
 TORG P 0 A_ChangeVelocity(6,0,0,1)
-TORG P 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG P 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG Q 0 A_Explode(4,80,0,0,81)
 TORG Q 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG Q 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG Q 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG N 0 A_Explode(4,80,0,0,81)
 TORG N 0 ACS_ExecuteAlways(347,0,160,160,18)
 TORG N 0 A_ChangeVelocity(6,0,0,1)
 Spawn2:
-TORG N 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG N 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG O 0 A_Explode(4,80,0,0,81)
 TORG O 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG O 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG O 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG P 0 A_Explode(4,80,0,0,81)
 TORG P 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG P 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG P 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG Q 0 A_Explode(4,80,0,0,81)
 TORG Q 0 ACS_ExecuteAlways(347,0,160,160,18)
-TORG Q 2
+TNT1 A 0 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
+TORG Q 2 A_SpawnItemEx("TornadoBlowThrustFX2",Random(-70,70),Random(-70,70),Random(-70,70),0,0,0,0,1)
 TORG N 0 A_Explode(4,80,0,0,81)
 TORG N 0 ACS_ExecuteAlways(347,0,160,160,18)
 loop
