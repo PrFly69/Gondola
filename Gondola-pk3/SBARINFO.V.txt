@@ -750,6 +750,10 @@ IsSelected BlackHoleBombBoss
 	DrawBar "MV_A_BAR", "NOBAR",PowerupTime Blackholecooldownindicatorbar, vertical, 16,8;
 	DrawImage "GALRICON",32,55;
 	DrawImage "C_09H0X",20,0;
+	InInventory GalaxyPortFlag
+	{
+	DrawImage "G4LR1C0N",32,55;
+	}
 	ininventory BlackHoleFlag{drawimage "MV_A_BAR", 16,8;}}
 	
 	
