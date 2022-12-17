@@ -190,6 +190,7 @@ Goto Ready1
 
 Flash:
 TNT1 AA 2 A_GiveInventory("PlugManChargeLoss")
+TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Flashnt")
 TNT1 A 0 A_JumpIfInventory("PlugOverdriveCharge", 25*3, "Pickup4")
 TNT1 A 0 A_JumpIfInventory("PlugOverdriveCharge", 25*2, "Pickup3")
 TNT1 A 0 A_JumpIfInventory("PlugOverdriveCharge", 25*1, "Pickup2")
@@ -209,6 +210,9 @@ PLSP A 0 A_PlaySound("weapon/plugcharge1",7,0.4)
 PLSP A 0 A_PlaySound("weapon/sparkchasertravel",6,0.75)
 TNT1 AAAAAAAA 0 A_SpawnItemEx("PlugElectricFX",random(12,36),0,random(0,56),0,0,0,random(0,359),1,64)
 goto Flash
+Flashnt:  
+PLSP A 5
+Stop
 }
 }
 
@@ -427,6 +431,31 @@ stop
 }
 }
 
+actor PlugInstaPotatoSound : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0  
+TNT1 A 0 A_PlaySound("Plugman/fullpotato",5)
+stop
+}
+} 
+
+actor PluggedEnemyNormalHit : BasicExplosion
+{
+damagetype "PlugM_Plugged"
+Obituary "$OB_PLUGITIN"
++PAINLESS 
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 3 A_Explode(1,15,0,0,15)
+stop
+}
+}
+
 actor PluggedEnemyFinalHit : BasicExplosion
 {
 damagetype "PlugM_Plugged"
@@ -570,6 +599,7 @@ stop
 actor PlugElectricFX
 {
 PROJECTILE
++CLIENTSIDEONLY
 +NOINTERACTION
 +NOGRAVITY
 scale 1.5
