@@ -334,7 +334,7 @@ $volume weapon/jewelexplodebit 0.6
 weapon/plugcharge1 PLUGCHR1
 weapon/plugcharge2 PLUGCHR2
 weapon/plugcharge3 PLUGCHR3
-
+Plugman/fullpotato PLUFPTT
 
 ///// MM10 /////
 
