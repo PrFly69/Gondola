@@ -930,8 +930,17 @@ script "cbm_PlugHealthDrain" (int DrainHP)
 	If(CheckActorInventory(ActivatorTID(),"PVPNoDamage")>=1 || CheckActorInventory(ActivatorTID(),"PlugM_DontZapHP_F")>=1){terminate;}
 
 	if(ClassifyActor(ActivatorTID()) & ACTOR_PLAYER){
-		if(GetActorProperty(0, APROP_HEALTH) > DrainHP){
-			SetActorProperty(0, APROP_HEALTH, GetActorProperty(0, APROP_HEALTH) - DrainHP);
+		if(GetActorProperty(0, APROP_HEALTH) > DrainHP){ 
+		
+		    if(CheckInventory("IsInvunFlag")==1){
+			   SetActorProperty(0, APROP_HEALTH, GetActorProperty(0, APROP_HEALTH) - DrainHP);
+			}
+			
+		    if(CheckInventory("IsInvunFlag")==0){
+			SpawnProjectile(player, "PluggedEnemyNormalHit", 0, 10, 0, 0, 6300 + ActivatorTID());//PlugmanFinshingPlugHit
+			SetActorPosition(6300 + ActivatorTID(), GetActorX(0), GetActorY(0), GetActorZ(0) + 1835008, 0);	
+			}
+		
 		}
 		if(GetActorProperty(0, APROP_HEALTH) <= DrainHP){
 			SpawnProjectile(player, "PluggedEnemyFinalHit", 0, 10, 0, 0, 6300 + ActivatorTID());//PlugmanFinshingPlugHit
