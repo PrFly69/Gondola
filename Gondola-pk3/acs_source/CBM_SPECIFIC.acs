@@ -943,6 +943,7 @@ script "cbm_PlugHealthDrain" (int DrainHP)
 		
 		}
 		if(GetActorProperty(0, APROP_HEALTH) <= DrainHP){
+		        SetActorProperty(0,APROP_Invulnerable,0);
 			SpawnProjectile(player, "PluggedEnemyFinalHit", 0, 10, 0, 0, 6300 + ActivatorTID());//PlugmanFinshingPlugHit
 			SetActorPosition(6300 + ActivatorTID(), GetActorX(0), GetActorY(0), GetActorZ(0) + 1835008, 0);
 		}
