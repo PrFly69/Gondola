@@ -3156,6 +3156,8 @@ CHANGELOG
 -UEC M2 but as a reload, timestop duration falls off with distance
 --Now halves user movement while being used
 -Breaking out of Time Stop/Time Bender now grants a 5 tic period of invulnerability
+-Time Stopper starting ammo 84 > 42
+-Fixed Time Stopper ammo regeneration not being affected by plug boost
 
 ==Magnetman
 -Magnet Missile release speed now scales with time held
@@ -3232,10 +3234,11 @@ CHANGELOG
 --NoAmmo Homing Snipers now properly no longer have lockon
 
 ==Coldman
--Cold Shoulder now has 13 more tics of endlag, RoF reduced 22 tics > 35 tics
+-Cold Shoulder now has 13 more tics of endlag, RoF reduced 22 tics > 30 tics
+--Now has light knockback on hit
+--Hitting enemies frozen by Cold Field grants double knockback
 --Can place Ice Walls/use Cold Field after 8 tics into endlag
--Cold Field ammo regen reduced by 20%
---Initial projectile speed 60 > 45
+-Cold Field CD increased by 150% (4 sec > 10 sec)
 --Direct shot stun brought back, lasts 1.5 seconds
 --Now has Mokumokumo cloud sprite to indicate initial projectile size 
 --Lingering damager applies current hitstun effect
@@ -3260,7 +3263,7 @@ CHANGELOG
 -Reworked by Pr. Gibus
 -Spark Chaser speed 18 > 12
 --Direct damage 20 > 21
---Released damage 15 every 35 tics > 6 every 3 tics
+--Released damage 15 every 35 tics > 5 every 3 tics
 --Released Spark Chaser speed no longer scales with charge, is always 90 speed
 -NEW ITEM: Spark Chaser Sight
 --Allows user to temporarily use Spark Chaser as a camera to scout enemies and cornercheck
@@ -3285,6 +3288,7 @@ CHANGELOG
 ==Pluto
 -Speed scalar 115 > 125
 --Ammo drain while stationary 35 > 45
+--Ammo drain on slowdowns 25 > 30
 -Break Dash secondary hitbox damage 5 > 8
 --Break Dash armor removed
 
