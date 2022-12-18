@@ -530,29 +530,29 @@ actor YamatomanMain_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",5,1,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",3,1,8,random(5,10))
 TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",-5,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",-3,0,8,random(5,10))
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",5,1,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",3,1,8,random(5,10))
 TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",-5,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",-3,0,8,random(5,10))
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",5,1,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",3,1,8,random(5,10))
 TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",-5,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",-3,0,8,random(5,10))
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",5,1,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",3,1,8,random(5,10))
 TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",-5,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",-3,0,8,random(5,10))
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",5,1,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",3,1,8,random(5,10))
 TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",-5,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",-3,0,8,random(5,10))
 goto Done
 }
 }

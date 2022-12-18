@@ -20,6 +20,11 @@ states
 //"----" H 0 ThrustThingZ(0,22222,0,1)
 //goto Pain+2
 
+Pain.ColdM_Punch:
+"----" H 0 A_SpawnItemEx("PainPharaohPunchHit",1)
+"----" H 0 A_GiveInventory("ColdShoulderShatterer",1)
+goto Pain
+
 Pain.Neptune_Shot:
 Pain.Neptune_ShotBit:
 "----" H 0 A_ScaleVelocity(.95)

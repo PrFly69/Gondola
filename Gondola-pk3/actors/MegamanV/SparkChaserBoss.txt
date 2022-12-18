@@ -183,8 +183,8 @@ TERH A 0 A_GiveInventory("TerraAltAnim",1)
 TERH A 0 A_ReFire("Altfire_Sparks")
 Goto Altfire_End
 Altfire_End:
-TERH A 0 A_GiveInventory("SparkPacerFlag")
 TERH A 0 A_ClearRefire
+TERH A 0 A_GiveInventory("SparkPacerFlag")
 TERH A 0 A_TakeInventory("TerraAltfireFlag",1)
 TERH A 0 A_TakeInventory("TerraAltAnim",1)
 TERH A 0 A_TakeInventory("TerraAltAnimOnce3",1)

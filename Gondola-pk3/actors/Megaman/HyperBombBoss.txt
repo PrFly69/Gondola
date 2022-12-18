@@ -479,10 +479,10 @@ stop
 }
 }
 
-actor HyperBombBB : HyperBombB{translation "192:192=205:205", "199:199=74:74", "202:202=205:205"}
-actor HyperBombBR : HyperBombB{translation "192:192=171:171", "199:199=41:41", "202:202=171:171"}
-actor HyperBombBO : HyperBombB{translation "192:192=104:104", "199:199=128:128", "202:202=104:104"}
-actor HyperBombBP : HyperBombB{translation "192:192=229:229", "199:199=232:232", "202:202=229:229"}
+actor HyperBombBB : HyperBombB{translation "192:192=205:205", "199:199=[30,54,172]:[30,54,172]", "202:202=205:205"}
+actor HyperBombBR : HyperBombB{translation "192:192=171:171", "199:199=191:191", "202:202=171:171"}
+actor HyperBombBO : HyperBombB{translation "192:192=104:104", "199:199=135:135", "202:202=104:104"}
+actor HyperBombBP : HyperBombB{translation "192:192=229:229", "199:199=234:234", "202:202=229:229"}
 
 actor Bombman_HyperBToss : HyperBombB
 {

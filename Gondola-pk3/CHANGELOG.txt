@@ -3157,6 +3157,11 @@ CHANGELOG
 --Now halves user movement while being used
 -Breaking out of Time Stop/Time Bender now grants a 5 tic period of invulnerability
 
+==Magnetman
+-Magnet Missile release speed now scales with time held
+--Initial release speed 75 > 37
+--Max scaling goes up to 100 speed
+
 ==Geminiman
 -New Gemini Buster sprites by Cowsha and Frostblue
 -Added new Gemini Buster firing SFX
@@ -3193,6 +3198,7 @@ CHANGELOG
 -Now has Silver Tomahawk wall impact FX
 
 ==Yamatoman
+-Yamato Spear spread -5/0/5 > -3/0/3
 -Using mainfire while using altfire now fires rapidfire spear heads
 --Has wide (-5,5) spread and fires one spearhead every 4 tics
 --Cuts speed and Yamato Spin damage in half while used
@@ -3234,6 +3240,12 @@ CHANGELOG
 --Now has Mokumokumo cloud sprite to indicate initial projectile size 
 --Lingering damager applies current hitstun effect
 
+==Tornadoman
+-Whirlwind Blade projectiles now have FX indicating windbox, made by Cowsha
+
+==Plugman
+-Getting kills with Plug altfire (applies to both initial damager and zap) now provides full ammo and overcharge
+
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
 
@@ -3260,6 +3272,9 @@ CHANGELOG
 
 ==Saturn
 -New FX indicator for armor, code provided by Muzaru
+
+==Jupiter
+-Added gd_hjupiter cvar for South Americans, lag-compensates Electric Shock
 
 ==Uranus
 -Deep Digger now has block shattering FX

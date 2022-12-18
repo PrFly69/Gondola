@@ -296,6 +296,7 @@ weapon/fistimpact	  FISTHIT $volume weapon/fistimpact 0.5
 //Cold
 $volume weapon/ColdField 0.5
 $volume weapon/ColdFrozen 0.5
+weapon/coldshatter COLBREAK
 
 //Dynamo
 weapon/lightningold LITBOLD
