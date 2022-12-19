@@ -420,7 +420,7 @@ AltEnd:
 FHUB A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
 FHUB A 0 ACS_NamedExecute("BULL_SetState",0,2)
 AltEndNoAnim:
-TNT1 A 0 A_GiveInventory("FlameFlag",1)
+TNT1 A 0 //A_GiveInventory("FlameFlag",1)
 HSN8 A 0 SetPlayerProperty(0,0,3)
 HSN8 A 0 SetPlayerProperty(0,0,0)
 CMDH C 0 A_TakeInventory("NoJumpCancel",999)
