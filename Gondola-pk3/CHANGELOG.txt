@@ -3119,6 +3119,7 @@ CHANGELOG
 -Fixed item icons not appearing on HBAR
 -Fixed every MM9 and MM10 class having abnormally high base speeds (leftover from 2.6 Beta concept)
 -Light Team dark blue color 241 > [30,54,172]
+-New ice death sound effects provided by MusashiAA
 
 ==Copyweps
 -Fixed copynerf not working due to github forcibly renaming the file
@@ -3340,3 +3341,6 @@ CHANGELOG
 -Returning torso speed 20 > 35
 -Fixed 3rd person animations
 -Fixed dash recovery animation taking extra ammo
+
+==Galaxyman
+-Fixed reload icon
