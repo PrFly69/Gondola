@@ -3333,3 +3333,10 @@ CHANGELOG
 -Sakugarne guaranteed 8 damage explosion removed
 -Sakugarne Dive cancel removed
 --Sakugarne Dive shockwave damage 5 > 8
+
+==Swordman
+-Mainfire recovery animation can now be canceled to continue the combo
+-Torso speed 16 > 20
+-Returning torso speed 20 > 35
+-Fixed 3rd person animations
+-Fixed dash recovery animation taking extra ammo
