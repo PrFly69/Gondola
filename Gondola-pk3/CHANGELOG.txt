@@ -3313,6 +3313,9 @@ CHANGELOG
 -Frostbite debuff strength 50% > 35%
 -Tundra Storm now resets frostbite debuff timer
 -New SFX ported by MusashiAA
+-Dash cooldown doubled
+-Fixed ammobar desyncs
+-Fixed reload ammo regenerating slower while holding reload without enough ammo
 
 ==Torchman
 -Blazing Demon thrust before kicks 75 > 50
