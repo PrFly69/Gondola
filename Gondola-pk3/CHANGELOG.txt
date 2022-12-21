@@ -3349,6 +3349,3 @@ CHANGELOG
 
 ==Galaxyman
 -Fixed reload icon
-
-==Evil Robot
--Can now choose giga attack using weapon numbers (1-9)
