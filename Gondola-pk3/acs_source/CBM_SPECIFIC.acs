@@ -943,12 +943,27 @@ script "cbm_PlugHealthDrain" (int DrainHP)
 		
 		}
 		if(GetActorProperty(0, APROP_HEALTH) <= DrainHP){
-		        SetActorProperty(0,APROP_Invulnerable,0);
+		        SetActorProperty(0,APROP_Invulnerable,0); 
+  GiveActorInventory(player,"PlugBallAmmoBoss",56);
+  GiveActorInventory(player,"PlugOverdriveCharge",100);
 			SpawnProjectile(player, "PluggedEnemyFinalHit", 0, 10, 0, 0, 6300 + ActivatorTID());//PlugmanFinshingPlugHit
 			SetActorPosition(6300 + ActivatorTID(), GetActorX(0), GetActorY(0), GetActorZ(0) + 1835008, 0);
 		}
 	}
 }
+
+Script "PlzTellMeThisFixesIt" (void)
+{ 
+ While(GetActorProperty(0,APROP_HEALTH)>0)
+ {
+  If(CheckInventory("PluggedEnemySlow")==0)
+  {
+   TakeInventory("PlugOverdriveCharge",1);
+  }
+  Delay(2);
+ }
+ Terminate;
+} 
 
 Script "cbm_DrawPlugCable" (int grappleTid, int playerTid, int ang) CLIENTSIDE
 {
