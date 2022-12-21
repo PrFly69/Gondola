@@ -3293,6 +3293,7 @@ CHANGELOG
 --Ammo drain on slowdowns 25 > 30
 -Break Dash secondary hitbox damage 5 > 8
 --Break Dash armor removed
+-Movement check polished
 
 ==Sunstar
 -Speed reduced 0.76/0.74 > 0.72/0.7
@@ -3348,3 +3349,6 @@ CHANGELOG
 
 ==Galaxyman
 -Fixed reload icon
+
+==Evil Robot
+-Can now choose giga attack using weapon numbers (1-9)
