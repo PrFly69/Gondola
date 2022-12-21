@@ -421,7 +421,7 @@ P_SpeedCheck:
 //TNT1 A 0 A_JumpIf( (MOMX*MOMX+MOMY*MOMY)*0.006 >= 1,"P_Give")
 TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=11,"P_Give")
 TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=9,"nothings")
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=8,"P_Take25")
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=7,"P_Take25")
 goto P_Take35
 nothings:
 TNT1 A 0
