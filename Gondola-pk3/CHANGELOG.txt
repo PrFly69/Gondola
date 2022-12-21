@@ -3249,6 +3249,7 @@ CHANGELOG
 
 ==Plugman
 -Getting kills with Plug altfire (applies to both initial damager and zap) now provides full ammo and overcharge
+-Fixed infinite overcharge bug
 
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
