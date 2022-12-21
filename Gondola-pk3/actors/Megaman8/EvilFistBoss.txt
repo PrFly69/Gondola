@@ -1,11 +1,10 @@
-
 actor EvilFistC : BaseMM8BDMWep_CBM
 {
 tag "$TAGC_8K"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
-Weapon.AmmoGive 3 
-//Weapon.SlotNumber 0
+Weapon.AmmoGive 3
+Weapon.SlotNumber 1
 Obituary "$OB_EVILBEAM"//$OB_EVILFIST//Due to NONETID it uses the Weapon Obit
 Inventory.Pickupmessage "You got the Evil Fist!"
 weapon.ammotype "A1EvilAmmo"
@@ -32,7 +31,7 @@ Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 ERO8 A 1 A_Lower
 Loop
-Select: 
+Select:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 ERO8 A 1 A_Raise
 Loop
@@ -1067,7 +1066,6 @@ Spawn:
 EVAL Z 1
 loop
 Use:
-TNT1 A 0 A_SelectWeapon("EvilFistC")
 TNT1 A 0 A_PlaySoundEx("weapon/BoobeamBeep","SoundSlot6")
 TNT1 A 0 A_JumpIfInventory("GigaMans",8,"Reboot")
 TNT1 A 0 A_GiveInventory("GigaMans",1)
@@ -2445,174 +2443,4 @@ actor TrioSplash3 : TrioSplash
 {
 Scale 1.5
 }
- 
-ACTOR EvilFistCSword : EvilFistC
-{ 
-Weapon.SlotNumber 1 
-States
-{
-Deselect:
-TNT1 A 0 //A_TakeInventory("GigaMans",99)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-ERO8 A 1 A_Lower
-Goto Deselect+1
-Select:
-TNT1 A 0 A_TakeInventory("GigaMans",99)
-TNT1 A 0 A_GiveInventory("GigaMans",1)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-ERO8 A 1 A_Raise
-Goto Select+2
-}
-}
 
-ACTOR EvilFistCBomb : EvilFistC
-{ 
-Weapon.SlotNumber 2 
-States
-{
-Deselect:
-TNT1 A 0 //A_TakeInventory("GigaMans",99)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-ERO8 A 1 A_Lower
-Goto Deselect+1
-Select:
-TNT1 A 0 A_TakeInventory("GigaMans",99)
-TNT1 A 0 A_GiveInventory("GigaMans",2)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-ERO8 A 1 A_Raise
-Goto Select+2
-}
-}
-
-ACTOR EvilFistCTornado : EvilFistC
-{ 
-Weapon.SlotNumber 3 
-States
-{
-Deselect:
-TNT1 A 0 //A_TakeInventory("GigaMans",99)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-ERO8 A 1 A_Lower
-Goto Deselect+1
-Select:
-TNT1 A 0 A_TakeInventory("GigaMans",99)
-TNT1 A 0 A_GiveInventory("GigaMans",3)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-ERO8 A 1 A_Raise
-Goto Select+2
-}
-}
-
-ACTOR EvilFistCElec : EvilFistC
-{ 
-Weapon.SlotNumber 4 
-States
-{
-Deselect:
-TNT1 A 0 //A_TakeInventory("GigaMans",99)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-ERO8 A 1 A_Lower
-Goto Deselect+1
-Select:
-TNT1 A 0 A_TakeInventory("GigaMans",99)
-TNT1 A 0 A_GiveInventory("GigaMans",4)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-ERO8 A 1 A_Raise
-Goto Select+2
-}
-}
-
-ACTOR EvilFistCMissile : EvilFistC
-{ 
-Weapon.SlotNumber 5 
-States
-{
-Deselect:
-TNT1 A 0 //A_TakeInventory("GigaMans",99)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-ERO8 A 1 A_Lower
-Goto Deselect+1
-Select:
-TNT1 A 0 A_TakeInventory("GigaMans",99)
-TNT1 A 0 A_GiveInventory("GigaMans",5)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-ERO8 A 1 A_Raise
-Goto Select+2
-}
-}
-
-ACTOR EvilFistCWatar : EvilFistC
-{ 
-Weapon.SlotNumber 6 
-States
-{
-Deselect:
-TNT1 A 0 //A_TakeInventory("GigaMans",99)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-ERO8 A 1 A_Lower
-Goto Deselect+1
-Select:
-TNT1 A 0 A_TakeInventory("GigaMans",99)
-TNT1 A 0 A_GiveInventory("GigaMans",6)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-ERO8 A 1 A_Raise
-Goto Select+2
-}
-}
-
-ACTOR EvilFistCIce : EvilFistC
-{ 
-Weapon.SlotNumber 7 
-States
-{
-Deselect:
-TNT1 A 0 //A_TakeInventory("GigaMans",99)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-ERO8 A 1 A_Lower
-Goto Deselect+1
-Select:
-TNT1 A 0 A_TakeInventory("GigaMans",99)
-TNT1 A 0 A_GiveInventory("GigaMans",7)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-ERO8 A 1 A_Raise
-Goto Select+2
-}
-}
-
-ACTOR EvilFistCAstro : EvilFistC
-{ 
-Weapon.SlotNumber 8 
-States
-{
-Deselect:
-TNT1 A 0 //A_TakeInventory("GigaMans",99)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-ERO8 A 1 A_Lower
-Goto Deselect+1
-Select:
-TNT1 A 0 A_TakeInventory("GigaMans",99)
-TNT1 A 0 A_GiveInventory("GigaMans",8)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-ERO8 A 1 A_Raise
-Goto Select+2
-}
-}
- 
-ACTOR EvilFistCLaser : EvilFistC
-{ 
-Weapon.SlotNumber 9
-States
-{
-Deselect:
-TNT1 A 0 //A_TakeInventory("GigaMans",99)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
-ERO8 A 1 A_Lower
-Goto Deselect+1
-Select:
-TNT1 A 0 A_TakeInventory("GigaMans",99)
-TNT1 A 0 //A_GiveInventory("GigaMans",8)
-TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
-ERO8 A 1 A_Raise
-Goto Select+2
-}
-}
