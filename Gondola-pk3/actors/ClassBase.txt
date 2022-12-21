@@ -943,17 +943,7 @@ goto Pain+2
 "----" H 0 ThrustThingZ(0,105,0,0)
 "----" H 0
 Goto Pain+2
-
-Death.PlugM_Plugged:
-"----" H 0 A_GiveToTarget("PlugInstaPotatoSound",2)
-"----" H 0 A_GiveToTarget("PlugBallAmmoBoss",56)
-"----" H 0 A_GiveToTarget("PlugOverdriveCharge",100)
-Goto Death
-Death.PlugM_Prong:
-"----" H 0 A_GiveToTarget("PlugInstaPotatoSound",2)
-"----" H 0 A_GiveToTarget("PlugBallAmmoBoss",56)
-"----" H 0 A_GiveToTarget("PlugOverdriveCharge",100)
-Goto Death
+ 
 
 }
 }
