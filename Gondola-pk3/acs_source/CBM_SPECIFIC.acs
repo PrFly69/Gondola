@@ -946,6 +946,7 @@ script "cbm_PlugHealthDrain" (int DrainHP)
 		        SetActorProperty(0,APROP_Invulnerable,0); 
   GiveActorInventory(player,"PlugBallAmmoBoss",56);
   GiveActorInventory(player,"PlugOverdriveCharge",100);
+  GiveActorInventory(player,"PlugInstaPotatoSound",3);
 			SpawnProjectile(player, "PluggedEnemyFinalHit", 0, 10, 0, 0, 6300 + ActivatorTID());//PlugmanFinshingPlugHit
 			SetActorPosition(6300 + ActivatorTID(), GetActorX(0), GetActorY(0), GetActorZ(0) + 1835008, 0);
 		}
