@@ -3,11 +3,11 @@ actor Fireman : ClassBase
 Player.ScoreIcon "C_01E0X"
 player.displayname "fireman"
 player.soundclass "firemanc"
-player.startitem "FireStormBoss"
+//player.startitem "FireStormBoss"
 player.startitem "FireStormerBoss"
 player.startitem "BurningJusticeAmmo", 24
-player.weaponslot 1, "FireStormBoss"
-player.weaponslot 2, "FireStormerBoss"
+//player.weaponslot 1, "FireStormBoss"
+player.weaponslot 1, "FireStormerBoss"
 
 player.startitem "IceSlasherWeakness2", 1
 

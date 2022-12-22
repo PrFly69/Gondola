@@ -3119,6 +3119,7 @@ CHANGELOG
 -Fixed item icons not appearing on HBAR
 -Fixed every MM9 and MM10 class having abnormally high base speeds (leftover from 2.6 Beta concept)
 -Light Team dark blue color 241 > [30,54,172]
+-New ice death sound effects provided by MusashiAA
 
 ==Copyweps
 -Fixed copynerf not working due to github forcibly renaming the file
@@ -3249,6 +3250,7 @@ CHANGELOG
 
 ==Plugman
 -Getting kills with Plug altfire (applies to both initial damager and zap) now provides full ammo and overcharge
+-Fixed infinite overcharge bug
 
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
@@ -3292,6 +3294,7 @@ CHANGELOG
 --Ammo drain on slowdowns 25 > 30
 -Break Dash secondary hitbox damage 5 > 8
 --Break Dash armor removed
+-Movement check polished
 
 ==Sunstar
 -Speed reduced 0.76/0.74 > 0.72/0.7
@@ -3313,6 +3316,9 @@ CHANGELOG
 -Frostbite debuff strength 50% > 35%
 -Tundra Storm now resets frostbite debuff timer
 -New SFX ported by MusashiAA
+-Dash cooldown doubled
+-Fixed ammobar desyncs
+-Fixed reload ammo regenerating slower while holding reload without enough ammo
 
 ==Torchman
 -Blazing Demon thrust before kicks 75 > 50
@@ -3334,3 +3340,24 @@ CHANGELOG
 -Sakugarne guaranteed 8 damage explosion removed
 -Sakugarne Dive cancel removed
 --Sakugarne Dive shockwave damage 5 > 8
+
+==Swordman 
+-Mainfire recovery animation can now be canceled to continue the combo 
+--Spin hitbox 128 > 85 
+--Spin now does 12 damage if moving fast 
+-Flying torso spin damage 4 > 2 
+--Flying torso slash damage 8x5 > 6x5 
+--Flying torso speed 16 > 19 
+--Flying torso return speed 20 > 35 
+-Fixed 3rd person animations
+-Fixed spin not doing damage in some situations 
+-Fixed spin recovery animation taking extra ammo
+
+==Galaxyman
+-Fixed reload icon
+
+==Iceman
+-Icicles from ice rain now blow up ice blocks
+
+==Fireman
+-Fire ring moved to reload button

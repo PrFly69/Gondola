@@ -422,7 +422,7 @@ IsSelected IceSlasherBoss{Drawbar"VARAMMO3","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawImage"ICEMRCON",178,175;}
 IsSelected HyperBombBoss{Drawbar"M1_B_VAR","VAREMPTY",Ammo1,horizontal,58,184;
 	Drawbar"VARAMMO4","VAREMPTY",Ammo2,horizontal,58,176;}
-IsSelected FireStormBoss,FireStormerBoss{Drawbar"VARAMMO5","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected FireStormBoss,FireStormerBoss{Drawbar"VARAMMO5","VAREMPTY",Ammo1,horizontal,58,184; DrawImage"FIREICNR",178,175;}
 IsSelected ThunderBeamBoss{Drawbar"VARAMMO6","VAREMPTY",Ammo1,horizontal,58,184;}
 WeaponAmmo TimeClassAmmo{DrawBar"VARAMMO7","VAREMPTY",Ammo1,horizontal,58,184;
 						 DrawImage"TIMRICON",178,175;}

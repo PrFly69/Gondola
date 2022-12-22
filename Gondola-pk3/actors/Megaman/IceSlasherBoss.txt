@@ -875,7 +875,6 @@ loop
 }
 }
 
-
 actor IceBaF_SculptBase
 {
 PROJECTILE
@@ -917,8 +916,10 @@ painchance 0
 painchance "IceM_Slow", 256
 painchance "IceM_Sculpt", 256
 painchance "IceM_Slasher", 256
+painchance "IceM_Icicle", 256
 
 //Species ""
+damagefactor "IceM_Icicle", 0.5
 damagefactor "IceM_Slasher", 0.5
 damagefactor "IceM_Slow", 1.0
 damagefactor "IceM_Sculpt", 1.0
@@ -1044,6 +1045,11 @@ Spawn2:
 "####" "#" 2 A_GiveInventory("WeaponCharge",1)
 "####" "#" 0 A_JumpIfInventory("WeaponCharge",250,"DeathTime")
 goto Spawn2+1
+ 
+Death.IceM_Icicle:
+Pain.IceM_Icicle:
+"####" "#" 0
+goto SuperDeath
 
 Death.IceM_Slasher:
 Pain.IceM_Slasher:
