@@ -3145,6 +3145,7 @@ CHANGELOG
 --Cluster Bomb explosion damage 15 > 12
 --Cluster spread now consistent, uses X pattern
 -Mainfire with Hyper Bomb active throws CBM Hyper Bomb M1
+--Damage reduced from CBM 40 > 25
 
 ==Yellow Devil
 -The Eye
