@@ -156,7 +156,7 @@ FIRB A 8 A_WeaponReady(WRF_NOSECONDARY)
 FIRB A 0 A_GiveInventory("BurningJusticeAmmo",2)
 loop
 Ready2:
-FIRB AAAAAAAA 1 A_WeaponReady
+FIRB AAAAAAAA 1 A_WeaponReady(WRF_ALLOWRELOAD)
 FIRB A 0 A_GiveInventory("BurningJusticeAmmo",2)
 loop
 Deselect:
@@ -200,6 +200,19 @@ FIRB A 2 OffSet(-6,26)
 FIRB A 1 OffSet(-3,29)//16
 FIRB B 0 A_GiveInventory("BurningJusticeAmmo",2)
 Goto Ready1
+Reload:
+FIRB C 2 offset(2,32)A_GiveInventory("FiremanAlt_CI",1)
+FIRB C 2 offset(-12,38)
+FIRB D 2 offset(2,16)
+FIRB F 2 offset(2,40)
+FIRB G 4 offset(20,24)
+FIRB H 4 offset(20,24)
+FIRB E 2 offset(22,36)
+FIRB E 2 offset(16,56)
+FIRB E 2 offset(8,76)
+FIRB A 2 offset(8,22)
+FIRB A 2 A_WeaponReady(14)
+Goto Ready1
 Altfire:
 FIRB C 2 offset(2,32)A_GiveInventory("FiremanAlt2_CI",1)
 FIRB C 2 offset(-12,38)
@@ -213,7 +226,6 @@ FIRB E 2 offset(8,76)
 FIRB A 2 offset(8,22)
 FIRB A 2 A_WeaponReady(14)
 Goto Ready1
-
 Flash:
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
 TNT1 A 0 A_FireCustomMissile("FiremanStormShield",0,0,0,0)
