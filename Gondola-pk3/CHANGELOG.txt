@@ -3357,3 +3357,6 @@ CHANGELOG
 
 ==Iceman
 -Icicles from ice rain now blow up ice blocks
+
+==Fireman
+-Fire ring moved to reload button
