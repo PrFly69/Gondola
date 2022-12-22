@@ -707,7 +707,7 @@ States
 {
 Spawn:
 TNT1 A 0       
-TNT1 A 1 A_Explode(10,85,0,0,85)
+TNT1 A 1 A_Explode(12,85,0,0,85)
 stop
 }
 }
