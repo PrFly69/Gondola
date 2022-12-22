@@ -438,6 +438,7 @@ graphic STONICON,30,30{XScale 2.0 YScale 2.0 Patch RSH1O0,0,0}
 graphic NEEDRCON,30,30{XScale 2.0 YScale 2.0 Patch RSH2H0,0,0}
 
 //Fire
+graphic FIREICNR,30,30{XScale 2.0 YScale 2.0 Patch RSFMR0,0,0} 
 graphic F1REIcon,30,30{XScale 2.0 YScale 2.0 Patch FIRICON1,0,0}
 graphic FI2EIcon,30,30{XScale 2.0 YScale 2.0 Patch FIRICON2,0,0}
 
