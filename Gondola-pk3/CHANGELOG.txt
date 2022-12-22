@@ -3340,12 +3340,17 @@ CHANGELOG
 -Sakugarne Dive cancel removed
 --Sakugarne Dive shockwave damage 5 > 8
 
-==Swordman
--Mainfire recovery animation can now be canceled to continue the combo
--Torso speed 16 > 20
--Returning torso speed 20 > 35
+==Swordman 
+-Mainfire recovery animation can now be canceled to continue the combo 
+--Spin hitbox 128 > 85 
+--Spin now does 12 damage if moving fast 
+-Flying torso spin damage 4 > 2 
+--Flying torso slash damage 8x5 > 6x5 
+--Flying torso speed 16 > 19 
+--Flying torso return speed 20 > 35 
 -Fixed 3rd person animations
--Fixed dash recovery animation taking extra ammo
+-Fixed spin not doing damage in some situations 
+-Fixed spin recovery animation taking extra ammo
 
 ==Galaxyman
 -Fixed reload icon
