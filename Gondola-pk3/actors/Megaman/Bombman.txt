@@ -6,6 +6,7 @@ player.soundclass "bombmanc"
 player.startitem "HyperBombBoss"
 Player.StartItem "GigaAmmo", 106
 Player.StartItem "GigaSpamAmmo", 162
+
 player.maxhealth 125
 health 125
 player.forwardmove 0.65, 0.65

@@ -200,22 +200,22 @@ goto Spawn2
 
 Death:
 TNT1 A 0 A_CheckCeiling("Ceiling")
-TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,8,8,0,8,0,1,0)
-TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,8,8,0,8,90,1,0)
-TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,8,8,0,8,180,1,0)
-TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,8,8,0,8,270,1,0)
+TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,8,8,0,8,45,1,0)
+TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,8,8,0,8,135,1,0)
+TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,8,8,0,8,225,1,0)
+TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,8,8,0,8,315,1,0)
 Goto RealDeath
 Ceiling:
-TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,-8,8,0,-8,0,1,0)
-TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,-8,8,0,-8,90,1,0)
-TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,-8,8,0,-8,180,1,0)
-TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,-8,8,0,-8,270,1,0)
+TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,-8,8,0,-8,45,1,0)
+TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,-8,8,0,-8,135,1,0)
+TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,-8,8,0,-8,225,1,0)
+TNT1 A 0 A_SpawnItemEx("HyperBombThrowSplit",0,0,-8,8,0,-8,315,1,0)
 Goto RealDeath
 RealDeath:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/hyperbomb","Weapon")
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-TNT1 A 0 A_Explode(12,96,0,0,48)
+TNT1 A 0 A_Explode(16,96,0,0,48)
 TNT1 A 0 A_SetScale(3.5)
 TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 TNT1 A 10
@@ -486,6 +486,7 @@ actor HyperBombBP : HyperBombB{translation "192:192=229:229", "199:199=234:234",
 
 actor Bombman_HyperBToss : HyperBombB
 {
+Translation "192:192=216:216", "199:199=41:41", "202:202=215:215"
 -HEXENBOUNCE
 speed 25
 states
@@ -759,7 +760,7 @@ Death:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/hyperbomb","Weapon")
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-TNT1 A 0 A_Explode(12,96,0,0,64)
+TNT1 A 0 A_Explode(16,96,0,0,64)
 TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 TNT1 A 10
 stop
@@ -857,19 +858,19 @@ actor BombmanMainCBM_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("Bombman_HyperBToss",0,1,0,28)
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBToss",0,1,0,8)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossB",0,1,0,28)
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossB",0,1,0,8)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossR",0,1,0,28)
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossR",0,1,0,8)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossO",0,1,0,28)
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossO",0,1,0,8)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossP",0,1,0,28)
+TNT1 A 0 A_FireCustomMissile("Bombman_HyperBTossP",0,1,0,8)
 goto Done
 }
 }

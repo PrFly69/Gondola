@@ -437,10 +437,10 @@ Translation "192:192=4:4", "198:198=216:216"
 var int user_P;
 Obituary "$OB_PHARAOHWAVE"
 damagetype "PharaohM_Wave"
-Damage (8)
+Damage (10)
 Radius 10
 Height 32
-speed 60
+speed 70
 States
 {
 Spawn:
@@ -485,7 +485,7 @@ actor PharaohshotWaveB1P : PharaohshotWaveB1{translation "192:192=229:229", "198
 
 actor PharaohshotWaveB2 : PharaohshotWaveB1
 {
-Damage(8)
+Damage(10)
 }
 
 actor PharaohshotWaveB2B : PharaohshotWaveB2{translation "192:192=205:205", "198:198=74:74"}
@@ -495,7 +495,7 @@ actor PharaohshotWaveB2P : PharaohshotWaveB2{translation "192:192=229:229", "198
 
 actor PharaohshotWaveB3 : PharaohshotWaveB1
 {
-Damage(8)
+Damage(10)
 }
 
 actor PharaohshotWaveB3B : PharaohshotWaveB3{translation "192:192=205:205", "198:198=74:74"}
@@ -505,7 +505,7 @@ actor PharaohshotWaveB3P : PharaohshotWaveB3{translation "192:192=229:229", "198
 
 actor PharaohshotWaveB4 : PharaohshotWaveB1
 {
-Damage(8)
+Damage(10)
 }
 
 actor PharaohshotWaveB4B : PharaohshotWaveB4{translation "192:192=205:205", "198:198=74:74"}

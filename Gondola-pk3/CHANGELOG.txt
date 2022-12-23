@@ -3143,10 +3143,18 @@ CHANGELOG
 -Rapid Bomb now reverted into CCBM Cluster Bomb
 --Speed reduced 60 > 50
 --Gains full ammo on spawn
---Cluster Bomb explosion damage 15 > 12
+--Cluster Bomb explosion damage 15 > 16
 --Cluster spread now consistent, uses X pattern
 -Mainfire with Hyper Bomb active throws CBM Hyper Bomb M1
 --Damage reduced from CBM 40 > 25
+--Colors tweaked to indicate differences
+--Hyper Bomb toss spawnheight reduced 28 > 8 for both versions
+
+==Iceman
+-Icicles from Icicle Rain now blow up Ice Blocks
+
+==Fireman
+-Fire Ring moved to reload button, 2nd wep removed
 
 ==Yellow Devil
 -The Eye
@@ -3231,6 +3239,18 @@ CHANGELOG
 -Movespeed 0.7/0.68 > 0.6/0.58
 -Copy Vision shots now translucent to indicate difference between Astro Bullets and Copy Bullets in team games
 
+==Swordman 
+-Mainfire recovery animation can now be canceled to continue the combo 
+--Spin hitbox 128 > 85 
+--Spin now does 12 damage if moving fast 
+-Flying torso spin damage 4 > 2 
+--Flying torso slash damage 8x5 > 6x5 
+--Flying torso speed 16 > 19 
+--Flying torso return speed 20 > 35 
+-Fixed 3rd person animations
+-Fixed spin not doing damage in some situations 
+-Fixed spin recovery animation taking extra ammo
+
 ==Searchman
 -Homing Sniper ammo regen 50 per tic > 10 per tic
 --NoAmmo Homing Snipers now properly no longer have lockon
@@ -3254,6 +3274,9 @@ CHANGELOG
 
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
+
+==Galaxyman
+-Fixed reload icon
 
 ==Fakeman
 -Fixed Fake Revolver shots unintentionally having 101 speed as opposed to 90
@@ -3340,24 +3363,3 @@ CHANGELOG
 -Sakugarne guaranteed 8 damage explosion removed
 -Sakugarne Dive cancel removed
 --Sakugarne Dive shockwave damage 5 > 8
-
-==Swordman 
--Mainfire recovery animation can now be canceled to continue the combo 
---Spin hitbox 128 > 85 
---Spin now does 12 damage if moving fast 
--Flying torso spin damage 4 > 2 
---Flying torso slash damage 8x5 > 6x5 
---Flying torso speed 16 > 19 
---Flying torso return speed 20 > 35 
--Fixed 3rd person animations
--Fixed spin not doing damage in some situations 
--Fixed spin recovery animation taking extra ammo
-
-==Galaxyman
--Fixed reload icon
-
-==Iceman
--Icicles from ice rain now blow up ice blocks
-
-==Fireman
--Fire ring moved to reload button

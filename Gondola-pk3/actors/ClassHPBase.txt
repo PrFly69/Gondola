@@ -1,0 +1,84 @@
+
+actor ClassBase200 : ClassBase
+{
+player.maxhealth 200
+health 200
+}
+
+actor ClassBase185 : ClassBase
+{
+player.maxhealth 185
+health 185
+}
+
+actor ClassBase155 : ClassBase
+{
+player.maxhealth 155
+health 155
+}
+
+actor ClassBase145 : ClassBase //impact :o
+{
+player.maxhealth 145
+health 145
+}
+
+actor ClassBase135 : ClassBase
+{
+player.maxhealth 135
+health 135
+}
+
+actor ClassBase125 : ClassBase
+{
+player.maxhealth 125
+health 125
+}
+
+actor ClassBase115 : ClassBase
+{
+player.maxhealth 115
+health 115
+}
+
+actor ClassBase110 : ClassBase
+{
+player.maxhealth 110
+health 110
+}
+
+actor ClassBase90 : ClassBase
+{
+player.maxhealth 90
+health 90
+}
+
+actor ClassBase85 : ClassBase
+{
+player.maxhealth 85
+health 85
+}
+
+actor ClassBase75 : ClassBase
+{
+player.maxhealth 75
+health 75
+}
+
+actor ClassBase70 : ClassBase
+{
+player.maxhealth 70
+health 70
+}
+
+actor ClassBase65 : ClassBase
+{
+player.maxhealth 65
+health 65
+}
+
+actor SpybotClassBase : ClassBase
+{
+player.maxhealth 1
+health 1
+}
