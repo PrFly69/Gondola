@@ -3173,6 +3173,9 @@ CHANGELOG
 -Time Stopper starting ammo 84 > 42
 -Fixed Time Stopper ammo regeneration not being affected by plug boost
 
+==Heatman
+-Maxcharge sound brought back
+
 ==Magnetman
 -Magnet Missile release speed now scales with time held
 --Initial release speed 75 > 37
@@ -3259,6 +3262,9 @@ CHANGELOG
 ==Searchman
 -Homing Sniper ammo regen 50 per tic > 10 per tic
 --NoAmmo Homing Snipers now properly no longer have lockon
+
+==Frostman
+-Ice Wave and Ice Crush teamcolors edited
 
 ==Coldman
 -Cold Shoulder now has 13 more tics of endlag, RoF reduced 22 tics > 30 tics
@@ -3367,4 +3373,6 @@ CHANGELOG
 -Quint Buster speed 36 > 42
 -Sakugarne guaranteed 8 damage explosion removed
 -Sakugarne Dive cancel removed
---Sakugarne Dive shockwave damage 5 > 8
+-Sakugarne Dive shockwave damage 5 > 8
+--Sakugarne Dive shockwave now properly slides on floors
+--Sakugarne Dive shockwave speed 40 > 20, projectile lifetime doubled to compensate
