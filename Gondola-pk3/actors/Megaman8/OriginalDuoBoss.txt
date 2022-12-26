@@ -999,7 +999,7 @@ Radius 32
 Height 32
 Speed 30
 Scale 2.0
-maxstepheight 25
+maxstepheight 32
 gravity 500
 States
 {

@@ -787,7 +787,7 @@ PROJECTILE
 damagetype "ShadeM_Shot2"
 Obituary "$OB_NOISECRUSH"
 +FORCEXYBILLBOARD
-damage (32)
+damage (35)
 Radius 22
 Height 16
 speed 40

@@ -281,10 +281,10 @@ stop
 }
 }
 
-actor FrostPunchShotB : FrostPunchShot{translation "192:192=205:205","199:199=74:74"}
-actor FrostPunchShotR : FrostPunchShot{translation "192:192=171:171","199:199=41:41"}
-actor FrostPunchShotO : FrostPunchShot{translation "192:192=104:104","199:199=128:128"}
-actor FrostPunchShotP : FrostPunchShot{translation "192:192=229:229","199:199=232:232"}
+actor FrostPunchShotB : FrostPunchShot{translation "192:192=4:4","199:199=205:205"}
+actor FrostPunchShotR : FrostPunchShot{translation "192:192=4:4","199:199=171:171"}
+actor FrostPunchShotO : FrostPunchShot{translation "192:192=4:4","199:199=104:104"}
+actor FrostPunchShotP : FrostPunchShot{translation "192:192=4:4","199:199=229:229"}
 
 
 actor FrostPunchIcicle
@@ -408,10 +408,10 @@ stop
 }
 }
 
-actor IceWaveSpawnerBB : IceWaveSpawnerB{translation "192:192=205:205","202:202=205:205","199:199=74:74"}
-actor IceWaveSpawnerBR : IceWaveSpawnerB{translation "192:192=171:171","202:202=171:171","199:199=41:41"}
-actor IceWaveSpawnerBO : IceWaveSpawnerB{translation "192:192=104:104","202:202=104:104","199:199=128:128"}
-actor IceWaveSpawnerBP : IceWaveSpawnerB{translation "192:192=229:229","202:202=229:229","199:199=232:232"}
+actor IceWaveSpawnerBB : IceWaveSpawnerB{translation "192:192=4:4","202:202=4:4","199:199=205:205"}
+actor IceWaveSpawnerBR : IceWaveSpawnerB{translation "192:192=4:4","202:202=4:4","199:199=171:171"}
+actor IceWaveSpawnerBO : IceWaveSpawnerB{translation "192:192=4:4","202:202=4:4","199:199=104:104"}
+actor IceWaveSpawnerBP : IceWaveSpawnerB{translation "192:192=4:4","202:202=4:4","199:199=229:229"}
 
 actor IceWaveSpawnerB2
 {

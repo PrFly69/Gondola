@@ -3117,6 +3117,7 @@ CHANGELOG
 =====2.6H
 ==General
 -Fixed item icons not appearing on HBAR
+-Fixed yellow painflash being too transparent
 -Fixed every MM9 and MM10 class having abnormally high base speeds (leftover from 2.6 Beta concept)
 -Light Team dark blue color 241 > [30,54,172]
 -New ice death sound effects provided by MusashiAA
@@ -3132,6 +3133,9 @@ CHANGELOG
 
 ==Protoman
 -Fixed charging sprites having bugged frames
+
+==Rock
+-Cut Ball not ripping fixed, damage 5 > 4
 
 ==Roll
 -Water Bucket speed change reverted, speed reduced 40 > 32
@@ -3173,6 +3177,7 @@ CHANGELOG
 -Magnet Missile release speed now scales with time held
 --Initial release speed 75 > 37
 --Max scaling goes up to 100 speed
+-MagFly hitstun reduced 75% > 67%
 
 ==Geminiman
 -New Gemini Buster sprites by Cowsha and Frostblue
@@ -3225,7 +3230,7 @@ CHANGELOG
 
 ==Shademan
 -Uncharged Noise Crush now has infinite range before first bounce, reactiontime cut in half
--Charged Noise Crush damage 40 > 32
+-Charged Noise Crush damage 40 > 35
 -Speed boost while charging now temporary, wears off after 3 seconds of having charge
 -Shade Swoop armor save 40% > 50%
 

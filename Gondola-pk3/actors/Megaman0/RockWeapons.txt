@@ -2133,11 +2133,12 @@ Translation "204:204=4:4","195:195=94:94","249:249=41:41"
 damagetype "MegaCutBall"
 Obituary "$OB_MEGACUTBALL"
 +NOGRAVITY
-bouncecount 7
++RIPPER
+bouncecount 4
 bouncefactor 1.0
 wallbouncefactor 1.0
 Gravity 1.0
-damage(5)
+damage(4)
 speed 39.375
 States
 {

@@ -1,9 +1,7 @@
 actor ClassBase0 : PlayerPawn//Base for every class
 {
 player.displayname "Copy Robot"
-player.damagescreencolor "white", 0.0, FlashStopper
-player.damagescreencolor "white", 0.0, FlashBulb
-player.damagescreencolor "yellow", 0.333
+player.damagescreencolor "yellow"
 player.maxhealth 100
 health 100
 player.forwardmove 0.8, 0.8
