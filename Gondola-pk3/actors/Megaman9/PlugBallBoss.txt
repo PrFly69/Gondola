@@ -472,7 +472,8 @@ stop
 
 
 actor PlugBallStartClass
-{
+{ 
+var int user_damage;
 Translation "202:202=4:4", "199:199=228:228"
 PROJECTILE
 damagetype "PlugM_Ball"
@@ -481,7 +482,7 @@ Obituary "$OB_PLUGBALL"
 +FORCEXYBILLBOARD
 Gravity 1.0
 reactiontime 20
-Damage (10)
+Damage (12-user_damage)
 Height 32
 Radius 17
 speed 39
@@ -492,7 +493,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-Y_9D ABCD 1
+Y_9D ABCD 1 A_GiveInventory("PlugFloorDetector",1)
 loop
 XDeath:
 Crash:
@@ -504,16 +505,73 @@ TNT1 A 0 A_SpawnItemEx("PlugBallClass",0,0,0,24,0,0,0,33)
 stop
 }
 }
+ 
+ 
+actor PlugFloorDetector : CustomInventory 
+{//comeme las bolas
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 1 A_CheckFloor("isFloor")
+stop
+isFloor:
+TNT1 A 0
+TNT1 A 1 A_SetUserVar("user_damage",2)
+stop
+}
+}   
 
-actor PlugBallStartClassB : PlugBallStartClass{Translation "202:202=205:205","199:199=74:74"}
-actor PlugBallStartClassR : PlugBallStartClass{Translation "202:202=171:171","199:199=41:41"}
-actor PlugBallStartClassO : PlugBallStartClass{Translation "202:202=104:104","199:199=128:128"}
-actor PlugBallStartClassP : PlugBallStartClass{Translation "202:202=229:229","199:199=232:232"}
+actor PlugBallStartClassB : PlugBallStartClass 
+{
+Translation "202:202=205:205","199:199=74:74"
+States
+{
+Death:
+TNT1 A 0 //A_SpawnItemEx("PlugBallClass",0,0,0,0,0,0,0,33)
+TNT1 A 0 A_SpawnItemEx("PlugBallClassB",0,0,0,24,0,0,0,33)
+stop
+}
+} 
+actor PlugBallStartClassR : PlugBallStartClass 
+{
+Translation "202:202=171:171","199:199=41:41"
+States
+{
+Death:
+TNT1 A 0 //A_SpawnItemEx("PlugBallClass",0,0,0,0,0,0,0,33)
+TNT1 A 0 A_SpawnItemEx("PlugBallClassR",0,0,0,24,0,0,0,33)
+stop
+}
+} 
+actor PlugBallStartClassO : PlugBallStartClass 
+{
+Translation "202:202=104:104","199:199=128:128"
+States
+{
+Death:
+TNT1 A 0 //A_SpawnItemEx("PlugBallClass",0,0,0,0,0,0,0,33)
+TNT1 A 0 A_SpawnItemEx("PlugBallClassO",0,0,0,24,0,0,0,33)
+stop
+}
+} 
+actor PlugBallStartClassP : PlugBallStartClass 
+{
+Translation "202:202=229:229","199:199=232:232"
+States
+{
+Death:
+TNT1 A 0 //A_SpawnItemEx("PlugBallClass",0,0,0,0,0,0,0,33)
+TNT1 A 0 A_SpawnItemEx("PlugBallClassP",0,0,0,24,0,0,0,33)
+stop
+}
+} 
 
 actor PlugBallClass
-{
+{ 
 var int user_x;
 var int user_y;
+var int user_damage;
 PROJECTILE
 damagetype "PlugM_Ball"
 Obituary "$OB_PLUGBALL"
@@ -531,7 +589,7 @@ bouncefactor 1.0
 wallbouncefactor 1.0
 gravity 4.0
 reactiontime 47
-Damage (10)//180
+Damage (12-user_damage)//180
 Radius 16
 Height 32
 Speed 27
@@ -543,12 +601,17 @@ Y_9D A 0
 Y_9D A 0 A_SetUserVar(user_x,x)
 Y_9D A 0 A_SetUserVar(user_y,y)
 Y_9D A 0 A_GiveInventory("ReSyncPickup",1)
+Goto SpawnL
 SpawnL:
 Y_9D A 0
+TNT1 A 0 A_GiveInventory("PlugFloorDetector0",1)
 Y_9D A 1 A_JumpIf(z-floorz>0,"SpawnFA")
+TNT1 A 0 A_GiveInventory("PlugFloorDetector0",1)
 Y_9D B 1 A_JumpIf(z-floorz>0,"SpawnFB")
+TNT1 A 0 A_GiveInventory("PlugFloorDetector0",1)
 Y_9D C 1 A_JumpIf(z-floorz>0,"SpawnFC")
-Y_9D D 1 A_JumpIf(z-floorz>0,"SpawnFD")
+TNT1 A 0 A_GiveInventory("PlugFloorDetector0",1)
+Y_9D D 1 A_JumpIf(z-floorz>0,"SpawnFD") 
 Y_9D A 0 A_CountDown
 
 Y_9D A 0 A_JumpIf((user_x-x < 2 && user_x-x > -2) && (user_y-y < 2 && user_y-y > -2), "Death2")
@@ -570,32 +633,117 @@ Y_9D D 0 //A_GiveInventory("PlugBallClassFall_P")
 goto SpawnF+4
 SpawnF:
 Y_9D A 0
+TNT1 A 0 A_GiveInventory("PlugFloorDetector0",1)
 Y_9D A 1 A_JumpIf(z-floorz==0,"SpawnLA")
+TNT1 A 0 A_GiveInventory("PlugFloorDetector0",1)
 Y_9D B 1 A_JumpIf(z-floorz==0,"SpawnLB")
+TNT1 A 0 A_GiveInventory("PlugFloorDetector0",1)
 Y_9D C 1 A_JumpIf(z-floorz==0,"SpawnLC")
+TNT1 A 0 A_GiveInventory("PlugFloorDetector0",1)
 Y_9D D 1 A_JumpIf(z-floorz==0,"SpawnLD")
 Y_9D A 0 A_CountDown
 loop
 SpawnLA:
-Y_9D A 1 //A_GiveInventory("PlugBallClassForward_P")
+Y_9D A 1 A_GiveInventory("PlugFloorDetector0",1)//A_GiveInventory("PlugBallClassForward_P")
 goto SpawnL+2
 SpawnLB:
-Y_9D B 1 //A_GiveInventory("PlugBallClassForward_P")
+Y_9D B 1 A_GiveInventory("PlugFloorDetector0",1)//A_GiveInventory("PlugBallClassForward_P")
 goto SpawnL+3
 SpawnLC:
-Y_9D C 1 //A_GiveInventory("PlugBallClassForward_P")
+Y_9D C 1 A_GiveInventory("PlugFloorDetector0",1)//A_GiveInventory("PlugBallClassForward_P")
 goto SpawnL+4
 SpawnLD:
-Y_9D D 1 //A_GiveInventory("PlugBallClassForward_P")
+Y_9D D 1 A_GiveInventory("PlugFloorDetector0",1)//A_GiveInventory("PlugBallClassForward_P")
 goto SpawnL+5
 Death2:
+TNT1 A 0 A_GiveInventory("PlugFloorDetector0",1)
 TNT1 A 1 A_CountDownArg(0)
-wait
+Loop
 Death:
 TNT1 A 1
 stop
 }
 }
+
+ACTOR PlugBallClassB : PlugBallClass 
+{
+States
+{
+Spawn:
+Y_9D A 0
+Y_9D A 0 A_GiveInventory("PBTeamNumber",1)
+Y_9D A 0 A_SetUserVar(user_x,x)
+Y_9D A 0 A_SetUserVar(user_y,y)
+Y_9D A 0 A_GiveInventory("ReSyncPickup",1)
+Goto SpawnL
+}
+}
+
+ACTOR PlugBallClassR : PlugBallClass 
+{
+States
+{
+Spawn:
+Y_9D A 0
+Y_9D A 0 A_GiveInventory("PBTeamNumber",2)
+Y_9D A 0 A_SetUserVar(user_x,x)
+Y_9D A 0 A_SetUserVar(user_y,y)
+Y_9D A 0 A_GiveInventory("ReSyncPickup",1)
+Goto SpawnL
+}
+}
+
+ACTOR PlugBallClassO : PlugBallClass 
+{
+States
+{
+Spawn:
+Y_9D A 0
+Y_9D A 0 A_GiveInventory("PBTeamNumber",3)
+Y_9D A 0 A_SetUserVar(user_x,x)
+Y_9D A 0 A_SetUserVar(user_y,y)
+Y_9D A 0 A_GiveInventory("ReSyncPickup",1)
+Goto SpawnL
+}
+}
+
+ACTOR PlugBallClassP : PlugBallClass 
+{
+States
+{
+Spawn:
+Y_9D A 0
+Y_9D A 0 A_GiveInventory("PBTeamNumber",4)
+Y_9D A 0 A_SetUserVar(user_x,x)
+Y_9D A 0 A_SetUserVar(user_y,y)
+Y_9D A 0 A_GiveInventory("ReSyncPickup",1)
+Goto SpawnL
+}
+}
+
+
+actor PlugFloorDetector0 : CustomInventory 
+{//comeme las bolas
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 1 A_CheckFloor("isFloor")
+stop
+isFloor:
+TNT1 A 0 
+TNT1 A 0 ACS_NamedExecuteAlways("ColorizeMyBalls",0,0,0)
+TNT1 A 1 A_SetUserVar("user_damage",2)
+stop
+}
+} 
+
+ACTOR PBTeamNumber : Inventory
+{
+ Inventory.MaxAmount 4
+ -INVBAR
+}
+
 
 actor PlugElectricFX
 {
