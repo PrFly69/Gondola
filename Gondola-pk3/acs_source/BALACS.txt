@@ -1,0 +1,18 @@
+#library "BALACS"
+#include "zcommon.acs"
+ 
+Script "ColorizeMyBalls" (void)
+{
+ CreateTranslation(21690,202:202=4:4,199:199=215:215);
+ CreateTranslation(21691,202:202=196:196,199:199=204:204);
+ CreateTranslation(21692,202:202=169:169,199:199=171:171);
+ CreateTranslation(21693,202:202=136:136,199:199=104:104);
+ CreateTranslation(21694,202:202=160:160,199:199=228:228);
+  
+ If(CheckInventory("PBTeamNumber")==0){Thing_SetTranslation(0,21690);Terminate;}
+ If(CheckInventory("PBTeamNumber")==1){Thing_SetTranslation(0,21691);Terminate;}
+ If(CheckInventory("PBTeamNumber")==2){Thing_SetTranslation(0,21692);Terminate;}
+ If(CheckInventory("PBTeamNumber")==4){Thing_SetTranslation(0,21694);Terminate;} 
+ If(CheckInventory("PBTeamNumber")==3){Thing_SetTranslation(0,21693);Terminate;}
+}
+  
