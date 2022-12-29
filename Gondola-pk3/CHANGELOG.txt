@@ -3144,6 +3144,11 @@ CHANGELOG
 ==Roll
 -Water Bucket speed change reverted, speed reduced 40 > 32
 
+==Auto
+-HP 100 > 125
+-Fixed dropped screws being invisible/disappearing on TLMS
+-Fixed misplaced tango roll indicator on horizontal bars
+
 ==Elecman
 -Thunder Beam now has projectile death sprites
 
@@ -3153,6 +3158,7 @@ CHANGELOG
 --Gains full ammo on spawn
 --Cluster Bomb explosion damage 15 > 14
 --Cluster spread now consistent, uses X pattern
+--New cluster split sfx provided by MusashiAA
 -Mainfire with Hyper Bomb active throws CBM Hyper Bomb M1
 --Damage reduced from CBM 40 > 25
 --Colors tweaked to indicate differences
@@ -3163,9 +3169,13 @@ CHANGELOG
 
 ==Fireman
 -Fire Ring moved to reload button, 2nd wep removed
+-Fixed fire shield being invisible
 
 ==Yellow Devil
 -The Eye
+
+==Metalman 
+-New m2 animation provided by N4HW3ll
 
 ==Flashman
 -Reverted ammo gain to 2.0h
@@ -3194,6 +3204,9 @@ CHANGELOG
 -SBAR updated
 -Search Snake now has scales up vertical thrust by 50% on spawn, inspired by HyperFighting
 --New Search Snake firing SFX made by Pr. Gibus
+
+==Toadman
+-Rain vfx now properly displays radius and full damage radius
 
 ==Diveman
 -Dive Tackle upwards thrust reduced 24 > 10 (42 > 20 with rage)
@@ -3252,16 +3265,19 @@ CHANGELOG
 -Copy Vision shots now translucent to indicate difference between Astro Bullets and Copy Bullets in team games
 
 ==Swordman 
--Mainfire recovery animation can now be canceled to continue the combo 
+-Mainfire recovery animation can now be canceled to continue the combo  
 --Spin hitbox 128 > 85 
 --Spin now does 12 damage if moving fast 
+--Lunge thrust 2/6/10 > 2/5/8
 -Flying torso spin damage 4 > 2 
 --Flying torso slash damage 8x5 > 6x5 
 --Flying torso speed 16 > 19 
 --Flying torso return speed 20 > 35 
 -Fixed 3rd person animations
 -Fixed spin not doing damage in some situations 
--Fixed spin recovery animation taking extra ammo
+-Fixed spin recovery animation taking extra ammo 
+-Added flame attacks pain sounds
+-Added ammobar indicators
 
 ==Searchman
 -Homing Sniper ammo regen 50 per tic > 10 per tic
@@ -3289,6 +3305,7 @@ CHANGELOG
 ==Plugman
 -Getting kills with Plug altfire (applies to both initial damager and zap) now provides full ammo and overcharge
 -Fixed infinite overcharge bug
+-Plug balls now deal 12 damage before hitting the floor
 
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
@@ -3388,3 +3405,7 @@ CHANGELOG
 -Sakugarne Dive shockwave damage 5 > 8
 --Sakugarne Dive shockwave now properly slides on floors
 --Sakugarne Dive shockwave speed 40 > 20, projectile lifetime doubled to compensate
+--Fixed Sakugarne Dive shockwave not spawning on thin sectors 
+--Fixed Sakugarne Dive shockwave being invisible              
+--Improved Sakugarne Dive shockwave's floorhugging system     
+--Sakugarne Dive shockwave powerprotection 0.50 > 0.25       
