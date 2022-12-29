@@ -513,6 +513,7 @@ Translation "192:192=219:219", "198:198=181:191"
 PROJECTILE
 damagetype "TorchHit1"
 Obituary "$OB_TORCH"
++FORCEXYBILLBOARD
 Damage (16)
 radius 24
 height 24
@@ -548,7 +549,8 @@ TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 TRCP EFGHEFGHEFGHEFGH 1 A_SpawnItemEx("PGTorchmanJutsuFX",0,0,0,0,0,0,0,1)
 Death:
 TNT1 A 0 A_SpawnItemEx("TorchHandBoomFX",0,0,0,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+TNT1 A 0 A_SpawnItemEx("TorchSpinBoomFX",0,0,0,0,0,0,0,1)
+TRCP A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
 stop
 }
 }
@@ -577,6 +579,16 @@ States
 {
 Spawn:
 X_8B ABCDEF 1
+stop
+}
+}
+
+actor TorchSpinBoomFX : TorchHandBoomFX
+{
+States
+{
+Spawn:
+TRCP IIJJKKLL 1 A_SetScale(ScaleX+0.075)
 stop
 }
 }

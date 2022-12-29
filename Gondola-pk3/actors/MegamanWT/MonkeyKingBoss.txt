@@ -18,14 +18,14 @@ BROG A 0 A_GunFlash
 BROG A 0
 Ready2:
 BROG A 0 A_JumpIfInventory("BRGCloneFlag",1,"ReadyC")
-BROG A 0 A_JumpIfInventory("MonkeyMagicAmmo",4,"Ready3")
+BROG A 0 A_JumpIfInventory("MonkeyMagicAmmo",6,"Ready3")
 BROG A 6 A_WeaponReady(WRF_NOSECONDARY)
-BROG A 0 A_GiveInventory("MonkeyMagicAmmo",2)
+BROG A 0 A_GiveInventory("MonkeyMagicAmmo",3)
 goto Ready2
 Ready3:
 BROG A 6 A_WeaponReady
 BROG A 0 A_JumpIfInventory("BRGCloneFlag",1,"ReadyC")
-BROG A 0 A_GiveInventory("MonkeyMagicAmmo",2)
+BROG A 0 A_GiveInventory("MonkeyMagicAmmo",3)
 Goto Ready3
 ReadyC:
 BROG A 1 A_WeaponReady
@@ -132,7 +132,7 @@ Goto Ready+2
 
 
 AltFire:
-BROG A 0 A_JumpIfInventory("MonkeyMagicAmmo",1,"AltFire2")
+BROG A 0 A_JumpIfInventory("MonkeyMagicAmmo",2,"AltFire2")
 Goto Ready2
 AltFire2:
 BROG A 0 A_GiveInventory("BRGSpinFlag",1)
@@ -144,10 +144,10 @@ BROG F 0 A_GiveInventory("BRGShieldHitbox_P",1)
 goto SpinToWin
 
 SpinToWin:
-BROG F 0 A_JumpIfInventory("MonkeyMagicAmmo",1,"SpinToWin2")
+BROG F 0 A_JumpIfInventory("MonkeyMagicAmmo",2,"SpinToWin2")
 goto AltFireEnd
 SpinToWin2:
-BROG F 0 A_TakeInventory("MonkeyMagicAmmo",1,1)
+BROG F 0 A_TakeInventory("MonkeyMagicAmmo",2,1)
 BROG F 0 A_FireCustomMissile("BRGSoundHelperAlt",0,0,0,0)
 BROG F 0 A_FireCustomMissile("BRGSpinBoom",0,0,-8,0)
 BROG F 0 A_PlaySoundEx("weapon/BRGSpin","Weapon")
@@ -198,7 +198,7 @@ actor MonkeyMagicAmmo : Ammo
 {
 +INVENTORY.IGNORESKILL
 inventory.amount 1
-inventory.maxamount 100
+inventory.maxamount 150
 }
 
 actor BRGSpinFlag : OnceC{}
@@ -217,20 +217,20 @@ BROG I 1
 loop
 Use:
 TNT1 A 1 A_JumpIfInventory("BRGCloneFlag",1,"Use2")
-TNT1 A 1 A_JumpIfInventory("MonkeyMagicAmmo",100,"Use1")
+TNT1 A 1 A_JumpIfInventory("MonkeyMagicAmmo",150,"Use1")
 fail
 Use1:
 TNT1 A 0 A_PlaySound("classes/BRGClone",7,0.7)//SoundSlot7
 TNT1 A 0 A_SpawnItemEx("BRG_CloneWatcher")
 TNT1 A 0 A_SpawnItemEx("BRGDTFramePre",0,0,0,0,0,0,0,1,0)
 TNT1 A 0 A_GiveInventory("BRGCloneFlag",1)
-TNT1 A 0 A_TakeInventory("MonkeyMagicAmmo",4)
+TNT1 A 0 A_TakeInventory("MonkeyMagicAmmo",6)
 fail
 Use2:
 //TNT1 A 0 A_PlaySoundEX("item/ItemUseMM9","SoundSlot7")
 TNT1 A 0 A_PlaySound("classes/BRGClone",7,0.7)//SoundSlot7
 TNT1 A 0 A_TakeInventory("BRGCloneFlag",99)
-TNT1 A 0 A_TakeInventory("MonkeyMagicAmmo",4)
+TNT1 A 0 A_TakeInventory("MonkeyMagicAmmo",6)
 fail
 }
 }
@@ -246,16 +246,16 @@ TNT1 A 0 A_JumpIfInventory("WeaponCharge",22,7)
 TNT1 A 0 A_JumpIfInTargetInventory("BRGCloneFlag",1,2)
 TNT1 A 1 A_TakeFromTarget("BRGCloneFlag",99)
 stop
-TNT1 A 0 A_JumpIfInTargetInventory("MonkeyMagicAmmo",2,3)
+TNT1 A 0 A_JumpIfInTargetInventory("MonkeyMagicAmmo",3,3)
 TNT1 A 0 A_GiveToTarget("BRGCloneSoundItem",1)
 TNT1 A 1 A_TakeFromTarget("BRGCloneFlag",99)
 stop
 TNT1 A 0 A_GiveInventory("WeaponCharge",1)
 goto Spawn
 TNT1 A 0 A_JumpIfInTargetInventory("IsDead",1,"Death")
-TNT1 A 0 A_TakeFromTarget("MonkeyMagicAmmo",2,1)
+TNT1 A 0 A_TakeFromTarget("MonkeyMagicAmmo",3,1)
 TNT1 A 0 A_TakeInventory("WeaponCharge",99)
-TNT1 A 0 A_JumpIfInTargetInventory("MonkeyMagicAmmo",2,"Spawn")
+TNT1 A 0 A_JumpIfInTargetInventory("MonkeyMagicAmmo",3,"Spawn")
 TNT1 A 0 A_GiveToTarget("BRGCloneSoundItem",1)
 TNT1 A 1 A_TakeFromTarget("BRGCloneFlag",99)
 stop
@@ -299,11 +299,11 @@ States
 Pickup:
 TNT1 A 0
 TNT1 A 0 A_JumpIfInventory("BRGCloneFlag",1,"Lose")
-TNT1 A 0 A_GiveInventory("MonkeyMagicAmmo",2)
+TNT1 A 0 A_GiveInventory("MonkeyMagicAmmo",3)
 TNT1 A 0
 stop
 Lose:
-TNT1 A 0 A_TakeInventory("MonkeyMagicAmmo",2,1)
+TNT1 A 0 A_TakeInventory("MonkeyMagicAmmo",3,1)
 stop
 }
 }

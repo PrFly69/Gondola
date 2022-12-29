@@ -215,7 +215,11 @@ RealDeath:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/hyperbomb","Weapon")
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+<<<<<<< HEAD
 TNT1 A 0 A_Explode(12,96,0,0,48)
+=======
+TNT1 A 0 A_Explode(14,96,0,0,48)
+>>>>>>> dc9b391cf403e29ac5e0bce2a8aa3fcf1c02f88c
 TNT1 A 0 A_SetScale(3.5)
 TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 TNT1 A 10
@@ -759,7 +763,11 @@ Death:
 TNT1 A 0 A_Stop
 TNT1 A 0 A_PlaySoundEx("weapon/hyperbomb","Weapon")
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+<<<<<<< HEAD
 TNT1 A 0 A_Explode(12,96,0,0,64)
+=======
+TNT1 A 0 A_Explode(14,96,0,0,64)
+>>>>>>> dc9b391cf403e29ac5e0bce2a8aa3fcf1c02f88c
 TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 TNT1 A 10
 stop
