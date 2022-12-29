@@ -42,6 +42,7 @@ $volume weapon/Ice_Cloud 0.6
 //Bomb
 weapon/tubthumpin BOMBTHUD
 weapon/minitubthumpin BOMBBOUN
+weapon/bomb_split S_M1_D6
 
 //Oil
 weapon/oilcharge BALMIN
