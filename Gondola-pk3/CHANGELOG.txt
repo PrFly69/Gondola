@@ -3125,6 +3125,7 @@ CHANGELOG
 ==Copyweps
 -Fixed copynerf not working due to github forcibly renaming the file
 -Fixed BRG Pole copywep not having proper icon
+-Fixed Blazing Torch flares having incorrect colors
 
 ==Megaman
 -HP 90 > 100
@@ -3135,7 +3136,10 @@ CHANGELOG
 -Fixed charging sprites having bugged frames
 
 ==Rock
+-Fixed all faulty speed changes
 -Cut Ball not ripping fixed, damage 5 > 4
+-Bomb Ball damage 20/21 > 16/20, radius 128 > 96
+-Ice Ball hitstun reduced 100% > 35%
 
 ==Roll
 -Water Bucket speed change reverted, speed reduced 40 > 32
@@ -3147,7 +3151,7 @@ CHANGELOG
 -Rapid Bomb now reverted into CCBM Cluster Bomb
 --Speed reduced 60 > 50
 --Gains full ammo on spawn
---Cluster Bomb explosion damage 15 > 16
+--Cluster Bomb explosion damage 15 > 14
 --Cluster spread now consistent, uses X pattern
 -Mainfire with Hyper Bomb active throws CBM Hyper Bomb M1
 --Damage reduced from CBM 40 > 25
@@ -3276,6 +3280,9 @@ CHANGELOG
 --Now has Mokumokumo cloud sprite to indicate initial projectile size 
 --Lingering damager applies current hitstun effect
 
+==Pirateman
+-Remote Mine HP 35 > 25
+
 ==Tornadoman
 -Whirlwind Blade projectiles now have FX indicating windbox, made by Cowsha
 
@@ -3332,6 +3339,8 @@ CHANGELOG
 
 ==Sunstar
 -Speed reduced 0.76/0.74 > 0.72/0.7
+-Overheat Scorched Land spawner speed 45 > 35
+--Now has passive sound while crawling
 
 ==Fuseman
 -Fixed Scramble Ray sounds lingering after death
@@ -3344,9 +3353,10 @@ CHANGELOG
 ==Tundraman
 -Icy Gust ammo regen per tic 5 > 6
 -Icy Gust radius 48 > 26, projectile scale tweaked to reflect this
+--Icy Gust speed 55 > 45
 --Icy Gust death FX now die out thrice as fast
 --Can now be cancelled into Triple Lutz
--Glacier Spike speed reduced 75 > 50
+-Glacier Spike speed reduced 75 > 42
 -Frostbite debuff strength 50% > 35%
 -Tundra Storm now resets frostbite debuff timer
 -New SFX ported by MusashiAA
@@ -3356,6 +3366,7 @@ CHANGELOG
 
 ==Torchman
 -Blazing Demon thrust before kicks 75 > 50
+-Updated Roller Roaster impact/death sprites
 
 ==Bounceman
 -Rubber Latch now has extra 15 tics of endlag when whiffing the initial grabber
@@ -3366,7 +3377,8 @@ CHANGELOG
 -Fixed bug with doubled recalling sound before returning
 
 ==Buster Rod G
--All instances of ammo doubled except for altfire (effectively doubles altfire duration)
+-All instances of ammo tripled except for altfire
+--Altfire ammo consumption doubled (effectively increases altfire duration by 50%)
 
 ==Quint
 -Now gains 10% damage vulnerability while Sakugarne is dequipped

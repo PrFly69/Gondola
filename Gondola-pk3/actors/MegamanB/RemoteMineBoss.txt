@@ -653,7 +653,7 @@ damagefactor "BurnerM_Shot2", 1.0
 damagefactor "PirateM_BubbleRam", 1.0
 damagefactor "PirateM_Boom", 10.0
 	Mass 99999
-	Health 35
+	Health 25
 	ReactionTime 1
 	Damage (2)
 	Radius 16
