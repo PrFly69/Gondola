@@ -79,7 +79,7 @@ BUIN D 0 A_GiveInventory("Climbing",1)
 BUIN D 0// A_GiveInventory("BuzzsawAmmo",1)
 BUIN A 0 A_PlaySound("weapon/MetalMelee",1,1.0)
 BUIN J 2 Offset(-56,10)A_GiveInventory("MetalmanAlt_CI",1)
-BUIN J 2 Offset(-56,9)A_GiveInventory("MetalmanAlt_CI",1)
+BUIN Z 2 Offset(-56,9)A_GiveInventory("MetalmanAlt_CI",1)
 BUIN D 0 A_TakeInventory("Climbing",9)
 BUIN D 0 A_Refire
 goto Ready1
@@ -506,5 +506,3 @@ TNT1 A 0 A_FireCustomMissile("MetalManChainBladeP",0,1,0,0)
 goto Done
 }
 }
-
-
