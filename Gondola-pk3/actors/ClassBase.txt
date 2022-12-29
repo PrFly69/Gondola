@@ -958,6 +958,12 @@ Death.PlugM_Prong:
 "----" H 0 A_GiveToTarget("PlugOverdriveCharge",100)
 Goto Death
 
-
+Death.FlameSwordCBM1:
+Death.FlameSwordCBM2:
+Death.FlameSwordCBM3:
+Death.FlameSwordBT:
+"----" H 0 A_PlaySound("weapon/flamehit","body")
+"----" HH 0 A_SpawnItemEx("FlameSwordBitB",0,0,0,random(-10,10),random(-10,10),random(10,15),random(0,359))
+Goto Death
 }
 }
