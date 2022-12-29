@@ -624,7 +624,8 @@ IsSelected AstroCrushBoss{Drawbar"VARAMM52","VAREMPTY",Ammo1,horizontal,58,184;
 						  DrawImage"ATRRICON",178,175;
 	Drawbar"VARAMM41","VAREMPTY",Ammo2,horizontal,58,176;}
 IsSelected FlameSwordBoss{DrawBar"VARAMM42","VAREMPTY",Ammo1,horizontal,58,184;
-	Drawbar"7H_A_VAR","VNOBAR",Ammo2,horizontal,58,184;}
+	Drawbar"7H_A_VAR","VNOBAR",Ammo2,horizontal,58,184;
+	DrawImage"OB_62B4R",58,184;}
 WeaponAmmo YoGeekyAmmo{Drawbar"VARAMM43","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawImage"CLOWNICR",178,175;}
 
