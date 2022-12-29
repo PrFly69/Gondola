@@ -335,7 +335,7 @@ InInventory IsAuto{Drawbar"VARAMMO4","VAREMPTY",Ammo1,horizontal,58,184;
 		else InInventory AutoItemCount,4{DrawImage"AUTOIT4",50,176;DrawImage"00_GA_VR",65,176;}
 		else InInventory AutoItemCount,3{DrawImage"AUTOIT3",50,176;DrawImage"00_GA_VR",61,176;}
 		else InInventory AutoItemCount,2{DrawImage"AUTOIT2",50,176;DrawImage"00_GA_VR",61,176;}
-		else InInventory AutoItemCount,1{DrawImage"AUTOIT1",50,176;DrawImage"00_GA_VR",71,184;}
+		else InInventory AutoItemCount,1{DrawImage"AUTOIT1",50,176;DrawImage"00_GA_VR",61,176;}
 		else {DrawImage"AUTOIT0",50,176;DrawImage"00_GA_VR",61,176;}}
 		
 InInventory GreenSupremeFlag{DrawImage"MSTRICON",178,175;}
