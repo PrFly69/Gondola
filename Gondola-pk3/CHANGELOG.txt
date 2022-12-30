@@ -3168,7 +3168,7 @@ CHANGELOG
 --Apache Joe shot projectile speed 54 > 48
 --Buster Rod G movespeed 1.1/1.08 > 1.0/0.98
 --Magmaman movespeed 0.7875 > 0.7
---Fake Revolver projectile speed 101 > 9
+--Fake Revolver projectile speed 101 > 90
 --Blade Slash projectile speed 96 > 85
 --Triple Blade projectile speed 45 > 40
 --Commando Bomb projectile speed 34 > 30
@@ -3367,6 +3367,10 @@ CHANGELOG
 -Fixed spin recovery animation taking extra ammo 
 -Added flame attacks pain sounds
 -Added ammobar indicators
+
+==Clownman
+-Thunder Carnival fulldmgmaxradius 48/64 > 64/96
+-Swinging Thunder Carnival damage 20 > 24
 
 ==Searchman
 -Homing Sniper ammo regen 50 per tic > 10 per tic

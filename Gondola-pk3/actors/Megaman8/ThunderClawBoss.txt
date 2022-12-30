@@ -480,7 +480,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(8,100,0,0,45)
+TNT1 A 2 A_Explode(8,100,0,0,64)
 stop
 }
 }
@@ -492,7 +492,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 2 A_Explode(20,140,0,0,64)
+TNT1 A 2 A_Explode(24,140,0,0,96)
 stop
 }
 }
