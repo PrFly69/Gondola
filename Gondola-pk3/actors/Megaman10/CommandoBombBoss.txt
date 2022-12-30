@@ -430,7 +430,7 @@ Obituary "$OB_COMMANDOBOMB"
 Damage (15)
 Radius 10
 Height 10
-Speed 34
+Speed 30
 Scale 2.5
 States
 {
@@ -593,7 +593,7 @@ gravity 5.0
 Damage (0)
 Radius 20
 Height 12
-Speed 56
+Speed 50
 States
 {
 Spawn:
@@ -671,7 +671,7 @@ Wallbouncefactor 0.50
 Radius 10
 Height 10
 Damage (6)
-Speed 23
+Speed 20
 Scale 2.5
 States
 {
@@ -717,7 +717,7 @@ Obituary "$OB_COMMANDOMINEX"
 Damage(9)
 Radius 20
 Height 10
-Speed 39
+Speed 35
 scale 2.5
 States
 {

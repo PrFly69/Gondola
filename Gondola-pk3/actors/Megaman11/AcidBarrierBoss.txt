@@ -675,7 +675,7 @@ Species "Acidman"
 Damage (6)
 Radius 14
 Height 14
-Speed 47
+Speed 42
 Scale 2.75
 var int user_angle;
 States

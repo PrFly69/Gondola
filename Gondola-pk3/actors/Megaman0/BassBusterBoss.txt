@@ -274,7 +274,7 @@ PROJECTILE
 damagetype "Bass_Shot"
 Obituary "$OB_BASSBUSTER"
 Damage (5)
-Speed 72
+Speed 64
 radius 5
 height 5
 scale 2.5
@@ -303,7 +303,7 @@ Obituary "%o's particles were disintegrated by %k's charge shot."
 damagetype "Bass_Shot"
 PROJECTILE
 Damage (20)
-Speed 50.6
+Speed 45
 Scale 2.75
 Radius 20
 Height 14

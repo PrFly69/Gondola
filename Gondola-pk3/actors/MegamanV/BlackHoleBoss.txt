@@ -1232,7 +1232,7 @@ PROJECTILE
 +DONTREFLECT
 +THRUSPECIES
 Species "SaturnSuck"
-Speed 731//450
+Speed 650//450
 Damage (0)
 radius 12
 height 12

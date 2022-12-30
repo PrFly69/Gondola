@@ -152,7 +152,7 @@ ReactionTime 1
 Damage (13)
 radius 8
 height 8
-Speed 36
+Speed 32
 scale 2.5
 States
 {
@@ -213,7 +213,7 @@ actor PowerShot3 : PowerShot
 Damage (50)
 radius 20
 height 20
-Speed 56.25
+Speed 50
 States
 {
 Spawn:

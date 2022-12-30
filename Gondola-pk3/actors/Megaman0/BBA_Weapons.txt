@@ -314,7 +314,7 @@ reactiontime 1
 Damage (18)
 Radius 20
 Height 20
-speed 84.375
+speed 75
 scale 1.5
 states
 {
@@ -783,7 +783,7 @@ ReactionTime 5
 Damage (5)
 Radius 11
 Height 8
-Speed 39.375
+Speed 35
 scale 2.5
 states
 {
@@ -933,7 +933,7 @@ reactiontime 8
 Damage (7)//5
 Radius 13
 Height 10//8
-Speed 29.25
+Speed 26
 scale 1.5
 states
 {
@@ -1044,7 +1044,7 @@ obituary "$OB_BBABFG"
 Damage (30)
 Radius 13
 height 13
-speed 28.125
+speed 25
 scale 2.5
 states
 {
@@ -1256,7 +1256,7 @@ Damage (5)
 radius 6
 height 7
 +FORCEXYBILLBOARD
-Speed 168.75
+Speed 150
 scale 2.5
 +HITTRACER
 reactiontime 30
@@ -1301,7 +1301,7 @@ actor BBA_ShotgunShot : BBA_PistolShot
 {
 Obituary "$OB_BBASHOTGUN"
 reactiontime 12
-Speed 112.5
+Speed 100
 }
 actor BBA_ShotgunShotB : BBA_ShotgunShot{Translation "204:204=205:205","195:195=74:74"}
 actor BBA_ShotgunShotR : BBA_ShotgunShot{Translation "204:204=171:171","195:195=41:41"}
@@ -1313,7 +1313,7 @@ actor BBA_SuperShotgunShot : BBA_PistolShot
 Obituary "$OB_BBASUPERSHOTGUN"
 reactiontime 7
 Damage (3)
-speed 135
+speed 120
 }
 actor BBA_SuperShotgunShotB : BBA_SuperShotgunShot{Translation "204:204=205:205","195:195=74:74"}
 actor BBA_SuperShotgunShotR : BBA_SuperShotgunShot{Translation "204:204=171:171","195:195=41:41"}

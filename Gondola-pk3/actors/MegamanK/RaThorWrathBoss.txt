@@ -574,7 +574,7 @@ reactiontime 6
 damage (10)
 Radius 15
 Height 8
-speed 62
+speed 55
 scale 2.5
 States
 {
@@ -601,7 +601,7 @@ actor ThorHellVortex : ThorHellDisc
 reactiontime 7
 damage (13)
 Height 14
-speed 68
+speed 60
 States
 {
 Spawn:
@@ -665,7 +665,7 @@ ReactionTime 2
 damage (9)
 Radius 15
 Height 15
-speed 56
+speed 50
 scale 3.0
 States
 {
@@ -734,7 +734,7 @@ reactiontime 2
 damage (8)
 Radius 15
 Height 15
-speed 68
+speed 60
 scale 2.5
 States
 {
@@ -786,7 +786,7 @@ Obituary "$OB_RATHOR3"
 reactiontime 3
 Radius 16
 Height 24
-speed 45
+speed 40
 scale 2.5
 States
 {
@@ -939,7 +939,7 @@ species "DumbRaThorBlocker"
 damage (0)
 Radius 10
 Height 10
-speed 11
+speed 10
 scale 2.5
 States
 {
@@ -1080,7 +1080,7 @@ species "DumbRaThorBlocker"
 Damage (9)
 Radius 32
 Height 32
-Speed 33
+Speed 30
 Scale 2.0
 States
 {

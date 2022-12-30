@@ -364,7 +364,7 @@ Obituary "$OB_PROTOBUSTER"
 Damage (10)
 radius 5
 height 5
-Speed 33.75
+Speed 27
 scale 2.5
 States
 {
@@ -388,7 +388,7 @@ actor ProtoShotCO : ProtoShotC{translation "204:204=104:104","202:202=4:4","199:
 actor ProtoShotCP : ProtoShotC{translation "204:204=229:229","202:202=4:4","199:199=229:229"}
 
 actor ProtoShot2C : ProtoShotC {
-Speed 40.5
+Speed 36
 DamageType "ProtoM_Shot2"
 }
 
@@ -408,7 +408,7 @@ Translation "192:192=108:108", "198:198=110:110"
 PROJECTILE
 Obituary "$OB_PROTOBUSTER"
 DamageType "ProtoM_Shot3"
-Speed 56.25
+Speed 50
 Radius 18
 Height 18
 Damage (35)
@@ -430,7 +430,7 @@ actor HeroProtoShot3R : HeroProtoShot3{translation "192:192=171:171","198:198=41
 actor HeroProtoShot3O : HeroProtoShot3{translation "192:192=104:104","198:198=128:128"}
 actor HeroProtoShot3P : HeroProtoShot3{translation "192:192=229:229","198:198=232:232"}
 
-actor HeroProtoShot3Ex : HeroProtoShot3 {Speed 61.875}
+actor HeroProtoShot3Ex : HeroProtoShot3 {Speed 55}
 
 actor HeroProtoShot3Bex : HeroProtoShot3Ex{translation "192:192=205:205","198:198=74:74"}
 actor HeroProtoShot3Rex : HeroProtoShot3Ex{translation "192:192=171:171","198:198=41:41"}
@@ -458,7 +458,7 @@ actor HeroProtoShieldShot3 : HeroProtoShot3
 +THRUSPECIES
 Species "ProtomanHeroStupidShield"
 Damage (20)
-Speed 61.875
+Speed 55
 States
 {
 Spawn:
@@ -575,7 +575,7 @@ Obituary "%k's Proto Shield was only meant to be wielded by %h, so %o died upon 
 +USEBOUNCESTATE
 BounceFactor 0.35
 WallBounceFactor 0.4
-Speed 45
+Speed 40
 Radius 16
 Height 32
 Damage (4)

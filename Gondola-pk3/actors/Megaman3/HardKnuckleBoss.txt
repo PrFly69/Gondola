@@ -562,7 +562,7 @@ damagetype "HardKnuckleClass"
 Damage (30)
 Radius 12
 Height 12
-Speed 45
+Speed 40
 States
 {
 Spawn:

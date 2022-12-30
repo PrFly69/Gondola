@@ -3118,9 +3118,87 @@ CHANGELOG
 ==General
 -Fixed item icons not appearing on HBAR
 -Fixed yellow painflash being too transparent
--Fixed every MM9 and MM10 class having abnormally high base speeds (leftover from 2.6 Beta concept)
 -Light Team dark blue color 241 > [30,54,172]
 -New ice death sound effects provided by MusashiAA
+-Fixed every class having abnormally high movement/projectile speeds, all changes listed below (leftover from 2.6 Beta concept)
+--Mega Buster projectile speed 30.375/36 > 27/32 (Regular/APU)
+--Mega Buster 1st charge projectile speed 30.375/36 > 27/32 (Regular/APU)
+--Mega Buster 2nd charge projectile speed 56.25/61.875 > 50/55 (Regular/APU)
+--Mega Buster maxcharge projectile speed 45/50.625 > 40/45 (Regular/APU)
+--Power Adaptor min/midcharge projectile speed 36 > 32
+--Power Adaptor maxcharge projectile speed 56.25 > 50
+--Proto Buster projectile speed 33.75 > 27
+--Proto Buster midcharge projectile speed 40.5 > 36
+--Proto Buster maxcharge projectile speed 56.25/61.875 > 50/55 (Regular/Shield Rebound)
+--Proto Shield projectile speed 45 > 40
+--Bass Buster projectile speed 72 > 64
+--Bass Charge Shot projectile speed 50.6 > 45
+--Rock Kick projectile speed 45 > 40
+--Mega Ball projectile speed 45 > 40
+--Charged Mega Ball projectile speed 56.25 > 50
+--Cut Ball projectile speed 39.375 > 35
+--Charged Mega Ball projectile speed 45 > 40
+--Guts Ball projectile speed 39.375 > 35
+--Charged Guts Ball projectile speed 50.625 > 45
+--Ice Ball projectile speed 34.875 > 31
+--Charged Ice Ball projectile speed 43.875 > 39
+--Bomb Ball projectile speed 39.375 > 35
+--Charged Bomb Ball projectile speed 50.625 > 45
+--Fire Ball projectile speed 61.875 > 55
+--Charged Fire Ball projectile speed 78.75 > 70
+--Elec Ball projectile speed 39.375 > 35
+--Charged Elec Ball projectile speed 45 > 40
+--Time Ball projectile speed 11.25 > 10
+--Charged Time Ball projectile speed 13.5 > 12
+--Oil Ball projectile speed 39.375 > 35
+--Charged Oil Ball projectile speed 45 > 40
+--Maestro Charge Shot projectile speed 56.25 > 50
+--Maestro Guts Shot projectile speed 101.25 > 90
+--Maestro HeatGuts projectile speed 50.625/67.5 > 45/60 (Neutral/Guts)
+--Maestro AquaGuts projectile speed 135/168.75 > 120/150 (Neutral/Guts)
+--Maestro WoodGuts projectile speed 50.625/22.5 > 45/20 (Neutral/Guts)
+--Maestro ElecGuts projectile speed 56.25 > 50
+--Hadouken projectile speed 40.5 > 36
+--EX Hadouken projectile speed 70.875 > 63
+--Shin Hadouken projectile speed 42.75 > 38
+--Joe Buster projectile speed 32.625 > 29
+--Joe Grenade projectile speed 16.875/25.875/30/40.5/46.125/50.625 > 15/23/30/36/41/45 (Altfire charge scaling)
+--Machine Gun Joe shot projectile speed 57.375 > 51
+--Machine Gun Joe Grenade projectile speed 45 > 40
+--Apache Joe shot projectile speed 54 > 48
+--Buster Rod G movespeed 1.1/1.08 > 1.0/0.98
+--Magmaman movespeed 0.7875 > 0.7
+--Fake Revolver projectile speed 101 > 9
+--Blade Slash projectile speed 96 > 85
+--Triple Blade projectile speed 45 > 40
+--Commando Bomb projectile speed 34 > 30
+--Commando Mine projectile speed 39 > 35
+--Chill Spike projectile speed 51 > 45
+--Chill Spray projectile speed 23 > 20
+--Sheep Bolter projectile speed 68 > 60
+--Thunder Wool projectile speed 17 > 15
+--Wheel Cutter projectile speed 43 > 38
+--Rapid wheel Cutter projectile speed 96 > 85
+--Altfire Power Rebound Striker projectile speed 60 > 55
+--Grab Buster returning projectile speed 60 > 50
+--Mercury Blob projectile speed 40 > 38
+--Acid Shot projectile speed 47 > 42
+--Mirror Buster projectile speed 45/56 > 40/50 (Weak/Strong)
+--Screw Crusher projectile speed 62 > 55 
+--Bouncing Crusher projectile speed 45 > 40 
+--LVL0 Ra Thor Disc projectile speed 62 > 55
+--LVL1 Ra Thor Vortex projectile speed 68 > 60
+--LVL2 Ra Thor Sway Shot projectile speed 56 > 50
+--LVL3 Ra Thor Electro Orb projectile speed 68 > 60
+--LVL4 Ra Thor Electro Globe projectile speed 45 > 40
+--Ra Thor Spirit Bomb projectile speed 11 > 10
+--BBA Punch projectile speed 84.375 > 75
+--BBA Pistol projectile speed 168.75 > 150
+--BBA Shotgun projectile speed 112.5 > 100
+--BBA Super Shotgun projectile speed 135 > 120
+--BBA Rocket projectile speed 39.375 > 35
+--BBA Plasma Shot projectile speed 29.25 > 26
+--BBA BFG projectile speed 28.125 > 25
 
 ==Copyweps
 -Fixed copynerf not working due to github forcibly renaming the file
@@ -3136,7 +3214,6 @@ CHANGELOG
 -Fixed charging sprites having bugged frames
 
 ==Rock
--Fixed all faulty speed changes
 -Cut Ball not ripping fixed, damage 5 > 4
 -Bomb Ball damage 20/21 > 16/20, radius 128 > 96
 -Ice Ball hitstun reduced 100% > 35%
@@ -3148,6 +3225,9 @@ CHANGELOG
 -HP 100 > 125
 -Fixed dropped screws being invisible/disappearing on TLMS
 -Fixed misplaced tango roll indicator on horizontal bars
+
+==Sniper Joe
+-Fixed grenades getting stuck on 9DW3 elevators
 
 ==Elecman
 -Thunder Beam now has projectile death sprites
@@ -3169,13 +3249,13 @@ CHANGELOG
 
 ==Fireman
 -Fire Ring moved to reload button, 2nd wep removed
--Fixed fire shield being invisible
+-Fixed Fire Shield being invisible
 
 ==Yellow Devil
 -The Eye
 
 ==Metalman 
--New m2 animation provided by N4HW3ll
+-New M2 HUD frame provided by N4HW3ll
 
 ==Flashman
 -Reverted ammo gain to 2.0h
@@ -3190,6 +3270,9 @@ CHANGELOG
 ==Heatman
 -Maxcharge sound brought back
 
+==Alien
+-Alien Shot projectile speed 52 > 45
+
 ==Magnetman
 -Magnet Missile release speed now scales with time held
 --Initial release speed 75 > 37
@@ -3200,13 +3283,16 @@ CHANGELOG
 -New Gemini Buster sprites by Cowsha and Frostblue
 -Added new Gemini Buster firing SFX
 
+==Hardman
+-Hard Knuckle projectile speed 45 > 40
+
 ==Snakeman
 -SBAR updated
 -Search Snake now has scales up vertical thrust by 50% on spawn, inspired by HyperFighting
 --New Search Snake firing SFX made by Pr. Gibus
 
 ==Toadman
--Rain vfx now properly displays radius and full damage radius
+-Rain FX now properly displays radius and full damage radius
 
 ==Diveman
 -Dive Tackle upwards thrust reduced 24 > 10 (42 > 20 with rage)
@@ -3233,6 +3319,9 @@ CHANGELOG
 
 ==Tomahawkman
 -Now has Silver Tomahawk wall impact FX
+
+==Plantman
+-Fixed Healing Pots getting stuck on 9DW3 elevators
 
 ==Yamatoman
 -Yamato Spear spread -5/0/5 > -3/0/3
@@ -3315,6 +3404,9 @@ CHANGELOG
 
 ==Fakeman
 -Fixed Fake Revolver shots unintentionally having 101 speed as opposed to 90
+
+==Blademan
+-Blade Slash damage 9x4 (36) > 8x2 + 7x2 (30)
 
 ==Nitroman
 -Empowered Wheel Cutter damage 14 > 12

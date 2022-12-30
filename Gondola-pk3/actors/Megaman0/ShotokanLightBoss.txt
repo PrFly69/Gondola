@@ -720,7 +720,7 @@ Alpha 0.9
 Damage (16)
 radius 12
 height 12
-Speed 40.5
+Speed 36
 scale 2.5
 States
 {
@@ -784,7 +784,7 @@ Alpha 0.9
 Damage (15)
 radius 12
 height 12
-Speed 70.875
+Speed 63
 scale 2.75
 States
 {
@@ -941,7 +941,7 @@ actor RyuL_HadokenSuperCharge2 : BasicClientSide
 +MISSILE
 +FORCEXYBILLBOARD
 +BRIGHT
-Speed 22.5
+Speed 20
 States
 {
 Spawn:
@@ -971,7 +971,7 @@ ReactionTime 10
 Damage (0)
 radius 4
 height 4
-Speed 42.75
+Speed 38
 scale 3.5
 States
 {
@@ -1134,7 +1134,7 @@ actor RyuL_ShoryukenWarperFX : BasicClientSide
 {
 +MISSILE
 +DONTBLAST
-Speed 45
+Speed 40
 States
 {
 Spawn:
@@ -1150,7 +1150,7 @@ actor RyuL_ShoryukenTrailFX : RyuL_ShoryukenWarperFX
 {
 RenderStyle Translucent
 Alpha 0.25
-Speed 50.625
+Speed 45
 Scale 2.5
 States
 {
@@ -1176,7 +1176,7 @@ ReactionTime 1
 damage (0)
 radius 4
 height 4
-Speed 67.5
+Speed 60
 States
 {
 Spawn:
@@ -1225,7 +1225,7 @@ ReactionTime 1
 Damage (0)
 radius 12
 height 12
-Speed 33.75
+Speed 30
 scale 2.5
 States
 {
@@ -1289,7 +1289,7 @@ ReactionTime 1
 Damage (0)
 radius 12
 height 12
-Speed 33.75
+Speed 30
 scale 2.5
 States
 {

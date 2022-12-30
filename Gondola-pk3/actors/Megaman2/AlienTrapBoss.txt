@@ -152,7 +152,7 @@ Translation "204:204=210:210"
 PROJECTILE
 damagetype "Alien_Shot"
 Obituary "$OB_ALIENBUSTER"
-Speed 52
+Speed 45
 radius 12
 height 12
 scale 2.5

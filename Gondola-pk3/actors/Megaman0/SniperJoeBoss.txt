@@ -290,7 +290,7 @@ PROJECTILE
 +DONTREFLECT
 Obituary "$OB_JOEBUSTER"
 damagetype "Joe_Buster"
-Speed 32.625//26
+Speed 29//26
 Damage (13)//14
 radius 5
 height 5
@@ -352,9 +352,10 @@ Radius 6
 Height 7
 scale 2.5
 - NOGRAVITY
-speed 16.875
+speed 15
 +HEXENBOUNCE
 +CANBOUNCEWATER
++BOUNCEONCEILINGS
 bouncefactor 0.6
 wallbouncefactor 0.25//0.0
 reactiontime 15
@@ -366,6 +367,7 @@ JGRE A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 JGRE A 0 ThrustThingZ(0,25,0,1)
 JGRE A 0 A_CountDown
+JGRE A 0 A_JumpIf(z-ceilingz<7,"Bounce")
 JGRE EEEEEEEEEEEEEEEE 1 A_JumpIf(z-floorz<7,"Bounce")
 Goto Spawn+3
 Death:
@@ -388,35 +390,35 @@ actor JoeGrenadeR : JoeGrenade{translation "192:192=171:171","198:198=41:41","20
 actor JoeGrenadeO : JoeGrenade{translation "192:192=104:104","198:198=128:128","202:202=104:104"}
 actor JoeGrenadeP : JoeGrenade{translation "192:192=229:229","198:198=232:232","202:202=229:229"}
 
-actor JoeGrenade1 : JoeGrenade {speed 25.875 reactiontime 14}
-actor JoeGrenade1B : JoeGrenadeB {speed 25.875 reactiontime 14}
-actor JoeGrenade1R : JoeGrenadeR {speed 25.875 reactiontime 14}
-actor JoeGrenade1O : JoeGrenadeO {speed 25.875 reactiontime 14}
-actor JoeGrenade1P : JoeGrenadeP {speed 25.875 reactiontime 14}
+actor JoeGrenade1 : JoeGrenade {speed 23 reactiontime 14}
+actor JoeGrenade1B : JoeGrenadeB {speed 23 reactiontime 14}
+actor JoeGrenade1R : JoeGrenadeR {speed 23 reactiontime 14}
+actor JoeGrenade1O : JoeGrenadeO {speed 23 reactiontime 14}
+actor JoeGrenade1P : JoeGrenadeP {speed 23 reactiontime 14}
 
-actor JoeGrenade2 : JoeGrenade {speed 33.75 reactiontime 13}
-actor JoeGrenade2B : JoeGrenadeB {speed 33.75 reactiontime 13}
-actor JoeGrenade2R : JoeGrenadeR {speed 33.75 reactiontime 13}
-actor JoeGrenade2O : JoeGrenadeO {speed 33.75 reactiontime 13}
-actor JoeGrenade2P : JoeGrenadeP {speed 33.75 reactiontime 13}
+actor JoeGrenade2 : JoeGrenade {speed 30 reactiontime 13}
+actor JoeGrenade2B : JoeGrenadeB {speed 30 reactiontime 13}
+actor JoeGrenade2R : JoeGrenadeR {speed 30 reactiontime 13}
+actor JoeGrenade2O : JoeGrenadeO {speed 30 reactiontime 13}
+actor JoeGrenade2P : JoeGrenadeP {speed 30 reactiontime 13}
 
-actor JoeGrenade3 : JoeGrenade {speed 40.5 reactiontime 12}
-actor JoeGrenade3B : JoeGrenadeB {speed 40.5 reactiontime 12}
-actor JoeGrenade3R : JoeGrenadeR {speed 40.5 reactiontime 12}
-actor JoeGrenade3O : JoeGrenadeO {speed 40.5 reactiontime 12}
-actor JoeGrenade3P : JoeGrenadeP {speed 40.5 reactiontime 12}
+actor JoeGrenade3 : JoeGrenade {speed 36 reactiontime 12}
+actor JoeGrenade3B : JoeGrenadeB {speed 36 reactiontime 12}
+actor JoeGrenade3R : JoeGrenadeR {speed 36 reactiontime 12}
+actor JoeGrenade3O : JoeGrenadeO {speed 36 reactiontime 12}
+actor JoeGrenade3P : JoeGrenadeP {speed 36 reactiontime 12}
 
-actor JoeGrenade4 : JoeGrenade {speed 46.125 reactiontime 11}
-actor JoeGrenade4B : JoeGrenadeB {speed 46.125 reactiontime 11}
-actor JoeGrenade4R : JoeGrenadeR {speed 46.125 reactiontime 11}
-actor JoeGrenade4O : JoeGrenadeO {speed 46.125 reactiontime 11}
-actor JoeGrenade4P : JoeGrenadeP {speed 46.125 reactiontime 11}
+actor JoeGrenade4 : JoeGrenade {speed 41 reactiontime 11}
+actor JoeGrenade4B : JoeGrenadeB {speed 41 reactiontime 11}
+actor JoeGrenade4R : JoeGrenadeR {speed 41 reactiontime 11}
+actor JoeGrenade4O : JoeGrenadeO {speed 41 reactiontime 11}
+actor JoeGrenade4P : JoeGrenadeP {speed 41 reactiontime 11}
 
-actor JoeGrenade5 : JoeGrenade {speed 50.625 reactiontime 10}
-actor JoeGrenade5B : JoeGrenadeB {speed 50.625 reactiontime 10}
-actor JoeGrenade5R : JoeGrenadeR {speed 50.625 reactiontime 10}
-actor JoeGrenade5O : JoeGrenadeO {speed 50.625 reactiontime 10}
-actor JoeGrenade5P : JoeGrenadeP {speed 50.625 reactiontime 10}
+actor JoeGrenade5 : JoeGrenade {speed 45 reactiontime 10}
+actor JoeGrenade5B : JoeGrenadeB {speed 45 reactiontime 10}
+actor JoeGrenade5R : JoeGrenadeR {speed 45 reactiontime 10}
+actor JoeGrenade5O : JoeGrenadeO {speed 45 reactiontime 10}
+actor JoeGrenade5P : JoeGrenadeP {speed 45 reactiontime 10}
 
 actor JoeGrenadeX
 {
@@ -428,7 +430,7 @@ Radius 6
 Height 7
 scale 2.5
 - NOGRAVITY
-speed 45
+speed 40
 +HEXENBOUNCE
 +CANBOUNCEWATER
 bouncefactor 0.6
@@ -442,6 +444,7 @@ JGRE A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 JGRE A 0 ThrustThingZ(0,25,0,1)
 JGRE A 0 A_CountDown
+JGRE A 0 A_JumpIf(z-ceilingz<7,"Bounce")
 JGRE EEEEEEEEEEEEEEEE 1 A_JumpIf(z-floorz<7,"Bounce")
 Goto Spawn+3
 Death:
@@ -823,7 +826,7 @@ PROJECTILE
 +THRUGHOST
 Obituary "$OB_JOEMGUN"
 damagetype "Joe_MGun"
-Speed 57.375
+Speed 51
 Damage (6)
 radius 5
 height 5
@@ -949,7 +952,7 @@ var int user_XX;
 Translation "192:192=4:4", "198:198=108:108"
 radius 12
 height 12
-speed 1125
+speed 1000
 +SKYEXPLODE
 +DONTBLAST
 +THRUGHOST
@@ -998,7 +1001,7 @@ Damagetype "Joe_Crate"
 bouncefactor 0.4
 wallbouncefactor 0.75
 Damage (25)
-Speed 29.25
+Speed 26
 Radius 10
 Height 10
 gravity 1.5
@@ -1580,7 +1583,7 @@ stop
 actor TruckJoeRamDamageAim : TruckJoeRamDamage
 {
 Damage (3)
-Speed 180
+Speed 160
 States
 {
 Death:
@@ -1780,7 +1783,7 @@ Translation "192:192=4:4", "198:198=108:108"
 PROJECTILE
 Obituary "$OB_JOEAPACHE"
 damagetype "Joe_Apache"
-Speed 54
+Speed 48
 Damage (12)
 radius 10
 height 10

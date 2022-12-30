@@ -8,7 +8,7 @@ Obituary "%o was gunned down by %k's guts buster."
 Damage (3)
 radius 6
 height 6
-Speed 101.25
+Speed 90
 scale 2.5
 States
 {
@@ -367,7 +367,7 @@ damagetype "DMGNoHitstun"
 Damage (0)
 Radius 10
 Height 10
-Speed 67.5
+Speed 60
 scale 2.5
 States
 {
@@ -723,7 +723,7 @@ loop
 actor MaestroAquaShotGuts : MaestroAquaShot
 {
 Damagetype "MaestroAquaGuts"
-Speed 168.75
+Speed 150
 scale 3.25
 gravity 2
 }
@@ -1021,7 +1021,7 @@ Obituary "%o's data was overloaded by %k's elec shock."
 damage (8)
 Radius 25
 Height 25
-Speed 56.25
+Speed 50
 Scale 3.5
 States
 {
@@ -1433,7 +1433,7 @@ PROJECTILE
 Damage (0)
 Radius 20
 Height 26
-Speed 22.5
+Speed 20
 States
 {
 Spawn:
@@ -1482,7 +1482,7 @@ damagetype "DMGNoHitstun"
 Damage (0)
 radius 1
 height 1
-Speed 67.5
+Speed 60
 scale 2.5
 States
 {

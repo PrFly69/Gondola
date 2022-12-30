@@ -650,7 +650,7 @@ powerup.duration 15
 	RenderStyle translucent
 	Alpha 0.8
 	ReactionTime 135
-	Speed 60
+	Speed 50
 	Scale 1.5
 	States
 	{
@@ -1216,7 +1216,7 @@ powerup.duration 15
 	Damage (10)
 	Radius 13
 	Height 13
-	Speed 40
+	Speed 38
 	Scale 2.5
 	States
 	{

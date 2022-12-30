@@ -621,7 +621,7 @@ damagetype "ScrewCrusher"
 damage (18)
 Radius 10
 Height 12
-speed 62
+speed 55
 scale 2.5
 States
 {
@@ -656,7 +656,7 @@ Bouncetype None
 bouncefactor 0.9
 wallbouncefactor 0.8
 Bouncecount 6
-speed 45
+speed 40
 scale 2.5
 States
 {

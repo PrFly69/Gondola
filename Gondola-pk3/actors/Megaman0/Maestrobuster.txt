@@ -1126,7 +1126,7 @@ Obituary "$OB_MAESTROBUSTER"
 Damage (35)
 radius 18
 height 22
-Speed 56.25
+Speed 50
 scale 1.5
 States
 {
@@ -1157,7 +1157,7 @@ damagetype "MaestroFire"
 Damage (0)
 Radius 10
 Height 10
-Speed 50.625
+Speed 45
 scale 2.5
 States
 {
@@ -1253,7 +1253,7 @@ Alpha 0.75
 Damage (0)
 radius 16
 height 16
-Speed 135
+Speed 120
 scale 3.25
 States
 {
@@ -1370,7 +1370,7 @@ Obituary "%o was germinated by %k's wood seeds."
 Damage (10)
 radius 8
 height 8
-Speed 50.625
+Speed 45
 scale 2.5
 States
 {
@@ -1429,7 +1429,7 @@ damagetype "DMGNoHitstun"
 Damage (0)
 radius 1
 height 1
-Speed 67.5
+Speed 60
 scale 2.5
 States
 {

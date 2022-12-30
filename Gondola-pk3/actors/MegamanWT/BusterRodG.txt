@@ -7,8 +7,8 @@ player.soundclass "busterrodgc"
 player.maxhealth 85
 health 85
 player.jumpz 13
-player.forwardmove 1.1, 1.1
-player.sidemove 1.08, 1.08
+player.forwardmove 1.0, 1.0
+player.sidemove 0.98, 0.98
 
 player.startitem "MonkeyKingBoss"
 player.startitem "MonkeyMagicAmmo", 35

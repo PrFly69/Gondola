@@ -587,6 +587,7 @@ States
 Spawn:
 XH0D Q 0
 XH0D Q 0 ThrustThingZ(0,25,0,1)
+XH0D Q 0 A_CheckCeiling("Death")
 XH0D QRST 4
 Goto Spawn+2
 Death:

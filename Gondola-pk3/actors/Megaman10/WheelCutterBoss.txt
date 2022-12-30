@@ -741,7 +741,7 @@ Powerup.duration 35//70
     Damage (16)
     Radius 10
     Height 12
-    Speed 43
+    Speed 38
     Scale 2.5
     States
     {
@@ -789,7 +789,7 @@ stop
     Damage (12)
     Radius 12
     Height 14
-    Speed 96
+    Speed 85
     Scale 2.5
     States
     {
@@ -845,7 +845,7 @@ stop
     Damage (20)
     Radius 10
     Height 12
-    Speed 45
+    Speed 40
     Scale 2.5
     States
     {
@@ -905,7 +905,7 @@ stop
     Damage (8)
     Radius 10
     Height 12
-    speed 43
+    speed 38
     scale 2.5
     States
     {

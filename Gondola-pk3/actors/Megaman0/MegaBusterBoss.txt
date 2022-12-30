@@ -536,7 +536,7 @@ Obituary "$OB_MEGABUSTER"
 Damage (10)
 radius 5
 height 5
-Speed 30.375
+Speed 27
 scale 2.5
 States
 {
@@ -564,7 +564,7 @@ Obituary "$OB_MEGABUSTER"
 Damage (10)
 radius 5
 height 5
-Speed 36
+Speed 32
 scale 2.5
 States
 {
@@ -592,7 +592,7 @@ Obituary "$OB_MEGABUSTER"
 Damage (20)
 radius 20
 height 20
-Speed 30.375
+Speed 27
 scale 2.5
 States
 {
@@ -618,7 +618,7 @@ Obituary "$OB_MEGABUSTER"
 Damage (20)
 radius 20
 height 20
-Speed 36
+Speed 32
 scale 2.5
 States
 {
@@ -646,7 +646,7 @@ Obituary "$OB_MEGABUSTER"
 Damage (30)
 radius 18
 height 18
-Speed 56.25
+Speed 50
 scale 2.5
 States
 {
@@ -675,7 +675,7 @@ Obituary "$OB_MEGABUSTER"
 Damage (30)
 radius 18
 height 18
-Speed 61.875
+Speed 55
 scale 2.5
 States
 {
@@ -730,7 +730,7 @@ Obituary "$OB_MEGABUSTER"
 Damage (30)
 radius 18
 height 22
-Speed 50.625
+Speed 45
 scale 1.5
 States
 {

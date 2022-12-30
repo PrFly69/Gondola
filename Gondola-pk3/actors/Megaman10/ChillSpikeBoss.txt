@@ -261,7 +261,7 @@ actor ChillStunner
 //+NOINTERACTION
 +NOGRAVITY
 renderstyle none
-speed 56
+speed 50
 states
 {
 Spawn:
@@ -347,7 +347,7 @@ actor ChillmanSpikeShot
 	Height 8
 	Gravity 0.65
 	Damage (16)
-	Speed 51
+	Speed 45
 	Scale 2.5
 
 	States
@@ -407,7 +407,7 @@ actor ChillmanSpikeShot2 : ChillmanSpikeShot
 	Radius 6
 	Height 6
 	Damage (8)
-	Speed 39
+	Speed 35
 	States
 	{
 		Death:
@@ -582,7 +582,7 @@ actor ChillCloudyCloud
 	Species "ChillCloudyCloud"
 	Radius 48
 	Height 10
-	Speed 23
+	Speed 20
 	Damage (0)
 	Health 10
 	Damagetype "ChillSpikeClass"

@@ -691,7 +691,7 @@ actor EnkerDashCooldown_H : BasicHelper
 	Damage (15)
 	Radius 10
 	Height 8
-	Speed 45
+	Speed 40
 	Scale 2.5
 	States
 	{
@@ -720,7 +720,7 @@ actor EnkerDashCooldown_H : BasicHelper
 	Radius 16
 	Height 18
 	Damage (30)
-	Speed 56
+	Speed 50
 	States
 	{
 		Spawn:
