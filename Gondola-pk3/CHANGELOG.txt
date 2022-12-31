@@ -3491,6 +3491,10 @@ CHANGELOG
 -Updated Roller Roaster impact/death sprites
 
 ==Bounceman
+-Bounce Bopper damage 14 > 16
+--Bounce Bopper knockback increased 6 > 10
+--Bounce Bopper gets double knockback within first 5 tics
+-Bounce Ball damage 8 > 10
 -Rubber Latch now has extra 15 tics of endlag when whiffing the initial grabber
 --Also has extra 15 tics of startlag before being able to recall Rubber Latch off surfaces and/or players
 -Self-pull off of recalling from surfaces increased by 25%

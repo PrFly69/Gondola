@@ -335,6 +335,8 @@ actor PainProtoShieldBashHit : PainBaseFlingHit{Mass 28}
 actor PainBassKickHit : PainBaseFlingHit{Mass 32}
 actor PainBassKickHitEx : PainBaseFlingHit{Mass 48}
 actor PainMaestroAquaGuts : PainBaseFlingHit{Mass 6}
+actor PainBounceBopHit : PainBaseFlingHit{Mass 10}
+actor PainBounceBopXHit : PainBaseFlingHit{Mass 20}
 actor PainTerra_MeleeHit : PainBaseFlingHit{Mass 10}
 actor SolarVentHit : PainBaseFlingHit{Mass 16}
 actor PainDarkM_TankHit : PainBaseFlingHit{Mass 5}
