@@ -13,8 +13,8 @@ player.startitem "AcidHUDCvar_P", 1
 player.maxhealth 100
 health 100
 player.jumpz 12
-Player.ForwardMove 1.0, 1.0
-Player.SideMove 0.98, 0.98
+Player.ForwardMove 0.89, 0.89
+Player.SideMove 0.87, 0.87
 
 //player.startitem "RealClassFlag", 130
 

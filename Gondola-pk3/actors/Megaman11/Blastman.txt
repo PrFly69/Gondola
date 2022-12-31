@@ -11,8 +11,8 @@ player.startitem "CanWallJumpStack", 99
 
 player.maxhealth 90
 health 90
-player.forwardmove 1.0, 1.0
-player.sidemove 0.98, 0.98
+player.forwardmove 0.92, 0.92
+player.sidemove 0.9, 0.9
 player.jumpz 12
 
 //player.startitem "RealClassFlag", 128

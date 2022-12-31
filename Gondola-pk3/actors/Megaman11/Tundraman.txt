@@ -10,8 +10,8 @@ player.startitem "IcyWindAmmo", 140
 
 player.maxhealth 85
 health 85
-player.forwardmove 1.0, 1.0
-player.sidemove 0.98, 0.98
+player.forwardmove .9, 0.9
+player.sidemove 0.88, 0.88
 player.jumpz 14
 
 player.weaponslot 1, "TundraStormBoss"

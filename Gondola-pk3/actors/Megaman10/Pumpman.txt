@@ -10,8 +10,8 @@ player.startitem "PumpExplodeItem", 1
 
 player.maxhealth 100
 health 100
-player.forwardmove 0.85, 0.85
-player.sidemove 0.83, 0.83
+player.forwardmove 0.78, 0.78
+player.sidemove 0.76, 0.76
 player.jumpz 13
 
 //player.startitem "ThunderWoolWeakness2", 1

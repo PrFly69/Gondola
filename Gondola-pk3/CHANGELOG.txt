@@ -3166,15 +3166,17 @@ CHANGELOG
 --Machine Gun Joe shot projectile speed 57.375 > 51
 --Machine Gun Joe Grenade projectile speed 45 > 40
 --Apache Joe shot projectile speed 54 > 48
---Buster Rod G movespeed 1.1/1.08 > 1.0/0.98
+--Concreteman movespeed 0.675 > 0.6/0.58
 --Magmaman movespeed 0.7875 > 0.7
 --Fake Revolver projectile speed 101 > 90
 --Blade Slash projectile speed 96 > 85
 --Triple Blade projectile speed 45 > 40
+--Pumpman movespeed 0.85/0.83 > 0.78/0.76
 --Commando Bomb projectile speed 34 > 30
 --Commando Mine projectile speed 39 > 35
 --Chill Spike projectile speed 51 > 45
 --Chill Spray projectile speed 23 > 20
+--Sheepman movespeed 1.0/0.98 > 0.9/0.9
 --Sheep Bolter projectile speed 68 > 60
 --Thunder Wool projectile speed 17 > 15
 --Wheel Cutter projectile speed 43 > 38
@@ -3182,10 +3184,16 @@ CHANGELOG
 --Altfire Power Rebound Striker projectile speed 60 > 55
 --Grab Buster returning projectile speed 60 > 50
 --Mercury Blob projectile speed 40 > 38
+--Venus strafespeed 1.0 > 0.9
+--Blastman movespeed 1.0/0.98 > 0.92/0.9
+--Acidman movespeed 1.0/0.98 > 0.89/0.87 
 --Acid Shot projectile speed 47 > 42
+--Tundraman movespeed 1.0/0.98 > 0.9/0.88
+--Buster Rod G movespeed 1.1/1.08 > 1.0/0.98
 --Mirror Buster projectile speed 45/56 > 40/50 (Weak/Strong)
 --Screw Crusher projectile speed 62 > 55 
 --Bouncing Crusher projectile speed 45 > 40 
+--Ballade movespeed 1.0/0.98 0.9/0.88
 --LVL0 Ra Thor Disc projectile speed 62 > 55
 --LVL1 Ra Thor Vortex projectile speed 68 > 60
 --LVL2 Ra Thor Sway Shot projectile speed 56 > 50
@@ -3432,6 +3440,7 @@ CHANGELOG
 
 ==Saturn
 -New FX indicator for armor, code provided by Muzaru
+-Can now suck Hyper Bomb (both iterations) and Plug Ball when its on the floor
 
 ==Jupiter
 -Added gd_hjupiter cvar for South Americans, lag-compensates Electric Shock
