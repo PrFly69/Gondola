@@ -3245,6 +3245,7 @@ CHANGELOG
 --Speed reduced 60 > 50
 --Gains full ammo on spawn
 --Cluster Bomb explosion damage 15 > 14
+--Maximum damage radius on Cluster Bomb 64 > 32
 --Cluster spread now consistent, uses X pattern
 --New cluster split sfx provided by MusashiAA
 -Mainfire with Hyper Bomb active throws CBM Hyper Bomb M1

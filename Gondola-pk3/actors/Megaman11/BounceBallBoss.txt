@@ -420,7 +420,7 @@ TNT1 A 0 A_ChangeVelocity(cos(-pitch)*40,0,sin(-pitch)*40,3)
 BNCM B 0 A_JumpIfInventory("CutterFlag",5,1)
 goto SpawnLOOP
 BNCM B 0 
-BNCM B 0 A_ChangeFlag("BounceM_Bopper")
+BNCM B 0 A_SetDamageType("BounceM_Bopper")
 SpawnPOOP:
 BNCM B 0 A_JumpIfInventory("WeaponCharge",10,"DeathBall")
 BNCM B 0 A_GiveInventory("WeaponCharge",1)
