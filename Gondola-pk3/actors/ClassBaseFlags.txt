@@ -677,11 +677,16 @@ States
 {
 Pickup:
 TNT1 A 0 A_JumpIf(CallACS("cbm_FetchServerCVar",4)>=1,"No")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(107,0)==1,"Pickup3")
+TNT1 A 0 A_JumpIfInventory("PowerTempPitProtectFoil",1,"No")
 TNT1 A 0 A_JumpIfInventory("PowerTempPitProtect",1,"Pickup2")
 TNT1 A 0 A_ChangeFlag("NOBLOCKMONST",0)
 TNT1 A 0 A_SpawnItemEx("TempPitProtect_H")
 Pickup2:
 TNT1 A 0 A_GiveInventory("PowerTempPitProtect",1)
+stop
+Pickup3:
+TNT1 A 0 A_GiveInventory("PowerTempPitProtectFoil",1)
 stop
 No:
 TNT1 A 0
@@ -692,6 +697,11 @@ stop
 actor PowerTempPitProtect : Powerup
 {
 Powerup.Duration 35
+}
+
+actor PowerTempPitProtectFoil : Powerup
+{
+Powerup.Duration 15
 }
 
 actor TempPitProtect_H : BasicHelper
