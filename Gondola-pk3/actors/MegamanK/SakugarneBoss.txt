@@ -39,8 +39,6 @@ Goto Fireeeee
 Deselect: 
 TNT1 A 0 A_TakeInventory("QuintIsAir",1)
 TNT1 A 0 A_TakeInventory("SakugarneActive",1)
-QSAK A 0 A_TakeInventory("QuintSakuExit",1)
-QSAK A 0 A_GiveInventory("GuardDownFlag",1)
 TNT1 A 0 A_TakeInventory("NoJumpCancel",1)
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
@@ -51,8 +49,6 @@ Select:
 TNT1 A 0 A_TakeInventory("QuintIsAir",1)
 TNT1 A 0 A_TakeInventory("SakugarneActive",1)
 TNT1 A 0 A_TakeInventory("NoJumpCancel",1)
-QSAK A 0 A_GiveInventory("QuintSakuExit",1)
-QSAK A 0 A_TakeInventory("GuardDownFlag",1)
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 QSAK A 1 A_Raise
 goto Select+3
@@ -380,14 +376,12 @@ QBUS B 0 A_GiveInventory("BackToTheAmmo",1)
 loop
 Deselect: 
 QBUS B 0 A_TakeInventory("QuintDive",99)
-QSAK A 0 A_TakeInventory("GuardDownFlag",1)
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
 QBUS B 1 A_Lower
 goto Deselect+1
 Select: 
 QBUS B 0 A_TakeInventory("QuintDive",99)
 QBUS B 0 A_TakeInventory("SakugarneActive",1)
-QSAK A 0 A_GiveInventory("GuardDownFlag",1)
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 QBUS B 1 A_Raise
 goto Select+2
@@ -481,11 +475,6 @@ actor MMXQuintAmmo : Ammo
 inventory.amount 1
 inventory.maxamount 300
 +INVENTORY.IGNORESKILL
-}
-
-actor QuintSakuExit : BasePowerWeak
-{
-damagefactor "Normal",1.1
 }
 
 actor QuintYesPogo :OnceC{}

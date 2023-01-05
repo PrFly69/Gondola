@@ -403,106 +403,19 @@ if(ConsolePlayerNumber()==PlayerNumber()){SetResultValue(1);}
 else{SetResultValue(0);}
 }
 
-script "AcidmanBarrierProtect" (void)
+script "Gond_AcidmanBarrierProtect" (int Ally)
 {
-	SetActivator(0,AAPTR_TARGET);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.1);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.15);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.2);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.25);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.3);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.35);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.4);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.45);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.5);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.55);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.6);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.65);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.7);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.75);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.8);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.85);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.90);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.95);
-	Delay(5);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,1.0);
-}
+If(Ally==0){SetActivator(0,AAPTR_Target);}
+Else{SetActivator(0,AAPTR_Tracer);}
 
-script "AcidmanBarrierProtectAlly" (void)
-{
-	SetActivator(0,AAPTR_TRACER);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.1);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.15);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.2);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.25);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.3);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.35);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.4);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.45);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.5);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.55);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.6);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.65);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.7);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.75);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.8);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.85);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.90);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,0.95);
-	Delay(5);
-	TakeInventory("AcidBarrierVisualBar",1);
-	SetActorProperty(0,APROP_DAMAGEFACTOR,1.0);
+int BarrierTime = 0.1;
+While(BarrierTime<1.0)
+    {
+    if(Ally>0){TakeInventory("AcidBarrierVisualBar",1);}
+    SetActorProperty(0,APROP_DamageFactor,BarrierTime);
+    BarrierTime = BarrierTime+0.05;
+    Delay(5);
+    }
 }
 
 script "AcidmanGearAmmo" (int AcidMult)

@@ -588,6 +588,7 @@ Scale 2.5
 +FORCEXYBILLBOARD
 renderstyle translucent
 alpha 0.5
+reactiontime 500 //15 sec
 States
 {
 Spawn:

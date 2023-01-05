@@ -514,14 +514,14 @@ Powerup.Duration 88
         BikeLand:
         TNT1 A 0 A_TakeInventory("WheelCutterBossAmmo",1)
         TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"BikeLand_R")
-        TNT1 A 0 A_SetUserVar("user_wepangle",ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,5))
+        TNT1 A 0 A_SetUserVar("user_wepangle",ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,7))
 		TNT1 A 0 A_ChangeVelocity(60*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),60*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
 		TNT1 A 0 A_GiveInventory("NitroAltEndDelay")
         TNT1 A 0 A_JumpIfInventory("NitroAirTimeFlag",1,"BikeSnd")
         Stop
  
         BikeLand_R:
-        TNT1 A 0 A_SetUserVar("user_wepangle",ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,5))
+        TNT1 A 0 A_SetUserVar("user_wepangle",ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,7))
 		TNT1 A 0 A_ChangeVelocity(80*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),80*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
 		TNT1 A 0 A_GiveInventory("NitroAltEndDelay")
         TNT1 A 0 A_JumpIfInventory("NitroAirTimeFlag",1,"BikeSnd")
@@ -532,13 +532,13 @@ Powerup.Duration 88
         TNT1 A 0 A_GiveInventory("NitroAirTimeFlag",1)
         TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"BikeAir_R")
 		TNT1 A 0 A_GiveInventory("NitroAltEndDelay")
-        TNT1 A 0 A_SetUserVar("user_wepangle",ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,5))
+        TNT1 A 0 A_SetUserVar("user_wepangle",ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,7))
 		TNT1 A 0 A_ChangeVelocity(50*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),50*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
         Stop
  
         BikeAir_R:
 		TNT1 A 0 A_GiveInventory("NitroAltEndDelay")
-        TNT1 A 0 A_SetUserVar("user_wepangle",ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,5))
+        TNT1 A 0 A_SetUserVar("user_wepangle",ACS_ExecuteWithResult(812,ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM),angle,7))
 		TNT1 A 0 A_ChangeVelocity(70*cos(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),70*sin(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM)),momz,CVF_REPLACE)
         Stop
        
@@ -786,7 +786,7 @@ stop
     -NOGRAVITY
     +HITTRACER
     Gravity 0.5
-    Damage (12)
+    Damage (13)
     Radius 12
     Height 14
     Speed 85
@@ -878,7 +878,7 @@ stop
  
   Actor WheelCutterFast : NitroWheelCutter
   {
-    Damage (14)
+    Damage (13)
     Radius 12
     Height 14
     States

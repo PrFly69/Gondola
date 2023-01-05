@@ -185,7 +185,7 @@ OptionValue Classname
 
 OptionValue ClassHealth 
 { 
-0, "90"
+0, "100"
 1, "85"
 2, "90"
 3, "115"
@@ -226,7 +226,7 @@ OptionValue ClassHealth
 38, "155"
 39, "85"
 40, "100"
-41, "85"
+41, "100"
 42, "125"
 43, "100"
 44, "85"
@@ -280,7 +280,7 @@ OptionValue ClassHealth
 92, "90"
 93, "100"
 94, "100"
-95, "90"
+95, "100"
 96, "125"
 97, "85"
 98, "100"
@@ -293,7 +293,7 @@ OptionValue ClassHealth
 104, "100"
 105, "85"
 106, "100"
-107, "75"//Terra
+107, "90"//Terra
 108, "85"
 109, "100"//
 110, "135"
@@ -307,7 +307,7 @@ OptionValue ClassHealth
 118, "90"//Blast
 119, "100"//Acid
 120, "85"//Tundra
-121, "100"//Torch
+121, "90"//Torch
 122, "155"//Bounce
 123, "85"
 124, "85"
@@ -317,7 +317,7 @@ OptionValue ClassHealth
 128, "85"
 129, "100"
 130, "100"
-131, "100"
+131, "125"
 132, "115"
 } 
 
@@ -536,7 +536,7 @@ OptionValue ClassSpeed
 71, "0.8"
 72, "0.8"
 73, "0.76"
-74, "0.65"
+74, "0.6"
 75, "0.666"
 76, "0.82"
 77, "0.7"
@@ -578,7 +578,7 @@ OptionValue ClassSpeed
 113, "0.8"
 114, "0.7"
 115, "0.7"//Neptune
-116, "0.76"
+116, "0.72"
 117, "0.72"//Fuse
 118, "0.89"//Blast
 119, "0.89"//Acid
@@ -629,11 +629,11 @@ OptionValue ClassMainfire
 26, "\cdToss seeds that stun upon stepping\nDuring shield mode, fire leaf rains"
 27, "\cdCauses all active traps to fire"
 28, "\cdWinds up to fire rapid needles\nWith no ammo, needles have no force"
-29, "\cdOnce fire is let go, the magnet homes\nFlies straight after homing\nThe longer held, the more power"
+29, "\cdOnce fire is let go, the magnet homes\nFlies straight after homing\nThe longer held, the more power and speed"
 30, "\cdBasic 12 damage buster shot\nAllows for manual clone firing \nwhile clone is carried"
 31, "\cdKnuckles return upon contact\nEach knuckle can only damage once"
 32, "\cdWinds up a spin\nMore charge, more distance"
-33, "\cdSnakes can climb most surfaces"
+33, "\cdSnakes can climb most surfaces\nAmplified height when fired up"
 34, "\cdCan be charged into multiple levels\nEach level has different stun amounts"
 35, "\cdTosses a ShadowBlade\n\ciTosses kunais in a wide spread"
 36, "\cdFour weapons with different alts and reloads\nAll reloads give infinite ammo and buffs\nbut stop you from switching weapons"
@@ -659,12 +659,12 @@ OptionValue ClassMainfire
 56, "\cdUnshielded shots get stronger\nCan fire shots with shield up"
 57, "\cdBits home for a short time"
 58, "\cdArrow shots split on surfaces but not players\nSplit shots do less damage than arrow"
-59, "\cdLeaves a flame pillar on walls and floors"
+59, "\cdLeaves a flame pillar on walls and floors\nGains gravity over time"
 60, "\cdLower shield to throw mace, follows aim\nHold to swing mace around, charging\nand knocking enemies back\n\ciCharged:Huge Knight Crush with inf. range"
 61, "\cdShots are affected by gravity and \nbounce on walls\nShots restore health on hit"
 62, "\cdFires a pair of tomahawks\nDamage increases after a short distance\nTomahawks slide on floors"
 63, "\cdShotgun of gyros that move \naway from and towards each other"
-64, "\cdSpears drop on hit to pickup\nCollecting spears refills ammo"
+64, "\cdSpears drop on hit to pickup\nCollecting spears refills ammo\nDuring spin, fire rapid spears"
 65, "\cdSplits on walls\nLeaves icicle on floors"
 66, "\cdJunk Cube can be pushed with altfire/reload\nPushed cube can go up small stairs\nTakes a while to despawn"
 67, "\cdBombs drop upon hitting surfaces\nMore bombs make the bubble heavier"
@@ -705,9 +705,9 @@ OptionValue ClassMainfire
 102, "\cdChill blobs create 3 lines of spikes on floor\nOn ceiling, creates a wide array of spikes\n\ciFires chilling spray that rips"
 103, "\cdFires a continuous volley of sparks\nIn cloud form, spawns lightning under you"//Sheep
 104, "\cdFires a basic rebound striker\n\ciDoes a melee swing with a bat"//Strike
-105, "\cdWheel Cutter can climb small stairs.\n\ciAfter wall climbing:\nMach: three fast cutters spread out\nAcro: two cutters that rev up in a row"
+105, "\cdWheel Cutter can climb small stairs.\n\cdFires two fast cutters after climbing"
 106, "\cdFires a sun that loses gravity on hold end\nSpawns ripping Solar Waves on death\n\ciCan rocket jump"//Solar
-107, "\cdLasers travel where user faces\nScales based on time held\nBounces once on walls"//Terra
+107, "\cdLasers travel where user faces\nCan be precisely controlled with item\nBounces once on walls"//Terra
 108, "\cdFire Grab buster, regain ammo on hit\nBlob form: Fires bouncing blob"
 109, "\cdRapidly fires short range bubbles\nCan stick to floors for more damage\n\ciExplosive shot with good range"
 110, "\cdFires a volley of bullets\n\ciFires a missile that explodes on distance end"
@@ -752,7 +752,7 @@ OptionValue ClassAltfire
 11, "\cdPuts down rock if holding one\nPlaced rocks can be punched into bits"
 12, "\cdDeploys a statue on laser end"
 13, "\cdCooks bomb, firing again throws it"
-14, "\cdSummons a deadly ring of fire around user\n\ciSummons a slow, lethal wave of fire"
+14, "\cdSummons a slow, lethal wave of fire"
 15, "\cdDashes forward in a flash\nThis can clip up"
 16, "\cdArrows swap between fast and slow"
 17, "\cdSpills oil that can catch on fire\nSliding and using altfire gives slide ammo"
@@ -821,8 +821,8 @@ OptionValue ClassAltfire
 80, "\cdRefills ammo and can build pressure\nFull pressure fires water tower"
 81, "\cdCan be charged to do a Giga Tackle\nDuring Meteor, slams the ground"
 82, "\cdRefills all weapons and begins rage\nRage  makes you take more damage\nDifferent rage attacks based on item"
-83, "\cdTendril shot does more on outer part"
-84, "\cdPushes nearby ice walls\nCracked walls are pushed harder\nWalls lose blocking once pushed"
+83, "\cdTendril shot electricity rips through foes"
+84, "\cdPushes nearby ice walls and enemies \nCracked walls and frozen foes are pushed harder\nWalls lose blocking once pushed"
 85, "\cdTurn into a drill tank\nDigging can be cancelled anytime"
 86, "\cdUnleash a stream of water\nThis can push mines, even foe's mines"
 87, "\cdDash along the ground refilling ammo\nHolding jump does burner dive"
@@ -832,7 +832,7 @@ OptionValue ClassAltfire
 91, "\cdActivates all placed tornados\nConstant upward thrust during altfire\nThis thrust can assist allies"
 92, "\cdCharged sing buffs allies, tapped buffs user\n\caPower Song = 35% more damage on shots\n\cdHealing Song = Restores health, requires screws\n\cfSpeed Song = 40% more speed while affected"
 93, "\cdFires plug that connects to players\nEnemy: Damage and refill ammo\nAlly: Use ammo to haste ally attacks"
-94, "\cdChanges selected Gem\nDuring shield, homing ignores user\nAlso reflects most projectiles"
+94, "\cdChanges selected Gem\nDuring shield, homing ignores user\nAlso take reduced damage"
 95, "\cdTosses hornet hive\nThe honey bits slow foes"
 96, "\cdShot fired straight and to the left"
 97, "\cdFires basic shots"
@@ -845,7 +845,7 @@ OptionValue ClassAltfire
 104, "\cdThrows a powered rebound striker\n\ciReadies to reflect returning rebounders"//Strike
 105, "\cdWhile biking, user can climb walls\n\ciAfter wall climbing:\nMach: Boost forward, higher contact damage\n2 second cooldown after stopping"
 106, "\cdSummons mortar that gains speed with charge\nDeals knockback"//Solar
-107, "\cdRapidfire lasers, loses accuracy with ammo lost"//Terra
+107, "\cdRapidfire lasers, goes towards cursor after firing"//Terra
 108, "\cdSnatchs missiles to regain ammo"
 109, "\cdOn hit, foes take more bubble damage\nCan grab for an explosive double jump\nAllies can also use the bubble"
 110, "\cdFires a barrage of missiles in front\nCan be used at anytime"
@@ -858,9 +858,9 @@ OptionValue ClassAltfire
 117, "\cdPerform a dash and leave behind a tesla coil\nTesla Coil passively spawns spinning offshoots\nIf a tesla coil is out, remotely detonates coil"//Fuse
 118, "\cdA burst of several small explosives\nCan stick to the ground"
 119, "\cdThrows an Acid Barrier on an ally\nStarts at high resist but falls off\nAcidman gains gear ammo with blocked damage"//Acid
-120, "\cdSpinning melee leap\nCan bounce off of enemies and props"//Tundra
+120, "\cdSpinning melee leap\nCan bounce off of enemies and props\nGives T. Storm ammo on slowed enemies"//Tundra
 121, "\cdFlurry of kicks\nAerial divekick makes flares on landing\n\cgPower Gear: Ground kick has dash\nDivekick has bigger landing shockwave"
-122, "\cdMidranged grab on surfaces/players\nPulls players towards user and user towards surfaces"
+122, "\cdMidranged grab on surfaces/players\nPulls players towards user and user towards surfaces\nKnockback scales with range from target"
 123, "\cdSpins rod to damage and block missiles"
 124, "\cdSummons a pinpoint pillar\n\ciSprays water dealing pushback"
 125, "\cdUses remaining ammo to either\nHot: Boost upwards for mobility\nCold: Dash that gets stronger over time"
@@ -981,9 +981,9 @@ OptionValue ClassItem
 102, "\cuNo Item"
 103, "\cdToggles archs of wool to stop and zap downwards"//Sheep
 104, "\cdCalls back any current rebound strikers"//Strike
-105, "\cdToggles between Mach and Acro bike"
+105, "\cuNo Item"
 106, "\cuNo Item"
-107, "\cuNo Item"
+107, "\cdToggles Spark Chaser viewing mode"
 108, "\cuNo Item"
 109, "\cuNo Item"
 110, "\cuNo Item"
@@ -1028,9 +1028,9 @@ OptionValue ClassReload
 11, "\ckSuffers little hitstun when rockless"
 12, "\ckReload : Spawns cloud that rains icicles"
 13, "\ckNone"
-14, "\ckNone"
+14, "\ckReload : Summons a deadly ring of fire around user"
 15, "\ckNone"
-16, "\ckDuring time slow, dodge all attacks"
+16, "\ckDuring time slow, dodge all attacks and gain speed"
 17, "\ckNone"
 18, "\ckImmune to damage for 1.5 seconds after picking up a flag\nStarts with less health if flag isn't returned"
 19, "\ckNone"
@@ -1038,7 +1038,7 @@ OptionValue ClassReload
 21, "\ckDouble jump to swim in water"
 22, "\ckCan Wall Jump"
 23, "\ckNone"
-24, "\ckReload : Stop time in a radius\nBecome invisible for a second"
+24, "\ckReload : Stop time in a radius\nEffect falls off with distance"
 25, "\ckReload : Throws atomic pillars"
 26, "\ckGains ammo when damaged"
 27, "\ckCan float above floors"

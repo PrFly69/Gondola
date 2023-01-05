@@ -19,19 +19,19 @@ CLDH A 0 A_GunFlash
 goto Ready1
 Ready1:
 CLDH A 0 A_JumpIfInventory("IsBot",1,"BotAmmo")
-CLDH A 0 A_JumpIfInventory("ColdBossAmmo",60,"Ready2")
+CLDH A 0 A_JumpIfInventory("ColdBossAmmo",120,"Ready2")
 CLDH A 0 //A_JumpIfInventory("DinoDNAFlag",1,"ColdGroundFreeze")
 CLDH A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_ALLOWRELOAD)
 CLDH A 0 //A_JumpIfInventory("DinoDNAFlag",1,"ColdGroundFreeze")
 //CLDH A 1 A_WeaponReady(WRF_NOPRIMARY | WRF_ALLOWRELOAD)
-CLDH A 0 A_GiveInventory("ColdBossAmmo",1)
+CLDH A 0 A_GiveInventory("ColdBossAmmo",3)
 goto Ready1+1
 Ready2:
 CLDH A 0 //A_JumpIfInventory("DinoDNAFlag",1,"ColdGroundFreeze")
 CLDH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 CLDH A 0 //A_JumpIfInventory("DinoDNAFlag",1,"ColdGroundFreeze")
 //CLDH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-CLDH A 0 A_GiveInventory("ColdBossAmmo",1)
+CLDH A 0 A_GiveInventory("ColdBossAmmo",3)
 goto Ready2
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
@@ -130,7 +130,7 @@ goto Ready1
 
 ReloadNot:
 CLDH A 2
-CLDH A 0 A_GiveInventory("ColdBossAmmo",2)
+CLDH A 0 A_GiveInventory("ColdBossAmmo",6)
 goto Ready1
 
 Flash:
@@ -154,7 +154,7 @@ CLDH ED 3 A_TakeInventory("ColdBossFireFlag",99)
 CLDH A 0 SetPlayerProperty(0,0,0)
 goto Altfire
 BotAmmo:
-CLDH A 0 A_GiveInventory("ColdBossAmmo",120)
+CLDH A 0 A_GiveInventory("ColdBossAmmo",240)
 CLDH A 20 SetPlayerProperty(0,1,0)
 CLDH A 0 SetPlayerProperty(0,0,0)
 goto Ready1+1
@@ -165,7 +165,7 @@ goto Ready1+1
 actor ColdBossAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 360
+inventory.maxamount 720
 +INVENTORY.IGNORESKILL
 }
 
@@ -912,7 +912,7 @@ actor GroundColdFreezeP : GroundColdFreeze{translation "192:192=229:229", "198:1
 actor GroundIce_Cold : GroundIce_Freeze
 {
 Translation "192:192=96:96", "198:198=116:116"
-reactiontime 57
+reactiontime 70
 States
 {
 Spawn:
@@ -1166,7 +1166,7 @@ FireP:
 TNT1 A 0 A_SpawnItemEx("BossIceWallSpawnerP",64,0,0)
 goto Done
 Done:
-TNT1 A 0 A_TakeInventory("ColdBossAmmo",60)
+TNT1 A 0 A_TakeInventory("ColdBossAmmo",120)
 stop
 }
 }

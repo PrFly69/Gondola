@@ -2,7 +2,7 @@
 OptionValue CL_Null {0,""}
 OptionMenu "CBM_ChangelogMenu"
 {
-	Title "GondolaPatch 2.4.1 Changelog"
+	Title "GondolaPatch 2.6 Hotfix Changelog"
 	StaticText "===============================================================",1
 	StaticText ""
 	//Option "", "CBM_Null_Menu", "ChangeLogIndex_0"
@@ -681,16 +681,16 @@ OptionMenu "CBM_ChangelogMenu"
 	Option "", "CBM_Null_Menu", "CL_Null"
 }
 
-OptionValue ChangeLogIndex_1 {0,"\cd============\c[Teal]Gondola Patch 2.5\cd============"}
+OptionValue ChangeLogIndex_1 {0,"\cd============\c[Teal]Gondola Patch 2.6\cd============"}
 OptionValue ChangeLogIndex_2 {0,"(open file for older patchnotes)"}
 OptionValue ChangeLogIndex_3 {0,""}
 OptionValue ChangeLogIndex_4 {0,"\cq==General"}
-OptionValue ChangeLogIndex_5 {0,"--Now fully compatible with CBM V9FH"}
-OptionValue ChangeLogIndex_6 {0,"-All health and damage multiplied by 10"}
-OptionValue ChangeLogIndex_7 {0,"internally, displayed with a decimal point"}
-OptionValue ChangeLogIndex_8 {0,"--New startup screen by A-Chan"}
-OptionValue ChangeLogIndex_9 {0,"-New startup music by CosmicGem"}
-OptionValue ChangeLogIndex_10 {0,"-All startup errors fixed"}
+OptionValue ChangeLogIndex_5 {0,"Fixed item icons not appearing on HBAR"}
+OptionValue ChangeLogIndex_6 {0,"-Fixed yellow painflash being too transparent"}
+OptionValue ChangeLogIndex_7 {0,"-Light Team dark blue color 241 > [30,54,172]"}
+OptionValue ChangeLogIndex_8 {0,"-New ice death sound effects provided by MusashiAA"}
+OptionValue ChangeLogIndex_9 {0,"-Updated pitprotect code by A-Chan"}
+OptionValue ChangeLogIndex_10 {0,"-Fixed every class having abnormally high movement/projectile speeds"}
 OptionValue ChangeLogIndex_11 {0,""}
 OptionValue ChangeLogIndex_12 {0,"\cq==CTF"}
 OptionValue ChangeLogIndex_13 {0,"--CTF Yellow Devil is now Green Devil"}

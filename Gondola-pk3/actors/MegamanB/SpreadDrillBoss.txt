@@ -184,6 +184,7 @@ GRDH C 0 A_GiveInventory("GroundTankTime_AP",1)
 goto AltfireA
 AltfireA:
 GRDH E 0 A_GiveInventory("GroundTankThrust_P",1)
+GRDH F 0 A_PlaySoundEx("weapon/spreaddrillhit","SoundSlot5")
 GRDH E 0 A_GiveInventory("GroundTankTrack_F",1)
 GRDH E 0 A_JumpIfInventory("PowerRage_ST",1,2)
 GRDH E 1 A_WeaponReady
@@ -196,6 +197,7 @@ GRDH E 0 A_JumpIfInventory("SandAngerAmmo",1,"AltfireAA")
 Goto AltfireB
 AltfireAA:
 GRDH F 0 A_GiveInventory("GroundTankThrust_P",1)
+GRDH F 0 A_PlaySoundEx("weapon/spreaddrillhit","SoundSlot5")
 GRDH F 0 A_GiveInventory("GroundTankTrack_F",1)
 GRDH F 0 A_JumpIfInventory("PowerRage_ST",1,2)
 GRDH F 1 A_WeaponReady
