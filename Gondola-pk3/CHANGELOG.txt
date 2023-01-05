@@ -3168,7 +3168,7 @@ CHANGELOG
 --Machine Gun Joe shot projectile speed 57.375 > 51
 --Machine Gun Joe Grenade projectile speed 45 > 40
 --Apache Joe shot projectile speed 54 > 48
---Remote Mine projectile speed 33.75 > 25
+--Remote Mine projectile speed 33.75 > 30
 --Concreteman movespeed 0.675 > 0.6/0.58
 --Magmaman movespeed 0.7875 > 0.7
 --Fake Revolver projectile speed 101 > 90
@@ -3381,7 +3381,6 @@ CHANGELOG
 -Added ammobar indicators
 
 ==Clownman
--Thunder Carnival fulldmgmaxradius 48/64 > 64/96
 -Swinging Thunder Carnival damage 20 > 24
 
 ==Searchman
