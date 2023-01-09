@@ -379,7 +379,7 @@ inventory.maxamount 12
 actor TerraSparkEyeItem : BasicClassItem
 {
 inventory.pickupmessage "fgsfds!"
-inventory.icon "SCHSWI"
+inventory.icon "VTERICON"
 Tag "Spark Chaser Sight: Off"
 states
 {
@@ -409,7 +409,7 @@ stop
 }
 
   actor TerraSparkEyeItem2 : TerraSparkEyeItem {
-  inventory.icon "ALPHWI"
+  inventory.icon "TERICONX"
   Tag "Spark Chaser Sight: ON"
   }
 

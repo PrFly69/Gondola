@@ -128,9 +128,6 @@ sprite WICHO0,294,126{offset -13,-74 patch WICHK0,0,0{Translation"43:43=193:193"
 sprite WICHP0,294,126{offset -13,-74 patch WICHL0,0,0{Translation"43:43=193:193"}}
 sprite WICHQ0,294,126{offset -13,-74 patch WICHM0,0,0{Translation"43:43=193:193"}}
 
-//Gyroman Item
-graphic GyroIcon,30,30{XScale 2.0 YScale 2.0 Patch WEA2I0,0,0}
-
 //Blademan Item
 graphic BldeIcon,30,30{XScale 2.0 YScale 2.0 Patch BLDXY0,0,0}
 

@@ -302,6 +302,9 @@ actor MarsTankThrust_P : CustomInventory
 States
 {
 Pickup:
+TNT1 A 0 A_JumpIfInventory("MarsTankFuel_F",1,"Pickup_Schmove")
+goto Pickup_None
+Pickup_Schmove:
 TNT1 A 0 A_JumpIf(CallACS("cbm_CheckForwardBackInput")==1,"Pickup_Forward")
 TNT1 A 0 A_JumpIf(CallACS("cbm_CheckForwardBackInput")==-1,"Pickup_Back")
 goto Pickup_None

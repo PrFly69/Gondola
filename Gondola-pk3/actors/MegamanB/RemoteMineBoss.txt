@@ -435,8 +435,8 @@
 
   Actor PBubbleArmour : BasicArmorPickup
   {
-    Armor.SaveAmount 20
-	Armor.SavePercent 45.002
+    Armor.SaveAmount 30
+	Armor.SavePercent 30.002
   }
 
   Actor PRemoteFlag :OnceC{}

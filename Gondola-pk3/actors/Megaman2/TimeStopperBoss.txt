@@ -444,7 +444,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 Spawn2:
-W_0D B 15
+W_0D B 12
 stop
 }
 }
