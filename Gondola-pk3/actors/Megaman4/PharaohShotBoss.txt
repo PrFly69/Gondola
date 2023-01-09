@@ -1132,8 +1132,8 @@ Obituary "$OB_PHARAOHPUNCH"
 +DONTBLAST
 reactiontime 1
 damage (30)
-Radius 15
-Height 15
+Radius 20
+Height 20
 speed 60
 scale 2.0
 States
@@ -1143,7 +1143,7 @@ UMFX R 0
 UMFX R 1 A_CountDown
 wait
 Death:
-UMFX J 0 A_Explode(30,28,0)
+UMFX J 0 A_Explode(30,40,0)
 goto XDeath
 XDeath:
 UMFX J 0 A_Stop

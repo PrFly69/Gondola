@@ -7,7 +7,7 @@ Weapon.AmmoGive 56
 Obituary "$OB_FIRESTORM"
 Inventory.Pickupmessage "Power up! Fire Storm!"
 weapon.ammotype "BurningJusticeAmmo"
-inventory.icon "F1REICON"
+//inventory.icon "F1REICON"
 States
 {
 Spawn:

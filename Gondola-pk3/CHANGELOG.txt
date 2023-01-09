@@ -3240,6 +3240,9 @@ CHANGELOG
 ==Sniper Joe
 -Fixed grenades getting stuck on 9DW3 elevators
 
+==Gutsman
+-Now regenerates ammo while holding blocks, rate of regen reduced 1 every 5 tics > 1 every 15 tics
+
 ==Elecman
 -Thunder Beam now has projectile death sprites
 
@@ -3272,6 +3275,7 @@ CHANGELOG
 ==Flashman
 -Reverted ammo gain to 2.0h
 -Flash Buster damage 6 > 5
+--Flash Buster duration 15 tics > 12 tics
 -NEW RELOAD: Time Bender
 -UEC M2 but as a reload, timestop duration falls off with distance
 --Now halves user movement while being used
@@ -3303,8 +3307,17 @@ CHANGELOG
 -Search Snake now has scales up vertical thrust by 50% on spawn, inspired by HyperFighting
 --New Search Snake firing SFX made by Pr. Gibus
 
+==Brightman
+-Bright Buster spread (-2,2) > (-1,1)
+-Bright Bulb ammo regen 1 per 2 tics > 1 per 3 tics
+
 ==Toadman
 -Rain FX now properly displays radius and full damage radius
+
+==Pharaohman
+-Pharaoh Wave damage 8 > 10
+-Pharaoh Punch projectile radius/height 15/15 > 20/20
+--Pharaoh Punch explosion radius 28 > 40, now consistent with other melees
 
 ==Diveman
 -Dive Tackle upwards thrust reduced 24 > 10 (42 > 20 with rage)
@@ -3390,6 +3403,9 @@ CHANGELOG
 ==Frostman
 -Ice Wave and Ice Crush teamcolors edited
 
+==EvilRobot
+-Giga Astro Crush now has 75% powerprotect for 3 tics
+
 ==Coldman
 -All instances of ColdBossAmmo doubled, ammo regen tripled (effectively increases ammo regen by 50%)
 -Cold Shoulder now has 13 more tics of endlag, RoF reduced 22 tics > 30 tics
@@ -3407,14 +3423,14 @@ CHANGELOG
 ==Pirateman
 -Movespeed 0.7/0.68 > 0.65/0.63
 -Remote Mine HP 35 > 15
+-Bubble Armor amount/save 20/45 > 30/30
 
 ==Tornadoman
 -Whirlwind Blade projectiles now have FX indicating windbox, made by Cowsha
 
 ==Plugman
 -Getting kills with Plug altfire (applies to both initial damager and zap) now provides full ammo and overcharge
--Fixed infinite overcharge bug
--Plug balls now deal 12 damage before hitting the floor
+-Plug balls now deal 12 damage before hitting the floor, have new teamcolors to differentiate this
 
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
@@ -3446,7 +3462,11 @@ CHANGELOG
 
 ==Saturn
 -New FX indicator for armor, code provided by Muzaru
--Can now suck Hyper Bomb (both iterations) and Plug Ball when its on the floor
+-Can now suck Hyper Bomb (both iterations)
+-Can now such Plug Ball when its on the floor
+-Can now suck Homing Sniper
+-Can now suck Magic Card and Magic Orb
+-Can no longer suck Evil Robot Giga Homing Sniper reticle
 
 ==Jupiter
 -Added gd_hjupiter cvar for South Americans, lag-compensates Electric Shock

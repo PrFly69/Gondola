@@ -78,6 +78,10 @@ pic VAMM1_VY tics 4
 pic VAMM1_VX tics 4
 pic VAMM1_VY tics 4
 
+texture TerIconX
+pic TerIcon2 tics 3
+pic TerIcon3 tics 3
+
 //ccbm
 //Gyroman Icon
 texture GyroIcon

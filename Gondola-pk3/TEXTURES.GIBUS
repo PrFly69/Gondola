@@ -211,6 +211,9 @@ texture VAMM2_V0,56,8{patch BAMM2_V0,0,0{rotate 90}}//Terra Ammobars
 texture BARMTERR,8,56{patch TNT1A0,0,0}
 texture VARMTERR,56,8{patch TNT1A0,0,0}
 
+//Gyroman Item
+graphic TerIconX,30,30{XScale 2.0 YScale 2.0 Patch WEA2I0,0,0}
+
 
 
 //Torchman
@@ -441,6 +444,12 @@ graphic NEEDRCON,30,30{XScale 2.0 YScale 2.0 Patch RSH2H0,0,0}
 graphic FIREICNR,30,30{XScale 2.0 YScale 2.0 Patch RSFMR0,0,0} 
 graphic F1REIcon,30,30{XScale 2.0 YScale 2.0 Patch FIRICON1,0,0}
 graphic FI2EIcon,30,30{XScale 2.0 YScale 2.0 Patch FIRICON2,0,0}
+
+//Terra
+graphic VTERICON,30,30{XScale 2.0 YScale 2.0 Patch TERICON1,0,0} 
+graphic TERICONX,30,30{XScale 2.0 YScale 2.0 Patch TERICON1,0,0} 
+graphic TerIcon2,30,30{XScale 2.0 YScale 2.0 Patch TERICON2,0,0}
+graphic TerIcon3,30,30{XScale 2.0 YScale 2.0 Patch TERICON3,0,0}
 
 //Tengu
 texture TNGUBAR,8,56{patch B_5BARSB,0,0{Translation "198:198=109:109","192:192=4:4"}}
