@@ -222,10 +222,10 @@ stop
 }
 }
 
-actor HyperBombThrowB : HyperBombThrow{translation "192:192=205:205", "199:199=0:0", "198:198=74:74", "202:202=205:205"}
-actor HyperBombThrowR : HyperBombThrow{translation "192:192=171:171", "199:199=0:0", "198:198=41:41", "202:202=171:171"}
-actor HyperBombThrowO : HyperBombThrow{translation "192:192=104:104", "199:199=0:0", "198:198=128:128", "202:202=104:104"}
-actor HyperBombThrowP : HyperBombThrow{translation "192:192=229:229", "199:199=0:0", "198:198=232:232", "202:202=229:229"}
+actor HyperBombThrowB : HyperBombThrow{translation "192:192=205:205", "199:199=74:74", "198:198=74:74", "202:202=205:205"}
+actor HyperBombThrowR : HyperBombThrow{translation "192:192=171:171", "199:199=41410", "198:198=41:41", "202:202=171:171"}
+actor HyperBombThrowO : HyperBombThrow{translation "192:192=104:104", "199:199=128:128", "198:198=128:128", "202:202=104:104"}
+actor HyperBombThrowP : HyperBombThrow{translation "192:192=229:229", "199:199=232:232", "198:198=232:232", "202:202=229:229"}
 
 actor HyperBombThrowSplit
 {
