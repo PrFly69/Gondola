@@ -3183,11 +3183,13 @@ CHANGELOG
 --Sheep Bolter projectile speed 68 > 60
 --Thunder Wool projectile speed 17 > 15
 --Wheel Cutter projectile speed 43 > 38
---Rapid wheel Cutter projectile speed 96 > 85
+--Rapid Wheel Cutter projectile speed 96 > 85
 --Altfire Power Rebound Striker projectile speed 60 > 55
 --Grab Buster returning projectile speed 60 > 50
 --Mercury Blob projectile speed 40 > 38
 --Venus strafespeed 1.0 > 0.9
+--White Hole Ring projectile speed 56 > 50
+--Black Hole Ring projectile speed 62 > 50
 --Blastman movespeed 1.0/0.98 > 0.92/0.9
 --Acidman movespeed 1.0/0.98 > 0.89/0.87 
 --Acid Shot projectile speed 47 > 42
@@ -3224,9 +3226,17 @@ CHANGELOG
 ==Protoman
 -Fixed charging sprites having bugged frames
 
+==Duo
+-SBAR updated, now flashes at full Duo Meteor ammo
+-Shockwave has proper Justice Energy:tm: colors in non team games
+
 ==Rock
+-Halved ammo regen
+-Ported CCBM Rock Kick offsets
 -Cut Ball not ripping fixed, damage 5 > 4
+--Cut Ball FX now uses edited Rolling Cutter Extend FX
 -Bomb Ball damage 20/21 > 16/20, radius 128 > 96
+-Fixed Fire Ball animations freezing
 -Ice Ball hitstun reduced 100% > 35%
 
 ==Roll
@@ -3307,6 +3317,12 @@ CHANGELOG
 -Search Snake now has scales up vertical thrust by 50% on spawn, inspired by HyperFighting
 --New Search Snake firing SFX made by Pr. Gibus
 
+==Docrobot
+-Flash Bubbler now has gravity
+--Flash Bubbler now works with plugboost
+-Crash Blaster explosion damage 15 > 5 four times per tic (20)
+-Gear Grinder damage 6 > 9
+
 ==Brightman
 -Bright Buster spread (-2,2) > (-1,1)
 -Bright Bulb ammo regen 1 per 2 tics > 1 per 3 tics
@@ -3379,9 +3395,11 @@ CHANGELOG
 -Copy Vision shots now translucent to indicate difference between Astro Bullets and Copy Bullets in team games
 
 ==Swordman 
--Mainfire recovery animation can now be canceled to continue the combo  
---Spin hitbox 128 > 85 
---Spin now does 12 damage if moving fast 
+-Flame Sword recovery animation can now be canceled to continue the combo 
+--Added 4 tics of delay in between each swipe, 6 tics of delay at the end of the three-swipe combo
+-Lunge hitbox 128 > 85 
+--Now requires at least 50% ammo to do lunge
+--Lunge now does 12 damage if moving fast 
 --Lunge thrust 2/6/10 > 2/5/8
 -Flying torso spin damage 4 > 2 
 --Flying torso slash damage 8x5 > 6x5 
@@ -3408,7 +3426,8 @@ CHANGELOG
 
 ==Coldman
 -All instances of ColdBossAmmo doubled, ammo regen tripled (effectively increases ammo regen by 50%)
--Cold Shoulder now has 13 more tics of endlag, RoF reduced 22 tics > 30 tics
+-Cold Shoulder damage 32 > 35
+--Now has 13 more tics of endlag, RoF reduced 22 tics > 30 tics
 --Now has light knockback on hit
 --Hitting enemies frozen by Cold Field grants double knockback
 --Can place Ice Walls/use Cold Field after 8 tics into endlag
@@ -3424,6 +3443,7 @@ CHANGELOG
 -Movespeed 0.7/0.68 > 0.65/0.63
 -Remote Mine HP 35 > 15
 -Bubble Armor amount/save 20/45 > 30/30
+-Pirate Ravager explosion radius/fulldmgmaxradius 128/48 > 96/36
 
 ==Tornadoman
 -Whirlwind Blade projectiles now have FX indicating windbox, made by Cowsha

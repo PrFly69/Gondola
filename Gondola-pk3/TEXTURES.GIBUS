@@ -22,6 +22,9 @@ graphic SJOEVAY,56,8{patch SJOEBAY,0,0{Rotate 90}}
 graphic SJOEBAZ,8,56{patch B_BAR01D,0,0{Translation "192:192=108:108","198:198=4:4"}}
 graphic SJOEVAZ,56,8{patch SJOEBAZ,0,0{Rotate 90}}
 
+texture DUOMBAR,8,56{patch TNT1A0,0,0}
+texture DUOMVAR,56,8{patch TNT1A0,0,0}
+
 //Flashman babey
 graphic FLASHICN,30,30{XScale 2.0 YScale 2.0 Patch RLTSA0,0,0} 
 

@@ -968,7 +968,7 @@ DamageFactor "PirateM_Boom", 0.5
 	{
 		Spawn:
 		TNT1 A 0
-		TNT1 A 2 A_Explode(8,128,0,0,48)
+		TNT1 A 2 A_Explode(8,96,0,0,36)
 		Stop
 	}
   }

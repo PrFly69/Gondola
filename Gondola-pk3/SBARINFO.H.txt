@@ -1074,11 +1074,12 @@ IsSelected BassBusterBoss{
 	}
 IsSelected DuoFistBoss{
 	DrawImage"DUORICON",178,175;
-	DrawBar "VARAMM46", "VAREMPTY", Ammo2, horizontal, 58,184;
+	DrawBar "VARAMM71", "VAREMPTY", Ammo2, horizontal, 58,184;
+		InInventory DuoMeteorAmmo,280{DrawBar"DUOMVAR","VAREMPTY",Ammo2,horizontal,58,184;}
 	DrawBar "08_9_VAR", "VAREMPTY", SlideLimitFlag, horizontal, 58,176;
 	InInventory DuoFistCleaserFlag, 1{DrawBar "00_1_VA3", "VNOBAR", DuoFistCleaserFlag, horizontal,58,176;}}
 IsSelected DuoMeteorWepC{
-	DrawBar "VARAMM46", "VAREMPTY", Ammo2, horizontal, 58,184;
+	DrawBar "DUOMVAR", "VAREMPTY", Ammo2, horizontal, 58,184;
 	}
 //Classes end
 

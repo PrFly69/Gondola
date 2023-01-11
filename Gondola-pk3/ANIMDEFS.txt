@@ -10,6 +10,15 @@ pic V_I_SUX tics 4
 pic V_I_SUY tics 4
 pic V_I_SUZ tics 4
 
+//Duo
+texture DUOMBAR
+pic BARAMM25 tics 4
+pic BARAMM71 tics 4
+
+texture DUOMVAR
+pic VARAMM25 tics 4
+pic VARAMM71 tics 4
+
 //Hornet
 texture HC_S_BAR
 pic HC_T_BAR tics 4
