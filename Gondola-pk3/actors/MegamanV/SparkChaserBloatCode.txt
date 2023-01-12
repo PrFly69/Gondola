@@ -830,7 +830,6 @@ PROJECTILE
 +SKYEXPLODE
 +DONTBLAST
 +BRIGHT
-+RIPPER
 +HEXENBOUNCE
 Damagetype "Terra_Suppressor"
 Speed 90
@@ -846,10 +845,10 @@ TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 TNT1 A 0 A_JumpIfInventory("CutterFlag",6,"InPlacer")
 TERS B 1 A_GiveInventory("CutterFlag",1)
-TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrailAlt",-momx*2/3,-momy*2/3,-momz*2/3,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
-TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrailAlt",-momx/3,-momy/3,-momz/3,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
-TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrailAlt",0,0,0,momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
-TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrailAlt",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
+TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrailAltNODMG",-momx*2/3,-momy*2/3,-momz*2/3,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
+TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrailAltNODMG",-momx/3,-momy/3,-momz/3,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
+TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrailAltNODMG",0,0,0,momx/4,momy/4,momz/4,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+TNT1 A 0 A_SpawnItemEx("TerraClassSparkChaserTrailAltNODMG",0,0,0,0,0,0,0,SXF_ABSOLUTEPOSITION|SXF_TRANSFERTRANSLATION)
 loop
 InPlacer:
 TNT1 A 0 A_ChangeFlag("THRUACTORS",TRUE)
@@ -883,6 +882,7 @@ actor TerraClassSparkChaserAltP : TerraClassSparkChaserAlt{translation "198:198=
 actor TerraClassSparkChaserAlt2 : TerraClassSparkChaserAlt
 {
 -HEXENBOUNCE
++RIPPER
 States
 {
 Spawn:
@@ -925,3 +925,5 @@ TERS A 1
 stop
 }
 }
+
+Actor TerraClassSparkChaserTrailAltNODMG : TerraClassSparkChaserTrailAlt { +NOINTERACTION }

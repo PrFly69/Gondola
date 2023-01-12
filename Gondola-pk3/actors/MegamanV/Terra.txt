@@ -8,8 +8,8 @@ player.startitem "ShonenAmmo", 500
 player.startitem "ShojoAmmo", 56
 player.startitem "TerraSparkEyeItem"
 
-player.maxhealth 90
-health 90
+player.maxhealth 75
+health 75
 player.forwardmove 0.9, 0.9
 player.sidemove 0.88, 0.88
 player.jumpz 12

@@ -3467,7 +3467,6 @@ CHANGELOG
 
 ==Terra
 -Reworked by Pr. Gibus
--Health 75 > 90
 -Spark Chaser speed 18 > 12
 --Direct damage 20 > 21
 --Released damage 15 every 35 tics > 5 every 3 tics
@@ -3477,7 +3476,7 @@ CHANGELOG
 --Drains from tertiary ammo resource while in camera mode
 --Can not use camera when tertiary ammo is fully drained
 -Spark Suppressor now stops after a while and goes towards crosshair on release
---Damage tweaked 5 > 6 (initial) + 1 (ripper)
+--Damage tweaked 5 > 6, applies ripper 6 (initial) + 1 (ripper) post redirect
 --FX trail now has damager
 
 ==Saturn
