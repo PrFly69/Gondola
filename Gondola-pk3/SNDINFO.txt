@@ -502,6 +502,8 @@ weapon/torchwave TORCHWAV
 weapon/ragingtorch S_MV_J6
 weapon/ragingtorchflame BAVEBUR2
 weapon/ragingtorchreal SUPADRIL
+weapon/torchpunch TORCHHIT
+weapon/torchpunchweak TORCHHIW
 
 //Acid
 weapon/acidfire ACIDFIRE

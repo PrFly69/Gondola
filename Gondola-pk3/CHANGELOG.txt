@@ -3536,6 +3536,9 @@ CHANGELOG
 -Fixed reload ammo regenerating slower while holding reload without enough ammo
 
 ==Torchman
+-Projectile fired by mainfire now properly reflects if user is in Power Gear or not
+! This means that if one punch gives you power gear, the second punch thrown will be a power gear shot instead of a regular punch
+--Using mainfire with no ammo throws out a 12 damage melee punch
 -Blazing Demon thrust before kicks 75 > 50
 -Updated Roller Roaster impact/death sprites
 

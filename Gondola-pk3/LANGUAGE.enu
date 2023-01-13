@@ -20,10 +20,11 @@ TAG_BLAZINGTORCH = "Blazing Torch";
 
 //Torch
 OB_TORCH = "%o fell to %k's Fist of Flame.";
-OB_TORCHEX = "%o burnt too many calories facing %k's Torchjutsu .";
+OB_TORCHEX = "%o burnt too many calories facing %k's Torchjutsu Fist.";
 OB_TORCHX = "%k had to teach %o campfire safety through brute force.";
 OB_TORCH2 = "%o got hot feet from %k's Torchjutsu Kick.";
 OB_TORCH2X = "%o was barbecued by %k's Torchjutsu Kick.";
+OB_TORCHPUNCH = "%o was roasted like a marshmellow by %k's Firefly Fist.";
 TAGC_11B = "Torchman Daigo Parry";
 
 //Springman

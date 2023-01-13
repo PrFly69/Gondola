@@ -41,16 +41,12 @@ TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",100,"Ready1")
 goto NoAmmoLoop
 
 Fire:
-TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",100,1)
-goto NoAmmo
 TNT1 A 0 A_JumpIfInventory("TorchJutsuAmmo",400,"PowerFire")
 TCCC Z 1 offset(20,25)
 TCCC Y 2 offset(40,40)
 TCCC X 2 offset(50,50)
 TCCC X 2 offset(50,50)
-TCCC Z 0 A_PlaySoundEx("weapon/torchfireball","Weapon")
-TCCC Z 0 A_GiveInventory("TorchMain_CI")
-TCCC Z 0 A_TakeInventory("WaveDashAmmo",100)
+TCCC Z 0 A_GiveInventory("TorchM_MainInv_CI")
 TCCC Y 2 offset(-20,12)
 TCCC Z 2 offset(-20,12)
 TCCC C 0 A_Refire("Fire2")
@@ -62,16 +58,12 @@ TCCC Z 1 offset(-5,27)
 TCCC Z 3
 goto Ready1
 Fire2:
-TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",100,1)
-goto EndFireAnim
 TCCC Z 1 offset(25,25)
 TCCC Z 1 offset(35,50)
 TCCD Y 1 offset(-40,50)
 TCCD Y 1 offset(-25,40)
 TCCD X 2 offset(15,14)
-TCCD Z 0 A_PlaySoundEx("weapon/torchfireball","Weapon")
-TCCC Z 0 A_GiveInventory("TorchMainX_CI")
-TCCC Z 0 A_TakeInventory("WaveDashAmmo",100)
+TCCC Z 0 A_GiveInventory("TorchM_MainXInv_CI")
 TCCD Y 3 offset(15,14)
 TCCD Z 3 offset(5,25)
 TCCD Z 3 offset(-20,40)
@@ -90,10 +82,7 @@ TCCC Z 1
 TCCC Y 2 offset(40,40)
 TCCC X 2 offset(50,50)
 TCCC X 2 offset(50,50)
-TCCC X 0 A_PlaySoundEx("weapon/torchfireball","Body")
-TCCC X 0 A_PlaySoundEx("weapon/torchexfireball","Weapon")
-TCCC Z 0 A_GiveInventory("TorchMain2_CI")
-TCCC Z 0 A_TakeInventory("WaveDashAmmo",100)
+TCCC Z 0 A_GiveInventory("TorchM_MainInv_CI")
 TCCC X 2 offset(-20,12)
 TCCC Y 2 offset(-20,12)
 TCCC C 0 A_Refire("PowerFire2")
@@ -105,17 +94,12 @@ TCCC Z 1 offset(-5,27)
 TCCC Z 3
 goto Ready1
 PowerFire2:
-TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",100,1)
-goto EndPowerFireAnim
 TCCC Z 1 offset(25,25)
 TCCC Z 1 offset(35,50)
 TCCD Y 1 offset(-40,50)
 TCCD Y 1 offset(-25,40)
 TCCD X 2 offset(15,14)
-TCCC X 0 A_PlaySoundEx("weapon/torchfireball","Body")
-TCCC X 0 A_PlaySoundEx("weapon/torchexfireball","Weapon")
-TCCD Z 0 A_GiveInventory("TorchMain2X_CI")
-TCCC Z 0 A_TakeInventory("WaveDashAmmo",100)
+TCCD Z 0 A_GiveInventory("TorchM_MainXInv_CI")
 TCCD X 3 offset(15,14)
 TCCD Y 3 offset(5,25)
 TCCD Z 0 offset(5,25)A_JumpIfInventory("TorchJutsuAmmo",400,"PunchKickWait")
@@ -509,7 +493,7 @@ stop
 
 actor TorchmanJutsu //: FastProjectile //Causes ridiculous rips from PGTorchmanJutsu. //Surely increasing the projectile speed will lead to nothing funny, right guys? Guys?
 {
-Translation "192:192=219:219", "198:198=181:191"
+Translation "192:192=219:219", "198:199=181:181", "202:202=219:219"
 PROJECTILE
 damagetype "TorchHit1"
 Obituary "$OB_TORCH"
@@ -1137,6 +1121,94 @@ stop
 }
 }
 
+actor TorchPunch : TorchmanJutsu
+{
+Obituary "$OB_TORCHPUNCH"
++DONTBLAST
+reactiontime 1
+damage (12)
+Radius 20
+Height 20
+speed 60
+scale 2.5
+States
+{
+Spawn:
+UMFX J 0
+DKC1 G 1 A_CountDown
+wait
+Death:
+UMFX J 0 A_Explode(12,40,0)
+UMFX J 0 A_Stop
+DKC1 GHIJK 1
+stop
+XDeath:
+UMFX J 0 A_Stop
+TCCC X 0 A_PlaySoundEx("weapon/torchpunch","Voice")
+DKC1 GHIJK 1
+stop
+}
+}
+
+actor TorchPunchB : TorchPunch{translation "198:199=199:199", "192:192=74:74", "202:202=74:74"}
+actor TorchPunchR : TorchPunch{translation "198:199=43:43", "192:192=41:41", "202:202=41:41"}
+actor TorchPunchO : TorchPunch{translation "198:199=131:131", "192:192=128:128", "202:202=128:128"}
+actor TorchPunchP : TorchPunch{translation "198:199=223:223", "192:192=232:232", "202:202=232:232"}
+
+actor TorchM_MainInv_CI : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("WaveDashAmmo",100,"PickupPGCHECK")
+goto Pickup3
+PickupPGCHECK:
+TCCC Z 0 A_TakeInventory("WaveDashAmmo",100)
+TNT1 A 0 A_JumpIfInventory("TorchJutsuAmmo",400,"Pickup1")
+goto Pickup2
+Pickup1:
+TCCC X 0 A_PlaySoundEx("weapon/torchfireball","Body")
+TCCC X 0 A_PlaySoundEx("weapon/torchexfireball","Weapon")
+TNT1 A 0 A_GiveInventory("TorchMain2_CI")
+stop
+Pickup2:
+TCCC X 0 A_PlaySoundEx("weapon/torchfireball","Weapon")
+TNT1 A 0 A_GiveInventory("TorchMain_CI")
+stop
+Pickup3:
+TCCC X 0 A_PlaySoundEx("weapon/torchpunchweak","Weapon")
+TNT1 A 0 A_GiveInventory("TorchMainMelee_CI")
+stop
+}
+}
+
+actor TorchM_MainXInv_CI : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("WaveDashAmmo",100,"PickupPGCHECK")
+goto Pickup3
+PickupPGCHECK:
+TCCC Z 0 A_TakeInventory("WaveDashAmmo",100)
+TNT1 A 0 A_JumpIfInventory("TorchJutsuAmmo",400,"Pickup1")
+goto Pickup2
+Pickup1:
+TCCC X 0 A_PlaySoundEx("weapon/torchfireball","Body")
+TCCC X 0 A_PlaySoundEx("weapon/torchexfireball","Weapon")
+TNT1 A 0 A_GiveInventory("TorchMain2X_CI")
+stop
+Pickup2:
+TCCC X 0 A_PlaySoundEx("weapon/torchfireball","Weapon")
+TNT1 A 0 A_GiveInventory("TorchMainX_CI")
+stop
+Pickup3:
+TCCC X 0 A_PlaySoundEx("weapon/torchpunchweak","Weapon")
+TNT1 A 0 A_GiveInventory("TorchMainMeleeX_CI")
+stop
+}
+}
+
 actor TorchmanJutsuB : TorchmanJutsu{translation "198:198=199:199", "192:192=74:74"}
 actor TorchmanJutsuR : TorchmanJutsu{translation "198:198=43:43", "192:192=41:41"}
 actor TorchmanJutsuO : TorchmanJutsu{translation "198:198=131:131", "192:192=128:128"}
@@ -1235,6 +1307,52 @@ TNT1 A 0 A_FireCustomMissile("PGTorchmanJutsuO",0,0,-8,0)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("PGTorchmanJutsuP",0,0,-8,0)
+goto Done
+}
+}
+
+actor TorchMainMelee_CI : TeamColor_CI
+{
+Obituary "$OB_TORCH"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TorchPunch",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TorchPunchB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TorchPunchR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TorchPunchO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TorchPunchP",0,0,8,0)
+goto Done
+}
+}
+
+actor TorchMainMeleeX_CI : TeamColor_CI
+{
+Obituary "$OB_TORCH"
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("TorchPunch",0,0,-8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("TorchPunchB",0,0,-8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("TorchPunchR",0,0,-8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("TorchPunchO",0,0,-8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("TorchPunchP",0,0,-8,0)
 goto Done
 }
 }
