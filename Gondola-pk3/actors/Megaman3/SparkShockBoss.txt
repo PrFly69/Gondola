@@ -169,13 +169,13 @@ SPAH W 1 Offset(0, 56)
 SPAH Y 1 Offset(0, 56)
 FireEnd2:
 SPAH S 1 Offset(0, -8)A_PlaySoundEx("weapon/sparkreset", "Body")
-SPAH R 1 Offset(0, -24)A_TakeInventory("MightyGodAmmo",99)
+SPAH R 1 Offset(0, -24)//A_TakeInventory("MightyGodAmmo",99)
 SPAH Q 1 Offset(0, -40)
 SPAH P 1 Offset(0, -56)
 TNT1 A 18 Offset(0,128)
 SPAH A 1 Offset(0,128)
 SPAH C 1 Offset(0,96)
-SPAH E 1 Offset(0,64)
+SPAH E 1 Offset(0,64) A_TakeInventory("MightyGodAmmo",99)
 goto Ready1
 
 FireToAlt:
