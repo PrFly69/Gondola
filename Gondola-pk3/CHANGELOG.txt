@@ -3482,7 +3482,6 @@ CHANGELOG
 ==Saturn
 -New FX indicator for armor, code provided by Muzaru
 -Can now suck Hyper Bomb (both iterations)
--Can now suck Homing Sniper
 -Can no longer suck Evil Robot Giga Homing Sniper reticle
 -Can now suck Magic Card, Magic Pigeons and Magic Orb
 -Can now suck Dynamo Orbs and Dynamo Tendril
