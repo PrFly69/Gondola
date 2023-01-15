@@ -3317,6 +3317,9 @@ CHANGELOG
 -Search Snake now has scales up vertical thrust by 50% on spawn, inspired by HyperFighting
 --New Search Snake firing SFX made by Pr. Gibus
 
+==Sparkman
+-Fixed ammobar desyncs
+
 ==Docrobot
 -Flash Bubbler now has gravity
 --Flash Bubbler now works with plugboost
@@ -3451,6 +3454,7 @@ CHANGELOG
 ==Plugman
 -Getting kills with Plug altfire (applies to both initial damager and zap) now provides full ammo and overcharge
 -Plug balls now deal 12 damage before hitting the floor, have new teamcolors to differentiate this
+-Plug altfire no longer passes through shields
 
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
