@@ -1150,7 +1150,7 @@ Obituary "$OB_QUINTBUSTER"
 Damage (10)
 radius 5
 height 5
-Speed 42
+Speed 37
 scale 2.5
 States
 {

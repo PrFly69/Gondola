@@ -3578,7 +3578,7 @@ CHANGELOG
 --Altfire ammo consumption doubled (effectively increases altfire duration by 50%)
 
 ==Quint
--Quint Buster speed 36 > 42
+-Quint Buster speed 32 > 37
 -Sakugarne guaranteed 8 damage explosion removed
 -Sakugarne Dive cancel removed
 -Sakugarne Dive shockwave damage 5 > 8
