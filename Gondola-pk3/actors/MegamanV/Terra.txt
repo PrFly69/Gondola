@@ -51,7 +51,7 @@ TRRA IIIII 1 A_JumpIf(z-floorz<=0, "Spawn")
 loop
 
 TerraJumpingShoot:
-TRRA JJJJJJJJJ 1 A_JumpIf(z-floorz<=0, "Missile")
+TRRA JJJJJKKKK 1 A_JumpIf(z-floorz<=0, "Missile")
 goto TerraJumping
 
 CustomState2:

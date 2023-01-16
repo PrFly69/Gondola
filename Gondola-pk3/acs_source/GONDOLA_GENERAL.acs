@@ -409,7 +409,7 @@ If(Ally==0){SetActivator(0,AAPTR_Target);}
 Else{SetActivator(0,AAPTR_Tracer);}
 
 int BarrierTime = 0.1;
-While(BarrierTime<1.0)
+While(BarrierTime<=1.0)
     {
     if(Ally>0){TakeInventory("AcidBarrierVisualBar",1);}
     SetActorProperty(0,APROP_DamageFactor,BarrierTime);

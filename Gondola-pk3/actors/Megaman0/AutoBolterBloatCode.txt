@@ -1442,7 +1442,9 @@ WEA2 D 1
 loop
 
 Use:
+WEA2 D 0 A_JumpIf(ceilingz-z<=60,"NoPickup")
 WEA2 D 0 A_Jumpif(floorz<z, "Under")
+Up:
 WEA2 D 0 A_SpawnItemEx("Item2Platform", 56, 0, 28, 1)
 stop
 Under:
@@ -1453,6 +1455,7 @@ stop
 Death:
 NoPickup:
 WEA2 D 0
+WEA2 D 0 ACS_Execute(979,0)
 fail
 
 Death:

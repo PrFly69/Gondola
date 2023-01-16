@@ -47,6 +47,7 @@ States
 	Loop
 
 	Fire: 
+		TNT1 A 0 A_JumpIfInventory("SaturnRingRefireDelay",1,"Ready2")
 		SAHD A 0 A_TakeInventory("SaturnRingReturnFlag",1)
 		SAHD A 1 offset(32,48)
 		SAHD A 1 offset(64,64)
@@ -318,6 +319,7 @@ States
 	goto Ready2
 	
 	NoFire:
+		TNT1 A 0 A_JumpIfInventory("SaturnRingRefireDelay",1,"Ready2")
 		SATN A 0 A_TakeInventory("SaturnRingReturnFlag",1)
 		SATN A 1 offset(32,48)
 		SATN A 1 offset(64,64)
@@ -668,22 +670,39 @@ SpawnLOOP:
 SARI A 0 A_JumpIfInTargetInventory("SaturnRingReturnFlag",1,"SpawnEnd")
 SARI A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnEnd")
 SARI A 3 //A_SpawnItemEx("SaturnRingTossFX",0,0,0,0,0,0,0,1)
+SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
 SARI A 0 //A_Blast(0, 255, 80, 20, "SaturnNothing", "weapon/saturnnothing")
 SARI A 0 A_JumpIfInTargetInventory("SaturnRingReturnFlag",1,"SpawnEnd")
 SARI A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnEnd")
 SARI A 0 A_JumpIfInTargetInventory("SaturnRingReturnFlag",1,"SpawnEnd")
 SARI A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnEnd")
 SARI G 3 //A_SpawnItemEx("SaturnRingTossFX",0,0,0,0,0,0,0,1)
+SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
 SARI A 0 //A_Blast(0, 255, 80, 20, "SaturnNothing", "weapon/saturnnothing")
+SARI A 0 A_JumpIfInTargetInventory("SaturnRingReturnFlag",1,"SpawnEnd")
+SARI A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnEnd")
+SARI A 0 A_JumpIfInTargetInventory("SaturnRingReturnFlag",1,"SpawnEnd")
+SARI A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnEnd")
 SARI B 3 //A_SpawnItemEx("SaturnRingTossFX",0,0,0,0,0,0,0,1)
+SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
 SARI A 0 //A_Blast(0, 255, 80, 20, "SaturnNothing", "weapon/saturnnothing")
 SARI A 0 A_JumpIfInTargetInventory("SaturnRingReturnFlag",1,"SpawnEnd")
 SARI A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnEnd")
+SARI A 0 A_JumpIfInTargetInventory("SaturnRingReturnFlag",1,"SpawnEnd")
+SARI A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnEnd")
 SARI G 3 //A_SpawnItemEx("SaturnRingTossFX",0,0,0,0,0,0,0,1)
+SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
 SARI A 0 //A_Blast(0, 255, 80, 20, "SaturnNothing", "weapon/saturnnothing")
+SARI A 0 A_JumpIfInTargetInventory("SaturnRingReturnFlag",1,"SpawnEnd")
+SARI A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnEnd")
+SARI A 0 A_JumpIfInTargetInventory("SaturnRingReturnFlag",1,"SpawnEnd")
+SARI A 0 A_JumpIfInTargetInventory("IsDead",1,"SpawnEnd")
 loop
 SpawnEnd:
-SARI AGBG 3 A_ScaleVelocity(0.75)
+SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
+SARI AG 3 A_ScaleVelocity(0.75)
+SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
+SARI BG 3 A_ScaleVelocity(0.75)
 goto Death
 
 Death:
@@ -735,6 +754,7 @@ Actor SaturnWhiteRingReturner {
 			SARI A 0 A_FaceTarget
 		Goto Spawn2
 		Spawn2:
+			SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
 			SARI A 0 A_JumpIfCloser(46, "Death")
 			SARI AA 0 A_SeekerMissile(90, 90, SMF_PRECISE)
 			SARI A 1 A_SpawnItemEx("SaturnCrusherExploder", 0, 0, 0, momx, momy, momz, 0, 8)
@@ -746,6 +766,7 @@ Actor SaturnWhiteRingReturner {
 			SARI A 1 A_SpawnItemEx("SaturnCrusherExploder", 0, 0, 0, momx, momy, momz, 0, 8)
 			SARI A 0 A_JumpIfCloser(46, "Death")
 			SARI AA 0 A_SeekerMissile(90, 90, SMF_PRECISE)
+			SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
 			SARI G 1 A_SpawnItemEx("SaturnCrusherExploder", 0, 0, 0, momx, momy, momz, 0, 8)
 			SARI G 0 A_JumpIfCloser(46, "Death")
 			SARI AA 0 A_SeekerMissile(90, 90, SMF_PRECISE)
@@ -755,6 +776,7 @@ Actor SaturnWhiteRingReturner {
 			SARI G 1 A_SpawnItemEx("SaturnCrusherExploder", 0, 0, 0, momx, momy, momz, 0, 8)
 			SARI G 0 A_JumpIfCloser(46, "Death")
 			SARI AA 0 A_SeekerMissile(90, 90, SMF_PRECISE)
+			SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
 			SARI B 1 A_SpawnItemEx("SaturnCrusherExploder", 0, 0, 0, momx, momy, momz, 0, 8)
 			SARI B 0 A_JumpIfCloser(46, "Death")
 			SARI AA 0 A_SeekerMissile(90, 90, SMF_PRECISE)
@@ -764,6 +786,7 @@ Actor SaturnWhiteRingReturner {
 			SARI B 1 A_SpawnItemEx("SaturnCrusherExploder", 0, 0, 0, momx, momy, momz, 0, 8)
 			SARI B 0 A_JumpIfCloser(46, "Death")
 			SARI AA 0 A_SeekerMissile(90, 90, SMF_PRECISE)
+			SARI A 0 A_GiveToTarget("SaturnRingRefireDelay")
 			SARI G 1 A_SpawnItemEx("SaturnCrusherExploder", 0, 0, 0, momx, momy, momz, 0, 8)
 			SARI G 0 A_JumpIfCloser(46, "Death")
 			SARI AA 0 A_SeekerMissile(90, 90, SMF_PRECISE)
@@ -792,12 +815,13 @@ Obituary "%o was thrusted away by %k's white hole ring."
 +DONTBLAST
 +DONTREFLECT
 damage (3)
-radius 24
-height 16
+Radius 24
+Height 16
 States
 {
 Spawn:
-TNT1 A 2
+TNT1 AA 0
+TNT1 A 1
 stop
 }
 }
@@ -934,7 +958,7 @@ actor SaturnBlackRingR : SaturnBlackRing{Translation "192:192=41:41","198:198=19
 actor SaturnBlackRingO : SaturnBlackRing{Translation "192:192=128:128","198:198=135:135"}
 actor SaturnBlackRingP : SaturnBlackRing{Translation "192:192=232:232","198:198=234:234"}
 
-actor AccretionShot : BasicExplosion
+actor AccretionAOE : BasicExplosion
 {
 Translation "192:192=59:59","198:198=63:63"
 Damagetype "SaturnShot"
@@ -946,12 +970,60 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 
 SpawnLOOP:
-BHLE FFEEDDCC 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
-BHLE B 2 A_Explode(15,216,0,0,64)
-BHLE BBBBBBBBBBBBBBBBBBBB 0 A_SpawnItemEx("BlackVortexHelperFX",0,0,0,0,0,0,0,1)
-BHLE CCDDEE 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+TNT1 A 0 A_Explode(12,128,0,0,64)
+BHLE FFEEDDCCBBCCDDEE 1 A_Warp(AAPTR_TARGET, 0, 0, 32, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
 stop
 }
+}
+
+actor AccretionAOEB : AccretionAOE{Translation "192:192=205:205","198:198=74:74"}
+actor AccretionAOER : AccretionAOE{Translation "192:192=171:171","198:198=41:41"}
+actor AccretionAOEO : AccretionAOE{Translation "192:192=104:104","198:198=128:128"}
+actor AccretionAOEP : AccretionAOE{Translation "192:192=229:229","198:198=232:232"}
+
+actor AccretionShot
+{
+	Translation "192:192=215:215", "198:198=223:223"
+    PROJECTILE
+    +FORCEXYBILLBOARD
+    +BRIGHT
+    Radius 16
+    Height 10
+    scale 2.5
+    damage (6)
+    Damagetype "DMGNoHitstun"
+	Obituary "$OB_SATURNAOE"
+    speed 0
+    var int user_speed;
+    var int user_maxturn;
+    var int user_turndivisor;
+    var int user_turndivisor_add;
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_SetUserVar("user_speed", 50)
+        TNT1 A 0 A_SetUserVar("user_maxturn", 1500)
+        TNT1 A 0 A_SetUserVar("user_turndivisor", 40)
+        TNT1 A 0 A_SetUserVar("user_turndivisor_add", 5)
+    Spawn2:
+        TNT1 A 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+        STRN B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+        TNT1 A 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+        TNT1 A 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+        STRN B 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+        TNT1 A 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+        TNT1 A 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+        STRN C 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+        TNT1 A 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+        TNT1 A 0 A_Setangle(angle-user_maxturn/user_turndivisor)
+        STRN C 1 A_ChangeVelocity(user_speed,0,0,CVF_RELATIVE|CVF_REPLACE)
+        TNT1 A 0 A_SetUserVar("user_turndivisor",user_turndivisor+user_turndivisor_add)
+        loop
+    Death:
+        STRN DEFG 2
+        stop
+    }
 }
 
 actor AccretionShotB : AccretionShot{Translation "192:192=205:205","198:198=74:74"}
@@ -1320,6 +1392,12 @@ actor SaturnCatchSuccess : Powerup
 {
 powerup.duration 4
 }
+
+actor SaturnRingRefireDelay : Powerup
+{
+powerup.duration 5
+}
+
 actor SaturnCatchPickup : CustomInventory
 {
 states
@@ -1515,19 +1593,49 @@ actor SaturnReload_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("AccretionShot",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionAoe",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShot",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShot",60,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShot",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShot",180,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShot",240,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShot",300,0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("AccretionShotB",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionAOEB",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotB",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotB",60,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotB",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotB",180,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotB",240,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotB",300,0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("AccretionShotR",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionAOER",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotR",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotR",60,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotR",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotR",180,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotR",240,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotR",300,0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("AccretionShotO",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionAOEO",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotO",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotO",60,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotO",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotO",180,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotO",240,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotO",300,0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("AccretionShotP",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionAOEP",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotP",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotP",60,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotP",120,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotP",180,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotP",240,0,0,0)
+TNT1 A 0 A_FireCustomMissile("AccretionShotP",300,0,0,0)
 goto Done
 }
 }

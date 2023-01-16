@@ -3399,6 +3399,7 @@ CHANGELOG
 
 ==Swordman 
 -Flame Sword recovery animation can now be canceled to continue the combo 
+--Flame Sword damager radius 10/10 > 15/15
 --Added 4 tics of delay in between each swipe, 6 tics of delay at the end of the three-swipe combo
 -Lunge hitbox 128 > 85 
 --Now requires at least 50% ammo to do lunge
@@ -3453,8 +3454,9 @@ CHANGELOG
 
 ==Plugman
 -Getting kills with Plug altfire (applies to both initial damager and zap) now provides full ammo and overcharge
--Plug balls now deal 12 damage before hitting the floor, have new teamcolors to differentiate this
+-Plug Balls now deal 12 damage before hitting the floor, have new teamcolors to differentiate this
 -Plug altfire no longer passes through shields
+-Plug altfire sprite redone by Cowsha
 
 ==Jewelman
 -Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
@@ -3483,13 +3485,26 @@ CHANGELOG
 --Damage tweaked 5 > 6, applies ripper 6 (initial) + 1 (ripper) post redirect
 --FX trail now has damager
 
+==Mercury
+-MercuryClassAmmo maximum capacity increased 28 > 32
+-Parry ammo gain increased 4 > 6
+-Diminishing Returns readded
+--Returning Blob Shot ammo on return 4 > 2, returns full ammo if enemy is directly hit
+--Returning Blob Dash ammo on return 7 > 6, returns full ammo if enemy is directly hit
+-Blob Dash ammo consumption 7 > 8
+
 ==Saturn
 -New FX indicator for armor, code provided by Muzaru
+-Can no longer have multiple White Hole Rings out at a time
 -Can now suck Hyper Bomb (both iterations)
 -Can no longer suck Evil Robot Giga Homing Sniper reticle
 -Can now suck Magic Card, Magic Pigeons and Magic Orb
 -Can now suck Dynamo Orbs and Dynamo Tendril
--Can now such Plug Ball when its on the floor
+-Can now suck Plug Ball when its on the floor
+-Quazar Burst radius 216 > 128
+--Quazar Burst damage 15 > 12
+--Quazar Burst damager no longer has 8 tics of delay before explosion kicks in
+--Now shoots out six Accretion Shots that do 6 damage each on release
 
 ==Jupiter
 -Added gd_hjupiter cvar for South Americans, lag-compensates Electric Shock
