@@ -3220,6 +3220,7 @@ CHANGELOG
 
 ==Megaman
 -HP 90 > 100
+-Now drops upgrade item on death
 -Slide ammo consumption 100 > 60 (effective slidecount nerf reverted 3 > 5)
 --SBAR updated to reflect this
 
@@ -3229,6 +3230,7 @@ CHANGELOG
 ==Duo
 -SBAR updated, now flashes at full Duo Meteor ammo
 -Shockwave has proper Justice Energy:tm: colors in non team games
+-Fixed duo being invisible during flashman stun
 
 ==Rock
 -Halved ammo regen
@@ -3424,6 +3426,9 @@ CHANGELOG
 
 ==Frostman
 -Ice Wave and Ice Crush teamcolors edited
+
+==OriginalDuo
+-Now drops upgrade item on death
 
 ==EvilRobot
 -Giga Astro Crush now has 75% powerprotect for 3 tics
