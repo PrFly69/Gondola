@@ -416,10 +416,10 @@ TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_SpeedCheck")//PowerWallJumpSpeed
 TNT1 A 0 A_JumpIf(CallACS("cbm_CheckForRealMovementInput")==1,"P_SpeedCheck") 
 goto P_Take50
 P_SpeedCheck: 
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=10,"P_Give")//10
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=8,"nothings")//8
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=6,"P_Take25")//6
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=4,"P_Take35")//3
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=7,"P_Give")//10 
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=5,"P_Take25")//6
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=3,"P_Take35")//3
+TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_Take35")
 goto P_Take50 
 P_Give:  
 TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_GiveD")
@@ -450,8 +450,8 @@ P_Take35F:
 TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",35) 
 stop 
 P_Take50:  
-TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"P_Take35F")
-TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",50) 
+TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"P_Take25F") 
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",45) 
 stop 
 }
 }
