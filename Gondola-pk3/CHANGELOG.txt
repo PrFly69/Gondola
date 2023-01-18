@@ -3313,6 +3313,7 @@ CHANGELOG
 
 ==Hardman
 -Hard Knuckle projectile speed 45 > 40
+-Hard knuckle now deals critical damage
 
 ==Snakeman
 -SBAR updated
@@ -3411,6 +3412,7 @@ CHANGELOG
 --Flying torso slash damage 8x5 > 6x5 
 --Flying torso speed 16 > 19 
 --Flying torso return speed 20 > 35 
+--Fixed Flying torso not playing pain sound
 -Fixed 3rd person animations
 -Fixed spin not doing damage in some situations 
 -Fixed spin recovery animation taking extra ammo 
@@ -3518,7 +3520,7 @@ CHANGELOG
 -Deep Digger now has block shattering FX
 
 ==Neptune
--Tap altfire for Big Stomp restored as a legacy option
+-Tap altfire for Big Stomp restored as a legacy option 
 
 ==Pluto
 -Speed scalar 115 > 125
