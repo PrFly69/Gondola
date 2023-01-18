@@ -244,7 +244,7 @@ Death.HardKnuckleClass:
 "----" H 0 A_PlaySoundEx("weapon/hknucklehit","Body")
 "----" H 0 A_SpawnItemEx("HardKnuckleHitFX",0,0,32,0,0,0,0,0)
 "----" H 0 A_Quake(5,9,0,128)
-goto Death
+goto Death.Beam//Death
 
 Pain.Punk_Ram:
 "----" H 0 A_GiveInventory("Punk_RamProtect",1)
