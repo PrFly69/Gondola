@@ -84,6 +84,11 @@ ClassPain:
 PLUT H 0 A_JumpIfInventory("VivifyDelay8",1,"ClassPainDash")
 goto PainContinue
 ClassDeath:
+PLUT H 0 A_JumpIfInventory("BreakingIntoADashAmmo",656,"ClassDeathBOOOOM")
+PLUT H 0
+goto DeathContinue
+ClassDeathBOOOOM:
+PLUT H 0 A_GiveInventory("CriticalDeath",1)
 PLUT H 0
 goto DeathContinue
 }
