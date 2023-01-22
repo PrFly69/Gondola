@@ -61,7 +61,7 @@ TUND D 1 A_PlaySound("weapon/IceWaveLoop","Body",0.25)
 TUND C 0 A_Refire("FireAmmoC")
 FireEndReal:
 TUND C 1 A_StopSound("Body")
-TUND B 0 A_TakeInventory("TripleLutzAmmo",999)
+TUND B 0 //A_TakeInventory("TripleLutzAmmo",999)//Cambiaso
 TUND B 0 A_TakeInventory("GorgeousPowerStop",1)
 TUND E 0 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
 TUND C 1 Offset(40,20)

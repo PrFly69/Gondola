@@ -59,7 +59,12 @@ TRTP FFEED 1 //A_ChangeFlag(FLOATBOB, false)
 Goto Missile
 
 
-ClassPain:
+ClassPain://Cambiaso
+TRRA H 0 A_JumpIfInventory("SparkEyeFlag",1,"ClassPainChaser")
+TRRA H 0 //A_ChangeFlag(FLOATBOB, false)
+goto PainContinue
+ClassPainChaser:
+TRRA H 0 A_GiveInventory("TerrAuch",1)
 TRRA H 0 //A_ChangeFlag(FLOATBOB, false)
 goto PainContinue
 DeathFix:
@@ -70,3 +75,4 @@ TRRA H 1 //A_ChangeFlag(FLOATBOB, false)
 goto MegaDeathEnd
 }
 }
+

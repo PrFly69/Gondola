@@ -47,7 +47,7 @@ States
 	Loop
 
 	Fire: 
-		TNT1 A 0 A_JumpIfInventory("SaturnRingRefireDelay",1,"Ready2")
+		TNT1 A 0 //A_JumpIfInventory("SaturnRingRefireDelay",1,"Ready2")//Cambiaso
 		SAHD A 0 A_TakeInventory("SaturnRingReturnFlag",1)
 		SAHD A 1 offset(32,48)
 		SAHD A 1 offset(64,64)
@@ -95,10 +95,11 @@ States
 		SAHD A 3 offset(-32,48)
 		SAHD A 10 A_WeaponReady
 	goto Ready2
-	
-	Reload:
-		SAHD A 1 A_JumpIfInventory("WhiteHoleAmmo",360,1)
-	goto ReloadNoFire
+  
+	Reload://Cambiaso
+		SAHD A 1 A_JumpIfInventory("DonSaturnDelayA",1,"ReloadNoFire")
+	goto ReloadYes
+   ReloadYes:
 		SAHD A 1 offset(32,48)A_PlaySoundEX("weapon/quazarblast","weapon")
 		SAHD A 1 offset(64,64)
 		SAHD D 1 offset(90,79)
@@ -111,8 +112,10 @@ States
 		SAHD C 1 offset(-116,18)
 		SAHD C 1 offset(-152,14)
 		SAHD C 1 offset(-188,11)
-		PROC D 0 A_TakeInventory("WhiteHoleAmmo",360)
+		PROC D 0 //A_TakeInventory("WhiteHoleAmmo",360)
 		//PROC FFFFFFFFFFFFFFFFFFFFF 0 A_SpawnItemEx("BlackVortexHelperFX",0,0,0,0,0,0,0,1)
+        PROC D 0 A_SpawnItemEx("DonSaturnDelayHelper")
+	    PROC D 0 A_GiveInventory("DonSaturnDelayA",35)
 		PROC D 0 A_GiveInventory("SaturnReload_CI",1)
 		TNT1 A 11 offset(-64,64)
 		SAHD A 2 offset(-64,64)
@@ -319,7 +322,7 @@ States
 	goto Ready2
 	
 	NoFire:
-		TNT1 A 0 A_JumpIfInventory("SaturnRingRefireDelay",1,"Ready2")
+		TNT1 A 0 //A_JumpIfInventory("SaturnRingRefireDelay",1,"Ready2")//Cambiaso
 		SATN A 0 A_TakeInventory("SaturnRingReturnFlag",1)
 		SATN A 1 offset(32,48)
 		SATN A 1 offset(64,64)
@@ -368,9 +371,10 @@ States
 		SATN A 10 A_WeaponReady
 	goto Ready2
 	
-	Reload:
-		SATN A 1 A_JumpIfInventory("WhiteHoleAmmo",360,1)
-	goto ReloadNoFire
+	Reload://cambiaso
+		SATN A 1 A_JumpIfInventory("DonSaturnDelayA",1,"ReloadNoFire")
+	goto ReloadYes
+   ReloadYes: 
 		SATN A 1 offset(32,48)A_PlaySoundEX("weapon/quazarblast","weapon")
 		SATN A 1 offset(64,64)
 		SATN D 1 offset(90,79)
@@ -383,14 +387,24 @@ States
 		SATN C 1 offset(-116,18)
 		SATN C 1 offset(-152,14)
 		SATN C 1 offset(-188,11)
-		PROC D 0 A_TakeInventory("WhiteHoleAmmo",360)
+		PROC D 0 //A_TakeInventory("WhiteHoleAmmo",360)
 		//PROC FFFFFFFFFFFFFFFFFFFFF 0 A_SpawnItemEx("BlackVortexHelperFX",0,0,0,0,0,0,0,1)
+        PROC D 0 A_SpawnItemEx("DonSaturnDelayHelper")
+	    PROC D 0 A_GiveInventory("DonSaturnDelayA",56)
 		PROC D 0 A_GiveInventory("SaturnReload_CI",1)
 		TNT1 A 11 offset(-64,64)
 		SATN A 2 offset(-64,64)
 		SATN A 2 offset(-32,48)
 		SATN A 7 A_WeaponReady(WRF_NOFIRE)
 	goto Ready2
+
+ 
+
+
+
+
+
+
 
 	Altfire:
 		SATN A 1 A_JumpIfInventory("SaturnHoldAmmo",140,1)
@@ -488,6 +502,25 @@ States
 		TNT1 A 0 A_SpawnItemEx("SaturnArmorFX2", random(16, 48), 0, Random(16,48), 0, 0, 0, random(0, 359),1)
 	goto Flash
 }
+}
+
+actor DonSaturnDelayHelper : BasicHelper
+{//cambiaso
+reactiontime 35
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_TakeFromTarget("DonSaturnDelayA",1)
+TNT1 A 2 A_Countdown
+loop
+}
+}
+
+actor DonSaturnDelayA : Inventory
+{
+inventory.amount 1
+inventory.maxamount 35
 }
 
 actor SuckerActiveFlag : OnceC{}
@@ -641,7 +674,7 @@ Goto Down
 }
 
 actor SaturnWhiteRing
-{
+{//cambiaso
 Translation "192:192=215:215", "198:198=223:223"
 PROJECTILE
 Obituary "%o was thrusted away by %k's white hole ring."
@@ -658,7 +691,7 @@ wallbouncefactor 0.75
 damage (15)
 Radius 24
 Height 16
-speed 50
+speed 42
 scale 2.5
 reactiontime 5
 States
@@ -827,7 +860,8 @@ stop
 }
 
 actor SaturnBlackRing
-{
+{//cambiaso
+var int user_damage;
 Translation "192:192=3:3", "198:198=0:0"
 PROJECTILE
 Obituary "%o couldn't escape from %k's black hole ring."
@@ -841,10 +875,10 @@ damagetype "SaturnWhiteRing1"
 bouncecount 10
 bouncefactor 0.75
 wallbouncefactor 0.75
-damage (15)
+damage (15-user_damage)
 Radius 24
 Height 16
-speed 50
+speed 42
 scale 2.5
 States
 {
@@ -915,6 +949,7 @@ SARI G 0 A_SpawnItemEx("TomahawkRangeGleam",random(-8,8),random(-16,16),random(-
 loop
 
 Spawn2:
+SARI B 0 A_SetUserVar("user_damage",7)//i recommend 7
 SARI B 0 A_Stop
 SARI B 0 A_TakeFromTarget("BlackVortexAmmo",7)
 SARI B 0 A_GiveInventory("SuckerActiveFlag",1)

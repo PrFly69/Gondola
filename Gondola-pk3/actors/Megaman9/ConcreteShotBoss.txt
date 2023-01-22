@@ -329,22 +329,22 @@
 		Goto InTheZone+7
 		*/
 		
-		InTheAir:
+		InTheAir://Cambiaso
 		CONH D 0 A_GiveInventory("ConcreteShoulder_P",1)
 		CONH D 0 A_PlaySoundEx("weapon/shoulderbash","Weapon")
-		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)
+		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1) 
 		CONH D 1 Offset(-2,0)A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
 		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)
 		CONH D 1 Offset(2,0)A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
 		CONH F 0 A_GiveInventory("ConcreteShoulder_P",1)
-		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)
+		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)  
 		CONH D 1 Offset(-2,0)A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
-		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)
+		CONH D 0 A_GiveInventory("ConcreteDashThrust16",1)  
 		CONH D 1 Offset(2,0)A_JumpIfInventory("ConcreteBashFlag",1,"Rebound")
 		CONH F 0 A_GiveInventory("ConcreteShoulder_P",1)
-		CONH D 0 A_GiveInventory("BashTimer",1)
-		CONH D 0 A_JumpIfInventory("BashTimer",17,"End")
-		//CONH D 0 A_CheckFloor("ShortTransition")
+		CONH D 0 A_GiveInventory("BashTimer",1)  
+		CONH D 0 A_JumpIfInventory("BashTimer",15,"End")//17
+		//CONH D 0 A_CheckFloor("ShortTransition")//9
 		Loop
 		
 		End:
@@ -667,7 +667,7 @@ wait
 
 
   Actor CementDash_Helper : BasicHelper
-  {
+  {//Cambiaso
     States
 	{
 		Spawn:
@@ -675,7 +675,11 @@ wait
 		Goto Spawn2
 		
 		Spawn2:
-		TNT1 A 1 A_TakeFromTarget("ConcreteChargeFlag",1)
+		TNT1 A 0 A_JumpIfInTargetInventory("ConcreteBashFlagCooldown",1,4)
+        TNT1 A 0 A_GiveToTarget("ConcreteBashFlagCooldown",1)
+		TNT1 A 0 A_TakeFromTarget("ConcreteChargeFlag",1)
+		TNT1 AAAAAA 0 
+		TNT1 A 1
 		TNT1 A 0 A_JumpIfInTargetInventory("ConcreteBashFlag",1,"Death")
 		TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 		TNT1 A 0 A_JumpIfInTargetInventory("ConcreteChargeFlag",1,"Spawn2")
@@ -683,6 +687,10 @@ wait
 	}
   }
 
+ACTOR ConcreteBashFlagCooldown : Powerup
+{
+ Powerup.Duration 3
+}
 
 //=========================
 // Block & Dash Attacks

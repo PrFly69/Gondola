@@ -678,11 +678,12 @@ WeaponAmmo SplashingAboutAmmo{DrawBar"VARAMM61","VAREMPTY",Ammo1,horizontal,58,1
 	DrawBar"09_3_VAR","VAREMPTY",Ammo2,horizontal,58,176;
 	InInventory IsTreadingWater,1{Drawbar"9C_S_VAR","VNOBAR",SplashDabbleAmmo,horizontal,58,184;}
 	else InInventory not SplashDabbleAmmo,280{DrawBar"9C_R_VAR","VNOBAR",SplashDabbleAmmo,horizontal,58,184;}}
-IsSelected PlugBallBoss{DrawBar"VARAMM60","VAREMPTY",Ammo1,horizontal,58,184;
-	InInventory PlugOverdriveCharge,75{Drawbar"PLG4VARX","VNOBAR",PlugOverdriveCharge,horizontal,58,184;}
-	InInventory PlugOverdriveCharge,50{Drawbar"PLG3VARX","VNOBAR",PlugOverdriveCharge,horizontal,58,184;}
+IsSelected PlugBallBoss{DrawBar"VARAMM60","VAREMPTY",Ammo1,horizontal,58,184;//cambiaso
+	                                   DrawBar"PLG1VARX","VNOBAR",PlugOverdriveCharge,horizontal,58,184;
 	InInventory PlugOverdriveCharge,25{Drawbar"PLG2VARX","VNOBAR",PlugOverdriveCharge,horizontal,58,184;}
-	DrawBar"PLG1VARX","VNOBAR",PlugOverdriveCharge,horizontal,58,184;}
+	InInventory PlugOverdriveCharge,50{Drawbar"PLG3VARX","VNOBAR",PlugOverdriveCharge,horizontal,58,184;}
+	InInventory PlugOverdriveCharge,75{Drawbar"PLG4VARX","VNOBAR",PlugOverdriveCharge,horizontal,58,184;}}
+
 WeaponAmmo OutragousGemsAmmo{
 	InInventory JewelSlot1,5{DrawImage"JEWJF",61,181;}
 	else InInventory JewelSlot1,4{DrawImage"JEWJE",61,181;}
@@ -897,6 +898,7 @@ IsSelected SparkChaserBoss{Drawbar"VAMM1_V0","VAREMPTY",ShonenAmmo,horizontal,58
 	DrawBar"2C_S_VAR","VNOBAR",SliceOfEyefeTimer,horizontal,58,184;}
 	DrawBar"VAMM2_V0","VAREMPTY",ShojoAmmo,horizontal,58,176;
 		DrawImage"TERRICON",178,175;
+    InInventory OuchMyTerra,1{DrawImage"TERRACON",286,8;} //Cambiaso
 			InInventory TerraKneeTimer,1{DrawBar"VARFLS1","VNOBAR",TerraKneeTimer,horizontal,58,176;}}
 
 PlayerClass Mercury{Drawbar"VARAMM19","VAREMPTY",MercuryClassAmmo,horizontal,58,184;
@@ -914,6 +916,7 @@ IsSelected BubbleBombBoss,BubbleBomberBoss{Drawbar"VARAMMO4","VAREMPTY",BubbleCr
 IsSelected ElectricShockBoss{Drawbar"0V_E_VAR","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"VARFLS1","VNOBAR",JupiterCharge,horizontal,58,184;}
 IsSelected BlackHoleBoss,BlackerHoleBoss{Drawbar"SATNVAR","VAREMPTY",Ammo1,horizontal,58,176;
+    InInventory DonSaturnDelayA,1{DrawBar"VARFLS1","VNOBAR",DonSaturnDelayA,horizontal,130,184;}//Cambiaso
 	InInventory BlackVortexAmmo,7{DrawBar"SATYVAR","VNOBAR",Ammo1,horizontal,58,176;}
 	DrawImage"SATRNICN",178,175;
 	Drawbar"VARAMM22","VAREMPTY",Ammo2,horizontal,58,184;

@@ -3265,7 +3265,7 @@ CHANGELOG
 --Cluster Bomb explosion damage 15 > 14
 --Maximum damage radius on Cluster Bomb 64 > 32
 --Cluster spread now consistent, uses X pattern
---New cluster split sfx provided by MusashiAA
+--New Cluster split SFX provided by MusashiAA
 -Mainfire with Hyper Bomb active throws CBM Hyper Bomb M1
 --Damage reduced from CBM 40 > 25
 --Colors tweaked to indicate differences
@@ -3296,6 +3296,7 @@ CHANGELOG
 -Fixed Time Stopper ammo regeneration not being affected by plug boost
 
 ==Heatman
+-Atomic Fire now starts at 10 speed, takes 6 tics to gain maximum speed (40)
 -Maxcharge sound brought back
 
 ==Alien
@@ -3344,6 +3345,9 @@ CHANGELOG
 ==Diveman
 -Dive Tackle upwards thrust reduced 24 > 10 (42 > 20 with rage)
 
+==Chargeman
+-Can now fire Coal Shot without Charge Kick ammo
+
 ==Napalmman
 -Napalm Bomb endlag no longer correlates to charge, now all charges share lvl2 endlag
 --Napalm Bomb bouncefactor 1.0 > 0.6/0.8/1.0
@@ -3355,7 +3359,8 @@ CHANGELOG
 -Walkframe speed now corresponds to rage amount
 
 ==Darkman3
--Double zoom removed, only goes up to x1.5 zoom instead of x2.0
+-Health 85 > 100
+-Double zoom removed, only goes up to 1.5x Zoom instead of 2.0x
 
 ==Flameman
 -Mainfire fire rate buff undone
@@ -3413,6 +3418,7 @@ CHANGELOG
 --Flying torso speed 16 > 19 
 --Flying torso return speed 20 > 35 
 --Fixed Flying torso not playing pain sound
+--Flying torso now stops rippers
 -Fixed 3rd person animations
 -Fixed spin not doing damage in some situations 
 -Fixed spin recovery animation taking extra ammo 
@@ -3460,13 +3466,14 @@ CHANGELOG
 -Whirlwind Blade projectiles now have FX indicating windbox, made by Cowsha
 
 ==Plugman
--Getting kills with Plug altfire (applies to both initial damager and zap) now provides full ammo and overcharge
 -Plug Balls now deal 12 damage before hitting the floor, have new teamcolors to differentiate this
--Plug altfire no longer passes through shields
--Plug altfire sprite redone by Cowsha
+-Getting kills with Plug altfire (applies to both initial damager and zap) now provides full ammo and overcharge
+--Plug altfire no longer passes through shields
+--Plug altfire sprite redone by Cowsha
+-Fixed Overdrive sidebar not being animated in horizontal bars 
 
 ==Jewelman
--Jewel Sattelite no longer reflects enemy projectiles, now has 20% armor
+-Jewel Satellite no longer reflects enemy projectiles, now has 20% armor
 
 ==Galaxyman
 -Fixed reload icon
@@ -3502,13 +3509,15 @@ CHANGELOG
 
 ==Saturn
 -New FX indicator for armor, code provided by Muzaru
--Can no longer have multiple White Hole Rings out at a time
+-White/Black Hole Ring projectile speed 50 > 42
+--Black Hole Ring damage reduced when stationary
 -Can now suck Hyper Bomb (both iterations)
 -Can no longer suck Evil Robot Giga Homing Sniper reticle
 -Can now suck Magic Card, Magic Pigeons and Magic Orb
 -Can now suck Dynamo Orbs and Dynamo Tendril
 -Can now suck Plug Ball when its on the floor
--Quazar Burst radius 216 > 128
+-Quazar Burst now uses cooldown system instead of ammo
+--Quazar Burst radius 216 > 128
 --Quazar Burst damage 15 > 12
 --Quazar Burst damager no longer has 8 tics of delay before explosion kicks in
 --Now shoots out six Accretion Shots that do 6 damage each on release
@@ -3552,6 +3561,7 @@ CHANGELOG
 --Icy Gust speed 55 > 45
 --Icy Gust death FX now die out thrice as fast
 --Can now be cancelled into Triple Lutz
+--Releasing Icy Gust no longer deletes all Glacial Spike ammo 
 -Glacier Spike speed reduced 75 > 42
 -Frostbite debuff strength 50% > 35%
 -Tundra Storm now resets frostbite debuff timer
@@ -3563,7 +3573,7 @@ CHANGELOG
 ==Torchman
 -Projectile fired by mainfire now properly reflects if user is in Power Gear or not
 ! This means that if one punch gives you power gear, the second punch thrown will be a power gear shot instead of a regular punch
---Using mainfire with no ammo throws out a 12 damage melee punch
+--Using mainfire with no ammo throws out a 16 damage melee punch
 -Blazing Demon thrust before kicks 75 > 50
 -Updated Roller Roaster impact/death sprites
 

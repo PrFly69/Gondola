@@ -408,6 +408,24 @@ stop
 }
 }
 
+actor TerrAuch : CustomInventory
+{//Cambiaso
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("SparkChaserChecker",1,"Yes")
+stop
+Yes:
+TNT1 A 0 A_GiveInventory("OuchMyTerra",1)
+stop
+}
+}
+
+actor OuchMyTerra : Powerup
+{
+Powerup.Duration 15
+}
+
   actor TerraSparkEyeItem2 : TerraSparkEyeItem {
   inventory.icon "TERICONX"
   Tag "Spark Chaser Sight: ON"

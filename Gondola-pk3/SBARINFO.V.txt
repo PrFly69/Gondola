@@ -697,10 +697,10 @@ WeaponAmmo SplashingAboutAmmo{DrawBar"BARAMM61","BAREMPTY",Ammo1,vertical,16,8;
 	InInventory IsTreadingWater,1{DrawBar"9C_S_BAR","NOBAR",SplashDabbleAmmo,vertical,16,8;}
 	else InInventory not SplashDabbleAmmo,280{DrawBar"9C_R_BAR","NOBAR",SplashDabbleAmmo,vertical,16,8;}}
 IsSelected PlugBallBoss{DrawBar"BARAMM60","BAREMPTY",Ammo1,vertical,16,8;
-	DrawBar"PLG1BARX","NOBAR",PlugOverdriveCharge,vertical,16,8;
+	                               DrawBar"PLG1BARX","NOBAR",PlugOverdriveCharge,vertical,16,8;
 InInventory PlugOverdriveCharge,25{DrawBar"PLG2BARX","NOBAR",PlugOverdriveCharge,vertical,16,8;}
 InInventory PlugOverdriveCharge,50{DrawBar"PLG3BARX","NOBAR",PlugOverdriveCharge,vertical,16,8;}
-InInventory PlugOverdriveCharge,75{DrawBar"PLG4BARX","NOBAR",PlugOverdriveCharge,vertical,16,8;}}
+InInventory PlugOverdriveCharge,75{DrawBar"PLG4BARX","NOBAR",PlugOverdriveCharge,vertical,16,8;}} 
 WeaponAmmo OutragousGemsAmmo{
 	InInventory JewelSlot1,5{DrawImage"JEWJF",8,8;}
 	else InInventory JewelSlot1,4{DrawImage"JEWJE",8,8;}
@@ -907,6 +907,7 @@ IsSelected SparkChaserBoss{Drawbar"BAMM1_V0","BAREMPTY",ShonenAmmo,vertical,16,8
 	DrawBar"2C_S_BAR","NOBAR",SliceOfEyefeTimer,vertical,16,8;}
 	DrawBar"BAMM2_V0","BAREMPTY",ShojoAmmo,vertical,8,8;
 		DrawImage"TERRICON",32,55;
+InInventory OuchMyTerra,1{DrawImage"TERRACON",286,8;} //Cambiaso
 			InInventory TerraKneeTimer,1{DrawBar"BARFLS1","NOBAR",TerraKneeTimer,vertical,8,8;}}
 PlayerClass Mercury{Drawbar"BARAMM19","BAREMPTY",MercuryClassAmmo,vertical,16,8;
 					DrawImage"MRCRICON",32,55;
@@ -923,6 +924,7 @@ IsSelected BubbleBombBoss,BubbleBomberBoss{Drawbar"BARAMMO4","BAREMPTY",BubbleCr
 IsSelected ElectricShockBoss{Drawbar"0V_E_BAR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar"BARFLS1","NOBAR",JupiterCharge,vertical,16,8;}
 IsSelected BlackHoleBoss,BlackerHoleBoss{Drawbar"SATNBAR","BAREMPTY",Ammo1,vertical,8,8;
+   InInventory DonSaturnDelayA,1{DrawBar"BARFLS1","NOBAR",DonSaturnDelayA,vertical,24,8;}//Cambiaso
 	InInventory BlackVortexAmmo,7{DrawBar"SATYBAR","NOBAR",Ammo1,vertical,8,8;}
     Drawbar"BARAMM22","BAREMPTY",Ammo2,vertical,16,8;
     DrawImage"SATRNICN",32,55;
