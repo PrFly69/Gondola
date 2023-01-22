@@ -504,6 +504,7 @@ weapon/ragingtorchflame BAVEBUR2
 weapon/ragingtorchreal SUPADRIL
 weapon/torchpunch TORCHHIT
 weapon/torchpunchweak TORCHHIW
+body/torchextinguish TRCHEXTN
 
 //Acid
 weapon/acidfire ACIDFIRE

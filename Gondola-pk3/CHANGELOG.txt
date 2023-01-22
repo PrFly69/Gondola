@@ -3571,6 +3571,8 @@ CHANGELOG
 -Fixed reload ammo regenerating slower while holding reload without enough ammo
 
 ==Torchman
+-Now gains 10% speed boost during Power Gear
+-Power Gear drain stall 1.5 seconds > 2 seconds
 -Projectile fired by mainfire now properly reflects if user is in Power Gear or not
 ! This means that if one punch gives you power gear, the second punch thrown will be a power gear shot instead of a regular punch
 --Using mainfire with no ammo throws out a 16 damage melee punch
