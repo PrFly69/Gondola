@@ -3391,6 +3391,9 @@ CHANGELOG
 ==Burstman
 -Fixed dropped Danger Wrap mines doing 30 damage
 
+==Cloudman
+-Split Thunder Bolts now bounce off walls for one tic
+
 ==Shademan
 -Uncharged Noise Crush now has infinite range before first bounce, reactiontime cut in half
 -Charged Noise Crush damage 40 > 35
@@ -3577,6 +3580,7 @@ CHANGELOG
 ==Torchman
 -Now gains 10% speed boost during Power Gear
 -Power Gear drain stall 1.5 seconds > 2 seconds
+-WaveDashAmmo max ammo capacity 600 > 800 (effective ammo increased 3 stocks > 4 stocks)
 -Projectile fired by mainfire now properly reflects if user is in Power Gear or not
 ! This means that if one punch gives you power gear, the second punch thrown will be a power gear shot instead of a regular punch
 --Using mainfire with no ammo throws out a 16 damage melee punch

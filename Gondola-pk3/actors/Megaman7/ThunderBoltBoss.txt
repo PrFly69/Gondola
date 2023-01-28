@@ -315,6 +315,7 @@ damagetype "CloudM_Shot"
 Obituary "$OB_THUNDERBOLT"
 +FORCEXYBILLBOARD
 +BRIGHT
++BOUNCEONWALLS
 Damage (15)
 Radius 16
 Height 16
@@ -325,7 +326,9 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-CLOH QRQR 1 A_SpawnItemEx("CloudM_BoltFX2",0,0,0,0,0,0,0,1)
+CLOH Q 1 A_SpawnItemEx("CloudM_BoltFX2",0,0,0,0,0,0,0,1)
+CLOH Q 0 A_ChangeFlag("BOUNCEONWALLS",0)
+CLOH RQR 1 A_SpawnItemEx("CloudM_BoltFX2",0,0,0,0,0,0,0,1)
 CLOH Q 0 A_ChangeFlag("THRUACTORS",0)
 CLOH QR 1 A_SpawnItemEx("CloudM_BoltFX2",0,0,0,0,0,0,0,1)
 CLOF Q 0 A_GiveInventory("CutterFlag",1)

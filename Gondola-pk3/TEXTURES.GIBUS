@@ -228,9 +228,9 @@ texture BARTOR,8,56{patch B_BAR12B,0,0{Translation "4:4=175:175","192:192=180:18
 texture VARTOR,56,8{patch BARTOR,0,0{rotate 90}}
 texture BARTORX,8,56{patch B_BAR12B,0,0{Translation "4:4=160:160","192:192=218:218","198:198=175:175"}}//,"0:0=180:180"
 texture VARTORX,56,8{patch BARTORX,0,0{rotate 90}}
-texture BARTOK,8,56{patch B6ENERG,0,0{Translation "192:192=87:87","198:198=227:227"}}
+texture BARTOK,8,56{patch B8ENERG,0,0{Translation "192:192=87:87","198:198=227:227"}}
 texture VARTOK,56,8{patch BARTOK,0,0{rotate 90}}
-texture BARTOKX,8,56{patch B6ENERG,0,0{Translation "192:192=87:87","198:198=227:227"}}
+texture BARTOKX,8,56{patch B8ENERG,0,0{Translation "192:192=87:87","198:198=227:227"}}
 texture VARTOKX,56,8{patch BARTOKX,0,0{rotate 90}}//Torchman
 texture BARTODVK,8,56{patch B_BAR10B,0,0{Translation "198:198=218:218"}}
 texture VARTODVK,56,8{patch BARTODVK,0,0{rotate 90}}
