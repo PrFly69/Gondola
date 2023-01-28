@@ -3604,6 +3604,9 @@ CHANGELOG
 -All instances of ammo tripled except for altfire
 --Altfire ammo consumption doubled (effectively increases altfire duration by 50%)
 
+==Punk
+-Bouncing Crusher now uses sprites ported from UEC
+
 ==Quint
 -Quint Buster speed 32 > 37
 -Sakugarne guaranteed 8 damage explosion removed

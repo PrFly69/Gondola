@@ -664,7 +664,7 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-PNKA TU 2
+PNKB TU 2
 loop
 Death:
 PNKA T 0
@@ -682,17 +682,17 @@ actor BounceCrusher : ScrewCrusherPunkC
 {
 Radius 12
 Height 12
-damage (150)
+damage (15)
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-PNKA T 0
-PNKA T 0 A_Recoil(-16)
+PNKB T 0
+PNKB T 0 A_Recoil(-16)
 TNT1 A 1 ThrustThingZ(0,65,0,1)
-PNKA TU 3 A_CountDown
+PNKB TU 3 A_CountDown
 Goto Spawn+3
 }
 }

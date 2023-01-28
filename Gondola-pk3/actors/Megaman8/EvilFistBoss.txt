@@ -1513,7 +1513,7 @@ stop
 }
 }
 
-actor TrioAstroCrushProtect : PowerProtection
+actor GigaAstroCrushProtect : PowerProtection
 {
 Powerup.Duration 3
 DamageFactor "TrioAstroCrush", 0.25//0.375
