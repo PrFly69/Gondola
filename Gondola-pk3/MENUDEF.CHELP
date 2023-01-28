@@ -579,7 +579,7 @@ OptionValue ClassSpeed
 114, "0.7"
 115, "0.7"//Neptune
 116, "0.72"
-117, "0.72"//Fuse
+117, "0.85"//Fuse
 118, "0.89"//Blast
 119, "0.89"//Acid
 120, "0.9"//Tundra
@@ -717,7 +717,7 @@ OptionValue ClassMainfire
 114, "\cdCan be held to fire up to three shots\nFire faster at high speeds"
 115, "\cdShot always splits\nSalty shot splits even more"
 116, "\cdFire a shot that eventually gains gravity\nAt max heat gains a damage halo but is heavier"
-117, "\cdFires a ripper projectile that slides on floors\nHas two weaker offshoots with limited duration\nFirerate doubled within Tesla Coil"//Fuse
+117, "\cdFires a ripper projectile that slides on floors\nLeaves lingering explosion on hit\nFirerate doubled within Tesla Coil"//Fuse
 118, "\cdProjectile sticks to enemies\n\cgPower Gear: Fires strong bomb that detonates \nstickied bombs for big damage"//Blast
 119, "\cdFires up to 5 shots of globs of acid\nStacking 4% slow up to 5 times \nHitting the enviroment causes damaging gas \nAuto-reloads but cant be shot unless full"//Acid
 120, "\cdIcy wind that shoots hitstun icicles every second\nHitting enemies with both applies slowdown"//Tundraman

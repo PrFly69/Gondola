@@ -926,7 +926,7 @@ IsSelected ElectricShockBoss{Drawbar"0V_E_BAR","BAREMPTY",Ammo1,vertical,16,8;
 IsSelected BlackHoleBoss,BlackerHoleBoss{Drawbar"SATNBAR","BAREMPTY",Ammo1,vertical,8,8;
    InInventory DonSaturnDelayA,1{DrawBar"BARFLS1","NOBAR",DonSaturnDelayA,vertical,24,8;}//Cambiaso
 	InInventory BlackVortexAmmo,7{DrawBar"SATYBAR","NOBAR",Ammo1,vertical,8,8;}
-    Drawbar"BARAMM22","BAREMPTY",Ammo2,vertical,16,8;
+    Drawbar"BHOLVBAR","BAREMPTY",Ammo2,vertical,16,8;
     DrawImage"SATRNICN",32,55;
     InInventory SaturnHoldAmmo,140{DrawBar"MV_A_BAR","NOBAR",SaturnHoldAmmo,vertical,24,8;}
 	else InInventory SaturnHoldAmmo,1{DrawBar"MVSF_BAR","NOBAR",SaturnHoldAmmo,vertical,24,8;}}

@@ -919,7 +919,7 @@ IsSelected BlackHoleBoss,BlackerHoleBoss{Drawbar"SATNVAR","VAREMPTY",Ammo1,horiz
     InInventory DonSaturnDelayA,1{DrawBar"VARFLS1","VNOBAR",DonSaturnDelayA,horizontal,130,184;}//Cambiaso
 	InInventory BlackVortexAmmo,7{DrawBar"SATYVAR","VNOBAR",Ammo1,horizontal,58,176;}
 	DrawImage"SATRNICN",178,175;
-	Drawbar"VARAMM22","VAREMPTY",Ammo2,horizontal,58,184;
+	Drawbar"BHOLVVAR","VAREMPTY",Ammo2,horizontal,58,184;
 	InInventory SaturnHoldAmmo,140{DrawBar"MV_A_VAR","VNOBAR",SaturnHoldAmmo,horizontal,130,184;}
 	else InInventory SaturnHoldAmmo,1{DrawBar"MVSF_VAR","VNOBAR",SaturnHoldAmmo,horizontal,130,184;}}
 IsSelected DeepDiggerBoss{Drawbar"0V_6_VAR","VAREMPTY",Ammo1,horizontal,58,184;

@@ -912,7 +912,7 @@ actor GroundColdFreezeP : GroundColdFreeze{translation "192:192=229:229", "198:1
 actor GroundIce_Cold : GroundIce_Freeze
 {
 Translation "192:192=96:96", "198:198=116:116"
-reactiontime 70
+reactiontime 57
 States
 {
 Spawn:

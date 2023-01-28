@@ -3121,6 +3121,7 @@ CHANGELOG
 -Light Team dark blue color 241 > [30,54,172]
 -New ice death sound effects provided by MusashiAA
 -Updated pitprotect code by A-Chan
+-Added a burger
 
 -Fixed every class having abnormally high movement/projectile speeds, all changes listed below (leftover from 2.6 Beta concept)
 --Mega Buster projectile speed 30.375/36 > 27/32 (Regular/APU)
@@ -3262,7 +3263,8 @@ CHANGELOG
 -Rapid Bomb now reverted into CCBM Cluster Bomb
 --Speed reduced 60 > 50
 --Gains full ammo on spawn
---Cluster Bomb explosion damage 15 > 14
+--Cluster Bomb explosion damage 15 > 12
+--Cluster Bomb direct damage 0 > 4
 --Maximum damage radius on Cluster Bomb 64 > 32
 --Cluster spread now consistent, uses X pattern
 --New Cluster split SFX provided by MusashiAA
@@ -3449,7 +3451,7 @@ CHANGELOG
 --Hitting enemies frozen by Cold Field grants double knockback
 --Can place Ice Walls/use Cold Field after 8 tics into endlag
 -Cold Field CD increased by 150% (4 sec > 10 sec)
---Direct shot stun brought back, lasts 2 seconds
+--Direct shot stun brought back, lasts 1.5 seconds
 --Now has Mokumokumo cloud sprite to indicate initial projectile size 
 --Lingering damager applies current hitstun effect
 
@@ -3521,6 +3523,7 @@ CHANGELOG
 --Quazar Burst damage 15 > 12
 --Quazar Burst damager no longer has 8 tics of delay before explosion kicks in
 --Now shoots out six Accretion Shots that do 6 damage each on release
+--Quazar Burst colors and SBAR now reflect copyweapon
 
 ==Jupiter
 -Added gd_hjupiter cvar for South Americans, lag-compensates Electric Shock
@@ -3545,6 +3548,7 @@ CHANGELOG
 --Now has passive sound while crawling
 
 ==Fuseman
+-Movement speed 0.75/0.73 > 0.85/0.83
 -Fixed Scramble Ray sounds lingering after death
 
 ==Blastman

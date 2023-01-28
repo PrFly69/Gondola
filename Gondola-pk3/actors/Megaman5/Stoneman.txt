@@ -50,7 +50,7 @@ Missile:
 STOM F 0 A_JumpIfInventory("StoneCoreFlag",1,"SpawnCoreB")
 STOM F 0 A_JumpIfInventory("StoneBossLeap",1,"MissileL")
 STOM F 0 A_JumpIfInventory("StoneBossCharge",1,"MissileC")
-STOM FFFFF 1 A_JumpIfInventory("StoneBossCharge",1,"MissileC")
+STOM FFFFFF 1 A_JumpIfInventory("StoneBossCharge",1,"MissileC")
 STOM G 4
 goto Spawn+3
 MissileC:

@@ -1,7 +1,7 @@
 //Note from the dev//
 Any and all code I make is free for use elsewhere. If you wanna use it, go ahead. 
 If you want to talk with me regarding feedback and all that, feel free to DM me on Discord.
--NightFly
+-Pr. Gibus
 Same here.
 -Greg.EXE
 
