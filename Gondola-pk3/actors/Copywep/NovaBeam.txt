@@ -1,7 +1,7 @@
 actor NovaBeamWepC : BaseMM8BDMWep
 {
 dropitem "NovaBeamWepCDropped"
-Weapon.AmmoUse 14
+Weapon.AmmoUse 28
 Weapon.AmmoGive 28
 Weapon.SlotNumber 2
 Inventory.Pickupmessage "$PU_NOVABEAMC"
@@ -27,7 +27,7 @@ TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 SLZH A 1 A_Raise
 Loop
 Fire:
-SLZH A 0 A_JumpIfInventory("NovaBeamAmmo",14,"Fire2")
+SLZH A 0 A_JumpIfInventory("NovaBeamAmmo",28,"Fire2")
 goto NoAmmo
 Fire2:
 SLZH B 0 SetPlayerProperty(0,1,0)
@@ -88,7 +88,7 @@ TNT1 A 0 A_PlaySound("misc/sunstarbeamloop",CHAN_WEAPON,1,0,0.9)
 SLZH B 0 SetPlayerProperty(0,1,4)
 TNT1 A 0 A_WeaponReady(14)
 TNT1 A 0 A_Quake(4, 20, 0, 10, 0)
-TNT1 A 0 A_TakeInventory("NovaBeamAmmo",14)
+TNT1 A 0 A_TakeInventory("NovaBeamAmmo",28)
 SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
 SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
 TNT1 A 0 A_PlaySound("misc/sunstarbeamloop",CHAN_WEAPON,1,0,0.9)
@@ -129,7 +129,7 @@ actor NovaBeamCSpawn
 {
 PROJECTILE
 +MISSILE
--NOCLIP
++NOCLIP
 height 8
 radius 8
 scale 1.5
@@ -140,7 +140,7 @@ states
 Spawn:
 S_UN M 0
 //S_UN M 0 A_SpawnItemEx("SaturnQuazarBeamWallHitFX",0,0,0,1000)
-S_UN M 0 A_SpawnItemEx("NovaBeamCDamager", 32,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
+//S_UN M 0 A_SpawnItemEx("NovaBeamCDamager", 32,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
 S_UN M 0 A_SpawnItemEx("NovaBeamC", 10,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
 S_UN MN 1
 stop
@@ -156,9 +156,10 @@ states
 {
 Spawn:
 S_UN M 0
-S_UN M 0 A_JumpIfCloser(1000, "Appear")
+S_UN M 0 A_JumpIfCloser(2000, "Appear")
 goto Death
 Appear:
+S_UN M 0 A_SpawnItemEx("NovaBeamCDamager", 32,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
 S_UN M 0 A_SpawnItemEx("NovaBeamC", 10,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
 S_UN OP 1
 stop
@@ -177,7 +178,7 @@ states
 {
 Spawn:
 S_UN M 0
-S_UN M 0 A_JumpIfCloser(1000, "Appear")
+S_UN M 0 A_JumpIfCloser(2000, "Appear")
 stop
 Appear:
 S_UN MM 0 A_SpawnItemEx("NovaBeamCEndFX", 0, random(-48, 48), random(-48, 52), random(5, 10), 0, 0, 0, SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION, 128)
@@ -220,12 +221,12 @@ states
 {
 Spawn:
 S_UN M 0
-S_UN M 0 A_JumpIfCloser(1000, "Appear")
+S_UN M 0 A_JumpIfCloser(2000, "Appear")
 goto Death
 Appear:
 S_UN M 0 A_SpawnItemEx("NovaBeamCDamager", 32,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
 S_UN M 1 A_Explode(1, 40, 0, 0, 40)
-S_UN N 1 A_Explode(1, 40, 0, 0, 40)
+S_UN N 1 //A_Explode(2, 40, 0, 0, 40)
 stop
 Death:
 TNT1 A 0

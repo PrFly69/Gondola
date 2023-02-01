@@ -256,7 +256,6 @@ DamageType "ClassPain"
 Obituary "$OB_CHAINBLASTBOSS"
 +NOTARGETSWITCH
 +DONTREFLECT
-+HITTRACER
 damage (8-User_NoDamage)
 Radius 12
 Height 11

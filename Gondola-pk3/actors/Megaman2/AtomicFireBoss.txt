@@ -728,17 +728,13 @@ actor AtomicFireBoss : AtomicDashBoss
 	damage (15)
 	Radius 6
 	Height 6
-	Speed 10
+	Speed 36
 	scale 2.5
 	States
 	{
 		Spawn:
 		TNT1 A 0
 		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-		X_2G AB 3
-		HEAT E 0 A_ScaleVelocity(2.0)
-		X_2G AB 3
-		HEAT E 0 A_ScaleVelocity(2.0)
 		SpawnLOOP:
 		X_2G AB 3
 		Loop
@@ -762,16 +758,12 @@ actor AtomicFireBoss : AtomicDashBoss
     Damage (20)
 	Radius 8
 	Height 8
-	Speed 10
+	Speed 36
 	States
 	{
 		Spawn:
 		TNT1 A 0
 		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-		X_2G DAB 3
-		HEAT E 0 A_ScaleVelocity(2.0)
-		X_2G DAB 3
-		HEAT E 0 A_ScaleVelocity(2.0)
 		SpawnLOOP:
 		X_2G DAB 3
 		Loop
@@ -806,16 +798,12 @@ actor AtomicFireBoss : AtomicDashBoss
     Damage (25)
 	Radius 10
 	Height 10
-	Speed 10
+	Speed 36
 	States
 	{
 		Spawn:
 		TNT1 A 0
 		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-		X_2G DCA 3
-		HEAT E 0 A_ScaleVelocity(2.0)
-		X_2G DCA 3
-		HEAT E 0 A_ScaleVelocity(2.0)
 		SpawnLOOP:
 		X_2G DCA 3
 		Loop
@@ -849,16 +837,12 @@ actor AtomicFireBoss : AtomicDashBoss
     Damage (30)
 	Radius 13
 	Height 13
-	Speed 11
+	Speed 36
 	States
 	{
 		Spawn:
 		TNT1 A 0
 		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-		X_2G FCD 3
-		HEAT E 0 A_ScaleVelocity(2.0)
-		X_2G FCD 3
-		HEAT E 0 A_ScaleVelocity(2.0)
 		SpawnLOOP:
 		X_2G FCD 3
 		Loop
@@ -893,16 +877,12 @@ actor AtomicFireBoss : AtomicDashBoss
     Damage (35)
 	Radius 18
 	Height 18
-	Speed 11
+	Speed 36
 	States
 	{
 		Spawn:
 		TNT1 A 0
 		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-		X_2G FED 3
-		HEAT E 0 A_ScaleVelocity(2.0)
-		X_2G FED 3
-		HEAT E 0 A_ScaleVelocity(2.0)
 		SpawnLOOP:
 		X_2G FED 3
 		Loop

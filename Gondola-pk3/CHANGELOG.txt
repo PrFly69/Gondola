@@ -3218,6 +3218,8 @@ CHANGELOG
 -Fixed copynerf not working due to github forcibly renaming the file
 -Fixed BRG Pole copywep not having proper icon
 -Fixed Blazing Torch flares having incorrect colors
+-Nova Beam now has doubled range
+--Nova Beam now instakills, requires full ammo to use
 
 ==Megaman
 -HP 90 > 100
@@ -3298,7 +3300,7 @@ CHANGELOG
 -Fixed Time Stopper ammo regeneration not being affected by plug boost
 
 ==Heatman
--Atomic Fire now starts at 10 speed, takes 6 tics to gain maximum speed (40)
+-Atomic Fire speed equalized 40-44 > 36
 -Maxcharge sound brought back
 
 ==Alien
@@ -3521,6 +3523,7 @@ CHANGELOG
 -Can now suck Magic Card, Magic Pigeons and Magic Orb
 -Can now suck Dynamo Orbs and Dynamo Tendril
 -Can now suck Plug Ball when its on the floor
+-Can now suck Triple Blade
 -Quazar Burst now uses cooldown system instead of ammo
 --Quazar Burst radius 216 > 128
 --Quazar Burst damage 15 > 12
@@ -3546,7 +3549,7 @@ CHANGELOG
 -Movement check polished
 
 ==Sunstar
--Speed reduced 0.76/0.74 > 0.72/0.7
+-Speed reduced 0.76/0.74 > 0.65/0.63
 -Overheat Scorched Land spawner speed 45 > 35
 --Now has passive sound while crawling
 

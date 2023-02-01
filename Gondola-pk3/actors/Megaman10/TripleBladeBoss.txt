@@ -785,6 +785,8 @@ Spawn:
 //BLDH T 1
 //wait
 TNT1 A 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 TNT1 A 0 A_JumpIf(momz>=30, "90Degrees")
 TNT1 A 0 A_JumpIf(momz>=22.5, "67P5Degrees")
 TNT1 A 0 A_JumpIf(momz>=15, "45Degrees")
