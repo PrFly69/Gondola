@@ -164,6 +164,8 @@ $volume weapon/gyroattacksee 0.5
 
 //Napalm
 weapon/napalmtread NAPTREAD
+weapon/napalmmissilefly NAPFLY
+weapon/napalmmissilehit NAPMISL
 
 //Dark1
 $volume weapon/darktread 0.8

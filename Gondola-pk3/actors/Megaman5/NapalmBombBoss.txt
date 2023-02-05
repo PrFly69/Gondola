@@ -396,12 +396,12 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 NAPC M 0
-NAPC M 0 A_PlaySoundEx("weapon/drillfly","Weapon")
+NAPC M 0 A_PlaySoundEx("weapon/napalmmissilefly","Weapon")
 NAPC MMMMMMMMMM 1 A_SpawnItemEx("BubProjFX",0,0,0,0,0,0,0,1)
 loop
 Death:
 NAPC M 0 A_Stop
-NAPC M 0 A_PlaySoundEx("weapon/drillexplode", "Weapon")
+NAPC M 0 A_PlaySoundEx("weapon/napalmmissilehit", "Weapon")
 NAPC M 0 A_Explode(18,128,0,0,32)
 TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 TNT1 A 35

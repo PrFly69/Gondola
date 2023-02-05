@@ -3324,6 +3324,7 @@ CHANGELOG
 -SBAR updated
 -Search Snake now has scales up vertical thrust by 50% on spawn, inspired by HyperFighting
 --New Search Snake firing SFX made by Pr. Gibus
+-Snake climb duration halved
 
 ==Sparkman
 -Fixed ammobar desyncs
@@ -3355,6 +3356,7 @@ CHANGELOG
 ==Napalmman
 -Napalm Bomb endlag no longer correlates to charge, now all charges share lvl2 endlag
 --Napalm Bomb bouncefactor 1.0 > 0.6/0.8/1.0
+-New Napalm Missile SFX, provided by MusashiAA
 
 ==Darkman1
 -Dark Tank Ram damage increased 1 > 2
@@ -3511,7 +3513,7 @@ CHANGELOG
 -Parry ammo gain increased 4 > 6
 -Diminishing Returns readded
 --Returning Blob Shot ammo on return 4 > 2, returns full ammo if enemy is directly hit
---Returning Blob Dash ammo on return 7 > 6, returns full ammo if enemy is directly hit
+--Returning Blob Dash ammo on return 7 > 6, returns full ammo if enemy is directly hit by contact damage
 -Blob Dash ammo consumption 7 > 8
 
 ==Saturn
@@ -3586,7 +3588,7 @@ CHANGELOG
 -WaveDashAmmo max ammo capacity 600 > 800 (effective ammo increased 3 stocks > 4 stocks)
 -Projectile fired by mainfire now properly reflects if user is in Power Gear or not
 ! This means that if one punch gives you power gear, the second punch thrown will be a power gear shot instead of a regular punch
---Using mainfire with no ammo throws out a 16 damage melee punch
+--Using mainfire with no ammo throws out a 16 damage melee punch, melee can be manually thrown by using altfire when firing
 -Blazing Demon thrust before kicks 75 > 50
 -Updated Roller Roaster impact/death sprites
 

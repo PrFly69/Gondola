@@ -421,6 +421,8 @@ Death.LightRyuShinShoryu:
 //"----" H 0 A_SpawnItemEx("DeathLightRyuShinShoryuHit",1)
 Goto FlingDeath
 
+Pain.MercSplooshTackle:
+"----" H 0 A_GiveToTarget("MercuryClassAmmo",2)
 Pain.MercSploosh:
 "----" H 0 A_GiveInventory("MercBlobProtect",1)
 Goto Pain+2

@@ -792,7 +792,7 @@ powerup.duration 15
   Actor MercurySplashRadius : BasicExplosion
   {
     Translation "192:192=104:104","198:198=110:110","249:249=130:130"
-	DamageType "MercSploosh"
+	DamageType "MercSplooshTackle"
 	Obituary "$OB_MERCURYSLAM"
 	States
 	{
@@ -818,7 +818,7 @@ powerup.duration 15
   }
 
 
-  Actor MercurySplashRadiusB : MercurySplashRadius{Translation"192:192=205:205","198:198=74:74","249:249=199:199"}
+  Actor MercurySplashRadiusB : MercurySplashRadius{Translation"192:192=205:205","198:198=74:74","249:249=[30,54,172]:[30,54,172]"}
   Actor MercurySplashRadiusR : MercurySplashRadius{Translation"192:192=171:171","198:198=41:41","249:249=43:43"}
   Actor MercurySplashRadiusO : MercurySplashRadius{Translation"192:192=104:104","198:198=128:128","249:249=131:131"}
   Actor MercurySplashRadiusP : MercurySplashRadius{Translation"192:192=229:229","198:198=232:232","249:249=223:223"}
@@ -1189,7 +1189,7 @@ powerup.duration 15
 		TNT1 A 0 A_ChangeFlag("NOINTERACTION",1)
 		TNT1 A 0 A_ChangeFlag("USEBOUNCESTATE",0)
 		TNT1 A 0 A_PlaySoundEx("item/JunkPick","Body")
-		TNT1 A 1 A_GiveToTarget("MercuryClassAmmo",8)
+		TNT1 A 1 A_GiveToTarget("MercuryClassAmmo",6)
 		Stop
 		
 		Death:
@@ -1297,7 +1297,7 @@ powerup.duration 15
 	}
   }
 
-  Actor MercuryBlob2B : MercuryBlob2{Translation"192:192=205:205","198:198=74:74","249:249=199:199"}
+  Actor MercuryBlob2B : MercuryBlob2{Translation"192:192=205:205","198:198=74:74","249:249=[30,54,172]:[30,54,172]"}
   Actor MercuryBlob2R : MercuryBlob2{Translation"192:192=171:171","198:198=41:41","249:249=43:43"}
   Actor MercuryBlob2O : MercuryBlob2{Translation"192:192=104:104","198:198=128:128","249:249=131:131"}
   Actor MercuryBlob2P : MercuryBlob2{Translation"192:192=229:229","198:198=232:232","249:249=223:223"}
