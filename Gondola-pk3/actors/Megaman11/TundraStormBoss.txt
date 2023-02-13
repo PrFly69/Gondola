@@ -506,12 +506,14 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+TSTO M 0 A_JumpIfInventory("WeaponCharge",1,"SpawnLOOP")
+TSTO N 0 A_PlaySoundEx("weapon/TundraManStorm","Weapon")
 SpawnLOOP:
+TSTO M 0 A_GiveInventory("WeaponCharge",1)
 TSTO M 0 A_CountDown
 TSTO M 1 A_SpawnItemEx("TundraTornadoDamager",0,0,0,0,0,0,0)
-TSTO M 1 
+TSTO N 1 
 TSTO MNMN 1 A_FadeOut(0.1)
-TSTO N 0 A_PlaySoundEx("weapon/TundraManStorm","Weapon")
 Goto Death
 Death:
 TSTO N 0 A_Stop

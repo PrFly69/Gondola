@@ -314,6 +314,10 @@ weapon/pirateexplode S_MB_D4
 weapon/waveburneruw wavebund
 walk/baveburner BAVEBURN
 
+//Ground
+weapon/groundtread GROUSTEP
+weapon/GroundTransform GROUTRAS
+
 
 ///// MM9 /////
 
@@ -422,6 +426,9 @@ weapon/bubblebomb BUBBO
 $volume W_Venus/BubbPop 0.5
 $volume W_Venus/GB_Boom 0.4
 $volume W_Venus/JumpBoost 0.4
+
+//Mars
+weapon/marstread MARSSTEP
 
 //Jupiter
 $volume weapon/jupiterlaser 0.9
@@ -532,7 +539,7 @@ weapon/TundraManDash TUNDDASH
 weapon/TundraManStylishLand TUNDLAND
 weapon/TundraManSpear TUNDSPEA
 weapon/TundraManBreak TUNDBREA
-weapon/TundraManStorm jet
+weapon/TundraManStorm TUNDSTRM
 
 
 ///// MMWT /////
