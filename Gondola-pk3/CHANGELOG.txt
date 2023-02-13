@@ -3122,6 +3122,7 @@ CHANGELOG
 -New ice death sound effects provided by MusashiAA
 -Updated pitprotect code by A-Chan
 -Added a burger
+-Fixed vanilla bosses not working
 
 -Fixed every class having abnormally high movement/projectile speeds, all changes listed below (leftover from 2.6 Beta concept)
 --Mega Buster projectile speed 30.375/36 > 27/32 (Regular/APU)

@@ -16,7 +16,6 @@ colotrns
 bugfix
 bugfix_f
 global
-gremov
 sunstar
 JUMPCANC
 a_anticheat
