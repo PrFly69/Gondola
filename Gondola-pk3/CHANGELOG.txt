@@ -3340,6 +3340,7 @@ CHANGELOG
 -Bright Bulb ammo regen 1 per 2 tics > 1 per 3 tics
 
 ==Toadman
+-New HUD provided by Rick Edwardson
 -Rain FX now properly displays radius and full damage radius
 
 ==Pharaohman
@@ -3463,7 +3464,7 @@ CHANGELOG
 --Lingering damager applies current hitstun effect
 
 ==Groundman
--Tank Mode now has passive sound while active
+-Tank Mode now has passive sound while active, provided by MusashiAA
 
 ==Pirateman
 -Movespeed 0.7/0.68 > 0.65/0.63
@@ -3515,6 +3516,9 @@ CHANGELOG
 --Returning Blob Shot ammo on return 4 > 2, returns full ammo if enemy is directly hit
 --Returning Blob Dash ammo on return 7 > 6, returns full ammo if enemy is directly hit by contact damage
 -Blob Dash ammo consumption 7 > 8
+
+==Mars
+-New Tank Mode passive SFX, provided by MusashiAA
 
 ==Saturn
 -New FX indicator for armor, code provided by Muzaru
@@ -3577,7 +3581,7 @@ CHANGELOG
 -Glacier Spike speed reduced 75 > 42
 -Frostbite debuff strength 50% > 35%
 -Tundra Storm now resets frostbite debuff timer
--New SFX ported by MusashiAA
+-New SFX ported by MusashiAA and Fr3ak
 -Dash cooldown doubled
 -Fixed ammobar desyncs
 -Fixed reload ammo regenerating slower while holding reload without enough ammo
