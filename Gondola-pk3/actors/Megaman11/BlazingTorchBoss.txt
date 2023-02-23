@@ -444,7 +444,7 @@ actor TorchMagicSeriesFlag : OnceC {}
 
 actor PGStall_P : Powerup
 {
-Powerup.Duration 70
+Powerup.Duration 50
 }
 
 actor PGRagingKick_P : Powerup

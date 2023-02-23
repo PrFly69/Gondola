@@ -11,7 +11,7 @@ player.forwardmove 0.6, 0.6
 player.sidemove 0.58, 0.58
 
 player.startitem "DeepDiggerBoss"
-player.startitem "DeeperDiggerAmmo",84
+player.startitem "DeeperDiggerAmmo",88
 player.startitem "UranusStampedeAmmo",56
 player.startitem "SemiStunArmor"
 
