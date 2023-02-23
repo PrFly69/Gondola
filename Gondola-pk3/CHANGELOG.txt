@@ -3542,6 +3542,10 @@ CHANGELOG
 -Added gd_hjupiter cvar for South Americans, lag-compensates Electric Shock
 
 ==Uranus
+-DeeperDiggerAmmo max ammo capacity 112 > 110
+--DeeperDiggerAmmo starting ammo 84 > 88
+--DeeperDiggerAmmo consumption per rock thrown 14 > 22 (8 rocks > 5 rocks)
+--DeeperDiggerAmmo consumption per rock crush 14 > 11 (10 synthfire uses)
 -Deep Digger now has block shattering FX
 
 ==Neptune
@@ -3589,7 +3593,6 @@ CHANGELOG
 
 ==Torchman
 -Now gains 10% speed boost during Power Gear
--Power Gear drain stall 1.5 seconds > 2 seconds
 -WaveDashAmmo max ammo capacity 600 > 800 (effective ammo increased 3 stocks > 4 stocks)
 -Projectile fired by mainfire now properly reflects if user is in Power Gear or not
 ! This means that if one punch gives you power gear, the second punch thrown will be a power gear shot instead of a regular punch
