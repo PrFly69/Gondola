@@ -3540,6 +3540,7 @@ CHANGELOG
 
 ==Jupiter
 -Added gd_hjupiter cvar for South Americans, lag-compensates Electric Shock
+-Fixed round start desync
 
 ==Uranus
 -DeeperDiggerAmmo max ammo capacity 112 > 110
