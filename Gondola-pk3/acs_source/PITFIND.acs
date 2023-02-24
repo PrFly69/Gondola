@@ -5,7 +5,7 @@
 //{"Invalid","Choice"},
 //};
 
-#DEFINE FLOORCOUNT 50//25
+#DEFINE FLOORCOUNT 52//25
 
 //Unknown older textures? Older maps? Custom maps?
 /*
@@ -66,6 +66,8 @@ str FLOORS[FLOORCOUNT] = {
 //"SHOBG06",
 "CIRBLACK",
 "PGEFALX",
+"BITWTR",
+"BITWAT",
 
 //Everything below is custom pit textures from Jam
 "JAMBLU",
