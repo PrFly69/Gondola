@@ -798,6 +798,7 @@ stop
 		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 		SpawnL:
         Y_AG CD 3
+		Y_AG C 0 A_JumpIf(momx * momx + momy * momy + momz* momz <= 5, "DeathFX")
         Loop
        
         XDeath:
@@ -883,6 +884,14 @@ stop
     Height 14
     States
     {
+	Spawn:
+        Y_AG C 0
+		TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+        Y_AG C 0 A_GiveInventory("ResyncPickup",1)
+        TNT1 A 0 A_PlaySoundEx("weapon/wheelshot", CHAN_Weapon)
+        Y_AG CCCDDD 1 A_CheckFlag("BLASTED","NewShotX")
+		Y_AG C 0 A_JumpIf(momx * momx + momy * momy + momz* momz <= 5, "DeathFX")
+        Goto Spawn+4
         NewShotX:
         TNT1 A 0 A_SpawnItemEx("WheelCutterFast",0,0,0,momx,momy,momz,0,9)
         Stop
@@ -915,6 +924,7 @@ stop
       goto Spin
       Spin:
       Y_AG CD 3
+	  FSST A 0 A_JumpIf(momx * momx + momy * momy + momz* momz <= 5, "Death")
       loop
       XDeath:
       XMFX R 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1, "DeathFX")

@@ -573,7 +573,7 @@ Inventory.maxamount 4
 actor UranusArmor : BasicArmorPickup
 {
 Armor.Savepercent 60.001
-Armor.Saveamount 1000
+Armor.Saveamount 100
 }
 actor UranusChargeSnd : Powerup
 {

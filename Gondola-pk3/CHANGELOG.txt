@@ -3216,9 +3216,10 @@ CHANGELOG
 --BBA BFG projectile speed 28.125 > 25
 
 ==Copyweps
--Fixed copynerf not working due to github forcibly renaming the file
+-Fixed copynerf not working due to Github forcibly renaming the file
 -Fixed BRG Pole copywep not having proper icon
 -Fixed Blazing Torch flares having incorrect colors
+-Fixed copywep display, code provided by Binary
 -Nova Beam now has doubled range
 --Nova Beam now instakills, requires full ammo to use
 
@@ -3351,6 +3352,14 @@ CHANGELOG
 
 ==Diveman
 -Dive Tackle upwards thrust reduced 24 > 10 (42 > 20 with rage)
+
+==Waveman
+-Fixed Water Wave interaction with slopes
+
+==Stoneman
+-Thrower Stone can now be tapped to be used without needing to spawn Orbiting Stones, has 6 tic window for tap/hold
+--Thrower Stone and Power Stone now come out 9 tics faster
+-16 tics of endlag shaved off Power Stone
 
 ==Chargeman
 -Can now fire Coal Shot without Charge Kick ammo
@@ -3495,6 +3504,7 @@ CHANGELOG
 ==Nitroman
 -Empowered Wheel Cutter damage 14 > 13
 -Superbike now has mild drifting applied, more lenient than Uranus' Cattle Charge drifting
+-Fixed Empowered Wheel Cutter interaction with slopes
 
 ==Terra
 -Reworked by Pr. Gibus
@@ -3548,6 +3558,7 @@ CHANGELOG
 --DeeperDiggerAmmo consumption per rock thrown 14 > 22 (8 rocks > 5 rocks)
 --DeeperDiggerAmmo consumption per rock crush 14 > 11 (10 synthfire uses)
 -Deep Digger now has block shattering FX
+-Fixed Cattle Charge armor being x10'd
 
 ==Neptune
 -Tap altfire for Big Stomp restored as a legacy option 
@@ -3568,6 +3579,7 @@ CHANGELOG
 ==Fuseman
 -Movement speed 0.75/0.73 > 0.85/0.83
 -Fixed Scramble Ray sounds lingering after death
+-Fixed Scramble Ray interaction with slopes
 
 ==Blastman
 -Blast Bomb fulldmgradius 96 > 48

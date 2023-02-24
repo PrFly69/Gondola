@@ -434,6 +434,9 @@ actor BassBulletUpgraded : BassShotB
 		SpawnLOOP:
 			_BAS EF 2
 			wait
+		Death:
+			BSB0 KLKL 2 A_SetScale(ScaleY-0.5)
+			stop
 	}
 }
 

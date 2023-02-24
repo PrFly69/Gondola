@@ -1,0 +1,297 @@
+actor TrebleboosterWepC : BaseMM8BDMWep_CBM
+{
+dropitem "TrebleBoostUpgrade2GiverDropped"
+Weapon.AmmoUse 1
+Weapon.AmmoGive 30
+Weapon.SlotNumber 1
+Inventory.Pickupmessage "$PU_TREBLEBOOSTC"
+Obituary "$OB_TREBLEBOOST"
+Tag "$TAG_TREBLEBOOST"
+weapon.ammotype "TrebleBoostCAmmo"
+inventory.icon "TrebBoo"
+States
+{
+Spawn:
+C_00 F 1
+loop
+Ready:
+TREB B 0 ACS_ExecuteAlways(998,0,DYE_TREBLEBOOST)//178
+TREB B 0 A_JumpIfInventory("TrebleBoostOnceFlag",1,"Ready2")
+TREB B 0 A_GiveInventory("TrebleBoostOnceFlag",1)
+TREB B 0 A_GiveInventory("Bass_RemoveBasicBuster_P",1)
+goto FlightStart
+Ready1:
+TREB B 12 A_WeaponReady
+goto Ready2
+Ready2:
+TREB B 24 A_WeaponReady
+TREB B 0 A_GiveInventory("TrebleBoostCAmmo",1)
+Loop
+
+FlightStart:
+TREB B 0 ACS_NamedExecuteAlways("core_flyplayer",0,0,2)
+TREB B 0 A_GiveInventory("BassAndTreble_F",1)
+TREB B 0 A_TakeInventory("TrebleBoostCAmmo",1,1)
+TREB B 1 A_GunFlash
+Goto Ready_Fly
+Ready_Fly:
+TREB B 1 A_WeaponReady
+TREB B 0 A_JumpIfInventory("BassAndTreble_F",1,"Ready_Fly")
+Goto Ready1
+
+Deselect:
+TREB B 0 A_JumpIfInventory("BassAndTreble_F",1,"DeselectFlight")
+TREB BBBBBBBBBBBBBBBBBBBBBB 0 A_Lower
+TREB B 1 A_Lower
+Goto Deselect+1
+DeselectFlight:
+TREB B 2 A_GiveInventory("Bass_DisableTBoostFlight_P",1)
+Goto Deselect+1
+Select:
+TREB BBBBBBBBBBBBBBBBBBBBBB 0 A_Raise
+TREB B 1 A_Raise
+Loop
+
+Fire:
+TREB C 0 A_JumpIfNoAmmo("NoAmmo")
+TREB C 1 A_JumpIfInventory("BassAndTreble_F",1,"Fire2")
+TREB C 5 A_SpawnItemEx("TrebleBoostTeleport",40,0,256,0,0,-32,0,33,0)
+TREB C 0 A_GiveInventory("BassAndTreble_F",1)
+TREB C 0 A_PlaySoundEx("misc/polarroar","Body")
+Goto FlightStart
+Fire2:
+TREB C 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+TREB C 0 A_GiveInventory("BassTrebleMain3_CI",1)
+TREB CD 2
+TREB B 8
+//TREB CCD 1
+//TREB B 20
+goto Ready_Fly
+NoAmmo:
+TREB C 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+TREB C 0 A_GiveInventory("BassTrebleMain_CI",1)
+TREB CD 2
+TREB B 5
+TREB B 2 A_JumpIfInventory("IsBot",1,"NoAmmo_Bot")
+Goto Ready2
+NoAmmo_Bot:
+TREB B 0 A_Jump(224,2)
+TREB B 0 ACS_Execute(979,0)
+TREB B 2
+Goto Ready2
+AltFire:
+TREB B 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+BASB B 0 A_GiveInventory("BassMain_CI",1)
+TREB C 2
+TREB DB 1
+TREB B 0 A_JumpIfInventory("BassAndTreble_F",1,"Ready_Fly")
+goto Ready2
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
+TNT1 AAAAAAAAA 1
+TNT1 A 1 A_TakeInventory("TrebleBoostCAmmo",1,1)
+TNT1 A 0 A_JumpIfInventory("TrebleBoostCAmmo",1,"Flash")
+TNT1 A 0 A_GiveInventory("Bass_DisableTBoostFlight_P")
+stop
+}
+}
+
+actor TrebleBoostCAmmo : Ammo
+{
+inventory.amount 1
+inventory.maxamount 30
++INVENTORY.IGNORESKILL
+}
+
+actor TrebleBoostOnceFlag : OnceC{}
+actor BassAndTreble_F : Inventory{}
+
+actor Bass_RemoveBasicBuster_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_TakeInventory("BassBusterBoss",1)
+stop
+}
+}
+actor Bass_DisableTBoostFlight_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("BassAndTreble_F",1,1)
+stop
+TNT1 A 0 ACS_NamedExecuteAlways("core_flyplayer",0,0,0)
+TNT1 A 0 A_TakeInventory("BassAndTreble_F")
+stop
+}
+}
+
+actor Bass_SuperTrebleBoostUpgrade : BasicItemPickup
+{
+inventory.pickupmessage "$PU_TREBLEBOOST"
+Tag "$TAG_TREBLEBOOSTUPGRADE"
+inventory.icon "TrebBost"
+states
+{
+Spawn:
+TRBB X 1
+loop
+Use:
+WEAP Q 0 A_PlaySoundEx("item/refill","Voice")
+WEAP Q 0 A_JumpIfInventory("TrebleboosterWepC",1,"Refill")
+WEA2 B 0 A_SpawnItemEx("TrebleFuser",40,0,256,0,0,-32,0,32)
+stop
+Refill:
+NEDR A 0 A_GiveInventory("TrebleboosterWepC",1)
+NEDR A 0 A_SelectWeapon("TrebleboosterWepC")
+stop
+}
+}
+
+actor TrebleFuser
+{
+damagetype "Bass_TrebleShot"
+Obituary "$OB_TREBLEBOOSTBITE"
+-SOLID
++NOGRAVITY
++MISSILE
++DONTBLAST
++NOCLIP
++SKYEXPLODE
++DONTREFLECT
+speed 0
+scale 2.5
+Radius 12
+Height 32
+reactiontime 250
+meleerange 80
+states
+{
+Spawn:
+TRBL F 0 A_Jump(256,"Death")
+TRBL F 1 A_ChangeFlag("MISSILE",0)
+TRBL F 1
+TRBL F 1 A_PlaySound("misc/polarroar",1,1.0)
+TRBL F 1 A_JumpIf(z-floorz<=0,"Look")
+TRBL F 0 A_ChangeVelocity(0,0,-32,CVF_REPLACE)
+TRBL F 1 A_JumpIf(z-floorz<=0,"Look")
+wait
+Look:
+TRBL G 0 A_ChangeFlag("NOCLIP",0)
+TRBL GH 2
+TRBL BCBCBCBCBCBCBCBCBCBC 2 A_Chase
+TRBL A 0 A_CountDown
+Goto Look+3
+Melee:
+TNT1 A 0 A_JumpIf(CheckClass("Bass",2),"MeleeG")
+TRBL E 0 A_CustomMeleeAttack(350,"misc/polarroar","","Bass_TrebleShot")
+goto MeleeBite
+MeleeG:
+TNT1 A 0 A_PlaySound("weapon/BassCombine",2,1.0)
+TNT1 A 1 A_GiveToTarget("TrebleBoostActivate",1)
+stop
+MeleeBite:
+TRBL E 8
+TRBL BA 4
+goto Death
+Death:
+TRBL F 0 A_SpawnItemEx("TrebleDeath",0,0,0,0,0,0,0,32)
+stop
+}
+}
+
+actor TrebleBoostActivate : CustomInventory
+{
++AUTOACTIVATE
+States
+{
+Use:
+TNT1 A 0 A_GiveInventory("TrebleboosterWepC",1)
+TNT1 A 0 A_SelectWeapon("TrebleboosterWepC")
+stop
+}
+}
+
+actor BoostCShot
+{
+Translation "204:204=215:215"
+PROJECTILE
+damagetype "Bass_TrebleShot"
+Obituary "$OB_TREBLEBOOST"
++FORCEXYBILLBOARD
++BRIGHT
+Damage (10)
+Speed 64
+radius 7
+height 7
+scale 2.5
+States
+{
+Spawn:
+W_0D B 1
+loop
+}
+}
+
+actor BoostCShotB : BoostCShot{translation "204:204=205:205"}
+actor BoostCShotR : BoostCShot{translation "204:204=171:171"}
+actor BoostCShotO : BoostCShot{translation "204:204=104:104"}
+actor BoostCShotP : BoostCShot{translation "204:204=229:229"}
+
+actor BassTrebleMain_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BoostCShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BoostCShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BoostCShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BoostCShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BoostCShotP",0,0,8,0)
+goto Done
+}
+}
+
+actor BassTrebleMain3_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("BoostCShot",-15,0,8,0)//BoostShot
+TNT1 A 0 A_FireCustomMissile("BoostCShot",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BoostCShot",0,0,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("BoostCShotB",-15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BoostCShotB",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BoostCShotB",0,0,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("BoostCShotR",-15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BoostCShotR",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BoostCShotR",0,0,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("BoostCShotO",-15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BoostCShotO",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BoostCShotO",0,0,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("BoostCShotP",-15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BoostCShotP",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("BoostCShotP",0,0,8,0)
+goto Done
+}
+}
+

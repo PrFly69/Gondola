@@ -627,6 +627,7 @@ SpawnLOOP:
 HARP B 1
 HARP B 0 A_GiveInventory("ResyncPickup",1)
 HARP BBB 1 A_Countdown
+HARP B 0 A_JumpIf(momx * momx + momy * momy + momz* momz <= 5, "Death")
 HARP CCCCDDDDEEEEDDDDCCCCBBBB 1 A_Countdown
 Goto SpawnLOOP+2
 Crash:
