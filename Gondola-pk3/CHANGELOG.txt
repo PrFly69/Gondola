@@ -3114,7 +3114,7 @@ CHANGELOG
 --Rocket ammo regain on item 20 > 10
 -BFG Range 500 > 750
 
-=====2.6H
+=====2.6.1
 ==General
 -Fixed item icons not appearing on HBAR
 -Fixed yellow painflash being too transparent
@@ -3374,7 +3374,6 @@ CHANGELOG
 -Can now fire Coal Shot without Charge Kick ammo
 
 ==Napalmman
--Napalm Bomb endlag no longer correlates to charge, now all charges share lvl2 endlag
 --Napalm Bomb bouncefactor 1.0 > 0.6/0.8/1.0
 -New Napalm Missile SFX, provided by MusashiAA
 
