@@ -430,7 +430,7 @@ stop
 
 actor MarsVulcanShot2 : MarsVulcanShot
 {
-Speed 135
+Speed 120
 States
 {
 Spawn:
@@ -469,7 +469,7 @@ actor MarsVulcanShotFX : BasicClientSide
 {
 RenderStyle Translucent
 Alpha 0.65
-Speed 113
+Speed 100
 States
 {
 Spawn:
@@ -494,7 +494,7 @@ ReactionTime 1
 Damage (5)
 radius 9
 height 8
-Speed 51
+Speed 45
 scale 2.5
 States
 {
@@ -663,7 +663,7 @@ BounceCount 4
 Damage (0)
 Height 5
 Radius 5
-Speed 23
+Speed 20
 scale 2.5
 States
 {

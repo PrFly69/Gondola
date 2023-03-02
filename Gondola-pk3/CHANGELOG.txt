@@ -3193,6 +3193,7 @@ CHANGELOG
 --Bubble Ticker projectile speed 27 > 25
 --Bubble Bomb projectile speed 45 > 40
 --Acid Bubble projectile speed 23 > 20
+--Photon Missile projectile speed 51 > 45
 --White Hole Ring projectile speed 56 > 50
 --Black Hole Ring projectile speed 62 > 50
 --Dyson Sphere projectile speed 51 > 45
