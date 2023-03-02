@@ -61,8 +61,37 @@ stop
 actor CrystalEyeC_0 : CrystalEyeC
 {
 Damage (15+user_D/7)
+ReactionTime 13
 States
 {
+Spawn:
+//ABCDE Big
+//FGHIJ Small
+//KLMNO Big white
+//PQRST Small white
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_5H A 0
+Y_5H A 0 A_SetUserVar("user_D",ACS_NamedExecuteWithResult("cbm_countinv_acs",58,0))
+Y_5H A 0 A_GiveInventory("CrystalEyeCharge",4)
+SpawnWew:
+Y_5H AAAAAAAA 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H LLLLLLLL 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H CCCCCCCC 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H NNNNNNNN 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H DDDDDDDD 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H KKKKKKKK 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H AAAAAAAA 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H A 0 A_CountDown
+loop
 XDeath:
 Crash:
 TNT1 A 0 A_JumpIfInventory("CrystalEyeCharge",4,"XDeath0")
@@ -113,8 +142,37 @@ actor CrystalEyeC_0P : CrystalEyeC_0{translation"202:202=229:229","199:199=232:2
 actor CrystalEyeC_1 : CrystalEyeC
 {
 Damage (20+user_D/7)
+ReactionTime 17
 States
 {
+Spawn:
+//ABCDE Big
+//FGHIJ Small
+//KLMNO Big white
+//PQRST Small white
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_5H A 0
+Y_5H A 0 A_SetUserVar("user_D",ACS_NamedExecuteWithResult("cbm_countinv_acs",58,0))
+Y_5H A 0 A_GiveInventory("CrystalEyeCharge",4)
+SpawnWew:
+Y_5H AAAAAA 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H LLLLLL 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H CCCCCC 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H NNNNNN 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H DDDDDD 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H KKKKKK 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H AAAAAA 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H A 0 A_CountDown
+loop
 XDeath:
 Crash:
 TNT1 A 0 A_JumpIfInventory("CrystalEyeCharge",4,"XDeath0")
@@ -226,8 +284,37 @@ actor CrystalEyeC_3 : CrystalEyeC
 {
 +HITTRACER
 Damage (30+user_D/7)
+ReactionTime 50
 States
 {
+Spawn:
+//ABCDE Big
+//FGHIJ Small
+//KLMNO Big white
+//PQRST Small white
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_5H A 0
+Y_5H A 0 A_SetUserVar("user_D",ACS_NamedExecuteWithResult("cbm_countinv_acs",58,0))
+Y_5H A 0 A_GiveInventory("CrystalEyeCharge",4)
+SpawnWew:
+Y_5H AA 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H LL 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H CC 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H NN 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H DD 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H KK 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H AA 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H A 0 A_CountDown
+loop
 XDeath:
 Crash:
 TNT1 A 0 A_JumpIfInventory("CrystalEyeCharge",4,"XDeath0")
@@ -286,8 +373,37 @@ actor CrystalEyeC_4 : CrystalEyeC
 {
 +HITTRACER
 Damage (35+user_D/7)
+ReactionTime 100
 States
 {
+Spawn:
+//ABCDE Big
+//FGHIJ Small
+//KLMNO Big white
+//PQRST Small white
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+Y_5H A 0
+Y_5H A 0 A_SetUserVar("user_D",ACS_NamedExecuteWithResult("cbm_countinv_acs",58,0))
+Y_5H A 0 A_GiveInventory("CrystalEyeCharge",4)
+SpawnWew:
+Y_5H A 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H L 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H C 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H N 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H D 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H K 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H A 1 A_JumpIfInTargetInventory("CrystalEyeDetonate",1,"BoomAim")
+Y_5H A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
+Y_5H A 0 A_CountDown
+loop
 XDeath:
 Crash:
 TNT1 A 0 A_JumpIfInventory("CrystalEyeCharge",4,"XDeath0")

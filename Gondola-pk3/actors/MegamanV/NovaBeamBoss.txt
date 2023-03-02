@@ -673,7 +673,7 @@ damagetype "DMGNoHitstun"
 damage (11)
 Height 10
 Radius 10
-speed 51
+speed 45
 scale 3.5
 Gravity 0.8
 SeeSound "weapon/sunstardysonsee"
@@ -756,7 +756,7 @@ loop
 
 actor DysonSphereHeavy : DysonSphere
 {
-Speed 54
+Speed 48
 DamageType "DMGNoHitstun"
 Obituary "$OB_SUNSDYS2"
 SeeSound "weapon/sunstardysonsee"
@@ -901,7 +901,7 @@ Obituary "$OB_SUNSCHAS"
 +LOOKALLAROUND
 +HITTRACER
 +SKYEXPLODE
-speed 32
+speed 28
 damage (12)
 radius 14
 height 10

@@ -3190,8 +3190,16 @@ CHANGELOG
 --Grab Buster returning projectile speed 60 > 50
 --Mercury Blob projectile speed 40 > 38
 --Venus strafespeed 1.0 > 0.9
+--Bubble Ticker projectile speed 27 > 25
+--Bubble Bomb projectile speed 45 > 40
+--Acid Bubble projectile speed 23 > 20
 --White Hole Ring projectile speed 56 > 50
 --Black Hole Ring projectile speed 62 > 50
+--Dyson Sphere projectile speed 51 > 45
+--Heavy Dyson Sphere projectile speed 54 > 48
+--Sun Chaser projectile speed 32 > 28
+--Salt Water projectile speed 45 > 40
+--Saltier Water projectile speed 56 > 50
 --Blastman movespeed 1.0/0.98 > 0.92/0.9
 --Acidman movespeed 1.0/0.98 > 0.89/0.87 
 --Acid Shot projectile speed 47 > 42
@@ -3369,6 +3377,9 @@ CHANGELOG
 --Napalm Bomb bouncefactor 1.0 > 0.6/0.8/1.0
 -New Napalm Missile SFX, provided by MusashiAA
 
+==Crystalman
+-Crystal Eye animation now speeds up depending on charge
+
 ==Darkman1
 -Dark Tank Ram damage increased 1 > 2
 
@@ -3500,6 +3511,9 @@ CHANGELOG
 
 ==Fakeman
 -Fixed Fake Revolver shots unintentionally having 101 speed as opposed to 90
+
+==Sheepman
+-Fixed disjointed Thunder Wool strike projectile
 
 ==Nitroman
 -Empowered Wheel Cutter damage 14 > 13

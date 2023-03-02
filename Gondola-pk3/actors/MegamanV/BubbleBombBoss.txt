@@ -192,7 +192,7 @@ ReactionTime 1
 damage (5)
 Radius 10
 Height 10
-speed 28
+speed 25
 scale 2.5
 States
 {
@@ -287,7 +287,7 @@ ReactionTime 1
 damage (5)
 Radius 16
 Height 16
-speed 45
+speed 40
 scale 2.5
 States
 {
@@ -509,7 +509,7 @@ Obituary "$OB_VENUSSHIELD"
 damage (10)
 Radius 20
 Height 20
-speed 23
+speed 20
 scale 2.5
 States
 {
