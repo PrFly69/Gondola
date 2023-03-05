@@ -3658,3 +3658,19 @@ CHANGELOG
 --Fixed Sakugarne Dive shockwave being invisible
 --Improved Sakugarne Dive shockwave's floorhugging system
 --Sakugarne Dive shockwave powerprotection 0.50 > 0.25
+
+
+
+
+=====2.6.1H
+==Bombman
+-Cluster Bomb cluster spread speed 12 > 8
+-Surface Detonation Hyper Bomb damage 25 > 20
+
+==Terra
+-Spark Chaser pre-release speed 12 > 14
+--Spark Chaser post-release speed 90 > 66
+--Spark Chaser post-release damage 5 ripper > 3 ripper
+-Spark Suppressor damage pre-release 7 (bugged) > 3
+--Spark Suppressor damage post release 2 ripper > 6 ripper
+--Spark Suppressor powerprotect 75% reduction every 5 tics > 100% reduction every 3 tics
