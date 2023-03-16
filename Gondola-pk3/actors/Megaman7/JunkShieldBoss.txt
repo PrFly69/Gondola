@@ -495,7 +495,7 @@ WallBounceFactor 0.95
 Species "JunkCubeThing"
 
 mass 99999
-Health 2000
+Health 200
 damagefactor "JunkShield", 0.0
 damagefactor "JunkM_Shield", 0.0
 damagefactor "JunkM_Shot", 0.0
@@ -658,7 +658,7 @@ Species "JunkCubeThing"
 BounceFactor 1.0
 
 mass 9999999
-Health 2000
+Health 200
 damagefactor "JunkShield", 0.0
 damagefactor "JunkM_Shield", 0.0
 damagefactor "JunkM_Shot", 0.0

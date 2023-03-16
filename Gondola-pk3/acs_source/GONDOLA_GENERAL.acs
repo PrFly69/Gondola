@@ -408,15 +408,14 @@ script "Gond_AcidmanBarrierProtect" (int Ally)
 If(Ally==0){SetActivator(0,AAPTR_Target);}
 Else{SetActivator(0,AAPTR_Tracer);}
 
-int BarrierTime = 0.1;
-While(BarrierTime<=1.0)
+int BarrierTime = 0.05;
+While(BarrierTime<=0.95)
     {
     if(Ally>0){TakeInventory("AcidBarrierVisualBar",1);}
-    SetActorProperty(0,APROP_DamageFactor,BarrierTime);
     BarrierTime = BarrierTime+0.05;
     SetActorProperty(0,APROP_DamageFactor,BarrierTime);
     Delay(5);
-    } 
+    }
 }
 
 script "AcidmanGearAmmo" (int AcidMult)

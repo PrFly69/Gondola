@@ -3667,6 +3667,15 @@ CHANGELOG
 -Cluster Bomb cluster spread speed 12 > 8
 -Surface Detonation Hyper Bomb damage 25 > 20
 
+==Junkman
+-Fixed Junk Cube health being x10'd, (HP 2000 > 200)
+
+==EvilRobot
+-Giga Astro Crush powerprotect 75% > 33%
+
+==Hornetman
+-Honeycomb Crash endlag reduced by 5 tics
+
 ==Terra
 -Spark Chaser pre-release speed 12 > 14
 --Spark Chaser post-release speed 90 > 66
@@ -3674,3 +3683,7 @@ CHANGELOG
 -Spark Suppressor damage pre-release 7 (bugged) > 3
 --Spark Suppressor damage post release 2 ripper > 6 ripper
 --Spark Suppressor powerprotect 75% reduction every 5 tics > 100% reduction every 3 tics
+-Updated damage taken during camera indicator
+
+==Acidman
+-Fixed permanent 5% damage vulnerability after using Acid Barrier

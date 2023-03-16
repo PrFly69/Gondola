@@ -1516,7 +1516,7 @@ stop
 actor GigaAstroCrushProtect : PowerProtection
 {
 Powerup.Duration 3
-DamageFactor "TrioAstroCrush", 0.25//0.375
+DamageFactor "TrioAstroCrush", 0.67//0.375
 }
 
 actor TrioMeteor2 : TrioMeteor
