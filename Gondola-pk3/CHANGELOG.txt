@@ -3663,15 +3663,50 @@ CHANGELOG
 
 
 =====2.6.1H
+==Copywep
+[conejo put your stuff here]
+
+==Gutsman
+-Removed ammo gain while holding Guts Block
+
+==Iceman
+-Fixed Ice Cube health being x10'd, (HP 500 > 50)
+-Reload Ice Lance now has wind FX, provided by Fr3ak
+
 ==Bombman
 -Cluster Bomb cluster spread speed 12 > 8
 -Surface Detonation Hyper Bomb damage 25 > 20
 
+==Airman
+-New Air Shooter/Air Wall player/surface impact SFX added, provided by MusashiAA
+
+==Diveman
+-Dive Missile now goes towards where user is looking instead of where cursor is
+--Dive Missile horizontal spread halved (-20,20) > (-10,10), vertical spread doubled (-4,4) > (-8,8)
+-DiveTackleAmmo max capacity reduced 400 > 345
+-DiveTackleAmmo passive gain reduced 4 every 2 tics > 3 every 2 tics
+-Dive Tackle verticality nerf undone, now has an overall 25% thrust reduction on all axes (26 thrust > 20 thrust)
+--Dive Tackle cooldown reduced 2 seconds > 1.5 seconds (70 tics > 57 tics)
+--Ammo requirement for Dive Tackle 140 > 115
+-Ammo consumed on using Dive Mines 120 > 100
+
+==Tomahawkman
+-Updated Silver Tomahawk death sprites, provided by HeelNavi
+-New Silver Tomahawk player/surface impact SFX added, provided by Fr3ak
+
 ==Junkman
 -Fixed Junk Cube health being x10'd, (HP 2000 > 200)
 
+==Aquaman
+-Water Balloon direct damage 4 > 2
+--Water Balloon explosion damage 10 > 9
+--Water Balloon explosive fulldmgmaxradius 0 > 24
+
 ==EvilRobot
 -Giga Astro Crush powerprotect 75% > 33%
+
+==Magicman
+-Fixed bots crashing online
 
 ==Hornetman
 -Honeycomb Crash endlag reduced by 5 tics

@@ -58,6 +58,11 @@ weapon/flashstunstart FLSWNDUP
 //Metal
 weapon/MetalMelee CHNBLADE
 
+//Air
+weapon/airshotdeath AIRWHF
+$volume weapon/airshotdeath 0.25
+weapon/airshotimpact AIRHIT
+
 //Bubble
 weapon/bubblemanlead BUBBLBOS
 
@@ -219,6 +224,8 @@ weapon/tomahawkboss TOMAHAWB
 $volume weapon/tomahawkboss 0.5
 weapon/tomahawkfeathers TOMAFEAT
 $volume weapon/tomahawkfeathers 0.5
+weapon/tomahawkslice TOMSLC
+weapon/tomahawkfall TOMFAL
 
 //Yamato
 weapon/yamatocharge YAMABNZ1

@@ -132,17 +132,34 @@ loop
 }
 */
 
-actor AirShotB : AirShot
+actor AirShotB
 {
+PROJECTILE
+scale 2.5
 damage (15)
 speed 35//22
 damagetype "AirM_Shot"
+Obituary "$OB_AIRSHOOTER"
+Radius 6
+Height 7
++NOEXPLODEFLOOR
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-goto Super::Spawn
+AIRS A 1
+SpawnLoop:
+AIRS AABBCC 1 ThrustThingZ(0, 2, 0, 1)
+loop
+Death:
+AIRA A 0 A_PlaySoundEx("weapon/airshotdeath","Body")
+AIRS GHIJ 2
+stop
+XDeath:
+AIRA A 0 A_PlaySoundEx("weapon/airshotimpact","Body")
+AIRS GHIJ 2
+stop
 }
 }
 
@@ -151,7 +168,7 @@ actor AirShotBR : AirShotB{translation "198:198=41:41"}
 actor AirShotBO : AirShotB{translation "198:198=128:128"}
 actor AirShotBP : AirShotB{translation "198:198=232:232"}
 
-actor AirShotBW : AirShot
+actor AirShotBW : AirShotB
 {
 damage (15)
 speed 35//22

@@ -496,6 +496,32 @@ stop
 }
 }
 
+actor IceFollowFX : BasicClientSide
+{
+renderstyle add
+alpha 0.7
+PROJECTILE
+translation "192:192=4:4","198:198=197:197"
+speed 50
+States
+{
+Spawn:
+M9TW A 0
+M9TW A 0 A_ScaleVelocity(frandom(0.2,1.2))
+M9TW AABBAABB 1
+M9TW AABB 1 A_ScaleVelocity(0.6)
+M9TW A 0 A_ScaleVelocity(0.6)
+M9TW A 1 A_FadeOut(0.14)
+M9TW A 0 A_ScaleVelocity(0.6)
+M9TW A 1 A_FadeOut(0.14)
+M9TW B 0 A_ScaleVelocity(0.6)
+M9TW B 1 A_FadeOut(0.14)
+M9TW B 0 A_ScaleVelocity(0.6)
+M9TW B 1 A_FadeOut(0.14)
+stop
+}
+}
+
 actor IceBaFLaserFX1 : BasicClientSide
 {
 +FORCEXYBILLBOARD
@@ -926,7 +952,7 @@ damagefactor "IceM_Sculpt", 1.0
 damagefactor "Fire", 0.1 //MageStaff
 damageFactor "ConcreteShoulder", 0.04
 mass 99999
-Health 500
+Health 50
 Reactiontime 1
 Damage (0)
 Radius 28
@@ -1308,6 +1334,7 @@ actor IcemanAltX_CI : TeamColor_CI
 states
 {
 FireX:
+TNT1 AAAAAAAAAAAAAAAA 0 A_FireCustomMissile("IceFollowFX",0,0,random(-8,24),random(-16,16))
 TNT1 A 0 A_FireCustomMissile("IceBaFLaser2",0,0,8,0)
 goto Done
 FireB:
