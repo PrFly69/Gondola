@@ -89,20 +89,31 @@ SLZH B 0 SetPlayerProperty(0,1,4)
 TNT1 A 0 A_WeaponReady(14)
 TNT1 A 0 A_Quake(4, 20, 0, 10, 0)
 TNT1 A 0 A_TakeInventory("NovaBeamAmmo",28)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
 SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
+SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14) 
+TNT1 A 0 A_PlaySound("misc/sunstarbeamloop",CHAN_WEAPON,1,0,0.9)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
+SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
+SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14) 
+TNT1 A 0 A_PlaySound("misc/sunstarbeamloop",CHAN_WEAPON,1,0,0.9)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
+SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
 SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
 TNT1 A 0 A_PlaySound("misc/sunstarbeamloop",CHAN_WEAPON,1,0,0.9)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
 SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
-SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
+SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14) 
 TNT1 A 0 A_PlaySound("misc/sunstarbeamloop",CHAN_WEAPON,1,0,0.9)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
 SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
 SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
-TNT1 A 0 A_PlaySound("misc/sunstarbeamloop",CHAN_WEAPON,1,0,0.9)
-SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
-SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
-TNT1 A 0 A_PlaySound("misc/sunstarbeamloop",CHAN_WEAPON,1,0,0.9)
-SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
-SLZH B 1 A_SpawnItemEx("NovaBeamCSpawn", 82, 4, 14)
+TNT1 A 0 A_SpawnItemEx("NovaBeamDSpawn", 82, 4, 14)
 TNT1 A 0 A_PlaySound("misc/sunstarbeam",CHAN_WEAPON,1,0,0.9)
 TNT1 A 0 A_SpawnItemEx("NovaBeamCEndFXSpawn", 0, 4, 14,0,0,0,0,1) 
 SLZH C 21 A_Stop
@@ -128,6 +139,7 @@ inventory.maxamount 28
 actor NovaBeamCSpawn
 {
 PROJECTILE
++CLIENTSIDEONLY
 +MISSILE
 +NOCLIP
 height 8
@@ -159,7 +171,6 @@ S_UN M 0
 S_UN M 0 A_JumpIfCloser(2000, "Appear")
 goto Death
 Appear:
-S_UN M 0 A_SpawnItemEx("NovaBeamCDamager", 32,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
 S_UN M 0 A_SpawnItemEx("NovaBeamC", 10,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
 S_UN OP 1
 stop
@@ -174,6 +185,7 @@ loop
 actor NovaBeamCEndFXSpawn : NovaBeamCSpawn
 {
 renderstyle none
++CLIENTSIDEONLY
 states
 {
 Spawn:
@@ -205,8 +217,60 @@ stop
 }
 }
 
+
+//Not-Mega: Beef
+
+actor NovaBeamDSpawn
+{
+PROJECTILE 
++SERVERSIDEONLY
++MISSILE
++NOCLIP
+height 8
+radius 8
+scale 1.5
+alpha 0.75
+renderstyle add
+states
+{
+Spawn:
+S_UN M 0
+//S_UN M 0 A_SpawnItemEx("SaturnQuazarBeamWallHitFX",0,0,0,1000)
+//S_UN M 0 A_SpawnItemEx("NovaBeamCDamager", 32,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
+S_UN M 0 A_SpawnItemEx("NovaBeamD", 10,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
+S_UN MN 1
+stop
+Death:
+TNT1 A 0
+stop
+}
+}
+
+actor NovaBeamD : NovaBeamDSpawn
+{
+states
+{
+Spawn:
+S_UN M 0
+S_UN M 0 A_JumpIfCloser(2000, "Appear")
+goto Death
+Appear:
+S_UN M 0 A_SpawnItemEx("NovaBeamCDamager", 32,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
+S_UN M 0 A_SpawnItemEx("NovaBeamD", 10,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_TRANSFERTRANSLATION)
+S_UN OP 1
+stop
+Death:
+S_UN O 0 //A_ChangeVelocity(5)
+S_UN O 1 A_Fadeout(0.1)
+S_UN P 1 //A_SetScale(scaleX+0.1)
+loop
+}
+}
+
+
 actor NovaBeamCDamager
 {
++SERVERSIDEONLY
 PROJECTILE
 +RIPPER 
 +THRUGHOST
