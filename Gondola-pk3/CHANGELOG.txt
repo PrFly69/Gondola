@@ -3664,7 +3664,7 @@ CHANGELOG
 
 =====2.6.1H
 ==Copywep
-[conejo put your stuff here]
+-Fixed Nova Beam lagging out servers
 
 ==Gutsman
 -Removed ammo gain while holding Guts Block
@@ -3719,6 +3719,13 @@ CHANGELOG
 --Spark Suppressor damage post release 2 ripper > 6 ripper
 --Spark Suppressor powerprotect 75% reduction every 5 tics > 100% reduction every 3 tics
 -Updated damage taken during camera indicator
+
+==Mercury
+-MercuryClassAmmo max capacity 32 > 56
+--MercuryClassAmmo starting capacity 12 > 24
+-Grab Buster ammo replenlishment 2 > 4
+-Mercury Goo use/diminish ratio 4/3 > 7/6
+-Goo Dash use/diminish ratio 8/7 > 14/12
 
 ==Acidman
 -Fixed permanent 5% damage vulnerability after using Acid Barrier

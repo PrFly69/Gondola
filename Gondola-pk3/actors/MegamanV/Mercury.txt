@@ -10,7 +10,7 @@
 	Player.SoundClass "mercuryc"
 	Player.StartItem "LightHealthBar"
 	Player.StartItem "GrabBusterBoss"
-	Player.StartItem "MercuryClassAmmo", 12
+	Player.StartItem "MercuryClassAmmo", 24
 	Player.StartItem "MercuryBlobFormAmmo", 40
 	Player.StartItem "Merc_BlobOff_F"
 	//Player.StartItem "IsACommie"
