@@ -159,6 +159,7 @@
 		
 		DigHold:
 		TNT1 A 0 A_GiveInventory("GalaxyM_BHBProtect")
+		TNT1 A 0 A_GiveInventory("NoPushFlag")
 		TNT1 A 0 A_TakeInventory("DigLimit",32)
 		TNT1 A 0 A_PlayWeaponSound("classes/drilling")
 		TNT1 A 2 ThrustThingZ(0,0,1,0)//Fix running over fans/bubbles
@@ -199,6 +200,7 @@
 		DRIA B 0 A_GiveInventory("InvulnerableOff_Pickup",1)
 		DRIA B 0 A_TakeInventory("NoJumpCancel",1)
 		TNT1 A 0 A_TakeInventory("GalaxyM_BHBProtect")
+		TNT1 A 0 A_TakeInventory("NoPushFlag")
 		DRIA B 4
 		Goto Ready1
 		
