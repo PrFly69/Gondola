@@ -1,6 +1,8 @@
 
 //Redefine the base player that all classes will use
 
+$volume DSNone 0.0 //XD
+
 $playersound	player	male	*death		MEGADEAT
 $playeralias	player	male	*xdeath		*death
 $playeralias	player	male	*wimpydeath	*death
