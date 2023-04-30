@@ -3680,6 +3680,9 @@ CHANGELOG
 ==Airman
 -New Air Shooter/Air Wall player/surface impact SFX added, provided by MusashiAA
 
+==Shadowman
+-Landing SFX removed
+ 
 ==Diveman
 -Dive Missile now goes towards where user is looking instead of where cursor is
 --Dive Missile horizontal spread halved (-20,20) > (-10,10), vertical spread doubled (-4,4) > (-8,8)
@@ -3689,6 +3692,9 @@ CHANGELOG
 --Dive Tackle cooldown reduced 2 seconds > 1.5 seconds (70 tics > 57 tics)
 --Ammo requirement for Dive Tackle 140 > 115
 -Ammo consumed on using Dive Mines 120 > 100
+
+==Gravityman
+-Gravity orb no longer lifts allies
 
 ==Tomahawkman
 -Updated Silver Tomahawk death sprites, provided by HeelNavi
@@ -3710,6 +3716,12 @@ CHANGELOG
 
 ==Hornetman
 -Honeycomb Crash endlag reduced by 5 tics
+
+==Galaxyman
+-Black Hole Bomb no longer affects Drillman and Groundman while they are in dig mode
+
+==Sheepman
+-Fixed R pain animation
 
 ==Terra
 -Spark Chaser pre-release speed 12 > 14
