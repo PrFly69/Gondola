@@ -57,9 +57,11 @@ goto PainContinue
 
 ClassPain:
 SHPM H 0 A_JumpIfInventory("SheepWeaponCharge",1,"ClassPainCloud")
+SHPM H 55 A_Jump(256,"PainContinue")
 goto PainContinue
 ClassPainCloud:
 SHPC J 0
+SHPM J 55 A_Jump(256,"PainContinue")
 goto PainContinue
 ClassDeath:
 SHPM H 0
