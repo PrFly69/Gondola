@@ -778,7 +778,7 @@ PROJECTILE
 damagetype "GravitySmackUp"
 Obituary "$OB_GRAVITYBALL_D"
 +DONTSPLASH
-+FORCEPAIN
+//+FORCEPAIN
 ReactionTime 1
 Damage (11)
 Radius 11
@@ -866,7 +866,7 @@ stop
 }
 actor GravitymanSphereU_Boom : BasicExplosion
 {
-+FORCEPAIN
+//+FORCEPAIN
 damagetype "GravitySmackUpNoSlam"
 Obituary "$OB_GRAVITYBALL_U"
 States
