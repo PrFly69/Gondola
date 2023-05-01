@@ -976,5 +976,11 @@ Death.FlameSwordBT:
 "----" H 0 A_PlaySound("weapon/flamehit","body")
 "----" HH 0 A_SpawnItemEx("FlameSwordBitB",0,0,0,random(-10,10),random(-10,10),random(10,15),random(0,359))
 Goto Death
+
+Death.SolarVent://XDDDDDDDDDDDDDD
+"----" H 0 ThrustThingZ(0,120,0,0)
+"----" H 0 A_SpawnItemEx("DeathConcreteM_BashHit",1)
+goto Death.FlingDamageGib
+
 }
 }
