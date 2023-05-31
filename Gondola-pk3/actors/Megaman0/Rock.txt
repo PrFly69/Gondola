@@ -57,46 +57,55 @@ goto DeathContinue
 //protects
 actor MegaBallProtect : PowerProtection
 {
-Powerup.Duration 5
-DamageFactor "MegaBall", 0.5
+Powerup.Duration 15
+DamageFactor "Rock_MegaBall", 0.34
+DamageFactor "Rock_Kick", 0.5
 }
 actor CutBallProtect : PowerProtection
 {
-Powerup.Duration 5
-DamageFactor "MegaCutBall", 0.5
+Powerup.Duration 15
+DamageFactor "MegaCutBall", 0.34
+DamageFactor "Rock_Kick", 0.5
 }
 actor IceBallProtect : PowerProtection
 {
-Powerup.Duration 5
-DamageFactor "MegaIceBall", 0.5
+Powerup.Duration 15
+DamageFactor "MegaIceBall", 0.34
+DamageFactor "Rock_Kick", 0.5
 }
 actor FireBallProtect : PowerProtection
 {
-Powerup.Duration 5
-DamageFactor "MegaFireBall", 0.5
+Powerup.Duration 15
+DamageFactor "MegaFireBall", 0.34
+DamageFactor "Rock_Kick", 0.5
 }
 actor GutsBallProtect : PowerProtection
 {
-Powerup.Duration 5
-DamageFactor "MegaGutsBall", 0.5
+Powerup.Duration 15
+DamageFactor "MegaGutsBall", 0.34
+DamageFactor "Rock_Kick", 0.5
 }
 actor ElecBallProtect : PowerProtection
 {
-Powerup.Duration 5
-DamageFactor "MegaElecBall", 0.5
+Powerup.Duration 15
+DamageFactor "MegaElecBall", 0.34
+DamageFactor "Rock_Kick", 0.5
 }
 actor BombBallProtect : PowerProtection
 {
-Powerup.Duration 5
-DamageFactor "MegaBombBall", 0.5
+Powerup.Duration 15
+DamageFactor "MegaBombBall", 0.34
+DamageFactor "Rock_Kick", 0.5
 }
 actor OilBallProtect : PowerProtection
 {
-Powerup.Duration 5
-DamageFactor "MegaOilBall", 0.5
+Powerup.Duration 15
+DamageFactor "MegaOilBall", 0.34
+DamageFactor "Rock_Kick", 0.5
 }
 actor TimeBallProtect : PowerProtection
 {
-Powerup.Duration 5
-DamageFactor "MegaTimeBall", 0.5
+Powerup.Duration 15
+DamageFactor "MegaTimeBall", 0.67
+DamageFactor "Rock_Kick", 0.5
 }

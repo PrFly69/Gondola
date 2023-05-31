@@ -19,7 +19,7 @@ TCCC Z 0 A_GunFlash
 goto Ready1
 Ready1:
 TCCC Z 1 A_WeaponReady
-TCCC Z 0 A_GiveInventory("WaveDashAmmo",10)
+TCCC Z 0 A_GiveInventory("WaveDashAmmo",8)
 loop
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 2 A_Lower
@@ -33,11 +33,11 @@ Loop
 NoAmmo:
 TCCC Z 0 A_TakeInventory("TorchBashFlag",999)
 //TCCC Z 0 A_PlaySoundEx("weapon/noammo","Auto")
-TCCC ZZZZZZZ 1 A_GiveInventory("WaveDashAmmo",10)
+TCCC ZZZZZZZ 1 A_GiveInventory("WaveDashAmmo",6)
 NoAmmoLoop:
 TCCC Z 1 A_WeaponReady(14)
-TCCC Z 0 A_GiveInventory("WaveDashAmmo",10)
-TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",100,"Ready1")
+TCCC Z 0 A_GiveInventory("WaveDashAmmo",6)
+TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",6,"Ready1")
 goto NoAmmoLoop
 
 Fire:
@@ -384,7 +384,7 @@ TNT1 A 0 A_GiveInventory("PowerGearEnabled",1)
 TNT1 A 0 A_PlaySound("weapon/torchsuper","Body")
 TNT1 A 0 //A_GiveInventory("TorchjutsuAmmo",20)
 TNT1 A 0 A_GiveInventory("TorchPGArmor",1)
-TNT1 A 0 A_GiveInventory("TorchGearBoost",1)
+//TNT1 A 0 A_GiveInventory("TorchGearBoost",1)
 TNT1 A 0 A_GiveInventory("GuardUpFlag",1)
 TNT1 A 0 A_GiveInventory("WaveDashAmmo",600)
 FlashPG:
@@ -395,7 +395,7 @@ TNT1 A 0 A_JumpIfInventory("TorchjutsuAmmo",400,"FlashPG")
 TNT1 A 0 A_PlaySound("body/torchextinguish","Body")
 TNT1 A 0 A_TakeInventory("PowerGearEnabled",1)
 TNT1 A 0 A_TakeInventory("TorchPGArmor",1)
-TNT1 A 0 A_TakeInventory("TorchGearBoost",1)
+//TNT1 A 0 A_TakeInventory("TorchGearBoost",1)
 TNT1 A 0 A_TakeInventory("GuardUpFlag",1)
 //TNT1 A 0 A_CheckSight("StreetFighterFlash")
 goto Flash
@@ -474,7 +474,7 @@ States
 {
 Pickup:
 TNT1 A 0 A_JumpIfInventory("PGStall_P",1,"No")
-TNT1 A 0 A_JumpIfInventory("TorchTakeFlag",3,"Take")
+TNT1 A 0 A_JumpIfInventory("TorchTakeFlag",5,"Take")
 TNT1 A 0 A_GiveInventory("TorchTakeFlag",1)
 stop
 Take:
@@ -493,11 +493,11 @@ States
 {
 Pickup:
 TNT1 A 0 A_JumpIfInventory("PGStall_P",1,"No")
-TNT1 A 0 A_JumpIfInventory("TorchTakeFlag",1,"Take")
+TNT1 A 0 A_JumpIfInventory("TorchTakeFlag",2,"Take")
 TNT1 A 0 A_GiveInventory("TorchTakeFlag",1)
 stop
 Take:
-TNT1 A 2 A_TakeInventory("TorchjutsuAmmo",1)
+TNT1 A 2 A_TakeInventory("TorchjutsuAmmo",3)
 TNT1 A 0 A_TakeInventory("TorchTakeFlag",20)
 stop
 No:

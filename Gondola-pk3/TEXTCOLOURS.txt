@@ -1,0 +1,12 @@
+GibusGold
+{
+    #D7BB43  #D7BB43   0 104
+    #D7BB43  #ffff73   105 256
+Console:
+    #D7BB43  #D7BB43    0 127
+    #D7BB43  #ffff73  128 256
+Flat:
+    #EBDC57
+}
+
+//sue me

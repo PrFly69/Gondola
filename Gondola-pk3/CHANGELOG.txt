@@ -3666,6 +3666,16 @@ CHANGELOG
 ==Copywep
 -Fixed Nova Beam lagging out servers
 
+==Rock
+-Removed kick cancelling ball drop animation
+-Fixed all balls not having powerprotect, now set to 34%
+--All balls bouncecounts standardized, 5/9 (uncharged/charged)
+*This excludes function on surface contact balls (Guts Ball and Bomb Ball)
+-Cut Ball ripper 4/6 > 6/9
+-Bomb Ball direct damage no longer affected by powerprotect
+--Bomb Ball explosion damage 16/20 > 14/18
+-Time Ball powerprotect factor 100% (bugged) > 67%
+
 ==Gutsman
 -Removed ammo gain while holding Guts Block
 
@@ -3693,8 +3703,20 @@ CHANGELOG
 --Ammo requirement for Dive Tackle 140 > 115
 -Ammo consumed on using Dive Mines 120 > 100
 
+==Skullman
+-Fixed being able to activate parry while dead
+
 ==Gravityman
 -Gravity orb no longer lifts allies
+
+==Knightman
+-Knight Crush speed 50 > 45
+--Returning Knight Crush damage 9 > 18
+-Super Knight Crush reworked: henceforth referred to as Castle Crush
+--Now acts similarly to copywep Knight Crush in that its a ripper boomerang
+--Damage 27 > 24 (base) + 4 (ripper)
+--Stuns enemies for 15 tics on direct and applies 50% hitstun, only stuns on base damage
+-Spinning Mace obit updated to be more culturally appropriate
 
 ==Tomahawkman
 -Updated Silver Tomahawk death sprites, provided by HeelNavi
@@ -3741,3 +3763,13 @@ CHANGELOG
 
 ==Acidman
 -Fixed permanent 5% damage vulnerability after using Acid Barrier
+
+==Torchman
+-Reduced ammo regen 10 per tic > 6 per tic
+-Removed 10% increase in speed on Power Gear
+-Power Gear meter now drains 50% faster when in Power Gear mode, drains 67% slower when not in Power Gear mode
+
+==Bounceman
+-Rubber Latch projectile speed 70 > 60
+--Returning Rubber Latch explosion radius 50 > 28
+--Pull strength on returning Rubber Latch halved if not the initial target

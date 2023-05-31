@@ -499,7 +499,7 @@ damage (0)
 Radius 20
 Height 20
 reactiontime 16
-scale 8.25
+scale 5.5
 speed 0
 States
 {
@@ -556,7 +556,7 @@ damagetype "TundraM_Tornado"
 +DONTBLAST
 +THRUGHOST
 Damage (5)
-Radius 150
+Radius 100
 Height 1350
 Speed 0
 States

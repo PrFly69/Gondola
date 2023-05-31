@@ -34,7 +34,7 @@ Goto Spawn+2
 See:
 CENT B 5
 CENT C 5 //A_PlaySound("weapon/centaurstomp", 2 , 0.3)
-CENT D 5 A_PlaySound("weapon/centaurstomp", CHAN_BODY , 0.3)
+CENT D 5 A_GiveInventory("CentaurmanWalkSnd_P")
 CENT E 5 //A_PlaySound("weapon/centaurstomp", 2 , 0.3)
 CENT B 0
 Goto Spawn+2
@@ -52,5 +52,17 @@ goto PainContinue
 ClassDeath:
 CENT H 0
 goto DeathContinue
+}
+}
+
+actor CentaurmanWalkSnd_P : CustomInventory
+{
+States
+{
+Pickup:
+//TNT1 A 0 A_JumpIf(z-floorz==0,1)
+//stop
+TNT1 A 0 A_PlaySound("weapon/centaurstomp", CHAN_BODY , 0.3)
+stop
 }
 }

@@ -171,7 +171,6 @@ Pain.FragBomber:Pain.SkullSniper:Pain.CentaurArrow:Pain.PlantTrapper2:Pain.Dynam
 
 Pain.ProtoM_Shot2:Pain.ProtoM_Shot3:Pain.MegaM_Shot3:Pain.MegaM_PowerFist2:Pain.MegaM_PowerFist3:
 Pain.Duo_Fist1:Pain.Duo_Fist2:Pain.Duo_Fist3:
-Pain.Rock_MegaBall:Pain.MegaCutBall:Pain.MegaGutsBall:/*Pain.MegaIceBall:*/Pain.MegaBombBall:Pain.MegaFireBall:Pain.MegaElecBall:/*Pain.MegaTimeBall:*/Pain.MegaOilBall:
 
 Pain.CutM_Cutter:Pain.GutsM_Rock:Pain.GutsM_RockBit:Pain.BombM_Boom:Pain.FireM_Storm:Pain.FireM_StormBit:
 Pain.ElecM_Beam:Pain.ElecM_Zap:Pain.ElecM_TeleZap:Pain.OilM_Flame:Pain.OilM_Snap:
