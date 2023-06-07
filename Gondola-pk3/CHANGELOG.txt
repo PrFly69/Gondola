@@ -3761,8 +3761,18 @@ CHANGELOG
 -Mercury Goo use/diminish ratio 4/3 > 7/6
 -Goo Dash use/diminish ratio 8/7 > 14/12
 
+=Pluto
+-Speed scalar buff reverted 125 > 115
+-Speed ammo gain reduced by 16% 
+-Movement checks readjusted for these new values 
+-Breakspark now grants .04 extra speed 
+-Running animation speed now scales with momentum
+
 ==Acidman
 -Fixed permanent 5% damage vulnerability after using Acid Barrier
+
+=Tundraman
+-Fixed Ammobars desyncs
 
 ==Torchman
 -Reduced ammo regen 10 per tic > 6 per tic
@@ -3770,6 +3780,11 @@ CHANGELOG
 -Power Gear meter now drains 50% faster when in Power Gear mode, drains 67% slower when not in Power Gear mode
 
 ==Bounceman
+-Fixed item being able to cancel m2 endlag
+-Fixed returning m2 cable visual glitch
 -Rubber Latch projectile speed 70 > 60
 --Returning Rubber Latch explosion radius 50 > 28
 --Pull strength on returning Rubber Latch halved if not the initial target
+
+=Quint
+-Fixed Shockwave being able to deal up to 50 dmg
