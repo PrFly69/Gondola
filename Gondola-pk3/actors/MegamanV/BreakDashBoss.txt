@@ -287,7 +287,7 @@ Inventory.Maxamount 750//896
 
 actor PlutoPowerTrail : PowerSpeed
 {
-Speed 1.0
+Speed 1.039
 Powerup.Duration 5
 }
 
@@ -410,48 +410,49 @@ actor PlutoDashAmmoAdjust_P : CustomInventory
 {
 States
 {
-Pickup: 
+Pickup:  
 TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",1)   
-TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_SpeedCheck")//PowerWallJumpSpeed
+TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_SpeedCheck") 
 TNT1 A 0 A_JumpIf(CallACS("cbm_CheckForRealMovementInput")==1,"P_SpeedCheck") 
-goto P_Take50
+goto P_Take4
+
 P_SpeedCheck: 
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=7,"P_Give")//10 
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=5,"P_Take25")//6
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=3,"P_Take35")//3
-TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_Take35")
-goto P_Take50 
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=8,"P_Give")
+TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"P_Take1") 
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=4,"P_Take2")
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=1,"P_Take3") 
+goto P_Take4
+
 P_Give:  
-TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_GiveD")
+TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_GiveD") 
 TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"P_Give_R") 
-TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*0.712)//0.5
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*0.6)//0.5
 stop
 P_Give_R: 
-TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*1.130)//1
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*1.1)//1
 stop
 P_GiveD:
 TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"P_GiveD_R")
-TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*0.691)//0.75
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*0.8)//0.75
 stop
 P_GiveD_R:
-TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*1.318)//1.5
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*1.55)//1.5
 stop 
+
 nothings: 
-TNT1 A 0
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",1)
 stop
-P_Take25:  
-TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"Nothings")  
-P_Take25F:  
-TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",25)
+P_Take1:   
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",1)
 stop
-P_Take35:  
-TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"P_Take25F")  
-P_Take35F:  
-TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",35) 
+P_Take2:    
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",20)
+stop
+P_Take3:      
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",40) 
 stop 
-P_Take50:  
-TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"P_Take25F") 
-TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",45) 
+P_Take4:    
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",60) 
 stop 
 }
 }
