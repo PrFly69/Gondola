@@ -734,7 +734,7 @@ actor SakuShockwaveSpawnerP : SakuShockwaveSpawner{translation "202:202=229:229"
 actor SakuShockwaveBit
 {
 PROJECTILE 
-//var int user_power;
+var int user_power;
 damagetype "Quint_Wave"
 Obituary "$OB_QUINTROCK"
 +STEPMISSILE
@@ -742,7 +742,7 @@ Obituary "$OB_QUINTROCK"
 -NOGRAVITY
 maxstepheight 32 
 gravity 555
-Damage (8) //6-user_power
+Damage (20-user_power)
 Radius 32
 Height 8
 Speed 34
@@ -754,8 +754,27 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
-QBOP GGGGGGGGGG 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
-SpawnLOOP:  
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1) 
+TNT1 A 0 A_SetUserVar("user_power",user_power+1)
+QBOP G 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+SpawnLOOP:   
 TNT1 A 0 A_GiveInventory("somesortofweirdassfloorhugger",1)
 QBOP G 1 A_FadeOut(0.67)
 SPAX F 0 A_SetScale(ScaleY-0.5)
@@ -794,7 +813,7 @@ renderstyle normal
 actor Quint_WaveProtect : PowerProtection
 {
 Powerup.Duration 7
-DamageFactor "Quint_Wave", 0.25//0.5
+DamageFactor "Quint_Wave", 0.0//0.5
 }
 
 actor QuintLeapArmor : BasicArmorPickup
