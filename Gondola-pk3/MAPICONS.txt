@@ -1663,7 +1663,7 @@ actor RockClass_MapMarker_1 : RockClass_MapMarker_D {translation "192:192=171:17
 actor RockClass_MapMarker_2 : RockClass_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
 actor RockClass_MapMarker_3 : RockClass_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
-actor Auto_MapMarker_D : Maestro_MapMarker_D
+actor AutoClass_MapMarker_D : Maestro_MapMarker_D
 {
 translation "192:192=208:208", "198:198=128:128"
 States
@@ -1673,10 +1673,10 @@ _MM5 I 2
 stop
 }
 }
-actor Auto_MapMarker_0 : Auto_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
-actor Auto_MapMarker_1 : Auto_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
-actor Auto_MapMarker_2 : Auto_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
-actor Auto_MapMarker_3 : Auto_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
+actor AutoClass_MapMarker_0 : AutoClass_MapMarker_D {translation "192:192=205:205", "198:198=74:74"}
+actor AutoClass_MapMarker_1 : AutoClass_MapMarker_D {translation "192:192=171:171", "198:198=41:41"}
+actor AutoClass_MapMarker_2 : AutoClass_MapMarker_D {translation "192:192=104:104", "198:198=128:128"}
+actor AutoClass_MapMarker_3 : AutoClass_MapMarker_D {translation "192:192=229:229", "198:198=232:232"}
 
 actor Breakman_MapMarker_D : Maestro_MapMarker_D
 {

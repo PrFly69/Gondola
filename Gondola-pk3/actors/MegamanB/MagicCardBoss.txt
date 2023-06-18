@@ -68,8 +68,14 @@ MGCH BCBAA 1 A_GiveInventory("SnortSnortAmmo",4)
 goto Ready1
 
 Flash.Fire:
-TNT1 A 1
-MGCH JKLMNO 2
+TNT1 A 0 A_GiveInventory("MagicCardCooldown_RC",1)
+MGCH A 0 A_JumpIfInventory("PowerRage_ST",1,"Flash_Mainfire_R")
+MGCH DEFGHIJK 1
+TNT1 A 5
+stop
+Flash_Mainfire_R:
+MGCH DFHK 1
+TNT1 A 3
 stop
 
 BotFire:
