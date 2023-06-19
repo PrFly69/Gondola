@@ -140,7 +140,7 @@ actor MetalFloatFlag : OnceC {}
 
 actor PowerMetalFloat : PowerUp
 {
-powerup.duration 6
+powerup.duration 10
 }
 actor PowerMetalFloatSpeed : PowerSpeed
 {

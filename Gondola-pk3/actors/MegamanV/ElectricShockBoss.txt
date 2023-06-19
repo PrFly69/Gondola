@@ -323,7 +323,7 @@ TNT1 A 0 A_JumpIf(momz<0,"PickupH")
 TNT1 A 0
 stop
 PickupH:
-TNT1 A 0 ThrustThingZ(0,3,1,0)
+TNT1 A 0 A_ChangeVelocity(momx,momy,-0.5,CVF_REPLACE)
 stop
 }
 }

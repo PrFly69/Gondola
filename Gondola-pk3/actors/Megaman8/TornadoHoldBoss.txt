@@ -273,7 +273,7 @@ Hover:
 TNT1 A 0 A_GiveInventory("TenguIsHovering",1)
 TNT1 A 0 A_GiveInventory("TenguWasThrusted",1)
 TNT1 A 0 A_TakeInventory("FeelMyPowerAmmo",1,1)
-TNT1 A 0 ThrustThingZ(0,2,1,0)
+TNT1 A 0 A_ChangeVelocity(momx,momy,-0.3,CVF_REPLACE)
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,2,1)
 stop
 

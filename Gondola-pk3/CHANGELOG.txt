@@ -3687,6 +3687,9 @@ CHANGELOG
 -Cluster Bomb cluster spread speed 12 > 8
 -Surface Detonation Hyper Bomb damage 25 > 20
 
+==Metalman
+-Refined hover code, no longer jitters when holding mainfire
+
 ==Airman
 -New Air Shooter/Air Wall player/surface impact SFX added, provided by MusashiAA
 
@@ -3732,10 +3735,26 @@ CHANGELOG
 ==Junkman
 -Fixed Junk Cube health being x10'd, (HP 2000 > 200)
 
+==Tenguman
+-Ported optimized hover method from Primo Patch
+
+==Searchman
+-Homing Sniper speed 28/32 > 32/35
+-Firing Homing Sniper now has 20 tics of endlag
+--Endlag gets reduced by 5 tics per missile fired in a volley
+--Endlag can be cancelled into Search Disk or Deadly Storm 5 tics into endlag
+--Ammo consumption when firing removed
+-Deadly Storm speed reduction while firing removed`
+--Optimized Deadly Storm hovering code
+-Updated skinsprites
+
 ==Aquaman
 -Water Balloon direct damage 4 > 2
 --Water Balloon explosion damage 10 > 9
 --Water Balloon explosive fulldmgmaxradius 0 > 24
+
+==OriginalDuo
+-Fixed SBAR not indicating when Giga Tackle is available
 
 ==EvilRobot
 -Giga Astro Crush powerprotect 75% > 33%
@@ -3743,14 +3762,18 @@ CHANGELOG
 ==Magicman
 -Fixed bots crashing online
 
+==Tornadoman
+-Ported optimized hover method from Primo Patch
+
 ==Hornetman
 -Honeycomb Crash endlag reduced by 5 tics
+-Ported optimized hover method from Primo Patch
 
 ==Galaxyman
 -Black Hole Bomb no longer affects Drillman and Groundman while they are in dig mode
 
 ==Sheepman
--Fixed R pain animation
+-Fixed Thunder Rail pain animation
 
 ==Terra
 -Spark Chaser pre-release speed 12 > 14
@@ -3771,6 +3794,9 @@ CHANGELOG
 ==Mars
 -Health reduced 135 > 125
 -Ammo consumption on Photon Missile 56 > 84 (max ammo capacity 6 missiles > 4 missiles)
+
+==Jupiter
+-Ported optimized hover method from Primo Patch
 
 =Pluto
 -Speed scalar buff reverted 125 > 115

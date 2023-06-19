@@ -287,7 +287,7 @@ Inventory.Maxamount 750//896
 
 actor PlutoPowerTrail : PowerSpeed
 {
-Speed 1.039
+Speed 1.04
 Powerup.Duration 5
 }
 
@@ -312,7 +312,7 @@ actor PlutoMeowItem : CustomInventory
 inventory.amount 1
 inventory.maxamount 1
 inventory.icon "PlMwIcon"
-inventory.pickupmessage "There's MEOW afoot."
+inventory.pickupmessage "burenyuu"
 scale 2.0
 +INVBAR
 states
@@ -406,6 +406,93 @@ actor PlutoBoostCheckDelay : Powerup
 Powerup.Duration 2
 }
 
+/*actor PlutoDashAmmoAdjust_P : CustomInventory
+{
+States
+{
+Pickup:  
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",1)   
+TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_SpeedCheck") 
+TNT1 A 0 A_JumpIf(CallACS("cbm_CheckForRealMovementInput")==1,"P_SpeedCheck") 
+goto P_Take4
+
+P_SpeedCheck: 
+TNT1 A 0 A_JumpIfInventory("BreakingIntoADashAmmo",655,"P_BoostCheck")
+TNT1 A 0 A_JumpIfInventory("BreakingIntoADashAmmo",374,"P_HardCheck")
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=8,"P_Give")
+TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"P_Take1") 
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=5,"P_Take2")
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=2.5,"P_Take3") 
+goto P_Take4
+
+P_HardCheck:
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=12,"P_Give")
+TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"P_Take1") 
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=7.5,"P_HardTake2")
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=5,"P_HardTake3") 
+goto P_HardTake4
+
+P_BoostCheck:
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=16,"P_Give")
+TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"P_Take1") 
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=10,"P_BoostTake2")
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=5,"P_BoostTake3") 
+goto P_BoostTake4
+
+P_Give:  
+TNT1 A 0 A_JumpIfInventory("VivifyDelay8",1,"P_GiveD") 
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"P_Give_R") 
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*0.6)//0.5
+stop
+P_Give_R: 
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*1.1)//1
+stop
+P_GiveD:
+TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"P_GiveD_R")
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*0.8)//0.75
+stop
+P_GiveD_R:
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",sqrt(MOMX*MOMX+MOMY*MOMY)*1.55)//1.5
+stop 
+
+nothings: 
+TNT1 A 0 A_GiveInventory("BreakingIntoADashAmmo",1)
+stop
+P_Take1:   
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",1)
+stop
+P_Take2:    
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",20)
+stop
+P_Take3:      
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",40) 
+stop 
+P_Take4:    
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",60) 
+stop 
+
+P_HardTake2:    
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",40)
+stop
+P_HardTake3:      
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",80) 
+stop 
+P_HardTake4:    
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",120) 
+stop 
+
+P_BoostTake2:    
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",80)
+stop
+P_BoostTake3:      
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",160) 
+stop 
+P_BoostTake4:    
+TNT1 A 0 A_TakeInventory("BreakingIntoADashAmmo",240) 
+stop 
+}
+}*/
+
 actor PlutoDashAmmoAdjust_P : CustomInventory
 {
 States
@@ -417,7 +504,7 @@ TNT1 A 0 A_JumpIf(CallACS("cbm_CheckForRealMovementInput")==1,"P_SpeedCheck")
 goto P_Take4
 
 P_SpeedCheck: 
-TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=8,"P_Give")
+TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=12,"P_Give")
 TNT1 A 0 A_JumpIfInventory("PowerWallJumpSpeed",1,"P_Take1") 
 TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=4,"P_Take2")
 TNT1 A 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=1,"P_Take3") 

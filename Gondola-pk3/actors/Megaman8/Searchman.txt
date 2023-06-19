@@ -26,16 +26,20 @@ player.startitem "WaveBurnerWeakness", 1
 player.startitem "MagmaBazookaWeakness", 1
 player.startitem "SolarBlazeWeakness", 1
 player.startitem "BreakDashWeakness", 1
++NOSKIN
 States
 {
 Spawn:
 SEAR A 0
 SEAR B 1
-SEAR A 1
+SEAR A 1 A_JumpIf(z-floorz>0,"Jumping")
 Goto Spawn+2
 See:
-SEAR BCDE 5
+SEAR BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"Jumping")
 Goto Spawn
+Jumping:
+SCMR A 1 A_JumpIf(z-floorz<=0, "Spawn")
+loop
 Missile:
 SEAR F 0 A_JumpIfInventory("VivifyDelay7",1,"Missile2")
 SEAR F 5
@@ -47,21 +51,26 @@ SEAR J 9
 goto Spawn
 
 CustomState1:
-SCMR A 13
-SCMR BC 5
-goto Spawn+2
+SCMR A 23
+//SCMR BC 5
+goto Jumping
 
 CustomState2:
 SCMR C 10
-goto Spawn+2
+SCMR B 3
+goto Jumping
 
 CustomState3:
 SCMR CBA 5
-goto Spawn+2
+goto Jumping
 
 CustomState4:
-SCMR B 1
-goto Spawn
+SCMR BC 3
+goto Jumping
+
+CustomState5:
+SCMR B 6
+goto CustomState2
 
 ClassPain:
 SEAR H 0
