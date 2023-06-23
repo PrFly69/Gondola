@@ -402,8 +402,8 @@ Renderstyle Translucent
 Alpha 0.75
 var int user_power;
 Damage (3)
-radius 16
-height 16
+radius 8
+height 8
 Speed 60
 scale 2.5
 States
@@ -810,6 +810,7 @@ PUM4 Z 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
 loop
 Death:
 TNT1 A 0 A_PlaySoundEx("weapon/CutterCatch","Weapon")
+TNT1 A 0 A_TakeFromTarget("PumpmanNoHandleF",1)
 TNT1 A 1 A_GivetoTarget("RollingCutterFlag",1)
 stop
 }

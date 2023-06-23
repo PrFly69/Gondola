@@ -3772,6 +3772,10 @@ CHANGELOG
 ==Galaxyman
 -Black Hole Bomb no longer affects Drillman and Groundman while they are in dig mode
 
+==Pumpman
+-Pump Stream projectile height/radius 16/16 > 8/8
+-Fixed skinsprite issues with Pump Slugger
+
 ==Sheepman
 -Fixed Thunder Rail pain animation
 
