@@ -667,6 +667,7 @@ IsSelected HomingSniperBoss{
 		InInventory SearchTargetID1CD,1{DrawImage"HSNCJ0",18,60;}
 		InInventory not SearchTargetID1CD,1{DrawImage"HSNCK0",18,60;}}
 	InInventory SearchDeadlyCheck,1{DrawBar"BARFLS1","NOBAR",SearchDeadlyCheck,vertical,24,8;}
+	InInventory SearchFireDelay,1{DrawBar"SRCHCBAR","NOBAR",SearchFireDelay,vertical,24,8;}
 	}
 IsSelected IceWaveBoss{DrawBar"BARAMM45","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected FlashBombBoss{Drawbar"BARAMM46","BAREMPTY",Ammo1,vertical,16,8;

@@ -3777,7 +3777,7 @@ CHANGELOG
 -Fixed skinsprite issues with Pump Slugger
 
 ==Sheepman
--Fixed Thunder Rail pain animation
+-Fixed Thunder Rain pain animation
 
 ==Terra
 -Spark Chaser pre-release speed 12 > 14

@@ -9,6 +9,9 @@ texture HC_S_VAR,56,8{patch TNT1A0,0,0}
 texture HC_T_BAR,8,56{patch B_BAR00H,0,0{Translation"192:192=160:160","198:198=163:163","199:199=164:164"}}
 texture HC_T_VAR,56,8{patch HC_T_BAR,0,0{rotate 90}}
 
+texture SRCHCBAR,8,56{patch B_BAR10C,0,0{Translation"198:198=230:230"}}
+texture SRCHCVAR,56,8{patch SRCHCBAR,0,0{rotate 90}}
+
 //JOE MAMA
 graphic JOEMICON,30,30{XScale 2.0 YScale 2.0 Patch RSHJOEM0,0,0} 
 texture SJOEBAV,8,56{patch TNT1A0,0,0}
