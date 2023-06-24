@@ -288,6 +288,7 @@ weapon/TenguTHold S_M8_A0 $limit weapon/TenguTHold 0
 //Search
 weapon/searchdash SRCHDASH
 weapon/searchdstorm SRCHDEST
+weapon/searchshot SRCHHOM
 $volume class/SearchBush 0.7
 
 //Aqua

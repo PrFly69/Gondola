@@ -3738,15 +3738,22 @@ CHANGELOG
 ==Tenguman
 -Ported optimized hover method from Primo Patch
 
+==Swordman
+-Flame Sword damage 16/16/22 > 15/15/20
+--Increased delay between Flame Sword swings by 4 tics
+--Flame Sword particles now have +BRIGHT
+-Removed ability to dash after final Flame Sword swipe
+
 ==Searchman
 -Homing Sniper speed 28/32 > 32/35
 -Firing Homing Sniper now has 20 tics of endlag
 --Endlag gets reduced by 5 tics per missile fired in a volley
 --Endlag can be cancelled into Search Disk or Deadly Storm 5 tics into endlag
 --Ammo consumption when firing removed
--Deadly Storm speed reduction while firing removed`
+-Deadly Storm speed reduction while firing removed
 --Optimized Deadly Storm hovering code
 -Updated skinsprites
+-New Homing Sniper/Deadly Storm sprites and firing SFX, provided by Fr3ak and MusashiAA respectively
 
 ==Aquaman
 -Water Balloon direct damage 4 > 2

@@ -14,6 +14,7 @@ C_03 E 1
 loop
 Ready:
 XTOP A 0 ACS_ExecuteAlways(998,0,DYE_TOPMAN)
+XTOP A 0 //A_SpawnItemEx("TopSparkHelper")
 XTOP A 0 A_TakeInventory("SpinTime",1)
 XTOP A 1 A_WeaponReady
 wait
@@ -54,7 +55,7 @@ TNT1 A 1 Offset(-2,69)
 XTOP A 1 Offset(-2,69)
 XTOP A 1 Offset(-1,48)
 XTOP A 1 A_WeaponReady(14)
-Goto Ready+1
+Goto Ready+2
 BotFire:
 XTOP A 0 A_Jump(128,"AltFire")
 XTOP A 0 A_GiveInventory("Top_Charge",70)
@@ -346,7 +347,7 @@ XTOP A 1 offset(60,36)
 XTOP A 1 offset(30,32)
 XTOP A 0 A_TakeInventory("TopDash_End",999)
 XTOP A 3 A_WeaponReady(14)
-Goto Ready+1
+Goto Ready+2
 }
 }
 
@@ -1016,3 +1017,22 @@ XTOP "#" 0 A_ReFire(1)goto Spin
 XTOP "#" 0 A_JumpIfInventory("Top_Charge",15,"FireCharge")
 XTOP "#" 1 OffSet(5,32)
 XTOP "#" 0 A_ReFire("FireCharge")goto Spin*/
+
+//hi
+/*actor TopSparkHelper : BasicHelper
+{
+renderstyle add
+var int user_top;
+States
+{
+Spawn:
+TOPM F 1 A_JumpIfInTargetInventory("TopDashFlag",1,"TopSparkStarter")
+NoSpark:
+TOPM F 1 A_SetUserVar(user_top,1)
+goto Spawn
+TopSparkStarter:
+POWB U 1 A_Warp(AAPTR_TARGET, 0, 0, 0, 0, WARPF_ABSOLUTEANGLE|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+TOPM FFFF 0 A_SpawnItemEx("ElecricShockBossPuffSparkFX",0,0,0,15,0,random(-15,15),random(0,359),1)
+goto Spawn
+}
+}*/
