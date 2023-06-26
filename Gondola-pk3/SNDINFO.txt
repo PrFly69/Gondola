@@ -554,6 +554,8 @@ weapon/TundraManStorm TUNDSTRM
 
 $volume weapon/BRGStaff 0.8
 
+om/nom HSHMUNCH
+
 
 ///// MMK /////
 

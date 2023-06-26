@@ -3838,5 +3838,8 @@ CHANGELOG
 --Fixed item being able to cancel Rubber Latch endlag
 --Fixed Returning Rubber Latch cable visual glitch
 
+==HyperstormH
+-Suction kills are now part of a balanced breakfast
+
 =Quint
 -Fixed Shockwave being able to deal up to 50 dmg

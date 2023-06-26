@@ -1125,6 +1125,26 @@ stop
 }
 }
 
+actor KillHSH_DrainHit : BasicHitBase
+{
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 A_GiveToTarget("KillHSH_DrainHit_P",1)
+stop
+}
+}
+actor KillHSH_DrainHit_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_GiveToTarget("Health",2)
+stop
+}
+}
+
 actor PainNeptune_LeapHit : BasicHitBase
 {
 States
