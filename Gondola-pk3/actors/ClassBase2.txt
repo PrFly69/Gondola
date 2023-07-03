@@ -20,6 +20,7 @@ states
 //"----" H 0 ThrustThingZ(0,22222,0,1)
 //goto Pain+2
 
+
 Death.HSH_Drain:
 "----" H 0 A_SpawnItemEx("KillHSH_DrainHit")
 "----" H 0 A_PlaySoundEx("om/nom","SoundSlot5")

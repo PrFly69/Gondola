@@ -237,7 +237,7 @@ ODUI S 0 A_Stop
 ODUI S 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,0,1)//No Speed
 ODUI S 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)//No Jump
 ODUI S 0 A_ChangeFlag("NOGRAVITY",1)
-ODUI S 0 A_PlaySoundEx("weapon/pcharge","Weapon")
+ODUI S 0 A_PlaySoundEx("weapon/DuoMeteorCharge","Weapon")
 ODUI S 0 ACS_NamedExecute("BULL_SetState",0,6)
 ODUI S 1 offset(-3,38)ThrustThingZ(0,4,0,0)
 ODUI S 1 offset(-6,44)A_JumpIfInventory("PowerRage_ST",1,1)
@@ -264,7 +264,7 @@ TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)
 TNT1 A 0 A_GiveInventory("ODuoMeteorGo",1)
 TNT1 A 0 A_TakeInventory("ODuoMeteorFlag",9)
 TNT1 A 0 A_GunFlash("Flash.Meteor")
-TNT1 A 0 A_PlaySoundEx("weapon/GrenadeShot","Weapon")
+TNT1 A 0 A_PlaySoundEx("weapon/DuoMeteorLaunch","Weapon")
 TNT1 A 0 A_SpawnItemEx("ODuoTheMeteor",0,0,0,cos(-pitch)*1,0,sin(-pitch)*1,0,1)
 Goto MeteorLoopStart
 
@@ -698,13 +698,15 @@ Stop
 
 actor ODuoTheMeteorBoom : BasicExplosion
 {
-Damagetype "ODuo_MeteorPush"
+Damagetype "ODuo_Meteor"
 Obituary "$OB_ODUOMETEOR"
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_PlaySoundEx("weapon/blizzstrike","Weapon")
+TNT1 A 0 A_PlaySoundEx("weapon/DuoMeteorImpact","Weapon")
+TNT1 A 0 A_PlaySound("weapon/BlizzStrike","Voice",0.5)
+TNT1 B 0 A_Quake(5,9,0,48)
 TNT1 A 0 A_Explode(0,80,0,0,80)//A_Explode(33,80,0,0,80)
 TNT1 A 15 //A_SpawnItemEx
 stop
@@ -713,7 +715,7 @@ stop
 
 actor ODuoTheMeteor
 {
-BounceSound "misc/quake"
+BounceSound "weapon/DuoMeteorBounce"
 PROJECTILE
 damagetype "ODuo_Meteor"
 Obituary "$OB_ODUOMETEOR"

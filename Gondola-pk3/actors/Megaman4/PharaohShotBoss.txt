@@ -90,7 +90,7 @@ PHAA E 0 A_Refire("Hold4")
 Goto Throw3
 
 Throw1:
-PHAA F 0 A_PlaySoundEx("weapon/pharaoh1","Weapon")
+PHAA F 0 A_PlaySoundEx("weapon/Phar_Fire1","Weapon")
 PHAA F 0 A_GiveInventory("PharaohmanMain1_CI",1)
 PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
 PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
@@ -105,7 +105,7 @@ TNT1 A 1 A_ClearRefire
 PHAA A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 Goto Ready+1
 Throw2:
-PHAA F 0 A_PlaySoundEx("weapon/pharaoh1","Weapon")
+PHAA F 0 A_PlaySoundEx("weapon/Phar_Fire2","Weapon")
 PHAA F 0 A_GiveInventory("PharaohmanMain2_CI",1)
 PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
 PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
@@ -122,7 +122,7 @@ PHAA A 1 OffSet(0,48)
 PHAA A 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 Goto Ready+1
 Throw3:
-PHAA F 0 A_PlaySoundEx("weapon/pharaoh2","Weapon")
+PHAA F 0 A_PlaySoundEx("weapon/Phar_Fire3","Weapon")
 PHAA F 0 A_GiveInventory("PharaohmanMain3_CI",1)
 PHAA F 0 A_TakeInventory("ManInGauseAmmo",999)
 PHAA F 0 A_TakeInventory("PharaohSpamFlag",999)
@@ -373,25 +373,14 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-X_4D H 4
+X_4D HI 4
 loop
 Death:
 TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
 TNT1 A 0 A_Explode(10,64,0,0,32)//A_Explode(65,128,0)
-//X_4D PQRSTYVWXY 1
-X_4D H 1 A_FadeOut(.125)
-X_4D H 0 A_SetScale(ScaleX+0.8)
-X_4D H 1 A_FadeOut(.125)
-X_4D H 0 A_SetScale(ScaleX+0.8)
-X_4D H 1 A_FadeOut(.125)
-X_4D H 0 A_SetScale(ScaleX+0.8)
-X_4D H 1 A_FadeOut(.125)
-X_4D H 0 A_SetScale(ScaleX+0.8)
-X_4D H 1 A_FadeOut(.125)
-X_4D H 0 A_SetScale(ScaleX+0.8)
-X_4D H 1 A_FadeOut(.125)
-X_4D H 0 A_SetScale(ScaleX+0.8)
+PHAA F 0 A_PlaySound("weapon/pharaoh2","Voice",0.25)
+X_4D PQRSTYVWXY 1
 stop
 }
 }
@@ -421,6 +410,8 @@ TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
 TNT1 A 0 A_Explode(30,128,0,0,32)//A_Explode(65,128,0)
 //X_4D PQRSTYVWXY 1
+PHAA F 0 A_PlaySoundEx("weapon/PharaohShotExplode","Weapon")
+PHAA F 0 A_PlaySound("weapon/pharaoh2","Voice",0.25)
 X_4D LMNO 2
 stop
 }

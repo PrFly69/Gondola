@@ -41,6 +41,10 @@ Powerup.Duration 0x7FFFFFFC
 damagefactor "LaserBuster", 0.71
 damagefactor "ArrowBuster", 0.71
  
+damagefactor "DuoFist1", 0.65//no more justice for you maestro :^)
+damagefactor "DuoFist2", 0.65
+damagefactor "DuoFist3", 0.65
+ 
 damagefactor "Beat", 0.71
 damagefactor "EddieBomber", 0.71
 damagefactor "Reggae", 0.71
@@ -105,7 +109,7 @@ damagefactor "DarkShield", 0.41
  
 damagefactor "BlizzardAttack", 0.65
 damagefactor "CentaurFlash", 0.8 damagefactor "CentaurArrow", 0.71
-damagefactor "FlameBlast", 0.81
+damagefactor "FlameBlast", 0.51
 damagefactor "KnightCrush", 0.81
 damagefactor "PlantBarrier", 0.71 damagefactor "PlantTrapper", 0.71
 damagefactor "SilverTomahawk", 0.75

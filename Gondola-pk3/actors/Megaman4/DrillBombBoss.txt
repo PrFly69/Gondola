@@ -107,30 +107,41 @@
 		Goto Ready1
 
 		AltFire:
-		DRIA B 1 A_JumpIfInventory("DigLimit", 800, "AltFire2")
-		DRIA B 2
+		DRIA B 3 offset(0,82)A_JumpIfInventory("DigLimit", 800, "AltFire2")
+		DRIA B 1 offset(0,62)
+		DRIA C 1 offset(0,42)
+		DRIA D 1 offset(0,22)
 		Goto Ready1
 		
 		AltFire2:
 		DRIA B 0 A_GiveInventory("NoJumpCancel",1)
 		DRIA B 0 A_GiveInventory("DrillingFlag",1)
 		DRIA B 0 ThrustThingZ(0,50,0,0)
+		DRIA B 1 offset(0,62)A_SpawnItemEx("DrillDigCrush",0,0,66,0,0,10)
+		DRIA C 1 offset(0,42)A_SpawnItemEx("DrillDigCrush",0,0,66,0,0,10)
+		DRIA D 1 offset(0,22)A_SpawnItemEx("DrillDigCrush",0,0,66,0,0,10)
+		Altfire2Loop:
 		DRIA B 0 A_TakeInventory("JumpCancler",2)
-		DRIA B 1 A_SpawnItemEx("DrillDigCrush",0,0,66,0,0,10)
-		DRIA B 0 A_JumpIf(VelZ <= 0, "AltFire3")
-		Goto AltFire2+4
+		DRIA CD 1 offset(0,2)A_SpawnItemEx("DrillDigCrush",0,0,66,0,0,10)
+		DRIA B 0 A_JumpIf(VelZ <= 0, "AltFire3HudOffset")
+		loop
 		
+		AltFire3HudOffset:
+		DRIA B 0 A_SpawnItemEx("DrillDigCrush",0,0,-10,0,0,-10)
+		DRIA B 0 A_GiveInventory("DigLimitDelay",1)
+		DRIA B 0 A_JumpIfInventory("DigLimitDelay",100,"AirE")
+		DRIA C 1 offset(0,32)A_JumpIf(z-floorz==0,"DigStart") //The Ground and Air check
 		AltFire3:
 		DRIA B 0 A_SpawnItemEx("DrillDigCrush",0,0,-10,0,0,-10)
 		DRIA B 0 A_GiveInventory("DigLimitDelay",1)
 		DRIA B 0 A_JumpIfInventory("DigLimitDelay",100,"AirE")
-		DRIA B 2 A_JumpIf(z-floorz==0,"DigStart") //The Ground and Air check
+		DRIA CD 1 offset(0,62)A_JumpIf(z-floorz==0,"DigStart") //The Ground and Air check
 		Loop
 		
 		AirE:
 		DRIA B 0 A_WeaponReady(WRF_NOSWITCH|WRF_NOFIRE)
 		DRIA B 0 A_SpawnItemEx("DrillDigCrush",0,0,-10,0,0,-10)
-		DRIA B 1 A_JumpIf(z-floorz==0,"DigStart")
+		DRIA CD 1 offset(0,82)A_JumpIf(z-floorz==0,"DigStart")
 		Loop
 				
 		DigStart:
@@ -192,7 +203,11 @@
 		DRIA A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
 		DRIA B 0 ThrustThingZ(0,70,0,0)//60
 		DRIA B 0 A_ChangeFlag("THRUACTORS",1)
-		DRIA CCCCC 2 A_FireCustomMissile("DrillDamager",0,0,0,20)
+		DRIA C 1 offset(0,82)A_FireCustomMissile("DrillDamager",0,0,0,20)
+		DRIA D 1 offset(0,62)A_FireCustomMissile("DrillDamager",0,0,0,20)
+		DRIA C 1 offset(0,42)A_FireCustomMissile("DrillDamager",0,0,0,20)
+		DRIA D 1 offset(0,22)A_FireCustomMissile("DrillDamager",0,0,0,20)
+		DRIA CDCDC 2 offset(0,2)A_FireCustomMissile("DrillDamager",0,0,0,20)
 		//DRIA B 0 SetPlayerProperty(0,0,0)
 		DRIA B 0 A_ChangeFlag("NONSHOOTABLE",0)
 		DRIA B 0 A_ChangeFlag("THRUACTORS",0)
@@ -201,7 +216,10 @@
 		DRIA B 0 A_TakeInventory("NoJumpCancel",1)
 		TNT1 A 0 A_TakeInventory("GalaxyM_BHBProtect")
 		TNT1 A 0 A_TakeInventory("NoPushFlag")
-		DRIA B 4
+		DRIA B 1 offset(0,22)
+		DRIA A 1 offset(0,42)
+		DRIA A 1 offset(0,62)
+		DRIA A 1 offset(0,82)
 		Goto Ready1
 		
 		Flash:

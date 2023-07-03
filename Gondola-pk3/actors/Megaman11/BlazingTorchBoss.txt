@@ -33,11 +33,11 @@ Loop
 NoAmmo:
 TCCC Z 0 A_TakeInventory("TorchBashFlag",999)
 //TCCC Z 0 A_PlaySoundEx("weapon/noammo","Auto")
-TCCC ZZZZZZZ 1 A_GiveInventory("WaveDashAmmo",6)
+TCCC ZZZZZZZ 1 A_GiveInventory("WaveDashAmmo",10)
 NoAmmoLoop:
 TCCC Z 1 A_WeaponReady(14)
-TCCC Z 0 A_GiveInventory("WaveDashAmmo",6)
-TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",6,"Ready1")
+TCCC Z 0 A_GiveInventory("WaveDashAmmo",10)
+TCCC Z 0 A_JumpIfInventory("WaveDashAmmo",10,"Ready1")
 goto NoAmmoLoop
 
 Fire:

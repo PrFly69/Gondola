@@ -39,7 +39,7 @@ actor DuoMeteorWepC : BaseMM8BDMWep_CBM
 			TNT1 A 0 A_GiveInventory("DuoMeteor",1)
 			TNT1 A 0 A_Stop
 			TNT1 A 0 SetPlayerProperty(0,1,0)
-			TNT1 A 0 A_PlaySoundEx("weapon/pcharge","Weapon")
+			TNT1 A 0 A_PlaySoundEx("weapon/DuoMeteorCharge","Weapon")
 			//TNT1 A 0 A_JumpIfInventory("DuoJusticeBought",1,"FireRise2")
 			goto FireRise
 		FireRise:
@@ -71,6 +71,7 @@ actor DuoMeteorWepC : BaseMM8BDMWep_CBM
 			loop
 
 		Ball:
+			TNT1 A 0 A_PlaySoundEx("weapon/DuoMeteorLaunch","Weapon")
 			TNT1 A 0 A_GiveInventory("InvulnerableOn_Pickup",1)
 			TNT1 A 0 SetPlayerProperty(0,1,0)
 			TNT1 A 0 A_TakeInventory("DuoMeteorTimer",999)
@@ -159,7 +160,9 @@ actor DuoMeteorWepC : BaseMM8BDMWep_CBM
 			TNT1 A 0 A_GiveInventory("DuoMeteorAmmo",70)
 			goto Fall
 		Collide:
-			TNT1 A 0 A_PlaySoundEx("weapon/blizzstrike","Weapon")
+			TNT1 A 0 A_PlaySoundEx("weapon/DuoMeteorImpact","Weapon")
+			TNT1 A 0 A_PlaySoundEx("weapon/BlizzStrike","Voice")
+			TNT1 B 0 A_Quake(5,9,0,48)
 			TNT1 A 0 A_FireCustomMissile("DuoMeteorCollide",0,0,0,0)
 			goto Fall
 		
@@ -183,7 +186,7 @@ actor DuoMeteorWepC : BaseMM8BDMWep_CBM
 			loop
 			
 		DuoHasStopped:
-			TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
+			TNT1 A 0 A_PlaySoundEx("weapon/DuoMeteorCancel","SoundSlot6")
 			TNT1 A 0 A_Stop
 			TNT1 A 0 A_GiveInventory("DuoMeteorEnd",1)
 			//TNT1 A 0 ACS_NamedExecuteAlways("BULL_SetState",0,1)
@@ -410,7 +413,7 @@ Stop
 
 actor DuoTheMeteor
 {
-BounceSound "misc/quake"
+BounceSound "weapon/DuoMeteorBounce"
 PROJECTILE
 damagetype "DuoRam"
 Obituary "$OB_DUOMETEOR"

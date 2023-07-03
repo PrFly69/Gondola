@@ -1161,7 +1161,7 @@ stop
 
 actor QShot
 {
-Translation "204:204=215:215"
+Translation "204:204=215:215","202:202=4:4","199:199=215:215"
 PROJECTILE
 damagetype "Quint_Shot"
 Obituary "$OB_QUINTBUSTER"
@@ -1176,17 +1176,17 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-W_0B B 1
+QBUS L 1
 wait
 Death:
-W_0B B 1
+NEDR UVU 2
 stop
 }
 }
-actor QShotB : QShot{translation "204:204=205:205"}
-actor QShotR : QShot{translation "204:204=171:171"}
-actor QShotO : QShot{translation "204:204=104:104"}
-actor QShotP : QShot{translation "204:204=229:229"}
+actor QShotB : QShot{translation "204:204=205:205","202:202=4:4","199:199=205:205"}
+actor QShotR : QShot{translation "204:204=171:171","202:202=4:4","199:199=171:171"}
+actor QShotO : QShot{translation "204:204=104:104","202:202=4:4","199:199=104:104"}
+actor QShotP : QShot{translation "204:204=229:229","202:202=4:4","199:199=229:229"}
 
 
 actor QuintMain2_CI : TeamColor_CI

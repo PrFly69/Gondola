@@ -3663,8 +3663,16 @@ CHANGELOG
 
 
 =====2.6.1H
-==Copywep
+==Copyweapons
+-Flame Blast copywep damage 32 > 20
+-Fixed Duo Fist not having copynerf, damage reduced 25/35/70 > 16/22/45
 -Fixed Nova Beam lagging out servers
+
+==Megaman
+-Optimized charging code to make tapfiring/charging more convenient
+
+==Duo
+-New sounds for meteor and slam added, made by MusashiAA
 
 ==Rock
 -Removed kick cancelling ball drop animation
@@ -3683,9 +3691,13 @@ CHANGELOG
 -Fixed Ice Cube health being x10'd, (HP 500 > 50)
 -Reload Ice Lance now has wind FX, provided by Fr3ak
 
+==Fireman
+-Fire Wave now blocks shots, has 4 tics less lifetime before despawning
+
 ==Bombman
 -Cluster Bomb cluster spread speed 12 > 8
--Surface Detonation Hyper Bomb damage 25 > 20
+--Cluster Bomb cluster explosion radius 50 > 80, maxdmgradius 81 > 40
+-Surface Detonation Hyper Bomb damage 25 > 24
 
 ==Metalman
 -Refined hover code, no longer jitters when holding mainfire
@@ -3702,7 +3714,13 @@ CHANGELOG
  
 ==Pharaohman
 -Pharaoh Shot explosion fulldmgmaxradius 16 > 32
- 
+--Pharaoh Shot firing sounds imported from CBM
+--New sound for Pharaoh Shot explosion added, made by MusashiAA
+--Updated FX for Pharaoh Shot midcharge
+
+==Drillman
+-Updated HUD, made by Lamp
+
 ==Diveman
 -Dive Missile now goes towards where user is looking instead of where cursor is
 --Dive Missile horizontal spread halved (-20,20) > (-10,10), vertical spread doubled (-4,4) > (-8,8)
@@ -3762,6 +3780,8 @@ CHANGELOG
 
 ==OriginalDuo
 -Fixed SBAR not indicating when Giga Tackle is available
+-Fixed Original Duo Meteor not having knockback on direct
+-New sounds for meteor added, made by MusashiAA
 
 ==EvilRobot
 -Giga Astro Crush powerprotect 75% > 33%
@@ -3805,6 +3825,7 @@ CHANGELOG
 ==Mars
 -Health reduced 135 > 125
 -Ammo consumption on Photon Missile 56 > 84 (max ammo capacity 6 missiles > 4 missiles)
+-Added FX to Photon Missile travel
 
 ==Jupiter
 -Ported optimized hover method from Primo Patch
@@ -3827,7 +3848,6 @@ CHANGELOG
 -Fixed SBAR desyncs
 
 ==Torchman
--Reduced ammo regen 10 per tic > 6 per tic
 -Removed 10% increase in speed on Power Gear
 -Power Gear meter now drains 50% faster when in Power Gear mode, drains 67% slower when not in Power Gear mode
 
@@ -3842,4 +3862,5 @@ CHANGELOG
 -Suction kills are now part of a balanced breakfast
 
 =Quint
+-Updated Quint Buster projectile sprites to resemble Mega Buster's Game Boy projectile sprites
 -Fixed Shockwave being able to deal up to 50 dmg

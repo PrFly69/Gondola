@@ -217,6 +217,8 @@ Goto Pain+2
 Pain.ODuo_Meteor:
 "----" H 0 A_SpawnItemEx("PainODuo_MeteorHit")
 "----" H 0 A_GiveInventory("ODuo_MeteorProtect",1)
+"----" H 0 A_SpawnItemEx("PainODuo_MeteorPushHit")
+"----" H 0 ThrustThingZ(0,28,0,0)
 Goto Pain+2
 
 Pain.ConcreteM_Bash:

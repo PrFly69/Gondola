@@ -15,6 +15,14 @@ weapon/reversepcharge PROTCHRE
 weapon/NewBassBuster CCBMBUST
 weapon/NewBassChargeBuster CCBMCHRG
 
+//Duo (ok technically he's in mm8 but shut up)
+weapon/DuoMeteorBounce DUOBOUNC
+weapon/DuoMeteorCharge DUOCHARG
+weapon/DuoMeteorLaunch DUOLAUNC
+weapon/DuoMeteorCancel DUOMCANC
+weapon/DuoMeteorImpact DUOIMPCT
+weapon/DuoGSlamExplode DUOEXPLD
+
 //Maestro
 weapon/MaestroFuzz FLTELE
 weapon/lflcharge MMBNCHRG
@@ -33,6 +41,7 @@ weapon/thunderbeamdie	ELEKILL
 //Fire
 weapon/burnbabyburn FIRERING
 weapon/firemanshot2 FIRESHT2
+weapon/firewavemelt MELTCRPR
 
 //Ice
 weapon/icemansnow POCKICE
@@ -150,6 +159,7 @@ weapon/pharaoh5 phshot5
 weapon/Phar_Fire1 S_M4_D3 $limit weapon/Phar_Fire1 0
 weapon/Phar_Fire2 S_M4_D4 $limit weapon/Phar_Fire2 0
 weapon/Phar_Fire3 S_M4_D5 $limit weapon/Phar_Fire3 0
+weapon/PharaohShotExplode PHASHEXP
 
 //Skull
 weapon/SkullParryShot SKUPRSHT $volume weapon/SkullParryShot 0.75
