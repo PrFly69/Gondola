@@ -291,7 +291,7 @@
 	Damage (0)
 	Radius 16
 	Height 10
-	Speed 30
+	Speed 35
 	scale 2.5
 	States
 	{
@@ -339,7 +339,7 @@
 
   actor BurstDangerWrap2 : BurstDangerWrap
   {
-	Speed 25
+	Speed 30
 	States
 	{
 		Spawn:
@@ -389,7 +389,7 @@
 
   actor BurstDangerWrap3 : BurstDangerWrap
   {
-	Speed 20
+	Speed 25
 	States
 	{
 		Spawn:

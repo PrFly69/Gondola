@@ -575,12 +575,13 @@ actor WindGyroX2P : WindGyroX2{translation "202:202=229:229"}
 
 actor WindClassStormStart
 {
-translation "202:202=108:108"
+translation "198:202=108:108"
 PROJECTILE
 damagetype "WindM_Pull"
 Obituary "$OB_WINDSTORM"
 -NOGRAVITY
 +RIPPER
++STEPMISSILE
 Damage (0)
 Radius 16
 Height 8
@@ -596,15 +597,15 @@ TNT1 A 0 A_JumpIf(z-floorz==0,"Death2")
 TNT1 A 1
 stop
 Death2:
-TNT1 A 1 A_SpawnItemEx("WindClassStorm",0,0,0,20.25,0,0,0,1)
+TNT1 A 1 A_SpawnItemEx("WindClassStorm",0,0,0,30,0,0,0,1)
 stop
 }
 }
 
-actor WindClassStormStartB : WindClassStormStart{translation "202:202=205:205"}
-actor WindClassStormStartR : WindClassStormStart{translation "202:202=171:171"}
-actor WindClassStormStartO : WindClassStormStart{translation "202:202=104:104"}
-actor WindClassStormStartP : WindClassStormStart{translation "202:202=229:229"}
+actor WindClassStormStartB : WindClassStormStart{translation "198:202=205:205"}
+actor WindClassStormStartR : WindClassStormStart{translation "198:202=171:171"}
+actor WindClassStormStartO : WindClassStormStart{translation "198:202=104:104"}
+actor WindClassStormStartP : WindClassStormStart{translation "198:202=229:229"}
 
 actor WindClassStorm
 {
@@ -615,10 +616,9 @@ Obituary "$OB_WINDSTORM"
 +RIPPER
 +NOEXPLODEFLOOR
 +STEPMISSILE
-maxstepheight 15
 +BOUNCEONCEILINGS
 BounceCount 1
-gravity 3.0
+gravity 5.0
 reactiontime 15
 Damage (0)
 Height 16
@@ -628,7 +628,14 @@ Scale 2.5
 States
 {
 Spawn:
-WINB STUV 4 A_SpawnItemEx("WindClassBlower",0,0,14,momx,momy,momz+2,0,8,0)
+WINB S 4 A_SpawnItemEx("WindClassBlower",0,0,14,momx,momy,momz+2,0,8,0)
+TNT1 A 0 A_SpawnItemEx("TenguBlowFX",random(0,17.5),0,random(0,16),-1,0,0,0,1)
+WINB T 4 A_SpawnItemEx("WindClassBlower",0,0,14,momx,momy,momz+2,0,8,0)
+TNT1 A 0 A_SpawnItemEx("TenguBlowFX",random(0,17.5),0,random(0,16),-1,0,0,0,1)
+WINB U 4 A_SpawnItemEx("WindClassBlower",0,0,14,momx,momy,momz+2,0,8,0)
+TNT1 A 0 A_SpawnItemEx("TenguBlowFX",random(0,17.5),0,random(0,16),-1,0,0,0,1)
+WINB V 4 A_SpawnItemEx("WindClassBlower",0,0,14,momx,momy,momz+2,0,8,0)
+TNT1 A 0 A_SpawnItemEx("TenguBlowFX",random(0,17.5),0,random(0,16),-1,0,0,0,1)
 WINB S 0 A_CountDown
 loop
 Death:

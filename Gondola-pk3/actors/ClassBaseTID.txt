@@ -381,7 +381,7 @@ actor PainConcreteShoulderHit : PainBaseFlingHit{Mass 30}
 
 actor PainPharaohPunchHit : PainBaseFlingHit{Mass 20}
 
-actor PainWindM_PullHit : PainBaseFlingHit{Mass -16}
+actor PainWindM_PullHit : PainBaseFlingHit{Mass -24}
 
 actor PainWindM_PushHit : BasicHitBaseF
 {

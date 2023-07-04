@@ -3664,6 +3664,7 @@ CHANGELOG
 
 =====2.6.1H
 ==Copyweapons
+-Atomic Fire copywep damage 10/34/54 (ripper) > 12/33/25 (ripper) 
 -Flame Blast copywep damage 32 > 20
 -Fixed Duo Fist not having copynerf, damage reduced 25/35/70 > 16/22/45
 -Fixed Nova Beam lagging out servers
@@ -3684,15 +3685,21 @@ CHANGELOG
 --Bomb Ball explosion damage 16/20 > 14/18
 -Time Ball powerprotect factor 100% (bugged) > 67%
 
+==SniperJoe
+-Machine Gun projectile speed 51 > 58
+--Machine Gun projectile spread (-2,2) > (-3,3)
+
 ==Gutsman
 -Removed ammo gain while holding Guts Block
 
 ==Iceman
 -Fixed Ice Cube health being x10'd, (HP 500 > 50)
 -Reload Ice Lance now has wind FX, provided by Fr3ak
+-Fixed weapon tag
 
 ==Fireman
 -Fire Wave now blocks shots, has 4 tics less lifetime before despawning
+-Removed weapon icon
 
 ==Bombman
 -Cluster Bomb cluster spread speed 12 > 8
@@ -3701,9 +3708,13 @@ CHANGELOG
 
 ==Metalman
 -Refined hover code, no longer jitters when holding mainfire
+-Updated Chain Blade obituary
 
 ==Airman
 -New Air Shooter/Air Wall player/surface impact SFX added, provided by MusashiAA
+
+==Quickman
+-Both versions of Quick Boomerang now properly move backwards
 
 ==Needleman
 -Needle Cannon accurate shot timing made consistent, now always fires two accurate needles every 16 tics
@@ -3720,6 +3731,7 @@ CHANGELOG
 
 ==Drillman
 -Updated HUD, made by Lamp
+-Added smoke particles to Drill Bomb as it travels
 
 ==Diveman
 -Dive Missile now goes towards where user is looking instead of where cursor is
@@ -3737,6 +3749,10 @@ CHANGELOG
 ==Gravityman
 -Gravity Orb no longer lifts allies
 
+==Napalmman
+-Napalm Bomb projectile speed 20/30/40 > 25/35/45
+-Endlag on Napalm Missile reduced by 4 tics
+
 ==Knightman
 -Knight Crush speed 50 > 45
 --Returning Knight Crush damage 9 > 18
@@ -3745,13 +3761,24 @@ CHANGELOG
 --Damage 27 > 24 (base) + 4 (ripper)
 --Stuns enemies for 15 tics on direct and applies 50% hitstun, only stuns on base damage
 -Spinning Mace obit updated to be more culturally appropriate
+-Edited secret obit
 
 ==Tomahawkman
 -Updated Silver Tomahawk death sprites, provided by HeelNavi
+-Edited secret obit
 -New Silver Tomahawk player/surface impact SFX added, provided by Fr3ak
+
+==Windman
+-Wind Storm speed when on the ground 20 > 30
+--Wind Storm pull strength 16 > 24
+--Wind Storm stepheight 15 > 24
+--Added Wind Storm particles when traveling on the ground
 
 ==Junkman
 -Fixed Junk Cube health being x10'd, (HP 2000 > 200)
+
+==Burstman
+-Danger Wrap projectile speed 20/25/35 > 25/30/35
 
 ==Tenguman
 -Ported optimized hover method from Primo Patch
@@ -3785,6 +3812,18 @@ CHANGELOG
 
 ==EvilRobot
 -Giga Astro Crush powerprotect 75% > 33%
+
+==Groundman
+-Health 115 > 125
+-Speed 0.64/0.62 > 0.6/0.58
+-Firing Spread Drill now halves Tank Mode ammo regen (15 > 7)
+-Tank Mode ammo 400 > 500, still spawns with half ammo
+--Ammo Requirement to activate Tank Mode 400 > 500
+-Digging ammo consumption per tic 6 > 8
+--Ammo Consumption on floor dig up early 100 > 150
+--Exiting digging mode explosion fulldmgmaxradius 86 > 48
+--Now has slows to 20% movespeed for 5 tics after exiting floor or ceiling
+-Giga Drill Firing cost 15 > 25
 
 ==Magicman
 -Fixed bots crashing online
@@ -3828,6 +3867,8 @@ CHANGELOG
 -Added FX to Photon Missile travel
 
 ==Jupiter
+-Updated HUD offsets on Electric Spark, added HUD muzzle flash on Electric Shock
+-Adjusted Electric Spark obituary
 -Ported optimized hover method from Primo Patch
 
 =Pluto

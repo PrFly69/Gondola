@@ -74,7 +74,7 @@ damagefactor "BubbleLead", 0.41
 damagefactor "QuickBoomerang", 0.41
 damagefactor "CrashBomb", 0.31
 damagefactor "TimeStopper", 1.0 damagefactor "TimeStop", 1.0 //damagefactor "TimeBender", 0.8
-damagefactor "AtomicFire1", 0.65 damagefactor "AtomicFire2", 0.51 damagefactor "AtomicFire3", 0.55
+damagefactor "AtomicFire1", 0.75 damagefactor "AtomicFire2", 0.5 damagefactor "AtomicFire3", 0.25
 damagefactor "LeafShield", 0.51
 damagefactor "WaveBuster", 0.72
 damagefactor "BoobeamBarrier", 0.65
