@@ -844,13 +844,13 @@ stop
 
 actor Quint_LeapWeaken : PowerDamage
 {
-Powerup.Duration 9
+Powerup.Duration 13
 DamageFactor "Quint_Leap", 0.5
 }
 
 actor Quint_LeapProtect : PowerProtection
 {
-Powerup.Duration 8
+Powerup.Duration 12
 DamageFactor "Quint_Leap", 0.0
 }
 

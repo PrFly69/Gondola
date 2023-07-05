@@ -275,8 +275,8 @@ stop
 
 actor StrikeMeleeCProtect : PowerProtection
 {
-Powerup.Duration 6
-DamageFactor "StrikeBall", 0.15
+Powerup.Duration 12
+DamageFactor "StrikeBall", 0.0
 }
 
   Actor ReboundStrikerLimit : Ammo

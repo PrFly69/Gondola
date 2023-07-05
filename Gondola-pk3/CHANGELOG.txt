@@ -3845,6 +3845,11 @@ CHANGELOG
 ==Sheepman
 -Fixed Thunder Rain pain animation
 
+==Strikeman
+-Rebound Bouncer melee damager is now 16 units in front of him
+--Rebound Bouncer melee damager powerprotect duration 6 tics > 12 tics
+--Rebound Bouncer powerprotect factor 0.15 > 0.0
+
 ==Terra
 -Spark Chaser pre-release speed 12 > 14
 --Spark Chaser post-release speed 90 > 66
@@ -3885,6 +3890,7 @@ CHANGELOG
 -Fixed permanent 5% damage vulnerability after using Acid Barrier
 
 =Tundraman
+-Triple Lutz melee damager powerprotect duration 8 tics > 12 tics
 -Tundra Storm radius 150 > 100, sprite scale adjusted to represent new hitbox
 -Fixed SBAR desyncs
 
@@ -3903,5 +3909,6 @@ CHANGELOG
 -Suction kills are now part of a balanced breakfast
 
 =Quint
+-Sakugarne melee damager powerprotect duration 8/9 tics > 12/13 tics
 -Updated Quint Buster projectile sprites to resemble Mega Buster's Game Boy projectile sprites
 -Fixed Shockwave being able to deal up to 50 dmg

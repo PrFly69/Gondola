@@ -425,7 +425,7 @@ TNT1 A 0 A_JumpIf(z-floorz<=0,"ReloadBounce")
 loop
 
 ReloadBounceWait2:
-TNT1 A 1 A_SpawnItemEx("StrikeMeleeC",0,0,28,momx,momy,momz,0,8)
+TNT1 A 1 A_SpawnItemEx("StrikeMeleeC",16,0,28,momx,momy,momz,0,8)
 TNT1 A 0 A_JumpIfInventory("StrikeHitTarget",1,"ReloadBounceBack")
 TNT1 A 0 A_JumpIfInventory("WeaponCharge",4,"ReloadEnd")
 TNT1 A 0 A_JumpIf(z-floorz<=0,"ReloadBounce")

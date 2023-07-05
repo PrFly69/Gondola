@@ -610,7 +610,7 @@ Stop
 
 actor TundraM_LeapProtect : PowerProtection
 {
-Powerup.Duration 8
+Powerup.Duration 12
 DamageFactor "TundraM_Leap", 0.0
 }
 
