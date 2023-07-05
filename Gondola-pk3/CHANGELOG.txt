@@ -3713,6 +3713,9 @@ CHANGELOG
 ==Airman
 -New Air Shooter/Air Wall player/surface impact SFX added, provided by MusashiAA
 
+==Bubbleman
+-Fixed being able to swim forever by spamming Bubble Flood
+
 ==Quickman
 -Both versions of Quick Boomerang now properly move backwards
 
