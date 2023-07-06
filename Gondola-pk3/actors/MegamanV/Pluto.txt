@@ -13,7 +13,7 @@ player.startitem "PlutoMeowItem"
 player.maxhealth 75
 health 75
 player.forwardmove 0.8, 0.8
-player.sidemove 0.78, 0.78
+player.sidemove 0.78, 0.78//0.78, 0.78
 player.jumpz 11
 
 //Doesn't like Cold temps
@@ -37,9 +37,8 @@ PLUT PQPQPQPQPQPQ 2
 PLUT P 10
 PLUT B random(35,105)
 Goto Spawn+3
-See:                                             //784
-//PLUT B 0 A_JumpIfInventory("BreakingIntoADashAmmo",656,"SeeB")  
-PLUT BCD 1 A_SetTics(abs(7-(sqrt(MOMX*MOMX+MOMY*MOMY)/5.5))+1) //7 6 1
+See:                                            
+PLUT BCD 1 A_SetTics(abs(7-(sqrt(MOMX*MOMX+MOMY*MOMY)/5.5))+1) 
 TNT1 A 0 A_GiveInventory("WalkSoundForcer") 
 PLUT E 1 A_SetTics(abs(7-(sqrt(MOMX*MOMX+MOMY*MOMY)/5.5))+1)
 goto Spawn+1
@@ -54,8 +53,8 @@ loop
 
 Missile:                                           
 PLUT F 0 A_JumpIfInventory("VivifyDelay8",1,"MissileD")
-PLUT F 0 A_JumpIfInventory("BreakingIntoADashAmmo",656,"MissileB")
-PLUT F 5                                         //784
+PLUT F 0 A_JumpIfInventory("BreakingIntoADashAmmo",562,"MissileB")
+PLUT F 5                                        //656 //784
 PLUT G 4
 goto Spawn
 MissileB:
@@ -83,7 +82,7 @@ ClassPain:
 PLUT H 0 A_JumpIfInventory("VivifyDelay8",1,"ClassPainDash")
 goto PainContinue
 ClassDeath:
-PLUT H 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=21,"ClassDeathBOOOOM")//A_JumpIfInventory("BreakingIntoADashAmmo",656,"ClassDeathBOOOOM")
+PLUT H 0 A_JumpIf(sqrt(MOMX*MOMX+MOMY*MOMY)>=21,"ClassDeathBOOOOM")
 PLUT H 0
 goto DeathContinue
 ClassDeathBOOOOM:
