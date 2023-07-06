@@ -1,5 +1,8 @@
 //Hornet
 
+//Zandrodumb
+texture 0V_H2VAR,56,8{patch 0V_H2BAR,0,0{rotate 90}}
+
 //Reload
 graphic HORNEICN,30,30{XScale 2.0 YScale 2.0 Patch RSH9H0,0,0} 
 
