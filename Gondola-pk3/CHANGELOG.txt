@@ -3879,12 +3879,15 @@ CHANGELOG
 -Adjusted Electric Spark obituary
 -Ported optimized hover method from Primo Patch
 
-=Pluto
--Speed scalar buff reverted 125 > 115
--Speed ammo gain reduced by 16% 
--Movement checks readjusted for these new values 
--Breakspark now grants .04 extra speed 
+==Pluto
+-Speed Scalar reverted to CCBM values
+-Ammo gain reverted to ccbm values
+-Speed checks and ammo loss now scales with current speed
+-Breakspark now grants 0.05 speed
+-Breakspark now starts at 75%
+-Breakdash duration is halved without Breakspark
 -Running animation speed now scales with momentum
+-Meow sound slightly edited by Aure
 
 ==Sunstar
 -Ported HUD discoloration fix from Lamp
