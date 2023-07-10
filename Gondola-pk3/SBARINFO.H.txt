@@ -525,7 +525,7 @@ IsSelected RingBoomerangBoss{
 IsSelected DiveMissileBoss{DrawImage"DVERICON",178,175;}
 WeaponAmmo CrushEmAmmo{DrawBar"DUSVAR","DUSVMPTY",Ammo1,horizontal,58,184;}
 WeaponAmmo YouSunkMyAmmo{Drawbar"VARAMM10","VAREMPTY",Ammo1,horizontal,58,184;
-	Drawbar"04_7_VAR","BAREMPTY",Ammo2,horizontal,58,176;}
+	Drawbar"04_7_VAR","VAREMPTY",Ammo2,horizontal,58,176;}
 IsSelected SkullBarrierBoss{DrawBar"VARAMMO1","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar"VARAMM21","VAREMPTY",Ammo2,horizontal,58,176;
 	InInventory ShieldCheck,1{DrawBar"VARFLS5X","VAREMPTY",Ammo2,horizontal,58,176;}
@@ -609,8 +609,8 @@ IsSelected NoiseCrushBoss{Drawbar"VARAMM37","VAREMPTY",Ammo1,horizontal,58,184;
 						  DrawImage"SDERICON",178,175;
 	InInventory NoiseCrushFlagB,1{DrawBar"VARFLS10","VAREMPTY",Ammo1,horizontal,58,184;}}
 IsSelected ScorchWheelBoss{Drawbar"VARAMM38","VAREMPTY",Ammo1,horizontal,58,184;
-	InInventory TurboWheelCount,1{DrawBar"VARFLS1","VNOBAR",TurboWheelCount,horizontal,58,192;}
-	Drawbar"07_8_VAR","BAREMPTY",Ammo2,horizontal,58,176;
+	InInventory TurboWheelCount,1{DrawBar"VARFLS1","VNOBAR",TurboWheelCount,horizontal,130,184;}
+	Drawbar"07_8_VAR","VAREMPTY",Ammo2,horizontal,58,176;
 	InInventory TurboAltDelay,1{DrawBar"VARFLS1","VNOBAR",TurboAltDelay,horizontal,58,176;}
 	InInventory TurboHonkDelay,1{DrawBar"7H_A_VAR","VNOBAR",TurboHonkDelay,horizontal,58,176;}}
 
@@ -982,7 +982,7 @@ Drawbar"VARFLS1","VNOBAR",AcidmanVisualDelay41,horizontal,130,184;
 IsSelected TundraStormBoss
 {
 Drawbar "VARAMM15","VAREMPTY",Ammo1,horizontal,58,184;
-Drawbar "VARTUNX", "BAREMPTY", Ammo2,horizontal,58,176;
+Drawbar "VARTUNX", "VAREMPTY", Ammo2,horizontal,58,176;
     DrawImage"TUNRICON",178,175;
     InInventory TripleLutzAmmo,1{DrawBar"VARTUXX","VNOBAR",TripleLutzAmmo,horizontal,58,184;}
     InInventory TundraDelayA,1{DrawBar"VARFLS1","VNOBAR",TundraDelayA,horizontal,130,184;}}
@@ -991,7 +991,7 @@ IsSelected BlazingTorchBoss{Drawbar "VARTOR", "VAREMPTY", Ammo1, horizontal, 58,
     DrawImage "VTORMETR",58,184;
     InInventory TorchjutsuAmmo, 400{Drawbar "VARTORX", "VAREMPTY", Ammo1, horizontal, 58, 184;}
 	InInventory PGStall_P, 1{Drawbar "VRPGSTAX", "VNOBAR", Ammo1, horizontal, 58, 184;}
-    Drawbar "VARTOK", "VBAREMPTY", Ammo2, horizontal, 58, 176;
+    Drawbar "VARTOK", "VAREMPTY", Ammo2, horizontal, 58, 176;
     InInventory WaveDashAmmo, 100{Drawbar "VARTOKX", "VAREMPTY", Ammo2, horizontal, 58, 176;}
 	InInventory not TorchDiveTimeAmmo,350{DrawBar"VARTODVK","VNOBAR",TorchDiveTimeAmmo,horizontal,58,176;}
     }
@@ -1072,7 +1072,7 @@ IsSelected ProtoBusterBoss{DrawBar"00_0_VAR","VAREMPTY",SlideLimitFlag,horizonta
 	InInventory ShieldCooldownEx,1{DrawBar"VARFLS1","VNOBAR",ShieldCooldownEx,horizontal,130,184;}
 	}
 IsSelected BassBusterBoss{
-	DrawBar "VARAMM68", "BAREMPTY", BassBusterCharge, horizontal, 58,184;
+	DrawBar "VARAMM68", "VAREMPTY", BassBusterCharge, horizontal, 58,184;
 	DrawBar "MV_A_VAR", "VNOBAR", BassBusterClassRage, horizontal, 58,184;
 	DrawBar"00_4_VAR","VAREMPTY",SlideLimitFlag,horizontal,58,176;
 	}

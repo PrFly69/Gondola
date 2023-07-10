@@ -409,7 +409,7 @@ actor CloudM_ZapDown
 {
 Translation "202:202=214:214","199:199=218:218"
 PROJECTILE
-Obituary "$OB_THUNDERBOLT"
+Obituary "$OB_THUNDERBOLTB"
 damagetype "CloudM_Zapper"
 +RIPPER
 Damage (17)
@@ -454,7 +454,7 @@ actor CloudM_ZapDownP : CloudM_ZapDown{translation "202:202=229:229","199:199=23
 actor CloudM_SparkFloor
 {
 PROJECTILE
-Obituary "$OB_THUNDERBOLT"
+Obituary "$OB_THUNDERBOLTC"
 damagetype "CloudM_Spark"
 +FLOORHUGGER
 +FORCEXYBILLBOARD
@@ -524,7 +524,7 @@ stop
 
 actor CloudM_Zapper : BasicExplosion
 {
-Obituary "$OB_THUNDERBOLT"
+Obituary "$OB_THUNDERBOLTD"
 damagetype "CloudM_Charge"
 RenderStyle None
 States

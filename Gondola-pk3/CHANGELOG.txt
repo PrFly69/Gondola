@@ -20,7 +20,7 @@ CHANGELOG
 -Empowered Search Disc scale 2.5 > 3
 -Empowered Search Disc size 12x12 > 16x16
 
-==Original Duo
+==OriginalDuo
 -HP 135 > 115
 --Original Duo Fist direct damage 2 > 5
 --Original Duo Fist explosion damage 15 > 10
@@ -3673,6 +3673,8 @@ CHANGELOG
 -Optimized charging code to make tapfiring/charging more convenient
 
 ==Duo
+-Duo Slam now takes one stock of ammo, does shoulder bash if ammo is insufficient
+-APU version of Duo Slam now leaves lingering knockup field on impact, henceforth named Justice Flash
 -New sounds for meteor and slam added, made by MusashiAA
 
 ==Rock
@@ -3745,6 +3747,7 @@ CHANGELOG
 --Dive Tackle cooldown reduced 2 seconds > 1.5 seconds (70 tics > 57 tics)
 --Ammo requirement for Dive Tackle 140 > 115
 -Ammo consumed on using Dive Mines 120 > 100
+-Fixed minor horizontal bar bug
 
 ==Skullman
 -Fixed being able to activate parry while dead
@@ -3782,6 +3785,12 @@ CHANGELOG
 
 ==Burstman
 -Danger Wrap projectile speed 20/25/35 > 25/30/35
+
+==Cloudman
+-Added unused obituaries for Thunder Charge and Thunder Spark
+
+==Turboman
+-Fixed horizontal bar bug
 
 ==Tenguman
 -Ported optimized hover method from Primo Patch
@@ -3879,6 +3888,9 @@ CHANGELOG
 -Adjusted Electric Spark obituary
 -Ported optimized hover method from Primo Patch
 
+==Saturn
+-Fixed horizontal bar bug
+
 ==Pluto
 -Speed Scalar reverted to CCBM values
 -Ammo gain reverted to ccbm values
@@ -3899,6 +3911,7 @@ CHANGELOG
 -Triple Lutz melee damager powerprotect duration 8 tics > 12 tics
 -Tundra Storm radius 150 > 100, sprite scale adjusted to represent new hitbox
 -Fixed SBAR desyncs
+-Fixed minor horizontal bar bug
 
 ==Torchman
 -Removed 10% increase in speed on Power Gear

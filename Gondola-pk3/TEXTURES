@@ -349,7 +349,7 @@ texture MV_A_VAR,56,8{patch TNT1A0,0,0}
 texture MVSF_BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=59:59","198:198=59:59"}}
 texture MVSF_VAR,56,8{patch MVSF_BAR,0,0{rotate 90}}
 texture BHOLVBAR, 8, 56{patch BARENERG, 0, 0 {Translation "192:192=215:215", "198:198=235:235"}}
-texture BHOLVVAR,56,8{patch BHOLVVAR,0,0{rotate 90}}
+texture BHOLVVAR,56,8{patch BHOLVBAR,0,0{rotate 90}}
 
 sprite  C_0VF0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE0V05, 0, 0}
 texture C_0VF0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE0V05, 0, 0}

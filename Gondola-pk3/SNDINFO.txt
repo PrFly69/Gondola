@@ -22,6 +22,7 @@ weapon/DuoMeteorLaunch DUOLAUNC
 weapon/DuoMeteorCancel DUOMCANC
 weapon/DuoMeteorImpact DUOIMPCT
 weapon/DuoGSlamExplode DUOEXPLD
+weapon/DuoJusticeFlash S_MV_J5
 
 //Maestro
 weapon/MaestroFuzz FLTELE
@@ -550,6 +551,7 @@ gear/blastman BLASGEAR //Pitch shifted DARKSTEP
 weapon/chainblastfour CBLAS4
 weapon/chainblastgear CBLASG
 weapon/chainblastbomb CBLASB
+weapon/blastwalljump BLASOOGA
 
 //Tundra
 weapon/TundraManSpear TUNDSPEA
