@@ -3904,6 +3904,10 @@ CHANGELOG
 ==Sunstar
 -Ported HUD discoloration fix from Lamp
 
+==Blastman
+-Walljumping on Chain Blast now boosts the player 2.5x further
+-Fixed jump frames glitching
+
 ==Acidman
 -Fixed permanent 5% damage vulnerability after using Acid Barrier
 
