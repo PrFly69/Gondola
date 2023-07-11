@@ -257,6 +257,7 @@ Obituary "$OB_CHAINBLASTBOSS"
 +NOTARGETSWITCH
 +DONTREFLECT
 +HITTRACER
++FORCEXYBILLBOARD
 damage (8-User_NoDamage)
 Radius 12
 Height 11
@@ -671,45 +672,17 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 CBST A 0 A_Jump(175,"Spawn2","Spawn3","Spawn4")
 SpawnC:
-CBST A 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
-CBST A 0 A_JumpIfInventory("AtomicFireAmmo",55,"SDeath")
-CBST A 0 A_GiveInventory("AtomicFireAmmo",1)
-Y_AD G 0 A_JumpIfCloser(64,"ParkourA")
-loop
+CBST AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
+goto SDeath
 Spawn2:
-CBST B 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
-CBST B 0 A_JumpIfInventory("AtomicFireAmmo",55,"SDeath")
-CBST B 0 A_GiveInventory("AtomicFireAmmo",1)
-Y_AD G 0 A_JumpIfCloser(64,"ParkourB")
-loop
+CBST BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
+goto SDeath
 Spawn3:
-CBST C 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
-CBST C 0 A_JumpIfInventory("AtomicFireAmmo",55,"SDeath")
-CBST C 0 A_GiveInventory("AtomicFireAmmo",1)
-Y_AD G 0 A_JumpIfCloser(64,"ParkourC")
-loop
+CBST CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
+goto SDeath
 Spawn4:
-CBST D 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
-CBST D 0 A_JumpIfInventory("AtomicFireAmmo",55,"SDeath")
-CBST D 0 A_GiveInventory("AtomicFireAmmo",1)
-Y_AD G 0 A_JumpIfCloser(64,"ParkourD")
-loop
-ParkourA:
-Y_AD G 0 A_GiveToTarget("BlastParkour",1)
-CBST D 0 A_JumpIfInTargetInventory("BlastWallJump",1,"StickyBoom")
-Goto SpawnC
-ParkourB:
-Y_AD G 0 A_GiveToTarget("BlastParkour",1)
-CBST D 0 A_JumpIfInTargetInventory("BlastWallJump",1,"StickyBoom")
-Goto Spawn2
-ParkourC:
-Y_AD G 0 A_GiveToTarget("BlastParkour",1)
-CBST D 0 A_JumpIfInTargetInventory("BlastWallJump",1,"StickyBoom")
-Goto Spawn3
-ParkourD:
-Y_AD G 0 A_GiveToTarget("BlastParkour",1)
-CBST D 0 A_JumpIfInTargetInventory("BlastWallJump",1,"StickyBoom")
-Goto Spawn4
+CBST DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SafeDeath")
+goto SDeath
 Death:
 TNT1 A 0
 stop

@@ -737,7 +737,7 @@ TNT1 A 0 A_GiveInventory("PowerWallJumpSpeed",1)
 TNT1 A 0 //A_GiveInventory("JumpCancler",1)
 TNT1 A 0 A_TakeInventory("CanWallJumpLimit",1)
 TNT1 A 0 A_JumpIfInventory("QuickManTrail",1,"JumpQuick")
-TNT1 A 0 A_JumpIfInventory("BlastParkour",1,"JumpBlast")
+//TNT1 A 0 A_JumpIfInventory("BlastParkour",1,"JumpBlast")
 TNT1 A 0 ACS_NamedExecuteAlways("CBM_WallJumpThruster",0,10)
 stop
 JumpQuick:
@@ -750,6 +750,12 @@ TNT1 A 0 ACS_NamedExecuteAlways("CBM_WallJumpThruster",0,25,3)//12
 stop
 }
 }
+//"so when it does come out and i continue to perform with blastman 
+//it'll be more of the same "this class shouldn't have been buffed" from idiots 
+//who won't stop complaining until something else about blastman gets nerfed and 
+//not his bombjumping"
+//-venus, on blastman blastjumping 
+//(i fully agree and acknowledge that if this gets added this is EXACTLY how it will play out)
 
 actor WallJumping_P : CustomInventory
 {

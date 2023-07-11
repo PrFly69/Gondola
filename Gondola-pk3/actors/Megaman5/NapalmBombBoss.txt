@@ -221,6 +221,7 @@ NBOH A 0 A_JumpIfInventory("NapalmMissileAmmo",25,"MissileLaunch")
 goto Ready+1
 MissileLaunch:
 NBOH A 0 SetPlayerProperty(0,1,0)
+NBOH A 0 A_GiveInventory("NapalmClassAltfireFlag",1) //NEW
 NPAR A 1 Offset(0,36)A_GunFlash
 NPAR A 1 Offset(0,44)
 NPAR A 1 Offset(0,52)
@@ -236,6 +237,7 @@ NPAR A 0 A_SpawnItemEx("HardKnuckleFX",16,0,60)
 NPAR A 9 Offset(0,64)
 NPAR A 0 A_Refire("MissileRepeat")
 MissileEnd:
+NBOH A 0 A_TakeInventory("NapalmClassAltfireFlag",1)
 NPAR A 1 Offset(0,52)
 NPAR A 1 Offset(0,44)
 NPAR A 1 Offset(0,36)
@@ -377,6 +379,8 @@ stop
 }
 
 actor NapalmClassFireFlag : OnceC {}
+
+actor NapalmClassAltfireFlag : OnceC {}
 
 actor NapalmMissileClass
 {

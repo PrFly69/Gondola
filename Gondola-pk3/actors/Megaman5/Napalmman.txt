@@ -35,23 +35,32 @@ NAPM D 5 A_JumpIf(z-floorz>0, "Jumping")
 NAPM E 5 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn
 Missile:
-NAPM F 5 A_JumpIf(z-floorz>0, "JumpingMissile")
-NAPM F 4 A_JumpIf(z-floorz>0, "JumpingMissile")
+NAPM F 0 A_JumpIf(z-floorz>0, "JumpingMissile")
+NAPM FFFFFF 1 A_JumpIfInventory("NapalmClassAltfireFlag",1,"Missile2")
+NAPM J 2 A_JumpIf(z-floorz>0, "JumpingMissile")
+NAPM K 4 A_JumpIf(z-floorz>0, "JumpingMissile")
 goto Spawn
-Jumping:
-NAPM BCDE 5 A_JumpIf(z-floorz<=0, "Spawn")
+Missile2:
+NAPM F 5 A_JumpIf(z-floorz>0, "JumpingMissile2")
+NAPM F 4 A_JumpIf(z-floorz>0, "JumpingMissile2")
+goto Spawn
+Jumping: 
+NAPM I 1 A_JumpIf(z-floorz<=0, "Spawn")
 loop
 JumpingMissile:
-NAPM F 9 A_JumpIf(z-floorz<=0, "Missile")
+NAPM IIIIII 1 A_JumpIfInventory("NapalmClassAltfireFlag",1,"JumpingMissile2")
+NAPM L 2 A_JumpIf(z-floorz<=0, "Missile")
+NAPM M 4 A_JumpIf(z-floorz<=0, "Missile")
+Goto Jumping
+JumpingMissile2:
+NAPM I 5 A_JumpIf(z-floorz<=0, "Missile")
+NAPM I 4 A_JumpIf(z-floorz<=0, "Missile")
 Goto Jumping
 ClassPain:
 NAPM H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 NAPM H 0
 goto DeathContinue
-ClassDeath:
-NAPM H 1
-goto MegaDeathEnd
 }
 }

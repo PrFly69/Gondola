@@ -3758,6 +3758,7 @@ CHANGELOG
 ==Napalmman
 -Napalm Bomb projectile speed 20/30/40 > 25/35/45
 -Endlag on Napalm Missile reduced by 4 tics
+-Napalm Bomb jumping/firing skinsprites ported from V-Classes
 
 ==Knightman
 -Knight Crush speed 50 > 45
@@ -3905,7 +3906,6 @@ CHANGELOG
 -Ported HUD discoloration fix from Lamp
 
 ==Blastman
--Walljumping on Chain Blast now boosts the player 2.5x further
 -Fixed jump frames glitching
 
 ==Acidman
