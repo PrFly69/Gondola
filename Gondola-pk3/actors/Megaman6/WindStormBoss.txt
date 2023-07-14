@@ -55,7 +55,7 @@ WINB A 0 A_JumpIfInventory("WindClassAmmo",4,1)
 goto NoAmmo2
 WINB A 0 A_JumpIfNoAmmo("NoAmmo")
 WINB A 0 A_TakeInventory("WindClassAmmo",4)
-WINB A 0 A_PlaySoundEx("weapon/gyroattack","Weapon")
+WINB A 0 A_PlaySoundEx("weapon/windgyroboss","Weapon")
 WINB A 0 A_GiveInventory("WindmanMain_CI",1)
 WINB BC 2 
 WINB C 10
@@ -97,7 +97,7 @@ NoAmmo:
 WINB A 0
 goto Ready1
 NoAmmo2:
-WINB A 0 A_PlaySoundEx("weapon/windgyroboss","Weapon")
+WINB A 0 A_PlaySoundEx("weapon/CentShot","Weapon")
 WINB A 0 A_GiveInventory("WindmanMain2_CI",1)
 WINB BC 2 
 WINB C 10

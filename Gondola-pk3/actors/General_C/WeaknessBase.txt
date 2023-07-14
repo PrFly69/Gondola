@@ -1,0 +1,676 @@
+
+actor BasePowerDamage : PowerDamage
+{//Make sure damage increases don't increase these
+Powerup.Duration 0x7FFFFFFC
+damagefactor "Normal", 1.0
+}
+
+actor BasePowerWeak : PowerProtection
+{//Make sure taking more damage doesn't increase these
+Powerup.Duration 0x7FFFFFFC
+damagefactor "Normal", 1.0
+}
+
+actor BasePowerPro : PowerProtection
+{//Make sure damage reduction doesn't reduce these
+Powerup.Duration 0x7FFFFFFC
+damagefactor "Normal", 1.0
+damagefactor "Crush", 1.0
+
+damagefactor "Drowning", 1.0
+damagefactor "Fire", 1.0
+damagefactor "Falling", 1.0
+damagefactor "BurnWave", 1.0
+damagefactor "Beam", 1.0
+damagefactor "Spiney", 1.0
+damagefactor "Ice", 1.0
+damagefactor "Slime", 1.0
+
+damagefactor "LightRyu_Stop", 1.0
+damagefactor "FlashM_Stopper", 1.0
+damagefactor "TimeBender", 1.0
+damagefactor "PlugM_Plugged", 1.0
+
+//damagefactor "FlameSwordSpark", 1.0
+}
+
+actor Weakness : PowerProtection
+{
+Powerup.Duration 0x7FFFFFFC
+damagefactor "Normal", 1.0
+}
+
+actor Pwr_Weakness_Flaw : Weakness{}
+actor W_Weakness_Tag : OnceC{}
+
+actor WeaknessBase_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchServerCVar",1)==2,"P_W")
+TNT1 A 0 A_JumpIf(CallACS("cbm_FetchServerCVar",1)==1,"P_F")
+stop
+P_W:
+TNT1 A 0 A_GiveInventory("Pwr_Weakness_Flaw",1)
+goto P_F
+P_F:
+TNT1 A 0 A_GiveInventory("W_Weakness_Tag",1)
+stop
+}
+}
+
+//MM1//MM1//MM1//MM1//MM1
+actor RollingCutterWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_RollingCutter_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_RollingCutter_Tag",1)stop}}
+actor RollingCutterWeakness2 : RollingCutterWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_RollingCutter_Flaw2",1)goto P_F}}
+actor SuperArmWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SuperArm_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SuperArm_Tag",1)stop}}
+actor SuperArmWeakness2 : SuperArmWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SuperArm_Flaw2",1)goto P_F}}
+actor IceSlasherWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_IceSlasher_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_IceSlasher_Tag",1)stop}}
+actor IceSlasherWeakness2 : IceSlasherWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_IceSlasher_Flaw2",1)goto P_F}}
+actor HyperBombWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_HyperBomb_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_HyperBomb_Tag",1)stop}}
+actor HyperBombWeakness2 : HyperBombWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_HyperBomb_Flaw2",1)goto P_F}}
+actor FireStormWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_FireStorm_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_FireStorm_Tag",1)stop}}
+actor FireStormWeakness2 : FireStormWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_FireStorm_Flaw2",1)goto P_F}}
+actor ThunderBeamWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ThunderBeam_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ThunderBeam_Tag",1)stop}}
+actor ThunderBeamWeakness2 : ThunderBeamWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ThunderBeam_Flaw2",1)goto P_F}}
+actor TimeSlowWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_TimeSlow_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_TimeSlow_Tag",1)stop}}
+actor TimeSlowWeakness2 : TimeSlowWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_TimeSlow_Flaw2",1)goto P_F}}
+actor OilSliderWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_OilSlider_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_OilSlider_Tag",1)stop}}
+actor OilSliderWeakness2 : OilSliderWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_OilSlider_Flaw2",1)goto P_F}}
+//MM1//MM1//MM1//MM1//MM1
+
+//MM2//MM2//MM2//MM2//MM2
+actor MetalBladeWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_MetalBlade_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_MetalBlade_Tag",1)stop}}
+actor MetalBladeWeakness2 : MetalBladeWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_MetalBlade_Flaw2",1)goto P_F}}
+actor AirShooterWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_AirShooter_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_AirShooter_Tag",1)stop}}
+actor AirShooterWeakness2 : AirShooterWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_AirShooter_Flaw2",1)goto P_F}}
+actor BubbleLeadWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_BubbleLead_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_BubbleLead_Tag",1)stop}}
+actor BubbleLeadWeakness2 : BubbleLeadWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_BubbleLead_Flaw2",1)goto P_F}}
+actor QuickBoomerangWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_QuickBoomerang_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_QuickBoomerang_Tag",1)stop}}
+actor QuickBoomerangWeakness2 : QuickBoomerangWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_QuickBoomerang_Flaw2",1)goto P_F}}
+actor CrashBombWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_CrashBomb_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_CrashBomb_Tag",1)stop}}
+actor CrashBombWeakness2 : CrashBombWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_CrashBomb_Flaw2",1)goto P_F}}
+actor TimeStopperWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_TimeStopper_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_TimeStopper_Tag",1)stop}}
+actor TimeStopperWeakness2 : TimeStopperWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_TimeStopper_Flaw2",1)goto P_F}}
+actor AtomicFireWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_AtomicFire_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_AtomicFire_Tag",1)stop}}
+actor AtomicFireWeakness2 : AtomicFireWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_AtomicFire_Flaw2",1)goto P_F}}
+actor LeafShieldWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_LeafShield_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_LeafShield_Tag",1)stop}}
+actor LeafShieldWeakness2 : LeafShieldWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_LeafShield_Flaw2",1)goto P_F}}
+//MM2//MM2//MM2//MM2//MM2
+
+//MM3//MM3//MM3//MM3//MM3
+actor NeedleCannonWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_NeedleCannon_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_NeedleCannon_Tag",1)stop}}
+actor NeedleCannonWeakness2 : NeedleCannonWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_NeedleCannon_Flaw",1)goto P_F}}
+actor MagnetMissileWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_MagnetMissile_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_MagnetMissile_Tag",1)stop}}
+actor MagnetMissileWeakness2 : MagnetMissileWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_MagnetMissile_Flaw2",1)goto P_F}}
+actor GeminiLaserWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_GeminiLaser_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_GeminiLaser_Tag",1)stop}}
+actor GeminiLaserWeakness2 : GeminiLaserWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_GeminiLaser_Flaw2",1)goto P_F}}
+actor HardKnuckleWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_HardKnuckle_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_HardKnuckle_Tag",1)stop}}
+actor HardKnuckleWeakness2 : HardKnuckleWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_HardKnuckle_Flaw2",1)goto P_F}}
+actor TopSpinWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_TopSpin_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_TopSpin_Tag",1)stop}}
+actor TopSpinWeakness2 : TopSpinWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_TopSpin_Flaw2",1)goto P_F}}
+actor SearchSnakeWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SearchSnake_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SearchSnake_Tag",1)stop}}
+actor SearchSnakeWeakness2 : SearchSnakeWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SearchSnake_Flaw2",1)goto P_F}}
+actor SparkShockWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SparkShock_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SparkShock_Tag",1)stop}}
+actor SparkShockWeakness2 : SparkShockWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SparkShock_Flaw2",1)goto P_F}}
+actor ShadowBladeWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ShadowBlade_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ShadowBlade_Tag",1)stop}}
+actor ShadowBladeWeakness2 : ShadowBladeWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ShadowBlade_Flaw2",1)goto P_F}}
+//MM3//MM3//MM3//MM3//MM3
+
+//MM4//MM4//MM4//MM4//MM4
+actor FlashStopperWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_FlashStopper_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_FlashStopper_Tag",1)stop}}
+actor FlashStopperWeakness2 : FlashStopperWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_FlashStopper_Flaw2",1)goto P_F}}
+actor RainFlushWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_RainFlush_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_RainFlush_Tag",1)stop}}
+actor RainFlushWeakness2 : RainFlushWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_RainFlush_Flaw2",1)goto P_F}}
+actor DrillBombWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_DrillBomb_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_DrillBomb_Tag",1)stop}}
+actor DrillBombWeakness2 : DrillBombWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_DrillBomb_Flaw2",1)goto P_F}}
+actor PharaohShotWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_PharaohShot_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_PharaohShot_Tag",1)stop}}
+actor PharaohShotWeakness2 : PharaohShotWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_PharaohShot_Flaw2",1)goto P_F}}
+actor RingBoomerangWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_RingBoomerang_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_RingBoomerang_Tag",1)stop}}
+actor RingBoomerangWeakness2 : RingBoomerangWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_RingBoomerang_Flaw2",1)goto P_F}}
+actor DustCrusherWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_DustCrusher_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_DustCrusher_Tag",1)stop}}
+actor DustCrusherWeakness2 : DustCrusherWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_DustCrusher_Flaw2",1)goto P_F}}
+actor DiveMissileWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_DiveMissile_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_DiveMissile_Tag",1)stop}}
+actor DiveMissileWeakness2 : DiveMissileWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_DiveMissile_Flaw2",1)goto P_F}}
+actor SkullBarrierWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SkullBarrier_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SkullBarrier_Tag",1)stop}}
+actor SkullBarrierWeakness2 : SkullBarrierWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SkullBarrier_Flaw2",1)goto P_F}}
+//MM4//MM4//MM4//MM4//MM4
+
+//MM5//MM5//MM5//MM5//MM5
+actor GravityHoldWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_GravityHold_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_GravityHold_Tag",1)stop}}
+actor GravityHoldWeakness2 : GravityHoldWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_GravityHold_Flaw2",1)goto P_F}}
+actor WaterWaveWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_WaterWave_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_WaterWave_Tag",1)stop}}
+actor WaterWaveWeakness2 : WaterWaveWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_WaterWave_Flaw2",1)goto P_F}}
+actor PowerStoneWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_PowerStone_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_PowerStone_Tag",1)stop}}
+actor PowerStoneWeakness2 : PowerStoneWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_PowerStone_Flaw2",1)goto P_F}}
+actor GyroAttackWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_GyroAttack_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_GyroAttack_Tag",1)stop}}
+actor GyroAttackWeakness2 : GyroAttackWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_GyroAttack_Flaw2",1)goto P_F}}
+actor StarCrashWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_StarCrash_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_StarCrash_Tag",1)stop}}
+actor StarCrashWeakness2 : StarCrashWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_StarCrash_Flaw2",1)goto P_F}}
+actor ChargeKickWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ChargeKick_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ChargeKick_Tag",1)stop}}
+actor ChargeKickWeakness2 : ChargeKickWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ChargeKick_Flaw2",1)goto P_F}}
+actor NapalmBombWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_NapalmBomb_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_NapalmBomb_Tag",1)stop}}
+actor NapalmBombWeakness2 : NapalmBombWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_NapalmBomb_Flaw2",1)goto P_F}}
+actor CrystalEyeWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_CrystalEye_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_CrystalEye_Tag",1)stop}}
+actor CrystalEyeWeakness2 : CrystalEyeWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_CrystalEye_Flaw2",1)goto P_F}}
+//MM5//MM5//MM5//MM5//MM5
+
+//MM6//MM6//MM6//MM6//MM6
+actor BlizzardAttackWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_BlizzardAttack_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_BlizzardAttack_Tag",1)stop}}
+actor BlizzardAttackWeakness2 : BlizzardAttackWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_BlizzardAttack_Flaw2",1)goto P_F}}
+actor CentaurFlashWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_CentaurFlash_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_CentaurFlash_Tag",1)stop}}
+actor CentaurFlashWeakness2 : CentaurFlashWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_CentaurFlash_Flaw2",1)goto P_F}}
+actor FlameBlastWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_FlameBlast_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_FlameBlast_Tag",1)stop}}
+actor FlameBlastWeakness2 : FlameBlastWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_FlameBlast_Flaw2",1)goto P_F}}
+actor KnightCrushWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_KnightCrush_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_KnightCrush_Tag",1)stop}}
+actor KnightCrushWeakness2 : KnightCrushWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_KnightCrush_Flaw2",1)goto P_F}}
+actor PlantBarrierWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_PlantBarrier_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_PlantBarrier_Tag",1)stop}}
+actor PlantBarrierWeakness2 : PlantBarrierWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_PlantBarrier_Flaw2",1)goto P_F}}
+actor SilverTomahawkWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SilverTomahawk_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SilverTomahawk_Tag",1)stop}}
+actor SilverTomahawkWeakness2 : SilverTomahawkWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SilverTomahawk_Flaw2",1)goto P_F}}
+actor WindStormWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_WindStorm_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_WindStorm_Tag",1)stop}}
+actor WindStormWeakness2 : WindStormWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_WindStorm_Flaw2",1)goto P_F}}
+actor YamatoSpearWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_YamatoSpear_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_YamatoSpear_Tag",1)stop}}
+actor YamatoSpearWeakness2 : YamatoSpearWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_YamatoSpear_Flaw2",1)goto P_F}}
+//MM6//MM6//MM6//MM6//MM6
+
+//MM7//MM7//MM7//MM7//MM7
+actor FreezeCrackerWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_FreezeCracker_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_FreezeCracker_Tag",1)stop}}
+actor FreezeCrackerWeakness2 : FreezeCrackerWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_FreezeCracker_Flaw2",1)goto P_F}}
+actor JunkShieldWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_JunkShield_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_JunkShield_Tag",1)stop}}
+actor JunkShieldWeakness2 : JunkShieldWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_JunkShield_Flaw2",1)goto P_F}}
+actor DangerWrapWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_DangerWrap_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_DangerWrap_Tag",1)stop}}
+actor DangerWrapWeakness2 : DangerWrapWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_DangerWrap_Flaw2",1)goto P_F}}
+actor ThunderBoltWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ThunderBolt_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ThunderBolt_Tag",1)stop}}
+actor ThunderBoltWeakness2 : ThunderBoltWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ThunderBolt_Flaw2",1)goto P_F}}
+actor WildCoilWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_WildCoil_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_WildCoil_Tag",1)stop}}
+actor WildCoilWeakness2 : WildCoilWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_WildCoil_Flaw2",1)goto P_F}}
+actor SlashClawWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SlashClaw_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SlashClaw_Tag",1)stop}}
+actor SlashClawWeakness2 : SlashClawWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SlashClaw_Flaw2",1)goto P_F}}
+actor NoiseCrushWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_NoiseCrush_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_NoiseCrush_Tag",1)stop}}
+actor NoiseCrushWeakness2 : NoiseCrushWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_NoiseCrush_Flaw2",1)goto P_F}}
+actor ScorchWheelWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ScorchWheel_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ScorchWheel_Tag",1)stop}}
+actor ScorchWheelWeakness2 : ScorchWheelWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ScorchWheel_Flaw2",1)goto P_F}}
+//MM7//MM7//MM7//MM7//MM7
+
+//MM8//MM8//MM8//MM8//MM8
+actor TornadoHoldWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_TornadoHold_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_TornadoHold_Tag",1)stop}}
+actor TornadoHoldWeakness2 : TornadoHoldWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_TornadoHold_Flaw2",1)goto P_F}}
+actor AstroCrushWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_AstroCrush_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_AstroCrush_Tag",1)stop}}
+actor AstroCrushWeakness2 : AstroCrushWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_AstroCrush_Flaw2",1)goto P_F}}
+actor FlameSwordWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_FlameSword_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_FlameSword_Tag",1)stop}}
+actor FlameSwordWeakness2 : FlameSwordWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_FlameSword_Flaw2",1)goto P_F}}
+actor ThunderClawWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ThunderClaw_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ThunderClaw_Tag",1)stop}}
+actor ThunderClawWeakness2 : ThunderClawWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ThunderClaw_Flaw2",1)goto P_F}}
+actor HomingSniperWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_HomingSniper_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_HomingSniper_Tag",1)stop}}
+actor HomingSniperWeakness2 : HomingSniperWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_HomingSniper_Flaw2",1)goto P_F}}
+actor IceWaveWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_IceWave_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_IceWave_Tag",1)stop}}
+actor IceWaveWeakness2 : IceWaveWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_IceWave_Flaw2",1)goto P_F}}
+actor FlashBombWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_FlashBomb_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_FlashBomb_Tag",1)stop}}
+actor FlashBombWeakness2 : FlashBombWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_FlashBomb_Flaw2",1)goto P_F}}
+actor WaterBalloonWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_WaterBalloon_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_WaterBalloon_Tag",1)stop}}
+actor WaterBalloonWeakness2 : WaterBalloonWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_WaterBalloon_Flaw2",1)goto P_F}}
+actor MegaBallWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_MegaBall_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_MegaBall_Tag",1)stop}}
+actor MegaBallWeakness2 : MegaBallWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_MegaBall_Flaw2",1)goto P_F}}
+//MM8//MM8//MM8//MM8//MM8
+
+//MMB//MMB//MMB//MMB//MMB
+actor TenguBladeWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_TenguBlade_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_TenguBlade_Tag",1)stop}}
+actor TenguBladeWeakness2 : TenguBladeWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_TenguBlade_Flaw2",1)goto P_F}}
+actor CopyVisionWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_CopyVision_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_CopyVision_Tag",1)stop}}
+actor CopyVisionWeakness2 : CopyVisionWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_CopyVision_Flaw2",1)goto P_F}}
+actor LightningBoltWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_LightningBolt_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_LightningBolt_Tag",1)stop}}
+actor LightningBoltWeakness2 : LightningBoltWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_LightningBolt_Flaw2",1)goto P_F}}
+actor IceWallWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_IceWall_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_IceWall_Tag",1)stop}}
+actor IceWallWeakness2 : IceWallWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_IceWall_Flaw2",1)goto P_F}}
+actor SpreadDrillWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SpreadDrill_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SpreadDrill_Tag",1)stop}}
+actor SpreadDrillWeakness2 : SpreadDrillWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SpreadDrill_Flaw2",1)goto P_F}}
+actor RemoteMineWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_RemoteMine_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_RemoteMine_Tag",1)stop}}
+actor RemoteMineWeakness2 : RemoteMineWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_RemoteMine_Flaw2",1)goto P_F}}
+actor WaveBurnerWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_WaveBurner_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_WaveBurner_Tag",1)stop}}
+actor WaveBurnerWeakness2 : WaveBurnerWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_WaveBurner_Flaw2",1)goto P_F}}
+actor MagicCardWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_MagicCard_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_MagicCard_Tag",1)stop}}
+actor MagicCardWeakness2 : MagicCardWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_MagicCard_Flaw2",1)goto P_F}}
+//MMB//MMB//MMB//MMB//MMB
+
+//MM9//MM9//MM9//MM9//MM9
+actor ConcreteShotWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ConcreteShot_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ConcreteShot_Tag",1)stop}}
+actor ConcreteShotWeakness2 : ConcreteShotWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ConcreteShot_Flaw2",1)goto P_F}}
+actor TornadoBlowWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_TornadoBlow_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_TornadoBlow_Tag",1)stop}}
+actor TornadoBlowWeakness2 : TornadoBlowWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_TornadoBlow_Flaw2",1)goto P_F}}
+actor LaserTridentWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_LaserTrident_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_LaserTrident_Tag",1)stop}}
+actor LaserTridentWeakness2 : LaserTridentWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_LaserTrident_Flaw2",1)goto P_F}}
+actor PlugBallWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_PlugBall_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_PlugBall_Tag",1)stop}}
+actor PlugBallWeakness2 : PlugBallWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_PlugBall_Flaw2",1)goto P_F}}
+actor JewelSatelliteWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_JewelSatellite_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_JewelSatellite_Tag",1)stop}}
+actor JewelSatelliteWeakness2 : JewelSatelliteWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_JewelSatellite_Flaw2",1)goto P_F}}
+actor HornetChaserWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_HornetChaser_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_HornetChaser_Tag",1)stop}}
+actor HornetChaserWeakness2 : HornetChaserWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_HornetChaser_Flaw2",1)goto P_F}}
+actor MagmaBazookaWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_MagmaBazooka_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_MagmaBazooka_Tag",1)stop}}
+actor MagmaBazookaWeakness2 : MagmaBazookaWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_MagmaBazooka_Flaw2",1)goto P_F}}
+actor BlackHoleBombWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_BlackHoleBomb_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_BlackHoleBomb_Tag",1)stop}}
+actor BlackHoleBombWeakness2 : BlackHoleBombWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_BlackHoleBomb_Flaw2",1)goto P_F}}
+//MM9//MM9//MM9//MM9//MM9
+
+//MM10//MM10//MM10//MM10//MM10
+
+actor TripleBladeWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_TripleBlade_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_TripleBlade_Tag",1)stop}}
+actor TripleBladeWeakness2 : TripleBladeWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_TripleBlade_Flaw2",1)goto P_F}}
+actor WaterShieldWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_WaterShield_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_WaterShield_Tag",1)stop}}
+actor WaterShieldWeakness2 : WaterShieldWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_WaterShield_Flaw2",1)goto P_F}}
+actor CommandoBombWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_CommandoBomb_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_CommandoBomb_Tag",1)stop}}
+actor CommandoBombWeakness2 : CommandoBombWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_CommandoBomb_Flaw2",1)goto P_F}}
+actor ChillSpikeWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ChillSpike_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ChillSpike_Tag",1)stop}}
+actor ChillSpikeWeakness2 : ChillSpikeWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ChillSpike_Flaw2",1)goto P_F}}
+actor ThunderWoolWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ThunderWool_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ThunderWool_Tag",1)stop}}
+actor ThunderWoolWeakness2 : ThunderWoolWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ThunderWool_Flaw2",1)goto P_F}}
+actor ReboundStrikerWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ReboundStriker_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ReboundStriker_Tag",1)stop}}
+actor ReboundStrikerWeakness2 : ReboundStrikerWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ReboundStriker_Flaw2",1)goto P_F}}
+actor WheelCutterWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_WheelCutter_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_WheelCutter_Tag",1)stop}}
+actor WheelCutterWeakness2 : WheelCutterWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_WheelCutter_Flaw2",1)goto P_F}}
+actor SolarBlazeWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SolarBlaze_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SolarBlaze_Tag",1)stop}}
+actor SolarBlazeWeakness2 : SolarBlazeWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SolarBlaze_Flaw2",1)goto P_F}}
+//MM10//MM10//MM10//MM10//MM10
+
+//MMV//MMV//MMV//MMV//MMV
+actor SparkChaserWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SparkChaser_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SparkChaser_Tag",1)stop}}
+actor SparkChaserWeakness2 : SparkChaserWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SparkChaser_Flaw2",1)goto P_F}}
+actor GrabBusterWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_GrabBuster_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_GrabBuster_Tag",1)stop}}
+actor GrabBusterWeakness2 : GrabBusterWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_GrabBuster_Flaw2",1)goto P_F}}
+actor BubbleBombWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_BubbleBomb_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_BubbleBomb_Tag",1)stop}}
+actor BubbleBombWeakness2 : BubbleBombWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_BubbleBomb_Flaw2",1)goto P_F}}
+actor PhotonMissileWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_PhotonMissile_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_PhotonMissile_Tag",1)stop}}
+actor PhotonMissileWeakness2 : PhotonMissileWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_PhotonMissile_Flaw2",1)goto P_F}}
+actor ElectricShockWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ElectricShock_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ElectricShock_Tag",1)stop}}
+actor ElectricShockWeakness2 : ElectricShockWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ElectricShock_Flaw2",1)goto P_F}}
+actor BlackHoleWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_BlackHole_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_BlackHole_Tag",1)stop}}
+actor BlackHoleWeakness2 : BlackHoleWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_BlackHole_Flaw2",1)goto P_F}}
+actor DeepDiggerWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_DeepDigger_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_DeepDigger_Tag",1)stop}}
+actor DeepDiggerWeakness2 : DeepDiggerWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_DeepDigger_Flaw",1)goto P_F}}
+actor BreakDashWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_BreakDash_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_BreakDash_Tag",1)stop}}
+actor BreakDashWeakness2 : BreakDashWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_BreakDash_Flaw",1)goto P_F}}
+actor SaltWaterWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_SaltWater_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_SaltWater_Tag",1)stop}}
+actor SaltWaterWeakness2 : SaltWaterWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_SaltWater_Flaw",1)goto P_F}}
+//MMV//MMV//MMV//MMV//MMV
+
+//MMWT//MMWT//MMWT//MMWT//MMWT
+actor BusterRodGWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_BusterRodG_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_BusterRodG_Tag",1)stop}}
+actor BusterRodGWeakness2 : BusterRodGWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_BusterRodG_Flaw2",1)goto P_F}}
+actor MegaWaterSWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_MegaWaterS_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_MegaWaterS_Tag",1)stop}}
+actor MegaWaterSWeakness2 : MegaWaterSWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_MegaWaterS_Flaw2",1)goto P_F}}
+actor HyperStormHWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_HyperStormH_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_HyperStormH_Tag",1)stop}}
+actor HyperStormHWeakness2 : HyperStormHWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_HyperStormH_Flaw2",1)goto P_F}}
+//MMWT//MMWT//MMWT//MMWT//MMWT
+
+//MMK//MMK//MMK//MMK//MMK
+actor MirrorBusterWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_MirrorBuster_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_MirrorBuster_Tag",1)stop}}
+actor MirrorBusterWeakness2 : MirrorBusterWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_MirrorBuster_Flaw2",1)goto P_F}}
+actor ScrewCrusherWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_ScrewCrusher_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_ScrewCrusher_Tag",1)stop}}
+actor ScrewCrusherWeakness2 : ScrewCrusherWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_ScrewCrusher_Flaw2",1)goto P_F}}
+actor BalladeCrackerWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_BalladeCracker_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_BalladeCracker_Tag",1)stop}}
+actor BalladeCrackerWeakness2 : BalladeCrackerWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_BalladeCracker_Flaw2",1)goto P_F}}
+actor SakugarneWeakness : WeaknessBase_P{States{
+P_W:TNT1 A 0 A_GiveInventory("Pwr_Sakugarne_Flaw",1)goto P_F
+P_F:TNT1 A 0 A_GiveInventory("W_Sakugarne_Tag",1)stop}}
+actor SakugarneWeakness2 : SakugarneWeakness{States{P_W:TNT1 A 0 A_GiveInventory("Pwr_Sakugarne_Flaw2",1)goto P_F}}
+//MMK//MMK//MMK//MMK//MMK
+
+
+//MM1//MM1//MM1//MM1//MM1
+actor W_RollingCutter_Tag:OnceC{}
+actor W_SuperArm_Tag:OnceC{}
+actor W_IceSlasher_Tag:OnceC{}
+actor W_HyperBomb_Tag:OnceC{}
+actor W_FireStorm_Tag:OnceC{}
+actor W_ThunderBeam_Tag:OnceC{}
+actor W_TimeSlow_Tag:OnceC{}
+actor W_OilSlider_Tag:OnceC{}
+//MM1//MM1//MM1//MM1//MM1
+
+//MM2//MM2//MM2//MM2//MM2
+actor W_MetalBlade_Tag:OnceC{}
+actor W_AirShooter_Tag:OnceC{}
+actor W_BubbleLead_Tag:OnceC{}
+actor W_QuickBoomerang_Tag:OnceC{}
+actor W_CrashBomb_Tag:OnceC{}
+actor W_TimeStopper_Tag:OnceC{}
+actor W_AtomicFire_Tag:OnceC{}
+actor W_LeafShield_Tag:OnceC{}
+//MM2//MM2//MM2//MM2//MM2
+
+//MM3//MM3//MM3//MM3//MM3
+actor W_NeedleCannon_Tag:OnceC{}
+actor W_MagnetMissile_Tag:OnceC{}
+actor W_GeminiLaser_Tag:OnceC{}
+actor W_HardKnuckle_Tag:OnceC{}
+actor W_TopSpin_Tag:OnceC{}
+actor W_SearchSnake_Tag:OnceC{}
+actor W_SparkShock_Tag:OnceC{}
+actor W_ShadowBlade_Tag:OnceC{}
+//MM3//MM3//MM3//MM3//MM3
+
+//MM4//MM4//MM4//MM4//MM4
+actor W_FlashStopper_Tag:OnceC{}
+actor W_RainFlush_Tag:OnceC{}
+actor W_DrillBomb_Tag:OnceC{}
+actor W_PharaohShot_Tag:OnceC{}
+actor W_RingBoomerang_Tag:OnceC{}
+actor W_DustCrusher_Tag:OnceC{}
+actor W_DiveMissile_Tag:OnceC{}
+actor W_SkullBarrier_Tag:OnceC{}
+//MM4//MM4//MM4//MM4//MM4
+
+//MM5//MM5//MM5//MM5//MM5
+actor W_GravityHold_Tag:OnceC{}
+actor W_WaterWave_Tag:OnceC{}
+actor W_PowerStone_Tag:OnceC{}
+actor W_GyroAttack_Tag:OnceC{}
+actor W_StarCrash_Tag:OnceC{}
+actor W_ChargeKick_Tag:OnceC{}
+actor W_NapalmBomb_Tag:OnceC{}
+actor W_CrystalEye_Tag:OnceC{}
+//MM5//MM5//MM5//MM5//MM5
+
+//MM6//MM6//MM6//MM6//MM6
+actor W_BlizzardAttack_Tag:OnceC{}
+actor W_CentaurFlash_Tag:OnceC{}
+actor W_FlameBlast_Tag:OnceC{}
+actor W_KnightCrush_Tag:OnceC{}
+actor W_PlantBarrier_Tag:OnceC{}
+actor W_SilverTomahawk_Tag:OnceC{}
+actor W_WindStorm_Tag:OnceC{}
+actor W_YamatoSpear_Tag:OnceC{}
+//MM6//MM6//MM6//MM6//MM6
+
+//MM7//MM7//MM7//MM7//MM7
+actor W_FreezeCracker_Tag:OnceC{}
+actor W_JunkShield_Tag:OnceC{}
+actor W_DangerWrap_Tag:OnceC{}
+actor W_ThunderBolt_Tag:OnceC{}
+actor W_WildCoil_Tag:OnceC{}
+actor W_SlashClaw_Tag:OnceC{}
+actor W_NoiseCrush_Tag:OnceC{}
+actor W_ScorchWheel_Tag:OnceC{}
+//MM7//MM7//MM7//MM7//MM7
+
+//MM8//MM8//MM8//MM8//MM8
+actor W_TornadoHold_Tag:OnceC{}
+actor W_AstroCrush_Tag:OnceC{}
+actor W_FlameSword_Tag:OnceC{}
+actor W_ThunderClaw_Tag:OnceC{}
+actor W_HomingSniper_Tag:OnceC{}
+actor W_IceWave_Tag:OnceC{}
+actor W_FlashBomb_Tag:OnceC{}
+actor W_WaterBalloon_Tag:OnceC{}
+actor W_MegaBall_Tag:OnceC{}
+//MM8//MM8//MM8//MM8//MM8
+
+//MMB//MMB//MMB//MMB//MMB
+actor W_TenguBlade_Tag:OnceC{}
+actor W_CopyVision_Tag:OnceC{}
+actor W_LightningBolt_Tag:OnceC{}
+actor W_IceWall_Tag:OnceC{}
+actor W_SpreadDrill_Tag:OnceC{}
+actor W_RemoteMine_Tag:OnceC{}
+actor W_WaveBurner_Tag:OnceC{}
+actor W_MagicCard_Tag:OnceC{}
+//MMB//MMB//MMB//MMB//MMB
+
+//MM9//MM9//MM9//MM9//MM9
+actor W_ConcreteShot_Tag:OnceC{}
+actor W_TornadoBlow_Tag:OnceC{}
+actor W_LaserTrident_Tag:OnceC{}
+actor W_PlugBall_Tag:OnceC{}
+actor W_JewelSatellite_Tag:OnceC{}
+actor W_HornetChaser_Tag:OnceC{}
+actor W_MagmaBazooka_Tag:OnceC{}
+actor W_BlackHoleBomb_Tag:OnceC{}
+//MM9//MM9//MM9//MM9//MM9
+
+//MM10//MM10//MM10//MM10//MM10
+actor W_TripleBlade_Tag:OnceC{}
+actor W_WaterShield_Tag:OnceC{}
+actor W_CommandoBomb_Tag:OnceC{}
+actor W_ChillSpike_Tag:OnceC{}
+actor W_ThunderWool_Tag:OnceC{}
+actor W_ReboundStriker_Tag:OnceC{}
+actor W_WheelCutter_Tag:OnceC{}
+actor W_SolarBlaze_Tag:OnceC{}
+//MM10//MM10//MM10//MM10//MM10
+
+//MMV//MMV//MMV//MMV//MMV
+actor W_SparkChaser_Tag:OnceC{}
+actor W_GrabBuster_Tag:OnceC{}
+actor W_BubbleBomb_Tag:OnceC{}
+actor W_PhotonMissile_Tag:OnceC{}
+actor W_ElectricShock_Tag:OnceC{}
+actor W_BlackHole_Tag:OnceC{}
+actor W_DeepDigger_Tag:OnceC{}
+actor W_BreakDash_Tag:OnceC{}
+actor W_SaltWater_Tag:OnceC{}
+//MMV//MMV//MMV//MMV//MMV
+
+//MMWT//MMWT//MMWT//MMWT//MMWT
+actor W_BusterRodG_Tag:OnceC{}
+actor W_MegaWaterS_Tag:OnceC{}
+actor W_HyperStormH_Tag:OnceC{}
+//MMWT//MMWT//MMWT//MMWT//MMWT
+
+//MMK//MMK//MMK//MMK//MMK
+actor W_MirrorBuster_Tag:OnceC{}
+actor W_ScrewCrusher_Tag:OnceC{}
+actor W_BalladeCracker_Tag:OnceC{}
+actor W_Sakugarne_Tag:OnceC{}
+//MMK//MMK//MMK//MMK//MMK
+
+
+
+

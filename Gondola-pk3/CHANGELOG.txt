@@ -3708,6 +3708,10 @@ CHANGELOG
 --Cluster Bomb cluster explosion radius 50 > 80, maxdmgradius 81 > 40
 -Surface Detonation Hyper Bomb damage 25 > 24
 
+==Timeman
+-Removed immunity to Time-related attacks
+-Added Time Slow activation skinsprites
+
 ==Metalman
 -Refined hover code, no longer jitters when holding mainfire
 -Updated Chain Blade obituary
@@ -3776,6 +3780,7 @@ CHANGELOG
 -New Silver Tomahawk player/surface impact SFX added, provided by Fr3ak
 
 ==Windman
+-New Wind Gyro firing SFX, provided by MusashiAA
 -Wind Storm speed when on the ground 20 > 30
 --Wind Storm pull strength 16 > 24
 --Wind Storm stepheight 15 > 24
@@ -3790,6 +3795,10 @@ CHANGELOG
 ==Cloudman
 -Added unused obituaries for Thunder Charge and Thunder Spark
 
+==Springman
+-Now generates ammo at a halved rate while Spring Punch is out
+--Ammo regen matches idle regen if Super Spring Punch is used
+
 ==Turboman
 -Fixed horizontal bar bug
 
@@ -3797,10 +3806,13 @@ CHANGELOG
 -Ported optimized hover method from Primo Patch
 
 ==Swordman
--Flame Sword damage 16/16/22 > 15/15/20
+-Ammo regen reduced by 40%
+-Flame Sword no longer generates ammo when swinging
 --Increased delay between Flame Sword swings by 4 tics
 --Flame Sword particles now have +BRIGHT
--Removed ability to dash after final Flame Sword swipe
+-Searing Lunge reworked: Now has set distances for all levels and drains ammo
+--Landing from Searing Lunge now drops Statue Smash, an explosive statue that stuns enemies for half a second on hit
+--Statue Smash takes away 7 ammo on spawn and leaves the user immobile while forming
 
 ==Searchman
 -Homing Sniper speed 28/32 > 32/35
@@ -3843,6 +3855,9 @@ CHANGELOG
 
 ==Tornadoman
 -Ported optimized hover method from Primo Patch
+
+==Plugman
+-Fixed armor nullifying altfire health drain
 
 ==Hornetman
 -Honeycomb Crash endlag reduced by 5 tics
@@ -3930,6 +3945,10 @@ CHANGELOG
 
 ==HyperstormH
 -Suction kills are now part of a balanced breakfast
+
+==Ballade
+-Fixed Ballade Cracker offsets
+-Ballade Cracker now resembles MM4GB mini-cracker when fired with minimum speed
 
 =Quint
 -Sakugarne melee damager powerprotect duration 8/9 tics > 12/13 tics

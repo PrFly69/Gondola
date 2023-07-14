@@ -54,10 +54,6 @@ goto Spawn+5
 CustomState1:
 8SWR VWXY 1 A_PlaySoundEx("weapon/flamesword","Body")
 goto Spawn
-CustomState2:
-8SWR VWXY 2
-8SWR VWXY 3
-goto Spawn
 ClassPain:
 SWOM HHH 0 A_JumpIfInventory("FlameFlag",1,"ClassPainLegs")
 goto PainContinue

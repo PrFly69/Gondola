@@ -207,6 +207,9 @@ $volume weapon/Train 1
 $volume weapon/chugga 1
 weapon/tankengine TANKENGN
 
+//Crystal
+weapon/crystalbigbounce CRYSBIG
+
 
 ///// MM6 /////
 
@@ -301,6 +304,7 @@ weapon/searchdash SRCHDASH
 weapon/searchdstorm SRCHDEST
 weapon/searchshot SRCHHOM
 $volume class/SearchBush 0.7
+weapon/SearchDiscBounceMini SRCHMINI
 
 //Aqua
 $volume weapon/AquaCharge 0.6

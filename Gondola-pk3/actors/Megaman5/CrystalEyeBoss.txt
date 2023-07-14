@@ -432,7 +432,7 @@ damagetype "CrystalM_Eye"
 Obituary "$OB_CRYSTALEYEBIG"
 //+EXPLODEONWATER
 +SKYEXPLODE
-SeeSound "weapon/crystalbit"
+SeeSound "weapon/crystalbigbounce"
 +DOOMBOUNCE
 +CANBOUNCEWATER
 bouncefactor 1.0

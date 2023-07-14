@@ -1496,12 +1496,12 @@ actor HomingSniperStorm2P : HomingSniperStorm2{Translation "192:192=229:229","19
 
 actor SearchFrisbee
 {
-Translation "204:204=215:215","195:195=73:73"
+Translation "204:204=42:42","195:195=230:230","192:192=105:105"
 PROJECTILE
 Damagetype "SearchM_Disc"
 Obituary "$OB_SEARCHDISC"
 //SeeSound "item/protoreflect"
-BounceSound "wep_L/SearchDiscBounce"//item/protoreflect
+BounceSound "weapon/SearchDiscBounceMini"//item/protoreflect
 //Bouncetype Doom
 //-ALLOWBOUNCEONACTORS
 +BOUNCEONFLOORS//
@@ -1545,6 +1545,7 @@ Damage (24)
 Speed 52
 Height 16
 Radius 16
+BounceSound "wep_L/SearchDiscBounce"
 //+USEBOUNCESTATE
 //+SEEKERMISSILE
 //+LOOKALLAROUND
@@ -1556,8 +1557,8 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-HSN8 Q 0 A_CountDown
-HSN8 QQQRRR 1 A_SpawnItemEx("SearchFrisbee2FX",0,0,0,0,0,0,0,1)
+HSNC Q 0 A_CountDown
+HSNC XXXYYY 1 A_SpawnItemEx("SearchFrisbee2FX",0,0,0,0,0,0,0,1)//A_SpawnItemEx("SearchBushLeafFX1",random(-8,8),0,random(-8,8),1,0,-2,random(0,359),1)
 loop
 //Bounce:
 //HSN8 A 0 A_FaceTracer
@@ -1567,19 +1568,22 @@ loop
 }
 }
 
-actor SearchFrisbee2B : SearchFrisbee2{Translation "204:204=205:205","195:195=74:74"}
-actor SearchFrisbee2R : SearchFrisbee2{Translation "204:204=171:171","195:195=41:41"}
-actor SearchFrisbee2O : SearchFrisbee2{Translation "204:204=104:104","195:195=128:128"}
-actor SearchFrisbee2P : SearchFrisbee2{Translation "204:204=229:229","195:195=232:232"}
+actor SearchFrisbee2B : SearchFrisbee2{Translation "192:192=205:205","204:204=205:205","195:195=74:74"}
+actor SearchFrisbee2R : SearchFrisbee2{Translation "192:192=171:171","204:204=171:171","195:195=41:41"}
+actor SearchFrisbee2O : SearchFrisbee2{Translation "192:192=104:104","204:204=104:104","195:195=128:128"}
+actor SearchFrisbee2P : SearchFrisbee2{Translation "192:192=229:229","204:204=229:229","195:195=232:232"}
 
 actor SearchFrisbee2FX : BasicClientside
 {
-scale 2.5
+scale 2
 alpha 0.80
 states
 {
 Spawn:
-HSN8 QQQRRR 3 A_FadeOut(0.25)
+TNT1 AA 0
+TNT1 A 1
+SpawnLOOP:
+HSNC XXXYYY 3 A_FadeOut(0.25)
 loop
 }
 }

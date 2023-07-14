@@ -209,7 +209,7 @@ Actor BC_Base {
             TNT1 A 0
 			TNT1 A 0 ACS_NamedExecuteWithResult("CCBM Ballade Speed")
 			SpawnPOOP:
-			W_KC ABCD 3
+			W_KC EFGH 3
         Loop
         Death:
 		TNT1 A 0
@@ -243,7 +243,8 @@ Actor BC_Base_Fast : FastProjectile {
             TNT1 A 0
             TNT1 A 0 A_JumpIfInTargetInventory("BalladeChargeFlag",30,"Spawn1")
             TNT1 A 0 A_JumpIfInTargetInventory("BalladeChargeFlag",20,"Spawn2")
-			goto Spawn3
+			TNT1 A 0 A_JumpIfInTargetInventory("BalladeChargeFlag",1,"Spawn3")
+			goto Spawn4
            Spawn1:
 			TNT1 A 0 ACS_NamedExecuteWithResult("CCBM Ballade Speed")
 			Spawn1Loop:
@@ -262,7 +263,7 @@ Actor BC_Base_Fast : FastProjectile {
 			Spawn4:
 			TNT1 A 0 ACS_NamedExecuteWithResult("CCBM Ballade Speed")
 			Spawn4Loop:
-			W_KC ABCD 4
+			W_KC EFGH 4
 			goto Spawn4Loop
         Death:
 		TNT1 A 0
@@ -366,7 +367,7 @@ stop
 Actor BalladeMainPickup_CI : CustomInventory {
     States {
         Pickup:
-            TNT1 A 0 A_JumpIfInventory("BalladeChargeFlag", 20, "FastProj") // this makes 60
+            TNT1 A 0 A_JumpIfInventory("BalladeChargeFlag", 1, "FastProj") // this makes 60
         NormalProj:
             TNT1 A 0 A_GiveInventory("BalladeM1Normal_CI", 1)
         Goto End
