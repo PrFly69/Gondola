@@ -294,7 +294,7 @@ $playersound	snakemanc	male	*usefail	LAND
 $playersound	shadowmanc	male	*death		MEGADEAT
 $playersound	shadowmanc	male	*pain100	MM3PAIN
 $playersound	shadowmanc	male	*weakpain	M3_WEAK
-$playersound	shadowmanc	male	*land		dsnone
+$playersound	shadowmanc	male	*land		XDXDXDXD
 $playersound	shadowmanc	male	*usefail	LAND
 
 $playersound	hardmanc	male	*death		MEGADEAT

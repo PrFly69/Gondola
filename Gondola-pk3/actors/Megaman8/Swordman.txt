@@ -52,7 +52,7 @@ SWOM RRRR 1 A_JumpIfInventory("NoFlameFlag",1,"Missile")
 SWOM SSSS 1 A_JumpIfInventory("NoFlameFlag",1,"Missile")
 goto Spawn+5
 CustomState1:
-8SWR VWXY 1 A_PlaySoundEx("weapon/flamesword","Body")
+8SWR VWXYVWXY 1 A_JumpIfInventory("SwordReconnect",1,"Missile")
 goto Spawn
 ClassPain:
 SWOM HHH 0 A_JumpIfInventory("FlameFlag",1,"ClassPainLegs")

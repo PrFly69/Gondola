@@ -681,43 +681,43 @@ OptionMenu "CBM_ChangelogMenu"
 	Option "", "CBM_Null_Menu", "CL_Null"
 }
 
-OptionValue ChangeLogIndex_1 {0,"\cd============\c[Teal]Gondola Patch 2.6\cd============"}
+OptionValue ChangeLogIndex_1 {0,"\cd============\c[Teal]Gondola Patch 2.6.1 Hotfix\cd============"}
 OptionValue ChangeLogIndex_2 {0,"(open file for older patchnotes)"}
 OptionValue ChangeLogIndex_3 {0,""}
-OptionValue ChangeLogIndex_4 {0,"\cq==General"}
-OptionValue ChangeLogIndex_5 {0,"Fixed item icons not appearing on HBAR"}
-OptionValue ChangeLogIndex_6 {0,"-Fixed yellow painflash being too transparent"}
-OptionValue ChangeLogIndex_7 {0,"-Light Team dark blue color 241 > [30,54,172]"}
-OptionValue ChangeLogIndex_8 {0,"-New ice death sound effects provided by MusashiAA"}
-OptionValue ChangeLogIndex_9 {0,"-Updated pitprotect code by A-Chan"}
-OptionValue ChangeLogIndex_10 {0,"-Fixed every class having abnormally high movement/projectile speeds"}
+OptionValue ChangeLogIndex_4 {0,"\cq==Copyweapons"}
+OptionValue ChangeLogIndex_5 {0,"-Atomic Fire copywep damage 10/34/54"}
+OptionValue ChangeLogIndex_6 {0,"> 12/33/25 (ripper)"}
+OptionValue ChangeLogIndex_7 {0,"-Flame Blast copywep damage 32 > 20"}
+OptionValue ChangeLogIndex_8 {0,"-Fixed Duo Fist not having copynerf, damage reduced"}
+OptionValue ChangeLogIndex_9 {0," 25/35/70 > 16/22/45"}
+OptionValue ChangeLogIndex_10 {0,"-Fixed Nova Beam lagging out servers"}
 OptionValue ChangeLogIndex_11 {0,""}
-OptionValue ChangeLogIndex_12 {0,"\cq==CTF"}
-OptionValue ChangeLogIndex_13 {0,"--CTF Yellow Devil is now Green Devil"}
-OptionValue ChangeLogIndex_14 {0,"-Kit unchanged"}
-OptionValue ChangeLogIndex_15 {0,"*Never confuse YD for GD again!"}
-OptionValue ChangeLogIndex_16 {0,""}
-OptionValue ChangeLogIndex_17 {0,"\cq==Megaman"}
-OptionValue ChangeLogIndex_18 {0,"--2nd level charge shot damage 25.0 > 30.0"}
-OptionValue ChangeLogIndex_19 {0,""}
-OptionValue ChangeLogIndex_20 {0,"\cq==Protoman"}
-OptionValue ChangeLogIndex_21 {0,"--Fixed item cancelling charge sound"}
-OptionValue ChangeLogIndex_22 {0,""}
-OptionValue ChangeLogIndex_23 {0,"\cq==Bass"}
-OptionValue ChangeLogIndex_24 {0,"--HUD now indicates M1 spread increase"}
-OptionValue ChangeLogIndex_25 {0,""}
-OptionValue ChangeLogIndex_26 {0,"\cq==Duo"}
-OptionValue ChangeLogIndex_27 {0,"--Duo Wave stepheight 24 > 32"}
-OptionValue ChangeLogIndex_28 {0,""}
-OptionValue ChangeLogIndex_29 {0,"\cq==Rock"}
-OptionValue ChangeLogIndex_30 {0,"--Ported classes-v9fh Mega Ball visuals"}
-OptionValue ChangeLogIndex_31 {0,"--Removed Bomb Ball powerprotect"}
+OptionValue ChangeLogIndex_12 {0,"\cq==Megaman"}
+OptionValue ChangeLogIndex_13 {0,"-Optimized charging code to make tapfiring/charging"}
+OptionValue ChangeLogIndex_14 {0,"more convenient"}
+OptionValue ChangeLogIndex_15 {0,""}
+OptionValue ChangeLogIndex_16 {0,"\cq==Duo"}
+OptionValue ChangeLogIndex_17 {0,"-Duo Slam now takes one stock of ammo, does shoulder"}
+OptionValue ChangeLogIndex_18 {0,"bash if ammo is insufficient"}
+OptionValue ChangeLogIndex_19 {0,"-APU version of Duo Slam now leaves lingering knockup"}
+OptionValue ChangeLogIndex_20 {0,"field on impact, henceforth named Justice Flash"}
+OptionValue ChangeLogIndex_21 {0,"-New sounds for meteor and slam added, made by"}
+OptionValue ChangeLogIndex_22 {0,"MusashiAA"}
+OptionValue ChangeLogIndex_23 {0,""}
+OptionValue ChangeLogIndex_24 {0,"\cq==Rock"}
+OptionValue ChangeLogIndex_25 {0,"-Removed kick cancelling ball drop animation"}
+OptionValue ChangeLogIndex_26 {0,"-Fixed all balls not having powerprotect, now set to 34%"}
+OptionValue ChangeLogIndex_27 {0,"--All balls bouncecounts standardized, 5/9"}
+OptionValue ChangeLogIndex_28 {0,"(uncharged/charged)"}
+OptionValue ChangeLogIndex_29 {0,"*This excludes function on surface contact balls"}
+OptionValue ChangeLogIndex_30 {0,"(Guts Ball and Bomb Ball)"}
+OptionValue ChangeLogIndex_31 {0,"-Cut Ball ripper 4/6 > 6/9"}
 OptionValue ChangeLogIndex_32 {0,"-Powerprotect on other balls 0.1 > 0.5"}
-OptionValue ChangeLogIndex_33 {0,""}
-OptionValue ChangeLogIndex_34 {0,"\cq==Roll"}
-OptionValue ChangeLogIndex_35 {0,"--Ported classes-v9fh visuals"}
-OptionValue ChangeLogIndex_36 {0,"--Broom now gives 1/2 a dash stock on hit"}
-OptionValue ChangeLogIndex_37 {0,""}
+OptionValue ChangeLogIndex_33 {0,"-Bomb Ball direct damage no longer affected by"}
+OptionValue ChangeLogIndex_34 {0,"powerprotect"}
+OptionValue ChangeLogIndex_35 {0,"--Bomb Ball explosion damage 16/20 > 14/18"}
+OptionValue ChangeLogIndex_36 {0,"-Time Ball powerprotect factor 100% (bugged) > 67%"}
+OptionValue ChangeLogIndex_37 {0,""}////////////////////////////////////////////HEY GIBUS IN THE FUTURE! THIS IS YOUR CURRENT PROGRESS!
 OptionValue ChangeLogIndex_38 {0,"\cq==Sniper Joe"}
 OptionValue ChangeLogIndex_39 {0,"--Vehicle box max ammo 420 > 700"}
 OptionValue ChangeLogIndex_40 {0,"*Effectively, vehicle duration 12 > 20sec"}

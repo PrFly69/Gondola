@@ -3764,6 +3764,9 @@ CHANGELOG
 -Endlag on Napalm Missile reduced by 4 tics
 -Napalm Bomb jumping/firing skinsprites ported from V-Classes
 
+==Crystalman
+-Crystal Eye now has a unique bouncing sound, provided by MusashiAA
+
 ==Knightman
 -Knight Crush speed 50 > 45
 --Returning Knight Crush damage 9 > 18
@@ -3818,12 +3821,13 @@ CHANGELOG
 -Homing Sniper speed 28/32 > 32/35
 -Firing Homing Sniper now has 20 tics of endlag
 --Endlag gets reduced by 5 tics per missile fired in a volley
---Endlag can be cancelled into Search Disk or Deadly Storm 5 tics into endlag
+--Endlag can be cancelled into Search Disc or Deadly Storm 5 tics into endlag
 --Ammo consumption when firing removed
 -Deadly Storm speed reduction while firing removed
 --Optimized Deadly Storm hovering code
 -Updated skinsprites
 -New Homing Sniper/Deadly Storm sprites and firing SFX, provided by Fr3ak and MusashiAA respectively
+-New Empowered Search Disc sprites ported from V-Classes
 
 ==Aquaman
 -Water Balloon direct damage 4 > 2
@@ -3950,7 +3954,7 @@ CHANGELOG
 -Fixed Ballade Cracker offsets
 -Ballade Cracker now resembles MM4GB mini-cracker when fired with minimum speed
 
-=Quint
+==Quint
 -Sakugarne melee damager powerprotect duration 8/9 tics > 12/13 tics
 -Updated Quint Buster projectile sprites to resemble Mega Buster's Game Boy projectile sprites
 -Fixed Shockwave being able to deal up to 50 dmg
