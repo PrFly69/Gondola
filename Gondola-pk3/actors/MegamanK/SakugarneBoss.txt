@@ -792,7 +792,7 @@ States
 {
 Pickup:
 TNT1 A 0 
-TNT1 A 0 A_JumpIf(z-floorz>32,"GravitySqueez")
+TNT1 A 0 A_JumpIf(z-floorz>64,"GravitySqueez")
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)
 stop
 GravitySqueez:
