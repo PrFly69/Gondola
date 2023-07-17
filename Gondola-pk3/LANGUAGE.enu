@@ -490,7 +490,7 @@ M_GWT = "WT";
 M_GK = "K";
 
 QUITMSG31 = "Yes Yes Yes Yes Yes Yes";
-QUITMSG32 = "Don't make us stop production on version 2.6...";
+QUITMSG32 = "Don't make us stop production on version 2.6.2...";
 
 //The Banner
 STARTUP1 = "";

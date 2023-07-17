@@ -3763,6 +3763,7 @@ CHANGELOG
 -Napalm Bomb projectile speed 20/30/40 > 25/35/45
 -Endlag on Napalm Missile reduced by 4 tics
 -Napalm Bomb jumping/firing skinsprites ported from V-Classes
+-Updated Napalm HUD, provided by HeelNavi
 
 ==Crystalman
 -Crystal Eye now has a unique bouncing sound, provided by MusashiAA
@@ -3894,7 +3895,7 @@ CHANGELOG
 ==Mercury
 -MercuryClassAmmo max capacity 32 > 56
 --MercuryClassAmmo starting capacity 12 > 24
--Grab Buster ammo replenlishment 2 > 4
+-Grab Buster ammo replenishment on hit 2 > 4
 -Mercury Goo use/diminish ratio 4/3 > 7/6
 -Goo Dash use/diminish ratio 8/7 > 14/12
 
@@ -3930,7 +3931,7 @@ CHANGELOG
 ==Acidman
 -Fixed permanent 5% damage vulnerability after using Acid Barrier
 
-=Tundraman
+==Tundraman
 -Triple Lutz melee damager powerprotect duration 8 tics > 12 tics
 -Tundra Storm radius 150 > 100, sprite scale adjusted to represent new hitbox
 -Fixed SBAR desyncs

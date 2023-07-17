@@ -345,7 +345,7 @@ OptionMenu "CBM_ChangelogMenu"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_334"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_335"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_336"
-	/*Option "", "CBM_Null_Menu", "ChangeLogIndex_337"
+	Option "", "CBM_Null_Menu", "ChangeLogIndex_337"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_338"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_339"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_340"
@@ -409,7 +409,7 @@ OptionMenu "CBM_ChangelogMenu"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_398"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_399"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_400"
-	Option "", "CBM_Null_Menu", "ChangeLogIndex_401"
+	/*Option "", "CBM_Null_Menu", "ChangeLogIndex_401"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_402"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_403"
 	Option "", "CBM_Null_Menu", "ChangeLogIndex_404"
@@ -681,10 +681,10 @@ OptionMenu "CBM_ChangelogMenu"
 	Option "", "CBM_Null_Menu", "CL_Null"
 }
 
-OptionValue ChangeLogIndex_1 {0,"\cd============\c[Teal]Gondola Patch 2.6.1 Hotfix\cd============"}
+OptionValue ChangeLogIndex_1 {0,"\cf============\c[GibusGold]Gondola Patch 2.6.1 Hotfix\cf============"}
 OptionValue ChangeLogIndex_2 {0,"(open file for older patchnotes)"}
 OptionValue ChangeLogIndex_3 {0,""}
-OptionValue ChangeLogIndex_4 {0,"\cq==Copyweapons"}
+OptionValue ChangeLogIndex_4 {0,"\cf==Copyweapons"}
 OptionValue ChangeLogIndex_5 {0,"-Atomic Fire copywep damage 10/34/54"}
 OptionValue ChangeLogIndex_6 {0,"> 12/33/25 (ripper)"}
 OptionValue ChangeLogIndex_7 {0,"-Flame Blast copywep damage 32 > 20"}
@@ -692,11 +692,11 @@ OptionValue ChangeLogIndex_8 {0,"-Fixed Duo Fist not having copynerf, damage red
 OptionValue ChangeLogIndex_9 {0," 25/35/70 > 16/22/45"}
 OptionValue ChangeLogIndex_10 {0,"-Fixed Nova Beam lagging out servers"}
 OptionValue ChangeLogIndex_11 {0,""}
-OptionValue ChangeLogIndex_12 {0,"\cq==Megaman"}
+OptionValue ChangeLogIndex_12 {0,"\cf==Megaman"}
 OptionValue ChangeLogIndex_13 {0,"-Optimized charging code to make tapfiring/charging"}
 OptionValue ChangeLogIndex_14 {0,"more convenient"}
 OptionValue ChangeLogIndex_15 {0,""}
-OptionValue ChangeLogIndex_16 {0,"\cq==Duo"}
+OptionValue ChangeLogIndex_16 {0,"\cf==Duo"}
 OptionValue ChangeLogIndex_17 {0,"-Duo Slam now takes one stock of ammo, does shoulder"}
 OptionValue ChangeLogIndex_18 {0,"bash if ammo is insufficient"}
 OptionValue ChangeLogIndex_19 {0,"-APU version of Duo Slam now leaves lingering knockup"}
@@ -704,9 +704,9 @@ OptionValue ChangeLogIndex_20 {0,"field on impact, henceforth named Justice Flas
 OptionValue ChangeLogIndex_21 {0,"-New sounds for meteor and slam added, made by"}
 OptionValue ChangeLogIndex_22 {0,"MusashiAA"}
 OptionValue ChangeLogIndex_23 {0,""}
-OptionValue ChangeLogIndex_24 {0,"\cq==Rock"}
+OptionValue ChangeLogIndex_24 {0,"\cf==Rock"}
 OptionValue ChangeLogIndex_25 {0,"-Removed kick cancelling ball drop animation"}
-OptionValue ChangeLogIndex_26 {0,"-Fixed all balls not having powerprotect, now set to 34%"}
+OptionValue ChangeLogIndex_26 {0,"-Fixed all balls not having PP, now set to 34%"}//pp. like peepee. haha. im going insane
 OptionValue ChangeLogIndex_27 {0,"--All balls bouncecounts standardized, 5/9"}
 OptionValue ChangeLogIndex_28 {0,"(uncharged/charged)"}
 OptionValue ChangeLogIndex_29 {0,"*This excludes function on surface contact balls"}
@@ -718,305 +718,384 @@ OptionValue ChangeLogIndex_34 {0,"powerprotect"}
 OptionValue ChangeLogIndex_35 {0,"--Bomb Ball explosion damage 16/20 > 14/18"}
 OptionValue ChangeLogIndex_36 {0,"-Time Ball powerprotect factor 100% (bugged) > 67%"}
 OptionValue ChangeLogIndex_37 {0,""}////////////////////////////////////////////HEY GIBUS IN THE FUTURE! THIS IS YOUR CURRENT PROGRESS!
-OptionValue ChangeLogIndex_38 {0,"\cq==Sniper Joe"}
-OptionValue ChangeLogIndex_39 {0,"--Vehicle box max ammo 420 > 700"}
-OptionValue ChangeLogIndex_40 {0,"*Effectively, vehicle duration 12 > 20sec"}
-OptionValue ChangeLogIndex_41 {0,"-Idle ammo gain 1 > 2"}
-OptionValue ChangeLogIndex_42 {0,"-Scoreball ammo gain 105 > 175"}
-OptionValue ChangeLogIndex_43 {0,"--Machine Gun refill moved to reload"}
-OptionValue ChangeLogIndex_44 {0,"-Vehicle box is still an item"}
-OptionValue ChangeLogIndex_45 {0,"-Vehicle box usage 315 > 700"}
-OptionValue ChangeLogIndex_46 {0,"-Vehicle box requirement is the same"}
-OptionValue ChangeLogIndex_47 {0,"--Vehicles no longer give Machine Gun ammo"}
-OptionValue ChangeLogIndex_48 {0,"--Firing with vehicles consumes ammo"}
-OptionValue ChangeLogIndex_49 {0,"-Truck - mainfire/altfire 1 ammo per tic"}
-OptionValue ChangeLogIndex_50 {0,"-Apache - 15 ammo per mainfire, 35 per alt"}
-OptionValue ChangeLogIndex_51 {0,"-Apache 25% bonus speed removed"}
-OptionValue ChangeLogIndex_52 {0,""}
-OptionValue ChangeLogIndex_53 {0,"\cq==Gutsman"}
-OptionValue ChangeLogIndex_54 {0,"--Rock sprite ported from classes-v9fh.pk3"}
-OptionValue ChangeLogIndex_55 {0,""}
-OptionValue ChangeLogIndex_56 {0,"\cq==Iceman"}
-OptionValue ChangeLogIndex_57 {0,"--Speed scaling reworked"}
-OptionValue ChangeLogIndex_58 {0,"-Base speed 30 > 15"}
-OptionValue ChangeLogIndex_59 {0,"-Spends first 12 tics at base speed, "}
-OptionValue ChangeLogIndex_60 {0,"then scales up 25% four times over the "}
-OptionValue ChangeLogIndex_61 {0,"course of 12 tics for an effective max "}
-OptionValue ChangeLogIndex_62 {0,"speed of 36"}
+//HEY THANKS PAST GIBUS I APPRECIATE THE HEADS UP
+OptionValue ChangeLogIndex_38 {0,"\cf==Sniper Joe"}
+OptionValue ChangeLogIndex_39 {0,"-Machine Gun projectile speed 51 > 58"}
+OptionValue ChangeLogIndex_40 {0,"--Machine Gun projectile spread (-2,2) > (-3,3)"}
+OptionValue ChangeLogIndex_41 {0,""}
+OptionValue ChangeLogIndex_42 {0,"\cf==Gutsman"}
+OptionValue ChangeLogIndex_43 {0,"-Removed ammo gain while holding Guts Block"}
+OptionValue ChangeLogIndex_44 {0,""}
+OptionValue ChangeLogIndex_45 {0,"\cf==Iceman"}
+OptionValue ChangeLogIndex_46 {0,"-Fixed Ice Cube health being x10'd, (HP 500 > 50)"}
+OptionValue ChangeLogIndex_47 {0,"-Reload Ice Lance now has wind FX, provided by Fr3ak"}
+OptionValue ChangeLogIndex_48 {0,"-Fixed weapon tag"}
+OptionValue ChangeLogIndex_49 {0,""}
+OptionValue ChangeLogIndex_50 {0,"\cf==Fireman"}
+OptionValue ChangeLogIndex_51 {0,"-Fire Wave now blocks shots, has 4 tics less lifetime"}
+OptionValue ChangeLogIndex_52 {0,"before despawning"}
+OptionValue ChangeLogIndex_53 {0,""}
+OptionValue ChangeLogIndex_54 {0,"\cf==Bombman"}
+OptionValue ChangeLogIndex_55 {0,"-Cluster Bomb cluster spread speed 12 > 8"}
+OptionValue ChangeLogIndex_56 {0,"--Cluster Bomb cluster explosion radius 50 > 80,"}
+OptionValue ChangeLogIndex_57 {0,"maxdmgradius 81 > 40"}
+OptionValue ChangeLogIndex_58 {0,"-Surface Detonation Hyper Bomb damage 25 > 24"}
+OptionValue ChangeLogIndex_59 {0,""}
+OptionValue ChangeLogIndex_60 {0,"\cf==Timeman"}
+OptionValue ChangeLogIndex_61 {0,"-Removed immunity to Time-related attacks"}
+OptionValue ChangeLogIndex_62 {0,"-Added unused Time Slow activation skinsprites"}
 OptionValue ChangeLogIndex_63 {0,""}
-OptionValue ChangeLogIndex_64 {0,"\cq==Bombman"}
-OptionValue ChangeLogIndex_65 {0,"--Ported classes-v9fh Hyper Bomb FX"}
-OptionValue ChangeLogIndex_66 {0,""}
-OptionValue ChangeLogIndex_67 {0,"\cq==Metalman"}
-OptionValue ChangeLogIndex_68 {0,"--Metal Blade damage 14.0 > 12.0"}
-OptionValue ChangeLogIndex_69 {0,"--Metal Chain damage 10.0 > 7.5"}
-OptionValue ChangeLogIndex_70 {0,""}
-OptionValue ChangeLogIndex_71 {0,"\cq==Bubbleman"}
-OptionValue ChangeLogIndex_72 {0,"--New HUD by Christmas Cultist"}
-OptionValue ChangeLogIndex_73 {0,"--Ported classes-v9fh swimming sprites"}
-OptionValue ChangeLogIndex_74 {0,""}
-OptionValue ChangeLogIndex_75 {0,"\cq==Quickman"}
-OptionValue ChangeLogIndex_76 {0,"--Movespeed 1.33/1.35 > 1.18/1.20"}
-OptionValue ChangeLogIndex_77 {0,""}
-OptionValue ChangeLogIndex_78 {0,"\cq==Flashman"}
-OptionValue ChangeLogIndex_79 {0,"--Flash Stunner windup reverted to old"}
-OptionValue ChangeLogIndex_80 {0,"--Ammo bars swapped"}
-OptionValue ChangeLogIndex_81 {0,"--Fixed bot crashout bug after stunning"}
-OptionValue ChangeLogIndex_82 {0,""}
-OptionValue ChangeLogIndex_83 {0,"\cq==Magnetman"}
-OptionValue ChangeLogIndex_84 {0,"--Magnet Mines removed"}
-OptionValue ChangeLogIndex_85 {0,"--SBAR uses vanilla Magnet Missile colors"}
+OptionValue ChangeLogIndex_64 {0,"\cf==Metalman"}
+OptionValue ChangeLogIndex_65 {0,"-Refined hover code, no longer jitters when"}
+OptionValue ChangeLogIndex_66 {0,"holding mainfire"}
+OptionValue ChangeLogIndex_67 {0,""}
+OptionValue ChangeLogIndex_68 {0,"\cf==Airman"}
+OptionValue ChangeLogIndex_69 {0,"-New Air Shooter/Air Wall player/surface"}
+OptionValue ChangeLogIndex_70 {0,"impact SFX added, provided by MusashiAA"}
+OptionValue ChangeLogIndex_71 {0,""}
+OptionValue ChangeLogIndex_72 {0,"\cf==Bubbleman"}
+OptionValue ChangeLogIndex_73 {0,"-Fixed being able to swim forever by spamming"}
+OptionValue ChangeLogIndex_74 {0,"Bubble Flood"}
+OptionValue ChangeLogIndex_75 {0,""}
+OptionValue ChangeLogIndex_76 {0,"\cf==Quickman"}
+OptionValue ChangeLogIndex_77 {0,"-Both versions of Quick Boomerang now properly"}
+OptionValue ChangeLogIndex_78 {0,"move backwards"}
+OptionValue ChangeLogIndex_79 {0,""}
+OptionValue ChangeLogIndex_80 {0,"\cf==Needleman"}
+OptionValue ChangeLogIndex_81 {0,"-Needle Cannon accurate shot timing made consistent,"}
+OptionValue ChangeLogIndex_82 {0,"now always fires two accurate needles every 16 tics"}
+OptionValue ChangeLogIndex_83 {0,""}
+OptionValue ChangeLogIndex_84 {0,"\cf==Shadowman"}
+OptionValue ChangeLogIndex_85 {0,"-Landing SFX removed"}
 OptionValue ChangeLogIndex_86 {0,""}
-OptionValue ChangeLogIndex_87 {0,"\cq==Hardman"}
-OptionValue ChangeLogIndex_88 {0,"--Fixed Hard Knuckle hit FX not playing "}
-OptionValue ChangeLogIndex_89 {0,"upon killing an enemy"}
-OptionValue ChangeLogIndex_90 {0,"-Killing enemies produces minor A_Quake"}
-OptionValue ChangeLogIndex_91 {0,""}
-OptionValue ChangeLogIndex_92 {0,"\cq==Doc Robot"}
-OptionValue ChangeLogIndex_93 {0,"--Health 90.0 > 100.0"}
-OptionValue ChangeLogIndex_94 {0,"--Gear Grinder RoF lowered by 10 tics"}
-OptionValue ChangeLogIndex_95 {0,"-Gear Grinder bouncecount 3 > 2"}
-OptionValue ChangeLogIndex_96 {0,"-Gear Grinder speed 90 > 69"}
+OptionValue ChangeLogIndex_87 {0,"\cf==Pharaohman"}
+OptionValue ChangeLogIndex_88 {0,"-Pharaoh Shot explosion fulldmgmaxradius 16 > 32"}
+OptionValue ChangeLogIndex_89 {0,"--Pharaoh Shot firing sounds imported from CBM"}
+OptionValue ChangeLogIndex_90 {0,"--New sound for Pharaoh Shot explosion added,"}
+OptionValue ChangeLogIndex_91 {0,"made by MusashiAA"}
+OptionValue ChangeLogIndex_92 {0,"--Updated FX for Pharaoh Shot midcharge"}
+OptionValue ChangeLogIndex_93 {0,""}
+OptionValue ChangeLogIndex_94 {0,"\cf==Drillman"}
+OptionValue ChangeLogIndex_95 {0,"-Updated HUD, made by Lamp"}
+OptionValue ChangeLogIndex_96 {0,"-Added smoke particles to Drill Bomb as it travels"}
 OptionValue ChangeLogIndex_97 {0,""}
-OptionValue ChangeLogIndex_98 {0,"\cq==Dustman"}
-OptionValue ChangeLogIndex_99 {0,"--Ported classes-v9fh suction reticle"}
-OptionValue ChangeLogIndex_100 {0,""}
-OptionValue ChangeLogIndex_101 {0,"\cq==Gravityman"}
-OptionValue ChangeLogIndex_102 {0,"--Gravity Buster speed 60 > 45"}
-OptionValue ChangeLogIndex_103 {0,""}
-OptionValue ChangeLogIndex_104 {0,"\cq==Waveman"}
-OptionValue ChangeLogIndex_105 {0,"--Fixed global latching sounds"}
-OptionValue ChangeLogIndex_106 {0,""}
-OptionValue ChangeLogIndex_107 {0,"\cq==Gyroman"}
-OptionValue ChangeLogIndex_108 {0,"--Fixed altfire splitting FX colors"}
-OptionValue ChangeLogIndex_109 {0,""}
-OptionValue ChangeLogIndex_110 {0,"\cq==Chargeman"}
-OptionValue ChangeLogIndex_111 {0,"--Fixed SBar desync"}
-OptionValue ChangeLogIndex_112 {0,"--Coal Shot invul replaced with 50% resist"}
-OptionValue ChangeLogIndex_113 {0,""}
-OptionValue ChangeLogIndex_114 {0,"\cq==Darkman1"}
-OptionValue ChangeLogIndex_115 {0,"--Dark Buster shot radius 32 > 10"}
-OptionValue ChangeLogIndex_116 {0,""}
-OptionValue ChangeLogIndex_117 {0,"\cq==Darkman3"}
-OptionValue ChangeLogIndex_118 {0,"--Health 85.0 > 100.0"}
-OptionValue ChangeLogIndex_119 {0,"--All shots are now suckable by Saturn"}
-OptionValue ChangeLogIndex_120 {0,"*\c[b7]GD bias this, nerd"}
-OptionValue ChangeLogIndex_121 {0,"--Full charge ping sound reverted to core"}
-OptionValue ChangeLogIndex_122 {0,"--Scoped Dark Ring cost 1/3 bar > 1/2 bar"}
-OptionValue ChangeLogIndex_123 {0,"--Scoped uncharged mainfire speed "}
-OptionValue ChangeLogIndex_124 {0,"100 > 120 to match scoped Dark Ring"}
-OptionValue ChangeLogIndex_125 {0,""}
-OptionValue ChangeLogIndex_126 {0,"\cq==Centaurman"}
-OptionValue ChangeLogIndex_127 {0,"--Centaur Arrow requires 2 ammo"}
-OptionValue ChangeLogIndex_128 {0,"-Fires singular Centaur Buster shot "}
-OptionValue ChangeLogIndex_129 {0,"without sufficient ammo"}
-OptionValue ChangeLogIndex_130 {0,""}
-OptionValue ChangeLogIndex_131 {0,"\cq==Knightman"}
-OptionValue ChangeLogIndex_132 {0,"--Knight Crush hitstun removed"}
-OptionValue ChangeLogIndex_133 {0,"--Spinning Mace knockback 8 > 12"}
-OptionValue ChangeLogIndex_134 {0,"--Super Knight Crush sprite is now "}
-OptionValue ChangeLogIndex_135 {0,"accurate to its hitbox"}
-OptionValue ChangeLogIndex_136 {0,"-Now has explosive hitbox on impact, "}
-OptionValue ChangeLogIndex_137 {0,"explosion does not launch (direct does)"}
-OptionValue ChangeLogIndex_138 {0,"--Early Knight Rush special obit readded"}
-OptionValue ChangeLogIndex_139 {0,""}
-OptionValue ChangeLogIndex_140 {0,"\cq==Plantman"}
-OptionValue ChangeLogIndex_141 {0,"--Health 85.0 > 90.0"}
-OptionValue ChangeLogIndex_142 {0,"--Plant Buster shots bounce off of walls"}
-OptionValue ChangeLogIndex_143 {0,"with reduced velocity"}
-OptionValue ChangeLogIndex_144 {0,"--Plant Buster speed 43 > 48"}
-OptionValue ChangeLogIndex_145 {0,""}
-OptionValue ChangeLogIndex_146 {0,"\cq==Windman"}
-OptionValue ChangeLogIndex_147 {0,"--Weapon ammo capacity 28 > 32"}
-OptionValue ChangeLogIndex_148 {0,"-Wind Storm ammo usage 14 > 16"}
-OptionValue ChangeLogIndex_149 {0,""}
-OptionValue ChangeLogIndex_150 {0,"\cq==Junkman"}
-OptionValue ChangeLogIndex_151 {0,"--Junk Cube is now suckable by Saturn"}
-OptionValue ChangeLogIndex_152 {0,""}
-OptionValue ChangeLogIndex_153 {0,"\cq==Cloudman"}
-OptionValue ChangeLogIndex_154 {0,"--Thunder Bolt is now suckable by Saturn"}
-OptionValue ChangeLogIndex_155 {0,""}
-OptionValue ChangeLogIndex_156 {0,"\cq==Springman"}
-OptionValue ChangeLogIndex_157 {0,"--Unique obit added to Super Spring Punch "}
-OptionValue ChangeLogIndex_158 {0,""}
-OptionValue ChangeLogIndex_159 {0,"\cq==Shademan"}
-OptionValue ChangeLogIndex_160 {0,"--Hyperseed Shade glitch removed"}
-OptionValue ChangeLogIndex_161 {0,"-Instead, Shade now gets 1.2x speed"}
-OptionValue ChangeLogIndex_162 {0,"while holding a Noise Crush charge"}
-OptionValue ChangeLogIndex_163 {0,""}
-OptionValue ChangeLogIndex_164 {0,"\cq==Grenademan"}
-OptionValue ChangeLogIndex_165 {0,"--Ported classes-v9fh Grenade Spread"}
-OptionValue ChangeLogIndex_166 {0,"skinsprites"}
+OptionValue ChangeLogIndex_98 {0,"\cf==Diveman"}
+OptionValue ChangeLogIndex_99 {0,"-Dive Missile now goes towards where user is"}
+OptionValue ChangeLogIndex_100 {0,"looking instead of where cursor is"}
+OptionValue ChangeLogIndex_101 {0,"--Dive Missile horizontal spread halved (-20,20)"}
+OptionValue ChangeLogIndex_102 {0,"> (-10,10), vertical spread doubled (-4,4) > (-8,8)"}
+OptionValue ChangeLogIndex_103 {0,"-DiveTackleAmmo max capacity reduced 400 > 345"}
+OptionValue ChangeLogIndex_104 {0,"-DiveTackleAmmo passive gain reduced 4 every 2 tics"}
+OptionValue ChangeLogIndex_105 {0,"> 3 every 2 tics"}
+OptionValue ChangeLogIndex_106 {0,"-Dive Tackle verticality nerf undone, now has an"}
+OptionValue ChangeLogIndex_107 {0,"overall 25% thrust reduction on all axes"}
+OptionValue ChangeLogIndex_108 {0,"(26 thrust > 20 thrust)"}
+OptionValue ChangeLogIndex_109 {0,"--Dive Tackle cooldown reduced 2 seconds>1.5 seconds"}
+OptionValue ChangeLogIndex_110 {0,"(70 tics > 57 tics)"}
+OptionValue ChangeLogIndex_111 {0,"--Ammo requirement for Dive Tackle 140 > 115"}
+OptionValue ChangeLogIndex_112 {0,"-Ammo consumed on using Dive Mines 120 > 100"}
+OptionValue ChangeLogIndex_113 {0,"-Fixed minor horizontal bar bug"}
+OptionValue ChangeLogIndex_114 {0,""}
+OptionValue ChangeLogIndex_115 {0,"\cf==Skullman"}
+OptionValue ChangeLogIndex_116 {0,"-Fixed being able to activate parry..."}
+OptionValue ChangeLogIndex_117 {0,"\c[b7]...from the grave! Nyeh heh heh!"}
+OptionValue ChangeLogIndex_118 {0,""}
+OptionValue ChangeLogIndex_119 {0,"\cf==Gravityman"}
+OptionValue ChangeLogIndex_120 {0,"-Gravity Orb no longer lifts allies"}
+OptionValue ChangeLogIndex_121 {0,""}
+OptionValue ChangeLogIndex_122 {0,"\cf==Napalmman"}
+OptionValue ChangeLogIndex_123 {0,"-Napalm Bomb projectile speed 20/30/40 > 25/35/45"}
+OptionValue ChangeLogIndex_124 {0,"-Endlag on Napalm Missile reduced by 4 tics"}
+OptionValue ChangeLogIndex_125 {0,"-Napalm Bomb jumping/firing skinsprites"}
+OptionValue ChangeLogIndex_126 {0,"ported from V-Classes"}
+OptionValue ChangeLogIndex_127 {0,"-Updated Napalm HUD, provided by HeelNavi"}
+OptionValue ChangeLogIndex_128 {0,""}
+OptionValue ChangeLogIndex_129 {0,"\cf==Crystalman"}
+OptionValue ChangeLogIndex_130 {0,"-Crystal Eye now has a unique bouncing sound,"}
+OptionValue ChangeLogIndex_131 {0,"provided by MusashiAA"}
+OptionValue ChangeLogIndex_132 {0,""}
+OptionValue ChangeLogIndex_133 {0,"\cf==Knightman"}
+OptionValue ChangeLogIndex_134 {0,"-Knight Crush speed 50 > 45"}
+OptionValue ChangeLogIndex_135 {0,"--Returning Knight Crush damage 9 > 18"}
+OptionValue ChangeLogIndex_136 {0,"-Super Knight Crush reworked: henceforth"}
+OptionValue ChangeLogIndex_137 {0,"referred to as Castle Crush"}
+OptionValue ChangeLogIndex_138 {0,"--Now acts similarly to copywep Knight Crush"}
+OptionValue ChangeLogIndex_139 {0,"in that its a ripper boomerang"}
+OptionValue ChangeLogIndex_140 {0,"--Damage 27 > 24 (base) + 4 (ripper)"}
+OptionValue ChangeLogIndex_141 {0,"--Stuns enemies for 15 tics on direct and applies"}
+OptionValue ChangeLogIndex_142 {0,"50% hitstun, only stuns on base damage"}
+OptionValue ChangeLogIndex_143 {0,"-Spinning Mace obit updated to be more culturally"}
+OptionValue ChangeLogIndex_144 {0,"appropriate"}
+OptionValue ChangeLogIndex_145 {0,"-Edited secret obit"}
+OptionValue ChangeLogIndex_146 {0,""}
+OptionValue ChangeLogIndex_147 {0,"\cf==Tomahawkman"}
+OptionValue ChangeLogIndex_148 {0,"-Updated Silver Tomahawk death sprites, provided"}
+OptionValue ChangeLogIndex_149 {0,"by HeelNavi"}
+OptionValue ChangeLogIndex_150 {0,"\c[gibusgold]*hey a-chan FUCK YOU"}
+OptionValue ChangeLogIndex_151 {0,"-Edited secret obit"}
+OptionValue ChangeLogIndex_152 {0,"-New Silver Tomahawk player/surface impact SFX"}
+OptionValue ChangeLogIndex_153 {0,"added, provided by Fr3ak"}
+OptionValue ChangeLogIndex_154 {0,""}
+OptionValue ChangeLogIndex_155 {0,"\cf==Windman"}
+OptionValue ChangeLogIndex_156 {0,"-New Wind Gyro firing SFX, provided by MusashiAA"}
+OptionValue ChangeLogIndex_157 {0,"-Wind Storm speed when on the ground 20 > 30"}
+OptionValue ChangeLogIndex_158 {0,"--Wind Storm pull strength 16 > 24"}
+OptionValue ChangeLogIndex_159 {0,"--Wind Storm stepheight 15 > 24"}
+OptionValue ChangeLogIndex_160 {0,"--Added Wind Storm particles when grounded"}
+OptionValue ChangeLogIndex_161 {0,""}
+OptionValue ChangeLogIndex_162 {0,"\cf==Junkman"}
+OptionValue ChangeLogIndex_163 {0,"-Fixed Junk Cube health being x10'd, (HP 2000 > 200)"}
+OptionValue ChangeLogIndex_164 {0,""}
+OptionValue ChangeLogIndex_165 {0,"\cf==Burstman"}
+OptionValue ChangeLogIndex_166 {0,"-Danger Wrap projectile speed 20/25/35 > 25/30/35"}
 OptionValue ChangeLogIndex_167 {0,""}
-OptionValue ChangeLogIndex_168 {0,"\cq==Coldman"}
-OptionValue ChangeLogIndex_169 {0,"--Ice Wall health 95.0 > 50.0"}
-OptionValue ChangeLogIndex_170 {0,"--New HUD by A-Chan"}
+OptionValue ChangeLogIndex_168 {0,"\cf==Cloudman"}
+OptionValue ChangeLogIndex_169 {0,"-Added unused obituaries for Thunder Charge"}
+OptionValue ChangeLogIndex_170 {0,"and Thunder Spark"}
 OptionValue ChangeLogIndex_171 {0,""}
-OptionValue ChangeLogIndex_172 {0,"\cq==Magicman"}
-OptionValue ChangeLogIndex_173 {0,"--Ported classes-v9fh visuals for"}
-OptionValue ChangeLogIndex_174 {0,"HUD and Magic Ball"}
-OptionValue ChangeLogIndex_175 {0,"-Damage 11.0 > 9.0"}
-OptionValue ChangeLogIndex_176 {0,""}
-OptionValue ChangeLogIndex_177 {0,"\cq==Concreteman"}
-OptionValue ChangeLogIndex_178 {0,"--Concrete Sniper direct damage 5.0 > 20.0"}
-OptionValue ChangeLogIndex_179 {0,"-Concrete Sniper splash damage 35.0 > 15.0"}
+OptionValue ChangeLogIndex_172 {0,"\cf==Springman"}
+OptionValue ChangeLogIndex_173 {0,"-Now generates ammo at a halved rate while Spring"}
+OptionValue ChangeLogIndex_174 {0,"Punch is out"}
+OptionValue ChangeLogIndex_175 {0,"--Ammo regen matches idle regen if Super "}
+OptionValue ChangeLogIndex_176 {0,"Spring Punch is used"}
+OptionValue ChangeLogIndex_177 {0,""}
+OptionValue ChangeLogIndex_178 {0,"\cf==Turboman"}
+OptionValue ChangeLogIndex_179 {0,"-Fixed horizontal bar bug"}
 OptionValue ChangeLogIndex_180 {0,""}
-OptionValue ChangeLogIndex_181 {0,"\cq==Plugman"}
-OptionValue ChangeLogIndex_182 {0,"--Plug Ball startup frames removed"}
-OptionValue ChangeLogIndex_183 {0,"-Fixed HUD disjoint on mainfire"}
-OptionValue ChangeLogIndex_184 {0,"--Latch line of sight check removed"}
-OptionValue ChangeLogIndex_185 {0,""}
-OptionValue ChangeLogIndex_186 {0,"\cq==Jewelman"}
-OptionValue ChangeLogIndex_187 {0,"--Ported classes-v9fh kit"}
-OptionValue ChangeLogIndex_188 {0,"-Retains Jewel Satellite reflect property"}
-OptionValue ChangeLogIndex_189 {0,""}
-OptionValue ChangeLogIndex_190 {0,"\cq==Hornetman"}
-OptionValue ChangeLogIndex_191 {0,"--Enraged hornet homing (2,10) > (3,12)"}
-OptionValue ChangeLogIndex_192 {0,"-Enraged hornet damage 70 > 60"}
-OptionValue ChangeLogIndex_193 {0,"--Removed reworked altfire, now "}
-OptionValue ChangeLogIndex_194 {0,"functions similarly to 2.4h Nectar Hive"}
-OptionValue ChangeLogIndex_195 {0,"--Nectar Hive speed 25 > 36"}
-OptionValue ChangeLogIndex_196 {0,"-ROF decreased by 10 tics"}
-OptionValue ChangeLogIndex_197 {0,"-Fixed Nectar Hive debuffing allies"}
-OptionValue ChangeLogIndex_198 {0,"-Honey Droplets on death 4 > 3"}
-OptionValue ChangeLogIndex_199 {0,""}
-OptionValue ChangeLogIndex_200 {0,"\cq==Fakeman"}
-OptionValue ChangeLogIndex_201 {0,"--FOM Buffer 15 > 12"}
-OptionValue ChangeLogIndex_202 {0,""}
-OptionValue ChangeLogIndex_203 {0,"\cq==Pumpman"}
-OptionValue ChangeLogIndex_204 {0,"--Bubble Spray damage 2.0 > 2.5 "}
-OptionValue ChangeLogIndex_205 {0,"(total damage 20.0 > 25.0)"}
-OptionValue ChangeLogIndex_206 {0,"-Projectile speed 90 > 60"}
-OptionValue ChangeLogIndex_207 {0,"--Ammo taken on item 56 > 999"}
-OptionValue ChangeLogIndex_208 {0,"--Bubbles now have +GHOST property"}
-OptionValue ChangeLogIndex_209 {0,""}
-OptionValue ChangeLogIndex_210 {0,"\cq==Sheepman"}
-OptionValue ChangeLogIndex_211 {0,"--Health 85.0 > 90.0"}
-OptionValue ChangeLogIndex_212 {0,"--Sheep Bolters spawned via Thunder Wool"} 
-OptionValue ChangeLogIndex_213 {0,"are no longer wool-colored, and are "}
-OptionValue ChangeLogIndex_214 {0,"properly yellow in non-team settings"}
-OptionValue ChangeLogIndex_215 {0,""}
-OptionValue ChangeLogIndex_216 {0,"\cq==Strikeman"}
-OptionValue ChangeLogIndex_217 {0,"--No longer gains ammo on any given "}
-OptionValue ChangeLogIndex_218 {0,"Semi-Powered Rebound Striker, now "}
-OptionValue ChangeLogIndex_219 {0,"functions as it does in CCBM 2.0h"}
-OptionValue ChangeLogIndex_220 {0,""}
-OptionValue ChangeLogIndex_221 {0,"\cq==Solarman"}
-OptionValue ChangeLogIndex_222 {0,"--Health 90.0 > 100.0"}
+OptionValue ChangeLogIndex_181 {0,"\cf==Tenguman"}
+OptionValue ChangeLogIndex_182 {0,"-Ported optimized hover method from Primo Patch"}
+OptionValue ChangeLogIndex_183 {0,""}
+
+
+
+//strap in, codereaders.
+
+
+
+OptionValue ChangeLogIndex_184 {0,"\cf==Swordman"}
+OptionValue ChangeLogIndex_185 {0,"-Ammo regen reduced by 40%"}//WHAAAAT NOOOOOOOOOOO WHAT ARE YA DOING
+OptionValue ChangeLogIndex_186 {0,"-Flame Sword no longer generates ammo when swinging"}//MY FURSONA NO PLEASE DONT NERF SWORD
+OptionValue ChangeLogIndex_187 {0,"--Increased delay between Flame Sword swings by 4 tics"}//WAAAAHHHHH WAAHHHHHH STOP NERFING HIMMMMM
+OptionValue ChangeLogIndex_188 {0,"--Flame Sword particles now have +BRIGHT"}//IM GONNA BLOW MY BRAINS OUT WHY IS HE NOT A TOP 10 CLASS ANYMORE
+OptionValue ChangeLogIndex_189 {0,"-Searing Lunge reworked: Now has set distances for"}//thats it. ya little SHIT. im gonna KILL YOU. 
+OptionValue ChangeLogIndex_190 {0,"all levels and drains ammo"}//sword is my baby. and now yar nerfin' him!
+OptionValue ChangeLogIndex_191 {0,"--Landing from Searing Lunge now drops Statue Smash,"}//MY CLASS IS RUIIIIINEEEEEED NOOOOOOOOOOOOOOOOOOOOOOOOO
+OptionValue ChangeLogIndex_192 {0,"an explosive statue that stuns enemies for half a"}//my pronouns are sword/man. and yars will be was/were!
+OptionValue ChangeLogIndex_193 {0,"second on hit"}//HE NEEDS AT LEAST MORE THAN .8 TO BE VIABLE!
+OptionValue ChangeLogIndex_194 {0,"--Statue Smash takes away 7 ammo on spawn and "}//AUGH WHY DO I KEEP MISSING MY SHOTS THIS CLASS SUCKS NOW
+OptionValue ChangeLogIndex_195 {0,"leaves the user immobile while forming"}//its over... i have no value anymore.......
+
+
+
+//sorry.
+
+
+
+OptionValue ChangeLogIndex_196 {0,""}
+OptionValue ChangeLogIndex_197 {0,"\cf==Searchman"}
+OptionValue ChangeLogIndex_198 {0,"-Homing Sniper speed 28/32 > 32/35"}
+OptionValue ChangeLogIndex_199 {0,"-Firing Homing Sniper now has 20 tics of endlag"}
+OptionValue ChangeLogIndex_200 {0,"--Endlag gets reduced by 5 tics per missile fired"}
+OptionValue ChangeLogIndex_201 {0,"in a volley"}
+OptionValue ChangeLogIndex_202 {0,"--Endlag can be cancelled into Search Disc or "}
+OptionValue ChangeLogIndex_203 {0,"Deadly Storm 5 tics into endlag"}
+OptionValue ChangeLogIndex_204 {0,"--Ammo consumption when firing removed"}
+OptionValue ChangeLogIndex_205 {0,"-Deadly Storm speed reduction while firing removed"}
+OptionValue ChangeLogIndex_206 {0,"--Optimized Deadly Storm hovering code"}
+OptionValue ChangeLogIndex_207 {0,"-Updated skinsprites"}
+OptionValue ChangeLogIndex_208 {0,"-New Homing Sniper/Deadly Storm sprites and firing"}
+OptionValue ChangeLogIndex_209 {0,"-New Empowered Search Disc sprites ported"}
+OptionValue ChangeLogIndex_210 {0,"from V-Classes"}
+OptionValue ChangeLogIndex_211 {0,""}
+OptionValue ChangeLogIndex_212 {0,"\cf==Aquaman"} 
+OptionValue ChangeLogIndex_213 {0,"-Water Balloon direct damage 4 > 2"}
+OptionValue ChangeLogIndex_214 {0,"--Water Balloon explosion damage 10 > 9"}
+OptionValue ChangeLogIndex_215 {0,"--Water Balloon explosive fulldmgmaxradius 0 > 24"}
+OptionValue ChangeLogIndex_216 {0,""}
+OptionValue ChangeLogIndex_217 {0,"\cf==OriginalDuo"}
+OptionValue ChangeLogIndex_218 {0,"-Fixed SBAR not indicating when"}
+OptionValue ChangeLogIndex_219 {0,"Giga Tackle is available"}
+OptionValue ChangeLogIndex_220 {0,"-Fixed Original Duo Meteor not having"}
+OptionValue ChangeLogIndex_221 {0,"knockback on direct"}
+OptionValue ChangeLogIndex_222 {0,"-New sounds for meteor added, made by MusashiAA"}
 OptionValue ChangeLogIndex_223 {0,""}
-OptionValue ChangeLogIndex_224 {0,"\cq==Terra"}
-OptionValue ChangeLogIndex_225 {0,"--Ported classes-v9fh HUD"}
+OptionValue ChangeLogIndex_224 {0,"\cf==EvilRobot"}
+OptionValue ChangeLogIndex_225 {0,"-Giga Astro Crush powerprotect 75% > 33%"}
 OptionValue ChangeLogIndex_226 {0,""}
-OptionValue ChangeLogIndex_227 {0,"\cq==Mercury"}
-OptionValue ChangeLogIndex_228 {0,"--Ported classes-v9fh blob hud"}
-OptionValue ChangeLogIndex_229 {0,"--Blobs dropped during tackle now resemble"}
-OptionValue ChangeLogIndex_EX1 {0,"old large blob"}
-OptionValue ChangeLogIndex_230 {0,""}
-OptionValue ChangeLogIndex_231 {0,"\cq==Venus"}
-OptionValue ChangeLogIndex_232 {0,"--Ported classes-v9fh SFX"}
-OptionValue ChangeLogIndex_233 {0,"--SBar no longer switches on weapon swap"}
-OptionValue ChangeLogIndex_234 {0,""}
-OptionValue ChangeLogIndex_235 {0,"\cq==Jupiter"}
-OptionValue ChangeLogIndex_236 {0,"--New HUD by Christmas Cultist"}
-OptionValue ChangeLogIndex_237 {0,"--Powerprotect duration 3 tics > 4 tics"}
-OptionValue ChangeLogIndex_238 {0,""}
-OptionValue ChangeLogIndex_239 {0,"\cq==Saturn"}
-OptionValue ChangeLogIndex_240 {0,"--New HUD by Pegg"}
-OptionValue ChangeLogIndex_241 {0,"--Fixed WhiteHoleAmmo regen slowing down"}
-OptionValue ChangeLogIndex_242 {0,"--SBars swapped"}
-OptionValue ChangeLogIndex_243 {0,"-BlackVortexAmmo segmented into 4 bars"}
-OptionValue ChangeLogIndex_244 {0,"--Removed M2 duration reduction on "}
-OptionValue ChangeLogIndex_245 {0,"sucking shots"}
-OptionValue ChangeLogIndex_246 {0,"--Armor gained per sucked projectile 1 > 2"}
-OptionValue ChangeLogIndex_247 {0,"-Gain 4 armor if BlackHoleAmmo is full"}
-OptionValue ChangeLogIndex_248 {0,"--CBL callback death nerfed into a mere "}
-OptionValue ChangeLogIndex_249 {0,"easter egg :^("}
-OptionValue ChangeLogIndex_250 {0,"-Only activated upon dying to Electric "}
-OptionValue ChangeLogIndex_251 {0,"Shock (Saturn's canonical weakness)"}
-OptionValue ChangeLogIndex_252 {0,"\c[b4]>Of course they won't get it unless I"}
-OptionValue ChangeLogIndex_253 {0,"\c[b4]>explain. - GD.Nightfly, probably"}
-OptionValue ChangeLogIndex_254 {0,"--Fixed White Hole Ring/Black Hole Ring "}
-OptionValue ChangeLogIndex_255 {0,"flying infinitely upon user's death"}
-OptionValue ChangeLogIndex_256 {0,"--Fixed Black Hole Ring not activating "}
-OptionValue ChangeLogIndex_257 {0,"on release"}
-OptionValue ChangeLogIndex_258 {0,""}
-OptionValue ChangeLogIndex_259 {0,"\cq==Pluto"}
-OptionValue ChangeLogIndex_260 {0,"--Ported classes-v9fh Break Shot duration"}
-OptionValue ChangeLogIndex_261 {0,"--Meowing removed from altfire, now buffers"}
-OptionValue ChangeLogIndex_EX2 {0,"for Break Dash with not enough ammo"}
-OptionValue ChangeLogIndex_262 {0,"-Now has a 5 tic delay in between meows"}
-OptionValue ChangeLogIndex_263 {0,"-New meow SFX by Conejo"}
-OptionValue ChangeLogIndex_264 {0,"-Meowing maintains Break Dash skinsprites"}
-OptionValue ChangeLogIndex_265 {0,""}
-OptionValue ChangeLogIndex_266 {0,"\cq==Fuseman"}
-OptionValue ChangeLogIndex_267 {0,"--Reworked by NightFly"}
-OptionValue ChangeLogIndex_268 {0,"--Base Speed 0.78/0.8 > 0.7/0.72"}
-OptionValue ChangeLogIndex_269 {0,"--Now has Alien/Astro style psuedoflight"}
-OptionValue ChangeLogIndex_270 {0,"-Toggle with item"}
-OptionValue ChangeLogIndex_271 {0,"--Mainfire spreads 3 ripping projectiles"}
-OptionValue ChangeLogIndex_272 {0,"-Side projectiles have less damage/range"}
-OptionValue ChangeLogIndex_273 {0,"-Center projectile slides on floors/steps"}
-OptionValue ChangeLogIndex_274 {0,"--Altfire now a dash based on movement "}
-OptionValue ChangeLogIndex_275 {0,"keys, propels user upwards if no "}
-OptionValue ChangeLogIndex_276 {0,"movement keys are pressed"}
-OptionValue ChangeLogIndex_277 {0,"-Leave behind Thunder Tesla on initial "}
-OptionValue ChangeLogIndex_278 {0,"dash, drains ammo passively"}
-OptionValue ChangeLogIndex_279 {0,"-Tesla doubles mainfire RoF while user "}
-OptionValue ChangeLogIndex_280 {0,"is inside, has two rotating damagers "}
-OptionValue ChangeLogIndex_281 {0,"while active"}
-OptionValue ChangeLogIndex_282 {0,"-Altfire to activate Tesla, causing it to"}
-OptionValue ChangeLogIndex_283 {0,"burst projectiles and disappear"}
-OptionValue ChangeLogIndex_284 {0,"--Electro Chop removed, reload removed"}
-OptionValue ChangeLogIndex_285 {0,""}
-OptionValue ChangeLogIndex_286 {0,"\cq==Hyper Storm H"}
-OptionValue ChangeLogIndex_287 {0,"--Ammo gain/loss on suck/blow doubled"}
-OptionValue ChangeLogIndex_288 {0,"--Trample damage 18.0 > 12.0"}
-OptionValue ChangeLogIndex_289 {0,"-Trample ammo loss 1 > 2, 2 > 4 with rage"}
-OptionValue ChangeLogIndex_290 {0,"-Removed trample ammo gain on hit"}
-OptionValue ChangeLogIndex_291 {0,""}
-OptionValue ChangeLogIndex_292 {0,"\cq==Enker"}
-OptionValue ChangeLogIndex_293 {0,"--New altfire HUD by Honootorch"}
+OptionValue ChangeLogIndex_227 {0,"\cf==Groundman"}
+OptionValue ChangeLogIndex_228 {0,"-Health 115 > 125"}
+OptionValue ChangeLogIndex_229 {0,"-Speed 0.64/0.62 > 0.6/0.58"}
+OptionValue ChangeLogIndex_EX1 {0,"-Firing Spread Drill now halves "}
+OptionValue ChangeLogIndex_230 {0,"Tank Mode ammo regen (15 > 7)"}
+OptionValue ChangeLogIndex_231 {0,"-Tank Mode ammo 400 > 500, still spawns with half ammo"}
+OptionValue ChangeLogIndex_232 {0,"--Ammo Requirement to activate Tank Mode 400 > 500"}
+OptionValue ChangeLogIndex_233 {0,"-Digging ammo consumption per tic 6 > 8"}
+OptionValue ChangeLogIndex_234 {0,"--Ammo Consumption on floor dig up early 100 > 150"}
+OptionValue ChangeLogIndex_235 {0,"--Exiting digging mode explosion"}
+OptionValue ChangeLogIndex_236 {0,"fulldmgmaxradius 86 > 48"}
+OptionValue ChangeLogIndex_237 {0,"--Now has slows to 20% movespeed for 5 tics after"}
+OptionValue ChangeLogIndex_238 {0,"exiting floor or ceiling"}
+OptionValue ChangeLogIndex_239 {0,"-Giga Drill Firing cost 15 > 25"}
+OptionValue ChangeLogIndex_240 {0,""}
+OptionValue ChangeLogIndex_241 {0,"\cf==Magicman"}
+OptionValue ChangeLogIndex_242 {0,"-Fixed bots crashing online"}
+OptionValue ChangeLogIndex_243 {0,""}
+OptionValue ChangeLogIndex_244 {0,"\cf==Tornadoman"}
+OptionValue ChangeLogIndex_245 {0,"-Ported optimized hover method from Primo Patch"}
+OptionValue ChangeLogIndex_246 {0,""}
+OptionValue ChangeLogIndex_247 {0,"==Plugman"}
+OptionValue ChangeLogIndex_248 {0,"-Fixed armor nullifying altfire health drain"}
+OptionValue ChangeLogIndex_249 {0,""}
+OptionValue ChangeLogIndex_250 {0,"\cf==Hornetman"}
+OptionValue ChangeLogIndex_251 {0,"-Honeycomb Crash endlag reduced by 5 tics"}
+OptionValue ChangeLogIndex_252 {0,"-Ported optimized hover method from Primo Patch"}
+OptionValue ChangeLogIndex_253 {0,""}
+OptionValue ChangeLogIndex_254 {0,"\cf==Galaxyman"}
+OptionValue ChangeLogIndex_255 {0,"-Black Hole Bomb no longer affects"}
+OptionValue ChangeLogIndex_256 {0,"Drillman and Groundman while they are in dig mode"}
+OptionValue ChangeLogIndex_257 {0,""}
+OptionValue ChangeLogIndex_258 {0,"\cf==Pumpman"}
+OptionValue ChangeLogIndex_259 {0,"-Pump Stream projectile height/radius 16/16 > 8/8"}
+OptionValue ChangeLogIndex_260 {0,"-Fixed skinsprite issues with Pump Slugger"}
+OptionValue ChangeLogIndex_261 {0,""}
+OptionValue ChangeLogIndex_EX2 {0,"\cf==Sheepman"}
+OptionValue ChangeLogIndex_262 {0,"-Fixed Thunder Rain pain animation"}
+OptionValue ChangeLogIndex_263 {0,""}
+OptionValue ChangeLogIndex_264 {0,"\cf==Strikeman"}
+OptionValue ChangeLogIndex_265 {0,"-Rebound Bouncer melee damager is now"}
+OptionValue ChangeLogIndex_266 {0,"16 units in front of him"}
+OptionValue ChangeLogIndex_267 {0,"--Rebound Bouncer melee damager powerprotect "}
+OptionValue ChangeLogIndex_268 {0,"duration 6 tics > 12 tics"}
+OptionValue ChangeLogIndex_269 {0,"--Rebound Bouncer powerprotect factor 0.15 > 0.0"}
+OptionValue ChangeLogIndex_270 {0,""}
+OptionValue ChangeLogIndex_271 {0,"\cf==Terra"}
+OptionValue ChangeLogIndex_272 {0,"-Spark Chaser pre-release speed 12 > 14"}
+OptionValue ChangeLogIndex_273 {0,"--Spark Chaser post-release speed 90 > 66"}
+OptionValue ChangeLogIndex_274 {0,"--Spark Chaser post-release damage 5 ripper > 3 ripper"}
+OptionValue ChangeLogIndex_275 {0,"-Spark Suppressor damage pre-release 7 (bugged) > 3"}
+OptionValue ChangeLogIndex_276 {0,"--Spark Suppressor damage post release"}
+OptionValue ChangeLogIndex_277 {0,"2 ripper > 6 ripper"}
+OptionValue ChangeLogIndex_278 {0,"--Spark Suppressor powerprotect 75% reduction"}
+OptionValue ChangeLogIndex_279 {0,"every 5 tics > 100% reduction every 3 tics"}
+OptionValue ChangeLogIndex_280 {0,"-Updated damage taken during camera indicator"}
+OptionValue ChangeLogIndex_281 {0,""}
+OptionValue ChangeLogIndex_282 {0,"\cf==Mercury"}
+OptionValue ChangeLogIndex_283 {0,"-MercuryClassAmmo max capacity 32 > 56"}
+OptionValue ChangeLogIndex_284 {0,"--MercuryClassAmmo starting capacity 12 > 24"}
+OptionValue ChangeLogIndex_285 {0,"-Grab Buster ammo replenishment on hit 2 > 4"}//hey past gibus im p sure "replenlishmetn" isnt a real word
+OptionValue ChangeLogIndex_286 {0,"-Mercury Goo use/diminish ratio 4/3 > 7/6"}
+OptionValue ChangeLogIndex_287 {0,"-Goo Dash use/diminish ratio 8/7 > 14/12"}
+OptionValue ChangeLogIndex_288 {0,""}
+OptionValue ChangeLogIndex_289 {0,"\cf==Mars"}
+OptionValue ChangeLogIndex_290 {0,"-Health reduced 135 > 125"}
+OptionValue ChangeLogIndex_291 {0,"-Ammo consumption on Photon Missile 56 > 84"}
+OptionValue ChangeLogIndex_292 {0,"(max ammo capacity 6 missiles > 4 missiles)"}
+OptionValue ChangeLogIndex_293 {0,"-Added FX to Photon Missile travel"}
 OptionValue ChangeLogIndex_294 {0,""}
-OptionValue ChangeLogIndex_295 {0,"\cq==Ballade"}
-OptionValue ChangeLogIndex_296 {0,"--Ported classes-v9fh Ballade Cracker "}
-OptionValue ChangeLogIndex_297 {0,"spin speed increase with projectile speed,"}
-OptionValue ChangeLogIndex_298 {0,"Ballade Mine flash before exploding"}
-OptionValue ChangeLogIndex_299 {0,""}
-OptionValue ChangeLogIndex_300 {0,"\cq==BBA Megaman"}
-OptionValue ChangeLogIndex_301 {0,"--All A_PlayWeaponSound instances have been"}
-OptionValue ChangeLogIndex_EX3 {0,"replaced with A_PlaySoundEx"}
+OptionValue ChangeLogIndex_295 {0,"\cf==Jupiter"}
+OptionValue ChangeLogIndex_296 {0,"-Updated HUD offsets on Electric Spark, added"}
+OptionValue ChangeLogIndex_297 {0,"HUD muzzle flash on Electric Shock"}
+OptionValue ChangeLogIndex_298 {0,"-Adjusted Electric Spark obituary"}
+OptionValue ChangeLogIndex_299 {0,"-Ported optimized hover method from Primo Patch"}
+OptionValue ChangeLogIndex_300 {0,""}
+OptionValue ChangeLogIndex_301 {0,"\cf==Saturn"}
+OptionValue ChangeLogIndex_EX3 {0,"-Fixed horizontal bar bug"}
 OptionValue ChangeLogIndex_302 {0,""}
-OptionValue ChangeLogIndex_303 {0,""}
-OptionValue ChangeLogIndex_304 {0,""}
-OptionValue ChangeLogIndex_305 {0,"If you read this entire thing..."}
-OptionValue ChangeLogIndex_306 {0,"...thanks. Here's a reward."}
-OptionValue ChangeLogIndex_307 {0,""}
-OptionValue ChangeLogIndex_308 {0,"\cq==Tundraman \cv(NEW!)"}
-OptionValue ChangeLogIndex_309 {0,"--Designed by Nightfly"}
-OptionValue ChangeLogIndex_310 {0,"-Skin by Son Loto, HUD by Redflash,"}
-OptionValue ChangeLogIndex_311 {0,"sprites by Sagis"}
-OptionValue ChangeLogIndex_312 {0,"-See CLASSHELP for more!"}
-OptionValue ChangeLogIndex_313 {0,""}
-OptionValue ChangeLogIndex_314 {0,"...and another one."}
-OptionValue ChangeLogIndex_315 {0,""}
-OptionValue ChangeLogIndex_316 {0,"\cq==Torchman \cv(NEW!)"}
-OptionValue ChangeLogIndex_317 {0,"--Designed by Nightfly and Greg.EXE"}
-OptionValue ChangeLogIndex_318 {0,"-Skin by Redflash, HUD by Pegg,"}
-OptionValue ChangeLogIndex_319 {0,"sprites by Frostblue"}
-OptionValue ChangeLogIndex_320 {0,"-See CLASSHELP for more!"}
+OptionValue ChangeLogIndex_303 {0,"\cf==Pluto"}
+OptionValue ChangeLogIndex_304 {0,"-Speed Scalar reverted to CCBM values"}
+OptionValue ChangeLogIndex_305 {0,"-Ammo gain reverted to CCBM values"}
+OptionValue ChangeLogIndex_306 {0,"-Speed checks and ammo loss now scales with"}
+OptionValue ChangeLogIndex_307 {0,"current speed"}
+OptionValue ChangeLogIndex_308 {0,"-Breakspark now grants 5% speed boost"}
+OptionValue ChangeLogIndex_309 {0,"-Breakspark now starts at 75%"}
+OptionValue ChangeLogIndex_310 {0,"-Break Dash duration is halved without Breakspark"}
+OptionValue ChangeLogIndex_311 {0,"-Running animation speed now scales with momentum"}
+OptionValue ChangeLogIndex_312 {0,"-Meow sound slightly edited by Aure"}
+OptionValue ChangeLogIndex_313 {0,"\c[gibusgold]*so i thought if someone was gonna"}
+OptionValue ChangeLogIndex_314 {0,"\c[gibusgold]read pluto changes theyd press up at"}
+OptionValue ChangeLogIndex_315 {0,"\c[gibusgold]the start and scroll up to get here"}
+OptionValue ChangeLogIndex_316 {0,"\c[gibusgold]i hate pluto players so they need to wait lol"}
+OptionValue ChangeLogIndex_317 {0,""}
+OptionValue ChangeLogIndex_318 {0,""}
+OptionValue ChangeLogIndex_319 {0,""}
+OptionValue ChangeLogIndex_320 {0,""}
 OptionValue ChangeLogIndex_321 {0,""}
-OptionValue ChangeLogIndex_322 {0,"...and another one."}
+OptionValue ChangeLogIndex_322 {0,""}
 OptionValue ChangeLogIndex_323 {0,""}
-OptionValue ChangeLogIndex_324 {0,"\cq==Bounceman \cv(NEW!)"}
-OptionValue ChangeLogIndex_325 {0,"--Designed by Nightfly"}
-OptionValue ChangeLogIndex_326 {0,"-Skin by Son Loto, HUD by Pegg,"}
-OptionValue ChangeLogIndex_327 {0,"sprites by Pegg and A-Chan"}
-OptionValue ChangeLogIndex_328 {0,"-See CLASSHELP for more!"}
+OptionValue ChangeLogIndex_324 {0,""}
+OptionValue ChangeLogIndex_325 {0,""}
+OptionValue ChangeLogIndex_326 {0,""}
+OptionValue ChangeLogIndex_327 {0,""}
+OptionValue ChangeLogIndex_328 {0,""}
 OptionValue ChangeLogIndex_329 {0,""}
 OptionValue ChangeLogIndex_330 {0,""}
 OptionValue ChangeLogIndex_331 {0,""}
-OptionValue ChangeLogIndex_332 {0,"\c[b4]>Huh? Listen up?"}
-OptionValue ChangeLogIndex_333 {0,"\c[b4]>Who do you think you are?"}
-OptionValue ChangeLogIndex_334 {0,"\c[b4]>"}
-OptionValue ChangeLogIndex_335 {0,"\c[b7]>DON'T ASK ME FOR SHIT."}
-OptionValue ChangeLogIndex_336 {0,"\c[b7]- Katsuhiro Harada, 09/05/2019"}
+OptionValue ChangeLogIndex_332 {0,""}
+OptionValue ChangeLogIndex_333 {0,""}
+OptionValue ChangeLogIndex_334 {0,""}
+OptionValue ChangeLogIndex_335 {0,""}
+OptionValue ChangeLogIndex_336 {0,""}
+OptionValue ChangeLogIndex_337 {0,""}
+OptionValue ChangeLogIndex_338 {0,""}
+OptionValue ChangeLogIndex_339 {0,""}
+OptionValue ChangeLogIndex_340 {0,"\cf==Sunstar"}
+OptionValue ChangeLogIndex_341 {0,"-Ported HUD discoloration fix from Lamp"}
+OptionValue ChangeLogIndex_342 {0,""}
+OptionValue ChangeLogIndex_343 {0,"\cf==Blastman"}
+OptionValue ChangeLogIndex_344 {0,"-Fixed jump frames glitching"}
+OptionValue ChangeLogIndex_345 {0,""}
+OptionValue ChangeLogIndex_346 {0,"\cf==Acidman"}
+OptionValue ChangeLogIndex_347 {0,"-Fixed permanent 5% damage vulnerability after"}
+OptionValue ChangeLogIndex_348 {0,"using Acid Barrier"}
+OptionValue ChangeLogIndex_349 {0,""}
+OptionValue ChangeLogIndex_350 {0,"\cf==Tundraman"}
+OptionValue ChangeLogIndex_351 {0,"-Triple Lutz melee damager powerprotect duration"}
+OptionValue ChangeLogIndex_352 {0,"8 tics > 12 tics"}
+OptionValue ChangeLogIndex_353 {0,"-Tundra Storm radius 150 > 100,"}
+OptionValue ChangeLogIndex_354 {0,"sprite scale adjusted to represent new hitbox"}
+OptionValue ChangeLogIndex_355 {0,"-Fixed SBAR desyncs"}
+OptionValue ChangeLogIndex_356 {0,"-Fixed minor horizontal bar bug"}
+OptionValue ChangeLogIndex_357 {0,""}
+OptionValue ChangeLogIndex_358 {0,"\cf==Torchman"}
+OptionValue ChangeLogIndex_359 {0,"-Removed 10% increase in speed on Power Gear"}
+OptionValue ChangeLogIndex_360 {0,"-Power Gear meter now drains 50% faster when in Power"}
+OptionValue ChangeLogIndex_361 {0,"Gear, drains 67% slower when not in Power Gear"}
+OptionValue ChangeLogIndex_362 {0,""}
+OptionValue ChangeLogIndex_363 {0,"\cf==Bounceman"}
+OptionValue ChangeLogIndex_364 {0,"-Rubber Latch projectile speed 70 > 60"}
+OptionValue ChangeLogIndex_365 {0,"--Returning Rubber Latch explosion radius 50 > 28"}
+OptionValue ChangeLogIndex_366 {0,"--Pull strength on returning Rubber Latch halved"}
+OptionValue ChangeLogIndex_367 {0,"if not the initial target"}
+OptionValue ChangeLogIndex_368 {0,"--Fixed item being able to cancel Rubber Latch endlag"}
+OptionValue ChangeLogIndex_369 {0,"--Fixed Returning Rubber Latch cable visual glitch"}
+OptionValue ChangeLogIndex_370 {0,""}
+OptionValue ChangeLogIndex_371 {0,"\cf==HyperstormH"}
+OptionValue ChangeLogIndex_372 {0,"-Suction kills are now part of a balanced breakfast"}
+OptionValue ChangeLogIndex_373 {0,""}
+OptionValue ChangeLogIndex_374 {0,"\cf==Ballade"}
+OptionValue ChangeLogIndex_375 {0,"-Fixed Ballade Cracker offsets"}
+OptionValue ChangeLogIndex_376 {0,"-Ballade Cracker now resembles MM4GB mini-cracker"}
+OptionValue ChangeLogIndex_377 {0,"when fired with minimum speed"}
+OptionValue ChangeLogIndex_378 {0,""}
+OptionValue ChangeLogIndex_379 {0,"\cf==Quint"}
+OptionValue ChangeLogIndex_380 {0,"-Sakugarne melee damager powerprotect duration"}
+OptionValue ChangeLogIndex_381 {0,"8/9 tics > 12/13 tics"}
+OptionValue ChangeLogIndex_382 {0,"-Updated Quint Buster projectile sprites to resemble"}
+OptionValue ChangeLogIndex_383 {0,"Mega Buster's Game Boy projectile sprites"}
+OptionValue ChangeLogIndex_384 {0,"-Fixed Shockwave being able to deal up to 50 dmg"}
+OptionValue ChangeLogIndex_385 {0,""}
+OptionValue ChangeLogIndex_386 {0,""}
+OptionValue ChangeLogIndex_387 {0,""}
+OptionValue ChangeLogIndex_388 {0,""}
+OptionValue ChangeLogIndex_389 {0,"\cfi dont have much i wanna say. outside of thanks ofc."}
+OptionValue ChangeLogIndex_390 {0,"\cfseeing gondola blow up has been one of"}
+OptionValue ChangeLogIndex_391 {0,"\cfthe biggest highlights of my life."}
+OptionValue ChangeLogIndex_392 {0,""}
+OptionValue ChangeLogIndex_393 {0,"\cfwasnt easy esp when people i was friends"}
+OptionValue ChangeLogIndex_394 {0,"\cfwith back in 2019 slowly left the game cuz of"}
+OptionValue ChangeLogIndex_395 {0,"\cfdisapproval of how i run things or burnout."}
+OptionValue ChangeLogIndex_396 {0,"\cfbut we here. and we run shit now."}
+OptionValue ChangeLogIndex_397 {0,""}
+OptionValue ChangeLogIndex_398 {0,"\cfpretty good for a \c[q6]'pussy bitch'\cf, huh?"}//spybot if u out there u aint reading this shit lol. if you do? your move.
+OptionValue ChangeLogIndex_399 {0,"\c[gibusgold]-Pr. Gibus, 7/17/2023"}
+OptionValue ChangeLogIndex_400 {0,""}
