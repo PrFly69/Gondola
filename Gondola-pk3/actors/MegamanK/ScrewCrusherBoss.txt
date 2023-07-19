@@ -653,6 +653,7 @@ Bouncetype None
 +BOUNCEONFLOORS//
 +BOUNCEONWALLS//
 +BOUNCEONCEILINGS//
++DONTSPLASH
 bouncefactor 0.9
 wallbouncefactor 0.8
 Bouncecount 6
