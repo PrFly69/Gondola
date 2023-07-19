@@ -46,15 +46,12 @@ actor Fuseman : ClassBase //85
 			goto Spawn
 			
 
-		ClassPain:
-			FUSM H 0 //A_ChangeFlag(FLOATBOB, false)
-			goto PainContinue
-		DeathFix:
-			FUSM H 0 //A_ChangeFlag(FLOATBOB, false)
-			goto DeathContinue
-		ClassDeath:
-			FUSM H 1 //A_ChangeFlag(FLOATBOB, false)
-			goto MegaDeathEnd
+ClassPain:
+FUSM H 0
+goto PainContinue
+ClassDeath:
+FUSM H 0
+goto DeathContinue
 			
 		Death.Falling:
 			FUSM H 0 //A_ChangeFlag(FLOATBOB, false)

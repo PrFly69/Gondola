@@ -489,8 +489,9 @@ M_GV = "V";
 M_GWT = "WT";
 M_GK = "K";
 
-QUITMSG31 = "Yes Yes Yes Yes Yes Yes";
-QUITMSG32 = "Don't make us stop production on version 2.6.2...";
+QUITMSG30 = "\chThis is a message to my girlfriend (who blocked me) that is silently reading this. Please unblock me. I have reflected on my actions and deeply apologize for what I have done. I'll remain loyal to you and only you. Please accept this humble mans apology and unblock me.";
+QUITMSG31 = "\cjCongratulations. You've just discovered the secret message. Please send your answer to \c[gibusgold]Old Gibus\cj, care of the funny farm, Chalfont.";
+QUITMSG32 = "Don't make us stop production on version 2.7...";
 
 //The Banner
 STARTUP1 = "";

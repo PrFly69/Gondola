@@ -1,5 +1,6 @@
 StartupTick             bdoor
 $volume StartupTick 0.22
+$random menu/quitCBM { misc/HonkHonk64 misc/AladdinHonk misc/KnuxOhNo classes/Stolen1 DyHead/YayoiPunch weapon/PanHit1 weapon/PanHit2 weapon/bebeskids weapon/protomanshow}
 
 ///// MM0 /////
 
@@ -10,6 +11,7 @@ weapon/XCont X2FIRE
 //Proto
 weapon/protoshieldpickup SHIELDP
 weapon/reversepcharge PROTCHRE
+weapon/protomanshow PMANSHOW
 
 //Bass
 weapon/NewBassBuster CCBMBUST

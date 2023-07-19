@@ -48,11 +48,8 @@ goto AcidJumping
 ClassPain:
 ACIY H 0
 goto PainContinue
-DeathFix:
+ClassDeath:
 ACIY H 0
 goto DeathContinue
-ClassDeath:
-ACIY H 1
-goto MegaDeathEnd
 }
 }
