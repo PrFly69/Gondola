@@ -723,13 +723,13 @@ CENX E 1
 wait
 XDeath:
 Crash:
-CENB E 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"Give")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,"Give")
 Goto Death
 Give:
-CENB E 0 A_GiveToTarget("LMSRegen",1)
+TNT1 A 0 A_GiveToTarget("LMSRegen",1)
 Goto Death
 Death:
-CENB E 1
+TNT1 A 1
 stop
 }
 }
