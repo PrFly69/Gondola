@@ -31,7 +31,7 @@ TAG_AUTOSWITCH6 = "\cm[\cg7\cm] \cfEddie Bomber \cm[\cg7\cm]";
 OB_RYUL_M3 = "%o was shown the ultimate wave motion attack by %k's Shinku Hadoken.";
 
 //SniperJoe
-TAGC_0J = "Sniper Joe Buster % Grenade";
+TAGC_0J = "Sniper Joe Buster & Grenade";
 TAGC_0J2 = "Sniper Joe Machinegun & Launcher";
 TAGC_0J3 = "Sniper Joe Crate";
 TAGC_0J4 = "Sniper Joe Truck";
