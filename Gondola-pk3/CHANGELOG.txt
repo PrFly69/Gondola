@@ -3964,6 +3964,9 @@ CHANGELOG
 
 
 =====2.7
+==SniperJoe
+-Fixed weapon tag for Joe Buster
+
 ==Swordman
 -Removed benign error message
 
