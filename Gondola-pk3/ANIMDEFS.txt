@@ -2,7 +2,6 @@
 texture TERRACON
 pic TERRICO1 tics 4
 pic TERRICO2 tics 4
-//Cambiaso
 
 
 //Nitroman Gear Display

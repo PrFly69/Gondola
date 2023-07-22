@@ -3959,3 +3959,20 @@ CHANGELOG
 -Sakugarne melee damager powerprotect duration 8/9 tics > 12/13 tics
 -Updated Quint Buster projectile sprites to resemble Mega Buster's Game Boy projectile sprites
 -Fixed Shockwave being able to deal up to 50 dmg
+
+
+
+
+=====2.7
+==Swordman
+-Removed benign error message
+
+==Groundman
+-Fixed Black Hole Bomb interaction while digging
+
+==Terra
+-Fixed horizontal bar bug
+
+==Pluto
+-Removed short dash when not in Breakspark
+-Fixed SBAR bug

@@ -945,7 +945,7 @@ Drawbar"PA_T_VAR","VAREMPTY",Ammo1,horizontal,58,184;
 DrawImage"PUTRICON",178,175;
 Drawbar"0V_H_VAR","0V_H2VAR",Ammo2,horizontal,58,176; 
 
-InInventory BreakingIntoADashAmmo,656//784
+InInventory BreakingIntoADashAmmo,562//656//784
 {
 Drawbar"VH_S_VAR","VNOBAR",Ammo2,horizontal,58,176;
 }
