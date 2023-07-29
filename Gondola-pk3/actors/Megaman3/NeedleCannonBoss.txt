@@ -161,6 +161,7 @@ NEDR A 0 A_GiveInventory("NoodleAmmo",2)
 goto Reved
 
 FireStart:
+NEDR D 0 A_GiveInventory("PowerNeedleFireSlow",1)
 NEDR A 0 A_WeaponReady(14)//Fix offsets
 NEDR A 0 A_GunFlash
 NEDR A 0 A_JumpIfInventory("NeedleDuoFlag",1,"FireStart2")
@@ -273,6 +274,7 @@ Goto RevUp
 
 Reload:
 NEDR A 0 A_JumpIfInventory("NeedleReved",1,"Altfire2")
+SPAH S 0 ACS_NamedExecuteAlways("BULL_SetState",0,1)
 NEDR J 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
 NEDR J 0 A_GiveInventory("NeedlePoker",1)
 NEDR J 0 A_TakeInventory("NeedleReved",1)
@@ -285,6 +287,7 @@ NEDR A 20 Offset(0,70)
 goto Ready+1
 Altfire2:
 NEDR J 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
+SPAH S 0 ACS_NamedExecuteAlways("BULL_SetState",0,2)
 NEDR J 0 A_GiveInventory("NeedlePoker",1)
 NEDR J 0 A_TakeInventory("NeedleReved",1)
 NEDR J 0 A_PlaySoundEx("weapon/needleWham","Weapon")
@@ -419,6 +422,14 @@ actor PowerNeedle : PowerSpeed
 Speed 0.47
 }
 
+actor PowerNeedleFireSlow : PowerSpeed
+{
+powerup.duration 10
+Speed 1.0//0.5
++POWERSPEED.NOTRAIL
+}
+
+
 actor NeedleFireDelay1 : Powerup
 {
 +ADDITIVETIME
@@ -436,6 +447,8 @@ actor NeedlemanMain_P1 : CustomInventory
 States
 {
 Pickup:
+TNT1 A 0 A_TakeInventory("NeedleDuoFlag",1)
+TNT1 A 0 A_GiveInventory("PowerNeedleFireSlow",1)
 TNT1 A 0 A_JumpIfInventory("NeedleFireDelay1",1,"Pickup2")
 //TNT1 A 0 A_LOG("FIRE STRAIGHT 111")
 //TNT1 A 0 A_PlaySoundEx("Ryu_L/shinshor1","Voice")
@@ -454,6 +467,8 @@ actor NeedlemanMain_P2 : CustomInventory
 States
 {
 Pickup:
+TNT1 A 0 A_GiveInventory("NeedleDuoFlag",1)
+TNT1 A 0 A_GiveInventory("PowerNeedleFireSlow",1)
 TNT1 A 0 A_JumpIfInventory("NeedleFireDelay2",1,"Pickup2")
 //TNT1 A 0 A_LOG("FIRE STRAIGHT 222")
 //TNT1 A 0 A_PlaySoundEx("Ryu_L/shinshor1","SoundSlot7")
@@ -472,6 +487,9 @@ actor NeedlemanStartMain_P1 : CustomInventory
 States
 {
 Pickup:
+TNT1 A 0 A_TakeInventory("NeedleDuoFlag",1)
+TNT1 A 0 A_GiveInventory("NeedleReved",1)
+TNT1 A 0 A_GiveInventory("PowerNeedleFireSlow",1)
 TNT1 A 0 A_JumpIfInventory("NeedleFireDelay1",1,"Pickup2")
 //TNT1 A 0 A_LOG("FIRE STRAIGHT 111")
 //TNT1 A 0 A_PlaySoundEx("Ryu_L/shinshor1","Voice")
@@ -490,6 +508,9 @@ actor NeedlemanStartMain_P2 : CustomInventory
 States
 {
 Pickup:
+TNT1 A 0 A_GiveInventory("NeedleDuoFlag",1)
+TNT1 A 0 A_GiveInventory("NeedleReved",1)
+TNT1 A 0 A_GiveInventory("PowerNeedleFireSlow",1)
 TNT1 A 0 A_JumpIfInventory("NeedleFireDelay2",1,"Pickup2")
 //TNT1 A 0 A_LOG("FIRE STRAIGHT 222")
 //TNT1 A 0 A_PlaySoundEx("Ryu_L/shinshor1","SoundSlot7")

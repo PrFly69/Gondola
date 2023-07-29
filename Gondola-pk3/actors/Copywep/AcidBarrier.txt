@@ -1,4 +1,4 @@
-actor AcidBarrierWepC : BaseMM8BDMWep
+actor AcidBarrierWep : BaseMM8BDMWep
 {
 dropitem "AcidBarrierWepCDropped"
 Weapon.AmmoUse 0
@@ -168,6 +168,29 @@ Pickup3:
 TNT1 A 0 A_GiveInventory("AcidBarrierWepC",1)
 stop
 Rock_P:goto Rock_P8
+}
+}
+
+actor AcidBarrierWepC : AcidBarrierWep //replaces DarkShieldWep
+{
+dropitem "AcidBarrierWepCDropped"
+States
+{
+Spawn:
+TNT1 A 0
+stop
+AltfireC:
+ACDB A 0 A_PlaySoundEx("misc/splash","Weapon")
+ACDB A 0 A_SpawnItemEx("AcidShotTwoSplasher")
+ACDB A 0 A_SpawnItemEx("BarrierPopWarper")
+ACDB A 0 A_SpawnItemEx("BarrierPop")
+ACDB A 0 A_TakeInventory("AcidVision",1)
+ACDB A 0 A_TakeInventory("AcidBar",280)
+ACDB A 0 A_TakeInventory("ShieldCheck",999)
+ACDB A 0 A_TakeInventory("AcidShield",1)
+ACDB A 0 A_TakeInventory("BasicArmor",50)
+goto AltFireS
+ReadyC:Goto Ready+1
 }
 }
 

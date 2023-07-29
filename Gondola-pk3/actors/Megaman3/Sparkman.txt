@@ -4,7 +4,7 @@ Player.ScoreIcon "C_03G0X"
 player.displayname "sparkman"
 player.soundclass "sparkmanc"
 player.startitem "SparkShockBoss"
-player.startitem "SparkHealAmmo", 7
+player.startitem "SparkHealAmmo", 14
 
 player.maxhealth 115
 health 115

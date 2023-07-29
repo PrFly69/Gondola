@@ -26,18 +26,35 @@ States
 {
 Spawn:
 NEED A 0
-NEED A 0 A_JumpIfInventory("NeedlePoker",1,"Poke")
 NEED B 1
-NEED A 1 A_JumpIfInventory("NeedlePoker",1,"Poke")
-Goto Spawn+3
+NEED A 1
+NEED A 210
+NEED Y 5
+wait
 See:
-NEED BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("NeedlePoker",1,"Poke")
+NEED BCDE 5
 Goto Spawn
 Missile:
-NEED FFFFFFFFFFFFFFFFFFFFFFFFFFFF 1 A_JumpIfInventory("NeedlePoker",1,"Poke")
-NEED GGGGGGGGGG 1 A_JumpIfInventory("NeedlePoker",1,"Poke")
+NEED F 0 A_JumpIfInventory("VivifyDelay6",1,"MissilePoke")
+NEED F 0 A_JumpIfInventory("PowerNeedleFireSlow",1,"Missile1")
+NEED F 0 A_JumpIfInventory("NeedleReved",1,"MissileRev")
+NEED FFFFFFFFFFFFFFFFFFFFFFFFFFFF 1
+NEED GGGGGGGGGG 1
 goto Spawn
-Poke:
+MissileRev:
+NEED F 4
+NEED FFFFF 1 A_JumpIfInventory("NeedleReved",1,"MissileRev")
+goto Spawn
+Missile1:
+NEED G 0 A_JumpIfInventory("NeedleDuoFlag",1,"Missile2")
+NEED GF 4
+goto MissileRev
+Missile2:
+NEED QF 4
+goto MissileRev
+
+CustomState1:
+MissilePoke:
 NEED P 3
 NEED O 5
 NEED P 4

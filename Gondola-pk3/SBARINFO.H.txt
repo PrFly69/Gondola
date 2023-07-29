@@ -69,7 +69,7 @@ IsSelected ShadowBladeWepC{Drawbar"VARAMMO7","VAREMPTY",Ammo1,horizontal,58,184;
 IsSelected FlashStopperWepC{Drawbar"VARAMM18","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected RainFlushWepC{Drawbar"VARAMM19","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected DrillBombWepC{Drawbar"VARAMM14","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected PharaohShotWepC{Drawbar"VARAMM20","VAREMPTY",Ammo1,horizontal,58,184;
+IsSelected PharaohShotWepC, PharaohShotWepCMaestro{Drawbar"VARAMM20","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory WeaponCharge,78{DrawBar"VARFLS4","VAREMPTY",Ammo1,horizontal,58,184;}
 	else InInventory PharaohCharge,1{DrawBar"VARFLS1","VNOBAR",PharaohCharge,horizontal,58,184;}}
 IsSelected RingBoomerangWepC{Drawbar"VARAMMO9","VAREMPTY",Ammo1,horizontal,58,184;}
@@ -82,7 +82,7 @@ IsSelected SkullbarrierWepC{Drawbar"VARAMM21","VAREMPTY",Ammo1,horizontal,58,184
 IsSelected GravityHoldWepC{Drawbar"VARAMM18","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected WaterWaveWepC{Drawbar"VARAMM10","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected PowerStoneWepC{Drawbar"VARAMM22","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected GyroAttackWepC{Drawbar"VARAMMO4","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected GyroAttackWepC, GyroAttackWepCMaestro{Drawbar"VARAMMO4","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected StarCrashWepC{Drawbar"VARAMM23","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory ShieldCheck,1{DrawBar"VARFLS6","VAREMPTY",Ammo1,horizontal,58,184;}}
 IsSelected ChargeKickWepC{Drawbar"VARAMM12","VAREMPTY",Ammo1,horizontal,58,184;}
@@ -140,8 +140,8 @@ IsSelected MagicCardWepC{Drawbar"VARAMM58","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected TrebleBoostC{Drawbar"VARAMM59","VAREMPTY",Ammo1,horizontal,58,184;}
 
 //MM9
-IsSelected PlugBallWepC, PlugBallWepCMaestro{DrawBar"VARAMM60","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected LaserTridentWepC{DrawBar"VARAMM61","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected PlugBallWepC{DrawBar"VARAMM60","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected LaserTridentWepC, LaserTridentWepCMaestro{DrawBar"VARAMM61","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected TornadoBlowWepC, TornadoBlowWepCMaestro{DrawBar"VARAMM68","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected JewelSatelliteWepC{DrawBar "VARAMM63","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory JewelShieldCheck,1{DrawBar "VARFLS1","VNOBAR",JewelShieldCheck,horizontal,58,184;}}
@@ -154,7 +154,7 @@ IsSelected HornetChaserWepC{DrawBar "VARAMM67","VAREMPTY",Ammo1,horizontal,58,18
 
 //MM10
 IsSelected TripleBladeWepC{DrawBar"VAMMO100","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected WaterShieldWepC, WaterShieldWepCMaestro{DrawBar"VAMMO101","VAREMPTY",WaterShieldAmmo,horizontal,58,184;
+IsSelected WaterShieldWepC{DrawBar"VAMMO101","VAREMPTY",WaterShieldAmmo,horizontal,58,184;
 	InInventory WaterShieldCheck,1{DrawBar"VARAMT69","VNOBAR",WaterShieldCheck,horizontal,130,184;}}
 IsSelected CommandoBombWepC{DrawBar"VAMMO102","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected ChillSpikeWepC{DrawBar"VAMMO103","VAREMPTY",Ammo1,horizontal,58,184;}
@@ -162,14 +162,14 @@ IsSelected ThunderWoolWepC{DrawBar"VAMMO104","VAREMPTY",Ammo1,horizontal,58,184;
 IsSelected ReboundStrikerWepC{DrawBar"VAMMO105","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected WheelCutterWepC{DrawBar "VARAMMWC", "VAREMPTY", Ammo1, horizontal, 58, 184;
 	InInventory WheelCutterCheck, 1	{DrawBar "VARFLS1", "VNOBAR", WheelCutterCheck, horizontal, 58, 184;}}
-IsSelected SolarBlazeWepC, SolarBlazeWepCMaestro{DrawBar"VAMMO107","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected SolarBlazeWepC{DrawBar"VAMMO107","VAREMPTY",Ammo1,horizontal,58,184;}
 
 //MMV
 IsSelected SparkChaserWepC{DrawBar"VAMMO_V0","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected GrabBusterWepC{DrawBar"VAMMO_V1","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected BubbleBombWepC{DrawBar"VAMMO_V2","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected PhotonMissileWepC{DrawBar"VAMMO_V3","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected ElectricShockWepC{DrawBar"VAMMO_V4","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected ElectricShockWepC, ElectricShockWepCMaestro{DrawBar"VAMMO_V4","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected BlackHoleWepC{DrawBar"VAMMO_V5","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected DeepDiggerWepC{DrawBar"VAMMO_V6","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected BreakDashWepC{DrawBar"VAMMO_V7","VAREMPTY",Ammo1,horizontal,58,184;}
@@ -177,7 +177,7 @@ IsSelected SaltWaterWepC, SaltWaterWepCMaestro{DrawBar"VAMMO_V8","VAREMPTY",Salt
 
 //MMK
 IsSelected SakugarneWepC{Drawbar"VARAMM48","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected MirrorBusterWepC, MirrorBusterWepCMaestro{Drawbar"VARAMM49","VAREMPTY",Ammo1,horizontal,58,184;
+IsSelected MirrorBusterWepC{Drawbar"VARAMM49","VAREMPTY",Ammo1,horizontal,58,184;
 	InInventory MirrorBusterFlag,1{DrawBar"VARFLS1","VNOBAR",MirrorBusterFlag,horizontal,58,184;}}
 IsSelected ScrewCrusherWepC{Drawbar"VARAMM50","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected BalladeCrackerWepC{Drawbar"VARAMM51","VAREMPTY",Ammo1,horizontal,58,184;}
@@ -277,7 +277,7 @@ IsSelected RainbowGalaxyWepC{DrawBar"VARAMM66","VAREMPTY",Ammo1,horizontal,58,18
 IsSelected DynamoTendrilWepC{Drawbar"XTR0VR_P","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected PlantTrapperWepC, PlantTrapperWepCMaestro{Drawbar"XTR0VR_O","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected CentaurArrowWepC{DrawBar"VARAMM26","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected DarkShieldWepC{DrawBar"VARAMMO1","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected DarkShieldWepC, DarkShieldWepCMaestro{DrawBar"VARAMMO1","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected GravitySphereWepC{DrawBar"VARAMM18","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected SkullSniperWepC{DrawBar"VARAMM21","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected DiveSonarWepC{Drawbar"VARAMM10","VAREMPTY",Ammo1,horizontal,58,184;}

@@ -177,25 +177,25 @@ script "CCBM_MaestroStyleChangeEnd" (int Select) CLIENTSIDE
 		MaestroStyleChangeMsg("You have changed to\nWoodShield style and got \nLeaf Shield",tid);
 			break;
 		Case 15:
-		MaestroStyleChangeMsg("You have changed to\nElecShield style and got \nMirror Buster",tid);
+		MaestroStyleChangeMsg("You have changed to\nElecShield style and got \nDark shield",tid);
 			break;
 		Case 14:
 		MaestroStyleChangeMsg("You have changed to\nAquaShield style and got \nMWS Barrier",tid);
 			break;
 		Case 13:
-		MaestroStyleChangeMsg("You have changed to\nHeatShield style and got \nFlame Blast",tid);
+		MaestroStyleChangeMsg("You have changed to\nHeatShield style and got \nSchorch Wheel",tid);
 			break;
 		Case 12:
-		MaestroStyleChangeMsgCust("You have changed to\nWoodCustom style and got\nLeaf Shield\nSearch Snake\nPlant Trapper\nTornado Hold\nTornado Blow",tid);
+		MaestroStyleChangeMsgCust("You have changed to\nWoodCustom style and got\nSearch Snake\nGyro Attack\nPlant Trapper\nTornado Hold\nTornado Blow",tid);
 			break;
 		Case 11:
-		MaestroStyleChangeMsgCust("You have changed to\nElecCustom style and got\nThunder Beam\nSpark Shock\nThunder Bolt\nThunder Claw\nPlug Ball",tid);
+		MaestroStyleChangeMsgCust("You have changed to\nElecCustom style and got\nThunder Beam\nSpark Shock\nThunder Bolt\nThunder Claw\nElectric Shock",tid);
 			break;
 		Case 10:
-		MaestroStyleChangeMsgCust("You have changed to\nAquaCustom style and got\nIce Slasher\nBubble Lead\nWater Balloon\nWater Shield\nSalt Water",tid);
+		MaestroStyleChangeMsgCust("You have changed to\nAquaCustom style and got\nIce Slasher\nBubble Lead\nWater Balloon\nLaser Trident\nSalt Water",tid);
 			break;
 		Case 9:
-		MaestroStyleChangeMsgCust("You have changed to\nHeatCustom style and got\nFire Storm\nScorch Wheel\nFlame Sword\nMagma Bazooka\nSolar Blaze",tid);
+		MaestroStyleChangeMsgCust("You have changed to\nHeatCustom style and got\nFire Storm\nPharaoh Shot\nFlame Blast\nFlame Sword\nMagma Bazooka",tid);
 			break;
 		Case 8:
 		MaestroStyleChangeMsg("You have changed to\nWoodGuts style.",tid);

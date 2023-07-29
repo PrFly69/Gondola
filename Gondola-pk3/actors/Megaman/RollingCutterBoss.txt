@@ -473,7 +473,6 @@ PROJECTILE
 damagetype "CutM_Cutter"
 Obituary "$OB_ROLLINGCUTTER"
 +RIPPER
-+THRUGHOST
 +DONTBLAST
 +DONTSPLASH
 Renderstyle None

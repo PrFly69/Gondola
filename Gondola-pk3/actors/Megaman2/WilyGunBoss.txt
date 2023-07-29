@@ -302,7 +302,7 @@ WICH H 0 A_GunFlash
 Goto Ready2
 Ready2:
 WICH H 10 A_WeaponReady
-WICH H 0 A_GiveInventory("PlasmaAmmo",2)
+WICH H 0 A_GiveInventory("PlasmaAmmo",1)
 loop
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
@@ -709,9 +709,9 @@ dropitem "WaveBusterWepCDropped"
 weapon.preferredskin "Capsule-Wily"
 Weapon.AmmoUse 7
 Weapon.AmmoGive 28
-//Weapon.SlotNumber 2
 Obituary "$OB_WILYICE"
 weapon.ammotype "PlasmaAmmo"
+inventory.icon "WilyICap"
 +WEAPON.NOAUTOAIM
 States
 {
@@ -795,8 +795,8 @@ actor WilyCapsuleFireBoss : WilyCapsuleIceBoss
 tag "$TAGC_2I4"
 dropitem "WaveBusterWepCDropped"
 weapon.preferredskin "Capsule-Wily"
-//Weapon.SlotNumber 3
 Weapon.AmmoUse 2
+inventory.icon "WilyFCap"
 States
 {
 Ready:
@@ -981,7 +981,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 1 A_Explode(3,15,0,0,15)
+TNT1 A 1 A_Explode(2,15,0,0,15)
 stop
 }
 }

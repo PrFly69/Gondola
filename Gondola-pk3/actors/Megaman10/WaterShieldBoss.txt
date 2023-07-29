@@ -413,7 +413,6 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 PUM4 E 4
-PUM4 E 0 A_ChangeFlag("THRUSPECIES",FALSE)
 PUM4 E 0 A_SetUserVar("user_power",1)
 PUM4 E 4
 PUM4 E 0 A_SetUserVar("user_power",2)
@@ -693,8 +692,8 @@ Obituary "$OB_PUMPHANDLE"
 damagetype "PumpTheHandle"
 +NOTARGETSWITCH
 +SKYEXPLODE
-+THRUSPECIES
 +DONTREFLECT
++THRUSPECIES
 species "DumbPumpBubble"
 damage (25)
 Radius 10
@@ -721,7 +720,6 @@ PUM4 W 0 A_ScaleVelocity(0.9)
 PUM4 W 0 A_CountDown
 Spawn2.a:
 PUM4 X 1 A_JumpIfInTargetInventory("PumpSluggerInvCheck",1,"Death")
-PUM4 X 0 A_ChangeFlag("THRUSPECIES",FALSE)
 PUM4 X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
 PUM4 X 0 A_ScaleVelocity(0.9)
 PUM4 X 0 A_CountDown

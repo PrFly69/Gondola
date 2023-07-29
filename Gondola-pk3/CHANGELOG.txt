@@ -3963,15 +3963,67 @@ CHANGELOG
 
 
 
-=====2.7
+=====2.6.2
+==Protoman
+-Fixed Proto Shield not reflecting shots in non-team gamemodes
+
+==Maestro
+-Maestro Buster damage 12 > 10
+--Maestro Buster projectile speed 27 > 30
+--Maestro Buster projectile width doubled
+-Activating style swap reduced by 22 tics
+-Reverting to normal style endlag reduced by 12 tics
+-Custom Style weapon selections adjusted
+--Scorch Wheel > Flame Blast
+--Solar Blaze > Pharaoh Shot
+--Water Shield > Laser Trident
+--Plug Ball > Electric Shock
+--Leaf Shield > Gyro Attack
+-Shield Style weapon selections adjusted
+--Flame Blast > Scorch Wheel
+--Mirror Buster > Dark Shield
+
+==DrWily
+-Ammo regen on Wily Suit 2 ammo every 10 tics > 1 ammo every 7 tics
+-Wily Capsule now has passive sounds when moving
+-Wily Capsule fire afterburn damage 3(27 damage total) > 2 (18 damage total)
+
 ==SniperJoe
 -Fixed weapon tag for Joe Buster
+-Joe Buster projectile speed 29 > 35
+-Machine Joe shot projectile speed 58 > 51
+
+==Cutman
+-Fixed Rolling Cutter not popping Water Shield
+
+==Needleman
+-Added extra skinsprites from CBM
+
+==Sparkman
+-Spark Shock stun method reworked
+--Now applies stackable stun that applies extra stun depending on shot
+--Spark Shock LVL1 - 15 tics of stun (3/7ths of a second)
+--Spark Shock LVL2 - 25 tics of stun (5/7ths of a second)
+--Spark Shock LVL3 - 35 tics of stun (1 second)
+--Spark Spread - 5 tics of stun (1/7th of a second)
+--Spark Orb - 15 tics of stun (3/7ths of a second)
+-SparkHealingAmmo max capacity and starting ammo doubled
+-Spark Taser cooldown duration 35/245 tics > 87/87 tics
+
+==Shadowman
+-Added new Shadow Blade HUD, made by Redflash
 
 ==Swordman
 -Removed benign error message
 
 ==Groundman
 -Fixed Black Hole Bomb interaction while digging
+
+==Jewelman
+-Added extra skinsprites from CBM
+
+==Pumpman
+-Fixed Water Shield from blocking user's own shots
 
 ==Terra
 -Fixed horizontal bar bug

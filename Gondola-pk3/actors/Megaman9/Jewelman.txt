@@ -29,14 +29,23 @@ States
 Spawn:
 JEWL A 0
 JEWL B 1
-JEWL A 1
-Goto Spawn+2
+JEWL A 174
+JEWL Y 1
+wait
 See:
 JEWL BCDE 5
 Goto Spawn
 Missile:
+JEWL F 0 A_JumpIfInventory("VivifyDelay7",1,"Missile2")
 JEWL F 5
 JEWL G 4 
+goto Spawn
+Missile2:
+JEWL F 0 A_JumpIfInventory("PowerRage_ST",1,"Missile2_R")
+JEWL FFFGFGFGFGFF 3
+goto Spawn
+Missile2_R:
+JEWL FFFGFGFGFGFF 2
 goto Spawn
 ClassPain:
 JEWL H 0

@@ -73,13 +73,13 @@ SHMH A 0 A_PlaySoundEx("weapon/shadow","Weapon")
 SHMH A 0 A_GiveInventory("ShadowmanMain_CI",1)
 SHMH A 0 A_Refire(1)
 SHMH C 1 A_GiveInventory("ShadowmanFlashInvisOff_P")
-SHMH D 1
-SHMH G 1
+SHMH C 1 Offset(-10,68)
 SHMH G 0 A_GiveInventory("CloakAmmo",1)
-SHMH HIJ 1
-TNT1 A 4 OffSet(110,69)
+SHMH D 1 Offset(-20,128)
+SHMH X 1 Offset(-30,188)
+TNT1 A 4 Offset(-12,69)
 TNT1 A 3
-SHMH A 1 OffSet(55,48)
+SHMH A 1 Offset(-1,48)
 SHMH A 0 A_GiveInventory("CloakAmmo",1)
 SHMH A 8 A_WeaponReady(14)
 goto Ready2
@@ -963,19 +963,19 @@ actor ShadowmanMain_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("ShadowBladeCBM",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ShadowBladeCBM",0,1,8,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("ShadowBladeCBMB",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ShadowBladeCBMB",0,1,8,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("ShadowBladeCBMR",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ShadowBladeCBMR",0,1,8,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("ShadowBladeCBMO",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ShadowBladeCBMO",0,1,8,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("ShadowBladeCBMP",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("ShadowBladeCBMP",0,1,8,0)
 goto Done
 }
 }

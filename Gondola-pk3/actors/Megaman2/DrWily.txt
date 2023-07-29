@@ -42,7 +42,10 @@ W2CP A 210
 W2CP XA 4
 Goto Spawn+4
 See:
-W2CP BCDE 5
+W2CP B 5
+W2CP C 5 A_GiveInventory("CapsuleWalkSnd_P")
+W2CP D 5
+W2CP E 5 A_GiveInventory("CapsuleWalkSnd_P")
 Goto Spawn
 Missile:
 W2CP F 5
@@ -111,6 +114,18 @@ TNT1 A 2 A_PlaySoundEx("misc/devildeath","Weapon")
 stop
 TNT1 A 0 A_PlaySoundEX("misc/gib","SoundSlot6")
 TNT1 A 2 A_SpawnItemEX("CriticalDeathSpawner",0,0,0,0,0,0,0,1)
+stop
+}
+}
+
+actor CapsuleWalkSnd_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("WilySandalsItem",1,1)
+stop
+TNT1 A 0 A_PlaySoundEx("classes/astrowalk","Body")
 stop
 }
 }

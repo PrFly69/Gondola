@@ -363,12 +363,16 @@ script "gond_protoshieldcheck" (int target, int range) {
 
     for(int i = 0; i < 64; i++) {
         dist = xyzDistance(0, i + 1000);
-        if(i + 1000 != target && (GetPlayerInfo(target-1000,PLAYERINFO_TEAM) == 4 || GetPlayerInfo(target-1000,PLAYERINFO_TEAM) != GetPlayerInfo(i,PLAYERINFO_TEAM)) && CheckSight(0, i+1000, 0) && dist <= range && dist < tracerRange) {
+		if(!PlayerInGame(i))
+        {
+        continue;
+        }
+        if(i + 1000 != target && (GetPlayerInfo(target-1000,PLAYERINFO_TEAM) >= 4 || GetPlayerInfo(target-1000,PLAYERINFO_TEAM) != GetPlayerInfo(i,PLAYERINFO_TEAM)) && CheckSight(0, i+1000, 0) && dist <= range && dist < tracerRange) {
             tracer = i + 1000;
             tracerRange = dist;
         }
     }
-    
+	
     if(tracer > 0) {
         int x, y, z, ang, pitch, len;
         x = getactorx(tracer) - getactorx(0);

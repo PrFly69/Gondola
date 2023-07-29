@@ -290,7 +290,7 @@ PROJECTILE
 +DONTREFLECT
 Obituary "$OB_JOEBUSTER"
 damagetype "Joe_Buster"
-Speed 29//26
+Speed 35//26
 Damage (13)//14
 radius 5
 height 5
@@ -826,7 +826,7 @@ PROJECTILE
 +THRUGHOST
 Obituary "$OB_JOEMGUN"
 damagetype "Joe_MGun"
-Speed 58
+Speed 51
 Damage (6)
 radius 5
 height 5

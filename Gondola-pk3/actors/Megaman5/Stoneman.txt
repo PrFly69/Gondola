@@ -101,11 +101,10 @@ ClassPainCore:
 STOM R 1 A_SpawnItemEx("PainFX_CBM",-5,0,3,0,0,0)
 goto SpawnCore
 
-DeathFix://SpecialDeathFlag
-STOM H 0 A_JumpIfInventory("StoneCoreFlag",1,"DeathFixCore")
-goto DeathContinue
 ClassDeath:
-STOM H 0
+STOM H 0 A_JumpIfInventory("StoneCoreFlag",1,1)
+goto DeathContinue
+STOM R 0
 goto DeathContinue
 
 TimeStopped:
