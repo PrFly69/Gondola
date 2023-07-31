@@ -4022,6 +4022,10 @@ CHANGELOG
 -Adjusted Dark Buster HUD anim
 -Dark Ram idle ammo regen 1 every 5 tics > 1 every 3 tics
 
+==Freezeman
+-Adjusted SBAR colors
+-Shatter Cracker now has passive sound when being charged and fired
+
 ==Swordman
 -Removed benign error message
 
