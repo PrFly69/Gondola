@@ -441,6 +441,30 @@ alpha 0.5
 }
 }
 texture 00_1_VA3,56,8{patch 00_1_BA3,0,0{rotate 90}}
+
+texture DUOCH1,8,56{patch CHBAR1,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH1,56,8{patch DUOCH1,0,0{rotate 90}}
+texture DUOCH2,8,56{patch CHBAR2,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH2,56,8{patch DUOCH2,0,0{rotate 90}}
+texture DUOCH3,8,56{patch CHBAR3,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH3,56,8{patch DUOCH3,0,0{rotate 90}}
+texture DUOCH4,8,56{patch CHBAR4,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH4,56,8{patch DUOCH4,0,0{rotate 90}}
+texture DUOCH5,8,56{patch CHBAR5,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH5,56,8{patch DUOCH5,0,0{rotate 90}}
+texture DUOCH6,8,56{patch CHBAR6,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH6,56,8{patch DUOCH6,0,0{rotate 90}}
+texture DUOCH7,8,56{patch CHBAR7,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH7,56,8{patch DUOCH7,0,0{rotate 90}}
+texture DUOCH8,8,56{patch CHBAR8,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH8,56,8{patch DUOCH8,0,0{rotate 90}}
+texture DUOCH9,8,56{patch CHBAR9,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH9,56,8{patch DUOCH9,0,0{rotate 90}}
+texture DUOCH10,8,56{patch CHBAR10,0,0{Translation"192:192=202:202","198:198=194:194"}}
+texture DUOVH10,56,8{patch DUOCH10,0,0{rotate 90}}
+texture DUOCH0,56,8{patch TNT1A0,0,0}
+texture DUOVH0,56,8{patch TNT1A0,0,0}
+
 //Quint Slide
 texture 0K_4_BAR,8,56{patch B_3BARSB,0,0{
 Translation"198:198=130:130","192:192=138:138","199:199=130:130","202:202=138:138","195:195=130:130","204:204=138:138"}}
@@ -500,19 +524,19 @@ texture C_10E0X, 32, 32{XScale 4.0 YScale 4.0 				Patch FACE141, 0, 0}
 
 //Plug
 texture PLG1BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=254:254","198:198=254:254"}}
-texture PLG1VAR,56,8{patch PLG1BAR,0,0{rotate 90}}//Blade
+texture PLG1VAR,56,8{patch PLG1BAR,0,0{rotate 90}}
 texture PLX1BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=253:253","198:198=253:253"}}
-texture PLX1VAR,56,8{patch PLX1BAR,0,0{rotate 90}}//Blade
+texture PLX1VAR,56,8{patch PLX1BAR,0,0{rotate 90}}
 
 texture PLG2BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=251:251","198:198=251:251"}}
-texture PLG2VAR,56,8{patch PLG2BAR,0,0{rotate 90}}//Blade
+texture PLG2VAR,56,8{patch PLG2BAR,0,0{rotate 90}}
 texture PLX2BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=239:239","198:198=239:239"}}
-texture PLX2VAR,56,8{patch PLX2BAR,0,0{rotate 90}}//Blade
+texture PLX2VAR,56,8{patch PLX2BAR,0,0{rotate 90}}
 
 texture PLG3BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=39:39","198:198=39:39"}}
-texture PLG3VAR,56,8{patch PLG3BAR,0,0{rotate 90}}//Blade
+texture PLG3VAR,56,8{patch PLG3BAR,0,0{rotate 90}}
 texture PLX3BAR,8,56{patch B_BAR01C,0,0{Translation"192:192=4:4","198:198=4:4"}}
-texture PLX3VAR,56,8{patch PLX3BAR,0,0{rotate 90}}//Blade
+texture PLX3VAR,56,8{patch PLX3BAR,0,0{rotate 90}}
 
 texture PLG1BARX,8,56{patch TNT1A0,0,0}
 texture PLG2BARX,8,56{patch TNT1A0,0,0}
@@ -522,6 +546,10 @@ texture PLG1VARX,8,56{patch TNT1A0,0,0}
 texture PLG2VARX,8,56{patch TNT1A0,0,0}
 texture PLG3VARX,8,56{patch TNT1A0,0,0}
 texture PLG4VARX,8,56{patch TNT1A0,0,0}
+
+//Freeze
+texture FRZMBAR,8,56{patch BARENERG,0,0{Translation"192:192=203:203","198:198=62:62"}}
+texture FRZMVAR,56,8{patch FRZMBAR,0,0{rotate 90}}//Blade
 
 //Blast
 graphic BLSTTAG,56,56{XScale 2.5 YScale 2.5 patch TNT1A0,0,0}

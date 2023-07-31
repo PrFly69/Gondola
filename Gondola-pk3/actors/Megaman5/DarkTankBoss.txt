@@ -19,12 +19,12 @@ DKC1 A 0 ACS_ExecuteAlways(998,0,DYE_DARKMAN1)
 DKC1 A 0 A_GunFlash
 goto Ready0
 Ready0:
-DKC1 A 5 A_WeaponReady(WRF_NOSECONDARY)
+DKC1 A 3 A_WeaponReady(WRF_NOSECONDARY)
 DKC1 A 0 A_JumpIfInventory("DarkTankBoostAmmo",7,"Ready1")
 DKC1 A 0 A_GiveInventory("DarkTankBoostAmmo",1)
 loop
 Ready1:
-DKC1 A 5 A_WeaponReady
+DKC1 A 3 A_WeaponReady
 DKC1 A 0 A_GiveInventory("DarkTankBoostAmmo",1)
 loop
 
@@ -37,6 +37,7 @@ TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 DKC1 A 1 A_Raise
 Loop
 Fire:
+
 DKC1 B 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.01+1,"Fire11")
 DKC1 B 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.1+1,"Fire10")
 DKC1 B 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.2+1,"Fire9")
@@ -50,122 +51,158 @@ DKC1 B 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.9+1,
 DKC1 B 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0),"Fire1")
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX_CI",1)
-DKC1 BC 4
-DKC1 C 3
+DKC1 MB 2
+DKC1 B 3
+DKC1 MA 2
 DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main_CI",1)
-DKC1 DC 4
-DKC1 C 3//22
+DKC1 LD 2
+DKC1 D 3
+DKC1 LA 2//22
 Goto FireEnd
 Fire1:
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX1_CI",1)
-DKC1 BC 4
-DKC1 C 3
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 MB 2
+DKC1 B 3
+DKC1 MA 2
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main1_CI",1)
-DKC1 DC 4
-DKC1 C 3//22
+DKC1 LD 2
+DKC1 D 3
+DKC1 LA 2//22
 Goto FireEnd
 Fire2:
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX2_CI",1)
-DKC1 BC 4
-DKC1 C 2
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 MB 2
+DKC1 B 3
+DKC1 M 2
+DKC1 A 1
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main2_CI",1)
-DKC1 DC 4
-DKC1 C 3//21
+DKC1 LD 2
+DKC1 D 3
+DKC1 L 2
+DKC1 A 2//21
 Goto FireEnd
 Fire3: 
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX3_CI",1)
-DKC1 BC 4
-DKC1 C 2
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 MB 2
+DKC1 B 3
+DKC1 M 2
+DKC1 A 1
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main3_CI",1)
-DKC1 DC 4
-DKC1 C 2//20
+DKC1 LD 2
+DKC1 D 3
+DKC1 L 2
+DKC1 A 1//20
 Goto FireEnd
 Fire4: 
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX4_CI",1)
-DKC1 BC 4
-DKC1 C 1
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 MB 2
+DKC1 B 2
+DKC1 M 2
+DKC1 A 1
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main4_CI",1)
-DKC1 DC 4
-DKC1 C 2//19
+DKC1 LD 2
+DKC1 D 3
+DKC1 L 2
+DKC1 A 1//19
 Goto FireEnd
 Fire5: 
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX5_CI",1)
-DKC1 BC 4
-DKC1 C 1
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 MB 2
+DKC1 B 2
+DKC1 M 2
+DKC1 A 1
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main5_CI",1)
-DKC1 DC 4
-DKC1 C 1//18
+DKC1 LD 2
+DKC1 D 2
+DKC1 L 2
+DKC1 A 1//18
 Goto FireEnd
 Fire6: 
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX6_CI",1)
-DKC1 BC 4
-DKC1 C 0
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 MB 2
+DKC1 B 2
+DKC1 M 1
+DKC1 A 1
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main6_CI",1)
-DKC1 DC 4
-DKC1 C 1//17
+DKC1 LD 2
+DKC1 D 2
+DKC1 L 2
+DKC1 A 1//17
 Goto FireEnd+2
 Fire7: 
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX7_CI",1)
-DKC1 BC 4
-DKC1 C 0
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 MB 2
+DKC1 B 2
+DKC1 M 1
+DKC1 A 1
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main7_CI",1)
-DKC1 DC 4
-DKC1 C 0//16
+DKC1 LD 2
+DKC1 D 2
+DKC1 L 1
+DKC1 A 1//16
 Goto FireEnd+2
 Fire8:
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX8_CI",1)
-DKC1 BC 3
+DKC1 MB 2
+DKC1 B 2
 DKC1 C 1
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main8_CI",1)
-DKC1 DC 3
-DKC1 C 1//14
+DKC1 LD 2
+DKC1 D 2
+DKC1 L 1//14
 Goto FireEnd+2
 Fire9:
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX9_CI",1)
-DKC1 BC 3
-DKC1 C 0
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 MB 1
+DKC1 B 3
+DKC1 C 1
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main9_CI",1)
-DKC1 DC 3
-DKC1 C 1//13
+DKC1 LD 1
+DKC1 D 3
+DKC1 L 2//13
 Goto FireEnd+2
 Fire10:
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX10_CI",1)
-DKC1 BC 3
-DKC1 C 0
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 MB 1
+DKC1 B 3
+DKC1 C 1
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main10_CI",1)
-DKC1 DC 3
-DKC1 C 0//12
+DKC1 LD 1
+DKC1 D 3
+DKC1 L 1//12
 Goto FireEnd+2
 Fire11:
 DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 A 0 A_GiveInventory("Darkman1MainX11_CI",1)
-DKC1 BC 2
+DKC1 MB 1
+DKC1 B 2
 DKC1 C 1
-DKC1 A 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
+DKC1 D 0 A_PlaySoundEx("weapon/Dark1Shot","Weapon")
 DKC1 D 0 A_GiveInventory("Darkman1Main11_CI",1)
-DKC1 DC 2
-DKC1 C 1//10
+DKC1 LD 1
+DKC1 D 2
+DKC1 L 1//10
 Goto FireEnd+2
 FireEnd:
 DKC1 C 0 A_JumpIfInventory("DM1DashFlag",1,2)

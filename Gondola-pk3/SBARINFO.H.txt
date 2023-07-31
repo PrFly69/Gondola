@@ -593,8 +593,8 @@ InInventory YamatoClassAmmo2,1{DrawBar"MV_A_VAR","VNOBAR",YamatoClassAmmo2,horiz
 	InInventory GravityAltDelay,1{DrawBar"VARFLS1","VNOBAR",GravityAltDelay,horizontal,130,184;}}
 
 //MM7
-IsSelected FreezeCrackerBoss{Drawbar"VARAMM15","VAREMPTY",Ammo2,horizontal,58,184;
-    DrawBar"VARAMM31","VAREMPTY",Ammo1,horizontal,58,176;}
+IsSelected FreezeCrackerBoss{Drawbar"VARAMM31","VAREMPTY",Ammo2,horizontal,58,184;
+    DrawBar"FRZMVAR","VAREMPTY",Ammo1,horizontal,58,176;}
 IsSelected JunkShieldBoss{Drawbar"JNKVAR","DUSVMPTY",Ammo1,horizontal,58,184;
 	DrawImage"JUNKRCON",178,175;}
 IsSelected DangerWrapBoss{Drawbar"VARAMM33","VAREMPTY",Ammo1,horizontal,58,184;
@@ -1080,7 +1080,7 @@ IsSelected DuoFistBoss{
 	DrawBar "VARAMM71", "VAREMPTY", Ammo2, horizontal, 58,184;
 		InInventory DuoMeteorAmmo,280{DrawBar"DUOMVAR","VAREMPTY",Ammo2,horizontal,58,184;}
 	DrawBar "08_9_VAR", "VAREMPTY", SlideLimitFlag, horizontal, 58,176;
-	InInventory DuoFistCleaserFlag, 1{DrawBar "00_1_VA3", "VNOBAR", DuoFistCleaserFlag, horizontal,58,176;}}
+	InInventory DuoFistCleaserFlag, 1{DrawBar "DUOVH0", "VNOBAR", DuoFistCleaserFlag, horizontal,58,176;}}
 IsSelected DuoMeteorWepC{
 	DrawBar "DUOMVAR", "VAREMPTY", Ammo2, horizontal, 58,184;
 	}

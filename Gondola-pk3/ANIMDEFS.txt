@@ -59,6 +59,29 @@ pic 5K_H_VAR tics 4
 pic 5K_I_VAR tics 4
 pic TNT1A0 tics 4
 
+texture DUOCH0
+pic DUOCH1 tics 2
+pic DUOCH2 tics 2
+pic DUOCH3 tics 2
+pic DUOCH4 tics 2
+pic DUOCH5 tics 2
+pic DUOCH6 tics 2
+pic DUOCH7 tics 2
+pic DUOCH8 tics 2
+pic DUOCH9 tics 2
+pic DUOCH10 tics 2
+texture DUOVH0
+pic DUOVH1 tics 2
+pic DUOVH2 tics 2
+pic DUOVH3 tics 2
+pic DUOVH4 tics 2
+pic DUOVH5 tics 2
+pic DUOVH6 tics 2
+pic DUOVH7 tics 2
+pic DUOVH8 tics 2
+pic DUOVH9 tics 2
+pic DUOVH10 tics 2
+
 //Charge M2
 texture CHRXBAR
 pic CHX1BAR tics 2

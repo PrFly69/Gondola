@@ -76,12 +76,12 @@ FireW:
 BRHD A 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD A 0 A_PlaySoundEx("weapon/waveburneruw","Weapon")
 BRHD A 0 A_JumpIfInventory("PowerRage_ST",1,"FireW_R")
-BRHD A 1 Offset(-52,30) A_GiveInventory("BurnermanMain8_CI",1)
+BRHD A 1 Offset(-56,30) A_GiveInventory("BurnermanMain8_CI",1)
 BRHD A 0 A_Refire("FireWC")
 goto FireE
 FireW_R:
 BRHD AA 0 A_GiveInventory("BurnermanMain8_CI",1)
-BRHD A 1 Offset(-52,30)
+BRHD A 1 Offset(-56,30)
 BRHD A 0 A_Refire("FireWC")
 goto FireE
 FireWC:
@@ -90,12 +90,12 @@ goto FireH0
 FireW1:
 BRHD A 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD A 0 A_JumpIfInventory("PowerRage_ST",1,"FireW1_R")
-BRHD A 1 Offset(-58,30) A_GiveInventory("BurnermanMain9_CI",1)
+BRHD A 1 Offset(-56,30) A_GiveInventory("BurnermanMain9_CI",1)
 BRHD A 0 A_Refire("FireWC1")
 goto FireE
 FireW1_R:
 BRHD AA 0 A_GiveInventory("BurnermanMain9_CI",1)
-BRHD A 1 Offset(-58,30)
+BRHD A 1 Offset(-56,30)
 BRHD A 0 A_Refire("FireWC1")
 goto FireE
 FireWC1:
@@ -105,37 +105,37 @@ goto FireH0
 FireH0_R:
 BRHD B 0 A_PlaySoundEx("weapon/waveburner","Weapon")
 BRHD B 0 A_GiveInventory("BurnermanMain2_CI",1)
-BRHD B 1 Offset(-52,30) A_GiveInventory("BurnermanMain1_CI",1)
+BRHD B 1 Offset(-56,30) A_GiveInventory("BurnermanMain1_CI",1)
 BRHD C 0 A_Refire("FireH2")
 goto FireE
 FireH1_R:
 BRHD C 0 A_PlaySoundEx("weapon/waveburner","Weapon")
 BRHD C 0 A_GiveInventory("BurnermanMain4_CI",1)
-BRHD C 1 Offset(-58,30) A_GiveInventory("BurnermanMain3_CI",1)
+BRHD C 1 Offset(-56,30) A_GiveInventory("BurnermanMain3_CI",1)
 BRHD B 0 A_Refire("FireH4")
 goto FireE
 FireH2_R:
 BRHD B 0 A_PlaySoundEx("weapon/waveburner","Weapon")
 BRHD B 0 A_GiveInventory("BurnermanMain2_CI",1)
-BRHD B 1 Offset(-52,30) A_GiveInventory("BurnermanMain3_CI",1)
+BRHD B 1 Offset(-56,30) A_GiveInventory("BurnermanMain3_CI",1)
 BRHD C 0 A_Refire("FireH6")
 goto FireE
 FireH3_R:
 BRHD C 0 A_PlaySoundEx("weapon/waveburner","Weapon")
 BRHD C 0 A_GiveInventory("BurnermanMain5_CI",1)
-BRHD C 1 Offset(-58,30) A_GiveInventory("BurnermanMain1_CI",1)
+BRHD C 1 Offset(-56,30) A_GiveInventory("BurnermanMain1_CI",1)
 BRHD B 0 A_Refire("FireH8")
 goto FireE
 FireH4_R:
 BRHD B 0 A_PlaySoundEx("weapon/waveburner","Weapon")
 BRHD B 0 A_GiveInventory("BurnermanMain7_CI",1)
-BRHD B 1 Offset(-52,30) A_GiveInventory("BurnermanMain6_CI",1)
+BRHD B 1 Offset(-56,30) A_GiveInventory("BurnermanMain6_CI",1)
 BRHD C 0 A_Refire("FireH10")
 goto FireE
 FireH5_R:
 BRHD C 0 A_PlaySoundEx("weapon/waveburner","Weapon")
 BRHD C 0 A_GiveInventory("BurnermanMain5_CI",1)
-BRHD C 1 Offset(-58,30) A_GiveInventory("BurnermanMain6_CI",1)
+BRHD C 1 Offset(-56,30) A_GiveInventory("BurnermanMain6_CI",1)
 BRHD B 0 A_Refire("FireH0")
 goto FireE
 
@@ -144,14 +144,14 @@ BRHD B 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD B 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD B 0 A_JumpIfInventory("PowerRage_ST",1,"FireH0_R")
 BRHD B 0 A_PlaySoundEx("weapon/waveburner","Weapon")
-BRHD B 1 Offset(-52,30)A_GiveInventory("BurnermanMain1_CI",1)
+BRHD B 1 Offset(-56,30)A_GiveInventory("BurnermanMain1_CI",1)
 BRHD B 0 A_Refire("FireH1")
 goto FireE
 FireH1:
 BRHD C 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD C 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD C 0 A_JumpIfInventory("PowerRage_ST",1,"FireH0_R")
-BRHD C 1 Offset(-58,30)A_GiveInventory("BurnermanMain2_CI",1)
+BRHD C 1 Offset(-56,30)A_GiveInventory("BurnermanMain2_CI",1)
 BRHD C 0 A_Refire("FireH2")
 goto FireE
 FireH2:
@@ -159,14 +159,14 @@ BRHD A 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD A 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD A 0 A_JumpIfInventory("PowerRage_ST",1,"FireH1_R")
 BRHD A 0 A_PlaySoundEx("weapon/waveburner","Weapon")
-BRHD A 1 Offset(-52,30)A_GiveInventory("BurnermanMain3_CI",1)
+BRHD A 1 Offset(-56,30)A_GiveInventory("BurnermanMain3_CI",1)
 BRHD A 0 A_Refire("FireH3")
 goto FireE
 FireH3:
 BRHD B 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD B 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD B 0 A_JumpIfInventory("PowerRage_ST",1,"FireH1_R")
-BRHD B 1 Offset(-58,30)A_GiveInventory("BurnermanMain4_CI",1)
+BRHD B 1 Offset(-56,30)A_GiveInventory("BurnermanMain4_CI",1)
 BRHD B 0 A_Refire("FireH4")
 goto FireE
 FireH4:
@@ -174,14 +174,14 @@ BRHD C 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD C 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD C 0 A_JumpIfInventory("PowerRage_ST",1,"FireH2_R")
 BRHD C 0 A_PlaySoundEx("weapon/waveburner","Weapon")
-BRHD C 1 Offset(-52,30)A_GiveInventory("BurnermanMain3_CI",1)
+BRHD C 1 Offset(-56,30)A_GiveInventory("BurnermanMain3_CI",1)
 BRHD C 0 A_Refire("FireH5")
 goto FireE
 FireH5:
 BRHD A 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD A 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD A 0 A_JumpIfInventory("PowerRage_ST",1,"FireH2_R")
-BRHD A 1 Offset(-58,30)A_GiveInventory("BurnermanMain2_CI",1)
+BRHD A 1 Offset(-56,30)A_GiveInventory("BurnermanMain2_CI",1)
 BRHD A 0 A_Refire("FireH6")
 goto FireE
 FireH6:
@@ -189,14 +189,14 @@ BRHD B 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD B 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD B 0 A_JumpIfInventory("PowerRage_ST",1,"FireH3_R")
 BRHD B 0 A_PlaySoundEx("weapon/waveburner","Weapon")
-BRHD B 1 Offset(-52,30)A_GiveInventory("BurnermanMain1_CI",1)
+BRHD B 1 Offset(-56,30)A_GiveInventory("BurnermanMain1_CI",1)
 BRHD B 0 A_Refire("FireH7")
 goto FireE
 FireH7:
 BRHD C 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD C 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD C 0 A_JumpIfInventory("PowerRage_ST",1,"FireH3_R")
-BRHD C 1 Offset(-58,30)A_GiveInventory("BurnermanMain5_CI",1)
+BRHD C 1 Offset(-56,30)A_GiveInventory("BurnermanMain5_CI",1)
 BRHD C 0 A_Refire("FireH8")
 goto FireE
 FireH8:
@@ -204,14 +204,14 @@ BRHD A 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD A 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD A 0 A_JumpIfInventory("PowerRage_ST",1,"FireH4_R")
 BRHD A 0 A_PlaySoundEx("weapon/waveburner","Weapon")
-BRHD A 1 Offset(-52,30)A_GiveInventory("BurnermanMain6_CI",1)
+BRHD A 1 Offset(-56,30)A_GiveInventory("BurnermanMain6_CI",1)
 BRHD A 0 A_Refire("FireH9")
 goto FireE
 FireH9:
 BRHD B 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD B 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD B 0 A_JumpIfInventory("PowerRage_ST",1,"FireH4_R")
-BRHD B 1 Offset(-58,30)A_GiveInventory("BurnermanMain7_CI",1)
+BRHD B 1 Offset(-56,30)A_GiveInventory("BurnermanMain7_CI",1)
 BRHD B 0 A_Refire("FireH10")
 goto FireE
 FireH10:
@@ -219,14 +219,14 @@ BRHD C 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD C 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD C 0 A_JumpIfInventory("PowerRage_ST",1,"FireH5_R")
 BRHD C 0 A_PlaySoundEx("weapon/waveburner","Weapon")
-BRHD C 1 Offset(-52,30)A_GiveInventory("BurnermanMain6_CI",1)
+BRHD C 1 Offset(-56,30)A_GiveInventory("BurnermanMain6_CI",1)
 BRHD C 0 A_Refire("FireH11")
 goto FireE
 FireH11:
 BRHD A 0 A_JumpIfNoAmmo("NoAmmo")
 BRHD A 0 A_JumpIfInventory("IsUnderWater",1,"FireW")
 BRHD A 0 A_JumpIfInventory("PowerRage_ST",1,"FireH5_R")
-BRHD A 1 Offset(-58,30)A_GiveInventory("BurnermanMain5_CI",1)
+BRHD A 1 Offset(-56,30)A_GiveInventory("BurnermanMain5_CI",1)
 BRHD A 0 A_Refire("FireH0")
 goto FireE
 
