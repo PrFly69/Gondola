@@ -282,7 +282,7 @@ TAGC_9I = "Fakeman Boss";
 
 //Solar
 OB_SOLARMORTAR = "%k's Fat Old Sun fell onto %o's head.";//get gilmied lol!
-OB_SOLARLOB = "%k Solar Launcher blasted %o into space.";
+OB_SOLARLOB = "%k's Solar Launcher blasted %o into space.";
 OB_SOLARWAVE = "%o suffered before the light of %k's Solar Wave.";
 OB_SOLARBLAZEX = "%o was sun-blasted by %k's Solar Blaze.";
 OB_SOLARWAVEX = "%o vanquished before the light of %k's Solar Wave.";

@@ -38,10 +38,10 @@ Loop
 Fire:
 DKC4 A 0 A_JumpIfInventory("ShieldCheck",1,"ShieldFire")
 DKC4 B 0 A_PlaySoundEx("weapon/napalm","Weapon")
-DKC4 A 0 A_JumpIfHealthLower(25,"Fire5")
-DKC4 A 0 A_JumpIfHealthLower(50,"Fire4")
-DKC4 A 0 A_JumpIfHealthLower(75,"Fire3")
-DKC4 A 0 A_JumpIfHealthLower(100,"Fire2")
+DKC4 A 0 A_JumpIfHealthLower(27,"Fire5")
+DKC4 A 0 A_JumpIfHealthLower(54,"Fire4")
+DKC4 A 0 A_JumpIfHealthLower(81,"Fire3")
+DKC4 A 0 A_JumpIfHealthLower(108,"Fire2")
 Fire1:
 DKC4 B 0 A_GiveInventory("Darkman4Main_CI",1)
 DKC4 B 1 A_GiveInventory("DarkBlasterAmmo",1)

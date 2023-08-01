@@ -717,7 +717,7 @@ States
 {
 Spawn:
 DSHO F 0
-DSHO FGH 2 A_Explode(8,64,0,0,12)
+DSHO FGH 2 A_Explode(4,64,0,0,12)
 loop
 }
 }

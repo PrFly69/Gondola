@@ -374,16 +374,17 @@ PROJECTILE
 +FORCEXYBILLBOARD
 Obituary "$OB_DARK1BUSTER"
 damagetype "DMGNoHitstun"
-radius 11
-height 11
+radius 15
+height 15
 damage (11)
 speed 20
-scale 2.5
+scale 1.5
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+DSHO AAAA 1 A_SetScale(ScaleX+0.5)
 SpawnLOOP:
 DSHO A 3
 loop

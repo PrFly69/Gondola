@@ -3966,6 +3966,7 @@ CHANGELOG
 =====2.6.2
 ==Protoman
 -Fixed Proto Shield not reflecting shots in non-team gamemodes
+-Proto Buster now has +BRIGHT
 
 ==Duo
 -Adjusted Duo Fist charging SBAR
@@ -4020,14 +4021,34 @@ CHANGELOG
 ==Darkman1
 -Added skinsprite for left buster shot, ported from V-Classes
 -Adjusted Dark Buster HUD anim
+-Dark Buster projectile radius/height 11/11 > 15/15, sprite scale adjusted to reflect new size
 -Dark Ram idle ammo regen 1 every 5 tics > 1 every 3 tics
+
+==Darkman2
+-Dark Shield damage while held reduced 8 every 2 tics > 4 every 2 tics
+
+==Darkman3
+-Health reduced 100 > 90
+-Dark SMG damage 5 > 6
+--Shots per volley 4 > 5
+-Scoped Dark Shot damage now scales with distance as opposed to scope charge
+--Minimum damage 15, scales to 25 damage over the course of 10 tics
+-Scoped Dark Ring damage 15 (base) > 5 (ripper)
+--Scoped Dark Ring stun duration reduced 35 tics > 15 tics
+
+==Darkman4
+-Health increased 125 > 135
 
 ==Freezeman
 -Adjusted SBAR colors
 -Shatter Cracker now has passive sound when being charged and fired
+-Added new HUD, made by Pegg
 
 ==Swordman
 -Removed benign error message
+
+==Dynamoman
+-Added new HUD, made by Pegg
 
 ==Groundman
 -Fixed Black Hole Bomb interaction while digging
@@ -4037,6 +4058,9 @@ CHANGELOG
 
 ==Pumpman
 -Fixed Water Shield from blocking user's own shots
+
+==Solarman
+-Fixed punctuation on Solar Launcher obituary
 
 ==Terra
 -Fixed horizontal bar bug

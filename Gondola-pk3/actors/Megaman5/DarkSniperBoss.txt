@@ -102,6 +102,10 @@ DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main0_CI",1)
 //TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
 DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
+DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
+DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main0_CI",1)
+//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
+DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
 DKC3 A 2 OffSet(10,42)
 DKC3 A 14 A_WeaponReady(14)
 goto Ready0
@@ -330,7 +334,7 @@ damagetype "DMGNoHitstun"
 Obituary "$OB_DARK3SMG"
 +FORCEXYBILLBOARD
 +BRIGHT
-Damage (5)
+Damage (6)
 radius 8
 height 8
 speed 45
@@ -361,9 +365,8 @@ damagetype "DMGNoHitstun"
 Obituary "$OB_DARK3SNIPE" 
 +FORCEXYBILLBOARD 
 +BRIGHT 
-var int user_H;
-var int user_P; 
-Damage(12+user_H)
+var int user_dmg; 
+Damage(15+user_dmg)
 radius 14//11
 height 14
 speed 120
@@ -373,49 +376,16 @@ States
 Spawn:
 DSHO A 0 
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)        
-TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",600,"Amp6") 
-TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",500,"Amp5") 
-TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",400,"Amp4")   
-TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",300,"Amp3")  
-TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",200,"Amp2")   
-TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",100,"Amp1")  
-Goto Weeee
-Amp1:
-TNT1 A 0 A_SetUserVar("user_H",2) 
-Goto Weeee
-Amp2:
-TNT1 A 0 A_SetUserVar("user_H",4) 
-Goto Weeee
-Amp3:
-TNT1 A 0 A_SetUserVar("user_H",6) 
-Goto Weeee
-Amp4:
-TNT1 A 0 A_SetUserVar("user_H",8) 
-Goto Weeee
-Amp5: 
-TNT1 A 0 A_SetUserVar("user_H",10) 
-Goto Weeee
-Amp6: 
-TNT1 A 0 A_SetUserVar("user_H",12)
-Goto Weeee
 Weeee:
-TNT1 A 0 A_JumpIfInTargetInventory("DarkSniperCharge",400,"Woooo") 
 DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,0,0,0,1)
-Loop
+TNT1 A 0 A_SetUserVar("user_dmg",user_dmg+1)
+TNT1 A 0 A_JumpIf(user_dmg>=10,"Woooo")
+loop
 Woooo: 
 DSHO A 0 A_SpawnItemEx("Darkman3ShotFX2",0,0,0,0,0,0,0,1)
-DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+30)*2.5,-sin(pitch+30)*2.5,0,1)
-DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+150)*2.5,-sin(pitch+150)*2.5,0,1)
-DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+270)*2.5,-sin(pitch+270)*2.5,0,1)
-DSHO A 0 A_SetUserVar("user_P",user_P+2)
-DSHO A 0 A_SetPitch(pitch%360+30)
-DSHO A 0 A_JumpIf(user_P>=20,"Spawn2")
-Loop
-Spawn2:
-DSHO A 0 A_SpawnItemEx("Darkman3ShotFX2",0,0,0,0,0,0,0,1)
-DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+30)*2.5,-sin(pitch+30)*2.5,0,1)
-DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+150)*2.5,-sin(pitch+150)*2.5,0,1)
-DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+270)*2.5,-sin(pitch+270)*2.5,0,1)
+DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+30)*3.5,-sin(pitch+30)*3.5,0,1)
+DSHO A 0 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+150)*3.5,-sin(pitch+150)*3.5,0,1)
+DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,cos(pitch+270)*3.5,-sin(pitch+270)*3.5,0,1)
 DSHO A 0 A_SetPitch(pitch%360+30)
 loop
 Death:
@@ -524,7 +494,8 @@ actor Dark3_ShockRingP : Dark3_ShockRing{translation "202:202=229:229"}
 actor Dark3_ShockRinger : Dark3_ShockRing
 {
 Obituary "$OB_DARK3RINGER"
-damage (15)
++RIPPER
+damage (5)
 speed 120
 States
 {
