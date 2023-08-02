@@ -3968,6 +3968,10 @@ CHANGELOG
 -Fixed Proto Shield not reflecting shots in non-team gamemodes
 -Proto Buster now has +BRIGHT
 
+==Bass
+-Fixed spread recovery being 3 times faster when having less than 1/4 chargeshot ammo
+-Fixed plugboost increasing spread without even firing
+
 ==Duo
 -Adjusted Duo Fist charging SBAR
 -Added Duo Shockwave FX
@@ -4001,6 +4005,9 @@ CHANGELOG
 ==Cutman
 -Fixed Rolling Cutter not popping Water Shield
 
+==Alien
+-Fixed Boobeam traps getting stuck firing after Alien dies
+ 
 ==Needleman
 -Added extra skinsprites, ported from CBM
 
@@ -4046,6 +4053,10 @@ CHANGELOG
 
 ==Swordman
 -Removed benign error message
+-Fixed Flame Torso not playing it's pain sound
+
+==Searchman
+-Fixed being able to hide in bushes that are behind walls/3D floors or stuck on ceilings
 
 ==Dynamoman
 -Added new HUD, made by Pegg
@@ -4067,4 +4078,10 @@ CHANGELOG
 
 ==Pluto
 -Removed short dash when not in Breakspark
+-Speed checks are now a bit more lenient
+-Removed claw attack from m2 when you are out of air dashes
 -Fixed SBAR bug
+
+==Quint
+-Sakugarne Shockwave max damage 20 > 28
+-Fixed a bug where neither the shockwave nor stomp would deal damage if the victim was hugging a wall
