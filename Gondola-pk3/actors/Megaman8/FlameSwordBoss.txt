@@ -722,41 +722,42 @@ Pain:
 goto HPReset
 Give1:
 "####" "#" 0
-"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 //A_PlaySoundEx("weapon/swordtorsopain","Voice")
 "####" "#" 0 A_TakeFromTarget("OrdersAmmo",1)
 goto HPReset
 Give2:
 "####" "#" 0
-"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 //A_PlaySoundEx("weapon/swordtorsopain","Voice")
 "####" "#" 0 A_TakeFromTarget("OrdersAmmo",2)
 "####" "#" 0 A_GiveToTarget("SwordSlow1",1)
 goto HPReset
 Give3:
 "####" "#" 0
-"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 //A_PlaySoundEx("weapon/swordtorsopain","Voice")
 "####" "#" 0 A_TakeFromTarget("OrdersAmmo",3)
 "####" "#" 0 A_GiveToTarget("SwordSlow2",1)
 goto HPReset
 Give4:
 "####" "#" 0
-"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 //A_PlaySoundEx("weapon/swordtorsopain","Voice")
 "####" "#" 0 A_TakeFromTarget("OrdersAmmo",4)
 "####" "#" 0 A_GiveToTarget("SwordSlow3",1)
 goto HPReset
 Give5:
 "####" "#" 0
-"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 //A_PlaySoundEx("weapon/swordtorsopain","Voice")
 "####" "#" 0 A_TakeFromTarget("OrdersAmmo",5)
 "####" "#" 0 A_GiveToTarget("SwordSlow4",1)
 goto HPReset
 Give6:
 "####" "#" 0
-"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
+"####" "#" 0 //A_PlaySoundEx("weapon/swordtorsopain","Voice")
 "####" "#" 0 A_TakeFromTarget("OrdersAmmo",6)
 "####" "#" 0 A_GiveToTarget("SwordSlow5",1)
 goto HPReset
 HPReset:
 "####" "#" 0 Healthing(9999)
+"####" "#" 0 A_PlaySoundEx("weapon/swordtorsopain","Voice")
 "####" "#" 1 A_GiveInventory("TorsoVelocity",1)
 goto Loopz
 Death:
