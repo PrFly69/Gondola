@@ -37,7 +37,7 @@ PLUT PQPQPQPQPQPQ 2
 PLUT P 10
 PLUT B random(35,105)
 Goto Spawn+3
-See:                                            
+See:                                      
 PLUT BCD 1 A_SetTics(abs(7-(sqrt(MOMX*MOMX+MOMY*MOMY)/5.5))+1) 
 TNT1 A 0 A_GiveInventory("WalkSoundForcer") 
 PLUT E 1 A_SetTics(abs(7-(sqrt(MOMX*MOMX+MOMY*MOMY)/5.5))+1)
@@ -56,10 +56,10 @@ PLUT F 0 A_JumpIfInventory("VivifyDelay8",1,"MissileD")
 PLUT F 0 A_JumpIfInventory("BreakingIntoADashAmmo",562,"MissileB")
 PLUT F 5                                        //656 //784
 PLUT G 4
-goto Spawn
+goto Spawn+2
 MissileB:
 PLUT FG 3
-goto Spawn
+goto Spawn+2
 MissileD:
 PLUT F 2
 PLUT B 2
@@ -91,3 +91,4 @@ PLUT H 0
 goto DeathContinue
 }
 }
+
