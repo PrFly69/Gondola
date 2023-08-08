@@ -4024,6 +4024,23 @@ CHANGELOG
 
 ==Shadowman
 -Added new Shadow Blade HUD, made by Redflash
+-Movespeed 0.9/0.88 > 0.75/0.73
+-Shadow Blade damage 20/3 (base/rip) > 25/5 (base/rip) 
+--Shadow Blade projectile height increased 7 > 14
+--Returning Shadow Blade now always does 5 damage with no powerprotect
+-Kunai is now a 3 shot burst with minor fixed spread
+--Kunai speed increased 42 > 50, have gravity while active
+--Kunai endlag increased by 4 tics
+-Invisibility now functions like CBM with smoke trail for 35 tics on initial use
+--Invisibility duration reduced 6.4 seconds > 3 seconds
+--Now gains 80% increase in movespeed while invisible
+--Requires full ammo to go invisible
+--Altfire slide brought back, forwards thrust tweaked 45 > 40/50 (not cloaked/exiting cloak)
+--Firing shots halts altfire ammo gain
+-Caltrops per volley 5 > 3
+--Ammo consumed when throwing caltrops halved
+--Caltrops now apply an 80% slowdown for 15 tics per caltrop while placed
+-Taking damage while invisible spawns a smoke trail that follows user for 15 tics
 
 ==Pharaohman
 -Pharaoh Punch now knocks enemies back on kill
