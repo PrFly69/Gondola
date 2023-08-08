@@ -433,7 +433,7 @@ Actor KnightmanCrusherReturn : KnightmanCrusher {
 
 Actor KnightmanCrusherReturnDamager {
 	PROJECTILE
-	Damagetype "DMGNoHitstun"
+	Damagetype "KnightReturn"
 	Obituary "$OB_KNIGHTCRUSHX"
 	+RIPPER
 	+DONTBLAST

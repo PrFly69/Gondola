@@ -34,7 +34,7 @@ DAR1 E 5
 Goto Spawn
 Missile:
 DKC1 B 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.1+1,"MissileFaster")
-DKC1 B 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.4+1,"MissileFast")
+DKC1 B 0 A_JumpIfHealthLower(ACS_ExecuteWithResult(CBM_FetchMyHealth,1,0)*0.5+1,"MissileFast")
 DAR1 FFFFFFFFFFF 1
 DAR1 GGGGGGGGGGG 1
 goto Spawn

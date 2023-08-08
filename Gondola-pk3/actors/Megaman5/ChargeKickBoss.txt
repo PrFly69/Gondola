@@ -36,7 +36,7 @@ Ready1:
 CHAH A 0 A_JumpIfInventory("ChargeManIsEveryWhereAmmo",4,"Ready2")
 CHAH A 1 A_WeaponReady(WRF_NOPRIMARY)//cambiaso
 CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
-CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",2)
 loop
 Ready2a:
 CHAH A 0 A_JumpIfInventory("ChargeManIsEveryWhereAmmo",4,"Ready3a")
@@ -46,7 +46,7 @@ Ready2:
 CHAH A 0 A_JumpIfInventory("ChargeManIsEveryWhereAmmo",17,"Ready3")
 CHAH A 1 A_WeaponReady(WRF_NOSECONDARY)
 CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
-CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",2)
 loop
 Ready3a:
 CHAH A 14 A_WeaponReady
@@ -55,14 +55,14 @@ Ready3:
 //CHAH A 0 A_JumpIfInventory("BlackHotAmmo",300,"Ready4Sound")
 CHAH A 1 A_WeaponReady
 CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
-CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",2)
 loop
 Ready4Sound:
 CHAH A 0 A_GiveInventory("AmmoChooChoo",1)
 Ready4:
 CHAH A 1 A_WeaponReady
 CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
-CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",2)
 loop
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
@@ -157,7 +157,7 @@ Goto Ready1
 NoAmmoAlt:
 CHAH A 1
 CHAH A 0 A_GiveInventory("ChargeManIsEveryWhereAmmo",1)
-CHAH A 0 A_GiveInventory("BlackHotAmmo",4)
+CHAH A 0 A_GiveInventory("BlackHotAmmo",2)
 goto Ready1
 
 /*

@@ -41,9 +41,9 @@ damagetype "TerraMelee"
 Obituary "$OB_TERRAMELEE"
 +DONTBLAST
 damage (25)
-Radius 16
+Radius 20
 Height 20
-speed 30
+speed 60
 reactiontime 1
 scale 2.0
 States

@@ -4025,26 +4025,41 @@ CHANGELOG
 ==Shadowman
 -Added new Shadow Blade HUD, made by Redflash
 
+==Pharaohman
+-Pharaoh Punch now knocks enemies back on kill
+
+==Chargeman
+-Coal Shot idle ammo gain reduced 4 per tic > 2 per tic
+
 ==Darkman1
 -Added skinsprite for left buster shot, ported from V-Classes
 -Adjusted Dark Buster HUD anim
 -Dark Buster projectile radius/height 11/11 > 15/15, sprite scale adjusted to reflect new size
+--Dark Buster now has 1 tic shaved off of all forms of firing
 -Dark Ram idle ammo regen 1 every 5 tics > 1 every 3 tics
 
 ==Darkman2
--Dark Shield damage while held reduced 8 every 2 tics > 4 every 2 tics
+-Passive ammo regeneration per tic 4 > 1 when Dark Shield is active
+-Dark Shield damage reduced 3 (ripper) > 2 (ripper)
+--Ammo taken per tic while Dark Shield is held 2 > 4
 
 ==Darkman3
 -Health reduced 100 > 90
+-DarkSniperAmmo max capacity increased 64 > 70
 -Dark SMG damage 5 > 6
 --Shots per volley 4 > 5
 -Scoped Dark Shot damage now scales with distance as opposed to scope charge
 --Minimum damage 15, scales to 25 damage over the course of 10 tics
+--Ammo consumption on firing Scoped Dark Shot 16 > 10
+-Dark Rail now consumes entire ammo bar on use
 -Scoped Dark Ring damage 15 (base) > 5 (ripper)
 --Scoped Dark Ring stun duration reduced 35 tics > 15 tics
 
 ==Darkman4
 -Health increased 125 > 135
+
+==Knightman
+-Fixed Knight Crush hitting twice
 
 ==Freezeman
 -Adjusted SBAR colors
@@ -4053,7 +4068,7 @@ CHANGELOG
 
 ==Swordman
 -Removed benign error message
--Fixed Flame Torso not playing it's pain sound
+-Fixed Flame Torso not playing its pain sound
 
 ==Searchman
 -Fixed being able to hide in bushes that are behind walls/3D floors or stuck on ceilings
@@ -4070,10 +4085,14 @@ CHANGELOG
 ==Pumpman
 -Fixed Water Shield from blocking user's own shots
 
+==Strikeman
+-Now returns Rebound Bouncer ammo on kill
+
 ==Solarman
 -Fixed punctuation on Solar Launcher obituary
 
 ==Terra
+-Warping Knee Strike melee radius 16 > 20, melee projectile speed doubled
 -Fixed horizontal bar bug
 
 ==Pluto
@@ -4081,6 +4100,12 @@ CHANGELOG
 -Speed checks are now a bit more lenient
 -Removed claw attack from m2 when you are out of air dashes
 -Fixed SBAR bug
+
+==Sunstar
+-Heavy Dyson Star base rate of fire increased by 5 tics
+
+==Bounceman
+-Fixed Bounce Bopper hitting for abnormal damage
 
 ==Quint
 -Sakugarne Shockwave max damage 20 > 28
