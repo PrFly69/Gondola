@@ -36,7 +36,7 @@ BRIG FFFFF 1 A_JumpIfInventory("VivifyDelay4",1,"FlashStopper")
 BRIG GGGG 1 A_JumpIfInventory("VivifyDelay4",1,"FlashStopper")
 goto Spawn
 FlashStopper:
-BRIG JJII 1
+BRIG KKJJKKJJKKJJKKJJ 1
 goto Spawn
 ClassPain:
 BRIG H 0

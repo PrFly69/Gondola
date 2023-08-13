@@ -4042,8 +4042,18 @@ CHANGELOG
 --Caltrops now apply an 80% slowdown for 15 tics per caltrop while placed
 -Taking damage while invisible spawns a smoke trail that follows user for 15 tics
 
+==Brightman
+-Fixed Flash Stopper activation not having proper skinsprites
+
 ==Pharaohman
 -Pharaoh Punch now knocks enemies back on kill
+
+==Skullman
+-Updated HUD to use V6B buster as base, new buster muzzle flashes by Ze Robotico
+-Fixed Skull Barrier activation not having proper skinsprites
+
+==Dustman
+-Jump height 10 > 12
 
 ==Chargeman
 -Coal Shot idle ammo gain reduced 4 per tic > 2 per tic
@@ -4098,6 +4108,9 @@ CHANGELOG
 
 ==Jewelman
 -Added extra skinsprites, ported from CBM
+
+==Fakeman
+-Can now doubletap with no ammo to initiate reloading
 
 ==Pumpman
 -Fixed Water Shield from blocking user's own shots

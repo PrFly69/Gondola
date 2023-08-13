@@ -122,6 +122,7 @@
 		FAKR A 1 A_RailWait
 		FAKR A 0 A_Refire("FireEmptyH1")
 		FAKR A 2
+		FAKR A 0 A_Refire("Reload")
 		Goto Ready1
 
 		AltFire:
