@@ -3993,9 +3993,9 @@ CHANGELOG
 --Mirror Buster > Dark Shield
 
 ==DrWily
--Ammo regen on Wily Suit 2 ammo every 10 tics > 1 ammo every 7 tics
+-Ammo regen on Wily Suit reduced by 40% (2 ammo every 10 tics > 1 ammo every 7 tics)
 -Wily Capsule now has passive sounds when moving
--Wily Capsule fire afterburn damage 3(27 damage total) > 2 (18 damage total)
+-Wily Capsule fire afterburn damage 3 (27 damage total) > 2 (18 damage total)
 
 ==SniperJoe
 -Fixed weapon tag for Joe Buster
@@ -4010,6 +4010,9 @@ CHANGELOG
  
 ==Needleman
 -Added extra skinsprites, ported from CBM
+
+==Geminiman
+-Updated HUD to use V6A buster as base
 
 ==Sparkman
 -Spark Shock stun method reworked
@@ -4049,10 +4052,11 @@ CHANGELOG
 -Pharaoh Punch now knocks enemies back on kill
 
 ==Skullman
--Updated HUD to use V6B buster as base, new buster muzzle flashes by Ze Robotico
+-Updated HUD to use V6A buster as base, new buster muzzle flashes by Ze Robotico
 -Fixed Skull Barrier activation not having proper skinsprites
 
 ==Dustman
+-Added extra skinsprites for Dust Crusher, ported from V-Classes and V6B
 -Jump height 10 > 12
 
 ==Chargeman
@@ -4136,6 +4140,9 @@ CHANGELOG
 
 ==Bounceman
 -Fixed Bounce Bopper hitting for abnormal damage
+
+==MegaWaterS
+-Updated HUD to use V6A buster as base
 
 ==Quint
 -Sakugarne Shockwave max damage 20 > 28
