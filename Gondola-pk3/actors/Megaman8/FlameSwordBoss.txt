@@ -465,7 +465,7 @@ SculptureCrash:
 TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TNT1 A 0 A_GiveInventory("SwordReconnect",1)
 TNT1 A 0 A_GiveInventory("Stuck",1)
-TNT1 A 0 A_GiveInventory("SwordCrash_P",1)
+TNT1 A 0 //A_GiveInventory("SwordCrash_P",1)
 JCLA A 0 A_SpawnItemEx("SwordCrashHelper",0,0,0,0,0,0,0,1)
 JCLA A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireSpread")
 goto SculptureEndLag
