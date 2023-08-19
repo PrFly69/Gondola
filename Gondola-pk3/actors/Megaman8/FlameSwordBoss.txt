@@ -17,6 +17,7 @@ loop
 Ready:
 FHUB A 0 ACS_ExecuteAlways(998,0,11943)
 FHUB A 0 A_GunFlash
+ReadyP2:
 FHUB A 0 A_JumpIfInventory("FlameFlag",1,"Ready2")
 FHUB A 0 A_GiveInventory("NoFlameFlag",1)
 ReadyPlus:
@@ -24,7 +25,7 @@ FHUB A 1 A_WeaponReady
 Goto Ready+2
 Ready2:
 TNT1 A 0 A_JumpIfInventory("OrdersAmmo",1,1)
-goto NoAmmoBlub
+goto BlubNoAmmor
 TNT1 A 1 A_WeaponReady(WRF_NOPRIMARY)
 goto Ready+2
 NoAmmoReady:
@@ -233,13 +234,13 @@ TNT1 A 0 A_TakeInventory("CameraFlag",1)
 TNT1 A 10 ChangeCamera(0,0,0)
 goto Ready2
 Altfire:
-TNT1 A 0 Offset(0,32)
+TNT1 A 0 Offset(0,32) 
 //TNT1 A 0 A_JumpIfInventory("SwordAmmoDelay",1,"ReadyPlus")
 //FHUB A 0 A_JumpIfInventory("FlameFlag",1,"blub")
 TNT1 A 0 A_TakeInventory("SwordCombo",99)
 TNT1 A 0 A_JumpIfInventory("FlameFlag",1,"blub")
-TNT1 A 1 A_JumpIfInventory("SwordHeatFlag",1,"AltDashers")
-TNT1 A 0 A_JumpIfInventory("SwordAmmoDelay",1,"ReadyPlus")
+FHUB A 1 A_JumpIfInventory("SwordHeatFlag",1,"AltDashers")
+TNT1 A 0 //A_JumpIfInventory("SwordAmmoDelay",1,"ReadyPlus")
 FHUB A 0 A_JumpIfInventory("FlameFlag",1,"blub")
 TNT1 A 0 A_JumpIfInventory("OrdersAmmo",2,"AltFire2Check")
 TNT1 A 0 A_Jump(256,"Ready2")
@@ -260,6 +261,22 @@ TNT1 A 0 A_GiveInventory("FlameFlag",1)
 TNT1 A 0 A_GiveInventory("SwordmanAlt_CI",1)
 TNT1 A 10 A_TakeInventory("OrdersAmmo",2)
 goto Ready2
+
+//Cambiaso
+BlubNoAmmor:
+TNT1 A 0 A_TakeInventory("CameraFlag",1)
+TNT1 A 0 ChangeCamera(0,0,0)
+TNT1 A 0 A_GiveInventory("EndFlameFlag",1)
+TNT1 A 0 A_JumpIfInventory("FlameFlag",1,"BNAcon") 
+BNAsinXD:
+FHUB A 1 
+FHUB A 55 A_Jump(256,"ReadyP2")
+goto ReadyP2
+BNAcon:
+TNT1 A 1  
+goto ReadyP2
+
+
 blub:
 TNT1 A 0 A_TakeInventory("CameraFlag",1)
 TNT1 A 0 ChangeCamera(0,0,0)
@@ -279,15 +296,15 @@ FHUB A 1 Offset(0,74)
 FHUB A 1 Offset(0,65)
 FHUB A 1 Offset(0,56)
 FHUB A 1 Offset(0,49)
-FHUB A 1 Offset(0,32)
-FHUB A 4 A_WeaponReady(14)
+FHUB A 1 Offset(0,32) 
+FHUB A 4 A_WeaponReady(14) 
 goto Ready+2
 NoAmmo:
 FHUB A 1
 Goto Ready+2
 NoAmmoblub:
 TNT1 A 0 A_TakeInventory("CameraFlag",1)
-TNT1 A 0 ChangeCamera(0,0,0)
+TNT1 A 0 ChangeCamera(0,0,0) 
 goto blub
 AltDashers:
 FHUB A 0 A_JumpIfInventory("OrdersAmmo",7,1)
@@ -320,6 +337,81 @@ FHUB A 0 ACS_NamedExecute("BULL_SetState",0,1)
 JCLA A 0 A_SpawnItemEx("SwordLeggers",0,0,0,0,0,0,0,1)
 FHUB USTU 1 
 AltFallLoop:
+TNT1 A 0 A_GiveInventory("SwordFlightDelay",1)
+FHUB A 0 ACS_NamedExecute("BULL_SetState",0,1)
+//FHUB U 0 A_TakeInventory("OrdersAmmo",1)
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB U 1 
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB S 1 
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB T 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB U 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+FHUB A 0 ACS_NamedExecute("BULL_SetState",0,1)
+FHUB U 0 A_TakeInventory("OrdersAmmo",1)
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB S 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB T 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB U 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB S 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+FHUB A 0 ACS_NamedExecute("BULL_SetState",0,1)
+//FHUB U 0 A_TakeInventory("OrdersAmmo",1)
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB T 1 
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB U 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB S 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB T 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+FHUB U 0 A_TakeInventory("OrdersAmmo",1)
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_A",0,0,0,0)==1,2)
+TNT1 A 0 A_JumpIf(z-floorz==0,"SculptureCrash")
+FHUB U 1  
+JCLA A 0 A_PlaySoundEx("weapon/flamesword","Body")
+JCLA A 0 A_SpawnItemEx("SwordSpinnerExplosion")
+Goto AltFallLoop2
+AltFallLoop2:
 TNT1 A 0 A_GiveInventory("SwordFlightDelay",1)
 FHUB A 0 ACS_NamedExecute("BULL_SetState",0,1)
 //FHUB U 0 A_TakeInventory("OrdersAmmo",1)
@@ -373,7 +465,7 @@ SculptureCrash:
 TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
 TNT1 A 0 A_GiveInventory("SwordReconnect",1)
 TNT1 A 0 A_GiveInventory("Stuck",1)
-//TNT1 A 0 A_GiveInventory("SwordCrash_P",1)
+TNT1 A 0 A_GiveInventory("SwordCrash_P",1)
 JCLA A 0 A_SpawnItemEx("SwordCrashHelper",0,0,0,0,0,0,0,1)
 JCLA A 0 A_JumpIfInventory("PowerSpread_ST",1,"FireSpread")
 goto SculptureEndLag
@@ -521,7 +613,7 @@ actor FlameFlag : PowerUp
 {
 powerup.duration 150
 }
-
+ 
 actor NoFlameFlag : OnceC{}
 actor EndFlameFlag : OnceC{}
 actor SwordmanSyncFlag : PowerUp
@@ -1249,10 +1341,10 @@ actor SwordCrash
 {
 PROJECTILE
 Obituary "%o was sculpted by %k's Statue Smash."
-damagetype "KnightM_CastleCrush"
+damagetype "SwordM_StatueSmashDetection"
 -NOGRAVITY
-+THRUACTORS
-+SKYEXPLODE
+//+THRUACTORS 
++SKYEXPLODE  
 damage(0)
 speed 30
 Radius 4
@@ -1275,21 +1367,35 @@ loop
 Spawn2:
 TNT1 A 0 A_PlaySound("misc/catcherdrop",1,0.8)
 TNT1 A 0 A_ChangeVelocity(0,0,-40)
-STTU A 1
-wait
+TNT1 A 0 A_JumpIfInTargetInventory("StatueSmashHitSomething",1,"Death")
+STTU A 1 A_Explode(1,62,0,0,62)
+Goto Spawn2+2  
 Death:
+STTU A 1
 TNT1 A 0 A_PlaySound("weapon/GutsmanToss", "Weapon")
 TNT1 A 0 A_SpawnItemEx("BrokenSwordManStatueA",0,0,32,Random(-SPD,SPD),0,Random(-SPD,SPD),Random(0,359),1)
 TNT1 A 0 A_SpawnItemEx("BrokenSwordManStatueB",0,0,32,Random(-SPD,SPD),0,Random(-SPD,SPD),Random(0,359),1)
 TNT1 A 0 A_SpawnItemEx("BrokenSwordManStatueC",0,0,32,Random(-SPD,SPD),0,Random(-SPD,SPD),Random(0,359),1)
 TNT1 A 0 A_SpawnItemEx("BrokenSwordManStatueD",0,0,32,Random(-SPD,SPD),0,Random(-SPD,SPD),Random(0,359),1)
 TNT1 A 0 A_SpawnItemEx("BrokenSwordManStatueE",0,0,32,Random(-SPD,SPD),0,Random(-SPD,SPD),Random(0,359),1)
-TNT1 A 0 A_PlaySoundEx("misc/quake","weapon")
+TNT1 A 0 A_PlaySoundEx("misc/quake","weapon") 
+TNT1 A 0 A_JumpIfInTargetInventory("StatueSmashHitSomething",1,"Death2")
+TNT1 A 0 A_SetDamageType("SwordM_StatueSmash")
 TNT1 A 0 A_Explode(35,125,0,0,125)
-TNT1 A 20 A_Quake(2,20,0,300)
+TNT1 A 20 
+stop
+Death2:
+TNT1 A 0 A_SetDamageType("SwordM_StatueSmash")
+TNT1 A 0 A_Explode(34,125,0,0,125)
+TNT1 A 20 
 stop
 }
 }
+
+ACTOR StatueSmashHitSomething : Powerup
+{
+ Powerup.Duration 5
+} 
 
 actor SwordStoneRedirectorFX : BasicClientSide
 {
@@ -1429,32 +1535,35 @@ scale 2.5
 States
 {
 Spawn:
-MRCR EE 0
-MRCR N 1 A_FaceTarget
-MRCR E 0 A_ChangeVelocity(30,0,0,3)
-MRCR O 1 A_FaceTarget
-MRCR E 0 A_ChangeVelocity(30,0,0,3)
-MRCR P 1 A_FaceTarget
-MRCR E 0 A_ChangeVelocity(30,0,0,3)
-MRCR Q 1 A_FaceTarget
-MRCR E 0 A_ChangeVelocity(30,0,0,3)
+MRCR EE 0 
+MRCR E 0 
+SWOM N 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
+SWOM N 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
+SWOM O 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
+SWOM O 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
 SpawnLOOP:
-SWOM N 1 A_JumpIfCloser(16,"Give")
+SWOM P 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
+TNT1 A 0 A_JumpIfInTargetInventory("SwordReconnect",1,"Give")
+MRCR A 0 A_CountDown 
+SWOM P 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
 TNT1 A 0 A_JumpIfInTargetInventory("SwordReconnect",1,"Give")
 MRCR E 0 A_CountDown
-MRCR E 0 A_FaceTarget
-MRCR F 0 A_ChangeVelocity(30,0,0,3)
-SWOM O 1 A_JumpIfCloser(16,"Give")
+SWOM Q 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
 TNT1 A 0 A_JumpIfInTargetInventory("SwordReconnect",1,"Give")
 MRCR E 0 A_CountDown
-MRCR E 0 A_FaceTarget
-MRCR G 0 A_ChangeVelocity(30,0,0,3)
-SWOM P 1 A_JumpIfCloser(16,"Give")
+SWOM Q 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
 TNT1 A 0 A_JumpIfInTargetInventory("SwordReconnect",1,"Give")
 MRCR E 0 A_CountDown
-MRCR E 0 A_FaceTarget
-MRCR F 0 A_ChangeVelocity(30,0,0,3)
-SWOM Q 1 A_JumpIfCloser(16,"Give")
+SWOM N 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
+TNT1 A 0 A_JumpIfInTargetInventory("SwordReconnect",1,"Give")
+MRCR E 0 A_CountDown
+SWOM N 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
+TNT1 A 0 A_JumpIfInTargetInventory("SwordReconnect",1,"Give")
+MRCR E 0 A_CountDown
+SWOM O 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
+TNT1 A 0 A_JumpIfInTargetInventory("SwordReconnect",1,"Give")
+MRCR E 0 A_CountDown
+SWOM O 1 A_Warp(AAPTR_TARGET,0,0,0,0,WARPF_TOFLOOR|WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)//A_ChangeVelocity(30,0,0,3)
 TNT1 A 0 A_JumpIfInTargetInventory("SwordReconnect",1,"Give")
 MRCR E 0 A_CountDown
 MRCR E 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
