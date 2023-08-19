@@ -4005,6 +4005,9 @@ CHANGELOG
 ==Cutman
 -Fixed Rolling Cutter not popping Water Shield
 
+==Bubbleman
+-Fixed swiming animation bugs
+
 ==Alien
 -Fixed Boobeam traps getting stuck firing after Alien dies
  
@@ -4099,7 +4102,14 @@ CHANGELOG
 
 ==Swordman
 -Removed benign error message
--Fixed Flame Torso not playing its pain sound
+-Fixed Flame Torso not playing its pain sound 
+-Fixed skinsprite bugs
+-Fixed running legs animations
+-Fixed m2 playing recovery animation when out of ammo
+-Fixed HUD bug when using m2 as soon as the recovery animation ends
+-Statue Smash now deals critical damage
+-Statue can now directly hit players
+-Holding m2 while dashing lets you slide a bit on the floor before droping the statue 
 
 ==Searchman
 -Fixed being able to hide in bushes that are behind walls/3D floors or stuck on ceilings
@@ -4140,6 +4150,10 @@ CHANGELOG
 
 ==Bounceman
 -Fixed Bounce Bopper hitting for abnormal damage
+-Fixed Bounce Slam hitting for abnormal damage
+-Slam shockwave now uses ConeTM Floorhugging system
+-Slam shockwave no longer goes through actors on the first tic
+-Slam shockwave knockup force 25 > 12
 
 ==MegaWaterS
 -Updated HUD to use V6A buster as base
