@@ -847,6 +847,12 @@ actor BounceM_BallR : BounceM_Ball{Translation"194:194=41:41","195:195=43:43","2
 actor BounceM_BallO : BounceM_Ball{Translation"194:194=128:128","195:195=131:131","202:202=4:4","192:192=138:138","198:198=104:104"}
 actor BounceM_BallP : BounceM_Ball{Translation"194:194=232:232","195:195=223:223","202:202=4:4","192:192=214:214","198:198=229:229"}
 
+actor BounceM_BallReload : BounceM_Ball { Damagetype "BounceReloadBalls" }
+actor BounceM_BallReloadB : BounceM_BallReload{Translation"194:194=74:74","195:195=199:199","202:202=4:4","192:192=196:196","198:198=205:205"}
+actor BounceM_BallReloadR : BounceM_BallReload{Translation"194:194=41:41","195:195=43:43","202:202=4:4","192:192=170:170","198:198=171:171"}
+actor BounceM_BallReloadO : BounceM_BallReload{Translation"194:194=128:128","195:195=131:131","202:202=4:4","192:192=138:138","198:198=104:104"}
+actor BounceM_BallReloadP : BounceM_BallReload{Translation"194:194=232:232","195:195=223:223","202:202=4:4","192:192=214:214","198:198=229:229"}
+
 /*actor BounceBallX : BounceBall
 {
 States
@@ -1043,6 +1049,31 @@ TNT1 A 0 A_SpawnItemEx("BounceShockWave",0,0,0,30,0,0,300,1)
 TNT1 A 0 A_SpawnItemEx("BounceShockWave",0,0,0,30,0,0,315,1)
 TNT1 A 0 A_SpawnItemEx("BounceShockWave",0,0,0,30,0,0,330,1)
 TNT1 A 0 A_SpawnItemEx("BounceShockWave",0,0,0,30,0,0,345,1)
+TNT1 A 0
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,15,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,30,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,45,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,60,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,75,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,90,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,105,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,120,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,135,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,150,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,165,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,180,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,195,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,210,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,225,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,240,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,255,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,270,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,285,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,300,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,315,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,330,1)
+TNT1 A 0 A_SpawnItemEx("BounceShockWaveClientside",0,0,0,30,0,0,345,1)
 TNT1 A 2
 stop
 }
@@ -1057,11 +1088,15 @@ actor BounceShockWave
 {
 PROJECTILE
 damagetype "BounceM_Slam"
-Obituary "$OB_BOUNCESLAM"
-+FLOORHUGGER
-+THRUACTORS
+Obituary "$OB_BOUNCESLAM"  
 +THRUSPECIES
-Damage (7)
++STEPMISSILE
++NOEXPLODEFLOOR
+-NOGRAVITY
+maxstepheight 32 
+gravity 555
+var int user_power;
+Damage (7)//(20-user_power)
 Radius 32
 Height 32
 Speed 30
@@ -1070,8 +1105,23 @@ States
 {
 Spawn:
 Y_0E S 0
-Y_0E S 1
-Y_0E S 5 A_ChangeFlag("THRUACTORS",0)
+Y_0E S 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+2)
+Y_0E S 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+2)
+Y_0E S 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+2)
+Y_0E S 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+2)
+Y_0E S 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+2)
+Y_0E S 1 A_GiveInventory("somesortofweirdassfloorhugger",1)
+TNT1 A 0 A_SetUserVar("user_power",user_power+2)
+TNT1 A 0 A_GiveInventory("somesortofweirdassfloorhugger",1)
+Y_0E S 1 A_FadeOut(0.25)
+TNT1 A 0 A_SetUserVar("user_power",user_power+3)
+Loopers:
+TNT1 A 0 A_GiveInventory("somesortofweirdassfloorhugger",1)
 Y_0E S 1 A_FadeOut(0.25)
 wait
 Death:
@@ -1080,10 +1130,23 @@ stop
 }
 }
 
+ACTOR BounceShockWaveClientside : BounceShockWave
+{
+Damage(0)
+renderstyle normal
++CLIENTSIDEONLY
+}
+
 actor BounceM_SlamProtect : PowerProtection
 {
-Powerup.Duration 5
+Powerup.Duration 8
 DamageFactor "BounceM_Slam", 0.0
+}
+ 
+actor BounceM_SlamBallsProtect : PowerProtection
+{
+Powerup.Duration 8
+DamageFactor "BounceReloadBalls", 0.0
 }
 
 actor BouncemanMain_CI : TeamColor_CI
@@ -1142,44 +1205,44 @@ actor BouncemanReload_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("BounceM_Ball",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_Ball",60,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_Ball",120,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_Ball",180,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_Ball",240,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_Ball",300,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReload",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReload",60,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReload",120,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReload",180,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReload",240,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReload",300,1,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("BounceM_BallB",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallB",60,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallB",120,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallB",180,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallB",240,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallB",300,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadB",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadB",60,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadB",120,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadB",180,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadB",240,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadB",300,1,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("BounceM_BallR",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallR",60,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallR",120,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallR",180,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallR",240,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallR",300,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadR",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadR",60,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadR",120,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadR",180,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadR",240,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadR",300,1,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("BounceM_BallO",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallO",60,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallO",120,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallO",180,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallO",240,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallO",300,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadO",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadO",60,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadO",120,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadO",180,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadO",240,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadO",300,1,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("BounceM_BallP",0,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallP",60,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallP",120,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallP",180,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallP",240,1,0,0)
-TNT1 A 0 A_FireCustomMissile("BounceM_BallP",300,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadP",0,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadP",60,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadP",120,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadP",180,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadP",240,1,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceM_BallReloadP",300,1,0,0)
 goto Done
 }
 }
@@ -1189,19 +1252,19 @@ actor BouncemanReloadSlam_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawner",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawner",0,0,0,-50)
 stop
 FireB:
-TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawnerB",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawnerB",0,0,0,-50)
 stop
 FireR:
-TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawnerR",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawnerR",0,0,0,-50)
 stop
 FireO:
-TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawnerO",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawnerO",0,0,0,-50)
 stop
 FireP:
-TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawnerP",0,0,0,0)
+TNT1 A 0 A_FireCustomMissile("BounceShockWaveSpawnerP",0,0,0,-50)
 stop
 }
 }
