@@ -910,7 +910,7 @@ Pickup:
 TNT1 A 0
 TNT1 A 0 A_JumpIfInventory("VivifyDelay5",1,"No")
 TNT1 A 0 A_GiveInventory("VivifyDelay5",1)
-TNT1 A 0 A_TakeInventory("YoGeekyAmmo",150)
+TNT1 A 0 A_TakeInventory("YoGeekyAmmo",75)//150)
 stop
 No:
 TNT1 A 0
