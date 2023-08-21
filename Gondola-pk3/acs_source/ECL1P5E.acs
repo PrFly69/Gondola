@@ -194,7 +194,7 @@ Script "cbm_ClownPegSwing" (int timeout)
 	int TargetTID = ACS_ExecuteWithResult(147,0);
 
 	If(CheckActorInventory(TargetTID,"RushJetCounter") >= 5){terminate;}
-	//If(CheckActorInventory(TargetTID,"YoGeekyAmmo") < 75 && CheckActorInventory(TargetTID,"ThunderClawBoss") == 1){terminate;}
+	If(CheckActorInventory(TargetTID,"YoGeekyAmmo") < 75 && CheckActorInventory(TargetTID,"ThunderClawBoss") == 1){terminate;}
 	
 
 	int hookx = GetActorX(0);
@@ -210,7 +210,7 @@ Script "cbm_ClownPegSwing" (int timeout)
 
 	//SetActorState(0,"TargetClear",1);
 
-	//TakeActorInventory(TargetTID,"YoGeekyAmmo",75);
+	TakeActorInventory(TargetTID,"YoGeekyAmmo",75);
 	TakeActorInventory(TargetTID,"JumpCancler",1);
 	TakeActorInventory(TargetTID,"ClownShockUpPeg2",1);
 	GiveActorInventory(TargetTID,"ClownShockUpPeg",1);
