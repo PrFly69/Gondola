@@ -115,21 +115,21 @@ HoldYourLagXD:
 JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
 JUPH D 0 A_SpawnItemEX("JupiterFXWarper1",0,0,42,0,0,0,0,1)
 JUPH D 0 A_GiveInventory("JupiterBigLaser_PLAG")
-JUPH D 1 A_GiveInventory("JupiterLaser1_CI")
+JUPH E 1 A_GiveInventory("JupiterLaser1_CI")
 JUPH D 0 A_Refire("LaserHold.aLAG")
 goto EndLaser
 LaserHold.aLAG:
 JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
 JUPH D 0 A_SpawnItemEX("JupiterFXWarper2",0,0,42,0,0,0,0,1)
 JUPH D 0 A_GiveInventory("JupiterBigLaser_PLAG")
-JUPH D 1 A_GiveInventory("JupiterLaser2_CI")
+JUPH F 1 A_GiveInventory("JupiterLaser2_CI")
 JUPH D 0 A_Refire("LaserHold.bLAG")
 goto EndLaser
 LaserHold.bLAG:
 JUPH D 0 A_JumpIfInventory("JupiterNeedsToLand",1,"EndLaser")
 JUPH D 0 A_SpawnItemEX("JupiterFXWarper3",0,0,42,0,0,0,0,1)
 JUPH D 0 A_GiveInventory("JupiterBigLaser_PLAG")
-JUPH D 1 A_GiveInventory("JupiterLaser3_CI")
+JUPH G 1 A_GiveInventory("JupiterLaser3_CI")
 JUPH D 0 A_Refire("LaserHold")
 goto EndLaser
 
