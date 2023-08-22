@@ -4119,6 +4119,10 @@ CHANGELOG
 ==Searchman
 -Fixed being able to hide in bushes that are behind walls/3D floors or stuck on ceilings
 
+==EvilRobot
+-Can now swap weapons using numbers
+-Removed item
+
 ==Dynamoman
 -Added new HUD, made by Pegg
 
