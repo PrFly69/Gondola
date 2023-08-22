@@ -4007,6 +4007,8 @@ CHANGELOG
 
 ==Bubbleman
 -Fixed swiming animation bugs
+-Using the item or activating swimming will now put the ammo regen on a 3 second cooldown to prevent stalling
+-Landing on floors will instantly resume the ammo regen
 
 ==Alien
 -Fixed Boobeam traps getting stuck firing after Alien dies
