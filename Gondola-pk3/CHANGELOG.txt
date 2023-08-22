@@ -4111,6 +4111,9 @@ CHANGELOG
 -Statue can now directly hit players
 -Holding m2 while dashing lets you slide a bit on the floor before droping the statue 
 
+==Clownman
+-Swinging now costs 75 ammo
+
 ==Searchman
 -Fixed being able to hide in bushes that are behind walls/3D floors or stuck on ceilings
 
