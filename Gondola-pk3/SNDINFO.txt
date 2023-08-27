@@ -178,6 +178,9 @@ weapon/ringcagefire RINGWHOP
 
 ///// MM5 /////
 
+//Stone
+weapon/heavystoneland STNBOOM
+
 //Gyro
 weapon/gyrosplit GYRSPLIT
 weapon/gyroattacksee GYROAT

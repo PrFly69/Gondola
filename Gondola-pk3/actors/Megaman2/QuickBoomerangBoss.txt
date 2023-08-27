@@ -175,6 +175,7 @@ actor Quickbossrangs1 : QuickBoomerang
 {
 translation "192:192=229:229"
 damage (6)
+reactiontime 7
 damagetype "QuickM_Rapid"
 bouncecount 2
 Radius 7
@@ -188,7 +189,9 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 QUIK Q 0 A_CountDown
-QUIK QQRRSSTT 1 A_ChangeVelocity(-7.75,0,0,CVF_RELATIVE)
+QUIK QQRR 1 A_ChangeVelocity(-5.25,0,0,CVF_RELATIVE)
+QUIK Q 0 A_CountDown
+QUIK SSTT 1 A_ChangeVelocity(-5.25,0,0,CVF_RELATIVE)
 loop
 Bounce:
 QUIK Q 0 A_PlaySound("wep/shieldtink",1,0.3)
@@ -206,40 +209,7 @@ actor Quickbossrangs1R : Quickbossrangs1{translation "192:192=171:171"}
 actor Quickbossrangs1O : Quickbossrangs1{translation "192:192=104:104"}
 actor Quickbossrangs1P : Quickbossrangs1{translation "192:192=229:229"}
 
-actor Quickbossrangs2 : Quickbossrangs1
-{
-reactiontime 7
-damage (6)
-damagetype "QuickM_Shot"
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-QUIK Q 0 A_CountDown
-QUIK QQRR 1 A_ChangeVelocity(-5.25,0,0,CVF_RELATIVE)
-QUIK Q 0 A_CountDown
-QUIK SSTT 1 A_ChangeVelocity(-5.25,0,0,CVF_RELATIVE)
-loop
-Bounce:
-QUIK Q 0 A_PlaySound("wep/shieldtink",1,0.6)
-QUIK Q 0 A_SpawnItemEx("QuickBoomerangDeathFX",0,0,0,random(2,8),random(-8,8),random(2,8),0,1)
-stop
-Bounce.Ceiling:
-QUIK Q 0 A_PlaySound("wep/shieldtink",1,0.6)
-QUIK Q 0 A_SpawnItemEx("QuickBoomerangDeathFX",0,0,0,random(-8,8),random(-8,8),random(-2,-8),0,1)
-stop
-/*
-Death:
-TNT1 A 0 A_JumpIf((z-floorz<=7||z-ceilingz>=-7),"XDeath")
-TNT1 A 0 A_SpawnItemEx("Quickbossrangs2Return",0,0,0,-Cos(pitch)*50,0,-sin(pitch)*50,0,513)
-XDeath:
-TNT1 A 0
-stop
-*/
-}
-}
+actor Quickbossrangs2 : Quickbossrangs1{damagetype "QuickM_Shot"}
 
 actor Quickbossrangs2B : Quickbossrangs2{translation "192:192=205:205"}
 actor Quickbossrangs2R : Quickbossrangs2{translation "192:192=171:171"}
