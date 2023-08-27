@@ -14,7 +14,7 @@ player.startitem "EvilFistCIce"
 player.startitem "EvilFistCAstro" 
 player.startitem "NoAmmoPickup"
 player.startitem "NoWeaponSwitchSound"
-//player.startitem "EvilRotateItem"
+player.startitem "EvilRotateItem"
 
 player.maxhealth 115
 health 115
