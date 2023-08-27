@@ -489,7 +489,6 @@ damagetype "JunkM_Cube"
 
 +STEPMISSILE
 maxstepheight 32
-+BOUNCEONCEILINGS
 BounceFactor 0.00
 WallBounceFactor 0.95
 Species "JunkCubeThing"

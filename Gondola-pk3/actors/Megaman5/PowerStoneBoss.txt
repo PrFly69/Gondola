@@ -167,9 +167,11 @@ POWB J 0 A_JumpIfInventory("StoneBossCharge",15,"AltfireJump")
 POWB I 1 ThrustThingZ(0,60,0,0)
 goto AltfireRise
 AltfireJumpLeap:
+TNT1 A 0 A_PlaySoundEX("weapon/StoneQuakeWeak","Weapon")
 POWB I 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"AltfireJump4")
 goto AltfireJump2
 AltfireJumpLeap2:
+TNT1 A 0 A_PlaySoundEX("weapon/StoneQuakeWeak","Weapon")
 POWB I 0 A_JumpIf(ACS_ExecuteWithResult(C_JAX_CHECK_JUMP)==1,"AltfireJump6")
 goto AltfireJump4
 AltfireJump:
@@ -906,10 +908,10 @@ TNT1 A 0 A_JumpIfInventory("ToadLeapStack",8,"Pickup2")
 TNT1 A 0 A_GiveInventory("ToadLeapStack",1)
 goto Pickup1
 Pickup1:
-TNT1 A 0 A_PlaySoundEx("weapon/ToadCrush","Body")
+TNT1 A 0 A_PlaySoundEX("weapon/StoneQuakeWeak","Weapon")
 goto PickupT
 Pickup2:
-TNT1 A 0 A_PlaySoundEx("weapon/ToadCrushUp","Body")
+TNT1 A 0 A_PlaySoundEX("weapon/StoneQuakeWeak","Weapon")
 TNT1 A 0 A_GiveInventory("Health",10)
 goto PickupT
 PickupT:
@@ -955,11 +957,12 @@ TNT1 A 0
 TNT1 A 0 A_JumpIfInventory("StoneBossCharge",45,"P_Stun")
 goto P_NoStun
 P_NoStun:
-TNT1 A 0 A_FireCustomMissile("StoneQuakeDamage2",0,0,0,0)
+TNT1 A 0 A_SpawnItemEx("StoneQuakeDamage2",0,0,0,0,0,0,0,1)
 goto P_End
 P_Stun:
 TNT1 A 0 A_Quake(7, 20, 0, 300, 0)
-TNT1 A 0 A_FireCustomMissile("StoneQuakeDamage",0,0,0,0)
+POWB G 0 A_PlaySoundEX("weapon/heavystoneland","Body")
+TNT1 A 0 A_SpawnItemEx("StoneQuakeDamage",0,0,0,0,0,0,0,1)
 goto P_End
 P_End:
 TNT1 A 0 A_TakeInventory("StoneBossLeap",9999)
@@ -989,7 +992,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BasicHardQuakeFX",random(-200,200),random(-200,200),0,0,0,0,0,4)
+TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEX("UranusDeepDiggerSlamFX",random(0,25)*8,0,0,frandom(0,2),0,frandom(1,4),random(0,30)*12,1)
 TNT1 A 0
 TNT1 A 0 A_ChangeFlag("NOCLIP",0)
 TNT1 A 0 A_ChangeFlag("NOINTERACTION",0)

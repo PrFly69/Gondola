@@ -3992,6 +3992,9 @@ CHANGELOG
 --Flame Blast > Scorch Wheel
 --Mirror Buster > Dark Shield
 
+==Rock
+-All balls now despawn on ceilings
+
 ==DrWily
 -Ammo regen on Wily Suit reduced by 40% (2 ammo every 10 tics > 1 ammo every 7 tics)
 -Wily Capsule now has passive sounds when moving
@@ -4001,6 +4004,7 @@ CHANGELOG
 -Fixed weapon tag for Joe Buster
 -Joe Buster projectile speed 29 > 35
 -Machine Joe shot projectile speed 58 > 51
+-Joe Crate now despawns on ceilings
 
 ==Cutman
 -Fixed Rolling Cutter not popping Water Shield
@@ -4009,6 +4013,10 @@ CHANGELOG
 -Fixed swiming animation bugs
 -Using the item or activating swimming will now put the ammo regen on a 3 second cooldown to prevent stalling
 -Landing on floors will instantly resume the ammo regen
+
+==Quickman
+-Rapid and Spread Boomerang stats now equalized
+--Returning thrust reduced on Rapid Boomerangs
 
 ==Alien
 -Fixed Boobeam traps getting stuck firing after Alien dies
@@ -4064,6 +4072,9 @@ CHANGELOG
 -Added extra skinsprites for Dust Crusher, ported from V-Classes and V6B
 -Jump height 10 > 12
 
+==Stoneman
+-Added SFX for landing Stone Stomp and empowered Stone Stomp, updated quaking FX
+
 ==Chargeman
 -Coal Shot idle ammo gain reduced 4 per tic > 2 per tic
 
@@ -4101,6 +4112,9 @@ CHANGELOG
 -Adjusted SBAR colors
 -Shatter Cracker now has passive sound when being charged and fired
 -Added new HUD, made by Pegg
+
+==Junkman
+-Junk Cube now despawns on ceilings
 
 ==Swordman
 -Removed benign error message

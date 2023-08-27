@@ -997,6 +997,7 @@ Damagetype "Joe_Crate"
 -NOGRAVITY
 +HEXENBOUNCE
 -BOUNCEONFLOORS
+-BOUNCEONCEILINGS
 +DONTREFLECT
 bouncefactor 0.4
 wallbouncefactor 0.75
@@ -1011,7 +1012,7 @@ States
 Spawn:
 JOSH X 0
 JOSH X 1 A_PlaySound("weapon/JoeDrop",1,0.55)
-JOSH X 1 //A_SpawnItemEx("JoeCrateDropFX",0,0,0,momx,momy,0,0,9)
+JOSH X 1 A_CheckCeiling("NoDeath")//A_SpawnItemEx("JoeCrateDropFX",0,0,0,momx,momy,0,0,9)
 wait
 Death:
 JOSH X 0 A_SpawnItemEx("JoeCrateWait",0,0,0,0,0,0,0,1)
@@ -1040,6 +1041,7 @@ actor JoeCrateWait : JoeCrateDrop
 -HEXENBOUNCE
 +NOGRAVITY
 +NOEXPLODEFLOOR
+-BOUNCEONCEILINGS
 ReactionTime 350
 States
 {
@@ -1047,6 +1049,7 @@ Spawn:
 JOSH X 0 A_JumpIfInTargetInventory("WildBearBoss",1,"Death2")
 JOSH X 1 A_JumpIfCloser(36,"BuffJoeCheck")
 JOSH X 0 A_CountDown
+JOSH X 1 A_CheckCeiling("Death")
 JOSH X 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death2")
 loop
 SpawnDelay:
