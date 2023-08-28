@@ -1,0 +1,15 @@
+#library "CULACS"
+#include "zcommon.acs"
+
+Script "AutoAndMaestroCoolness" (void)
+{ 
+ While(GetActorProperty(0,APROP_Health) > 0)
+ {
+  If(GetPlayerInput(-1,INPUT_BUTTONS) & BT_USER1 && GetActorProperty(0,APROP_Health) > 0 && !CheckInventory("MaestroIsReloading"))
+  {  
+   GiveInventory("MaestroBusterFlag",1);   
+  } 
+  Delay(1);  
+  TakeInventory("MaestroBusterFlag",1); 
+ } 
+}
