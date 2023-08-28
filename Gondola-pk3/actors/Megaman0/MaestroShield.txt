@@ -48,6 +48,25 @@ inventory.pickupsound ""
 inventory.icon "MaesHSIc"
 States
 {
+ThumbsUp:  
+HUTB A 2 Offset(20,62)
+HUTB A 2 Offset(40,92) 
+HUST Z 2 Offset(-30,102)A_PlaySoundEx("weapon/RockThumbsUp","Weapon")
+HUST Z 0 A_Refire(1)
+HUST Z 2 Offset(-15,67)
+HUST Z 2 Offset(1,31)
+goto ThumbsUpH
+ThumbsUpH:
+HUST Z 1 Offset(1,31)A_RailWait
+HUST Z 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUpH")
+goto ThumbsUpEnd
+ThumbsUpEnd:
+HUST Z 2 Offset(-15,67)
+HUST Z 2 Offset(-30,102) 
+HUTB A 2 Offset(40,92)
+HUTB A 2 Offset(20,62)
+goto Ready2+1
+
 Spawn:
 C_00 C 1
 loop
@@ -59,6 +78,7 @@ Goto ReadyIntro
 Ready2:
 HUTB A 0 ACS_ExecuteAlways(998,0,12000,1)
 HUTB A 0 A_GiveInventory("MaestroShieldCount_RC",1)
+HUTB A 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUp")
 HUTB A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 Goto Ready2+1
 
@@ -425,6 +445,25 @@ inventory.pickupsound ""
 inventory.icon "MaesASIc"
 States
 {
+ThumbsUp:  
+HUTB E 2 Offset(20,62)
+HUTB E 2 Offset(40,92) 
+HUST X 2 Offset(-30,102)A_PlaySoundEx("weapon/RockThumbsUp","Weapon")
+HUST X 0 A_Refire(1)
+HUST X 2 Offset(-15,67)
+HUST X 2 Offset(1,31)
+goto ThumbsUpH
+ThumbsUpH:
+HUST X 1 Offset(1,31)A_RailWait
+HUST X 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUpH")
+goto ThumbsUpEnd
+ThumbsUpEnd:
+HUST X 2 Offset(-15,67)
+HUST X 2 Offset(-30,102) 
+HUTB E 2 Offset(40,92)
+HUTB E 2 Offset(20,62)
+goto Ready2+1
+
 Spawn:
 C_00 C 1
 loop
@@ -436,6 +475,7 @@ Goto ReadyIntro
 Ready2:
 HUTB E 0 ACS_ExecuteAlways(998,0,12001,1)
 HUTB E 0 A_GiveInventory("MaestroShieldCount_RC",1)
+HUTB E 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUp")
 HUTB E 1 A_WeaponReady(WRF_ALLOWRELOAD)
 Goto Ready2+1
 
@@ -716,6 +756,25 @@ inventory.pickupsound ""
 inventory.icon "MaesESIc"
 States
 {
+ThumbsUp:  
+HUTB I 2 Offset(20,62)
+HUTB I 2 Offset(40,92) 
+HUST Y 2 Offset(-30,102)A_PlaySoundEx("weapon/RockThumbsUp","Weapon")
+HUST Y 0 A_Refire(1)
+HUST Y 2 Offset(-15,67)
+HUST Y 2 Offset(1,31)
+goto ThumbsUpH
+ThumbsUpH:
+HUST Y 1 Offset(1,31)A_RailWait
+HUST Y 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUpH")
+goto ThumbsUpEnd
+ThumbsUpEnd:
+HUST Y 2 Offset(-15,67)
+HUST Y 2 Offset(-30,102) 
+HUTB I 2 Offset(40,92)
+HUTB I 2 Offset(20,62)
+goto Ready2+1
+
 Spawn:
 C_00 C 1
 loop
@@ -727,6 +786,7 @@ Goto ReadyIntro
 Ready2:
 HUTB I 0 ACS_ExecuteAlways(998,0,12002,1)
 HUTB I 0 A_GiveInventory("MaestroShieldCount_RC",1)
+HUTB I 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUp")
 HUTB I 1 A_WeaponReady(WRF_ALLOWRELOAD)
 Goto Ready2+1
 
@@ -1039,6 +1099,25 @@ inventory.pickupsound ""
 inventory.icon "MaesWSIc"
 States
 {
+ThumbsUp:  
+HUTB M 2 Offset(20,62)
+HUTB M 2 Offset(40,92) 
+HUST V 2 Offset(-30,102)A_PlaySoundEx("weapon/RockThumbsUp","Weapon")
+HUST V 0 A_Refire(1)
+HUST V 2 Offset(-15,67)
+HUST V 2 Offset(1,31)
+goto ThumbsUpH
+ThumbsUpH:
+HUST V 1 Offset(1,31)A_RailWait
+HUST V 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUpH")
+goto ThumbsUpEnd
+ThumbsUpEnd:
+HUST V 2 Offset(-15,67)
+HUST V 2 Offset(-30,102) 
+HUTB M 2 Offset(40,92)
+HUTB M 2 Offset(20,62)
+goto Ready2+1
+
 Spawn:
 C_00 C 1
 loop
@@ -1050,6 +1129,7 @@ Goto ReadyIntro
 Ready2:
 HUTB M 0 ACS_ExecuteAlways(998,0,12003,1)
 HUTB M 0 A_GiveInventory("MaestroShieldCount_RC",1)
+HUTB N 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUp")
 HUTB M 1 A_WeaponReady(WRF_ALLOWRELOAD)
 Goto Ready2+1
 
