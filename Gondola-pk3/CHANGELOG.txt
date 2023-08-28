@@ -3996,7 +3996,6 @@ CHANGELOG
 
 ==Auto
 -Restored thumbs-up animation from CBM
--Restored idle animation from CBM
 
 ==Rock
 -All balls now despawn on ceilings
