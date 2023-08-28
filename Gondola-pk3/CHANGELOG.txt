@@ -3991,6 +3991,12 @@ CHANGELOG
 -Shield Style weapon selections adjusted
 --Flame Blast > Scorch Wheel
 --Mirror Buster > Dark Shield
+-Restored thumbs-up animation from CBM (sprites made by AAAAAA)
+-May now nod off
+
+==Auto
+-Restored thumbs-up animation from CBM
+-Restored idle animation from CBM
 
 ==Rock
 -All balls now despawn on ceilings
