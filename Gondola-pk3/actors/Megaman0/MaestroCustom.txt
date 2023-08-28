@@ -12,6 +12,25 @@ inventory.pickupsound ""
 inventory.icon "MaesHCIc"
 States
 {
+ThumbsUp:  
+HUST F 2 Offset(20,62)
+HUST F 2 Offset(40,92) 
+HUST Z 2 Offset(-30,102)A_PlaySoundEx("weapon/RockThumbsUp","Weapon")
+HUST Z 0 A_Refire(1)
+HUST Z 2 Offset(-15,67)
+HUST Z 2 Offset(1,31)
+goto ThumbsUpH
+ThumbsUpH:
+HUST Z 1 Offset(1,31)A_RailWait
+HUST Z 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUpH")
+goto ThumbsUpEnd
+ThumbsUpEnd:
+HUST Z 2 Offset(-15,67)
+HUST Z 2 Offset(-30,102) 
+HUST F 2 Offset(40,92)
+HUST F 2 Offset(20,62)
+goto Ready2+1
+
 Spawn:
 C_00 C 1
 loop
@@ -22,6 +41,7 @@ Goto ReadyIntro
 
 Ready2:
 HUST F 0 ACS_ExecuteAlways(998,0,12000,1)
+HUST F 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUp")
 HUST F 1 A_WeaponReady(WRF_ALLOWRELOAD)
 Goto Ready2+1
 
@@ -220,6 +240,25 @@ weapon.ammotype "EXEAmmo"
 inventory.icon "MaesACIc"
 States
 {
+ThumbsUp:  
+HUST J 2 Offset(20,62)
+HUST J 2 Offset(40,92) 
+HUST X 2 Offset(-30,102)A_PlaySoundEx("weapon/RockThumbsUp","Weapon")
+HUST X 0 A_Refire(1)
+HUST X 2 Offset(-15,67)
+HUST X 2 Offset(1,31)
+goto ThumbsUpH
+ThumbsUpH:
+HUST X 1 Offset(1,31)A_RailWait
+HUST X 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUpH")
+goto ThumbsUpEnd
+ThumbsUpEnd:
+HUST X 2 Offset(-15,67)
+HUST X 2 Offset(-30,102) 
+HUST J 2 Offset(40,92)
+HUST J 2 Offset(20,62)
+goto Ready2+1
+
 Spawn:
 C_00 C 1
 loop
@@ -230,6 +269,7 @@ Goto ReadyIntro
 
 Ready2:
 HUST J 0 ACS_ExecuteAlways(998,0,12001,1)
+HUST J 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUp")
 HUST J 1 A_WeaponReady(WRF_ALLOWRELOAD)
 Goto Ready2+1
 
@@ -429,6 +469,25 @@ weapon.ammotype "EXEAmmo"
 inventory.icon "MaesECIc"
 States
 {
+ThumbsUp:  
+HUST N 2 Offset(20,62)
+HUST N 2 Offset(40,92) 
+HUST Y 2 Offset(-30,102)A_PlaySoundEx("weapon/RockThumbsUp","Weapon")
+HUST Y 0 A_Refire(1)
+HUST Y 2 Offset(-15,67)
+HUST Y 2 Offset(1,31)
+goto ThumbsUpH
+ThumbsUpH:
+HUST Y 1 Offset(1,31)A_RailWait
+HUST Y 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUpH")
+goto ThumbsUpEnd
+ThumbsUpEnd:
+HUST Y 2 Offset(-15,67)
+HUST Y 2 Offset(-30,102) 
+HUST N 2 Offset(40,92)
+HUST N 2 Offset(20,62)
+goto Ready2+1
+
 Spawn:
 C_00 C 1
 loop
@@ -439,6 +498,7 @@ Goto ReadyIntro
 
 Ready2:
 HUST N 0 ACS_ExecuteAlways(998,0,12002,1)
+HUST N 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUp")
 HUST N 1 A_WeaponReady(WRF_ALLOWRELOAD)
 Goto Ready2+1
 
@@ -637,6 +697,25 @@ weapon.ammotype "EXEAmmo"
 inventory.icon "MaesWCIc"
 States
 {
+ThumbsUp:  
+HUST R 2 Offset(20,62)
+HUST R 2 Offset(40,92) 
+HUST V 2 Offset(-30,102)A_PlaySoundEx("weapon/RockThumbsUp","Weapon")
+HUST V 0 A_Refire(1)
+HUST V 2 Offset(-15,67)
+HUST V 2 Offset(1,31)
+goto ThumbsUpH
+ThumbsUpH:
+HUST V 1 Offset(1,31)A_RailWait
+HUST V 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUpH")
+goto ThumbsUpEnd
+ThumbsUpEnd:
+HUST V 2 Offset(-15,67)
+HUST V 2 Offset(-30,102) 
+HUST R 2 Offset(40,92)
+HUST R 2 Offset(20,62)
+goto Ready2+1
+
 Spawn:
 C_00 C 1
 loop
@@ -647,6 +726,7 @@ Goto ReadyIntro
 
 Ready2:
 HUST R 0 ACS_ExecuteAlways(998,0,12003,1)
+HUST R 0 A_JumpIfInventory("MaestroBusterFlag",1,"ThumbsUp")
 HUST R 1 A_WeaponReady(WRF_ALLOWRELOAD)
 Goto Ready2+1
 
