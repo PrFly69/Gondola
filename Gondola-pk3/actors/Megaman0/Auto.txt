@@ -36,13 +36,15 @@ States
 Spawn:
 AUT6 A 0
 AUT6 B 1
-AUT6 A 245
-AUT6 QA 4
-goto Spawn+3
+AUT6 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_JumpIfInventory("AutoThumbFlag",1,"MissileT")
+AUT6 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_JumpIfInventory("AutoThumbFlag",1,"MissileT")   
+AUT6 QA 4 A_JumpIfInventory("AutoThumbFlag",1,"MissileT")
+goto Spawn+102
 See:
-AUT6 BCDE 5
+AUT6 BCDE 5 A_JumpIfInventory("AutoThumbFlag",1,"MissileT")  
 Goto Spawn
 Missile:
+AUT6 R 0 A_JumpIfInventory("AutoThumbFlag",1,"MissileT")
 AUT6 R 4
 AUT6 R 6
 AUT6 R 4
@@ -73,6 +75,13 @@ goto Spawn+2
 MissileC2:
 AUT6 W 9
 goto Spawn
+ 
+MissileT: 
+AUT6 R 6  
+AUT6 S 6  
+AUT6 R 0 A_JumpIfInventory("AutoThumbFlag",1,"MissileT")
+goto Spawn+2
+
 
 ClassPain:
 AUT6 H 0
