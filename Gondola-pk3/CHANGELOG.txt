@@ -4187,4 +4187,6 @@ CHANGELOG
 
 ==Quint
 -Sakugarne Shockwave max damage 20 > 28
+-Sakugarne Shockwave climb height 32 > 64
+-Sakugarne Shockwave drop height 64 > 86
 -Fixed a bug where neither the shockwave nor stomp would deal damage if the victim was hugging a wall
