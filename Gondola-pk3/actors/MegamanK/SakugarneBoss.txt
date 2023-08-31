@@ -818,7 +818,7 @@ Obituary "$OB_QUINTROCK"
 +STEPMISSILE
 +NOEXPLODEFLOOR
 -NOGRAVITY
-maxstepheight 32 
+maxstepheight 64
 gravity 555
 Damage (28-user_power)
 Radius 16//32 
@@ -874,7 +874,7 @@ States
 {
 Pickup:
 TNT1 A 0 
-TNT1 A 0 A_JumpIf(z-floorz>64,"GravitySqueez")
+TNT1 A 0 A_JumpIf(z-floorz>86,"GravitySqueez")
 TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)
 stop
 GravitySqueez:
