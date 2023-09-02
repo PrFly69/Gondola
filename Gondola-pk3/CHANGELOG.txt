@@ -4159,6 +4159,9 @@ CHANGELOG
 ==Pumpman
 -Fixed Water Shield from blocking user's own shots
 
+==Chillman
+-Fixed missing mugshot
+
 ==Strikeman
 -Now returns Rebound Bouncer ammo on kill
 
