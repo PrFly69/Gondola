@@ -7,6 +7,7 @@ Weapon.AmmoGive 28
 Obituary "$OB_SPARKSHOCK"
 Inventory.Pickupmessage "Power up! Mighty Spark Shock!"
 weapon.ammotype "MightyGodAmmo"
+weapon.ammotype2 "SparkHealAmmo"
 States
 {
 Spawn:

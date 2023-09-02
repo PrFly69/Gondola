@@ -919,6 +919,7 @@ TNT1 A 0 A_SpawnItemEx("CWV_PharaohShotWepC_Vis")
 stop
 }
 }
+actor CWV_PharaohShotWepCMaestro : CWV_PharaohShotWepC{}
 actor CWV_PharaohShotWepC_Vis : CWV_Template_Vis
 {
 States
@@ -1052,6 +1053,7 @@ TNT1 A 0 A_SpawnItemEx("CWV_GyroAttackWepC_Vis")
 stop
 }
 }
+actor CWV_GyroAttackWepCMaestro : CWV_GyroAttackWepC{}
 actor CWV_GyroAttackWepC_Vis : CWV_Template_Vis
 {
 States
@@ -1800,7 +1802,6 @@ TNT1 A 0 A_SpawnItemEx("CWV_PlugBallWepC_Vis")
 stop
 }
 }
-actor CWV_PlugBallWepCMaestro : CWV_PlugBallWepC{}
 actor CWV_PlugBallWepC_Vis : CWV_Template_Vis
 {
 States
@@ -1820,6 +1821,7 @@ TNT1 A 0 A_SpawnItemEx("CWV_LaserTridentWepC_Vis")
 stop
 }
 }
+actor CWV_LaserTridentWepCMaestro : CWV_LaserTridentWepC{}
 actor CWV_LaserTridentWepC_Vis : CWV_Template_Vis
 {
 States
@@ -2363,7 +2365,7 @@ actor CWV_RisingFistWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 A 0
+XWI0 B 0
 goto Warp
 }
 }
@@ -2382,7 +2384,7 @@ actor CWV_TimeBenderWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 C 0
+XWI0 E 0
 goto Warp
 }
 }
@@ -2401,7 +2403,7 @@ actor CWV_TopTwistWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 E 0
+XWI0 G 0
 goto Warp
 }
 }
@@ -2420,7 +2422,7 @@ actor CWV_FlashBulbWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 G 0
+XWI0 I 0
 goto Warp
 }
 }
@@ -2439,7 +2441,7 @@ actor CWV_DiveSonarWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 H 0
+DIVA Y 0
 goto Warp
 }
 }
@@ -2458,7 +2460,7 @@ actor CWV_SkullSniperWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 I 0
+XWI0 K 0
 goto Warp
 }
 }
@@ -2477,7 +2479,7 @@ actor CWV_GravitySphereWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 J 0
+XWI0 L 0
 goto Warp
 }
 }
@@ -2491,12 +2493,13 @@ TNT1 A 0 A_SpawnItemEx("CWV_DarkShieldWepC_Vis")
 stop
 }
 }
+actor CWV_DarkShieldWepCMaestro : CWV_DarkShieldWepC{}
 actor CWV_DarkShieldWepC_Vis : CWV_Template_Vis
 {
 States
 {
 Spawn:
-XWI0 K 0
+XWI0 M 0
 goto Warp
 }
 }
@@ -2515,7 +2518,7 @@ actor CWV_CentaurArrowWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 L 0
+XWI0 N 0
 goto Warp
 }
 }
@@ -2535,7 +2538,7 @@ actor CWV_PlantTrapperWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 M 0
+XWI0 O 0
 goto Warp
 }
 }
@@ -2549,12 +2552,13 @@ TNT1 A 0 A_SpawnItemEx("CWV_DynamoTendrilWepC_Vis")
 stop
 }
 }
+actor CWV_DynamoTendrilWepCMaestro : CWV_DynamoTendrilWepC{}
 actor CWV_DynamoTendrilWepC_Vis : CWV_Template_Vis
 {
 States
 {
 Spawn:
-XWI0 N 0
+XWI0 P 0
 goto Warp
 }
 }
@@ -2573,7 +2577,7 @@ actor CWV_RainbowGalaxyWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 O 0
+XWI0 Q 0
 goto Warp
 }
 }
@@ -2592,7 +2596,7 @@ actor CWV_BoobeamBarrierWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 D 0
+XWI0 F 0
 goto Warp
 }
 }
@@ -2611,7 +2615,7 @@ actor CWV_WaveBusterWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 B 0
+XWI0 C 0
 goto Warp
 }
 }
@@ -2630,7 +2634,7 @@ actor CWV_BusterRodGWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 Q 0
+XWI0 S 0
 goto Warp
 }
 }
@@ -2650,7 +2654,7 @@ actor CWV_MegaWaterSWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 R 0
+XWI0 T 0
 goto Warp
 }
 }
@@ -2669,7 +2673,7 @@ actor CWV_HyperStormHWepC_Vis : CWV_Template_Vis
 States
 {
 Spawn:
-XWI0 S 0
+XWI0 U 0
 goto Warp
 }
 }
@@ -2768,6 +2772,63 @@ Spawn:
 goto Warp
 }
 }
-//126 - Use later
-//127 - Use later
-//128 - Use later
+//126 - FakeRepeaterC
+actor CWV_FakeRepeaterWepC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("CWV_FakeRepeaterWepC_Vis") 
+stop
+}
+}
+actor CWV_FakeRepeaterWepC_Vis : CWV_Template_Vis
+{
+States
+{
+Spawn:
+XWI0 R 0
+goto Warp
+}
+}
+//127 - FragBomberWepC
+actor CWV_FragBomberWepC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("CWV_FragBomberWepC_Vis") 
+stop
+}
+}
+actor CWV_FragBomberWepC_Vis : CWV_Template_Vis
+{
+States
+{
+Spawn:
+XWI0 D 0
+goto Warp
+}
+}
+//128 - RollSweepC
+actor CWV_RollSweepWepC : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_SpawnItemEx("CWV_RollSweepWepC_Vis") 
+stop
+}
+}
+actor CWV_RollSweepWepC_Vis : CWV_Template_Vis
+{
+States
+{
+Spawn:
+XWI0 A 0
+goto Warp
+}
+}
+//129 - Use later
+//130 - Use later
+//131 - Use later

@@ -673,7 +673,7 @@ TNT1 A 0 A_TakeInventory("ThunderBeamWepCMaestro",1)
 TNT1 A 0 A_TakeInventory("SparkShockWepCMaestro",1)
 TNT1 A 0 A_TakeInventory("ThunderBoltWepCMaestro",1)
 TNT1 A 0 A_TakeInventory("ThunderClawWepCMaestro",1)
-TNT1 A 0 A_TakeInventory("ElectricShockWepCMaestro",1)
+TNT1 A 0 A_TakeInventory("DynamoTendrilWepCMaestro",1)
 HUSS GFGFGFDEDEDECBA 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
 TNT1 A 3 Offset(0,-200)
 TNT1 A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
@@ -986,7 +986,7 @@ actor ThunderBeamWepCMaestro : ThunderBeamWepC{Weapon.AmmoGive 0}
 actor SparkShockWepCMaestro : SparkShockWepC{Weapon.AmmoGive 0}
 actor ThunderBoltWepCMaestro : ThunderBoltWepC{Weapon.AmmoGive 0}
 actor ThunderClawWepCMaestro : ThunderClawWepC{Weapon.AmmoGive 0}
-actor ElectricShockWepCMaestro : ElectricShockWepC{Weapon.AmmoGive 0}
+actor DynamoTendrilWepCMaestro : DynamoTendrilWepC{Weapon.AmmoGive 0}
 
 actor ElecCustomPickup : CustomInventory
 {
@@ -998,7 +998,7 @@ TNT1 A 0 A_GiveInventory("ThunderBeamWepCMaestro",1)
 TNT1 A 0 A_GiveInventory("SparkShockWepCMaestro",1)
 TNT1 A 0 A_GiveInventory("ThunderBoltWepCMaestro",1)
 TNT1 A 0 A_GiveInventory("ThunderClawWepCMaestro",1)
-TNT1 A 0 A_GiveInventory("ElectricShockWepCMaestro",1)
+TNT1 A 0 A_GiveInventory("DynamoTendrilWepCMaestro",1)
 
 TNT1 A 0 A_JumpIfInventory("ElecCustomChecker",1,"No")
 
@@ -1007,7 +1007,7 @@ TNT1 A 0 A_GiveInventory("ThunderBeamAmmo",28)
 TNT1 A 0 A_GiveInventory("SparkShockAmmo",28)
 TNT1 A 0 A_GiveInventory("ThunderBoltAmmo",28)
 TNT1 A 0 A_GiveInventory("ThunderClawAmmo",28)
-TNT1 A 0 A_GiveInventory("ElectricShockAmmo",56)
+TNT1 A 0 A_GiveInventory("DynamoTendrilAmmo",28)
 stop
 
 No:

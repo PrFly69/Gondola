@@ -11,6 +11,7 @@ Weapon.AmmoGive 0
 //Obituary "%o was blown to pieces by %k's Rocket Launcher."
 Inventory.Pickupmessage "Das Auto."
 weapon.ammotype "AutoBoltAmmo"
+weapon.ammotype2 "AutoNutsAmmo"
 Weapon.SlotNumber 0
 States
 { 

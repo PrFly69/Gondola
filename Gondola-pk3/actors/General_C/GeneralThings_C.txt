@@ -349,7 +349,7 @@ X_0G RQPONMLK 3
 X_0G R 0 A_CountDown
 goto Spawn2+1
 Spark:
-TNT1 A 0 A_JumpIfInventory("SparkHealAmmo",28,"Pickup2")
+TNT1 A 0 A_JumpIfInventory("SparkHealAmmo",56,"Pickup2")
 TNT1 A 0 A_PlaySound("item/JunkPick",3,1.0)
 TNT1 A 0 A_GiveInventory("SparkHealAmmo",14)
 stop

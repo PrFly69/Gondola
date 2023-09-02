@@ -3964,6 +3964,9 @@ CHANGELOG
 
 
 =====2.6.2
+==Copyweapons
+-Fixed Copywep Display for CBM-exclusive weapons
+
 ==Protoman
 -Fixed Proto Shield not reflecting shots in non-team gamemodes
 -Proto Buster now has +BRIGHT
@@ -3986,13 +3989,13 @@ CHANGELOG
 --Scorch Wheel > Flame Blast
 --Solar Blaze > Pharaoh Shot
 --Water Shield > Laser Trident
---Plug Ball > Electric Shock
+--Plug Ball > Dynamo Tendril
 --Leaf Shield > Gyro Attack
 -Shield Style weapon selections adjusted
 --Flame Blast > Scorch Wheel
 --Mirror Buster > Dark Shield
 -Restored thumbs-up animation from CBM (sprites made by AAAAAA)
--May now nod off
+--May now nod off
 
 ==Auto
 -Restored thumbs-up animation from CBM
@@ -4046,7 +4049,7 @@ CHANGELOG
 ==Shadowman
 -Added new Shadow Blade HUD, made by Redflash
 -Movespeed 0.9/0.88 > 0.75/0.73
--Shadow Blade damage 20/3 (base/rip) > 25/5 (base/rip) 
+-Shadow Blade damage 20/3 (base/rip) > 20/5 (base/rip) 
 --Shadow Blade projectile height increased 7 > 14
 --Returning Shadow Blade now always does 5 damage with no powerprotect
 -Kunai is now a 3 shot burst with minor fixed spread
@@ -4054,13 +4057,13 @@ CHANGELOG
 --Kunai endlag increased by 4 tics
 -Invisibility now functions like CBM with smoke trail for 35 tics on initial use
 --Invisibility duration reduced 6.4 seconds > 3 seconds
---Now gains 80% increase in movespeed while invisible
+--Now gains 60% increase in movespeed while invisible
 --Requires full ammo to go invisible
---Altfire slide brought back, forwards thrust tweaked 45 > 40/50 (not cloaked/exiting cloak)
+--Altfire slide brought back, forwards thrust tweaked 45 > 45/55 (not cloaked/exiting cloak)
 --Firing shots halts altfire ammo gain
 -Caltrops per volley 5 > 3
 --Ammo consumed when throwing caltrops halved
---Caltrops now apply an 80% slowdown for 15 tics per caltrop while placed
+--Caltrops now apply an 60% slowdown for 15 tics per caltrop while placed
 -Taking damage while invisible spawns a smoke trail that follows user for 15 tics
 
 ==Brightman
@@ -4125,12 +4128,12 @@ CHANGELOG
 -Removed benign error message
 -Fixed Flame Torso not playing its pain sound 
 -Fixed skinsprite bugs
--Fixed running legs animations
--Fixed m2 playing recovery animation when out of ammo
+--Fixed running legs animations
+-Fixed Flame Slash playing recovery animation when out of ammo
 -Fixed HUD bug when using m2 as soon as the recovery animation ends
--Statue Smash now deals critical damage
--Statue can now directly hit players
--Holding m2 while dashing lets you slide a bit on the floor before droping the statue 
+-Statue Smash now deals critical damage on hit
+--Statue can now directly hit players
+-Holding altfire while dashing lets you slide a bit on the floor before droping the statue 
 
 ==Clownman
 -Swinging now costs 75 ammo

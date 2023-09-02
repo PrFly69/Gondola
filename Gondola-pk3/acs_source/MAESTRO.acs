@@ -189,7 +189,7 @@ script "CCBM_MaestroStyleChangeEnd" (int Select) CLIENTSIDE
 		MaestroStyleChangeMsgCust("You have changed to\nWoodCustom style and got\nSearch Snake\nGyro Attack\nPlant Trapper\nTornado Hold\nTornado Blow",tid);
 			break;
 		Case 11:
-		MaestroStyleChangeMsgCust("You have changed to\nElecCustom style and got\nThunder Beam\nSpark Shock\nThunder Bolt\nThunder Claw\nElectric Shock",tid);
+		MaestroStyleChangeMsgCust("You have changed to\nElecCustom style and got\nThunder Beam\nSpark Shock\nThunder Bolt\nThunder Claw\nDynamo Tendril",tid);
 			break;
 		Case 10:
 		MaestroStyleChangeMsgCust("You have changed to\nAquaCustom style and got\nIce Slasher\nBubble Lead\nWater Balloon\nLaser Trident\nSalt Water",tid);
