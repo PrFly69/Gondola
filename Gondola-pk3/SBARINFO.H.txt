@@ -239,7 +239,7 @@ InInventory TimeStoppedCounter,1{DrawImage"FLASHS",36,0;}
 
 InInventory not NoHealthBar,1{
 
-DrawImage playericon,188,185;
+DrawImage playericon,186,184;
 DrawMugShot 1,188,185;
 
 InInventory StaminaFlag||UnSolid,1{
