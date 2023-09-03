@@ -25,73 +25,154 @@ player.startitem "FreezeCrackerWeakness", 1
 player.startitem "IceWaveWeakness", 1
 player.startitem "IceWallWeakness", 1
 
+
 States
 {
-Spawn:
-BURN A 0
-BURN B 1
-BURN A 1
-BURN A 0 A_JumpIfInventory("BurnerDiveFlag",1,"AirDash")
-BURN A 0 A_JumpIfInventory("UseTrapX",1,"Missile")
-Goto Spawn+2
+Spawn:  
+BURN A 0 
+BURN B 0 A_TakeInventory("BurnerDashFlag",99) 
+BURN B 1 A_JumpIf(z-floorz>0, "Jump") 
+BURN AAWWAAWWAAWWAAWWAAWW 1 A_JumpIf(z-floorz>0, "Jump") 
+BURN AAWWAAWWAAWWAAWWAAWWAAWWAAWWAAWWAAWWAAWW 1 A_JumpIf(z-floorz>0, "Jump") 
+BURN AAWWAAWWAAWWAAWWAAWWAAWWAAWWAAWWAAWWAAWW 1 A_JumpIf(z-floorz>0, "Jump")
+BURN AAWWAAWWAAWWAAWWAAWWAAWWAAWWAAWWAAWWAAWW 1 A_JumpIf(z-floorz>0, "Jump")
+BURN XXXXXXXXXX 1 A_JumpIf(z-floorz>0, "Jump")
+BURN YYYZZZ 1 A_JumpIf(z-floorz>0, "Jump")
+Goto Spawn+153
 See:
-BURN BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("UseTrapX",1,"Missile")
-Goto Spawn
-Missile:
-BURN F 0 A_JumpIfInventory("WaveBurnerFlag",1,"MissileG")
-BURN F 0 A_JumpIfInventory("BurnerDashFlag",5,"ARunF")
-BURN F 0 A_JumpIfInventory("BurnerDashFlag",4,"ARunE")
-BURN F 0 A_JumpIfInventory("BurnerDashFlag",3,"ARunD")
-BURN F 0 A_JumpIfInventory("BurnerDashFlag",2,"ARunC")
-BURN F 0 A_JumpIfInventory("BurnerDashFlag",1,"ARunB")
-BURN F 0
-BURN FFFFF 1 A_JumpIfInventory("BurnerDiveFlag",1,"AirDash")
-BURN GGGG 1 A_JumpIfInventory("BurnerDiveFlag",1,"AirDash")
-goto Spawn+2
-MissileG:
-BURN F 0 A_JumpIfInventory("WaveBurnerFlag",2,"MissileF")
-BURN G 2
-Goto Missile
-MissileF:
-BURN F 2
-Goto Missile
+BURN B 0 A_GiveInventory("WalkSoundForcer",1)
+BURN BBBBCCCC 1 A_JumpIf(z-floorz>0, "Jump")
+BURN D 0 A_GiveInventory("WalkSoundForcer",1)
+BURN DDDDEEEE 1 A_JumpIf(z-floorz>0, "Jump")
+Goto Spawn+1
+Jump:   
+BURN II 1 A_JumpIf(z-floorz<=0, "Spawn")   
+B2RN II 1 A_JumpIf(z-floorz<=0, "Spawn")
+Loop
+
+ 
+Missile:      
+BURN G 0 A_JumpIfInventory("BurnermanRaiseFlag",2,"Hover3")
+BURN G 0 A_JumpIfInventory("BurnermanRaiseFlag",1,"Hover2") 
+BURN G 0 A_JumpIfInventory("BurnermanRaiseFlag2",1,"CustomState1")   
+BURN G 0 A_JumpIfInventory("BurnerDiveFlag",1,"Kamila")  
+BURN G 0 A_JumpIfInventory("BurnerDashFlag",5,"ARunF")
+BURN G 0 A_JumpIfInventory("BurnerDashFlag",4,"ARunE")
+BURN G 0 A_JumpIfInventory("BurnerDashFlag",3,"ARunD")
+BURN G 0 A_JumpIfInventory("BurnerDashFlag",2,"ARunC")
+BURN G 0 A_JumpIfInventory("BurnerDashFlag",1,"ARunB")  
+BURN G 0 //A_JumpIf(z-floorz>0,"MissileAir")
+BURN G 0 A_JumpIfInventory("WaveBurnerFlag",2,"Missile2")
+BURN G 0 A_JumpIfInventory("WaveBurnerFlag",1,"Missile1")
+BURN G 1 A_JumpIfInventory("BurnerDashFlag",1,"ARunB") 
+BURN GGGG 1 A_JumpIfInventory("BurnerDashFlag",1,"ARunB") 
+Goto Spawn+1 
+MissileAir:         
+BURN J 0 A_JumpIfInventory("WaveBurnerFlag",2,"Missile2Jump")
+BURN J 0 A_JumpIfInventory("WaveBurnerFlag",1,"Missile1Jump")
+BURN J 1 A_JumpIfInventory("BurnerDashFlag",1,"ARunB") 
+BURN JJJJ 1 A_JumpIfInventory("BurnerDashFlag",1,"ARunB") 
+Goto Spawn+1 
+ 
+Missile1:   
+BURN G 2  
+Goto Spawn+1  
+Missile2:   
+BURN F 2 
+Goto Spawn+1  
+
+Missile1Jump:   
+BURN J 2 
+Goto Spawn+1  
+Missile2Jump:   
+BURN K 2    
+Goto Spawn+1 
+
 ARunB:
-BURN B 2
-TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
-Goto Missile//+6
+BURN L 2
+BURN L 0 A_GiveInventory("WalkSoundForcer",1)
+BURN L 0 A_JumpIfInventory("BurnerDashFlag",5,"ARunF")
+BURN L 0 A_JumpIfInventory("BurnerDashFlag",4,"ARunE")
+BURN L 0 A_JumpIfInventory("BurnerDashFlag",3,"ARunD")
+BURN L 0 A_JumpIfInventory("BurnerDashFlag",2,"ARunC")
+BURN L 0 A_JumpIfInventory("BurnerDashFlag",1,"ARunB")
+Goto Spawn+1
 ARunC:
-BURN C 2
-TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
-Goto Missile//+6
+BURN M 2
+BURN M 0 A_GiveInventory("WalkSoundForcer",1)
+BURN M 0 A_JumpIfInventory("BurnerDashFlag",5,"ARunF")
+BURN M 0 A_JumpIfInventory("BurnerDashFlag",4,"ARunE")
+BURN M 0 A_JumpIfInventory("BurnerDashFlag",3,"ARunD")
+BURN M 0 A_JumpIfInventory("BurnerDashFlag",2,"ARunC")
+BURN M 0 A_JumpIfInventory("BurnerDashFlag",1,"ARunB")
+Goto Spawn+1
 ARunD:
-BURN D 2
-TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
-Goto Missile//+6
+BURN N 2
+BURN N 0 A_GiveInventory("WalkSoundForcer",1)
+BURN N 0 A_JumpIfInventory("BurnerDashFlag",5,"ARunF")
+BURN N 0 A_JumpIfInventory("BurnerDashFlag",4,"ARunE")
+BURN N 0 A_JumpIfInventory("BurnerDashFlag",3,"ARunD")
+BURN N 0 A_JumpIfInventory("BurnerDashFlag",2,"ARunC")
+BURN N 0 A_JumpIfInventory("BurnerDashFlag",1,"ARunB")
+Goto Spawn+1
 ARunE:
-BURN E 2
-TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
-Goto Missile//+6
+BURN O 2
+BURN O 0 A_GiveInventory("WalkSoundForcer",1)
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",5,"ARunF")
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",4,"ARunE")
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",3,"ARunD")
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",2,"ARunC")
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",1,"ARunB")
+Goto Spawn+1
 ARunF:
-BURN E 2 A_TakeInventory("BurnerDashFlag",4)
-TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
-Goto Missile//+6
-AirDash:
-BURN BB 1
-TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
-BURN B 1 A_JumpIfInventory("BurnerDiveFlag",1,1)
-goto Missile+6
-BURN CC 1
-TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
-BURN C 1 A_JumpIfInventory("BurnerDiveFlag",1,1)
-goto Missile+6
-BURN DD 1
-TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
-BURN D 1 A_JumpIfInventory("BurnerDiveFlag",1,1)
-goto Missile+6
-BURN EE 1
-TNT1 A 0 A_GiveInventory("WalkSoundForcer",1)
-BURN E 1 A_JumpIfInventory("BurnerDiveFlag",1,"AirDash")
-goto Missile+6
+BURN O 2 A_TakeInventory("BurnerDashFlag",4)
+BURN O 0 A_GiveInventory("WalkSoundForcer",1)
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",5,"ARunF")
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",4,"ARunE")
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",3,"ARunD")
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",2,"ARunC")
+BURN O 0 A_JumpIfInventory("BurnerDashFlag",1,"ARunB")
+Goto Spawn+1
+   
+CustomState1:
+BURN P 0 A_GiveInventory("BurnermanRaiseFlag2",1) 
+BURN P 0 A_JumpIfInventory("BurnermanRaiseFlag",2,"Hover3")
+BURN P 0 A_JumpIfInventory("BurnermanRaiseFlag",1,"Hover2") 
+BURN P 0 A_GiveInventory("BurnermanRaiseFlag",1)
+BURN PPPPPP 1 A_JumpIfInventory("BurnerDiveFlag",1,"Kamila") 
+Goto Missile
+Hover2:
+BURN Q 0 A_GiveInventory("BurnermanRaiseFlag",1)
+BURN QQQQQQ 1 A_JumpIfInventory("BurnerDiveFlag",1,"Kamila") 
+Goto Missile
+Hover3:
+BURN R 0 A_TakeInventory("BurnermanRaiseFlag",99)
+BURN RRRRRR 1 A_JumpIfInventory("BurnerDiveFlag",1,"Kamila")  
+Goto Missile
+
+Hover0:
+BURN V 0 A_GiveInventory("BurnermanRaiseFlag2",1)
+BURN V 1 A_JumpIfInventory("BurnerDiveFlag",1,"Kamila") 
+BURN V 0 A_JumpIfInventory("BurnermanRaiseFlag2",1,"Hover") 
+Goto Missile
+
+CustomState2:
+B2RN W 0 A_JumpIf(z-floorz>0, "CustomState2Jump")
+B2RN W 4 
+B2RN X 6
+Goto Spawn+1
+CustomState2Jump:
+B2RN Y 4  
+B2RN Z 6
+Goto Spawn+1
+
+Kamila:
+BURN S 0 A_TakeInventory("BurnermanRaiseFlag",99)
+BURN S 0 A_TakeInventory("BurnermanRaiseFlag2",99)
+BURN SSTTUU 1 A_JumpIf(z-floorz<=0, "Spawn")
+BURN U 0 A_JumpIfInventory("BurnerDiveFlag",1,"Kamila")
+Goto Spawn+1
+
 
 ClassPain:
 BURN H 0
@@ -100,4 +181,21 @@ ClassDeath:
 BURN H 0
 goto DeathContinue
 }
+}
+
+Actor BurnermanM1Flag : Powerup
+{
+ powerup.duration 1
+}
+  
+Actor BurnermanRaiseFlag : Inventory
+{
+ inventory.maxamount 3
+ -invbar
+} 
+
+Actor BurnermanRaiseFlag2 : Inventory
+{
+ inventory.maxamount 1
+ -invbar
 }
