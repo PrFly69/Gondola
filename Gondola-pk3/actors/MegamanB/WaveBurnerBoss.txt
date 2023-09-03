@@ -18,6 +18,7 @@ Ready:
 BRHD J 0 ACS_ExecuteAlways(998,0,DYE_BURNERMAN)
 goto Ready2
 Ready2:
+TNT1 A 0 A_TakeInventory("BurnermanM1Flag",1)
 BRHD J 0 A_JumpIfInventory("BossBurnerAmmo",4,"Ready2a")
 BRHD J 0 A_JumpIfInventory("BossBurnerAmmo2",28,"Ready2b")
 BRHD J 2 A_WeaponReady(WRF_NOFIRE | WRF_ALLOWRELOAD)
@@ -65,7 +66,8 @@ TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 BRHD J 1 A_Raise
 loop
 
-Fire:
+Fire: 
+TNT1 A 0 A_GiveInventory("BurnermanM1Flag",1)  
 BRHD J 1 Offset(-30, 31)
 BRHD B 1 Offset(-55, 30)
 goto FireH0
@@ -241,7 +243,8 @@ BRHD J 0 A_TakeInventory("WaveBurnerFlag",99)
 BRHD J 0 A_TakeInventory("UseTrap",999)
 Goto Ready2
 
-Altfire:
+Altfire:   
+BRHD I 0 A_GiveInventory("BurnerDashFlag",1)
 BRHD J 0 A_JumpIfInventory("BossBurnerAmmo2",28,"JumpCheck")
 goto Clear
 JumpCheck:
@@ -257,6 +260,7 @@ TNT1 A 0 A_GiveInventory("BossBurnerAmmo2",2)
 goto Ready2
 
 SlideSlide://IKLM
+BRHD I 0 //A_GiveInventory("BurnerDashFlag",1)
 BRHD DEFGHI 1 A_GiveInventory("BossBurnerAmmo",3)
 BRHD I 0 SetPlayerProperty(0,1,0)
 
@@ -330,9 +334,10 @@ goto Clear
 
 HoverBegin:
 BRHD D 0 A_ChangeFlag("NOGRAVITY",1)
-BRHD D 0 SetPlayerProperty(0,1,0)
+BRHD D 0 SetPlayerProperty(0,1,0) 
+BRHD O 0 ACS_NamedExecuteAlways("BULL_SetState",0,1)
 goto HoverTime
-HoverTime:
+HoverTime:  
 BRHD D 0 A_GiveInventory("BurnerHoverTime_P",1)
 BRHD D 0 A_GiveInventory("BurnerRiseSound_P",1)
 BRHD D 1 Offset(0,30)
@@ -356,7 +361,7 @@ HoverAmmo2:
 BRHD U 0 A_JumpIfInventory("BossBurnerAmmo2",1,"HoverTime3")
 goto Launch
 
-HoverTime3:
+HoverTime3: 
 BRHD T 0 A_GiveInventory("BurnerHoverTime_P",1)
 BRHD T 0 A_GiveInventory("BurnerRiseSound_P",1)
 BRHD T 1 Offset(0,30)
@@ -378,36 +383,36 @@ BRHD D 0 SetPlayerProperty(0,1,0)
 BRHD D 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
 BRHD D 0 A_GiveInventory("BurnerDiveFlag",1)
 BRHD D 0 A_TakeInventory("BossBurnerAmmo2",56)
-BRHD D 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD D 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD D 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD D 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD D 0 A_ChangeVelocity(45,0,-4.5,3)//A_ChangeVelocity(60,0,-6,3)
 BRHD E 1 A_JumpIf(z-floorz<8,"GroundHit")
-BRHD E 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD E 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD E 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD E 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD E 0 A_ChangeVelocity(45,0,-4.5,3)
 BRHD F 1 A_JumpIf(z-floorz<8,"GroundHit")
-BRHD F 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD F 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD F 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD F 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD F 0 A_ChangeVelocity(45,0,-4.5,3)
 BRHD G 1 A_JumpIf(z-floorz<8,"GroundHit")
-BRHD G 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD G 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD G 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD G 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD G 0 A_ChangeVelocity(45,0,-4.5,3)
 BRHD H 1 A_JumpIf(z-floorz<8,"GroundHit")
-BRHD H 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD H 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD H 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD H 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD H 0 A_ChangeVelocity(45,0,-4.5,3)
 BRHD I 1 Offset(0,36) A_JumpIf(z-floorz<8,"GroundHit")
-BRHD I 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD I 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD I 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD I 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD I 0 A_ChangeVelocity(45,0,-4.5,3)
 goto LaunchWait
 
 LaunchWait:
 BRHD V 0 A_GiveInventory("BurnerDiveFlag",1)
 BRHD V 1 Offset(0,36)A_JumpIf(z-floorz<8,"GroundHit")
-BRHD V 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD V 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD V 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD V 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD V 0 A_JumpIf(pitch<360 && pitch>=270 || pitch>=0 && pitch<=10, "UpLimit")//Looking up/looking straight/down a little
 BRHD V 0 A_ChangeVelocity(cos(pitch)*45,0,-sin(pitch)*45,3)//60
 goto LaunchWait2
@@ -419,8 +424,8 @@ goto LaunchWait2
 LaunchWait2:
 BRHD V 0 A_JumpIfInventory("BurnerDiveFlag",500,"GroundHit")
 BRHD V 1 Offset(0,28)A_JumpIf(z-floorz<8,"GroundHit")
-BRHD V 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD V 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD V 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD V 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD V 0 A_JumpIf(pitch<360 && pitch>=270 || pitch>=0 && pitch<=10, "UpLimit2")
 BRHD V 0 A_ChangeVelocity(cos(pitch)*45,0,-sin(pitch)*45,3)
 goto LaunchWait3
@@ -434,8 +439,8 @@ goto LaunchWait3
 LaunchWait3:
 BRHD W 0 A_GiveInventory("BurnerDiveFlag",1)
 BRHD W 1 Offset(0,36)A_JumpIf(z-floorz<8,"GroundHit")
-BRHD W 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD W 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD W 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD W 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD W 0 A_JumpIf(pitch<360 && pitch>=270 || pitch>=0 && pitch<=10, "UpLimit3")//Looking up/looking straight/down a little
 BRHD W 0 A_ChangeVelocity(cos(pitch)*45,0,-sin(pitch)*45,3)//60
 goto LaunchWait4
@@ -447,8 +452,8 @@ goto LaunchWait4
 LaunchWait4:
 BRHD W 0 A_JumpIfInventory("BurnerDiveFlag",500,"GroundHit")
 BRHD W 1 Offset(0,28)A_JumpIf(z-floorz<8,"GroundHit")
-BRHD W 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD W 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD W 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD W 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD W 0 A_JumpIf(pitch<360 && pitch>=270 || pitch>=0 && pitch<=10, "UpLimit4")
 BRHD W 0 A_ChangeVelocity(cos(pitch)*45,0,-sin(pitch)*45,3)
 goto LaunchWait5
@@ -462,8 +467,8 @@ goto LaunchWait5
 LaunchWait5:
 BRHD X 0 A_GiveInventory("BurnerDiveFlag",1)
 BRHD X 1 Offset(0,36)A_JumpIf(z-floorz<8,"GroundHit")
-BRHD X 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD X 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD X 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD X 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD X 0 A_JumpIf(pitch<360 && pitch>=270 || pitch>=0 && pitch<=10, "UpLimit5")//Looking up/looking straight/down a little
 BRHD X 0 A_ChangeVelocity(cos(pitch)*45,0,-sin(pitch)*45,3)//60
 goto LaunchWait6
@@ -475,8 +480,8 @@ goto LaunchWait6
 LaunchWait6:
 BRHD X 0 A_JumpIfInventory("BurnerDiveFlag",500,"GroundHit")
 BRHD X 1 Offset(0,28)A_JumpIf(z-floorz<8,"GroundHit")
-BRHD X 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD X 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD X 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD X 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD X 0 A_JumpIf(pitch<360 && pitch>=270 || pitch>=0 && pitch<=10, "UpLimit6")
 BRHD X 0 A_ChangeVelocity(cos(pitch)*45,0,-sin(pitch)*45,3)
 goto LaunchWait7
@@ -490,8 +495,8 @@ goto LaunchWait7
 LaunchWait7:
 BRHD Y 0 A_GiveInventory("BurnerDiveFlag",1)
 BRHD Y 1 Offset(0,36)A_JumpIf(z-floorz<8,"GroundHit")
-BRHD Y 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD Y 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD Y 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD Y 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD Y 0 A_JumpIf(pitch<360 && pitch>=270 || pitch>=0 && pitch<=10, "UpLimit7")//Looking up/looking straight/down a little
 BRHD Y 0 A_ChangeVelocity(cos(pitch)*45,0,-sin(pitch)*45,3)//60
 goto LaunchWait8
@@ -503,8 +508,8 @@ goto LaunchWait8
 LaunchWait8:
 BRHD Y 0 A_JumpIfInventory("BurnerDiveFlag",500,"GroundHit")
 BRHD Y 1 Offset(0,28)A_JumpIf(z-floorz<8,"GroundHit")
-BRHD Y 0 A_SpawnItemEX("BurnerFlameTrail",2,12,0,0,0,0,0,1)
-BRHD Y 0 A_SpawnItemEX("BurnerFlameTrail",2,-12,0,0,0,0,0,1)
+BRHD Y 0 A_SpawnItemEX("BurnerFlameTrail",22,12,70,0,0,8,0,1)
+BRHD Y 0 A_SpawnItemEX("BurnerFlameTrail",22,-12,70,0,0,8,0,1)
 BRHD Y 0 A_JumpIf(pitch<360 && pitch>=270 || pitch>=0 && pitch<=10, "UpLimit8")
 BRHD Y 0 A_ChangeVelocity(cos(pitch)*45,0,-sin(pitch)*45,3)
 goto LaunchWait
@@ -547,6 +552,7 @@ BRHD A 0 //A_TakeInventory("BurnerAnimFlag",1)
 goto Ready2
 
 Reload://JNOPQR
+BRHD J 1 
 BRHD J 1
 BRHD J 0 A_JumpIfInventory("BossBurnerAmmo",56,"ThrowTrapsOK")
 BRHD J 1
@@ -555,11 +561,12 @@ TNT1 A 0 A_GiveInventory("BossBurnerAmmo2",2)
 goto Ready2
 
 ThrowTrapsOK:
+BRHD O 0 ACS_NamedExecuteAlways("BULL_SetState",0,2)
 BRHD JNO 1
 BRHD O 0 A_GiveInventory("UseTrapX",1)
 BRHD O 0 A_PlaySoundEx("weapon/BombThrow","Weapon")
 BRHD O 0 A_GiveInventory("BurnermanOther_CI",1)
-BRHD PPQR 1
+BRHD PPQR 1  
 BRHD A 0 A_TakeInventory("BossBurnerAmmo",56)
 TNT1 A 9 offset(18,88)
 BRHD J 1 offset(18,88)
@@ -1176,69 +1183,69 @@ TNT1 A 0 A_TakeInventory("WaveBurnerFlag",2)
 stop
 }
 }
-
+ 
 actor BurnermanMain1_CI : TeamColor_CI_B{states{
-FireX:TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,0,1,8,0)goto Done
-FireB:TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",0,1,8,0)goto Done
-FireR:TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",0,1,8,0)goto Done
-FireO:TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",0,1,8,0)goto Done
-FireP:TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",0,1,8,0)goto Done}}
+FireX: TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,0,1,8,0)goto Done
+FireB: TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",0,1,8,0)goto Done
+FireR: TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",0,1,8,0)goto Done
+FireO: TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",0,1,8,0)goto Done
+FireP: TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",0,1,8,0)goto Done}}
 
 actor BurnermanMain2_CI : TeamColor_CI_B{states{
-FireX:TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,5,0,8,0)goto Done
-FireB:TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",5,0,8,0)goto Done
-FireR:TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",5,0,8,0)goto Done
-FireO:TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",5,0,8,0)goto Done
-FireP:TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",5,0,8,0)goto Done}}
+FireX: TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,5,0,8,0)goto Done
+FireB: TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",5,0,8,0)goto Done
+FireR: TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",5,0,8,0)goto Done
+FireO: TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",5,0,8,0)goto Done
+FireP: TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",5,0,8,0)goto Done}}
 
 actor BurnermanMain3_CI : TeamColor_CI_B{states{
-FireX:TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,10,1,8,0)goto Done
-FireB:TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",10,1,8,0)goto Done
-FireR:TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",10,1,8,0)goto Done
-FireO:TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",10,1,8,0)goto Done
-FireP:TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",10,1,8,0)goto Done}}
+FireX: TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,10,1,8,0)goto Done
+FireB: TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",10,1,8,0)goto Done
+FireR: TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",10,1,8,0)goto Done
+FireO: TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",10,1,8,0)goto Done
+FireP: TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",10,1,8,0)goto Done}}
 
 actor BurnermanMain4_CI : TeamColor_CI_B{states{
-FireX:TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,15,0,8,0)goto Done
-FireB:TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",15,0,8,0)goto Done
-FireR:TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",15,0,8,0)goto Done
-FireO:TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",15,0,8,0)goto Done
-FireP:TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",15,0,8,0)goto Done}}
+FireX: TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,15,0,8,0)goto Done
+FireB: TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",15,0,8,0)goto Done
+FireR: TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",15,0,8,0)goto Done
+FireO: TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",15,0,8,0)goto Done
+FireP: TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",15,0,8,0)goto Done}}
 
 actor BurnermanMain5_CI : TeamColor_CI_B{states{
-FireX:TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,-5,0,8,0)goto Done
-FireB:TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",-5,0,8,0)goto Done
-FireR:TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",-5,0,8,0)goto Done
-FireO:TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",-5,0,8,0)goto Done
-FireP:TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",-5,0,8,0)goto Done}}
+FireX: TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,-5,0,8,0)goto Done
+FireB: TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",-5,0,8,0)goto Done
+FireR: TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",-5,0,8,0)goto Done
+FireO: TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",-5,0,8,0)goto Done
+FireP: TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",-5,0,8,0)goto Done}}
 
 actor BurnermanMain6_CI : TeamColor_CI_B{states{
-FireX:TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,-10,1,8,0)goto Done
-FireB:TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",-10,1,8,0)goto Done
-FireR:TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",-10,1,8,0)goto Done
-FireO:TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",-10,1,8,0)goto Done
-FireP:TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",-10,1,8,0)goto Done}}
+FireX: TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,-10,1,8,0)goto Done
+FireB: TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",-10,1,8,0)goto Done
+FireR: TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",-10,1,8,0)goto Done
+FireO: TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",-10,1,8,0)goto Done
+FireP: TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",-10,1,8,0)goto Done}}
 
 actor BurnermanMain7_CI : TeamColor_CI_B{states{
-FireX:TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,-15,0,8,0)goto Done
-FireB:TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",-15,0,8,0)goto Done
-FireR:TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",-15,0,8,0)goto Done
-FireO:TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",-15,0,8,0)goto Done
-FireP:TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",-15,0,8,0)goto Done}}
+FireX: TNT1 A 0 A_FireCustomMissile("WaveBurnBoss" ,-15,0,8,0)goto Done
+FireB: TNT1 A 0 A_FireCustomMissile("WaveBurnBossB",-15,0,8,0)goto Done
+FireR: TNT1 A 0 A_FireCustomMissile("WaveBurnBossR",-15,0,8,0)goto Done
+FireO: TNT1 A 0 A_FireCustomMissile("WaveBurnBossO",-15,0,8,0)goto Done
+FireP: TNT1 A 0 A_FireCustomMissile("WaveBurnBossP",-15,0,8,0)goto Done}}
 
 actor BurnermanMain8_CI : TeamColor_CI_B{states{
-FireX:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBoss" ,0,1,8,0)goto Done
-FireB:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossB",0,1,8,0)goto Done
-FireR:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossR",0,1,8,0)goto Done
-FireO:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossO",0,1,8,0)goto Done
-FireP:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossP",0,1,8,0)goto Done}}
+FireX: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBoss" ,0,1,8,0)goto Done
+FireB: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossB",0,1,8,0)goto Done
+FireR: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossR",0,1,8,0)goto Done
+FireO: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossO",0,1,8,0)goto Done
+FireP: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossP",0,1,8,0)goto Done}}
 
 actor BurnermanMain9_CI : TeamColor_CI_B{states{
-FireX:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBoss" ,0,0,8,0)goto Done
-FireB:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossB",0,0,8,0)goto Done
-FireR:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossR",0,0,8,0)goto Done
-FireO:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossO",0,0,8,0)goto Done
-FireP:TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossP",0,0,8,0)goto Done}}
+FireX: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBoss" ,0,0,8,0)goto Done
+FireB: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossB",0,0,8,0)goto Done
+FireR: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossR",0,0,8,0)goto Done
+FireO: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossO",0,0,8,0)goto Done
+FireP: TNT1 A 0 A_FireCustomMissile("WaveBurnUWBossP",0,0,8,0)goto Done}}
 
 actor BurnermanAlt1_CI : TeamColor_CI{states{
 FireX:TNT1 A 0 A_FireCustomMissile("BurnExplosion" ,0,0,0,0)goto Done
@@ -1285,3 +1292,4 @@ TNT1 A 0 A_FireCustomMissile("BurnerTrapP",10,0,-8,0)
 goto Done
 }
 }
+  
