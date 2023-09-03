@@ -552,8 +552,7 @@ BRHD A 0 //A_TakeInventory("BurnerAnimFlag",1)
 goto Ready2
 
 Reload://JNOPQR
-BRHD J 1 
-BRHD J 1
+BRHD J 1  
 BRHD J 0 A_JumpIfInventory("BossBurnerAmmo",56,"ThrowTrapsOK")
 BRHD J 1
 TNT1 A 0 A_GiveInventory("BossBurnerAmmo",4)
