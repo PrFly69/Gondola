@@ -3964,6 +3964,11 @@ CHANGELOG
 
 
 =====2.6.2
+
+==General
+-Added mugshot frames
+-Old mugshots can be toggled in the options menu under "Original Mugshot Style"
+
 ==Copyweapons
 -Fixed Copywep Display for CBM-exclusive weapons
 
@@ -4149,6 +4154,9 @@ CHANGELOG
 
 ==Groundman
 -Fixed Black Hole Bomb interaction while digging
+
+==Burnerman
+-Ported V-Classes skinsprites
 
 ==Jewelman
 -Added extra skinsprites, ported from CBM
