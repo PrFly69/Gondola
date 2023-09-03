@@ -1079,42 +1079,143 @@ TNT1 A 0 A_JumpIfInventory("GigaMans",3,"Wep4")
 TNT1 A 0 A_JumpIfInventory("GigaMans",2,"Wep3")
 TNT1 A 0 A_JumpIfInventory("GigaMans",1,"Wep2")
 TNT1 A 0 A_GiveInventory("GigaMans",1)
-TNT1 A 0 A_SelectWeapon("EvilFistCSword")
+TNT1 A 0 A_GiveInventory("EvilFistCSwordSelecc",1)//A_SelectWeapon("EvilFistCSword")
 fail
 Wep2:
 TNT1 A 0 A_GiveInventory("GigaMans",1)
-TNT1 A 0 A_SelectWeapon("EvilFistCBomb")
+TNT1 A 0 A_GiveInventory("EvilFistCBombSelecc",1)//A_SelectWeapon("EvilFistCBomb")
 fail
 Wep3:
 TNT1 A 0 A_GiveInventory("GigaMans",1)
-TNT1 A 0 A_SelectWeapon("EvilFistCTornado")
+TNT1 A 0 A_GiveInventory("EvilFistCTornadoSelecc",1)//A_SelectWeapon("EvilFistCTornado")
 fail
 Wep4:
 TNT1 A 0 A_GiveInventory("GigaMans",1)
-TNT1 A 0 A_SelectWeapon("EvilFistCElec")
+TNT1 A 0 A_GiveInventory("EvilFistCElecSelecc",1)//A_SelectWeapon("EvilFistCElec")
 fail
 Wep5:
 TNT1 A 0 A_GiveInventory("GigaMans",1)
-TNT1 A 0 A_SelectWeapon("EvilFistCMissile")
+TNT1 A 0 A_GiveInventory("EvilFistCMissileSelecc",1)//A_SelectWeapon("EvilFistCMissile")
 fail
 Wep6:
 TNT1 A 0 A_GiveInventory("GigaMans",1)
-TNT1 A 0 A_SelectWeapon("EvilFistCWatar")
+TNT1 A 0 A_GiveInventory("EvilFistCWatarSelecc",1)//A_SelectWeapon("EvilFistCWatar")
 fail
 Wep7:
 TNT1 A 0 A_GiveInventory("GigaMans",1)
-TNT1 A 0 A_SelectWeapon("EvilFistCIce")
+TNT1 A 0 A_GiveInventory("EvilFistCIceSelecc",1)//A_SelectWeapon("EvilFistCIce")
 fail
 Wep8:
 TNT1 A 0 A_GiveInventory("GigaMans",1)
-TNT1 A 0 A_SelectWeapon("EvilFistCAstro")
+TNT1 A 0 A_GiveInventory("EvilFistCAstroSelecc",1)//A_SelectWeapon("EvilFistCAstro")
 fail
 Wep9: 
-TNT1 A 0 A_SelectWeapon("EvilFistC")
+TNT1 A 0 A_GiveInventory("EvilFistCSelecc",1)//A_SelectWeapon("EvilFistC")
 TNT1 A 0 A_TakeInventory("GigaMans",99)
 fail 
 }
 }
+//zandronum sux
+actor EvilFistCSwordSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistCSword")
+stop
+}
+} 
+actor EvilFistCBombSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistCBomb")
+stop
+}
+} 
+actor EvilFistCTornadoSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistCTornado")
+stop
+}
+} 
+actor EvilFistCTornadoSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistCTornado")
+stop
+}
+} 
+actor EvilFistCElecSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistCElec")
+stop
+}
+} 
+actor EvilFistCMissileSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistCMissile")
+stop
+}
+} 
+actor EvilFistCWatarSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistCWatar")
+stop
+}
+} 
+actor EvilFistCIceSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistCIce")
+stop
+}
+} 
+actor EvilFistCAstroSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistCAstro")
+stop
+}
+} 
+actor EvilFistCSelecc : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 
+TNT1 A 1 A_SelectWeapon("EvilFistC")
+stop
+}
+} 
 
 actor TrioSpectrum
 {
