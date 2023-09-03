@@ -1,5 +1,6 @@
 actor Saturn : ClassBase //135
 {
+Player.StartItem "IFMM0V", 1
 Player.ScoreIcon "C_0VF0X"
 player.displayname "Saturn"
 player.soundclass "saturnc"

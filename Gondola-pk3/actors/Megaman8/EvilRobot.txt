@@ -1,5 +1,6 @@
 actor Trio : ClassBase //115
 {
+Player.StartItem "IFMM08", 1
 Player.ScoreIcon "C_08K0X"
 player.displayname "EvilRobot"
 player.soundclass "Evilrobotc"

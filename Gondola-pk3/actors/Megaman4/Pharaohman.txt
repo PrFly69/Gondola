@@ -1,5 +1,6 @@
 actor Pharaohman : ClassBase
 {
+Player.StartItem "IFMM04", 1
 Player.ScoreIcon "C_04D0X"
 player.maxhealth 100
 health 100

@@ -5,6 +5,7 @@
 
   Actor Heatman : ClassBase //90
   {
+    Player.StartItem "IFMM02", 1
     Player.ScoreIcon "C_02G0X"
 	Player.DisplayName "heatman"
 	Player.SoundClass "heatmanc"

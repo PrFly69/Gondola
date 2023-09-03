@@ -1,5 +1,6 @@
 actor Flameman : ClassBase
 {
+Player.StartItem "IFMM06", 1
 Player.ScoreIcon "C_06C0X"
 player.displayname "Flameman"
 player.soundclass "flamemanc"

@@ -1,5 +1,6 @@
 actor DrWily : ClassBase //85
 {
+Player.StartItem "IFMM02", 1
 Player.ScoreIcon "C_02I0X"
 //player.startitem "GlassHealthBar"
 player.displayname "DrWily"

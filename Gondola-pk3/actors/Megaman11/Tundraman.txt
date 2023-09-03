@@ -1,5 +1,6 @@
 actor TundraMan : ClassBase
 {
+Player.StartItem "IFMM11", 1
 Player.ScoreIcon "C_11E0X"
 player.displayname "Tundraman"
 player.soundclass "tundramanc"

@@ -1,5 +1,6 @@
 actor Tornadoman : ClassBase
 {
+Player.StartItem "IFMM09", 1
 Player.ScoreIcon "C_09B0X"
 player.displayname "Tornadoman"
 player.soundclass "tornadomanc"

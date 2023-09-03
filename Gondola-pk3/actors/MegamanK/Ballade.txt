@@ -1,5 +1,6 @@
 actor Ballade : ClassBase //85
 {
+Player.StartItem "IFMM0K", 1
 Player.ScoreIcon "C_0KC0X"
 player.displayname "Ballade"
 player.soundclass "balladec"

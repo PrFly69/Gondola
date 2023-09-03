@@ -1,5 +1,6 @@
 actor Groundman : ClassBase
 {
+Player.StartItem "IFMMAB", 1
 Player.ScoreIcon "C_0BC0X"
 player.displayname "Groundman"
 player.soundclass "groundmanc"

@@ -1,5 +1,6 @@
 actor Crystalman : ClassBase //110
 {
+Player.StartItem "IFMM05", 1
 Player.ScoreIcon "C_05H0X"
 
 player.displayname "crystalman"

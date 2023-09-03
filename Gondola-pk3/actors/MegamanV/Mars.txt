@@ -1,5 +1,6 @@
 actor Mars : ClassBase
 {
+Player.StartItem "IFMM0V", 1
 Player.ScoreIcon "C_0VD0X"
 player.displayname "Mars"
 player.soundclass "marsc"

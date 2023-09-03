@@ -1,5 +1,6 @@
 actor Sheepman : ClassBase //85. only 85????? lets try 90
 {
+Player.StartItem "IFMM10", 1
 Player.ScoreIcon "C_10E0X"
 player.displayname "sheepman"
 player.soundclass "sheepmanc"

@@ -1,5 +1,6 @@
 actor Astroman : ClassBase
 {
+Player.StartItem "IFMM08", 1
 Player.ScoreIcon "C_08B0X"
 player.displayname "Astroman"
 player.soundclass "astromanc"

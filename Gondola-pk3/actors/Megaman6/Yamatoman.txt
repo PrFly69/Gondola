@@ -1,5 +1,6 @@
 actor Yamatoman : ClassBase //115
 {
+Player.StartItem "IFMM06", 1
 Player.ScoreIcon "C_06H0X"
 player.displayname "Yamatoman"
 player.soundclass "yamatomanc"

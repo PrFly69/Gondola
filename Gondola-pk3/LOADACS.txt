@@ -28,3 +28,4 @@ BNCACS
 HSCRL
 JUPACS
 CULACS//i promise ill someday put all my stupid acss in 1 single file
+HUDNUM

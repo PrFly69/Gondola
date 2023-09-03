@@ -252,8 +252,33 @@ InInventory TimeStoppedCounter,1{DrawImage"FLASHS",36,0;}
 
 InInventory not NoHealthBar,1{
 
+//Mugshot Frames
+InInventory not NoMugshotFrames, 1{
+InInventory IFMM00{DrawImage "CPBMM00",32,38;}
+InInventory IFMM01{DrawImage "CPBMM01",32,38;}
+InInventory IFMM02{DrawImage "CPBMM02",32,38;}
+InInventory IFMM03{DrawImage "CPBMM03",32,38;}
+InInventory IFMM04{DrawImage "CPBMM04",32,38;}
+InInventory IFMM05{DrawImage "CPBMM05",32,38;}
+InInventory IFMM06{DrawImage "CPBMM06",32,38;}
+InInventory IFMM07{DrawImage "CPBMM07",32,38;}
+InInventory IFMM08{DrawImage "CPBMM08",32,38;}
+InInventory IFMM09{DrawImage "CPBMM09",32,38;}
+InInventory IFMM10{DrawImage "CPBMM10",32,38;}
+InInventory IFMM11{DrawImage "CPBMM11",32,38;}
+InInventory IFMMAB{DrawImage "CPBMMAB",32,38;}
+InInventory IFMM0K{DrawImage "CPBMM0K",32,38;}
+InInventory IFMM0V{DrawImage "CPBMM0V",32,38;}
+InInventory IFMMWT{DrawImage "CPBMMWT",32,38;}
+InInventory IFMM0D{DrawImage "CPBMM0D",32,38;}
+DrawImage playericon,34,40;//24
+DrawMugShot 1,34,40;
+}
+
+InInventory NoMugshotFrames, 1{
 DrawImage playericon,20,0;//24
 DrawMugShot 1,20,0;
+}
 
 InInventory StaminaFlag||UnSolid,1{
 	InInventory ForceStaminaFlag{InInventory not StaminaFlag,500{
@@ -750,7 +775,12 @@ IsSelected BlackHoleBombBoss
     Drawbar"GALBAR","BAREMPTY",Ammo1,vertical,16,8;
 	DrawBar "MV_A_BAR", "NOBAR",PowerupTime Blackholecooldownindicatorbar, vertical, 16,8;
 	DrawImage "GALRICON",32,55;
-	DrawImage "C_09H0X",20,0;
+	
+	
+	InInventory not NoMugshotFrames, 1{DrawImage "C_09H0X",34,40;}
+	InInventory NoMugshotFrames, 1{DrawImage "C_09H0X",20,0;}
+	
+	
 	InInventory GalaxyPortFlag
 	{
 	DrawImage "G4LR1C0N",32,55;
@@ -868,8 +898,8 @@ IsSelected RemoteMineBoss{Drawbar"0B_D_BAR","BAREMPTY",Ammo1,vertical,16,8;
 }
 IsSelected WaveBurnerBoss{Drawbar"BARAMM57","BAREMPTY",Ammo1,vertical,16,8;
 						  DrawImage"BUNRICON",32,55;
-	InInventory BossBurnerAmmo2,84{Drawbar"BARAMX52","BAREMPTY",Ammo2,vertical,8,8;}
-	else {Drawbar"BARAMM52","BAREMPTY",Ammo2,vertical,8,8;}}
+	InInventory BossBurnerAmmo2,84{Drawbar"BARAMM52","BAREMPTY",Ammo2,vertical,8,8;}
+	else {Drawbar"BARAMX52","BAREMPTY",Ammo2,vertical,8,8;}}
 WeaponAmmo SnortSnortAmmo{Drawbar"BARAMM58","BAREMPTY",Ammo1,vertical,16,8;}
 IsSelected KingAxeBoss,KingShieldBoss{Drawbar"0B_K_BAR","BAREMPTY",Ammo1,vertical,16,8;
 	Drawbar"BARAMM41","BAREMPTY",TheKingShieldFlag,vertical,8,8;

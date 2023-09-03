@@ -1,5 +1,6 @@
 actor Punk : ClassBase
 {
+Player.StartItem "IFMM0K", 1
 Player.ScoreIcon "C_0KB0X"
 player.displayname "Punk"
 player.soundclass "punkc"

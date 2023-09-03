@@ -1,5 +1,6 @@
 actor Solarman : ClassBase //100
 {
+Player.StartItem "IFMM10", 1
 Player.ScoreIcon "C_10H0X"
 player.displayname "solarman"
 player.soundclass "solarmanc"

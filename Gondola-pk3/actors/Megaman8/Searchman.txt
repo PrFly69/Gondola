@@ -1,5 +1,6 @@
 actor Searchman : ClassBase //90
 {
+Player.StartItem "IFMM08", 1
 Player.ScoreIcon "C_08E0X"
 player.displayname "Searchman"
 player.soundclass "searchmanc"

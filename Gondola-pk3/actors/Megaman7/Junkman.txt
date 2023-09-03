@@ -1,5 +1,6 @@
 actor Junkman : ClassBase
 {
+Player.StartItem "IFMM07", 1
 Player.ScoreIcon "C_07B0X"
 player.displayname "Junkman"
 player.soundclass "junkmanc"

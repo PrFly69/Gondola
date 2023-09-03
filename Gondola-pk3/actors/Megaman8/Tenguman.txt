@@ -1,5 +1,6 @@
 actor Tenguman : ClassBase
 {
+Player.StartItem "IFMM08", 1
 Player.ScoreIcon "C_08A0X"
 player.displayname "Tenguman"
 player.soundclass "tengumanc"

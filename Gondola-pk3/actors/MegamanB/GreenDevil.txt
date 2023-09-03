@@ -1,5 +1,6 @@
 actor GreenDevil : ClassBase //200
 {
+Player.StartItem "IFMMAB", 1
 Player.ScoreIcon "C_00X0X"
 player.displayname "GreenDevil"
 player.soundclass "BearerClassC"

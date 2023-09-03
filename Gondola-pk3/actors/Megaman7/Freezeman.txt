@@ -1,5 +1,6 @@
 actor Freezeman : ClassBase
 {
+Player.StartItem "IFMM07", 1
 Player.ScoreIcon "C_07A0X"
 player.displayname "Freezeman"
 player.soundclass "freezemanc"

@@ -1,5 +1,6 @@
 actor LightRyu : ClassBase //90
 {//LightHealthBar ha ha ha get it? //yes. yes i did.
+Player.StartItem "IFMM00", 1 
 Player.ScoreIcon "C_00R0X"
 player.displayname "DrLight"
 player.soundclass "lightc"

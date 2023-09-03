@@ -1,5 +1,6 @@
 actor Maestro : ClassBase //85
 {
+Player.StartItem "IFMM00", 1
 Player.ScoreIcon "C_00C0X"
 player.displayname "Maestro"
 player.soundclass "rockmanc"

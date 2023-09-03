@@ -1,5 +1,6 @@
 actor Quint : ClassBase //classes that should probably be 85. can you tell it's late and i'm coding again?
 {
+Player.StartItem "IFMM0K", 1
 Player.ScoreIcon "C_0KD0X"
 player.displayname "Quint"
 player.soundclass "quintc"

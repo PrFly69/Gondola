@@ -1,5 +1,6 @@
 actor Terra : ClassBase //90
 {
+Player.StartItem "IFMM0V", 1
 Player.ScoreIcon "C_0VA0X"
 player.displayname "terra"
 player.soundclass "terrac"

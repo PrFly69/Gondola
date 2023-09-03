@@ -5,6 +5,7 @@
 
 	actor Enker : ClassBase
 	{
+    Player.StartItem "IFMM0K", 1
 	Player.ScoreIcon "C_0KA0X"
 	player.displayname "Enker"
 	player.soundclass "enkerc"

@@ -1,5 +1,6 @@
 actor Blademan : ClassBase //85
 {
+Player.StartItem "IFMM10", 1
 Player.ScoreIcon "C_10A0X"
 player.displayname "Blademan"
 player.soundclass "blademanc"

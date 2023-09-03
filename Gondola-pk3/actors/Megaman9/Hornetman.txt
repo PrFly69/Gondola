@@ -1,5 +1,6 @@
 actor Hornetman : ClassBase
 {
+Player.StartItem "IFMM09", 1
 Player.ScoreIcon "C_09F0X"
 player.displayname "Hornetman"
 player.soundclass "hornetmanc"

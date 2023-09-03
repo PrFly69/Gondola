@@ -6,6 +6,7 @@ inventory.maxamount 1
 
 actor AutoClass : ClassBase
 {
+Player.StartItem "IFMM00", 1
 Player.ScoreIcon "C_00G0X"
 //player.startitem "MegaHealthBar"
 player.displayname "auto"

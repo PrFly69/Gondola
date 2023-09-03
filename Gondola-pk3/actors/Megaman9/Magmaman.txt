@@ -1,5 +1,6 @@
 actor Magmaman : ClassBase
 {
+Player.StartItem "IFMM09", 1
 Player.ScoreIcon "C_09G0X"
 player.displayname "Magmaman"
 player.soundclass "magmamanc"

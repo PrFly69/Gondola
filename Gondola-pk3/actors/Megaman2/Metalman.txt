@@ -1,5 +1,6 @@
 actor Metalman : ClassBase //75
 {
+Player.StartItem "IFMM02", 1
 Player.ScoreIcon "C_02A0X"
 player.displayname "metalman"
 player.soundclass "metalmanc"

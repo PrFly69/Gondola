@@ -1,5 +1,6 @@
 actor Protoman : ClassBase //85
 {
+Player.StartItem "IFMM00", 1
 Player.ScoreIcon "C_00A0X"
 player.displayname "Protoman"
 player.soundclass "protomanc"

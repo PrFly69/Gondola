@@ -239,8 +239,33 @@ InInventory TimeStoppedCounter,1{DrawImage"FLASHS",36,0;}
 
 InInventory not NoHealthBar,1{
 
+//Mugshot Frames
+InInventory not NoMugshotFrames, 1{
+InInventory IFMM00{DrawImage "CPBMM00",186,182;}
+InInventory IFMM01{DrawImage "CPBMM01",186,182;}
+InInventory IFMM02{DrawImage "CPBMM02",186,182;}
+InInventory IFMM03{DrawImage "CPBMM03",186,182;}
+InInventory IFMM04{DrawImage "CPBMM04",186,182;}
+InInventory IFMM05{DrawImage "CPBMM05",186,182;}
+InInventory IFMM06{DrawImage "CPBMM06",186,182;}
+InInventory IFMM07{DrawImage "CPBMM07",186,182;}
+InInventory IFMM08{DrawImage "CPBMM08",186,182;}
+InInventory IFMM09{DrawImage "CPBMM09",186,182;}
+InInventory IFMM10{DrawImage "CPBMM10",186,182;}
+InInventory IFMM11{DrawImage "CPBMM11",186,182;}
+InInventory IFMMAB{DrawImage "CPBMMAB",186,182;}
+InInventory IFMM0K{DrawImage "CPBMM0K",186,182;}
+InInventory IFMM0V{DrawImage "CPBMM0V",186,182;}
+InInventory IFMMWT{DrawImage "CPBMMWT",186,182;}
+InInventory IFMM0D{DrawImage "CPBMM0D",186,182;} 
+DrawImage playericon,188,184;
+DrawMugShot 1,188,184;
+}
+
+InInventory NoMugshotFrames, 1{
 DrawImage playericon,186,184;
-DrawMugShot 1,188,185;
+DrawMugShot 1,186,184;
+}
 
 InInventory StaminaFlag||UnSolid,1{
 	InInventory ForceStaminaFlag{InInventory not StaminaFlag,500{
@@ -728,6 +753,9 @@ IsSelected HornetChaserBoss{DrawBar"VARAMM67","VAREMPTY",Ammo1,horizontal,58,184
 	 
 IsSelected BlackHoleBombBoss
     {
+	 
+	InInventory not NoMugshotFrames, 1{DrawImage "CPBMM09",186,182;}
+	 
 	Drawbar"GALBARJ","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar "MV_A_VAR", "VNOBAR", poweruptime Blackholecooldownindicatorbar, horizontal, 58,184;
 	
@@ -745,8 +773,10 @@ IsSelected BlackHoleBombBoss
 	{
 	DrawImage "GALRICON",178,175;
 	}
+	
+	InInventory not NoMugshotFrames, 1{DrawImage "C_09H0X",188,184;}
+	InInventory NoMugshotFrames, 1{DrawImage "C_09H0X",186,184;}
 	 
-	DrawImage "C_09H0X",188,185;
 	}  
 	
 IsSelected RevolverBusterBoss{DrawBar"VARAMM10","VAREMPTY",FakemanDashCounter,horizontal,58,184;
@@ -858,8 +888,8 @@ IsSelected RemoteMineBoss{Drawbar"0B_D_VAR","VAREMPTY",Ammo1,horizontal,58,184;
 }
 IsSelected WaveBurnerBoss{Drawbar"VARAMM57","VAREMPTY",Ammo1,horizontal,58,184;
 						  DrawImage"BUNRICON",178,175;
-	InInventory BossBurnerAmmo2,84{Drawbar"VARAMX52","VAREMPTY",Ammo2,horizontal,58,176;}
-	else {Drawbar"VARAMM52","VAREMPTY",Ammo2,horizontal,58,176;}}
+	InInventory BossBurnerAmmo2,84{Drawbar"VARAMM52","VAREMPTY",Ammo2,horizontal,58,176;}
+	else {Drawbar"VARAMX52","VAREMPTY",Ammo2,horizontal,58,176;}}
 WeaponAmmo SnortSnortAmmo{Drawbar"VARAMM58","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected KingAxeBoss,KingShieldBoss{Drawbar"0B_K_VAR","VAREMPTY",Ammo1,horizontal,58,184;
 	Drawbar"VARAMM41","VAREMPTY",TheKingShieldFlag,horizontal,58,176;
@@ -1086,7 +1116,7 @@ IsSelected DuoMeteorWepC{
 	}
 //Classes end
 
-}
+} 
 }
 
 mugshot "Normal"{{ST00} -1;}

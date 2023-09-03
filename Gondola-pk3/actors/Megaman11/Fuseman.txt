@@ -3,6 +3,7 @@
 
 actor Fuseman : ClassBase //85
 {
+    Player.StartItem "IFMM11", 1
 	Player.ScoreIcon "C_11A0X"
 	player.displayname "Fuseman"
 	player.soundclass "fusemanc"

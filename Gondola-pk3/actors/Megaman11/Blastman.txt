@@ -1,5 +1,6 @@
 actor Blastman : ClassBase //90
 {
+Player.StartItem "IFMM11", 1
 player.scoreicon "C_11B0X"
 player.displayname "blastman"
 player.soundclass "blastmanc"

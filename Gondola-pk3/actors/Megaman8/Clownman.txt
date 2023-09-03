@@ -1,5 +1,6 @@
 actor Clownman : ClassBase //90
 {
+Player.StartItem "IFMM08", 1
 Player.ScoreIcon "C_08D0X"
 player.displayname "Clownman"
 player.soundclass "clownmanc"

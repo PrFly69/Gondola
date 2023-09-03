@@ -1,5 +1,6 @@
 actor ColdMan : ClassBase //135, could be 115 smile
 {
+Player.StartItem "IFMMAB", 1
 Player.ScoreIcon "C_0BB0X"
 player.displayname "Coldman"
 player.soundclass "coldmanc"

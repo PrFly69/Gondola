@@ -5,6 +5,7 @@
 
   Actor Drillman : ClassBase //85
   {
+    Player.StartItem "IFMM04", 1
     Player.ScoreIcon "C_04C0X"
 	//Player.StartItem "LightHealthBar"
 	Player.DisplayName "drillman"

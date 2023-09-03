@@ -5,6 +5,7 @@
 
   Actor Pirateman : ClassBase //125
   {
+    Player.StartItem "IFMMAB", 1
     Player.ScoreIcon "C_0BD0X"
 	Player.DisplayName "Pirateman"
 	Player.SoundClass "piratemanC"

@@ -1,5 +1,6 @@
 actor RaThor : ClassBase //115
 {
+Player.StartItem "IFMM0K", 1
 Player.ScoreIcon "C_0KE0X"
 player.displayname "RaThor"
 player.soundclass "rathorc"

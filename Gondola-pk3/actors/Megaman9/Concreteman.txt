@@ -1,5 +1,6 @@
 actor Concreteman : ClassBase
 {
+Player.StartItem "IFMM09", 1
 Player.ScoreIcon "C_09A0X"
 player.displayname "Concreteman"
 player.soundclass "concretemanc"

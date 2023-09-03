@@ -1,0 +1,20 @@
+
+//Mugshot Frames
+ACTOR NoMugshotFrames : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM00 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM01 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM02 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM03 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM04 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM05 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM06 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM07 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM08 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM09 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM10 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM11 : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMMAB : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM0K : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM0V : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMMWT : Inventory { Inventory.MaxAmount 1 -INVBAR }
+ACTOR IFMM0D : Inventory { Inventory.MaxAmount 1 -INVBAR }

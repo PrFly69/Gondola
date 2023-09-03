@@ -1,5 +1,6 @@
 actor HyperStormH : ClassBase //200
 {
+Player.StartItem "IFMMWT", 1
 Player.ScoreIcon "C_WTC0X"
 player.displayname "HyperStormH"
 player.soundclass "hyperstormhc"

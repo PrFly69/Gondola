@@ -2,6 +2,7 @@
 
 actor Chillman : ClassBase //90
 {
+Player.StartItem "IFMM10", 1
 Player.ScoreIcon "C_10D0Y"
 player.displayname "Chillman"
 player.soundclass "chillmanc"

@@ -1,6 +1,7 @@
 // indented with decorate indenter by IvanDobrovski
 Actor Knightman : ClassBase //115 
 	{
+    Player.StartItem "IFMM06", 1
     Player.ScoreIcon "C_06D0X"
     Player.displayname "Knightman"
     Player.soundclass "knightmanc"

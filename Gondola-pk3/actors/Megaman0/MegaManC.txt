@@ -1,5 +1,6 @@
 actor MegamanC : ClassBase replaces Megaman
 {
+Player.StartItem "IFMM00", 1
 Player.ScoreIcon "C_00B0X"
 player.displayname "Megaman"
 player.soundclass "megamanc"

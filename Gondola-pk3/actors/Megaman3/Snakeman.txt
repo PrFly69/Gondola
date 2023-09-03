@@ -1,5 +1,6 @@
 actor Snakeman : ClassBase //85
 {
+Player.StartItem "IFMM03", 1
 Player.ScoreIcon "C_03F0X"
 player.displayname "snakeman"
 player.soundclass "snakemanc"

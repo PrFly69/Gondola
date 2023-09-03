@@ -1,5 +1,6 @@
 actor Swordman : ClassBase //155, maybe consider 185?
 {
+Player.StartItem "IFMM08", 1
 Player.ScoreIcon "C_08C0X"
 player.displayname "Swordman"
 player.soundclass "swordmanc"

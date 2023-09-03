@@ -1,5 +1,6 @@
 actor Sunstar : ClassBase //125
 {
+Player.StartItem "IFMM0V", 1
 Player.ScoreIcon "C_VSUN0X"
 player.displayname "Sunstar"
 player.soundclass "sunstarc"

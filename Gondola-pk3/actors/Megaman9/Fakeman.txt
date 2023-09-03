@@ -5,6 +5,7 @@
 
   Actor Fakeman : ClassBase
   {
+    Player.StartItem "IFMM09", 1
     Player.ScoreIcon "C_09I0X"
 	Player.DisplayName "Fakeman"
 	Player.SoundClass "fakemanc"

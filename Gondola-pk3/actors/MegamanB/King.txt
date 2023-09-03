@@ -1,5 +1,6 @@
 actor KingClass : ClassBase
 {
+Player.StartItem "IFMMAB", 1
 Player.ScoreIcon "C_0BG0X"
 player.displayname "King"
 player.soundclass "kingc"

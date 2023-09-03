@@ -1,0 +1,98 @@
+// HUD numbers by Jaxof7
+#library "hudnum"
+#include "zcommon.acs"
+
+bool ammoNum;
+bool healthNum;
+bool MugshotFrame;
+
+script "HUD_NUMBER_VAR_CHECK_OPEN" OPEN CLIENTSIDE
+{
+healthNum = GetUserCvar(ConsolePlayerNumber(),"mm8bdm_healthnumber");
+ammoNum = GetUserCvar(ConsolePlayerNumber(),"mm8bdm_ammonumber");
+MugshotFrame = GetUserCvar(ConsolePlayerNumber(),"GD_NoMugshotFrames");
+while(timer()<35*2) { // Fixes crash when doing map changes online
+	delay(1);
+}
+HealthNumOnCheck();
+AmmoNumOnCheck();
+MugshotFrameOnCheck();
+bool lastHealthNum = healthNum;
+bool lastAmmoNum = ammoNum;
+bool lastMugshotFrame = MugshotFrame;
+delay(1);
+while(true) {
+	healthNum = GetUserCvar(ConsolePlayerNumber(),"mm8bdm_healthnumber");
+	ammoNum = GetUserCvar(ConsolePlayerNumber(),"mm8bdm_ammonumber");
+	MugshotFrame = GetUserCvar(ConsolePlayerNumber(),"GD_NoMugshotFrames");
+	if (ammoNum!=lastAmmoNum) {
+		AmmoNumCheck();
+		lastAmmoNum = ammoNum;
+	}
+	if (healthNum!=lastHealthNum) {
+		HealthNumCheck();
+		lastHealthNum = healthNum;
+	}
+	if (MugshotFrame!=lastMugshotFrame) {
+		MugshotFrameCheck();
+		lastMugshotFrame = MugshotFrame;
+	}
+	delay(1);
+}
+}
+
+script "HUD_NUMBER_VAR_CHECK_ENTER" ENTER CLIENTSIDE
+{
+HealthNumOnCheck();
+AmmoNumOnCheck();
+MugshotFrameOnCheck();
+}
+
+script "HUD_NUMBER_VAR_CHECK_RESPAWN" RESPAWN CLIENTSIDE
+{
+HealthNumOnCheck();
+AmmoNumOnCheck();
+MugshotFrameOnCheck();
+}
+
+function void AmmoNumOnCheck (void) {
+	if(ammoNum) {
+		GiveInventory("AmmoNumberFlag",1);
+	}
+}
+
+function void AmmoNumCheck (void) {
+	if(ammoNum) {
+		GiveInventory("AmmoNumberFlag",1);
+	} else {
+		TakeInventory("AmmoNumberFlag",1);
+	}
+}
+
+function void HealthNumOnCheck (void) {
+	if(healthNum) {
+		GiveInventory("HealthNumberFlag",1);
+	}
+}
+
+function void HealthNumCheck (void) {
+	if(healthNum) {
+		GiveInventory("HealthNumberFlag",1);
+	} else {
+		TakeInventory("HealthNumberFlag",1);
+	}
+}
+
+function void MugshotFrameOnCheck (void) {
+	if(MugshotFrame) {
+		GiveInventory("NoMugshotFrames",1);
+	}
+}
+
+function void MugshotFrameCheck (void) {
+	if(MugshotFrame) {
+		GiveInventory("NoMugshotFrames",1);
+	} else {
+		TakeInventory("NoMugshotFrames",1);
+	}
+}

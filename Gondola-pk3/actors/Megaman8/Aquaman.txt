@@ -1,5 +1,6 @@
 actor Aquaman : ClassBase
 {
+Player.StartItem "IFMM08", 1
 Player.ScoreIcon "C_08H0X"
 player.displayname "Aquaman"
 player.soundclass "aquamanc"

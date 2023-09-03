@@ -1,5 +1,6 @@
 actor Uranus : ClassBase
 {
+Player.StartItem "IFMM0V", 1
 Player.ScoreIcon "C_0VG0X"
 player.displayname "Uranus"
 player.soundclass "uranusc"

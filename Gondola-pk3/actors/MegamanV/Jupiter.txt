@@ -1,5 +1,6 @@
 actor Jupiter : ClassBase
 {
+Player.StartItem "IFMM0V", 1
 Player.ScoreIcon "C_0VE0X"
 player.displayname "Jupiter"
 player.soundclass "jupiterc"

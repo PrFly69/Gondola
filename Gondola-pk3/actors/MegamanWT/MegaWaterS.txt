@@ -1,5 +1,6 @@
 actor MegaWaterS : ClassBase //90
 {
+Player.StartItem "IFMMWT", 1
 Player.ScoreIcon "C_WTB0X"
 player.displayname "MegaWaterS"
 player.soundclass "megawatersc"

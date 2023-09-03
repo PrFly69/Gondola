@@ -1,5 +1,6 @@
 actor Windman : ClassBase //125
 {
+Player.StartItem "IFMM06", 1
 Player.ScoreIcon "C_06G0X"
 player.displayname "Windman"
 player.soundclass "windmanc"

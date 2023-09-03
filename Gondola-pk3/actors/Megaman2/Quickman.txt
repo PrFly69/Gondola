@@ -1,5 +1,6 @@
 actor Quickman : ClassBase //75
 {
+Player.StartItem "IFMM02", 1
 Player.ScoreIcon "C_02D0X"
 player.displayname "quickman"
 player.soundclass "quickmanc"

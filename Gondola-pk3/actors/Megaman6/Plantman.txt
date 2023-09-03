@@ -1,5 +1,6 @@
 actor Plantman : ClassBase //85 ought to be 90
 {
+Player.StartItem "IFMM06", 1
 Player.ScoreIcon "C_06E0X"
 player.displayname "plantman"
 player.soundclass "plantmanc"

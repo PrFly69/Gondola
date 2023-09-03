@@ -1,5 +1,6 @@
 actor RollClass : ClassBase //90
 {
+Player.StartItem "IFMM00", 1
 Player.ScoreIcon "C_00E0X"
 player.displayname "Roll"
 player.soundclass "RollC"

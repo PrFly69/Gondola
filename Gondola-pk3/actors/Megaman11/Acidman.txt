@@ -1,5 +1,6 @@
 actor Acidman : ClassBase //90
-{
+{//this class sux
+Player.StartItem "IFMM11", 1
 Player.ScoreIcon "C_11H0X"
 player.displayname "Acidman"
 player.soundclass "acidmanc"

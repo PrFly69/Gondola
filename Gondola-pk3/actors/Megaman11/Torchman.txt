@@ -1,6 +1,7 @@
 //shoutout to torchman j. m2 for being the only dedicated neutral skip button in the mod
 actor Torchman : ClassBase //sin
 {
+Player.StartItem "IFMM11", 1
 Player.ScoreIcon "C_11D0X"
 player.displayname "Torchman"
 player.soundclass "TorchmanC"

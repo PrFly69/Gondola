@@ -1,5 +1,6 @@
 actor OriginalDuo : ClassBase //125
 {
+Player.StartItem "IFMM08", 1
 Player.ScoreIcon "C_08J0X"
 player.displayname "OriginalDuo"
 player.soundclass "originalduoc"
