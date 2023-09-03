@@ -159,7 +159,7 @@ OptionMenu "CBM_UserOptionsMenu"
 	StaticText " "
 	StaticText "User Options", 1
 	StaticText " "
-	Option "Lag compensated jupiter beam"			"gd_hjupiter", "OnOff"
+	Option "Lag compensated jupiter beam",			"gd_hjupiter", "OnOff"
 	StaticText " "
 	Option "Auto's Reload Is Cycled Using", "UEC_AutoToggleMethod", "AutoToggleOptions"
 	StaticText " "	
