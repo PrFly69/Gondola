@@ -169,7 +169,7 @@ IsSelected SparkChaserWepC{DrawBar"VAMMO_V0","VAREMPTY",Ammo1,horizontal,58,184;
 IsSelected GrabBusterWepC{DrawBar"VAMMO_V1","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected BubbleBombWepC{DrawBar"VAMMO_V2","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected PhotonMissileWepC{DrawBar"VAMMO_V3","VAREMPTY",Ammo1,horizontal,58,184;}
-IsSelected ElectricShockWepC, ElectricShockWepCMaestro{DrawBar"VAMMO_V4","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected ElectricShockWepC{DrawBar"VAMMO_V4","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected BlackHoleWepC{DrawBar"VAMMO_V5","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected DeepDiggerWepC{DrawBar"VAMMO_V6","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected BreakDashWepC{DrawBar"VAMMO_V7","VAREMPTY",Ammo1,horizontal,58,184;}

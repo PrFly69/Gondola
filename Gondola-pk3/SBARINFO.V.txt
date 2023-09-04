@@ -176,7 +176,7 @@ IsSelected BubbleBombWepC {DrawBar "BARAMM78", "BAREMPTY", BubbleBombAmmo, verti
 IsSelected PhotonMissileWepC {DrawBar "BARAMM79", "BAREMPTY", PhotonMissileAmmo, vertical, 16, 8;
 	InInventory PhotonMissileCharge, 1 {DrawBar "BARFLS1", "NOBAR", PhotonMissileCharge, vertical, 16, 8;}}
 IsSelected SaltWaterWepC, SaltWaterWepCMaestro{DrawBar "BARAMM80", "BAREMPTY", SaltWaterAmmo, vertical, 16, 8;}
-IsSelected ElectricShockWepC, ElectricShockWepCMaestro {DrawBar "BARAMM81", "BAREMPTY", ElectricShockAmmo, vertical, 16, 8;}
+IsSelected ElectricShockWepC {DrawBar "BARAMM81", "BAREMPTY", ElectricShockAmmo, vertical, 16, 8;}
 IsSelected BlackHoleWepC {DrawBar "BARAMM82", "BAREMPTY", BlackHoleAmmo, vertical, 16, 8;
 	InInventory ShieldCheck, 1	{DrawBar "BARFLS16", "BAREMPTY", BlackHoleAmmo, vertical, 16, 8;}}
 IsSelected DeepDiggerWepC {DrawBar "BARAMM83", "BAREMPTY", DeepDiggerAmmo, vertical, 16, 8;
