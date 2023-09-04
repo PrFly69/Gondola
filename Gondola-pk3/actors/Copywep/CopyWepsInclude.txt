@@ -146,7 +146,7 @@ damagefactor "WaterBalloon", 0.75
  
 damagefactor "TenguBlade", 0.68
 damagefactor "CopyVision", 0.61
-damagefactor "LightningBolt", 0.35 damagefactor "DynamoTendril", 0.62
+damagefactor "LightningBolt", 0.35 damagefactor "DynamoTendril", 0.75
 damagefactor "IceWall", 0.42
 damagefactor "SpreadDrill", 0.71 damagefactor "SpreadDrill2", 0.71 damagefactor "SpreadDrill3", 0.71
 damagefactor "RemoteMine", 0.31

@@ -20,6 +20,9 @@ states
 //"----" H 0 ThrustThingZ(0,22222,0,1)
 //goto Pain+2
 
+Pain.ShadowM_Caltrop:
+"----" H 0 A_GiveInventory("ShadowCaltropBleed_P",1)
+goto Pain
 
 Death.HSH_Drain:
 "----" H 0 A_SpawnItemEx("KillHSH_DrainHit")
@@ -186,7 +189,7 @@ Pain.HeatM_Toss:Pain.HeatM_Shot:Pain.WoodM_Leaf:Pain.WoodM_Shield:Pain.WoodM_Sla
 Pain.DrWily_Pan:Pain.DrWily_Elec:Pain.Alien_Boobeam:
 
 Pain.NeedleM_Stab:Pain.GeminiM_Laser:Pain.HardM_Knuckle:
-Pain.SnakeM_Snake:Pain.SnakeM_Snake2:Pain.ShadowM_Caltrop:
+Pain.SnakeM_Snake:Pain.SnakeM_Snake2:
 
 Pain.ToadM_Rain:Pain.DrillM_Bomb:Pain.PharaohM_Shot:Pain.PharaohM_Shot3:Pain.PharaohM_Wave:
 Pain.DustM_Crush:Pain.DustM_CrushBit:Pain.DiveM_Tackle:Pain.SkullM_Shot:Pain.SkullM_ShotX:

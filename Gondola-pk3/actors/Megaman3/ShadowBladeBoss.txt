@@ -104,10 +104,9 @@ SHMH U 1 Offset(2,30)
 SHMH U 1 Offset(-2,32)
 SHMH U 1 Offset(-2,30)
 SHMH U 1 Offset(2,32)
-SHMH U 1 Offset(2,30)
-SHMH U 1 Offset(-2,32)
-SHMH M 0 A_TakeInventory("ShadowSlide",1)
-SHMH UTS 2 A_WeaponReady(14)
+SHMH U 1 Offset(2,30)A_TakeInventory("ShadowSlideButLame",1)
+SHMH U 1 Offset(-2,32)A_TakeInventory("ShadowSlide",1)
+SHMH UUTTSS 1 A_WeaponReady(14)
 SHMH B 1
 goto Ready2
 Altfire2:
@@ -301,10 +300,9 @@ SHMH U 1 Offset(2,30)
 SHMH U 1 Offset(-2,32)
 SHMH U 1 Offset(-2,30)
 SHMH U 1 Offset(2,32)
-SHMH U 1 Offset(2,30)
-SHMH U 1 Offset(-2,32)
-SHMH M 0 A_TakeInventory("ShadowSlide",1)
-SHMH UTS 2 A_WeaponReady(14)
+SHMH U 1 Offset(2,30)A_TakeInventory("ShadowSlideButLame",1)
+SHMH U 1 Offset(-2,32)A_TakeInventory("ShadowSlide",1)
+SHMH UUTTSS 1 A_WeaponReady(14)
 SHMH B 1
 goto Ready2
 Altfire2:
@@ -960,7 +958,7 @@ actor ShadowCaltropTossX_HP : ShadowCaltropTossX_H{translation "202:202=229:229"
 actor ShadowCaltropToss
 {
 PROJECTILE
-damagetype "ShadowM_Caltrop"
+damagetype "DMGNoHitstun"
 Obituary "$OB_SHADOWCALTROPX"
 -NOGRAVITY
 //+THRUACTORS
@@ -1029,7 +1027,7 @@ BounceFactor 1.0
 WallBounceFactor 0.15
 gravity 1.0
 ReactionTime 61
-Damage (10)
+Damage (9)
 Radius 16
 Height 16
 speed 20
@@ -1046,10 +1044,6 @@ SHAX Y 6 A_CountDown
 wait
 XDeath:
 Crash:
-TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerally")==1,"SCrash")
-TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerplayer")==0,"SCrash")
-TNT1 A 0 A_GiveInventory("ShadowCaltropBleed_P",1,AAPTR_TRACER)
-SCrash:
 TNT1 A 1 A_PlaySound("S3_K/Spikes",1,0.65)
 stop
 Death:

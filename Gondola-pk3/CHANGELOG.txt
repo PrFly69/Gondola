@@ -3964,13 +3964,10 @@ CHANGELOG
 
 
 =====2.6.2
-
-==General
--Added mugshot frames
--Old mugshots can be toggled in the options menu under "Original Mugshot Style"
-
 ==Copyweapons
 -Fixed Copywep Display for CBM-exclusive weapons
+-Dynamo Tendril base damage increased 11 > 12
+--Dynamo Tendril ripper damage rediced 12 > 4
 
 ==Protoman
 -Fixed Proto Shield not reflecting shots in non-team gamemodes
@@ -4049,6 +4046,7 @@ CHANGELOG
 --Spark Spread - 5 tics of stun (1/7th of a second)
 --Spark Orb - 15 tics of stun (3/7ths of a second)
 -SparkHealingAmmo max capacity and starting ammo doubled
+-Spark Solder self-heal and damage 5 > 3
 -Spark Taser cooldown duration 35/245 tics > 87/87 tics
 
 ==Shadowman
@@ -4119,7 +4117,7 @@ CHANGELOG
 -Health increased 125 > 135
 
 ==Knightman
--Fixed Knight Crush hitting twice
+-Fixed Knight Crush hitting for abnormal damage
 
 ==Freezeman
 -Adjusted SBAR colors
@@ -4155,14 +4153,11 @@ CHANGELOG
 ==Groundman
 -Fixed Black Hole Bomb interaction while digging
 
-==Burnerman
--Ported V-Classes skinsprites
-
 ==Jewelman
 -Added extra skinsprites, ported from CBM
 
 ==Fakeman
--Can now doubletap with no ammo to initiate reloading
+-Can now doubletap with no ammo to initiate reload
 
 ==Pumpman
 -Fixed Water Shield from blocking user's own shots
@@ -4183,7 +4178,7 @@ CHANGELOG
 ==Pluto
 -Removed short dash when not in Breakspark
 -Speed checks are now a bit more lenient
--Removed claw attack from m2 when you are out of air dashes
+-Removed Fury Swipes from altfire when out of Break Dashes in midair
 -Fixed SBAR bug
 
 ==Sunstar

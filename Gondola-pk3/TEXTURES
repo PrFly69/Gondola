@@ -583,8 +583,6 @@ texture MAGFLOW3,420,72{XScale 0.8 YScale 1 patch MAGXJ0,0,0{Translation"192:192
 graphic EMEST00,32,32{XScale 4.0 YScale 4.0 Patch FACE00X7,0,0}
 
 //Chillman
-sprite  C_10D0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch M10FCHIL, 0, 0}//Chillman
-texture C_10D0X, 32, 32{XScale 4.0 YScale 4.0 				Patch M10FCHIL, 0, 0}
 graphic CHILICON,30,30{XScale 2.0 YScale 2.0 Patch CHLIA0,0,0}
 graphic CHILWEP1,30,30{XScale 2.0 YScale 2.0 Patch CHLIB0,0,0}
 graphic CHILWEP2,30,30{XScale 2.0 YScale 2.0 Patch ICEIC0,0,0}

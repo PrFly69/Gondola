@@ -97,5 +97,5 @@ actor DynamoTendrilZap : DynamoM_DishZap
 {
 damagetype "DynamoTendrilZap"
 Obituary "$OB_DYNAMOTENDRIL"
-damage (12)
+damage (4)
 }

@@ -1,4 +1,4 @@
-//Note from the dev//
+//Note from the devs//
 Any and all code I make is free for use elsewhere. If you wanna use it, go ahead. 
 If you want to talk with me regarding feedback and all that, feel free to DM me on Discord.
 -Pr. Gibus

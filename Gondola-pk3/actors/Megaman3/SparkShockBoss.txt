@@ -786,7 +786,7 @@ alpha 0.1
 +FORCEALLYCOLLISION
 damagetype "SparkSaw"
 Obituary "%o was energized by %k's Spark Solder."
-damage (5)
+damage (3)
 Radius 18
 Height 18
 Speed 80

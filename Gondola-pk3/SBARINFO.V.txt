@@ -253,7 +253,7 @@ InInventory TimeStoppedCounter,1{DrawImage"FLASHS",36,0;}
 InInventory not NoHealthBar,1{
 
 //Mugshot Frames
-InInventory not NoMugshotFrames, 1{
+/*InInventory NoMugshotFrames, 1{
 InInventory IFMM00{DrawImage "CPBMM00",32,38;}
 InInventory IFMM01{DrawImage "CPBMM01",32,38;}
 InInventory IFMM02{DrawImage "CPBMM02",32,38;}
@@ -275,10 +275,12 @@ DrawImage playericon,34,40;//24
 DrawMugShot 1,34,40;
 }
 
-InInventory NoMugshotFrames, 1{
+InInventory not NoMugshotFrames, 1{
 DrawImage playericon,20,0;//24
 DrawMugShot 1,20,0;
-}
+}*/
+DrawImage playericon,20,0;//24
+DrawMugShot 1,20,0;
 
 InInventory StaminaFlag||UnSolid,1{
 	InInventory ForceStaminaFlag{InInventory not StaminaFlag,500{
