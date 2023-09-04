@@ -3997,7 +3997,6 @@ CHANGELOG
 --Flame Blast > Scorch Wheel
 --Mirror Buster > Dark Shield
 -Restored thumbs-up animation from CBM (sprites made by AAAAAA)
---May now nod off
 
 ==Auto
 -Restored thumbs-up animation from CBM
@@ -4020,6 +4019,7 @@ CHANGELOG
 -Fixed Rolling Cutter not popping Water Shield
 
 ==Bubbleman
+-Bubble Lead damage 19 > 20
 -Fixed swiming animation bugs
 -Using the item or activating swimming will now put the ammo regen on a 3 second cooldown to prevent stalling
 -Landing on floors will instantly resume the ammo regen
@@ -4152,6 +4152,9 @@ CHANGELOG
 
 ==Groundman
 -Fixed Black Hole Bomb interaction while digging
+
+==Burnerman
+-Swapped SBAR colors for altfire
 
 ==Jewelman
 -Added extra skinsprites, ported from CBM

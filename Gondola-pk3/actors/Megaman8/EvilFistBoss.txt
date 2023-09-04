@@ -1146,16 +1146,6 @@ TNT1 A 1 A_SelectWeapon("EvilFistCTornado")
 stop
 }
 } 
-actor EvilFistCTornadoSelecc : CustomInventory
-{
-States
-{
-Pickup:
-TNT1 A 0 
-TNT1 A 1 A_SelectWeapon("EvilFistCTornado")
-stop
-}
-} 
 actor EvilFistCElecSelecc : CustomInventory
 {
 States

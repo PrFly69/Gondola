@@ -267,7 +267,7 @@ Speed 16
 Radius 16
 Height 20
 gravity 1.0
-Damage (19)
+Damage (20)
 ReactionTime 25//45
 States
 {
