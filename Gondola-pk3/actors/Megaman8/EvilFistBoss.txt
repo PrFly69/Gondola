@@ -1,6 +1,6 @@
 actor EvilFistC : BaseMM8BDMWep_CBM
 {
-Weapon.SlotNumber 0
+Weapon.SlotNumber 1
 tag "Giga Evil Beam"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
@@ -2584,7 +2584,7 @@ Scale 1.5
 //GFS
 actor EvilFistCSword : BaseMM8BDMWep_CBM
 {
-Weapon.SlotNumber 0
+Weapon.SlotNumber 1
 tag "Giga Flame Sword"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
@@ -3178,7 +3178,7 @@ goto Ready2+2
 
 actor EvilFistCBomb : BaseMM8BDMWep_CBM
 {
-Weapon.SlotNumber 0
+Weapon.SlotNumber 1
 tag "Giga Flash Bomb"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
@@ -3772,7 +3772,7 @@ goto Ready2+2
 
 actor EvilFistCTornado : BaseMM8BDMWep_CBM
 {
-Weapon.SlotNumber 1
+Weapon.SlotNumber 2
 tag "Giga Tornado Hold"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
@@ -4366,7 +4366,7 @@ goto Ready2+2
 
 actor EvilFistCElec : BaseMM8BDMWep_CBM
 {
-Weapon.SlotNumber 1
+Weapon.SlotNumber 2
 tag "Giga Thunder Claw"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
@@ -4960,7 +4960,7 @@ goto Ready2+2
 
 actor EvilFistCMissile : BaseMM8BDMWep_CBM
 {
-Weapon.SlotNumber 1
+Weapon.SlotNumber 2
 tag "Giga Homing Sniper"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
@@ -5554,7 +5554,7 @@ goto Ready2+2
 
 actor EvilFistCWatar : BaseMM8BDMWep_CBM
 {
-Weapon.SlotNumber 2
+Weapon.SlotNumber 3
 tag "Giga Water Balloon"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
@@ -6148,7 +6148,7 @@ goto Ready2+2
 
 actor EvilFistCIce : BaseMM8BDMWep_CBM
 {
-Weapon.SlotNumber 2
+Weapon.SlotNumber 3
 tag "Giga Ice Wave"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
@@ -6742,7 +6742,7 @@ goto Ready2+2
 
 actor EvilFistCAstro : BaseMM8BDMWep_CBM
 {
-Weapon.SlotNumber 2
+Weapon.SlotNumber 3
 tag "Giga Astro Crush"
 dropitem "DuoFistUpgrade2GiverDropped"
 Weapon.AmmoUse 1
