@@ -5,7 +5,7 @@
 //{"Invalid","Choice"},
 //};
 
-#DEFINE FLOORCOUNT 52//25
+#DEFINE FLOORCOUNT 61//25
 
 //Unknown older textures? Older maps? Custom maps?
 /*
@@ -59,6 +59,7 @@ str FLOORS[FLOORCOUNT] = {
 //Encore
 "ESWRLAVX",
 "ESLRLAVX",
+"ESNAKESX",
 
 //RockForce maps
 "CRPTBLCK",
@@ -68,6 +69,10 @@ str FLOORS[FLOORCOUNT] = {
 "PGEFALX",
 "BITWTR",
 "BITWAT",
+"CWATER", // shockman
+"PULBLACK", // thrillman
+"THELAVX", // thermoman
+"COLWATER", // polarman (might be shared? not super necessary)
 
 //Everything below is custom pit textures from Jam
 "JAMBLU",
@@ -83,6 +88,11 @@ str FLOORS[FLOORCOUNT] = {
 "COT2FL2X",
 "CHIWATR",
 "AQSWATER",
+"BG6WAT",
+"SCZ6WATX",
+"YABSGRID",
+"WHITE",//WHITE PEOPLE UGH
+
 //Everything below is custom pit textures from Sweat
 "SAPFALL",
 "SAPWATER",

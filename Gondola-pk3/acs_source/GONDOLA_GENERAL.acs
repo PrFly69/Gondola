@@ -3,6 +3,33 @@
 #include "zcommon.acs"
 #include "8bdmlib.acs"
 
+// REMOVE THIS PAST V6B!
+global int 4: GLOBAL_ServerMAX;
+script "gondola_mmrf_helper_u" UNLOADING {
+    GLOBAL_ServerMAX = 0;
+}
+script "gondola_mmrf_helper" ENTER {
+    GLOBAL_ServerMAX = max(GLOBAL_ServerMAX, PlayerNumber()+1);
+}
+// END REMOVAL ZONE
+
+script "gondola_cloakplayer" (int player, int toggle) {
+    CloakPlayer(player, toggle);
+}
+
+int mmrf_loaded = -1;
+function void CloakPlayer (int player, int toggle) {
+    if(mmrf_loaded < 0) {
+        int u = UniqueTID();
+        mmrf_loaded = SpawnForced("CloakedCheck", 0, 0, 0, u, 0);
+        Thing_Remove(u);
+    }
+    
+    if(mmrf_loaded > 0) {
+        ACS_NamedExecuteWithResult("mmrf_mp_cloakplayer", player, toggle);
+    }
+}
+
 //Flagbearer health reduction script, because nobody enjoys the sound of 9000 pain noises.
 script "CCBM_DevilHealthDrainer" (void)
 {

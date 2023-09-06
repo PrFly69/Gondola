@@ -4055,6 +4055,7 @@ CHANGELOG
 -Shadow Blade damage 20/3 (base/rip) > 20/5 (base/rip) 
 --Shadow Blade projectile height increased 7 > 14
 --Returning Shadow Blade now always does 5 damage with no powerprotect
+--Stuck Shadow Blade damage 25 > 20
 -Kunai is now a 3 shot burst with minor fixed spread
 --Kunai speed increased 42 > 50, have gravity while active
 --Kunai endlag increased by 4 tics
@@ -4065,6 +4066,7 @@ CHANGELOG
 --Altfire slide brought back, forwards thrust tweaked 45 > 45/55 (not cloaked/exiting cloak)
 --Firing shots halts altfire ammo gain
 -Caltrops per volley 5 > 3
+--Caltrop damage 10 > 9
 --Ammo consumed when throwing caltrops halved
 --Caltrops now apply an 60% slowdown for 15 tics per caltrop while placed
 -Taking damage while invisible spawns a smoke trail that follows user for 15 tics
@@ -4204,6 +4206,9 @@ CHANGELOG
 -Fixed a bug where neither the shockwave nor stomp would deal damage if the victim was hugging a wall
 
 =====2.6.2H
+==General
+-Fixed passive hover code to work with updated Jampack, Encore and Rock Force maps
+
 ==Maestro
 -Fixed Maestro Buster doing abnormal damage
 
@@ -4226,7 +4231,10 @@ CHANGELOG
 -Wepswap numkeys 9/1/2/3/4/5/6/7/8 > 1/1/1/2/2/2/3/3/3
 
 ==Burnerman
--Imported skinsprites from V-Classes (again)
+-Imported skinsprites from V-Classes, extra sprites made by Croby
 
 ==Galaxyman
 -Fixed mugshot bug
+
+==Sheepman(?)
+-Fixed map sprite conflicts with unused Sheepman projectile
