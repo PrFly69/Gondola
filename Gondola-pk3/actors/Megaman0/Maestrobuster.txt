@@ -1195,7 +1195,7 @@ PROJECTILE
 +THRUGHOST
 damagetype "DMGNoHitstun"
 Obituary "$OB_MAESTROBUSTER"
-Damage (12)
+Damage (10)
 radius 5
 height 10
 Speed 30

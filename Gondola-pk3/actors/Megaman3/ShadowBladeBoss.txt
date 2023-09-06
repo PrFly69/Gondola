@@ -18,7 +18,7 @@ loop
 Ready:
 SHMH A 0 A_JumpIfInventory("ShadowInvisCountdown",1,"ReadyInvis")
 SHMH A 0 ACS_ExecuteAlways(998,0,DYE_SHADOWMAN)
-SHMH A 0 //A_GunFlash
+SHMH A 0 A_GiveInventory("ShadowSlideSpawnDelay")
 goto Ready2
 
 Ready2:
@@ -83,6 +83,7 @@ SHMH C 10
 goto FireCont
 
 Altfire:
+SHMH BB 0 A_JumpIfInventory("ShadowSlideSpawnDelay",1,"Ready2")
 SHMH BB 0 A_JumpIfInventory("CloakAmmo",28,"Altfire2")
 goto AltfireSlide
 AltfireSlide:
@@ -212,7 +213,7 @@ loop
 Ready:
 SHMH A 0 A_JumpIfInventory("ShadowInvisCountdown",1,"ReadyInvis")
 SHMH B 0 ACS_ExecuteAlways(998,0,DYE_SHADOWMAN)
-SHMH B 0 //A_GunFlash
+SHMH B 0  A_GiveInventory("ShadowSlideSpawnDelay",1)//A_GunFlash
 goto Ready2
 
 Ready2:
@@ -279,6 +280,7 @@ SHMH E 10
 goto FireCont
 
 Altfire:
+SHMH BB 0 A_JumpIfInventory("ShadowSlideSpawnDelay",1,"Ready2")
 SHMH BB 0 A_JumpIfInventory("CloakAmmo",28,"Altfire2")
 goto AltfireSlide
 AltfireSlide:
@@ -581,6 +583,11 @@ actor ShadowSlide : PowerSpeed
 {
 Speed 1.0
 Powerup.Duration -1
+}
+
+actor ShadowSlideSpawnDelay : PowerUp
+{
+Powerup.Duration 25
 }
 
 actor ShadowSlideButLame : PowerSpeed

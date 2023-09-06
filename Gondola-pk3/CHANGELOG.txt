@@ -4202,3 +4202,28 @@ CHANGELOG
 -Sakugarne Shockwave climb height 32 > 64
 -Sakugarne Shockwave drop height 64 > 86
 -Fixed a bug where neither the shockwave nor stomp would deal damage if the victim was hugging a wall
+
+=====2.6.2H
+==Maestro
+-Fixed Maestro Buster doing abnormal damage
+
+==Sparkman
+-Fixed Spark Taser cooldown acting abnormally
+
+==Shadowman
+-Fixed Shadowman desync on using altfire on spawn
+
+==Knightman
+-Fixed Knight Crush doing abnormal damage
+
+==Junkman
+-Fixed Junk Cube operating even after dying when walked into
+
+==Swordman
+-Fixed Statue Smash doing abnormal damage, now only gains direct damage hitbox when fully formed
+
+==EvilRobot
+-Wepswap numkeys 9/1/2/3/4/5/6/7/8 > 0/0/0/1/1/1/2/2/2
+
+==Burnerman
+-Imported skinsprites from V-Classes

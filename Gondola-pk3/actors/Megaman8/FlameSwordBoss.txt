@@ -1343,7 +1343,7 @@ PROJECTILE
 Obituary "%o was sculpted by %k's Statue Smash."
 damagetype "SwordM_StatueSmashDetection"
 -NOGRAVITY
-//+THRUACTORS 
++THRUACTORS 
 +SKYEXPLODE  
 damage(0)
 speed 30
@@ -1365,11 +1365,12 @@ TNT1 AAAAAAAAAA 0 A_SpawnItemEx("SwordStoneRedirectorFX2",250-(ScaleX*100),250-(
 TNT1 A 0 A_GiveInventory("CutterFlag",1)
 loop
 Spawn2:
+TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
 TNT1 A 0 A_PlaySound("misc/catcherdrop",1,0.8)
 TNT1 A 0 A_ChangeVelocity(0,0,-40)
 TNT1 A 0 A_JumpIfInTargetInventory("StatueSmashHitSomething",1,"Death")
 STTU A 1 A_Explode(1,62,0,0,62)
-Goto Spawn2+2  
+Goto Spawn2+3
 Death:
 STTU A 1
 TNT1 A 0 A_PlaySound("weapon/GutsmanToss", "Weapon")
