@@ -4226,4 +4226,7 @@ CHANGELOG
 -Wepswap numkeys 9/1/2/3/4/5/6/7/8 > 0/0/0/1/1/1/2/2/2
 
 ==Burnerman
--Imported skinsprites from V-Classes
+-Imported skinsprites from V-Classes (again)
+
+==Galaxyman
+-Fixed mugshot bug
