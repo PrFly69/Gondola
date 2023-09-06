@@ -239,9 +239,10 @@ InInventory TimeStoppedCounter,1{DrawImage"FLASHS",36,0;}
 
 InInventory not NoHealthBar,1{
 
+DrawImage playericon,186,184;
+DrawMugShot 1,186,184;
+
 //Mugshot Frames
-DrawImage playericon,188,185;
-DrawMugShot 1,188,185;
 /*InInventory not NoMugshotFrames, 1{
 InInventory IFMM00{DrawImage "CPBMM00",186,182;}
 InInventory IFMM01{DrawImage "CPBMM01",186,182;}
@@ -756,7 +757,7 @@ IsSelected HornetChaserBoss{DrawBar"VARAMM67","VAREMPTY",Ammo1,horizontal,58,184
 IsSelected BlackHoleBombBoss
     {
 	 
-	InInventory not NoMugshotFrames, 1{DrawImage "CPBMM09",186,182;}
+	//InInventory not NoMugshotFrames, 1{DrawImage "CPBMM09",186,182;}
 	 
 	Drawbar"GALBARJ","VAREMPTY",Ammo1,horizontal,58,184;
 	DrawBar "MV_A_VAR", "VNOBAR", poweruptime Blackholecooldownindicatorbar, horizontal, 58,184;
@@ -776,9 +777,9 @@ IsSelected BlackHoleBombBoss
 	DrawImage "GALRICON",178,175;
 	}
 	
-	InInventory not NoMugshotFrames, 1{DrawImage "C_09H0X",188,184;}
-	InInventory NoMugshotFrames, 1{DrawImage "C_09H0X",186,184;}
-	 
+	//InInventory not NoMugshotFrames, 1{DrawImage "C_09H0X",188,184;}
+	//InInventory NoMugshotFrames, 1{DrawImage "C_09H0X",186,184;}
+	 DrawImage "C_09H0X",186,184;
 	}  
 	
 IsSelected RevolverBusterBoss{DrawBar"VARAMM10","VAREMPTY",FakemanDashCounter,horizontal,58,184;

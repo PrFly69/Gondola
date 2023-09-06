@@ -779,9 +779,10 @@ IsSelected BlackHoleBombBoss
 	DrawImage "GALRICON",32,55;
 	
 	
-	InInventory not NoMugshotFrames, 1{DrawImage "C_09H0X",34,40;}
-	InInventory NoMugshotFrames, 1{DrawImage "C_09H0X",20,0;}
+	//InInventory not NoMugshotFrames, 1{DrawImage "C_09H0X",34,40;}
+	//InInventory NoMugshotFrames, 1{DrawImage "C_09H0X",20,0;}
 	
+	DrawImage "C_09H0X",20,0;//Gibus sux
 	
 	InInventory GalaxyPortFlag
 	{
