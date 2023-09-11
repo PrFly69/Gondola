@@ -76,9 +76,3 @@ actor ClassBase65 : ClassBase
 player.maxhealth 65
 health 65
 }
-
-actor SpybotClassBase : ClassBase
-{
-player.maxhealth 1
-health 1
-}
