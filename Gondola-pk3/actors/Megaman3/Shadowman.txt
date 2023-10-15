@@ -7,14 +7,15 @@ player.soundclass "Shadowmanc"
 player.startitem "ShadowBladeBoss"
 player.startitem "ShadowBladerBoss"
 player.startitem "CloakAmmo", 28
+player.startitem "CaltropAmmo", 7
 player.startitem "CanWallJump"
 player.startitem "CanWallJumpStack", 99
 
 player.maxhealth 75
 health 75
 player.jumpz 15
-player.forwardmove 0.75, 0.75
-player.sidemove 0.73, 0.73
+player.forwardmove 0.8, 0.8
+player.sidemove 0.78, 0.78
 
 player.weaponslot 1, "ShadowBladeBoss"
 player.weaponslot 2, "ShadowBladerBoss"
