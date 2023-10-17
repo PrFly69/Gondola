@@ -894,7 +894,7 @@ renderstyle normal
 
 actor Quint_WaveProtect : PowerProtection
 {
-Powerup.Duration 7
+Powerup.Duration 15
 DamageFactor "Quint_Wave", 0.0//0.5
 }
 
