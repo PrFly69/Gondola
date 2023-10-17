@@ -64,6 +64,7 @@ goto Spawn+2
 MissileD:
 PLUT F 2
 PLUT B 2
+MissileD2:
 PLUT RRSS 1 A_JumpIfInventory("VivifyDelay4",1,"Spawn")
 goto MissileD+2
 
@@ -73,7 +74,7 @@ PLUT G 4
 goto Spawn
 
 CustomState2:
-PLUT PPQQPPQQPPQQPPQQPPQQPPQQ 1 A_JumpIfInventory("VivifyDelay8",1,"MissileD")
+PLUT PPQQPPQQPPQQPPQQPPQQPPQQ 1 A_JumpIfInventory("VivifyDelay8",1,"MissileD2")
 goto Spawn
 
 ClassPainDash:
