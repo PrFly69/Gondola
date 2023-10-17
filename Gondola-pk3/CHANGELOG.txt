@@ -4251,10 +4251,20 @@ CHANGELOG
 -New HUD sprites provided by Ze Robotico
 
 ==Burnerman
--Fixed idle anim
+-Fixed idle and Divebomb anim
+
+==Hornetman
+-Removed trail fx from slow debuff
 
 ==Pluto
--Fixed speed check bugs with Break Dash
+-Fixed health checks stopping after using Breakdash
+-Fixed meow canceling Breakdash skin animation
+-Improved speedchecks code to avoid cheesing
+-Breakspark boost .05 > .04
+-Meow sound now plays on voice channel
 
 ==Torchman
 -New divekick damager sprites provided by Redflash
+
+==Quint
+-Fixed Sakugarne Shockwave being able to hit twice
