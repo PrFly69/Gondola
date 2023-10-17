@@ -665,6 +665,7 @@ actor PowerIceHornet : PowerSpeed
 { 
 Speed 0.69//LMAOOOOO UWU
 powerup.duration 150
++POWERSPEED.NOTRAIL
 } 
 
 actor HoneySlowFX : CustomInventory
