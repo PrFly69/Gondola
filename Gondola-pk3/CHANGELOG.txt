@@ -4243,12 +4243,28 @@ CHANGELOG
 
 
 =====2.7
+
+=Protoman
+-Fixed item canceling buster's charge sound
+
+=Bass
+-Fixed taunts/use/pain sounds canceling chargeshot fire sound
+
+=Crashman
+-Fixed crash mines floating when placed in elevator floors
+
 ==Shadowman
 -Movespeed 0.75/0.73 > 0.8/0.78
 -Now spawns with 25% caltrop ammo
 
+=Centaurman
+-Added ammobar indicators
+
 ==Dynamoman
 -New HUD sprites provided by Ze Robotico
+
+=Swordman
+-Fixed statue doing abnormal damage (yes, again!)
 
 ==Burnerman
 -Fixed idle and Divebomb anim
