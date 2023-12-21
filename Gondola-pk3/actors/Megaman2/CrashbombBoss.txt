@@ -154,6 +154,7 @@ PROJECTILE
 DamageType "CrashM_Clash"
 Obituary "$OB_CRASHBOMB"
 +DONTREFLECT
++MOVEWITHSECTOR
 +NOTARGETSWITCH
 damage (1)
 Radius 6
@@ -392,6 +393,7 @@ DamageType "DMGNoHitstunHeal"
 Obituary "$OB_CLASHBOMB"
 +DONTREFLECT
 +HITTRACER
++MOVEWITHSECTOR
 damage (1)
 Radius 7
 Height 6
@@ -505,7 +507,7 @@ goto Spawn
 actor ClashBomb_TimerDelayBoom : ClashBomb_MineDirectBoom
 {
 Obituary "$OB_CRASHBOMB"
-//DamageType "Clash"
+//DamageType "Clash" 
 States
 {
 Spawn:
@@ -520,7 +522,7 @@ stop
 actor ClashBomb_TimerDelayBoom2 : ClashBomb_MineDirectBoom
 {
 Obituary "$OB_CRASHBOMB"
-//DamageType "Clash"
+//DamageType "Clash" 
 States
 {
 Spawn:
