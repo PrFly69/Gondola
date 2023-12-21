@@ -136,7 +136,7 @@ goto Ready2+2
 FireC:
 BASB C 0 A_JumpIfInventory("BassUpGradeFlag",1,"FireC2")
 BASB C 1
-BASB B 0 A_PlaySoundEx("weapon/NewBassChargeBuster","Voice")
+BASB B 0 A_PlaySoundEx("weapon/NewBassChargeBuster","auto")
 BASB B 0 A_GiveInventory("BassChargeShot_CI")
 BASB B 0 A_TakeInventory("BassBusterCharge",56)
 BASB B 0 A_JumpIfInventory("PowerRage_ST",1,1)
@@ -147,7 +147,7 @@ goto Ready2+2
 
 FireC2:
 BASB C 1
-BASB B 0 A_PlaySoundEx("weapon/NewBassChargeBuster","Voice")
+BASB B 0 A_PlaySoundEx("weapon/NewBassChargeBuster","auto")
 BASB B 0 A_GiveInventory("BassChargeShotEx_CI")
 BASB B 0 A_TakeInventory("BassBusterCharge",56)
 BASB B 0 A_JumpIfInventory("PowerRage_ST",1,1)
