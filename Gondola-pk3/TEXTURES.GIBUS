@@ -1,4 +1,6 @@
-//Hornet
+//Centaur indicators
+texture C3N6BAR,8,56{patch C3NTB4R,0,0}
+texture C3N6VAR,56,8{patch C3N6BAR,0,0{rotate 90}}
 
 //Zandrodumb
 texture 0V_H2VAR,56,8{patch 0V_H2BAR,0,0{rotate 90}}
