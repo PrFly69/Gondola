@@ -603,7 +603,7 @@ IsSelected DarkBlasterBoss{DrawBar"VRKDM4","VAREMPTY",Ammo1,horizontal,58,184;
 //MM6
 WeaponAmmo BallAmmo{Drawbar"VARAMM15","VAREMPTY",Ammo1,horizontal,58,184;
 					   DrawImage"BLIRICON",178,175;}
-IsSelected CentaurFlashBoss{Drawbar"VARAMM26","VAREMPTY",Ammo1,horizontal,58,184;}
+IsSelected CentaurFlashBoss{Drawbar"VARAMM26","VAREMPTY",Ammo1,horizontal,54,181;Drawimage"C3N6VAR",54,181;}
 IsSelected FlameBlastBoss{Drawbar"VARAMM20","VAREMPTY",Ammo1,horizontal,58,184;}
 IsSelected KnightCrushBoss{Drawbar"VARAMM27","VAREMPTY",Ammo1,horizontal,58,184;
 		InInventory KnightmanCharge,1{DrawBar"9C_S_VAR","VNOBAR",KnightmanCharge,horizontal,58,184;}}
