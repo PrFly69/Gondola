@@ -10,8 +10,8 @@ Player.StartItem "GigaSpamAmmo", 162
 
 player.maxhealth 125
 health 125
-player.forwardmove 0.65, 0.65
-player.sidemove 0.63, 0.63
+player.forwardmove 0.75, 0.75
+player.sidemove 0.73, 0.73
 player.jumpz 13
 //player.startitem "RealClassFlag", 14
 

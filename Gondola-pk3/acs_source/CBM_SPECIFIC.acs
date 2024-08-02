@@ -203,7 +203,7 @@ script "cbm_HealthDamageRage" (int jump)
 			} else if (PlutoDiff<0) {
 				GiveInventory("LastHealthFlag",-PlutoDiff);
 			}                 
-            int PlutoSpeed = 0.00115;//0.00115;
+            int PlutoSpeed = 0.00126;//0.00115;
             PlutoSpeed *= CheckInventory("BreakingIntoADashAmmo");
 			SetActorProperty(0,APROP_SPEED,(1.0+PlutoSpeed));
             break;
@@ -1073,6 +1073,59 @@ Script "cbm_DrawBounceTether" (int grappleTid, int playerTid, int density) CLIEN
     }
 }
 
+Script "cbm_FuseTrail" (int grappleTid, int playerTid, int density) CLIENTSIDE
+{
+    int plX; int plY;  int plZ;
+    int grX; int grY;  int grZ;
+    int vX;  int vY;   int vZ;
+    int nX;  int nY;   int nZ;
+    int bX;  int bY;   int bZ;
+    int magnitude;
+    int pointCount;
+    int pointOffset;
+    
+    int zOff;
+    
+    int angle = GetActorAngle(playerTid);
+    str SpawnName;
+    
+    if(grappleTid!=0){
+        zOff = 0.0;
+        SpawnName = StrParam(s:"FuseM_TrailFX",i:ACS_ExecuteWithResult(143,0));
+    }
+    else{
+        SpawnName = StrParam(s:"FuseM_TrailFX",i:ACS_ExecuteWithResult(143,playerTid,1));
+    }
+
+    plX = GetActorX(playerTid) + cos(angle + 0.75) * 17; grX = GetActorX(grappleTid);
+    plY = GetActorY(playerTid) + sin(angle + 0.75) * 17; grY  = GetActorY(grappleTid);
+    plZ = GetActorZ(playerTid)+ 28.0; grZ  = GetActorZ(grappleTid) + zOff;
+
+    vX = grX - plX;   vY = grY - plY;   vZ = grZ - plZ;
+
+    magnitude = magnitudeThree(vX >> 16, vY >> 16, vZ >> 16);
+
+    pointCount  = magnitude / density;
+    pointOffset = magnitude - (pointCount * density);
+
+    if (magnitude != 0)
+    {
+        nX = vX / magnitude; nY = vY / magnitude; nZ = vZ / magnitude;
+
+        int i; int j;
+        for (i = 0; i < pointCount; i++)
+        {
+            j = (i * density) + pointOffset;
+
+            bX = (nX * j) + plX;
+            bY = (nY * j) + plY;
+            bZ = (nZ * j) + plZ;//+(16 << 16);
+
+            Spawn(SpawnName, bX, bY, bZ, 0, 0);
+        }
+    }
+}
+
 
 //  __    ___
 // /_ |  / _ \
@@ -1313,112 +1366,137 @@ script "cbm_DynamoScannerHit" (void)
 	SetResultValue(IsTracerEnemy);
 }
 
-script "cbm_StickyColdWall" (int radius, int height, int WallZ)
-{
-	//Log(s:"radius = ",i:radius,s:"  height = ",i:height,s:"  WallZ = ",i:WallZ);
-	int x = GetActorX(0);
-	int y = GetActorY(0);
-	int z = GetActorZ(0);
-	int team = ACS_ExecuteWithResult(143,0);
-	int i;
+// Cold but also lag-less now
 
-	int playerX,playerY,playerZ;
-
-	int oldx = x;
-	int oldy = y;
-	int oldz = z;
-	int velx = GetActorVelX(0);
-	int vely = GetActorVelY(0);
-	int velz = GetActorVelZ(0);
-	int PlayerVelX,PlayerVelY,PlayerVelZ;
-	int PlayerSpeed;
-	int ObjectSpeed;
-	int SpeedDif;
-	GiveInventory("CutterFlag",1);
+Script "CBM_StickyColdWall" (Int radius, Int height, Int wallZ) {
+	// Log (s:"radius = ", i:radius, s:"  height = ", i:height, s:" WallZ = ", i:wallZ);
+	Int x 			= GetActorX (0);
+	Int y 			= GetActorY (0);
+	Int z 			= GetActorZ (0);
+	Int team 		= ACS_ExecuteWithResult (143, 0); // Grab target's team
+	Int pTID;
+	
+	Int playerX, playerY, playerZ;
+	
+	Int xOld 	= x;
+	Int yOld 	= y;
+	Int zOld 	= z;
+	Int xVel 	= GetActorVelX (0);
+	Int yVel 	= GetActorVelY (0);
+	Int zVel 	= GetActorVelZ (0);
+	Int playerXVel, playerYVel, playerZVel;
+	Int playerSpeed;
+	Int objectSpeed;
+	Int speedDif;
+	
+	GiveInventory ("CutterFlag", 1);
 
 	if(team==-1){
-		i = ACS_ExecuteWithResult(257);
-		while(CheckInventory("CutterFlag")){
-			If(PlayerInGame(i-1000)){
-				playerX = GetActorX(i);
-				playerY = GetActorY(i);
-				playerZ = GetActorZ(i);
-				PlayerVelX = GetActorVelX(i);
-				PlayerVelY = GetActorVelY(i);
-				PlayerVelZ = GetActorVelZ(i);
-				if(onStickyColdWallZ(z,playerZ,WallZ,height)){
-					if(onPlatformXY(x,y,playerX,playerY,radius)){
-						if(GetPlayerInput(i-1000, INPUT_BUTTONS) & (BT_JUMP)){
-							ThrustThingZ(i,(GetActorProperty(i,APROP_JumpZ) >> 16) * 4,0,0);
+		// FFA (or ally ride disabled)
+		pTID = ACS_ExecuteWithResult (257); // Get Target (the user)
+		
+		While (CheckInventory ("CutterFlag")) {
+			If (PlayerInGame (pTID - 1000)) {
+				
+				playerX 	= GetActorX (pTID);
+				playerY 	= GetActorY (pTID);
+				playerZ 	= GetActorZ (pTID);
+				playerXVel 	= GetActorVelX (pTID);
+				playerYVel 	= GetActorVelY (pTID);
+				playerZVel 	= GetActorVelZ (pTID);
+				
+				If (onStickyColdWallZ (z, playerZ, wallZ, height)) {
+					If (onPlatformXY (x, y, playerX, playerY, radius)) {
+						If (GetPlayerInput (pTID - 1000, INPUT_BUTTONS) & (BT_JUMP)) {
+							// Allow the player to jump off the cold wall
+							ThrustThingZ (pTID, (GetActorProperty (pTID, APROP_JUMPZ) >> 16) * 4, 0/*Up*/, 0/*Set*/);
 						}
-						else{
-							PlayerSpeed = SpeedCheck(playerX, playerX - PlayerVelX, playerY, playerY - PlayerVelY);
-							ObjectSpeed = SpeedCheck(x, oldx, y, oldy);
-							If(ObjectSpeed > 0)
-								{SpeedDif = 1.0 - FixedDiv(PlayerSpeed, ObjectSpeed);}
-							Else
-								{SpeedDif = 0;}
-							If(SpeedDif > 0.20 && SpeedDif < 1.0)
-								{SetActorVelocity(i,velx + FixedMul(velx, SpeedDif), vely + FixedMul(vely, SpeedDif), velz, 0, 0);}
-							Else
-								{SetActorVelocity(i,velx, vely, velz, 0, 0);}
+						Else {
+							playerSpeed = SpeedCheck (playerX, playerX - playerXVel, playerY, playerY - playerYVel);
+							objectSpeed = SpeedCheck (x, xOld, y, yOld);
+							
+							If (objectSpeed > 0) {
+								speedDif = 1.0 - FixedDiv (playerSpeed, objectSpeed);
+							}
+							Else {
+								speedDif = 0;
+							}
+							If (speedDif > 0.20 && speedDif < 1.0) {
+								SetActorVelocity (pTID, xVel + FixedMul (xVel, SpeedDif), yVel + FixedMul (yVel, SpeedDif), zVel, 0, 0);
+							}
+							Else {
+								SetActorVelocity (pTID, xVel, yVel, zVel, 0, 0);
+							}
 						}
 					}
 				}
 			}
-			oldx = x;
-			oldy = y;
-			oldz = z;
-			delay(1);
-			x = GetActorX(0);
-			y = GetActorY(0);
-			z = GetActorZ(0);
-			velx = x-oldx;
-			vely = y-oldy;
-			velz = z-oldz;
+			
+			// Update cold wall positions
+			xOld 	= x;
+			yOld 	= y;
+			zOld 	= z;
+			Delay (1);
+			x 		= GetActorX (0);
+			y 		= GetActorY (0);
+			z 		= GetActorZ (0);
+			xVel 	= x - xOld;
+			yVel 	= y - yOld;
+			zVel 	= z - zOld;
 		}
 	}
-	else{
-		while(CheckInventory("CutterFlag")){
-			for(i=1000; i<ServerMAX+1000; i++){
-				If(PlayerInGame(i-1000)&&ACS_ExecuteWithResult(143,i,1)==team){
-					playerX = GetActorX(i);
-					playerY = GetActorY(i);
-					playerZ = GetActorZ(i);
-					PlayerVelX = GetActorVelX(i);
-					PlayerVelY = GetActorVelY(i);
-					PlayerVelZ = GetActorVelZ(i);
-					if(onStickyColdWallZ(z,playerZ,WallZ,height)){
-						if (onPlatformXY(x,y,playerX,playerY,radius)){
-							if (GetPlayerInput(i-1000, INPUT_BUTTONS) & (BT_JUMP)){
-								ThrustThingZ(i,(GetActorProperty(i,APROP_JumpZ) >> 16) * 4,0,0);
+	Else {
+		// Team game
+		While (CheckInventory ("CutterFlag")) {
+			For (pTID = 1000; pTID < ServerMAX + 1000; pTID++) {
+				If (!PlayerInGame (pTID - 1000)) { Continue; }
+				If (team != GetPlayerInfo (pTID - 1000, PLAYERINFO_TEAM)) { Continue; } // We already established it's a team game, no need to run a script to check a bunch of team cvars, again >.>;;
+				
+				playerX 	= GetActorX (pTID);
+				playerY 	= GetActorY (pTID);
+				playerZ 	= GetActorZ (pTID);
+				playerXVel 	= GetActorVelX (pTID);
+				playerYVel 	= GetActorVelY (pTID);
+				playerZVel 	= GetActorVelZ (pTID);
+				
+				If (onStickyColdWallZ (z, playerZ, wallZ, height)) {
+					If (onPlatformXY (x, y, playerX, playerY, radius)) {
+						If (GetPlayerInput (pTID - 1000, INPUT_BUTTONS) & (BT_JUMP)) {
+							// Allow the player to jump off the cold wall
+							ThrustThingZ (pTID, (GetActorProperty (pTID, APROP_JUMPZ) >> 16) * 4, 0/*Up*/, 0/*Set*/);
+						}
+						Else {
+							playerSpeed = SpeedCheck (playerX, playerX - playerXVel, playerY, playerY - playerYVel);
+							objectSpeed = SpeedCheck (x, xOld, y, yOld);
+							
+							If (objectSpeed > 0) {
+								speedDif = 1.0 - FixedDiv (playerSpeed, objectSpeed);
 							}
-							else{
-								PlayerSpeed = SpeedCheck(playerX, playerX - PlayerVelX, playerY, playerY - PlayerVelY);
-								ObjectSpeed = SpeedCheck(x, oldx, y, oldy);
-								If(ObjectSpeed > 0)
-									{SpeedDif = 1.0 - FixedDiv(PlayerSpeed, ObjectSpeed);}
-								Else
-									{SpeedDif = 0;}
-								If(SpeedDif > 0.20 && SpeedDif < 1.0)
-									{SetActorVelocity(i,velx + FixedMul(velx, SpeedDif), vely + FixedMul(vely, SpeedDif), velz, 0, 0);}
-								Else
-									{SetActorVelocity(i,velx, vely, velz, 0, 0);}
+							Else {
+								speedDif = 0;
+							}
+							If (speedDif > 0.20 && speedDif < 1.0) {
+								SetActorVelocity (pTID, xVel + FixedMul (xVel, speedDif), yVel + FixedMul (yVel, speedDif), zVel, 0, 0);
+							}
+							Else {
+								SetActorVelocity (pTID, xVel, yVel, zVel, 0, 0);
 							}
 						}
 					}
 				}
 			}
-			oldx = x;
-			oldy = y;
-			oldz = z;
-			delay(1);
-			x = GetActorX(0);
-			y = GetActorY(0);
-			z = GetActorZ(0);
-			velx = x-oldx;
-			vely = y-oldy;
-			velz = z-oldz;
+			
+			// Update cold wall positions
+			xOld 	= x;
+			yOld 	= y;
+			zOld 	= z;
+			Delay (1);
+			x 		= GetActorX (0);
+			y 		= GetActorY (0);
+			z 		= GetActorZ (0);
+			xVel 	= x - xOld;
+			yVel 	= y - yOld;
+			zVel 	= z - zOld;
 		}
 	}
 }

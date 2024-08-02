@@ -1,0 +1,20 @@
+
+Model RingOtoishi
+{
+   Path "models"
+   Model 0 "ROTSA.md3"
+   Skin 0 "PAL_S.png"
+   Scale 2.5 2.5 2.5
+
+   FrameIndex ROTS A 0 0
+}
+
+Model IceBaF_Sculpt_M
+{
+   Path "models"
+   Model 0 "ICEKM.md3"
+   Skin 0 "PAL_S.png"
+   Scale 1.5 1.5 1.65
+
+   FrameIndex ICEK M 0 0
+}

@@ -23,12 +23,10 @@ Ready1:
 ICEB D 0 A_JumpIfInventory("IcicleAmmo",7,"Ready2")
 ICEB D 4 A_WeaponReady(WRF_NoSecondary|WRF_ALLOWRELOAD)
 ICEB D 0 A_GiveInventory("IcicleAmmo",1)
-ICEB D 0 A_GiveInventory("IceLaserAmmo",1)
 loop
 Ready2:
 ICEB D 4 A_WeaponReady(WRF_ALLOWRELOAD)
 ICEB D 0 A_GiveInventory("IcicleAmmo",1)
-ICEB D 0 A_GiveInventory("IceLaserAmmo",1)
 loop
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
@@ -39,12 +37,9 @@ TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
 ICEB D 1 A_Raise
 Loop
 Fire:
-ICEB D 1
 ICEB D 1 Offset(-15, 30)
-ICEB B 1 Offset(-25, 25)
 ICEB B 1 Offset(-55, 15)
 ICEB C 1 Offset(-65, 10)
-ICEB C 1
 FireH:
 ICEB A 0 A_JumpIfNoAmmo("FireN")
 ICEB A 0 A_PlaySoundEx("weapon/icemanshot","Weapon")
@@ -82,9 +77,10 @@ ICEB D 1 Offset(-15, 30)
 ICEB D 1 A_WeaponReady(14)
 Goto Ready+2
 Altfire:
-TNT1 A 0 A_JumpIfInventory("IceLaserAmmo",7,1)
+TNT1 A 0 A_JumpIfInventory("IceLaserAmmo",50,1)
 Goto NoAmmoAltfire
-ICEB D 0 A_TakeInventory("IceLaserAmmo",7)
+ICEB D 0 A_GiveInventory("IceAmmoRegenHalt",1)
+ICEB D 0 A_TakeInventory("IceLaserAmmo",50)
 ICEB D 0 A_GiveInventory("VivifyDelay6",1)
 ICEB D 0 A_Refire(1)
 ICEB G 1 Offset(-5,28)
@@ -101,7 +97,8 @@ ICEB G 8
 ICEB G 1 Offset(-10,24)
 ICEB G 1 Offset(-2,30)
 ICEB G 1 A_WeaponReady(14)
-ICEB D 4
+ICEB D 4 
+TNT1 A 0 A_TakeInventory("IceAmmoRegenHalt",1)
 goto Ready+2
 NoAmmo:
 ICEB A 0 A_PlaySoundEx("weapon/icemanshot","Weapon")
@@ -115,13 +112,13 @@ Goto Ready+2
 NoAmmoAltfire:
 ICEB D 4
 ICEB D 0 A_GiveInventory("IcicleAmmo",1)
-ICEB D 0 A_GiveInventory("IceLaserAmmo",1)
 Goto Ready+2
 
 Reload:
-TNT1 A 0 A_JumpIfInventory("IceLaserAmmo",14,1)
+TNT1 A 0 A_JumpIfInventory("IceLaserAmmo",100,1)
 Goto NoAmmoAltfire
-ICEB D 0 A_TakeInventory("IceLaserAmmo",14)
+ICEB D 0 A_GiveInventory("IceAmmoRegenHalt",1)
+ICEB D 0 A_TakeInventory("IceLaserAmmo",100)
 ICEB D 0 A_GiveInventory("VivifyDelay6",1)
 ICEB D 0 A_Refire(1)
 ICEB G 1 Offset(-5,28)
@@ -138,8 +135,17 @@ ICEB G 12
 ICEB G 1 Offset(-10,24)
 ICEB G 1 Offset(-2,30)
 ICEB G 1 A_WeaponReady(14)
-ICEB JJJ 4
+ICEB DDD 2
+TNT1 A 0 A_TakeInventory("IceAmmoRegenHalt",1)
 goto Ready+2
+
+Flash:
+TNT1 A 0 A_JumpIfInventory("IceAmmoRegenHalt",1,"FlashNoAmmo")
+TNT1 A 1 A_GiveInventory("IceLaserAmmo",1)
+loop
+FlashNoAmmo:
+TNT1 AAAAAAAA 1
+goto Flash
 
 }
 }
@@ -219,9 +225,9 @@ ICEB J 1 A_WeaponReady(14)
 Goto Ready+2
 
 Altfire:
-TNT1 A 0 A_JumpIfInventory("IcicleAmmo",14,1)
+TNT1 A 0 A_JumpIfInventory("IcicleAmmo",42,1)
 Goto NoAmmoAltfire
-ICEB D 0 A_TakeInventory("IcicleAmmo",14)
+ICEB D 0 A_TakeInventory("IcicleAmmo",24)
 ICEB D 0 A_GiveInventory("VivifyDelay6",1)
 ICEB D 0 A_Refire(1)
 ICEB G 1 Offset(-5,28)
@@ -267,7 +273,7 @@ inventory.maxamount 28
 actor IceLaserAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 28
+inventory.maxamount 200
 +INVENTORY.IGNORESKILL
 }
 
@@ -275,6 +281,8 @@ actor IcemanHoverFlag : Powerup
 {
 Powerup.Duration 11
 }
+
+actor IceAmmoRegenHalt : OnceC{}
 
 actor IceSlasherB : IceSlasher
 {
@@ -423,7 +431,7 @@ Obituary "$OB_ICELASERX"
 +FORCEXYBILLBOARD
 +HITTRACER
 Reactiontime 1
-Damage (10)
+Damage (12)
 Radius 8
 Height 8
 Speed 50
@@ -476,22 +484,21 @@ TNT1 A 0 A_JumpIf(z-ceilingz>=-8,"DeathSky")
 TNT1 A 0 A_JumpIf(z-floorz>=128,"DeathSky")
 TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX",0,0,0,0,0,0,0,1)
 TNT1 A 0 A_PlaySound("weapon/IceManDetonate",1,0.75)
-TNT1 A 6 A_Explode(23,108,0,0,0)
+TNT1 A 6 A_Explode(24,108,0,0,48)
 stop
 
 DeathSky:
 TNT1 A 0 A_PlaySound("weapon/Ice_Cloud",1)
 TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,90,1)
-TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,-90,1)
-TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,180,1)
+TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,120,1)
+TNT1 A 0 A_SpawnItemEx("IceBaFCloud2",46,0,0,4,0,0,240,1)
 TNT1 A 1 A_SpawnItemEx("IceBaFCloud",0,0,0,0,0,0,0,1)
 stop
 
 XDeath:
 TNT1 A 0 A_SpawnItemEx("IceBaF_SculptBaseFXX",0,0,0,0,0,0,0,1)
 TNT1 A 0 A_PlaySound("weapon/IceManDetonate",1,0.75)
-TNT1 A 6 A_Explode(23,108,0,0,0)
+TNT1 A 6 A_Explode(24,108,0,0,48)
 stop
 }
 }
@@ -589,7 +596,7 @@ Spawn2:
 ICEL EEEE 0 A_SpawnItemEx("IceBaFIcicleFX",random(0,-8),0,0,random(1,4),0,random(-1,-3),random(0,359),1)
 ICEL E 2 A_SpawnItemEx("IceBaFIcicle",0,0,-20,0,0,-3,0,1)
 ICEL F 1
-ICEL F 1 A_SpawnItemEx("IceBaFIcicle",0,0,-20,0,0,-3,0,1)
+ICEL F 1 A_SpawnItemEx("IceBaFIcicle",frandom(-60,60),frandom(-60,60),-20,momx*0.2,0,-3,0,9)
 ICEL G 2
 
 ICEL E 0 A_CountDown
@@ -642,12 +649,34 @@ TNT1 A 0 A_Setangle(angle-user_num/user_time)
 ICEL G 1 A_ChangeVelocity(user_speed,0,0,3)
 TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
 TNT1 A 0 A_CountDown
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL E 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL EEEE 0 A_SpawnItemEx("IceBaFIcicleFX",random(0,-8),0,0,random(1,4),0,random(-1,-3),random(0,359),1)
+ICEL E 0 A_SpawnItemEx("IceBaFIcicle",frandom(-60,60),frandom(-60,60),-20,momx*0.2,0,-3,0,9)
+ICEL E 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL F 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL F 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL G 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_Setangle(angle-user_num/user_time)
+ICEL G 1 A_ChangeVelocity(user_speed,0,0,3)
+TNT1 A 0 A_SetUserVar("user_time",user_time+user_time_add)
+TNT1 A 0 A_CountDown
 loop
 Death:
 ICEL E 0 //A_Logint(angle)
 ICEL E 0 A_Setangle(angle+78)
 ICEL E 0 A_ChangeVelocity(-11,2,0,3)
 ICEL EFGEFGEFGEFGEFGEFGEFGEFG 2
+ICEL DDCBCBAA 2
 stop
 }
 }
@@ -935,9 +964,6 @@ Bouncetype Classic//Desync fix?
 BounceFactor 1.0
 WallBounceFactor 0.0//Desync fix?
 
-Renderstyle Translucent
-Alpha 0.12
-
 painchance 0
 painchance "IceM_Slow", 256
 painchance "IceM_Sculpt", 256
@@ -958,7 +984,7 @@ Damage (0)
 Radius 28
 Height 64
 Speed 0
-Scale 2.5
+Scale 1.5
 States
 {
 Spawn:
@@ -1054,7 +1080,7 @@ goto S_0
 
 S_0:
 "####" "#" 0 A_ChangeFlag("NOGRAVITY",0)
-"####" "###########" 1 A_FadeIn(0.08)
+"####" "##########" 1 A_SetScale(ScaleY+0.1)
 //"####" "#" 0 A_ChangeFlag("NOGRAVITY",0)
 "####" "#" 0 A_JumpIf(ACS_ExecuteWithResult(107,0)==1,"DeathTime")
 "####" "#" 1 A_JumpIfCloser(32,"DeathTime")//Change to A_RadiusGive with CubeCheck

@@ -803,17 +803,14 @@ $playersound	neptunec	male	*weakpain	MV_WEAK
 $playersound	neptunec	male	*land		GBLAND
 $playersound	neptunec	male	*usefail	GBLAND
 
-$playersound	sunstarc	male	*death		GBDEAD
-$playersound	sunstarc	male	*xdeath		GBDEAD
-$playersound	sunstarc	male	*gibbed		GBDEAD
-$playersound	sunstarc	male	*pain100	GBPAIN
-$playersound	sunstarc	male	*pain75		GBPAIN
-$playersound	sunstarc	male	*pain50		GBPAIN
-$playersound	sunstarc	male	*pain25		GBPAIN
-$playersound	sunstarc	male	*grunt		dsnone
+$playersound	sunstarc	male	*pain100	MV_WEAK
+$playersound	sunstarc	male	*pain75		MV_OUCH
+
+$playersound	sunstarc	male	*death		MV_DIED
+$playersound	sunstarc	male	*pain100	MV_OUCH
+$playersound	sunstarc	male	*pain75		MV_OUCH
+$playersound	sunstarc	male	*weakpain	MV_WEAK
 $playersound	sunstarc	male	*land		MM6LAND
-$playersound	sunstarc	male	*jump		dsnone
-$playersound	sunstarc	male	*fist		dsnone
 $playersound	sunstarc	male	*usefail	MM6LAND
 //MMWT////////////////////////////////////////////////////////////
 $playersound	busterrodgc	male	*death		MEGADEAT

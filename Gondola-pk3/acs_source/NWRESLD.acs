@@ -1,0 +1,16 @@
+#library "NWRESLD.acs"
+#include "zcommon.acs"
+
+// Hopefully this helps [Trill]
+script "gond_resolidifyCheck" (void) {
+	int u = UniqueTID();
+	if(!SpawnForced(GetActorClass(0), GetActorX(0), GetActorY(0), GetActorZ(0), u, GetActorAngle(0))) {
+		SetResultValue(false); // I guess???
+		terminate;
+	}
+	GiveActorInventory(u, "SolidOn", 1);
+	SetActivator(u);
+	bool res = Warp(0, 0, 0, 0, 0, WARPF_TESTONLY);
+	Thing_Remove(u);
+	SetResultValue(res);
+}

@@ -21,53 +21,13 @@ script "colotrns_open" OPEN
 
 script "core_synccolors" (void)
 {
-    //PlayerTranslation[PlayerNumber()] = 0;//$CBM
-
     //Syncs Player colors
-    for(int i=0; i<ServerMAX; i++)
-    {
-        If(PlayerInGame(i) && CheckActorInventory(i + 1000,"NoTeamTranslation")==0)
-        {
-            Switch(GetPlayerInfo(i, PLAYERINFO_TEAM))
-            {
-			Case 0:
-				If(CheckInventory("ThunderClawBoss") == 1)
-				{
-				Thing_SetTranslation(i+1000, 11975);//$CBM
-				break;
-				}
-				Thing_SetTranslation(i+1000, 20600);//$CBM
-				break;
-			Case 1:
-				If(CheckInventory("ThunderClawBoss") == 1)
-				{
-				Thing_SetTranslation(i+1000, 11976);//$CBM
-				break;
-				}
-				Thing_SetTranslation(i+1000, 20610);//$CBM
-				break;
-			Case 2:
-				If(CheckInventory("ThunderClawBoss") == 1)
-				{
-				Thing_SetTranslation(i+1000, 11977);//$CBM
-				break;
-				}
-				Thing_SetTranslation(i+1000, 20620);//$CBM
-				break;
-			Case 3:
-				If(CheckInventory("ThunderClawBoss") == 1)
-				{
-				Thing_SetTranslation(i+1000, 11978);//$CBM
-				break;
-				}
-				Thing_SetTranslation(i+1000, 20630);//$CBM
-				break;
-			default:
-				SetActivator(i+1000);
-				Thing_SetTranslation(i+1000, -1);
-				break;
-            }
-        }
+    for(int i = 0; i < ServerMax; i++) 
+	{
+        if(!PlayerInGame(i)) continue;
+
+		SetActivatorToPlayer(i);
+		Thing_SetTranslation(0, -1);
     }
 }
 
@@ -216,31 +176,28 @@ script "GayClownColors" (int weap, int nosound) //$CBM
 	}
 
 	if(CheckInventory("NoWeaponTranslation")>0){
-	terminate;
+		terminate;
 	}
 	
 	If(IsTeamGame==1 && nosound<=9 && CheckInventory("NoTeamTranslation")==0)//$CBM
-		{
+	{
 		Switch(PlayerTeam())
-			{
+		{
 			Case 0:
-	Thing_SetTranslation(0, 11975);
-	PlayerTranslation[PlayerNumber()] = 11975;
-					terminate;
+				weap = 11975;
+				break;
 			Case 1:
-	Thing_SetTranslation(0, 11976);
-	PlayerTranslation[PlayerNumber()] = 11976;
-					terminate;
+				weap = 11976;
+				break;
 			Case 2:
-	Thing_SetTranslation(0, 11977);
-	PlayerTranslation[PlayerNumber()] = 11977;
-					terminate;
+				weap = 11977;
+				break;
 			Case 3:
-	Thing_SetTranslation(0, 11978);
-	PlayerTranslation[PlayerNumber()] = 11978;
-					terminate;
-			}
+				weap = 11978;
+				break;
 		}
+	}
+		
 	Thing_SetTranslation(0, weap);
 	PlayerTranslation[PlayerNumber()] = weap;
 }

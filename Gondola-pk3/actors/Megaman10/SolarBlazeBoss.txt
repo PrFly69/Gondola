@@ -18,7 +18,7 @@ actor SolarBlazeBoss : BaseMM8BDMWep_CBM
 		loop
 		
 		Ready:
-		SUNH A 0 ACS_ExecuteAlways(998,0,198) //Color ACS used for Solar.
+		SUNH A 0 ACS_ExecuteAlways(998,0,DYE_SOLARMAN) //Color ACS used for Solar.
 		SUNH A 0 A_JumpIfInventory("Once",1,"Ready1") //Desync checker.
 		SUNH A 0 A_GiveInventory("Once",1)
 		Goto ReadySpawn
@@ -389,7 +389,7 @@ actor SolarBlazerBoss : SolarBlazeBoss
 		loop
 		
 		Ready:
-		SUNH E 0 ACS_ExecuteAlways(998,0,198) //Color ACS used for Solar.
+		SUNH E 0 ACS_ExecuteAlways(998,0,DYE_SOLARMAN) //Color ACS used for Solar.
 		SUNH E 0 A_JumpIfInventory("Once",1,"Ready1") //Desync checker.
 		SUNH E 0 A_GiveInventory("Once",1)
 		Goto ReadySpawn

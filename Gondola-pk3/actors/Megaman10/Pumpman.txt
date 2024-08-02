@@ -67,6 +67,13 @@ PUMM F 3
 PUMM FGFGFGFGFG 4
 goto Spawn
 
+CustomState3:
+PUMM F 4
+goto Spawn
+CustomState4:
+PUMM G 4
+goto Spawn
+
 ClassPain:
 PUMM H 0 A_JumpIfInventory("PumpmanNoHandleF",1,1)
 goto PainContinue

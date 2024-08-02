@@ -8,8 +8,8 @@ player.startitem "ChargeKickBoss"
 player.startitem "ChargeManIsEveryWhereAmmo", 75
 player.startitem "BlackHotAmmo", 300
 
-player.maxhealth 115
-health 115
+player.maxhealth 110
+health 110
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.4, 0.4

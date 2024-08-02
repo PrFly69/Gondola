@@ -9,6 +9,8 @@ weapon/XStart X1FIRE
 weapon/XCont X2FIRE
 
 //Proto
+weapon/ultrakillreference ULTRAREF
+weapon/ProtoShieldShine PSHLDSHN
 weapon/protoshieldpickup SHIELDP
 weapon/reversepcharge PROTCHRE
 weapon/protomanshow PMANSHOW
@@ -166,6 +168,7 @@ weapon/Phar_Fire1 S_M4_D3 $limit weapon/Phar_Fire1 0
 weapon/Phar_Fire2 S_M4_D4 $limit weapon/Phar_Fire2 0
 weapon/Phar_Fire3 S_M4_D5 $limit weapon/Phar_Fire3 0
 weapon/PharaohShotExplode PHASHEXP
+weapon/PharaohShotMidExplode PHAMDEXP
 
 //Skull
 weapon/SkullParryShot SKUPRSHT $volume weapon/SkullParryShot 0.75
@@ -174,6 +177,17 @@ $volume classes/SkullShieldBuzz 0.6
 //Ring
 weapon/ringcageshatter RINGSHAT
 weapon/ringcagefire RINGWHOP
+weapon/RingStop RINGSTOP
+$random weapon/RingSpin  { RINSPIN1 RINSPIN2 RINSPIN3 }
+RINSPIN1 RINSPIN1
+RINSPIN2 RINSPIN2
+RINSPIN3 RINSPIN3
+$random weapon/RingBounce  { RINBONC1 RINBONC2 }
+RINBONC1 RINBONC1
+RINBONC2 RINBONC2
+$volume weapon/RingBounce 0.35
+weapon/KabaRawr RINGKABA
+weapon/RingOtoishi RINGOTOI
 
 
 ///// MM5 /////
@@ -186,10 +200,27 @@ weapon/gyrosplit GYRSPLIT
 weapon/gyroattacksee GYROAT
 $volume weapon/gyroattacksee 0.5
 
+//Star
+weapon/StarMainLoop S_M5_E3
+weapon/StarThrowLoop S_M5_E4
+weapon/StarDakkaStart S_M5_E5
+weapon/StarDakkaLoop S_M5_E6
+weapon/StarThrowFastLoop S_M5_E7
+
+//Charge
+weapon/Train CHUGGA $limit weapon/Train 0
+weapon/chugga	CHUG
+$volume weapon/Train 1
+$volume weapon/chugga 1
+weapon/tankengine TANKENGN
+
 //Napalm
 weapon/napalmtread NAPTREAD
 weapon/napalmmissilefly NAPFLY
 weapon/napalmmissilehit NAPMISL
+
+//Crystal
+weapon/crystalbigbounce CRYSBIG
 
 //Dark1
 $volume weapon/darktread 0.8
@@ -208,24 +239,25 @@ weapon/darkblast3stop DSNONE
 //Dark3
 weapon/DM3Ping DM3Ping
 
-//Charge
-weapon/Train CHUGGA $limit weapon/Train 0
-weapon/chugga	CHUG
-$volume weapon/Train 1
-$volume weapon/chugga 1
-weapon/tankengine TANKENGN
-
-//Crystal
-weapon/crystalbigbounce CRYSBIG
-
 
 ///// MM6 /////
+
+//Blizzard
+weapon/BlizzCharge BLIZCHRG $limit weapon/BlizzCharge 0
+weapon/BlizzFull BLIZFULL $limit weapon/BlizzFull 0
+misc/BlizzSnowLand BLSNLAND
+weapon/BlizzSnow BLSNTRAV
+weapon/BlizzBash BLSNBASH
+weapon/BlizzWalk BLIZWALK
+weapon/BlizzPick BLIZPICK
+weapon/BlizzHeavyWeather BLIZHVWT
 
 //Plant
 weapon/PlantBusterShot PLANBUST $volume weapon/PlantBusterShot 0.5
 weapon/plantbuster PLNTBUST
 
 //Flame
+weapon/flameballfall FBALFALL
 $volume weapon/FlameWave 0.5
 
 //Centaur
@@ -240,6 +272,16 @@ $volume weapon/KnightReturn 0.7
 weapon/windvacuum WINDVAC
 weapon/windstormboss WSTRMBOS
 weapon/windgyroboss WGYROBOS
+
+//Plant
+weapon/plantbarrierloop PLNTBACT
+weapon/plantbarrierfire PLNTBFIR
+weapon/plantbarrierhit PLNTBHIT
+weapon/plantvinewhip PLNTWHIP
+weapon/plantvinehit PLNTWHIT
+weapon/plantvinewrap PLNTWRAP
+weapon/planthealpot PLNTHPOT
+weapon/plantleechseed PLNTSEED
 
 //Tomahawk
 weapon/tomahawkboss TOMAHAWB
@@ -263,7 +305,15 @@ $volume weapon/freezefloor 0.4
 weapon/JunkSlider JNKSLIDE
 weapon/JunkM_ShieldLoop JNKSHLDL
 
-//Shademan
+//Burst
+weapon/dangerwrappop DWRAPPOP
+
+//Cloud
+classes/bonelesswalk CLOMFAIL
+weapon/thundersparktravel TZAPTRAV
+
+//Shade
+weapon/shadekickpush SHADKICK
 weapon/noisecrushtravel NOSCRUSH
 weapon/noisecrushimpact NOSCRASH
 
@@ -314,6 +364,12 @@ weapon/searchshot SRCHHOM
 $volume class/SearchBush 0.7
 weapon/SearchDiscBounceMini SRCHMINI
 
+//Grenade
+weapon/grenademanboomcount GRECDTIM
+weapon/grenadethrow GRETHROW
+weapon/grenadeboom GRETBOOM
+weapon/grenadedestroyer GRESPLOD
+
 //Aqua
 $volume weapon/AquaCharge 0.6
 $volume weapon/AquaCharge2 0.6
@@ -349,15 +405,11 @@ walk/baveburner BAVEBURN
 weapon/groundtread GROUSTEP
 weapon/GroundTransform GROUTRAS
 
+//King
+weapon/axerisechop KAXEUP
+
 
 ///// MM9 /////
-
-//Hornetman
-Bee/Homing S_M9_F3  
-Bee/Charge BEECHRG
-$volume Bee/Homing 1          
-$limit Bee/Homing 1 500       //anti earrape stuffs
-$rolloff Bee/Homing 300 1200 
 
 //Tornado
 weapon/tornadoblowboss TORN1
@@ -374,6 +426,20 @@ weapon/plugcharge1 PLUGCHR1
 weapon/plugcharge2 PLUGCHR2
 weapon/plugcharge3 PLUGCHR3
 Plugman/fullpotato PLUFPTT
+
+//Hornet
+Bee/Homing S_M9_F3  
+Bee/Charge BEECHRG
+$volume Bee/Homing 1          
+$limit Bee/Homing 1 500       //anti earrape stuffs
+$rolloff Bee/Homing 300 1200 
+
+//Magma
+weapon/magmaforcestop MGMAXTNG
+weapon/magmabazookaweak MGMBSMAL
+
+//Fake
+weapon/fakeshot2 fakesht2 $limit weapon/fakeshot2 0
 
 ///// MM10 /////
 
@@ -394,6 +460,7 @@ weapon/wheelshotthrow S_M10GW
 classes/gasgasgas BIKEOVRD
 
 //Chill
+weapon/chillstrike CHILSTRK
 weapon/chillshot CHILSHOT
 weapon/chillspike CHILSPIK $limit weapon/chillspike 0
 weapon/chillbreak CHILBRAK $limit weapon/chillbreak 0
@@ -498,6 +565,9 @@ S_MV_J9 S_MV_J9
 S_MV_JA S_MV_JA
 $random weapon/sunstarvent2 { S_MV_J9 S_MV_JA }
 weapon/sunstarextra S_MV_JB
+weapon/sungodslamroll SGODSLAM
+weapon/sungodrain SGODZONE
+weapon/sungodstart SGODBRTH
 
 
 ///// MM11 /////
@@ -507,7 +577,9 @@ weapon/scrambleshot SCTHSHOT
 weapon/scrambletravel SCTHTRAV
 weapon/scrambleboom SCTHBOOM
 
-//Fuse
+//Fuseman
+$random assist/kamishock  { TERCHSR1 TERCHSR2 TERCHSR3 NONE } $volume assist/kamishock 0.6
+fuseman/geardash FUSEGEAR
 fuseman/melee PMELEE
 fuseman/nope PULSNOP
 fuseman/hvoltage VTKER
@@ -524,6 +596,19 @@ $volume fuseman/telestart 0.5
 $volume fuseman/teleport 0.5
 $volume fuseman/voltage 0.5
 $volume weapon/fusedashdown 0.5
+
+//Blast
+weapon/blastfire BLASFIRE
+weapon/blastmainfire BLASFIR2
+weapon/blastalarm BLASBEEP
+weapon/blasthit BLASTICK
+weapon/blastfiren BLASFIR3
+weapon/blastpuff BLASPUFF
+gear/blastman BLASGEAR //Pitch shifted DARKSTEP
+weapon/chainblastfour CBLAS4
+weapon/chainblastgear CBLASG
+weapon/chainblastbomb CBLASB
+weapon/blastwalljump BLASOOGA
 
 //Bounce
 weapon/bounceshot BBALSHOT
@@ -546,32 +631,25 @@ weapon/torchpunch TORCHHIT
 weapon/torchpunchweak TORCHHIW
 body/torchextinguish TRCHEXTN
 
-//Acid
-weapon/acidfire ACIDFIRE
-weapon/acidbarrier ACIDBARI
-weapon/acidmelt ACIDBURN
-weapon/acidboost ACIDBOOS
-
-//Blast
-weapon/blastfire BLASFIRE
-weapon/blastmainfire BLASFIR2
-weapon/blastalarm BLASBEEP
-weapon/blasthit BLASTICK
-weapon/blastfiren BLASFIR3
-weapon/blastpuff BLASPUFF
-gear/blastman BLASGEAR //Pitch shifted DARKSTEP
-weapon/chainblastfour CBLAS4
-weapon/chainblastgear CBLASG
-weapon/chainblastbomb CBLASB
-weapon/blastwalljump BLASOOGA
-
 //Tundra
+weapon/TundraManGlacierWind TUNDVORT
+weapon/TundraManDash TUNDDASH
+weapon/TundraManSpin TUNDSPIN
+weapon/TundraManGear TUNDGEAR
+weapon/TundraManGearLoop TUNDSGLP
 weapon/TundraManSpear TUNDSPEA
 weapon/TundraManDash TUNDDASH
 weapon/TundraManStylishLand TUNDLAND
 weapon/TundraManSpear TUNDSPEA
 weapon/TundraManBreak TUNDBREA
 weapon/TundraManStorm TUNDSTRM
+
+//Acidman
+misc/acidbounce ACIDBOUN
+weapon/acidfire ACIDFIRE
+weapon/acidbarrier ACIDBARI
+weapon/acidmelt ACIDBURN
+weapon/acidboost ACIDBOOS
 
 
 ///// MMWT /////
@@ -605,4 +683,15 @@ DesDemo/CoyoteLeap DS_DD_81 $limit DesDemo/CoyoteLeap 0
 ///// Other /////
 
 //BumoBumo
+weapon/devilhornrise HORNRISE
 weapon/bumobrr BUMOCHRG
+
+
+///// Misc /////
+
+//Heat Death
+CBM/HeatDeath HDEATH1
+CBM/HeatExplode HDEATH2
+
+//Elec Death
+CBM/ElecDeath SHOCKDED

@@ -8,8 +8,8 @@ player.startitem "NapalmBombBoss"
 player.startitem "NapalmClassAmmo", 360
 player.startitem "NapalmMissileAmmo", 100
 
-player.maxhealth 115
-health 115
+player.maxhealth 110
+health 110
 player.forwardmove 0.89, 0.89
 player.sidemove 0.5, 0.5
 player.jumpz 12

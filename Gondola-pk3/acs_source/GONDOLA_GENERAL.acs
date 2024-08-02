@@ -3,6 +3,8 @@
 #include "zcommon.acs"
 #include "8bdmlib.acs"
 
+#DEFINE MAX_PLAYERS 63 //0-31//0-63
+
 // REMOVE THIS PAST V6B!
 global int 4: GLOBAL_ServerMAX;
 script "gondola_mmrf_helper_u" UNLOADING {
@@ -15,6 +17,138 @@ script "gondola_mmrf_helper" ENTER {
 
 script "gondola_cloakplayer" (int player, int toggle) {
     CloakPlayer(player, toggle);
+}
+
+Script "NoGravityDebuff" (void)
+{ 
+Int Duration = 0; 
+Delay(15);  
+While(Duration < 35)
+{
+If(CheckInventory("GravitySmackDownThingy")==1){TakeInventory("GravitySmackDownThingy",99);GiveInventory("FlightEnable",1);Terminate;}
+GiveInventory("GravityWeirdSlow",1);
+GiveInventory("FlightDisable",1); 
+Duration = Duration+1;
+Delay(1);
+}  
+GiveInventory("FlightEnable",1);
+TakeInventory("GravitySmackDownThingy",99);
+}
+
+Script "SlowFallDebuff" (void)
+{ 
+Int Duration = 0; 
+Delay(15);  
+While(Duration < 35)
+{
+If(CheckInventory("GravitySmackDownThingy")==1){TakeInventory("GravitySmackDownThingy",99);GiveInventory("FlightEnable",1);Terminate;}
+GiveInventory("GravityWeirdSlowFall",1);
+GiveInventory("FlightDisable",1); 
+Duration = Duration+1;
+Delay(1);
+}  
+GiveInventory("FlightEnable",1);
+TakeInventory("GravitySmackDownThingy",99);
+}
+
+Script "PlugAmmoFix" (void)
+{ 
+ While(GetActorProperty(0,APROP_HEALTH)>0)
+ {
+  If(CheckInventory("PlugmanLatch")==0)
+  If(CheckInventory("PluggedEnemySlow")==0)
+  {
+   TakeInventory("PlugOverdriveCharge",1);
+  }
+  Delay(2);
+ }
+ Terminate;
+} 
+
+script "cbm_MagicTimeCheck" (void)
+{
+	if(GetTimeProperty(SystemTime(), TM_MONTH) == 11 && GetTimeProperty(SystemTime(), TM_DAY) == 25){
+		GiveInventory("MagicalChristmas_P",1);
+        Log(s:"\cmMagic Man \c[n7]has brought toys for all the \c[n4]good little mega Megamen \c[n7]on his nice list! \c[n4]Merry Christmas!");
+	}
+}
+
+script "cbm_ScrapACS" (void)
+{
+    while(CheckInventory("ScrapMetalFlag")>0) {
+        for(int i=0; i<MAX_PLAYERS; i++) {
+            int ptid = 1000+i;
+
+            if (CheckActorInventory(ptid,"DustCrusherBoss")) {
+                if(ThingCount(T_NONE, 1800+i) && dist3D(0, 1800+i) < 64) {//50
+                    GiveActorInventory(ptid,"DustBits",1);
+                    SetActorState(0, "Vacuumed");
+                    terminate;
+                }
+            }
+
+            if(CheckActorInventory(ptid, "ShieldScrapPullFlag")) {
+                if(dist3D(0, ptid) < 256) {
+                    if(dist3d(0, ptid) < (GetActorProperty(0, AProp_Radius) + GetActorProperty(ptid, AProp_Radius) >> 16)) {
+                        GiveActorInventory(ptid,"ScrapMetalBase",1); // give junkman shit here to clean up the nonsense
+                        SetActorState(0, "Vacuumed");
+                        terminate;
+                    } else {
+                        int x = (GetActorX(ptid) - GetActorX(0));
+                        int y = (GetActorY(ptid) - GetActorY(0));
+                        int z = (GetActorZ(ptid) + (GetActorProperty(ptid, AProp_Height)/2) - GetActorZ(0));
+                        
+                        int len = VectorLength(x, y);
+                        
+                        int yaw = vectorAngle(x, y);
+                        int pitch = -VectorAngle(len, z);
+
+                        int spd = 2.0;
+
+                        SetActorVelocity(0,
+                            FixedMul(cos(yaw), FixedMul(cos(pitch), spd)),
+                            FixedMul(sin(yaw), FixedMul(cos(pitch), spd)),
+                            FixedMul(sin(-pitch), spd),
+                            true, false);
+                    }
+                }
+            }
+        }
+        Delay(1);
+    }
+}
+
+function int dist3D (int tid1, int tid2)
+{
+    int x, y, z, d;
+    x = GetActorX(tid1) - GetActorX(tid2);
+    y = GetActorY(tid1) - GetActorY(tid2);
+    z = GetActorZ(tid1) - GetActorZ(tid2);
+    d = VectorLength(VectorLength(x, y), z) >> 16;
+    return d;
+}
+
+script "MagnetCounter" (void)
+{
+SetResultValue(CheckInventory("PullChargePower")/2);
+}
+
+script "YamSpreadCounter" (void)
+{
+SetResultValue(CheckInventory("YamatoClassAmmo")/5);
+}
+
+script "gond_acidman_shieldwarper" (void) CLIENTSIDE {
+	int target = ACS_NamedExecuteWithResult("core_gettarget");
+	while(GetActorProperty(target, APROP_HEALTH) > 0 && CheckActorInventory(target, "AcidicBarrierAmmo") > 0){
+		Delay(1);
+	}
+	SetActorState(0, "Pop", true);
+}
+
+script "gond_acidman_floor_check" (void) {
+	SetActivatorToTarget(0);
+	SetResultValue(!(GetActorZ(0) > GetActorFloorZ(0)));
 }
 
 int mmrf_loaded = -1;
@@ -439,38 +573,46 @@ script "Gond_AcidmanBarrierProtect" (int Ally)
 If(Ally==0){SetActivator(0,AAPTR_Target);}
 Else{SetActivator(0,AAPTR_Tracer);}
 
-int BarrierTime = 0.05;
-While(BarrierTime<=0.95)
+int BarrierTime = 1;
+While(BarrierTime<=54)
     {
     if(Ally>0){TakeInventory("AcidBarrierVisualBar",1);}
-    BarrierTime = BarrierTime+0.05;
-    SetActorProperty(0,APROP_DamageFactor,BarrierTime);
-    Delay(5);
+    BarrierTime = BarrierTime+1;
+    SetActorProperty(0,APROP_DamageFactor,0.7);
+    Delay(1);
     }
 SetActorProperty(0,APROP_DamageFactor,1.0);
 }
 
 script "AcidmanGearAmmo" (int AcidMult)
 {
-	int TracerSave = ACS_ExecuteWithResult(147,1);
-	int TargetSave = ACS_ExecuteWithResult(147,0);
-	int AcidH = max(GetActorProperty(TracerSave,APROP_HEALTH),0);
-	int AcidDiff = CheckActorInventory(TracerSave,"AcidLastHealthFlag") - AcidH;
-	If(AcidDiff != 0){GiveActorInventory(TargetSave,"AcidGearUpSound_P",1);};
-		GiveActorInventory(TargetSave,"AcidGearAmmo",AcidDiff*AcidMult);
-		TakeActorInventory(TracerSave,"AcidLastHealthFlag",999);
-		GiveActorInventory(TracerSave,"AcidLastHealthFlag",AcidH);
+    int TracerSave = ACS_ExecuteWithResult(147,1);
+    int TargetSave = ACS_ExecuteWithResult(147,0);
+    int AcidH = max(GetActorProperty(TracerSave,APROP_HEALTH),0);
+    int AcidDiff = CheckActorInventory(TracerSave,"AcidLastHealthFlag") - AcidH;
+    If(AcidDiff != 0) {
+        GiveActorInventory(TargetSave, "AcidGearUpSound_P",1);
+        GiveActorInventory(TracerSave, "AcidmanMainG_CI",1); // this was moved into the if AcidDiff check and then made into the "giveactorinventory" that you found after i changed it while i was writing this comment to help you learn
+    }
+
+    GiveActorInventory(TargetSave,"AcidGearAmmo",AcidDiff*AcidMult);
+    TakeActorInventory(TracerSave,"AcidLastHealthFlag",999);
+    GiveActorInventory(TracerSave,"AcidLastHealthFlag",AcidH);
 }
 
 script "AcidmanGearAmmoSelf" (int AcidMult)
 {
-	SetActivatorToTarget(0);
-	int AcidH = max(PlayerHealth(),0);
-	int AcidDiff = CheckInventory("AcidLastHealthFlag") - AcidH;
-	If(AcidDiff != 0){GiveInventory("AcidGearUpSound_P",1);};
-		GiveInventory("AcidGearAmmo",AcidDiff*AcidMult);
-		TakeInventory("AcidLastHealthFlag",999);
-		GiveInventory("AcidLastHealthFlag",AcidH);
+    SetActivatorToTarget(0);
+    int AcidH = max(PlayerHealth(),0);
+    int AcidDiff = CheckInventory("AcidLastHealthFlag") - AcidH;
+    If(AcidDiff != 0) {
+        GiveInventory("AcidmanMainG_CI",1);
+        GiveInventory("AcidGearUpSound_P",1);
+    }
+
+    GiveInventory("AcidGearAmmo",AcidDiff*AcidMult);
+    TakeInventory("AcidLastHealthFlag",999);
+    GiveInventory("AcidLastHealthFlag",AcidH);
 }
 
 script "AcidmanGearAmmoUpdate" (void)

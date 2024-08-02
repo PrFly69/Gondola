@@ -382,11 +382,11 @@ graphic SGDST00,32,32{XScale 4.0 YScale 4.0 Patch SSTAMUG,0,0}
 
 graphic SUNCROWN, 32, 32{XScale 1.25 YScale 1.25  Patch SUNSW0, 0, 0 {Translation "192:192=216:216", "198:198=220:220"}}
 
-//Copywep
+//NovaBeamCWep
 graphic SunLaser,30,30{XScale 2.0 YScale 2.0 Patch SLZRI0,0,0}
-sprite SLZHA0,116,96{Offset -184,-94 Patch BUSTB0,0,0{Translation"192:192=248:248", "198:198=249:249"}}
-sprite SLZHB0,124,96{Offset -184,-98 Patch BUSTD0,0,0{Translation"192:192=248:248", "198:198=249:249"}}
-sprite SLZHC0,124,96{Offset -184,-98 Patch BUSTC0,0,0{Translation"192:192=248:248", "198:198=249:249"}}
+sprite SLZHA0,116,96{Offset -184,-94 Patch BUSTB0,0,0{Translation"192:192=215:215", "198:198=227:227"}}
+sprite SLZHB0,124,96{Offset -184,-98 Patch BUSTD0,0,0{Translation"192:192=215:215", "198:198=227:227"}}
+sprite SLZHC0,124,96{Offset -184,-98 Patch BUSTC0,0,0{Translation"192:192=215:215", "198:198=227:227"}}
 
 //Blastman Mugshot
 sprite  C_11B0, 32, 32{XScale 2.0 YScale 2.0 offset 16, 32  Patch FACE011B, 0, 0}

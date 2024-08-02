@@ -7,8 +7,9 @@ player.soundclass "BearerClassC"
 
 player.startitem "YellowEyeBoss"
 player.startitem "MaximumBearAmmo",3
-player.startitem "CanUseItems"
+player.startitem "YellowEyeAmmo",180
 player.startitem "SemiStunArmor"
+player.startitem "BumoUseItem"
 
 player.startitem "ThunderBeamWeakness2", 1
 player.startitem "ThunderBeamWeakness", 1
@@ -23,11 +24,11 @@ player.startitem "GyroAttackWeakness", 1
 //player.startitem "ChainBlastWeakness2", 1
 //player.startitem "ChainBlastWeakness", 1
 
-player.maxhealth 185
-health 185
+player.maxhealth 200
+health 200
 player.jumpz 10
-player.forwardmove 0.60, 0.60
-player.sidemove 0.58, 0.58
+player.forwardmove 0.5, 0.5
+player.sidemove 0.48, 0.48
 
 +NOSKIN
 PainSound "misc/ROCKHURTX"
@@ -51,7 +52,13 @@ YD_B AA 5
 goto Spawn+2
 
 CustomState2:
-YD_H MNOP 3 A_JumpIfInventory("BumoEnd",1,"Spawn")
+YD_B I 1 A_JumpIf(momz<1,"Falling")
+YD_B I 0 A_JumpIfInventory("BumoEnd",1,"Spawn")
+loop
+
+Falling:
+YD_B J 1 A_JumpIf(momz>1,"CustomState2")
+YD_B J 0 A_JumpIfInventory("BumoEnd",1,"Spawn")
 loop
 
 ClassPain:

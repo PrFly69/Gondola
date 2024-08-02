@@ -21,7 +21,7 @@ GUTP A 2 A_WeaponReady
 GUTP A 0 A_TakeInventory("SpawningMisfire",1)
 Goto Ready1
 Ready1:
-GUTP A 5 A_WeaponReady
+GUTP A 4 A_WeaponReady
 GUTP A 0 A_GiveInventory("GutsArmAmmo",1)
 loop
 
@@ -55,12 +55,12 @@ Fire:
 TNT1 A 0 A_JumpIfInventory("SpawningMisfire",1,"SpawnProtect")
 TNT1 A 0 A_JumpIfInventory("SuperArmTemp",1,"Throw")
 TNT1 A 0 A_JumpIfInventory("IsBot",1,"BotFire")
-TNT1 A 0 A_JumpIfInventory("GutsArmAmmo",4,1)
+TNT1 A 0 A_JumpIfInventory("GutsArmAmmo",7,1)
 goto SpawnProtect
 GUTP A 0 //A_Stop
 GUTP A 0 A_GiveInventory("SuperArmTemp",1)
 GUTP A 0 A_TakeInventory("SemiStunArmor",999)
-GUTP A 0 A_TakeInventory("GutsArmAmmo",4)
+GUTP A 0 A_TakeInventory("GutsArmAmmo",7)
 GUTP A 0 A_PlaySoundEx("misc/hugequake2","Weapon")
 
 GUTP A 0 A_JumpIfInventory("PowerRage_ST",1,"Fire_R")
@@ -382,7 +382,7 @@ stop
 actor Gutrock2 : Gutrock
 {
 Translation "204:204=216:216","195:195=220:220"
-Damage (33)//55
+Damage (30)//55
 Speed 35//30
 damagetype "GutsM_Rock"
 States
@@ -448,7 +448,7 @@ actor GutrockDebris2
 PROJECTILE
 damagetype "GutsM_RockBit"
 Obituary "$OB_SUPERARM"
-Damage (9)//150
+Damage (5)//150
 Radius 12
 Height 12
 Speed 20
@@ -476,36 +476,17 @@ Radius 10
 scale 2.0
 }
 
-actor GutPunch
+actor GutPunch : BasicPunch
 {
-translation "202:202=210:210"
-PROJECTILE
 damagetype "GutsM_Punch"
 Obituary "$OB_GUTSPUNCH"
-+DONTBLAST
-reactiontime 1
-damage (55)
-Radius 20
-Height 20
-speed 60
-scale 2.5
-States
-{
-Spawn:
-UMFX J 0
-UMFX J 1 A_CountDown
-wait
-Death:
-UMFX J 0 A_Explode(55,40,0)
-goto XDeath
-XDeath:
-UMFX J 0 A_Stop
-UMFX J 2
-XMFX S 2
-UMFX JK 2
-stop
+mass 55
 }
-}
+
+actor GutPunchB : GutPunch{translation "202:202=4:4", "199:199=205:205"}
+actor GutPunchR : GutPunch{translation "202:202=4:4", "199:199=171:171"}
+actor GutPunchO : GutPunch{translation "202:202=4:4", "199:199=104:104"}
+actor GutPunchP : GutPunch{translation "202:202=4:4", "199:199=229:229"}
 
 /*actor GutsPunch_PowerProtect : PowerProtection
 {
@@ -541,11 +522,6 @@ UMFX JK 2
 stop
 }
 }*/
-
-actor GutPunchB : GutPunch{translation "202:202=205:205"}
-actor GutPunchR : GutPunch{translation "202:202=171:171"}
-actor GutPunchO : GutPunch{translation "202:202=104:104"}
-actor GutPunchP : GutPunch{translation "202:202=229:229"}
 
 
 actor GutsmanMain_CI : TeamColor_CI

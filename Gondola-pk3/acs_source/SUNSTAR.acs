@@ -1,87 +1,39 @@
 #library "docammo"
 #include "zcommon.acs"
 
-script "SunstarHealth" (void)
-{
-SetActivatorToTarget(0);
-SetResultValue(GetActorProperty(0,APROP_Health));
-}
-
 script "SunstarCounter" (void)
 {
 SetActivatorToTarget(0);
 SetResultValue(CheckInventory("LaserChargeStack"));
 }
 
-script "SunstarBarTransfer" (void)
+script "SunstarChaserACS" (int maxRange)
 {
-TakeInventory("NuclearOverclockAmmo",999);
-GiveInventory("NuclearOverclockAmmo",CheckInventory("NuclearOverheatAmmo"));
-Delay(1);
-TakeInventory("NuclearOverheatAmmo",999);
-}
+  maxRange <<= 16;
+  int targetTID = ACS_NamedExecuteWithResult("core_gettarget");
 
-script "SunstarChaserACS" (int maxrange)
-{
-    int targetTID;
-    for(int p = 0;p < 64; p++)
-    {
-        if(!PlayerInGame(p))
-        {
-            continue;
-        }
+  for(int p = 0; p < 64; p++) {
+    if(!PlayerInGame(p))
+      continue;
+
+    if(targetTID == p + 1000)
+      continue;
         
-        targetTID = p+1000;
-        if(xDistanceSquare(0, targetTID) < maxRange && yDistanceSquare(0, targetTID) < maxRange && targetTID  != ACS_ExecuteWithResult(257,0))
-        {    
-            if(CheckSight(0,targetTID,0))
-            {
-               setresultvalue(1);
-            }
-        }
-        else
-		{
-		setresultvalue(0);
-		}
+    if(abs(GetActorX(p + 1000) - GetActorX(0)) <= maxRange && abs(GetActorY(p + 1000) - GetActorY(0)) <= maxRange) {
+      if(CheckSight(0, p + 1000, 0)) {
+        SetResultValue(true);
+        terminate;
+      }
     }
+  }
+
+  SetResultValue(false);
 }
 
-function int xDistanceSquare (int tid1, int tid2)
+function int abs (int x)
 {
-    int x, d;
-    x = GetActorX(tid1) - GetActorX(tid2) >> 16;
-    d = sqrt8((x*x));
-    return d;
-}
+    if (x < 0)
+        return -x;
 
-function int yDistanceSquare (int tid1, int tid2)
-{
-    int y, d;
-    y = GetActorY(tid1) - GetActorY(tid2) >> 16;
-    d = sqrt8((y*y));
-    return d;
-}
-
-function int sqrt8(int number)
-{
-	if(number <= 3)
-	{
-		if(number > 0)
-		{
-			return 1;
-		}
-		return 0;
-	}
-
-	int oldAns = number >> 1,                     // initial guess
-	    newAns = (oldAns + number / oldAns) >> 1; // first iteration
-
-	// main iterative method
-	while(newAns < oldAns)
-	{
-		oldAns = newAns;
-		newAns = (oldAns + number / oldAns) >> 1;
-	}
-
-	return oldAns;
+    return x;
 }

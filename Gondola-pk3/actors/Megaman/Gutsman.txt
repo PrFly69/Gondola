@@ -5,8 +5,8 @@ Player.ScoreIcon "C_01B0X"
 player.displayname "Gutsman"
 player.soundclass "gutsmanc"
 
-player.maxhealth 185
-health 185
+player.maxhealth 175
+health 175
 player.jumpz 10
 player.forwardmove 0.56, 0.56
 player.sidemove 0.54, 0.54

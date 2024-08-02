@@ -1386,10 +1386,10 @@ goto Done
 }
 }
 
-actor TorchKickDiveB : TorchKickDive{translation "198:198=205:205", "192:192=196:196"}
-actor TorchKickDiveR : TorchKickDive{translation "198:198=171:171", "192:192=170:170"}
-actor TorchKickDiveO : TorchKickDive{translation "198:198=104:104", "192:192=138:138"}
-actor TorchKickDiveP : TorchKickDive{translation "198:198=229:229", "192:192=214:214"}
+actor TorchKickDiveB : TorchKickDive{translation "198:198=74:74", "192:192=205:205"}
+actor TorchKickDiveR : TorchKickDive{translation "198:198=41:41", "192:192=171:171"}
+actor TorchKickDiveO : TorchKickDive{translation "198:198=128:128", "192:192=104:104"}
+actor TorchKickDiveP : TorchKickDive{translation "198:198=232:232", "192:192=229:229"}
 
 actor TorchKickDive_CI : TeamColor_CI
 {

@@ -8,8 +8,8 @@ player.startitem "DarkShieldBoss"
 player.startitem "DarkShieldAmmo",28
 player.startitem "Darkman2ShieldAmmo", 500
 
-player.maxhealth 115
-health 115
+player.maxhealth 110
+health 110
 player.jumpz 10
 player.forwardmove 0.810, 0.810
 player.sidemove 0.808, 0.808
@@ -26,10 +26,10 @@ Goto Spawn+2
 
 See:
 DKC4 A 0 A_JumpIfHealthLower(2,"SeeMax")
-DKC4 A 0 A_JumpIfHealthLower(23,"See5")
-DKC4 A 0 A_JumpIfHealthLower(46,"See4")
-DKC4 A 0 A_JumpIfHealthLower(69,"See3")
-DKC4 A 0 A_JumpIfHealthLower(92,"See2")
+DKC4 A 0 A_JumpIfHealthLower(22,"See5")
+DKC4 A 0 A_JumpIfHealthLower(44,"See4")
+DKC4 A 0 A_JumpIfHealthLower(66,"See3")
+DKC4 A 0 A_JumpIfHealthLower(88,"See2")
 DAR2 BCDE 5
 Goto Spawn
 See2:

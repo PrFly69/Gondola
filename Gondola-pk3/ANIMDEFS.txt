@@ -1,3 +1,109 @@
+//Duo
+texture DUOMBAR
+pic BARAMM25 tics 4
+pic BARAMM71 tics 4
+
+texture DUOMVAR
+pic VARAMM25 tics 4
+pic VARAMM71 tics 4
+
+texture DUOCH0
+pic DUOCH1 tics 2
+pic DUOCH2 tics 2
+pic DUOCH3 tics 2
+pic DUOCH4 tics 2
+pic DUOCH5 tics 2
+pic DUOCH6 tics 2
+pic DUOCH7 tics 2
+pic DUOCH8 tics 2
+pic DUOCH9 tics 2
+pic DUOCH10 tics 2
+texture DUOVH0
+pic DUOVH1 tics 2
+pic DUOVH2 tics 2
+pic DUOVH3 tics 2
+pic DUOVH4 tics 2
+pic DUOVH5 tics 2
+pic DUOVH6 tics 2
+pic DUOVH7 tics 2
+pic DUOVH8 tics 2
+pic DUOVH9 tics 2
+pic DUOVH10 tics 2
+
+//Snakeman
+texture SNAKBARX
+pic SNAKBAR1 tics 4
+pic SNAKBAR2 tics 4
+pic SNAKBAR3 tics 4
+pic SNAKBAR2 tics 4
+
+texture SNAKVARX
+pic SNAKVAR1 tics 4
+pic SNAKVAR2 tics 4
+pic SNAKVAR3 tics 4
+pic SNAKVAR2 tics 4
+
+texture SNACBARX
+pic SNACBAR1 tics 4
+pic SNACBAR2 tics 4
+pic SNACBAR3 tics 4
+pic SNACBAR2 tics 4
+
+
+texture SNACVARX
+pic SNACVAR1 tics 4
+pic SNACVAR2 tics 4
+pic SNACVAR3 tics 4
+pic SNACVAR2 tics 4
+
+//Doc
+texture DOCNOBR
+pic DOCNOBR1 tics 4
+pic DOCNOBR2 tics 4
+
+texture DOCNOVR
+pic DOCNOVR1 tics 4
+pic DOCNOVR2 tics 4
+
+//Ring
+texture RINGVBAR
+pic VARAMMO9 tics 4
+pic RINVLASH tics 4
+
+texture RINGSBAR
+pic BARAMMO9 tics 4
+pic RINFLASH tics 4
+
+//Charge M2
+texture CHRXBAR
+pic CHX1BAR tics 2
+pic CHX2BAR tics 2
+pic CHX3BAR tics 2
+pic CHX2BAR tics 2
+
+texture CHRXVAR
+pic CHX1VAR tics 2
+pic CHX2VAR tics 2
+pic CHX3VAR tics 2
+pic CHX2VAR tics 2
+
+//DM4
+warp2 texture D4FXA0 0.75
+
+//Splash Defense
+texture SPLWBUF1
+	pic SPLWBUFM tics 5
+	pic SPLWBUFN tics 5
+	
+//Strike	
+texture 10_F_BAR
+pic 10_4_BAR tics 3
+pic 10_STBAR tics 3
+
+texture 10_F_VAR
+pic 10_4_VAR tics 3
+pic 10_STVAR tics 3
+
 //Terra
 texture TERRACON
 pic TERRICO1 tics 4
@@ -15,15 +121,6 @@ pic V_I_SUW tics 4
 pic V_I_SUX tics 4
 pic V_I_SUY tics 4
 pic V_I_SUZ tics 4
-
-//Duo
-texture DUOMBAR
-pic BARAMM25 tics 4
-pic BARAMM71 tics 4
-
-texture DUOMVAR
-pic VARAMM25 tics 4
-pic VARAMM71 tics 4
 
 //Hornet
 texture HC_S_BAR
@@ -58,51 +155,6 @@ pic 5K_G_VAR tics 4
 pic 5K_H_VAR tics 4
 pic 5K_I_VAR tics 4
 pic TNT1A0 tics 4
-
-texture DUOCH0
-pic DUOCH1 tics 2
-pic DUOCH2 tics 2
-pic DUOCH3 tics 2
-pic DUOCH4 tics 2
-pic DUOCH5 tics 2
-pic DUOCH6 tics 2
-pic DUOCH7 tics 2
-pic DUOCH8 tics 2
-pic DUOCH9 tics 2
-pic DUOCH10 tics 2
-texture DUOVH0
-pic DUOVH1 tics 2
-pic DUOVH2 tics 2
-pic DUOVH3 tics 2
-pic DUOVH4 tics 2
-pic DUOVH5 tics 2
-pic DUOVH6 tics 2
-pic DUOVH7 tics 2
-pic DUOVH8 tics 2
-pic DUOVH9 tics 2
-pic DUOVH10 tics 2
-
-//Charge M2
-texture CHRXBAR
-pic CHX1BAR tics 2
-pic CHX2BAR tics 2
-pic CHX3BAR tics 2
-pic CHX2BAR tics 2
-
-texture CHRXVAR
-pic CHX1VAR tics 2
-pic CHX2VAR tics 2
-pic CHX3VAR tics 2
-pic CHX2VAR tics 2
-
-//Doc
-texture DOCNOBR
-pic DOCNOBR1 tics 4
-pic DOCNOBR2 tics 4
-
-texture DOCNOVR
-pic DOCNOVR1 tics 4
-pic DOCNOVR2 tics 4
 
 texture BARMTERR
 pic BAMM1_V0 tics 4
@@ -246,29 +298,18 @@ pic SJOEVAZ tics 2.5
 pic SJOEVAY tics 2.5
 pic SJOEVAX tics 2.5
 pic SJOEVAW tics 2.5
+	
+//Sunstar
+texture SUNGEM0X
+pic S_U2G0 tics 3
+pic S_U2H0 tics 3
+pic S_U2I0 tics 3
+	
+//Acid
+texture 11_N_BAR
+pic 11_L_BAR tics 5
+pic 11_M_BAR tics 5
 
-//Hisssssssssssssss
-texture SNAKBARX
-pic SNAKBAR1 tics 4
-pic SNAKBAR2 tics 4
-pic SNAKBAR3 tics 4
-pic SNAKBAR2 tics 4
-
-texture SNAKVARX
-pic SNAKVAR1 tics 4
-pic SNAKVAR2 tics 4
-pic SNAKVAR3 tics 4
-pic SNAKVAR2 tics 4
-
-texture SNACBARX
-pic SNACBAR1 tics 4
-pic SNACBAR2 tics 4
-pic SNACBAR3 tics 4
-pic SNACBAR2 tics 4
-
-
-texture SNACVARX
-pic SNACVAR1 tics 4
-pic SNACVAR2 tics 4
-pic SNACVAR3 tics 4
-pic SNACVAR2 tics 4
+texture 11_N_VAR
+pic 11_L_VAR tics 5
+pic 11_M_VAR tics 5

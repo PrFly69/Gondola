@@ -3,9 +3,9 @@ actor DarkSniperBoss : BaseMM8BDMWep_CBM
 {
 tag "$TAGC_5K"
 dropitem "DarkShieldWepCDropped"
-Weapon.AmmoUse 10
+Weapon.AmmoUse 20
 Weapon.AmmoUse2 18
-Weapon.AmmoGive 70
+Weapon.AmmoGive 80
 Obituary "$OB_DARK3SNIPER"
 Inventory.Pickupmessage "maybe"
 weapon.ammotype1 "Darkman3SniperAmmo"
@@ -24,7 +24,7 @@ goto Ready0
 Ready0:
 DKC3 A 0 A_GiveInventory("DarkSniperCharge_F",1)
 Ready1:
-DKC3 A 0 A_JumpIfInventory("Darkman3SniperAmmo",10,"Ready2")
+DKC3 A 0 A_JumpIfInventory("Darkman3SniperAmmo",20,"Ready2")
 DKC3 A 0 A_JumpIfInventory("Darkman3RingAmmo",18,"Ready3")
 DKC3 A 0 A_JumpIfInventory("DarkSniperFlag",1,2)
 DKC3 A 0 A_WeaponReady(8)
@@ -46,7 +46,7 @@ DKC3 A 0 A_JumpIfInventory("DarkSniperFlag",1,2)
 DKC3 AA 0 A_GiveInventory("Darkman3RingAmmo",1)
 loop
 Ready3:
-DKC3 A 0 A_JumpIfInventory("Darkman3SniperAmmo",10,"Ready4")
+DKC3 A 0 A_JumpIfInventory("Darkman3SniperAmmo",20,"Ready4")
 DKC3 A 0 A_JumpIfInventory("DarkSniperFlag",1,2)
 DKC3 A 0 A_WeaponReady
 DKC3 A 2 A_WeaponReady(4)
@@ -88,30 +88,25 @@ DKC3 A 0 A_GiveInventory("VivifyDelay8",1)
 DKC3 A 0 A_ReFire(1)
 DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main_CI",1)
-//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
-DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
+DKC3 A 2 OffSet(20,52)
 DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main0_CI",1)
-//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
-DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
+DKC3 A 2 OffSet(20,52)
 DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main0_CI",1)
-//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
-DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
+DKC3 A 2 OffSet(20,52)
 DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main0_CI",1)
-//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
-DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
+DKC3 A 2 OffSet(20,52)
 DKC3 A 0 A_PlaySoundEx("weapon/enemyweapon","Weapon")
 DKC3 A 2 OffSet(10,42)A_GiveInventory("Darkman3Main0_CI",1)
-//TNT1 A 0 A_ChangeVelocity(momx,momy,4*momz/5,2)
-DKC3 A 2 OffSet(20,52)//A_TakeInventory("Darkman3SniperAmmo",2)
+DKC3 A 2 OffSet(20,52)
 DKC3 A 2 OffSet(10,42)
 DKC3 A 14 A_WeaponReady(14)
 goto Ready0
 
 Fire1:
-DKC3 A 1 OffSet(20,52)A_GiveInventory("Dark3_FireCheck_P")
+DKC3 A 1 A_GiveInventory("Dark3_FireCheck_P")
 TNT1 A 0 A_TakeInventory("DarkSniperCharge",999)
 DKC3 A 11 OffSet(20,52) 
 DKC3 A 2 OffSet(10,42)
@@ -135,9 +130,9 @@ DKC3 A 0 A_PlaySoundEx("weapon/sparkalt","Weapon")
 DKC3 A 4 OffSet(40,32)A_GiveInventory("Darkman3Alt2_CI",1)
 goto AltEnd
 AltEnd:
-DKC3 A 12 OffSet(40,32)
-DKC3 A 4 OffSet(20,32)
-DKC3 A 4 A_WeaponReady(14)
+DKC3 A 16 OffSet(40,32)
+DKC3 A 8 OffSet(20,32)
+DKC3 A 8 A_WeaponReady(14)
 goto Ready0
 
 FireOld:
@@ -206,7 +201,7 @@ goto Ready0
 actor Darkman3SniperAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 70
+inventory.maxamount 80
 +INVENTORY.IGNORESKILL
 }
 
@@ -273,7 +268,7 @@ TNT1 A 0 A_GiveInventory("Darkman3Main1_CI")
 goto PickEnd
 Fire2:
 TNT1 A 0 A_PlaySoundEx("weapon/Dark3Rail","Weapon")
-TNT1 A 0 A_TakeInventory("Darkman3SniperAmmo",70)
+TNT1 A 0 A_TakeInventory("Darkman3SniperAmmo",80)
 TNT1 A 0 A_GiveInventory("Darkman3Main2_CI")
 goto PickEnd
 PickEnd:
@@ -302,7 +297,7 @@ States
 Pickup:
 TNT1 A 0 A_JumpIfInventory("DarkSniperCharge_F",1,1)
 stop
-TNT1 A 0 A_JumpIfInventory("Darkman3SniperAmmo",10,1)
+TNT1 A 0 A_JumpIfInventory("Darkman3SniperAmmo",20,1)
 stop
 TNT1 A 0 A_GiveInventory("DarkSniperCharge",(5+(100-health*100.0/ACS_ExecuteWithResult(CBM_FetchMyHealth,1))/18)*(CallACS("cbm_CheckForRage",0)+1))
 TNT1 A 0
@@ -367,11 +362,11 @@ Obituary "$OB_DARK3SNIPE"
 +FORCEXYBILLBOARD 
 +BRIGHT 
 var int user_dmg; 
-Damage(15+user_dmg)
+Damage(10+user_dmg)
 radius 14//11
 height 14
-speed 120
-scale 2.75
+speed 90
+scale 2.5
 States
 {
 Spawn:
@@ -380,7 +375,7 @@ TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 Weeee:
 DSHO A 1 A_SpawnItemEx("Darkman3ShotFX1",0,0,0,0,0,0,0,1)
 TNT1 A 0 A_SetUserVar("user_dmg",user_dmg+1)
-TNT1 A 0 A_JumpIf(user_dmg>=10,"Woooo")
+TNT1 A 0 A_JumpIf(user_dmg>=15,"Woooo")
 loop
 Woooo: 
 DSHO A 0 A_SpawnItemEx("Darkman3ShotFX2",0,0,0,0,0,0,0,1)
@@ -391,7 +386,7 @@ DSHO A 0 A_SetPitch(pitch%360+30)
 loop
 Death:
 DKC1 G 0 A_Stop
-DKC1 GHIJK 1
+DKC1 GHIJK 1 A_SetScale(scalex+.5)
 stop
 }
 }
@@ -983,19 +978,19 @@ states
 {
 FireX:
 //TNT1 A 0 A_RailAttack(25,0,1,"68 44 FC","D8 B8 F8",1,0,"Darkman3RailPuff",0,0)
-TNT1 A 0 A_RailAttack(25,0,1,"68 44 FC","D8 B8 F8",1,0,"Darkman3RailPuff",0,0,0.0,1,10.0,10.0,"Darkman3RailFX")
+TNT1 A 0 A_RailAttack(30,0,1,"68 44 FC","D8 B8 F8",1,0,"Darkman3RailPuff",0,0,0.0,1,10.0,10.0,"Darkman3RailFX")
 goto Done
 FireB:
-TNT1 A 0 A_RailAttack(25,0,1,"00 70 E8","38 B8 F8",1,0,"Darkman3RailPuffB",0,0,0.0,1,10.0,10.0,"Darkman3RailFXB")
+TNT1 A 0 A_RailAttack(30,0,1,"00 70 E8","38 B8 F8",1,0,"Darkman3RailPuffB",0,0,0.0,1,10.0,10.0,"Darkman3RailFXB")
 goto Done
 FireR:
-TNT1 A 0 A_RailAttack(25,0,1,"E0 00 58","FF 9B 9B",1,0,"Darkman3RailPuffR",0,0,0.0,1,10.0,10.0,"Darkman3RailFXR")
+TNT1 A 0 A_RailAttack(30,0,1,"E0 00 58","FF 9B 9B",1,0,"Darkman3RailPuffR",0,0,0.0,1,10.0,10.0,"Darkman3RailFXR")
 goto Done
 FireO:
-TNT1 A 0 A_RailAttack(25,0,1,"00 A8 00","B8 F8 18",1,0,"Darkman3RailPuffO",0,0,0.0,1,10.0,10.0,"Darkman3RailFXO")
+TNT1 A 0 A_RailAttack(30,0,1,"00 A8 00","B8 F8 18",1,0,"Darkman3RailPuffO",0,0,0.0,1,10.0,10.0,"Darkman3RailFXO")
 goto Done
 FireP:
-TNT1 A 0 A_RailAttack(25,0,1,"C0 70 00","F8 B8 00",1,0,"Darkman3RailPuffP",0,0,0.0,1,10.0,10.0,"Darkman3RailFXP")
+TNT1 A 0 A_RailAttack(30,0,1,"C0 70 00","F8 B8 00",1,0,"Darkman3RailPuffP",0,0,0.0,1,10.0,10.0,"Darkman3RailFXP")
 goto Done
 }
 }

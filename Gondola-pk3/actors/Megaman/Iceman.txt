@@ -8,8 +8,7 @@ player.soundclass "Icemanc"
 player.startitem "IceSlasherBoss"
 //player.startitem "IceRainBoss"
 player.startitem "IcicleAmmo", 28
-player.startitem "IceLaserAmmo", 28
-player.startitem "RealClassFlag", 11
+player.startitem "IceLaserAmmo", 200
 //player.weaponslot 1, "IceSlasherBoss"
 //player.weaponslot 2, "IceRainBoss"
 
@@ -32,8 +31,8 @@ player.startitem "BalladeCrackerWeakness", 1
 player.maxhealth 100
 health 100
 player.jumpz 10
-player.forwardmove 0.8, 0.8
-player.sidemove 0.78, 0.78
+player.forwardmove 0.85, 0.85
+player.sidemove 0.83, 0.83
 
 //player.startitem "ThunderBeamWeakness2", 1
 States

@@ -317,27 +317,32 @@ goto Ready0
 
 Altfire:
 SRKH R 1 A_GunFlash("Flash.Invis2")
+SRKH A 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
 SRKH R 0 A_Jumpif(CallACS("CCBM_ButtonCheck",BT_ATTACK) == True,"Swing")
 SRKH R 0 A_GiveInventory("StrikeBuntCheck",1)
 SRKH R 0 A_Refire("AltfireStart")
 Goto Ready1
 AltfireStart:
 SRKH RR 1 Offset(0,36)A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH A 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
 SRKH R 0 A_Jumpif(CallACS("CCBM_ButtonCheck",BT_ATTACK) == True,"Swing")
 SRKH R 0 A_Refire("Altfire2")
 goto Ready1
 Altfire2:
 SRKH RR 1 Offset(0,32)A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH A 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
 SRKH R 0 A_Jumpif(CallACS("CCBM_ButtonCheck",BT_ATTACK) == True,"Swing")
 SRKH R 0 A_Refire("Altfire3")
 goto Ready1
 Altfire3:
 SRKH RR 1 Offset(0,28)A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH A 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
 SRKH R 0 A_Jumpif(CallACS("CCBM_ButtonCheck",BT_ATTACK) == True,"Swing")
 SRKH R 0 A_Refire("Altfire4")
 goto Ready1
 Altfire4:
 SRKH RR 1 Offset(0,32)A_JumpIfInventory("StrikeHUDCheck2",1,"AltfireFire")
+SRKH A 0 A_GiveInventory("ReboundStrikerLimit_RC",1)
 SRKH R 0 A_Jumpif(CallACS("CCBM_ButtonCheck",BT_ATTACK) == True,"Swing")
 AltfireRefire:
 SRKH R 0 A_Refire("AltfireStart")

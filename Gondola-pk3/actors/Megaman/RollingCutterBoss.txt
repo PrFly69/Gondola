@@ -136,7 +136,7 @@ Goto Ready+1
 actor KFCAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 105
+inventory.maxamount 210
 +INVENTORY.IGNORESKILL
 }
 
@@ -233,15 +233,36 @@ CFCU A 0 A_SetScale(3.5)
 SpawnHold:
 CFCU A 1 A_GiveInventory("CutM_CutterExtend_P")
 CFCU A 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
+CFCU F 0 A_JumpIfCloser(58,"NoWay")
 CFCU B 1 A_GiveInventory("CutM_CutterExtend_P")
 CFCU B 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
+CFCU F 0 A_JumpIfCloser(58,"NoWay")
 CFCU C 1 A_GiveInventory("CutM_CutterExtend_P")
 CFCU C 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
+CFCU F 0 A_JumpIfCloser(58,"NoWay")
 CFCU D 1 A_GiveInventory("CutM_CutterExtend_P")
 CFCU D 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
+CFCU F 0 A_JumpIfCloser(58,"NoWay")
 
 CFCU E 0 A_TakeFromTarget("CutterFlag")
+CFCU E 1 A_GiveInventory("CutM_CutterExtend_P")
+CFCU F 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
+CFCU F 0 A_JumpIfCloser(58,"NoWay")
+CFCU F 1 A_GiveInventory("CutM_CutterExtend_P")
+CFCU F 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
+CFCU F 0 A_JumpIfCloser(58,"NoWay")
+CFCU G 1 A_GiveInventory("CutM_CutterExtend_P")
+CFCU G 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
+CFCU F 0 A_JumpIfCloser(58,"NoWay")
+CFCU H 1 A_GiveInventory("CutM_CutterExtend_P")
+CFCU H 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
+CFCU F 0 A_JumpIfCloser(58,"NoWay")
+loop
 
+NoWay:
+CFCU F 0 A_PlaySoundEx("misc/boing","SoundSlot6")
+CFCU F 0 A_GiveToTarget("SpringActivate",1)
+CFCU E 0 A_TakeFromTarget("CutterFlag")
 CFCU E 1 A_GiveInventory("CutM_CutterExtend_P")
 CFCU F 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
 CFCU F 1 A_GiveInventory("CutM_CutterExtend_P")
@@ -250,7 +271,7 @@ CFCU G 1 A_GiveInventory("CutM_CutterExtend_P")
 CFCU G 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
 CFCU H 1 A_GiveInventory("CutM_CutterExtend_P")
 CFCU H 0 A_JumpIfInventory("CutmanNoCutterF",1,"SpawnR2")
-loop
+goto SpawnHold
 
 SpawnR:
 RCTC A 0 A_SpawnItemEx("CutM_CutterRet2",0,0,0,0,0,0,0,33)

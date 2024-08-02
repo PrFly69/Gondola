@@ -5,8 +5,8 @@ Player.ScoreIcon "C_01A0X"
 player.displayname "Cutman"
 player.soundclass "cutmanc"
 
-player.maxhealth 85
-health 85
+player.maxhealth 90
+health 90
 player.jumpz 12.5
 player.forwardmove 1.0, 1.0
 player.sidemove 0.98, 0.98

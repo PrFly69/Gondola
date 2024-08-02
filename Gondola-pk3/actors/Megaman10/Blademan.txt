@@ -9,8 +9,8 @@ player.startitem "TripleBladeBoss2"
 player.startitem "TripleBladeBossAmmo", 20
 player.startitem "BladeDropItem"
 
-player.maxhealth 85
-health 85
+player.maxhealth 90
+health 90
 player.jumpz 13
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

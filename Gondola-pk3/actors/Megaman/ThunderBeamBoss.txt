@@ -54,7 +54,9 @@ ELEH B 2 //Offset(0,-10)
 ELEH F 2 //Offset(0,-15)
 ELEH C 1 //Offset(0,-20)
 ELEH I 2 //Offset(0,-25)
-ELEH J 2 //Offset(0,-25)
+FireHold:
+ELEH JJ 1 
+TNT1 A 0 A_Refire("FireHold")//Offset(0,-25)
 ELEH C 1 //Offset(0,10)
 ELEH F 1 //Offset(0,20)
 ELEA C 0 A_PlaySoundEx("weapon/thunderbeam","Weapon")

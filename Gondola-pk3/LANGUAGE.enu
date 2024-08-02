@@ -8,6 +8,8 @@ TAGC_0B = "Megaman Hero";
 
 //Proto
 TAGC_0A = "Protoman Hero";
+OB_PROTOBANK = "%o was bankshot by %k's Proto Buster.";
+OB_PROTOBANK2 = "%o was clipped by %k's Proto Buster.";
 
 //Bass
 TAGC_0F = "Bass Hero";
@@ -183,6 +185,8 @@ TAGC_5L = "Darkman4 Boss";
 //Blizzard
 TAGC_6A3 = "Blizzardman Boss";
 OB_BLIZZARDBOWL = "%k's Blizzard Bowl mashed %o into poutine.";
+OB_BLIZZARDHW = "%o got hypothermia from %k's Heavy Weather.";
+OB_BLIZZARDBALL = "%o didn't apologize to %k's Blizzard Snowball.";
 
 //Wind
 OB_WINDQUAKE = "%o was stomped into a dumpling by %k.";
@@ -199,6 +203,9 @@ OB_KNIGHTCRUSHZ = "%o was slain by %k's Returning Knight Crush.";
 
 //Plant
 OB_PLANTDRAINX = "%o was wrapped into %k's Plant Feijoada.";
+OB_PLANTGUN = "%o's nutrients were harvested by %k's Leech Seed.";
+OB_PLANTWHIP = "%o's circuits were rooted by %k's Mandioca Whip.";
+OB_PLANTPOT = "%o's smoke wasn't loud enough for %k's Plant Pot.";
 
 //Tomahawk
 OB_TOMAHAWKFEATHER = "%o was gently ripped apart by %k's Feather Sweep.";
@@ -219,8 +226,9 @@ OB_SPRINGFISTX = "%o was springtrapped by %k's Super Spring Punch.";
 OB_SPRINGFIST = "%o was thwacked by %k's Spring Punch.";
 
 //Shade
-OB_SHADESWOOP = "%o was scraped and licked by %k's Shade Swoop.";
 TAGC_7G = "Shademan Boss";
+OB_SHADESWOOP = "%o was scraped and licked by %k's Shade Swoop.";
+OB_SHADEDUNK = "%o's dried up corpse was kicked and pushed by %k's Shade Dunk.";
 
 //Junk
 OB_JUNKPUNCH2 = "%o dreaded it, ran from it, but %k's Junk Gauntlet arrived all the same.";
@@ -237,6 +245,7 @@ OB_THUNDERBOLTD = "%o was unable to conduct %k's Thunder Charge.";
 
 //Search
 OB_HOMINGSNIPERYDS = "%o was deceived and ambushed by %k's Deadly Storm.";
+OB_EMPSEARCHDISC = "%o was surveilled by %k's Empowered Search Disk.";
 
 //Astro
 OB_ASTROSHOT = "%o's was embarrassed by %k's Astro Bullet.";
@@ -252,7 +261,10 @@ OB_DIVINEWIND = "%o was severed by %k's Divine Wind.";
 OB_ICECRUSH = "%o was turned into frosting by %k's Ice Crush.";
 
 
-/////MMB///// unused rn but you never know when it comes in handy
+/////MMB///// unused rn but you never know when it comes in handy //oh look! a use!
+
+//Magic
+OB_MAGICROMPER = "%o was wished a very merry Christmas and a happy New Years by %k's Romper.";
 
 
 /////MM9/////
@@ -261,7 +273,7 @@ OB_ICECRUSH = "%o was turned into frosting by %k's Ice Crush.";
 TAGC_9H = "Galaxyman Boss";
 
 //Plug
-OB_PLUGITIN = "%k plugged %pself into %o without permission.";
+OB_PLUGITIN = "%k plugged themself into %o without permission.";
 OB_PLUGITINEX = "%k couldn't find the right socket in %o's body.";
 TAGC_9D = "Plugman Boss";
 
@@ -269,8 +281,9 @@ TAGC_9D = "Plugman Boss";
 OB_MAGMABAZOOKA2 = "%o couldn't handle the heat of %k's Magma Force.";
 
 //Splash
+TAGC_9C = "Splashwoman Defense";
 OB_SPLASHSING0 = "%o was lulled by %k's Splash Voice.";
-OB_SPLASHSING1 = "%o was lulled by %k's Strength Aria.";
+OB_SPLASHSING1 = "%o was lulled by %k's Guardian Ballad.";
 OB_SPLASHSING2 = "%o was lulled by %k's Healing Melody.";
 OB_SPLASHSING3 = "%o was lulled by %k's Swift Shanty.";
 
@@ -286,6 +299,13 @@ OB_SOLARLOB = "%k's Solar Launcher blasted %o into space.";
 OB_SOLARWAVE = "%o suffered before the light of %k's Solar Wave.";
 OB_SOLARBLAZEX = "%o was sun-blasted by %k's Solar Blaze.";
 OB_SOLARWAVEX = "%o vanquished before the light of %k's Solar Wave.";
+
+//Chill
+OB_CHILLVOLVER = "%o was icebound by %k's Chill Shot.";
+OB_CHILLSSALVO = "%o felt Absolute Chill from %k's Chill Salvo.";
+OB_CHILLSPIKEC = "%o tried to catch %k's Falling Chill Spikes.";
+OB_CHILLSPIKEW = "%o felt a chill go down their spine from %k's Chill Spikes.";
+OB_CHILLSPIKEF = "%o got cold feet fighting %k's Chill Spikes.";
 
 //Nitro
 TAGC_10G = "Nitroman Boss";

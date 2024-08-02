@@ -56,20 +56,6 @@ gender = male
 }
 
 {
-name = "Sunstar-Redflash"
-sprite = SUGD
-face = SGD
-class = Sunstar
-dsnoway = MM6LAND
-dsoof = MM6LAND
-dspldeth = GBDEATH
-dspdiehi = GBDEATH
-dsplpain = GBPAIN
-dstaunt = dsnone
-gender = male
-}
-
-{
 name = "Flash-Redflash"
 sprite = FL_2
 class = Flashman
@@ -107,23 +93,6 @@ dsplpain = BOSSPAIN
 dstaunt = dsnone
 gender = male
 }
-
-//k -redflash
-
-{
-name = "Fuseman-Dimspy"
-sprite = FUSL
-class = Fuseman
-dsnoway = LAND
-dsoof = LAND
-dspldeth = MEGADEAT
-dspdiehi = MEGADEAT
-dsplpain = BOSSPAIN
-dstaunt = dsnone
-gender = male
-}
-
-//LONG LIVE THE KING
 
 {
 name = "Maestro-Guts"

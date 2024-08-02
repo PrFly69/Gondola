@@ -20,7 +20,7 @@ DKC1 A 0 A_GunFlash
 goto Ready0
 Ready0:
 DKC1 A 3 A_WeaponReady(WRF_NOSECONDARY)
-DKC1 A 0 A_JumpIfInventory("DarkTankBoostAmmo",7,"Ready1")
+DKC1 A 0 A_JumpIfInventory("DarkTankBoostAmmo",14,"Ready1")
 DKC1 A 0 A_GiveInventory("DarkTankBoostAmmo",1)
 loop
 Ready1:
@@ -317,7 +317,7 @@ inventory.maxamount 14
 actor DarkTankBoostAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 28
+inventory.maxamount 56
 +INVENTORY.IGNORESKILL
 }
 
@@ -350,7 +350,7 @@ Obituary "$OB_DARK1BUSTER"
 damagetype "DMGNoHitstun"
 radius 15
 height 15
-damage (11)
+damage (10)
 speed 20
 scale 1.5
 States
@@ -394,46 +394,46 @@ actor DarkBusterShot3B : DarkBusterShotB{speed 23}
 actor DarkBusterShot3R : DarkBusterShotR{speed 23}
 actor DarkBusterShot3O : DarkBusterShotO{speed 23}
 actor DarkBusterShot3P : DarkBusterShotP{speed 23}
-actor DarkBusterShot4 : DarkBusterShot{speed 24 damage (10)}
-actor DarkBusterShot4B : DarkBusterShotB{speed 24 damage (10)}
-actor DarkBusterShot4R : DarkBusterShotR{speed 24 damage (10)}
-actor DarkBusterShot4O : DarkBusterShotO{speed 24 damage (10)}
-actor DarkBusterShot4P : DarkBusterShotP{speed 24 damage (10)}
-actor DarkBusterShot5 : DarkBusterShot{speed 25 damage (10)}
-actor DarkBusterShot5B : DarkBusterShotB{speed 25 damage (10)}
-actor DarkBusterShot5R : DarkBusterShotR{speed 25 damage (10)}
-actor DarkBusterShot5O : DarkBusterShotO{speed 25 damage (10)}
-actor DarkBusterShot5P : DarkBusterShotP{speed 25 damage (10)}
-actor DarkBusterShot6 : DarkBusterShot{speed 26 damage (10)}
-actor DarkBusterShot6B : DarkBusterShotB{speed 26 damage (10)}
-actor DarkBusterShot6R : DarkBusterShotR{speed 26 damage (10)}
-actor DarkBusterShot6O : DarkBusterShotO{speed 26 damage (10)}
-actor DarkBusterShot6P : DarkBusterShotP{speed 26 damage (10)}
-actor DarkBusterShot7 : DarkBusterShot{speed 27 damage (9)}
-actor DarkBusterShot7B : DarkBusterShotB{speed 27 damage (9)}
-actor DarkBusterShot7R : DarkBusterShotR{speed 27 damage (9)}
-actor DarkBusterShot7O : DarkBusterShotO{speed 27 damage (9)}
-actor DarkBusterShot7P : DarkBusterShotP{speed 27 damage (9)}
-actor DarkBusterShot8 : DarkBusterShot{speed 28 damage (9)}
-actor DarkBusterShot8B : DarkBusterShotB{speed 28 damage (9)}
-actor DarkBusterShot8R : DarkBusterShotR{speed 28 damage (9)}
-actor DarkBusterShot8O : DarkBusterShotO{speed 28 damage (9)}
-actor DarkBusterShot8P : DarkBusterShotP{speed 28 damage (9)}
-actor DarkBusterShot9 : DarkBusterShot{speed 29 damage (9)}
-actor DarkBusterShot9B : DarkBusterShotB{speed 29 damage (9)}
-actor DarkBusterShot9R : DarkBusterShotR{speed 29 damage (9)}
-actor DarkBusterShot9O : DarkBusterShotO{speed 29 damage (9)}
-actor DarkBusterShot9P : DarkBusterShotP{speed 29 damage (9)}
-actor DarkBusterShot10 :DarkBusterShot{speed 30 damage (8)}
-actor DarkBusterShot10B :DarkBusterShotB{speed 30 damage (8)}
-actor DarkBusterShot10R :DarkBusterShotR{speed 30 damage (8)}
-actor DarkBusterShot10O :DarkBusterShotO{speed 30 damage (8)}
-actor DarkBusterShot10P :DarkBusterShotP{speed 30 damage (8)}
-actor DarkBusterShot11 :DarkBusterShot{speed 32 damage (8)}
-actor DarkBusterShot11B :DarkBusterShotB{speed 32 damage (8)}
-actor DarkBusterShot11R :DarkBusterShotR{speed 32 damage (8)}
-actor DarkBusterShot11O :DarkBusterShotO{speed 32 damage (8)}
-actor DarkBusterShot11P :DarkBusterShotP{speed 32 damage (8)}
+actor DarkBusterShot4 : DarkBusterShot{speed 24}
+actor DarkBusterShot4B : DarkBusterShotB{speed 24}
+actor DarkBusterShot4R : DarkBusterShotR{speed 24}
+actor DarkBusterShot4O : DarkBusterShotO{speed 24}
+actor DarkBusterShot4P : DarkBusterShotP{speed 24}
+actor DarkBusterShot5 : DarkBusterShot{speed 25}
+actor DarkBusterShot5B : DarkBusterShotB{speed 25}
+actor DarkBusterShot5R : DarkBusterShotR{speed 25}
+actor DarkBusterShot5O : DarkBusterShotO{speed 25}
+actor DarkBusterShot5P : DarkBusterShotP{speed 25}
+actor DarkBusterShot6 : DarkBusterShot{speed 26}
+actor DarkBusterShot6B : DarkBusterShotB{speed 26}
+actor DarkBusterShot6R : DarkBusterShotR{speed 26}
+actor DarkBusterShot6O : DarkBusterShotO{speed 26}
+actor DarkBusterShot6P : DarkBusterShotP{speed 26}
+actor DarkBusterShot7 : DarkBusterShot{speed 27}
+actor DarkBusterShot7B : DarkBusterShotB{speed 27}
+actor DarkBusterShot7R : DarkBusterShotR{speed 27}
+actor DarkBusterShot7O : DarkBusterShotO{speed 27}
+actor DarkBusterShot7P : DarkBusterShotP{speed 27}
+actor DarkBusterShot8 : DarkBusterShot{speed 28}
+actor DarkBusterShot8B : DarkBusterShotB{speed 28}
+actor DarkBusterShot8R : DarkBusterShotR{speed 28}
+actor DarkBusterShot8O : DarkBusterShotO{speed 28}
+actor DarkBusterShot8P : DarkBusterShotP{speed 28}
+actor DarkBusterShot9 : DarkBusterShot{speed 29}
+actor DarkBusterShot9B : DarkBusterShotB{speed 29}
+actor DarkBusterShot9R : DarkBusterShotR{speed 29}
+actor DarkBusterShot9O : DarkBusterShotO{speed 29}
+actor DarkBusterShot9P : DarkBusterShotP{speed 29}
+actor DarkBusterShot10 :DarkBusterShot{speed 30}
+actor DarkBusterShot10B :DarkBusterShotB{speed 30}
+actor DarkBusterShot10R :DarkBusterShotR{speed 30}
+actor DarkBusterShot10O :DarkBusterShotO{speed 30}
+actor DarkBusterShot10P :DarkBusterShotP{speed 30}
+actor DarkBusterShot11 :DarkBusterShot{speed 32}
+actor DarkBusterShot11B :DarkBusterShotB{speed 32}
+actor DarkBusterShot11R :DarkBusterShotR{speed 32}
+actor DarkBusterShot11O :DarkBusterShotO{speed 32}
+actor DarkBusterShot11P :DarkBusterShotP{speed 32}
 
 
 actor Dark1BoomShot
