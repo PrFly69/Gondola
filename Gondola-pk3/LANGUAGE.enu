@@ -143,7 +143,9 @@ TAGC_4D2 = "Pharaohman Hover";
 TAGC_4D3 = "Pharaohman Punch";
 
 //Ring
-OB_RINGHOLDER = "%o was bound to %k's Whopper Constrictor.";//one day my child. theyll be ready for you
+OB_RINGHOLDER = "%o was bound to %k's Whopper Constrictor.";
+//one day my child. theyll be ready for you
+//they're ready.
 
 
 /////MM5/////
