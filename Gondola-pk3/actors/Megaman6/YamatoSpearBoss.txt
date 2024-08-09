@@ -69,7 +69,7 @@ YAMB A 0 A_PlaySoundEx("weapon/centshot","Weapon")
 YAMB C 0 A_GiveInventory("YamatomanMain_CI",1)
 YAMB CDCDCD 2
 YAMB A 0 A_Refire
-YAMB A 0
+YAMB A 1 A_WeaponReady
 No:
 YAMB B 3 A_ClearRefire
 Goto Ready1
@@ -80,7 +80,6 @@ goto AltfireLoop
 AltfireLoop:
 YAMB C 0 A_JumpIfInventory("PowerRage_ST",1,"AltfireLoopR")
 YAMB C 1 A_PlaySoundEx("weapon/BRGSpin","Weapon")
-YAMB D 0 A_PlaySoundEx("weapon/BRGSpin","Weapon")
 YAMB D 0 A_FireCustomMissile("YamatoAlt",0,0,8,0)
 YAMB D 1 A_GiveInventory("YamatoStock",1)
 SRKH R 0 A_Jumpif(CallACS("CCBM_ButtonCheck",BT_ATTACK) == True,"MiniSpear")
@@ -94,13 +93,13 @@ goto AltfireLoop+1
 
 MiniSpear:
 TNT1 A 0 A_GunFlash("FlashWalter")
-YAMB CDCD 1
+YAMB CDCD 1 A_PlaySoundEx("weapon/BRGSpin","Weapon")
 YAMB D 0 A_Refire("AltfireLoop")
 goto AltfireEnd
 
 MiniSpear2:
 TNT1 A 0 A_GunFlash("FlashWalter")
-YAMB CD 1
+YAMB CD 1 A_PlaySoundEx("weapon/BRGSpin","Weapon")
 YAMB D 0 A_Refire("AltfireLoopRageCheck")
 goto AltfireEnd
 
@@ -110,7 +109,9 @@ goto AltfireLoop+1
 
 AltfireEnd:
 YAMB D 0 A_PlaySoundEx("weapon/topspin","Weapon")
-YAMB CD 2 A_GiveInventory("YamatoStock",1)//
+YAMB D 0 A_TakeInventory("YamatoSpinFlag",20)
+YAMB C 2 A_WeaponReady
+YAMB D 2 A_GiveInventory("YamatoStock",1)//
 //YAMB C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)//0.9 speed 10 jump
 //YAMB C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,13,1)
 YAMB C 2 A_GiveInventory("YamatoStock",1)
@@ -119,7 +120,6 @@ YAMB C 0 A_JumpIfInventory("PowerRage_ST",1,2)
 YAMB CD 1
 YAMB B 2 A_GiveInventory("YamatoStock",1)
 YAMB B 1 A_GiveInventory("YamatoStock",1)
-YAMB B 0 A_TakeInventory("YamatoSpinFlag",20)
 Goto Ready1
 
 Reload:
@@ -193,7 +193,7 @@ goto Ready1
 
 Flash:
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
-TNT1 A 0 A_JumpIfInventory("YamatoClassAmmo",28,5)
+TNT1 A 0 A_JumpIfInventory("YamatoClassAmmo",30,5)
 TNT1 A 1
 TNT1 A 0 A_JumpIfInventory("YamatoStock",24,1)
 loop
@@ -235,7 +235,7 @@ Goto AltfireEnd
 actor YamatoClassAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 28
+inventory.maxamount 30
 +INVENTORY.IGNORESKILL
 }
 
@@ -337,6 +337,7 @@ stop
 Pickup2:
 TNT1 A 0 A_TakeInventory("YamatoClassAmmo",1)
 TNT1 A 0 A_GiveInventory("YamsAreThePowersThatBe_P",1)
+TNT1 A 0 A_PlaySoundEx("weapon/centshot","Voice")
 TNT1 A 0 A_GiveInventory("YamatoMain2_CI")
 stop
 }
@@ -530,29 +531,29 @@ actor YamatomanMain_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",3,1,8,random(5,10))
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",-3,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",-abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",3,1,8,random(5,10))
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",-3,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",-abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",3,1,8,random(5,10))
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",-3,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",-abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",3,1,8,random(5,10))
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",-3,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",-abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",3,1,8,random(5,10))
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",-3,0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",0,1,8,0)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",-abs(7-ACS_NamedExecuteWithResult("YamSpreadCounter")),0,8,5)
 goto Done
 }
 }
@@ -562,24 +563,19 @@ actor YamatoMain2_CI : TeamColor_CI
 states
 {
 FireX:
-YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",random(-5,5),0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirer",3*random(-1,1),0,8,0)
 goto Done
 FireB:
-YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",random(-5,5),0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerB",3*random(-1,1),0,8,0)
 goto Done
 FireR:
-YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",random(-5,5),0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerR",3*random(-1,1),0,8,0)
 goto Done
 FireO:
-YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",random(-5,5),0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerO",3*random(-1,1),0,8,0)
 goto Done
 FireP:
-YAMB A 0 A_PlaySoundEx("weapon/centshot","Voice")
-TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",random(-5,5),0,8,random(5,10))
+TNT1 A 0 A_FireCustomMissile("YamatoSpearBFirerP",3*random(-1,1),0,8,0)
 goto Done
 }
 }

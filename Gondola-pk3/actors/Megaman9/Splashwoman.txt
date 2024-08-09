@@ -1,6 +1,5 @@
 actor Splashwoman : ClassBase
 {
-Player.StartItem "IFMM09", 1
 Player.ScoreIcon "C_09C0X"
 player.displayname "Splashwoman"
 player.soundclass "splashwomanc"
@@ -66,7 +65,7 @@ ClassPain:
 SPLW H 0
 goto PainContinue
 ClassDeath:
-SPLW H 0
+SPLW H 0 A_StopSound(4)
 goto DeathContinue
 }
 }

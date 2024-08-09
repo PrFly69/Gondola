@@ -26,6 +26,41 @@ stop
 }
 }
 
+actor BasicPunch
+{
+translation "202:202=4:4", "199:199=210:210"
+PROJECTILE
++DONTBLAST
++DONTREFLECT
++FORCEXYBILLBOARD
+reactiontime 1
+mass 50
+damage (mass)
+Radius 20
+Height 20
+speed 60
+scale 2.5
+States
+{
+Spawn:
+UMFX C 0
+UMFX C 1 A_CountDown
+wait
+Death:
+UMFX C 0 A_Explode(mass,40,0)
+UMFX C 2
+UMFX A 2
+UMFX BC 2
+stop
+XDeath:
+UMFX C 0 A_Stop
+UMFX C 2
+UMFX B 2
+UMFX AR 2
+stop
+}
+}
+
 actor BasicHelper
 {//Used by things like PharaohFX
 +MISSILE

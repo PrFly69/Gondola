@@ -5,8 +5,8 @@ Player.ScoreIcon "C_09A0X"
 player.displayname "Concreteman"
 player.soundclass "concretemanc"
 
-player.maxhealth 155
-health 155
+player.maxhealth 150
+health 150
 player.jumpz 10
 player.forwardmove 0.6, 0.6
 player.sidemove 0.58, 0.58

@@ -41,10 +41,13 @@ JUNM BCDE 5 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
 Goto Spawn
 Missile:
 JUNM FG 4
-goto Spawn
+goto Spawn+2
 Missile2:
 JUNM FFG 4
-goto Spawn
+goto Spawn+2
+CustomState1:
+JUNM FGFGFGFGFGFGFG 2
+goto Spawn+2
 ClassPain:
 JUNM H 0
 goto PainContinue

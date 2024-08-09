@@ -34,21 +34,25 @@ States
 Spawn:
 TRCM A 0
 TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",400,"Spawn2")
-TRCM B 1 
+TRCM B 1 A_ChangeFlag("BRIGHT",FALSE)
 TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",400,"Spawn2")
+TRCM A 0 A_ChangeFlag("BRIGHT",FALSE)
 TRCM A 1 A_JumpIf(z-floorz>0, "SeeAir")
 goto Spawn+3
 Spawn2:
+TRPG A 0 A_ChangeFlag("BRIGHT",TRUE)
 TRPG NNNAAA 1 A_JumpIf(momx>0.15||momy>0.15||momx<-0.15||momy<-0.15,"See")
-TRCM A 0 A_JumpIfInventory("TorchjutsuAmmo",400,"Spawn2")
+TRPG A 0 A_JumpIfInventory("TorchjutsuAmmo",400,"Spawn2")
 goto Spawn+3
 
 See:
 TRCM B 0 A_JumpIfInventory("TorchjutsuAmmo",400,"SeeX")
+TRCM B 0 A_ChangeFlag("BRIGHT",FALSE)
 TRCM BBBBCCCCDDDDEEEE 1 A_JumpIf(z-floorz>0,"SeeAir")
 Goto Spawn
 
 SeeX:
+TRPG A 0 A_ChangeFlag("BRIGHT",TRUE)
 TRPG BBBBCCCCDDDDEEEE 1 A_JumpIf(z-floorz>0,"SeeAirX")
 Goto Spawn+3
 
@@ -126,6 +130,7 @@ actor TorchKickAfterImages : BasicClientside
 {
 renderstyle add
 alpha 0.75
++BRIGHT
 states
 {
 Spawn:

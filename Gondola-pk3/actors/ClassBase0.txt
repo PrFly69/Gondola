@@ -509,6 +509,8 @@ DeathContinue://Which state to hop to
 "----" H 0 A_JumpIfInventory("FlingDeathFlag",1,"FlingDeath")
 "----" H 0 A_JumpIfInventory("RiseDeathFlag",1,"RiseDeath")
 "----" H 0 A_JumpIfInventory("IceDeathFlag",1,"IceDeath")
+"----" H 0 A_JumpIfInventory("HeatDeathFlag",1,"HeatDeath")
+"----" H 0 A_JumpIfInventory("ElectricDeathFlag",1,"ElectricDeath")
 //"----" H 19
 goto DeathContinueDelay
 DeathContinueDelay:
@@ -541,6 +543,34 @@ IceDeath:
 "----" H 0 A_PlaySoundEx("CBM/icebreak","Body")
 "----" H 0 A_SpawnItemEx("FrozenDeathFXC",0,0,0)
 goto DeathWait
+HeatDeath:
+"----" H 0 A_Recoil(20)
+"----" H 0 A_PlaySoundEx("CBM/HeatDeath","Voice")
+"----" H 0 ACS_ExecuteAlways(998,0,DYE_HEATDEATHCBM,10)
+HeatDeathLoop:
+"----" H 0 A_GiveInventory("RiseDeathFlag2",1)
+"----" H 0 A_SpawnItemEx("HotSmoke",frandom(16,48),0,fRandom(26,52),0,0,frandom(5,10),random(0,359))
+"----" HH 0 A_SpawnItemEx("HeatDeathFX",frandom(16,48),0,fRandom(0,52),0,0,0,random(0,359))
+"----" H 1 A_JumpIfInventory("RiseDeathFlag2",25,"HeatExplodeDeath")
+goto HeatDeathLoop
+HeatExplodeDeath:
+"----" H 0 A_PlaySoundEx("CBM/HeatExplode","Body")
+"----" H 0 A_Quake(5,9,0,128)
+"----" H 0 A_SpawnItemEx("HeatDeathExplodeFX",0,0,26)
+"----" H 0 A_SpawnItemEx("HeatDeathSmoke",0,0,-z-floorz)
+goto MegaDeathEnd
+ElectricDeath:
+"----" H 0 A_SetGravity(0.0)
+"----" H 0 A_Stop
+"----" H 0 A_GiveInventory("IsDead",1)
+"----" H 0 A_PlaySoundEx("CBM/ElecDeath","SoundSlot6")
+ElecDeathLoop:
+"----" H 0 A_GiveInventory("RiseDeathFlag2",1)
+"----" HHHHHHHH 0 A_SpawnItemEx("PlugElectricFX",random(12,36),0,random(0,56),0,0,0,random(0,359),1,64) 
+"----" H 1 ACS_ExecuteAlways(998,0,DYE_ELECDEATHCBM1,10)
+"----" H 1 ACS_ExecuteAlways(998,0,DYE_ELECDEATHCBM2,10)
+"----" H 1 A_JumpIfInventory("RiseDeathFlag2",11,"GibDeath")
+goto ElecDeathLoop
 Death.Falling:
 "----" H 0 A_JumpIfInventory("FallDeathExplodeFlag",1,"Death")
 "----" H 0 A_GiveInventory("FallingFlag",1)

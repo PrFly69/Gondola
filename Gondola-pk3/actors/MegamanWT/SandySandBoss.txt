@@ -25,14 +25,14 @@ MWSH A 0 A_GunFlash("FlashShield")
 MWSH A 0 A_GiveInventory("MWSShieldCharge",1)
 Ready2:
 MWSH A 0 A_JumpIfInventory("MWS_ItemFlag",1,"Ready2a")
-MWSH A 0 A_JumpIfInventory("KappaMikeyAmmo",3,"Ready3")
+MWSH A 0 A_JumpIfInventory("KappaMikeyAmmo",7,"Ready3")
 MWSH A 8 A_WeaponReady(WRF_NOSECONDARY)
 MWSH A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
 MWSH A 0 A_GiveInventory("KappaBarrierAmmo",1)
 MWSH A 0 A_GiveInventory("KappaMikeyAmmo",1)
 loop
 Ready2a:
-MWSH A 0 A_JumpIfInventory("KappaMikeyAmmo",6,"Ready3")
+MWSH A 0 A_JumpIfInventory("KappaMikeyAmmo",7,"Ready3")
 MWSH A 8 A_WeaponReady(WRF_NOSECONDARY)
 MWSH A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
 MWSH A 0 A_GiveInventory("KappaBarrierAmmo",1)
@@ -80,7 +80,7 @@ goto Ready2
 AltFire:
 MWSH BB 2
 MWSH C 0 A_PlaySound("weapon/BigRain",1,1.0)
-MWSH C 0 A_TakeInventory("KappaMikeyAmmo",6)
+MWSH C 0 A_TakeInventory("KappaMikeyAmmo",7)
 MWSH C 0 A_JumpIfInventory("PowerRage_ST",1,"Altfire3_R")
 MWSH BBCCBBCCBBCCBB 1 A_GiveInventory("MegaWaterSAlt2_CI",1)
 MWSH BA 3
@@ -193,14 +193,14 @@ SWMX A 0 A_GunFlash("FlashShield")
 SWMX A 0 A_GiveInventory("MWSShieldCharge",1)
 Ready2:
 SWMX A 0 A_JumpIfInventory("MWS_ItemFlag",1,"Ready2a")
-SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",3,"Ready3")
+SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",4,"Ready3")
 SWMX A 8 A_WeaponReady(WRF_NOSECONDARY)
 SWMX A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
 SWMX A 0 A_GiveInventory("KappaBarrierAmmo",1)
 SWMX A 0 A_GiveInventory("KappaMikeyAmmo",1)
 loop
 Ready2a:
-SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",6,"Ready3")
+SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",4,"Ready3")
 SWMX A 8 A_WeaponReady(WRF_NOSECONDARY)
 SWMX A 0 A_JumpIfInventory("MWS_ItemFlag",1,2)
 SWMX A 0 A_GiveInventory("KappaBarrierAmmo",1)
@@ -246,15 +246,15 @@ SWMX A 12
 SWMX A 0 A_Refire
 goto Ready2
 AltFire:
-SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",6,"Altfire1")
+SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",4,"Altfire1")
 goto NoAmmo
 Altfire1:
-SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",3,1)
+SWMX A 0 A_JumpIfInventory("KappaMikeyAmmo",4,1)
 goto NoAmmo
 SWMX B 0 A_GiveInventory("VivifyDelay6",1)
 SWMX B 0 A_Refire(1)
 SWMX B 0 A_PlaySound("weapon/WaveSummon2",1,0.65)
-SWMX B 0 A_TakeInventory("KappaMikeyAmmo",3)
+SWMX B 0 A_TakeInventory("KappaMikeyAmmo",4)
 SWMX B 0 A_GiveInventory("MegaWaterSAlt_CI",1)
 SWMX A 1 Offset(0, 32)
 SWMX A 1 Offset(0, 42)
@@ -525,15 +525,13 @@ actor MWS_Harpoon
 //var int user_P;
 Translation "198:198=116:116"
 PROJECTILE
-+NOGRAVITY
 +SKYEXPLODE
 Damagetype "MWS_Shot"
 Obituary "$OB_MWSHARPOON"
-
 damage (10)//(10+user_P)
 radius 7
 height 10
-speed 45
+speed 50
 scale 2.5
 States
 {
@@ -613,6 +611,7 @@ PROJECTILE
 +EXPLODEONWATER
 +DONTBLAST
 +DONTREFLECT
+Obituary "$OB_MWSWATER"
 Damage (1)
 height 16
 radius 16

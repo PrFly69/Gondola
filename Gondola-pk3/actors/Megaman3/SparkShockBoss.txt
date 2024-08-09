@@ -1235,7 +1235,7 @@ actor SparkM_ShockLob
 {
 Translation "198:198=225:225"
 PROJECTILE
-damagetype "SparkMGOND_Lob"
+damagetype "SparkM_Lob"
 Obituary "$OB_SPARKSHOCK"
 -NOGRAVITY
 //+RIPPER
@@ -1270,10 +1270,10 @@ stop
 }
 }
 
-actor SparkMGOND_LobProtect : PowerProtection
+actor SparkM_LobProtect : PowerProtection
 {
 Powerup.Duration 10
-damagefactor "SparkMGOND_Lob", 0.0
+damagefactor "SparkM_Lob", 0.0
 }
 
 actor SparkM_ShockLobB : SparkM_ShockLob{translation "198:198=74:74"}

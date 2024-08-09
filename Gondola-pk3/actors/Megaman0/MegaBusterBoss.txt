@@ -51,12 +51,11 @@ Loop
 
 Fire:
 Hold:
-BUST B 0 A_JumpIfInventory("WeaponCharge",34,"Charge2")
-BUST B 0 A_JumpIfInventory("WeaponCharge",18,"Charge")
+BUST B 0 A_JumpIfInventory("WeaponCharge",15,"Charge")
 BUST B 1 A_GiveInventory("WeaponCharge_RC",1)
 //TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 //BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
-BUST B 0 A_Refire
+BUST B 0 A_Refire("Fire")
 //BUST B 0 A_JumpIfNoAmmo("Hold")
 BUST B 0 A_JumpIfInventory("MegamanUpgradeFlag",1,"FireX")
 //TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
@@ -311,12 +310,12 @@ Goto Ready2+2*/
 //Goto Charge1
 
 Charge:
-BUST B 0 A_JumpIfInventory("WeaponCharge",34,"Charge2")
+BUST B 0 A_JumpIfInventory("WeaponCharge",25,"Charge2")
 BUST B 0 A_PlaySoundEx("weapon/coilstart","Weapon")
 Goto Charge1
 
 Charge1:
-LBST H 0 A_JumpIfInventory("WeaponCharge",34,"Charge2")
+LBST H 0 A_JumpIfInventory("WeaponCharge",25,"Charge2")
 LBST H 1 ACS_ExecuteAlways(998,0,106,5)
 //TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 //BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
@@ -331,7 +330,7 @@ LBST H 0 A_Refire("Charge1")
 Goto Fire2
 
 Charge2:
-BUST B 0 A_JumpIfInventory("WeaponCharge",40,"ChargeLoop")
+BUST B 0 A_JumpIfInventory("WeaponCharge",35,"ChargeLoop")
 BUST B 1 ACS_ExecuteAlways(998,0,93,6)
 //TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 //BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
@@ -358,7 +357,7 @@ BUST B 0 A_Refire("ChargeLoop")
 Goto Fire3
 
 Flash:
-TNT1 A 0 A_JumpIfInventory("MegamanX",12,"Flash2")
+TNT1 A 0 A_JumpIfInventory("MegamanX",35,"Flash2")
 TNT1 A 5 A_PlaySoundEx("weapon/MM4Charge","Weapon")
 TNT1 A 0 A_JumpIfInventory("IsDead",1,"NoFlash")
 TNT1 A 0 A_JumpIfInventory("WeaponCharge",1,"Flash")
@@ -374,17 +373,19 @@ ChargeLoop:
 LBST I 1 ACS_ExecuteAlways(991,0,30204)
 //TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 //BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
-BUST B 0 A_JumpIfInventory("MegamanX",12,"ChargeLoop2")
+BUST B 0 A_JumpIfInventory("MegamanX",35,"ChargeLoop2")
 BUST B 0 A_GiveInventory("MegamanX",1)
 BUST B 0 A_Refire("ChargeLoop.a")
 Goto Fire3
 ChargeLoop.a:
 CHBU I 1 ACS_ExecuteAlways(998,0,30202,7)
+BUST B 0 A_GiveInventory("MegamanX",1)
 //TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 BUST B 0 A_Refire("ChargeLoop.b")
 Goto Fire3
 ChargeLoop.b:
 CHBU J 1 ACS_ExecuteAlways(998,0,30199,5)
+BUST B 0 A_GiveInventory("MegamanX",1)
 //TNT1 A 0 A_GiveInventory("MegaCharge_WF",1)
 //BUST B 0 A_JumpIfInventory("WalkShootFrameGo",1,"WalkShootFrames")
 BUST B 0 A_JumpIfInventory("IsBot",1,"BotFire")
@@ -447,7 +448,7 @@ MKIC A 1 A_GiveInventory("CopySlidePickup",1)
 MKIC BCDEF 1
 MKIC G 1 Offset(2,32)
 MKIC G 1 Offset(2,30)
-MKIC G 1 Offset(-2,32)
+MKIC G 5 Offset(-2,32)
 MKIC G 1 Offset(-2,30)
 MKIC B 0 SetPlayerProperty(0,0,0)
 MKIC F 3
@@ -526,7 +527,7 @@ stop
 //actor WalkFrameDelayFlag : Powerup {powerup.duration 5}
 
 actor MegamanX : Inventory {
-inventory.maxamount 12
+inventory.maxamount 35
 }
 
 actor DoubleUp : Inventory {
@@ -650,7 +651,7 @@ PROJECTILE
 damagetype "MegaM_Shot2"
 Obituary "$OB_MEGABUSTER"
 +THRUGHOST
-Damage (30)
+Damage (25)
 radius 18
 height 18
 Speed 50
@@ -703,7 +704,7 @@ actor MegaShot3XP : MegaShot3X{translation"192:192=229:229","198:198=232:232","2
 
 actor MegaShot4
 {
-Translation "198:198=198:198","202:202=193:193","204:204=215:215"
+Translation "198:198=198:198","192:192=192:192"
 PROJECTILE
 damagetype "MegaM_Shot3"
 Obituary "$OB_MEGABUSTER"
@@ -711,26 +712,42 @@ Damage (30)
 radius 18
 height 22
 Speed 45
-scale 1.5
+scale 2.5
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnL:
-MBU2 ABCE 2 A_SpawnItemEx("MegaShotTrail",-15,random(-1,1),random(0,3),0,frandom(-1.0f,1.0f),0,0,1)
+CBUS A 0 A_SpawnItemEx("Megaman_Shot3FX",-32,0,0,momx/2,momy/2,momz/2,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+CBUS ABCH 2 //A_SpawnItemEx("MegaShotTrail",-15,random(-1,1),random(0,3),0,frandom(-1.0f,1.0f),0,0,1)
 loop
 }
 }
 
-actor MegaShot4B : MegaShot4{translation"202:202=205:205","204:204=205:205","198:198=74:74"}
-actor MegaShot4R : MegaShot4{translation"202:202=171:171","204:204=171:171","198:198=41:41"}
-actor MegaShot4O : MegaShot4{translation"202:202=104:104","204:204=104:104","198:198=128:128"}
-actor MegaShot4P : MegaShot4{translation"202:202=229:229","204:204=229:229","198:198=232:232"}
+actor MegaShot4B : MegaShot4{translation"202:202=205:205","204:204=205:205","198:198=74:74","192:192=205:205"}
+actor MegaShot4R : MegaShot4{translation"202:202=171:171","204:204=171:171","198:198=41:41","192:192=171:171"}
+actor MegaShot4O : MegaShot4{translation"202:202=104:104","204:204=104:104","198:198=128:128","192:192=104:104"}
+actor MegaShot4P : MegaShot4{translation"202:202=229:229","204:204=229:229","198:198=232:232","192:192=229:229"}
+
+actor Megaman_Shot3FX
+{
+PROJECTILE
++NOINTERACTION
+scale 2.5
++BRIGHT
+States
+{
+Spawn:
+TNT1 AA 0
+CBUS DEF 2
+stop
+}
+}
 
 actor MegaShot4X
 {
-Translation "198:198=198:198","202:202=193:193","204:204=215:215"
+Translation "198:198=198:198","192:192=192:192"
 PROJECTILE
 damagetype "MegaM_Shot3"
 Obituary "$OB_MEGABUSTER"
@@ -738,22 +755,23 @@ Damage (30)
 radius 18
 height 22
 Speed 45
-scale 1.5
+scale 2.5
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnL:
-MBU2 ABCE 2 A_SpawnItemEx("MegaShotTrail",-15,random(-1,1),random(0,3),0,frandom(-1.0f,1.0f),0,0,1)
+CBUS A 0 A_SpawnItemEx("Megaman_Shot3FX",-32,0,0,momx/2,momy/2,momz/2,0,SXF_ABSOLUTEMOMENTUM|SXF_TRANSFERTRANSLATION)
+CBUS ABCH 2 A_SpawnItemEx("MegaShotTrail",-15,random(-1,1),random(0,3),0,frandom(-1.0f,1.0f),0,0,1)
 loop
 }
 }
 
-actor MegaShot4XB : MegaShot4X{translation"202:202=205:205","204:204=205:205","198:198=74:74"}
-actor MegaShot4XR : MegaShot4X{translation"202:202=171:171","204:204=171:171","198:198=41:41"}
-actor MegaShot4XO : MegaShot4X{translation"202:202=104:104","204:204=104:104","198:198=128:128"}
-actor MegaShot4XP : MegaShot4X{translation"202:202=229:229","204:204=229:229","198:198=232:232"}
+actor MegaShot4XB : MegaShot4X{translation"202:202=205:205","204:204=205:205","198:198=74:74","192:192=205:205"}
+actor MegaShot4XR : MegaShot4X{translation"202:202=171:171","204:204=171:171","198:198=41:41","192:192=171:171"}
+actor MegaShot4XO : MegaShot4X{translation"202:202=104:104","204:204=104:104","198:198=128:128","192:192=104:104"}
+actor MegaShot4XP : MegaShot4X{translation"202:202=229:229","204:204=229:229","198:198=232:232","192:192=229:229"}
 
 
 actor MegaShotTrail : BasicClientSide

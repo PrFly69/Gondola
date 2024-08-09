@@ -633,7 +633,7 @@ BounceCount 0
 
 ReactionTime 10
 damage (24 - user_POWER)
-Radius 18
+Radius 25
 Height 25
 speed 10
 scale 2.5
@@ -645,9 +645,15 @@ TNT1 A 1 A_Warp(2,24,0,16,0,72)
 TNT1 A 0 A_CountDown
 TNT1 A 1 A_Warp(2,24,0,16,0,72)
 TNT1 A 0 A_CountDown
+TNT1 A 1 A_Warp(2,24,0,16,0,72)
+TNT1 A 0 A_CountDown
+TNT1 A 1 A_Warp(2,24,0,16,0,72)
+TNT1 A 0 A_CountDown
+TNT1 A 1 A_Warp(2,24,0,16,0,72)
+TNT1 A 0 A_CountDown
+TNT1 A 0 A_SetUserVar("user_POWER",user_POWER + 10)
 SpawnLoop:
 TNT1 A 1 A_Warp(2,24,0,16,0,72)
-TNT1 A 0 A_SetUserVar("user_POWER",user_POWER + 10)
 TNT1 A 0 A_CountDown
 loop
 Death:
@@ -667,12 +673,22 @@ stop
 }
 }
 
+actor DuoGrabSlamProtect : PowerProtection
+{
+Powerup.Duration 18
+DamageFactor "DuoWave", 0.1
+DamageFactor "DuoWave2", 0.1
+DamageFactor "DuoWave3", 0.1
+DamageFactor "DuoWave4", 0.1
+DamageFactor "DuoWave5", 0.1
+}
+
 actor DuoSlamGrabExplosionX : BasicExplosion
 {
 RenderStyle Translucent
 Alpha 0.75
 Scale 5
-Damagetype "DMGNoHitstun"
+Damagetype "DuoGrabSlam"
 Obituary "$OB_DUOCSLAM"
 States
 {
@@ -680,8 +696,8 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 A_Quake(1,350,0,100,0)
 TNT1 A 0 A_PlaySound("weapon/DuoGSlamExplode",CHAN_WEAPON,0.5)
-TNT1 A 0 A_Explode(2+CallACS("DuoSlamCounter"),96,0,0,48)
-TA_C ABCDEF 1
+TNT1 A 0 A_Explode(24,96,0,0,96)
+X_8B ABCDEF 1
 stop
 }
 }
@@ -1333,7 +1349,7 @@ actor DuoJusticeFlash
 Translation "202:202=192:192", "195:198=194:194"
 PROJECTILE
 Obituary "%k firmly placed %p giant fist onto %o and whispered into their ear ''\c[q5]Hakai...\c-''. And thus, %o was deleted."
-damagetype "MWS_Lift"
+damagetype "DuoJusticeFlash"
 damage (0)
 Radius 0
 Height 0
@@ -1382,9 +1398,9 @@ TNT1 A 0 A_PlaySoundEx("weapon/DuoJusticeFlash","Body")
 JusticeLoop: 
 X_8B F 0 A_JumpIfInventory("CutterFlag",5,"Death")
 X_8B F 0 A_GiveInventory("CutterFlag",1)
-PRBU N 1 A_Explode(5,196,0,0,128)
+PRBU N 1 A_Explode(1,196,0,0,128)
 TNT1 A 1
-PRBU A 1 A_Explode(5,196,0,0,128)
+PRBU A 1 A_Explode(1,196,0,0,128)
 TNT1 A 1
 loop
 Death:

@@ -5,13 +5,13 @@ Player.ScoreIcon "C_06H0X"
 player.displayname "Yamatoman"
 player.soundclass "yamatomanc"
 player.startitem "YamatoSpearBoss"
-player.startitem "YamatoClassAmmo", 28
+player.startitem "YamatoClassAmmo", 30
 player.startitem "YamatoLeapAmmo", 28
 
-player.maxhealth 115
-health 115
-player.forwardmove 0.666, 0.666
-player.sidemove 0.646, 0.646
+player.maxhealth 110
+health 110
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
 player.jumpz 13
 //Player.AttackZOffset 18 what is this LOL
 //Player.AttackZOffset 30

@@ -11,7 +11,7 @@ player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
 
 player.startitem "DangerWrapBoss"
-player.startitem "BurstBursterBurstestAmmo", 24
+player.startitem "BursterAmmo", 28
 player.startitem "BurstBombStock",2
 player.startitem "BurstStockItem"
 

@@ -1074,7 +1074,6 @@ actor ConcreteM_StaminaFlag : Inventory {}
 actor TornadoM_StaminaFlag : Inventory {}
 actor RainbowGalaxyBoss : BaseMM8BDMWep_CBM {}
 actor IAmTheLawAmmo : Inventory {}
-actor ChillSpikeBoss : BaseMM8BDMWep_CBM {}
 actor SolarM_AmmoDrainDelay : Inventory {}
 actor SunAmmo : Inventory {}
 actor SolarHoldFlag : Inventory {}
@@ -1117,7 +1116,5 @@ actor WindM_ShotProtect : Inventory {}
 actor CrystalM_EyeBitProtect : Inventory {}
 actor RingM_Ring2Protect : Inventory {}
 actor ShadowM_Blade2Protect : Inventory {}
-actor SparkM_LobProtect : Inventory {}
 actor IceM_Slow2Protect : Inventory {}
-#include "actors/MegamanB/GreenDevil.txt"
 #include "actors/MugshotFrames.txt"

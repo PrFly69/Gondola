@@ -964,7 +964,28 @@ stop
 }
 
 // AreaCheckers
-actor AC_ConcreteBlock {Radius 16 Height 32}
+Actor AC_ConcreteBlock {
+    Radius 16
+    Height 32
+    ReactionTime     175 // 5 seconds
+    Args             175 // Failsafe cuz Zandro baby
+    States {
+        Spawn:
+            TNT1 A 0
+            TNT1 A 0 A_CountDownArg (0, "DeathB")
+            TNT1 A 1 A_CountDown // THIS DOESN'T DO ANYTHING THANKS ZANDRO 
+			//AUAUAUGHGHGHGHGHGH I HATE ZANDRO I HATE THIS DOGSHIT ENGINE I HATE IT SO MUCH FUCK YOU FUCK YOU FUC K YOU FUCK YOU
+            Loop
+            
+        Death:
+            TNT1 A 1
+            Stop
+            
+        DeathB:
+            TNT1 A 1
+            Stop
+    }
+} 
 
   Actor ConcreteShoulder
   {

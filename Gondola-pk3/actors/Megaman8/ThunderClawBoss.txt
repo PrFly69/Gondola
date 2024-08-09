@@ -92,6 +92,7 @@ CLWH H 0 A_JumpIfInventory("PowerRage_ST",1,2)
 CLWH HH 1 A_GiveInventory("ThunderClawIntoGround")
 FlashClawWait:
 TNT1 A 1 A_GiveInventory("ThunderClawIntoGround")
+//TNT1 A 0 A_ChangeVelocity(momx*0.9,momy*0.9,momz)
 TNT1 A 0 A_JumpIfInventory("GroundThunderClawOut",1,"FlashClawWait")
 TNT1 A 0 A_JumpIfInventory("GroundThunderClawOut2",1,"FlashClawWait")
 FlashClawReturn:
@@ -164,7 +165,7 @@ actor YoGeekyAmmo : Ammo
 {
 +INVENTORY.IGNORESKILL
 inventory.amount 1
-inventory.maxamount 375
+inventory.maxamount 300
 }
 
 actor ClownShockFrame : Inventory
@@ -941,6 +942,7 @@ damagefactor "Normal", 0.0
 damagefactor "ThunderClaw", 1.0
 damagefactor "ThunderClawPegHelp", 1.0
 damagefactor "ClownM_Claw", 1.0
+damagefactor "PlantM_Vine", 1.0
 States
 {
 Spawn:
@@ -958,6 +960,7 @@ loop
 Pain.ThunderClaw:
 Pain.ThunderClawPegHelp:
 Pain.ClownM_Claw:
+Pain.PlantM_Vine:
 //THOO E 0 A_JumpIfTargetInLOS("TargetFound")
 THOO E 0 A_ChangeFlag("SHOOTABLE",0)
 THOO E 0 A_GiveInventory("CutterFlag",1)
@@ -1005,8 +1008,10 @@ THOO E 0 A_GiveInventory("CutterFlag",1)
 THOO E 0 A_JumpIfInventory("CutterFlag",400,"Death")
 TNT1 A 1 A_SpawnItemEx("ClownOpenGLHelperB",0,0,0,0,0,0,0,1)
 loop
-Pain.ThunderClawHit:
 Pain.ThunderClaw:
+Pain.ThunderClawPegHelp:
+Pain.ClownM_Claw:
+Pain.PlantM_Vine:
 //THOO E 0 A_JumpIfTargetInLOS("TargetFound")
 THOO E 0 A_ChangeFlag("SHOOTABLE",0)
 THOO E 0 A_GiveInventory("CutterFlag",1)
@@ -1043,8 +1048,10 @@ THOO E 0 A_GiveInventory("CutterFlag",1)
 THOO E 0 A_JumpIfInventory("CutterFlag",400,"Death")
 TNT1 A 1 A_SpawnItemEx("ClownOpenGLHelperR",0,0,0,0,0,0,0,1)
 loop
-Pain.ThunderClawHit:
 Pain.ThunderClaw:
+Pain.ThunderClawPegHelp:
+Pain.ClownM_Claw:
+Pain.PlantM_Vine:
 //THOO E 0 A_JumpIfTargetInLOS("TargetFound")
 THOO E 0 A_ChangeFlag("SHOOTABLE",0)
 THOO E 0 A_GiveInventory("CutterFlag",1)
@@ -1081,8 +1088,10 @@ THOO E 0 A_GiveInventory("CutterFlag",1)
 THOO E 0 A_JumpIfInventory("CutterFlag",400,"Death")
 TNT1 A 1 A_SpawnItemEx("ClownOpenGLHelperO",0,0,0,0,0,0,0,1)
 loop
-Pain.ThunderClawHit:
 Pain.ThunderClaw:
+Pain.ThunderClawPegHelp:
+Pain.ClownM_Claw:
+Pain.PlantM_Vine:
 //THOO E 0 A_JumpIfTargetInLOS("TargetFound")
 THOO E 0 A_ChangeFlag("SHOOTABLE",0)
 THOO E 0 A_GiveInventory("CutterFlag",1)
@@ -1119,8 +1128,10 @@ THOO E 0 A_GiveInventory("CutterFlag",1)
 THOO E 0 A_JumpIfInventory("CutterFlag",400,"Death")
 TNT1 A 1 A_SpawnItemEx("ClownOpenGLHelperP",0,0,0,0,0,0,0,1)
 loop
-Pain.ThunderClawHit:
 Pain.ThunderClaw:
+Pain.ThunderClawPegHelp:
+Pain.ClownM_Claw:
+Pain.PlantM_Vine:
 //THOO E 0 A_JumpIfTargetInLOS("TargetFound")
 THOO E 0 A_ChangeFlag("SHOOTABLE",0)
 THOO E 0 A_GiveInventory("CutterFlag",1)

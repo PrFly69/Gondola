@@ -10,7 +10,7 @@ health 125
 player.jumpz 10
 player.forwardmove 0.6, 0.6
 player.sidemove 0.58, 0.58
-gravity 0.4
+//gravity 0.4
 
 player.startitem "ThunderBoltBoss"
 player.startitem "RainAmmo", 28
@@ -33,15 +33,20 @@ player.startitem "BalladeCrackerWeakness", 1
 States
 {
 Spawn:
-CLOM A 0
+CLOM A 0 A_JumpIfInventory("BonelessCloud",1,"BonelessSpawn")
 CLOM B 1
+CLOM A 0 A_JumpIfInventory("BonelessCloud",1,"BonelessSpawn")
 CLOM A 1 A_JumpIfInventory("CloudFireHold",1,"MissileHold")
 Goto Spawn+2
+BonelessSpawn:
+CLOM M 5
+goto Spawn+2
 See:
-CLOM BCDE 5
+CLOM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIfInventory("BonelessCloud",1,"BonelessSee")
 Goto Spawn
 Missile:
 CLOM F 0 A_JumpIfInventory("VivifyDelay5",1,"Missile2")
+CLOM F 0 A_JumpIfInventory("BonelessCloud",1,"BonelessMissile")
 CLOM FFFFF 1 A_JumpIfInventory("CloudFireHold",1,"MissileHold")
 CLOM GGGG 1
 goto Spawn
@@ -52,6 +57,23 @@ goto Missile+4
 Missile2:
 CLOM KLK 4
 goto Spawn
+
+BonelessSee:
+CLOM M 5 
+CLOM M 0 A_JumpIfInventory("BonelessCloud",1,"BonelessSee")
+goto BonelessSpawn
+
+BonelessMissile:
+CLOM NNNNN 1 A_JumpIfInventory("CloudFireHold",1,"BonelessMissileHold")
+CLOM NNNN 1
+goto Spawn
+BonelessMissileHold:
+CLOM F 0 A_JumpIfInventory("BonelessCloud",1,1)
+goto MissileHold
+CLOM N 2
+CLOM N 1 A_JumpIfInventory("CloudFireHold",1,"BonelessMissileHold")
+goto BonelessMissile+4
+
 ClassPain:
 CLOM H 0
 goto PainContinue
@@ -60,3 +82,5 @@ CLOM H 0
 goto DeathContinue
 }
 }
+
+actor CloudScrapeFX : WheelCutterClimbFX { +NOCLIP }

@@ -120,12 +120,13 @@ Hold6:
 XH0R A 0 A_GiveInventory("FakeRepeaterCharge_P",1)
 Hold6.Wait:
 XH0R A 0 A_JumpIfInventory("IsBot",1,"BotHold6")
+XH0R A 0
 XH0R A 1 A_RailWait
 XH0R A 0 A_Refire("Hold6.Wait")
 goto UnloadChamber
 BotHold6:
 XH0R A 0 A_Jump(16,"UnloadChamber")
-goto Hold6.Wait+2
+goto Hold6.Wait+1
 
 Altfire:
 XH0R A 0 A_JumpIfNoAmmo("NoAmmo")

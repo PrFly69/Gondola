@@ -36,14 +36,14 @@ Hold:
 XH0U A 0 A_JumpIfNoAmmo("NoAmmo")
 XH0U A 0 A_JumpIfInventory("WeaponCharge",25,"Charge2")
 XH0U A 0 A_JumpIfInventory("WeaponCharge",15,"Charge")
-XH0U AAA 0 A_FireCustomMissile("HSHParticleSuck_H1",random(-17,17),0,random(-10,10),random(-10,10),0,random(-10,10))
+XH0U AAA 0 A_FireCustomMissile("HSHSucker2",random(-17,17),0,random(-10,10),random(-10,10),0,random(-10,10))
 XH0U A 0 A_FireCustomMissile("HyperStormBlaster_Puller_H3",0,0)
 XH0U A 1 A_GiveInventory("WeaponCharge_RC",1)
 XH0U A 0 A_Refire("Hold")
 Goto Fire1
 Charge:
 XH0U B 0 A_JumpIfInventory("WeaponCharge",25,"Charge2")
-XH0U BB 0 A_FireCustomMissile("HSHParticleSuck_H1",random(-17,17),0,random(-10,10),random(-10,10),0,random(-10,10))
+XH0U BB 0 A_FireCustomMissile("HSHSucker2",random(-17,17),0,random(-10,10),random(-10,10),0,random(-10,10))
 XH0U B 0 A_FireCustomMissile("HyperStormBlaster_Puller_H2",0,0)
 XH0U B 1 A_GiveInventory("WeaponCharge_RC",1)
 XH0U B 0 A_Refire("Charge.a")
@@ -53,7 +53,7 @@ XH0U B 1
 XH0U B 0 A_Refire("Charge")
 Goto Fire2
 Charge2:
-XH0U C 0 A_FireCustomMissile("HSHParticleSuck_H1",random(-17,17),0,random(-10,10),random(-10,10),0,random(-10,10))
+XH0U C 0 A_FireCustomMissile("HSHSucker2",random(-17,17),0,random(-10,10),random(-10,10),0,random(-10,10))
 XH0U C 0 A_FireCustomMissile("HyperStormBlaster_Puller_H1",0,0)
 XH0U C 1
 XH0U C 0 A_Refire("Charge2.a")

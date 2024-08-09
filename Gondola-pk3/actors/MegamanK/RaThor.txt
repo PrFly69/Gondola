@@ -14,8 +14,8 @@ player.startitem "CanHarvestSouls"
 //player.startitem "CanAirJump"
 //player.startitem "CanAirJumpStack", 1
 
-player.maxhealth 115
-health 115
+player.maxhealth 110
+health 110
 player.forwardmove 0.8, 0.8 //didn't rathors speed get nerfed at one point? //yes. yes it did
 player.sidemove 0.78, 0.78
 player.jumpz 14
@@ -208,7 +208,7 @@ stop
 
 actor RaThorSinistar_P1 : CustomInventory
 {//βεωαᴦΣ
-inventory.pickupmessage "\cgPicked up Central Piece \cuSigma\cg."
+inventory.pickupmessage "\cuPicked up Central Piece \ckSigma\cu."
 inventory.amount 1
 inventory.maxamount 1
 scale 1.25
@@ -233,7 +233,7 @@ stop
 }
 actor RaThorSinistar_P2 : RaThorSinistar_P1
 {
-inventory.pickupmessage "\cgPicked up Amulet Piece \cuGamma\cg."
+inventory.pickupmessage "\cuPicked up Amulet Piece \ckGamma\cu."
 States
 {
 Spawn:
@@ -246,7 +246,7 @@ goto End
 }
 actor RaThorSinistar_P3 : RaThorSinistar_P1
 {
-inventory.pickupmessage "\cgPicked up Amulet Piece \cuAlpha\cg."
+inventory.pickupmessage "\cuPicked up Amulet Piece \ckAlpha\cu."
 States
 {
 Spawn:
@@ -259,7 +259,7 @@ goto End
 }
 actor RaThorSinistar_P4 : RaThorSinistar_P1
 {
-inventory.pickupmessage "\cgPicked up Amulet Piece \cuOmega\cg."
+inventory.pickupmessage "\cuPicked up Amulet Piece \ckOmega\cu."
 States
 {
 Spawn:
@@ -272,7 +272,7 @@ goto End
 }
 actor RaThorSinistar_P5 : RaThorSinistar_P1
 {
-inventory.pickupmessage "\cgPicked up Amulet Piece \cuEpsilon\cg."
+inventory.pickupmessage "\cuPicked up Amulet Piece \ckEpsilon\cu."
 States
 {
 Spawn:
@@ -285,7 +285,7 @@ goto End
 }
 actor RaThorSinistar_P6 : RaThorSinistar_P1
 {
-inventory.pickupmessage "\cgPicked up Amulet Piece \cuBeta\cg."
+inventory.pickupmessage "\cuPicked up Amulet Piece \ckBeta\cu."
 States
 {
 Spawn:
@@ -321,7 +321,7 @@ stop
 
 actor RaThorSinistar_PZ : CustomInventory
 {
-inventory.pickupmessage "\cgYou have rebuilt the \cuSinistar\cg!"
+inventory.pickupmessage "\cuYou have rebuilt the \ckSinistar\cu!"
 States
 {
 Pickup:

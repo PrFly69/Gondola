@@ -56,7 +56,7 @@ TNT1 A 1 A_WeaponReady(14)
 TUCA CB 2 Offset(0,60)
 TUCA IF 1 A_WeaponReady(14)
 TNT1 A 0 A_GiveInventory("ShieldCheck",1)
-TNT1 A 0 A_SpawnItemEx("TurbomanWheelWarper",0,0,32,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("TurbomanWheelWarper",0,0,0,0,0,0,0,1)
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,140,100)//145
 Goto FireH
 FireH2:
@@ -104,11 +104,11 @@ Goto Ready0
 
 Altfire:
 TUCA C 0 A_JumpIfInventory("TurboCarFlag",1,"AltfireStop")
-TUCA C 0 A_JumpIf(z-floorz==0,"Altfire2")
+//TUCA C 0 A_JumpIf(z-floorz==0,"Altfire2")
 //TUCA C 0 SetPlayerProperty(0,0,0)
-Goto Ready0
+//Goto Ready0
 Altfire2:
-TUCA X 0 A_Stop
+//TUCA X 0 A_Stop
 TUCA X 0 SetPlayerProperty(0,1,0)
 TUCA X 0 A_TakeInventory("TurboNoCarFlag",9)
 TUCA X 0 A_GiveInventory("TurboCarFlag",1)
@@ -116,13 +116,13 @@ TUCA X 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
 TUCA X 0 A_Refire("Altfire3")
 goto Altfire3
 Altfire3:
-TUCA X 0 A_GiveInventory("CrashDriveAmmo",1)
+TUCA X 0 A_GiveInventory("CrashDriveAmmo_P",1)
 TUCA X 0 A_SpawnItemEx("TurboCarDust_Helper",0,0,0,0,0,0,0,1)
 TUCA X 2 A_PlaySoundEx("classes/CarCharge","Weapon")
 TUCA X 0 A_Refire(1)
 goto AltfireGo
 TUCA Y 0 A_GiveInventory("DieselJuiceAmmo",1)
-TUCA Y 0 A_GiveInventory("CrashDriveAmmo",1)
+TUCA X 0 A_GiveInventory("CrashDriveAmmo_P",1)
 TUCA Y 0 A_SpawnItemEx("TurboCarDust_Helper",0,0,0,0,0,0,0,1)
 TUCA Y 2 A_PlaySoundEx("classes/CarCharge","Weapon")
 TUCA Y 0 A_Refire("Altfire3")
@@ -134,7 +134,7 @@ TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,7,1)
 TNT1 A 0 A_GiveInventory("TurboGoDelay",1)
 TNT1 A 0 A_PlaySoundEx("classes/CarGoGo","Body")
 TNT1 A 0 A_ChangeVelocity(23,0,momz,3)
-TNT1 A 0 A_JumpIfInventory("CrashDriveAmmo",14,"AltfireDrive")
+TNT1 A 0 A_JumpIfInventory("CrashDriveAmmo",28,"AltfireDrive")
 TNT1 A 0 A_GiveInventory("TurboHonkDelayX",1)
 goto AltfireDrive
 AltfireHonk:
@@ -144,7 +144,7 @@ TNT1 A 0 A_PlaySound("classes/CarHonk",6,0.5)
 goto AltfireDrive1
 AltfireDrive:
 TNT1 A 0 A_GiveInventory("TurbomanBoost",1)
-TNT1 A 0 A_TakeInventory("CrashDriveAmmo",1)
+TNT1 A 0 A_TakeInventory("CrashDriveAmmo",2)
 TNT1 A 0 A_GiveInventory("TurboCarRadius_Pickup",1)
 TNT1 A 0 A_JumpIfInventory("TurboHonkDelayX",1,"AltfireDrive1")
 TNT1 A 0 A_JumpIfInventory("TurboHonkDelay",1,"AltfireDrive1")
@@ -203,7 +203,7 @@ inventory.maxamount 84
 actor CrashDriveAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 56
+inventory.maxamount 112
 +INVENTORY.IGNORESKILL
 }
 
@@ -263,6 +263,21 @@ TNT1 A 0 A_Recoil(-3.15)
 stop
 Ground:
 TNT1 A 0 A_Recoil(-7.5)
+stop
+}
+}
+
+actor CrashDriveAmmo_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIf(z-floorz==0,"Ground")
+TNT1 A 0 A_GiveInventory("CrashDriveAmmo",1)
+stop
+Ground:
+TNT1 A 0 A_GiveInventory("CrashDriveAmmo",2)
+TNT1 A 0 A_Stop
 stop
 }
 }

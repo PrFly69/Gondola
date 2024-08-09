@@ -41,32 +41,32 @@ QUIH A 0 A_JumpIfInventory("QuickManTrail",1,"Fire2")
 goto Fire1
 Fire1:
 QUIH A 0 A_PlaySoundEx("weapon/pshot","weapon")
-QUIH A 0 A_GiveInventory("QuickmanMain_CI",1)
-QUIH B 1 Offset(10,40) A_GiveInventory("FastAmmo",1)
+QUIH A 0 A_GiveInventory("QuickM_MainInv_CI",1)
+QUIH B 1 Offset(10,40) //A_GiveInventory("FastAmmo",1)
 QUIH B 0 A_JumpIfInventory("PowerRage_ST",1,1)
 QUIH B 1 Offset(15,45)
 QUIH A 1 Offset(22,52)
 QUIH A 1 Offset(24,54)
 
-QUIH A 1 Offset(25,55) A_GiveInventory("FastAmmo",1)
+QUIH A 1 Offset(25,55) //A_GiveInventory("FastAmmo",1)
 QUIH B 0 A_JumpIfInventory("PowerRage_ST",1,1)
 QUIH A 1 Offset(25,55)
 QUIH A 1 Offset(25,55)
 QUIH A 1 Offset(24,54)
-QUIH A 1 Offset(22,52) A_GiveInventory("FastAmmo",1)
+QUIH A 1 Offset(22,52) //A_GiveInventory("FastAmmo",1)
 QUIH B 0 A_JumpIfInventory("PowerRage_ST",1,1)
 QUIH A 1 Offset(13,43)
 QUIH A 1 Offset(10,40)
 QUIH A 1 Offset(7,37)
 
 QUIH A 1 Offset(4,34)
-QUIH A 0 A_GiveInventory("FastAmmo",1)
+QUIH A 0 //A_GiveInventory("FastAmmo",1)
 QUIH A 2 A_WeaponReady(14)
 Goto Ready1
 
 Fire2:
 QUIH A 0 A_PlaySoundEx("weapon/pshot","weapon")
-QUIH A 0 A_GiveInventory("QuickmanMain_CI",1)
+QUIH A 0 A_GiveInventory("QuickM_MainInv_CI",1)
 QUIH B 1 Offset(10,40)A_JumpIfInventory("PowerRage_ST",1,1)
 QUIH A 1 Offset(22,52)
 QUIH A 1 Offset(25,55)A_JumpIfInventory("PowerRage_ST",1,1)
@@ -83,9 +83,9 @@ QUIH A 0 A_JumpIfInventory("QuickManTrail",1,"Altfire2")
 goto Altfire1
 
 Altfire1:
-QUIH A 0 A_GiveInventory("FastAmmo",2)
+QUIH A 0 //A_GiveInventory("FastAmmo",2)
 QUIH A 0 A_PlaySoundEx("weapon/rbuster","Weapon")
-QUIH A 0 A_GiveInventory("QuickmanMain2_CI",1)
+QUIH A 0 A_GiveInventory("QuickM_AltInv_CI",1)
 QUIH D 1 A_JumpIfInventory("PowerRage_ST",1,1)
 QUIH E 1
 QUIH F 1 A_JumpIfInventory("PowerRage_ST",1,1)
@@ -94,7 +94,7 @@ Goto Ready1
 
 Altfire2:
 QUIH A 0 A_PlaySoundEx("weapon/rbuster","Weapon")
-QUIH A 0 A_GiveInventory("QuickmanMain2_CI",1)
+QUIH A 0 A_GiveInventory("QuickM_AltInv_CI",1)
 QUIH D 1 A_JumpIfInventory("PowerRage_ST",1,1)
 QUIH E 1
 QUIH F 1
@@ -175,23 +175,23 @@ actor Quickbossrangs1 : QuickBoomerang
 {
 translation "192:192=229:229"
 damage (6)
-reactiontime 7
+reactiontime 6
 damagetype "QuickM_Rapid"
-bouncecount 2
-Radius 7
+bouncecount 7
+Radius 6
 Speed 60
 +USEBOUNCESTATE
 +DOOMBOUNCE
 States
 {
 Spawn:
-TNT1 A 0
+TNT1 AA 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
+QUIK QQRR 1 A_ChangeVelocity(-5,0,0,CVF_RELATIVE)
 QUIK Q 0 A_CountDown
-QUIK QQRR 1 A_ChangeVelocity(-5.25,0,0,CVF_RELATIVE)
+QUIK SSTT 1 A_ChangeVelocity(-5,0,0,CVF_RELATIVE)
 QUIK Q 0 A_CountDown
-QUIK SSTT 1 A_ChangeVelocity(-5.25,0,0,CVF_RELATIVE)
 loop
 Bounce:
 QUIK Q 0 A_PlaySound("wep/shieldtink",1,0.3)
@@ -204,17 +204,53 @@ stop
 }
 }
 
-actor Quickbossrangs1B : Quickbossrangs1{translation "192:192=205:205"}
-actor Quickbossrangs1R : Quickbossrangs1{translation "192:192=171:171"}
-actor Quickbossrangs1O : Quickbossrangs1{translation "192:192=104:104"}
-actor Quickbossrangs1P : Quickbossrangs1{translation "192:192=229:229"}
+actor Quickbossrangs1Speed : Quickbossrangs1
+{
+Speed 90
+States
+{
+Spawn:
+TNT1 AA 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+QUIK QQRR 1 A_ChangeVelocity(-7.5,0,0,CVF_RELATIVE)
+QUIK Q 0 A_CountDown
+QUIK SSTT 1 A_ChangeVelocity(-7.5,0,0,CVF_RELATIVE)
+QUIK Q 0 A_CountDown
+loop
+}
+}
 
-actor Quickbossrangs2 : Quickbossrangs1{damagetype "QuickM_Shot"}
+actor Quickbossrangs1B : Quickbossrangs1{translation "192:192=74:74"}
+actor Quickbossrangs1R : Quickbossrangs1{translation "192:192=41:41"}
+actor Quickbossrangs1O : Quickbossrangs1{translation "192:192=128:128"}
+actor Quickbossrangs1P : Quickbossrangs1{translation "192:192=232:232"}
+
+actor Quickbossrangs1SpeedB : Quickbossrangs1Speed{translation "192:192=74:74"}
+actor Quickbossrangs1SpeedR : Quickbossrangs1Speed{translation "192:192=41:41"}
+actor Quickbossrangs1SpeedO : Quickbossrangs1Speed{translation "192:192=128:128"}
+actor Quickbossrangs1SpeedP : Quickbossrangs1Speed{translation "192:192=232:232"}
+
+actor Quickbossrangs2 : Quickbossrangs1
+{
+translation "192:192=4:4"
+damagetype "QuickM_Shot"
+}
+actor Quickbossrangs2Speed : Quickbossrangs1Speed
+{
+translation "192:192=4:4"
+damagetype "QuickM_Shot"
+}
 
 actor Quickbossrangs2B : Quickbossrangs2{translation "192:192=205:205"}
 actor Quickbossrangs2R : Quickbossrangs2{translation "192:192=171:171"}
 actor Quickbossrangs2O : Quickbossrangs2{translation "192:192=104:104"}
 actor Quickbossrangs2P : Quickbossrangs2{translation "192:192=229:229"}
+
+actor Quickbossrangs2SpeedB : Quickbossrangs2Speed{translation "192:192=205:205"}
+actor Quickbossrangs2SpeedR : Quickbossrangs2Speed{translation "192:192=171:171"}
+actor Quickbossrangs2SpeedO : Quickbossrangs2Speed{translation "192:192=104:104"}
+actor Quickbossrangs2SpeedP : Quickbossrangs2Speed{translation "192:192=229:229"}
 
 actor QuickBoomerangDeathFX
 {
@@ -243,39 +279,69 @@ goto XDeath
 }
 }
 
+actor QuickM_MainInv_CI : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("QuickManTrail",1,"Pickup2")
+Pickup1:
+TNT1 A 0 A_GiveInventory("QuickmanMain_CI")
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("QuickmanMain2_CI")
+stop
+}
+}
+
+actor QuickM_AltInv_CI : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0 A_JumpIfInventory("QuickManTrail",1,"Pickup2")
+Pickup1:
+TNT1 A 0 A_GiveInventory("QuickmanAlt_CI")
+stop
+Pickup2:
+TNT1 A 0 A_GiveInventory("QuickmanAlt2_CI")
+stop
+}
+}
+
 actor QuickmanMain_CI : TeamColor_CI
 {
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2",10,0,8,0)
 TNT1 A 0 A_FireCustomMissile("Quickbossrangs2",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2",-15,1,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2",-10,1,8,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2B",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2B",10,0,8,0)
 TNT1 A 0 A_FireCustomMissile("Quickbossrangs2B",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2B",-15,1,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2B",-10,1,8,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2R",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2R",10,0,8,0)
 TNT1 A 0 A_FireCustomMissile("Quickbossrangs2R",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2R",-15,1,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2R",-10,1,8,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2O",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2O",10,0,8,0)
 TNT1 A 0 A_FireCustomMissile("Quickbossrangs2O",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2O",-15,1,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2O",-10,1,8,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2P",15,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2P",10,0,8,0)
 TNT1 A 0 A_FireCustomMissile("Quickbossrangs2P",0,0,8,0)
-TNT1 A 0 A_FireCustomMissile("Quickbossrangs2P",-15,1,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2P",-10,1,8,0)
 goto Done
 }
 }
 
-actor QuickmanMain2_CI : TeamColor_CI
+actor QuickmanAlt_CI : TeamColor_CI
 {
 states
 {
@@ -297,4 +363,57 @@ goto Done
 }
 }
 
+actor QuickmanMain2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2Speed",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2Speed",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2Speed",-10,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedB",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedB",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedB",-10,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedR",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedR",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedR",-10,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedO",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedO",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedO",-10,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedP",10,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedP",0,0,8,0)
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs2SpeedP",-10,1,8,0)
+goto Done
+}
+}
+
+actor QuickmanAlt2_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1Speed",0,1,8,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1SpeedB",0,1,8,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1SpeedR",0,1,8,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1SpeedO",0,1,8,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("Quickbossrangs1SpeedP",0,1,8,0)
+goto Done
+}
+}
 

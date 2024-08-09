@@ -5,8 +5,8 @@ Player.ScoreIcon "C_06B0X"
 player.displayname "Centaurman"
 player.soundclass "centaurmanc"
 
-player.maxhealth 85
-health 85
+player.maxhealth 80
+health 80
 player.jumpz 10
 player.forwardmove 1.0, 1.0
 player.sidemove 0.6, 0.6

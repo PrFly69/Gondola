@@ -5,8 +5,8 @@ Player.ScoreIcon "C_04H0X"
 player.displayname "Skullman"
 player.soundclass "skullmanc"
 
-player.maxhealth 85
-health 85
+player.maxhealth 80
+health 80
 player.jumpz 12
 player.forwardmove 0.8, 0.8//0.85
 player.sidemove 0.78, 0.78

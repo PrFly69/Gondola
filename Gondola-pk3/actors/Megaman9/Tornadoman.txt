@@ -5,8 +5,8 @@ Player.ScoreIcon "C_09B0X"
 player.displayname "Tornadoman"
 player.soundclass "tornadomanc"
 
-player.maxhealth 85
-health 85
+player.maxhealth 80
+health 80
 player.jumpz 12
 player.forwardmove 0.76, 0.76
 player.sidemove 0.74, 0.74

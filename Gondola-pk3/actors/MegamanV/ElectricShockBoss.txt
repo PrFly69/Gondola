@@ -324,6 +324,7 @@ TNT1 A 0 A_JumpIf(momz<0,"PickupH")
 TNT1 A 0
 stop
 PickupH:
+TNT1 A 0 A_SetGravity(0.0)
 TNT1 A 0 A_ChangeVelocity(momx,momy,-0.5,CVF_REPLACE)
 stop
 }
@@ -411,6 +412,7 @@ TNT1 A 0 A_GiveInventory("JupiterLaunchCD",1)
 TNT1 A 0 A_TakeInventory("NoJumpCancel",9999)
 TNT1 A 0 A_TakeInventory("JupiterLaunching",9999)
 TNT1 A 0 A_TakeInventory("JupiterHovering",9999)
+TNT1 A 0 A_GiveInventory("EnvironmentGravity",1)
 TNT1 A 0 A_TakeInventory("PowerJupiterSpeed",9999)
 stop
 }
@@ -1032,23 +1034,23 @@ actor JupiterLaser1_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_T",0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartB",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartB",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_TB",0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartR",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartR",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_TR",0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartO",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartO",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_TO",0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartP",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1StartP",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser1Start_TP",0,0,0)
 goto Done
 }
@@ -1059,23 +1061,23 @@ actor JupiterLaser2_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_T",0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartB",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartB",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_TB",0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartR",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartR",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_TR",0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartO",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartO",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_TO",0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartP",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2StartP",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser2Start_TP",0,0,0)
 goto Done
 }
@@ -1087,23 +1089,23 @@ actor JupiterLaser3_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_T",0,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartB",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartB",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_TB",0,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartR",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartR",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_TR",0,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartO",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartO",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_TO",0,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartP",0,0,0)
+TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3StartP",0,1,0)
 TNT1 A 0 A_FireCustomMissile("JupiterBigLaser3Start_TP",0,0,0)
 goto Done
 }

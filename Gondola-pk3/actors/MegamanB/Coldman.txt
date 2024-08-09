@@ -9,11 +9,11 @@ player.startitem "ColdBossAmmo", 240
 player.startitem "RunningFridgeAmmo", 14
 //player.startitem "ColdmanUseItem"
 
-player.maxhealth 135
-health 135
+player.maxhealth 125
+health 125
 player.jumpz 10
-player.forwardmove 0.62, 0.62
-player.sidemove 0.6, 0.6
+player.forwardmove 0.7, 0.7
+player.sidemove 0.68, 0.68
 
 player.startitem "LightningBoltWeakness2", 1
 

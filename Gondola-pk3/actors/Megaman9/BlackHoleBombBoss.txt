@@ -300,7 +300,7 @@ actor Blackholecooldownindicatorbar2 : Powerup
 actor Blackholecooldownindicatorbar : PowerupGiver
 { 
 powerup.type "Blackholecooldownindicatorbar2"
-Powerup.Duration 120 
+Powerup.Duration 105
 +INVENTORY.AUTOACTIVATE   
 } 
 
@@ -577,32 +577,32 @@ BLKH B 0 A_PlaySoundEx("weapon/blackholebombC","Voice",1)
 Spawn2:
 BLKH BB 1 A_JumpIfInTargetInventory("BlackHoleFlagD",1,"Next")
 BLKH B 0 ACS_ExecuteAlways(259,0,1)
-BLKH B 0 A_ChangeVelocity(cos(-pitch)*11,0,sin(-pitch)*11,3)
+BLKH B 0 A_ChangeVelocity(cos(-pitch)*15,0,sin(-pitch)*15,3)
 BLKH BB 1 A_JumpIfInTargetInventory("BlackHoleFlagD",1,"Next")
 BLKH B 0 ACS_ExecuteAlways(259,0,1)
-BLKH B 0 A_ChangeVelocity(cos(-pitch)*11,0,sin(-pitch)*11,3)
+BLKH B 0 A_ChangeVelocity(cos(-pitch)*15,0,sin(-pitch)*15,3)
 
 BLKH CC 1 A_JumpIfInTargetInventory("BlackHoleFlagD",1,"Next")
 BLKH C 0 ACS_ExecuteAlways(259,0,1)
-BLKH C 0 A_ChangeVelocity(cos(-pitch)*11,0,sin(-pitch)*11,3)
+BLKH C 0 A_ChangeVelocity(cos(-pitch)*15,0,sin(-pitch)*15,3)
 BLKH CC 1 A_JumpIfInTargetInventory("BlackHoleFlagD",1,"Next")
 BLKH C 0 ACS_ExecuteAlways(259,0,1)
-BLKH C 0 A_ChangeVelocity(cos(-pitch)*11,0,sin(-pitch)*11,3)
+BLKH C 0 A_ChangeVelocity(cos(-pitch)*15,0,sin(-pitch)*15,3)
 BLKH C 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 
 BLKH DD 1 A_JumpIfInTargetInventory("BlackHoleFlagD",1,"Next")
 BLKH B 0 ACS_ExecuteAlways(259,0,1)
-BLKH B 0 A_ChangeVelocity(cos(-pitch)*11,0,sin(-pitch)*11,3)
+BLKH B 0 A_ChangeVelocity(cos(-pitch)*15,0,sin(-pitch)*15,3)
 BLKH DD 1 A_JumpIfInTargetInventory("BlackHoleFlagD",1,"Next")
 BLKH B 0 ACS_ExecuteAlways(259,0,1)
-BLKH B 0 A_ChangeVelocity(cos(-pitch)*11,0,sin(-pitch)*11,3)
+BLKH B 0 A_ChangeVelocity(cos(-pitch)*15,0,sin(-pitch)*15,3)
 
 BLKH EE 1 A_JumpIfInTargetInventory("BlackHoleFlagD",1,"Next")
 BLKH E 0 ACS_ExecuteAlways(259,0,1)
-BLKH E 0 A_ChangeVelocity(cos(-pitch)*11,0,sin(-pitch)*11,3)
+BLKH E 0 A_ChangeVelocity(cos(-pitch)*15,0,sin(-pitch)*15,3)
 BLKH EE 1 A_JumpIfInTargetInventory("BlackHoleFlagD",1,"Next")
 BLKH E 0 ACS_ExecuteAlways(259,0,1)
-BLKH E 0 A_ChangeVelocity(cos(-pitch)*11,0,sin(-pitch)*11,3)
+BLKH E 0 A_ChangeVelocity(cos(-pitch)*15,0,sin(-pitch)*15,3)
 BLKH E 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 loop
 Next: 
@@ -680,13 +680,13 @@ stop
 
 actor GalaxyM_BHBProtect : PowerProtection
 {
-Powerup.Duration 8
-DamageFactor "GalaxyM_BHB", 0.09
+Powerup.Duration 9
+DamageFactor "GalaxyM_BHB", 0.12
 }
 
 actor GalaxyM_BHBProtect4 : PowerProtection
 {
-Powerup.Duration 4
+Powerup.Duration 9
 DamageFactor "GalaxyM_BHB", 0.0
 }
 
@@ -709,7 +709,7 @@ damagetype "GalaxyM_BHB"
 +NOTARGETSWITCH
 +THRUSPECIES
 Species "DumbBlackHole"
-reactiontime 5
+reactiontime 6
 damage (0)
 Radius 2
 Height 2
@@ -733,6 +733,7 @@ BLKH J 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 BLKH J 0 A_SpawnItemEx("BlackHoleXHelperFX",0,0,0,0,0,0,0,1)
 BLKH JJKK 1 A_GiveInventory("BlackHoleX_Pickup",1)
 BLKH L 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+BLKH F 0 A_CountDown
 BLKH L 0 A_SpawnItemEx("BlackHoleXHelperFX",0,0,0,0,0,0,0,1)
 BLKH LLMM 1 A_GiveInventory("BlackHoleX_Pickup",1)
 BLKH N 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
@@ -747,7 +748,8 @@ loop
 Death:
 TNT1 A 0 ACS_NamedExecuteAlways("cbm_GalaxyBHB_ACSEnd",0,224)
 TNT1 A 1 A_PlaySound("weapon/BlackHoleBombPoof",1,0.75)
-TNT1 A 0 A_TakeFromTarget("BlackHoleBombCooldown",999)
+X_9H Z 4
+TNT1 A 1
 X_9H X 3
 TNT1 A 1
 X_9H Y 3
@@ -765,6 +767,8 @@ TNT1 A 1
 X_9H Y 1
 TNT1 A 1
 X_9H Z 1
+TNT1 A 1
+TNT1 A 0 A_TakeFromTarget("BlackHoleBombCooldown",999)
 TNT1 A 1
 stop
 }
@@ -789,7 +793,7 @@ States
 {
 Pickup:
 TNT1 A 0 A_SpawnItemEx("BlackHoleX_Damager",0,0,16)
-TNT1 A 0 ACS_NamedExecuteAlways("cbm_GalaxyBHB_ACS",0,4,8,224)//cbm_GalaxyBHB_ACS",0,4,22,224
+TNT1 A 0 ACS_NamedExecuteAlways("cbm_GalaxyBHB_ACS",0,4,8,168)//cbm_GalaxyBHB_ACS",0,4,22,224
 stop
 }
 }
@@ -803,7 +807,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_Explode(22,24,0,0,24)
+TNT1 A 0 A_Explode(27,24,0,0,24)
 TNT1 A 4
 stop
 }
@@ -818,20 +822,20 @@ TNT1 A 0
 TNT1 A 0
 TNT1 A 0 A_SetPitch(random(-1,1)*10)//(random(0,1)*2-1)
 TNT1 AA 0 //A_SpawnItemEx("BlackHoleBombXFX1",0,0,0,Cos(pitch)*224,0,-sin(pitch)*224,random(0,359),513)
-TNT1 AA 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*224,0,-sin(pitch)*224,0,0,0,random(0,359),513)
+TNT1 AA 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*168,0,-sin(pitch)*168,0,0,0,random(0,359),513)
 TNT1 A 1
 TNT1 A 0 A_SetPitch(random(2,5)*10)
-TNT1 A 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*224,0,-sin(pitch)*224,0,0,0,random(0,359),513)
+TNT1 A 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*168,0,-sin(pitch)*168,0,0,0,random(0,359),513)
 TNT1 A 0 A_SetPitch(random(-2,-4)*10)
-TNT1 A 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*224,0,-sin(pitch)*224,0,0,0,random(0,359),513)
+TNT1 A 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*168,0,-sin(pitch)*168,0,0,0,random(0,359),513)
 TNT1 A 1
 TNT1 A 0 A_SetPitch(random(5,9)*10)
-TNT1 A 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*224,0,-sin(pitch)*224,0,0,0,random(0,359),513)
+TNT1 A 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*168,0,-sin(pitch)*168,0,0,0,random(0,359),513)
 TNT1 A 0 A_SetPitch(random(-5,-9)*10)
-TNT1 A 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*224,0,-sin(pitch)*224,0,0,0,random(0,359),513)
+TNT1 A 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*168,0,-sin(pitch)*168,0,0,0,random(0,359),513)
 TNT1 A 1
 TNT1 A 0 A_SetPitch(random(-9,9)*10)
-TNT1 AA 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*224,0,-sin(pitch)*224,0,0,0,random(0,359),513)
+TNT1 AA 0 A_SpawnItemEx("BlackHoleBombXFX1",Cos(pitch)*168,0,-sin(pitch)*168,0,0,0,random(0,359),513)
 TNT1 A 1
 stop
 }

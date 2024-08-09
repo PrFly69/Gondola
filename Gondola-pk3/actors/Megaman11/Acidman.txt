@@ -1,56 +1,89 @@
 actor Acidman : ClassBase //90
 {//this class sux
-Player.StartItem "IFMM11", 1
-Player.ScoreIcon "C_11H0X"
-player.displayname "Acidman"
-player.soundclass "acidmanc"
-player.startitem "AcidBarrierBoss", 1
-player.startitem "AcidBarrierAmmoBoss", 28
-player.startitem "FriendBarrierAmmo", 14
-player.startitem "SelfishBarrierAmmo", 98
-player.startitem "CanTreadWater", 1
-player.startitem "AcidHUDCvar_P", 1
+	Player.ScoreIcon "C_11H0X"
+	player.displayname "Acidman"
+	player.soundclass "acidmanc"
+	
+	Player.StartItem "IFMM11", 1
+	player.startitem "AcidBarrierBoss", 1
+	player.startitem "AcidDartAmmo", 340
+	player.startitem "AcidicBarrierAmmo", 280
+	player.startitem "DynamicArmorDosage_F", 15
+	player.startitem "AcidBarrierItem", 1
 
-player.maxhealth 100
-health 100
-player.jumpz 12
-Player.ForwardMove 0.89, 0.89
-Player.SideMove 0.87, 0.87
+	player.maxhealth 90
+	health 90
+	player.jumpz 12
+	Player.ForwardMove 0.89, 0.89
+	Player.SideMove 0.87, 0.87
 
-//player.startitem "RealClassFlag", 130
+	States
+	{
+		Spawn:
+			ACIY A 0
+			ACIY B 1 A_JumpIf(z - floorz > 0, "Jumping")
+			ACIY A 1 A_JumpIf(z - floorz > 0, "Jumping")
+			Goto Spawn+2
+		Jumping:
+			ACIY I 1 A_JumpIf(z - floorz <= 0, "Spawn")
+			wait
+			
+		See:
+			ACIY BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz > 0, "Jumping")
+			Goto Spawn
+			
+		// if I put more thought into this, it could be done better
+		// it would be better to use smart use of relative offset jumps
+		// labels just make it easier to parse what's going on
+		Missile:
+			"####" "#" 0 A_JumpIf(z - floorz > 0,"JumpMissile")
+			"####" "#" 1 A_JumpIf(true, "Missile0")
+			wait
+		Missile0:
+			ACIY F 1
+		Missile1:
+			ACIY F 1 A_JumpIf(z - floorz > 0,"JumpMissile1")
+		Missile2:
+			ACIY F 1 A_JumpIf(z - floorz > 0,"JumpMissile2")
+		Missile3:
+			ACIY F 1 A_JumpIf(z - floorz > 0,"JumpMissile3")
+		Missile4:
+			ACIY F 1 A_JumpIf(z - floorz > 0,"JumpMissile4")
+		Missile5:
+			ACIY G 1 A_JumpIf(z - floorz > 0,"JumpMissile5")
+		Missile6:
+			ACIY G 1 A_JumpIf(z - floorz > 0,"JumpMissile6")
+		Missile7:
+			ACIY G 1 A_JumpIf(z - floorz > 0,"JumpMissile7")
+		Missile8:
+			ACIY G 1 A_JumpIf(z - floorz > 0,"JumpMissile8")
+			goto Spawn
+			
+		JumpMissile:
+			ACIY J 1 A_JumpIf(z - floorz <= 0, "Missile")
+		JumpMissile1:
+			ACIY J 1 A_JumpIf(z - floorz <= 0, "Missile1")
+		JumpMissile2:
+			ACIY J 1 A_JumpIf(z - floorz <= 0, "Missile2")
+		JumpMissile3:
+			ACIY J 1 A_JumpIf(z - floorz <= 0, "Missile3")
+		JumpMissile4:
+			ACIY J 1 A_JumpIf(z - floorz <= 0, "Missile4")
+		JumpMissile5:
+			ACIY J 1 A_JumpIf(z - floorz <= 0, "Missile5")
+		JumpMissile6:
+			ACIY J 1 A_JumpIf(z - floorz <= 0, "Missile6")
+		JumpMissile7:
+			ACIY J 1 A_JumpIf(z - floorz <= 0, "Missile7")
+		JumpMissile8:
+			ACIY J 1 A_JumpIf(z - floorz <= 0, "Missile8")
+			goto Jumping
 
-//player.startitem "CommandoBombWeakness2", 1
-//commando bomb weakness?? isn't acidmans actual weakness block dropper?
-
-States
-{
-Spawn:
-ACIY A 0
-ACIY B 1
-ACIY A 1 A_JumpIf(z-floorz>0,"AcidJumping")
-Goto Spawn+2
-See:
-ACIY BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0,"AcidJumping")
-Goto Spawn
-Missile:
-TNT1 A 0 A_JumpIf(z-floorz>0,"AcidJumpingShooting")
-ACIY F 5
-ACIY G 4
-goto Spawn
-
-AcidJumping:
-ACIY I 1 A_JumpIf(z-floorz<=0, "Spawn")
-wait
-
-AcidJumpingShooting:
-ACIY JJJJJJJJJ 1 A_JumpIf(z-floorz<=0, "Spawn")
-goto AcidJumping
-
-ClassPain:
-ACIY H 0
-goto PainContinue
-ClassDeath:
-ACIY H 0
-goto DeathContinue
-}
+		ClassPain:
+			ACIY H 0
+			goto PainContinue
+		ClassDeath:
+			ACIY H 0
+			goto DeathContinue
+	}
 }

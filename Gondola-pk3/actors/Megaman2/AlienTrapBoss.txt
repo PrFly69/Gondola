@@ -93,20 +93,20 @@ TNT1 A 0 A_JumpIf(z-floorz>=240,"NoFlight")
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(107,0)==1,"MaybeFlight")
 YesFlight:
 TNT1 A 1 SetPlayerProperty(0,1,3)
-TNT1 A 0 A_JumpIfInventory("StaminaFlag",500,"Flash")
+TNT1 A 0 A_JumpIfInventory("AlienBoss_StaminaFlag",500,"Flash")
 TNT1 A 0 A_JumpIf(z-floorz==0,"Recharge")
 goto Flash
 MaybeFlight:
-TNT1 A 0 A_TakeInventory("StaminaFlag",20)
-TNT1 A 0 A_JumpIfInventory("StaminaFlag",1,"YesFlight")
+TNT1 A 0 A_TakeInventory("AlienBoss_StaminaFlag",20)
+TNT1 A 0 A_JumpIfInventory("AlienBoss_StaminaFlag",1,"YesFlight")
 goto NoFlight
 NoFlight:
 TNT1 A 1 SetPlayerProperty(0,0,3)
-TNT1 A 0 A_JumpIfInventory("StaminaFlag",500,"Flash")
+TNT1 A 0 A_JumpIfInventory("AlienBoss_StaminaFlag",500,"Flash")
 TNT1 A 0 A_JumpIf(z-floorz==0,"Recharge")
 Goto Flash
 Recharge:
-TNT1 A 0 A_GiveInventory("StaminaFlag",4)
+TNT1 A 0 A_GiveInventory("AlienBoss_StaminaFlag",4)
 Goto Flash
 }
 }
@@ -116,6 +116,14 @@ actor AlienTrapAmmo : Ammo
 inventory.amount 1
 inventory.maxamount 56
 +INVENTORY.IGNORESKILL
+}
+
+actor AlienBoss_StaminaFlag : Ammo
+{
+inventory.amount 1
+inventory.maxamount 500
++INVENTORY.IGNORESKILL
++INVENTORY.UNDROPPABLE
 }
 
 actor AlienFlightFlag : OnceC {}
@@ -263,10 +271,10 @@ actor AlienBoobeamShot
 PROJECTILE
 damagetype "Alien_BooShot"
 Obituary "$OB_ALIENBOOBEAM"
-Damage (4)
+Damage (8)
 radius 12
 height 12
-Speed 52
+Speed 45
 scale 2.5
 States
 {
@@ -284,14 +292,14 @@ X_2N G 0 A_JumpIf(z-floorz==0,"Floor")
 X_2N G 0
 stop
 Floor:
-X_2N G 0 A_SpawnItemEx("AlienBoobeamShotF",0,0,1,50,0,0,0,1)
+X_2N G 0 A_SpawnItemEx("AlienBoobeamShotF",0,0,1,45,0,0,0,1)
 stop
 }
 }
 
 actor AlienBoobeamShotF : AlienBoobeamShot
 {
-Damage (4)
+Damage (8)
 States
 {
 Death:
@@ -306,7 +314,7 @@ Obituary "$OB_ALIENBOOBEAMX"
 +SEEKERMISSILE
 +SCREENSEEKER
 ReactionTime 85
-Damage (4)
+Damage (8)
 radius 6
 height 6
 Speed 35
@@ -469,13 +477,11 @@ TNT1 A 4
 TNT1 A 1 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,0)
 TNT1 A 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
 TNT1 A 0 //A_Jump(16,"SpawnX")
-TNT1 A 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
-TNT1 A 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+TNT1 A 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,0,1)
 TNT1 A 5 
 stop
 SpawnX:
-TNT1 A 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
-TNT1 A 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+TNT1 A 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,0,1)
 TNT1 A 5 
 stop
 
@@ -578,15 +584,13 @@ X_2N LH 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
 X_2N L 1 ACS_ExecuteAlways(989,0,ACS_ExecuteWithResult(257)+100,10)
 X_2N L 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
 X_2N L 0 //A_Jump(16,"FireTimeX")
-X_2N L 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
-X_2N L 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+X_2N L 0 A_SpawnItemEx("AlienBoobeamShot",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,0,1)
 X_2N L 1 
 X_2N LLLLLLLL 0 A_CountDown
 X_2N LLHHHHHH 1 A_CountDown
 goto Waiting
 FireTimeX:
-X_2N L 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
-X_2N L 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
+X_2N L 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,0,cos(-pitch)*52,0,sin(-pitch)*52,0,1)
 X_2N L 1 
 goto FireTime+8
 
@@ -650,15 +654,13 @@ X_2N Q 0 A_Jump(256,1,"Delay1","Delay2","Delay3","Delay4")
 X_2N QM 2 A_PlaySoundEx("weapon/BoobeamFlash","Weapon")
 X_2N Q 0 A_PlaySoundEx("weapon/BoobeamPew","Body")
 X_2N Q 0 //A_Jump(16,"FireTimeX")
-X_2N Q 0 A_SpawnItemEx("AlienBoobeamShot",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
-X_2N Q 0 A_SpawnItemEx("AlienBoobeamShot",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
+X_2N Q 0 A_SpawnItemEx("AlienBoobeamShot",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,0,1)
 X_2N Q 1 
 X_2N QQQQQQQQ 0 A_CountDown
 X_2N QQMMMMMM 1 A_CountDown
 goto Waiting
 FireTimeX:
-X_2N Q 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,-2,1,0)
-X_2N Q 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,2,1,0)
+X_2N Q 0 A_SpawnItemEx("AlienBoobeamShotX",0,0,-8,cos(-pitch)*52,0,sin(-pitch)*52,0,1)
 X_2N Q 1 
 goto FireTime+7
 Death:

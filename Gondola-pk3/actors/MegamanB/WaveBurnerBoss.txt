@@ -381,6 +381,9 @@ BRHD D 0 A_PlaySound("weapon/BurnerDive",1,1.0)
 BRHD D 0 SetPlayerProperty(0,0,3)
 BRHD D 0 A_ChangeFlag("NOGRAVITY",0)
 BRHD D 0 SetPlayerProperty(0,1,0)
+PLUH B 0 A_TakeInventory("UnSolid",1)
+PLUH B 0 A_ChangeFlag("SOLID",0) 
+PLUH B 0 A_ChangeFlag("THRUSPECIES",1)
 BRHD D 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
 BRHD D 0 A_GiveInventory("BurnerDiveFlag",1)
 BRHD D 0 A_TakeInventory("BossBurnerAmmo2",56)
@@ -545,6 +548,8 @@ BRHD E 1 A_WeaponReady(14)
 BRHD E 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,10,1)
 goto Clear
 Clear:
+PLUH B 0 A_ChangeFlag("THRUSPECIES",0)
+PLUH B 0 A_SpawnItemEx("ResolidifyPlayer_H")
 BRHD A 0 SetPlayerProperty(0,0,3)
 BRHD A 0 SetPlayerProperty(0,0,0)
 BRHD A 0 A_TakeInventory("UseTrap",999)
@@ -897,7 +902,7 @@ actor WaveBurnBoss
 {
 translation "199:199=195:195", "202:202=193:193"
 PROJECTILE
-damagetype "WaveBurner"
+damagetype "BurnerM_Shot"
 Obituary "$OB_WAVEBURNER"
 ReactionTime 1
 Damage (4)
@@ -993,7 +998,7 @@ actor BurnExplosion : BasicExplosion
 Translation "249:249=131:131","76:76=110:110","250:250=104:104"
 +FLOORHUGGER
 Obituary "$OB_BURNERDIVE"
-damagetype "DMGNoHitstun"
+damagetype "BurnerM_DiveLand"
 scale 3.5
 States
 {
@@ -1026,13 +1031,17 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,45,1)
+TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,30,1)
+TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,60,1)
 TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,90,1)
-TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,135,1)
+TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,120,1)
+TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,150,1)
 TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,180,1)
-TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,-45,1)
-TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,-90,1)
-TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,-135,1)
+TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,210,1)
+TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,240,1)
+TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,270,1)
+TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,300,1)
+TNT1 A 0 A_SpawnItemEx("WaveBurnLineSpawn",8,0,0,0,0,0,330,1)
 stop
 }
 }
@@ -1045,22 +1054,19 @@ actor WaveBurnLineSpawnerP : WaveBurnLineSpawner{translation "249:249=223:223","
 actor WaveBurnLineSpawn
 {
 PROJECTILE
--NOGRAVITY
++FLOORHUGGER
 Obituary "$OB_BURNERDIVEX"
-damagetype "WaveBurner"
+damagetype "BurnerM_FireLine"
 Height 10
 Radius 6
-Damage(5)
+Damage(0)
 scale 2.5
 States
 {
 Spawn:
-BRBM H 0
-BRBM A 1 ThrustThingZ(0,50,1,1)
-Goto Spawn+1
-Crash:
-Death:
-TNT1 A 0 A_SpawnItemEx("WaveBurnLine",0,0,0,15,0,0,0,1)
+BRBM AA 0
+BRBM A 1
+TNT1 A 0 A_SpawnItemEx("WaveBurnLine",0,0,0,25,0,0,0,1)
 stop
 }
 }
@@ -1068,67 +1074,42 @@ stop
 actor WaveBurnLine
 {
 var int user_Dam;
-
 PROJECTILE
++NOEXPLODEFLOOR
 -NOGRAVITY
 +DONTSPLASH
 Obituary "$OB_BURNERDIVEX"
-damagetype "WaveBurner"
-Damage (5+user_Dam)
+damagetype "BurnerM_FireLine"
+Damage (user_Dam)
+gravity 25
 Height 40
 Radius 6
 scale 2.5
-gravity 900.0
-speed 20
+speed 25
 States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+BRTR A 1 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+BRTR A 0 A_SetUserVar("user_Dam",5)
+BRTR A 0 A_ChangeFlag(STEPMISSILE,TRUE)
 SpawnLOOP:
-BRTR H 0
+BRBM A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+TNT1 A 0 A_JumpIf(user_Dam>=15,"SpawnLOOPMax")
+BRTR A 0 A_SetUserVar("user_Dam",user_Dam+1)
+BRBM A 1 A_SpawnItemEx("WaveBurnLineFX",0,0,0,0,0,0,0,1)
+Y_AG C 0 A_JumpIf(momx * momx + momy * momy + momz* momz <= 5, "Death")
+BRTR A 0 A_GiveInventory("Once",1)
+loop
+SpawnLOOPMax:
 BRBM A 1 A_SpawnItemEx("OilPitIgnite",0,0,8)
-BRTR H 0 A_SetUserVar("user_Dam",11)
-BRTR H 0 A_GiveInventory("Once",1)
-BRTR H 0 A_SetUserVar("user_Dam",user_Dam+1)
-BRBM AAAAAAAAA 1 A_SpawnItemEx("WaveBurnLineFX",0,0,0,0,0,0,0,1)
-Goto Spawnloop+4
+BRTR A 0 A_GiveInventory("Once",1)
+BRBM A 0 A_SpawnItemEx("WaveBurnLineFX",0,0,0,0,0,0,0,1)
+Y_AG C 0 A_JumpIf(momx * momx + momy * momy + momz* momz <= 5, "Death")
+loop
 Crash:
 XDeath:
-TNT1 A 0
-stop
 Death:
-TNT1 A 0 A_JumpIfInventory("Once",1,"Continue")
-TNT1 A 1
-stop
-Continue:
-TNT1 A 0 A_SetPitch(user_Dam)
-TNT1 A 0 //A_LogInt(pitch)
-TNT1 A 0 A_SpawnItemEx("WaveBurnLine2",0,0,0,15,0,0,0,513)//A_CustomMissile("WaveBurnLine2",0,0,0,2,0)
-TNT1 A 1
-stop
-}
-}
-
-actor WaveBurnLine2 : WaveBurnLine
-{
-Damage (5+pitch+user_Dam)
-States
-{
-Spawn:
-TNT1 A 0
-TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-BRTR H 0
-BRBM A 1 A_SpawnItemEx("OilPitIgnite",0,0,8)
-BRTR H 0 A_GiveInventory("Once",1)
-BRTR H 0 A_SetUserVar("user_Dam",user_Dam+1)
-BRBM AAAAAAAAA 1 A_SpawnItemEx("WaveBurnLineFX",0,0,0,0,0,0,0,1)
-Goto Spawnloop+3
-Continue:
-TNT1 A 0 A_SetPitch(user_Dam+pitch)
-TNT1 A 0 //A_LogInt(pitch)
-TNT1 A 0 A_SpawnItemEx("WaveBurnLine2",0,0,0,15,0,0,0,513)//A_CustomMissile("WaveBurnLine2",0,0,0,2,0)
 TNT1 A 1
 stop
 }

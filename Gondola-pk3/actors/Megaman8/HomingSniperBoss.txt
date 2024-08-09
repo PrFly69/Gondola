@@ -239,7 +239,7 @@ HSN8 A 0 A_GiveInventory("SearchmanAlt2_CI",1)
 HSN8 A 0 A_PlaySoundEx("weapon/dustbit","Weapon")
 HSN8 A 0 ACS_NamedExecute("BULL_SetState",0,4)
 HSN8 BEGEBA 1 A_GiveInventory("SearchmanFloat_P",1)
-Goto AltfireEnd
+Goto ReloadEnd
 
 AltfireStorm:
 HSN8 KKKK 0 A_TakeInventory("SearchTargetID4",999)
@@ -383,7 +383,8 @@ TNT1 A 0 ACS_NamedExecuteAlways("cbm_Searchman_ACS",0,3,4)
 goto Flash+8
 
 Reload:
-HSN8 "#" 1 A_JumpIfInventory("SearchDeadlyCheck",1,"DelayCheck")
+HSN8 "#" 1 A_JumpIfInventory("SearchCDReset",1,"DelayCheck")
+HSN8 "#" 0 A_JumpIfInventory("SearchDeadlyCheck",1,"DelayCheck")
 HSN8 B 0 A_TakeInventory("SearchFireDelay",999)
 HSN8 A 0 A_PlaySoundEx("weapon/searchdash","Weapon")
 HSN8 D 0 A_GiveInventory("PowerSearchSpeed",1)
@@ -405,6 +406,7 @@ HSN8 "#" 1 A_JumpIfInventory("SearchFireDelay",1,"FireDelay")
 goto Ready1
 
 ReloadEnd:
+HSN8 B 0 A_JumpIfInventory("SearchCDReset",1,"ReloadEndCancel")
 TNT1 A 9
 HSN8 G 1 Offset(32,112)
 HSN8 G 1 Offset(16,96)
@@ -417,6 +419,20 @@ HSN8 B 1 Offset(0,40)
 HSN8 B 0 A_WeaponReady(14)
 HSN8 B 0 A_GiveInventory("SearchDeadlyCheck",105)
 HSN8 B 0 A_SpawnItemEx("SearchDeadlyChecker")
+HSN8 D 1 A_TakeInventory("PowerSearchSpeed",999)
+goto Ready1
+
+ReloadEndCancel:
+TNT1 A 9
+HSN8 G 1 Offset(32,112)
+HSN8 G 1 Offset(16,96)
+HSN8 G 1 Offset(0,80)
+HSN8 G 1 Offset(0,72)
+HSN8 F 1 Offset(0,64)
+HSN8 E 1 Offset(0,56)
+HSN8 C 1 Offset(0,48)
+HSN8 B 1 Offset(0,40)
+HSN8 B 0 A_WeaponReady(14)
 HSN8 D 1 A_TakeInventory("PowerSearchSpeed",999)
 goto Ready1
 }
@@ -468,6 +484,12 @@ actor SearchTargetIDCD : Powerup
 powerup.duration 11
 }
 
+actor SearchCDReset : Powerup
+{
++INVENTORY.ADDITIVETIME
+powerup.duration 20
+}
+
 actor SearchDeadlyCheck : Inventory
 {
 inventory.amount 1
@@ -482,8 +504,12 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_TakeFromTarget("SearchDeadlyCheck",1)
+HSN8 B 0 A_JumpIfInTargetInventory("SearchCDReset",1,"Death")
 TNT1 A 1 A_Countdown
 loop
+Death:
+TNT1 A 0 A_TakeFromTarget("SearchDeadlyCheck",105)
+stop
 }
 }
 
@@ -548,10 +574,14 @@ actor DeadlyStormFlash_P : CustomInventory
 States
 {
 Pickup:
+//TNT1 A 0 A_JumpIfInventory("SearchCDReset",1,"Resetti")
 TNT1 A 0 A_JumpIfInventory("PowerSearchFloatSpeed",1,"Floating")
 stop
 Floating:
 TNT1 A 0 A_ChangeVelocity(momx,momy,-0.6,CVF_REPLACE)
+stop
+Resetti:
+TNT1 A 0 A_TakeInventory("SearchDeadlyCheck",105)
 stop
 }
 }
@@ -1216,7 +1246,7 @@ Obituary "$OB_HOMINGSNIPERYD"
 damage (12+pitch)
 Radius 9
 Height 9
-speed 35
+speed 33
 scale 3
 States
 {
@@ -1324,7 +1354,7 @@ Obituary "$OB_HOMINGSNIPERYD"
 damage (10)
 Radius 5
 Height 5
-speed 32
+speed 27
 scale 3
 states
 {
@@ -1541,10 +1571,12 @@ actor SearchFrisbeeP : SearchFrisbee{Translation "204:204=229:229","195:195=232:
 actor SearchFrisbee2 : SearchFrisbee
 {
 Scale 3
-Damage (24)
+Damage (18)
 Speed 52
 Height 16
 Radius 16
++HITTRACER
+Obituary "$OB_EMPSEARCHDISC"
 BounceSound "wep_L/SearchDiscBounce"
 //+USEBOUNCESTATE
 //+SEEKERMISSILE
@@ -1560,6 +1592,12 @@ SpawnLOOP:
 HSNC Q 0 A_CountDown
 HSNC XXXYYY 1 A_SpawnItemEx("SearchFrisbee2FX",0,0,0,0,0,0,0,1)//A_SpawnItemEx("SearchBushLeafFX1",random(-8,8),0,random(-8,8),1,0,-2,random(0,359),1)
 loop
+XDeath:
+TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("cbm_istracerenemy")==1,1)
+goto Death
+TNT1 A 0 A_TakeFromTarget("SearchDeadlyCheck",105)
+XMFX Q 0 A_GiveToTarget("SearchCDReset",1)
+goto Death
 //Bounce:
 //HSN8 A 0 A_FaceTracer
 //HSN8 A 0 A_SeekerMissile(90,90,SMF_LOOK,256,4)

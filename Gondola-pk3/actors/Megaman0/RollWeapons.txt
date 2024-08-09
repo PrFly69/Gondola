@@ -358,53 +358,26 @@ actor BossRollSwing
 {
 Translation "199:199=197:197", "202:202=196:196"
 PROJECTILE
-damagetype "Roll_Whiff"
+damagetype "Roll_Swing"
 Obituary "$OB_ROLLSWING"
+var int user_d;
 +DONTBLAST
-+NOGRAVITY
--NOBLOCKMAP
-+SHOOTABLE
-+NOTARGETSWITCH
-//+NODAMAGE
-+INVULNERABLE
-+NORADIUSDMG
-+DONTRIP
-+NOBLOOD
-+THRUSPECIES
-//+REFLECTIVE
-//Bouncetype Classic
-//+BOUNCEONWALLS
-//-BOUNCEONFLOORS
-//+NOEXPLODEFLOOR
-//Bouncecount 2
-//BounceFactor 1.0
-//WallBounceFactor 1.0
++THRUACTORS
 ReactionTime 1
 Damage (0)
 Radius 20
 Height 16
-speed 27
-Species "RollStuff"
-Scale 2.0
+speed 30
+Scale 2.5
 States
 {
 Spawn://HIJKL
-Y_7F I 0
-Y_7F I 0 //A_JumpIfInTargetInventory("RollSlideX",1,"Spawn2")
-PLUH PQRRS 1
-PLUH T 1 A_CountDown
-wait
-Spawn2:
-PLUH PQRRS 1
-PLUH T 1 A_CountDown
-wait
-Death:
-TNT1 A 0
-TNT1 A 1 A_SpawnItemEx("BossRollSwingDeath")
-stop
-XDeath:
-TNT1 A 0
-TNT1 A 1 A_Explode(20,96,0,0,48)
+PLUH PP 0
+PLUH PP 1 A_SpawnItemEx("RollSwing20_D")
+PLUH QQ 1 A_SpawnItemEx("RollSwing18_D")
+PLUH RR 1 A_SpawnItemEx("RollSwing16_D")
+PLUH SS 1 A_SpawnItemEx("RollSwing14_D")
+PLUH TT 1 A_SpawnItemEx("RollSwing12_D")
 stop
 }
 }
@@ -416,15 +389,16 @@ actor BossRollSwingP : BossRollSwing{translation "202:202=229:229", "199:199=232
 
 actor BossRollSwing2 : BossRollSwing
 {
-damagetype "Roll_Swing"
-Speed 30
 States
 {
 Spawn:
-Y_7F N 0
-Y_7F PQRRS 1
-Y_7F T 1 A_CountDown
-wait
+PLUH KK 0
+PLUH KK 1 A_SpawnItemEx("RollSwing20_D")
+PLUH LL 1 A_SpawnItemEx("RollSwing18_D")
+PLUH MM 1 A_SpawnItemEx("RollSwing16_D")
+PLUH NN 1 A_SpawnItemEx("RollSwing14_D")
+PLUH OO 1 A_SpawnItemEx("RollSwing12_D")
+stop
 }
 }
 actor BossRollSwing2B : BossRollSwing2{translation "202:202=205:205", "199:199=74:74"}
@@ -438,55 +412,36 @@ actor BossRollSwingXR : BossRollSwingR {Speed 38}
 actor BossRollSwingXO : BossRollSwingO {Speed 38}
 actor BossRollSwingXP : BossRollSwingP {Speed 38}
 
-actor BossRollSwingDeath : BasicExplosion
+actor RollSwing20_D
 {
+PROJECTILE
+damagetype "Roll_Swing"
 Obituary "$OB_ROLLSWING"
-damagetype "Roll_Whiff"
-Species "RollStuff"
++RIPPER
++DONTBLAST
++DONTSPLASH
+Renderstyle None
+damage (20)//140
+radius 45
+height 45//28
 States
 {
 Spawn:
-TNT1 A 0
-TNT1 A 1 A_Explode(14,96,0,0,48)
+TNT1 AA 0
+TNT1 A 1//0
 stop
 }
 }
 
-actor RollRepulsion : CustomInventory
-{
-//damagetype "Melee"
-States
-{
-Pickup:
-//TNT1 A 0 //A_RadiusGive("RollSlideX",192,RGF_MISSILES,1,"RollCleanserShot")
-//TNT1 A 0 A_Blast(0,255,192,25.0,"RollRepulsionFX")
-stop
-}
-}
+actor RollSwing18_D : RollSwing20_D {damage (18)}
+actor RollSwing16_D : RollSwing20_D {damage (16)}
+actor RollSwing14_D : RollSwing20_D {damage (14)}
+actor RollSwing12_D : RollSwing20_D {damage (12)}
 
-
-actor RollRepulsion2 : CustomInventory
+actor Roll_SwingProtect : PowerProtection
 {
-//damagetype "Melee"
-States
-{
-Pickup:
-//TNT1 A 0 //A_RadiusGive("RollSlideX",192,RGF_MISSILES,1,"RollCleanserShot")
-//TNT1 A 0 A_Blast(0,255,192,40.0,"RollRepulsionFX")
-stop
-}
-}
-
-actor RollRepulsionFX : BasicClientSide
-{
-States
-{
-Spawn:
-//TNT1 A 0
-//TNT1 A 1// A_Stop
-//ROLL BCDE 2
-stop
-}
+Powerup.Duration 15
+DamageFactor "Roll_Swing", 0.0
 }
 
 actor RollCleanserShot
@@ -910,7 +865,7 @@ Spawn:
 RSWB R 0
 RSWB R 0 A_SpawnItemEx("RollHealFX1B",0,0,0,0,0,0,0,1)
 RSWB T 0 A_SetArg(0,Args[0]+8)
-RSWB RRSSRRSS 3 A_GiveToTarget("RollHealItemTemporal",1)
+RSWB RSRS 6 A_GiveToTarget("RollHealItemTemporal",1)
 RSWB R 0 A_CountDown
 loop
 Pickup:
@@ -918,7 +873,7 @@ TNT1 A 0 A_JumpIfInventory("RollHealItemTemporal",1,"NoF")
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==0,"Health")
 goto HealthSteal
 Health:
-TNT1 A 0 //A_JumpIfInventory("RollHealItem",1,"NoF")
+TNT1 A 0 A_JumpIfInventory("RollHealItem",1,"NoF")
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2)==0,"NoF")
 TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
 TNT1 A 0 ACS_ExecuteAlways(CBM_HealMyThing,0,1,40)
@@ -947,16 +902,22 @@ Spawn:
 RSWB T 0
 RSWB T 0 A_SpawnItemEx("RollHealFX1B",0,0,0,0,0,0,0,1)
 RSWB T 0 A_SetArg(0,Args[0]+8)
-RSWB TUTU 3 A_GiveToTarget("RollHealItemTemporal",1)
+RSWB TUTU 6 A_GiveToTarget("RollHealItemTemporal",1)
 RSWB T 0 A_CountDown
 loop
 Pickup:
 TNT1 A 0 A_JumpIfInventory("RollHealItemTemporal",1,"NoF")
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==0,"Health")
 Health:
-TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2)==0,"SnatchCheck")
+TNT1 A 0 A_JumpIfInventory("RollHealItem",1,"NoF")
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2)==0,"NoF")
 TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
 TNT1 A 0 ACS_ExecuteAlways(CBM_HealMyThing,0,1,20)
+stop
+HealthSteal:
+TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(CBM_FetchMyHealth,2)==0,"SnatchCheck")
+TNT1 A 0 A_PlaySound("item/energyup",3,1.0)
+TNT1 A 0 ACS_ExecuteAlways(CBM_HealMyThing,0,1,10)
 stop
 SnatchCheck:
 TNT1 A 0 A_JumpIfInventory("CanSnatch_F",1,"TheSnatch")
@@ -975,7 +936,7 @@ Spawn:
 RSWB R 0
 RSWB R 0 A_SpawnItemEx("RollHealFX1R",0,0,0,0,0,0,0,1)
 RSWB T 0 A_SetArg(0,Args[0]+8)
-RSWB RSRS 3 A_GiveToTarget("RollHealItemTemporal",1)
+RSWB RSRS 6 A_GiveToTarget("RollHealItemTemporal",1)
 RSWB R 0 A_CountDown
 loop
 Pickup:
@@ -992,7 +953,7 @@ Spawn:
 RSWB T 0
 RSWB T 0 A_SpawnItemEx("RollHealFX1R",0,0,0,0,0,0,0,1)
 RSWB T 0 A_SetArg(0,Args[0]+8)
-RSWB TUTU 3 A_GiveToTarget("RollHealItemTemporal",1)
+RSWB TUTU 6 A_GiveToTarget("RollHealItemTemporal",1)
 RSWB T 0 A_CountDown
 loop
 Pickup:
@@ -1010,7 +971,7 @@ Spawn:
 RSWB R 0
 RSWB R 0 A_SpawnItemEx("RollHealFX1O",0,0,0,0,0,0,0,1)
 RSWB T 0 A_SetArg(0,Args[0]+8)
-RSWB RSRS 3 A_GiveToTarget("RollHealItemTemporal",1)
+RSWB RSRS 6 A_GiveToTarget("RollHealItemTemporal",1)
 RSWB R 0 A_CountDown
 loop
 Pickup:
@@ -1027,7 +988,7 @@ Spawn:
 RSWB T 0
 RSWB T 0 A_SpawnItemEx("RollHealFX1O",0,0,0,0,0,0,0,1)
 RSWB T 0 A_SetArg(0,Args[0]+8)
-RSWB TUTU 3 A_GiveToTarget("RollHealItemTemporal",1)
+RSWB TUTU 6 A_GiveToTarget("RollHealItemTemporal",1)
 RSWB T 0 A_CountDown
 loop
 Pickup:
@@ -1045,7 +1006,7 @@ Spawn:
 RSWB R 0
 RSWB R 0 A_SpawnItemEx("RollHealFX1P",0,0,0,0,0,0,0,1)
 RSWB T 0 A_SetArg(0,Args[0]+8)
-RSWB RSRS 3 A_GiveToTarget("RollHealItemTemporal",1)
+RSWB RSRS 6 A_GiveToTarget("RollHealItemTemporal",1)
 RSWB R 0 A_CountDown
 loop
 Pickup:
@@ -1062,7 +1023,7 @@ Spawn:
 RSWB T 0
 RSWB T 0 A_SpawnItemEx("RollHealFX1P",0,0,0,0,0,0,0,1)
 RSWB T 0 A_SetArg(0,Args[0]+8)
-RSWB TUTU 3 A_GiveToTarget("RollHealItemTemporal",1)
+RSWB TUTU 6 A_GiveToTarget("RollHealItemTemporal",1)
 RSWB T 0 A_CountDown
 loop
 Pickup:
@@ -1329,19 +1290,20 @@ TNT1 A 0 A_FireCustomMissile("RollHealShot",0,0,0,0)
 goto Done
 FireB:
 TNT1 A 0 A_FireCustomMissile("RollHealShotB",0,0,0,0)
+TNT1 A 0 HealThing(25)
 goto Done
 FireR:
 TNT1 A 0 A_FireCustomMissile("RollHealShotR",0,0,0,0)
+TNT1 A 0 HealThing(25)
 goto Done
 FireO:
 TNT1 A 0 A_FireCustomMissile("RollHealShotO",0,0,0,0)
+TNT1 A 0 HealThing(25)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("RollHealShotP",0,0,0,0)
-goto Done
-Done:
 TNT1 A 0 HealThing(25)
-stop
+goto Done
 }
 }
 actor RollOther2_CI : TeamColor_CI
@@ -1353,18 +1315,21 @@ TNT1 A 0 A_FireCustomMissile("RollHealShot2",0,0,0,0)
 goto Done
 FireB:
 TNT1 A 0 A_FireCustomMissile("RollHealShot2B",0,0,0,0)
+TNT1 A 0 HealThing(10)
 goto Done
 FireR:
 TNT1 A 0 A_FireCustomMissile("RollHealShot2R",0,0,0,0)
+TNT1 A 0 HealThing(10)
 goto Done
 FireO:
 TNT1 A 0 A_FireCustomMissile("RollHealShot2O",0,0,0,0)
+TNT1 A 0 HealThing(10)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("RollHealShot2P",0,0,0,0)
+TNT1 A 0 HealThing(10)
 goto Done
 Done:
-TNT1 A 0 HealThing(10)
 stop
 }
 }

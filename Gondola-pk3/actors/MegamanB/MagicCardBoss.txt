@@ -18,14 +18,17 @@ Ready:
 MGCH A 0 ACS_ExecuteAlways(998,0,DYE_MAGICMAN)
 MGCH A 0 //A_GunFlash
 goto Ready1
+Ready0:
+MGCH A 1 A_WeaponReady
+MGCH A 0 A_GiveInventory("SnortSnortAmmo",3)
 Ready1:
 MGCH A 0 A_JumpIfInventory("SnortSnortAmmo",100,"Ready2")
-MGCH A 2 A_WeaponReady(4)
-MGCH A 0 A_GiveInventory("SnortSnortAmmo",6)
+MGCH A 1 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
+MGCH A 0 A_GiveInventory("SnortSnortAmmo",3)
 loop
 Ready2:
-MGCH A 2 A_WeaponReady
-MGCH A 0 A_GiveInventory("SnortSnortAmmo",6)
+MGCH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+MGCH A 0 A_GiveInventory("SnortSnortAmmo",3)
 loop
 
 Deselect:
@@ -42,36 +45,64 @@ MGCH A 0 A_JumpIfInventory("IsBot",1,"BotFire")
 MGCH A 1 A_GunFlash("Flash.Fire")
 MGCH A 0 A_PlaySound("weapon/magiccard",1)
 MGCH A 0 A_GiveInventory("MagicmanMain1_CI",1)
-MGCH A 2 Offset(18,41)A_GiveInventory("SnortSnortAmmo",4)
-MGCH AAAAAAAA 2 Offset(36,52)A_GiveInventory("SnortSnortAmmo",4)
-MGCH A 2 Offset(23,43)A_GiveInventory("SnortSnortAmmo",4)
-MGCH A 2 Offset(13,37)A_GiveInventory("SnortSnortAmmo",4)
-MGCH A 2 Offset(7,35)A_GiveInventory("SnortSnortAmmo",4)
+MGCH A 2 Offset(18,41)//A_GiveInventory("SnortSnortAmmo",4)
+MGCH AAAAAAAA 2 Offset(36,52)//A_GiveInventory("SnortSnortAmmo",4)
+MGCH A 2 Offset(23,43)//A_GiveInventory("SnortSnortAmmo",4)
+MGCH A 2 Offset(13,37)//A_GiveInventory("SnortSnortAmmo",4)
+MGCH A 2 Offset(7,35)//A_GiveInventory("SnortSnortAmmo",4)
 Goto Ready1//24
 
 AltFire:
 MGCH A 1 Offset(-20,29)A_GiveInventory("SnortSnortAmmo",2)
 MGCH A 0 A_PlaySound("weapon/MagicM_Orb",6,0.70)
 MGCH A 0 A_GiveInventory("MagicmanMainCBM_CI",1)
-MGCH BCBA 2 Offset(-40,13)A_GiveInventory("SnortSnortAmmo",4)
-MGCH A 2 Offset(-28,15)A_GiveInventory("SnortSnortAmmo",4)
-MGCH A 2 Offset(-16,18)A_GiveInventory("SnortSnortAmmo",4)
-MGCH A 2 Offset(-9,22)A_GiveInventory("SnortSnortAmmo",4)
-MGCH A 2 Offset(-3,27)A_GiveInventory("SnortSnortAmmo",4)
+MGCH BCBA 2 Offset(-40,13)A_GiveInventory("SnortSnortAmmo",6)
+MGCH A 2 Offset(-28,15)A_GiveInventory("SnortSnortAmmo",6)
+MGCH A 2 Offset(-16,18)A_GiveInventory("SnortSnortAmmo",6)
+MGCH A 2 Offset(-9,22)A_GiveInventory("SnortSnortAmmo",6)
+MGCH A 2 Offset(-3,27)A_GiveInventory("SnortSnortAmmo",6)
 Goto Ready1//17
 
-Altfire_R:
-MGCH A 0 A_PlaySoundEx("weapon/magiccard","Weapon")
-TNT1 A 0 A_GiveInventory("MagicmanMain2_CI",1)
-TNT1 A 0 A_GiveInventory("MagicmanMain3_CI",1)
-MGCH BCBAA 1 A_GiveInventory("SnortSnortAmmo",4)
-goto Ready1
+Reload:
+MGCH A 0 A_JumpIfInventory("KingDumbsPreciousLittleBabyBoy",1,"SwapCams")
+MGCH A 0 A_JumpIfInventory("BabyBoyOut",1,"Ready1")
+MGCH A 1 A_GunFlash("Flash.Reload")
+MGCH A 0 ACS_NamedExecuteWithResult("BULL_SetState",1)
+MGCH A 0 A_PlaySound("weapon/BombThrow",1)
+MGCH A 0 A_GiveInventory("MagicmanReload_CI",1)
+MGCH A 2 Offset(18,41)A_GiveInventory("SnortSnortAmmo",6)
+MGCH AAAAAAAA 2 Offset(36,52)A_GiveInventory("SnortSnortAmmo",6)
+MGCH A 2 Offset(23,43)A_GiveInventory("SnortSnortAmmo",6)
+MGCH A 2 Offset(13,37)A_GiveInventory("SnortSnortAmmo",6)
+MGCH A 2 Offset(7,35)A_GiveInventory("SnortSnortAmmo",6)
+Goto Ready1//24
+
+SwapCams:
+MGCH A 0 A_JumpIfInventory("OnceC",1,"UnSwapCams")
+TNT1 A 0 ChangeCamera(400+TID,0,0)
+TNT1 A 0 A_GiveInventory("OnceC")
+SwapBuffer:
+MGCH A 1
+MGCH A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"SwapBuffer")
+Goto Ready1
+UnSwapCams:
+MGCH A 0
+TNT1 A 0 ChangeCamera(0,0,0)
+TNT1 A 0 A_TakeInventory("OnceC")
+UnSwapBuffer:
+MGCH A 1
+MGCH A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"UnSwapBuffer")
+Goto Ready1
 
 Flash.Fire:
 TNT1 A 0 A_GiveInventory("MagicCardCooldown_RC",1)
 MGCH A 0 A_JumpIfInventory("PowerRage_ST",1,"Flash_Mainfire_R")
 MGCH DEFGHIJK 1
 TNT1 A 5
+stop
+Flash.Reload:
+MGCH TSHIJK 1
+TNT1 A 7
 stop
 Flash_Mainfire_R:
 MGCH DFHK 1
@@ -104,14 +135,17 @@ Ready:
 MGKH A 0 ACS_ExecuteAlways(998,0,DYE_MAGICMAN)
 MGKH A 0 //A_GunFlash
 goto Ready1
+Ready0:
+MGKH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+MGKH A 0 A_GiveInventory("SnortSnortAmmo",3)
 Ready1:
 MGKH A 0 A_JumpIfInventory("SnortSnortAmmo",300,"Ready2")
-MGKH A 2 A_WeaponReady(WRF_NOFIRE)
-MGKH A 0 A_GiveInventory("SnortSnortAmmo",6)
+MGKH A 1 A_WeaponReady(WRF_NOFIRE|WRF_ALLOWRELOAD)
+MGKH A 0 A_GiveInventory("SnortSnortAmmo",3)
 loop
 Ready2:
-MGKH A 2 A_WeaponReady
-MGKH A 0 A_GiveInventory("SnortSnortAmmo",6)
+MGKH A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+MGKH A 0 A_GiveInventory("SnortSnortAmmo",3)
 loop
 
 Deselect:
@@ -141,7 +175,7 @@ MGKH BC 1
 MGKH B 0 A_PlaySound("weapon/MagicShot",1,1.0)
 MGKH B 0 A_SpawnItemEx("MagicBallEmergency",0,0,28)
 MGKH B 0 A_SpawnItemEx("MagicHologram",0,0,0,0,0,0,0,1,0)
-MGKH B 0 A_SpawnItemEx("MagicBall",cos(-pitch)*0,0,28+sin(-pitch),cos(-pitch)*22,0,sin(-pitch)*22,0,33)
+MGKH B 0 A_SpawnItemEx("MagicBall",cos(-pitch)*0,0,28+sin(-pitch),cos(-pitch)*32,0,sin(-pitch)*32,0,33)
 MGKH B 0 A_Stop
 MGKH B 0 A_ChangeFlag("NONSHOOTABLE",1)
 MGKH B 0 A_GiveInventory("InvulnerableOn_Pickup",1)
@@ -175,11 +209,46 @@ MGB8 C 0 ThrustThingZ(0,1,0,1)
 MGKH CBC 2
 MGKH BA 2 A_GiveInventory("SnortSnortAmmoResync_P",1)
 MGKH A 12 A_TakeInventory("ProjectilePortDead",99)
-Goto Ready+2
+Goto Ready1//Ready+2
+
+Reload:
+MGKH A 0 A_JumpIfInventory("KingDumbsPreciousLittleBabyBoy",1,"SwapCams")
+MGKH A 0 A_JumpIfInventory("BabyBoyOut",1,"Ready0")
+MGKH A 1 A_GunFlash("Flash.Reload")
+MGKH A 0 ACS_NamedExecuteWithResult("BULL_SetState",1)
+MGKH A 0 A_PlaySound("weapon/BombThrow",1)
+MGKH A 0 A_GiveInventory("MagicmanReload_CI",1)
+MGKH A 2 Offset(18,41)A_GiveInventory("SnortSnortAmmo",4)
+MGKH AAAAAAAA 2 Offset(36,52)A_GiveInventory("SnortSnortAmmo",4)
+MGKH A 2 Offset(23,43)A_GiveInventory("SnortSnortAmmo",4)
+MGKH A 2 Offset(13,37)A_GiveInventory("SnortSnortAmmo",4)
+MGKH A 2 Offset(7,35)A_GiveInventory("SnortSnortAmmo",4)
+Goto Ready1//24
+
+SwapCams:
+MGKH A 0 A_JumpIfInventory("OnceC",1,"UnSwapCams")
+TNT1 A 0 ChangeCamera(400+TID,0,0)
+TNT1 A 0 A_GiveInventory("OnceC")
+SwapBuffer:
+MGKH A 1
+MGKH A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"SwapBuffer")
+Goto Ready1
+UnSwapCams:
+MGKH A 0
+TNT1 A 0 ChangeCamera(0,0,0)
+TNT1 A 0 A_TakeInventory("OnceC")
+UnSwapBuffer:
+MGKH A 1
+MGKH A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R"),"UnSwapBuffer")
+Goto Ready1
 
 Flash.Fire:
-MGKH S 0
-MGKH STUVWX 1
+MGCH S 0
+MGCH RST 2
+stop
+Flash.Reload:
+MGCH TSHIJK 1
+TNT1 A 7
 stop
 BotFire:
 MGKH A 0 A_Jump(128,"Altfire")
@@ -206,11 +275,51 @@ Powerup.Duration 11
 
 actor MagicBallEnd : OnceC{}
 actor MagicBallEndFix : OnceC{}
+actor MerryChristmasFlag : OnceC{}
 actor MagicBallCooldown : Powerup
 {
 Powerup.Duration 35
 }
 actor FakeMagicFlag : OnceC{}
+
+actor BabyBoyOut : Powerup
+{
+Powerup.Duration 6
+}
+actor KingDumbsPreciousLittleBabyBoy : OnceC{}//merry christmas kd!
+actor InfanticideFlag : Powerup
+{
+Powerup.Duration 5
+}
+actor RomperLockFlag : OnceC{}
+
+actor RomperSNDDelay : OnceC{}
+
+actor RomperKillItem : CustomInventory
+{
+inventory.amount 1
+inventory.maxamount 1
+inventory.icon "RompIcon"
+scale 2.0
+inventory.pickupmessage "KD's Christmas Gift. Handle with care."
+Tag "Destroy Romper Cam/Toggle Camera Lock"
++INVBAR
+states
+{
+Spawn:
+RSRM Q 1
+loop
+Use:
+TNT1 A 0 A_JumpIfInventory("OnceC",1,"PickupL")
+TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
+TNT1 A 0 A_GiveInventory("InfanticideFlag",1)
+fail
+PickupL:
+TNT1 A 0 A_PlaySoundEx("item/ItemUseMM9","SoundSlot6")
+TNT1 A 0 A_GiveInventory("RomperLockFlag_P",1)
+fail
+}
+}
 
 actor MagicCardCooldown_RC : CustomInventory
 {
@@ -224,6 +333,21 @@ goto PickupR
 PickupR:
 TNT1 A 0 A_GiveInventory("MagicCardCooldown",1)
 TNT1 A 0 A_TakeInventory("SnortSnortAmmo",100)
+stop
+}
+}
+
+actor RomperLockFlag_P : CustomInventory
+{
+States
+{
+Pickup:
+TNT1 A 0
+TNT1 A 0 A_JumpIfInventory("RomperLockFlag",1,"PickupN")
+TNT1 A 0 A_GiveInventory("RomperLockFlag",1)
+stop
+PickupN:
+TNT1 A 0 A_TakeInventory("RomperLockFlag",1)
 stop
 }
 }
@@ -268,7 +392,7 @@ ReactionTime 70
 damage (0)
 Radius 5
 Height 5
-speed 50
+speed 60
 scale 2.5
 States
 {
@@ -297,14 +421,19 @@ X_BH B 0 A_JumpIfCloser(64,"Death")
 X_BH BB 0 A_SeekerMissile(90,90,2)
 X_BH BB 1 A_SpawnItemEx("MagicCardDamagerB",0,0,0,momx,momy,momz,0,8+32)
 X_BH B 0 A_JumpIfCloser(64,"Death")
+X_BH BB 0 A_SeekerMissile(90,90,2)
 X_BH CC 1 A_SpawnItemEx("MagicCardDamagerB",0,0,0,momx,momy,momz,0,8+32)
 X_BH C 0 A_JumpIfCloser(64,"Death")
+X_BH BB 0 A_SeekerMissile(90,90,2)
 X_BH DD 1 A_SpawnItemEx("MagicCardDamagerB",0,0,0,momx,momy,momz,0,8+32)
 X_BH D 0 A_JumpIfCloser(64,"Death")
+X_BH BB 0 A_SeekerMissile(90,90,2)
 X_BH EE 1 A_SpawnItemEx("MagicCardDamagerB",0,0,0,momx,momy,momz,0,8+32)
 X_BH E 0 A_JumpIfCloser(64,"Death")
+X_BH BB 0 A_SeekerMissile(90,90,2)
 X_BH FF 1 A_SpawnItemEx("MagicCardDamagerB",0,0,0,momx,momy,momz,0,8+32)
 X_BH F 0 A_JumpIfCloser(64,"Death")
+X_BH BB 0 A_SeekerMissile(90,90,2)
 
 X_BH B 0 A_CountDown
 X_BH B 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
@@ -319,52 +448,6 @@ actor MagicCardBB : MagicCardB{translation "192:192=205:205","198:198=74:74"}
 actor MagicCardBR : MagicCardB{translation "192:192=171:171","198:198=41:41"}
 actor MagicCardBO : MagicCardB{translation "192:192=104:104","198:198=128:128"}
 actor MagicCardBP : MagicCardB{translation "192:192=229:229","198:198=232:232"}
-
-actor MagicCard2B : MagicCardB
-{
-States
-{
-Spawn:
-X_BH M 0
-X_BH M 0 A_RearrangePointers(0,0,2)
-X_BH AA 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-X_BH BBCCCCCC 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-X_BH P 0 A_ScaleVelocity(0.5)
-X_BH DD 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-X_BH P 0 A_ScaleVelocity(0.5)
-X_BH EE 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-X_BH Q 0 A_ScaleVelocity(-2.0)
-X_BH FF 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-goto Spawn2
-Spawn2:
-X_BH N 0
-X_BH N 0 A_FaceTarget
-goto Spawn3
-Spawn3:
-X_BH N 0
-X_BH N 0 A_JumpIfCloser(64,"Death")
-X_BH NN 0 A_SeekerMissile(90,90,2)
-X_BH BB 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-X_BH N 0 A_JumpIfCloser(64,"Death")
-X_BH CC 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-X_BH O 0 A_JumpIfCloser(64,"Death")
-X_BH DD 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-X_BH P 0 A_JumpIfCloser(64,"Death")
-X_BH EE 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-X_BH Q 0 A_JumpIfCloser(64,"Death")
-X_BH FF 1 A_SpawnItemEx("MagicCardDamager2B",0,0,0,momx,momy,momz,0,8)
-X_BH R 0 A_JumpIfCloser(64,"Death")
-
-X_BH N 0 A_CountDown
-X_BH N 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
-loop
-}
-}
-
-actor MagicCard2BB : MagicCard2B{translation "192:192=205:205","198:198=74:74"}
-actor MagicCard2BR : MagicCard2B{translation "192:192=171:171","198:198=41:41"}
-actor MagicCard2BO : MagicCard2B{translation "192:192=104:104","198:198=128:128"}
-actor MagicCard2BP : MagicCard2B{translation "192:192=229:229","198:198=232:232"}
 
 actor MagicCardBF : MagicCardB
 {
@@ -416,22 +499,19 @@ actor MagicCardBFR : MagicCardBF{translation "192:192=171:171","198:198=41:41"}
 actor MagicCardBFO : MagicCardBF{translation "192:192=104:104","198:198=128:128"}
 actor MagicCardBFP : MagicCardBF{translation "192:192=229:229","198:198=232:232"}
 
-actor MagicCardDamagerB : MagicCardDamager
+actor MagicCardDamagerB
 {
+PROJECTILE
++DONTSPLASH
++DONTBLAST
++THRUGHOST
++PICKUP
 Damagetype "MagicM_Card" 
-Damage (6)
-States
-{
-Spawn:
-TNT1 A 1
-stop
-}
-}
-
-actor MagicCardDamager2B : MagicCardDamager
-{
-Damagetype "MagicM_Card2" 
-Damage (6)
+Obituary "$OB_MAGICCARD"
+Damage (12)
++PIERCEARMOR
+radius 16
+height 8
 States
 {
 Spawn:
@@ -532,8 +612,8 @@ Obituary "$OB_MAGICBALL"
 +THRUGHOST
 +SKYEXPLODE
 -NOGRAVITY
-Gravity 0.50
 ReactionTime 60
+gravity 0.9
 Damage (0)
 Radius 16
 Height 56
@@ -552,6 +632,7 @@ MGB8 M 1 A_JumpIfInTargetInventory("MagicBallEnd",1,"Death")
 goto Spawn2+2
 Spawn2:
 MGB8 M 0 A_GiveToTarget("MagicBallCooldown",1)
+MGIC G 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 MGB8 MMNNOOPP 1 A_JumpIfInTargetInventory("MagicBallEnd",1,"Death")
 MGB8 M 0 A_CountDown
 loop
@@ -590,6 +671,7 @@ TNT1 A 0
 TNT1 A 0 A_GiveToTarget("MagicBallPickupSync",1)
 Spawn2:
 TNT1 AA 1 A_JumpIfInTargetInventory("MagicBallEnd",1,"Death3")
+MGIC G 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
 TNT1 A 0 A_CountDown
 TNT1 A 0 A_JumpIfInTargetInventory("MagicBallCooldown",1,"Spawn2")
 goto Death3
@@ -724,6 +806,7 @@ damagetype "MagicM_Bird"
 Obituary "$OB_MAGICBIRD"
 +DONTSEEKINVISIBLE//
 +SEEKERMISSILE
++NOEXPLODEFLOOR
 reactiontime 10
 damage (3)
 Radius 6
@@ -736,6 +819,7 @@ Spawn:
 TNT1 AA 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 TNT1 A 1
+TNT1 A 0 A_ChangeFlag(NOEXPLODEFLOOR,FALSE)
 TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12)
 Spawn2:
 MGB8 AAABBBCCCDDD 1 A_SeekerMissile(1,4,3,64,3)
@@ -867,39 +951,182 @@ states
 Pickup:
 TNT1 A 0 A_SpawnItemEx("MagicBirdsSound",0,0,16)
 TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,70,16,0,0.65,0,1)
+TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,56,16,0,0.65,0,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,28,42,16,0,0.35,-4,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,-28,42,16,0,0.35,4,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,28,16,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,28,14,16,0,-0.35,-4,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,-28,14,16,0,-0.35,4,1)
-TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,-14,16,0,-0.65,0,1)
+TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,0,16,0,-0.65,0,1)
 TNT1 A 0 A_JumpIfInTargetInventory("PowerSpread_ST",1,"Pickup_S")
 //SpawnItemEx Simulation of the below
-//TNT1 A 0 A_CustomMissile("MagicHomingBirds",70,0,0,2,2)
+//TNT1 A 0 A_CustomMissile("MagicHomingBirds",56,0,0,2,2)
 //TNT1 A 0 A_CustomMissile("MagicHomingBirds",42,28,-4,2,1)
 //TNT1 A 0 A_CustomMissile("MagicHomingBirds",42,-28,4,2,1)
 //TNT1 A 0 A_CustomMissile("MagicHomingBirds",28,0,0,2,0)
 //TNT1 A 0 A_CustomMissile("MagicHomingBirds",14,28,-4,2,-1)
 //TNT1 A 0 A_CustomMissile("MagicHomingBirds",14,-28,4,2,-1)
-//TNT1 A 0 A_CustomMissile("MagicHomingBirds",-14,0,0,2,-2)
+//TNT1 A 0 A_CustomMissile("MagicHomingBirds",0,0,0,2,-2)
 stop
 Pickup_S:
-TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,70,16,0,0.65,15,1)
+TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,56,16,0,0.65,15,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,28,42,16,0,0.35,11,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,-28,42,16,0,0.35,19,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,28,16,0,0,15,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,28,14,16,0,-0.35,11,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,-28,14,16,0,-0.35,19,1)
-TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,-14,16,0,-0.65,15,1)
+TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,0,16,0,-0.65,15,1)
 
-TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,70,16,0,0.65,-15,1)
+TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,56,16,0,0.65,-15,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,28,42,16,0,0.35,-19,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,-28,42,16,0,0.35,-11,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,28,16,0,0,-15,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,28,14,16,0,-0.35,-19,1)
 TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,-28,14,16,0,-0.35,-11,1)
-TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,-14,16,0,-0.65,-15,1)
+TNT1 A 0 A_SpawnItemEx("MagicHomingBirds",4,0,0,16,0,-0.65,-15,1)
+stop
+}
+}
+
+actor MagicM_Romper
+{
+Translation "198:198=41:41", "192:192=215:215","202:202=210:210"
+PROJECTILE
++HEXENBOUNCE
+-NOGRAVITY
+-BOUNCEONFLOORS
+bouncecount 10
+Damagetype "DMG_NoHitstun"
+Obituary "$OB_MAGICROMPER"
+Damage (1)
+Radius 10
+Height 20
+Speed 20
+scale 2.5
+states
+{
+Spawn:
+MGB7 AA 0
+SpawnLOOP:
+MGB7 A 0 A_JumpIfInTargetInventory("MerryChristmasFlag",1,"SpawnJOLLY")
+MGB7 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Grinched")
+MGB7 ABAC 1 A_GiveToTarget("BabyBoyOut")
+loop
+SpawnJOLLY:
+MGB7 D 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Grinched")
+MGB7 DEDF 1 A_GiveToTarget("BabyBoyOut") // Fix :)
+loop
+Death:
+MGB7 A 1 A_CheckFloor(1)
+goto Grinched
+MGB7 A 0 A_SpawnItemEx("MagicM_RomperCam",0,0,20,0,0,0,0,1)
+MGB7 A 0 A_SpawnItemEx("MagicM_RomperCamBody",0,0,2,0,0,0,0,1)
+stop
+XDeath:
+Grinched:
+X_2E D 0 A_PlaySound("weapon/blastpuff",0,0.5)
+UMFX J 2
+XMFX S 2
+UMFX JK 2
+stop
+}
+}
+actor MagicM_RomperB : MagicM_Romper{Translation "192:192=205:205","198:198=74:74","202:202=205:205"}
+actor MagicM_RomperR : MagicM_Romper{Translation "192:192=171:171","198:198=41:41","202:202=171:171"}
+actor MagicM_RomperO : MagicM_Romper{Translation "192:192=104:104","198:198=128:128","202:202=104:104"}
+actor MagicM_RomperP : MagicM_Romper{Translation "192:192=229:229","198:198=232:232","202:202=229:229"}
+
+actor MagicM_RomperCam : MagicM_Romper
+{
+PROJECTILE
++NOEXPLODEFLOOR
++NOGRAVITY
+Damagetype "DMG_NoHitstun"
+Obituary "$OB_MAGICBALL"
+Damage (0)
+-NOBLOCKMAP
++FRIENDLY
++SHOOTABLE
+-DONTRIP
++NOBLOOD
++QUICKTORETALIATE
++NOTARGETSWITCH
+
+mass 0x7ffffffff
+painchance 256
+health 1
+states
+{
+Spawn:
+MGB7 "#" 0
+MGB7 "#" 0
+MGB7 "#" 0 A_PlaySoundEx("weapon/rminestick","Weapon")
+MGB7 "#" 0 A_GiveInventory("RomperSNDDelay",1)
+TNT1 "#" 0 A_JumpIfInTargetInventory("MerryChristmasFlag",1,"HOLLYSpawn")
+TNT1 A 3 A_GiveToTarget("KingDumbsPreciousLittleBabyBoy")
+TNT1 A 0 Thing_ChangeTID(0,400+ACS_ExecuteWithResult(257,0))
+goto SpawnLOOP
+HOLLYSpawn:
+TNT1 A 3 A_GiveToTarget("KingDumbsPreciousLittleBabyBoy")
+TNT1 D 0 Thing_ChangeTID(0,400+ACS_ExecuteWithResult(257,0))
+SpawnLOOP:
+TNT1 "#" 1 A_GiveToTarget("BabyBoyOut")
+MGB7 "#" 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+MGB7 "#" 0 A_JumpIfInTargetInventory("InfanticideFlag",1,"Death")
+MGB7 "#" 0 A_JumpIfInTargetInventory("OnceC",1,"CamCheck")
+MGB7 "#" 0 A_TakeInventory("AtomicFireAmmo",999)
+MGB7 "#" 0 A_JumpIfInventory("RomperSNDDelay",1,"SpawnLOOP")
+MGB7 "#" 0 A_PlaySound("misc/lightelevatorend",1,0.25)
+MGB7 "#" 0 A_GiveInventory("RomperSNDDelay",1)
+goto SpawnLOOP
+CamCheck:
+MGB7 "#" 0 A_JumpIfInTargetInventory("RomperLockFlag",1,"MakeDaNoise")
+MGB7 "#" 0 ACS_NamedExecuteWithResult("CCBM_PitchAngleSetter",1)
+MakeDaNoise:
+MGB7 "#" 0 A_JumpIfInventory("AtomicFireAmmo",1,"SpawnLOOP")
+MGB7 "#" 0 A_PlaySound("misc/clnwindup",1,0.25)
+MGB7 "#" 0 A_GiveInventory("AtomicFireAmmo")
+MGB7 "#" 0 A_TakeInventory("RomperSNDDelay",1)
+goto SpawnLOOP
+Crash:
+XDeath:
+Death:
+MGB7 "#" 0 A_TakeFromTarget("KingDumbsPreciousLittleBabyBoy",999)
+MGB7 "#" 0 A_TakeFromTarget("OnceC",999)
+MGB7 "#" 0 A_GiveToTarget("InfanticideFlag",1)
+MGB7 "#" 0 A_TakeFromTarget("RomperLockFlag",999)
+stop
+}
+}
+
+actor MagicM_RomperCamBody : MagicM_Romper
+{
+PROJECTILE
++NOINTERACTION
+states
+{
+Spawn:
+MGB7 "#" 0
+MGB7 "#" 0
+MGB7 "#" 0 A_JumpIfInTargetInventory("MerryChristmasFlag",1,"HOLLYSpawn")
+MGB7 A 3 A_GiveToTarget("KingDumbsPreciousLittleBabyBoy")
+goto SpawnLOOP
+HOLLYSpawn:
+MGB7 D 3 A_GiveToTarget("KingDumbsPreciousLittleBabyBoy")
+SpawnLOOP:
+MGB7 "#" 1 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
+MGB7 "#" 0 A_JumpIfInTargetInventory("InfanticideFlag",1,"Death")
+loop
+Crash:
+XDeath:
+Death:
+MGB7 "#" 0 A_TakeFromTarget("KingDumbsPreciousLittleBabyBoy",999)
+MGB7 "#" 0 A_TakeFromTarget("OnceC",999)
+MGB7 "#" 0 A_TakeFromTarget("RomperLockFlag",999)
+X_2E D 0 A_PlaySound("weapon/blastpuff",0,0.5)
+UMFX J 2
+XMFX S 2
+UMFX JK 2
 stop
 }
 }
@@ -909,24 +1136,19 @@ actor MagicmanMain1_CI : TeamColor_CI
 states
 {
 FireX:
-TNT1 A 0 A_FireCustomMissile("MagicCardB",0,1,0,15)
-TNT1 A 0 A_FireCustomMissile("MagicCard2B",0,1,0,-15)
+TNT1 A 0 A_FireCustomMissile("MagicCardB",0,1,0,0)
 goto Done
 FireB:
-TNT1 A 0 A_FireCustomMissile("MagicCardBB",0,1,0,15)
-TNT1 A 0 A_FireCustomMissile("MagicCard2BB",0,1,0,-15)
+TNT1 A 0 A_FireCustomMissile("MagicCardBB",0,1,0,0)
 goto Done
 FireR:
-TNT1 A 0 A_FireCustomMissile("MagicCardBR",0,1,0,15)
-TNT1 A 0 A_FireCustomMissile("MagicCard2BR",0,1,0,-15)
+TNT1 A 0 A_FireCustomMissile("MagicCardBR",0,1,0,0)
 goto Done
 FireO:
-TNT1 A 0 A_FireCustomMissile("MagicCardBO",0,1,0,15)
-TNT1 A 0 A_FireCustomMissile("MagicCard2BO",0,1,0,-15)
+TNT1 A 0 A_FireCustomMissile("MagicCardBO",0,1,0,0)
 goto Done
 FireP:
-TNT1 A 0 A_FireCustomMissile("MagicCardBP",0,1,0,15)
-TNT1 A 0 A_FireCustomMissile("MagicCard2BP",0,1,0,-15)
+TNT1 A 0 A_FireCustomMissile("MagicCardBP",0,1,0,0)
 goto Done
 }
 }
@@ -994,6 +1216,28 @@ TNT1 A 0 A_FireCustomMissile("MagicM_OrbShotO",0,0,8,0)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("MagicM_OrbShotP",0,0,8,0)
+goto Done
+}
+}
+
+actor MagicmanReload_CI : TeamColor_CI
+{
+states
+{
+FireX:
+TNT1 A 0 A_FireCustomMissile("MagicM_Romper",0,0,0,0)
+goto Done
+FireB:
+TNT1 A 0 A_FireCustomMissile("MagicM_RomperB",0,0,0,0)
+goto Done
+FireR:
+TNT1 A 0 A_FireCustomMissile("MagicM_RomperR",0,0,0,0)
+goto Done
+FireO:
+TNT1 A 0 A_FireCustomMissile("MagicM_RomperO",0,0,0,0)
+goto Done
+FireP:
+TNT1 A 0 A_FireCustomMissile("MagicM_RomperP",0,0,0,0)
 goto Done
 }
 }

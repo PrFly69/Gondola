@@ -9,8 +9,8 @@ player.startitem "BossBurnerAmmo", 84
 player.startitem "BossBurnerAmmo2", 42
 //player.startitem "TrapUse"
 
-player.maxhealth 70
-health 70
+player.maxhealth 75
+health 75
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
@@ -126,7 +126,6 @@ BURN L 0 A_JumpIfInventory("BurnerDashFlag",4,"ARunE")
 BURN L 0 A_JumpIfInventory("BurnerDashFlag",3,"ARunD")
 BURN L 0 A_JumpIfInventory("BurnerDashFlag",2,"ARunC")
 BURN L 0 A_JumpIfInventory("BurnerDashFlag",1,"ARunB")
-BURN L 15 A_Jump(256,"Spawn")
 Goto Spawn+1
 ARunC:
 BURN M 2
@@ -201,9 +200,8 @@ Kamila:
 BURN S 0 A_TakeInventory("BurnermanRaiseFlag",99)
 BURN S 0 A_TakeInventory("BurnermanRaiseFlag2",99)
 BURN SSTTUU 1 A_JumpIf(z-floorz<=0, "Spawn")
-//BURN U 0 A_JumpIfInventory("BurnerDiveFlag",1,"Kamila")
-//Goto Spawn+1
-Loop
+BURN U 0 A_JumpIfInventory("BurnerDiveFlag",1,"Kamila")
+Goto Spawn+1
 
 
 ClassPain:

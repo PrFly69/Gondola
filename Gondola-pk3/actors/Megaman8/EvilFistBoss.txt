@@ -897,7 +897,7 @@ actor FireTrioSpectrum1 : TeamColor_CI
 states
 {
 Pickup:
-TNT1 A 0 A_TakeInventory("EvilRageAmmo",4)
+TNT1 A 0 A_TakeInventory("EvilRageAmmo",8)
 TNT1 A 0 A_PlaySoundEx("weapon/TrioCharge4","Weapon")
 TNT1 A 0 ACS_ExecuteAlways(C_JAX_SPECTRUM_TURN,0,angle,pitch)
 TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM,1)-angle)*(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM,1)-angle)<1 && (pitch-ACS_ExecuteWithResult(C_GET_USER_VAR,WEPPITCH_NUM,1))*(pitch-ACS_ExecuteWithResult(C_GET_USER_VAR,WEPPITCH_NUM,1))<1, "Pickup2")
@@ -948,7 +948,7 @@ actor FireTrioSpectrum2 : TeamColor_CI
 states
 {
 Pickup:
-TNT1 A 0 A_TakeInventory("EvilRageAmmo",4)
+TNT1 A 0 A_TakeInventory("EvilRageAmmo",8)
 TNT1 A 0 A_PlaySoundEx("weapon/TrioCharge4","Weapon")
 TNT1 A 0 ACS_ExecuteAlways(C_JAX_SPECTRUM_TURN,0,angle,pitch)
 TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM,1)-angle)*(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM,1)-angle)<1 && (pitch-ACS_ExecuteWithResult(C_GET_USER_VAR,WEPPITCH_NUM,1))*(pitch-ACS_ExecuteWithResult(C_GET_USER_VAR,WEPPITCH_NUM,1))<1, "Pickup2")
@@ -1009,7 +1009,7 @@ actor FireTrioSpectrum3 : TeamColor_CI
 states
 {
 Pickup:
-TNT1 A 0 A_TakeInventory("EvilRageAmmo",4)
+TNT1 A 0 A_TakeInventory("EvilRageAmmo",8)
 TNT1 A 0 A_PlaySoundEx("weapon/TrioCharge4","Weapon")
 TNT1 A 0 ACS_ExecuteAlways(C_JAX_SPECTRUM_TURN,0,angle,pitch)
 TNT1 A 0 A_JumpIf((ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM,1)-angle)*(ACS_ExecuteWithResult(C_GET_USER_VAR,WEPANGLE_NUM,1)-angle)<1 && (pitch-ACS_ExecuteWithResult(C_GET_USER_VAR,WEPPITCH_NUM,1))*(pitch-ACS_ExecuteWithResult(C_GET_USER_VAR,WEPPITCH_NUM,1))<1, "Pickup2")
@@ -1565,14 +1565,16 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("TrioMeteor",2,0,0,17,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-2,20),random(-4,12),0,1)
-TNT1 A 0 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-20,2),random(-4,12),0,1)
-TNT1 A 0 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(10,40),random(-10,24),0,1)
-TNT1 A 0 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-40,-10),random(-10,24),0,1)
-TNT1 A 0 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-64,-20),random(-16,32),0,1)
-TNT1 A 0 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-32,32),random(-16,32),0,1)
-TNT1 A 0 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(20,64),random(-16,32),0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,0,0,0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-30,30),random(-15,15),0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-30,30),random(-15,15),0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-30,30),random(-15,15),0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-30,30),random(-15,15),0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-30,30),random(-15,15),0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-30,30),random(-15,15),0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-30,30),random(-15,15),0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-30,30),random(-15,15),0,1)
+TNT1 A 5 A_SpawnItemEx("TrioMeteor",2,0,0,17,random(-30,30),random(-15,15),0,1)
 stop
 }
 }
@@ -1583,12 +1585,11 @@ var int user_A;
 PROJECTILE
 Obituary "$OB_GIGA_ASTROCRUSH"
 Damagetype "TrioAstroCrush"
-+THRUGHOST
-+NOEXPLODEFLOOR
++THRUACTORS
 +HEXENBOUNCE
 renderstyle translucent
 alpha 0.1
-Damage (4)
+Damage (5)
 Radius 52//260
 Height 60//300
 Speed 35
@@ -1636,7 +1637,7 @@ TNT1 A 1 A_JumpIfInventory("CutterFlag",8,"Death2")
 stop
 Death2:
 TNT1 A 0 A_playSoundEx("weapon/astrocrush","Weapon")
-TNT1 A 0 A_Explode(24,196,0,0,100)
+TNT1 A 0 A_Explode(20,256,0,0,256)
 TNT1 AAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("TrioMeteorExplodeFX",random(-72,72),random(-72,72),random(-72,72),0,0,0,0,1)
 stop
 }
@@ -1644,14 +1645,14 @@ stop
 
 actor GigaAstroCrushProtect : PowerProtection
 {
-Powerup.Duration 3
-DamageFactor "TrioAstroCrush", 0.67//0.375
+Powerup.Duration 15
+DamageFactor "TrioAstroCrush", 0.2//0.375
 }
 
 actor TrioMeteor2 : TrioMeteor
 {
 -HEXENBOUNCE
--NOEXPLODEFLOOR
+-THRUACTORS
 alpha 1.0
 Damage (5)
 Speed 35
@@ -1661,8 +1662,11 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+EVFL Q 1
+EVFL Q 0 A_ChangeFlag("NOEXPLODEFLOOR",FALSE)
 SpawnLOOP:
 EVFL Q 4 A_SpawnItemEx("TrioMeteorFX",0,0,0,0,0,0,0,1)
+EVFK Q 0 A_CheckFloor("Death2")
 loop
 Death:
 TNT1 A 0
@@ -1804,16 +1808,16 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 FWVE M 0 A_CountDown
-FWVE M 0 A_Explode(4,80,0,0,80)
+FWVE M 0 A_Explode(6,80,0,0,80)
 FWVE M 0 A_SpawnItemEx("TrioFlameFX",0,0,40,-6,0,5,0,1)
 FWVE M 0 A_SpawnItemEx("TrioFlameFX",0,0,-40,-6,0,-5,0,1)
-FWVE MMM 1 A_Explode(4,80,0,0,80)
+FWVE MMM 1 A_Explode(6,80,0,0,80)
 FWVE N 0 A_SpawnItemEx("TrioFlameFX",0,0,40,-6,0,5,0,1)
 FWVE N 0 A_SpawnItemEx("TrioFlameFX",0,0,-40,-6,0,-5,0,1)
-FWVE NNN 1 A_Explode(4,80,0,0,80)
+FWVE NNN 1 A_Explode(6,80,0,0,80)
 FWVE O 0 A_SpawnItemEx("TrioFlameFX",0,0,40,-6,0,5,0,1)
 FWVE O 0 A_SpawnItemEx("TrioFlameFX",0,0,-40,-6,0,-5,0,1)
-FWVE OOO 1 A_Explode(4,80,0,0,80)
+FWVE OOO 1 A_Explode(6,80,0,0,80)
 loop
 }
 }
@@ -1843,7 +1847,7 @@ stop
 actor TrioFlameSwordProtect : PowerProtection
 {
 Powerup.Duration 3
-DamageFactor "TrioFlameSword", 0.28//0.375
+DamageFactor "TrioFlameSword", 0.0//0.375
 }
 
 ////
@@ -1943,76 +1947,76 @@ Homing:
 TNT1 A 0 A_GiveInventory("CutterFlag",1)
 TNT1 A 0 A_PlaySoundEx("misc/BombCount","Weapon")
 EVFL R 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL R 0 ACS_ExecuteAlways(259,0,1)
+EVFL R 0 ACS_ExecuteWithResult(259,1)
 EVFL R 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL R 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL R 0 ACS_ExecuteAlways(259,0,1)
+EVFL R 0 ACS_ExecuteWithResult(259,1)
 EVFL R 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL R 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL R 0 ACS_ExecuteAlways(259,0,1)
+EVFL R 0 ACS_ExecuteWithResult(259,1)
 EVFL R 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL R 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL R 0 ACS_ExecuteAlways(259,0,1)
+EVFL R 0 ACS_ExecuteWithResult(259,1)
 EVFL R 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL S 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL S 0 ACS_ExecuteAlways(259,0,1)
+EVFL S 0 ACS_ExecuteWithResult(259,1)
 EVFL S 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL S 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL S 0 ACS_ExecuteAlways(259,0,1)
+EVFL S 0 ACS_ExecuteWithResult(259,1)
 EVFL S 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL S 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL S 0 ACS_ExecuteAlways(259,0,1)
+EVFL S 0 ACS_ExecuteWithResult(259,1)
 EVFL S 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL S 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL S 0 ACS_ExecuteAlways(259,0,1)
+EVFL S 0 ACS_ExecuteWithResult(259,1)
 EVFL S 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL T 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL T 0 ACS_ExecuteAlways(259,0,1)
+EVFL T 0 ACS_ExecuteWithResult(259,1)
 EVFL T 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL T 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL T 0 ACS_ExecuteAlways(259,0,1)
+EVFL T 0 ACS_ExecuteWithResult(259,1)
 EVFL T 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL T 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL T 0 ACS_ExecuteAlways(259,0,1)
+EVFL T 0 ACS_ExecuteWithResult(259,1)
 EVFL T 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL T 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL T 0 ACS_ExecuteAlways(259,0,1)
+EVFL T 0 ACS_ExecuteWithResult(259,1)
 EVFL T 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL R 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL R 0 ACS_ExecuteAlways(259,0,1)
+EVFL R 0 ACS_ExecuteWithResult(259,1)
 EVFL R 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL R 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL R 0 ACS_ExecuteAlways(259,0,1)
+EVFL R 0 ACS_ExecuteWithResult(259,1)
 EVFL R 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL R 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL R 0 ACS_ExecuteAlways(259,0,1)
+EVFL R 0 ACS_ExecuteWithResult(259,1)
 EVFL R 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL R 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL R 0 ACS_ExecuteAlways(259,0,1)
+EVFL R 0 ACS_ExecuteWithResult(259,1)
 EVFL R 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL S 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL S 0 ACS_ExecuteAlways(259,0,1)
+EVFL S 0 ACS_ExecuteWithResult(259,1)
 EVFL S 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL S 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL S 0 ACS_ExecuteAlways(259,0,1)
+EVFL S 0 ACS_ExecuteWithResult(259,1)
 EVFL S 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL S 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL S 0 ACS_ExecuteAlways(259,0,1)
+EVFL S 0 ACS_ExecuteWithResult(259,1)
 EVFL S 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL S 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL S 0 ACS_ExecuteAlways(259,0,1)
+EVFL S 0 ACS_ExecuteWithResult(259,1)
 EVFL S 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL T 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL T 0 ACS_ExecuteAlways(259,0,1)
+EVFL T 0 ACS_ExecuteWithResult(259,1)
 EVFL T 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL T 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL T 0 ACS_ExecuteAlways(259,0,1)
+EVFL T 0 ACS_ExecuteWithResult(259,1)
 EVFL T 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL T 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL T 0 ACS_ExecuteAlways(259,0,1)
+EVFL T 0 ACS_ExecuteWithResult(259,1)
 EVFL T 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 EVFL T 1 A_SpawnItemEx("EvilTrioSparkle",0,0,0,0,0,0,0,1)
-EVFL T 0 ACS_ExecuteAlways(259,0,1)
+EVFL T 0 ACS_ExecuteWithResult(259,1)
 EVFL T 0 A_ChangeVelocity(cos(-pitch)*100,0,sin(-pitch)*100,3)
 TNT1 A 0 A_JumpIfInventory("CutterFlag",2,"Homing2")
 loop

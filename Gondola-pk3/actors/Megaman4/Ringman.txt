@@ -6,11 +6,10 @@ player.displayname "ringman"
 player.soundclass "ringmanc"
 
 player.startitem "RingBoomerangBoss"
-player.startitem "RingBoomerangClassAmmo", 2
 player.startitem "WhopperRingAmmo", 14
-player.maxhealth 100
-health 100
-player.jumpz 13
+player.maxhealth 90
+health 90
+player.jumpz 14
 player.ForwardMove 0.8, 0.8
 Player.SideMove 0.78, 0.78
 
@@ -38,6 +37,7 @@ Goto Spawn+2
 See:
 RINM BCDE 5
 Goto Spawn
+CustomState1:
 Missile:
 RINM F 5
 RINM G 4

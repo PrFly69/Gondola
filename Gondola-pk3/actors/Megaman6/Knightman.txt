@@ -8,8 +8,8 @@ Actor Knightman : ClassBase //115
     Player.startitem "KnightCrushBoss"
     Player.startitem "KnightmanAmmo", 28
 	
-	player.maxhealth 115
-	health 115
+	player.maxhealth 125
+	health 125
     Player.forwardmove 0.65, 0.65
     Player.sidemove 0.57, 0.57
     Player.jumpz 12

@@ -865,7 +865,7 @@ IsSelected WheelCutterBoss
 	 
     }
 	
-IsSelected ChillSpikeBossC{Drawbar"CHILSVAR","VAREMPTY",Ammo1,horizontal,58,184;
+IsSelected ChillSpikeBoss{Drawbar"CHILSVAR","VAREMPTY",Ammo1,horizontal,58,184;
     Drawbar"CHILRVAR","VNOBAR",ChillAmmoCharger,horizontal,58,184;
     Drawbar"VARAMMO3","VAREMPTY",ChillSlideBossAmmo,horizontal,58,176;
 	DrawImage"CHLRICON",178,175;

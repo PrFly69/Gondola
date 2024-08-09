@@ -8,13 +8,14 @@ player.startitem "AstroCrushBoss"
 player.startitem "CopyAmmoC", 84
 player.startitem "AstroFlightItem"
 player.startitem "AstroFlight"
+player.startitem "AstroMan_StaminaFlag",500
 //gravity 0.6
 
-player.maxhealth 115
-health 115
+player.maxhealth 110
+health 110
 player.jumpz 10
-player.forwardmove 0.6, 0.6
-player.sidemove 0.58, 0.58
+player.forwardmove 0.65, 0.65
+player.sidemove 0.63, 0.63
 
 player.startitem "HomingSniperWeakness2", 1
 player.startitem "MagicCardWeakness2", 1

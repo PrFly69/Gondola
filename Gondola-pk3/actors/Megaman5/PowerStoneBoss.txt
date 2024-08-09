@@ -152,6 +152,7 @@ goto StoneJump
 StoneJump:
 POWB J 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,2,1)//2.0 speed
 POWB J 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)//No jump
+POWB J 0 A_PlaySoundEx("weapon/GutThrow","Weapon")
 POWB J 0 A_Recoil(-10)//A_Recoil(-25)
 POWB J 0 A_GiveInventory("StoneBossLeap",1)
 POWB J 0 A_GiveInventory("NoJumpCancel",1)
@@ -1542,8 +1543,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,0,1)
-TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,120,1)
-TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,-120,1)
+TNT1 A 0 A_SpawnItemEx("PowerStoneMan",46,0,0,0,0,0,180,1)
 stop
 }
 }
@@ -1558,7 +1558,7 @@ actor PowerStoneMan
 PROJECTILE
 Radius 24
 Height 10
-damage (20)
+damage (25)
 damagetype "StoneM_Rock"
 Obituary "$OB_POWERSTONE"
 speed 0

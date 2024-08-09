@@ -869,7 +869,7 @@ IsSelected WheelCutterBoss
 	DrawBar"BARFLS1","NOBAR",poweruptime NitroAltEndDelaygiver,vertical,24,8;
     }
 
-IsSelected ChillSpikeBossC{Drawbar"CHILSBAR","BAREMPTY",Ammo1,vertical,16,8;
+IsSelected ChillSpikeBoss{Drawbar"CHILSBAR","BAREMPTY",Ammo1,vertical,16,8;
     Drawbar"CHILRBAR","NOBAR",ChillAmmoCharger,vertical,16,8;
     Drawbar"BARAMMO3","BAREMPTY",ChillSlideBossAmmo,vertical,8,8;
 	DrawImage"CHLRICON",32,55;

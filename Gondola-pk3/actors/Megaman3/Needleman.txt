@@ -8,8 +8,8 @@ player.startitem "NeedleCannonBoss"
 //player.startitem "NeedlePokerBoss"
 player.startitem "NoodleAmmo", 28
 
-player.maxhealth 155
-health 155
+player.maxhealth 150
+health 150
 player.jumpz 10
 player.forwardmove 0.7, 0.7
 player.sidemove 0.68, 0.68

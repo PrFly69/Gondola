@@ -5,8 +5,8 @@ Player.ScoreIcon "C_09G0X"
 player.displayname "Magmaman"
 player.soundclass "magmamanc"
 
-player.maxhealth 135
-health 135
+player.maxhealth 125
+health 125
 player.jumpz 14
 player.forwardmove 0.7, 0.7
 player.sidemove 0.68, 0.68

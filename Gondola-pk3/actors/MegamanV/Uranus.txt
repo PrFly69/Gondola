@@ -5,8 +5,8 @@ Player.ScoreIcon "C_0VG0X"
 player.displayname "Uranus"
 player.soundclass "uranusc"
 
-player.maxhealth 185
-health 185
+player.maxhealth 175
+health 175
 player.jumpz 10
 player.forwardmove 0.6, 0.6
 player.sidemove 0.58, 0.58

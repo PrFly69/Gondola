@@ -317,7 +317,7 @@ actor ShootGrrnade : CustomInventory
 states
 {
 Pickup:
-TNT1 A 0 A_PlaySoundEx("weapon/mbuster","Weapon")
+TNT1 A 0 A_PlaySoundEx("weapon/grenadethrow","Weapon")
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==0,"PickupB")
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==1,"PickupR")
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(143,0)==2,"PickupO")
@@ -565,7 +565,7 @@ p34:TNT1 A 0 A_FireCustomMissile("Grrnade34P",random(-5,5),0,8,0,0,random(-5,5))
 
 actor Grrnade
 {
-translation "198:198=194:194","192:192=4:4","202:202=215:215"
+translation "198:198=77:77","192:192=32:32","202:202=215:215"//,"194:194=229:229","195:195=41:41"
 PROJECTILE
 damagetype "GrenadeM_Nade"
 Obituary "$OB_CARPETBOMB"
@@ -585,22 +585,38 @@ scale 2.5
 States
 {
 Spawn:
-XH0D Q 0
+XH0D QQ 0
 XH0D Q 0 ThrustThingZ(0,25,0,1)
+TNT1 A 0 A_JumpIfInTargetInventory("CuteBombFlag",1,"CrazyDestroyer")
+SpawnLOOP:
 XH0D Q 0 A_CheckCeiling("Death")
 XH0D QRST 4
-Goto Spawn+2
+loop
+CrazyDestroyer:
+GRCR A 0 A_CheckCeiling("Death")
+GRCR A 4 A_GiveInventory("OnceC")
+loop
 Death:
+TNT1 A 0 A_JumpIfInventory("OnceC",1,"CrazyDestroyerDeath")
 XH0D QRST 4
 XH0D QRST 4
 XH0D QRST 4
-//Goto XDeath
-TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
+TNT1 A 0 A_PlaySoundEx("weapon/grenadeboom","Weapon")
+Goto Explode
+CrazyDestroyerDeath:
+GRCR BBB 4
+GRCR C 4 A_PlaySoundEx("weapon/grenademanboomcount","Weapon")
+GRCR BBB 4
+GRCR C 4 A_PlaySoundEx("weapon/grenademanboomcount","Weapon")
+GRCR BBB 4
+GRCR C 4 A_PlaySoundEx("weapon/grenademanboomcount","Weapon")
+TNT1 A 0 A_PlaySoundEx("weapon/grenadedestroyer","Weapon")
+Explode:
 TNT1 A 0 A_Explode(10,128,0)
 TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 stop
 XDeath:
-TNT1 A 0 A_PlaySoundEx("weapon/napalm", "Weapon")
+TNT1 A 0 A_PlaySoundEx("weapon/grenadeboom","Weapon")
 TNT1 A 0 A_Explode(8,128,0)
 TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 stop
@@ -626,7 +642,8 @@ actor GrenademanDeathBoom : BasicExplosion
 {
 damagetype "GrenadeM_Kamikaze"
 Obituary "$OB_THATFELTGOOD"
-scale 5.0
+scale 2.5
++BRIGHT
 States
 {
 Spawn:
@@ -637,7 +654,7 @@ TN_B E 0 A_PlaySoundEx("misc/hugequake", "Weapon")
 TNT1 A 0 A_PlaySoundEx("weapon/GrenadeGood","Body")
 TNT1 A 0 A_PlaySoundEx("weapon/GrenadeGood","Voice")
 TN_B E 0 A_Explode(40,500,0,0,96)
-TNT1 A 1 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32+16384)
+GRCR DEFGHI 3 //A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32+16384)
 stop
 }
 }
@@ -646,15 +663,15 @@ stop
 
 actor FlashBombPBoss
 {
-translation "198:198=194:194","192:192=4:4","199:199=194:194","202:202=215:215"
+translation "198:198=77:77","192:192=32:32","199:199=77:77","202:202=32:32"
 PROJECTILE
 damagetype "GrenadeM_Bomb"
 Obituary "$OB_FLASHBOMB"
 +FORCEXYBILLBOARD
-damage (6)//0
-Radius 8//6
-Height 8//7
-speed 26
+damage (10)//0
+Radius 10//6
+Height 10//7
+speed 30
 scale 2.5
 States
 {
@@ -662,10 +679,8 @@ Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-GRHU O 0
-GRHU O 0 A_Jump(256,1,2,3,4)
-GRHU OPQR 3 A_SpawnItemEx("FlashBombPBossFX",0,0,0,frandom(-1,1),frandom(-1,1),frandom(5,6),0,1)
-goto SpawnLOOP+2
+GRHU OOOPPPQQQRRR 1 A_SpawnItemEx("FlashBombPBossFX",0,0,0,0,frandom(-2,2),frandom(5,6),0,1)
+loop
 Death:
 GRGR A 0 A_Stop
 GRGR A 0 A_PlaySoundEx("weapon/flashbomb","Weapon")
@@ -693,35 +708,35 @@ actor FlashBombPBossO : FlashBombPBoss{translation "198:198=128:128","192:192=10
 actor FlashBombPBossP : FlashBombPBoss{translation "198:198=232:232","192:192=229:229","199:199=232:232","202:202=229:229"}
 
 
-actor FlashBombPBoss1 : FlashBombPBoss{speed 29}
-actor FlashBombPBoss1B : FlashBombPBossB{speed 29}
-actor FlashBombPBoss1R : FlashBombPBossR{speed 29}
-actor FlashBombPBoss1O : FlashBombPBossO{speed 29}
-actor FlashBombPBoss1P : FlashBombPBossP{speed 29}
+actor FlashBombPBoss1 : FlashBombPBoss{speed 33}
+actor FlashBombPBoss1B : FlashBombPBossB{speed 33}
+actor FlashBombPBoss1R : FlashBombPBossR{speed 33}
+actor FlashBombPBoss1O : FlashBombPBossO{speed 33}
+actor FlashBombPBoss1P : FlashBombPBossP{speed 33}
 
-actor FlashBombPBoss2 : FlashBombPBoss{speed 32}
-actor FlashBombPBoss2B : FlashBombPBossB{speed 32}
-actor FlashBombPBoss2R : FlashBombPBossR{speed 32}
-actor FlashBombPBoss2O : FlashBombPBossO{speed 32}
-actor FlashBombPBoss2P : FlashBombPBossP{speed 32}
+actor FlashBombPBoss2 : FlashBombPBoss{speed 36}
+actor FlashBombPBoss2B : FlashBombPBossB{speed 36}
+actor FlashBombPBoss2R : FlashBombPBossR{speed 36}
+actor FlashBombPBoss2O : FlashBombPBossO{speed 36}
+actor FlashBombPBoss2P : FlashBombPBossP{speed 36}
 
-actor FlashBombPBoss3 : FlashBombPBoss{speed 35}
-actor FlashBombPBoss3B : FlashBombPBossB{speed 35}
-actor FlashBombPBoss3R : FlashBombPBossR{speed 35}
-actor FlashBombPBoss3O : FlashBombPBossO{speed 35}
-actor FlashBombPBoss3P : FlashBombPBossP{speed 35}
+actor FlashBombPBoss3 : FlashBombPBoss{speed 39}
+actor FlashBombPBoss3B : FlashBombPBossB{speed 39}
+actor FlashBombPBoss3R : FlashBombPBossR{speed 39}
+actor FlashBombPBoss3O : FlashBombPBossO{speed 39}
+actor FlashBombPBoss3P : FlashBombPBossP{speed 39}
 
-actor FlashBombPBoss4 : FlashBombPBoss{speed 38}
-actor FlashBombPBoss4B : FlashBombPBossB{speed 38}
-actor FlashBombPBoss4R : FlashBombPBossR{speed 38}
-actor FlashBombPBoss4O : FlashBombPBossO{speed 38}
-actor FlashBombPBoss4P : FlashBombPBossP{speed 38}
+actor FlashBombPBoss4 : FlashBombPBoss{speed 42}
+actor FlashBombPBoss4B : FlashBombPBossB{speed 42}
+actor FlashBombPBoss4R : FlashBombPBossR{speed 42}
+actor FlashBombPBoss4O : FlashBombPBossO{speed 42}
+actor FlashBombPBoss4P : FlashBombPBossP{speed 42}
 
 
 actor FlashBombExplosionBoss : FlashBombPBoss
 {
 var int user_Flash;
-damagetype "GrenadeM_Bomb"
+damagetype "GrenadeM_Flash"
 +NOCLIP
 +DONTBLAST
 +DONTSPLASH
@@ -756,7 +771,7 @@ Y_8G EF 1 A_SpawnItemEx("FlashBombFX2_B",Random(-16, 16),Random(-40, 40), Random
 Y_8G G 0 A_SpawnItemEx("FlashBombFX1_B",0,0,0,random(-7, 7),random(-7, 7),random(-7, 7),random(0,360),1)
 Goto DamageNow
 DamageNow:
-Y_8G A 0 A_Explode(9+user_Flash*1,80,0)
+Y_8G A 0 A_Explode(10+user_Flash*1,80,0)
 Goto Continue
 Continue:
 Y_8G A 0 A_CountDown

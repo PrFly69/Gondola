@@ -546,7 +546,7 @@ loop
 actor DeeperDiggerAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 110
+inventory.maxamount 132
 }
 
 actor UranusStampedeAmmo : Ammo

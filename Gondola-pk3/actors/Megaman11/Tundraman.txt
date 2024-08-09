@@ -5,12 +5,10 @@ Player.ScoreIcon "C_11E0X"
 player.displayname "Tundraman"
 player.soundclass "tundramanc"
 player.startitem "TundraStormBoss"
-//player.startitem "TundraStormerBoss"
-player.startitem "FeelFreezeAmmo", 56
 player.startitem "IcyWindAmmo", 140
 
-player.maxhealth 85
-health 85
+player.maxhealth 80
+health 80
 player.forwardmove .9, 0.9
 player.sidemove 0.88, 0.88
 player.jumpz 14
@@ -50,7 +48,8 @@ goto Spawn
 CustomState1:
 TNDM I 3
 Spinning:
-TNDM JKLMNOPQ 1 A_JumpIf(z-floorz<=0, "SpinningEnd")
+TNDM JKLMNOPQ 1
+TNDM Q 0 A_JumpIfInventory("ObligatorySpeedGear",1,"Spinning")
 TNDM Q 0 A_JumpIf(z-floorz>0, "Spinning")
 TNDM Q 0 A_TakeInventory("TundraIsBouncingFlag",999)
 TNDM A 1

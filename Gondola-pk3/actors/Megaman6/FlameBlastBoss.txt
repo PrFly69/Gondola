@@ -6,7 +6,7 @@ Weapon.AmmoUse 0
 Weapon.AmmoUse2 0
 Weapon.AmmoGive 56
 Obituary "$OB_FLAMEBURSTX"
-Inventory.Pickupmessage "Cheats."
+Inventory.Pickupmessage "Hot Shit by Cardi B ft. Lil Durk & An Anonymous Chicago Rapper"
 weapon.ammotype "FlameBossAmmo"
 weapon.ammotype2 "FlameBossAmmo"
 States
@@ -40,22 +40,12 @@ Fire:
 FLBU A 0 //A_JumpIfNoAmmo("NoAmmo")
 FLBU A 0 A_PlaySoundEx("weapon/FlameBall","Weapon")
 FLBU B 0 A_GiveInventory("FlamemanMain_CI",1)
-FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
 FLBU B 1 OffSet(3,29)
 FLBU B 2 OffSet(14,17)
 FLBU C 1 OffSet(6,26)
-FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
 FLBU C 1 OffSet(6,26)
 FLBU C 1 OffSet(3,29)
-FLBU A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
-FLBU A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
-FLBU A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
-FLBU A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-FLBU A 0 A_GiveInventory("FlameBossAmmo_RC",1)
-FLBU A 3 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+FLBU A 14 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 FLBU A 0 A_Refire
 goto Ready+1
 AltFire:
@@ -93,7 +83,7 @@ inventory.maxamount 56
 
 actor FlameBurstCD : Powerup
 {
-Powerup.Duration 50
+Powerup.Duration 70
 }
 
 actor FlameBossAmmo_RC : CustomInventory
@@ -118,34 +108,23 @@ actor FlameBall
 {
 Translation "198:198=227:227", "192:192=216:216"
 PROJECTILE
-Damage (17)
+Damage (16)
 Obituary "$OB_FLAMEBLAST"
 damagetype "FlameM_Shot"
 Height 10
 Radius 10
 Scale 2.5
-//-NOGRAVITY
-gravity 1.0
+-NOGRAVITY
++BRIGHT
 //Speed 40
-Speed 32
+gravity 0.5
+Speed 45
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
-FLAB M 1 A_GiveInventory("CutterFlag",1)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",35,"GravLoop")
-FLAB M 1 A_GiveInventory("CutterFlag",1)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",35,"GravLoop")
-FLAB N 1 A_GiveInventory("CutterFlag",1)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",35,"GravLoop")
-FLAB N 1 A_GiveInventory("CutterFlag",1)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",35,"GravLoop")
-loop
-GravLoop:
-TNT1 A 0 A_ChangeFlag("NOGRAVITY",FALSE)
-GravLoop2:
 FLAB MN 2
 loop
 //Death:
@@ -155,12 +134,14 @@ XDeath:
 TNT1 A 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
 Stop
 Death:
-TNT1 A 0 A_JumpIf(CeilingZ - FloorZ <=48 , "FireCheckOnly")
-TNT1 A 0 A_JumpIf(z-ceilingz==0-10,"FireCheckOnly")
 FLMB H 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
 FLMB H 0 A_CheckFloor("Floor")
+FLMB H 0 A_CheckCeiling("Ceiling")
 FLMB H 0 A_JumpIf(CeilingZ-Z < 12, "Floor")
 Goto Wall
+Ceiling:
+TNT1 A 0 A_SpawnItemEx("FlameStarterC",0,0,0,0,0,0,0,1)
+Stop
 Floor:
 TNT1 A 0 A_SpawnItemEx("FlameStarter",0,0,0,0,0,0,0,1)
 Stop
@@ -179,6 +160,28 @@ actor FlameBallR : FlameBall{Translation "198:198=41:41", "192:192=171:171"}
 actor FlameBallO : FlameBall{Translation "198:198=128:128", "192:192=104:104"}
 actor FlameBallP : FlameBall{Translation "198:198=232:232", "192:192=229:229"}
 
+actor FlameBallC : FlameBall
+{
+speed 0
+gravity 1
+Damage (20)
+States
+{
+Spawn:
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+FLAB H 0 A_PlaySoundEx("weapon/flameballfall","Weapon")
+SpawnLOOP:
+JOSH B 1
+loop
+Death:
+FLMB H 0 A_SpawnItemEx("OilPitIgnite",0,0,8)
+FLMB H 0 A_CheckFloor("Floor")
+FLMB H 0 A_JumpIf(CeilingZ-Z < 12, "Floor")
+Goto Wall
+}
+}
+
 actor FlameStarterDropper
 {
 Translation "198:198=227:227", "192:192=216:216"
@@ -192,12 +195,13 @@ States
 {
 Spawn:
 TNT1 A 0
-TNT1 A 0 A_SpawnItemEx("FlameStarterX",20,30,0,0,0,0,15,1)//30
-TNT1 A 0 A_SpawnItemEx("FlameStarterX",20,20,0,0,0,0,5,1)
-TNT1 A 0 A_SpawnItemEx("FlameStarterX",20,10,0,0,0,0,5,1)
-TNT1 A 0 A_SpawnItemEx("FlameStarterX",20,-10,0,0,0,0,-5,1)
-TNT1 A 0 A_SpawnItemEx("FlameStarterX",20,-20,0,0,0,0,-5,1)
-TNT1 A 0 A_SpawnItemEx("FlameStarterX",20,-30,0,0,0,0,-15,1)
+TNT1 A 0 A_SpawnItemEx("FlameStarterX",0,30,0,0,0,0,-15,1)//30
+TNT1 A 0 A_SpawnItemEx("FlameStarterX",0,20,0,0,0,0,-10,1)
+TNT1 A 0 A_SpawnItemEx("FlameStarterX",0,10,0,0,0,0,-5,1)
+TNT1 A 0 A_SpawnItemEx("FlameStarterX",0,0,0,0,0,0,0,1)
+TNT1 A 0 A_SpawnItemEx("FlameStarterX",0,-10,0,0,0,0,5,1)
+TNT1 A 0 A_SpawnItemEx("FlameStarterX",0,-20,0,0,0,0,10,1)
+TNT1 A 0 A_SpawnItemEx("FlameStarterX",0,-30,0,0,0,0,15,1)
 stop
 }
 }
@@ -210,7 +214,9 @@ actor FlameStarterDropperP : FlameStarterDropper{Translation "198:198=232:232", 
 actor FlameStarterX
 {
 Obituary "$OB_FLAMEBURST"
+damagetype "DMGNoHitstun"
 PROJECTILE
++BRIGHT
 +DONTBLAST
 +RIPPER
 +THRUACTORS
@@ -224,22 +230,23 @@ BounceCount 7
 Damage (0)
 Speed 20
 Height 48
-Radius 6
+Radius 8
 scale 2.5
-ReactionTime 11//15
+ReactionTime 10//15
 States
 {
 Spawn:
-FLAB D 0
-FLAB D 1 A_CountDown
-FLAB D 0 A_SpawnItemEx("FlameStarter2",0,0,0,0,0,0,0,1)
-FLAB ED 1
-FLAB D 0 A_SetAngle(angle+random(-15,15))
+FLAB DD 0
 FLAB D 0 A_ChangeVelocity(20,0,0,3)
-FLAB D 0 A_Jump(128,3)
-FLAB D 0 A_Jump(96,3)
-FLAB EDED 1
+FLAB DEF 1 A_Explode(1,10,0,0,10)
+FLAB D 0 A_CountDown
+FLAB D 0 A_SpawnItemEx("FlameStarter2",0,0,0,0,0,0,0,1)
+//FLAB D 0 A_SetAngle(angle+random(-7.5,7.5))
+FLAB FED 1 A_Explode(1,10,0,0,10)
 loop
+Death:
+FLAB D 0 A_SpawnItemEx("FlameStarter2",0,0,0,0,0,0,0,1)
+stop
 }
 }
 
@@ -250,12 +257,13 @@ PROJECTILE
 +STEPMISSILE
 +NOEXPLODEFLOOR
 -NOGRAVITY
++BRIGHT
 maxstepheight 16
 //renderstyle add
-Damage (14)
+Damage (12)
 Obituary "$OB_FLAMEBURST"
 damagetype "FlameM_Pillar"
-Height 32
+Height 48
 Radius 8
 Scale 2.5
 Speed 0
@@ -290,7 +298,7 @@ Stop
 
 actor FlameStarter2 : FlameStarter
 {
-Damage(14)
+Damage(12)
 Obituary "$OB_FLAMEBURST"
 //renderstyle add
 States
@@ -312,10 +320,45 @@ goto Spawn+3
 }
 }
 
+actor FlameStarterC : FlameStarter
+{
+PROJECTILE
++CEILINGHUGGER
++NOGRAVITY
+States
+{
+Spawn:
+FLAB D 0
+TNT1 A 0
+TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
+SpawnLOOP:
+FLAB D 0 A_SpawnItemEx("OilPitIgnite",0,0,0)
+FLAB H 0 A_PlaySoundEx("weapon/FlameWave","Weapon")
+FLAB O 1 A_ChangeVelocity(0,0,0,1)
+FLAB PQRST 1
+Spawn2:
+FLAB STSTSTSTSTSTSTSTSTSTSTSTSTSTST 1
+FLAB H 0 A_GiveInventory("WeaponCharge",1)
+FLAB H 0 A_JumpIfInventory("WeaponCharge",1,"SpawnEnd")
+goto Spawn+3
+SpawnEnd:
+TNT1 A 0 A_SpawnItemEx("FlameBallC",0,0,0,0,0,0,0,1)
+FLAB STSRQPO 1
+stop
+Death:
+TNT1 A 0
+stop
+Continue:
+TNT1 A 0 A_SpawnItemEx("WaterWaveB",0,0,0,20,0,0,0,1)//A_CustomMissile("WaterWaveB",0,0,0,2,0)
+TNT1 A 1
+Stop
+}
+}
+
 actor FlameM_PillarProtect : PowerProtection
 {
 Powerup.Duration 5
-DamageFactor "FlameM_Pillar", 0.25
+DamageFactor "FlameM_Pillar", 0.34
 }
 
 actor FlameWallPillarT : FlameWallPillar
@@ -324,8 +367,9 @@ actor FlameWallPillarT : FlameWallPillar
 Obituary "$OB_FLAMEBURSTX"
 damagetype "FlameM_Pillar"
 reactiontime 14//15
++BRIGHT
 //renderstyle add
-Damage(14)
+Damage(12)
 Radius 6
 states
 {
@@ -447,6 +491,7 @@ goto Spawn2
 actor FlameWallPillarFXI : BasicExplosion
 {
 //renderstyle add
++BRIGHT
 states
 {
 Spawn:
@@ -460,6 +505,7 @@ stop
 actor FlameWallPillarFXI2 : BasicClientSide
 {
 //renderstyle add
++BRIGHT
 states
 {
 Spawn:
@@ -472,6 +518,7 @@ stop
 actor FlameWallPillarFXJ : BasicExplosion
 {
 //renderstyle add
++BRIGHT
 states
 {
 Spawn:
@@ -484,6 +531,7 @@ stop
 actor FlameWallPillarFXJ2 : BasicClientSide
 {
 //renderstyle add
++BRIGHT
 states
 {
 Spawn:
@@ -495,6 +543,7 @@ stop
 actor FlameWallPillarFXJ3 : BasicExplosion
 {
 //renderstyle add
++BRIGHT
 states
 {
 Spawn:
@@ -510,6 +559,7 @@ stop
 actor FlameWallPillarFXK : BasicExplosion
 {
 //renderstyle add
++BRIGHT
 states
 {
 Spawn:
@@ -522,6 +572,7 @@ stop
 actor FlameWallPillarFXK2 : BasicClientSide
 {
 //renderstyle add
++BRIGHT
 states
 {
 Spawn:
@@ -533,6 +584,7 @@ stop
 actor FlameWallPillarFXK3 : BasicExplosion
 {
 //renderstyle add
++BRIGHT
 states
 {
 Spawn:

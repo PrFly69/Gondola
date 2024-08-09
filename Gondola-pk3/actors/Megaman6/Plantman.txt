@@ -8,10 +8,11 @@ player.startitem "PlantBarrierBoss"
 player.startitem "PsychedelicAmmo", 28
 player.startitem "PlantmanHealAmmo", 14
 player.startitem "PlantBarrierUseItem"
+player.startitem "YoGeekyAmmo", 999
 
-player.maxhealth 85
-health 85
-player.jumpz 10
+player.maxhealth 90
+health 90
+player.jumpz 12
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78
 
@@ -26,20 +27,37 @@ States
 {
 Spawn:
 PLAM A 0 
-PLAM B 1
-PLAM A 1
+PLAM B 1 A_JumpIf(z-floorz>0, "Jumping")
+PLAM A 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn+2
 See:
-PLAM BCDE 5
+PLAM BBBBBCCCCCDDDDDEEEEE 1 A_JumpIf(z-floorz>0, "Jumping")
 Goto Spawn
 Missile:
 PLAM G 0 A_JumpIfInventory("ShieldCheck",1,"Missile2")
-PLAM F 3
-PLAM G 3
+PLAM FFF 1 A_JumpIf(z-floorz>0, "JumpMissile")
+PLAM GGG 1 A_JumpIf(z-floorz>0, "JumpMissile")
 goto Spawn+2
 Missile2:
-PLAM I 7
-goto Spawn
+PLAM OOOOOOOOO 1 A_JumpIf(z-floorz>0, "JumpMissile2")
+goto Spawn+2
+CustomState1:
+PLAM IIIIIIIII 1 A_JumpIf(z-floorz>0, "JumpCustomState1")
+goto Spawn+2
+Jumping:
+PLAM J 1 A_JumpIf(z-floorz==0, "Spawn")
+loop
+JumpMissile:
+PLAM KKK 1 A_JumpIf(z-floorz==0, "Missile")
+PLAM LLL 1 A_JumpIf(z-floorz==0, "Missile")
+goto Jumping
+JumpMissile2:
+PLAM MMMMMMMMM 1 A_JumpIf(z-floorz==0, "Missile2")
+goto Jumping
+JumpCustomState1:
+PLAM NNNNNNNNN 1 A_JumpIf(z-floorz==0, "CustomState1")
+goto Jumping
+
 ClassPain:
 PLAM H 0
 goto PainContinue

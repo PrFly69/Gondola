@@ -7,8 +7,8 @@ player.soundclass "sparkmanc"
 player.startitem "SparkShockBoss"
 player.startitem "SparkHealAmmo", 14
 
-player.maxhealth 115
-health 115
+player.maxhealth 110
+health 110
 player.jumpz 11
 player.forwardmove 0.75, 0.75
 player.sidemove 0.73, 0.73

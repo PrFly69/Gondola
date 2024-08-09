@@ -5,7 +5,7 @@ dropitem "BounceBallWepCDropped"
 Weapon.AmmoUse 0
 Weapon.AmmoGive 28
 Obituary "$OB_BOUNCEBALL"
-Inventory.Pickupmessage "Boingaboingaboingaboingaboingaboingaboingaboingaboingaboingaboingaboinga"
+Inventory.Pickupmessage "Autism be damned my boy can juggle"
 weapon.ammotype "HeliumAmmo"
 weapon.ammotype2 "UpUpAndAwayAmmo"
 +WEAPON.NOAUTOAIM
@@ -42,6 +42,7 @@ CRAA A 1 A_Raise
 Loop
 
 Fire:
+TNT1 A 0 A_JumpIfInventory("BounceHandDelay",1,"Fire2")
 KNIA D 0 A_JumpIfInventory("SlappyHandOut",1,"Fire2")
 STHU A 0 A_PlaySoundEx("weapon/bounceshot","Weapon")
 KNIA C 0 A_GiveInventory("BounceHandFlag1",1)
@@ -57,7 +58,6 @@ TNT1 A 1 Offset(25, 41)
 Goto Check
 
 Fire2:
-
 STHU A 0 A_PlaySoundEx("weapon/bounceshot","Weapon")
 KNIA C 0 A_GiveInventory("BounceHandFlag1",1)
 BCMN A 0 A_TakeInventory("HeliumAmmo",35)
@@ -94,10 +94,10 @@ Altfire:
 TNT1 A 0 A_JumpIfInventory("BounceHandCooldown",1,"NoAmmo")
 TNT1 A 0 A_JumpIfInventory("BounceHandDelay",1,"NoAmmo")
 TNT1 A 0 A_JumpIfInventory("SlappyHandOut",1,"AltDetonate")
-TNT1 A 0 A_JumpIfInventory("UpUpAndAwayAmmo",150,1) //350 isn't divisible by 4, sadly.
+TNT1 A 0 A_JumpIfInventory("UpUpAndAwayAmmo",300,1) //350 isn't divisible by 4, sadly.
 goto NoAmmo
 STHU A 0 A_PlaySoundEx("weapon/scrambleshot","Weapon")
-BCMN A 0 A_TakeInventory("UpUpAndAwayAmmo",150)
+BCMN A 0 A_TakeInventory("UpUpAndAwayAmmo",300)
 TNT1 A 0 A_GunFlash("Flash.Grab")
 TNT1 A 0 A_GiveInventory("BouncemanAlt_CI",1)
 TNT1 A 0 A_GiveInventory("BounceHandDelay",1)
@@ -113,7 +113,7 @@ TNT1 A 1 Offset(-5, 29)
 TNT1 A 1 Offset(0, 26)
 TNT1 A 0 //A_WeaponReady(WRF_NOFIRE)
 TNT1 A 0 A_GiveInventory("BounceHandFlag2",1)
-BCMN A 5
+BCMN A 5 A_WeaponReady(WRF_NOFIRE)
 //BCMN A 0 A_Refire("AltHold")
 Goto Ready0
 
@@ -129,15 +129,23 @@ Goto Ready0
 
 Reload:
 BCMN A 0 A_JumpIfInventory("SuperballSlamCooldown",1,"ReadyDelay")
-BCMN A 0 A_JumpIfInventory("HeliumAmmo",35,1)
-goto ReloadYEET
+BCMN A 0 A_JumpIfInventory("UpUpAndAwayAmmo",300,"ReloadCheck")
+goto NoAmmo
+ReloadCheck:
+BCMN A 0 A_JumpIfInventory("UpUpAndAwayAmmo",1,1)
+goto ReloadEnd
+MAGB C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,150,100)
+TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
+//BCMN C 0 A_TakeInventory("BounceHandFlag2",1)
 BCMN A 0 A_JumpIf(z-floorz>0, "SuperballSlam")
-BCMN A 1 
+BCMN B 1
 goto SuperballSlamming
 SuperballSlam:
+TNT1 A 0 A_TakeInventory("UnSolid",1)
+TNT1 A 0 A_ChangeFlag("SOLID",0)
+TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
 TNT1 A 0 A_GunFlash("Flash.SlamboniFall")
-TNT1 A 0 SetPlayerProperty(0,1,0)
-BCMN B 0 A_PlaySoundEx("weapon/terrateleport","SoundSlot6")
+//TNT1 A 0 SetPlayerProperty(0,1,0)
 BCMN B 1 Offset(0, 26)A_JumpIf(z-floorz==0, "SuperballSlamming")
 //BCMN B 1 Offset(5, 29)
 BCMN B 1 Offset(0, 36)A_JumpIf(z-floorz==0, "SuperballSlamming")
@@ -145,48 +153,54 @@ BCMN B 1 Offset(0, 36)A_JumpIf(z-floorz==0, "SuperballSlamming")
 BCMN B 1 Offset(0, 46)A_JumpIf(z-floorz==0, "SuperballSlamming")
 //BCMN B 1 Offset(25, 41)
 SuperballSlamLOOP:
+BCMN D 1 Offset(0, 56)A_JumpIf(z-floorz<=128, "SuperballSlamLOOPNOLOG")
+TNT1 A 0 ThrustThingZ(0,10,1,1)
+TCCC C 0 A_SetArg(2,abs(velz*1.25))
+//TCCC C 0 A_LogInt(args[2])
+TNT1 A 0 A_SpawnItemEx("BounceM_Crush",0,0,-10,0,0,-10)
+TNT1 A 0 A_JumpIfInventory("CutterFlag",350, "SuperballSlamming")
+TNT1 A 0 A_GiveInventory("CutterFlag",1)
+goto SuperballSlamLOOP
+SuperballSlamLOOPNOLOG:
 BCMN D 1 Offset(0, 56)A_JumpIf(z-floorz==0, "SuperballSlamming")
 TNT1 A 0 ThrustThingZ(0,10,1,1)
+//TCCC C 0 A_LogInt(args[2])
 TNT1 A 0 A_SpawnItemEx("BounceM_Crush",0,0,-10,0,0,-10)
-TNT1 A 0 A_JumpIfInventory("CutterFlag",350, "ReloadEnd")
+TNT1 A 0 A_JumpIfInventory("CutterFlag",350, "SuperballSlamming")
 TNT1 A 0 A_GiveInventory("CutterFlag",1)
-/*BCMN B 1 Offset(0, 46)A_JumpIf(z-floorz=0, "SuperballSlamming")
-BCMN B 1 Offset(0, 36)A_JumpIf(z-floorz=0, "SuperballSlamming")
-BCMN B 1 Offset(0, 26)A_JumpIf(z-floorz=0, "SuperballSlamming")*/
-goto SuperballSlamLOOP
+goto SuperballSlamLOOPNOLOG
 SuperballSlamming:
-TNT1 A 0 SetPlayerProperty(0,1,0)
-TNT1 A 0 A_Stop
-TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,0,1)
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
+TNT1 A 0 A_ChangeFlag("THRUACTORS",0)
+TNT1 A 0 A_ScaleVelocity(.5)//A_Stop
 //TNT1 A 0 A_ChangeFlag(Floorhugger,true)
-BCMN A 0 A_TakeInventory("HeliumAmmo",35)
+BCMN A 0 A_TakeInventory("UpUpAndAwayAmmo",150)
 DUOF F 0 A_PlaySoundEx("weapon/crashland", "Voice")
-TNT1 A 0 A_GiveInventory("SuperballSlammingFlag",1)
+//TNT1 A 0 A_GiveInventory("SuperballSlammingFlag",1)
+TNT1 A 0 A_GiveInventory("BouncemanReload_CI",1)
 TNT1 A 0 A_GiveInventory("BouncemanReloadSlam_CI",1)
-TNT1 A 0 A_GiveInventory("UpUpAndAwayAmmo",15)
+TNT1 A 0 A_GiveInventory("HeliumAmmo",35)
 TNT1 A 0 A_GunFlash("Flash.Slamboni")
 TNT1 A 0 ACS_NamedExecute("BULL_SetState",0,1)
 BCMN D 1 Offset(0, 26)
 BCMN D 1 Offset(0, 36)
 BCMN D 1 Offset(0, 46)
 BCMN D 1 Offset(0, 56)
-BCMN D 1 Offset(0, 46)
+BouncingUp:
+BCMN D 1 Offset(0, 46)ThrustThingZ(0,args[2]+40,0,1)
 BCMN D 1 Offset(0, 36)
 BCMN D 1 Offset(0, 26)
-FAKR A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 1, "Reload")
+FAKR A 0 A_JumpIf(ACS_NamedExecuteWithResult("Get_Button_R") == 1, "ReloadCheck")
 DOCR A 0 A_PlaySoundEx("weapon/DocMetalShot","weapon")
-ReloadYEET:
-BCMN A 0 A_JumpIfInventory("SuperballSlammingFlag",1,1)
-goto ReloadEnd
-TNT1 A 0 ThrustThingZ(0,25,0,1)
-TNT1 A 0 A_TakeInventory("SuperballSlammingFlag",1)
-BCMN A 0 A_JumpIfInventory("SuperballSlammingFlag",1,"ReloadYEET")
 ReloadEnd:
-TNT1 A 0 A_GiveInventory("BouncemanReload_CI",1)
-TNT1 A 0 A_GiveInventory("SuperballSlamCooldown",1)
-TNT1 A 0 SetPlayerProperty(0,0,0)
+TCCC C 0 A_SetArg(2,0)
+TNT1 A 0 A_SpawnItemEx("ResolidifyPlayer_H")
+TNT1 A 0 A_ChangeFlag("THRUACTORS",0)
+TNT1 A 0 A_TakeInventory("CutterFlag",999)
+BCMN B 0 A_GiveInventory("SuperballSlamCooldown",1)
+MAGB C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,100,100)
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,15,1)
-goto Ready0
+goto ReadyDelay
 
 NoAmmo:
 BCMN A 1 //A_PlaySoundEx("weapon/noammo","Voice")
@@ -199,7 +213,7 @@ loop
 FlashNo:
 TNT1 A 1
 TNT1 A 0 A_JumpIfInventory("SlappyHandOut",1,"FlashNo")
-//TNT1 A 0 A_JumpIfInventory("BounceHandFlag2",1,"FlashNo") //Uncertain if this is necessary.
+TNT1 A 0 A_JumpIfInventory("BounceHandFlag2",1,"FlashNo") //Uncertain if this is necessary.
 goto Flash
 Flash.Punch:
 BCMN C 0 A_JumpIfInventory("SlappyHandOut",1,"FlashNo")
@@ -216,7 +230,7 @@ BCMN A 5
 goto Flash
 Flash.Slamboni:
 BCMN C 0 A_JumpIfInventory("BounceHandFlag2",1,"FlashNo")
-BCMN CCCCCCC 2
+BCMN CCCCCCC 1
 goto Flash
 Flash.SlamboniFall:
 BCMN C 0 A_JumpIfInventory("BounceHandFlag2",1,"FlashNo")
@@ -256,7 +270,7 @@ inventory.maxamount 70
 
 actor BounceHandDelay : Powerup
 {
-Powerup.Duration 15 
+Powerup.Duration 15
 }
 
 actor BounceHandCooldown : Powerup
@@ -267,7 +281,7 @@ Powerup.Duration 25
 actor SuperballSlammingFlag : Inventory
 {
 inventory.amount 1
-inventory.maxamount 4
+inventory.maxamount 100
 +INVENTORY.IGNORESKILL
 }
 
@@ -357,7 +371,7 @@ States
 Pickup:
 TNT1 A 0 A_JumpIfInventory("SlappyHandOut",1,"No")
 TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"Pickup2")
-TNT1 A 0 A_GiveInventory("UpUpAndAwayAmmo",3)
+TNT1 A 0 A_GiveInventory("UpUpAndAwayAmmo",4)
 stop
 Pickup2:
 TNT1 A 0 A_GiveInventory("UpUpAndAwayAmmo",6)
@@ -420,7 +434,7 @@ TNT1 A 0 A_ChangeVelocity(cos(-pitch)*40,0,sin(-pitch)*40,3)
 BNCM B 0 A_JumpIfInventory("CutterFlag",5,1)
 goto SpawnLOOP
 BNCM B 0 
-BNCM B 0 A_SetDamageType("BounceM_Bopper")
+BNCM B 0 A_SetDamageType("DMG_NoHitstun")
 SpawnPOOP:
 BNCM B 0 A_JumpIfInventory("WeaponCharge",10,"DeathBall")
 BNCM B 0 A_GiveInventory("WeaponCharge",1)
@@ -632,7 +646,9 @@ TNT1 A 0 A_FaceTarget
 goto Spawn2
 Spawn2:
 TNT1 A 0 A_JumpIfCloser(64,"Death")
+OOTC H 0 A_GiveToTarget("SlappyHandOut",1)
 TNT1 AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
+BNCM I 0 A_GiveToTarget("BounceHandDelay")
 BNCM C 1 ACS_NamedExecuteAlways("cbm_DrawBounceTether",0,0,user_PTID,24)//A_SpawnItemEx("BounceM_TetherWireFX",0,0,0,0,0,0,0,1)
 TNT1 A 0 A_CountDown
 TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"Death")
@@ -640,7 +656,7 @@ loop
 Return:
 Death2:
 Death:
-BNCM I 0 A_GiveToTarget("BounceHandReturn",999)
+OOTC H 0 A_TakeFromTarget("SlappyHandOut",1)
 TNT1 A 3
 stop
 }
@@ -665,6 +681,7 @@ TNT1 A 0 A_FaceTarget
 goto Spawn2
 Spawn2:
 TNT1 A 0 A_JumpIfCloser(64,"Death")
+OOTC H 0 A_GiveToTarget("SlappyHandOut",1)
 TNT1 AA 0 A_SeekerMissile(90,90,SMF_PRECISE)
 BNCM C 1 //A_SpawnItemEx("BounceM_Drag")
 TNT1 A 0 ACS_NamedExecuteAlways("cbm_DrawBounceTether",0,0,user_PTID,24)
@@ -813,7 +830,7 @@ speed 30
 Radius 16
 Height 16
 scale 2.5
-damage (10)
+damage (12)
 bouncecount 2
 States
 {
@@ -1024,7 +1041,7 @@ Obituary "$OB_BOUNCESLAM"
 States
 {
 Spawn:
-TNT1 A 0
+TNT1 AA 0
 TNT1 A 0 A_SpawnItemEx("BounceShockWave",0,0,0,30,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("BounceShockWave",0,0,0,30,0,0,15,1)
 TNT1 A 0 A_SpawnItemEx("BounceShockWave",0,0,0,30,0,0,30,1)
@@ -1096,7 +1113,7 @@ Obituary "$OB_BOUNCESLAM"
 maxstepheight 32 
 gravity 555
 var int user_power;
-Damage (7)//(20-user_power)
+Damage (4)//(20-user_power)
 Radius 32
 Height 32
 Speed 30

@@ -6,12 +6,12 @@ player.displayname "bounceman"
 player.soundclass "bouncemanc"
 player.startitem "BounceBallBoss"
 player.startitem "BounceDragCancel"
-player.startitem "HeliumAmmo",70
-player.startitem "UpUpAndAwayAmmo",300
+player.startitem "HeliumAmmo",140
+player.startitem "UpUpAndAwayAmmo",600
 player.startitem "BounceLatchTimeAmmo",350
 
-player.maxhealth 155
-health 155
+player.maxhealth 150
+health 150
 player.jumpz 15
 player.forwardmove 0.7, 0.7
 player.sidemove 0.68, 0.68
@@ -40,7 +40,7 @@ ClassDeath:
 BOUM H 0
 goto DeathContinue
 CustomState1:
-BOUM CDCDCDE 2
+BOUM CD 2
 goto Spawn
 }
 }

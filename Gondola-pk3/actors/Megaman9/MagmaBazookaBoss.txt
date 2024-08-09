@@ -51,15 +51,18 @@ Loop
 
 Fire:
 MAGX A 0 A_JumpIfInventory("MagmaItemFlag",1,"FinishIgnitionX")
-MAGX A 0 A_PlaySoundEx("weapon/magmabazooka","Weapon")
 MAGX A 0 A_GiveInventory("MagmamanMain_P",1)
 MAGX A 0 A_GiveInventory("MagmaMainCool_RC",1)
 MAGX A 0 A_JumpIfInventory("MagmaAltCool",1,"FireX")
-MAGX A 0 A_GiveInventory("MagmaMainFlag",1)
-MAGX E 1 A_WeaponReady(WRF_NOPRIMARY)
-MAGX A 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX F 1 A_WeaponReady(WRF_NOPRIMARY)
+MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX F 1 A_WeaponReady(WRF_NOPRIMARY)
+MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
 MAGX E 1 A_WeaponReady(WRF_NOPRIMARY)
 MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX E 1 A_WeaponReady(WRF_NOPRIMARY)
+MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
 MAGX F 1 A_WeaponReady(WRF_NOPRIMARY)
 MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
 MAGX F 1 A_WeaponReady(WRF_NOPRIMARY)
@@ -67,21 +70,36 @@ MAGX F 0 A_TakeInventory("MagmaMainFlag",99)
 goto Ready1
 
 FireX:
-MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
-MAGX E 1
-MAGX E 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.a")
-goto Fire+7
-FireX.a:
-MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
-MAGX E 1
-MAGX E 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.b")
-goto Fire+9
-FireX.b:
 MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
 MAGX F 1
-MAGX F 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.c")
+MAGX F 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.a")
+goto Fire+7
+FireX.a:
+MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX F 1
+MAGX F 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.b")
+goto Fire+9
+FireX.b:
+MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX E 1
+MAGX E 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.c")
 goto Fire+11
 FireX.c:
+MAGX E 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX E 1
+MAGX E 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.d")
+goto Fire+13
+FireX.d:
+MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX F 1
+MAGX F 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.e")
+goto Fire+15
+FireX.e:
+MAGX F 0 A_GiveInventory("MagmaMainFlag",1)
+MAGX F 1
+MAGX F 0 A_JumpIfInventory("MagmaAltCool",1,"FireX.f")
+goto Fire+17
+FireX.f:
 MAGX F 1 A_TakeInventory("MagmaMainFlag",99)
 goto Ready1
 
@@ -95,6 +113,8 @@ AltfireX:
 MAGX E 0 A_JumpIfInventory("MagmaMainFlag",4,6)
 MAGX F 0 A_JumpIfInventory("MagmaMainFlag",3,4)
 MAGX F 0 A_JumpIfInventory("MagmaMainFlag",2,2)
+MAGX F 1
+MAGX F 1
 MAGX E 1
 MAGX E 1
 MAGX F 1
@@ -111,11 +131,11 @@ MAGX A 0 A_JumpIfInventory("MagmaAltFlag",1,"Flash.FireRight")
 MAGX A 1 A_GiveInventory("MagmamanFlashState_P",1)
 loop
 Flash.FireRight:
-MAGX A 0 A_PlaySoundEx("weapon/magmabazooka","Weapon")//SoundSlot7
+//MAGX A 0 A_PlaySoundEx("weapon/magmabazooka","Weapon")//SoundSlot7
 MAGX A 0 A_GiveInventory("MagmaAltCool",34)
 MAGX A 0 A_GiveInventory("MagmamanAlt_P",1)
 MAGX C 0 //A_JumpIfInventory("PowerRage_ST",1,2)
-MAGX CCBB 1 //A_GiveInventory("MagmamanFlashState_P",1)
+MAGX CCBBCC 1 //A_GiveInventory("MagmamanFlashState_P",1)
 MAGX B 0 A_TakeInventory("MagmaAltFlag",1)
 Goto Flash
 
@@ -143,7 +163,7 @@ FinishIgnition:
 MAGX D 0 A_TakeInventory("GuardUpFlag")
 MAGX D 0 A_TakeInventory("MagmaIgnitePower")
 //MAGX D 0 SetPlayerProperty(0,0,0)
-MAGX D 0 A_PlaySoundEx("weapon/pharaoh2","Body")
+MAGX D 0 A_PlaySoundEx("weapon/magmaforcestop","Body")
 MAGX D 0 A_TakeInventory("MagmaItemFlag",99)
 MAGX D 0 A_TakeInventory("MagmaIgniteFlag",99)
 MAGX A 0 A_TakeInventory("PowerMagma",1)
@@ -273,9 +293,11 @@ States
 Pickup:
 TNT1 A 0 A_JumpIfInventory("VolcanicBreakfastAmmo",4,"Pickup2")
 TNT1 A 0 A_GiveInventory("MagmamanMain1_CI",1)
+MAGX A 0 A_PlaySoundEx("weapon/magmabazookaweak","SoundSlot6")
 stop
 Pickup2:
 TNT1 A 0 A_GiveInventory("MagmamanMain2_CI",1)
+MAGX A 0 A_PlaySoundEx("weapon/magmabazooka","Weapon")
 stop
 }
 }
@@ -286,9 +308,11 @@ States
 Pickup:
 TNT1 A 0 A_JumpIfInventory("VolcanicBreakfastAmmo",4,"Pickup2")
 TNT1 A 0 A_GiveInventory("MagmamanAlt1_CI",1)
+MAGX A 0 A_PlaySoundEx("weapon/magmabazookaweak","SoundSlot6")
 stop
 Pickup2:
 TNT1 A 0 A_GiveInventory("MagmamanAlt2_CI",1)
+MAGX A 0 A_PlaySoundEx("weapon/magmabazooka","Weapon")
 stop
 }
 }
@@ -330,10 +354,10 @@ States
 Pickup:
 TNT1 A 0
 TNT1 A 0 A_JumpIfInventory("PowerRage_ST",1,"PickupR")
-TNT1 A 0 A_GiveInventory("MagmaAltCool",1)
+TNT1 A 0 A_GiveInventory("MagmaAltCool",34)
 goto PickupR
 PickupR:
-TNT1 A 0 A_GiveInventory("MagmaAltCool",1)
+TNT1 A 0 A_GiveInventory("MagmaAltCool",17)
 stop
 }
 }

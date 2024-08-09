@@ -5,14 +5,15 @@ Player.ScoreIcon "C_06A0X"
 player.displayname "blizzardman"
 player.soundclass "blizzardmanc"
 player.startitem "BlizzardAttackBoss"
-player.startitem "BlizzardAttackerBoss"
-player.startitem "BallAmmo", 44
+player.startitem "BallAmmo", 336
+player.startitem "HotCoffeeAmmo", 112
+player.startitem "BlizzardPassiveSnowCD"
 
-player.maxhealth 100
-health 100
+player.maxhealth 125
+health 125
 player.jumpz 10
-player.forwardmove 0.9, 0.9
-player.sidemove 0.78, 0.78
+player.forwardmove 0.75, 0.75
+player.sidemove 0.63, 0.63
 
 player.startitem "FlameBlastWeakness2", 1
 
@@ -26,7 +27,6 @@ player.startitem "WaveBurnerWeakness", 1
 player.startitem "MagmaBazookaWeakness", 1
 player.startitem "SolarBlazeWeakness", 1
 
-player.startitem "RealClassFlag", 58
 States
 {
 Spawn:
@@ -36,6 +36,7 @@ BLZZ A 0 A_JumpIfInventory("BlizzardmanFlag",1,"Rolling")
 BLZZ A 1
 Goto Spawn+2
 See:
+BLZZ A 0 A_JumpIfInventory("BlizzardmanFlag",1,"Rolling")
 BLZZ B 0 A_SpawnItemEx("BlizzardM_WalkFX",0,0,0,0,0,0,0,1)
 BLZZ BC 5
 TNT1 A 0 A_GiveInventory("WalkSoundForcer")
@@ -48,14 +49,30 @@ BLZZ G 4
 goto Spawn+2
 Rolling:
 BLZZ RST 1
-BLZZ R 1 A_JumpIfInventory("BlizzardmanFlag",1,"Rolling")
+BLZZ RST 1 A_JumpIfInventory("BlizzardmanFlag",1,"Rolling")
 goto Spawn+2
 ClassPain:
 BLZZ H 0
 goto PainContinue
 ClassDeath:
-BLZZ H 0
+BLZZ H 0 A_SpawnItemEx("BlizzardDeath_H",0,0,0,0,0,0,0,1)
 goto DeathContinue
+}
+}
+
+actor BlizzardDeath_H : BasicHelper
+{
+States
+{
+Spawn:
+TNT1 A 0
+BLZZ H 0 A_JumpIfInTargetInventory("BlizzardSnowAmmo",1,1)
+goto Death
+SpawnSnowDropper:
+TNT1 A 0 A_SpawnItemEx("BlizzardSnowPickupAir",0,0,28,frandom(2,8),0,frandom(2,4),frandom(0,359),1)
+TNT1 A 0 A_TakeFromTarget("BlizzardSnowAmmo",2)
+TNT1 A 1 A_JumpIfInTargetInventory("BlizzardSnowAmmo",2,"SpawnSnowDropper")
+stop
 }
 }
 
@@ -76,7 +93,7 @@ States
 Spawn:
 TNT1 A 0
 TNT1 A 0 A_JumpIf(z-floorz!=0,5)
-TNT1 A 0 A_PlaySound("weapon/chargekick","Voice",0.035)
+TNT1 A 0 A_PlaySound("weapon/BlizzWalk","Voice",0.3)
 TNT1 A 0 A_SpawnItemEx("BlizzardM_WalkFX2",-4,-20,10,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("BlizzardM_WalkFX2",-4,0,10,0,0,0,0,1)
 TNT1 A 0 A_SpawnItemEx("BlizzardM_WalkFX2",-4,20,10,0,0,0,0,1)

@@ -5,8 +5,8 @@ Player.ScoreIcon "C_04B0X"
 player.displayname "Toadman"
 player.soundclass "toadmanc"
 
-player.maxhealth 155
-health 155
+player.maxhealth 150
+health 150
 player.jumpz 15
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

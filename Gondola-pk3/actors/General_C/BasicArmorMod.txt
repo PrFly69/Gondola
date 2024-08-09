@@ -27,9 +27,9 @@ Armor.Saveamount 100
 actor ChargeM_BasicArmorBonus_P : BasicArmorBonus
 {
 Armor.SavePercent 50.0
-Armor.Saveamount 11
+Armor.Saveamount 8
 Armor.Maxsaveamount 100
-Armor.Maxbonus 11//This doesn't do anything???
+Armor.Maxbonus 8//This doesn't do anything???
 Armor.Maxbonusmax 50
 }
 
@@ -43,7 +43,7 @@ Armor.Saveamount 20
 actor ShadeM_BasicArmor_P : BasicArmorPickup
 {
 Armor.Savepercent 80.001
-Armor.Saveamount 40
+Armor.Saveamount 30
 }
 
 actor ODuo_BasicArmor_P : BasicArmorPickup

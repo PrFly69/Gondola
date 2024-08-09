@@ -2,7 +2,7 @@ actor MagnetMissileBoss : BaseMM8BDMWep_CBM
 {
 tag "Magnet Missiles"
 dropitem "MagnetMissileWepCDropped"
-Weapon.AmmoUse 0
+Weapon.AmmoUse 2
 Weapon.AmmoGive 0
 Obituary "$OB_MAGNETMISSILE"
 Inventory.Pickupmessage "Power up! YOU GOT SOME POWER!!!"
@@ -24,89 +24,16 @@ Delay:
 MAGB A 10 A_WeaponReady(WRF_ALLOWRELOAD)
 goto Ready1
 Ready1:
-MAGB A 0 A_JumpIfInventory("PullCharge",28,"Ready2")
+MAGB A 0 A_JumpIfInventory("MagnetMissileClassAmmo",6,"Ready2")
+MAGB A 3 A_WeaponReady(WRF_NOPRIMARY|WRF_ALLOWRELOAD)
 MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 //A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
 MAGB A 0 A_GiveInventory("PullCharge",3)
 loop
 Ready2:
-MAGB A 0 A_JumpIfInventory("PullCharge",56,"Ready3")
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
+MAGB A 3 A_WeaponReady(WRF_ALLOWRELOAD)
 MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
 MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 //A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 //A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-loop
-Ready3:
-MAGB A 0 A_JumpIfInventory("PullCharge",84,"Ready4")
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB AA 0 //A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB AA 0 //A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-loop
-Ready4:
-MAGB A 0 A_JumpIfInventory("PullCharge",112,"Ready5")
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 //A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 //A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 0 //A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 //A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 0 A_GiveInventory("PullCharge",3)
-loop
-Ready5:
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB AA 0 A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB AA 0 A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
-MAGB AA 0 A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 4 A_WeaponReady(WRF_ALLOWRELOAD)
-MAGB AA 0 A_SpawnItemEx("PullChargeFX_Helper",0,0,0,0,0,0,0,1)
-MAGB A 0 A_GiveInventory("PullCharge",6)
-loop
+goto Ready1
 
 Deselect:
 TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
@@ -118,72 +45,61 @@ MAGB A 1 A_Raise
 Loop
 
 Fire:
-MAGB A 0 A_JumpIfInventory("IsBot",1,"BotFire")
-MAGB A 0 A_JumpIfInventory("MagnetMissileClassAmmo",5,"Continued")
+MAGB A 0 A_JumpIfInventory("MagnetMissileClassAmmo",2,"Continued")
 goto NoAmmo
 Continued:
-MAGB A 0 A_TakeInventory("MagnetmanFlag1",9)
-MAGB A 2 A_TakeInventory("MagnetmanFlag2",9)
+MAGB A 1 OffSet(-12,20)
+MAGB A 1 OffSet(-24,12)
+MAGB A 1 OffSet(-36,4)
+ContinueLoop:
 MAGB A 0 A_PlaySoundEx("weapon/magnetmissile","Weapon")
-MAGB A 1 OffSet(-14,22)A_GiveInventory("MagnetmanMain_CI",1)
-MAGB A 0 A_TakeInventory("MagnetMissileClassAmmo",5)
-goto FireH
-FireH:
-MAGB A 0 A_JumpIfInventory("MagnetmanFlag2",1,"FireEndX")
-MAGB A 1 OffSet(-28,12)
-MAGB A 0 A_Refire("FireH1")
-goto FireEnd
-FireH1:
-MAGB A 0 A_JumpIfInventory("MagnetmanFlag2",1,"FireEndX")
-MAGB A 1 OffSet(-28,12)A_JumpIfInventory("PowerRage_ST",1,"FireH2")
-MAGB A 0 A_Refire("FireH2")
-goto FireEnd
-FireH2:
-MAGB A 0 A_JumpIfInventory("MagnetmanFlag2",1,"FireEndX")
-MAGB A 1 OffSet(-28,12)
-MAGB A 0 A_Refire("FireH3")
-goto FireEnd
-FireH3:
-MAGB A 0 A_JumpIfInventory("MagnetmanFlag2",1,"FireEndX")
-MAGB A 1 OffSet(-28,12)A_JumpIfInventory("PowerRage_ST",1,"FireH4")
-MAGB A 0 A_Refire("FireH4")
-goto FireEnd
-FireH4:
-MAGB A 0 A_JumpIfInventory("MagnetmanFlag2",1,"FireEndX")
-MAGB A 1 OffSet(-28,12)
-MAGB A 0 A_Refire("FireH5")
-goto FireEnd
-FireH5:
-MAGB A 0 A_JumpIfInventory("MagnetmanFlag2",1,"FireEndX")
-MAGB A 1 OffSet(-28,12)A_JumpIfInventory("PowerRage_ST",1,"FireH6")
-MAGB A 0 A_Refire("FireH6")
-goto FireEnd
-FireH6:
-MAGB A 0 A_JumpIfInventory("MagnetmanFlag2",1,"FireEndX")
-MAGB A 1 OffSet(-28,12)
-MAGB A 0 A_Refire("FireH7")
-goto FireEnd
-FireH7:
-MAGB A 0 A_JumpIfInventory("MagnetmanFlag2",1,"FireEndX")
-MAGB A 1 OffSet(-28,12)A_JumpIfInventory("PowerRage_ST",1,"FireH8")
-MAGB A 0 A_Refire("FireH8")
-goto FireEnd
-FireH8:
-MAGB A 0 A_JumpIfInventory("MagnetmanFlag2",1,"FireEndX")
-MAGB A 1 OffSet(-28,12)
-MAGB A 0 A_Refire("FireH")
-goto FireEnd
-FireEndX:
-MAGB A 0 A_ClearRefire
-FireEnd:
-MAGB B 3 OffSet(-20,16)A_GiveInventory("MagnetmanFlag1",1)
-MAGB B 3 OffSet(-12,20)
-MAGB A 3 OffSet(-6,24)
-MAGB A 3 OffSet(-2,28)
+MAGB B 1 Offset(-30,8)A_GiveInventory("MagnetmanMain_CI",1)
+MAGB C 1 Offset(-20,18)
+MAGB A 1 Offset(-10,28)A_GiveInventory("AtomicFireAmmo",1)
+MAGB A 1 Offset(-6,32)
+MAGB A 1 Offset(-2,36)
+MAGB A 1 Offset(0,38)
+MAGB A 1 Offset(2,40)
+MAGB A 1 Offset(4,42)A_JumpIfInventory("AtomicFireAmmo",3,"FireEnd2")
+MAGB A 0 A_Refire("ContinueLoopRedo")
+
+FireEnd: 
+MAGB A 0 A_TakeInventory("AtomicFireAmmo",99)
+MAGB A 1 Offset(8,42)
+MAGB A 1 Offset(12,43)
+MAGB A 1 Offset(14,44)
+MAGB A 1 Offset(16,44)
+MAGB A 1 Offset(14,42)
+MAGB A 1 OffSet(12,40)
+MAGB A 1 OffSet(4,34)
+MAGB A 1 OffSet(-6,30)
+MAGB A 12 A_WeaponReady(WRF_NOFIRE)
+goto Delay
+FireEnd2: //third shot, therefore arm goes farther
+MAGB A 0 A_TakeInventory("AtomicFireAmmo",99)
+MAGB A 1 Offset(8,48)
+MAGB A 1 Offset(12,50)
+MAGB A 1 Offset(14,52)
+MAGB A 1 Offset(16,54)
+MAGB A 1 Offset(18,56)
+MAGB A 1 Offset(20,58)
+MAGB A 1 OffSet(16,48)
+MAGB A 1 OffSet(12,42)
+MAGB A 1 OffSet(4,36)
+MAGB A 1 OffSet(-6,32)
+MAGB A 10 A_WeaponReady(WRF_NOFIRE)
 Goto Delay
+ContinueLoopRedo:
+MAGB A 1 Offset(4,40)
+MAGB A 1 Offset(0,36)
+MAGB A 1 Offset(-6,30)
+MAGB A 1 Offset(-20,16)
+MAGB A 1 Offset(-30,6)
+goto ContinueLoop
 
 NoAmmo:
 MAGB A 10
+MAGB A 0 A_TakeInventory("AtomicFireAmmo",99)
 MAGB A 0 A_GiveInventory("MagnetMissileClassAmmo",1)
 MAGB A 0 A_GiveInventory("PullCharge",1)
 goto Ready1
@@ -194,48 +110,42 @@ MAGB C 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,40,100)//40% speed
 MAGB C 0 //SetPlayerProperty(0,1,0)
 MAGB C 0 A_GiveInventory("LadderDisable",1)
 MAGB C 0 A_GiveInventory("VivifyDelay4",1)
-MAGB H 0 A_PlaySoundEx("weapon/magnetmine","Weapon")
-MAGB C 1 Offset(1,65)
-//MAGB C 1 Offset(1,60)
-MAGB E 1 Offset(1,55)
-//MAGB E 1 Offset(1,50)
-MAGB G 1 Offset(1,45)
-//MAGB G 1 Offset(1,40)
-MAGB C 0 A_Refire(1)
-MAGB H 1 Offset(1,35)A_PlaySoundEx("weapon/magPush","auto")
-MAGB H 2 Offset(1,35)A_TakeInventory("PullCharge",4)
-MAGB H 0 A_GiveInventory("PullChargePower",4)
-MAGB C 0 A_Refire("Altfire3")
+MAGB H 0 A_PlaySoundEx("weapon/magnetmine","Body")
+MAGB ADEF 2
+MAGB C 0 A_JumpIfInventory("PullCharge",1,1)
 goto AltEndPull
+TNT1 A 0
 Altfire2:
 MAGB C 0 A_JumpIfInventory("PullCharge",1,1)
 goto AltEndPull
-MAGB C 0 A_PlaySoundEx("weapon/magPush","auto")
-MAGB C 0 A_GiveInventory("VivifyDelay4",1)
-MAGB H 3 Offset(1,35)A_TakeInventory("PullCharge",8)
-MAGB H 0 A_GiveInventory("PullChargePower",8)
-MAGB C 0 A_Refire("Altfire3")
+MAGB F 0 A_PlaySoundEx("weapon/magPush","Body")
+MAGB F 0 A_GiveInventory("VivifyDelay4",1)
+MAGB F 3 Offset(1,35)A_TakeInventory("PullCharge",8)
+MAGB F 0 A_GiveInventory("PullChargePower",8)
+MAGB F 0 A_Refire("Altfire3")
 goto AltEndPull
 Altfire3:
-MAGB C 0 A_JumpIfInventory("PullCharge",1,1)
+MAGB F 0 A_JumpIfInventory("PullCharge",1,1)
 goto AltEndPull
-MAGB C 0 A_GiveInventory("VivifyDelay4",1)
-MAGB H 3 Offset(1,60)A_TakeInventory("PullCharge",8)
-MAGB H 0 A_GiveInventory("PullChargePower",8)
-MAGB C 0 A_Refire("Altfire2")
+MAGB F 0 A_GiveInventory("VivifyDelay4",1)
+MAGB F 3 Offset(1,60)A_TakeInventory("PullCharge",8)
+MAGB F 0 A_GiveInventory("PullChargePower",8)
+MAGB F 0 A_Refire("Altfire2")
 goto AltEndPull
 AltEndPull:
 MAGB A 0 A_PlaySoundEx("weapon/magPush2","auto")
 MAGB A 0 A_FireCustomMissile("MagPush1")
+MAGB G 2 A_ChangeVelocity(Cos(pitch)*(ACS_NamedExecuteWithResult("MagnetCounter")*5/4), 0, -sin(pitch)*ACS_NamedExecuteWithResult("MagnetCounter"),1)
+MAGB A 0 A_TakeInventory("PullChargePower",999)
 MAGB A 0 A_SpawnItemEx("MagpushFX",0,0,0,momx,momy,momz,0,8,0)
 MAGB A 0 A_ClearRefire
-MAGB A 2 OffSet(-18,14)A_GiveInventory("VivifyDelay5",1)
-MAGB A 2 OffSet(-18,14)
 MAGB A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_JumpZ,12,1)
 MAGB A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
 MAGB A 0 A_GiveInventory("LadderEnable",1)
+MAGB A 0 A_GiveInventory("VivifyDelay5",1)
+MAGB HHGGFED 1
 MAGB A 0 //SetPlayerProperty(0,0,0)
-MAGB A 2 OffSet(-9,27)A_TakeInventory("PullChargePower",999)
+MAGB A 2 OffSet(-9,27)
 MAGB A 2 OffSet(-9,27)
 Goto Ready1
 
@@ -263,8 +173,8 @@ MAGB H 0 A_PlaySoundEx("misc/astroplatformdisappear","Body")
 MAGB A 1 OffSet(-14,22)
 TNT1 A 0 A_GiveInventory("WeaponCharge",1)
 MAGB A 1 OffSet(-28,12)
-MAGB B 3 OffSet(-20,16)
-MAGB B 3 OffSet(-12,20)
+MAGB P 3 OffSet(-20,16)
+MAGB P 3 OffSet(-12,20)
 MAGB A 3 OffSet(-6,24)
 MAGB A 3 OffSet(-2,28)
 TNT1 A 0 A_TakeInventory("WeaponCharge",999)
@@ -345,7 +255,7 @@ inventory.maxamount 112
 actor MagnetMissileClassAmmo : Ammo
 {
 inventory.amount 1
-inventory.maxamount 40
+inventory.maxamount 42
 +INVENTORY.IGNORESKILL
 }
 
@@ -412,132 +322,41 @@ actor MagMissileClassXP : MagMissileClassX{translation "192:192=229:229", "198:1
 
 actor MagMissileClass
 {
-var int user_P;
-var int user_PP;
 Translation "192:192=4:4","198:198=41:41","250:250=4:4","249:249=205:205"
 PROJECTILE
+var int user_p;
+Radius 12
+Height 12
+scale 2.5
 damagetype "MagnetMissile"
 Obituary "$OB_MAGNETMISSILE"
-+DONTSEEKINVISIBLE//
+damage (12-user_p)
+speed 50
 +SEEKERMISSILE
-+LOOKALLAROUND
-reactiontime 20
-damage (14+(user_PP*.5))
-Radius 8
-Height 8
-speed 33
-scale 3.0//2.5
+-EXTREMEDEATH
++SCREENSEEKER
++HEXENBOUNCE
 States
 {
 Spawn:
 TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
-SpawnLOOP:
-MAGB T 0 //A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SpawnHomed")
-MAGB TTT 1 A_JumpIfInTargetInventory("MagnetmanFlag1",1,"Home")
-MAGB T 0 A_SetUserVar("user_P",user_P+1)
-MAGB T 0 A_JumpIf(user_P>=16,"Spawn16")
-MAGB T 0 A_SpawnItemEx("MagMissileClassFX",random(-8,8),0,Random(-8,8),random(-2,2),0,random(-2,2),random(0,359),9)
-loop
-Spawn16:
-MAGB T 0 //A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SpawnHomed")
-MAGB TTT 1 A_JumpIfInTargetInventory("MagnetmanFlag1",1,"Home")
-MAGB T 0 A_SetUserVar("user_P",user_P+1)
-MAGB T 0 A_JumpIf(user_P>=32,"Spawn32")
-MAGB TT 0 A_SpawnItemEx("MagMissileClassFX",random(-8,8),0,Random(-8,8),random(-2,2),0,random(-2,2),random(0,359),9)
-loop
-Spawn32:
-MAGB T 0 //A_JumpIf(ACS_ExecuteWithResult(C_CHECK_TARGET_OOC)==0,"SpawnHomed")
-MAGB TTT 1 A_JumpIfInTargetInventory("MagnetmanFlag1",1,"Home")
-MAGB T 0 //A_SetUserVar("user_P",user_P+1) //WHY DOES THIS FUCKING KEEP SCALING
-MAGB TTT 0 A_SpawnItemEx("MagMissileClassFX",random(-8,8),0,Random(-8,8),random(-2,2),0,random(-2,2),random(0,359),9)
-loop
-
-SpawnHomed:
-MAGB U 2
-loop
-
-NoHome:
+MAGG FGFGFG 2 A_SpawnItemEx("MagMissileClassFX",random(-8,8),0,Random(-8,8),random(-2,2),0,random(-2,2),random(0,359),9)
+TNT1 A 0 A_ScaleVelocity(0.02)//hehehehehe
+MAGB T 2 A_PlaySoundEx("S3_K/Beep","Weapon")
+MAGG F 2
 MAGB T 2
-loop
-
-HomeFlag:
-MAGB T 0 A_ChangeFlag("SCREENSEEKER",0)
-goto Home+2
-Home:
-//MAGB T 0 A_JumpIf(user_P<1,"NoHome")
-MAGB T 0 A_JumpIf(user_P>=12,"HomeFlag")
-MAGB T 0 //A_LogInt(user_P)
-MAGB T 0 A_ScaleVelocity(0.01)
-MAGB T 0 A_GiveInventory("MagnetmanFlag2",1)
-MAGB T 0 A_RearrangePointers(AAPTR_DEFAULT,AAPTR_DEFAULT,AAPTR_NULL)
-MAGB T 0 A_PlaySoundEx("S3_K/Beep","Weapon")
-MAGB T 0 A_SetUserVar("user_PP",user_P)
-MAGB T 0 A_SeekerMissile(90, 90, SMF_LOOK|SMF_PRECISE|SMF_CURSPEED, 256, 5)
-MAGB T 2 A_SeekerMissile(45+(user_P*1.4), 45+(user_P*1.4), SMF_LOOK|SMF_PRECISE|SMF_CURSPEED, 256, 5)
-MAGB U 0 A_ScaleVelocity((user_P*6)+112.5)
-MAGB T 0 A_FaceTracer
-MAGB U 0 A_JumpIfInventory("IsInGame",1,"HomeCheck",AAPTR_TRACER)
-goto SpawnHomed
-HomeCheck:
-//MAGB U 0 A_JumpIf(user_P>=32,"HomeSuper")
-//MAGB U 0 A_JumpIfInventory("HeHasMyPowerPower",1,"Home3",AAPTR_TRACER)
-MAGB U 1 
-//A_SeekerMissile(user_P*2,user_P+3,6,50,3)
-goto Home2
-Home2:
-//MAGB U 0 A_JumpIf(momz != 0,"Pitched")
-MAGB UUUU 1 
-//A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-//MAGB U 0 A_JumpIf(momz != 0,"Pitched")
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-MAGB UUUU 1 
-//A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-//MAGB U 0 A_JumpIf(momz != 0,"Pitched")
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-MAGB UUUU 1 
-//A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-//MAGB U 0 A_JumpIf(momz != 0,"Pitched")
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-MAGB UUUU 1 
-//A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-//MAGB U 0 A_JumpIf(momz != 0,"Pitched")
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-MAGB UUUU 1 
-//A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-//MAGB U 0 A_ScaleVelocity(0.8)
-//MAGB U 0 A_JumpIf(user_P>0,"Home2")
-goto HomeCheck
-Pitched:
-MAGB U 0 A_ScaleVelocity(0.8)
-MAGB UUUU 1 A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-MAGB UUUU 1 A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-MAGB UUUU 1 A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-MAGB UUUU 1 A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-MAGB UUUU 1 A_SeekerMissile(user_P*0.5,user_P+1,6,50,3)
-MAGB U 0 A_SetUserVar("user_P",user_P-1)
-MAGB U 0 A_JumpIf(user_P>0,"Home2")
-goto HomeCheck
-Home3:
-MAGB UUUUUUUUUUUUUUUUUUUU 1 A_SeekerMissile(user_P+1,user_P*2+2,6,50,3)
-MAGB U 0 A_ScaleVelocity(4.0/3.0)
-goto SpawnHomed
-HomeSuper://Peace out
-MAGB UUU 1 A_SeekerMissile(90,90,3,50,3)
-MAGB U 0 A_CountDown
+MAGG G 2
+MAGB T 2
+MAGB A 0 A_SetUserVar("user_p",2)
+MAGG A 0 A_ChangeFlag("HEXENBOUNCE",0)
+MAGG AAAAA 0 A_SeekerMissile (90, 90, SMF_LOOK|SMF_PRECISE|SMF_CURSPEED, 256, 5)
+TERS A 0 A_ScaleVelocity(25.00)
+TERS A 0 A_PlaySoundEx("weapon/magnettrack","Body",1)
+SpawnLoop:
+MAGB T 3
 loop
 Death:
-TNT1 A 0 //A_LogInt(user_P)
-TNT1 A 0 A_JumpIfInventory("MagnetmanFlag2",1,"Death2")
-TNT1 A 0 A_GiveToTarget("MagnetmanFlag2",1)
-TMFX ABCD 2
-stop
-Death2:
 WMFX ABCD 2
 stop
 }
@@ -652,7 +471,7 @@ speed 0
 +THRUACTORS
 damage (0)
 scale 2.5
-reactiontime 35
+reactiontime 25
 states
 {
 Spawn:
@@ -834,72 +653,6 @@ stop
 }
 }
 
-
-actor MagneticMine
-{
-Translation "192:192=4:4","198:198=41:41","202:202=41:41"
-species "MagnetMissile"
-+MISSILE
-+THRUSPECIES
-+NOGRAVITY
-Obituary "$OB_MAGNETMAN4"
-+FLOATBOB
-+SHOOTABLE
-+CANTSEEK
-+NOTARGETSWITCH
-+SEEKERMISSILE
-+LOOKALLAROUND
-+QUICKTORETALIATE
-+FLOATBOB
-+AMBUSH
-+DONTREFLECT
-+NOPAIN
-health 15
-painchance 256
-mass 999999
-FloatBobPhase 31
-Radius 16
-Height 16
-scale 2.5
-speed 9
-damage (0)
-reactiontime 175
-Damagetype "MagnetMissile"
-DamageFactor "MadMagFly", 0.0
-DamageFactor "MagnetMissile", 0.0
-States
-{
-Spawn:
-TNT1 A 0
-MAPJ IJK 2 A_ScaleVelocity(1.5)
-Goto Start
-Start:
-TNT1 A 0 A_Stop
-MAPJ L 0 A_JumpIfTargetInLOS("See", 0, 1)
-MAPJ L 1 A_SeekerMissile (60, 45, SMF_LOOK, 256, 4)
-MAPJ L 0 A_Countdown
-loop
-See:
-MAPJ A 0 A_PlaySoundEx("weapon/magnetminefly","Body",1)
-loopit:
-MAPJ MMLLLLL 1 A_SeekerMissile (75, 45, SMF_LOOK, 50, 10)
-MAPJ LLLLLLL 0 A_Countdown
-loop
-Death:
-NAPA E 0 A_ChangeFlag("FLOATBOB",0)
-NAPA E 0 A_Stop
-NAPA E 0 A_PlaySoundEx("misc/mm3explosion", "Body")
-NAPA E 0 A_Explode(10, 96, 0, 0, 48)
-TN_B EFGHIJKLMNOPQRS 2
-stop
-}
-}
-
-actor MagneticMineB : MagneticMine{Translation "192:192=205:205","198:198=74:74","202:202=205:205"}
-actor MagneticMineR : MagneticMine{Translation "192:192=171:171","198:198=41:41","202:202=171:171"}
-actor MagneticMineO : MagneticMine{Translation "192:192=104:104","198:198=128:128","202:202=104:229"}
-actor MagneticMineP : MagneticMine{Translation "192:192=229:229","198:198=232:232","202:202=229:229"}
-
 actor PullChargeFX_Helper : BasicHelper
 {
 States
@@ -998,6 +751,7 @@ scale 2.5
 States
 {
 Spawn:
+TNT1 AA 0
 MAGB ONO 2 //ONO! it's back!
 stop
 }
@@ -1030,155 +784,6 @@ actor MagflyMagnetSpawnerBlokeR : MagflyMagnetSpawnerBloke{Translation "192:192=
 actor MagflyMagnetSpawnerBlokeO : MagflyMagnetSpawnerBloke{Translation "192:192=4:4","198:198=128:128","250:250=138:138","249:249=131:131","195:195=128:128"}
 actor MagflyMagnetSpawnerBlokeP : MagflyMagnetSpawnerBloke{Translation "192:192=4:4","198:198=232:232","250:250=214:214","249:249=223:223","195:195=232:232"}
 
-actor MagnetBarrier1
-{
-+MISSILE
-//+RIPPER
-+DONTSPLASH
-+NOGRAVITY
-renderstyle translucent
-+SHOOTABLE
-+FRIENDLY
-+GHOST
-+NOBLOOD
-translation "192:192=4:4","198:198=41:41"
-+NOTARGETSWITCH
-+DONTRIP
-+RIPPER
-+DONTBLAST
-+NOTAUTOAIMED
-+BRIGHT
-Damage 0
-Height 24
-Radius 32
-speed 0
-health 100
-painchance 256
-scale 2.5
-alpha 0.5
-DamageFactor "MadMagFly", 0.0
-States
-{
-Spawn:
-MAGG FF 1
-stop
-Pain:
-TNT1 A 0 
-TNT1 A 0 A_ChangeFlag("INVULNERABLE",1)
-TNT1 A 1 A_GiveToTarget("BarriersOut",1)
-//TNT1 A 1 A_GiveToTarget("MagnetmanMain2_CI",1)
-stop
-Death:
-TNT1 A 0 A_ChangeFlag("INVULNERABLE",1)
-stop
-NoShot:
-TNT1 A 0
-stop
-}
-}
-
-actor MagnetBarrier2 : MagnetBarrier1
-{
-States
-{
-Spawn:
-MAGG GG 1
-stop
-Pain:
-TNT1 A 0 
-TNT1 A 0 A_ChangeFlag("INVULNERABLE",1)
-TNT1 A 1 A_GiveToTarget("BarriersOut",1)
-//TNT1 A 1 A_GiveToTarget("MagnetmanMain2_CI",1)
-stop
-Death:
-TNT1 A 0 A_ChangeFlag("INVULNERABLE",1)
-stop
-NoShot:
-TNT1 A 0
-stop
-}
-}
-
-actor MagMissileSpread
-{
-PROJECTILE
-+LOOKALLAROUND
-+SKYEXPLODE
-+DONTBLAST
-+THRUGHOST
-Translation "192:192=4:4","198:198=41:41","250:250=4:4","249:249=205:205"
-alpha 0.35
-Speed 60
-Damage (3)
-radius 20
-height 20
-scale 2
-damagetype "ProtoBuster3"
-Obituary "$o's opposite team color attracted $k's Magnet Spread."
-States
-{
-Spawn:
-INEV D 0 
-//INEV D 0 A_GiveToTarget("TargetMarkerT",1)
-SpawnLOOP:
-MAGB UU 1 ACS_ExecuteWithResult(989,ACS_ExecuteWithResult(257)+100)
-MAGG F 0 A_ChangeVelocity(cos(pitch)*40,0,-sin(pitch)*40,CVF_RELATIVE)
-loop
-Death:
-WMFX ABCD 2
-stop
-}
-}
-
-actor MagSpreadWarperA : ShieldWarper_CBM
-{
-renderstyle translucent
-+NOTIMEFREEZE
-alpha 0.5
-scale 2
-States
-{
-Shield:
-MAGG FFFGGG 1 A_Warp(AAPTR_TARGET,30,27,28,0,24)
-loop
-}
-}
-
-actor MagSpreadWarperB : MagSpreadWarperA
-{
-States
-{
-Shield:
-MAGG FFFGGG 1 A_Warp(AAPTR_TARGET,30,9,28,0,24)
-loop
-}
-}
-
-actor MagSpreadWarperC : MagSpreadWarperA
-{
-States
-{
-Shield:
-MAGG FFFGGG 1 A_Warp(AAPTR_TARGET,30,-9,28,0,24)
-loop
-}
-}
-
-actor MagSpreadWarperD : MagSpreadWarperA
-{
-States
-{
-Shield:
-MAGG FFFGGG 1 A_Warp(AAPTR_TARGET,30,-27,28,0,24)
-loop
-}
-}
-
-actor MagMissileSpreadB : MagMissileSpread{Translation "192:192=4:4","198:198=74:74","250:250=196:196","249:249=199:199","195:195=74:74"}
-actor MagMissileSpreadR : MagMissileSpread{Translation "192:192=4:4","198:198=41:41","250:250=170:170","249:249=43:43","195:195=41:41"}
-actor MagMissileSpreadO : MagMissileSpread{Translation "192:192=4:4","198:198=128:128","250:250=138:138","249:249=131:131","195:195=128:128"}
-actor MagMissileSpreadP : MagMissileSpread{Translation "192:192=4:4","198:198=232:232","250:250=214:214","249:249=223:223","195:195=232:232"}
-
 actor MagnetmanMain_CI : TeamColor_CI
 {
 states
@@ -1197,94 +802,6 @@ TNT1 A 0 A_FireCustomMissile("MagMissileClassO",0,1,8,0)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("MagMissileClassP",0,1,8,0)
-goto Done
-}
-}
-
-actor MagnetmanMain2a_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpread",0,1,28,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadB",0,1,27,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadR",0,1,27,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadO",0,1,27,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadP",0,1,27,0)
-goto Done
-}
-}
-
-actor MagnetmanMain2b_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpread",0,1,9,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadB",0,1,9,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadR",0,1,9,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadO",0,1,9,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadP",0,1,9,0)
-goto Done
-}
-}
-
-actor MagnetmanMain2c_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpread",0,1,-9,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadB",0,1,-9,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadR",0,1,-9,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadO",0,1,-9,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadP",0,1,-8,0)
-goto Done
-}
-}
-
-actor MagnetmanMain2d_CI : TeamColor_CI
-{
-states
-{
-FireX:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpread",0,1,-27,0)
-goto Done
-FireB:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadB",0,1,-27,0)
-goto Done
-FireR:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadR",0,1,-27,0)
-goto Done
-FireO:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadO",0,1,-27,0)
-goto Done
-FireP:
-TNT1 A 0 A_FireCustomMissile("MagMissileSpreadP",0,1,-27,0)
 goto Done
 }
 }
@@ -1330,38 +847,6 @@ TNT1 A 0 A_FireCustomMissile("MagflyMagnetSpawnerBlokeO",0,1,8,0)
 goto Done
 FireP:
 TNT1 A 0 A_FireCustomMissile("MagflyMagnetSpawnerBlokeP",0,1,8,0)
-goto Done
-}
-}
-
-actor MagnetReload_CI : TeamColor_CI
-{
-states
-{
-FireX:
-//TNT1 A 0 A_FireCustomMissile("MagneticMine",60,0,0,0)
-TNT1 A 0 A_FireCustomMissile("MagneticMine",0,0,0,0)
-//TNT1 A 0 A_FireCustomMissile("MagneticMine",-60,0,0,0)
-goto Done
-FireB:
-//TNT1 A 0 A_FireCustomMissile("MagneticMineB",60,0,0,0)
-TNT1 A 0 A_FireCustomMissile("MagneticMineB",0,0,0,0)
-//TNT1 A 0 A_FireCustomMissile("MagneticMineB",-60,0,0,0)
-goto Done
-FireR:
-//TNT1 A 0 A_FireCustomMissile("MagneticMineR",60,0,0,0)
-TNT1 A 0 A_FireCustomMissile("MagneticMineR",0,0,0,0)
-//TNT1 A 0 A_FireCustomMissile("MagneticMineR",-60,0,0,0)
-goto Done
-FireO:
-//TNT1 A 0 A_FireCustomMissile("MagneticMineO",60,0,0,0)
-TNT1 A 0 A_FireCustomMissile("MagneticMineO",0,0,0,0)
-//TNT1 A 0 A_FireCustomMissile("MagneticMineO",-60,0,0,0)
-goto Done
-FireP:
-//TNT1 A 0 A_FireCustomMissile("MagneticMineP",60,0,0,0)
-TNT1 A 0 A_FireCustomMissile("MagneticMineP",0,0,0,0)
-//TNT1 A 0 A_FireCustomMissile("MagneticMineP",-60,0,0,0)
 goto Done
 }
 }

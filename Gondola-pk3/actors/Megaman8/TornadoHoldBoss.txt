@@ -262,6 +262,7 @@ TNT1 A 0 A_GiveInventory("TengumanAmmo_RC",1)
 goto ResetSpeed
 
 ResetSpeed:
+TNT1 A 0 A_GiveInventory("EnvironmentGravity",1)
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,1,1)
 stop
 
@@ -273,7 +274,8 @@ Hover:
 TNT1 A 0 A_GiveInventory("TenguIsHovering",1)
 TNT1 A 0 A_GiveInventory("TenguWasThrusted",1)
 TNT1 A 0 A_TakeInventory("FeelMyPowerAmmo",1,1)
-TNT1 A 0 A_ChangeVelocity(momx,momy,-0.3,CVF_REPLACE)
+TNT1 A 0 A_SetGravity(0.0)
+TNT1 A 0 A_ChangeVelocity(momx,momy,-0.5,CVF_REPLACE)
 TNT1 A 0 ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,2,1)
 stop
 

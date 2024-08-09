@@ -14,11 +14,11 @@ player.startitem "CanCopyWeapons"
 player.startitem "SlideLimitFlag", 500
 player.startitem "CopyNerf"
 
-player.maxhealth 85
-health 85
+player.maxhealth 80
+health 80
 player.jumpz 10
-player.forwardmove 0.83, 0.83
-player.sidemove 0.81, 0.81
+player.forwardmove 0.85, 0.85
+player.sidemove 0.83, 0.83
 States
 {
 Spawn:

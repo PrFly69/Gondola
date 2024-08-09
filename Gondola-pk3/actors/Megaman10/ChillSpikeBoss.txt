@@ -1,14 +1,6 @@
-/*
--Redid the Ready states
--Removed unnecesary ammo checks
--Redid the Flash state (Will now always regen slide ammo once he lands)
--Renamed some fire states for clarity
--Optional: Death FX for spike shot
-*/
-
-actor ChillSpikeBossC : BaseMM8BDMWep_CBM
+actor ChillSpikeBoss : BaseMM8BDMWep_CBM
 {
-	Tag "Chillman Spike"
+	Tag "$TAGC_10D"
 	dropitem "ChillSpikeWepCDropped"
 	Weapon.AmmoUse 10
 	Weapon.AmmoUse2 1
@@ -179,8 +171,6 @@ actor ChillSpikeBossC : BaseMM8BDMWep_CBM
 		//goto Ready1
 	}
 }
-
-actor ChillSprayBossC : ChillSpikeBossC{}
 
 actor ChillSpikeBossAmmo : Ammo
 {

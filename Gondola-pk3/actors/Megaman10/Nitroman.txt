@@ -22,8 +22,8 @@ player.startitem "ChillSpikeWeakness", 1
 	//Player.StartItem "NitroGearState", 1
     //player.startitem "ChillSpikeWeakness2", 1
 	
-player.maxhealth 85
-health 85
+player.maxhealth 90
+health 90
 player.jumpz 10
 player.forwardmove 0.8, 0.8
 player.sidemove 0.78, 0.78

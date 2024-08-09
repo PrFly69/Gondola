@@ -67,7 +67,7 @@ Fire:
 XTOP A 0 A_JumpIfInventory("IsBot",1,"BotFire")
 XTOP A 0 A_JumpIfInventory("SpinTime",1,"SpinEnd")
 //XTOP A 0 A_JumpIfInventory("IsBot",1,"BotFire")
-XTOP A 0 A_GiveInventory("TopDashFlag",1)
+XTOP A 0 A_GiveInventory("TopDashFlag",10)
 TNT1 A 1 Offset(245,32)ACS_ExecuteAlways(CORE_ACS_191,0,APROP_Speed,92,100)
 //XTOP A 1 A_JumpIf(momz==0, "NoAmmo")
 //XTOP A 0
@@ -397,7 +397,7 @@ Powerup.Duration 1
 actor TopDashFlag : Inventory
 {
 inventory.amount 1
-inventory.maxamount 9
+inventory.maxamount 90
 }
 actor TopDash_End : OnceC {}
 
@@ -518,7 +518,7 @@ actor Top_ChargePickupFlag : CustomInventory
 {
 States
 {
-Pickup:
+Pickup:/*
 TNT1 A 0 //A_JumpIfInventory("Top_Charge",105,"P_Flag")
 TNT1 A 0 A_JumpIfInventory("Top_ChargeS6",1,"No")
 TNT1 A 0 A_JumpIfInventory("Top_ChargeS5",1,"No")
@@ -526,8 +526,20 @@ TNT1 A 0 A_JumpIfInventory("Top_ChargeS4",1,"No")
 TNT1 A 0 A_JumpIfInventory("Top_ChargeS3",1,"No")
 TNT1 A 0 A_JumpIfInventory("Top_ChargeS2",1,"No")
 goto P_Flag
-P_Flag:
-TNT1 A 0 A_GiveInventory("TopDashFlag",1)
+P_Flag:*/
+TNT1 A 0 A_JumpIfInventory("Top_Charge",105,"Give3")
+TNT1 A 0 A_JumpIfInventory("Top_Charge",60,"Give2") 
+//Give3:
+//TNT1 A 0 A_GiveInventory("TopDashFlag",3)
+//stop
+Give1:
+TNT1 A 0 A_GiveInventory("TopDashFlag",5)
+stop
+Give2:
+TNT1 A 0 A_GiveInventory("TopDashFlag",10)
+stop
+Give3:
+TNT1 A 0 A_GiveInventory("TopDashFlag",15)
 stop
 No:
 TNT1 A 0
@@ -704,7 +716,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TOPX D 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*0.2675+1,96,0,0,24)
+XTOP W 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*0.2675+1,96,0,0,24)
 stop
 }
 }
@@ -739,7 +751,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TOPX D 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*0.2675+2,96,0,0,24)
+XTOP W 2 A_Explode(ACS_NamedExecuteWithResult("cbm_getplayervelocity",30,0)*0.2675+5,96,0,0,24)
 stop
 }
 }
@@ -759,7 +771,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TOPX D 2 A_Explode(2,88,0,0,32)
+XTOP W 2 A_Explode(2,88,0,0,32)
 stop
 }
 }
@@ -769,7 +781,7 @@ States
 {
 Spawn:
 TNT1 A 0
-TOPX D 2 A_Explode(3,88,0,0,32)
+XTOP W 2 A_Explode(3,88,0,0,32)
 stop
 }
 }

@@ -9,12 +9,12 @@
     Player.ScoreIcon "C_02G0X"
 	Player.DisplayName "heatman"
 	Player.SoundClass "heatmanc"
-	Player.StartItem "AtomicDashBoss"
 	Player.StartItem "AtomicFireBoss"
+//	Player.StartItem "AtomicFireBoss"
 	Player.StartItem "ZippoAmmo", 100
 	Player.StartItem "HeatmanDashFlag", 100
-	Player.WeaponSlot 1, "AtomicDashBoss"
-	Player.WeaponSlot 2, "AtomicFireBoss"
+//	Player.WeaponSlot 1, "AtomicDashBoss"
+//	Player.WeaponSlot 2, "AtomicFireBoss"
 	Player.StartItem "BubbleLeadWeakness2", 1
 	Player.StartItem "BubbleLeadWeakness", 1
 	Player.StartItem "RainFlushWeakness", 1

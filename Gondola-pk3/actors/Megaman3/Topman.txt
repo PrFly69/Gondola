@@ -5,8 +5,8 @@ Player.ScoreIcon "C_03E0X"
 player.displayname "Topman"
 player.soundclass "topmanc"
 
-player.maxhealth 85
-health 85
+player.maxhealth 90
+health 90
 player.jumpz 10
 player.forwardmove 1.0, 1.0
 player.sidemove 0.98, 0.98
@@ -38,16 +38,16 @@ TOPM G 4
 goto Spawn
 
 Missile:
-TOPM F 0 A_JumpIfInventory("TopDashFlag",9,"ARunT2")
-TOPM F 0 A_JumpIfInventory("TopDashFlag",8,"ARunT")
-TOPM F 0 A_JumpIfInventory("TopDashFlag",7,"ARunS")
-TOPM F 0 A_JumpIfInventory("TopDashFlag",6,"ARunR")
-TOPM F 0 A_JumpIfInventory("TopDashFlag",5,"ARunQ")
-TOPM F 0 A_JumpIfInventory("TopDashFlag",4,"ARunP")
-TOPM F 0 A_JumpIfInventory("TopDashFlag",3,"ARunO")
-TOPM F 0 A_JumpIfInventory("TopDashFlag",2,"ARunN")
-TOPM F 0 A_JumpIfInventory("TopDashFlag",1,"ARunM")
-TOPM FF 1 A_JumpIfInventory("TopDashFlag",1,"ARunM")
+//TOPM F 0 A_JumpIfInventory("TopDashFlag",9,"ARunT2")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",80,"ARunT")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",70,"ARunS")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",60,"ARunR")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",50,"ARunQ")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",40,"ARunP")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",30,"ARunO")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",20,"ARunN")
+TOPM F 0 A_JumpIfInventory("TopDashFlag",10,"ARunM")
+TOPM FF 1 A_JumpIfInventory("TopDashFlag",10,"ARunM")
 TOPM FFF 1
 TOPM G 4
 goto Spawn
@@ -74,12 +74,12 @@ ARunS:
 TOPM S 2
 Goto ARunX+7
 ARunT:
-TOPM T 2
+TOPM T 2 A_TakeInventory("TopDashFlag",80)
 Goto ARunX
 ARunT2:
-TOPM M 2 A_TakeInventory("TopDashFlag",8)
+TOPM M 2 A_TakeInventory("TopDashFlag",80)
 Goto ARunX
-ARunX:
+ARunX: 
 TOPM MNOPQRST 1 A_JumpIfInventory("TopDash_End",1,"Missile")
 loop
 

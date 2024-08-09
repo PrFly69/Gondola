@@ -245,7 +245,7 @@ loop
 
 actor FrostPunchShot
 {
-Translation "199:199=196:196", "192:192=4:4"
+Translation "199:199=78:78", "202:202=205:205"
 PROJECTILE
 +DONTREFLECT
 +SKYEXPLODE
@@ -281,10 +281,10 @@ stop
 }
 }
 
-actor FrostPunchShotB : FrostPunchShot{translation "192:192=4:4","199:199=205:205"}
-actor FrostPunchShotR : FrostPunchShot{translation "192:192=4:4","199:199=171:171"}
-actor FrostPunchShotO : FrostPunchShot{translation "192:192=4:4","199:199=104:104"}
-actor FrostPunchShotP : FrostPunchShot{translation "192:192=4:4","199:199=229:229"}
+actor FrostPunchShotB : FrostPunchShot{translation "202:202=205:205","199:199=74:74"}
+actor FrostPunchShotR : FrostPunchShot{translation "202:202=171:171","199:199=41:41"}
+actor FrostPunchShotO : FrostPunchShot{translation "202:202=104:104","199:199=128:128"}
+actor FrostPunchShotP : FrostPunchShot{translation "202:202=229:229","199:199=232:232"}
 
 
 actor FrostPunchIcicle
@@ -387,7 +387,7 @@ loop
 
 actor IceWaveSpawnerB
 {
-Translation "199:199=196:196", "202:202=4:4", "192:192=4:4"
+Translation "199:199=78:78", "202:202=205:205"
 PROJECTILE
 +DONTBLAST
 Damage (0)
@@ -408,10 +408,10 @@ stop
 }
 }
 
-actor IceWaveSpawnerBB : IceWaveSpawnerB{translation "192:192=4:4","202:202=4:4","199:199=205:205"}
-actor IceWaveSpawnerBR : IceWaveSpawnerB{translation "192:192=4:4","202:202=4:4","199:199=171:171"}
-actor IceWaveSpawnerBO : IceWaveSpawnerB{translation "192:192=4:4","202:202=4:4","199:199=104:104"}
-actor IceWaveSpawnerBP : IceWaveSpawnerB{translation "192:192=4:4","202:202=4:4","199:199=229:229"}
+actor IceWaveSpawnerBB : IceWaveSpawnerB{translation "202:202=205:205","199:199=74:74"}
+actor IceWaveSpawnerBR : IceWaveSpawnerB{translation "202:202=171:171","199:199=41:41"}
+actor IceWaveSpawnerBO : IceWaveSpawnerB{translation "202:202=104:104","199:199=128:128"}
+actor IceWaveSpawnerBP : IceWaveSpawnerB{translation "202:202=229:229","199:199=232:232"}
 
 actor IceWaveSpawnerB2
 {
@@ -530,20 +530,12 @@ TNT1 A 0
 TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 Y_8F B 0 A_PlaySoundEx("weapon/icewavespawn","weapon")
-Y_8F B 0 A_Jump(80, "Icicle2")
-Y_8F B 0 A_Jump(64, "Icicle4")
-Y_8F BCDEE 3
+Y_8F B 0 A_Jump(128, "Icicle2")
+Y_8F BCCDD 3
 Goto Death
 Icicle2:
 Y_8F L 0
-Y_8F L 0 A_Jump(80, "Icicle3")
-Y_8F LMMNN 3
-Goto Death
-Icicle3:
-Y_8F LMNOO 3
-Goto Death
-Icicle4:
-Y_8F BCCDD 3
+Y_8F HIIJJ 3
 Goto Death
 Death: 
 TNT1 A 0 A_SpawnItemEx("IceWaveBreakB",0,0,0,0,0,0,0,1)
@@ -564,20 +556,12 @@ TNT1 A 0 ACS_NamedExecuteAlways("BULL_Tidifier", 0)
 SpawnLOOP:
 Y_8F P 0 A_PlaySoundEx("weapon/icewavespawn","weapon")
 Y_8F P 0 A_JumpIf(z-floorz <= 8,"SpawnFloor")
-Y_8F P 0 A_Jump(80, "Icicle2")
-Y_8F P 0 A_Jump(64, "Icicle4")
-Y_8F PQRSS 3
+Y_8F B 0 A_Jump(128, "Icicle2")
+Y_8F KLLMM 3
 Goto Death
 Icicle2:
 Y_8F T 0
-Y_8F T 0 A_Jump(80, "Icicle3")
-Y_8F TUUVV 3
-Goto Death
-Icicle3:
-Y_8F TUVWW 3
-Goto Death
-Icicle4:
-Y_8F PQQRR 3
+Y_8F NOOPP 3
 Goto Death
 SpawnFloor:
 TNT1 A 0 A_SpawnItemEx("IceWaveIcicleFloorB",0,0,0,0,0,0,0,1)
@@ -600,45 +584,22 @@ alpha 0.75
 States
 {
 Spawn:
-Y_8F FFGGHH 1 A_FadeOut
+Y_8F EEFFGG 1 A_FadeOut
 stop
 }
 }
 
-actor FrostPunch : FastProjectile
+actor FrostPunch : BasicPunch
 {
-translation "202:202=4:4"
+damagetype "FrostM_Punch"
 Obituary "$OB_FROSTPUNCH"
-Speed 80
-Damage (45)
-PROJECTILE
-+DONTBLAST
-reactiontime 1
-Radius 20
-Height 20
-scale 2.5
-States
-{
-Spawn:
-UMFX R 0
-UMFX J 1 A_CountDown
-wait
-Death:
-UMFX R 0 A_Explode(45,52,0,0,4)
-goto XDeath
-XDeath:
-UMFX J 0 A_Stop
-UMFX J 2
-XMFX S 2
-UMFX JK 2
-stop
-}
+mass 45
 }
 
-actor FrostPunchB : FrostPunch{translation "202:202=205:205"}
-actor FrostPunchR : FrostPunch{translation "202:202=171:171"}
-actor FrostPunchO : FrostPunch{translation "202:202=104:104"}
-actor FrostPunchP : FrostPunch{translation "202:202=229:229"}
+actor FrostPunchB : FrostPunch{translation "202:202=4:4", "199:199=205:205"}
+actor FrostPunchR : FrostPunch{translation "202:202=4:4", "199:199=171:171"}
+actor FrostPunchO : FrostPunch{translation "202:202=4:4", "199:199=104:104"}
+actor FrostPunchP : FrostPunch{translation "202:202=4:4", "199:199=229:229"}
 
 actor GroundIce_Frost : GroundIce_Freeze
 {

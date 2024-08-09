@@ -46,10 +46,10 @@
 		FAKR E 0 A_JumpIfNoAmmo("NoAmmo")
 		FAKR E 0 A_JumpIfInventory("FOMBuffer",1,"FOMCheck")
 		FAKR E 0 A_JumpIfInventory("FOMBufferR",1,"FOMCheck")
-		FAKR E 0 A_PlaySoundEx("weapon/fakeshot1","Weapon")
+		FAKR E 0 A_PlaySoundEx("weapon/fakeshot2","Weapon")
 		FARK E 0 A_GiveInventory("FakemanFiring",1)
 		FAKR E 0 A_GiveInventory("FakemanMain1_CI",1)
-		FAKR E 1 A_GiveInventory("FakemanFOM_P")
+		FAKR X 1 A_GiveInventory("FakemanFOM_P")
 		FAKR B 0 A_Refire("FireH1")
 		Goto FireEnd
 		
@@ -67,51 +67,57 @@
 		Goto FireBEnd
 
 		FireH1:
-		FAKR B 1 A_RailWait
+		FAKR B 1 Offset(20,50)A_RailWait
 		FAKR C 0 A_Refire("FireH2")
 		Goto FireEnd+1
 
 		FireH2:
-		FAKR C 1 A_RailWait
+		FAKR C 1 Offset(30,60)A_RailWait
 		FAKR D 0 A_Refire("FireH3")
 		Goto FireEnd+2
 
 		FireH3:
-		FAKR D 1 A_RailWait
+		FAKR D 1 Offset(20,50)A_RailWait
 		FAKR A 0 A_Refire("FireH4")
 		Goto Ready1
 
 		FireH4:
+		FAKR A 0 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 		FAKR A 1 A_RailWait
 		FAKR A 0 A_Refire("FireH4")
 		Goto Ready1
 
 		FireEnd:
-		FAKR BCD 1
+		FAKR B 1 Offset(20,50)
+		FAKR C 1 Offset(30,60)
+		FAKR D 1 Offset(20,50)
 		Goto Ready1
 
 		FireBH1:
-		FAKR B 2 A_RailWait
+		FAKR B 2 Offset(10,40)A_RailWait
 		FAKR C 0 A_Refire("FireBH2")
 		Goto FireBEnd+1
 
 		FireBH2:
-		FAKR C 2 A_RailWait
+		FAKR C 2 Offset(20,50)A_RailWait
 		FAKR D 0 A_Refire("FireBH3")
 		Goto FireBEnd+2
 
 		FireBH3:
-		FAKR D 2 A_RailWait
+		FAKR D 2 Offset(10,40)A_RailWait
 		FAKR A 0 A_Refire("FireBH4")
 		Goto Ready1
 
 		FireBH4:
+		FAKR A 0 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
 		FAKR A 2 A_RailWait
 		FAKR A 0 A_Refire("FireBH4")
 		Goto Ready1
 
 		FireBEnd:
-		FAKR BCD 2
+		FAKR B 2 Offset(10,40)
+		FAKR C 2 Offset(20,50)
+		FAKR D 2 Offset(10,40)
 		Goto Ready1
 
 		NoAmmo:

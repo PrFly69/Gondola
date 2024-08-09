@@ -19,8 +19,8 @@ player.weaponslot 1, "DuoFistBoss"
 
 player.startitem "BaseWepAltOverride_F", 1
 
-player.maxhealth 115
-health 115
+player.maxhealth 110
+health 110
 player.jumpz 10
 player.forwardmove 0.73, 0.73
 player.sidemove 0.71, 0.71

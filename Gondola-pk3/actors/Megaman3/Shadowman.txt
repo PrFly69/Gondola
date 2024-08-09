@@ -7,7 +7,7 @@ player.soundclass "Shadowmanc"
 player.startitem "ShadowBladeBoss"
 player.startitem "ShadowBladerBoss"
 player.startitem "CloakAmmo", 28
-player.startitem "CaltropAmmo", 7
+player.startitem "CaltropAmmo", 35
 player.startitem "CanWallJump"
 player.startitem "CanWallJumpStack", 99
 

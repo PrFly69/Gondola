@@ -40,7 +40,7 @@ SHDE IIIIIJJJJJKKKKKJJJJJ 1 A_JumpIf(z-floorz>0,"Flying")
 Goto Spawn
 
 FlyingX:
-SHDE E 4 A_PlaySound("weapon/shadewing",1,0.5)
+SHDE E 4 A_PlaySound("weapon/shadewing",7,0.5)
 SHDE E 0 A_JumpIf(z-floorz>0,"Flying")
 Goto Spawn
 FlyingS:
@@ -94,7 +94,7 @@ SHDE E 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
 SHDE E 1 A_JumpIf(z-floorz==0,"FlyingS")
 SHDE E 0 A_JumpIfInventory("ShadeGrabFlight",1,"M_SwoopX")
 
-SHDE D 0 A_PlaySound("weapon/shadewing",1,0.5)
+SHDE D 0 A_PlaySound("weapon/shadewing",7,0.5)
 SHDE B 1 A_JumpIf(z-floorz>0,"Flying")
 Goto FlyingS
 Missile:
@@ -118,7 +118,7 @@ goto Spawn
 
 M_SwoopX:
 SHDE MMMMNNNNOOOONNNN 1 A_JumpIfInventory("ShadeIsDoneC",1,"FlyingX")
-SHDE M 0 A_PlaySound("weapon/shadewing",1,0.5)
+SHDE M 0 A_PlaySound("weapon/shadewing",7,0.5)
 loop
 ClassPainSwoop:
 SHDE "#" 0 A_SpawnItemEx("DelayPainFX")

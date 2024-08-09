@@ -133,7 +133,7 @@ Actor BalladeMineFlag : Inventory {
 }
  
 Actor BalladeMineDelay1 : Powerup {
-    Powerup.Duration 35
+    Powerup.Duration 50
 }
  
 Actor BalladeMineDelay2 : BalladeMineDelay1 { }
@@ -196,6 +196,7 @@ Actor BC_Base {
     Damagetype "Ballade_Shot"
     Obituary "$OB_BALLADECRACKER"
     +EXPLODEONWATER
+	+FORCEXYBILLBOARD
     Damage (12)
     Radius 8
     Height 16
@@ -229,6 +230,7 @@ Actor BC_Base_Fast : FastProjectile {
     Damagetype "Ballade_Shot"
     Obituary "$OB_BALLADECRACKER"
     +EXPLODEONWATER
+	+FORCEXYBILLBOARD
     Damage (12)
     Radius 8
     Height 16
@@ -287,7 +289,7 @@ Actor BC_Base_Fast : FastProjectile {
 		Spawn:
 		TNT1 A 0
 		TNT1 A 0 A_PlaySoundEx("weapon/crackerexplode", "Weapon")
-		TNT1 A 0 A_Explode(16,96,0,0,10)
+		TNT1 A 0 A_Explode(14,96,0,0,48)
 		TNT1 A 0 A_SpawnItemEx("BasicBoom5FX_Y",0,0,0,0,0,0,0,1+32)
 		Stop
 	}
